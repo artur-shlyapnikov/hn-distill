@@ -5,6 +5,8 @@ import { env } from '@config/env';
 import { formatDateHuman } from '@utils/date';
 import { readFileSync, existsSync } from 'node:fs';
 
+const PAGE_SIZE = 10;
+
 const lang = env.SUMMARY_LANG;
 const dataPath = new URL('../../data/aggregated.json', import.meta.url).pathname;
 const data = existsSync(dataPath) ? JSON.parse(readFileSync(dataPath, 'utf8')) : { items: [], updatedISO: '—' };
@@ -13,16 +15,29 @@ const items = Array.isArray((data as any).items) ? (data as any).items : [];
 const updatedISO = typeof (data as any).updatedISO === 'string' ? (data as any).updatedISO : '—';
 const updatedPretty = formatDateHuman(updatedISO);
 
+const totalPages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
+const pageItems = items.slice(0, PAGE_SIZE);
+
+function pageHref(n: number): string {
+  const u = new URL(`page/${n}/`, Astro.site ?? 'http://localhost/');
+  const path = u.pathname;
+  return path.endsWith('/') ? path : `${path}/`;
+}
+
 const i18n = {
   ru: {
     updated: 'Обновлено',
     stories: 'Постов',
-    noData: 'Нет данных для отображения. Попробуйте позже.'
+    noData: 'Нет данных для отображения. Попробуйте позже.',
+    page: 'Страница',
+    next: 'Вперёд »',
   },
   en: {
     updated: 'Updated',
     stories: 'Stories',
-    noData: 'No data to display. Please try again later.'
+    noData: 'No data to display. Please try again later.',
+    page: 'Page',
+    next: 'Next »',
   }
 };
 const t = i18n[lang];
@@ -30,7 +45,7 @@ const t = i18n[lang];
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
-    <title>Hacker News Digest</title>
+    <title>Hacker News Digest — {t.page} 1/{totalPages}</title>
     <meta name="robots" content="index,follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
@@ -38,13 +53,19 @@ const t = i18n[lang];
     <header>
       <h1>Hacker News Digest</h1>
       <p class="meta">{t.updated}: {updatedPretty}</p>
-      <p class="meta">{t.stories}: {items.length}</p>
+      <p class="meta">{t.stories}: {items.length} • {t.page} 1/{totalPages}</p>
     </header>
     <main>
       {items.length === 0 ? (
         <p class="meta">{t.noData}</p>
       ) : (
-        items.map((it) => <StorySection item={it} />)
+        pageItems.map((it) => <StorySection item={it} />)
+      )}
+      {items.length > 0 && totalPages > 1 && (
+        <nav class="pagination" aria-label="Pagination">
+          <span>{t.page} 1 / {totalPages}</span>
+          <a href={pageHref(2)} rel="next">{t.next}</a>
+        </nav>
       )}
     </main>
   </body>
