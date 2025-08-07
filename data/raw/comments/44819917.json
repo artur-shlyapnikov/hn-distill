@@ -8,10 +8,10 @@
     "depth": 1
   },
   {
-    "id": 44822267,
-    "by": "Angostura",
-    "timeISO": "2025-08-07T09:07:49.000Z",
-    "textPlain": "I read this sentence 4 times and I still can't parse it:> An attacker can simply send your email address to a legitimate service, and prompt for a 6-digit code. You can't know for sure if the code is supposed to be entered in the right place.",
+    "id": 44821568,
+    "by": "iEchoic",
+    "timeISO": "2025-08-07T07:23:51.000Z",
+    "textPlain": "Four times a day, I get an email notification that someone requested a password reset for my Microsoft account, which gives me a six-digit number to recover my account. So every day, an attacker has four shots in 1,000,000 of stealing my account by just guessing the number. They've been doing this for years.If the attacker's doing this to thousands of accounts - which I'm sure they are - they're going to be stealing accounts for free just by guessing.I wrote up a security report and submitted it and they said that I hadn't sufficiently mathematically demonstrated that this is a security vulnerability. So your only option is to get spammed and hope your account doesn't get stolen, I guess.",
     "parent": 44819917,
     "depth": 1
   },
@@ -24,26 +24,26 @@
     "depth": 1
   },
   {
-    "id": 44821568,
-    "by": "iEchoic",
-    "timeISO": "2025-08-07T07:23:51.000Z",
-    "textPlain": "Four times a day, I get an email notification that someone requested a password reset for my Microsoft account, which gives me a six-digit number to recover my account. So every day, an attacker has four shots in 1,000,000 of stealing my account by just guessing the number. They've been doing this for years.If the attacker's doing this to thousands of accounts - which I'm sure they are - they're going to be stealing accounts for free just by guessing.I wrote up a security report and submitted it and they said that I hadn't sufficiently mathematically demonstrated that this is a security vulnerability. So your only option is to get spammed and hope your account doesn't get stolen, I guess.",
+    "id": 44822784,
+    "by": "southp",
+    "timeISO": "2025-08-07T10:30:58.000Z",
+    "textPlain": "I get the point. However, from my own experience this type of one-time passcode is unfortunately the 2nd well-understood authentication method for non-tech people surrounding me. The 1st is the password, of course.I don't know the general situation, but, at least in our small town, people would go to the phone service shop just for account setup and recovery, since it's just too complicated. Password managers and passkeys don't make things simpler for them either –– I've never successfully conveyed the idea of a password manager to a non-tech person; the passkey is somehow even harder to explain. From my perspective it's both the mental model and the extra, convoluted UX that's very hard to grasp for them.Until one day we come up with something intuitive for general audience, passwords and the \"worse\" one-time code will likely continue to be prominent for their simplicity.",
     "parent": 44819917,
     "depth": 1
   },
   {
-    "id": 44822218,
-    "by": "FabHK",
-    "timeISO": "2025-08-07T08:57:56.000Z",
-    "textPlain": "One additional annoyance with this type of login:With a username and password field, these are automatically correctly filled by Safari.With sites that only offer an email field, I have to manually fill it.(Note that I tend to use different emails for different sites; if you only ever use one email this might not be a problem).",
+    "id": 44822818,
+    "by": "dspillett",
+    "timeISO": "2025-08-07T10:36:32.000Z",
+    "textPlain": "And even if proper passwords are used, many sites/apps use this pattern for account recovery if the password is forgotten so effectively this is the only security as an attacker has “forgotten” the password and just uses this flow to login.I've got a little generic login tool that bits I write myself use for login, using this method, but it is not for anything sensitive or otherwise important (I just want to identify the user, myself or a friend, so correct preferences and other saved information can be applied to the right person, and the information is not easily scraped) - I call it ICGAFAS, the “I Couldn't Give A Factor” Auth System to make it obvious how properly secure it isn't trying to be!Another issue that email based “authentication” like this (though one for the site/app admins more than the end user) has is the standard set of deliverability issues inherent with modern handling of SMTP mail. You end up having to use a 3rd party relay service to reduce the amount of time you spend fighting blocklists as your source address gets incorrectly ignored as a potential spam source.",
     "parent": 44819917,
     "depth": 1
   },
   {
-    "id": 44821825,
-    "by": "allears62",
-    "timeISO": "2025-08-07T08:01:58.000Z",
-    "textPlain": "My main frustration with this sort of system, beyond the security risks is the terrible UX of a system like Spotify.I appreciate most people log in and stay logged in but I frequently switch Spotify accounts and I use passwords to log in, instead of letting me choose password or a 6 digit code, every time I try and change account a needless 6 digit code is generated and sent to a shared inbox, a huge waste of resources and storage. In addition to being a security concern as flagged throughout this thread.",
+    "id": 44822617,
+    "by": "grahameb",
+    "timeISO": "2025-08-07T10:05:12.000Z",
+    "textPlain": "I recently set up passkey-only sign ins for a webapp I'm writing using Authentik [0](Python OIDC provider, with quite a nice docker-compose run-up, took only minutes to stand up.) It was surprisingly easy to configure everything so that passkeys are the only thing ever used.If anyone would be interested I could write it up? I was surprised what a nice user flow it is and how easy it was to achieve.[0] https://goauthentik.io/",
     "parent": 44819917,
     "depth": 1
   },
@@ -56,18 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44820657,
-    "by": "ameliaquining",
-    "timeISO": "2025-08-07T04:44:52.000Z",
-    "textPlain": "So there are two complaints about this authn scheme that I'm seeing in this thread:1. It's pretty phishable. I think this is mostly solved, or at least greatly mitigated, by using a Slack-style magic sign-in link instead of a code that you have the user manually enter into the trusted UI. A phisher would have to get the user to copy-paste the URL from the email into their UI, instead of clicking the link or copy-pasting it into the address bar. That's an unusual enough action that most users probably won't default to doing it (and you could improve this by not showing the URL in HTML email, instead having users click an image, but that might cause usability problems). It's not quite fully unphishable, but it seems about as close as you can get without completely hiding the authentication secret from the user, which is what passkeys, Yubikeys, etc., do. I'd love to see the future where passkeys are the only way to log into most websites, but I think websites are reluctant to go there as long as the ecosystem is relatively immature.2. It's not true multi-factor authn because an attacker only needs to compromise one thing (your inbox) to hijack your account. I have two objections to this argument:a. This is already the case as long as you have an email-based password reset flow, which most consumer-facing websites are unwilling to go without. (Password reset emails are a bit less vulnerable to phishing because a user who didn't request one is more likely to be suspicious when one shows up in their inbox, but see point 1.)b. True multi-factor authn for ordinary consumer websites never really worked, and especially doesn't work in the age of password managers. As long as those exist, anyone who possesses and is logged into the user's phone or laptop (the usual prerequisites for a possession-based second factor) can also get their password. Most websites should not be in the business of trying to use knowledge-based authentication on their users, because they can't know w",
-    "parent": 44819917,
-    "depth": 1
-  },
-  {
-    "id": 44820292,
-    "by": "charlesabarnes",
-    "timeISO": "2025-08-07T03:29:48.000Z",
-    "textPlain": "Wholeheartedly agree, however The Changelog Podcast helped shift my perspective on this.  It's really about not having the responsibility of storing and maintaining passwords.",
+    "id": 44822267,
+    "by": "Angostura",
+    "timeISO": "2025-08-07T09:07:49.000Z",
+    "textPlain": "I read this sentence 4 times and I still can't parse it:> An attacker can simply send your email address to a legitimate service, and prompt for a 6-digit code. You can't know for sure if the code is supposed to be entered in the right place.",
     "parent": 44819917,
     "depth": 1
   },
@@ -80,10 +72,58 @@
     "depth": 1
   },
   {
-    "id": 44820349,
-    "by": "pandorobo",
-    "timeISO": "2025-08-07T03:39:27.000Z",
-    "textPlain": "Very short, badly written article.\nIt can't even describe phishing correctly... At least label your threat model correctly.While the premise is correct -- it's easy to complain but the author also provides zero recommendations on what is a better form of MFA.",
+    "id": 44822548,
+    "by": "Nevor",
+    "timeISO": "2025-08-07T09:51:12.000Z",
+    "textPlain": "There are some short comings about using email codes but I fail to see how this worse than passwords when the same exact kind of attack would work for passwords. The difference being that it would be worse with passwords which can be stored, reused later or sometimes changed directly on the service.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44820657,
+    "by": "ameliaquining",
+    "timeISO": "2025-08-07T04:44:52.000Z",
+    "textPlain": "So there are two complaints about this authn scheme that I'm seeing in this thread:1. It's pretty phishable. I think this is mostly solved, or at least greatly mitigated, by using a Slack-style magic sign-in link instead of a code that you have the user manually enter into the trusted UI. A phisher would have to get the user to copy-paste the URL from the email into their UI, instead of clicking the link or copy-pasting it into the address bar. That's an unusual enough action that most users probably won't default to doing it (and you could improve this by not showing the URL in HTML email, instead having users click an image, but that might cause usability problems). It's not quite fully unphishable, but it seems about as close as you can get without completely hiding the authentication secret from the user, which is what passkeys, Yubikeys, etc., do. I'd love to see the future where passkeys are the only way to log into most websites, but I think websites are reluctant to go there as long as the ecosystem is relatively immature.2. It's not true multi-factor authn because an attacker only needs to compromise one thing (your inbox) to hijack your account. I have two objections to this argument:a. This is already the case as long as you have an email-based password reset flow, which most consumer-facing websites are unwilling to go without. (Password reset emails are a bit less vulnerable to phishing because a user who didn't request one is more likely to be suspicious when one shows up in their inbox, but see point 1.)b. True multi-factor authn for ordinary consumer websites never really worked, and especially doesn't work in the age of password managers. As long as those exist, anyone who possesses and is logged into the user's phone or laptop (the usual prerequisites for a possession-based second factor) can also get their password. Most websites should not be in the business of trying to use knowledge-based authentication on their users, because they can't know w",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44822314,
+    "by": "StillBored",
+    "timeISO": "2025-08-07T09:17:09.000Z",
+    "textPlain": "And there is _NOTHING_ worse than being locked out of an account because without asking they reverse the password and second factor authentication while your traveling and don't have access to a phone/etc.Nevermind. that pretty much all services treat the second factor as more secure than my 20 character random password saved in a local password safe. And those second factors are, lets see, plain text over SMS, plain text over the internet to an email address, etc, etc, etc.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44822970,
+    "by": "esjeon",
+    "timeISO": "2025-08-07T11:02:48.000Z",
+    "textPlain": "The actual weak link here is not the procedure itself. It’s the fact that your email services will happily accept phishing mails into your inbox.I’m pretty sure we can prevent this by issuing some kind of proof of agreement (with sender and recipient info) thru email services. Joining a service becomes submitting a proof to the service, and any attempt to contact the user from the service side must be sealed with the proof. Mix in some signing and HMAC this should be doable. I mean, IF we really want to extend the email standard.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44821825,
+    "by": "allears62",
+    "timeISO": "2025-08-07T08:01:58.000Z",
+    "textPlain": "My main frustration with this sort of system, beyond the security risks is the terrible UX of a system like Spotify.I appreciate most people log in and stay logged in but I frequently switch Spotify accounts and I use passwords to log in, instead of letting me choose password or a 6 digit code, every time I try and change account a needless 6 digit code is generated and sent to a shared inbox, a huge waste of resources and storage. In addition to being a security concern as flagged throughout this thread.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44822778,
+    "by": "varunramesh",
+    "timeISO": "2025-08-07T10:30:15.000Z",
+    "textPlain": "As the author points out, email OTP can be phished if the user is tricked into sending their OTP to an attacker.Email magic links are more phishing resistant - the email contains a link that authenticates the device where the link was clicked. To replicate the same attack, the user would have to send the entire link to the attacker, which is hopefully harder to socially engineer.But magic links are annoying when I want to sign in from my desktop computer that doesn't have access to my email. In that case OTP is more convenient, since I can just read the code from my phone.I think passkeys are a great option. I use a password manager for passkeys, but most people will use platform-provided keys that are stuck in one ecosystem (Google/Apple/MS). You probably need a way to register a new device, which brings you back again to email OTP or magic link (even if only as an account recovery option).",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44822218,
+    "by": "FabHK",
+    "timeISO": "2025-08-07T08:57:56.000Z",
+    "textPlain": "One additional annoyance with this type of login:With a username and password field, these are automatically correctly filled by Safari.With sites that only offer an email field, I have to manually fill it.(Note that I tend to use different emails for different sites; if you only ever use one email this might not be a problem).",
     "parent": 44819917,
     "depth": 1
   },
@@ -96,26 +136,74 @@
     "depth": 1
   },
   {
-    "id": 44821309,
-    "by": "eviks",
-    "timeISO": "2025-08-07T06:37:32.000Z",
-    "textPlain": "Indeed, such a bad design where instead of a simple and quick 1-shortcut login from a fishing-resistant password manager users have to waste time switching back and forth between different apps/devices",
+    "id": 44820349,
+    "by": "pandorobo",
+    "timeISO": "2025-08-07T03:39:27.000Z",
+    "textPlain": "Very short, badly written article.\nIt can't even describe phishing correctly... At least label your threat model correctly.While the premise is correct -- it's easy to complain but the author also provides zero recommendations on what is a better form of MFA.",
     "parent": 44819917,
     "depth": 1
   },
   {
-    "id": 44820362,
-    "by": "giantfrog",
-    "timeISO": "2025-08-07T03:42:07.000Z",
-    "textPlain": "Still seems far, far more likely that the average user will have their account stolen via password theft/reuse than the more complicated scheme the author is describing. Links instead of codes also fixes the issue.",
+    "id": 44823287,
+    "by": "ali-aljufairi",
+    "timeISO": "2025-08-07T11:52:18.000Z",
+    "textPlain": "I agree thank you",
     "parent": 44819917,
     "depth": 1
   },
   {
-    "id": 44821638,
-    "by": "doe88",
-    "timeISO": "2025-08-07T07:36:03.000Z",
-    "textPlain": "Some days when I'm tired of receiving a new authentication code, I'm half-jokingly thinking : we're certainly must reaching a point where at least half of all SMS messages sent are authentication codes (with a small payload, for now).",
+    "id": 44820292,
+    "by": "charlesabarnes",
+    "timeISO": "2025-08-07T03:29:48.000Z",
+    "textPlain": "Wholeheartedly agree, however The Changelog Podcast helped shift my perspective on this.  It's really about not having the responsibility of storing and maintaining passwords.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44822702,
+    "by": "yafujifide",
+    "timeISO": "2025-08-07T10:18:42.000Z",
+    "textPlain": "There is a way to fix this. Don't just require a 6 digit code. Require a 6 digit code and a long random string (an expiring token), which is only present on the page the user visited, or in the email they were sent.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44822305,
+    "by": "wkat4242",
+    "timeISO": "2025-08-07T09:15:31.000Z",
+    "textPlain": "It's also a lot less convenient. Because I need to have access to my email, wait for the code, copy it etc. I hate companies that dump this extra work on me, like booking.com and all the AI companies.Passkeys would be so much easier, convenient and so much more secure. I really don't understand why they go for this.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44822584,
+    "by": "noduerme",
+    "timeISO": "2025-08-07T09:58:30.000Z",
+    "textPlain": "I've conscientiously ignored every attempt by every service in the past decade to bully me into giving up a phone number for 2FA. Authenicator apps and passkeys, fine. But never over SMS.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44822891,
+    "by": "mediumsmart",
+    "timeISO": "2025-08-07T10:48:57.000Z",
+    "textPlain": "I think the registration pattern should be - user enters email to register. email is sent to that email with a link to verify. user clicks link. user gets email with username and password to login in to the profile created for them.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44822989,
+    "by": "amelius",
+    "timeISO": "2025-08-07T11:05:30.000Z",
+    "textPlain": "This is one of those problems for which a simple solution must exist, but which never gets solved.Just like sending large files over the internet.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44822916,
+    "by": "harha",
+    "timeISO": "2025-08-07T10:54:34.000Z",
+    "textPlain": "Also super annoying if you haven’t set up email on a device (like my iPad), now I have back and forth with my phone instead of going through my password manager.",
     "parent": 44819917,
     "depth": 1
   },
@@ -128,10 +216,10 @@
     "depth": 1
   },
   {
-    "id": 44820177,
-    "by": "malfist",
-    "timeISO": "2025-08-07T03:07:42.000Z",
-    "textPlain": "Whole heartedly agree. It's not more secure if you only use the second factor of two factor auth.",
+    "id": 44821419,
+    "by": "rcarmo",
+    "timeISO": "2025-08-07T06:58:37.000Z",
+    "textPlain": "Anthropic/Claude does this and it is a shame. They have the ability to code proper Authenticator and yet don’t.",
     "parent": 44819917,
     "depth": 1
   },
@@ -144,6 +232,54 @@
     "depth": 1
   },
   {
+    "id": 44820362,
+    "by": "giantfrog",
+    "timeISO": "2025-08-07T03:42:07.000Z",
+    "textPlain": "Still seems far, far more likely that the average user will have their account stolen via password theft/reuse than the more complicated scheme the author is describing. Links instead of codes also fixes the issue.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44822790,
+    "by": "Stratoscope",
+    "timeISO": "2025-08-07T10:31:46.000Z",
+    "textPlain": "I can't be the only person here who is familiar with the word \"attestation\" in everyday life but had no idea what it means in the context of login security.So I asked my friend Miss Chatty [1] about it. Hopefully this will help anyone who is as confused as I was.https://chatgpt.com/share/68947f35-0a10-8012-9ae9-adadc3df8b...[1] Siri and Alexa get to have cool names, so why can't ChatGPT?",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44822706,
+    "by": "amelius",
+    "timeISO": "2025-08-07T10:19:05.000Z",
+    "textPlain": "Also the 6-digit codes tend to appear on the lock screen of my phone, which means anybody can see them. I can turn that off, I know, but many people will not.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44820177,
+    "by": "malfist",
+    "timeISO": "2025-08-07T03:07:42.000Z",
+    "textPlain": "Whole heartedly agree. It's not more secure if you only use the second factor of two factor auth.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44822521,
+    "by": "torium",
+    "timeISO": "2025-08-07T09:45:24.000Z",
+    "textPlain": "You're gonna have to take my passwords from my cold dead hands.",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
+    "id": 44821309,
+    "by": "eviks",
+    "timeISO": "2025-08-07T06:37:32.000Z",
+    "textPlain": "Indeed, such a bad design where instead of a simple and quick 1-shortcut login from a fishing-resistant password manager users have to waste time switching back and forth between different apps/devices",
+    "parent": 44819917,
+    "depth": 1
+  },
+  {
     "id": 44820227,
     "by": "ripped_britches",
     "timeISO": "2025-08-07T03:18:19.000Z",
@@ -152,18 +288,10 @@
     "depth": 1
   },
   {
-    "id": 44821419,
-    "by": "rcarmo",
-    "timeISO": "2025-08-07T06:58:37.000Z",
-    "textPlain": "Anthropic/Claude does this and it is a shame. They have the ability to code proper Authenticator and yet don’t.",
-    "parent": 44819917,
-    "depth": 1
-  },
-  {
-    "id": 44821805,
-    "by": "ManlyBread",
-    "timeISO": "2025-08-07T07:58:08.000Z",
-    "textPlain": "I think this is the shortest \"article\" I've ever seen on this site. It's like linking to a tweet. How does this garbage gets upvoted to the first page?",
+    "id": 44821638,
+    "by": "doe88",
+    "timeISO": "2025-08-07T07:36:03.000Z",
+    "textPlain": "Some days when I'm tired of receiving a new authentication code, I'm half-jokingly thinking : we're certainly must reaching a point where at least half of all SMS messages sent are authentication codes (with a small payload, for now).",
     "parent": 44819917,
     "depth": 1
   },
@@ -190,133 +318,5 @@
     "textPlain": "I thought this was going to be about Passkeys. Maybe if the FIDO Alliance can stop being obstinant and allow real backups, I'd be all in on them.",
     "parent": 44819917,
     "depth": 1
-  },
-  {
-    "id": 44820368,
-    "by": "yieldcrv",
-    "timeISO": "2025-08-07T03:43:03.000Z",
-    "textPlain": "I like passkeys on the Apple ecosystem",
-    "parent": 44819917,
-    "depth": 1
-  },
-  {
-    "id": 44820398,
-    "by": "moomoo11",
-    "timeISO": "2025-08-07T03:49:49.000Z",
-    "textPlain": "Passwordless is fine.Let’s be honest all forms of auth suck and have pros and cons.The real solution is detect weird logins because users cannot be trusted. That’s why we build for them!",
-    "parent": 44819917,
-    "depth": 1
-  },
-  {
-    "id": 44820367,
-    "by": "6510",
-    "timeISO": "2025-08-07T03:43:00.000Z",
-    "textPlain": "MS can also call you, then you only have to press # to log in. Makes it even easier for a spoof website.",
-    "parent": 44819917,
-    "depth": 1
-  },
-  {
-    "id": 44820262,
-    "by": "totallykvothe",
-    "timeISO": "2025-08-07T03:24:20.000Z",
-    "textPlain": "I'm having difficulty understanding what it means for an attacker to \"send your email to a legitimate service\"...",
-    "parent": 44819917,
-    "depth": 1
-  },
-  {
-    "id": 44821430,
-    "by": "yuyu741",
-    "timeISO": "2025-08-07T07:01:13.000Z",
-    "textPlain": "[dead]",
-    "parent": 44819917,
-    "depth": 1
-  },
-  {
-    "id": 44821622,
-    "by": "bibelo",
-    "timeISO": "2025-08-07T07:33:44.000Z",
-    "textPlain": "I'm technical and I didn't understand this article.",
-    "parent": 44819917,
-    "depth": 1
-  },
-  {
-    "id": 44821089,
-    "by": "t_mann",
-    "timeISO": "2025-08-07T05:58:02.000Z",
-    "textPlain": "The problems of Passkeys are more nuanced than just losing access when a device is lost (which actually doesn't need to happen depending on your setup). The biggest problem are attestations, which let services block users who use tools that give them more freedom. Passkeys, or more generally challenge-response protocols, could easily have been an amazing replacement for passwords and a win-win for everyone. Unfortunately, the reality of how they've been designed is that they will mainly serve to further cement the primacy of BigTech and take away user freedom.",
-    "parent": 44820331,
-    "depth": 2
-  },
-  {
-    "id": 44821284,
-    "by": "boredhedgehog",
-    "timeISO": "2025-08-07T06:34:22.000Z",
-    "textPlain": "> Passkeys is the way to go.I wish there was a stronger differentiation between syncable and device-bound passkeys. It seems like we're now using the same word for two approaches which are very different when it comes to security and user-friendliness.And yes, giving granny unsyncable passkeys is a really bad idea, for so many reasons.",
-    "parent": 44820331,
-    "depth": 2
-  },
-  {
-    "id": 44821528,
-    "by": "valenterry",
-    "timeISO": "2025-08-07T07:17:58.000Z",
-    "textPlain": "> Passkeys is the way to goNo, at least not on its own. Let's not repeat the mistakes.Password managers are the way to go and ONLY FOR RARE EXCEPTIONS we should use dedicated MFA, such as for email-accounts and financial stuff. And the MFA should ask you to set up at least 3 factors and ask you to use 2 or more. And if it doesn't support more or less all factors like printed codes, OS-independent authenticator apps and hardware keys like yubikey, then it should not be used.",
-    "parent": 44820331,
-    "depth": 2
-  },
-  {
-    "id": 44821608,
-    "by": "klipt",
-    "timeISO": "2025-08-07T07:31:22.000Z",
-    "textPlain": "> I’d rather granny needs to visit the bank to get access to her account againVisiting the bank is fine. But who do you visit to recover your Gmail password?",
-    "parent": 44820331,
-    "depth": 2
-  },
-  {
-    "id": 44821477,
-    "by": "yoz-y",
-    "timeISO": "2025-08-07T07:09:42.000Z",
-    "textPlain": "I don’t like passkeys. Before my process to login was:- open website- if not already logged in, log in to 1Password- autofill password- autofill TOTPNow:- open website- if logged in to 1Password the Use Passkey usually shows up- if not:  - log in to 1Password \n\n  - choose use passkey\n\n  - this almost always does nothing\n\n  - choose “use other method”\n\n  - choose “password”\n\n  - autofill that\n\n  - now there is another dialog to choose the 2fa method, choose Authenticator \n\n  - autofill that\n\nPasskeys would be great if they actually made anything simpler on a computer. They work fine on the phone but that’s not where I spend most of my time.",
-    "parent": 44820331,
-    "depth": 2
-  },
-  {
-    "id": 44822145,
-    "by": "zozbot234",
-    "timeISO": "2025-08-07T08:46:07.000Z",
-    "textPlain": "> I'd rather granny needs to visit the bank to get access to her account again, than someone phishes her and steals all her money.The problem is that I can physically show up at my local bank branch or at my job's IT helpdesk to get my account back, but I can't show up at the Googleplex or at Facebook's or Xitter's HQ and do the same.  Device bound passkeys are very error prone for the latter scenario, since users will fail to account for that case.",
-    "parent": 44820331,
-    "depth": 2
-  },
-  {
-    "id": 44822132,
-    "by": "roelschroeven",
-    "timeISO": "2025-08-07T08:44:22.000Z",
-    "textPlain": "> “Click a link in the email” is a tiny bit better because it takes the user straight to the GOOD website, and passing that link to BAD is more tedious and therefore more suspicious.\"Click a link in the email\" is really bad because it's very difficult to know the mail and the link in it are legitimate. Trusting links in emails opens to door to phishing attacks.",
-    "parent": 44820331,
-    "depth": 2
-  },
-  {
-    "id": 44820391,
-    "by": "sriku",
-    "timeISO": "2025-08-07T03:48:49.000Z",
-    "textPlain": "A while ago, I implemented a signin approach that looks similar to this \"send a link/code\" mode but (I believe) can't be exploited this way - https://sriku.org/blog/2017/04/29/forget-password/ - appreciate any thoughts on that.Btw this predates passkeys which should perhaps be the way to go from now on.",
-    "parent": 44820331,
-    "depth": 2
-  },
-  {
-    "id": 44822110,
-    "by": "dominicrose",
-    "timeISO": "2025-08-07T08:41:45.000Z",
-    "textPlain": "I'm not sure what kind of websites are vulnerable to these attacks, but websites that have double authentication seem pretty safe to me. And if you forgot your password, then you receive an e-mail to change it with a secure link.This point means the user is not paying attention: 1) User goes to BAD website and signs up.\nSteps 2-7 wouldn't be possible without 1.",
-    "parent": 44820331,
-    "depth": 2
-  },
-  {
-    "id": 44820361,
-    "by": "DougN7",
-    "timeISO": "2025-08-07T03:41:49.000Z",
-    "textPlain": "It sounds good, unless granny needs to visit Google or Microsoft to get a new password after losing her phone.  Then what??",
-    "parent": 44820331,
-    "depth": 2
   }
 ]

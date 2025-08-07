@@ -40,14 +40,6 @@
     "depth": 1
   },
   {
-    "id": 44822116,
-    "by": "mgaunard",
-    "timeISO": "2025-08-07T08:42:12.000Z",
-    "textPlain": "It's called a deque, part of C++'s standard library",
-    "parent": 44815702,
-    "depth": 1
-  },
-  {
     "id": 44820159,
     "by": "willtemperley",
     "timeISO": "2025-08-07T03:04:04.000Z",
@@ -92,6 +84,14 @@
     "by": "o11c",
     "timeISO": "2025-08-06T20:10:53.000Z",
     "textPlain": "Can we really call it an array if it's not contiguous (or at least strided)? Only a small fraction of APIs take an `iovec, iovcnt`-equivalent ...",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44822116,
+    "by": "mgaunard",
+    "timeISO": "2025-08-07T08:42:12.000Z",
+    "textPlain": "It's called a deque, part of C++'s standard library",
     "parent": 44815702,
     "depth": 1
   },
@@ -184,18 +184,18 @@
     "depth": 2
   },
   {
-    "id": 44816567,
-    "by": "mwkaufma",
-    "timeISO": "2025-08-06T19:30:22.000Z",
-    "textPlain": "In principle it's not that different that deque, though:(1) deque uses fixed-sized blocks, not increasing-size blocks.\n(2) dequeue supports prepending, which adds another level of indirection internally.",
+    "id": 44822336,
+    "by": "nly",
+    "timeISO": "2025-08-07T09:21:05.000Z",
+    "textPlain": "Unfortunately std::deque is hobbled in the Microsoft implementation. Its block size is such that if T is larger than 8 bytes it devolves to a linked list.And it can't be fixed due to binary compatibility.https://github.com/microsoft/STL/issues/147By contrast the GNU implementation has a block size of 512 bytesFortunately in high performance systems the times where you actually want an unbounded queue are limited.",
     "parent": 44816354,
     "depth": 2
   },
   {
-    "id": 44821376,
-    "by": "penguin_booze",
-    "timeISO": "2025-08-07T06:52:25.000Z",
-    "textPlain": "What's all that icons on the diagram that illustrates 5-level paging - snowflakes and triangles?",
+    "id": 44816567,
+    "by": "mwkaufma",
+    "timeISO": "2025-08-06T19:30:22.000Z",
+    "textPlain": "In principle it's not that different that deque, though:(1) deque uses fixed-sized blocks, not increasing-size blocks.\n(2) dequeue supports prepending, which adds another level of indirection internally.",
     "parent": 44816354,
     "depth": 2
   },
@@ -212,6 +212,14 @@
     "by": "cornstalks",
     "timeISO": "2025-08-06T19:23:56.000Z",
     "textPlain": "What kind of setups use over 256 TiB of RAM?",
+    "parent": 44816354,
+    "depth": 2
+  },
+  {
+    "id": 44821376,
+    "by": "penguin_booze",
+    "timeISO": "2025-08-07T06:52:25.000Z",
+    "textPlain": "What's all that icons on the diagram that illustrates 5-level paging - snowflakes and triangles?",
     "parent": 44816354,
     "depth": 2
   },
@@ -272,6 +280,22 @@
     "depth": 2
   },
   {
+    "id": 44822847,
+    "by": "exDM69",
+    "timeISO": "2025-08-07T10:41:26.000Z",
+    "textPlain": "> Also, from a strictly prose point of view, isn't it strange that the `clz` instructionIt's using the `bsr` instruction which is similar (but worse). The `lzcnt` instruction in x86_64 is a part of the BMI feature introduced in Intel Haswell. The compiler does not generate these instructions by default so it runs on any x86_64.If you add `-mbmi` or `-march=haswell` or newer to the compiler command line, you should get `clz`/`lzcnt` instead.",
+    "parent": 44817135,
+    "depth": 2
+  },
+  {
+    "id": 44822310,
+    "by": "kilpikaarna",
+    "timeISO": "2025-08-07T09:16:43.000Z",
+    "textPlain": "> The Way in CIs it though? (Ab)using C macros so you can write obviously-not-C stuff like (from the example):SegmentArray(Entity) entities = {0};Seeing that kind of thing in example C code just makes my hair stand on end because you know it's someone who actually wants to write C++ but for whatever reason has decided to try to implement their thing in C and be clever about it. And I'm going to have to go parse through multiple levels of macro indirection to just understand what the hell is going on.Seems like a useful data structure, despite the shortcoming that it can't be accessed like a regular array. Normally auto-expanding arrays involves realloc which is tricky with arena allocation. But jeez, just pass void pointers + size and have it assert if there's a mismatch.",
+    "parent": 44817135,
+    "depth": 2
+  },
+  {
     "id": 44818170,
     "by": "dhooper",
     "timeISO": "2025-08-06T21:39:43.000Z",
@@ -293,30 +317,6 @@
     "timeISO": "2025-08-07T05:53:53.000Z",
     "textPlain": "I think they mentioned it's for an arena, where stability is necessary. You might happen to use said arena for a hash table",
     "parent": 44818360,
-    "depth": 2
-  },
-  {
-    "id": 44817237,
-    "by": "jandrese",
-    "timeISO": "2025-08-06T20:19:24.000Z",
-    "textPlain": "Yeah, the limitation that it can't be just dumped into anything that expects a C array is a large one.  You need to structure your code around the access primitives this project implements.",
-    "parent": 44817117,
-    "depth": 2
-  },
-  {
-    "id": 44817139,
-    "by": "dhooper",
-    "timeISO": "2025-08-06T20:13:18.000Z",
-    "textPlain": "feel free to call it a \"levelwise-allocated pile\"",
-    "parent": 44817117,
-    "depth": 2
-  },
-  {
-    "id": 44818980,
-    "by": "listeria",
-    "timeISO": "2025-08-06T23:20:59.000Z",
-    "textPlain": "They link to an old article [1] that was featured in HN [2] somewhat recently, in which there's a workaround for older standards with regards to typeof.[1]: https://danielchasehooper.com/posts/typechecked-generic-c-da...[2]: https://news.ycombinator.com/item?id=44425461",
-    "parent": 44818319,
     "depth": 2
   }
 ]

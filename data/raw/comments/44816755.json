@@ -16,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44818624,
-    "by": "davepeck",
-    "timeISO": "2025-08-06T22:31:56.000Z",
-    "textPlain": "I think Litestar is superb for building API backends. Love it; use it; only good things to say. Their Advanced Alchemy is coming along nicely, too.Litestar of course supports old-school server-template-rendered sites, too; it even has a plugin for HTMX requests and responses. In practice, I find that the patterns that serve API endpoints so well sometimes get in the way of old-school \"validate form and redirect, or re-render with errors\" endpoints. In particular, Litestar has no \"true\" form support of its own; validation is really intended to flag inbound schema mismatch on API calls, not flag multiple individual error fields. Using `@post(\"/route\", exception_handlers={...})` is pretty awkward for these endpoints. I'd be excited to see some better tools/DX in-the-box here.",
-    "parent": 44816755,
-    "depth": 1
-  },
-  {
     "id": 44817476,
     "by": "hnuser123456",
     "timeISO": "2025-08-06T20:36:07.000Z",
     "textPlain": "It's a python web framework, for those curious to know more before clicking through.",
+    "parent": 44816755,
+    "depth": 1
+  },
+  {
+    "id": 44818624,
+    "by": "davepeck",
+    "timeISO": "2025-08-06T22:31:56.000Z",
+    "textPlain": "I think Litestar is superb for building API backends. Love it; use it; only good things to say. Their Advanced Alchemy is coming along nicely, too.Litestar of course supports old-school server-template-rendered sites, too; it even has a plugin for HTMX requests and responses. In practice, I find that the patterns that serve API endpoints so well sometimes get in the way of old-school \"validate form and redirect, or re-render with errors\" endpoints. In particular, Litestar has no \"true\" form support of its own; validation is really intended to flag inbound schema mismatch on API calls, not flag multiple individual error fields. Using `@post(\"/route\", exception_handlers={...})` is pretty awkward for these endpoints. I'd be excited to see some better tools/DX in-the-box here.",
     "parent": 44816755,
     "depth": 1
   },
@@ -48,10 +48,18 @@
     "depth": 1
   },
   {
-    "id": 44819446,
-    "by": "jaza",
-    "timeISO": "2025-08-07T00:37:27.000Z",
-    "textPlain": "Nice write-up! I've heard about Litestar now and then, haven't tried it, maybe I should give it a go. I've been using FastAPI quite heavily for the past several years.I think OP's arguments about FastAPI being hard to work with in a bigger codebase are exaggerated. Splitting up the routes into multiple files, each with its own route object, and then importing and building up a big hierarchy of route objects, isn't that hard, it does the job for me. Agreed that it's probably not well documented enough, how to structure a larger FastAPI codebase - but follow a mix of best practices and your personal tastes, break it up into modules, split it into specific files for constants / errors / routes / schemas / crud / etc, and you can scale up sanely.I haven't used SQLAlchemy with FastAPI - for my day job I mainly connect to data stores for which it doesn't make sense - so maybe I'm biased, because I've avoided that pain.",
+    "id": 44822968,
+    "by": "talos_",
+    "timeISO": "2025-08-07T11:02:34.000Z",
+    "textPlain": "Just want to comment that Litestar is awesome. Docs are great and the built-in caching feature is very convenient!",
+    "parent": 44816755,
+    "depth": 1
+  },
+  {
+    "id": 44822799,
+    "by": "whinvik",
+    "timeISO": "2025-08-07T10:32:59.000Z",
+    "textPlain": "I agree that FastAPI is not the best but I would not jump to another framework just because of an article.For FastAPI I know that I can go to [1] and see what a good FastAPI code base looks like. These days even Airflow is on FastAPI but haven't looked at the codebase.For me to jump on Litestar, I would like to see a reference codebase to learn best practices. Otherwise its one more framework whose quirks I have to get comfortable with.1 - https://github.com/polarsource/polar",
     "parent": 44816755,
     "depth": 1
   },
@@ -60,6 +68,14 @@
     "by": "zokier",
     "timeISO": "2025-08-06T22:10:00.000Z",
     "textPlain": "I know fastapi gets the hype, but I have found plain starlette quite usable by itself. Sure, it doesn't have the whole kitchen sink, but if you just need something small and simple then it fits the bill. In comparison Litestar seems closer to fastapi/django in scope",
+    "parent": 44816755,
+    "depth": 1
+  },
+  {
+    "id": 44819446,
+    "by": "jaza",
+    "timeISO": "2025-08-07T00:37:27.000Z",
+    "textPlain": "Nice write-up! I've heard about Litestar now and then, haven't tried it, maybe I should give it a go. I've been using FastAPI quite heavily for the past several years.I think OP's arguments about FastAPI being hard to work with in a bigger codebase are exaggerated. Splitting up the routes into multiple files, each with its own route object, and then importing and building up a big hierarchy of route objects, isn't that hard, it does the job for me. Agreed that it's probably not well documented enough, how to structure a larger FastAPI codebase - but follow a mix of best practices and your personal tastes, break it up into modules, split it into specific files for constants / errors / routes / schemas / crud / etc, and you can scale up sanely.I haven't used SQLAlchemy with FastAPI - for my day job I mainly connect to data stores for which it doesn't make sense - so maybe I'm biased, because I've avoided that pain.",
     "parent": 44816755,
     "depth": 1
   },
@@ -104,10 +120,10 @@
     "depth": 1
   },
   {
-    "id": 44820528,
-    "by": "thelastbender12",
-    "timeISO": "2025-08-07T04:18:29.000Z",
-    "textPlain": "Thank you for writing this - there is a very clear split you feel when using fastapi for single script web servers, vs trying to organize it. And I probably share all the mentioned annoyances around writing bigger projects with fastapi.",
+    "id": 44818494,
+    "by": "rick1290",
+    "timeISO": "2025-08-06T22:15:16.000Z",
+    "textPlain": "How does this compare to Django? I see you have quite a bit of Django content. How would you decide to use Litestar vs Django on a new greenfield project?",
     "parent": 44816755,
     "depth": 1
   },
@@ -120,26 +136,18 @@
     "depth": 1
   },
   {
+    "id": 44820528,
+    "by": "thelastbender12",
+    "timeISO": "2025-08-07T04:18:29.000Z",
+    "textPlain": "Thank you for writing this - there is a very clear split you feel when using fastapi for single script web servers, vs trying to organize it. And I probably share all the mentioned annoyances around writing bigger projects with fastapi.",
+    "parent": 44816755,
+    "depth": 1
+  },
+  {
     "id": 44820295,
     "by": "dtkav",
     "timeISO": "2025-08-07T03:30:09.000Z",
     "textPlain": "Connexion is also worth a look IMO. It uses spec-first development (a major benefit in larger orgs and for public APIs), and can plug into different server frameworks.(I used to be a maintainer, but it has been years since I worked on it).",
-    "parent": 44816755,
-    "depth": 1
-  },
-  {
-    "id": 44820803,
-    "by": "Copenjin",
-    "timeISO": "2025-08-07T05:09:35.000Z",
-    "textPlain": "When will people understand that those very opinionated frameworks with enticing tutorials just ruin your life in the long term?I see someone citing Spring(yikes) elsewhere, that falls in the same category as FastAPI. You don't need Spring most of the times, a simple dependency injection library and small frameworks to handle the web routing or specific features you need are often enough (recent contenders to the throne of default app framework have the same issues).",
-    "parent": 44816755,
-    "depth": 1
-  },
-  {
-    "id": 44818494,
-    "by": "rick1290",
-    "timeISO": "2025-08-06T22:15:16.000Z",
-    "textPlain": "How does this compare to Django? I see you have quite a bit of Django content. How would you decide to use Litestar vs Django on a new greenfield project?",
     "parent": 44816755,
     "depth": 1
   },
@@ -168,14 +176,6 @@
     "depth": 1
   },
   {
-    "id": 44821476,
-    "by": "globular-toast",
-    "timeISO": "2025-08-07T07:09:33.000Z",
-    "textPlain": "Am I the only one who prefers to just have separate models for API and database right from the start? I know it looks not DRY, but it is. Your API and your database schema are not the same thing. It's never that long before you need them to be separate so why not do it right from the start? I feel like this might actually be a win for LLMs because you won't feel the pain of adding a new field to both the db model and API model in trivial cases.Litestar does look great and a true web framework like Flask and Starlette. Stuff like FastAPI and SQLModel is a joke imo. Developers should be able to compose these things themselves if they want to.",
-    "parent": 44816755,
-    "depth": 1
-  },
-  {
     "id": 44818282,
     "by": "andrewstuart",
     "timeISO": "2025-08-06T21:51:40.000Z",
@@ -184,10 +184,26 @@
     "depth": 1
   },
   {
+    "id": 44821476,
+    "by": "globular-toast",
+    "timeISO": "2025-08-07T07:09:33.000Z",
+    "textPlain": "Am I the only one who prefers to just have separate models for API and database right from the start? I know it looks not DRY, but it is. Your API and your database schema are not the same thing. It's never that long before you need them to be separate so why not do it right from the start? I feel like this might actually be a win for LLMs because you won't feel the pain of adding a new field to both the db model and API model in trivial cases.Litestar does look great and a true web framework like Flask and Starlette. Stuff like FastAPI and SQLModel is a joke imo. Developers should be able to compose these things themselves if they want to.",
+    "parent": 44816755,
+    "depth": 1
+  },
+  {
     "id": 44817271,
     "by": "monadoid",
     "timeISO": "2025-08-06T20:21:11.000Z",
     "textPlain": "This is well written, thanks!",
+    "parent": 44816755,
+    "depth": 1
+  },
+  {
+    "id": 44820803,
+    "by": "Copenjin",
+    "timeISO": "2025-08-07T05:09:35.000Z",
+    "textPlain": "When will people understand that those very opinionated frameworks with enticing tutorials just ruin your life in the long term?I see someone citing Spring(yikes) elsewhere, that falls in the same category as FastAPI. You don't need Spring most of the times, a simple dependency injection library and small frameworks to handle the web routing or specific features you need are often enough (recent contenders to the throne of default app framework have the same issues).",
     "parent": 44816755,
     "depth": 1
   },
@@ -232,19 +248,19 @@
     "depth": 2
   },
   {
-    "id": 44820731,
-    "by": "murkt",
-    "timeISO": "2025-08-07T04:56:55.000Z",
-    "textPlain": "I haven’t ever used Litestar, but it seems like it would be possible to write your own decorator `@postform` that handles all of form-related stuff.",
-    "parent": 44818624,
-    "depth": 2
-  },
-  {
     "id": 44817727,
     "by": "LigmaBaulls",
     "timeISO": "2025-08-06T20:54:42.000Z",
     "textPlain": "thanks, saved me some time.",
     "parent": 44817476,
+    "depth": 2
+  },
+  {
+    "id": 44820731,
+    "by": "murkt",
+    "timeISO": "2025-08-07T04:56:55.000Z",
+    "textPlain": "I haven’t ever used Litestar, but it seems like it would be possible to write your own decorator `@postform` that handles all of form-related stuff.",
+    "parent": 44818624,
     "depth": 2
   },
   {
@@ -272,6 +288,14 @@
     "depth": 2
   },
   {
+    "id": 44822927,
+    "by": "adr1an",
+    "timeISO": "2025-08-07T10:57:05.000Z",
+    "textPlain": "Ready, set... jump! There's a reference application [0][0] https://github.com/litestar-org/litestar-fullstack",
+    "parent": 44822799,
+    "depth": 2
+  },
+  {
     "id": 44820130,
     "by": "holler",
     "timeISO": "2025-08-07T03:00:08.000Z",
@@ -280,43 +304,19 @@
     "depth": 2
   },
   {
-    "id": 44822201,
-    "by": "dvdkon",
-    "timeISO": "2025-08-07T08:54:35.000Z",
-    "textPlain": "Same here. Django's was my first ORM, and at the time I didn't get all the hate directed at ORMs (except for making inefficient queries). Having used a few more ORMs since then, I still consider Django's to have found the best balance.I find the prevailing model of having DB rows mapped 1:1 to objects in memory and syncing changes automatically to be much more trouble than it's worth, sadly most ORMs seem to use it.",
+    "id": 44822303,
+    "by": "brokegrammer",
+    "timeISO": "2025-08-07T09:15:12.000Z",
+    "textPlain": "I'm not a fan of SQLAlchemy because of the Data Mapper pattern, and abstractions that force you to still think in terms of SQL tables and expressions.For example, in Django I can have a User object. I want a update the user's first name:my_user.first_name = \"Joe\"my_user.save()In SQLALchemy:my_user.first_name = \"Joe\"session.add(my_user)session.commit()Users can leave comments, so I want a query that aggregates comments for each user. In Django:users = User.objects.all().prefetch_related(\"comments\").annotate(comment_count=Count(\"comments\"))Each user will now have a `comment_count` property that contains the number of comments they left.In SQLAlchemy:session.query(User, func.count(Comment.id).label(\"comment_count\"))\n.outerjoin(User.comments)\n.group_by(User.id)\n.all()However, each User won't have the `comment_count` property. You have to manually associate them from the returned tuple.I feel like SQLAlchemy wants to force you to do more work, whereas the Django ORM wants to provide you with the data you asked without forcing to you think about how to actually get the data from the database nor how to optimize the query. In Django, session management is done automatically, but it SQLAlchemy, you need to be aware of the session most times.It's good to know SQL but you can use the Django ORM without knowing it. Not the same with SQLAlchemy. Could be a pro or a con depending on the situation. Definitely a pro for me because I don't like SQL.",
     "parent": 44820414,
     "depth": 2
   },
   {
-    "id": 44821517,
-    "by": "globular-toast",
-    "timeISO": "2025-08-07T07:16:01.000Z",
-    "textPlain": "SQLAlchemy is just a totally different beast to Django, it has a much higher learning curve but gives you so much more power and flexibility. It's a true data mapper ORM rather than the sad Active Record pattern which starts off well and quickly gets annoying.",
+    "id": 44822950,
+    "by": "JodieBenitez",
+    "timeISO": "2025-08-07T11:00:46.000Z",
+    "textPlain": "> I've preferred the Django ORM over SQLAlchemy, but I'm curious what others feel.Same here... better API IMO, just the right amount of abstraction (ActiveRecord-like has been fine for all the projects I was involved in) and plenty of escape hatches when needed.",
     "parent": 44820414,
-    "depth": 2
-  },
-  {
-    "id": 44821699,
-    "by": "bootsmann",
-    "timeISO": "2025-08-07T07:45:11.000Z",
-    "textPlain": "I think the way to go with SQLAlchemy is to use the models and alembic for migrations and schema definition but to write the sql and do transaction management by hand. Losing time to figure out how a query you know how to write can be constructed within the ORM is just too much imo.",
-    "parent": 44817479,
-    "depth": 2
-  },
-  {
-    "id": 44817711,
-    "by": "sambaumann",
-    "timeISO": "2025-08-06T20:53:12.000Z",
-    "textPlain": "I recently built a personal project using peewee and it doesn't have a ton of bells and whistles but it works well for what it does do.",
-    "parent": 44817479,
-    "depth": 2
-  },
-  {
-    "id": 44818707,
-    "by": "WD-42",
-    "timeISO": "2025-08-06T22:41:54.000Z",
-    "textPlain": "The most interesting thing about this project to me is that it appears to alleviate some of the warts of working with SqlAlchemy.Pretty much every time I start a project that needs a DB I just use Django. SqlAlchemy and Alembic are usually not worth dealing with.",
-    "parent": 44817479,
     "depth": 2
   }
 ]

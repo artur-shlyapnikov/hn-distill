@@ -56,18 +56,18 @@
     "depth": 2
   },
   {
-    "id": 44817219,
-    "by": "rjsw",
-    "timeISO": "2025-08-06T20:18:27.000Z",
-    "textPlain": "The driver described in the article uses the API that the userspace Mesa libraries expect.",
-    "parent": 44816973,
-    "depth": 2
-  },
-  {
     "id": 44819301,
     "by": "kimixa",
     "timeISO": "2025-08-07T00:09:45.000Z",
     "textPlain": "As GPUs are already asynchronous devices with their own command queue, and the IOCTLS generally just abstracting a relatively cheap write into that command queue, I suspect there's limited utility in making another asynchronous command queue on the CPU to schedule those writes.Unless you mean to make the GPU command queue itself the uring and map that into userspace, but that would likely require significant firmware changes to support the specifics of the io_uring API, if even possible at all due to hardware specifics.",
+    "parent": 44816973,
+    "depth": 2
+  },
+  {
+    "id": 44817219,
+    "by": "rjsw",
+    "timeISO": "2025-08-06T20:18:27.000Z",
+    "textPlain": "The driver described in the article uses the API that the userspace Mesa libraries expect.",
     "parent": 44816973,
     "depth": 2
   },

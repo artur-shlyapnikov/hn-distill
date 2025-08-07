@@ -1,0 +1,122 @@
+[
+  {
+    "id": 44822948,
+    "by": "thecupisblue",
+    "timeISO": "2025-08-07T11:00:35.000Z",
+    "textPlain": "Wait, is this CLI or is this a github action or is this a github application?Also, I thought Jules was the \"coding agent\" they are working on. Now this is taking it over or is this like another case of Google self-competing?Someone needs to take charge at this company with a strong vision, because they are all over the place and spreading themselves thin, which in turn spreads thin the customer/brand equity.At this point, as someone who:\n- Has been writing Android code for about 13 years now- Has collaborated with Google on stuff- Lead Google developer communities and conferences- Knows many, many GDE's and has discussions with them often- Uses Gemini API for their productI'm so damn confused. How is a normal customer expected to understand then?- They have 2 SDK's for communicating to their Gemini API.- The documentation is spread and thrown all over the place.- Half the time I'm trying to do something I have to dig through their code to find how to.- The features I really want are rate limited or available only to private testers.- They have 3 coding agents now.- Even thought they have access to my Google Account and my phone, their Gemini app is useless.- I tried to do a basic thing (add a service account) in Google Cloud recently, which wasn't allowed due to default rules that are deprecated and are so confusing to change due to their confusing UX.The only usable thing is the AI studio, which is a great tool for experimenting with diff models and improved the DX of getting a Gemini API key by a mile.I'd say congrats on the release, but honestly this is such a mid low hanging fruit of a product.",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44822827,
+    "by": "turblety",
+    "timeISO": "2025-08-07T10:38:03.000Z",
+    "textPlain": "> 7. Google One and Ultra plans, Gemini for Workspace plans\nThese plans currently apply only to the use of Gemini web-based products provided by Google-based experiences (for example, the Gemini web app or the Flow video editor). These plans do not apply to the API usage which powers the Gemini CLI. Supporting these plans is under active consideration for future support.Again, with the complicated subscription. Please just give us a monthly subscription for developers that I can pay whatever, and then use Gemini CLI, this github action, Gemini chat, Jules, etc. Just like Claude and their max subscription.This would be a game changer for me.Sorry, congrats on the release too. This looks cool!",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44823142,
+    "by": "artdigital",
+    "timeISO": "2025-08-07T11:28:31.000Z",
+    "textPlain": "I wonder why they call this `gemini cli`, it's not really a CLI anymore when it's primarily used through GitHub, is it?Why not follow Claude Code naming with this and just call it `gemini github action` or `run gemini`?",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44823103,
+    "by": "jtrn",
+    "timeISO": "2025-08-07T11:22:13.000Z",
+    "textPlain": "The amount of time I have to spend on investigations, to understand the basics of what something ACTUALLY IS, never ceases to amaze me. Having to scrape away buzzwords, ill-conceived descriptions, and unnecessary verbose stuff... it's tiresome.So i THINK this is what it IS:A GitHub Action that can be included in GitHub workflow YAML files. It executes the Gemini CLI, passing in prompts, repo context, and event data (like issue text or PR diffs) to generate responses or perform actions. In other words: it's a wrapper that installs and runs the Gemini CLI inside GitHub Actions environments.It can use GitHub's API (via tokens or apps) to read repo data (issues, PRs, code) and write back (e.g., add labels, comments, or code suggestions). It makes calls to standard HTTPS API endpoints for Gemini LLM\" (via the CLI's backend interactions with Google's Gemini API)",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44822868,
+    "by": "OtherShrezzing",
+    "timeISO": "2025-08-07T10:45:04.000Z",
+    "textPlain": "Given the amount of setup required, this seems like a very high-friction version of the GitHub Copilot Agent that's already available for every user who could interact with this.The Gemini assistant will need to be several times better than the existing tools to even fractionally displace them.",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44822941,
+    "by": "criley2",
+    "timeISO": "2025-08-07T10:59:36.000Z",
+    "textPlain": "Curious to try this against the Github (website) Agent. The website Agent is definitely dumber than the vscode agent (because it has to spend 20 minutes figuring out how to build and start my monorepo apps) but on the flip side, it doesn't take up my computer and thus any value it creates is additive.We have tried out Gemini code review vs Copilot code review and Gemini is consistently offering better code review tips. It has officially caught multiple potential bugs, even a few that reviewers might have missed, so it's definitely been additive.Observability looks way worse. Github Agent has a full UX built into the Github PR that lets you dig into the agent behavior. This requires you to egress text logs and make sense of it yourself.Also curious about customization. Github just rolled out \"agent writes its own instructions\" https://github.blog/changelog/2025-08-06-copilot-coding-agen... which is super cool, how do I customize this one and teach it how to start and manage apps across my monorepo?",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44823228,
+    "by": "gexla",
+    "timeISO": "2025-08-07T11:41:59.000Z",
+    "textPlain": "My take on this is that Google has a bunch of \"incubating\" spaces where they have teams of people building things that may or may not take off. So, when something does take off, it sort of becomes a victim of its own success. It confuses people because it's not a \"core\" Google product that fits nicely among other Google products. NotebookLLM seems to be another example.Personally, I would rather Google did this sort of experimentation even if it is more confusing.Or I could be wrong about this. But following NotebookLLM, it seemed like the team developing it had a lot of autonomy.",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44823196,
+    "by": "vasco",
+    "timeISO": "2025-08-07T11:37:06.000Z",
+    "textPlain": "> Even thought they have access to my Google Account and my phone, their Gemini app is useless.This is the funniest thing to me. When you open the app, Gemini says:\"Hello, Vasco\"In the welcome screen. I then ask this amazing intelligence this question:\"What's my name?\"\"I do not know your name. I am an AI and I don't have access to your personal information.\"I know why it happens, but it's so funny.",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44823198,
+    "by": "artdigital",
+    "timeISO": "2025-08-07T11:37:25.000Z",
+    "textPlain": "And this can't authenticate the same way the normal gemini cli does, it needs an API key from the looks of it, so free, standard and enterprise plans through OAuth currently don't work for authentication, just the free tier of the Google AI Studio, which is different than gemini-cli free tier, and has way tighter rate limits.",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44823102,
+    "by": "siva7",
+    "timeISO": "2025-08-07T11:22:06.000Z",
+    "textPlain": "> I tried to do a basic thing (add a service account) in Google Cloud recently, which wasn't allowed due to default rules that are deprecated and are so confusing to change due to their confusing UX.Similarly I tried contacting some human support for billing issues but was denied because  automated checks deemed me unworthy for consulting anything besides documentation pages which i didn't understood so i gave up and switched to another cloud provider.",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44823301,
+    "by": "Rebuff5007",
+    "timeISO": "2025-08-07T11:54:04.000Z",
+    "textPlain": "I believe in silicon valley terms, this is called \"moving fast and breaking things\"",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44823111,
+    "by": "jstummbillig",
+    "timeISO": "2025-08-07T11:23:28.000Z",
+    "textPlain": "> because they are all over the place and spreading themselves thinWell, they do have a lot to spread. But yeah, intense amount of overlap.",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44822850,
+    "by": "siva7",
+    "timeISO": "2025-08-07T10:42:14.000Z",
+    "textPlain": "I need AI to understand their subscriptions.",
+    "parent": 44822827,
+    "depth": 2
+  },
+  {
+    "id": 44822932,
+    "by": "dostick",
+    "timeISO": "2025-08-07T10:57:48.000Z",
+    "textPlain": "What existing assistant is so good you mean Claude? Gemini has to be about the same, only with clear and reasonable subscription.",
+    "parent": 44822868,
+    "depth": 2
+  },
+  {
+    "id": 44823161,
+    "by": "artdigital",
+    "timeISO": "2025-08-07T11:31:52.000Z",
+    "textPlain": "> Curious to try this against the Github (website) Agent. The website Agent is definitely dumber than the vscode agent (because it has to spend 20 minutes figuring out how to build and start my monorepo apps) but on the flip side, it doesn't take up my computer and thus any value it creates is additive.Yeah that's on you. Add a `copilot-instructions.md` file and configure the `copilot-setup-steps.yml` workflow to setup your environment. Both are supported more or less since Copilot Agent got released (though in \"preview\")Most agents read `AGENTS.md`, I just symlink it to CLAUDE.md, and do the same for GEMINI.md",
+    "parent": 44822941,
+    "depth": 2
+  }
+]

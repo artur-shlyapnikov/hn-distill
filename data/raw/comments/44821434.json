@@ -1,17 +1,49 @@
 [
   {
-    "id": 44822251,
-    "by": "neuralkoi",
-    "timeISO": "2025-08-07T09:04:51.000Z",
-    "textPlain": "In non-CA mode, an attacker who has access to the private key of a pinned certificate can:\n\n       Present a certificate with the correct public key\n\n       Modify the CN in the client certificate to any arbitrary value\n\n       Cause Vault to assign the resulting alias.Name to that CN\n\nI agree that this is an issue, but if an attacker has access to the private key of a pinned certificate, you might have some bigger issues...",
-    "parent": 44821434,
-    "depth": 1
-  },
-  {
     "id": 44821757,
     "by": "procaryote",
     "timeISO": "2025-08-07T07:51:57.000Z",
     "textPlain": "> This default is 30 seconds, matching the default TOTP period. But due to skew, passcodes may remain valid for up to 60 seconds (“daka” in Hebrew), spanning two time windows.Wait, why would I care this is \"daka\" in Hebrew? Is this a hallucination or did they edit poorly?",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44823027,
+    "by": "cipherboy",
+    "timeISO": "2025-08-07T11:10:43.000Z",
+    "textPlain": "On behalf of the OpenBao project, I welcome collaboration with future researchers. We were not informed of these vulnerabilities before HashiCorp posted their usual CVE bulletins, which is disappointing. (Especially as HashiCorp's Vault no longer has an Open Source edition ;-)We've triaged as being affected by 8 of the 9 CVEs (in fixing an earlier Cert Auth vulnerability, we correctly remediated this one) and have merged patches for most of them.Happily, the community has done some great work on remediating these and I'm very appreciative of them.I'm most excited about the audit changes: this was the impetus needed to make them be configuration driven in the next release series. Leaving audit device (which, as a reminder, have a socket mode which can make arbitrary TCP calls!) open to API callers is rather unsafe, even with prefix being limited.",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44822290,
+    "by": "mike_hearn",
+    "timeISO": "2025-08-07T09:11:37.000Z",
+    "textPlain": "Impressive. It's worth reading despite the slight AI sheen to the writing, as it's unusually informative relative to most security articles. The primary takeaway from my POV is to watch out for \"helpful\" string normalization calls in security sensitive software. Strings should be bags of bytes as much as possible. A lot of the exploits boil down to trying to treat security identifiers as text instead of fixed numeric sequences. Also, even things that look trivial like file paths in error messages can be deadly.",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44823273,
+    "by": "themk",
+    "timeISO": "2025-08-07T11:49:45.000Z",
+    "textPlain": "I've run Vault for a long time, and none of this surprises me. I've even reported some of these to Hashicorp in the past, along with other equally shocking bugs.The code base is an absolute mess.The number of bugs and weird edge cases I've found with my quickcheck property testing of their API is shocking, and makes me think their test suites are woefully inadequate.",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44822601,
+    "by": "shahartal",
+    "timeISO": "2025-08-07T10:01:42.000Z",
+    "textPlain": "Hey all — authors of Vault Fault here (I’m Shahar, CEO at Cyata), really appreciate all the thoughtful comments.Just to clarify - all the vulnerabilities were found manually by a very real human, Yarden Porat.The writeup was mostly human-written as well, just aimed at a broader audience - which explains the verbosity. We did work with a content writer to help shape the structure and flow, and I totally get that some parts read a bit “sheeny.” \nFeedback noted and appreciated - and yep, there’s more coming :)btw likely missed with the direct link - we also found pre-auth RCE in CyberArk Conjur - cyata.ai/vault-fault",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44822251,
+    "by": "neuralkoi",
+    "timeISO": "2025-08-07T09:04:51.000Z",
+    "textPlain": "In non-CA mode, an attacker who has access to the private key of a pinned certificate can:\n\n       Present a certificate with the correct public key\n\n       Modify the CN in the client certificate to any arbitrary value\n\n       Cause Vault to assign the resulting alias.Name to that CN\n\nI agree that this is an issue, but if an attacker has access to the private key of a pinned certificate, you might have some bigger issues...",
     "parent": 44821434,
     "depth": 1
   },
@@ -32,18 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44821666,
-    "by": "unwind",
-    "timeISO": "2025-08-07T07:40:22.000Z",
-    "textPlain": "This feels like a dupe of https://news.ycombinator.com/item?id=44821250.Edit: replaced link with link to HN post, not the article in that post.",
+    "id": 44822658,
+    "by": "technion",
+    "timeISO": "2025-08-07T10:12:18.000Z",
+    "textPlain": "I generally dont like seeing these \"blind username enumeration\" type issues.Its nearly always possible to get usernames elsewhere, they are basically public and the private part is the key and any mfa token. Usernames can get locked out, but the workaround of having user enumeration sprays always burn CPU hashing time delaying passwords doesn't seem like a step forward.",
     "parent": 44821434,
     "depth": 1
   },
   {
-    "id": 44821652,
-    "by": "klas_segeljakt",
-    "timeISO": "2025-08-07T07:38:07.000Z",
-    "textPlain": "https://youtu.be/SbeNRICgzTA?si=YdLrozOEtCBTclW2",
+    "id": 44821666,
+    "by": "unwind",
+    "timeISO": "2025-08-07T07:40:22.000Z",
+    "textPlain": "This feels like a dupe of https://news.ycombinator.com/item?id=44821250.Edit: replaced link with link to HN post, not the article in that post.",
     "parent": 44821434,
     "depth": 1
   },
@@ -56,10 +88,18 @@
     "depth": 1
   },
   {
-    "id": 44821532,
-    "by": "v5v3",
-    "timeISO": "2025-08-07T07:18:11.000Z",
-    "textPlain": "Fantastic work guys. Thank you.",
+    "id": 44821652,
+    "by": "klas_segeljakt",
+    "timeISO": "2025-08-07T07:38:07.000Z",
+    "textPlain": "https://youtu.be/SbeNRICgzTA?si=YdLrozOEtCBTclW2",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44822848,
+    "by": "TheDong",
+    "timeISO": "2025-08-07T10:41:37.000Z",
+    "textPlain": "I mean, this is kinda what you expect from software written in Go, right? The point of go is to make is it so that below average programmers can write roughly average code, and with the tradeoff that above average programmers can't easily add type-system safety or create abstractions to protect the software from reverting to the mean.Like, of course a language that sucks for writing parsers will end up with a ton of bugs that would have been fixed by parsing and normalizing all input asap, but no, in go and javascript the average type is a string so you can \"ToLower\" deep in the code instead of just during parsing after which it should have no longer been a string type",
     "parent": 44821434,
     "depth": 1
   },
@@ -78,5 +118,149 @@
     "textPlain": "TLDR: string parsing is hard and most of us are vulnerable to assumptions and/or never get around to do those fuzzy tests properly when checking that input is handled correctly.",
     "parent": 44821434,
     "depth": 1
+  },
+  {
+    "id": 44821532,
+    "by": "v5v3",
+    "timeISO": "2025-08-07T07:18:11.000Z",
+    "textPlain": "Fantastic work guys. Thank you.",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44822206,
+    "by": "tecleandor",
+    "timeISO": "2025-08-07T08:55:30.000Z",
+    "textPlain": "Also... what is \"daka\" ? 60 seconds? passcodes that remain valid for two time windows?  I've been checking the dictionary and \"daka\" might mean \"minute\".",
+    "parent": 44821757,
+    "depth": 2
+  },
+  {
+    "id": 44821771,
+    "by": "1a527dd5",
+    "timeISO": "2025-08-07T07:54:24.000Z",
+    "textPlain": "Yeah, it read slightly weird before I got to that point, and then it was obvious it was AI slop.",
+    "parent": 44821757,
+    "depth": 2
+  },
+  {
+    "id": 44822031,
+    "by": "adhamsalama",
+    "timeISO": "2025-08-07T08:29:56.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44821757,
+    "depth": 2
+  },
+  {
+    "id": 44822328,
+    "by": "progbits",
+    "timeISO": "2025-08-07T09:19:46.000Z",
+    "textPlain": "My take on the normalization is that it happens in the wrong place - you should not do it adhoc.If your input from user is a string, define a newtype like UserName and do all validation and normalization once to convert it. All subsequent code should be using that type and not raw strings, so it will be consistent everywhere.",
+    "parent": 44822290,
+    "depth": 2
+  },
+  {
+    "id": 44822723,
+    "by": "benterix",
+    "timeISO": "2025-08-07T10:22:56.000Z",
+    "textPlain": "Yeah, I tolerated the AI tint in this article only because it was very informative otherwise.",
+    "parent": 44822290,
+    "depth": 2
+  },
+  {
+    "id": 44823325,
+    "by": "fidotron",
+    "timeISO": "2025-08-07T11:57:18.000Z",
+    "textPlain": "> The code base is an absolute mess.This is an understatement, and honestly when I saw it the first time it was enough to make me wonder about all things Hashicorp.",
+    "parent": 44823273,
+    "depth": 2
+  },
+  {
+    "id": 44823317,
+    "by": "cipherboy",
+    "timeISO": "2025-08-07T11:56:06.000Z",
+    "textPlain": "OpenBao, under the Linux Foundation's OpenSSF, is making meaningful improvements to the code. I'd love to have high-quality reports, if you're willing to re-visit these. :-)",
+    "parent": 44823273,
+    "depth": 2
+  },
+  {
+    "id": 44822809,
+    "by": "v5v3",
+    "timeISO": "2025-08-07T10:34:31.000Z",
+    "textPlain": "Going by the naming, this was reported to Hashicorp prior to 10th June?And as it's now August, is it redacted as not fixed yet? Why notCVE-2025-6010 - [REDACTED]",
+    "parent": 44822601,
+    "depth": 2
+  },
+  {
+    "id": 44823035,
+    "by": "cipherboy",
+    "timeISO": "2025-08-07T11:11:29.000Z",
+    "textPlain": "For anyone interested in CVE-2025-6010: https://discuss.hashicorp.com/t/hcsec-2025-21-vault-user-enu...",
+    "parent": 44821779,
+    "depth": 2
+  },
+  {
+    "id": 44821835,
+    "by": "plantain",
+    "timeISO": "2025-08-07T08:02:36.000Z",
+    "textPlain": "AI written, or edited.",
+    "parent": 44821761,
+    "depth": 2
+  },
+  {
+    "id": 44822735,
+    "by": "benterix",
+    "timeISO": "2025-08-07T10:24:15.000Z",
+    "textPlain": "It was definitely edited by AI or written on the basis of initial information. Which is a pity because I'd love to see the original, it has more value for me.",
+    "parent": 44821761,
+    "depth": 2
+  },
+  {
+    "id": 44821806,
+    "by": "satoqz",
+    "timeISO": "2025-08-07T07:58:17.000Z",
+    "textPlain": "OpenBao maintainer here - The majority of these does affect us, more or less. Unfortunately it seems that we did not receive any prior outreach regarding these vulnerabilities before publication... make of that what you will. We've been hard at work the past days trying to get a security release out, which will likely land today.",
+    "parent": 44821721,
+    "depth": 2
+  },
+  {
+    "id": 44821820,
+    "by": "Scandiravian",
+    "timeISO": "2025-08-07T08:01:04.000Z",
+    "textPlain": "It sounds like these issues are from before the fork, in which case they will beIt also doesn't sound like the researchers made an effort to safely disclose these findings to the OpenBao project before publishing them, which I think would have been the right thing to do",
+    "parent": 44821721,
+    "depth": 2
+  },
+  {
+    "id": 44823099,
+    "by": "neomantra",
+    "timeISO": "2025-08-07T11:21:05.000Z",
+    "textPlain": "Quite the hot take on Golang LOL.  These were logic and flow errors that could have emerged with any language.  These bugs were teased out with deep introspection.The second paragraph seems more like design issues than a language issue.  That said, I’d certainly rather write a parser in Golang than JavaScript, especially once one brings up type safety.",
+    "parent": 44822848,
+    "depth": 2
+  },
+  {
+    "id": 44821632,
+    "by": "markasoftware",
+    "timeISO": "2025-08-07T07:34:52.000Z",
+    "textPlain": "it really does have that AI writing style, and these are the sorts of bugs I imagine an AI could have found...I wonder if that's what they did (though they claim it was all manual source code inspection).",
+    "parent": 44821596,
+    "depth": 2
+  },
+  {
+    "id": 44821792,
+    "by": "procaryote",
+    "timeISO": "2025-08-07T07:56:34.000Z",
+    "textPlain": "A lot of these are on the pattern of normalising input as late as possible, which is an odd choice for a security product.",
+    "parent": 44821681,
+    "depth": 2
+  },
+  {
+    "id": 44821766,
+    "by": "compressedgas",
+    "timeISO": "2025-08-07T07:53:25.000Z",
+    "textPlain": "I don't see any parsing going on here. They failed to normalize the input values the way that the LDAP server does before applying rate limiting resulting in an effectively higher than expected login attempt rate limit.",
+    "parent": 44821681,
+    "depth": 2
   }
 ]

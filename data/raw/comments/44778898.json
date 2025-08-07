@@ -1,17 +1,17 @@
 [
   {
-    "id": 44822158,
-    "by": "anonymoushn",
-    "timeISO": "2025-08-07T08:49:07.000Z",
-    "textPlain": "I have read the examples, and it seems like this cannot be used for aggressive hoisting of conditionals by writing \"if (comptime foo)\", resulting in the the body of the if statement being executed unconditionally or omitted. So it cannot replace my current use of C preprocessor macros in Javascript, though Zig's actual comptime feature could.",
-    "parent": 44778898,
-    "depth": 1
-  },
-  {
     "id": 44818627,
     "by": "apatheticonion",
     "timeISO": "2025-08-06T22:32:04.000Z",
     "textPlain": "I literally just want Rust style macros and proc macros in JavaScript. e.g. using```\nconst MyComponent = () => jsx!(<div></div>)\n```rather than a .tsx file.That or wasm to be usable so I can just write my web apps in Rust",
+    "parent": 44778898,
+    "depth": 1
+  },
+  {
+    "id": 44822158,
+    "by": "anonymoushn",
+    "timeISO": "2025-08-07T08:49:07.000Z",
+    "textPlain": "I have read the examples, and it seems like this cannot be used for aggressive hoisting of conditionals by writing \"if (comptime foo)\", resulting in the the body of the if statement being executed unconditionally or omitted. So it cannot replace my current use of C preprocessor macros in Javascript, though Zig's actual comptime feature could.",
     "parent": 44778898,
     "depth": 1
   },
@@ -48,14 +48,6 @@
     "depth": 1
   },
   {
-    "id": 44820493,
-    "by": "revskill",
-    "timeISO": "2025-08-07T04:12:22.000Z",
-    "textPlain": "Sweet. No need a framework to do that.",
-    "parent": 44778898,
-    "depth": 1
-  },
-  {
     "id": 44819780,
     "by": "shortrounddev2",
     "timeISO": "2025-08-07T01:49:55.000Z",
@@ -64,10 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44821354,
-    "by": "kitd",
-    "timeISO": "2025-08-07T06:48:22.000Z",
-    "textPlain": "No need for macros.https://github.com/lite-jsx/core",
+    "id": 44820493,
+    "by": "revskill",
+    "timeISO": "2025-08-07T04:12:22.000Z",
+    "textPlain": "Sweet. No need a framework to do that.",
+    "parent": 44778898,
+    "depth": 1
+  },
+  {
+    "id": 44823278,
+    "by": "MrBuddyCasino",
+    "timeISO": "2025-08-07T11:50:34.000Z",
+    "textPlain": "I really really (really) don’t want Rust style macros and proc macros in JavaScript (or TypeScript), ever.",
     "parent": 44818627,
     "depth": 2
   },
@@ -80,10 +80,18 @@
     "depth": 2
   },
   {
-    "id": 44821971,
-    "by": "Wintamute",
-    "timeISO": "2025-08-07T08:20:19.000Z",
-    "textPlain": "Writing a web app at the moment with C++/Emscripten. What makes wasm unusable in Rust?",
+    "id": 44821354,
+    "by": "kitd",
+    "timeISO": "2025-08-07T06:48:22.000Z",
+    "textPlain": "No need for macros.https://github.com/lite-jsx/core",
+    "parent": 44818627,
+    "depth": 2
+  },
+  {
+    "id": 44820297,
+    "by": "JoelMcCracken",
+    "timeISO": "2025-08-07T03:30:31.000Z",
+    "textPlain": "Every once in a while I get a strong urge to hack on sweet.js to add typescript support",
     "parent": 44818627,
     "depth": 2
   },
@@ -104,10 +112,10 @@
     "depth": 2
   },
   {
-    "id": 44820297,
-    "by": "JoelMcCracken",
-    "timeISO": "2025-08-07T03:30:31.000Z",
-    "textPlain": "Every once in a while I get a strong urge to hack on sweet.js to add typescript support",
+    "id": 44821971,
+    "by": "Wintamute",
+    "timeISO": "2025-08-07T08:20:19.000Z",
+    "textPlain": "Writing a web app at the moment with C++/Emscripten. What makes wasm unusable in Rust?",
     "parent": 44818627,
     "depth": 2
   },
@@ -117,6 +125,22 @@
     "timeISO": "2025-08-06T23:04:46.000Z",
     "textPlain": "You want manual memory management for your web apps?",
     "parent": 44818627,
+    "depth": 2
+  },
+  {
+    "id": 44822701,
+    "by": "MrJohz",
+    "timeISO": "2025-08-07T10:18:36.000Z",
+    "textPlain": "This can be used as part of that step (i.e. converting `foo()` into `true` or `false`), but I think the expectation is that you'll have another step in the build process that automatically strips away `if(false)...` statements and inlines `if(true)` ones.Almost any minifier will automatically do this, for example, and most can be configured so that they only do constant folding/dead code elimination, so the result will be a file that looks like the one you've written, but with these comptime conditions removed/inlined.Obviously with C preprocessor macros, you've got one tool that evaluates the condition and removes the dead code, but with comptime you have more flexibility and your conditions are all written in Javascript rather than a mix of JS and preprocessor macros.",
+    "parent": 44822158,
+    "depth": 2
+  },
+  {
+    "id": 44822679,
+    "by": "trgwii",
+    "timeISO": "2025-08-07T10:14:51.000Z",
+    "textPlain": "Yes it can, the comptime expression inside the if would turn into a `true` or `false` literal, but you would need a separate build tool to optimize away the if. That's partly why comptime.ts outputs TypeScript iirc.I believe both Vite and Bun bundler would apply the optimization to eliminate constant conditionals when you use comptime.ts as a plugin.",
+    "parent": 44822158,
     "depth": 2
   },
   {

@@ -24,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44822835,
+    "by": "lagrange77",
+    "timeISO": "2025-08-07T10:38:52.000Z",
+    "textPlain": "While you're here..Do you guys know a website that clearly shows which OS LLM models run on / fit into a specific GPU(setup)?The best heuristic i could find for the necessary VRAM is Number of Parameters × (Precision / 8) × 1.2 from here [0].[0] https://medium.com/@lmpo/a-guide-to-estimating-vram-for-llms...",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
     "id": 44821329,
     "by": "sarthaksoni",
     "timeISO": "2025-08-07T06:42:56.000Z",
@@ -48,10 +56,26 @@
     "depth": 1
   },
   {
+    "id": 44822814,
+    "by": "nektro",
+    "timeISO": "2025-08-07T10:35:01.000Z",
+    "textPlain": "> we were the clear leader running on NVIDIA GPUs for both latency and throughput per public data from real-world use on OpenRouter.Baseten: 592.6 tps\nGroq: 784.6 tps\nCerebras: 4,245 tpsstill impressive work",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
     "id": 44820778,
     "by": "magicalhippo",
     "timeISO": "2025-08-07T05:05:22.000Z",
     "textPlain": "Maybe I'm especially daft this morning but I don't get the point of the speculative decoding.How does the target model validate the draft tokens without running the inference as normal?Because if it is doing just that, I don't get the point as you can't trust the draft tokens before they are validated, so you're still stuck waiting for the target model.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44822522,
+    "by": "smcleod",
+    "timeISO": "2025-08-07T09:45:26.000Z",
+    "textPlain": "TensorRT-LLM is a right nightmare to setup and maintain. Good on them for getting it to work for them - but it's not for everyone.",
     "parent": 44819968,
     "depth": 1
   },
@@ -80,10 +104,58 @@
     "depth": 1
   },
   {
+    "id": 44822675,
+    "by": "XCSme",
+    "timeISO": "2025-08-07T10:13:48.000Z",
+    "textPlain": "I know there was a downloadable version of Wikipedia (not that large). Maybe soon we'll have a lot of data stored locally and expose it via MCP, then the AIs can do \"web search\" locally.I think 99% of web searches lead to the same 100-1k websites. I assume it's only a few GBs to have a copy of those locally, thus this raises copyright concerns.",
+    "parent": 44822195,
+    "depth": 2
+  },
+  {
+    "id": 44822556,
+    "by": "conradev",
+    "timeISO": "2025-08-07T09:53:12.000Z",
+    "textPlain": "Are you using Ollama or LMStudio/llama.cpp? https://x.com/ggerganov/status/1953088008816619637",
+    "parent": 44822195,
+    "depth": 2
+  },
+  {
+    "id": 44822743,
+    "by": "gigatexal",
+    "timeISO": "2025-08-07T10:25:01.000Z",
+    "textPlain": "M3 Max 128GB here and it’s mad impressive.Im spec’ing out a Mac Studio with 512GB ram because I can window shop and wish but I think the trend for local LLMs is getting really good.Do we know WHY openAI even released them?",
+    "parent": 44822195,
+    "depth": 2
+  },
+  {
+    "id": 44822547,
+    "by": "MoonObserver",
+    "timeISO": "2025-08-07T09:51:00.000Z",
+    "textPlain": "M2 Max processor.\nI saw 60+ tok/s on short conversations, but it degraded to 30 tok/s as the conversation got longer.\nDo you know what actually accounts for this slowdown? I don’t believe it was thermal throttling.",
+    "parent": 44822195,
+    "depth": 2
+  },
+  {
     "id": 44822263,
     "by": "Kurtz79",
     "timeISO": "2025-08-07T09:06:46.000Z",
     "textPlain": "Does it even make sense calling them 'GPUs' (I just checked NVIDIA product page for the H100 and it is indeed so)?There should be a quicker way to differentiate between 'consumer-grade hardware that is mainly meant to be used for gaming and can also run LLMs inference in a limited way' and 'business-grade hardware whose main purpose is AI training or running inference for LLMs\".",
+    "parent": 44822202,
+    "depth": 2
+  },
+  {
+    "id": 44822721,
+    "by": "dougSF70",
+    "timeISO": "2025-08-07T10:22:10.000Z",
+    "textPlain": "With Ollama i got the 20B model running on 8 TitanX cards (2015). Ollama distributed the model so that the 15GB of vram required was split evenly accross the 8 cards.  The tok/s were faster than reading speed.",
+    "parent": 44822202,
+    "depth": 2
+  },
+  {
+    "id": 44822311,
+    "by": "lopuhin",
+    "timeISO": "2025-08-07T09:16:49.000Z",
+    "textPlain": "you can rent them for less then $2/h in a lot of places (maybe not in the drawer)",
     "parent": 44822202,
     "depth": 2
   },
@@ -93,6 +165,134 @@
     "timeISO": "2025-08-07T09:03:30.000Z",
     "textPlain": "available != cheap",
     "parent": 44822202,
+    "depth": 2
+  },
+  {
+    "id": 44823265,
+    "by": "reactordev",
+    "timeISO": "2025-08-07T11:48:28.000Z",
+    "textPlain": "huggingface has this built in if you care to fill out your software and hardware profile here:https://huggingface.co/settings/local-appsThen on the model pages, it will show you whether you can use it.",
+    "parent": 44822835,
+    "depth": 2
+  },
+  {
+    "id": 44823180,
+    "by": "diggan",
+    "timeISO": "2025-08-07T11:34:55.000Z",
+    "textPlain": "Maybe I'm spoiled by having great internet connection, but I usually download the weights and try to run them via various tools (llama.cpp, LM Studio, vLLM and SGLang typically) and see what works. There seems to be so many variables involved (runners, architectures, implementations, hardware and so on) that none of the calculators I've tried so far been accurate, both in the way that they've over-estimated and under-estimated what I could run.So in the end, trying to actually run them seems to be the only fool-proof way of knowing for sure :)",
+    "parent": 44822835,
+    "depth": 2
+  },
+  {
+    "id": 44821414,
+    "by": "DrPhish",
+    "timeISO": "2025-08-07T06:58:12.000Z",
+    "textPlain": "Its also easy to do 120b on CPU if you have the resources. I had 120b running on my home LLM CPU inference box in just as long as it took to download the GGUFs, git pull and rebuild llama-server.\nI had it running at 40t/s with zero effort and 50t/s with a brief tweaking.\nIts just too bad that even the 120b isn't really worth running compared to the other models that are out there.It really is amazing what ggerganov and the llama.cpp team have done to democratize LLMs for individuals that can't afford a massive GPU farm worth more than the average annual salary.",
+    "parent": 44821329,
+    "depth": 2
+  },
+  {
+    "id": 44822301,
+    "by": "amelius",
+    "timeISO": "2025-08-07T09:14:56.000Z",
+    "textPlain": "Why is it hard to set up llms? You can just ask an llm to do it for you, no? If this relatively simple task is already too much for llms then what good are they?",
+    "parent": 44821329,
+    "depth": 2
+  },
+  {
+    "id": 44822338,
+    "by": "CraigRood",
+    "timeISO": "2025-08-07T09:21:13.000Z",
+    "textPlain": "I was playing with it yesterday and every single session gave me factually incorrect information.Speed and ease of use is one thing, but it shouldn't be at the cost of accuracy.",
+    "parent": 44821329,
+    "depth": 2
+  },
+  {
+    "id": 44821076,
+    "by": "acters",
+    "timeISO": "2025-08-07T05:55:48.000Z",
+    "textPlain": "Personally, I think bigger companies should be more proactive and work with some of the popular inference engine software devs with getting their special snowflake LLM to work before it gets released. I guess it is all very much experimental at the end of the day. Those devs are putting in God's work for us to use on our budget friendly hardware choices.",
+    "parent": 44820656,
+    "depth": 2
+  },
+  {
+    "id": 44821857,
+    "by": "geertj",
+    "timeISO": "2025-08-07T08:05:19.000Z",
+    "textPlain": "> Ensure that Frontier AI Protects Free Speech and American ValuesI am in the early phases of collecting my thoughts on this topic so bear with me, but it this a bad thing?AI models will have a world view. I think I prefer them having a western world view, as that has built our modern society and has proven to be most successful in making the lives of people better.At the very minimum I would want a model to document its world view, and be aligned to it so that it does not try to socially engineer me to surreptitiously change mine.",
+    "parent": 44821372,
+    "depth": 2
+  },
+  {
+    "id": 44820945,
+    "by": "cristoperb",
+    "timeISO": "2025-08-07T05:35:06.000Z",
+    "textPlain": "My simplified understanding: The target model can validate the draft tokens all at once, in a single forward pass. The output of that forward pass is a list of probabilities for each draft token which are compared to the probabilities produced by the draft model. If the target model's probabilities are the same or greater than the draft model, the tokens are accepted. Worst case none of the draft tokens are accepted and instead the target model selects the single next token as usual.",
+    "parent": 44820778,
+    "depth": 2
+  },
+  {
+    "id": 44820900,
+    "by": "furyofantares",
+    "timeISO": "2025-08-07T05:25:00.000Z",
+    "textPlain": "Not an expert, but here's how I understand it.  You know how input tokens are cheaper than output tokens? It's related to that.Say the model so far has \"The capital of France\". The small model generates \"is Paris.\", which let's say is 5 tokens.You feed the large model \"The capital of France is Paris.\" to validate all 5 of those tokens in a single forward pass.",
+    "parent": 44820778,
+    "depth": 2
+  },
+  {
+    "id": 44820854,
+    "by": "joliu",
+    "timeISO": "2025-08-07T05:17:18.000Z",
+    "textPlain": "It does run inference, but on the batch of tokens that were drafted, akin to the prefill phase.So your draft model can decode N new tokens, then the real model does one inference pass to score the N new drafted tokens.Prefill is computation bound whereas decode is bandwidth bound, so in practice doing one prefill over N tokens is cheaper than doing N decode passes.",
+    "parent": 44820778,
+    "depth": 2
+  },
+  {
+    "id": 44821460,
+    "by": "jlebar",
+    "timeISO": "2025-08-07T07:06:59.000Z",
+    "textPlain": "Just want to suggest: Ask an LLM about it!  If you have access to a reasoning model like o3, I've found it to be very helpful.I think this answer is as good as any of the human-generated ones in the thread so far, but the real power is that you can ask it follow-up questions.  https://chatgpt.com/share/6894504f-4458-8008-a8c9-f371588259...",
+    "parent": 44820778,
+    "depth": 2
+  },
+  {
+    "id": 44821266,
+    "by": "bhaney",
+    "timeISO": "2025-08-07T06:29:16.000Z",
+    "textPlain": "> How does the target model validate the draft tokens without running the inference as normal?It does run the inference as normal, just in parallel with the other inferences> if it is doing just that, I don't get the pointRunning inferences in parallel allows you to only read the model weights out of memory only once for N parallel inferences, as opposed to reading them out of memory N times for N serial inferences. Inference is massively bottlenecked by memory bandwidth to the tune of one or two orders of magnitude compared to compute, so this helps a lot.",
+    "parent": 44820778,
+    "depth": 2
+  },
+  {
+    "id": 44821061,
+    "by": "porridgeraisin",
+    "timeISO": "2025-08-07T05:54:08.000Z",
+    "textPlain": "Let's say I want to run f2(f1(x)) where f1 and f2 are both a single pass through GPT4.This takes 2 seconds time, assuming 1 second for every pass.What I instead do is kick off f1(x) in another thread, and then run f2(g1(x)) where g1 is one pass through GPT-nano.This takes 1 + 0.1 seconds, assuming gpt nano takes 0.1s for every pass. In this 1.1 seconds, the f1(x) that we kicked off in the 2nd thread would have finished (it takes 1 second).So in 1.1 seconds we have available to us f1(x), f2(g1(x)), and we store the intermediate g1(x) as wellWe compare g1(x) and f1(x)If they were equal, i.e g1(x) = f1(x), then we have our answer = f2(g1(x)) in just 1.1s.If they were not, we compute f2(output of f1(x) from 2nd thread) which takes 1 further second, bringing our total to 2.1s.If the small model is equalling the big model in say 2/3 of cases, you will spend 2/3 * 1.1 + 1/3 * 2.1 = 1.433s on average for this computation. Without speculative decoding, it is always 2s.",
+    "parent": 44820778,
+    "depth": 2
+  },
+  {
+    "id": 44820997,
+    "by": "robrenaud",
+    "timeISO": "2025-08-07T05:43:55.000Z",
+    "textPlain": "I think your core misunderstanding is that you are assuming K calls to generate 1 token is expensive as 1 call to generate K tokens.  It is actually much more expensive to generate serially than even in small batches.",
+    "parent": 44820778,
+    "depth": 2
+  },
+  {
+    "id": 44821026,
+    "by": "asabla",
+    "timeISO": "2025-08-07T05:48:50.000Z",
+    "textPlain": "I'm on a 5090 so it's not apples to apples comparison. But I'm getting ~150t/s for the 20B version using ~16000 context size.",
+    "parent": 44820925,
+    "depth": 2
+  },
+  {
+    "id": 44820995,
+    "by": "ActorNightly",
+    "timeISO": "2025-08-07T05:43:47.000Z",
+    "textPlain": "You can't fit the model into 4090 without quantization, its like 64 gigs.For home use, Gemma27B QAT is king. Its almost as good as Deepseek R1",
+    "parent": 44820925,
     "depth": 2
   },
   {

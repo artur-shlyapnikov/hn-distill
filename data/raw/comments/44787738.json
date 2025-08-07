@@ -1,13 +1,5 @@
 [
   {
-    "id": 44822242,
-    "by": "thomascountz",
-    "timeISO": "2025-08-07T09:03:10.000Z",
-    "textPlain": "I recently wrote a bit about debouncing fetch using timeouts and AbortController, including small demos, here: https://thomascountz.com/2025/07/02/debouncing-api-calls",
-    "parent": 44787738,
-    "depth": 1
-  },
-  {
     "id": 44821900,
     "by": "achou",
     "timeISO": "2025-08-07T08:10:30.000Z",
@@ -24,18 +16,58 @@
     "depth": 1
   },
   {
+    "id": 44822242,
+    "by": "thomascountz",
+    "timeISO": "2025-08-07T09:03:10.000Z",
+    "textPlain": "I recently wrote a bit about debouncing fetch using timeouts and AbortController, including small demos, here: https://thomascountz.com/2025/07/02/debouncing-api-calls",
+    "parent": 44787738,
+    "depth": 1
+  },
+  {
+    "id": 44823090,
+    "by": "_def",
+    "timeISO": "2025-08-07T11:20:08.000Z",
+    "textPlain": "I think it's a fitting analogy. Depends on the intended behaviour, really.That said, this is a good resource on the original meaning: https://www.ganssle.com/debouncing.htm",
+    "parent": 44787738,
+    "depth": 1
+  },
+  {
+    "id": 44822907,
+    "by": "G_o_D",
+    "timeISO": "2025-08-07T10:53:09.000Z",
+    "textPlain": "Debounce ->\nLike when we throw a ball once on ground, but it keeps bouncing,\nTo prevent thatHuman interaction with circuits, sensors, receptors, occur like thatWhen we click a keyboard key or switch circuit switch the receptors are very sensitivewe feel we did once but during that one press our fingers hands are vibrating multiple times hence the event get registered multiple times due to pulsating, hence all after first event, the second useful event that can be considered legitimate if the idle period between both matches desired debounce delayin terms of web and software programming or network request handlingit is used as a term to debounce to push away someone something aggresiveExample wisea gate  and a queue\nThrottling -> gate get opened every 5 min and let one person in, no matter whatDebounce -> if the persons in queue are deliberately being aggressive thrashing at door to make it open\nwe push them away \nNow instead of 5 min, we tell them you have to wait another 5 min since you are harassing, if before that they try again, we again tell them to wait another 5 min\nThus debounce is to prevent aggresive behaviourIn terms of say client server request over networkWe can throttle requests processed by server, let say server will only process requests that happen every 5 min like how apis have limit, during that before 5min no matter how many request made they will be ignoredBut if client is aggressive like they keep clicking submit button, keep making 100s of requests that even after throttling server would suffer kind of ddosso at client side we add debounce to button click eventso even if user keep clicking it being impatient, unnecessary network request will not be made to server unless user stop",
+    "parent": 44787738,
+    "depth": 1
+  },
+  {
     "id": 44822228,
     "by": "fnord77",
     "timeISO": "2025-08-07T09:00:38.000Z",
-    "textPlain": "[delayed]",
+    "textPlain": "https://en.wikipedia.org/wiki/Switch#Contact_bounce",
     "parent": 44787738,
     "depth": 1
+  },
+  {
+    "id": 44822368,
+    "by": "demetris",
+    "timeISO": "2025-08-07T09:24:22.000Z",
+    "textPlain": "Another thing to watch for is whether you actually need debouncing.For example, debouncing is often recommended for handlers of the resize event, but, in most cases, it is not needed for handlers of observations coming from ResizeObserver.I think this is the case for other modern APIs as well. I know that, for example, you don’t need debouncing for the relatively new scrollend event (it does the debouncing on its own).",
+    "parent": 44821900,
+    "depth": 2
   },
   {
     "id": 44822207,
     "by": "cnity",
     "timeISO": "2025-08-07T08:55:34.000Z",
     "textPlain": "Reactive programming (such as with RxJS [0]) can be a good solution to this, since they provide primitives that understand time-based dependencies.[0]: https://rxjs.dev/api/index/function/switchMap",
+    "parent": 44821900,
+    "depth": 2
+  },
+  {
+    "id": 44822546,
+    "by": "tossandthrow",
+    "timeISO": "2025-08-07T09:50:55.000Z",
+    "textPlain": "Damn, there was another thread not too long ago claiming that a sync does not mean concurrent - this would have been a great example to bring up.",
     "parent": 44821900,
     "depth": 2
   },
@@ -48,6 +80,14 @@
     "depth": 2
   },
   {
+    "id": 44822082,
+    "by": "maxbond",
+    "timeISO": "2025-08-07T08:37:58.000Z",
+    "textPlain": "It's the term used in frontend dev. It is actually a little worse than you're imagining, because we're not sampling, we're receiving callbacks (so more analogous to interrupts than sampling in a loop). Eg the oninput callback. I've used it for implementing auto save without making a localStorage call on every key press, for example.I think it makes sense if you view it from a control theory perspective rather than an embedded perspective. The mechanics of the UI (be that a physical button or text input) create a flaggy signal. Naively updating the UI on that signal would create jank. So we apply some hysteresis to obtain a clean signal. In the day way that acting 50 times on a single button press is incorrect behavior, saving (or searching or what have you) 50 times from typing a single sentence isn't correct (or at least undesired).The example of 10ms is way too low though, anything less than 250ms seems needlessly aggressive to me. 250ms is still going to feel very snappy. I think if you're typing at 40-50wpm you'll probably have an interval of 100-150ms between characters, so 10ms is hardly debouncing anything.",
+    "parent": 44821746,
+    "depth": 2
+  },
+  {
     "id": 44822183,
     "by": "Findecanor",
     "timeISO": "2025-08-07T08:52:21.000Z",
@@ -56,10 +96,18 @@
     "depth": 2
   },
   {
-    "id": 44822082,
-    "by": "maxbond",
-    "timeISO": "2025-08-07T08:37:58.000Z",
-    "textPlain": "It's the term used in frontend dev. It is actually a little worse than you're imagining, because we're not sampling, we're receiving callbacks (so more analogous to interrupts than sampling in a loop). Eg the oninput callback. I've used it for implementing auto save without making a localStorage call on every key press, for example.I think it makes sense if you view it from a control theory perspective rather than an embedded perspective. The mechanics of the UI create a flaggy signal. Naively updating the UI on that signal would create jank. So we apply some hysteresis to obtain a clean signal. In the day way that acting 50 times on a single button press is incorrect behavior, saving (or searching or what have you) 50 times from typing a single sentence isn't correct (or at least undesired).The example of 10ms is way too low though, anything less than 250ms seems needlessly aggressive to me. 250ms is still going to feel very snappy. I think if you're typing at 40-50wpm you'll probably have an interval of 100-150ms between characters, so 10ms is hardly debouncing anything.",
+    "id": 44823146,
+    "by": "account42",
+    "timeISO": "2025-08-07T11:29:29.000Z",
+    "textPlain": "It's also worth mentioning that real debouncing doesn't always have to depend on time when you have an analog signal. Instead you could have different thresholds for going from stat A to B vs going from B to A with enough distance between those threshold that you won't switch back and forth during an event. This can even be implemented physically in the switch itself by having separate ON and OFF contacts.",
+    "parent": 44821746,
+    "depth": 2
+  },
+  {
+    "id": 44822978,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-07T11:03:31.000Z",
+    "textPlain": "I like you said obnoxious... it is assumed this behaviour is what people want rather than just press a button or hit enter when ready.",
     "parent": 44821746,
     "depth": 2
   },
@@ -72,6 +120,14 @@
     "depth": 2
   },
   {
+    "id": 44822126,
+    "by": "jiehong",
+    "timeISO": "2025-08-07T08:43:59.000Z",
+    "textPlain": "In electronics, I think we'd use a latch, so it switches high, and stays high despite input change.Doesn't really apply to a search box, where it's more of a delayed event if no event during a specific time window, only keeping last event.",
+    "parent": 44821746,
+    "depth": 2
+  },
+  {
     "id": 44822178,
     "by": "Tade0",
     "timeISO": "2025-08-07T08:51:47.000Z",
@@ -80,11 +136,43 @@
     "depth": 2
   },
   {
-    "id": 44822126,
-    "by": "jiehong",
-    "timeISO": "2025-08-07T08:43:59.000Z",
-    "textPlain": "In electronics, I think we'd use a latch, so it switches high, and stays high despite input change.Doesn't really apply to a search box, where it's more of a delayed event if no event during a specific time window, only keeping last event.",
+    "id": 44822861,
+    "by": "meindnoch",
+    "timeISO": "2025-08-07T10:44:17.000Z",
+    "textPlain": "In typical web development fashion, they've heard about something (\"debouncing\"), had a vague (but incorrect) idea what it means, and started using it everywhere. There was no adult around to correct them early on, so now the community stuck with the wrong thing forever. If you spend some time in web development as an outsider, you'll notice tons of things like this.",
     "parent": 44821746,
+    "depth": 2
+  },
+  {
+    "id": 44822352,
+    "by": "jon-wood",
+    "timeISO": "2025-08-07T09:22:21.000Z",
+    "textPlain": "Search is a bad example there, a better one would have been clicking a button to add an item to a list, or pressing a shortcut key to do so, where you want to only submit that item once even if someone frantically clicks on the button because they're feeling impatient.",
+    "parent": 44821746,
+    "depth": 2
+  },
+  {
+    "id": 44822347,
+    "by": "amelius",
+    "timeISO": "2025-08-07T09:21:41.000Z",
+    "textPlain": "It's basically debouncing plus edge detection.",
+    "parent": 44821746,
+    "depth": 2
+  },
+  {
+    "id": 44822732,
+    "by": "matthewmacleod",
+    "timeISO": "2025-08-07T10:23:46.000Z",
+    "textPlain": "Actually I think it's pretty similar to your example. The \"intended semantics\" of the search action in that sort of field are to search for the text you enter – not to search for the the side-effects of in-progress partial completion.Yes, it's not an exact comparison (hence analogy) – but it's not anything worth getting into a fight about.",
+    "parent": 44821746,
+    "depth": 2
+  },
+  {
+    "id": 44822294,
+    "by": "Oxodao",
+    "timeISO": "2025-08-07T09:13:17.000Z",
+    "textPlain": "Ooh thanks for the link, didn't know this was where this came from",
+    "parent": 44822228,
     "depth": 2
   }
 ]
