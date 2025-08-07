@@ -1,0 +1,90 @@
+[
+  {
+    "id": 44822242,
+    "by": "thomascountz",
+    "timeISO": "2025-08-07T09:03:10.000Z",
+    "textPlain": "I recently wrote a bit about debouncing fetch using timeouts and AbortController, including small demos, here: https://thomascountz.com/2025/07/02/debouncing-api-calls",
+    "parent": 44787738,
+    "depth": 1
+  },
+  {
+    "id": 44821900,
+    "by": "achou",
+    "timeISO": "2025-08-07T08:10:30.000Z",
+    "textPlain": "One thing to watch out for when using debounce/throttle is the poor interaction with async functions. Debounced/throttled async functions can easily lead to unexpected behavior because they typically return the last result they have when the function is called, which would be a previous Promise for an async function. You can get a result that appears to violate causality, because the result of the promise returned by the debounce/throttle will (in a typical implementation) be from a prior invocation that happened before your debounce/throttle call.There are async-safe variants but the typical lodash-style implementations are not. If you want the semantics of \"return a promise when the function is actually invoked and resolve it when the underlying async function resolves\", you'll have to carefully vet if the implementation actually does that.",
+    "parent": 44787738,
+    "depth": 1
+  },
+  {
+    "id": 44821746,
+    "by": "kazinator",
+    "timeISO": "2025-08-07T07:50:22.000Z",
+    "textPlain": "Debouncing refers to cleaning up the signal from an opening and closing switch contact so that the cleaned signal matches the intended semantics of the switch action (e.g. one simple press of a button, not fifty pulses).The analogy here is poor; reducing thrashing in those obnoxious search completion interfaces isn't like debouncing.Sure, if we ignore everything about it that is not like debouncing, and we still have something left after that, then whatever is left is like debouncing.One important difference is that if you have unlimited amounts of low latency and processing power, you can do a full search for each keystroke, filter it down to half a dozen results and display the completions. In other words, the more power you have, the less important it is to do any \"debouncing\".Switch debouncing is not like this. The faster is your processor at sampling the switch, the more bounces it sees and consequently the more crap it has to clean up. Debouncing certainly does not go away with a faster microcontroller.",
+    "parent": 44787738,
+    "depth": 1
+  },
+  {
+    "id": 44822228,
+    "by": "fnord77",
+    "timeISO": "2025-08-07T09:00:38.000Z",
+    "textPlain": "[delayed]",
+    "parent": 44787738,
+    "depth": 1
+  },
+  {
+    "id": 44822207,
+    "by": "cnity",
+    "timeISO": "2025-08-07T08:55:34.000Z",
+    "textPlain": "Reactive programming (such as with RxJS [0]) can be a good solution to this, since they provide primitives that understand time-based dependencies.[0]: https://rxjs.dev/api/index/function/switchMap",
+    "parent": 44821900,
+    "depth": 2
+  },
+  {
+    "id": 44821977,
+    "by": "pas",
+    "timeISO": "2025-08-07T08:21:29.000Z",
+    "textPlain": "this sounds interesting but it's a bit too early here for me. by any chance can we (not simply a royal we :D) ask you to provide a code example (of a correct implementation), or a link to one? many thanks!",
+    "parent": 44821900,
+    "depth": 2
+  },
+  {
+    "id": 44822183,
+    "by": "Findecanor",
+    "timeISO": "2025-08-07T08:52:21.000Z",
+    "textPlain": "I agree that this is a bad analogy.I've programmed my own keyboards, mice and game controllers. If you want the fastest response time then you'd make debouncing be asymmetric: report press (\"Make\") on the first leading edge, and don't report release (\"Break\") until the signal has been stable for n ms after a trailing edge. That is the opposite of what's done in the blog article.Having a delay on the leading edge is for electrically noisy environments, such as among electric motors and a long wire from the switch to the MCU, where you could potentially get spurious signals that are not from a key press.\nDebouncing could also be done in hardware without delay, if you have a three-pole switch and an electronic latch.A better analogy would perhaps be \"Event Compression\": coalescing multiple consecutive events into one, used when producer and consumer are asynchronous.\nBetter but not perfect.",
+    "parent": 44821746,
+    "depth": 2
+  },
+  {
+    "id": 44822082,
+    "by": "maxbond",
+    "timeISO": "2025-08-07T08:37:58.000Z",
+    "textPlain": "It's the term used in frontend dev. It is actually a little worse than you're imagining, because we're not sampling, we're receiving callbacks (so more analogous to interrupts than sampling in a loop). Eg the oninput callback. I've used it for implementing auto save without making a localStorage call on every key press, for example.I think it makes sense if you view it from a control theory perspective rather than an embedded perspective. The mechanics of the UI create a flaggy signal. Naively updating the UI on that signal would create jank. So we apply some hysteresis to obtain a clean signal. In the day way that acting 50 times on a single button press is incorrect behavior, saving (or searching or what have you) 50 times from typing a single sentence isn't correct (or at least undesired).The example of 10ms is way too low though, anything less than 250ms seems needlessly aggressive to me. 250ms is still going to feel very snappy. I think if you're typing at 40-50wpm you'll probably have an interval of 100-150ms between characters, so 10ms is hardly debouncing anything.",
+    "parent": 44821746,
+    "depth": 2
+  },
+  {
+    "id": 44822205,
+    "by": "haileys",
+    "timeISO": "2025-08-07T08:55:18.000Z",
+    "textPlain": "Debouncing is a term of art in UI development and has been for a long time. It is analogous to, but of course not exactly the same as, debouncing in electronics.",
+    "parent": 44821746,
+    "depth": 2
+  },
+  {
+    "id": 44822178,
+    "by": "Tade0",
+    "timeISO": "2025-08-07T08:51:47.000Z",
+    "textPlain": "> One important difference is that if you have unlimited amounts of low latency and processing power, you can do a full search for each keystroke,But you don't want that, as it's useless. Until the user actually finished typing, they're going to have more results than they can meaningfully use - especially that the majority will be irrelevant and just get in the way of real results.The signal in between is actually, really not useful - at least not on first try when the user is not aware what's in the data source and how can they hack the search query to get their results with minimal input.",
+    "parent": 44821746,
+    "depth": 2
+  },
+  {
+    "id": 44822126,
+    "by": "jiehong",
+    "timeISO": "2025-08-07T08:43:59.000Z",
+    "textPlain": "In electronics, I think we'd use a latch, so it switches high, and stays high despite input change.Doesn't really apply to a search box, where it's more of a delayed event if no event during a specific time window, only keeping last event.",
+    "parent": 44821746,
+    "depth": 2
+  }
+]

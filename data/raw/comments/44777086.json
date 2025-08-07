@@ -1,0 +1,186 @@
+[
+  {
+    "id": 44817684,
+    "by": "dang",
+    "timeISO": "2025-08-06T20:50:07.000Z",
+    "textPlain": "Related. Others?Show HN: Pg_CRDT – CRDTs in Postgres Using Automerge - https://news.ycombinator.com/item?id=43655920 - April 2025 (4 comments)Automerge: A library of data structures for building collaborative applications - https://news.ycombinator.com/item?id=40976731 - July 2024 (58 comments)Automerge-Repo: A \"batteries-included\" toolkit for local-first applications - https://news.ycombinator.com/item?id=38193640 - Nov 2023 (43 comments)Automerge 2.0 - https://news.ycombinator.com/item?id=34586433 - Jan 2023 (89 comments)Automerge CRDT – Build local-first software - https://news.ycombinator.com/item?id=30881016 - April 2022 (8 comments)Automerge: A JSON-like data structure (a CRDT) that can be modified concurrently - https://news.ycombinator.com/item?id=30412550 - Feb 2022 (69 comments)Automerge: a new foundation for collaboration software [video] - https://news.ycombinator.com/item?id=29501465 - Dec 2021 (29 comments)Automerge: A library [..] for building collaborative applications in JavaScript - https://news.ycombinator.com/item?id=24791713 - Oct 2020 (1 comment)Automerge: JSON-like data structure for building collaborative apps - https://news.ycombinator.com/item?id=16309533 - Feb 2018 (98 comments)",
+    "parent": 44777086,
+    "depth": 1
+  },
+  {
+    "id": 44813693,
+    "by": "jjangkke",
+    "timeISO": "2025-08-06T15:54:36.000Z",
+    "textPlain": "Surprised how little comment this post has, this is an insane improvement.I've been using Electric SQL but Automerge 3.0 seems to be the holy grail combining local first approach to CRDT?Wondering if I should ditch Electric SQL and switch to this instead. I'm just not sure what kind of hardware I need to run a sync server for Automerge and how many users reads/writes it can support.ElectricSQL is pretty good too but its still not quite there and implementing local first means some features related to rollback are harder to apply.I'm still very new to this overall but that 10x memory boost is welcome as I find with very large documents the lag used to be very noticeable.",
+    "parent": 44777086,
+    "depth": 1
+  },
+  {
+    "id": 44821370,
+    "by": "ChadNauseam",
+    "timeISO": "2025-08-07T06:51:29.000Z",
+    "textPlain": "I have a question about Automerge that maybe someone here can answer. I have a lot of code written for some custom CRDTs I've made. (This handles syncing them with my server and between devices and so on.) My data model is that each device gets a unique ID, and then can share \"events\" which must be sequential for a given ID. The events from all the different devices are then collected and replayed. I'm curious if it would be possible to fit automerge to this framework? All I would need is an `apply` function that takes an event and a document and produces a new document. (I assume I would miss out on the super-efficient compressed representation described in this article, but I'm curious)",
+    "parent": 44777086,
+    "depth": 1
+  },
+  {
+    "id": 44811216,
+    "by": "andrewingram",
+    "timeISO": "2025-08-06T12:42:45.000Z",
+    "textPlain": "A few questions:1. I can see there's an example of using it with React and Prosemirror, what's the gap to using it with Tiptap (for those who don't know, it's an abstraction on top of Prosemirror that aims to streamline the task of building editors)?2. Is there any prior art or room in the design for supporting permissioned blocks of content _within_ a document? i.e things which some users aren't allowed to view (or edit)",
+    "parent": 44777086,
+    "depth": 1
+  },
+  {
+    "id": 44820463,
+    "by": "n_u",
+    "timeISO": "2025-08-07T04:03:52.000Z",
+    "textPlain": "Is there info anywhere on the structure of the semi-lattice they are using for their CRDT?Is the map based on a multi-value register or a last-writer-wins register?",
+    "parent": 44777086,
+    "depth": 1
+  },
+  {
+    "id": 44818326,
+    "by": "DiddlyWinks",
+    "timeISO": "2025-08-06T21:56:30.000Z",
+    "textPlain": "What sort of applications is this used for? I'm a technical writer, and my team is facing versioning challenges for sections of documents. I'm wondering if this could be useful.",
+    "parent": 44777086,
+    "depth": 1
+  },
+  {
+    "id": 44816298,
+    "by": "nextaccountic",
+    "timeISO": "2025-08-06T19:09:11.000Z",
+    "textPlain": "Is this Javascript only?",
+    "parent": 44777086,
+    "depth": 1
+  },
+  {
+    "id": 44811141,
+    "by": "cyanydeez",
+    "timeISO": "2025-08-06T12:35:20.000Z",
+    "textPlain": "Needs benchmarks with yjs",
+    "parent": 44777086,
+    "depth": 1
+  },
+  {
+    "id": 44819766,
+    "by": "netown",
+    "timeISO": "2025-08-07T01:46:47.000Z",
+    "textPlain": "a number of these sync engines have been growing popular, most notably convex and zero (altho both of course are very different from automerge)--this one's rust/c api makes it more interesting, i wonder if an implementation for terminals uis could be possible?",
+    "parent": 44777086,
+    "depth": 1
+  },
+  {
+    "id": 44814081,
+    "by": "alexejb",
+    "timeISO": "2025-08-06T16:19:44.000Z",
+    "textPlain": "are move operations for trees implemented now?",
+    "parent": 44777086,
+    "depth": 1
+  },
+  {
+    "id": 44819810,
+    "by": "arcknighttech",
+    "timeISO": "2025-08-07T01:54:49.000Z",
+    "textPlain": "[dead]",
+    "parent": 44777086,
+    "depth": 1
+  },
+  {
+    "id": 44817810,
+    "by": "netghost",
+    "timeISO": "2025-08-06T21:02:36.000Z",
+    "textPlain": "It really depends on your use case.  If you want people collaborating on a rich text document, Automerge or yjs are probably great.If you want to have local first application data where a server is the authority, ElectricSQL is probably going to serve you best.That said there are so many approaches out there right now, and they're all promising, but tricky.",
+    "parent": 44813693,
+    "depth": 2
+  },
+  {
+    "id": 44821960,
+    "by": "siva7",
+    "timeISO": "2025-08-07T08:17:46.000Z",
+    "textPlain": "Probably because i still don't understand what this thing exactly does (and i'm not doing tech since yesterday)",
+    "parent": 44813693,
+    "depth": 2
+  },
+  {
+    "id": 44815898,
+    "by": "mikehotel",
+    "timeISO": "2025-08-06T18:38:29.000Z",
+    "textPlain": "The performance improvements are impressive:> In Automerge 3.0, we've rearchitected the library so that it also uses the compressed representation at runtime. This has achieved huge memory savings. For example, pasting Moby Dick into an Automerge 2 document consumes 700Mb of memory, in Automerge 3 it only consumes 1.3Mb!> Finally, for documents with large histories load times can be much much faster (we recently had an example of a document which hadn't loaded after 17 hours loading in 9 seconds!).",
+    "parent": 44813693,
+    "depth": 2
+  },
+  {
+    "id": 44820057,
+    "by": "andrewflnr",
+    "timeISO": "2025-08-07T02:46:02.000Z",
+    "textPlain": "High upvote/comment ratio is a sign of a quality post, honestly. Sometimes all you can do is upvote.",
+    "parent": 44813693,
+    "depth": 2
+  },
+  {
+    "id": 44821937,
+    "by": "metaketa",
+    "timeISO": "2025-08-07T08:14:27.000Z",
+    "textPlain": "I am in somewhat of the same boat for https://parture.org. Have a quite large CRDT system with unique ID's that is also type-safe, does not rely on serde_json::Value juggling, every CRDT is structurally valid and it knows what CRDT's cannot be applied to a Rust struct based on some business logic. I am wondering whether such checks (type-safety, business logic) can be worked into the CRDT application process. Automerge seems mostly meant for text editing, but they do have Autosurgeon though it hasn't been updated in a while",
+    "parent": 44821370,
+    "depth": 2
+  },
+  {
+    "id": 44814855,
+    "by": "bhl",
+    "timeISO": "2025-08-06T17:19:19.000Z",
+    "textPlain": "1. You can use TipTap with it: just have to wrap your existing schema with automerge attributes. Undo redo would also swap out.",
+    "parent": 44811216,
+    "depth": 2
+  },
+  {
+    "id": 44820780,
+    "by": "erikerikson",
+    "timeISO": "2025-08-07T05:05:42.000Z",
+    "textPlain": "See the docs: https://automerge.org/docs/reference/documents/conflicts/",
+    "parent": 44820463,
+    "depth": 2
+  },
+  {
+    "id": 44818770,
+    "by": "samuelstros",
+    "timeISO": "2025-08-06T22:50:13.000Z",
+    "textPlain": "can you elaborate on what versioning issues you are facing?",
+    "parent": 44818326,
+    "depth": 2
+  },
+  {
+    "id": 44818121,
+    "by": "mkl",
+    "timeISO": "2025-08-06T21:34:27.000Z",
+    "textPlain": "It's written in Rust, but JavaScript is the primary friendly interface.  https://github.com/automerge/automerge",
+    "parent": 44816298,
+    "depth": 2
+  },
+  {
+    "id": 44819405,
+    "by": "michelpp",
+    "timeISO": "2025-08-07T00:30:43.000Z",
+    "textPlain": "There is also a C api wrapper, not sure the state of it wrt this latest release.",
+    "parent": 44816298,
+    "depth": 2
+  },
+  {
+    "id": 44811384,
+    "by": "hugodan",
+    "timeISO": "2025-08-06T13:01:18.000Z",
+    "textPlain": "If you are after performance see jsonjoy.",
+    "parent": 44811141,
+    "depth": 2
+  },
+  {
+    "id": 44814894,
+    "by": "bhl",
+    "timeISO": "2025-08-06T17:22:07.000Z",
+    "textPlain": "IIRC, Kleppmann built a prototype for it but it’s not included in Automerge yet.",
+    "parent": 44814081,
+    "depth": 2
+  }
+]

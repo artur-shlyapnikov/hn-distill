@@ -1,0 +1,94 @@
+import { z } from "zod";
+
+const IsoString = z
+  .string()
+  .regex(/^\d{4}-\d{2}-\d{2}T.*Z$/, "must be ISO string");
+
+export const HnItemRawSchema = z.object({
+  id: z.number(),
+  type: z.enum(["story", "comment"]),
+  title: z.string().optional(),
+  // accept any string here; validate/normalize later
+  url: z.string().optional(),
+  text: z.string().optional(),
+  by: z.string().optional(),
+  time: z.number().int().nonnegative(),
+  kids: z.array(z.number()).optional(),
+  parent: z.number().optional(),
+  score: z.number().optional(),
+  descendants: z.number().optional(),
+});
+
+export const NormalizedStorySchema = z.object({
+  id: z.number(),
+  title: z.string().max(500),
+  url: z.string().url().nullable(),
+  by: z.string().max(80),
+  timeISO: IsoString,
+  commentIds: z.array(z.number()),
+  score: z.number().optional(),
+  descendants: z.number().optional(),
+});
+
+export const NormalizedCommentSchema = z.object({
+  id: z.number(),
+  by: z.string().max(80),
+  timeISO: IsoString,
+  textPlain: z.string().max(2000),
+  parent: z.number(),
+  depth: z.number().int().min(0).max(10),
+});
+
+export const IndexSchema = z.object({
+  updatedISO: z.string(),
+  storyIds: z.array(z.number()),
+});
+
+export const LangSchema = z.enum(["en", "ru"]);
+
+export const PostSummarySchema = z.object({
+  id: z.number(),
+  lang: LangSchema,
+  summary: z.string(),
+  inputHash: z.string().optional(),
+  model: z.string().optional(),
+  createdISO: z.string().optional(),
+});
+
+export const CommentsSummarySchema = z.object({
+  id: z.number(),
+  lang: LangSchema,
+  summary: z.string(),
+  sampleComments: z.array(z.number()).optional(),
+  inputHash: z.string().optional(),
+  model: z.string().optional(),
+  createdISO: z.string().optional(),
+});
+
+export const AggregatedItemSchema = z.object({
+  id: z.number(),
+  title: z.string().max(500),
+  url: z.string().url().nullable(),
+  by: z.string().max(80),
+  timeISO: IsoString,
+  postSummary: z.string().optional(),
+  commentsSummary: z.string().optional(),
+  score: z.number().optional(),
+  commentsCount: z.number().optional(),
+  hnUrl: z.string().url().optional(),
+  domain: z.string().optional(),
+});
+
+export const AggregatedFileSchema = z.object({
+  updatedISO: z.string(),
+  items: z.array(AggregatedItemSchema),
+});
+
+// Inferred types from schemas (single source of truth)
+export type HnItemRaw = z.infer<typeof HnItemRawSchema>;
+export type NormalizedStory = z.infer<typeof NormalizedStorySchema>;
+export type NormalizedComment = z.infer<typeof NormalizedCommentSchema>;
+export type PostSummary = z.infer<typeof PostSummarySchema>;
+export type CommentsSummary = z.infer<typeof CommentsSummarySchema>;
+export type AggregatedItem = z.infer<typeof AggregatedItemSchema>;
+export type AggregatedFile = z.infer<typeof AggregatedFileSchema>;

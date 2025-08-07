@@ -1,0 +1,74 @@
+[
+  {
+    "id": 44819357,
+    "by": "Bukhmanizer",
+    "timeISO": "2025-08-07T00:22:02.000Z",
+    "textPlain": "I’m imagining some sort of art project where people try and figure out the most complicated software you can make entirely off files stitched together from different repos.",
+    "parent": 44818734,
+    "depth": 1
+  },
+  {
+    "id": 44819993,
+    "by": "neomantra",
+    "timeISO": "2025-08-07T02:34:24.000Z",
+    "textPlain": "I was just thinking about this topic this morning, so quite timely post!  I received a PR with binary test data files that were copied from an upstream ecosystem.  Similarly,\nI had copied files from that repo, but who should trust me?Submodules seemed too heavyweight, so I was contemplating a CI script that compared selected checksums with a clone.  This seems like a great general solution so will take a look at dropping it in!",
+    "parent": 44818734,
+    "depth": 1
+  },
+  {
+    "id": 44819062,
+    "by": "andrewmcwatters",
+    "timeISO": "2025-08-06T23:32:00.000Z",
+    "textPlain": "Hi HN, thanks for sending this to the front page.I'm finding myself needing some resources from other projects in a way that ecosystem-specific dependency management isn't going to help, or I'd be pulling in too many files.Submodules aren't the answer, and some other existing git user-defined commands don't seem to do what I need either.I want a file from another repository, and the ability to pin it, and track it in the future, or just always be up-to-date by using the default HEAD commit value set in `.git-remote-files`.    git fetch-file add https://github.com/octocat/Hello-World README\n    git fetch-file pull\n\nLet's me track the README file from the octocat/Hello-World repository, and pull down the file. A record of it is then saved in `.git-remote-files`.Let me know if you have any questions!",
+    "parent": 44818734,
+    "depth": 1
+  },
+  {
+    "id": 44819856,
+    "by": "dpsych",
+    "timeISO": "2025-08-07T02:06:25.000Z",
+    "textPlain": "Man this is exactly what I was looking for. Thank you!",
+    "parent": 44818734,
+    "depth": 1
+  },
+  {
+    "id": 44819669,
+    "by": "conception",
+    "timeISO": "2025-08-07T01:26:32.000Z",
+    "textPlain": "Or a Fuse filesystem based on it.",
+    "parent": 44819357,
+    "depth": 2
+  },
+  {
+    "id": 44819489,
+    "by": "andrewmcwatters",
+    "timeISO": "2025-08-07T00:47:16.000Z",
+    "textPlain": "Haha! That is a pretty creative idea.",
+    "parent": 44819357,
+    "depth": 2
+  },
+  {
+    "id": 44819999,
+    "by": "andrewmcwatters",
+    "timeISO": "2025-08-07T02:34:47.000Z",
+    "textPlain": "Thank you!",
+    "parent": 44819993,
+    "depth": 2
+  },
+  {
+    "id": 44819535,
+    "by": "g4cg54g54",
+    "timeISO": "2025-08-07T00:56:24.000Z",
+    "textPlain": "been wanting to build something very similar, so sharing some notes (before actually getting to test it):--dry-runa \"push\" subcommand?  \n(especially in combination with 'overwrite to local repository-path\" mentioned below, for remotes rater useless sure ;))also your readme leaves \"kinda open\" what happens with the actual file(s),  \n`.git-remote-files` is mentioned \"should be committed\", but the file it cloned?also a little unclear how `--save` plays into that (since the .git-remote-files example shows only a commit no branch)  \n(and when would one ever run it without save?)cli-arg/secondary `.git-remote-files`-File  \n(possibly as secondary `.local.git-remote-files` or such that can also override repository-URLs)  \nfor local/private repos?option (autodetect?) to also write gitattributes to mark those picked files binary  \n(what may also be done into the repo, or local-only into the .git/ dir of the repo...)since its called `git-fetch-file` and not `.git-remote-files` a overall comment may be nice as refence when first generating the file ;)but by now i´m just rambling, looking forward to actually try it when home ;)\nthanks in advance",
+    "parent": 44819062,
+    "depth": 2
+  },
+  {
+    "id": 44820000,
+    "by": "andrewmcwatters",
+    "timeISO": "2025-08-07T02:35:00.000Z",
+    "textPlain": "I'm so glad this is helpful for you, too!",
+    "parent": 44819856,
+    "depth": 2
+  }
+]

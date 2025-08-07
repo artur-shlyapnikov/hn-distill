@@ -1,0 +1,106 @@
+[
+  {
+    "id": 44822195,
+    "by": "wcallahan",
+    "timeISO": "2025-08-07T08:54:03.000Z",
+    "textPlain": "I just used GPT-OSS-120B on a cross Atlantic flight on my MacBook Pro (M4, 128GB RAM).A few things I noticed: \n- it’s only fast with with small context windows and small total token context; once more than ~10k tokens you’re basically queueing everything for a long time\n- MCPs/web search/url fetch have already become a very important part of interacting with LLMs; when they’re not available the LLM utility is greatly diminished\n- a lot of CLI/TUI coding tools (e.g., opencode) were not working reliably offline at this time with the model, despite being setup prior to being offlineThat’s in addition to the other quirks others have noted with the OSS models.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44822202,
+    "by": "blitzar",
+    "timeISO": "2025-08-07T08:54:48.000Z",
+    "textPlain": "> widely-available H100 GPUsJust looked in the parts drawer at home and dont seem to have a $25,000 GPU for some inexplicable reason.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44821466,
+    "by": "mutkach",
+    "timeISO": "2025-08-07T07:08:03.000Z",
+    "textPlain": "> Inspired by GPUs, we parallelized this effort across multiple engineers. One engineer tried vLLM, another SGLang, and a third worked on TensorRT-LLM. We were able to quickly get TensorRT-LLM working, which was fortunate as it is usually the most performant inference framework for LLMs.> TensorRT-LLMIt is usually the hardest to setup correctly and is often out of the date regarding the relevant architectures. It also requires compiling the model on the exact same hardware-drivers-libraries stack as your production environment which is a great pain in the rear end to say the least. Multimodal setups also been a disaster - at least for a while - when it was near-impossible to make it work even for mainstream models - like Multimodal Llamas. The big question is whether it's worth it, since when running the GPT-OSS-120B on H100 using vLLM is flawless in comparison - and the throughput stays at 130-140 t/s for a single H100. (It's also somewhat a clickbait of a title - I was expecting to see 500t/s for a single GPU, when in fact it's just a tensor-parallel setup)It's also funny that they went for a separate release of TRT-LLM just to make sure that gpt-oss will work correctly, TRT-LLM is a mess",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44821329,
+    "by": "sarthaksoni",
+    "timeISO": "2025-08-07T06:42:56.000Z",
+    "textPlain": "Reading this made me realize how easy it is to set up GPT-OSS 20B in comparison. I had it running on my Mac in five minutes, thanks to Llama.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44820656,
+    "by": "tmshapland",
+    "timeISO": "2025-08-07T04:44:51.000Z",
+    "textPlain": "Such a fascinating read. I didn't realize how much massaging needed to be done to get the models to perform well. I just sort of assumed they worked out of the box.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44821372,
+    "by": "eric-burel",
+    "timeISO": "2025-08-07T06:52:03.000Z",
+    "textPlain": "\"Encourage Open-Source and Open-Weight AI\" is the part just after \"Ensure that Frontier AI Protects Free Speech and American Values\" in America's AI Action Plan. I know this is not rational but OpenAI OSS models kinda give me chills as I am reading the Plan in parallel.\nAnyway I like seeing oss model providers talking about hardware, because that's a limiting point for most developers that are not familiar with this layer.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44820778,
+    "by": "magicalhippo",
+    "timeISO": "2025-08-07T05:05:22.000Z",
+    "textPlain": "Maybe I'm especially daft this morning but I don't get the point of the speculative decoding.How does the target model validate the draft tokens without running the inference as normal?Because if it is doing just that, I don't get the point as you can't trust the draft tokens before they are validated, so you're still stuck waiting for the target model.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44820925,
+    "by": "modeless",
+    "timeISO": "2025-08-07T05:30:13.000Z",
+    "textPlain": "What's the best speed people have gotten on 4090s?",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44821465,
+    "by": "hsaliak",
+    "timeISO": "2025-08-07T07:07:52.000Z",
+    "textPlain": "TLDR: tensorrt",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44821066,
+    "by": "littlestymaar",
+    "timeISO": "2025-08-07T05:54:31.000Z",
+    "textPlain": "Very fast “Sorry I can't help with that” generator.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44822263,
+    "by": "Kurtz79",
+    "timeISO": "2025-08-07T09:06:46.000Z",
+    "textPlain": "Does it even make sense calling them 'GPUs' (I just checked NVIDIA product page for the H100 and it is indeed so)?There should be a quicker way to differentiate between 'consumer-grade hardware that is mainly meant to be used for gaming and can also run LLMs inference in a limited way' and 'business-grade hardware whose main purpose is AI training or running inference for LLMs\".",
+    "parent": 44822202,
+    "depth": 2
+  },
+  {
+    "id": 44822243,
+    "by": "KolmogorovComp",
+    "timeISO": "2025-08-07T09:03:30.000Z",
+    "textPlain": "available != cheap",
+    "parent": 44822202,
+    "depth": 2
+  },
+  {
+    "id": 44821944,
+    "by": "jeffhuys",
+    "timeISO": "2025-08-07T08:15:27.000Z",
+    "textPlain": "Just \"liberate\" it",
+    "parent": 44821066,
+    "depth": 2
+  }
+]

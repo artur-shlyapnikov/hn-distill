@@ -1,0 +1,106 @@
+---
+import type { AggregatedItem } from '@config/schemas';
+import { env } from '@config/env';
+import { formatDateHuman } from '@utils/date';
+
+const { item } = Astro.props as { item: AggregatedItem };
+const lang = env.SUMMARY_LANG;
+
+const safeTitle = item.title || '(no title)';
+const safeBy = item.by || 'unknown';
+const safeTime = item.timeISO ? formatDateHuman(item.timeISO) : '—';
+const pts = typeof item.score === 'number' ? ` • ${item.score} points` : '';
+const commentsLabel = typeof item.commentsCount === 'number' ? ` (${item.commentsCount})` : '';
+const hnUrl = item.hnUrl ?? `https://news.ycombinator.com/item?id=${item.id}`;
+
+const i18n = {
+  ru: {
+    comments: 'Комментарии'
+  },
+  en: {
+    comments: 'Comments'
+  }
+};
+const t = i18n[lang];
+
+function sanitizeHtml(input: string): string {
+  return input
+    .replace(/</g, '<')
+    .replace(/>/g, '>');
+}
+
+function mdToHtml(md: string): string {
+  if (!md) return '';
+  const src = md.replace(/\r\n?/g, '\n').trim();
+  const blocks = src.split(/\n{2,}/).map(b => b.trim()).filter(Boolean);
+  const out: string[] = [];
+
+  for (const block of blocks) {
+    if (/^([*\-+]\s+.+)(\n[*\-+]\s+.+)*$/m.test(block)) {
+      const items = block.split('\n').filter(Boolean).map(line => {
+        const m = /^[*\-+]\s+(.+)$/.exec(line);
+        const body = m ? m[1] : line;
+        return `<li>${inline(body)}</li>`;
+      }).join('');
+      out.push(`<ul>${items}</ul>`);
+      continue;
+    }
+
+    if (/^(\d+\.\s+.+)(\n\d+\.\s+.+)*$/m.test(block)) {
+      const items = block.split('\n').filter(Boolean).map(line => {
+        const m = /^\d+\.\s+(.+)$/.exec(line);
+        const body = m ? m[1] : line;
+        return `<li>${inline(body)}</li>`;
+      }).join('');
+      out.push(`<ol>${items}</ol>`);
+      continue;
+    }
+
+    const heading = /^(#{1,6})\s+(.+)$/.exec(block);
+    if (heading) {
+      const level = Math.min(6, heading[1].length);
+      out.push(`<h${level}>${inline(heading[2])}</h${level}>`);
+      continue;
+    }
+
+    const html = inline(block).replace(/\n/g, '<br/>');
+    out.push(`<p>${html}</p>`);
+  }
+
+  return out.join('\n');
+
+  function inline(text: string): string {
+    let t = sanitizeHtml(text);
+    t = t.replace(/`([^`]+)`/g, (_m, a) => `<code>${a}</code>`);
+    t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    t = t.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+    t = t.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, (_m, pre, a) => `${pre}<em>${a}</em>`);
+    t = t.replace(/(^|[^_])_([^_\n]+)_(?!_)/g, (_m, pre, a) => `${pre}<em>${a}</em>`);
+    t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (_m, label, url) => {
+      const safeLabel = label;
+      const safeUrl = url;
+      return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer nofollow">${safeLabel}</a>`;
+    });
+    return t;
+  }
+}
+
+const postHtml = item.postSummary ? mdToHtml(item.postSummary) : '';
+const commentsHtml = item.commentsSummary ? mdToHtml(item.commentsSummary) : '';
+---
+<section class="grid2" aria-labelledby={`t-${item.id}`}>
+  <div class="card">
+    <h2 id={`t-${item.id}`} class="title">
+      {item.url ? <a href={item.url} target="_blank" rel="noopener noreferrer nofollow">{safeTitle}</a> : safeTitle}
+      {item.domain && <span class="meta" style="font-weight: normal; margin-left: 0.5rem;">({item.domain})</span>}
+    </h2>
+    {postHtml ? <div class="md" set:html={postHtml} /> : <p>—</p>}
+    <p class="meta">by {safeBy} • {safeTime}{pts}</p>
+  </div>
+  <div class="card">
+    <h3 class="title">
+      <a href={hnUrl} target="_blank" rel="noopener noreferrer nofollow">{t.comments}{commentsLabel}</a>
+    </h3>
+    {commentsHtml ? <div class="md" set:html={commentsHtml} /> : <p>—</p>}
+  </div>
+</section>

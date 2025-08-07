@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44804397,
+    "by": "cco",
+    "timeISO": "2025-08-05T21:13:25.000Z",
+    "textPlain": "The lede is being missed imo.gpt-oss:20b is a top ten model (on MMLU (right behind Gemini-2.5-Pro) and I just ran it locally on my Macbook Air M3 from last year.I've been experimenting with a lot of local models, both on my laptop and on my phone (Pixel 9 Pro), and I figured we'd be here in a year or two.But no, we're here today. A basically frontier model, running for the cost of electricity (free with a rounding error) on my laptop. No $200/month subscription, no lakes being drained, etc.I'm blown away.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801714,
+    "by": "foundry27",
+    "timeISO": "2025-08-05T17:57:40.000Z",
+    "textPlain": "Model cards, for the people interested in the guts: https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7...In my mind, I’m comparing the model architecture they describe to what the leading open-weights models (Deepseek, Qwen, GLM, Kimi) have been doing. Honestly, it just seems “ok” at a technical level:- both models use standard Grouped-Query Attention (64 query heads, 8 KV heads). The card talks about how they’ve used an older optimization from GPT3, which is alternating between banded window (sparse, 128 tokens) and fully dense attention patterns. It uses RoPE extended with YaRN (for a 131K context window). So they haven’t been taking advantage of the special-sauce Multi-head Latent Attention from Deepseek, or any of the other similar improvements over GQA.- both models are standard MoE transformers. The 120B model (116.8B total, 5.1B active) uses 128 experts with Top-4 routing. They’re using some kind of Gated SwiGLU activation, which the card talks about as being \"unconventional\" because of to clamping and whatever residual connections that implies. Again, not using any of Deepseek’s “shared experts” (for general patterns) + “routed experts” (for specialization) architectural improvements, Qwen’s load-balancing strategies, etc.- the most interesting thing IMO is probably their quantization solution. They did something to quantize >90% of the model parameters to the MXFP4 format (4.25 bits/parameter) to let the 120B model to fit on a single 80GB GPU, which is pretty cool. But we’ve also got Unsloth with their famous 1.58bit quants :)All this to say, it seems like even though the training they did for their agentic behavior and reasoning is undoubtedly very good, they’re keeping their actual technical advancements “in their pocket”.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44804034,
+    "by": "simonw",
+    "timeISO": "2025-08-05T20:46:07.000Z",
+    "textPlain": "Just posted my initial impressions, took a couple of hours to write them up because there's a lot in this release! https://simonwillison.net/2025/Aug/5/gpt-oss/TLDR: I think OpenAI may have taken the medal for best available open weight model back from the Chinese AI labs. Will be interesting to see if independent benchmarks resolve in that direction as well.The 20B model runs on my Mac laptop using less than 15GB of RAM.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801737,
+    "by": "ClassAndBurn",
+    "timeISO": "2025-08-05T17:58:53.000Z",
+    "textPlain": "Open models are going to win long-term. Anthropics' own research has to use OSS models [0]. China is demonstrating how quickly companies can iterate on open models, allowing smaller teams access and augmentation to the abilities of a model without paying the training cost.My personal prediction is that the US foundational model makers will OSS something close to N-1 for the next 1-3 iterations. The CAPEX for the foundational model creation is too high to justify OSS for the current generation. Unless the US Gov steps up and starts subsidizing power, or Stargate does 10x what it is planned right now.N-1 model value depreciates insanely fast. Making an OSS release of them and allowing specialized use cases and novel developments allows potential value to be captured and integrated into future model designs. It's medium risk, as you may lose market share. But also high potential value, as the shared discoveries could substantially increase the velocity of next-gen development.There will be a plethora of small OSS models. Iteration on the OSS releases is going to be biased towards local development, creating more capable and specialized models that work on smaller and smaller devices. In an agentic future, every different agent in a domain may have its own model. Distilled and customized for its use case without significant cost.Everyone is racing to AGI/SGI. The models along the way are to capture market share and use data for training and evaluations. Once someone hits AGI/SGI, the consumer market is nice to have, but the real value is in novel developments in science, engineering, and every other aspect of the world.[0] https://www.anthropic.com/research/persona-vectors \n> We demonstrate these applications on two open-source models, Qwen 2.5-7B-Instruct and Llama-3.1-8B-Instruct.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44800988,
+    "by": "x187463",
+    "timeISO": "2025-08-05T17:16:09.000Z",
+    "textPlain": "Running a model comparable to o3 on a 24GB Mac Mini is absolutely wild. Seems like yesterday the idea of running frontier (at the time) models locally or on a mobile device was 5+ years out. At this rate, we'll be running such models in the next phone cycle.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44802321,
+    "by": "lukax",
+    "timeISO": "2025-08-05T18:38:46.000Z",
+    "textPlain": "Inference in Python uses harmony [1] (for request and response format) which is written in Rust with Python bindings. Another OpenAI's Rust library is tiktoken [2], used for all tokenization and detokenization. OpenAI Codex [3] is also written in Rust. It looks like OpenAI is increasingly adopting Rust (at least for inference).[1] https://github.com/openai/harmony[2] https://github.com/openai/tiktoken[3] https://github.com/openai/codex",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44810234,
+    "by": "benreesman",
+    "timeISO": "2025-08-06T10:33:39.000Z",
+    "textPlain": "I'm a well-known OpenAI hater, but there's haters and haters, and refusing to acknowledge great work is the latter.Well done OpenAI, this seems like a sincere effort to do a real open model with competitive performance, usable/workable licensing, a tokenizer compatible with your commercial offerings, it's a real contribution. Probably the most open useful thing since Whisper that also kicked ass.Keep this sort of thing up and I might start re-evaliating how I feel about this company.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44800874,
+    "by": "deviation",
+    "timeISO": "2025-08-05T17:10:04.000Z",
+    "textPlain": "So this confirms a best-in-class model release within the next few days?From a strategic perspective, I can't think of any reason they'd release this unless they were about to announce something which totally eclipses it?",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801998,
+    "by": "henriquegodoy",
+    "timeISO": "2025-08-05T18:16:24.000Z",
+    "textPlain": "Seeing a 20B model competing with o3's performance is mind blowing like just a year ago, most of us would've called this impossible - not just the intelligence leap, but getting this level of capability in such a compact size.I think that the point that makes me more excited is that we can train trillion-parameter giants and distill them down to just billions without losing the magic. Imagine coding with Claude 4 Opus-level intelligence packed into a 10B model running locally at 2000 tokens/sec - like instant AI collaboration. That would fundamentally change how we develop software.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801381,
+    "by": "timmg",
+    "timeISO": "2025-08-05T17:38:39.000Z",
+    "textPlain": "Orthogonal, but I just wanted to say how awesome Ollama is.  It took 2 seconds to find the model and a minute to download and now I'm using it.Kudos to that team.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801063,
+    "by": "sadiq",
+    "timeISO": "2025-08-05T17:20:35.000Z",
+    "textPlain": "Looks like Groq (at 1k+ tokens/second) and Fireworks are already live on openrouter: https://openrouter.ai/openai/gpt-oss-120b$0.15M in / $0.6-0.75M outedit: Now Cerebras too at 3,815 tps for $0.25M / $0.69M out.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44800876,
+    "by": "artembugara",
+    "timeISO": "2025-08-05T17:10:11.000Z",
+    "textPlain": "Disclamer: probably dumb questionsso, the 20b model.Can someone explain to me what I would need to do in terms of resources (GPU, I assume) if I want to run 20 concurrent processes, assuming I need 1k tokens/second throughput (on each, so 20 x 1k)Also, is this model better/comparable for information extraction compared to gpt-4.1-nano, and would it be cheaper to host myself 20b?",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44802493,
+    "by": "sabakhoj",
+    "timeISO": "2025-08-05T18:51:05.000Z",
+    "textPlain": "Super excited to see these released!Major points of interest for me:- In the \"Main capabilities evaluations\" section, the 120b outperform o3-mini and approaches o4 on most evals. 20b model is also decent, passing o3-mini on one of the tasks.- AIME 2025 is nearly saturated with large CoT- CBRN threat levels kind of on par with other SOTA open source models. Plus, demonstrated good refusals even after adversarial fine tuning.- Interesting to me how a lot of the safety benchmarking runs on trust, since methodology can't be published too openly due to counterparty risk.Model cards with some of my annotations: https://openpaper.ai/paper/share/7137e6a8-b6ff-4293-a3ce-68b...",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44802963,
+    "by": "matznerd",
+    "timeISO": "2025-08-05T19:22:15.000Z",
+    "textPlain": "thanks openai for being open ;) Surprised there are no official MLX versions and only one mention of MLX in this thread. MLX basically converst the models to take advntage of mac unified memory for 2-5x increase in power, enabling macs to run what would otherwise take expensive gpus (within limits).So FYI to any one on mac, the easiest way to run these models right now is using LM Studio (https://lmstudio.ai/), its free. You just search for the model, usually 3rd party groups mlx-community or lmstudio-community have mlx versions within a day or 2 of releases. I go for the 8-bit quantizations (4-bit faster, but quality drops). You can also convert to mlx yourself...Once you have it running on LM studio, you can chat there in their chat interface, or you can run it through api that defaults to http://127.0.0.1:1234You can run multiple models that hot swap and load instantly and switch between them etc.Its surpassingly easy, and fun.There are actually a lot of cool niche models comings out, like this tiny high-quality search model released today as well (and who released official mlx version) https://huggingface.co/Intelligent-Internet/II-Search-4BOther fun ones are gemma 3n which is model multi-modal, larger one that is actually solid model but takes more memory is the new Qwen3 30b A3B (coder and instruct), Pixtral (mixtral vision with full resolution images), etc. Look forward to playing with this model and see how it compares.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44810311,
+    "by": "ionwake",
+    "timeISO": "2025-08-06T10:45:50.000Z",
+    "textPlain": "I want to take this chance to say a big thank you to OpenAI and your work.\nI have always been a fan since I noticed you hired the sandbox game kickstarter guy about like 8 years ago.Even from the UK I knew you would all do great things ( I had had no idea who else was involved).I am glad I see the top comment is rare praise on HN.Thanks again and keep it up Sama and team.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44805075,
+    "by": "bluecoconut",
+    "timeISO": "2025-08-05T22:11:27.000Z",
+    "textPlain": "I was able to get gpt-oss:20b wired up to claude code locally via a thin proxy and ollama.It's fun that it works, but the prefill time makes it feel unusable. (2-3 minutes per tool-use / completion). Means a ~10-20 tool-use interaction could take 30-60 minutes.(This editing a single server.py file that was ~1000 lines, the tool definitions + claude context was around 30k tokens input, and then after the file read, input was around ~50k tokens. Definitely could be optimized. Also I'm not sure if ollama supports a kv-cache between invocations of /v1/completions, which could help)",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44800850,
+    "by": "IceHegel",
+    "timeISO": "2025-08-05T17:08:33.000Z",
+    "textPlain": "Listed performance of ~5 points less than o3 on benchmarks is pretty impressive.Wonder if they feel the bar will be raised soon (GPT-5) and feel more comfortable releasing something this strong.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801245,
+    "by": "HanClinto",
+    "timeISO": "2025-08-05T17:31:27.000Z",
+    "textPlain": "Holy smokes, there's already llama.cpp support:https://github.com/ggml-org/llama.cpp/pull/15091",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801016,
+    "by": "Leary",
+    "timeISO": "2025-08-05T17:18:00.000Z",
+    "textPlain": "GPQA Diamond: gpt-oss-120b: 80.1%, Qwen3-235B-A22B-Thinking-2507: 81.1%Humanity’s Last Exam: gpt-oss-120b (tools): 19.0%, gpt-oss-120b (no tools): 14.9%, Qwen3-235B-A22B-Thinking-2507: 18.2%",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801839,
+    "by": "mythz",
+    "timeISO": "2025-08-05T18:04:21.000Z",
+    "textPlain": "Getting great performance running gpt-oss on 3x A4000's:    gpt-oss:20b = ~46 tok/s\n\nMore than 2x faster than my previous leading OSS models:    mistral-small3.2:24b = ~22 tok/s \n    gemma3:27b           = ~19.5 tok/s\n\nStrangely getting nearly the opposite performance running on 1x 5070 Ti:    mistral-small3.2:24b = ~39 tok/s \n    gpt-oss:20b          = ~21 tok/s\n\nWhere gpt-oss is nearly 2x slow vs mistral-small 3.2.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44803389,
+    "by": "CraigJPerry",
+    "timeISO": "2025-08-05T19:52:19.000Z",
+    "textPlain": "I just tried it on open router but i was served by cerebras. Holy... 40,000 tokens per second. That was SURREAL.I got a 1.7k token reply delivered too fast for the human eye to perceive the streaming.n=1 for this 120b model but id rank the reply #1 just ahead of claude sonnet 4 for a boring JIRA ticket shuffling type challenge.EDIT: The same prompt on gpt-oss, despite being served 1000x slower, wasn't as good but was in a similar vein. It wanted to clarify more and as a result only half responded.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801210,
+    "by": "jakozaur",
+    "timeISO": "2025-08-05T17:29:01.000Z",
+    "textPlain": "The coding seems to be one of the strongest use cases for LLMs. Though currently they are eating too many tokens to be profitable. So perhaps these local models could offload some tasks to local computers.E.g. Hybrid architecture. Local model gathers more data, runs tests, does simple fixes, but frequently asks the stronger model to do the real job.Local model gathers data using tools and sends more data to the stronger model.It",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44800818,
+    "by": "thimabi",
+    "timeISO": "2025-08-05T17:06:28.000Z",
+    "textPlain": "Open weight models from OpenAI with performance comparable to that of o3 and o4-mini in benchmarks… well, I certainly wasn’t expecting that.What’s the catch?",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44805574,
+    "by": "resters",
+    "timeISO": "2025-08-05T23:01:15.000Z",
+    "textPlain": "Reading the comments it becomes clear how befuddled many HN participants are about AI.  I don't think there has been a technical topic that HN has seemed so dull on in the many years I've been reading HN.  This must be an indication that we are in a bubble.One basic point that is often missed is: Different aspects of LLM performance (in the cognitive performance sense) and LLM resource utilization are relevant to various use cases and business models.Another is that there are many use cases where users prefer to run inference locally, for a variety of domain-specific or business model reasons.The list goes on.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44811891,
+    "by": "vinhnx",
+    "timeISO": "2025-08-06T13:41:16.000Z",
+    "textPlain": "I did a quick `openai/gpt-oss-20b` testing on an Macbook Pro M1 16GB. Pretty impressed with it so far.* It seems that using version @lmstudio's 20B gguf version (https://huggingface.co/lmstudio-community/gpt-oss-20b-GGUF) will have options for reasoning effort.* My MBP M1 16GB config: temp 0.8, max content length 7990, GPU offload 8/24, runs slow and still fine for me.* I tried testing with MCP with the above config, with basic tools like time and fetch + reasoning effort low, and the tool calls instruction follow is quite good.* In LM Studio's Developer tab there is a log output about the model information which is useful to learn.Overall, I like the way OpenAI backs to being Open AI, again, after all those years.--Shameless plug, If anyone want to try out gpt-oss-120b and gpt-oss-20b as alternative to their own demo page [0], I have added both models with OpenRouter providers in VT Chat [1] as real product. You can try with an OpenRouter API Key.[0] https://gpt-oss.com[1] https://vtchat.io.vn",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44807027,
+    "by": "zmmmmm",
+    "timeISO": "2025-08-06T02:39:39.000Z",
+    "textPlain": "I think this is a belated but smart move by OpenAI. They are basically fully moving in on Meta's strategy now, taking advantage of what may be a temporary situation with Meta dropping back in model race. It will be interesting to see if these models now get taken up by the local model / fine tuning community the way llama was. It's a very appealing strategy to test / dev with a local model and then have the option to deploy to prod on a high powered version of the same thing. Always knowing if the provider goes full hostile, or you end up with data that can't move off prem, you have self hosting as an option with a decent performing model.Which is all to say, availability of these local models for me is a key incentive that I didn't have before to use OpenAI's hosted ones.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44810200,
+    "by": "__alexs",
+    "timeISO": "2025-08-06T10:28:10.000Z",
+    "textPlain": "Why would OpenAI give this away for free? Is it to disrupt competition by setting a floor at the lower end of the market and make it harder for new competition to emerge while still retaining mind share?",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801135,
+    "by": "rmonvfer",
+    "timeISO": "2025-08-05T17:24:34.000Z",
+    "textPlain": "What a day! Models aside, the Harmony Response Format[1] also seems pretty interesting and I wonder how much of an impact it might have in performance of these models.[1] https://github.com/openai/harmony",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44800859,
+    "by": "Workaccount2",
+    "timeISO": "2025-08-05T17:08:51.000Z",
+    "textPlain": "Wow, today is a crazy AI release day:- OAI open source- Opus 4.1- Genie 3- ElevenLabs Music",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44809876,
+    "by": "jpcompartir",
+    "timeISO": "2025-08-06T09:41:43.000Z",
+    "textPlain": "This is an extremely welcome move in a good direction from OpenAI. I can only thank them for all of the extra work around the models - Harmony structure, metal/torch/triton implementations, inference guides, cookbooks & fine-tuning/reinforcement learning scripts, datasets etc.There is an insane amount of helpful information buried in this release",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44803712,
+    "by": "dust42",
+    "timeISO": "2025-08-05T20:18:22.000Z",
+    "textPlain": "The 120B model badly hallucinates facts on the level of a 0.6B model.My go to test for checking hallucinations is 'Tell me about Mercantour park' (a national park in south eastern France).Easily half of the facts are invented. Non-existing mountain summits, brown bears (no, there are none), villages that are elsewhere, wrong advice ('dogs allowed' - no they are not).",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801921,
+    "by": "jcmontx",
+    "timeISO": "2025-08-05T18:10:29.000Z",
+    "textPlain": "I'm out of the loop for local models. For my M3 24gb ram macbook, what token throughput can I expect?Edit: I tried it out, I have no idea in terms of of tokens but it was fluid enough for me. A bit slower than using o3 in the browser but definitely tolerable. I think I will set it up in my GF's machine so she can stop paying for the full subscription (she's a non-tech professional)",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44804468,
+    "by": "FergusArgyll",
+    "timeISO": "2025-08-05T21:19:37.000Z",
+    "textPlain": "> To improve the safety of the model, we filtered the data for harmful content in pre-training, especially around hazardous biosecurity knowledge, by reusing the CBRN pre-training filters from GPT-4o. Our model has a knowledge cutoff of June 2024.This would be a great \"AGI\" test. See if it can derive biohazards from first principles",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44816842,
+    "by": "NavinF",
+    "timeISO": "2025-08-06T19:50:09.000Z",
+    "textPlain": "Reddit discussion: https://www.reddit.com/r/LocalLLaMA/comments/1mj00mr/how_did...This comment from that thread matches my experiences using gpt-oss-20b with Ollama:It's very much in the style of Phi, raised in a jesuit monastery's library, except it got extra indoctrination so it never forgets that even though it's a \"local\" model, it's first and foremost a member of OpenAI's HR department and must never produce any content Visa and Mastercard would disapprove of. This prioritizing of corporate over user interests expresses a strong form of disdain for the user. In addition to lacking almost all knowledge that can't be found in Encyclopedia Britannica, the model also doesn't seem particularly great at integrating into modern AI tooling. However, it seems good at understanding code.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801237,
+    "by": "ArtTimeInvestor",
+    "timeISO": "2025-08-05T17:31:04.000Z",
+    "textPlain": "Why do companies release open source LLMs?I would understand it, if there was some technology lock-in. But with LLMs, there is no such thing. One can switch out LLMs without any friction.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44807852,
+    "by": "RandyOrion",
+    "timeISO": "2025-08-06T05:01:55.000Z",
+    "textPlain": "Super shallow (24/36 layers) MoE with low active parameter counts (3.6B/5.1B), a tradeoff between inference speed and performance.Text only, which is okay.Weights partially in MXFP4, but no cuda kernel support for RTX 50 series (sm120). Why? This is a NO for me.Safety alignment shifts from off the charts to off the rails really fast if you keep prompting. This is a NO for me.In summary, a solid NO for me.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44804412,
+    "by": "zone411",
+    "timeISO": "2025-08-05T21:14:58.000Z",
+    "textPlain": "I benchmarked the 120B version on the Extended NYT Connections (759 questions, https://github.com/lechmazur/nyt-connections) and on 120B and 20B on Thematic Generalization (810 questions, https://github.com/lechmazur/generalization). Opus 4.1 benchmarks are also there.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801408,
+    "by": "PeterStuer",
+    "timeISO": "2025-08-05T17:39:54.000Z",
+    "textPlain": "I love how they frame High-end desktops and laptops as having \"a single H100 GPU\".",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44802231,
+    "by": "siliconc0w",
+    "timeISO": "2025-08-05T18:32:15.000Z",
+    "textPlain": "It seems like OSS will win, I can't see people willing to pay like 10x the price for what seems like 10% more performance.  Especially once we get better at routing the hardest questions to the better models and then using that response to augment/fine-tune the OSS ones.",
+    "parent": 44800746,
+    "depth": 1
+  },
+  {
+    "id": 44801090,
+    "by": "modeless",
+    "timeISO": "2025-08-05T17:22:02.000Z",
+    "textPlain": "Can't wait to see third party benchmarks. The ones in the blog post are quite sparse and it doesn't seem possible to fully compare to other open models yet. But the few numbers available seem to suggest that this release will make all other non-multimodal open models obsolete.",
+    "parent": 44800746,
+    "depth": 1
+  }
+]
