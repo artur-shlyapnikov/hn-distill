@@ -1,17 +1,41 @@
 [
   {
-    "id": 44847173,
-    "by": "jspiner",
-    "timeISO": "2025-08-09T15:14:27.000Z",
-    "textPlain": "The cache hit rate is amazing. Is there something you implemented specifically for this?",
-    "parent": 44846318,
-    "depth": 1
-  },
-  {
     "id": 44846724,
     "by": "colinbartlett",
     "timeISO": "2025-08-09T14:26:14.000Z",
     "textPlain": "Thank you for this breakdown and for this level of transparency. We have been thinking of moving from MapTiler to OpenFreeMap for StatusGator's outage maps.",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44847695,
+    "by": "ch33zer",
+    "timeISO": "2025-08-09T16:12:37.000Z",
+    "textPlain": "Since the limit you ran into was number of open files could you just raise that limit? I get blocking the spammy traffic but theoretically could you have handled more if that limit was upped?",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44847331,
+    "by": "rtaylorgarlock",
+    "timeISO": "2025-08-09T15:36:00.000Z",
+    "textPlain": "Is it always/only 'laziness' (derogatory, i know) when caching isn't implemented by a site like wplace.live ? Why wouldn't they save openfreemap all the traffic when a caching server on their side presumably could serve tiles almost as fast or faster than openfreemap?",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44847652,
+    "by": "willsmith72",
+    "timeISO": "2025-08-09T16:08:33.000Z",
+    "textPlain": "so 96% availability = \"survived\" now?but interesting write-up. If I were a consumer of OpenFreeMap, I would be concerned that such an availability drop was only detected by user reports",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44847173,
+    "by": "jspiner",
+    "timeISO": "2025-08-09T15:14:27.000Z",
+    "textPlain": "The cache hit rate is amazing. Is there something you implemented specifically for this?",
     "parent": 44846318,
     "depth": 1
   },
@@ -24,18 +48,18 @@
     "depth": 1
   },
   {
-    "id": 44846884,
-    "by": "v5v3",
-    "timeISO": "2025-08-09T14:43:59.000Z",
-    "textPlain": "The article mentions Cloudflare, so how much of this was cached by them?",
-    "parent": 44846318,
-    "depth": 1
-  },
-  {
     "id": 44846937,
     "by": "LoganDark",
     "timeISO": "2025-08-09T14:49:26.000Z",
     "textPlain": "> I believe what is happening is that those images are being drawn by some script-kiddies.Oh absolutely not. I've seen so many autistic people literally just nolifing and also collaborating on huge arts on wplace. It is absolutely not just script kiddies.> 3 billion requests / 2 million users is an average of 1,500 req/user. A normal user might make 10-20 requests when loading a map, so these are extremely high, scripted use cases.I don't know about that either. Users don't just load a map, they look all around the place to search for and see a bunch of the art others have made. I don't know how many requests is typical for \"exploring a map for hours on end\" but I imagine a lot of people are doing just that.I wouldn't completely discount automation but these usage patterns seem by far not impossible. Especially since wplace didn't expect sudden popularity so they may not have optimized their traffic patterns as much as they could have.",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44846884,
+    "by": "v5v3",
+    "timeISO": "2025-08-09T14:43:59.000Z",
+    "textPlain": "The article mentions Cloudflare, so how much of this was cached by them?",
     "parent": 44846318,
     "depth": 1
   },
@@ -48,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44846966,
-    "by": "charcircuit",
-    "timeISO": "2025-08-09T14:52:18.000Z",
-    "textPlain": ">Nice idea, interesting project, next time please contact me before.It's impossible to predict that one's project may go viral.>As a single user, you broke the service for everyone.Or you did by not having a high enough fd limit. Blaming sites when using it too much when you advertise there is no limit is not cool. It's not like wplace themselves were maliciously hammering the API.",
-    "parent": 44846318,
-    "depth": 1
-  },
-  {
     "id": 44846979,
     "by": "feverzsj",
     "timeISO": "2025-08-09T14:54:09.000Z",
     "textPlain": "So, OFM was hit by another Million Dollar Homepage for kids.",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44846966,
+    "by": "charcircuit",
+    "timeISO": "2025-08-09T14:52:18.000Z",
+    "textPlain": ">Nice idea, interesting project, next time please contact me before.It's impossible to predict that one's project may go viral.>As a single user, you broke the service for everyone.Or you did by not having a high enough fd limit. Blaming sites when using it too much when you advertise there is no limit is not cool. It's not like wplace themselves were maliciously hammering the API.",
     "parent": 44846318,
     "depth": 1
   },
@@ -72,11 +96,75 @@
     "depth": 2
   },
   {
+    "id": 44847417,
+    "by": "VladVladikoff",
+    "timeISO": "2025-08-09T15:46:52.000Z",
+    "textPlain": "I actually have a direct answer for this: priorities. \nI run a fairly popular auction website and we have map tiles via stadia maps. We spend about $80/month on this service for our volume. We definitely could get this cost down to a lower tier by caching the tiles and serving them from our proxy. However we simply haven’t yet had the time to work on this, as there is always some other task which is higher priority.",
+    "parent": 44847331,
+    "depth": 2
+  },
+  {
+    "id": 44847504,
+    "by": "hyperknot",
+    "timeISO": "2025-08-09T15:55:01.000Z",
+    "textPlain": "We are talking about an insane amount of data here. It was 56 Gbit/s (or 56 x 1 Gbit servers 100% saturated!).\nThis is not something a \"caching server\" could handle. We are talking on the order of CDN networks, like Cloudflare, to be able to handle this.",
+    "parent": 44847331,
+    "depth": 2
+  },
+  {
+    "id": 44847432,
+    "by": "markerz",
+    "timeISO": "2025-08-09T15:48:07.000Z",
+    "textPlain": "It looks like a fun website, not a for-profit website.  The expectations and focus of fun websites is more to just get it working than to handle the scale.  It sounds like their user base exploded overnight, doubling every 14 hours or so.  It also sounds like it’s other a solo dev or a small group based on the maintainers wording.",
+    "parent": 44847331,
+    "depth": 2
+  },
+  {
+    "id": 44847791,
+    "by": "timmg",
+    "timeISO": "2025-08-09T16:23:54.000Z",
+    "textPlain": "96% during a unique event. I think you would typically consider long term in a stat like that.Assuming it was close to 100% the rest of the year, that works out to 99.97% over 12 months.",
+    "parent": 44847652,
+    "depth": 2
+  },
+  {
+    "id": 44847712,
+    "by": "ndriscoll",
+    "timeISO": "2025-08-09T16:14:31.000Z",
+    "textPlain": "If I were a consumer of a free service from someone who will not take your money to offer support or an SLA (i.e. is not trying to run a business), I would assume there's little to no monitoring at all.",
+    "parent": 44847652,
+    "depth": 2
+  },
+  {
+    "id": 44847243,
+    "by": "hyperknot",
+    "timeISO": "2025-08-09T15:23:34.000Z",
+    "textPlain": "Yes, I designed the whole path structure / location blocks with caching in mind. Here is the generated nginx.conf, if you are interested:https://github.com/hyperknot/openfreemap/blob/main/docs/asse...",
+    "parent": 44847173,
+    "depth": 2
+  },
+  {
     "id": 44847055,
     "by": "hyperknot",
     "timeISO": "2025-08-09T15:02:23.000Z",
     "textPlain": "What if one user really wants to browse around the world and explore the map. I remember spending half an hour in Google Earth desktop, just exploring around interesting places.I think referer based limits are better, this way I can ask high users to please choose self-hosting instead of the public instance.",
     "parent": 44846988,
+    "depth": 2
+  },
+  {
+    "id": 44847598,
+    "by": "Karliss",
+    "timeISO": "2025-08-09T16:03:45.000Z",
+    "textPlain": "Just scrolled around a little bit 2-3minutes with network monitor open. That already resulted in 500requests, 5MB transferred (after filtering by vector tile data). Not sure how many of those got cached by browser with no actual requests, cached by browser exchanging only headers or cached by cloudflare. I am guessing that the typical 10-20 requests/user case is for embedded map fragment like those commonly found in contact page where most users don't scroll at all or at most slightly zoom out to better see rest of city.",
+    "parent": 44846937,
+    "depth": 2
+  },
+  {
+    "id": 44846997,
+    "by": "nemomarx",
+    "timeISO": "2025-08-09T14:56:10.000Z",
+    "textPlain": "There are some user scripts to overlay templates on the map and coordinate working together, but I can't imagine that increases the load much. What might is that wplace has been struggling under the load and you have to refresh to see your pixels placed or any changes and that could be causing more calls an hour maybe?",
+    "parent": 44846937,
     "depth": 2
   },
   {
@@ -96,14 +184,6 @@
     "depth": 2
   },
   {
-    "id": 44846997,
-    "by": "nemomarx",
-    "timeISO": "2025-08-09T14:56:10.000Z",
-    "textPlain": "There are some user scripts to overlay templates on the map and coordinate working together, but I can't imagine that increases the load much. What might is that wplace has been struggling under the load and you have to refresh to see your pixels placed or any changes and that could be causing more calls an hour maybe?",
-    "parent": 44846937,
-    "depth": 2
-  },
-  {
     "id": 44847196,
     "by": "010101010101",
     "timeISO": "2025-08-09T15:17:37.000Z",
@@ -112,18 +192,18 @@
     "depth": 2
   },
   {
-    "id": 44847222,
-    "by": "rikafurude21",
-    "timeISO": "2025-08-09T15:20:57.000Z",
-    "textPlain": "the funny part is that his service didnt break- cloudflares cache caught 99% of the requests. just wanted to feel powerful and break the latest viral trend.",
-    "parent": 44846966,
-    "depth": 2
-  },
-  {
     "id": 44847125,
     "by": "columb",
     "timeISO": "2025-08-09T15:10:07.000Z",
     "textPlain": "You are so entitled... Because of you most nice things have \"no limits but...\". Not cool stress testing someone's infrastructure. Not cool. \nThe author of this post  is more than understanding, tried to fix it and offered a solution even after blocking them. On a free service.Show us what you have done.",
+    "parent": 44846966,
+    "depth": 2
+  },
+  {
+    "id": 44847222,
+    "by": "rikafurude21",
+    "timeISO": "2025-08-09T15:20:57.000Z",
+    "textPlain": "the funny part is that his service didnt break- cloudflares cache caught 99% of the requests. just wanted to feel powerful and break the latest viral trend.",
     "parent": 44846966,
     "depth": 2
   }

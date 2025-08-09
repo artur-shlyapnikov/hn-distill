@@ -1,5 +1,29 @@
 [
   {
+    "id": 44847400,
+    "by": "dantillberg",
+    "timeISO": "2025-08-09T15:45:25.000Z",
+    "textPlain": "I'd say it's fair to call this a footgun, though not a bug. The context is really only intended to apply to the goroutines. And Wait has to cancel the context to prevent a resource leak.I suggest in general using function scoping to drive the lifetime of contexts, etc. This works also for defers and tracing spans in addition to the canonically shadowed `ctx` variable.There is an old issue in the tracker proposing changes to alleviate this: https://github.com/golang/go/issues/34510. The original author (bcmills) of the errgroup package shared insight into the design choices/tradeoffs he made.",
+    "parent": 44845953,
+    "depth": 1
+  },
+  {
+    "id": 44847768,
+    "by": "vultour",
+    "timeISO": "2025-08-09T16:20:06.000Z",
+    "textPlain": "This seems like a terrible misunderstanding of the errgroup package? The entire point of the returned context is that it's cancelled if an error occurs, yet the author never uses it again until after he's done with the errgroup. The behaviour is also clearly documented in the only function exported by the package.",
+    "parent": 44845953,
+    "depth": 1
+  },
+  {
+    "id": 44847457,
+    "by": "masklinn",
+    "timeISO": "2025-08-09T15:50:25.000Z",
+    "textPlain": "> Shadowing is another concept that made this issue less visible.There is no shadowing here, Go can only shadow in different scopes, `ctx` is just rebound (overwritten). Zig does not prevent reusing variables that I know. However I believe zig parameters are implicitly `const`, which would have prevented thoughtlessly updating the local in-place. Same in Rust.> If you've ever heard of linear types, and never saw their utility, that's actually exactly what they are good for: a variable gets 'consumed' by a function, and the type system prevents us from using it after that point. Conceptually, g.Wait(ctx) consumes ctx and there is no point using this ctx afterwards.I don't believe linear types would prevent this issue per-se since `errgroup.WithContext` specifically creates a derived context.Depending on the affordance they might make the issue clearer but they also might not: a linear errgroup.WithContext could consume its input leaving you only with the sub-context and thinking little more of it, so you'd have to think to create derived context on the caller side. Would you think of this issue when doing that?TBH this seems more of a design issue in errgroup's API: why is the context returned from the errgroup instead of being an attribute? That would limit namespace pollution and would make the relationship (and possible effects) much clearer. But I don't know what drove the API to be designed as it is.But in all honesty I'd say the main error in the snippet is that `checkHaveIBeenPawned` swallows all http client errors, without even logging them. That is the part which struck out to me, it only returns an error if it positively finds that the password was a hit on HIBP. So you'd have hit the exact same issue if the `NewRequestWithContext` was otherwise malformed e.g. typo in the method or URL. And of course that points out to an other issue, this time with type-erased errors and error information not necessarily being programmatically accessible or at least idioma",
+    "parent": 44845953,
+    "depth": 1
+  },
+  {
     "id": 44846901,
     "by": "nasretdinov",
     "timeISO": "2025-08-09T14:46:08.000Z",
@@ -8,10 +32,34 @@
     "depth": 1
   },
   {
+    "id": 44847610,
+    "by": "nikolayasdf123",
+    "timeISO": "2025-08-09T16:04:56.000Z",
+    "textPlain": "omg. you are right. found multiple bugs just now thanks to this... they sould really improve this API of waitgroup/errgroup",
+    "parent": 44845953,
+    "depth": 1
+  },
+  {
+    "id": 44847696,
+    "by": "eddythompson80",
+    "timeISO": "2025-08-09T16:12:39.000Z",
+    "textPlain": "> why is the context returned from the errgroup instead of being an attribute?It's a go style thing[1]. \"Dont store context in a struct\" is the general advice. Anybody seeing a ctx in a struct will flag the PR. I think golangci-lint does too.The claim is that its confusing. Also you'll never see any std lib apis doing that. People just assume its a bad idea and don't do it. There are situations where it makes sense. Like operations that are described by a struct and you want to attach their context to those structs. A Boland developer will tell you \"you're thinking in Java/Python/C#/JavaSctipt/etc you need to think in Go\" and yes you can always rewrite the whole thing to be more go-like as in errgroup API. But it's just a style thing.[1] https://go.dev/blog/context-and-structs",
+    "parent": 44847457,
+    "depth": 2
+  },
+  {
+    "id": 44847245,
+    "by": "eddythompson80",
+    "timeISO": "2025-08-09T15:23:57.000Z",
+    "textPlain": "No? Its about errgroup ctx being automatically cancelled once the group is done (in success or err). It kinda makes sense, and its documented. I understand how it can be surprising, but if you think about it for a second, it makes sense. The context created is meant to manage the lifecycle of the errgroup. Once the group is done, the ctx is done.",
+    "parent": 44846901,
+    "depth": 2
+  },
+  {
     "id": 44847171,
     "by": "yubblegum",
     "timeISO": "2025-08-09T15:14:20.000Z",
-    "textPlain": "> So it's really the issue due a partial variable shadowing during assignment, not errgroup-specific.Did we read the same article? The \"alternative fix\" is to paper over documented bahavior of a context. Of course it makes sense that if wait returns context should be cancled. The one character fix is throwing away information ..",
+    "textPlain": "> So it's really the issue due a partial variable shadowing during assignment, not errgroup-specific.Did we read the same article? The \"alternative fix\" is to paper over documented bahavior of a context. Of course it makes sense that if wait returns context should be canceled. The one character fix is throwing away information ..",
     "parent": 44846901,
     "depth": 2
   },

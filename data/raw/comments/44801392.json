@@ -1,9 +1,17 @@
 [
   {
-    "id": 44846761,
-    "by": "tastyminerals2",
-    "timeISO": "2025-08-09T14:31:08.000Z",
-    "textPlain": "Personally, I had good experience with marimos so far. Reactive execution, variable deduplication, clear business logic vs UI elements logic separation that is forced on you is good. It retrains ppl to write slightly better structured Python code which is a win in my eyes.",
+    "id": 44847248,
+    "by": "Galanwe",
+    "timeISO": "2025-08-09T15:24:40.000Z",
+    "textPlain": "There are a lot of these tools to somehow \"fix the reproducibility crisis of notebooks\".Yet from my experience, you quickly learn to \"restart kernel and run all\" before sharing to make sure everything is good.All but the most novice users get caught by the \"out of order cells\" trap, and those will1) not use anything that adds complexity, because by definition they are novices2) fall in any other trap on their way because anyway that's how you learnThus, IMHO, these flow tools are only seen as useful by _real devs with savior syndrome_, pushing dev solution to exploratory research users, and that will never catch on.",
+    "parent": 44801392,
+    "depth": 1
+  },
+  {
+    "id": 44847497,
+    "by": "data-ottawa",
+    "timeISO": "2025-08-09T15:53:44.000Z",
+    "textPlain": "I've been using marimo since January pretty heavily, I absolutely love it and would recommend it to anyone.I run it with uv and --sandboxed which makes it much easy to share notebooks with teammates and not have to worry about limiting dependencies. Any issues I've had were were Python libraries themselves (specifically graphviz).I really like how much easier it is to reason about interactive components vs Jupyter. The mo.ui.altair_chart method has got me to migrate off of matplotlib because charts can be fully integrated – as you can see in the demo being able to lasso data points or scrub a chart and analyze specific time periods is awesome.One thing which I don't like about reactive notebooks is that you have to be much more mindful of expensive and long running calculations. There are feature to help, like adding a run button, but often I end up just disabling auto-run which does reduce the value of the reactive flow. For those use cases I don't find myself using marimo over Jupyter.I think the entire marimo team deserves a shoutout, the quality of the software is excellent, they've moved very quickly, and they have been very receptive to issues and feature suggestions.",
     "parent": 44801392,
     "depth": 1
   },
@@ -12,6 +20,14 @@
     "by": "getnormality",
     "timeISO": "2025-08-09T12:56:30.000Z",
     "textPlain": "> You have to be very disciplined to make a Jupyter notebook that is actually reproducibleThis seems not necessarily very hard to me? All you have to do is keep yourself honest by actually trying to reproduce the results of the notebook when you're done:1. Copy the notebook2. Run from first cell in the copy3. Check that the results are the same4. If not the same, debug and repeatWhat makes it hard is when the feedback loop is slow because the data is big. But not all data is big!Another thing that might make it hard is if your execution is so chaotic that debugging is impossible because what you did and what you think you did bear no resemblance. But personally I wouldn't define rising above that state as incredible discipline. For people who suffer from that issue, I think the best help would be a command history similar to that provided by RStudio.All that said, Marimo seems great and I agree notebooks are dangerous if their results are trusted equally as fully explicit processing pipelines.",
+    "parent": 44801392,
+    "depth": 1
+  },
+  {
+    "id": 44846761,
+    "by": "tastyminerals2",
+    "timeISO": "2025-08-09T14:31:08.000Z",
+    "textPlain": "Personally, I had good experience with marimos so far. Reactive execution, variable deduplication, clear business logic vs UI elements logic separation that is forced on you is good. It retrains ppl to write slightly better structured Python code which is a win in my eyes.",
     "parent": 44801392,
     "depth": 1
   },
@@ -48,11 +64,19 @@
     "depth": 1
   },
   {
-    "id": 44847116,
-    "by": "esafak",
-    "timeISO": "2025-08-09T15:08:41.000Z",
-    "textPlain": "Notebooks ought to have embedded metadata, like a pyproject.toml, to list the dependencies.",
-    "parent": 44846144,
+    "id": 44847746,
+    "by": "ayhanfuat",
+    "timeISO": "2025-08-09T16:17:49.000Z",
+    "textPlain": "I like marimo and I would probably use it if it weren't for years of muscle memory. That said, I don't like this reproducibility crisis story either. Notebooks are for exploration. It is okay if they are messy. If the tool I am using doesn't get in the way of my process but instead makes it fast enough then it is already doing its job. Once you are done it is up to you to let it die, make sure it is something you can go back and iterate on it, or package it and make it usable elsewhere.",
+    "parent": 44847248,
+    "depth": 2
+  },
+  {
+    "id": 44847499,
+    "by": "analog31",
+    "timeISO": "2025-08-09T15:54:02.000Z",
+    "textPlain": "I compare it to day trading, where you always close out your position at the end of the day, and never leave anything running overnight. \"Restart kernel and run all\" when I finish a lab session. Assume that I might not come back to it for a long time, and that it won't be fresh in my mind.It's harder when some of your cells took hours to execute, which mine don't. Then I think you should be using data files.The tools that fix this problem seem to evoke \"the cure is worse than the disease.\" At this point, basic Jupyter notebooks are by far the most reproducible way I've ever worked.",
+    "parent": 44847248,
     "depth": 2
   },
   {
@@ -60,6 +84,14 @@
     "by": "tastyminerals2",
     "timeISO": "2025-08-09T14:24:39.000Z",
     "textPlain": "Not very hard to you, however the reproducibility numbers tell a different story. Back in the days, when we were searching for some ML model implementations in the public repos and found ipynb files in it, we skipped the repo without delving into details. Within the company data engineer research notebooks were never allowed inside a repo. Experiment, yes, but rewrite it in plain python and push.",
+    "parent": 44846144,
+    "depth": 2
+  },
+  {
+    "id": 44847116,
+    "by": "esafak",
+    "timeISO": "2025-08-09T15:08:41.000Z",
+    "textPlain": "Notebooks ought to have embedded metadata, like a pyproject.toml, to list the dependencies.",
     "parent": 44846144,
     "depth": 2
   },
