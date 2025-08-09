@@ -1,25 +1,9 @@
 [
   {
-    "id": 44850871,
-    "by": "holografix",
-    "timeISO": "2025-08-09T22:21:52.000Z",
-    "textPlain": "Author disregards why none of these technologies are relevant in the modern web.Sure, they might still find themselves in highly regulated industries where risk avoidance trumps innovation everyday, all day.MCP is for _the web_ , it started with stdio only because Anthropic was learning lessons from building Claude Code.Author also seems to expect that the result from MCP tool usage will feed directly to an LLM. This is preposterous and a recipe for disaster. Obviously you’d validade structured response against a schema, check for harmful content, etc etc.",
-    "parent": 44846871,
-    "depth": 1
-  },
-  {
     "id": 44849009,
     "by": "ComplexSystems",
     "timeISO": "2025-08-09T18:44:27.000Z",
     "textPlain": "I thought this article was going to be a bunch of security theater nonsense - maybe the relatively bland title - but after reading I found it to be incredibly insightful, particularly this:> MCP discards this lesson, opting for schemaless JSON with optional, non-enforced hints. Type validation happens at runtime, if at all. When an AI tool expects an ISO-8601 timestamp but receives a Unix epoch, the model might hallucinate dates rather than failing cleanly. In financial services, this means a trading AI could misinterpret numerical types and execute trades with the wrong decimal precision. In healthcare, patient data types get coerced incorrectly, potentially leading to wrong medication dosing recommendations. Manufacturing systems lose sensor reading precision during JSON serialization, leading to quality control failures.Having worked with LLMs every day for the past few years, it is easy to see every single one of these things happening.I can practically see it playing out now: there is some huge incident of some kind, in some system or service with an MCP component somewhere, with some elaborate post-mortem revealing that some MCP server somewhere screwed up and output something invalid, the LLM took that output and hallucinated god knows what, its subsequent actions threw things off downstream, etc.It would essentially be a new class of software bug caused by integration with LLMs, and it is almost sure to happen when you combine it with other sources of bug: human error, the total lack of error checking or exception handling that LLMs are prone to (they just hallucinate), a bunch of gung-ho startups \"vibe coding\" new services on top of the above, etc.I foresee this being followed by a slew of Twitter folks going on endlessly about AGI hacking the nuclear launch codes, which will probably be equally entertaining.",
-    "parent": 44846871,
-    "depth": 1
-  },
-  {
-    "id": 44848594,
-    "by": "rickcarlino",
-    "timeISO": "2025-08-09T17:56:28.000Z",
-    "textPlain": "> SOAP, despite its verbosity, understood something that MCP doesn’tUnfortunately, no one understood SOAP back.(Additional context: Maintaining a legacy SOAP system. I have nothing good to say about SOAP and it should serve as a role model for no one)",
     "parent": 44846871,
     "depth": 1
   },
@@ -32,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44849332,
-    "by": "mac-mc",
-    "timeISO": "2025-08-09T19:24:47.000Z",
-    "textPlain": "You're missing the most significant lesson of all that MCP knew.  That all of those featureful things are way too overcomplicated for most places, so they will gravitate to the simple thing.  It's why JSON over HTTP blobs is king today.I've been on the other side of high-feature serialization protocols, and even at large tech companies, something like migrating to gRPC is a multi-year slog that can even fail a couple of times because it asks so much of you.MCP, at its core, is a standardization of a JSON API contract, so you don't have to do as much post-training to generate various tool calling style tokens for your LLM.",
+    "id": 44848594,
+    "by": "rickcarlino",
+    "timeISO": "2025-08-09T17:56:28.000Z",
+    "textPlain": "> SOAP, despite its verbosity, understood something that MCP doesn’tUnfortunately, no one understood SOAP back.(Additional context: Maintaining a legacy SOAP system. I have nothing good to say about SOAP and it should serve as a role model for no one)",
     "parent": 44846871,
     "depth": 1
   },
@@ -48,10 +32,26 @@
     "depth": 1
   },
   {
+    "id": 44849332,
+    "by": "mac-mc",
+    "timeISO": "2025-08-09T19:24:47.000Z",
+    "textPlain": "You're missing the most significant lesson of all that MCP knew.  That all of those featureful things are way too overcomplicated for most places, so they will gravitate to the simple thing.  It's why JSON over HTTP blobs is king today.I've been on the other side of high-feature serialization protocols, and even at large tech companies, something like migrating to gRPC is a multi-year slog that can even fail a couple of times because it asks so much of you.MCP, at its core, is a standardization of a JSON API contract, so you don't have to do as much post-training to generate various tool calling style tokens for your LLM.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
     "id": 44849965,
     "by": "ramoz",
     "timeISO": "2025-08-09T20:37:48.000Z",
     "textPlain": "Many great points. I think we are thinking about MCP the wrong way.The greater problem is industry misunderstanding and misalignment with what agents are and where they are headed.Web platforms of the world believe agents will be embedded in networked distributed infrastructure. So we should ship an MCP platform in our service mesh for all of the agents running in containers to connect to.I think this is wrong, and continues to be butchered as the web pushes a hard narrative that we need to enable web-native agents & their sdks/frameworks that deploy agents as conventional server applications. These are not agents nor the early evolutionary form of them.Frontier labs will be the only providers of the actual agentic harnesses. And we are rapidly moving to computer use agents - MCP servers were intended to serve as single instance deployments for single harnesses. ie. a single mcp server on my desktop for my Claude Desktop.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44849853,
+    "by": "SillyUsername",
+    "timeISO": "2025-08-09T20:24:21.000Z",
+    "textPlain": "MCP is flawed but it learnt one thing correctly from years of RPC - complexity is the biggest time sink and holds back adoption in deference to simpler competing standards (cf XML vs JSON)- SOAP - interop needs support of DOC or RPC based between systems, or a combination, XML and schemas are also horribly verbose.- CORBA - libraries and framework were complex, modern languages at the time avoided them in deference to simpler standards (e.g. Java's Jini)- GPRC - designed for speed, not readability, requires mappings.It's telling that these days REST and JSON (via req/resp, webhooks, or even streaming) are the modern backbone of RPC. The above standards either are shoved aside or for GPRC only used where extreme throughput is needed.Since REST and JSON are the plat du jour, MCP probably aligns with that design paradigm rather than the dated legacy protocols.",
     "parent": 44846871,
     "depth": 1
   },
@@ -72,10 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44849853,
-    "by": "SillyUsername",
-    "timeISO": "2025-08-09T20:24:21.000Z",
-    "textPlain": "MCP is flawed but it learnt one thing correctly from years of RPC - complexity is the biggest time sink and holds back adoption in deference to simpler competing standards (cf XML vs JSON)- SOAP - interop needs support of DOC or RPC based between systems, or a combination, XML and schemas are also horribly verbose.- CORBA - libraries and framework were complex, modern languages at the time avoided them in deference to simpler standards (e.g. Java's Jini)- GPRC - designed for speed, not readability, requires mappings.It's telling that these days REST and JSON (via req/resp, webhooks, or even streaming) are the modern backbone of RPC. The above standards either are shoved aside or for GPRC only used where extreme throughput is needed.Since REST and JSON are the plat du jour, MCP probably aligns with that design paradigm rather than the dated legacy protocols.",
+    "id": 44850871,
+    "by": "holografix",
+    "timeISO": "2025-08-09T22:21:52.000Z",
+    "textPlain": "Author disregards why none of these technologies are relevant in the modern web.Sure, they might still find themselves in highly regulated industries where risk avoidance trumps innovation everyday, all day.MCP is for _the web_ , it started with stdio only because Anthropic was learning lessons from building Claude Code.Author also seems to expect that the result from MCP tool usage will feed directly to an LLM. This is preposterous and a recipe for disaster. Obviously you’d validade structured response against a schema, check for harmful content, etc etc.",
     "parent": 44846871,
     "depth": 1
   },
@@ -120,10 +120,10 @@
     "depth": 1
   },
   {
-    "id": 44849891,
-    "by": "cnst",
-    "timeISO": "2025-08-09T20:28:36.000Z",
-    "textPlain": "I think this article is missing the point that MCP is simply using the mainstream building blocks that have already regressed from what we've had previously, namely, JSON in place of proper RCP.The ISO8601 v Unix epoch example seems very weak to me.  I'd certainly expect any model to be capable of distinguishing between these things, so, it doesn't seem like a big deal that either one would be allowed in a JSON.Honestly, my view that nothing of value ever gets published on medium, is strongly reinforced here.",
+    "id": 44846960,
+    "by": "al2o3cr",
+    "timeISO": "2025-08-09T14:51:36.000Z",
+    "textPlain": "IMO worrying about type-safety in the protocol when any string field in the reply can prompt-inject the calling LLM feels like putting a band-aid on a decapitation, but YMMV",
     "parent": 44846871,
     "depth": 1
   },
@@ -136,10 +136,10 @@
     "depth": 1
   },
   {
-    "id": 44846960,
-    "by": "al2o3cr",
-    "timeISO": "2025-08-09T14:51:36.000Z",
-    "textPlain": "IMO worrying about type-safety in the protocol when any string field in the reply can prompt-inject the calling LLM feels like putting a band-aid on a decapitation, but YMMV",
+    "id": 44849891,
+    "by": "cnst",
+    "timeISO": "2025-08-09T20:28:36.000Z",
+    "textPlain": "I think this article is missing the point that MCP is simply using the mainstream building blocks that have already regressed from what we've had previously, namely, JSON in place of proper RCP.The ISO8601 v Unix epoch example seems very weak to me.  I'd certainly expect any model to be capable of distinguishing between these things, so, it doesn't seem like a big deal that either one would be allowed in a JSON.Honestly, my view that nothing of value ever gets published on medium, is strongly reinforced here.",
     "parent": 44846871,
     "depth": 1
   },
@@ -168,18 +168,18 @@
     "depth": 1
   },
   {
-    "id": 44850448,
-    "by": "jongjong",
-    "timeISO": "2025-08-09T21:31:15.000Z",
-    "textPlain": "The stuff about the utility of machine-readable Web Service Description Language got me rolling my eyes.WSDL is just pure nonsense. The idea that software would need to decide which API endpoints it needs on its own, is just profoundly misguided... Literally nobody and nothing ever reads the WSDL definitions; it's just poor man's documentation, at best.LLMs only reinforce the idea that WSDL is a dumb idea because it turns out that even the machines don't care for your 'machine-friendly' format and actually prefer human-friendly formats.Once you have an MPC tool working with a specific JSON API, it will keep working unless the server makes breaking changes to the API while in production which is terrible practice. But anyway, if you use a server, it means you trust the server. Client-side validation is dumb; like people who need to put tape over their mouths because they don't trust themselves to follow through on their diet plans.",
-    "parent": 44846871,
-    "depth": 1
-  },
-  {
     "id": 44848318,
     "by": "gjsman-1000",
     "timeISO": "2025-08-09T17:19:59.000Z",
     "textPlain": "… or we’ll just invent MCP 2.0.On that note; some of these “best practices” arguably haven’t worked out. “Be conservative with what you send, liberal with what you receive” has turned even decent protocols into a dumpster fire, so why keep the charade going?",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44850448,
+    "by": "jongjong",
+    "timeISO": "2025-08-09T21:31:15.000Z",
+    "textPlain": "The stuff about the utility of machine-readable Web Service Description Language got me rolling my eyes.WSDL is just pure nonsense. The idea that software would need to decide which API endpoints it needs on its own, is just profoundly misguided... Literally nobody and nothing ever reads the WSDL definitions; it's just poor man's documentation, at best.LLMs only reinforce the idea that WSDL is a dumb idea because it turns out that even the machines don't care for your 'machine-friendly' format and actually prefer human-friendly formats.Once you have an MPC tool working with a specific JSON API, it will keep working unless the server makes breaking changes to the API while in production which is terrible practice. But anyway, if you use a server, it means you trust the server. Client-side validation is dumb; like people who need to put tape over their mouths because they don't trust themselves to follow through on their diet plans.",
     "parent": 44846871,
     "depth": 1
   },
@@ -216,14 +216,6 @@
     "depth": 2
   },
   {
-    "id": 44849676,
-    "by": "avereveard",
-    "timeISO": "2025-08-09T20:06:40.000Z",
-    "textPlain": "MCP focuses on transport and managing context and doesn't absolve the user for sensibly implementing the interface (i.e. defining a schema and doing schema validation)this is like saying \"HTTP doesn't do json validation\", which, well, yeah.",
-    "parent": 44849009,
-    "depth": 2
-  },
-  {
     "id": 44849707,
     "by": "hinkley",
     "timeISO": "2025-08-09T20:09:36.000Z",
@@ -236,6 +228,14 @@
     "by": "tomrod",
     "timeISO": "2025-08-09T19:12:23.000Z",
     "textPlain": "We already have PEBKAC - problem exists between chair and keyboard.LLMs are basically automating PEBKAC",
+    "parent": 44849009,
+    "depth": 2
+  },
+  {
+    "id": 44849676,
+    "by": "avereveard",
+    "timeISO": "2025-08-09T20:06:40.000Z",
+    "textPlain": "MCP focuses on transport and managing context and doesn't absolve the user for sensibly implementing the interface (i.e. defining a schema and doing schema validation)this is like saying \"HTTP doesn't do json validation\", which, well, yeah.",
     "parent": 44849009,
     "depth": 2
   },
@@ -272,6 +272,22 @@
     "depth": 2
   },
   {
+    "id": 44849636,
+    "by": "cnst",
+    "timeISO": "2025-08-09T20:01:37.000Z",
+    "textPlain": "I'd like to add that the culmination of USB-C failure was Apple's removal of USB-A ports from the latest M4 Mac mini, where an identical port on the exact same device, now has vastly different capabilities, opaque to the final user of the system months past the initial hype on the release date.Previously, you could reasonably expect a USB-C on a desktop/laptop of an Apple Silicon device, to be USB4 40Gbps Thunderbolt, capable of anything and everything you may want to use it for.Now, some of them are USB3 10Gbps.  Which ones?  Gotta look at the specs or tiny icons, I guess?Apple could have chosen to have the self-documenting USB-A ports to signify the 10Gbps limitation of some of these ports (conveniently, USB-A is limited to exactly 10Gbps, making it perfect for the use-case of having a few extra \"low-speed\" ports at very little manufacturing cost), but instead, they've decided to further dilute the USB-C brand.  Pure innovation!With the end user likely still having to use a USB-C to USB-A adapters anyways, because the majority of thumb drives, keyboards and mice, still require a USB-A port — even the USB-C ones that use USB-C on the kb/mice itself.  (But, of course, that's all irrelevant because you can always spend 2x+ as much for a USB-C version of any of these devices, and the fact that the USB-C variants are less common or inferior to USB-A, is of course irrelevant when hype and fanaticism are more important than utility and usability.)",
+    "parent": 44849159,
+    "depth": 2
+  },
+  {
+    "id": 44849641,
+    "by": "afeuerstein",
+    "timeISO": "2025-08-09T20:02:41.000Z",
+    "textPlain": "Yeah, I loughed out loud when I read that line. Mission accomplished, I guess?",
+    "parent": 44849159,
+    "depth": 2
+  },
+  {
     "id": 44849381,
     "by": "jchw",
     "timeISO": "2025-08-09T19:29:02.000Z",
@@ -300,22 +316,6 @@
     "by": "cyberax",
     "timeISO": "2025-08-09T18:21:24.000Z",
     "textPlain": "This is a very hilarious but apt SOAP description: https://harmful.cat-v.org/software/xml/soap/simpleAnd I actually like XML-based technologies. XML Schema is still unparalleled in its ability to compose and verify the format of multiple document types. But man, SOAP was such a beast for no real reason.Instead of a simple spec for remote calls, it turned into a spec that described everything and nothing at the same time. SOAP supported all kinds of transport protocols (SOAP over email? Sure!), RPC with remote handles (like CORBA), regular RPC, self-describing RPC (UDDI!), etc. And nothing worked out of the box, because the nitty-gritty details of authentication, caching, HTTP response code interoperability and other \"boring\" stuff were just left as an exercise to the reader.",
-    "parent": 44848594,
-    "depth": 2
-  },
-  {
-    "id": 44849770,
-    "by": "hinkley",
-    "timeISO": "2025-08-09T20:16:42.000Z",
-    "textPlain": "Ironically what put me entirely off SOAP was a tech presentation on SOAP.Generally it worked very well when both ends were written in the same programming language and was horseshit if they weren’t. No wonder Microsoft liked SOAP so much.",
-    "parent": 44848594,
-    "depth": 2
-  },
-  {
-    "id": 44849630,
-    "by": "ohdeargodno",
-    "timeISO": "2025-08-09T20:00:47.000Z",
-    "textPlain": "Parsing SOAP responses on memory limited devices is such a fun experiment in just how miserable your life can get.",
     "parent": 44848594,
     "depth": 2
   }

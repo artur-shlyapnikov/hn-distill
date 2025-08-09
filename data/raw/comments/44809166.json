@@ -1,5 +1,21 @@
 [
   {
+    "id": 44850881,
+    "by": "abdusco",
+    "timeISO": "2025-08-09T22:23:27.000Z",
+    "textPlain": "I tried using `tailscale funnel` against a dummy server `python -m http.server`, and within 10 seconds the bots started to check for vulnerabilities.Tailscale warns you about how enabling it will issue an HTTPS certificate which will be in a public ledger. But I wasn't expecting it to be this quick.    127.0.0.1 - - [10/Aug/2025 00:11:34] \"GET /@vite/env HTTP/1.1\" 404 -\n    127.0.0.1 - - [10/Aug/2025 00:11:34] code 404, message File not found\n    127.0.0.1 - - [10/Aug/2025 00:11:34] \"GET /actuator/env HTTP/1.1\" 404 -\n    127.0.0.1 - - [10/Aug/2025 00:11:34] code 404, message File not found\n    127.0.0.1 - - [10/Aug/2025 00:11:34] \"GET /server HTTP/1.1\" 404 -\n    127.0.0.1 - - [10/Aug/2025 00:11:35] code 404, message File not found\n    127.0.0.1 - - [10/Aug/2025 00:11:35] \"GET /.vscode/sftp.json HTTP/1.1\" 404 -\n    127.0.0.1 - - [10/Aug/2025 00:11:35] code 404, message File not found\n    127.0.0.1 - - [10/Aug/2025 00:11:39] \"GET /s/7333e2433323e20343e2538313/_/;/META-INF/maven/com.atlassian.jira/jira-webapp-dist/pom.properties HTTP/1.1\" 404 -",
+    "parent": 44809166,
+    "depth": 1
+  },
+  {
+    "id": 44851112,
+    "by": "mlhpdx",
+    "timeISO": "2025-08-09T22:52:00.000Z",
+    "textPlain": "I’ve been experimenting with different ways of using WireGuard but hadn’t heard of the header based authentication Tailscale does. Interesting stuff.",
+    "parent": 44809166,
+    "depth": 1
+  },
+  {
     "id": 44835323,
     "by": "redat00",
     "timeISO": "2025-08-08T10:09:41.000Z",
@@ -30,6 +46,30 @@
     "textPlain": "Sounds a bit like a fancier ngrok.Accidentally wiring everything to everything else sounds kind of scary.There's 1 or 2 things I wouldn't mind securely exposing to the internet (like Plex) but nothing I need so desperately while I'm out and about that I'd even want to take that risk.Sounds like this is just for self-hosting?",
     "parent": 44809166,
     "depth": 1
+  },
+  {
+    "id": 44851004,
+    "by": "mh-",
+    "timeISO": "2025-08-09T22:38:33.000Z",
+    "textPlain": "Yeah, I have mixed feelings about CT (certificate transparency) for this reason. Folks are just consuming the firehose and scanning.And in this case, if the thing you're funnel'ing is on your residential connection, it basically amounts to you summoning a DDoS.One (obvious?) tip I'd offer is to put your stuff on high non-standard ports if you can. It'll reduce the amount of connections you get dramatically.",
+    "parent": 44850881,
+    "depth": 2
+  },
+  {
+    "id": 44851033,
+    "by": "gitgud",
+    "timeISO": "2025-08-09T22:42:41.000Z",
+    "textPlain": "Wait, so bots watch for new records added to this HTTPS cert public ledger, then immediately start attacking?To me that sounds like enabling HTTPS is actually a risk here…",
+    "parent": 44850881,
+    "depth": 2
+  },
+  {
+    "id": 44850923,
+    "by": "th0ma5",
+    "timeISO": "2025-08-09T22:29:06.000Z",
+    "textPlain": "Straight WireGuard to a single point is completely not noticeable.",
+    "parent": 44817950,
+    "depth": 2
   },
   {
     "id": 44823629,

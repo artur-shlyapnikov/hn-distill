@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44850973,
+    "by": "jonahx",
+    "timeISO": "2025-08-09T22:35:01.000Z",
+    "textPlain": "This is the \"confused deputy problem\". [0]And capabilities [1] is the long-known, and sadly rarely implemented, solution.Using the trifecta framing, we can't take away the untrusted user input.  The system then should not have both the \"private data\" and \"public communication\" capabilities.The thing is, if you want a secure system, the idea that system can have those capabilities but still be restricted by some kind of smart intent filtering, where \"only the reasonable requests get through\", must be thrown out entirely.This is a political problem. Because that kind of filtering, were it possible, would be convenient and desirable.  Therefore, there will always be a market for it, and a market for those who, by corruption or ignorance, will say they can make it safe.[0] https://en.wikipedia.org/wiki/Confused_deputy_problem[1] https://en.wikipedia.org/wiki/Capability-based_security",
+    "parent": 44846922,
+    "depth": 1
+  },
+  {
     "id": 44850741,
     "by": "Fade_Dance",
     "timeISO": "2025-08-09T22:05:34.000Z",
@@ -24,18 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44850351,
-    "by": "lbeurerkellner",
-    "timeISO": "2025-08-09T21:22:11.000Z",
-    "textPlain": "This is way more common with popular MCP server/agent toolsets than you would think.For those interested in some threat modeling exercise, we recently added a feature to mcp-scan that can analyze toolsets for potential lethal trifecta scenarios. See [1] and [2].[1] toxic flow analysis, https://invariantlabs.ai/blog/toxic-flow-analysis[2] mcp-scan, https://github.com/invariantlabs-ai/mcp-scan",
-    "parent": 44846922,
-    "depth": 1
-  },
-  {
-    "id": 44850669,
-    "by": "scjody",
-    "timeISO": "2025-08-09T21:58:18.000Z",
-    "textPlain": "This dude named a Python data analysis library after a retrocomputing (Commodore era) tape drive. He _definitely_ should stop trying to name things.",
+    "id": 44850978,
+    "by": "regularfry",
+    "timeISO": "2025-08-09T22:35:22.000Z",
+    "textPlain": "One idea I've had floating about in my head is to see if we can control-vector our way out of this. If we can identify an \"instruction following\" vector and specifically suppress it while we're feeding in untrusted data, then the LLM might be aware of the information but not act on it directly.  Knowing when to switch the suppression on and off would be the job of a pre-processor which just parses out appropriate quote marks.  Or, more robustly, you could use  prepared statements, with placeholders to switch mode without relying on a parser.  Big if: if that works, it undercuts a different leg of the trifecta, because while the AI is still exposed to untrusted data, it's no longer going to act on it in an untrustworthy way.",
     "parent": 44846922,
     "depth": 1
   },
@@ -56,6 +56,14 @@
     "depth": 1
   },
   {
+    "id": 44850351,
+    "by": "lbeurerkellner",
+    "timeISO": "2025-08-09T21:22:11.000Z",
+    "textPlain": "This is way more common with popular MCP server/agent toolsets than you would think.For those interested in some threat modeling exercise, we recently added a feature to mcp-scan that can analyze toolsets for potential lethal trifecta scenarios. See [1] and [2].[1] toxic flow analysis, https://invariantlabs.ai/blog/toxic-flow-analysis[2] mcp-scan, https://github.com/invariantlabs-ai/mcp-scan",
+    "parent": 44846922,
+    "depth": 1
+  },
+  {
     "id": 44849431,
     "by": "quercusa",
     "timeISO": "2025-08-09T19:36:17.000Z",
@@ -64,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44848588,
-    "by": "3eb7988a1663",
-    "timeISO": "2025-08-09T17:55:34.000Z",
-    "textPlain": "It must be so much extra work to do the presentation write-up, but it is much appreciated. Gives the talk a durability that a video link does not.",
-    "parent": 44846922,
-    "depth": 1
-  },
-  {
     "id": 44847886,
     "by": "mikewarot",
     "timeISO": "2025-08-09T16:34:03.000Z",
     "textPlain": "Maybe this will finally get people over the hump and adopt OSs based on capability based security. Being required to give a program a whitelist at runtime is almost foolproof, for current classes of fools.",
+    "parent": 44846922,
+    "depth": 1
+  },
+  {
+    "id": 44848588,
+    "by": "3eb7988a1663",
+    "timeISO": "2025-08-09T17:55:34.000Z",
+    "textPlain": "It must be so much extra work to do the presentation write-up, but it is much appreciated. Gives the talk a durability that a video link does not.",
     "parent": 44846922,
     "depth": 1
   },
@@ -96,10 +104,10 @@
     "depth": 1
   },
   {
-    "id": 44850344,
-    "by": "TechDebtDevin",
-    "timeISO": "2025-08-09T21:20:59.000Z",
-    "textPlain": "All of my MCPs, including browser automation, are very much deterministic. My backend provides a very limited amount of options. Say for doing my Amazon shopping, it is fed the top 10 options per search query, and can only put one in a cart. Then email me when its done for review, it can't actually control the browser fully.Essentially I provide a very limited (but powerful) interactive menu for every MCP response, it can only respond with the Index of the menu choice, one number, it works really well at preventing scary things (which I've experienced) search queries with some parsing, but must fit in a given sites url pattern, also containerization ofc.",
+    "id": 44850669,
+    "by": "scjody",
+    "timeISO": "2025-08-09T21:58:18.000Z",
+    "textPlain": "This dude named a Python data analysis library after a retrocomputing (Commodore era) tape drive. He _definitely_ should stop trying to name things.",
     "parent": 44846922,
     "depth": 1
   },
@@ -108,6 +116,14 @@
     "by": "simpaticoder",
     "timeISO": "2025-08-09T16:42:56.000Z",
     "textPlain": "\"One of my weirder hobbies is helping coin or boost new terminology...\" That is so fetch!",
+    "parent": 44846922,
+    "depth": 1
+  },
+  {
+    "id": 44850344,
+    "by": "TechDebtDevin",
+    "timeISO": "2025-08-09T21:20:59.000Z",
+    "textPlain": "All of my MCPs, including browser automation, are very much deterministic. My backend provides a very limited amount of options. Say for doing my Amazon shopping, it is fed the top 10 options per search query, and can only put one in a cart. Then email me when its done for review, it can't actually control the browser fully.Essentially I provide a very limited (but powerful) interactive menu for every MCP response, it can only respond with the Index of the menu choice, one number, it works really well at preventing scary things (which I've experienced) search queries with some parsing, but must fit in a given sites url pattern, also containerization ofc.",
     "parent": 44846922,
     "depth": 1
   },
@@ -176,14 +192,6 @@
     "depth": 2
   },
   {
-    "id": 44850674,
-    "by": "simonw",
-    "timeISO": "2025-08-09T21:59:06.000Z",
-    "textPlain": "If you want to get good at something you have to do it a whole lot!I only have one regret from the name Datasette: it's awkward to say \"you should open that dataset in Datasette\", and it means I don't have a great noun for a bunch-of-data-in-Datasette because calling that a \"dataset\" is too confusing.",
-    "parent": 44850669,
-    "depth": 2
-  },
-  {
     "id": 44848132,
     "by": "wglb",
     "timeISO": "2025-08-09T16:59:43.000Z",
@@ -205,14 +213,6 @@
     "timeISO": "2025-08-09T18:09:05.000Z",
     "textPlain": "Dia is currently (as of last week) not vulnerable to this kind of exfiltration in a pretty straightforward way that may still be covered by NDA.These opinions are my own blah blah blah",
     "parent": 44847933,
-    "depth": 2
-  },
-  {
-    "id": 44848612,
-    "by": "simonw",
-    "timeISO": "2025-08-09T17:58:49.000Z",
-    "textPlain": "This write-up only took me about an hour and a half (for a fifteen minute talk), thanks to the tooling I have in place to help: https://simonwillison.net/2023/Aug/6/annotated-presentations...Here's the latest version of that tool: https://tools.simonwillison.net/annotated-presentations",
-    "parent": 44848588,
     "depth": 2
   },
   {
@@ -248,11 +248,27 @@
     "depth": 2
   },
   {
+    "id": 44848612,
+    "by": "simonw",
+    "timeISO": "2025-08-09T17:58:49.000Z",
+    "textPlain": "This write-up only took me about an hour and a half (for a fifteen minute talk), thanks to the tooling I have in place to help: https://simonwillison.net/2023/Aug/6/annotated-presentations...Here's the latest version of that tool: https://tools.simonwillison.net/annotated-presentations",
+    "parent": 44848588,
+    "depth": 2
+  },
+  {
     "id": 44849403,
     "by": "simonw",
     "timeISO": "2025-08-09T19:32:35.000Z",
     "textPlain": "Oops! Thanks, I fixed that link.",
     "parent": 44849365,
+    "depth": 2
+  },
+  {
+    "id": 44850674,
+    "by": "simonw",
+    "timeISO": "2025-08-09T21:59:06.000Z",
+    "textPlain": "If you want to get good at something you have to do it a whole lot!I only have one regret from the name Datasette: it's awkward to say \"you should open that dataset in Datasette\", and it means I don't have a great noun for a bunch-of-data-in-Datasette because calling that a \"dataset\" is too confusing.",
+    "parent": 44850669,
     "depth": 2
   },
   {

@@ -1,9 +1,9 @@
 [
   {
-    "id": 44850141,
-    "by": "amiga386",
-    "timeISO": "2025-08-09T20:57:45.000Z",
-    "textPlain": "Like a Vampire but with honest intentions. It accepts it is wearing the Amiga as a hat.",
+    "id": 44848506,
+    "by": "Sheeplator",
+    "timeISO": "2025-08-09T17:45:37.000Z",
+    "textPlain": "So the Amiga is a graphics card for Doom running on the Pi. Can we make that general purpose? Does Linux still have Amiga drivers?",
     "parent": 44802657,
     "depth": 1
   },
@@ -16,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44848506,
-    "by": "Sheeplator",
-    "timeISO": "2025-08-09T17:45:37.000Z",
-    "textPlain": "So the Amiga is a graphics card for Doom running on the Pi. Can we make that general purpose? Does Linux still have Amiga drivers?",
+    "id": 44850141,
+    "by": "amiga386",
+    "timeISO": "2025-08-09T20:57:45.000Z",
+    "textPlain": "Like a Vampire but with honest intentions. It accepts it is wearing the Amiga as a hat.",
     "parent": 44802657,
     "depth": 1
   },
@@ -40,19 +40,27 @@
     "depth": 1
   },
   {
-    "id": 44850253,
-    "by": "mjg59",
-    "timeISO": "2025-08-09T21:10:00.000Z",
-    "textPlain": "Given there's no need to run any code on the 68K bus it's probably actually possible to do the palette calculations per line and use the copper to reprogram the colour registers every line, getting way more colours than plain EHB without the HAM side-effects",
-    "parent": 44849895,
-    "depth": 2
-  },
-  {
     "id": 44848785,
     "by": "mjg59",
     "timeISO": "2025-08-09T18:19:18.000Z",
     "textPlain": "I considered this and it's slightly awkward - the hardware isn't memory mapped so the drivers would all need to be adapted, and there's no realistic way it'd get upstream. There's also the problem that the Amiga is big endian and Linux on the Pi is little endian so even if you could memory map it you'd still need to byte swap everything. Not literally impossible, but a giant pain.",
     "parent": 44848506,
+    "depth": 2
+  },
+  {
+    "id": 44851251,
+    "by": "Findecanor",
+    "timeISO": "2025-08-09T23:14:26.000Z",
+    "textPlain": "The way HAM works, a pixel can be either one of only 16 colours, or the colour of the pixel to the left and change one component: red, green or blue.Back in the day, I used a program that loaded GIFs in 256 colours and converted them to HAM. The resulting images had lots of edge artefacts, and that is what I would expect out of that too.",
+    "parent": 44849895,
+    "depth": 2
+  },
+  {
+    "id": 44850253,
+    "by": "mjg59",
+    "timeISO": "2025-08-09T21:10:00.000Z",
+    "textPlain": "Given there's no need to run any code on the 68K bus it's probably actually possible to do the palette calculations per line and use the copper to reprogram the colour registers every line, getting way more colours than plain EHB without the HAM side-effects",
+    "parent": 44849895,
     "depth": 2
   }
 ]
