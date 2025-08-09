@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44845980,
-    "by": "palsecam",
-    "timeISO": "2025-08-09T12:26:19.000Z",
-    "textPlain": "Btw, a Tor relay can be relatively lightweight. I run one on a $5/mo VPS (which does many other things). You need 1 GiB of RAM, but a single basic CPU core largely suffices. My relay sends/receives ~150 GiB of traffic per day (~15 Mbits/s). It’s not an exit node, so no legal worries.Here’s my torrc:  SocksPort  0\n  ExitRelay 0\n\n  ORPort NNNN\n  DirPort NNNN\n\n  Nickname X\n  ContactInfo X@X.com\n\n  RelayBandwidthRate 80 megabits\n  RelayBandwidthBurst 120 megabits\n\n  MaxMemInQueues 384 megabytes\n\n  AvoidDiskWrites 1\n  HardwareAccel 1\n  NoExec 1\n  NumCPUs 1\n\nHere’s my override config for systemd (Ubuntu 24.04):  $ sudo systemctl edit tor@default\n  [Service]\n  Nice=15\n  CPUAffinity=0\n  CPUWeight=60\n  StartupCPUWeight=6\n  IOWeight=60\n  TimerSlackNSec=100us\n\n  MemoryMax=896M\n  MemoryHigh=800M\n  OOMScoreAdjust=1000\n\n  LimitAS=2G\n  LimitNPROC=512\n  LimitNOFILE=10240\n\n  PrivateDevices=true\n  ProtectSystem=true\n  ProtectHome=true",
-    "parent": 44838378,
-    "depth": 1
-  },
-  {
     "id": 44841571,
     "by": "daft_pink",
     "timeISO": "2025-08-08T20:51:31.000Z",
@@ -28,6 +20,14 @@
     "by": "anarbadalov",
     "timeISO": "2025-08-08T17:00:40.000Z",
     "textPlain": "For anyone interested in this author’s book on Tor, it’s available for free download! https://direct.mit.edu/books/oa-monograph/5761/TorFrom-the-D... (full disclosure: i work for MIT Press)",
+    "parent": 44838378,
+    "depth": 1
+  },
+  {
+    "id": 44845980,
+    "by": "palsecam",
+    "timeISO": "2025-08-09T12:26:19.000Z",
+    "textPlain": "Btw, a Tor relay can be relatively lightweight. I run one on a $5/mo VPS (which does many other things). You need 1 GiB of RAM, but a single basic CPU core largely suffices. My relay sends/receives ~150 GiB of traffic per day (~15 Mbits/s). It’s not an exit node, so no legal worries.Here’s my torrc:  SocksPort  0\n  ExitRelay 0\n\n  ORPort NNNN\n  DirPort NNNN\n\n  Nickname X\n  ContactInfo X@X.com\n\n  RelayBandwidthRate 80 megabits\n  RelayBandwidthBurst 120 megabits\n\n  MaxMemInQueues 384 megabytes\n\n  AvoidDiskWrites 1\n  HardwareAccel 1\n  NoExec 1\n  NumCPUs 1\n\nHere’s my override config for systemd (Ubuntu 24.04):  $ sudo systemctl edit tor@default\n  [Service]\n  Nice=15\n  CPUAffinity=0\n  CPUWeight=60\n  StartupCPUWeight=6\n  IOWeight=60\n  TimerSlackNSec=100us\n\n  MemoryMax=896M\n  MemoryHigh=800M\n  OOMScoreAdjust=1000\n\n  LimitAS=2G\n  LimitNPROC=512\n  LimitNOFILE=10240\n\n  PrivateDevices=true\n  ProtectSystem=true\n  ProtectHome=true",
     "parent": 44838378,
     "depth": 1
   },
@@ -104,6 +104,14 @@
     "depth": 1
   },
   {
+    "id": 44840565,
+    "by": "fsckboy",
+    "timeISO": "2025-08-08T19:10:20.000Z",
+    "textPlain": ">Tor: How a military project became a lifeline for privacyArpanet: How a military project gutted personal privacy, destabilized self esteem and strangled attention spans",
+    "parent": 44838378,
+    "depth": 1
+  },
+  {
     "id": 44838660,
     "by": "zwnow",
     "timeISO": "2025-08-08T16:10:33.000Z",
@@ -120,6 +128,14 @@
     "depth": 1
   },
   {
+    "id": 44840960,
+    "by": "ezbie",
+    "timeISO": "2025-08-08T19:49:53.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44838378,
+    "depth": 1
+  },
+  {
     "id": 44839246,
     "by": "notxjosh",
     "timeISO": "2025-08-08T16:58:59.000Z",
@@ -132,22 +148,6 @@
     "by": "thrown-0825",
     "timeISO": "2025-08-09T03:21:28.000Z",
     "textPlain": "And now its all honey pot exit nodes.Just setup a vpn.",
-    "parent": 44838378,
-    "depth": 1
-  },
-  {
-    "id": 44840960,
-    "by": "ezbie",
-    "timeISO": "2025-08-08T19:49:53.000Z",
-    "textPlain": "\"A lifeline for privacy\" reads more like a \"hub for pedophilia and other gross, unspeakable crimes\".Just use a VPN for fuck's sake.",
-    "parent": 44838378,
-    "depth": 1
-  },
-  {
-    "id": 44840565,
-    "by": "fsckboy",
-    "timeISO": "2025-08-08T19:10:20.000Z",
-    "textPlain": ">Tor: How a military project became a lifeline for privacyArpanet: How a military project gutted personal privacy, destabilized self esteem and strangled attention spans",
     "parent": 44838378,
     "depth": 1
   },
@@ -304,18 +304,18 @@
     "depth": 2
   },
   {
+    "id": 44846284,
+    "by": "Citizen8396",
+    "timeISO": "2025-08-09T13:26:01.000Z",
+    "textPlain": "How could they ensure that they always control the entry and exit nodes?Do you suppose all entities able and willing to do this would cooperate with each other?",
+    "parent": 44844906,
+    "depth": 2
+  },
+  {
     "id": 44844779,
     "by": "dostick",
     "timeISO": "2025-08-09T07:45:11.000Z",
     "textPlain": "I think i2p will eventually replace Tor. Or should replace. Because Tor has inherent issue with de-anonymisation: you just need to deploy certain number of nodes to facilitate that. And there’s no way of knowing if certain agencies already did that.",
-    "parent": 44838798,
-    "depth": 2
-  },
-  {
-    "id": 44843827,
-    "by": "ravenstine",
-    "timeISO": "2025-08-09T03:32:10.000Z",
-    "textPlain": "I2P is a superior network design.  It's a shame it gets so little attention.",
     "parent": 44838798,
     "depth": 2
   }

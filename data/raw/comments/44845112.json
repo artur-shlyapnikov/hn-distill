@@ -16,10 +16,42 @@
     "depth": 1
   },
   {
+    "id": 44846267,
+    "by": "graphviz",
+    "timeISO": "2025-08-09T13:22:43.000Z",
+    "textPlain": "We learned the hard way, for some of us it's all too easy to make careless design errors that become baked-in and can't be fixed in a backward-compatible way (either at the DSL or API level). An example in Graphviz is its handling of backslash in string literals: to escape special characters (like quotes \\\"), to map special characters (like several flavors of newline with optional justification \\n \\l \\r) and to indicate variables (like node names in labels \\N) along with magic code that knows that if the -default- node name is the empty string that actually means \\N but if a particular node name is the empty string, then it stays.There was a published study, Wrangling Messy CSV Files by Detecting Row and Type Patterns by Gerrit J. J. van den Burg, Alfredo Nazábal, and Charles Sutton (Data Mining and Knowledge Discovery, 2019) that showed many pitfalls with parsing CSV files found on GitHub. They achieved 97%. It's easy to write code that slings out some text fields separated by commas, with the objective of using a human-readable portable format.You can learn even more by allowing autofuzz to test your nice simple code to parse human readable files.",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44846196,
+    "by": "kjellsbells",
+    "timeISO": "2025-08-09T13:07:25.000Z",
+    "textPlain": "Ease of: reading, comprehension, manipulation, short- and long-term retrieval are not the same problems. All file formats are bad at at least one of these.Given an arbitrary stream of bytes, readability only means the human can inspect the file. We say \"text is readable\" but that's really only because all our tooling for the last sixty years speaks ASCII and we're very US-centric. Pick up a text file from 1982 and it could be unreadable (EBCDIC, say). Time to break out dd and cross your fingers.Comprehension breaks down very quickly beyond a few thousand words. No geneticist is loading up a gig of CTAGT... and keeping that in their head as they whiz up and down a genome. Humans have a working set size.Short term retrieval is excellent for text and a PITA for everything else. Raise your hand if you've gotten a stream of bytes, thrown file(1) at it, then strings(1), and then resorted to od or picking through the bytes.Long term retrieval sucks for everyone. Even textfiles. After all, a string of bytes has no intrinsic meaning except what the operating system and the application give it. So who knows if people in 2075 will recognise \"48 65 6C 6C 6F 20 48 4E 21\"?",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
     "id": 44845788,
     "by": "bregma",
     "timeISO": "2025-08-09T11:48:46.000Z",
     "textPlain": "I journeyed from fancy commercial bookkeeping systems that changed data formats every few years (with no useful migration) to GNU Cash and finally to Plain-Text Accounting. I can finally get the information I need with easy backups (through VCS) and flexibility (through various tools that transform the data). The focus is on content, not tools or presentation or product.When I write I write text. I can transform text using various tools to provide various presentations consumable through various products. The focus is on content, not presentation, tools, or product.I prefer human-readable file formats, and that has only been reinforced over more than 4 decades as a computer professional.",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44846104,
+    "by": "Too",
+    "timeISO": "2025-08-09T12:48:55.000Z",
+    "textPlain": "Let’s say that hypothetically one were to disagree with this. What would be the best alternative format? One that has ample of tooling for editing and diffing, as though it was text, yet stores things more efficiently.Most of the arguments presented in TFA are about openness, which can still be achieved with standard binary formats and a schema. Hence the problem left to solve is accessibility.I’m thinking something like parquet, protobuf or sqllite. Despite their popularities, still aren’t trivial for anyone to edit.",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44846178,
+    "by": "whobre",
+    "timeISO": "2025-08-09T13:04:06.000Z",
+    "textPlain": "Even \"human-readable\" formats are only readable if you have proper tools - i.e. editors or viewers.If a binary file has a well-known format and tools available to view/edit it, I see zero problems with it.",
     "parent": 44845112,
     "depth": 1
   },
@@ -32,10 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44846065,
-    "by": "kamatour",
-    "timeISO": "2025-08-09T12:43:01.000Z",
-    "textPlain": "Readable files are great… until they’re 1TB and you just want to cry.",
+    "id": 44846150,
+    "by": "mschwaig",
+    "timeISO": "2025-08-09T12:58:08.000Z",
+    "textPlain": "Human-readability was one of the aspects that I enjoyed about using CCL,the Categorical Configuration Language (https://chshersh.com/blog/2025-01-06-the-most-elegant-config...), in one of my projects recently.It saves you from escaping stuff inside of multiline-strings by using meaningful whitespace.What I did not like about CCL so much that it leaves a bunch of stuff underspecified.\nYou can make lists and comments with it, but YOU have to decide how.",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44845712,
+    "by": "refactor_master",
+    "timeISO": "2025-08-09T11:37:06.000Z",
+    "textPlain": "Clearly there’s a very real need for binary data formats, or we wouldn’t have them. For one, it’s much more space efficient. Does the author know how much storage cost in 1985? Or how slow computers were?If I time traveled back to 1985 and told corporate to adopt CSV because it’d be useful in 50 years when unearthing old customer records I’d be laughed out of the cigar lounge.",
     "parent": 44845112,
     "depth": 1
   },
@@ -48,10 +88,26 @@
     "depth": 1
   },
   {
-    "id": 44845712,
-    "by": "refactor_master",
-    "timeISO": "2025-08-09T11:37:06.000Z",
-    "textPlain": "Clearly there’s a very real need for binary data formats, or we wouldn’t have them. For one, it’s much more space efficient. Does the author know how much storage cost in 1985? Or how slow computers were?If I time traveled back to 1985 and told corporate to adopt CSV because it’d be useful in 50 years when unearthing old customer records I’d be laughed out of the cigar lounge.",
+    "id": 44846065,
+    "by": "kamatour",
+    "timeISO": "2025-08-09T12:43:01.000Z",
+    "textPlain": "Readable files are great… until they’re 1TB and you just want to cry.",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44845691,
+    "by": "IanCal",
+    "timeISO": "2025-08-09T11:31:53.000Z",
+    "textPlain": "> Unlike binary formats or database dumps, these files don't hide their meaning behind layers of abstraction. They're built for clarity, for resilience, and for people who like to know what's going on under the hood.Csv files hide their meaning in external documentation or someone’s head, are extremely unclear in many cases (is this a number or a string? A date?) and is extremely fragile when it comes to people editing them in text editors. They entirely lack checks and verification at the most basic level and worse still they’re often but not always perfectly line based. Many tools then work fine until they completely break you file and you won’t even know. Until I get the file and tell you I guess.I’ve spent years fixing issues introduced by people editing them like they’re text.If you’ve got to use tools to not completely bugger them then you might as well use a good format.",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44846236,
+    "by": "paulddraper",
+    "timeISO": "2025-08-09T13:17:12.000Z",
+    "textPlain": "You want JARs to be human-readable? PNGs? MP3s?I think the author is thinking about a very narrow set of files.",
     "parent": 44845112,
     "depth": 1
   },
@@ -72,10 +128,10 @@
     "depth": 1
   },
   {
-    "id": 44845691,
-    "by": "IanCal",
-    "timeISO": "2025-08-09T11:31:53.000Z",
-    "textPlain": "> Unlike binary formats or database dumps, these files don't hide their meaning behind layers of abstraction. They're built for clarity, for resilience, and for people who like to know what's going on under the hood.Csv files hide their meaning in external documentation or someone’s head, are extremely unclear in many cases (is this a number or a string? A date?) and is extremely fragile when it comes to people editing them in text editors. They entirely lack checks and verification at the most basic level and worse still they’re often but not always perfectly line based. Many tools then work fine until they completely break you file and you won’t even know. Until I get the file and tell you I guess.I’ve spent years fixing issues introduced by people editing them like they’re text.If you’ve got to use tools to not completely bugger them then you might as well use a good format.",
+    "id": 44846103,
+    "by": "self_awareness",
+    "timeISO": "2025-08-09T12:48:53.000Z",
+    "textPlain": "I'm not sure the author knows much about binary formats.Binary formats are binary for a reason. Speed of interpretation is one reason. Usage of memory is another reason. Directly mapping it and using it, is another reason. Binary formats can make assumptions about system memory page size. They can store internal offsets to make incremental reading faster. None of this is offered by text formats.Also, the ability to modify text formats is completely wrong. Nothing can be changed if we introduce checksums inside text formats. Also if we digitally sign a format, then nothing can be changed despite the fact that it's a text format.Also, comparing CSV files to internal database binary format? It's like comparing a book cover to the ERP system of a library. Meaning, it's comparing two completely different things.",
     "parent": 44845112,
     "depth": 1
   },
@@ -96,6 +152,14 @@
     "depth": 2
   },
   {
+    "id": 44846276,
+    "by": "attractivechaos",
+    "timeISO": "2025-08-09T13:24:46.000Z",
+    "textPlain": "> human-readable files are ridiculously inefficient on every axis you can think of (space, parsing, searching, processing, etc.).In bioinformatics, most large text files are gzip'd. Decompression is a few times slower than proper file parsing in C/C++/Rust. Some pure python parsers can be \"ridiculously inefficient\" but that is not the fault of human-readability.> And at that scale, \"readable\" has no value, since it would take you longer to read the file than 10 lifetimes.You can't read the whole file by eye, but you can (and should often) eyeball small sections in a huge file. For that, you need a human-readable file format. A problem with this field IMHO is that not many people are literally looking at the data by eye.",
+    "parent": 44845955,
+    "depth": 2
+  },
+  {
     "id": 44845998,
     "by": "graemep",
     "timeISO": "2025-08-09T12:29:26.000Z",
@@ -104,19 +168,51 @@
     "depth": 2
   },
   {
+    "id": 44846238,
+    "by": "wizzwizz4",
+    "timeISO": "2025-08-09T13:18:06.000Z",
+    "textPlain": "I decoded that as \"Hello HI!\" using basic cryptanalysis, the assumption that the alphabet would be mostly contiguous, the assumption that capital and lower-case are separated by a bit, and the knowledge that 0x20 is space and 0x21 is exclamation mark. On a larger text, we wouldn't even need these assumptions: cryptanalysis is sufficiently-powerful, and could even reverse-engineer EBCDIC! (Except, it might be difficult to figure out where the punctuation characters go, without some unambiguous reference such as C source code: commas and question marks are easy, but .![]{} are harder.)Edit: I can't count. H and I are consecutive in the alphabet, and it actually says \"Hello HN!\". I think my general point is valid, though.",
+    "parent": 44846196,
+    "depth": 2
+  },
+  {
+    "id": 44846218,
+    "by": "gcarvalho",
+    "timeISO": "2025-08-09T13:13:59.000Z",
+    "textPlain": "I have recently migrated ~8y of Apple Numbers spreadsheets (an annoyingly non-portable format) to plaintext accounting.It took me many hours and a few backtracks to get to a point where I am satisfied with it, and where errors are caught early.  I would just suggest anyone starting now to enable --strict --pedantic on ledger-cli from the day 1, and writing asserts for your accounts as well e.g. to check that closed accounts don’t get new entries.I really miss data entry being easier and not as prone to free-form text editing errors (most common are typos on the amount or copying the wrong source/dest account),  but I am confident it matches reality much better than my spreadsheets did.",
+    "parent": 44845788,
+    "depth": 2
+  },
+  {
+    "id": 44846274,
+    "by": "kyrra",
+    "timeISO": "2025-08-09T13:24:20.000Z",
+    "textPlain": "Protobuf has a text and binary format.  https://protobuf.dev/reference/protobuf/textformat-spec/Google uses it a lot for data dumps for tests or config that can be put  into source control.",
+    "parent": 44846104,
+    "depth": 2
+  },
+  {
+    "id": 44846229,
+    "by": "aldonius",
+    "timeISO": "2025-08-09T13:15:18.000Z",
+    "textPlain": "I suppose with SQLite files, you could at least in theory diff their SQL-dump representations, though you'd presumably want a way to canonicalise said representation. In a way I suppose each (VCS) commit is a bit like a database migration.",
+    "parent": 44846104,
+    "depth": 2
+  },
+  {
+    "id": 44846222,
+    "by": "paulddraper",
+    "timeISO": "2025-08-09T13:14:38.000Z",
+    "textPlain": "ZIP archive of XML is used for Office documents",
+    "parent": 44846104,
+    "depth": 2
+  },
+  {
     "id": 44845695,
     "by": "hebocon",
     "timeISO": "2025-08-09T11:34:36.000Z",
     "textPlain": "Wow, I've never heard of 'mlr' before. Looks like a synthesis of Unix tools, jq, and others? Very useful - hopefully it's packaged everywhere for easy access.",
     "parent": 44845625,
-    "depth": 2
-  },
-  {
-    "id": 44846079,
-    "by": "LoganDark",
-    "timeISO": "2025-08-09T12:44:55.000Z",
-    "textPlain": "To be fair, nothing's great when I want to cry.",
-    "parent": 44846065,
     "depth": 2
   },
   {
@@ -136,11 +232,35 @@
     "depth": 2
   },
   {
-    "id": 44845884,
-    "by": "burnt-resistor",
-    "timeISO": "2025-08-09T12:06:07.000Z",
-    "textPlain": "They're standardized[0], so it's only stupid humans screwing them up.Maybe you need a database or an app rather than flat files.0. https://www.ietf.org/rfc/rfc4180.txt",
-    "parent": 44845691,
+    "id": 44846136,
+    "by": "xandrius",
+    "timeISO": "2025-08-09T12:55:30.000Z",
+    "textPlain": "Don't most binary format must have some specification somewhere (either private or public)?Unless someone just decided to shove random stuff in binary mode and call it a day?",
+    "parent": 44846054,
+    "depth": 2
+  },
+  {
+    "id": 44846128,
+    "by": "huhtenberg",
+    "timeISO": "2025-08-09T12:53:42.000Z",
+    "textPlain": "https://en.wikipedia.org/wiki/ASN.1",
+    "parent": 44846054,
+    "depth": 2
+  },
+  {
+    "id": 44846125,
+    "by": "qiine",
+    "timeISO": "2025-08-09T12:52:42.000Z",
+    "textPlain": "1TB of perfectly readable, human despair.",
+    "parent": 44846065,
+    "depth": 2
+  },
+  {
+    "id": 44846079,
+    "by": "LoganDark",
+    "timeISO": "2025-08-09T12:44:55.000Z",
+    "textPlain": "To be fair, nothing's great when I want to cry.",
+    "parent": 44846065,
     "depth": 2
   },
   {
@@ -148,6 +268,14 @@
     "by": "fireflash38",
     "timeISO": "2025-08-09T12:10:55.000Z",
     "textPlain": "If you're reading in data, you need to parse and verify it anyway.",
+    "parent": 44845691,
+    "depth": 2
+  },
+  {
+    "id": 44845884,
+    "by": "burnt-resistor",
+    "timeISO": "2025-08-09T12:06:07.000Z",
+    "textPlain": "They're standardized[0], so it's only stupid humans screwing them up.Maybe you need a database or an app rather than flat files.0. https://www.ietf.org/rfc/rfc4180.txt",
     "parent": 44845691,
     "depth": 2
   },

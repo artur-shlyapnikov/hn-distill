@@ -1,21 +1,5 @@
 [
   {
-    "id": 44846077,
-    "by": "raphinou",
-    "timeISO": "2025-08-09T12:44:44.000Z",
-    "textPlain": "I was initially enthousiastic about sandstorm when I encountered it, but in the end my preferred solution for self hosting has been Docker Swarm. Dead simple setup, low maintenance, everything easily deployable within Swarm (crons, backups, first deployment setup, reverse proxy config incl. certificates, etc).Additionally a lot of projects provide a Docker compose file which is mostly compatible with swarm. I started using Swarm [1] when k8s was already ruling, but never regretted my choice.1: https://www.yvesdennels.com/posts/docker-swarm-in-2022/",
-    "parent": 44844394,
-    "depth": 1
-  },
-  {
-    "id": 44846086,
-    "by": "bhasinanant",
-    "timeISO": "2025-08-09T12:45:34.000Z",
-    "textPlain": "What I do want to understand is, why would anyone use this instead of NextCloud, for example.\nI'm all for having local setups though, as a general policy.\nIt's just that from what I know, the difference in feature sets is just too huge right now.",
-    "parent": 44844394,
-    "depth": 1
-  },
-  {
     "id": 44844885,
     "by": "AceJohnny2",
     "timeISO": "2025-08-09T08:16:41.000Z",
@@ -28,6 +12,22 @@
     "by": "germandiago",
     "timeISO": "2025-08-09T08:49:07.000Z",
     "textPlain": "Hello everyone. I have been using Sandstorm and put it to good use in the last few years.I used it with Wekan for project management and I also run Dokuwiki for self-hosted docs. It has been zero maintenance for me so it has been great.However, the packages ecosystem seems unmaintained. It is a pitty because I think the tool has a ton of potential and I really liked it.I am considering moving to Yunohost or something similar but right now my little server hosts, together with other services, Sandstorm and I think Yunohost needs to monopolize the server.So I would ask for recommendations on similar tools. Not bare Docker containers but fully lanaged platforms wirh one click installs where it is easy to add/remove users.",
+    "parent": 44844394,
+    "depth": 1
+  },
+  {
+    "id": 44846077,
+    "by": "raphinou",
+    "timeISO": "2025-08-09T12:44:44.000Z",
+    "textPlain": "I was initially enthousiastic about sandstorm when I encountered it, but in the end my preferred solution for self hosting has been Docker Swarm. Dead simple setup, low maintenance, everything easily deployable within Swarm (crons, backups, first deployment setup, reverse proxy config incl. certificates, etc).Additionally a lot of projects provide a Docker compose file which is mostly compatible with swarm. I started using Swarm [1] when k8s was already ruling, but never regretted my choice.1: https://www.yvesdennels.com/posts/docker-swarm-in-2022/",
+    "parent": 44844394,
+    "depth": 1
+  },
+  {
+    "id": 44846086,
+    "by": "bhasinanant",
+    "timeISO": "2025-08-09T12:45:34.000Z",
+    "textPlain": "What I do want to understand is, why would anyone use this instead of NextCloud, for example.\nI'm all for having local setups though, as a general policy.\nIt's just that from what I know, the difference in feature sets is just too huge right now.",
     "parent": 44844394,
     "depth": 1
   },
@@ -72,14 +72,6 @@
     "depth": 2
   },
   {
-    "id": 44846087,
-    "by": "sunshine-o",
-    "timeISO": "2025-08-09T12:45:44.000Z",
-    "textPlain": "I have been thing a lot about why none of those self-hosting solutions never took off and most of them died off over the last decade.Why are we going dehydrated in the middle of the ocean, with docker and so many open source alternative to the common software and services ?My conclusion is this: just pick the distro you like, whether it is Debian, Fedora, Arch or FreeBSD. Preferably one with the selection of package you need. All those will be maintained in a few years too, you just need to upgrade.Because in the end the solution was the problem. A Debian for example was meant to host Internet services, it is well put together and has a large selection of software and can be trusted. It is more than enough security features for hosting your own apps, especially if you access them through something like tailscale.A lot of people (me included) thought that since containers were the hype we should build something new and setup everything like a corporation would do. Looking back it was a bad idea and it did not work (fact).",
-    "parent": 44845012,
-    "depth": 2
-  },
-  {
     "id": 44846040,
     "by": "ethan_smith",
     "timeISO": "2025-08-09T12:36:53.000Z",
@@ -92,6 +84,22 @@
     "by": "diggan",
     "timeISO": "2025-08-09T12:00:33.000Z",
     "textPlain": "> So I would ask for recommendations on similar tools. Not bare Docker containers but fully lanaged platforms wirh one click installs where it is easy to add/remove users.I've done a similar journey for my self-hosted stuff, started with Sandstorm, moved to Yunohost, but got frustrated with the configuration, and how different every package was and eventually have landed on using NixOS for my home servers. It's not a \"fully managed platform\" in the traditional sense, but if you're a developer, that's almost what you get. Adding new services is usually just adding the configuration for them.Bit of a learning curve learning the language, tooling and ecosystem, but once you're over that hurdle, having all declerative configuration in SCM together with easy linking of configuration options together (define service ports once, reference them in other services, for example), and everything being easy to rollback, have been a god-send so far. Been running it for maybe 2 years or something by now, with more or less zero issues besides the ones I introduce myself.Adding/removing users can be as easy as adding/remove one line of configuration, and redeploying. Simple enough for me and my family so far.",
+    "parent": 44845012,
+    "depth": 2
+  },
+  {
+    "id": 44846087,
+    "by": "sunshine-o",
+    "timeISO": "2025-08-09T12:45:44.000Z",
+    "textPlain": "I have been thing a lot about why none of those self-hosting solutions never took off and most of them died off over the last decade.Why are we going dehydrated in the middle of the ocean, with docker and so many open source alternative to the common software and services ?My conclusion is this: just pick the distro you like, whether it is Debian, Fedora, Arch or FreeBSD. Preferably one with the selection of package you need. All those will be maintained in a few years too, you just need to upgrade.Because in the end the solution was the problem. A Debian for example was meant to host Internet services, it is well put together and has a large selection of software and can be trusted. It is more than enough security features for hosting your own apps, especially if you access them through something like tailscale.A lot of people (me included) thought that since containers were the hype we should build something new and setup everything like a corporation would do. Looking back it was a bad idea and it did not work (fact).",
+    "parent": 44845012,
+    "depth": 2
+  },
+  {
+    "id": 44846119,
+    "by": "justusthane",
+    "timeISO": "2025-08-09T12:51:20.000Z",
+    "textPlain": "There are lots — “selfhosted OS” is the term to look for. Umbrel and CasaOS are some other popular ones. I don’t personal experience with any of them though.",
     "parent": 44845012,
     "depth": 2
   },
