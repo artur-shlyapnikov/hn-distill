@@ -70,7 +70,10 @@ const t = i18n[lang];
   </head>
   <body>
     <header>
-      <h1><a href="/">Hacker News Digest</a></h1>
+      <div class="header-top">
+        <h1><a href="/">Hacker News Digest</a></h1>
+        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
+      </div>
       <p class="meta">{t.updated}: {updatedPretty}</p>
       <p class="meta">{t.stories}: {allItems.length} • {t.page} {currentPage}/{totalPages}</p>
     </header>
@@ -88,5 +91,22 @@ const t = i18n[lang];
         </nav>
       )}
     </main>
+    <script>
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      if (localStorage.getItem('theme') === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+      }
+      btn?.addEventListener('click', () => {
+        const isDark = root.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+          root.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+        } else {
+          root.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+    </script>
   </body>
 </html>

@@ -309,6 +309,42 @@ p:last-child {
   }
 }
 
+/* Manual dark mode override */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-text: #e5e7eb;
+  --color-text-muted: #9ca3af;
+  --color-bg: #0b1220;
+  --color-border: #1f2937;
+  --color-accent: #60a5fa;
+  --color-accent-hover: #93c5fd;
+}
+
+[data-theme="dark"] .md code {
+  background: #111827;
+}
+
+[data-theme="dark"] .grid2 {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.6);
+}
+
+[data-theme="dark"] .badge {
+  background: #0f172a;
+  border-color: #1f2937;
+}
+
+[data-theme="dark"] .badge--hot {
+  color: #fecaca;
+  background: #3f1a1a;
+  border-color: #7f1d1d;
+}
+
+[data-theme="dark"] .badge--long {
+  color: #a7f3d0;
+  background: #0f2c24;
+  border-color: #115e59;
+}
+
 /* Auto dark mode based on user's system preference */
 @media (prefers-color-scheme: dark) {
   :root {
