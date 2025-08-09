@@ -32,14 +32,6 @@
     "depth": 1
   },
   {
-    "id": 44846300,
-    "by": "mathfailure",
-    "timeISO": "2025-08-09T13:28:56.000Z",
-    "textPlain": "Is this an alternative to OpenWebUI?",
-    "parent": 44845272,
-    "depth": 1
-  },
-  {
     "id": 44848144,
     "by": "jwildeboer",
     "timeISO": "2025-08-09T17:00:30.000Z",
@@ -52,6 +44,14 @@
     "by": "reader9274",
     "timeISO": "2025-08-09T15:17:39.000Z",
     "textPlain": "Tried to run the gpt-oss:20b in ollama (runs perfectly) and tried to connect ollama to jan but it didn't work.",
+    "parent": 44845272,
+    "depth": 1
+  },
+  {
+    "id": 44846300,
+    "by": "mathfailure",
+    "timeISO": "2025-08-09T13:28:56.000Z",
+    "textPlain": "Is this an alternative to OpenWebUI?",
     "parent": 44845272,
     "depth": 1
   },
@@ -168,6 +168,30 @@
     "depth": 2
   },
   {
+    "id": 44848252,
+    "by": "underlines",
+    "timeISO": "2025-08-09T17:12:10.000Z",
+    "textPlain": "Jan here too, and I work with LLMs full time and I'm a speaker about these topics. Annoying how many times people ask me if Jan.ai is me lol",
+    "parent": 44848144,
+    "depth": 2
+  },
+  {
+    "id": 44848983,
+    "by": "accrual",
+    "timeISO": "2025-08-09T18:41:50.000Z",
+    "textPlain": "I got Jan working with Ollama today. Jan reported it couldn't connect to my Ollama instance on the same host despite it working fine for other apps.I captured loopback and noticed Ollama returning an HTTP 403 forbidden message to Jan.The solution was set environment variables:    OLLAMA_HOST=0.0.0.0\n    OLLAMA_ORIGINS=*\n\nHere's the rest of the steps:- Jan > Settings > Model Providers- Add new provider called \"Ollama\"- Set API key to \"ollama\" and point to http://localhost:11434/v1- Ensure variables above are set- Click \"Refresh\" and the models should loadNote: Even though an API key is not required for local Ollama, Jan apparently doesn't consider it a valid endpoint unless a key is provided. I set mine to \"ollama\" and then it allowed me to start a chat.",
+    "parent": 44847197,
+    "depth": 2
+  },
+  {
+    "id": 44847517,
+    "by": "thehamkercat",
+    "timeISO": "2025-08-09T15:56:24.000Z",
+    "textPlain": "Exactly: https://github.com/menloresearch/jan/issues/5474Can't make it work with ollama endpointthis seems to be the problem but they're not focusing on it: https://github.com/menloresearch/jan/issues/5474#issuecommen...",
+    "parent": 44847197,
+    "depth": 2
+  },
+  {
     "id": 44846512,
     "by": "apitman",
     "timeISO": "2025-08-09T13:59:48.000Z",
@@ -181,22 +205,6 @@
     "timeISO": "2025-08-09T17:38:06.000Z",
     "textPlain": "More an alternative to LM Studio I think from the description.",
     "parent": 44846300,
-    "depth": 2
-  },
-  {
-    "id": 44848252,
-    "by": "underlines",
-    "timeISO": "2025-08-09T17:12:10.000Z",
-    "textPlain": "Jan here too, and I work with LLMs full time and I'm a speaker about these topics. Annoying how many times people ask me if Jan.ai is me lol",
-    "parent": 44848144,
-    "depth": 2
-  },
-  {
-    "id": 44847517,
-    "by": "thehamkercat",
-    "timeISO": "2025-08-09T15:56:24.000Z",
-    "textPlain": "Exactly: https://github.com/menloresearch/jan/issues/5474Can't make it work with ollama endpointthis seems to be the problem but they're not focusing on it: https://github.com/menloresearch/jan/issues/5474#issuecommen...",
-    "parent": 44847197,
     "depth": 2
   },
   {

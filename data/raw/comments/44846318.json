@@ -32,22 +32,6 @@
     "depth": 1
   },
   {
-    "id": 44848574,
-    "by": "hoppp",
-    "timeISO": "2025-08-09T17:53:57.000Z",
-    "textPlain": "Cool... You did well to ban them.Its a ddos attack, lucky you dont have to pay for the brandwidth, then its a denial of wallet",
-    "parent": 44846318,
-    "depth": 1
-  },
-  {
-    "id": 44848262,
-    "by": "perching_aix",
-    "timeISO": "2025-08-09T17:13:35.000Z",
-    "textPlain": "Haven't worked with Cloudflare yet first hand, and I'm not familiar with web map tech. But if the site really is pretty much just serving lots of static files, why is Hetzner in the loop? Wouldn't fully migrating to Cloudflare Pages be possible?",
-    "parent": 44846318,
-    "depth": 1
-  },
-  {
     "id": 44847331,
     "by": "rtaylorgarlock",
     "timeISO": "2025-08-09T15:36:00.000Z",
@@ -60,6 +44,22 @@
     "by": "eggbrain",
     "timeISO": "2025-08-09T14:55:22.000Z",
     "textPlain": "Limiting by referrer seems strange — if you know a normal user makes 10-20 requests (let’s assume per minute), can’t you just rate limit requests to 100 requests per minute per IP (5x the average load) and still block the majority of these cases?Or, if it’s just a few bad actors, block based on JA4/JA3 fingerprint?",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44848262,
+    "by": "perching_aix",
+    "timeISO": "2025-08-09T17:13:35.000Z",
+    "textPlain": "Haven't worked with Cloudflare yet first hand, and I'm not familiar with web map tech. But if the site really is pretty much just serving lots of static files, why is Hetzner in the loop? Wouldn't fully migrating to Cloudflare Pages be possible?",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44848574,
+    "by": "hoppp",
+    "timeISO": "2025-08-09T17:53:57.000Z",
+    "textPlain": "Cool... You did well to ban them.Its a ddos attack, lucky you dont have to pay for the brandwidth, then its a denial of wallet",
     "parent": 44846318,
     "depth": 1
   },
@@ -88,14 +88,6 @@
     "depth": 1
   },
   {
-    "id": 44847652,
-    "by": "willsmith72",
-    "timeISO": "2025-08-09T16:08:33.000Z",
-    "textPlain": "so 96% availability = \"survived\" now?but interesting write-up. If I were a consumer of OpenFreeMap, I would be concerned that such an availability drop was only detected by user reports",
-    "parent": 44846318,
-    "depth": 1
-  },
-  {
     "id": 44846923,
     "by": "fnord77",
     "timeISO": "2025-08-09T14:47:42.000Z",
@@ -120,6 +112,14 @@
     "depth": 1
   },
   {
+    "id": 44847652,
+    "by": "willsmith72",
+    "timeISO": "2025-08-09T16:08:33.000Z",
+    "textPlain": "so 96% availability = \"survived\" now?but interesting write-up. If I were a consumer of OpenFreeMap, I would be concerned that such an availability drop was only detected by user reports",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
     "id": 44846929,
     "by": "hyperknot",
     "timeISO": "2025-08-09T14:48:20.000Z",
@@ -133,14 +133,6 @@
     "timeISO": "2025-08-09T16:43:49.000Z",
     "textPlain": "I've just written my question to the nginx community forum, after a lengthy debugging session with multiple LLMs. Right now, I believe it was the combination of multi_accept + open_file_cache > worker_rlimit_nofile.https://community.nginx.org/t/too-many-open-files-at-1000-re...Also, the servers were doing 200 Mbps, so I couldn't have kept up _much_ longer, no matter the limits.",
     "parent": 44847695,
-    "depth": 2
-  },
-  {
-    "id": 44848302,
-    "by": "internetter",
-    "timeISO": "2025-08-09T17:17:54.000Z",
-    "textPlain": "The tiles need to be rendered. Yes frequent tiles can be cached but you already have a cache… it’s Cloudflare. Theoretically you could port the tileserver to Cloudflare pages but then you’d need to… port it… and it probably wouldn’t be cheaper",
-    "parent": 44848262,
     "depth": 2
   },
   {
@@ -160,18 +152,18 @@
     "depth": 2
   },
   {
-    "id": 44847432,
-    "by": "markerz",
-    "timeISO": "2025-08-09T15:48:07.000Z",
-    "textPlain": "It looks like a fun website, not a for-profit website.  The expectations and focus of fun websites is more to just get it working than to handle the scale.  It sounds like their user base exploded overnight, doubling every 14 hours or so.  It also sounds like it’s other a solo dev or a small group based on the maintainers wording.",
-    "parent": 44847331,
-    "depth": 2
-  },
-  {
     "id": 44847504,
     "by": "hyperknot",
     "timeISO": "2025-08-09T15:55:01.000Z",
     "textPlain": "We are talking about an insane amount of data here. It was 56 Gbit/s (or 56 x 1 Gbit servers 100% saturated!).\nThis is not something a \"caching server\" could handle. We are talking on the order of CDN networks, like Cloudflare, to be able to handle this.",
+    "parent": 44847331,
+    "depth": 2
+  },
+  {
+    "id": 44847432,
+    "by": "markerz",
+    "timeISO": "2025-08-09T15:48:07.000Z",
+    "textPlain": "It looks like a fun website, not a for-profit website.  The expectations and focus of fun websites is more to just get it working than to handle the scale.  It sounds like their user base exploded overnight, doubling every 14 hours or so.  It also sounds like it’s other a solo dev or a small group based on the maintainers wording.",
     "parent": 44847331,
     "depth": 2
   },
@@ -189,6 +181,14 @@
     "timeISO": "2025-08-09T17:36:02.000Z",
     "textPlain": "Limiting by referrer is probably the right first step. (And changing the front page text)You want to track usage by the site, not the person, because you can ask a site to change usage patterns in a way you can't really ask a site's users. Maybe a per IP limit makes sense too, but you wouldn't want them low enough that it would be effective for something like this.",
     "parent": 44846988,
+    "depth": 2
+  },
+  {
+    "id": 44848302,
+    "by": "internetter",
+    "timeISO": "2025-08-09T17:17:54.000Z",
+    "textPlain": "The tiles need to be rendered. Yes frequent tiles can be cached but you already have a cache… it’s Cloudflare. Theoretically you could port the tileserver to Cloudflare pages but then you’d need to… port it… and it probably wouldn’t be cheaper",
+    "parent": 44848262,
     "depth": 2
   },
   {
@@ -232,22 +232,6 @@
     "depth": 2
   },
   {
-    "id": 44847712,
-    "by": "ndriscoll",
-    "timeISO": "2025-08-09T16:14:31.000Z",
-    "textPlain": "If I were a consumer of a free service from someone who will not take your money to offer support or an SLA (i.e. is not trying to run a business), I would assume there's little to no monitoring at all.",
-    "parent": 44847652,
-    "depth": 2
-  },
-  {
-    "id": 44847791,
-    "by": "timmg",
-    "timeISO": "2025-08-09T16:23:54.000Z",
-    "textPlain": "96% during a unique event. I think you would typically consider long term in a stat like that.Assuming it was close to 100% the rest of the year, that works out to 99.97% over 12 months.",
-    "parent": 44847652,
-    "depth": 2
-  },
-  {
     "id": 44847196,
     "by": "010101010101",
     "timeISO": "2025-08-09T15:17:37.000Z",
@@ -269,6 +253,22 @@
     "timeISO": "2025-08-09T15:20:57.000Z",
     "textPlain": "the funny part is that his service didnt break- cloudflares cache caught 99% of the requests. just wanted to feel powerful and break the latest viral trend.",
     "parent": 44846966,
+    "depth": 2
+  },
+  {
+    "id": 44847712,
+    "by": "ndriscoll",
+    "timeISO": "2025-08-09T16:14:31.000Z",
+    "textPlain": "If I were a consumer of a free service from someone who will not take your money to offer support or an SLA (i.e. is not trying to run a business), I would assume there's little to no monitoring at all.",
+    "parent": 44847652,
+    "depth": 2
+  },
+  {
+    "id": 44847791,
+    "by": "timmg",
+    "timeISO": "2025-08-09T16:23:54.000Z",
+    "textPlain": "96% during a unique event. I think you would typically consider long term in a stat like that.Assuming it was close to 100% the rest of the year, that works out to 99.97% over 12 months.",
+    "parent": 44847652,
     "depth": 2
   }
 ]

@@ -1,33 +1,25 @@
 [
   {
+    "id": 44849009,
+    "by": "ComplexSystems",
+    "timeISO": "2025-08-09T18:44:27.000Z",
+    "textPlain": "I thought this article was going to be a bunch of security theater nonsense - maybe the relatively bland title - but after reading I found it to be incredibly insightful, particularly this:> MCP discards this lesson, opting for schemaless JSON with optional, non-enforced hints. Type validation happens at runtime, if at all. When an AI tool expects an ISO-8601 timestamp but receives a Unix epoch, the model might hallucinate dates rather than failing cleanly. In financial services, this means a trading AI could misinterpret numerical types and execute trades with the wrong decimal precision. In healthcare, patient data types get coerced incorrectly, potentially leading to wrong medication dosing recommendations. Manufacturing systems lose sensor reading precision during JSON serialization, leading to quality control failures.Having worked with LLMs every day for the past few years, it is easy to see every single one of these things happening.I can practically see it playing out now: there is some huge incident of some kind, in some system or service with an MCP component somewhere, with some elaborate post-mortem revealing that some MCP server somewhere screwed up and output something invalid, the LLM took that output and hallucinated god knows what, its subsequent actions threw things off downstream, etc.It would essentially be a new class of software bug caused by integration with LLMs, and it is almost sure to happen when you combine it with other sources of bug: human error, the total lack of error checking or exception handling that LLMs are prone to (they just hallucinate), a bunch of gung-ho startups \"vibe coding\" new services on top of the above, etc.I foresee this being followed by a slew of Twitter folks going on endlessly about AGI hacking the nuclear launch codes, which will probably be equally entertaining.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44849159,
+    "by": "GeneralMayhem",
+    "timeISO": "2025-08-09T19:04:03.000Z",
+    "textPlain": "> MCP promises to standardize AI-tool interactions as the “USB-C for AI.”Ironically, it's achieved this - but that's an indictment of USB-C, not an accomplishment of MCP. Just like USB-C, MCP is a nigh-universal connector with very poorly enforced standards for what actually goes across it. MCP's inconsistent JSON parsing and lack of protocol standardization is closely analogous to USB-C's proliferation of cable types (https://en.wikipedia.org/wiki/USB-C#Cable_types); the superficial interoperability is a very leaky abstraction over a much more complicated reality, which IMO is worse than just having explicitly different APIs/protocols.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
     "id": 44848594,
     "by": "rickcarlino",
     "timeISO": "2025-08-09T17:56:28.000Z",
     "textPlain": "> SOAP, despite its verbosity, understood something that MCP doesn’tUnfortunately, no one understood SOAP back.(Additional context: Maintaining a legacy SOAP system. I have nothing good to say about SOAP and it should serve as a role model for no one)",
-    "parent": 44846871,
-    "depth": 1
-  },
-  {
-    "id": 44848857,
-    "by": "btown",
-    "timeISO": "2025-08-09T18:26:29.000Z",
-    "textPlain": "If you want the things mentioned in this article, I highly recommend looking at https://github.com/modelcontextprotocol/modelcontextprotocol... and https://modelcontextprotocol.io/community/sep-guidelines and participating in the specification process.Point-by-point for the article's gripes:- distributed tracing/telemetry - open discussion at https://github.com/modelcontextprotocol/modelcontextprotocol...- structured tool annotation for parallelizability/side-effects/idempotence - this actually already exists at https://modelcontextprotocol.io/specification/2025-06-18/sch... but it's not well documented in https://modelcontextprotocol.io/specification/2025-06-18/ser... - someone should contribute to improving this!- a standardized way in which the costs associated with an MCP tool call can be communicated to the MCP Client and reported to central tracking - nothing here I see, but it's a really good idea!- serialization issues e.g. \"the server might report a date in a format unexpected by the client\" - this isn't wrong, but since the consumer of most tool responses is itself an LLM, there's a fair amount of mitigation here. And in theory an MCP Client can use an LLM to detect under-specified/ambiguous tool specifications, and could surface these issues to the integrator.Now, I can't speak to the speed at which Maintainers and Core Maintainers are keeping up with the community's momentum - but I think it's meaningful that the community has momentum for evolving the specification!I see this post in a highly positive light: MCP shows promise because you can iterate on these kinds of structured annotations, in the context of a community that is actively developing their MCP servers. Legacy protocols aren't engaging with these problems in the same way.",
-    "parent": 44846871,
-    "depth": 1
-  },
-  {
-    "id": 44848489,
-    "by": "abtinf",
-    "timeISO": "2025-08-09T17:43:53.000Z",
-    "textPlain": "I wish someone would write a clear, crisp explanation for why MCP is needed over simply supporting swagger or proto.",
-    "parent": 44846871,
-    "depth": 1
-  },
-  {
-    "id": 44848323,
-    "by": "mockingloris",
-    "timeISO": "2025-08-09T17:20:14.000Z",
-    "textPlain": "I read this thrice: ...When OpenAI bills $50,000 for last month’s API usage, can you tell which department’s MCP tools drove that cost? Which specific tool calls? Which individual users or use cases?...It seems to be a game of catch up for most things AI. That said, my school of thought is that certain technologies are just too big for them to be figured out early on - web frameworks, blockchain, ...- the gap starts to shrink eventually. With AI, we'll just have to keep sharing ideas and caution like you have here.\nSuch very interesting times we live in.",
     "parent": 44846871,
     "depth": 1
   },
@@ -40,10 +32,50 @@
     "depth": 1
   },
   {
-    "id": 44848879,
-    "by": "calvinmorrison",
-    "timeISO": "2025-08-09T18:29:08.000Z",
-    "textPlain": "MCP, aka, WSDL for REST",
+    "id": 44848489,
+    "by": "abtinf",
+    "timeISO": "2025-08-09T17:43:53.000Z",
+    "textPlain": "I wish someone would write a clear, crisp explanation for why MCP is needed over simply supporting swagger or proto.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44849003,
+    "by": "zwaps",
+    "timeISO": "2025-08-09T18:43:44.000Z",
+    "textPlain": "The author seems to fundamentally misunderstand how MCPs are going to be used and deployed.This is really obvious when they talk about tracing and monitoring, which seem to be the main points of criticism anyway.They bemoan that they cant trace across MCP calls, assuming somehow there would be a person administering all the MCPs.\nOf course each system has tracing in whatever fashion fits its system. \nThey are just not the same system, nor owned by the same people let alone companies.Same as monitoring cost. Oh, you can’t know who racked up the LLM costs? Well of course you can, these systems are already in place and there are a million of ways to do this. It has nothing to do with MCP.Reading this, I think its rather a blessing to start fresh and without the learnings of 40 years of failed protocols or whatever",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44848323,
+    "by": "mockingloris",
+    "timeISO": "2025-08-09T17:20:14.000Z",
+    "textPlain": "I read this thrice: ...When OpenAI bills $50,000 for last month’s API usage, can you tell which department’s MCP tools drove that cost? Which specific tool calls? Which individual users or use cases?...It seems to be a game of catch up for most things AI. That said, my school of thought is that certain technologies are just too big for them to be figured out early on - web frameworks, blockchain, ...- the gap starts to shrink eventually. With AI, we'll just have to keep sharing ideas and caution like you have here.\nSuch very interesting times we live in.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44849085,
+    "by": "BLanen",
+    "timeISO": "2025-08-09T18:54:13.000Z",
+    "textPlain": "As I've been saying.MCP is not a protocol. It doesn't protocolize anything of use. It's just \"here's some symbols, do with them whatever you want.\", leaving it there but then advertising that as a feature of its universality. It provides almost just as much of a protocol as TCP, but rebuild on 5 OSI layers, again.It's not a security issue, it's a ontological issue.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44849140,
+    "by": "dragonwriter",
+    "timeISO": "2025-08-09T19:01:23.000Z",
+    "textPlain": "> MCP discards this lesson, opting for schemaless JSON with optional, non-enforced hints.Actually, MCP uses a normative TypeScript schema (and, from that, an autogenerated JSON Schema) for the protocol itself, and the individual tool calls also are specified with JSON Schema.> Type validation happens at runtime, if at all.That's not a consequence of MCP \"opting for schemaless JSON\" (which it factually does not), that's, for tool calls, a consequence of MCP being a discovery protocol where the tools, and thus the applicable schemas,  are discovered aruntime.If you are using MCP as a way to wire up highly-static components, you can do discovery against the servers once they are wired up, statically build the clients around the defined types, and build your toolchain to raise errors if the discovery responses change in the future. But that's not really the world MCP is built for. Yes, that means that the toolchain needs, if it is concerned about schema enforcement, use and apply the relevant schemas at runtime. So, um, do that?",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44848857,
+    "by": "btown",
+    "timeISO": "2025-08-09T18:26:29.000Z",
+    "textPlain": "If you want the things mentioned in this article, I highly recommend looking at https://github.com/modelcontextprotocol/modelcontextprotocol... and https://modelcontextprotocol.io/community/sep-guidelines and participating in the specification process.Point-by-point for the article's gripes:- distributed tracing/telemetry - open discussion at https://github.com/modelcontextprotocol/modelcontextprotocol...- structured tool annotation for parallelizability/side-effects/idempotence - this actually already exists at https://modelcontextprotocol.io/specification/2025-06-18/sch... but it's not well documented in https://modelcontextprotocol.io/specification/2025-06-18/ser... - someone should contribute to improving this!- a standardized way in which the costs associated with an MCP tool call can be communicated to the MCP Client and reported to central tracking - nothing here I see, but it's a really good idea!- serialization issues e.g. \"the server might report a date in a format unexpected by the client\" - this isn't wrong, but since the consumer of most tool responses is itself an LLM, there's a fair amount of mitigation here. And in theory an MCP Client can use an LLM to detect under-specified/ambiguous tool specifications, and could surface these issues to the integrator.Now, I can't speak to the speed at which Maintainers and Core Maintainers are keeping up with the community's momentum - but I think it's meaningful that the community has momentum for evolving the specification!I see this post in a highly positive light: MCP shows promise because you can iterate on these kinds of structured annotations, in the context of a community that is actively developing their MCP servers. Legacy protocols aren't engaging with these problems in the same way.",
     "parent": 44846871,
     "depth": 1
   },
@@ -64,12 +96,52 @@
     "depth": 1
   },
   {
+    "id": 44849232,
+    "by": "zombiwoof",
+    "timeISO": "2025-08-09T19:13:05.000Z",
+    "textPlain": "Basically a bunch of vibe coders at a Anthropic hackathon used Claude to poop out MCP",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44848879,
+    "by": "calvinmorrison",
+    "timeISO": "2025-08-09T18:29:08.000Z",
+    "textPlain": "MCP, aka, WSDL for REST",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
     "id": 44848318,
     "by": "gjsman-1000",
     "timeISO": "2025-08-09T17:19:59.000Z",
     "textPlain": "… or we’ll just invent MCP 2.0.On that note; some of these “best practices” arguably haven’t worked out. “Be conservative with what you send, liberal with what you receive” has turned even decent protocols into a dumpster fire, so why keep the charade going?",
     "parent": 44846871,
     "depth": 1
+  },
+  {
+    "id": 44849224,
+    "by": "tomrod",
+    "timeISO": "2025-08-09T19:12:23.000Z",
+    "textPlain": "We already have PEBKAC - problem exists between chair and keyboard.LLMs are basically automating PEBKAC",
+    "parent": 44849009,
+    "depth": 2
+  },
+  {
+    "id": 44849059,
+    "by": "throwawaymaths",
+    "timeISO": "2025-08-09T18:50:14.000Z",
+    "textPlain": "i mean isnt all this stuff up to the mcp author to return a reasonable error to the agent and ask for it to repeat the call with amendments to the json?",
+    "parent": 44849009,
+    "depth": 2
+  },
+  {
+    "id": 44849062,
+    "by": "pjmlp",
+    "timeISO": "2025-08-09T18:50:29.000Z",
+    "textPlain": "I have plenty of good stuff to say, especially since REST (really JSON-RPC in practice), and GraphQL, seem to always being catching up to features the whole SOAP and SOA ecosystems already had.Unfortunately as usual when a new technology cycle comes, everything gets thrown away, including the good parts.",
+    "parent": 44848594,
+    "depth": 2
   },
   {
     "id": 44848671,
@@ -88,10 +160,42 @@
     "depth": 2
   },
   {
+    "id": 44848915,
+    "by": "cortesoft",
+    "timeISO": "2025-08-09T18:33:26.000Z",
+    "textPlain": "Yeah, the modern JSON centered API landscape came about as a response to failures of CORBA and SOAP. It didn’t forget the lessons of CORBA, it rejected them.",
+    "parent": 44848433,
+    "depth": 2
+  },
+  {
+    "id": 44848732,
+    "by": "antonymoose",
+    "timeISO": "2025-08-09T18:14:09.000Z",
+    "textPlain": "To be charitable, you can look at a commercially unsuccessful project and appreciate its technical brilliance.",
+    "parent": 44848433,
+    "depth": 2
+  },
+  {
+    "id": 44848932,
+    "by": "cyberax",
+    "timeISO": "2025-08-09T18:35:13.000Z",
+    "textPlain": "CORBA got a lot of things right. But it was unfortunately a child of the late 80-s telecom networks mixed with OOP-hype.So it baked in core assumptions that the network is transparent, reliable, and symmetric. So you could create an object on one machine, pass a reference to it to another machine, and everything is supposed to just work.Which is not what happens in the real world, with timeouts, retries, congested networks, and crashing computers.Oh, and CORBA C++ bindings had been designed before the STL was standardized. So they are a crawling horror, other languages were better.",
+    "parent": 44848433,
+    "depth": 2
+  },
+  {
     "id": 44848678,
     "by": "dragonwriter",
     "timeISO": "2025-08-09T18:07:29.000Z",
     "textPlain": "OpenAPI (or its Swagger predecessor) or Proto (I assume by this you mean protobuf?) don't cover what MCP does. It could have layered over them instead of using JSON-RPC, but I don't see any strong reason why they would be better than JSON-RPC as the basis (Swagger has communication assumptions that don't work well with MCP's local use case; protobuf doesn't cover communication at all and would require additional consideration in the protocol layered over it.)You'd still need basically the entire existing MCP spec to cover the use cases if it replaced JSON-RPC with Swagger or protobuf, plus additional material to cover the gaps and complications that that switch would involve.",
+    "parent": 44848489,
+    "depth": 2
+  },
+  {
+    "id": 44849137,
+    "by": "nurettin",
+    "timeISO": "2025-08-09T19:00:52.000Z",
+    "textPlain": "MCP supports streaming responses. You could implement that by polling and a session state, but that's an inefficient hack.",
     "parent": 44848489,
     "depth": 2
   },
@@ -104,11 +208,11 @@
     "depth": 2
   },
   {
-    "id": 44848732,
-    "by": "antonymoose",
-    "timeISO": "2025-08-09T18:14:09.000Z",
-    "textPlain": "To be charitable, you can look at a commercially unsuccessful project and appreciate its technical brilliance.",
-    "parent": 44848433,
+    "id": 44849014,
+    "by": "xg15",
+    "timeISO": "2025-08-09T18:44:51.000Z",
+    "textPlain": "Yeah, and all three have evidently made software more shitty. More profitable and easier to develop, sure, but also much more unpleasant to use.",
+    "parent": 44848517,
     "depth": 2
   },
   {
