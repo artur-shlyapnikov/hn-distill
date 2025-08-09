@@ -40,14 +40,6 @@
     "depth": 1
   },
   {
-    "id": 44849723,
-    "by": "yonatan8070",
-    "timeISO": "2025-08-09T20:11:25.000Z",
-    "textPlain": "A total of seven architectures are officially supported for \"trixie\":     \"trixie\"\n     64-bit PC (amd64),\n     64-bit ARM (arm64),\n     ARM EABI (armel),\n     ARMv7 (EABI hard-float ABI, armhf),\n     64-bit little-endian PowerPC (ppc64el),\n     64-bit little-endian RISC-V (riscv64),\n     IBM System z (s390x)\n\nIt's good to see RISC-V becoming a first-class citizen, despite the general lack of hardware using it at the moment.I do wonder, where are PowerPC and IBM System z being used these days? Are there modern Linux systems being deployed with something other than amd64, arm64, and (soon?) riscv64?",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849292,
     "by": "bbarnett",
     "timeISO": "2025-08-09T19:20:41.000Z",
@@ -56,10 +48,50 @@
     "depth": 1
   },
   {
+    "id": 44850765,
+    "by": "luismedel",
+    "timeISO": "2025-08-09T22:08:13.000Z",
+    "textPlain": "Kudos to the team.My first contact with Linux was with Debian 2.1. Exactly with this distro CDs https://archive.org/details/linux-actual-06-2/LinuxActual_01...To be honest, it was a miserable experience to install it on your main computer without anything else available to look for help in case of problems. It was also hard to really try it due to lack of drivers for current (at that moment) ADSL modems.But here I am a crapload of years later, still loving it :-)",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44850740,
+    "by": "lucb1e",
+    "timeISO": "2025-08-09T22:05:29.000Z",
+    "textPlain": "> \"trixie\" includes numerous updated software packages (over 63% of all packages from the previous release)Wow, I'm amazed a third of packages haven't seen an update in, ehm checks> After 2 years, 1 month, and 30 days of development, the Debian project is proud to present its new stable versionI'm a fan of old software myself, in the sense that I find it cool to see F-Droid having a (usually tiny) package that is over 10 years old but it does exactly what I want with no bugs and it works perfectly on Android 10. I wonder if those 30% more commonly fall in the \"it's fine as it is\" category or in the \"no maintainers available\" category",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849723,
+    "by": "yonatan8070",
+    "timeISO": "2025-08-09T20:11:25.000Z",
+    "textPlain": "A total of seven architectures are officially supported for \"trixie\":     \"trixie\"\n     64-bit PC (amd64),\n     64-bit ARM (arm64),\n     ARM EABI (armel),\n     ARMv7 (EABI hard-float ABI, armhf),\n     64-bit little-endian PowerPC (ppc64el),\n     64-bit little-endian RISC-V (riscv64),\n     IBM System z (s390x)\n\nIt's good to see RISC-V becoming a first-class citizen, despite the general lack of hardware using it at the moment.I do wonder, where are PowerPC and IBM System z being used these days? Are there modern Linux systems being deployed with something other than amd64, arm64, and (soon?) riscv64?",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44849654,
     "by": "bbarnett",
     "timeISO": "2025-08-09T20:04:33.000Z",
     "textPlain": "For those worrying about the NIC change with systemd, this comes from the release doc:https://www.debian.org/releases/trixie/release-notes/issues....  # example:\n  udevadm test-builtin net_setup_link /sys/class/net/eno4 2>/dev/null\n  ID_NET_LINK_FILE=/usr/lib/systemd/network/99-default.link\n  ID_NET_LINK_FILE_DROPINS=\n  ID_NET_NAME=eno4  <-- note the NIC name that will happen after reboot\n\nHere's a one-liner, excluding a bond interface and lo.  Gives a nice list of pre and post change.  for x in $(cat /etc/network/interfaces | grep auto | cut -d ' ' -f 2 | grep -Ev 'lo|bond0'); do echo -n $x:; udevadm test-builtin net_setup_link /sys/class/net/$x 2>/dev/null | grep NET_NAME| cut -d = -f 2; done\n\nThe doc's logic is that after you've upgraded to trixie, and before reboot, you're running enough of systemd to see what it will name interfaces after reboot.So far I have not had an interface change due to upgrade, so I cannot say that the above does detect it.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44850070,
+    "by": "aborsy",
+    "timeISO": "2025-08-09T20:49:00.000Z",
+    "textPlain": "The difference between Debian and Ubuntu is decreasing with each release recently. I was pleasantly surprised that Debian recognized all hardware components in my laptop released one year ago \nout of the box.Hardware support is good and UI is great! It feels snappier than Ubuntu, may be due to lack of snap and fewer services and applications installed by default.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44850563,
+    "by": "pss314",
+    "timeISO": "2025-08-09T21:44:42.000Z",
+    "textPlain": "A new APT sources format \"debian.sources\" is announced with trixie. The now older \"sources.list\" format is still supported, but is likely to be deprecated in a future Debian release.See below:  APT is moving to a different format for configuring where it downloads packages from. The files /etc/apt/sources.list and *.list files in /etc/apt/sources.list.d/ are replaced by files still in that directory but with names ending in .sources, using the new, more readable (deb822 style) format. For details see sources.list(5). Examples of APT configurations in these notes will be given in the new deb822 format.\n\n  If your system is using multiple sources files then you will need to ensure they stay consistent.\n\n- https://wiki.debian.org/SourcesList#APT_sources_format- https://www.debian.org/releases/trixie/release-notes/upgradi...",
     "parent": 44848782,
     "depth": 1
   },
@@ -80,18 +112,26 @@
     "depth": 1
   },
   {
-    "id": 44849514,
-    "by": "master_crab",
-    "timeISO": "2025-08-09T19:47:41.000Z",
-    "textPlain": "Debian 13 trixie includes numerous updated software packages (over 63% of all packages from the previous release)I’m not familiar with the metric definition they use, but I’d be worried if close to 100% of the packages they included in bookworm hadn’t been updated in the roughly 2 years between releases.I use Debian for most of my servers, so I’m sure there is a valid explanation of that phrase.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849709,
     "by": "bayindirh",
     "timeISO": "2025-08-09T20:09:54.000Z",
     "textPlain": "Debian's signature feature (upgrade from stable to stable under 15 minutes) shines here too.My first system migrated in less than 10 minutes, incl. package downloads and reboot. It's not a beast either. N100 mini PC connected to a ~50mbps network.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849857,
+    "by": "krylon",
+    "timeISO": "2025-08-09T20:24:25.000Z",
+    "textPlain": "As an owner of two i386 systems (both netbooks built around Intel's Atom N270), that run Debian, I am a little sad. I understand the reasoning, and I won't deny it is a very niche platform by now. But I had hoped Debian, with a history of supporting a wide range of platforms, would keep i386 going for a while longer.Fortunately, bookworm will continue to receive updates for almost 3 years, so I am not in a hurry to look for a new OS for these relics. OpenBSD looks like the natural successor, but I am not sure if the wifi chips are supported. (And who knows how long these netbooks will continue to work, they were built in 2008 and 2009, so they've had a long life already.)EDIT: Hooray, thanks to everyone who made this possible, is what I meant to say.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849514,
+    "by": "master_crab",
+    "timeISO": "2025-08-09T19:47:41.000Z",
+    "textPlain": "Debian 13 trixie includes numerous updated software packages (over 63% of all packages from the previous release)I’m not familiar with the metric definition they use, but I’d be worried if close to 100% of the packages they included in bookworm hadn’t been updated in the roughly 2 years between releases.I use Debian for most of my servers, so I’m sure there is a valid explanation of that phrase.",
     "parent": 44848782,
     "depth": 1
   },
@@ -112,34 +152,10 @@
     "depth": 1
   },
   {
-    "id": 44850070,
-    "by": "aborsy",
-    "timeISO": "2025-08-09T20:49:00.000Z",
-    "textPlain": "The difference between Debian and Ubuntu is decreasing with each release recently. I was pleasantly surprised that Debian recognized all hardware components in my laptop released one year ago \nout of the box.Hardware support is good and UI is great! It feels snappier than Ubuntu, may be due to lack of snap and fewer services and applications installed by default.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44849857,
-    "by": "krylon",
-    "timeISO": "2025-08-09T20:24:25.000Z",
-    "textPlain": "As an owner of two i386 systems (both netbooks built around Intel's Atom N270), that run Debian, I am a little sad. I understand the reasoning, and I won't deny it is a very niche platform by now. But I had hoped Debian, with a history of supporting a wide range of platforms, would keep i386 going for a while longer.Fortunately, bookworm will continue to receive updates for almost 3 years, so I am not in a hurry to look for a new OS for these relics. OpenBSD looks like the natural successor, but I am not sure if the wifi chips are supported. (And who knows how long these netbooks will continue to work, they were built in 2008 and 2009, so they've had a long life already.)EDIT: Hooray, thanks to everyone who made this possible, is what I meant to say.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849362,
     "by": "potato-peeler",
     "timeISO": "2025-08-09T19:27:31.000Z",
     "textPlain": "> The overall disk usage for trixie is 403,854,660 kB (403 GB)What does this mean? If all 69k+ packages are installed, it will take up this much space?",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44850211,
-    "by": "perdomon",
-    "timeISO": "2025-08-09T21:05:18.000Z",
-    "textPlain": "How soon can I update my raspberry pi 5 from\nBookworm to Trixie? Does PiOS have to initiate that first?",
     "parent": 44848782,
     "depth": 1
   },
@@ -160,6 +176,22 @@
     "depth": 1
   },
   {
+    "id": 44849565,
+    "by": "gcarvalho",
+    "timeISO": "2025-08-09T19:53:55.000Z",
+    "textPlain": "Looking forward to upgrade over the weekend.Have had my RPi on Debian since Debian 9, with smooth upgrades every time.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44850211,
+    "by": "perdomon",
+    "timeISO": "2025-08-09T21:05:18.000Z",
+    "textPlain": "How soon can I update my raspberry pi 5 from\nBookworm to Trixie? Does PiOS have to initiate that first?",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44849561,
     "by": "Venn1",
     "timeISO": "2025-08-09T19:53:14.000Z",
@@ -168,10 +200,10 @@
     "depth": 1
   },
   {
-    "id": 44849565,
-    "by": "gcarvalho",
-    "timeISO": "2025-08-09T19:53:55.000Z",
-    "textPlain": "Looking forward to upgrade over the weekend.Have had my RPi on Debian since Debian 9, with smooth upgrades every time.",
+    "id": 44849164,
+    "by": "Paianni",
+    "timeISO": "2025-08-09T19:04:40.000Z",
+    "textPlain": "The Devuan version may end up being the last that GNOME will run on...",
     "parent": 44848782,
     "depth": 1
   },
@@ -192,26 +224,18 @@
     "depth": 1
   },
   {
-    "id": 44850049,
-    "by": "charcircuit",
-    "timeISO": "2025-08-09T20:47:05.000Z",
-    "textPlain": "So what is the actual difference. These release notes are not very clear. They just give version bumps. How can people get excited when you give them nothing to get excited about?",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44849164,
-    "by": "Paianni",
-    "timeISO": "2025-08-09T19:04:40.000Z",
-    "textPlain": "The Devuan version may end up being the last that GNOME will run on...",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849287,
     "by": "josteink",
     "timeISO": "2025-08-09T19:20:08.000Z",
     "textPlain": "I've upgraded all my servers and laptops to Debian 13.Lucky 13 and all... And not a single issue so far. Very happy!Thanks to the Debian team for putting out yet another high quality, reliable release :)",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44850049,
+    "by": "charcircuit",
+    "timeISO": "2025-08-09T20:47:05.000Z",
+    "textPlain": "So what is the actual difference. These release notes are not very clear. They just give version bumps. How can people get excited when you give them nothing to get excited about?",
     "parent": 44848782,
     "depth": 1
   },
@@ -256,6 +280,22 @@
     "depth": 2
   },
   {
+    "id": 44850816,
+    "by": "rbanffy",
+    "timeISO": "2025-08-09T22:15:32.000Z",
+    "textPlain": "The only thing I can say against Debian is that it tends to start new server software immediately after install, before I have a chance to configure it properly. Defaults are sane for most packages, but, still, it scares me a little. In that I like the Red Hat approach of installing and leaving it off until I decide to turn it on.",
+    "parent": 44849402,
+    "depth": 2
+  },
+  {
+    "id": 44850751,
+    "by": "foresto",
+    "timeISO": "2025-08-09T22:06:47.000Z",
+    "textPlain": "> I like dpkg, I like the Debian documentation even if Arch remains the best on that front.That's curious, because when I was learning to make Debian packages, I found the official documentation to be far better than I had seen from any other distro. The Policy Manual in particular is very detailed, continually improving, and even documents incremental changes from each version to the next. (That last bit makes it easy for package maintainers to keep up with current best practices.)Does Arch have something better in this department?Are you perhaps comparing the Arch wiki to Debian's wiki? On that front I would agree with you.",
+    "parent": 44849402,
+    "depth": 2
+  },
+  {
     "id": 44850156,
     "by": "djfobbz",
     "timeISO": "2025-08-09T20:59:10.000Z",
@@ -277,46 +317,6 @@
     "timeISO": "2025-08-09T20:20:49.000Z",
     "textPlain": "I've been always a Fedora person, still am. But my PC moved to Proxmox (debian) in 2023. Now a Fedora Atomic sits in a VM running flatpaks and podman containers :D",
     "parent": 44849402,
-    "depth": 2
-  },
-  {
-    "id": 44849915,
-    "by": "tremon",
-    "timeISO": "2025-08-09T20:30:50.000Z",
-    "textPlain": "The maintainer has a short explanation here: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1098866#10> The webapp is a nodejs app that requires packages that are not currently in debian.Since vendoring dependencies inside packages is frowned upon in Debian, the maintainer would have needed to add those packages themselves and maintain them. My guess is that they didn't want to take on that effort.",
-    "parent": 44849542,
-    "depth": 2
-  },
-  {
-    "id": 44849992,
-    "by": "baobun",
-    "timeISO": "2025-08-09T20:41:06.000Z",
-    "textPlain": "On the web part:Debian sources need to be sufficient to build. So for npm projects, you usually have a debian-specific package.json each npm dependency (transitively, including devDependencies needed for build) needs to be either be replaced with its equivalent debian package (which may need to also be ported) or vendored (usually less ideal, especially for third-party code). Oh, and enjoy aligning versions for all of that. That's doable but non-trivial work with such a sizable lockfile. If I would guess the maintainer couldn't justify the extra effort and taking on combing through all those packages.I also think in either case the Debian way woukd probably be to split it out as a complementary ntfy-web package.",
-    "parent": 44849542,
-    "depth": 2
-  },
-  {
-    "id": 44849659,
-    "by": "heywire",
-    "timeISO": "2025-08-09T20:04:57.000Z",
-    "textPlain": "Just wanted to say thanks for ntfy! I use it daily to notify me on events from my home Meshtastic node.",
-    "parent": 44849542,
-    "depth": 2
-  },
-  {
-    "id": 44849796,
-    "by": "badsectoracula",
-    "timeISO": "2025-08-09T20:19:18.000Z",
-    "textPlain": "AFAICT this refers to Debian support, the Linux kernel does support 32bit CPUs though only since the original Pentium (excluding some clones).",
-    "parent": 44849340,
-    "depth": 2
-  },
-  {
-    "id": 44849467,
-    "by": "NewJazz",
-    "timeISO": "2025-08-09T19:40:23.000Z",
-    "textPlain": "Well, isn't there an additional year or so of support for old stable? So beyond 2025.",
-    "parent": 44849340,
     "depth": 2
   }
 ]
