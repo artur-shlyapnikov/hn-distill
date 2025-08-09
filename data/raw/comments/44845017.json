@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44847955,
-    "by": "loeg",
-    "timeISO": "2025-08-09T16:42:33.000Z",
-    "textPlain": "Just having a comptime unreachable feature seems pretty cool.  Common C++ compilers have the worst version of this with __builtin_unreachable() -- they don't do any verification the site is unreachable, and just let the optimizer go to town.  (I use/recommend runtime assert/fatal/abort over that behavior most days of the week.)",
+    "id": 44847483,
+    "by": "uecker",
+    "timeISO": "2025-08-09T15:52:26.000Z",
+    "textPlain": "It is great to see other languages getting the same compile-time meta programming features as C ;-)https://godbolt.org/z/P1r49nTWo",
     "parent": 44845017,
     "depth": 1
   },
   {
-    "id": 44847844,
-    "by": "agons",
-    "timeISO": "2025-08-09T16:29:17.000Z",
-    "textPlain": "Is there a reason the Zig compiler can't perform type-narrowing for `u` within the `U::A(_) | U::B(_)` \"guard\", rendering just the set of 2 cases entirely necessary and sufficient (obviating the need for any of the solutions in the blog post)?I'm not familiar with Zig, but also ready to find out I'm not as familiar with type systems as I thought.",
+    "id": 44847955,
+    "by": "loeg",
+    "timeISO": "2025-08-09T16:42:33.000Z",
+    "textPlain": "Just having a comptime unreachable feature seems pretty cool.  Common C++ compilers have the worst version of this with __builtin_unreachable() -- they don't do any verification the site is unreachable, and just let the optimizer go to town.  (I use/recommend runtime assert/fatal/abort over that behavior most days of the week.)",
     "parent": 44845017,
     "depth": 1
   },
@@ -32,10 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44847483,
-    "by": "uecker",
-    "timeISO": "2025-08-09T15:52:26.000Z",
-    "textPlain": "It is great to see other languages getting the same compile-time meta programming features as C ;-)https://godbolt.org/z/P1r49nTWo",
+    "id": 44847844,
+    "by": "agons",
+    "timeISO": "2025-08-09T16:29:17.000Z",
+    "textPlain": "Is there a reason the Zig compiler can't perform type-narrowing for `u` within the `U::A(_) | U::B(_)` \"guard\", rendering just the set of 2 cases entirely necessary and sufficient (obviating the need for any of the solutions in the blog post)?I'm not familiar with Zig, but also ready to find out I'm not as familiar with type systems as I thought.",
     "parent": 44845017,
     "depth": 1
   },
@@ -152,11 +152,11 @@
     "depth": 2
   },
   {
-    "id": 44848033,
-    "by": "rvrb",
-    "timeISO": "2025-08-09T16:50:22.000Z",
-    "textPlain": "it can narrow the payload: https://zigbin.io/7cb79dI think the post would be more helpful if it had a concrete use case. let's say a contrived bytecode VM:  dispatch: switch (instruction) {\n      inline .load0, .load1, .load2, .load3, .load => |_, tag| {\n          const slot = switch (tag) {\n              .load0, .load1, .load2, .load3 => @intFromEnum(tag) - @intFromEnum(.load0),\n              .load => self.read(u8),\n              else => comptime unreachable,\n          };\n          self.push(self.locals[slot]);\n          continue :dispatch self.read(Instruction);\n      },\n      // ...\n  }\n\n\"because comptime\", this is effectively the same runtime performance as the common:  dispatch: switch (instruction) {\n      .load0 => {\n          self.push(self.locals[0]);\n          continue :dispatch self.read(Instruction);\n      },\n      .load1 => {\n          self.push(self.locals[1]);\n          continue :dispatch self.read(Instruction);\n      },\n      .load2 => {\n          self.push(self.locals[2]);\n          continue :dispatch self.read(Instruction);\n      },\n      .load3 => {\n          self.push(self.locals[3]);\n          continue :dispatch self.read(Instruction);\n      },\n      .load => {\n          self.push(self.locals[self.read(u8)]);\n          continue :dispatch self.read(Instruction);\n      },\n      // ...\n  }\n\nand this is in a situation where this level of performance optimization is actually valuable to spend time on. it's nice that Zig lets you achieve it while reusing the logic.",
-    "parent": 44847844,
+    "id": 44848024,
+    "by": "loeg",
+    "timeISO": "2025-08-09T16:49:48.000Z",
+    "textPlain": "I didn't know godbolt let you include URLs. Fascinating: https://raw.githubusercontent.com/uecker/noplate/main/src/co...I think Zig gets some points here for legibility ;-).",
+    "parent": 44847483,
     "depth": 2
   },
   {
@@ -168,11 +168,11 @@
     "depth": 2
   },
   {
-    "id": 44848024,
-    "by": "loeg",
-    "timeISO": "2025-08-09T16:49:48.000Z",
-    "textPlain": "I didn't know godbolt let you include URLs. Fascinating: https://raw.githubusercontent.com/uecker/noplate/main/src/co...I think Zig gets some points here for legibility ;-).",
-    "parent": 44847483,
+    "id": 44848033,
+    "by": "rvrb",
+    "timeISO": "2025-08-09T16:50:22.000Z",
+    "textPlain": "it can narrow the payload: https://zigbin.io/7cb79dI think the post would be more helpful if it had a concrete use case. let's say a contrived bytecode VM:  dispatch: switch (instruction) {\n      inline .load, .load0, .load1, .load2, .load3 => |_, tag| {\n          const slot = switch (tag) {\n              .load => self.read(u8),\n              else => @intFromEnum(tag) - @intFromEnum(.load0),\n          };\n          self.push(self.locals[slot]);\n          continue :dispatch self.read(Instruction);\n      },\n      // ...\n  }\n\n\"because comptime\", this is effectively the same runtime performance as the common:  dispatch: switch (instruction) {\n      .load => {\n          self.push(self.locals[self.read(u8)]);\n          continue :dispatch self.read(Instruction);\n      },\n      .load0 => {\n          self.push(self.locals[0]);\n          continue :dispatch self.read(Instruction);\n      },\n      .load1 => {\n          self.push(self.locals[1]);\n          continue :dispatch self.read(Instruction);\n      },\n      .load2 => {\n          self.push(self.locals[2]);\n          continue :dispatch self.read(Instruction);\n      },\n      .load3 => {\n          self.push(self.locals[3]);\n          continue :dispatch self.read(Instruction);\n      },\n      // ...\n  }\n\nand this is in a situation where this level of performance optimization is actually valuable to spend time on. it's nice that Zig lets you achieve it while reusing the logic.",
+    "parent": 44847844,
     "depth": 2
   },
   {

@@ -1,5 +1,61 @@
 [
   {
+    "id": 44848594,
+    "by": "rickcarlino",
+    "timeISO": "2025-08-09T17:56:28.000Z",
+    "textPlain": "> SOAP, despite its verbosity, understood something that MCP doesn’tUnfortunately, no one understood SOAP back.(Additional context: Maintaining a legacy SOAP system. I have nothing good to say about SOAP and it should serve as a role model for no one)",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44848857,
+    "by": "btown",
+    "timeISO": "2025-08-09T18:26:29.000Z",
+    "textPlain": "If you want the things mentioned in this article, I highly recommend looking at https://github.com/modelcontextprotocol/modelcontextprotocol... and https://modelcontextprotocol.io/community/sep-guidelines and participating in the specification process.Point-by-point for the article's gripes:- distributed tracing/telemetry - open discussion at https://github.com/modelcontextprotocol/modelcontextprotocol...- structured tool annotation for parallelizability/side-effects/idempotence - this actually already exists at https://modelcontextprotocol.io/specification/2025-06-18/sch... but it's not well documented in https://modelcontextprotocol.io/specification/2025-06-18/ser... - someone should contribute to improving this!- a standardized way in which the costs associated with an MCP tool call can be communicated to the MCP Client and reported to central tracking - nothing here I see, but it's a really good idea!- serialization issues e.g. \"the server might report a date in a format unexpected by the client\" - this isn't wrong, but since the consumer of most tool responses is itself an LLM, there's a fair amount of mitigation here. And in theory an MCP Client can use an LLM to detect under-specified/ambiguous tool specifications, and could surface these issues to the integrator.Now, I can't speak to the speed at which Maintainers and Core Maintainers are keeping up with the community's momentum - but I think it's meaningful that the community has momentum for evolving the specification!I see this post in a highly positive light: MCP shows promise because you can iterate on these kinds of structured annotations, in the context of a community that is actively developing their MCP servers. Legacy protocols aren't engaging with these problems in the same way.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44848489,
+    "by": "abtinf",
+    "timeISO": "2025-08-09T17:43:53.000Z",
+    "textPlain": "I wish someone would write a clear, crisp explanation for why MCP is needed over simply supporting swagger or proto.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44848323,
+    "by": "mockingloris",
+    "timeISO": "2025-08-09T17:20:14.000Z",
+    "textPlain": "I read this thrice: ...When OpenAI bills $50,000 for last month’s API usage, can you tell which department’s MCP tools drove that cost? Which specific tool calls? Which individual users or use cases?...It seems to be a game of catch up for most things AI. That said, my school of thought is that certain technologies are just too big for them to be figured out early on - web frameworks, blockchain, ...- the gap starts to shrink eventually. With AI, we'll just have to keep sharing ideas and caution like you have here.\nSuch very interesting times we live in.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44848433,
+    "by": "zorked",
+    "timeISO": "2025-08-09T17:35:57.000Z",
+    "textPlain": "CORBA emerged in 1991 with another crucial insight: in heterogeneous environments, you can’t just “implement the protocol” in each language and hope for the best. The OMG IDL generated consistent bindings across C++, Java, Python, and more, ensuring that a C++ exception thrown by a server was properly caught and handled by a Java client. The generated bindings guaranteed that all languages saw identical interfaces, preventing subtle serialization differences.\n\nYes, CORBA was such a success.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44848879,
+    "by": "calvinmorrison",
+    "timeISO": "2025-08-09T18:29:08.000Z",
+    "textPlain": "MCP, aka, WSDL for REST",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44848517,
+    "by": "self_awareness",
+    "timeISO": "2025-08-09T17:46:46.000Z",
+    "textPlain": "What's new?- Electron disregards 40 years of best deployment practices,- Web disregards 40 years of best GUI practices,- Fast CPUs and lots of RAM disregards 40 years of best software optimization techniques,there are probably many more examples.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
     "id": 44846960,
     "by": "al2o3cr",
     "timeISO": "2025-08-09T14:51:36.000Z",
@@ -8,11 +64,75 @@
     "depth": 1
   },
   {
+    "id": 44848318,
+    "by": "gjsman-1000",
+    "timeISO": "2025-08-09T17:19:59.000Z",
+    "textPlain": "… or we’ll just invent MCP 2.0.On that note; some of these “best practices” arguably haven’t worked out. “Be conservative with what you send, liberal with what you receive” has turned even decent protocols into a dumpster fire, so why keep the charade going?",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44848671,
+    "by": "SoftTalker",
+    "timeISO": "2025-08-09T18:06:53.000Z",
+    "textPlain": "I have found that any protocol whose name includes the word \"Simple\" is anything but. So waiting for SMCP to appear....",
+    "parent": 44848594,
+    "depth": 2
+  },
+  {
+    "id": 44848803,
+    "by": "cyberax",
+    "timeISO": "2025-08-09T18:21:24.000Z",
+    "textPlain": "This is a very hilarious but apt SOAP description: https://harmful.cat-v.org/software/xml/soap/simpleAnd I actually like XML-based technologies. XML Schema is still unparalleled in its ability to compose and verify the format of multiple document types. But man, SOAP was such a beast for no real reason.Instead of a simple spec for remote calls, it turned into a spec that described everything and nothing at the same time. SOAP supported all kinds of transport protocols (SOAP over email? Sure!), RPC with remote handles (like CORBA), regular RPC, self-describing RPC (UDDI!), etc. And nothing worked out of the box, because the nitty-gritty details of authentication, caching, HTTP response code interoperability and other \"boring\" stuff were just left as an exercise to the reader.",
+    "parent": 44848594,
+    "depth": 2
+  },
+  {
+    "id": 44848678,
+    "by": "dragonwriter",
+    "timeISO": "2025-08-09T18:07:29.000Z",
+    "textPlain": "OpenAPI (or its Swagger predecessor) or Proto (I assume by this you mean protobuf?) don't cover what MCP does. It could have layered over them instead of using JSON-RPC, but I don't see any strong reason why they would be better than JSON-RPC as the basis (Swagger has communication assumptions that don't work well with MCP's local use case; protobuf doesn't cover communication at all and would require additional consideration in the protocol layered over it.)You'd still need basically the entire existing MCP spec to cover the use cases if it replaced JSON-RPC with Swagger or protobuf, plus additional material to cover the gaps and complications that that switch would involve.",
+    "parent": 44848489,
+    "depth": 2
+  },
+  {
+    "id": 44848643,
+    "by": "nikanj",
+    "timeISO": "2025-08-09T18:03:20.000Z",
+    "textPlain": "MCP is new",
+    "parent": 44848489,
+    "depth": 2
+  },
+  {
+    "id": 44848732,
+    "by": "antonymoose",
+    "timeISO": "2025-08-09T18:14:09.000Z",
+    "textPlain": "To be charitable, you can look at a commercially unsuccessful project and appreciate its technical brilliance.",
+    "parent": 44848433,
+    "depth": 2
+  },
+  {
     "id": 44847668,
     "by": "ComputerGuru",
     "timeISO": "2025-08-09T16:09:31.000Z",
     "textPlain": "They’re 100% orthogonal issues.",
     "parent": 44846960,
+    "depth": 2
+  },
+  {
+    "id": 44848766,
+    "by": "jmull",
+    "timeISO": "2025-08-09T18:17:41.000Z",
+    "textPlain": "Right...Failed protocols such as TCP adopted Postel's law as a guiding principle, and we all know how that worked out!",
+    "parent": 44848318,
+    "depth": 2
+  },
+  {
+    "id": 44848394,
+    "by": "rcarmo",
+    "timeISO": "2025-08-09T17:30:30.000Z",
+    "textPlain": "I’d rather we ditched MCP and used something that could leverage Swagger instead….",
+    "parent": 44848318,
     "depth": 2
   }
 ]

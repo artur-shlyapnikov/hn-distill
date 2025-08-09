@@ -1,9 +1,9 @@
 [
   {
-    "id": 44848262,
-    "by": "perching_aix",
-    "timeISO": "2025-08-09T17:13:35.000Z",
-    "textPlain": "Haven't worked with Cloudflare yet first hand, and I'm not familiar with web map tech. But if the site really is pretty much just serving lots of static files, why is Hetzner in the loop? Wouldn't fully migrating to Cloudflare Pages be possible?",
+    "id": 44848464,
+    "by": "Starlevel004",
+    "timeISO": "2025-08-09T17:39:41.000Z",
+    "textPlain": "> I believe what is happening is that those images are being drawn by some script-kiddies. If I understand correctly, the website limited everyone to 1 pixel per 30 seconds, so I guess everyone was just scripting Puppeteer/Chromium to start a new browser, click a pixel, and close the browser, possibly with IP address rotation, but maybe that wasn't even needed.I think you perhaps underestimate just how big of a thing this became basically overnight. I mentioned a drawing over my house to a few people and literally everyone instantly knew what I meant without even saying the website. People love /r/place style things every few years, and this having such a big canvas and being on a world map means that there is a lot of space for everyone to draw literally where they live.",
     "parent": 44846318,
     "depth": 1
   },
@@ -16,10 +16,34 @@
     "depth": 1
   },
   {
+    "id": 44848383,
+    "by": "andai",
+    "timeISO": "2025-08-09T17:29:17.000Z",
+    "textPlain": "From the screenshot I wanted to say, couldn't this be done on a single VPS? Seemed over engineered to me. Then I realized the silly pixels are on top of a map of the entire earth. Dang!I'm curious what the peak req/s is like. I think it might be just barely within the range supported by benchmark-friendly web servers.Unless there's some kind of order of magnitude slowdowns due to the nature of the application.Edit: Looks like about 64 pixels per km (4096 per km^2). At full color uncompressed that's about 8TB to cover the entire earth (thinking long-term!). 10TB box is €20/month from Hetzner. You'd definitely want some caching though ;)Edit 2: wplace uses 1000x1000 px pngs for the drawing layer. The drawings load instantly, while the map itself is currently very laggy, and some chunks permanently missing.",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
     "id": 44847695,
     "by": "ch33zer",
     "timeISO": "2025-08-09T16:12:37.000Z",
     "textPlain": "Since the limit you ran into was number of open files could you just raise that limit? I get blocking the spammy traffic but theoretically could you have handled more if that limit was upped?",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44848574,
+    "by": "hoppp",
+    "timeISO": "2025-08-09T17:53:57.000Z",
+    "textPlain": "Cool... You did well to ban them.Its a ddos attack, lucky you dont have to pay for the brandwidth, then its a denial of wallet",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44848262,
+    "by": "perching_aix",
+    "timeISO": "2025-08-09T17:13:35.000Z",
+    "textPlain": "Haven't worked with Cloudflare yet first hand, and I'm not familiar with web map tech. But if the site really is pretty much just serving lots of static files, why is Hetzner in the loop? Wouldn't fully migrating to Cloudflare Pages be possible?",
     "parent": 44846318,
     "depth": 1
   },
@@ -96,14 +120,6 @@
     "depth": 1
   },
   {
-    "id": 44848302,
-    "by": "internetter",
-    "timeISO": "2025-08-09T17:17:54.000Z",
-    "textPlain": "The tiles need to be rendered. Yes frequent tiles can be cached but you already have a cache… it’s Cloudflare. Theoretically you could port the tileserver to Cloudflare pages but then you’d need to… port it… and it probably wouldn’t be cheaper",
-    "parent": 44848262,
-    "depth": 2
-  },
-  {
     "id": 44846929,
     "by": "hyperknot",
     "timeISO": "2025-08-09T14:48:20.000Z",
@@ -120,11 +136,11 @@
     "depth": 2
   },
   {
-    "id": 44847417,
-    "by": "VladVladikoff",
-    "timeISO": "2025-08-09T15:46:52.000Z",
-    "textPlain": "I actually have a direct answer for this: priorities. \nI run a fairly popular auction website and we have map tiles via stadia maps. We spend about $80/month on this service for our volume. We definitely could get this cost down to a lower tier by caching the tiles and serving them from our proxy. However we simply haven’t yet had the time to work on this, as there is always some other task which is higher priority.",
-    "parent": 44847331,
+    "id": 44848302,
+    "by": "internetter",
+    "timeISO": "2025-08-09T17:17:54.000Z",
+    "textPlain": "The tiles need to be rendered. Yes frequent tiles can be cached but you already have a cache… it’s Cloudflare. Theoretically you could port the tileserver to Cloudflare pages but then you’d need to… port it… and it probably wouldn’t be cheaper",
+    "parent": 44848262,
     "depth": 2
   },
   {
@@ -132,6 +148,14 @@
     "by": "toast0",
     "timeISO": "2025-08-09T16:49:30.000Z",
     "textPlain": "Why should they when openfreemap is behind a CDN and their home page says things like:> Using our public instance is completely free: there are no limits on the number of map views or requests. There’s no registration, no user database, no API keys, and no cookies. We aim to cover the running costs of our public instance through donations.> Is commercial usage allowed?> Yes.IMHO, reading this and then just using it, makes a lot of sense. Yeah, you could put a cache infront of their CDN, but why, when they said it's all good, no limits, for free?I might wonder a bit, if I knew the bandwidth it was using, but I might be busy with other stuff if my site went unexpectedly viral.",
+    "parent": 44847331,
+    "depth": 2
+  },
+  {
+    "id": 44847417,
+    "by": "VladVladikoff",
+    "timeISO": "2025-08-09T15:46:52.000Z",
+    "textPlain": "I actually have a direct answer for this: priorities. \nI run a fairly popular auction website and we have map tiles via stadia maps. We spend about $80/month on this service for our volume. We definitely could get this cost down to a lower tier by caching the tiles and serving them from our proxy. However we simply haven’t yet had the time to work on this, as there is always some other task which is higher priority.",
     "parent": 44847331,
     "depth": 2
   },
@@ -156,6 +180,14 @@
     "by": "hyperknot",
     "timeISO": "2025-08-09T15:02:23.000Z",
     "textPlain": "What if one user really wants to browse around the world and explore the map. I remember spending half an hour in Google Earth desktop, just exploring around interesting places.I think referer based limits are better, this way I can ask high users to please choose self-hosting instead of the public instance.",
+    "parent": 44846988,
+    "depth": 2
+  },
+  {
+    "id": 44848434,
+    "by": "toast0",
+    "timeISO": "2025-08-09T17:36:02.000Z",
+    "textPlain": "Limiting by referrer is probably the right first step. (And changing the front page text)You want to track usage by the site, not the person, because you can ask a site to change usage patterns in a way you can't really ask a site's users. Maybe a per IP limit makes sense too, but you wouldn't want them low enough that it would be effective for something like this.",
     "parent": 44846988,
     "depth": 2
   },
