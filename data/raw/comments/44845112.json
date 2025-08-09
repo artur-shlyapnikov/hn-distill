@@ -1,9 +1,81 @@
 [
   {
+    "id": 44845948,
+    "by": "mxmlnkn",
+    "timeISO": "2025-08-09T12:19:30.000Z",
+    "textPlain": "I concur with most of these arguments, especially about longevity. But, this only applies to smallish files like configurations because I don't agree with the last paragraph regarding its efficiency.I have had to work with large 1GB+ JSON files, and it is not fun. Amazing projects such as jsoncons for streaming JSONs, and simdjson, for parsing JSON with SIMD, exist, but as far as I know, the latter still does not support streaming and even has an open issue for files larger than 4 GiB. So you cannot have streaming for memory efficiency and SIMD-parsing for computational efficiency at the same time. You want streaming because holding the whole JSON in memory is wasteful and sometimes not even possible. JSONL tries to change the format to fix that, but now you have another format that you need to support.I was also contemplating the mentioned formats for another project, but they are hardly usable when you need to store binary data, such as images, compressed data, or simply arbitrary data. Storing binary data as base64 strings seems wasteful. Random access into these files is also an issue, depending on the use case. Sometimes it would be a nice feature to jump over some data, but for JSON, you cannot do that without parsing everything in search of the closing bracket or quotes, accounting for escaped brackets and quotes, and nesting.",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44845955,
+    "by": "mriet",
+    "timeISO": "2025-08-09T12:20:58.000Z",
+    "textPlain": "I can understand this for \"small\" data, say less than 10 Mb.In bioinformatics, basically all of the file formats are human-readable/text based. And file sizes range between 1-2Mb and 1 Tb. I regularly encounter 300-600 Gb files.In this context, human-readable files are ridiculously inefficient, on every axis you can think of (space, parsing, searching, processing, etc.). It's a GD crime against efficiency.And at that scale, \"readable\" has no value, since it would take you longer to read the file than 10 lifetimes.",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44845788,
+    "by": "bregma",
+    "timeISO": "2025-08-09T11:48:46.000Z",
+    "textPlain": "I journeyed from fancy commercial bookkeeping systems that changed data formats every few years (with no useful migration) to GNU Cash and finally to Plain-Text Accounting. I can finally get the information I need with easy backups (through VCS) and flexibility (through various tools that transform the data). The focus is on content, not tools or presentation or product.When I write I write text. I can transform text using various tools to provide various presentations consumable through various products. The focus is on content, not presentation, tools, or product.I prefer human-readable file formats, and that has only been reinforced over more than 4 decades as a computer professional.",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
     "id": 44845625,
     "by": "JdeBP",
     "timeISO": "2025-08-09T11:17:37.000Z",
     "textPlain": "Given that the author mentions CSV and text table formats, the article's list of the \"entire Unix toolchain\" is significantly impoverished not only by the lack of ex (which is usefully scriptable) but by the lack of mlr.* https://miller.readthedocs.io/vis/unvis are fairly important tools for those text tables, too.Also, FediVerse discussion: https://social.pollux.casa/@adele/statuses/01K1VA9NQSST4KDZP...",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44846065,
+    "by": "kamatour",
+    "timeISO": "2025-08-09T12:43:01.000Z",
+    "textPlain": "Readable files are great… until they’re 1TB and you just want to cry.",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44846054,
+    "by": "adregan",
+    "timeISO": "2025-08-09T12:40:22.000Z",
+    "textPlain": "Are there any binary formats that include the specification in the format itself?",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44845712,
+    "by": "refactor_master",
+    "timeISO": "2025-08-09T11:37:06.000Z",
+    "textPlain": "Clearly there’s a very real need for binary data formats, or we wouldn’t have them. For one, it’s much more space efficient. Does the author know how much storage cost in 1985? Or how slow computers were?If I time traveled back to 1985 and told corporate to adopt CSV because it’d be useful in 50 years when unearthing old customer records I’d be laughed out of the cigar lounge.",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44845962,
+    "by": "codr7",
+    "timeISO": "2025-08-09T12:23:13.000Z",
+    "textPlain": "I'll take sexprs over CSV/JSON/YAML/XML any day.",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44845979,
+    "by": "ape4",
+    "timeISO": "2025-08-09T12:26:09.000Z",
+    "textPlain": "Lets hear it for RTF for documents",
+    "parent": 44845112,
+    "depth": 1
+  },
+  {
+    "id": 44845691,
+    "by": "IanCal",
+    "timeISO": "2025-08-09T11:31:53.000Z",
+    "textPlain": "> Unlike binary formats or database dumps, these files don't hide their meaning behind layers of abstraction. They're built for clarity, for resilience, and for people who like to know what's going on under the hood.Csv files hide their meaning in external documentation or someone’s head, are extremely unclear in many cases (is this a number or a string? A date?) and is extremely fragile when it comes to people editing them in text editors. They entirely lack checks and verification at the most basic level and worse still they’re often but not always perfectly line based. Many tools then work fine until they completely break you file and you won’t even know. Until I get the file and tell you I guess.I’ve spent years fixing issues introduced by people editing them like they’re text.If you’ve got to use tools to not completely bugger them then you might as well use a good format.",
     "parent": 44845112,
     "depth": 1
   },
@@ -14,6 +86,70 @@
     "textPlain": "Do you have the Gemini:// URL? I’m getting a URL resolution error.",
     "parent": 44845112,
     "depth": 1
+  },
+  {
+    "id": 44846091,
+    "by": "andreypopp",
+    "timeISO": "2025-08-09T12:46:59.000Z",
+    "textPlain": "try clickhouse-local, it's amazing how it can crunch JSON/TSV or whatever at great speed",
+    "parent": 44845948,
+    "depth": 2
+  },
+  {
+    "id": 44845998,
+    "by": "graemep",
+    "timeISO": "2025-08-09T12:29:26.000Z",
+    "textPlain": "I do not think the argument is that ALL data should be in human readable form, but I think there are far more cases of data being in a binary form when it would be better human readable. Your example of a case where it is human readable when it should be binary is rarer for most of us.In some cases human readable data is for interchange and it should be processed and queried in other forms - e.g. CSV files to move data between databases.An awful lot of data is small - and these days I think you can say small is quite a bit bigger than 10Mb.Quite a lot of data that is extracted from a large system would be small at that point, and would benefit from being human readable.The benefit of data being human readable is not necessarily that you will read it all, but that it is easier to read bits that matter when you are debugging.",
+    "parent": 44845955,
+    "depth": 2
+  },
+  {
+    "id": 44845695,
+    "by": "hebocon",
+    "timeISO": "2025-08-09T11:34:36.000Z",
+    "textPlain": "Wow, I've never heard of 'mlr' before. Looks like a synthesis of Unix tools, jq, and others? Very useful - hopefully it's packaged everywhere for easy access.",
+    "parent": 44845625,
+    "depth": 2
+  },
+  {
+    "id": 44846079,
+    "by": "LoganDark",
+    "timeISO": "2025-08-09T12:44:55.000Z",
+    "textPlain": "To be fair, nothing's great when I want to cry.",
+    "parent": 44846065,
+    "depth": 2
+  },
+  {
+    "id": 44845961,
+    "by": "graemep",
+    "timeISO": "2025-08-09T12:22:52.000Z",
+    "textPlain": "Except there are many things for which we used human readable formats in the 1980s for  which we use binary formats now - HTTP headers, for example.CSV was definitely in wide use back then.Text formats are compressible.",
+    "parent": 44845712,
+    "depth": 2
+  },
+  {
+    "id": 44845834,
+    "by": "burnt-resistor",
+    "timeISO": "2025-08-09T11:57:18.000Z",
+    "textPlain": "I guess you've never used UNIX or understood the philosophy.https://en.wikipedia.org/wiki/Unix_philosophyThere already exist a bazillion binary serialization formats: protobufs, thrift, msgpack, capnproto, etc. but these all suffer from human inaccessibility. Generally, they should be used only when performance becomes a severe limiting factor but never before or it's likely a sign of premature optimization.",
+    "parent": 44845712,
+    "depth": 2
+  },
+  {
+    "id": 44845884,
+    "by": "burnt-resistor",
+    "timeISO": "2025-08-09T12:06:07.000Z",
+    "textPlain": "They're standardized[0], so it's only stupid humans screwing them up.Maybe you need a database or an app rather than flat files.0. https://www.ietf.org/rfc/rfc4180.txt",
+    "parent": 44845691,
+    "depth": 2
+  },
+  {
+    "id": 44845908,
+    "by": "fireflash38",
+    "timeISO": "2025-08-09T12:10:55.000Z",
+    "textPlain": "If you're reading in data, you need to parse and verify it anyway.",
+    "parent": 44845691,
+    "depth": 2
   },
   {
     "id": 44845457,

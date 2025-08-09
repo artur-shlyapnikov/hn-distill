@@ -1,0 +1,8 @@
+{
+  "id": 44799929,
+  "lang": "ru",
+  "summary": "В 2018-м SparcStation 1+ выдавал «Illegal Instruction» при любой попытке загрузки. Советы заменить батарейку PROM я проигнорировал и спрятал машину в угол.\n\nЧерез пару недель вернулся: вытащил винт Quantum ProDrive с прошивкой Apple (SCSI ID 0, прыжков нет). Без диска станция перестала ругаться на «illegal instruction» и даже принимала `boot sd(0,0,0)vmunix`. Вернул диск — «SCSI device is not responding». После «лечения» винт зашумел, но ошибка сохранилась.\n\nНа Usenet 1995-го нашёл, что IPX загружается с `sd(0,3,0)`: прошивка Sun перенаправляет ID 0 → 3. Попробовал — «bad magic number in disk label», затем «non-executable file».\n\nДобавил второй винт Quantum Viking 2,2 ГБ. Таблица экспериментов:\n\n|  | Viking слева | ProDrive слева | Пусто слева |\n|---|---|---|---|\n| Viking справа | — | «SCSI bus hung» | «Bad magic» |\n| ProDrive справа | висит | — | «Bad magic» |\n| Пусто справа | висит | «Bad magic» | висит |\n\nКонфликт ID 0 объяснял «hung», но почему зависает и без дисков? Загадка.",
+  "inputHash": "0e7a1832624053189de55fa5217369bc7de8fdf3bead331f0f048753ddb04014",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-09T12:51:08.890Z"
+}

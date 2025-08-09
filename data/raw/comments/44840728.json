@@ -104,18 +104,18 @@
     "depth": 1
   },
   {
-    "id": 44841738,
-    "by": "simne",
-    "timeISO": "2025-08-08T21:12:13.000Z",
-    "textPlain": "It is not just engineering. There are also huge, very huge, investments into infrastructure.As already answered, AI companies use extremely expensive setups (servers with professional cards) in large numbers and all these things concentrated in big datcenters with powerful networking and huge power consumption.Imagine - last time, so huge investments (~1.2% of GDP, and unknown if investments will grow or not) was into telecom infrastructure - mostly wired telephones, but also cable TV and later added Internet and cell communications and clouds (in some countries wired phones just don't cover whole country and they jumped directly into wireless communications).Larger investments was into railroads - ~6% of GDP (and I'm also not sure, some people said, AI will surpass them as share of possible for AI tasks constantly grow).So to conclude, just now AI boom looks like main consumer of telecom (Internet) and cloud infrastructure. If you've seen old mainframes in datacenters, and extremely thick core network cables (with hundreds wires or fibers in just one cable), and huge satellite dishes, you could imagine, what I'm talking about.And yes, I'm not sure, will this boom end like dot-coms (Y2K), or such huge usage of resources will sustain. Why it is not obvious, because for telecoms (internet) also was unknown, if people will use phones and other p2p communications for leisure as now, or will leave phones just for work. Even worse, if AI agents become ordinary things, possible scenario, number of AI agents will surpass number of people.",
+    "id": 44841572,
+    "by": "rythie",
+    "timeISO": "2025-08-08T20:51:31.000Z",
+    "textPlain": "First off I’d say you can run models locally at good speed, llama3.1:8b runs fine a MacBook Air M2 with 16GB RAM and much better on a Nvidia RTX3050 which are fairly affordable.For OpenAI, I’d assume that a GPU is dedicated to your task from the point you press enter to the point it finishes writing. I would think most of the 700 million barely use ChatGPT and a small proportion use it a lot and likely would need to pay due to the limits. Most of the time you have the website/app open I’d think you are either reading what it has written, writing something or it’s just open in the background, so ChatGPT isn’t doing anything in that time. If we assume 20 queries a week taking 25 seconds each. That’s 8.33 minutes a week. That would mean a single GPU could serve up to 1209 users, meaning for 700 million users you’d need at least 578,703 GPUs. Sam Altman has said OpenAI is due to have over a million GPUs by the end of year.I’ve found that the inference speed on newer GPUs is barely faster than older ones (perhaps it’s memory speed limited?). They could be using older clusters of V100, A100 or even H100 GPUs for inference if they can get the model to fit or multiple GPUs if it doesn’t fit. A100s were available in 40GB and 80GB versions.I would think they use a queuing system to allocate your message to a GPU. Slurm is widely used in HPC compute clusters, so might use that, though likely they have rolled their own system for inference.",
     "parent": 44840728,
     "depth": 1
   },
   {
-    "id": 44844765,
-    "by": "lhl",
-    "timeISO": "2025-08-09T07:39:40.000Z",
-    "textPlain": "A few people have mentioned looking a the vLLM docs and blog (recommended!). I'd also recommend SGLang's docs and blog as well.If you're interested in a bit of a deeper dive, I can highly recommend reading some of what DeepSeek has published: https://arxiv.org/abs/2505.09343 (and actually quite a few of their Technical Reports and papers).I'd also say that while the original GPT-4 was a huge model when it was originally released (rumored 1.7T-A220B), these days you can get (original release) \"GPT-4-class\" performance at ~30B dense/100B sparse MoE - and almost all the leading MoEs have between 12-37B activations no matter how big they get - Kimi K2 (1T param weights) has only 32B activations). If you do a basic quants (FP8/INT8) you can easily push 100+ tok/s on pretty bog standard data center GPUs/nodes. You quant even lower for even better speeds (tg is just MBW) for not much in quality loss (although for open source kernels, usually without getting much overall throughput or latency improvements).A few people have mentioned speculative decoding, if you want to learn more, I'd recommend taking a look at the papers for one of the (IMO) best open techniques, EAGLE: https://github.com/SafeAILab/EAGLEThe other thing that is often ignored, especially for multiturn that I haven't seen mentioned yet is better caching, specifically prefix caching (radix-tree, block-level hash) or tiered/offloaded kvcaches (LMCache as one example). If you search for those keywords, you'll find lots there as well.",
+    "id": 44841738,
+    "by": "simne",
+    "timeISO": "2025-08-08T21:12:13.000Z",
+    "textPlain": "It is not just engineering. There are also huge, very huge, investments into infrastructure.As already answered, AI companies use extremely expensive setups (servers with professional cards) in large numbers and all these things concentrated in big datcenters with powerful networking and huge power consumption.Imagine - last time, so huge investments (~1.2% of GDP, and unknown if investments will grow or not) was into telecom infrastructure - mostly wired telephones, but also cable TV and later added Internet and cell communications and clouds (in some countries wired phones just don't cover whole country and they jumped directly into wireless communications).Larger investments was into railroads - ~6% of GDP (and I'm also not sure, some people said, AI will surpass them as share of possible for AI tasks constantly grow).So to conclude, just now AI boom looks like main consumer of telecom (Internet) and cloud infrastructure. If you've seen old mainframes in datacenters, and extremely thick core network cables (with hundreds wires or fibers in just one cable), and huge satellite dishes, you could imagine, what I'm talking about.And yes, I'm not sure, will this boom end like dot-coms (Y2K), or such huge usage of resources will sustain. Why it is not obvious, because for telecoms (internet) also was unknown, if people will use phones and other p2p communications for leisure as now, or will leave phones just for work. Even worse, if AI agents become ordinary things, possible scenario, number of AI agents will surpass number of people.",
     "parent": 44840728,
     "depth": 1
   },
@@ -128,18 +128,26 @@
     "depth": 1
   },
   {
-    "id": 44845366,
-    "by": "gabrieledarrigo",
-    "timeISO": "2025-08-09T10:20:06.000Z",
-    "textPlain": "How is the routing to the hardware available?\nLet's say that a request hit the datacenter, how is it routed to an available GPU in a rack?",
+    "id": 44844765,
+    "by": "lhl",
+    "timeISO": "2025-08-09T07:39:40.000Z",
+    "textPlain": "A few people have mentioned looking a the vLLM docs and blog (recommended!). I'd also recommend SGLang's docs and blog as well.If you're interested in a bit of a deeper dive, I can highly recommend reading some of what DeepSeek has published: https://arxiv.org/abs/2505.09343 (and actually quite a few of their Technical Reports and papers).I'd also say that while the original GPT-4 was a huge model when it was originally released (rumored 1.7T-A220B), these days you can get (original release) \"GPT-4-class\" performance at ~30B dense/100B sparse MoE - and almost all the leading MoEs have between 12-37B activations no matter how big they get - Kimi K2 (1T param weights) has only 32B activations). If you do a basic quants (FP8/INT8) you can easily push 100+ tok/s on pretty bog standard data center GPUs/nodes. You quant even lower for even better speeds (tg is just MBW) for not much in quality loss (although for open source kernels, usually without getting much overall throughput or latency improvements).A few people have mentioned speculative decoding, if you want to learn more, I'd recommend taking a look at the papers for one of the (IMO) best open techniques, EAGLE: https://github.com/SafeAILab/EAGLEThe other thing that is often ignored, especially for multiturn that I haven't seen mentioned yet is better caching, specifically prefix caching (radix-tree, block-level hash) or tiered/offloaded kvcaches (LMCache as one example). If you search for those keywords, you'll find lots there as well.",
     "parent": 44840728,
     "depth": 1
   },
   {
-    "id": 44841572,
-    "by": "rythie",
-    "timeISO": "2025-08-08T20:51:31.000Z",
-    "textPlain": "First off I’d say you can run models locally at good speed, llama3.1:8b runs fine a MacBook Air M2 with 16GB RAM and much better on a Nvidia RTX3050 which are fairly affordable.For OpenAI, I’d assume that a GPU is dedicated to your task from the point you press enter to the point it finishes writing. I would think most of the 700 million barely use ChatGPT and a small proportion use it a lot and likely would need to pay due to the limits. Most of the time you have the website/app open I’d think you are either reading what it has written, writing something or it’s just open in the background, so ChatGPT isn’t doing anything in that time. If we assume 20 queries a week taking 25 seconds each. That’s 8.33 minutes a week. That would mean a single GPU could serve up to 1209 users, meaning for 700 million users you’d need at least 578,703 GPUs. Sam Altman has said OpenAI is due to have over a million GPUs by the end of year.I’ve found that the inference speed on newer GPUs is barely faster than older ones (perhaps it’s memory speed limited?). They could be using older clusters of V100, A100 or even H100 GPUs for inference if they can get the model to fit or multiple GPUs if it doesn’t fit. A100s were available in 40GB and 80GB versions.I would think they use a queuing system to allocate your message to a GPU. Slurm is widely used in HPC compute clusters, so might use that, though likely they have rolled their own system for inference.",
+    "id": 44842902,
+    "by": "kazinator",
+    "timeISO": "2025-08-08T23:54:44.000Z",
+    "textPlain": "One trick is that multiple prompts are combined into a batch that is subject to the token prediction simultaneously.I've had Google Gemini start talking to be in the context of someone else's chat, unrelated to mine.ME: Does POSIX have any API for creating a filesystem object (such as a file) with a predetermined inode number supplied by the caller?AI: <reformats my question into LaTeX syntax, out of the blue>  \\documentclass{article}\n  \\usepackage{amsmath}\n  \\usepackage{amsfonts}\n  \\usepackage{amssymb}\n  \\begin{document}\n  \\section*{Does POSIX have any API for creating a filesystem object with a predetermined inode number supplied by the caller?}\n  \\textbf{No, POSIX does not provide a standard API for creating a filesystem object (like a file or directory) with a caller-specified inode number.}\n\n  \\subsection*{Inode Allocation in POSIX Filesystems}\n  [... SNIP]\n\nME: Why are you spewing LaTeX syntax at me?AI: You are absolutely right! My apologies. That was a mistake on my part. I got carried away with the instruction to use LaTeX for mathematical and scientific notations and incorrectly applied it to the entire response. [... SNIP]There was no such instruction. I've never chatted with any AI about LaTeX. it leaked from the tokens of someone else's chat.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44845878,
+    "by": "swah",
+    "timeISO": "2025-08-09T12:04:42.000Z",
+    "textPlain": "Time sharing of their really powerful systems.",
     "parent": 44840728,
     "depth": 1
   },
@@ -160,10 +168,10 @@
     "depth": 1
   },
   {
-    "id": 44842902,
-    "by": "kazinator",
-    "timeISO": "2025-08-08T23:54:44.000Z",
-    "textPlain": "One trick is that multiple prompts are combined into a batch that is subject to the token prediction simultaneously.I've had Google Gemini start talking to be in the context of someone else's chat, unrelated to mine.ME: Does POSIX have any API for creating a filesystem object (such as a file) with a predetermined inode number supplied by the caller?AI: <reformats my question into LaTeX syntax, out of the blue>  \\documentclass{article}\n  \\usepackage{amsmath}\n  \\usepackage{amsfonts}\n  \\usepackage{amssymb}\n  \\begin{document}\n  \\section*{Does POSIX have any API for creating a filesystem object with a predetermined inode number supplied by the caller?}\n  \\textbf{No, POSIX does not provide a standard API for creating a filesystem object (like a file or directory) with a caller-specified inode number.}\n\n  \\subsection*{Inode Allocation in POSIX Filesystems}\n  [... SNIP]\n\nME: Why are you spewing LaTeX syntax at me?AI: You are absolutely right! My apologies. That was a mistake on my part. I got carried away with the instruction to use LaTeX for mathematical and scientific notations and incorrectly applied it to the entire response. [... SNIP]There was no such instruction. I've never chatted with any AI about LaTeX. it leaked from the tokens of someone else's chat.",
+    "id": 44845366,
+    "by": "gabrieledarrigo",
+    "timeISO": "2025-08-09T10:20:06.000Z",
+    "textPlain": "How is the routing to the hardware available?\nLet's say that a request hit the datacenter, how is it routed to an available GPU in a rack?",
     "parent": 44840728,
     "depth": 1
   },
@@ -224,18 +232,18 @@
     "depth": 1
   },
   {
-    "id": 44842141,
-    "by": "dan-robertson",
-    "timeISO": "2025-08-08T22:02:11.000Z",
-    "textPlain": "I think it’s some combination of:- the models are not too big for the cards. Specifically, they know the cards they have and they modify the topology of the model to fit their hardware well- lots of optimisations. Eg the most trivial implementation of transformer-with-attention inference is going to be quadratic in the size of your output but actual implementations are not quadratic. Then there are lots of small things: tracing the specific model running on the specific gpu, optimising kernels, etc- more costs are amortized. Your hardware is relatively expensive because it is mostly sitting idle. AI company hardware gets much more utilization and therefore can be relatively more expensive hardware, where customers are mostly paying for energy.",
-    "parent": 44840728,
-    "depth": 1
-  },
-  {
     "id": 44841184,
     "by": "captainmuon",
     "timeISO": "2025-08-08T20:13:12.000Z",
     "textPlain": "I work at a university data center, although not on LLMs. We host state of the art models for a large number of users. As far as I understand, there is no secret sauce. We just have a big GPU cluster with a batch system, where we spin up jobs to run certain models. The tricky part for us is to have the various models available on demand with no waiting time.But I also have to say 700M weekly users could mean 100M daily or 70k a minute (low ball estimate with no returning users...) is a lot, but achievable at startup scale. I don't have out current numbers but we are several orders of magnitude smaller of course :-)The big difference to home use is the amount of VRAM. Large VRAM GPUs such as H100 are gated being support contracts and cost 20k. Theoretically you could buy a Mac Pro with a ton of RAM as an individual if you wanted to run auch models yourself.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44842141,
+    "by": "dan-robertson",
+    "timeISO": "2025-08-08T22:02:11.000Z",
+    "textPlain": "I think it’s some combination of:- the models are not too big for the cards. Specifically, they know the cards they have and they modify the topology of the model to fit their hardware well- lots of optimisations. Eg the most trivial implementation of transformer-with-attention inference is going to be quadratic in the size of your output but actual implementations are not quadratic. Then there are lots of small things: tracing the specific model running on the specific gpu, optimising kernels, etc- more costs are amortized. Your hardware is relatively expensive because it is mostly sitting idle. AI company hardware gets much more utilization and therefore can be relatively more expensive hardware, where customers are mostly paying for energy.",
     "parent": 44840728,
     "depth": 1
   },
@@ -256,14 +264,6 @@
     "depth": 1
   },
   {
-    "id": 44844345,
-    "by": "Ozzie_osman",
-    "timeISO": "2025-08-09T05:55:39.000Z",
-    "textPlain": "My mental model is: \"How can an airline move 100 customers from NY to LA with such low latency, when my car can't even move me without painfully slow speeds\".Different hardware, batching, etc.",
-    "parent": 44840728,
-    "depth": 1
-  },
-  {
     "id": 44841520,
     "by": "aziis98",
     "timeISO": "2025-08-08T20:44:56.000Z",
@@ -272,18 +272,10 @@
     "depth": 1
   },
   {
-    "id": 44844173,
-    "by": "gniv",
-    "timeISO": "2025-08-09T05:11:24.000Z",
-    "textPlain": "I would also point out that 700 million per week is not that much. It probably translated to thousands of qps, which is \"easily\" served by thousands of big machines.",
-    "parent": 44840728,
-    "depth": 1
-  },
-  {
-    "id": 44842782,
-    "by": "nbardy",
-    "timeISO": "2025-08-08T23:35:04.000Z",
-    "textPlain": "The serving infrastructure becomes very efficient when serving requests in parallel.Look at VLLM. It's the top open source version of this.But the idea is you can service 5000 or so people in parallel.You get about 1.5-2x slowdown on per token speed per user, but you get 2000x-3000x throughput on the server.The main insight is that memory bandwidth is the main bottleneck so if you batch requests and use a clever KV cache along with the batching you can drastically increase parallel throughput.",
+    "id": 44844345,
+    "by": "Ozzie_osman",
+    "timeISO": "2025-08-09T05:55:39.000Z",
+    "textPlain": "My mental model is: \"How can an airline move 100 customers from NY to LA with such low latency, when my car can't even move me without painfully slow speeds\".Different hardware, batching, etc.",
     "parent": 44840728,
     "depth": 1
   },
@@ -292,6 +284,14 @@
     "by": "suspended_state",
     "timeISO": "2025-08-08T19:48:50.000Z",
     "textPlain": "Look for positron.ai talks about their tech, they discuss their approach to scaling LLM workloads with their dedicated hardware. It may not be what is done by OpenAI or other vendors, but you'll get an idea of the underlying problems.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44842782,
+    "by": "nbardy",
+    "timeISO": "2025-08-08T23:35:04.000Z",
+    "textPlain": "The serving infrastructure becomes very efficient when serving requests in parallel.Look at VLLM. It's the top open source version of this.But the idea is you can service 5000 or so people in parallel.You get about 1.5-2x slowdown on per token speed per user, but you get 2000x-3000x throughput on the server.The main insight is that memory bandwidth is the main bottleneck so if you batch requests and use a clever KV cache along with the batching you can drastically increase parallel throughput.",
     "parent": 44840728,
     "depth": 1
   },
@@ -312,10 +312,10 @@
     "depth": 1
   },
   {
-    "id": 44841261,
-    "by": "nestorD",
-    "timeISO": "2025-08-08T20:19:08.000Z",
-    "textPlain": "The first step is to acquire hardware fast enough to run one query quickly (and yes, for some model size you are looking at sharding the model and distributed runs). The next one is to batch request, improving GPU use significantly.Take a look at vLLM for an open source solution that is pretty close to the state of the art as far as handling many user queries:https://docs.vllm.ai/en/stable/",
+    "id": 44844173,
+    "by": "gniv",
+    "timeISO": "2025-08-09T05:11:24.000Z",
+    "textPlain": "I would also point out that 700 million per week is not that much. It probably translated to thousands of qps, which is \"easily\" served by thousands of big machines.",
     "parent": 44840728,
     "depth": 1
   }

@@ -1,9 +1,9 @@
 [
   {
-    "id": 44845594,
-    "by": "gnat",
-    "timeISO": "2025-08-09T11:12:42.000Z",
-    "textPlain": "The newsletter this is from is full of very clear writing about SQL, practically applying theory without getting lost in a tangle of database theory jargon. If you need to read or write SQL then I think you’ll find it as interesting as I have.",
+    "id": 44845987,
+    "by": "reactordev",
+    "timeISO": "2025-08-09T12:27:31.000Z",
+    "textPlain": ">Note also that the order of columns matters! We need to clearly understand which ID is the manager and which ID is the team member.If it were true 6NF than no, you don’t need to order, you need to make sure your naming conventions are on point.`id` is good. `manager_id` is good. `parent_id` a little less so but still practical when abstracting away the business vernacular from the logical problem.Other than that, everything was good. Attributes vs links trip up even the most seasoned devs. If you have a grouping of 3 or more attributes that relate, consider making it a link and splitting it off into its own table, normalizing your data further.",
     "parent": 44844897,
     "depth": 1
   },
@@ -14,5 +14,21 @@
     "textPlain": "It's considered to be \"`exotic`, `academic`, `never used in practice`, etc., etc.\" because for some reason most of the DB people believe that 1 relation in the data model should map to exactly 1 table/B-tree in the database — and of course, the 6NF then becomes ridiculous.But the relational model from the very beginning was about abstracting the concerns about how, exactly, those relaltions are supposed to be implemented/stored, and concentrating more on the conceptual API for querying.",
     "parent": 44844897,
     "depth": 1
+  },
+  {
+    "id": 44845594,
+    "by": "gnat",
+    "timeISO": "2025-08-09T11:12:42.000Z",
+    "textPlain": "The newsletter this is from is full of very clear writing about SQL, practically applying theory without getting lost in a tangle of database theory jargon. If you need to read or write SQL then I think you’ll find it as interesting as I have.",
+    "parent": 44844897,
+    "depth": 1
+  },
+  {
+    "id": 44846002,
+    "by": "reactordev",
+    "timeISO": "2025-08-09T12:30:00.000Z",
+    "textPlain": "A good engineer will design normal form data and use objects with an orm that represent that. Possibly even abstracting further in order to have good business models. Bad engineers try to shoe horn an object into a table.",
+    "parent": 44845369,
+    "depth": 2
   }
 ]

@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44845980,
+    "by": "palsecam",
+    "timeISO": "2025-08-09T12:26:19.000Z",
+    "textPlain": "Btw, a Tor relay can be relatively lightweight. I run one on a $5/mo VPS (which does many other things). You need 1 GiB of RAM, but a single basic CPU core largely suffices. My relay sends/receives ~150 GiB of traffic per day (~15 Mbits/s). It’s not an exit node, so no legal worries.Here’s my torrc:  SocksPort  0\n  ExitRelay 0\n\n  ORPort NNNN\n  DirPort NNNN\n\n  Nickname X\n  ContactInfo X@X.com\n\n  RelayBandwidthRate 80 megabits\n  RelayBandwidthBurst 120 megabits\n\n  MaxMemInQueues 384 megabytes\n\n  AvoidDiskWrites 1\n  HardwareAccel 1\n  NoExec 1\n  NumCPUs 1\n\nHere’s my override config for systemd (Ubuntu 24.04):  $ sudo systemctl edit tor@default\n  [Service]\n  Nice=15\n  CPUAffinity=0\n  CPUWeight=60\n  StartupCPUWeight=6\n  IOWeight=60\n  TimerSlackNSec=100us\n\n  MemoryMax=896M\n  MemoryHigh=800M\n  OOMScoreAdjust=1000\n\n  LimitAS=2G\n  LimitNPROC=512\n  LimitNOFILE=10240\n\n  PrivateDevices=true\n  ProtectSystem=true\n  ProtectHome=true",
+    "parent": 44838378,
+    "depth": 1
+  },
+  {
     "id": 44841571,
     "by": "daft_pink",
     "timeISO": "2025-08-08T20:51:31.000Z",
@@ -96,6 +104,14 @@
     "depth": 1
   },
   {
+    "id": 44838660,
+    "by": "zwnow",
+    "timeISO": "2025-08-08T16:10:33.000Z",
+    "textPlain": "Isn't Tor dead? Wasn't it infiltrated long ago?",
+    "parent": 44838378,
+    "depth": 1
+  },
+  {
     "id": 44843672,
     "by": "kobieps",
     "timeISO": "2025-08-09T02:46:55.000Z",
@@ -116,14 +132,6 @@
     "by": "thrown-0825",
     "timeISO": "2025-08-09T03:21:28.000Z",
     "textPlain": "And now its all honey pot exit nodes.Just setup a vpn.",
-    "parent": 44838378,
-    "depth": 1
-  },
-  {
-    "id": 44838660,
-    "by": "zwnow",
-    "timeISO": "2025-08-08T16:10:33.000Z",
-    "textPlain": "Isn't Tor dead? Wasn't it infiltrated long ago?",
     "parent": 44838378,
     "depth": 1
   },
@@ -292,14 +300,6 @@
     "by": "jandrese",
     "timeISO": "2025-08-08T18:21:24.000Z",
     "textPlain": "The generally recommended way is to download Tails to a USB thumb drive and boot off of that.  This is safer than just using the TOR browser and if something does attack your system none of your actual data is on the OS.https://tails.net/",
-    "parent": 44838703,
-    "depth": 2
-  },
-  {
-    "id": 44839356,
-    "by": "hnuser123456",
-    "timeISO": "2025-08-08T17:08:47.000Z",
-    "textPlain": "Back when I tried, it was a modified Firefox build.",
     "parent": 44838703,
     "depth": 2
   },

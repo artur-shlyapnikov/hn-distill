@@ -64,14 +64,6 @@
     "depth": 1
   },
   {
-    "id": 44845368,
-    "by": "feverzsj",
-    "timeISO": "2025-08-09T10:20:48.000Z",
-    "textPlain": "Sounds like all they need is Postgres or just Sqlite.",
-    "parent": 44836463,
-    "depth": 1
-  },
-  {
     "id": 44840888,
     "by": "9cb14c1ec0",
     "timeISO": "2025-08-08T19:42:31.000Z",
@@ -88,10 +80,10 @@
     "depth": 1
   },
   {
-    "id": 44844175,
-    "by": "nekitamo",
-    "timeISO": "2025-08-09T05:11:33.000Z",
-    "textPlain": "I've used RocksDB a lot in the past and am very satisfied with it. It was helpful building a large write-heavy index where most of the data had to be compressed on disk.I'm wondering if anyone here has experience with LMDB and can comment on how they compare?https://www.symas.com/mdbI'm looking at it next for a project which has to cache and serve relatively small static data, and write and look up millions of individual points per minute.",
+    "id": 44845368,
+    "by": "feverzsj",
+    "timeISO": "2025-08-09T10:20:48.000Z",
+    "textPlain": "Sounds like all they need is Postgres or just Sqlite.",
     "parent": 44836463,
     "depth": 1
   },
@@ -100,6 +92,14 @@
     "by": "darqis",
     "timeISO": "2025-08-08T23:46:45.000Z",
     "textPlain": "Searching for HorizonDB I find a Python project on github.I'm guessing it's closed source *aas only?",
+    "parent": 44836463,
+    "depth": 1
+  },
+  {
+    "id": 44844175,
+    "by": "nekitamo",
+    "timeISO": "2025-08-09T05:11:33.000Z",
+    "textPlain": "I've used RocksDB a lot in the past and am very satisfied with it. It was helpful building a large write-heavy index where most of the data had to be compressed on disk.I'm wondering if anyone here has experience with LMDB and can comment on how they compare?https://www.symas.com/mdbI'm looking at it next for a project which has to cache and serve relatively small static data, and write and look up millions of individual points per minute.",
     "parent": 44836463,
     "depth": 1
   },
@@ -120,14 +120,6 @@
     "depth": 1
   },
   {
-    "id": 44845018,
-    "by": "tinyhouse",
-    "timeISO": "2025-08-09T08:50:48.000Z",
-    "textPlain": "fastText? last time I checked it wasn't even maintained.",
-    "parent": 44836463,
-    "depth": 1
-  },
-  {
     "id": 44842850,
     "by": "lisbbb",
     "timeISO": "2025-08-08T23:46:03.000Z",
@@ -140,6 +132,14 @@
     "by": "reactordev",
     "timeISO": "2025-08-08T14:39:51.000Z",
     "textPlain": "I mean, anything could replace elasticsearch, but can it actually?It sounds like they had the wrong architecture to start with and they built a database to handle it. Kudos. Most would have just thrown cache at it or fine tuned a readonly postgis database for the geoip lookups.Without benchmarks it’s just bold claims we’ll have to ascertain.",
+    "parent": 44836463,
+    "depth": 1
+  },
+  {
+    "id": 44845018,
+    "by": "tinyhouse",
+    "timeISO": "2025-08-09T08:50:48.000Z",
+    "textPlain": "fastText? last time I checked it wasn't even maintained.",
     "parent": 44836463,
     "depth": 1
   },
@@ -212,6 +212,22 @@
     "by": "nickm12",
     "timeISO": "2025-08-09T08:11:53.000Z",
     "textPlain": "You can't reduce the in-office or remote experience purely to commuting. It's just one aspect about how and where you work and work life balance in general.But since you asked, yes, I actually enjoy commuting when it is less than 30 minutes each way and especially when it involves physical activities. My best commutes have been walking and biking commutes of around 20-25 minutes each way. They give me exercise, a chance to clear my head, and provide \"space\" between work and home.During 2020, I worked from home the entire time and eventually I found it just mentally wasn't good for me to work and live in the same space. I couldn't go into the office, so I started taking hour long walks at the end of every day to reset. It helped a lot.That said, I've also done commutes of up to an hour each way by crowed train and highway driving and those are...not good.",
+    "parent": 44844510,
+    "depth": 2
+  },
+  {
+    "id": 44846000,
+    "by": "aflag",
+    "timeISO": "2025-08-09T12:29:35.000Z",
+    "textPlain": "I rather commute than WFH. So yeah, people do. Maybe not all the people, but certainly some people.",
+    "parent": 44844510,
+    "depth": 2
+  },
+  {
+    "id": 44845929,
+    "by": "victorbjorklund",
+    "timeISO": "2025-08-09T12:15:32.000Z",
+    "textPlain": "Some people like being in office. People are different.",
     "parent": 44844510,
     "depth": 2
   },
@@ -296,19 +312,11 @@
     "depth": 2
   },
   {
-    "id": 44843328,
-    "by": "vips7L",
-    "timeISO": "2025-08-09T01:30:52.000Z",
-    "textPlain": "I really enjoy embedding things in the vm. I run a discord bot with a few thousand users with embedded H2. Recently I’ve been looking at trying to embed keycloak (or something similar) for some other apps.",
-    "parent": 44837933,
-    "depth": 2
-  },
-  {
-    "id": 44838640,
-    "by": "j_kao",
-    "timeISO": "2025-08-08T16:09:22.000Z",
-    "textPlain": "1 - I think if we were sticking with the JVM, I do wonder if Lucene would be the right choice in that case2 - It's a great tool with a lot of tuneability and support!3 - We've been using it for K8s logs and OTEL (with Jaeger). Seems good so far, though I do wonder how the future of this will play out with the $DDOG acquisition.",
-    "parent": 44837933,
+    "id": 44845751,
+    "by": "benjiro",
+    "timeISO": "2025-08-09T11:43:36.000Z",
+    "textPlain": "Yep, their goal was to use a monolite solution, instead of a clustered elasticsearch.Postgres + pg_search (= tantivy) will have gotten them there for 80%. Sure, postgres really needs a plugin storage engine for better SSD support (see orioledb).But creating your own database for your own company, is just silly.There is a lot of money in the database market, and everybody wants to do their own thing to tied customers down to those databases. And that is their main goal.",
+    "parent": 44845368,
     "depth": 2
   }
 ]
