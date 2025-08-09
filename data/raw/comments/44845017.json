@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44846722,
+    "by": "the__alchemist",
+    "timeISO": "2025-08-09T14:26:01.000Z",
+    "textPlain": "I love how this opens with the acknowledgement we've made a mess of choice-like data structure terminology!",
+    "parent": 44845017,
+    "depth": 1
+  },
+  {
     "id": 44845978,
     "by": "veber-alex",
     "timeISO": "2025-08-09T12:25:51.000Z",
@@ -48,10 +56,42 @@
     "depth": 2
   },
   {
+    "id": 44847036,
+    "by": "bobajeff",
+    "timeISO": "2025-08-09T15:01:04.000Z",
+    "textPlain": "I've seen a few new languages come along that were inspired by zig's comptime/metaprogramming in the same language concept.Zig I think has potential but it hasn't stabilized enough yet for broad adoption. That means it'll be awhile before it's built an ecosystem (libraries, engines etc.) that is useful to developers that don't care about language design.",
+    "parent": 44845426,
+    "depth": 2
+  },
+  {
     "id": 44845553,
     "by": "diegocg",
     "timeISO": "2025-08-09T11:04:08.000Z",
     "textPlain": "As someone who uses D and has been doing things like what you see in the post for a long time, I wonder why other languages would put attention to these tricks and steal them when they have been completely ignoring them forever when done in D. Perhaps Zig will make these features more popular, but I'm skeptic.",
+    "parent": 44845426,
+    "depth": 2
+  },
+  {
+    "id": 44846406,
+    "by": "ozgrakkurt",
+    "timeISO": "2025-08-09T13:45:51.000Z",
+    "textPlain": "This perspective that many people take on memory-safety of Rust seems really \n\"interesting\".Unfortunately for all fanatics, language really doesn't matter that much.I have been using KDE for years now and it works perfectly good for me. It has no issues/crashes, it has many features in terms of desktop environment and also many programs that come with it like music player, video player, text editor, terminal etc. and they all work perfectly well for me. Almost all of this is written in C++. No need to mention the classic linux/chromium etc. etc which are all written in c++/c.I use Ghostty which is written in zig, it is amazingly polished and works super well as well.I have built and used a lot of software written in Rust as well and they worked really well too.At some point you have to admit, what matters is the people writing software, the amount of effort that goes into it etc. it is not the langauge.As far as memory-safety goes, it really isn't close to being the most important thing unless you are writing security critical stuff. Even then just using Rust isn't as good as you might think, I uncountered a decent amount of segfaults, random crashes etc. using very popular Rust libraries as well. In the end just need to put in the effort.I'm not saying language doesn't matter but it isn't even close to being the most important thing.",
+    "parent": 44845426,
+    "depth": 2
+  },
+  {
+    "id": 44846740,
+    "by": "the__alchemist",
+    "timeISO": "2025-08-09T14:28:03.000Z",
+    "textPlain": "Concur. This is a great feature I wish rust had. I've been bitten by the unpleasant syntax this article laments.",
+    "parent": 44845426,
+    "depth": 2
+  },
+  {
+    "id": 44846930,
+    "by": "surajrmal",
+    "timeISO": "2025-08-09T14:48:25.000Z",
+    "textPlain": "I can't take zig as seriously as rust due to lack of data race safety. There are just too many bugs that can happen when you have threads, share state between those threads and manually manage memory. There are so many bugs I've written because I did this wrong for many years but didn't realize until I wrote rust. I don't trust myself or anyone to get this right.",
     "parent": 44845426,
     "depth": 2
   },
@@ -64,18 +104,18 @@
     "depth": 2
   },
   {
-    "id": 44845438,
-    "by": "Ygg2",
-    "timeISO": "2025-08-09T10:37:52.000Z",
-    "textPlain": "> «inline else» is also very powerful tool to easily abstract away code with no runtime cost.Sure, but you lose the clarity of errors. The error wasn't in `comptime unreachable` but in `inline .a .b .c`.",
+    "id": 44846830,
+    "by": "CyberDildonics",
+    "timeISO": "2025-08-09T14:38:06.000Z",
+    "textPlain": "If you make advancements but disregard the advancements that came before you, you have a research language, not a modern usable language.",
     "parent": 44845426,
     "depth": 2
   },
   {
-    "id": 44846406,
-    "by": "ozgrakkurt",
-    "timeISO": "2025-08-09T13:45:51.000Z",
-    "textPlain": "This perspective that many people take on memory-safety of Rust seems really \n\"interesting\".Unfortunately for all fanatics, language really doesn't matter that much.I have been using KDE for years now and it works perfectly good for me. It has no issues/crashes, it has many features in terms of desktop environment and also many programs that come with it like music player, video player, text editor, terminal etc. and they all work perfectly well for me. Almost all of this is written in C++. No need to mention the classic linux/chromium etc. etc which are all written in c++/c.I use Ghostty which is written in zig, it is amazingly polished and works super well as well.I have built and used a lot of software written in Rust as well and they worked really well too.At some point you have to admit, what matters is the people writing software, the amount of effort that goes into it etc. it is not the langauge.As far as memory-safety goes, it really isn't close to being the most important thing unless you are writing security critical stuff. Even then just using Rust isn't as good as you might think, I uncountered a decent amount of segfaults, random crashes etc. using very popular Rust libraries as well. In the end just need to put in the effort.I'm not saying language doesn't matter but it isn't even close to being the most important thing.",
+    "id": 44845438,
+    "by": "Ygg2",
+    "timeISO": "2025-08-09T10:37:52.000Z",
+    "textPlain": "> «inline else» is also very powerful tool to easily abstract away code with no runtime cost.Sure, but you lose the clarity of errors. The error wasn't in `comptime unreachable` but in `inline .a .b .c`.",
     "parent": 44845426,
     "depth": 2
   },
@@ -101,6 +141,14 @@
     "timeISO": "2025-08-09T13:40:17.000Z",
     "textPlain": "The problem this is meant to solve is that sometimes a human thinking about the logic of the program can see it is impossible to reach some code (ie it is statically certain) but the language syntax and type system alone would not see the impossibility. So you can help the compiler along.It is not meant for asserting dynamic “unreachability” (which is more like an assertion than a proof).",
     "parent": 44845978,
+    "depth": 2
+  },
+  {
+    "id": 44847231,
+    "by": "the__alchemist",
+    "timeISO": "2025-08-09T15:21:38.000Z",
+    "textPlain": "I have no idea what that's trying to do. A demonstration that rust is a large language with different dialects!",
+    "parent": 44845403,
     "depth": 2
   },
   {

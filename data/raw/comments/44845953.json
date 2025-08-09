@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": 44846901,
+    "by": "nasretdinov",
+    "timeISO": "2025-08-09T14:46:08.000Z",
+    "textPlain": "So it's really the issue due a partial variable shadowing during assignment, not errgroup-specific. Got bitten by it multiple times unfortunately, but I don't think there's an easy lint or vet check that could prevent such errors from happening. Having said that, overwriting a variable during := assignment is typically only useful for errors, so potentially you might want to have a lint check that complains when you've overwritten something else. There's already a check that the value is unused so when re-assigning the error value you're less likely to miss anything",
+    "parent": 44845953,
+    "depth": 1
+  },
+  {
+    "id": 44847171,
+    "by": "yubblegum",
+    "timeISO": "2025-08-09T15:14:20.000Z",
+    "textPlain": "> So it's really the issue due a partial variable shadowing during assignment, not errgroup-specific.Did we read the same article? The \"alternative fix\" is to paper over documented bahavior of a context. Of course it makes sense that if wait returns context should be cancled. The one character fix is throwing away information ..",
+    "parent": 44846901,
+    "depth": 2
+  },
+  {
+    "id": 44847181,
+    "by": "dondraper36",
+    "timeISO": "2025-08-09T15:15:20.000Z",
+    "textPlain": "That's why I often use eg, egCtx :)",
+    "parent": 44846901,
+    "depth": 2
+  }
+]
