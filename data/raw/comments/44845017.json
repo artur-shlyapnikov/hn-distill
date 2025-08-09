@@ -32,6 +32,14 @@
     "depth": 1
   },
   {
+    "id": 44846356,
+    "by": "38",
+    "timeISO": "2025-08-09T13:37:15.000Z",
+    "textPlain": "[dead]",
+    "parent": 44845017,
+    "depth": 1
+  },
+  {
     "id": 44845753,
     "by": "chrismorgan",
     "timeISO": "2025-08-09T11:43:50.000Z",
@@ -64,11 +72,35 @@
     "depth": 2
   },
   {
+    "id": 44846406,
+    "by": "ozgrakkurt",
+    "timeISO": "2025-08-09T13:45:51.000Z",
+    "textPlain": "This perspective that many people take on memory-safety of Rust seems really \n\"interesting\".Unfortunately for all fanatics, language really doesn't matter that much.I have been using KDE for years now and it works perfectly good for me. It has no issues/crashes, it has many features in terms of desktop environment and also many programs that come with it like music player, video player, text editor, terminal etc. and they all work perfectly well for me. Almost all of this is written in C++. No need to mention the classic linux/chromium etc. etc which are all written in c++/c.I use Ghostty which is written in zig, it is amazingly polished and works super well as well.I have built and used a lot of software written in Rust as well and they worked really well too.At some point you have to admit, what matters is the people writing software, the amount of effort that goes into it etc. it is not the langauge.As far as memory-safety goes, it really isn't close to being the most important thing unless you are writing security critical stuff. Even then just using Rust isn't as good as you might think, I uncountered a decent amount of segfaults, random crashes etc. using very popular Rust libraries as well. In the end just need to put in the effort.I'm not saying language doesn't matter but it isn't even close to being the most important thing.",
+    "parent": 44845426,
+    "depth": 2
+  },
+  {
     "id": 44845401,
     "by": "dwattttt",
     "timeISO": "2025-08-09T10:29:52.000Z",
     "textPlain": "I love the idea, but something being \"provable\" in this way feels like relying on optimisations.If a dead code elimination pass didn't remove the 'comptime unreachable' statement, you'll now fail to compile (I expect?)",
     "parent": 44845375,
+    "depth": 2
+  },
+  {
+    "id": 44846560,
+    "by": "sekao",
+    "timeISO": "2025-08-09T14:06:32.000Z",
+    "textPlain": "The code example will work even if `u` is only known at runtime. That's because the inner switch is not matching on `u`, it's matching on `ab`, which is known at compile time due to the use of `inline`.That may be confusing, but basically `inline` is generating different code for the branches .a and .b, so in those cases the value of `ab` is known at compile time. So, the inner switch is running at compile time too. In the .a branch it just turns into a call to handle_a(), and in the .b branch it turns into a call to handle_b().",
+    "parent": 44845978,
+    "depth": 2
+  },
+  {
+    "id": 44846380,
+    "by": "alpinisme",
+    "timeISO": "2025-08-09T13:40:17.000Z",
+    "textPlain": "The problem this is meant to solve is that sometimes a human thinking about the logic of the program can see it is impossible to reach some code (ie it is statically certain) but the language syntax and type system alone would not see the impossibility. So you can help the compiler along.It is not meant for asserting dynamic “unreachability” (which is more like an assertion than a proof).",
+    "parent": 44845978,
     "depth": 2
   },
   {
