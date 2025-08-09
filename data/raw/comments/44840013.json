@@ -1,17 +1,17 @@
 [
   {
-    "id": 44845799,
-    "by": "t_mann",
-    "timeISO": "2025-08-09T11:50:53.000Z",
-    "textPlain": "Great effort, a strong self-hosting community for LLMs is going to be similarly important as the FLOSS movement imho. But right now I feel the bigger bottleneck is on the hardware side rather than software. The amount of fast RAM that you need for decent models (80b+ params) is just not something that's commonly available for consumer hardware right now, not even gaming machines. I heard that Macs (minis) are great for the purpose, but you don't really get them with enough RAM or at prices that don't really qualify as consumer-grade anymore. I've seen people create home clusters (eg using Exo [0]), but I wouldn't really call it practical (single digit token/sec for large models, and the price isn't exactly accessible either). Framework (the modular laptop company) has announced a desktop that can be configured up to 128GB unified RAM, but it's still going to come in at around 2-2.5k depending on your config.[0] https://github.com/exo-explore/exo",
-    "parent": 44840013,
-    "depth": 1
-  },
-  {
     "id": 44841209,
     "by": "andylizf",
     "timeISO": "2025-08-08T20:14:45.000Z",
     "textPlain": "This is fantastic work. The focus on a local, sandboxed execution layer is a huge piece of the puzzle for a private AI workspace. The `coderunner` tool looks incredibly useful.A complementary challenge is the knowledge layer: making the AI aware of your personal data (emails, notes, files) via RAG. As soon as you try this on a large scale, storage becomes a massive bottleneck. A vector database for years of emails can easily exceed 50GB.(Full disclosure: I'm part of the team at Berkeley that tackled this). We built LEANN, a vector index that cuts storage by ~97% by not storing the embeddings at all. It makes indexing your entire digital life locally actually feasible.Combining a local execution engine like this with a hyper-efficient knowledge index like LEANN feels like the real path to a true \"local Jarvis.\"Code: https://github.com/yichuan-w/LEANN\nPaper: https://arxiv.org/abs/2405.08051",
+    "parent": 44840013,
+    "depth": 1
+  },
+  {
+    "id": 44845799,
+    "by": "t_mann",
+    "timeISO": "2025-08-09T11:50:53.000Z",
+    "textPlain": "Great effort, a strong self-hosting community for LLMs is going to be similarly important as the FLOSS movement imho. But right now I feel the bigger bottleneck is on the hardware side rather than software. The amount of fast RAM that you need for decent models (80b+ params) is just not something that's commonly available for consumer hardware right now, not even gaming machines. I heard that Macs (minis) are great for the purpose, but you don't really get them with enough RAM or at prices that don't really qualify as consumer-grade anymore. I've seen people create home clusters (eg using Exo [0]), but I wouldn't really call it practical (single digit token/sec for large models, and the price isn't exactly accessible either). Framework (the modular laptop company) has announced a desktop that can be configured up to 128GB unified RAM, but it's still going to come in at around 2-2.5k depending on your config.[0] https://github.com/exo-explore/exo",
     "parent": 44840013,
     "depth": 1
   },
@@ -40,14 +40,6 @@
     "depth": 1
   },
   {
-    "id": 44846610,
-    "by": "solarkraft",
-    "timeISO": "2025-08-09T14:12:46.000Z",
-    "textPlain": "I’m all for this. This is the first effort I’ve seen attempting to solve the full stack - most local solutions I’ve seen look so DIY that I don’t have much hope I’ll be able to properly configure and operate them dependably.I think there’s room for an integrated solution with all the features we’re used to from commercial solutions: Web search (most important to me), voice mode (very handy), image recognition (useful in some cases), the killer feature being RAG on personal files.",
-    "parent": 44840013,
-    "depth": 1
-  },
-  {
     "id": 44840289,
     "by": "noelwelsh",
     "timeISO": "2025-08-08T18:44:28.000Z",
@@ -64,18 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44846642,
-    "by": "cheesedoodle",
-    "timeISO": "2025-08-09T14:16:15.000Z",
-    "textPlain": "I’m trying to do something similar but hyper fine tune a model of choice for my specific local data source. For example, use existing code models to answer dquestions with code examples based on my private source files and documentation.I tried doing it with using Huggingface and Unsloth but keep getting OOM errors.Have anyone done this that runs locally against your own data?",
-    "parent": 44840013,
-    "depth": 1
-  },
-  {
-    "id": 44846434,
-    "by": "ljosifov",
-    "timeISO": "2025-08-09T13:50:42.000Z",
-    "textPlain": "In the same boat. I love running things localhost. It's been great fun, and I learned tons I didn't know before. I know remote models API-s are a must for any serious work where tons is to be done, produced fr. Still it warms my heart every time llama-server runs on, and serves my aging mbp. Recent MoEs run great on macs with loads of v/ram, and the power efficiency is scarcely believable.",
+    "id": 44846610,
+    "by": "solarkraft",
+    "timeISO": "2025-08-09T14:12:46.000Z",
+    "textPlain": "I’m all for this. This is the first effort I’ve seen attempting to solve the full stack - most local solutions I’ve seen look so DIY that I don’t have much hope I’ll be able to properly configure and operate them dependably.I think there’s room for an integrated solution with all the features we’re used to from commercial solutions: Web search (most important to me), voice mode (very handy), image recognition (useful in some cases), the killer feature being RAG on personal files.",
     "parent": 44840013,
     "depth": 1
   },
@@ -96,18 +80,18 @@
     "depth": 1
   },
   {
-    "id": 44847336,
-    "by": "unboxingelf",
-    "timeISO": "2025-08-09T15:36:33.000Z",
-    "textPlain": "In addition to self hosting, anonymous access to hosted inference is another interesting path.There’s a “A Decentralised LLM Routing Marketplace” being built out on nostr that leverages ecash.https://www.routstr.com/",
-    "parent": 44840013,
-    "depth": 1
-  },
-  {
     "id": 44840825,
     "by": "mkummer",
     "timeISO": "2025-08-08T19:37:02.000Z",
     "textPlain": "Super cool and well thought out!I'm working on something similar focused on being able to easily jump between the two (cloud and fully local) using a Bring Your Own [API] Key model – all data/config/settings/prompts are fully stored locally and provider API calls are routed directly (never pass through our servers). Currently using mlc-llm for models & inference fully  local in the browser (Qwen3-1.7b has been working great)[1] https://hypersonic.chat/",
+    "parent": 44840013,
+    "depth": 1
+  },
+  {
+    "id": 44846642,
+    "by": "cheesedoodle",
+    "timeISO": "2025-08-09T14:16:15.000Z",
+    "textPlain": "I’m trying to do something similar but hyper fine tune a model of choice for my specific local data source. For example, use existing code models to answer dquestions with code examples based on my private source files and documentation.I tried doing it with using Huggingface and Unsloth but keep getting OOM errors.Have anyone done this that runs locally against your own data?",
     "parent": 44840013,
     "depth": 1
   },
@@ -120,42 +104,10 @@
     "depth": 1
   },
   {
-    "id": 44845642,
-    "by": "hollowonepl",
-    "timeISO": "2025-08-09T11:21:50.000Z",
-    "textPlain": "Yep, that is something I do also actively experiment with in home projects. Local NAS (Synology) with 28TB of RAIDed storage, local containers and VMs on it and local gitea and other devops and productivity tools. All that talks to my mac which runs editing, compiling, etc and lmstudio with local agent. Not best always with AI, I lack enough RAM but close to imagine how I will work in the future, end-to-end",
-    "parent": 44840013,
-    "depth": 1
-  },
-  {
-    "id": 44846010,
-    "by": "brbcompiling",
-    "timeISO": "2025-08-09T12:30:50.000Z",
-    "textPlain": "Local AI is awesome, but without beefy hardware it’s like trying to run a marathon in flip-flops.",
-    "parent": 44840013,
-    "depth": 1
-  },
-  {
-    "id": 44846439,
-    "by": "synergy20",
-    "timeISO": "2025-08-09T13:51:05.000Z",
-    "textPlain": "a PC with rtx3090 is able to run many models locally with decent speed. or rtx4090 though it's more expensive(and power hungry)",
-    "parent": 44840013,
-    "depth": 1
-  },
-  {
-    "id": 44840488,
-    "by": "tcdent",
-    "timeISO": "2025-08-08T19:03:20.000Z",
-    "textPlain": "I'm constantly tempted by the idealism of this experience, but when you factor in the performance of the models you have access to, and the cost of running them on-demand in a cloud, it's really just a fun hobby instead of a viable strategy to benefit your life.As the hardware continues to iterate at a rapid pace, anything you pick up second-hand will still deprecate at that pace, making any real investment in hardware unjustifiable.Coupled with the dramatically inferior performance of the weights you would be running in a local environment, it's just not worth it.I expect this will change in the future, and am excited to invest in a local inference stack when the weights become available. Until then, you're idling a relatively expensive, rapidly depreciating asset.",
-    "parent": 44840013,
-    "depth": 1
-  },
-  {
-    "id": 44845323,
-    "by": "shekhargulati",
-    "timeISO": "2025-08-09T10:09:23.000Z",
-    "textPlain": "I tried to port it to Docker and wrote a blog here https://shekhargulati.com/2025/08/09/making-coderunner-ui-wo.... I used Claude Code to do the port. We used Datalayer Jupyter MCP Server instead of coderunner which uses Apple containers.",
+    "id": 44846434,
+    "by": "ljosifov",
+    "timeISO": "2025-08-09T13:50:42.000Z",
+    "textPlain": "In the same boat. I love running things localhost. It's been great fun, and I learned tons I didn't know before. I know remote models API-s are a must for any serious work where tons is to be done, produced fr. Still it warms my heart every time llama-server runs on, and serves my aging mbp. Recent MoEs run great on macs with loads of v/ram, and the power efficiency is scarcely believable.",
     "parent": 44840013,
     "depth": 1
   },
@@ -168,14 +120,6 @@
     "depth": 1
   },
   {
-    "id": 44840718,
-    "by": "luke14free",
-    "timeISO": "2025-08-08T19:26:45.000Z",
-    "textPlain": "you might want to check out what we built -> https://inference.sh supports most major open source/weight models from wan 2.2 video, qwen image, flux, most llms, hunyan 3d etc.. works in a containerized way locally by allowing you to bring your own gpu as an engine (fully free) or allows you to rent remote gpu/pool from a common cloud in case you want to run more complex models. for each model we tried to add quantized/ggufs versions to even wan2.2/qwen image/gemma become possible to execute with as little as 8gb vram gpus. mcp support coming soon in our chat interface so it can access other apps from the ecosystem.",
-    "parent": 44840013,
-    "depth": 1
-  },
-  {
     "id": 44843119,
     "by": "jarym",
     "timeISO": "2025-08-09T00:43:36.000Z",
@@ -184,10 +128,66 @@
     "depth": 1
   },
   {
-    "id": 44845406,
-    "by": "k__",
-    "timeISO": "2025-08-09T10:31:49.000Z",
-    "textPlain": "Half-OT: Anything useful that runs reasonably fast on a regular Intel CPU/GPU?",
+    "id": 44847336,
+    "by": "unboxingelf",
+    "timeISO": "2025-08-09T15:36:33.000Z",
+    "textPlain": "In addition to self hosting, anonymous access to hosted inference is another interesting path.There’s a “A Decentralised LLM Routing Marketplace” being built out on nostr that leverages ecash.https://www.routstr.com/",
+    "parent": 44840013,
+    "depth": 1
+  },
+  {
+    "id": 44845642,
+    "by": "hollowonepl",
+    "timeISO": "2025-08-09T11:21:50.000Z",
+    "textPlain": "Yep, that is something I do also actively experiment with in home projects. Local NAS (Synology) with 28TB of RAIDed storage, local containers and VMs on it and local gitea and other devops and productivity tools. All that talks to my mac which runs editing, compiling, etc and lmstudio with local agent. Not best always with AI, I lack enough RAM but close to imagine how I will work in the future, end-to-end",
+    "parent": 44840013,
+    "depth": 1
+  },
+  {
+    "id": 44840488,
+    "by": "tcdent",
+    "timeISO": "2025-08-08T19:03:20.000Z",
+    "textPlain": "I'm constantly tempted by the idealism of this experience, but when you factor in the performance of the models you have access to, and the cost of running them on-demand in a cloud, it's really just a fun hobby instead of a viable strategy to benefit your life.As the hardware continues to iterate at a rapid pace, anything you pick up second-hand will still deprecate at that pace, making any real investment in hardware unjustifiable.Coupled with the dramatically inferior performance of the weights you would be running in a local environment, it's just not worth it.I expect this will change in the future, and am excited to invest in a local inference stack when the weights become available. Until then, you're idling a relatively expensive, rapidly depreciating asset.",
+    "parent": 44840013,
+    "depth": 1
+  },
+  {
+    "id": 44846010,
+    "by": "brbcompiling",
+    "timeISO": "2025-08-09T12:30:50.000Z",
+    "textPlain": "Local AI is awesome, but without beefy hardware it’s like trying to run a marathon in flip-flops.",
+    "parent": 44840013,
+    "depth": 1
+  },
+  {
+    "id": 44845323,
+    "by": "shekhargulati",
+    "timeISO": "2025-08-09T10:09:23.000Z",
+    "textPlain": "I tried to port it to Docker and wrote a blog here https://shekhargulati.com/2025/08/09/making-coderunner-ui-wo.... I used Claude Code to do the port. We used Datalayer Jupyter MCP Server instead of coderunner which uses Apple containers.",
+    "parent": 44840013,
+    "depth": 1
+  },
+  {
+    "id": 44840718,
+    "by": "luke14free",
+    "timeISO": "2025-08-08T19:26:45.000Z",
+    "textPlain": "you might want to check out what we built -> https://inference.sh supports most major open source/weight models from wan 2.2 video, qwen image, flux, most llms, hunyan 3d etc.. works in a containerized way locally by allowing you to bring your own gpu as an engine (fully free) or allows you to rent remote gpu/pool from a common cloud in case you want to run more complex models. for each model we tried to add quantized/ggufs versions to even wan2.2/qwen image/gemma become possible to execute with as little as 8gb vram gpus. mcp support coming soon in our chat interface so it can access other apps from the ecosystem.",
+    "parent": 44840013,
+    "depth": 1
+  },
+  {
+    "id": 44846439,
+    "by": "synergy20",
+    "timeISO": "2025-08-09T13:51:05.000Z",
+    "textPlain": "a PC with rtx3090 is able to run many models locally with decent speed. or rtx4090 though it's more expensive(and power hungry)",
+    "parent": 44840013,
+    "depth": 1
+  },
+  {
+    "id": 44844367,
+    "by": "EagnaIonat",
+    "timeISO": "2025-08-09T06:02:43.000Z",
+    "textPlain": "You can get good models that run fine on M1 32GB laptops just using Ollama App.Or if you want numerous features on top of your local LLMS then Open WebUI would be my choice.https://docs.openwebui.com",
     "parent": 44840013,
     "depth": 1
   },
@@ -196,6 +196,14 @@
     "by": "retrocog",
     "timeISO": "2025-08-08T19:37:34.000Z",
     "textPlain": "Its all about context and purpose, isn't it? For certain lightweight uses cases, especially those concerning sensitive user data, a local implementation may make a lot of sense.",
+    "parent": 44840013,
+    "depth": 1
+  },
+  {
+    "id": 44845406,
+    "by": "k__",
+    "timeISO": "2025-08-09T10:31:49.000Z",
+    "textPlain": "Half-OT: Anything useful that runs reasonably fast on a regular Intel CPU/GPU?",
     "parent": 44840013,
     "depth": 1
   },
@@ -232,26 +240,10 @@
     "depth": 1
   },
   {
-    "id": 44845851,
-    "by": "Woodi",
-    "timeISO": "2025-08-09T12:00:13.000Z",
-    "textPlain": "So there are models to download but:a) on what data that things was trained ?b) any reproducible builds projects ? ;)",
-    "parent": 44840013,
-    "depth": 1
-  },
-  {
     "id": 44842846,
     "by": "b0ner_t0ner",
     "timeISO": "2025-08-08T23:45:34.000Z",
     "textPlain": "To OP, your link for https://github.com/assistant-ui/assistant-ui does not work.",
-    "parent": 44840013,
-    "depth": 1
-  },
-  {
-    "id": 44844367,
-    "by": "EagnaIonat",
-    "timeISO": "2025-08-09T06:02:43.000Z",
-    "textPlain": "You can get good models that run fine on M1 32GB laptops just using Ollama App.Or if you want numerous features on top of your local LLMS then Open WebUI would be my choice.https://docs.openwebui.com",
     "parent": 44840013,
     "depth": 1
   },
@@ -264,10 +256,10 @@
     "depth": 1
   },
   {
-    "id": 44845177,
-    "by": "yichuan",
-    "timeISO": "2025-08-09T09:29:33.000Z",
-    "textPlain": "That's my vision, hope it can help.\nI think that if we combine all our personal data and organize it effectively, we can be 10 times more efficient.\nLong-term AI memory, all you speak and see will secretly be loaded to your own personal AI, and that can solve many difficulties, I think.\nhttps://x.com/YichuanM/status/1953886817906045211",
+    "id": 44845851,
+    "by": "Woodi",
+    "timeISO": "2025-08-09T12:00:13.000Z",
+    "textPlain": "So there are models to download but:a) on what data that things was trained ?b) any reproducible builds projects ? ;)",
     "parent": 44840013,
     "depth": 1
   },
@@ -276,6 +268,14 @@
     "by": "ahmedbaracat",
     "timeISO": "2025-08-08T18:45:33.000Z",
     "textPlain": "Thanks for sharing. Note that the GitHub at the end of the article is not working…",
+    "parent": 44840013,
+    "depth": 1
+  },
+  {
+    "id": 44845177,
+    "by": "yichuan",
+    "timeISO": "2025-08-09T09:29:33.000Z",
+    "textPlain": "That's my vision, hope it can help.\nI think that if we combine all our personal data and organize it effectively, we can be 10 times more efficient.\nLong-term AI memory, all you speak and see will secretly be loaded to your own personal AI, and that can solve many difficulties, I think.\nhttps://x.com/YichuanM/status/1953886817906045211",
     "parent": 44840013,
     "depth": 1
   },
@@ -312,10 +312,10 @@
     "depth": 1
   },
   {
-    "id": 44844389,
-    "by": "anupshinde",
-    "timeISO": "2025-08-09T06:06:20.000Z",
-    "textPlain": "What is the Apple hardware being used here? I see Apple Silicon but not the configuration.. what did I miss",
+    "id": 44841450,
+    "by": "bling1",
+    "timeISO": "2025-08-08T20:37:06.000Z",
+    "textPlain": "On a similar vibe, we developed app.czero.cc to run an LLM inside your chrome browser on your machine hardware without installation (you do have to download the models). Hard to run big models, but it doesnt get more local than that without having to install anything.",
     "parent": 44840013,
     "depth": 1
   }

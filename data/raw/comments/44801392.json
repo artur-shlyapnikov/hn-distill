@@ -1,17 +1,17 @@
 [
   {
-    "id": 44847248,
-    "by": "Galanwe",
-    "timeISO": "2025-08-09T15:24:40.000Z",
-    "textPlain": "There are a lot of these tools to somehow \"fix the reproducibility crisis of notebooks\".Yet from my experience, you quickly learn to \"restart kernel and run all\" before sharing to make sure everything is good.All but the most novice users get caught by the \"out of order cells\" trap, and those will1) not use anything that adds complexity, because by definition they are novices2) fall in any other trap on their way because anyway that's how you learnThus, IMHO, these flow tools are only seen as useful by _real devs with savior syndrome_, pushing dev solution to exploratory research users, and that will never catch on.",
-    "parent": 44801392,
-    "depth": 1
-  },
-  {
     "id": 44847497,
     "by": "data-ottawa",
     "timeISO": "2025-08-09T15:53:44.000Z",
     "textPlain": "I've been using marimo since January pretty heavily, I absolutely love it and would recommend it to anyone.I run it with uv and --sandboxed which makes it much easy to share notebooks with teammates and not have to worry about limiting dependencies. Any issues I've had were were Python libraries themselves (specifically graphviz).I really like how much easier it is to reason about interactive components vs Jupyter. The mo.ui.altair_chart method has got me to migrate off of matplotlib because charts can be fully integrated – as you can see in the demo being able to lasso data points or scrub a chart and analyze specific time periods is awesome.One thing which I don't like about reactive notebooks is that you have to be much more mindful of expensive and long running calculations. There are feature to help, like adding a run button, but often I end up just disabling auto-run which does reduce the value of the reactive flow. For those use cases I don't find myself using marimo over Jupyter.I think the entire marimo team deserves a shoutout, the quality of the software is excellent, they've moved very quickly, and they have been very receptive to issues and feature suggestions.",
+    "parent": 44801392,
+    "depth": 1
+  },
+  {
+    "id": 44847248,
+    "by": "Galanwe",
+    "timeISO": "2025-08-09T15:24:40.000Z",
+    "textPlain": "There are a lot of these tools to somehow \"fix the reproducibility crisis of notebooks\".Yet from my experience, you quickly learn to \"restart kernel and run all\" before sharing to make sure everything is good.All but the most novice users get caught by the \"out of order cells\" trap, and those will1) not use anything that adds complexity, because by definition they are novices2) fall in any other trap on their way because anyway that's how you learnThus, IMHO, these flow tools are only seen as useful by _real devs with savior syndrome_, pushing dev solution to exploratory research users, and that will never catch on.",
     "parent": 44801392,
     "depth": 1
   },
@@ -64,6 +64,14 @@
     "depth": 1
   },
   {
+    "id": 44847890,
+    "by": "akshayka",
+    "timeISO": "2025-08-09T16:34:23.000Z",
+    "textPlain": "Thanks for the shoutout!We're committed to having an excellent experience for working with expensive notebooks [1]. At least for my own personal work, I find that there are many reasons to use marimo even when autorun is disabled — you still get guarantees on state, rich dataframe views, reusable functions [2], the Python file format, and more. If you have feedback on how we might improve the experience, we'd love to hear it.[1] https://docs.marimo.io/guides/expensive_notebooks/[2] https://docs.marimo.io/guides/reusing_functions/",
+    "parent": 44847497,
+    "depth": 2
+  },
+  {
     "id": 44847746,
     "by": "ayhanfuat",
     "timeISO": "2025-08-09T16:17:49.000Z",
@@ -76,6 +84,14 @@
     "by": "analog31",
     "timeISO": "2025-08-09T15:54:02.000Z",
     "textPlain": "I compare it to day trading, where you always close out your position at the end of the day, and never leave anything running overnight. \"Restart kernel and run all\" when I finish a lab session. Assume that I might not come back to it for a long time, and that it won't be fresh in my mind.It's harder when some of your cells took hours to execute, which mine don't. Then I think you should be using data files.The tools that fix this problem seem to evoke \"the cure is worse than the disease.\" At this point, basic Jupyter notebooks are by far the most reproducible way I've ever worked.",
+    "parent": 44847248,
+    "depth": 2
+  },
+  {
+    "id": 44847848,
+    "by": "akshayka",
+    "timeISO": "2025-08-09T16:29:44.000Z",
+    "textPlain": "Thanks for the comments. I'm the original creator of marimo.Habitually running restart and run all works okay for very lightweight notebooks, but it's a habit you need to develop, and I believe our tools should work by default. It doesn't work at all for entire categories of work, where computation is heavy and the cost of a bug is high.From the blog, you will see that reactive execution not only minimizes hidden state, it also enables rapid data exploration (far more rapid than a traditional notebook), reuse as data apps, reuse as scripts, a far more intelligent module autoreloader, and much more.marimo is not just another Jupyter extension, it's a new kind of notebook. While it may not be for you, marimo has been open source for over a year and has strong traction at many companies and universities, including by many who you may not view to be \"real devs\". The question of whether marimo will catch on has already been resolved :)https://github.com/marimo-team/marimo",
     "parent": 44847248,
     "depth": 2
   },
@@ -104,11 +120,11 @@
     "depth": 2
   },
   {
-    "id": 44846579,
-    "by": "iamwil",
-    "timeISO": "2025-08-09T14:09:05.000Z",
-    "textPlain": "why does it smell horrible?",
-    "parent": 44845190,
+    "id": 44848281,
+    "by": "cantdutchthis",
+    "timeISO": "2025-08-09T17:16:30.000Z",
+    "textPlain": "It certainly has some of the “widget feelings” from streamlit but the real killer feature is that you’re still always in a notebook. You can still explore with these widgets, which is a stellar experience.",
+    "parent": 44846138,
     "depth": 2
   },
   {
@@ -116,6 +132,14 @@
     "by": "nojito",
     "timeISO": "2025-08-09T11:14:17.000Z",
     "textPlain": "Marimo is just a .py file.",
+    "parent": 44845190,
+    "depth": 2
+  },
+  {
+    "id": 44846579,
+    "by": "iamwil",
+    "timeISO": "2025-08-09T14:09:05.000Z",
+    "textPlain": "why does it smell horrible?",
     "parent": 44845190,
     "depth": 2
   }

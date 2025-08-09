@@ -1,5 +1,13 @@
 [
   {
+    "id": 44848262,
+    "by": "perching_aix",
+    "timeISO": "2025-08-09T17:13:35.000Z",
+    "textPlain": "Haven't worked with Cloudflare yet first hand, and I'm not familiar with web map tech. But if the site really is pretty much just serving lots of static files, why is Hetzner in the loop? Wouldn't fully migrating to Cloudflare Pages be possible?",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
     "id": 44846724,
     "by": "colinbartlett",
     "timeISO": "2025-08-09T14:26:14.000Z",
@@ -24,10 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44847652,
-    "by": "willsmith72",
-    "timeISO": "2025-08-09T16:08:33.000Z",
-    "textPlain": "so 96% availability = \"survived\" now?but interesting write-up. If I were a consumer of OpenFreeMap, I would be concerned that such an availability drop was only detected by user reports",
+    "id": 44846988,
+    "by": "eggbrain",
+    "timeISO": "2025-08-09T14:55:22.000Z",
+    "textPlain": "Limiting by referrer seems strange — if you know a normal user makes 10-20 requests (let’s assume per minute), can’t you just rate limit requests to 100 requests per minute per IP (5x the average load) and still block the majority of these cases?Or, if it’s just a few bad actors, block based on JA4/JA3 fingerprint?",
     "parent": 44846318,
     "depth": 1
   },
@@ -36,14 +44,6 @@
     "by": "jspiner",
     "timeISO": "2025-08-09T15:14:27.000Z",
     "textPlain": "The cache hit rate is amazing. Is there something you implemented specifically for this?",
-    "parent": 44846318,
-    "depth": 1
-  },
-  {
-    "id": 44846988,
-    "by": "eggbrain",
-    "timeISO": "2025-08-09T14:55:22.000Z",
-    "textPlain": "Limiting by referrer seems strange — if you know a normal user makes 10-20 requests (let’s assume per minute), can’t you just rate limit requests to 100 requests per minute per IP (5x the average load) and still block the majority of these cases?Or, if it’s just a few bad actors, block based on JA4/JA3 fingerprint?",
     "parent": 44846318,
     "depth": 1
   },
@@ -60,6 +60,14 @@
     "by": "v5v3",
     "timeISO": "2025-08-09T14:43:59.000Z",
     "textPlain": "The article mentions Cloudflare, so how much of this was cached by them?",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44847652,
+    "by": "willsmith72",
+    "timeISO": "2025-08-09T16:08:33.000Z",
+    "textPlain": "so 96% availability = \"survived\" now?but interesting write-up. If I were a consumer of OpenFreeMap, I would be concerned that such an availability drop was only detected by user reports",
     "parent": 44846318,
     "depth": 1
   },
@@ -88,11 +96,27 @@
     "depth": 1
   },
   {
+    "id": 44848302,
+    "by": "internetter",
+    "timeISO": "2025-08-09T17:17:54.000Z",
+    "textPlain": "The tiles need to be rendered. Yes frequent tiles can be cached but you already have a cache… it’s Cloudflare. Theoretically you could port the tileserver to Cloudflare pages but then you’d need to… port it… and it probably wouldn’t be cheaper",
+    "parent": 44848262,
+    "depth": 2
+  },
+  {
     "id": 44846929,
     "by": "hyperknot",
     "timeISO": "2025-08-09T14:48:20.000Z",
     "textPlain": "Feel free to migrate. If you ever worry about High Availability, self-hosting is always an option. But I'm working hard on making the public instance as reliable as possible.",
     "parent": 44846724,
+    "depth": 2
+  },
+  {
+    "id": 44847968,
+    "by": "hyperknot",
+    "timeISO": "2025-08-09T16:43:49.000Z",
+    "textPlain": "I've just written my question to the nginx community forum, after a lengthy debugging session with multiple LLMs. Right now, I believe it was the combination of multi_accept + open_file_cache > worker_rlimit_nofile.https://community.nginx.org/t/too-many-open-files-at-1000-re...Also, the servers were doing 200 Mbps, so I couldn't have kept up _much_ longer, no matter the limits.",
+    "parent": 44847695,
     "depth": 2
   },
   {
@@ -104,10 +128,10 @@
     "depth": 2
   },
   {
-    "id": 44847504,
-    "by": "hyperknot",
-    "timeISO": "2025-08-09T15:55:01.000Z",
-    "textPlain": "We are talking about an insane amount of data here. It was 56 Gbit/s (or 56 x 1 Gbit servers 100% saturated!).\nThis is not something a \"caching server\" could handle. We are talking on the order of CDN networks, like Cloudflare, to be able to handle this.",
+    "id": 44848020,
+    "by": "toast0",
+    "timeISO": "2025-08-09T16:49:30.000Z",
+    "textPlain": "Why should they when openfreemap is behind a CDN and their home page says things like:> Using our public instance is completely free: there are no limits on the number of map views or requests. There’s no registration, no user database, no API keys, and no cookies. We aim to cover the running costs of our public instance through donations.> Is commercial usage allowed?> Yes.IMHO, reading this and then just using it, makes a lot of sense. Yeah, you could put a cache infront of their CDN, but why, when they said it's all good, no limits, for free?I might wonder a bit, if I knew the bandwidth it was using, but I might be busy with other stuff if my site went unexpectedly viral.",
     "parent": 44847331,
     "depth": 2
   },
@@ -120,27 +144,11 @@
     "depth": 2
   },
   {
-    "id": 44847791,
-    "by": "timmg",
-    "timeISO": "2025-08-09T16:23:54.000Z",
-    "textPlain": "96% during a unique event. I think you would typically consider long term in a stat like that.Assuming it was close to 100% the rest of the year, that works out to 99.97% over 12 months.",
-    "parent": 44847652,
-    "depth": 2
-  },
-  {
-    "id": 44847712,
-    "by": "ndriscoll",
-    "timeISO": "2025-08-09T16:14:31.000Z",
-    "textPlain": "If I were a consumer of a free service from someone who will not take your money to offer support or an SLA (i.e. is not trying to run a business), I would assume there's little to no monitoring at all.",
-    "parent": 44847652,
-    "depth": 2
-  },
-  {
-    "id": 44847243,
+    "id": 44847504,
     "by": "hyperknot",
-    "timeISO": "2025-08-09T15:23:34.000Z",
-    "textPlain": "Yes, I designed the whole path structure / location blocks with caching in mind. Here is the generated nginx.conf, if you are interested:https://github.com/hyperknot/openfreemap/blob/main/docs/asse...",
-    "parent": 44847173,
+    "timeISO": "2025-08-09T15:55:01.000Z",
+    "textPlain": "We are talking about an insane amount of data here. It was 56 Gbit/s (or 56 x 1 Gbit servers 100% saturated!).\nThis is not something a \"caching server\" could handle. We are talking on the order of CDN networks, like Cloudflare, to be able to handle this.",
+    "parent": 44847331,
     "depth": 2
   },
   {
@@ -149,6 +157,14 @@
     "timeISO": "2025-08-09T15:02:23.000Z",
     "textPlain": "What if one user really wants to browse around the world and explore the map. I remember spending half an hour in Google Earth desktop, just exploring around interesting places.I think referer based limits are better, this way I can ask high users to please choose self-hosting instead of the public instance.",
     "parent": 44846988,
+    "depth": 2
+  },
+  {
+    "id": 44847243,
+    "by": "hyperknot",
+    "timeISO": "2025-08-09T15:23:34.000Z",
+    "textPlain": "Yes, I designed the whole path structure / location blocks with caching in mind. Here is the generated nginx.conf, if you are interested:https://github.com/hyperknot/openfreemap/blob/main/docs/asse...",
+    "parent": 44847173,
     "depth": 2
   },
   {
@@ -181,6 +197,22 @@
     "timeISO": "2025-08-09T14:47:29.000Z",
     "textPlain": "Do you even read the article?",
     "parent": 44846884,
+    "depth": 2
+  },
+  {
+    "id": 44847712,
+    "by": "ndriscoll",
+    "timeISO": "2025-08-09T16:14:31.000Z",
+    "textPlain": "If I were a consumer of a free service from someone who will not take your money to offer support or an SLA (i.e. is not trying to run a business), I would assume there's little to no monitoring at all.",
+    "parent": 44847652,
+    "depth": 2
+  },
+  {
+    "id": 44847791,
+    "by": "timmg",
+    "timeISO": "2025-08-09T16:23:54.000Z",
+    "textPlain": "96% during a unique event. I think you would typically consider long term in a stat like that.Assuming it was close to 100% the rest of the year, that works out to 99.97% over 12 months.",
+    "parent": 44847652,
     "depth": 2
   },
   {

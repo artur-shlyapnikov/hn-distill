@@ -8,10 +8,26 @@
     "depth": 1
   },
   {
-    "id": 44847675,
-    "by": "rvrb",
-    "timeISO": "2025-08-09T16:10:26.000Z",
-    "textPlain": "I did not realize you could inline anything other than an `else` branch! This is a very cool use for that.",
+    "id": 44847955,
+    "by": "loeg",
+    "timeISO": "2025-08-09T16:42:33.000Z",
+    "textPlain": "Just having a comptime unreachable feature seems pretty cool.  Common C++ compilers have the worst version of this with __builtin_unreachable() -- they don't do any verification the site is unreachable, and just let the optimizer go to town.  (I use/recommend runtime assert/fatal/abort over that behavior most days of the week.)",
+    "parent": 44845017,
+    "depth": 1
+  },
+  {
+    "id": 44847844,
+    "by": "agons",
+    "timeISO": "2025-08-09T16:29:17.000Z",
+    "textPlain": "Is there a reason the Zig compiler can't perform type-narrowing for `u` within the `U::A(_) | U::B(_)` \"guard\", rendering just the set of 2 cases entirely necessary and sufficient (obviating the need for any of the solutions in the blog post)?I'm not familiar with Zig, but also ready to find out I'm not as familiar with type systems as I thought.",
+    "parent": 44845017,
+    "depth": 1
+  },
+  {
+    "id": 44845375,
+    "by": "spiffyk",
+    "timeISO": "2025-08-09T10:23:00.000Z",
+    "textPlain": "This post shows how versatile Zig's comptime is not only in terms of expressing what to pre-compute before the program ever runs, but also for doing arbitrary compile time bug-checks like these.  At least to me, the former is a really obvious use-case and I have no problem using that to my advantage like that.  But I often seem to overlook the latter, even though it could prove really valuable.",
     "parent": 44845017,
     "depth": 1
   },
@@ -24,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44845375,
-    "by": "spiffyk",
-    "timeISO": "2025-08-09T10:23:00.000Z",
-    "textPlain": "This post shows how versatile Zig's comptime is not only in terms of expressing what to pre-compute before the program ever runs, but also for doing arbitrary compile time bug-checks like these.  At least to me, the former is a really obvious use-case and I have no problem using that to my advantage like that.  But I often seem to overlook the latter, even though it could prove really valuable.",
+    "id": 44847675,
+    "by": "rvrb",
+    "timeISO": "2025-08-09T16:10:26.000Z",
+    "textPlain": "I did not realize you could inline anything other than an `else` branch! This is a very cool use for that.",
     "parent": 44845017,
     "depth": 1
   },
@@ -80,18 +96,18 @@
     "depth": 2
   },
   {
-    "id": 44847036,
-    "by": "bobajeff",
-    "timeISO": "2025-08-09T15:01:04.000Z",
-    "textPlain": "I've seen a few new languages come along that were inspired by zig's comptime/metaprogramming in the same language concept.Zig I think has potential but it hasn't stabilized enough yet for broad adoption. That means it'll be awhile before it's built an ecosystem (libraries, engines etc.) that is useful to developers that don't care about language design.",
-    "parent": 44845426,
-    "depth": 2
-  },
-  {
     "id": 44846406,
     "by": "ozgrakkurt",
     "timeISO": "2025-08-09T13:45:51.000Z",
     "textPlain": "This perspective that many people take on memory-safety of Rust seems really \n\"interesting\".Unfortunately for all fanatics, language really doesn't matter that much.I have been using KDE for years now and it works perfectly good for me. It has no issues/crashes, it has many features in terms of desktop environment and also many programs that come with it like music player, video player, text editor, terminal etc. and they all work perfectly well for me. Almost all of this is written in C++. No need to mention the classic linux/chromium etc. etc which are all written in c++/c.I use Ghostty which is written in zig, it is amazingly polished and works super well as well.I have built and used a lot of software written in Rust as well and they worked really well too.At some point you have to admit, what matters is the people writing software, the amount of effort that goes into it etc. it is not the langauge.As far as memory-safety goes, it really isn't close to being the most important thing unless you are writing security critical stuff. Even then just using Rust isn't as good as you might think, I uncountered a decent amount of segfaults, random crashes etc. using very popular Rust libraries as well. In the end just need to put in the effort.I'm not saying language doesn't matter but it isn't even close to being the most important thing.",
+    "parent": 44845426,
+    "depth": 2
+  },
+  {
+    "id": 44847036,
+    "by": "bobajeff",
+    "timeISO": "2025-08-09T15:01:04.000Z",
+    "textPlain": "I've seen a few new languages come along that were inspired by zig's comptime/metaprogramming in the same language concept.Zig I think has potential but it hasn't stabilized enough yet for broad adoption. That means it'll be awhile before it's built an ecosystem (libraries, engines etc.) that is useful to developers that don't care about language design.",
     "parent": 44845426,
     "depth": 2
   },
@@ -136,11 +152,27 @@
     "depth": 2
   },
   {
+    "id": 44848033,
+    "by": "rvrb",
+    "timeISO": "2025-08-09T16:50:22.000Z",
+    "textPlain": "it can narrow the payload: https://zigbin.io/7cb79dI think the post would be more helpful if it had a concrete use case. let's say a contrived bytecode VM:  dispatch: switch (instruction) {\n      inline .load0, .load1, .load2, .load3, .load => |_, tag| {\n          const slot = switch (tag) {\n              .load0, .load1, .load2, .load3 => @intFromEnum(tag) - @intFromEnum(.load0),\n              .load => self.read(u8),\n              else => comptime unreachable,\n          };\n          self.push(self.locals[slot]);\n          continue :dispatch self.read(Instruction);\n      },\n      // ...\n  }\n\n\"because comptime\", this is effectively the same runtime performance as the common:  dispatch: switch (instruction) {\n      .load0 => {\n          self.push(self.locals[0]);\n          continue :dispatch self.read(Instruction);\n      },\n      .load1 => {\n          self.push(self.locals[1]);\n          continue :dispatch self.read(Instruction);\n      },\n      .load2 => {\n          self.push(self.locals[2]);\n          continue :dispatch self.read(Instruction);\n      },\n      .load3 => {\n          self.push(self.locals[3]);\n          continue :dispatch self.read(Instruction);\n      },\n      .load => {\n          self.push(self.locals[self.read(u8)]);\n          continue :dispatch self.read(Instruction);\n      },\n      // ...\n  }\n\nand this is in a situation where this level of performance optimization is actually valuable to spend time on. it's nice that Zig lets you achieve it while reusing the logic.",
+    "parent": 44847844,
+    "depth": 2
+  },
+  {
     "id": 44845401,
     "by": "dwattttt",
     "timeISO": "2025-08-09T10:29:52.000Z",
     "textPlain": "I love the idea, but something being \"provable\" in this way feels like relying on optimisations.If a dead code elimination pass didn't remove the 'comptime unreachable' statement, you'll now fail to compile (I expect?)",
     "parent": 44845375,
+    "depth": 2
+  },
+  {
+    "id": 44848024,
+    "by": "loeg",
+    "timeISO": "2025-08-09T16:49:48.000Z",
+    "textPlain": "I didn't know godbolt let you include URLs. Fascinating: https://raw.githubusercontent.com/uecker/noplate/main/src/co...I think Zig gets some points here for legibility ;-).",
+    "parent": 44847483,
     "depth": 2
   },
   {
@@ -160,18 +192,18 @@
     "depth": 2
   },
   {
-    "id": 44847231,
-    "by": "the__alchemist",
-    "timeISO": "2025-08-09T15:21:38.000Z",
-    "textPlain": "I have no idea what that's trying to do. A demonstration that rust is a large language with different dialects! A terse statement with multiple things I don't understand:  - Assigning a const conditionally?\n  - Naming a const _ ?\n  - () as a type?\n  - Assigning a panic to a constant (or variable) ?\n\nTo me it might as well be:  fn main() {\n    match let {\n        if ()::<>unimplemented!() -> else;\n    }\n}",
-    "parent": 44845403,
-    "depth": 2
-  },
-  {
     "id": 44845492,
     "by": "Sharlin",
     "timeISO": "2025-08-09T10:49:42.000Z",
     "textPlain": "Sure, because it's compile-time code inside a (semantically) run-time check. In recent Rust versions you can do    fn main() {\n        const {\n            if false {\n                let _:() = panic!();\n            }\n        }\n    }\n\nwhich compiles as expected. (Note that if the binding were `const` instead of `let`, it'd still have failed to compile, because the semantics don't change.)",
+    "parent": 44845403,
+    "depth": 2
+  },
+  {
+    "id": 44847231,
+    "by": "the__alchemist",
+    "timeISO": "2025-08-09T15:21:38.000Z",
+    "textPlain": "I have no idea what that's trying to do. A demonstration that rust is a large language with different dialects! A terse statement with multiple things I don't understand:  - Assigning a const conditionally?\n  - Naming a const _ ?\n  - () as a type?\n  - Assigning a panic to a constant (or variable) ?\n\nTo me it might as well be:  fn main() {\n    match let {\n        if ()::<>unimplemented!() -> else;\n    }\n}",
     "parent": 44845403,
     "depth": 2
   },
