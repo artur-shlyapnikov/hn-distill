@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44796580,
+    "by": "sumeetdas",
+    "timeISO": "2025-08-05T11:03:21.000Z",
+    "textPlain": "The first typed programming language where I've seen pipe operator |> in action was in F#. You can write something like:  sum 1 2\n  |> multiply 3\n\nand it works because |> pushes the output of the left expression as the last parameter into the right-hand function. multiply has to be defined as:  let multiply b c = b \\* c\n\nso that b becomes 3, and c receives the result of sum 1 2.RHS can also be a lambda too:  sum 1 2 |> (fun x -> multiply 3 x)\n\n|> is not a syntactic sugar but is actually defined in the standard library as:  let (|>) x f = f x\n\nFor function composition, F# provides >> (forward composition) and << (backward composition), defined respectively as:  let (>>) f g x = g (f x)\n  let (<<) f g x = f (g x)\n\nWe can use them to build reusable composed functions:  let add1 x = x + 1\n  let multiply2 x = x \\* 2\n  let composed = add1 >> multiply2 \n\nF# is a beautiful language. Sad that M$ stopped investing into this language long back and there's not much interest in (typed) functional programming languages in general.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44794519,
+    "by": "bapak",
+    "timeISO": "2025-08-05T05:08:47.000Z",
+    "textPlain": "Meanwhile the JS world has been waiting for 10 years for this proposal, which is still in stage 2 https://github.com/tc39/proposal-pipeline-operator/issues/23...",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44796694,
+    "by": "donatj",
+    "timeISO": "2025-08-05T11:18:49.000Z",
+    "textPlain": "I had this argument in the PHP community when the feature was being discussed, but I think the syntax is much more complicated to read, requiring backtracking to understand.  It might be easier to write.Imagine you're just scanning code you're unfamiliar with trying to identify the symbols. Make sense of inputs and outputs, and you come to something as follows.    $result = $arr\n        |> fn($x) => array_column($x, 'values')\n        |> fn($x) => array_merge(...$x)\n        |> fn($x) => array_reduce($x, fn($carry, $item) => $carry + $item, 0)\n        |> fn($x) => str_repeat('x', $x);\n\nLook at this operation imaging your reading a big section of code you didn't write. This is embedded within hundreds or thousands of lines. Try to just make sense of what \"result\" is here? Do your eyes immediately shoot to its final line to get the return type?My initial desire is to know what $result is generally speaking, before I decide if I want to dive into its derivation.It's a string. To find that out though, you have to skip all the way to the final line to understand what the type of $result is. When you're just making sense of code, it's far more about the destination than the path to get there, and understanding these require you to read them backwards.Call me old fashioned, I guess, but the self-documentating nature of a couple variables defining what things are or are doing seems important to writing maintainable code and lowering the maintainers' cognitive load.    $values = array_merge(...array_column($arr, 'values'));\n    $total  = array_reduce($values, fn($carry, $item) => $carry + $item, 0);\n\n    $result = str_repeat('x', $x);",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44794550,
+    "by": "sandreas",
+    "timeISO": "2025-08-05T05:18:28.000Z",
+    "textPlain": "While I appreciate the effort and like the approach in general, in this use case I really would prefer extensions / extension functions (like in Kotlin[1]) or an IEnumerable / iterator approach (like in C#).  $arr = [\n    new Widget(tags: ['a', 'b', 'c']),\n    new Widget(tags: ['c', 'd', 'e']),\n    new Widget(tags: ['x', 'y', 'a']),\n  ];\n  \n  $result = $arr\n      |> fn($x) => array_column($x, 'tags') // Gets an array of arrays\n      |> fn($x) => array_merge(...$x)       // Flatten into one big array\n      |> array_unique(...)                  // Remove duplicates\n      |> array_values(...)                  // Reindex the array.\n  ;\n\nfeels much more complex than writing  $result = $arr->column('tags')->flatten()->unique()->values()\n\nhaving array extension methods for column, flatten, unique and values.1: https://kotlinlang.org/docs/extensions.html#extension-functi...",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44795769,
+    "by": "mort96",
+    "timeISO": "2025-08-05T08:51:40.000Z",
+    "textPlain": "I'm surprised that the example requires lambdas... What's the purpose of the `|> foo(...)' syntax if the function has to take exactly one operand? Why is it necessary to write this?    $arr\n        |> fn($x) => array_column($x, 'tags')\n\nWhy doesn't this work?    $arr\n        |> array_column(..., 'tags')\n\nAnd when that doesn't work, why doesn't this work?    $arr\n        |> array_unique",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44795031,
+    "by": "abrookewood",
+    "timeISO": "2025-08-05T06:52:11.000Z",
+    "textPlain": "I love the pipe operator - one of the things I dig about Elixir though many languages have it. It's so much easier to reason about:  $result = $arr\n    |> fn($x) => array_column($x, 'tags')\n    |> fn($x) => array_merge(...$x)\n    |> array_unique(...)\n    |> array_values(...)\n\nVS array_values(array_unique(array_merge(...array_column($arr, 'tags'))));",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44794603,
+    "by": "gbalduzzi",
+    "timeISO": "2025-08-05T05:29:26.000Z",
+    "textPlain": "I like it.I really believe the thing PHP needs the most is a rework of string / array functions to make them more consistent and chain able. Now they are at least chainable.I'm not a fan of the ... syntax though, especially when mixed in the same chain with the spread operator",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44794960,
+    "by": "cess11",
+    "timeISO": "2025-08-05T06:39:08.000Z",
+    "textPlain": "\"A major limitation of the pipe operator is that all the callables in the chain must accept only one required parameter.For built-in functions, if the function does not accept any parameters, it cannot be used in a chain. For user-land PHP functions, passing a parameter to a function that does not accept any parameters does not cause an error, and it is silently ignored.With the pipe operator, the return value of the previous expression or the callable is always passed as the first parameter to the next callable. It is not possible to change the position of the parameter.\"https://php.watch/versions/8.5/pipe-operatorIn the light of these limitations I would not call the Elixir implementation \"slightly fancier\".I'm not so sure I'll be upgrading my local PHP version just for this but it's nice that they are adding it, I'm sure there is a lot of library code that would look much better if rewritten into this style.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44795683,
+    "by": "defraudbah",
+    "timeISO": "2025-08-05T08:38:08.000Z",
+    "textPlain": "PHP is that weird beast that no one wants to praise and yet it works tremendously well for those who manage to tame it.I would likely never touch it as there are too many languages to use and what I know is more than enough to do my job, but I am super excited to see languages like PHP that aren't mainstream in my bubble to keep evolving",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44794586,
+    "by": "librasteve",
+    "timeISO": "2025-08-05T05:26:05.000Z",
+    "textPlain": "raku has had feed operators like this since its inception  # pipeline functional style\n  (1..5)\n    ==> map { $_ * 2 }\n    ==> grep { $_ > 5 }\n    ==> say();              # (6 8 10)\n\n  # method chain OO style\n  (1..5)\n    .map( * * 2)\n    .grep( * > 5)\n    .say;                   # (6 8 10)\n\nuses ==> and <== for leftwardtrue it is syntax sugar, but often the pipe feed is quite useful to make chaining very obvioushttps://docs.raku.org/language/operators#infix_==%3E",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44794783,
+    "by": "phplovesong",
+    "timeISO": "2025-08-05T06:05:24.000Z",
+    "textPlain": "The stdlib is so inconsistent this will be a nightmare.Optionally with a better language you know what order params as passed (array_map / array_filter), but in PHP its an coin toss.This feels very bolted on and not suited for the stdlib at all.PHP devs should instead FIRST focus on full unicode support (no, the mb_real_uppercase wont do), and only then focus on a new namespaced stdlib with better design.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44797009,
+    "by": "LorenDB",
+    "timeISO": "2025-08-05T12:01:37.000Z",
+    "textPlain": "Reminds me of D's Uniform Function Call Syntax[0], which allows you to rewrite bar(foo(sort(myArray))) as myArray.sort().foo().bar(). The difference is that D allows extra function arguments, keeping the passed-in value as the first argument. So you could have myArray.sort().writeln(\"extra text\"), for example.[0]: https://tour.dlang.org/tour/en/gems/uniform-function-call-sy...",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44795914,
+    "by": "rogue7",
+    "timeISO": "2025-08-05T09:17:58.000Z",
+    "textPlain": "This looks neat. However since I read about Koka's dot selection [0], I keep thinking that this is an even neater syntax:fun showit( s : string )  s.encode(3).count.println\n\nHowever, this is of course impossible to implement in most languages as the dot is already meaningful for something else.[0] https://koka-lang.github.io/koka/doc/book.html#sec-dot",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44795713,
+    "by": "BiteCode_dev",
+    "timeISO": "2025-08-05T08:43:44.000Z",
+    "textPlain": "It's lovely to see how PHP keeps growing. It's far from what it was when I used to code with it in V3. I really thought it would be lost in its bad design, but the core devs kept at it, and it is, indeed, a pretty decent language now.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44795385,
+    "by": "mappu",
+    "timeISO": "2025-08-05T07:51:28.000Z",
+    "textPlain": "Every single one of those steps buffers into a temporary variable - this isn't efficient like a bash pipe.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44794860,
+    "by": "habibur",
+    "timeISO": "2025-08-05T06:22:20.000Z",
+    "textPlain": "I tried to emulate something similar with PHP at one point. But the problem with PHP was parameter order. Especially in functions like array_key_exists() the array element is the 2nd parameter, while pipe operator expects the object to work on be the 1st parameter, the array in these cases.I believe they have solved this problem by now. Though no idea how.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44795851,
+    "by": "zelphirkalt",
+    "timeISO": "2025-08-05T09:06:23.000Z",
+    "textPlain": "Hm. Looks like PHP actually got a modern feature there, and it is looking decent, not like the usual new PHP feature, that just looks worse than in other languages, where it has been standard. Consider me surprised, that they seem to have done a good job on this one. And they even dodged the bullet with making the right side callables, which avoids the trap of inventing new types of expressions and then not covering all cases.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44796703,
+    "by": "penguin_booze",
+    "timeISO": "2025-08-05T11:20:00.000Z",
+    "textPlain": "I don't imagine it's widely known (which I completely understand): vimscript has an arrow operator with similar piping effect, a la foo->bar(baz)->qux() . See the doc: https://vimhelp.org/eval.txt.html#method.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44799698,
+    "by": "adius",
+    "timeISO": "2025-08-05T15:56:31.000Z",
+    "textPlain": "PHP getting a pipe operator with ways to implement a Maybe Monad was definitely not on my 2025 bingo card.But any changes making mainstream languages more functional are highly welcome! It’s just more ergonomic than imperative code.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44796289,
+    "by": "mhh__",
+    "timeISO": "2025-08-05T10:14:59.000Z",
+    "textPlain": "Every language should have this.Forget about transforming existing code, it makes new code much more reasonable (the urge to come up with OOPslop is much weaker when functions are trivial) — they're programming languages for a reason.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44795952,
+    "by": "ds_",
+    "timeISO": "2025-08-05T09:23:54.000Z",
+    "textPlain": "One of the many joys of working with Clojure https://clojure.org/guides/threading_macros",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44798136,
+    "by": "elif",
+    "timeISO": "2025-08-05T14:05:49.000Z",
+    "textPlain": "I used php professionally for a decade and I still don't get why in the year 2025 we need to reinvent syntax that is virtually standard in every language",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44795615,
+    "by": "dev_l1x_be",
+    "timeISO": "2025-08-05T08:27:04.000Z",
+    "textPlain": "Rust is next? Jokes aside, pipe operators in programming languages have a interesting side effect of enabling railway oriented programming that I miss the most when not working in F#.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44797317,
+    "by": "chuck8088",
+    "timeISO": "2025-08-05T12:43:47.000Z",
+    "textPlain": "This article makes a great case WHY the pipe operator is useful, but why didn't they just rewrite those functions to support method chaining?\n`\n$profit = [1, 4, 5] \n    .loadSeveral()\n    .filter(isOnSale())\n    .map(sellWidget())\n    .array_sum();\n`\nthis has the side benefit of 'looking normal'",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44803112,
+    "by": "flufluflufluffy",
+    "timeISO": "2025-08-05T19:31:57.000Z",
+    "textPlain": "It’s cool. Personally I probably won’t be using it though. I think a few temp variables or dedicated functions to do some computation that takes more than 2 or 3 iterated operations is better for readability and maintainability.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44796603,
+    "by": "elric",
+    "timeISO": "2025-08-05T11:06:59.000Z",
+    "textPlain": "Makes for a fun programming paradigm, similar to Java's streams-with-lambdas. Great for readability. Not too fond of the |> operator though, requires 4 different keypresses on my keyboard layout, not terribly ergonomic. But I understand that options were limited and it is sort of clear.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44795641,
+    "by": "pknerd",
+    "timeISO": "2025-08-05T08:30:02.000Z",
+    "textPlain": "Am I the only one who found it ugly?",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44813034,
+    "by": "mannyv",
+    "timeISO": "2025-08-06T15:07:31.000Z",
+    "textPlain": "So, what happens if a call in the middle fails?",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44796711,
+    "by": "mg",
+    "timeISO": "2025-08-05T11:21:20.000Z",
+    "textPlain": "I'm confused about the rationale behind:    |> fn($x) => array_column($x, 'tags')\n\nWhy is that inlined function necessary? Why not just    |> array_column(..., 'tags')\n\n?I mean, I understand that it is because the way this operator was designed. But why?",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44794852,
+    "by": "ChocolateGod",
+    "timeISO": "2025-08-05T06:21:05.000Z",
+    "textPlain": "Why not just make types psuedo-objects?$myString.trim().replace(\"w\", \"h\");Which has the advantage of also offering a clean alternative to the fragmented stdlib.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44798947,
+    "by": "dagi3d",
+    "timeISO": "2025-08-05T15:04:52.000Z",
+    "textPlain": "I wish they reconsider it again i  ruby",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44794834,
+    "by": "JaggerJo",
+    "timeISO": "2025-08-05T06:17:32.000Z",
+    "textPlain": "Thanks F#!",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44797096,
+    "by": "jcmontx",
+    "timeISO": "2025-08-05T12:13:59.000Z",
+    "textPlain": "Very nice, great F# feature, hope to see it in many other languages!",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44794610,
+    "by": "keyle",
+    "timeISO": "2025-08-05T05:30:59.000Z",
+    "textPlain": "C'mon Dart! Follow up please. Go is a lost cause...",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44795750,
+    "by": "cpursley",
+    "timeISO": "2025-08-05T08:49:10.000Z",
+    "textPlain": "Your move, JavaScript.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44795165,
+    "by": "someothherguyy",
+    "timeISO": "2025-08-05T07:16:00.000Z",
+    "textPlain": "composition would be much nicer than this, maybe soon",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44795091,
+    "by": "DataDaemon",
+    "timeISO": "2025-08-05T07:03:08.000Z",
+    "textPlain": "This will be the year of PHP. People are tired of JS.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44794966,
+    "by": "ossusermivami",
+    "timeISO": "2025-08-05T06:40:16.000Z",
+    "textPlain": "i wish python had something liek that to be honest",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44798130,
+    "by": "scop",
+    "timeISO": "2025-08-05T14:05:12.000Z",
+    "textPlain": "This is great! Hat tip to PHP. I first came across pipes in Elixir and have ever since missed it in every other language. Two observations:- pipes make you realize how much song and dance you do for something quite simple. Nesting, interstitial variables, etc all obscuring what is in effect and very orderly set of operations.- pipes really do have to be a first class operator of the language. I’ve tried using some pipe-like syntactic sugar in languages without pipes and while it does the job, a lot of elegance and simplicity is lost. It feels like you are using a roundabout thing and thus, in the end, doesn’t really achieve the same level of simplicity. Things can get very deranged if you are using a language in a way it wasn’t designed for and even though I love pipes I’ve seen “fake pipes” make things more complicated in languages without them.",
+    "parent": 44794271,
+    "depth": 1
+  },
+  {
+    "id": 44797657,
+    "by": "Mystery-Machine",
+    "timeISO": "2025-08-05T13:22:46.000Z",
+    "textPlain": "PHP:        $result = $arr\n            |> fn($x) => array_column($x, 'tags') // Gets an array of arrays\n            |> fn($x) => array_merge(...$x)       // Flatten into one big array\n            |> array_unique(...)                  // Remove duplicates\n            |> array_values(...)                  // Reindex the array.\n        ; // <- wtf\n\nRuby:    result = arr.uniq.flatten.map(&:tags)\n\nI understand this is not pipe operator, but just look at that character difference across these two languages.// <- wtfThis comment was my $0.02.",
+    "parent": 44794271,
+    "depth": 1
+  }
+]

@@ -1,0 +1,50 @@
+[
+  {
+    "id": 44765190,
+    "by": "wyldfire",
+    "timeISO": "2025-08-02T06:02:05.000Z",
+    "textPlain": "A really good accompaniment to this is Carruth's \"C++, bounds checking, performance, and compilers\" [1]:> ... strong belief that bounds checks couldn’t realistically be made cheap enough to enable by default. However, so far they are looking very affordable. From the above post, 0.3% for bounds checks in all the standard library types!There's more to the hardening story than just bounds checks. But it's a big part IMO.[1] https://chandlerc.blog/posts/2024/11/story-time-bounds-check...",
+    "parent": 44764376,
+    "depth": 1
+  },
+  {
+    "id": 44765745,
+    "by": "another_twist",
+    "timeISO": "2025-08-02T08:28:59.000Z",
+    "textPlain": "Maybe an easier way out is to add safe access instructions to LLVM itself. Its an IR after all, it should be possible to do a 3 phase update - add instructions to the IR, update the intermediate LLVM generator, then update the targetting backends.",
+    "parent": 44764376,
+    "depth": 1
+  },
+  {
+    "id": 44766335,
+    "by": "rurban",
+    "timeISO": "2025-08-02T10:20:59.000Z",
+    "textPlain": "They should also turn off the C11 Unicode identifier bugs with -fhardened, which enabled homoglyph attacks. There is no plan for C26 to fix this. No unicode identifiers without proper security measures",
+    "parent": 44764376,
+    "depth": 1
+  },
+  {
+    "id": 44766231,
+    "by": "ajb",
+    "timeISO": "2025-08-02T10:02:40.000Z",
+    "textPlain": "In the long term, it might be best to disable the ability to switch off checks using command line flags (which usually means, the whole executable) and only allow it on individual functions. Although the current mechanism to switch them off per function isn't idiot proof either (you need to remember to \"#pragma diagnostic pop\" after ) - we really need to be able to do it in a function attribute.",
+    "parent": 44764376,
+    "depth": 1
+  },
+  {
+    "id": 44764925,
+    "by": "dilawar",
+    "timeISO": "2025-08-02T04:32:59.000Z",
+    "textPlain": "> So this mode needs to set user expectations appropriately: your code breaking between compiler releases is a feature, not a bug.Good luck. I feel that the C++ community values backward compatibility way too much for this to succeed. Most package maintainers are not going to like it a bit.",
+    "parent": 44764376,
+    "depth": 1
+  },
+  {
+    "id": 44768809,
+    "by": "hexagrams64",
+    "timeISO": "2025-08-02T16:14:14.000Z",
+    "textPlain": "[dead]",
+    "parent": 44764376,
+    "depth": 1
+  }
+]

@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44780467,
+    "by": "simonw",
+    "timeISO": "2025-08-03T22:43:57.000Z",
+    "textPlain": "Whoa, I didn't know about this:  # Run with restricted file system access\n  node --experimental-permission \\\n    --allow-fs-read=./data --allow-fs-write=./logs app.js\n  \n  # Network restrictions\n  node --experimental-permission \\\n    --allow-net=api.example.com app.js\n\nLooks like they were inspired by Deno. That's an excellent feature. https://docs.deno.com/runtime/fundamentals/security/#permiss...",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779342,
+    "by": "farkin88",
+    "timeISO": "2025-08-03T20:11:10.000Z",
+    "textPlain": "The killer upgrade here isn’t ESM. It’s Node baking fetch + AbortController into core. Dropping axios/node-fetch trimmed my Lambda bundle and shaved about 100 ms off cold-start latency. If you’re still npm i axios out of habit, 2025 Node is your cue to drop the training wheels.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44780195,
+    "by": "vinnymac",
+    "timeISO": "2025-08-03T21:58:34.000Z",
+    "textPlain": "You no longer need to install chalk or picocolors either, you can now style text yourself:`const { styleText } = require('node:util');`Docs: https://nodejs.org/api/util.html#utilstyletextformat-text-op...",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779187,
+    "by": "tyleo",
+    "timeISO": "2025-08-03T19:51:11.000Z",
+    "textPlain": "This is great. I learned several things reading this that I can immediately apply to my small personal projects.1. Node has built in test support now: looks like I can drop jest!2. Node has built in watch support now: looks like I can drop nodemon!",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779701,
+    "by": "fleebee",
+    "timeISO": "2025-08-03T20:54:46.000Z",
+    "textPlain": "Nice post! There's a lot of stuff here that I had no idea was in built-in already.I tried making a standalone executable with the command provided, but it produced a .blob which I believe still requires the Node runtime to run. I was able to make a true executable with postject per the Node docs[1], but a simple Hello World resulted in a 110 MB binary. This is probably a drawback worth mentioning.Also, seeing those arbitrary timeout limits I can't help but think of the guy in Antarctica who had major headaches about hardcoded timeouts.[2][1]: https://nodejs.org/api/single-executable-applications.html[2]: https://brr.fyi/posts/engineering-for-slow-internet",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779842,
+    "by": "refulgentis",
+    "timeISO": "2025-08-03T21:09:17.000Z",
+    "textPlain": "The LLM made this sound so epic: \"The node: prefix is more than just a convention—it’s a clear signal to both developers and tools that you’re importing Node.js built-ins rather than npm packages. This prevents potential conflicts and makes your code more explicit about its dependencies.\"",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779524,
+    "by": "azangru",
+    "timeISO": "2025-08-03T20:33:47.000Z",
+    "textPlain": "Matteo Collina says that the node fetch under the hood is the fetch from the undici node client [0]; and that also, because it needs to generate WHATWG web streams, it is inherently slower than the alternative — undici request [1].[0] - https://www.youtube.com/watch?v=cIyiDDts0lo[1] - https://blog.platformatic.dev/http-fundamentals-understandin...",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44782289,
+    "by": "bilalq",
+    "timeISO": "2025-08-04T05:14:55.000Z",
+    "textPlain": "I really wish ESM was easier to adopt. But we're halfway through 2025 and there are still compatibility issues with it. And it just gets even worse now that so many packages are going ESM only. You get stuck having to choose what to cut out. I write my code in TS using ESM syntax, but still compile down to CJS as the build target for my sanity.In many ways, this debacle is reminiscent of the Python 2 to 3 cutover. I wish we had started with bidirectional import interop and dual module publications with graceful transitions instead of this cold turkey \"new versions will only publish ESM\" approach.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779281,
+    "by": "gabrielpoca118",
+    "timeISO": "2025-08-03T20:02:47.000Z",
+    "textPlain": "Don’t forget the native typescript transpiler which reduces the complexity a lot for those using TS",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44780205,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-03T22:00:11.000Z",
+    "textPlain": "Anyone else find they discover these sorts of things by accident. I never know when a feature was added but vague ideas of \"thats modern\". Feels different to when I only did C# and you'd read the new language features and get all excited. In a polyglot world and just the rate even individual languages evolve its hard to keep up! I usually learn through osmosis or a blog post like this (but that is random learning).",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779694,
+    "by": "prmph",
+    "timeISO": "2025-08-03T20:53:42.000Z",
+    "textPlain": "I think slowly Node is shaping up to offer strong competition to Bun.js, Deno, etc. such that there is little reason to switch. The mutual competition is good for the continued development of JS runtimes",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779525,
+    "by": "rco8786",
+    "timeISO": "2025-08-03T20:34:00.000Z",
+    "textPlain": "I've been away from the node ecosystem for quite some time. A lot of really neat stuff in here.Hard to imagine that this wasn't due to competition in the space. With Deno and Bun trying to eat up some of the Node market in the past several years, seems like the Node dev got kicked into high gear.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779699,
+    "by": "serguzest",
+    "timeISO": "2025-08-03T20:54:11.000Z",
+    "textPlain": "One thing you should add to section 10 is encouraging people to pass `cause` option while throwing new Error instances. For examplenew Error(\"something bad happened\", {cause:innerException})",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44781214,
+    "by": "jmull",
+    "timeISO": "2025-08-04T01:04:57.000Z",
+    "textPlain": "Something's missing in the \"Modern Event Handling with AsyncIterators\" section.The demonstration code emits events, but nothing receives them. Hopefully some copy-paste error, and not more AI generated crap filling up the internet.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44786913,
+    "by": "wildpeaks",
+    "timeISO": "2025-08-04T15:09:10.000Z",
+    "textPlain": "Most importantly, Node has Typescript support even in LTS (starting with v22.18).I highly recommend the `erasableSyntaxOnly` option in tsconfig because TS is most useful as a linter and smarter Intellisense that doesn't influence runtime code:https://www.typescriptlang.org/tsconfig/#erasableSyntaxOnly",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44780339,
+    "by": "growbell_social",
+    "timeISO": "2025-08-03T22:21:49.000Z",
+    "textPlain": "I'm just happy to see Node.js patterns as a #1 on HN after continually being dismissed from 2012-2018.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44781316,
+    "by": "stevage",
+    "timeISO": "2025-08-04T01:26:02.000Z",
+    "textPlain": "Huh, I write a fair bit of Node and there was a lot new here for me. Like the built in test stuff.Also hadn't caught up with the the `node:` namespace.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44780058,
+    "by": "austin-cheney",
+    "timeISO": "2025-08-03T21:39:02.000Z",
+    "textPlain": "I see two classes of emerging features, just like in the browser:1. new technologies2. vanity layers for capabilities already presentIt’s interesting to watch where people place their priorities given those two segments",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44780328,
+    "by": "NackerHughes",
+    "timeISO": "2025-08-03T22:19:42.000Z",
+    "textPlain": "Be honest. How much of this article did you write, and how much did ChatGPT write?",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44780390,
+    "by": "nikanj",
+    "timeISO": "2025-08-03T22:29:56.000Z",
+    "textPlain": "By the time you finish reading this guide and update your codebase, the state-of-the-art JS best practices have changed at least twice",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44786645,
+    "by": "joaohaas",
+    "timeISO": "2025-08-04T14:52:51.000Z",
+    "textPlain": "try {\n    // Parallel execution of independent operations\n    const [config, userData] = await Promise.all([\n      readFile('config.json', 'utf8'),\n      fetch('/api/user').then(r => r.json())\n    ]);\n    ...\n  } catch (error) {\n    // Structured error logging with context\n    ...\n  }\n\nThis might seem fine at a glance, but a big grip I have with node/js async/promise helper functions is that you can't differ which promise returned/threw an exception.In this example, if you wanted to handle the `config.json` file not existing, you would need to somehow know what kind of error the `readFile` function can throw, and somehow manage to inspect it in the 'error' variable.This gets even worse when trying to use something like `Promise.race` to handle promises as they are completed, like:  const result = Promise.race([op1, op2, op3]);\n\nYou need to somehow embed the information about what each promise represents inside the promise result, which usually is done through a wrapper that injects the promise value inside its own response... which is really ugly.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779033,
+    "by": "keysdev",
+    "timeISO": "2025-08-03T19:30:12.000Z",
+    "textPlain": "About time! The whole dragging the feet on ESM adoption is insane. The npm are still stuck on commonjs is quite a lot. In some way glad jsr came along.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44783454,
+    "by": "mirkodrummer",
+    "timeISO": "2025-08-04T09:05:41.000Z",
+    "textPlain": "Am I the only one believing common js was super ok and don't like esm? Or put differently I didn't see the necessity of having esm at all in Node. Let alone the browser, imagine loading tons of modules over the wire instead of bundle them",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779984,
+    "by": "serguzest",
+    "timeISO": "2025-08-03T21:27:50.000Z",
+    "textPlain": "I love Node's built-in testing and how it integrates with VSCode's test runner. But I still miss Jest matchers. The Vitest team ported Jest matchers for their own use. I wish there were a similar compatibility between Jest matchers and Node testing as well.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44783315,
+    "by": "eric-burel",
+    "timeISO": "2025-08-04T08:41:42.000Z",
+    "textPlain": "Hi, regarding streams interoperability I've documented how to handle file streams a while ago, after experimenting with Next.js old system (Node.js based) and new system (web based) : https://www.ericburel.tech/blog/nextjs-stream-files#2024-upd....\nIt sums up as \"const stream = fileHandle.readableWebStream()\" to produce a web stream using Node.js fs, rather than creating a Node.js stream.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44792267,
+    "by": "theozero",
+    "timeISO": "2025-08-04T22:56:25.000Z",
+    "textPlain": "For a more modern approach to .env files that includes built-in validation and type-safety, check out https://varlock.devInstead of a .env.example (which quickly gets out of date), it uses a .env.schema - which contains extra metadata as decorator comments. It also introduces a new function call syntax, to securely load values from external sources.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44781923,
+    "by": "mythz",
+    "timeISO": "2025-08-04T03:36:44.000Z",
+    "textPlain": "Good to see Node is catching up although Bun seems to have more developer effort behind it so I'll typically default to Bun unless I need it to run in an environment where node is better for compatibility.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44782104,
+    "by": "throwaway-0001",
+    "timeISO": "2025-08-04T04:21:45.000Z",
+    "textPlain": "I think top level async is bad because won’t converge with js browser.Node test also I dont think is great, because in isomorphic apps you’ll have 2 syntax for testing.I think the permissions are the core thing we should do, even if we run the apps in docker/dev containers.Aliases is nice, node:fetch but I guess will break all isomorphic code.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779581,
+    "by": "amclennon",
+    "timeISO": "2025-08-03T20:40:52.000Z",
+    "textPlain": "Some good stuff in here. I had no idea about AsyncIterators before this article, but I've done similar things with generators in the past.A couple of things seem borrowed from Bun (unless I didn't know about them before?). This seems to be the silver lining from the constant churn in the Javascript ecosystem",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779120,
+    "by": "lvl155",
+    "timeISO": "2025-08-03T19:40:49.000Z",
+    "textPlain": "Thank you for this. Very helpful as I was just starting to dig into node for first time in a few years.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779369,
+    "by": "kfuse",
+    "timeISO": "2025-08-03T20:14:11.000Z",
+    "textPlain": "Node now has limited supports for Typescript and has SQLite built in, so it becomes really good for small/personal web oriented projects.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779440,
+    "by": "yawnxyz",
+    "timeISO": "2025-08-03T20:23:32.000Z",
+    "textPlain": "I feel like node and deno conventions are somehow merging (which is a good thing)",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44781872,
+    "by": "fud101",
+    "timeISO": "2025-08-04T03:24:34.000Z",
+    "textPlain": "I could never get into node but i've recently been dabbling with bun which is super nice. I still don't think i'll give node a chance but maybe i'm missing out.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44783629,
+    "by": "valenterry",
+    "timeISO": "2025-08-04T09:35:51.000Z",
+    "textPlain": "As a primary backend developer, I want to add my two cents:> Top-Level Await: Simplifying InitializationThis feels absolutely horrible to me. There is no excuse for not having a proper entry-point function that gives full control to the developer to execute everything that is needed before anything else happens. Such as creating database connections, starting services and connecting to APIs, warming up caches and so on. All those things should be run (potentially concurrent).Until this is possible, even with top-level await, I personally have to consider node.js to be broken.> Modern Testing with Node.js Built-in Test RunnerSorry, but please do one thing and do it well.> Async/Await with Enhanced Error HandlingI wish had JVM-like logging and stack traces (including cause-nesting) in node.js...> 6. Worker Threads: True Parallelism for CPU-Intensive TasksThis is the biggest issue. There should be really an alternative that has builtin support for parallelism that doesn't force me to de/serialize things by hand.---Otherwise a lot of nice progress. But the above ones are bummers.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44781785,
+    "by": "didip",
+    "timeISO": "2025-08-04T03:05:37.000Z",
+    "textPlain": "Will node one day absorb Typescript and use it as default?",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44779906,
+    "by": "asgr",
+    "timeISO": "2025-08-03T21:18:22.000Z",
+    "textPlain": "Deno has sandboxing tho",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44783142,
+    "by": "phendrenad2",
+    "timeISO": "2025-08-04T08:02:13.000Z",
+    "textPlain": "Javascript is missing some feature that will take it to the next level, and I'm not sure what it is.Maybe it needs a compile-time macro system so we have go full Java and have magical dependency injection annotations, Aspect-Oriented-Programming, and JavascriptBeans (you know you want it!).Or maybe it needs to go the Ruby/Python/SmallTalk direction and add proper metaprogramming, so we can finally have Javascript on Rails, or maybe uh... Djsango?",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44780765,
+    "by": "rvz",
+    "timeISO": "2025-08-03T23:35:36.000Z",
+    "textPlain": "Perhaps the technology that you are using is loaded with hundreds of foot-guns if you have to spend time on enforcing these patterns.Rather than taking the logical focus on making money, it is wasting time on shuffling around code and being an architecture astronaut with the main focus on details rather than shipping.One of the biggest errors one can make is still using Node.js and Javascript on the server in 2025.",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44780256,
+    "by": "MuffinFlavored",
+    "timeISO": "2025-08-03T22:07:10.000Z",
+    "textPlain": "Is current node.js a better language than .NET 6/7/8/9, why or why not?",
+    "parent": 44778936,
+    "depth": 1
+  },
+  {
+    "id": 44780136,
+    "by": "insin",
+    "timeISO": "2025-08-03T21:49:45.000Z",
+    "textPlain": "\"SlopDetector has detected 2 x seamlessly and 7 x em-dash, would you like to continue?\"",
+    "parent": 44778936,
+    "depth": 1
+  }
+]

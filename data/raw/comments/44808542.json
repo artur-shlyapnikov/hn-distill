@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44809497,
+    "by": "strogonoff",
+    "timeISO": "2025-08-06T08:50:21.000Z",
+    "textPlain": "People often lament how DOM, HTML and CSS are becoming more and more complicated: the difficulty with simple and/or common tasks like vertical centering or virtualization, 600+ CSS properties, so many JavaScript methods, leaky abstractions, { contain: size }. I agree on many issues, but equally I struggle to imagine how it could realistically be not complex.If it was a result of a single very well thought through vision and developers were expected to be committed to conforming to the latest API (think Apple’s iOS runtime or the like), we could maybe expect the <thread> and <comment> tags, we could demand there to be The One Correct Way of doing anything, that the “fat” is trimmed quickly and features go from deprecated to gone in a year. However, it is a product designed by committee (in fact, by multitudes of various committees) that has largely maintained backwards compatibility for decades, it is a free runtime that grew organically from what was supposed to be a basic hyperlinked document layout engine but now powers fully dynamic applications rivaling their native equivalents yet still has a pretty low barrier to entry for new developers, and as such it’s remarkably robust.Yes, some applications tend to have a large amount of markup for what seems like simple features (the Slack’s input box example). However, the alternative is that browser vendors bake it all in, and then every app is stuck with the opinionated way they think is right. Perhaps some amount of chaos is healthy.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44813284,
+    "by": "socalgal2",
+    "timeISO": "2025-08-06T15:25:05.000Z",
+    "textPlain": "I like the DOM. I think people keep forgetting all the small details, like being responsive (working on mobile and desktop) and many other issues related to privacy and usability. IMEs, dictionaries, spelling correction, etc...  All of these happen in text areas. If you implement things yourself, say in canvas on a webpage, you can't provide these. For example if I misspel somethng the browser can lookup that word in the user's dictionary but your page can not as looking through a user's dictionary would be a privacy issue.That said, if you want a non-DOM framework, surprisingly Google already provides it. It's called Flutter and it has the option to use a canvas, no DOM. You can see a large complex example athttps://earth.google.comGo there and type in NYC. You'll see text and images popup over the earth, etc. You'll see a toolbar and menus and a status bar etc... Click settings. The stuff that appears is all canvas. Click the Data Layers icon. The stuff that appears as all canvas. I think they finally made the search input box an input element for the reasons above but the rest is canvas.Also note that canvas based input is also why Google Docs has so much trouble with emoji and non-English input.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44809677,
+    "by": "vlindhol",
+    "timeISO": "2025-08-06T09:15:25.000Z",
+    "textPlain": "I'm tempted to take the opposite stance to the author. The web as a platform is wildly successful, and it's interesting to think about why.Surely the \"loose\" standards encouraged neat hacks that at some point were encoded as best practices and then standardized. Maybe that would tempt us to want to \"cut the cruft\" but a) people probably thought that many times previously and b) backwards compatibility is probably more valuable than one would think.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44814440,
+    "by": "bloomca",
+    "timeISO": "2025-08-06T16:45:43.000Z",
+    "textPlain": "I've been looking at native development for quite some time now (WPF/WinUI/SwiftUI, starting with Win32 and AppKit), and honestly Web technologies are much better than that. The fact that it is cross-compatible is just a cherry on top.If finally WASM gets a cheap and easy way to manipulate DOM, I think even more stuff will move towards web tech like Electron and hopefully Tauri in the future.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44809412,
+    "by": "austin-cheney",
+    "timeISO": "2025-08-06T08:39:24.000Z",
+    "textPlain": "Uggghhh, the article states correct facts about the DOM but grossly incorrect conclusions. Most developers have always feared working with the DOM. This irrationality is not new. I have no idea why, but tree models scare the shit out of college educated developers. That’s supremely weird because computer science education spends so much energy on data structures and tree models.It also makes the conversation about WASM even more bizarre. Most college educated developers are scared of the DOM. Yes, it’s fear the emotion and it’s completely irrational. Trust me on this as I have watched it as a prior full time JS dev for over 15 years. Developers are continuously trying to hide from the thing with layers of unnecessary abstractions and often don’t know why because they have invested so much energy in masking their irrational nonsense.Other developers that have not embraced this nightmare of emotions just simply wish WASM would replace JS so they don’t have touch any of this. This is problematic because you don’t need anything to do with JS or the DOM to deploy WASM, but it’s a sandbox that ignores the containing web page, which is absolutely not a replacement. For WASM to become a replacement it would have to gain full DOM access to the containing page. Browser makers have refused to do that for clear security reasons.So you get people investing their entire careers trying to hide from the DOM with unnecessary abstractions and then other developers that want bypass the nonsense by embracing that thing they don’t know they are yet afraid of it.That is super fucking weird, but it makes for fun stories to nondevelopers that wonder why software is the way it is.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44816103,
+    "by": "c-smile",
+    "timeISO": "2025-08-06T18:55:00.000Z",
+    "textPlain": "DOM per se, as a tree of elements, is not that bad. CSS is also not that bad in general.Their API is probably the problem. Not modular so makes the mess.Options to modularize them:DOM, concept of interfaces/behaviors rather than inheritance leading to huge maps. Let say for <textarea> we may have separate \"textarea\" interface:   element.tagName\n   ... and the rest of DOM-as-a-tree methods ...\n   element.textarea // <textarea> specific interface of its behavior\n   element.textarea.select(startEnd) // interface method\n   element.textarea.selectionStart // interface prop\n   element.textarea.selectionEnd // interface prop\n   element.textarea.rows // interface prop\n   element.textarea.columns // interface prop\n   ...\n\nCSS, that huge flat table is a nightmare, not just because of its size, but because of extensibility problems right now and in the future. Example, all CSS grid related properties should rather go to their own namespace:   section {\n     color: red;\n     // ... and other basic CSS 2.1 props\n\n     display: grid(\n       rows: ...;\n       columns: ...;\n       align-items: center;\n       justify-items: start\n     );\n   }\n\nSo different layouts ( like display:flex(), display:waterfall() ) may have their own rows, columns, etc.As sooner we will do that - the better. API is on the brink of collapsing / combinatorial explosion, indeed.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44812509,
+    "by": "romaniv",
+    "timeISO": "2025-08-06T14:28:25.000Z",
+    "textPlain": "Devs have learned not to keep state in the document, because it's inadequate for it.Web devs have moved the state out of the document into JS variables and have been piling bloated, short-lived crap on top of those variables ever since.If you actually keep state in the document things become rather simple. Scripts themselves become stateless and do not require direct dependencies on one another. Data can be queried across the page with CSS selectors. Many visual transformations on data can be handled in CSS as well. There is a well-developed system of events to handle interactions, which removes the need to handle user changes, AJAX and WebSockets separately. You gain the ability to dynamically examine and modify the state of your \"application\" simply by pressing F12 and changing things in the elements tab.While it's definitely possible to imagine better ways of dealing with documents, layouts and so on, seeing how JS frameworks handle state makes me fear any \"improvements\" on this front.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44809870,
+    "by": "LauraMedia",
+    "timeISO": "2025-08-06T09:40:17.000Z",
+    "textPlain": "I think for a system that can basically do EVERYTHING, HTML is quite well designed. And I think keeping backwards compatibility for SO long is a big achievement and a good thing.I also think that if we could roll back time and had the knowledge of today, instead of fixed elements with user-agent styling and hard-coded restrictions, I would've crafted a system of arbitrary nodes that can have modifiers stacked on them.So instead of<ul> you could use <Features list>. This would minimize the very different but basically same CSS properties as well and trim out A LOT of HTML tags. Think <Comment collapsible link> instead of wrapping a <details> in an <a>.That's basically how React and Vue started out with the component system, but I'm thinking more of a GameObject & Component system like with Unity.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44822440,
+    "by": "dannye",
+    "timeISO": "2025-08-07T09:33:35.000Z",
+    "textPlain": "The article isn't complete/correct.\nSomething did change with HTML.\nSince 2018 every browser interprets ANY <tag-name> with a dash as a valid HTMLElement, not HTMLUnknownElement.\nAbsolutly NO JavaScript required to turn the DIV-soup into\n<semantic-html> and CSS",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44818332,
+    "by": "jmull",
+    "timeISO": "2025-08-06T21:57:23.000Z",
+    "textPlain": "The DOM is too large and complex, with so many APIs and concepts.But you can’t fix that by adding new APIs with plenty of new concepts. You’re just making things larger and more complex. A few things may be able to live entirely inside the new, clean, modern API, but everything else (including practically everything that came before), will either need to ignore the new thing, or incorporate it (and pay the costs of bridging/composing things that weren’t necessarily designed to work together.I say figure out how to actually remove old, bad stuff before adding a bunch of new stuff.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44820038,
+    "by": "bawolff",
+    "timeISO": "2025-08-07T02:42:13.000Z",
+    "textPlain": "This feels like one of those rewrites where the moment you actually tried to do it, it would became very clear why the status quo is the way it is.I like html/dom/svg/css. There are a couple rough edges. Half of them are from the last time someone tried to rewrite the whole thing (all the namespace aware dom methods)",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44809771,
+    "by": "AshleysBrain",
+    "timeISO": "2025-08-06T09:26:46.000Z",
+    "textPlain": "It's easy to say \"XYZ is dead, time to replace it with something better\". Another example is the Win32 APIs are hideous (look up everything SetWindowPos does) and need replacing.In the real world though, backwards compatibility reigns supreme. Even if you do go and make a better thing, nobody will use it until it can do the vast majority of what the old thing did. Even then, switching is costly, so a huge chunk of people just won't. Now you have two systems to maintain and arguably an even bigger mess. See Win32 vs. WinRT vs. Windows App SDK or however many else there are now.So if you're serious about improving big mature platforms, you need a very good plan for how you will handle the transition. Perhaps a new API with a compatibility layer on top is a good approach, but the compatibility layer has to have exactly 100% fidelity, and you can never get rid of it. At the scale of these platforms, that is extremely hard. Even at the end of the day, with a huge compatibility layer like that, have you really made a better and less bloated system? This is why we tend to just muddle along - as much as we all like to dream, it's probably actually the best approach.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44823084,
+    "by": "rebelyes",
+    "timeISO": "2025-08-07T11:19:39.000Z",
+    "textPlain": "What do you think of flutter? That was my first thought when you mentioned HTML on Canvas.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44809495,
+    "by": "parasti",
+    "timeISO": "2025-08-06T08:50:16.000Z",
+    "textPlain": "I feel there's space for brainstorming and creating new ways of making web apps without having to take a stand against the status quo. It's a fun thought exercise, naming all the things you think are wrong with the web, but I had to scroll real far to see that this is a post about Use.GPU: \"Use.GPU is a set of declarative, reactive WebGPU legos. Compose live graphs, layouts, meshes and shaders, on the fly.\" So felt like a missed opportunity to me to highlight that more instead of going through the list of annoyances.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44814905,
+    "by": "taeric",
+    "timeISO": "2025-08-06T17:22:48.000Z",
+    "textPlain": "I'm sympathetic.  But the problem with trying to get away from something where the base item has \"350+ properties\" is that it almost certainly has a competing number of stakeholders/usecases that it supports.That is to say, you aren't necessarily simplifying things.  You are throwing away some of the things that somebody needs for what they do.It may, in fact, be time to do this.  I can't say.  Odds are very high that you should, instead of throwing out some stakeholders as you try to shift something, you should invite the stakeholders you think you can more effectively serve to a new thing.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44812776,
+    "by": "hungryhobbit",
+    "timeISO": "2025-08-06T14:48:16.000Z",
+    "textPlain": "All those words, and yet not once did he even mention the entire reason everything is the way it is: to preserve backwards compatibility.It's like writing an entire diatribe about how it sucks that people can insult you online, and how that should change ... and not even mentioning the benefits of freedom of speech.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44819661,
+    "by": "marcus_holmes",
+    "timeISO": "2025-08-07T01:24:38.000Z",
+    "textPlain": "This is satire, right? I mean, it has to be.The author critiques a ~50-year-old set of tech that has been developed piecemeal over those ~50 years to cope with a vast array of different goals and priorities. And proposes their own toy tech as a replacement, with apparently no sense of irony.HTML was never designed for web apps, but it powers billions of them. CSS was never designed for complex dynamic UIs, but it does the job. If you seriously think \"hmm, well this is shit, I can do better\" then I invite you to take a seat and actually look at what this shit tech is doing, and maybe step down the arrogance a bit.The problem is, as always with tech that survives a few years, backwards compatibility combined with mission creep. The author ponders HTML6 removing some redundant stuff. The problem is that you can't remove or change anything because doing that would break 348574793 websites and the people who rely on that stuff working exactly as it does now will complain. Meanwhile people are demanding that they can build 3D models using the same stuff that was originally designed to serve static written documents.And, just while we're there, the answer to replacing the DOM is not to implement it in shiny new browsers. The browsers aren't the problem, or a route to change. You'd need to get every single website to change. Even the ones written by the company owner's nephew, who then moved country and doesn't talk to his uncle any more, so the website is a bit outdated but no-one knows how to fix it any more. There are approximately 3498573495645 of those.HTML, CSS, JS, SVG, the DOM, WASM, all of that is miracle tech. Learn from it, study it as an exercise in longevity. Instead of complaining about CSS, learn why it was designed that way, why that particular set of ugly compromises came about. I promise that every single part [0] of all of this tech was debated for weeks by a large room full of very, very, smart people who came up with this solution because it was the onl",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44808998,
+    "by": "lhmiles",
+    "timeISO": "2025-08-06T07:50:32.000Z",
+    "textPlain": "Very nice post. Maybe the best micro CSS basics explanation I've ever seen",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44809478,
+    "by": "fergie",
+    "timeISO": "2025-08-06T08:48:04.000Z",
+    "textPlain": "I feel like people are slowly coming round to web components though...",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44809095,
+    "by": "b_e_n_t_o_n",
+    "timeISO": "2025-08-06T08:01:48.000Z",
+    "textPlain": "Good article. It kind of makes me question how long we can go down this path though. Like surely we can't keep adding to css and the dom api's for 20 more years? How much bloat will we accumulate before we start over?I hate to say it, but perhaps the browser needs a completely new standard designed for shipping applications? Something akin to what's discussed in the article - a simple but robust layout system built with a flexbox-like API and let us bind shaders to elements. We don't need css if we have shaders. And I don't think adding more and more features to current api's is gonna solve problems long term.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44815502,
+    "by": "lenkite",
+    "timeISO": "2025-08-06T18:05:28.000Z",
+    "textPlain": "I wish the author had compared Flutter to the Web. Would have been nice to know his opinion on the flutter rendering model. Is it the state of art design in UI rendering ?",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44819692,
+    "by": "lerp-io",
+    "timeISO": "2025-08-07T01:31:51.000Z",
+    "textPlain": "anyone had experience where assembly is not actually faster than optimized js when it’s clean like for example when working on preallocated memory in buffer because v8 optimizer is that good?",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44820592,
+    "by": "ayaros",
+    "timeISO": "2025-08-07T04:32:41.000Z",
+    "textPlain": "This website looks awesome. Seriously.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44819293,
+    "by": "neuroelectron",
+    "timeISO": "2025-08-07T00:07:37.000Z",
+    "textPlain": "Google gets to decide what the DOM is and you just get to live with it",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44810617,
+    "by": "DemocracyFTW2",
+    "timeISO": "2025-08-06T11:33:10.000Z",
+    "textPlain": "> CSS is at least two different things mashed together: a system for styling rich text based on inheritance... and a layout system for block and inline elements, nested recursively but without inheritance, only containment. They use the same syntax and APIs, but don't really cascade the same way. Combining this under one style-umbrella was a mistake.This might in fact be a valuable insight, I never thought of it.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44809739,
+    "by": "chrismorgan",
+    "timeISO": "2025-08-06T09:22:43.000Z",
+    "textPlain": "> SVG can e.g. do polygonal hit-testing for mouse events, which CSS cannotYes it can. clip-path does just that.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44809408,
+    "by": "skeezyboy",
+    "timeISO": "2025-08-06T08:38:34.000Z",
+    "textPlain": "i remember hearing html was dead in 2001",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44809177,
+    "by": "azangru",
+    "timeISO": "2025-08-06T08:11:26.000Z",
+    "textPlain": "> CSS has gained a few constructs like contain or will-transformHe probably means will-change.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44815776,
+    "by": "DonHopkins",
+    "timeISO": "2025-08-06T18:29:03.000Z",
+    "textPlain": "https://news.ycombinator.com/item?id=34304655Alan Kay on web browsers, document viewers, Smalltalk, NeWS and HyperCard (2021) (donhopkins.medium.com)234 points by gjvc on Jan 8, 2023 | hide | past | favorite | 272 commentshttps://donhopkins.medium.com/alan-kay-on-should-web-browser...Alan Kay on “Should web browsers have stuck to being document viewers?” and a discussion of Smalltalk, HyperCard, NeWS, and HyperLookAlan Kay Wrote:\nActually quite the opposite, if “document” means an imitation of old static text media (and later including pictures, and audio and video recordings).It was being willing to settle for an overly simple text format and formatting scheme — “for convenience” — that started the web media architecture off in entirely the wrong direction (including the too simple reference scheme c.f. Doug Engelbart and Ted Nelson). Circa early 90s, it had the look and feel of an atavistic hack. I expected that Netscape would fix this rather than just try to dominate what was there (I expected a better architecture both for “thinking about media in the age of computing” and also something not like “an app” but more like an operating system to deal with the actual systems requirements, demands, and scalings of the world-wide Internet-in-progress).[...]",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44815582,
+    "by": "cyberax",
+    "timeISO": "2025-08-06T18:11:39.000Z",
+    "textPlain": "In an alternative world, something like HTMLayout would have won the UI wars and used a small subset of HTML and CSS with reasonable additions for the UI.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44811921,
+    "by": "superkuh",
+    "timeISO": "2025-08-06T13:43:05.000Z",
+    "textPlain": "Glad the title was changed because this article isn't about HTML at all. Instead it seems to be about corporate/for-profit needs for their web applications that happen to touch HTML in some parts. All about throwing away the good parts of HTML to make laying out applications easier and prettier.To this I say: go away and leave HTML alone if you want to build some application from first principles. The web's first principle is that HTML should have text. Hyper TEXT MARK-UP language.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44809076,
+    "by": "deafpolygon",
+    "timeISO": "2025-08-06T07:59:09.000Z",
+    "textPlain": "What needs to happen is that HTML needs to go back to being a mark-up language, and the web needs to stop trying to deliver an application-level implementation  for every single website.And we need to stop relying on JS so much.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44809405,
+    "by": "porridgeraisin",
+    "timeISO": "2025-08-06T08:38:27.000Z",
+    "textPlain": "It is clear that we need both apps and documents in web browsers. Yes yes \"web\", \"hateoas\" and all that, but it didn't materalise in practice and is therefore irrelevant.So maybe we can have <!DOCTYPE app>, which lets you use a new set of APIs focussed on applications, but is otherwise in the same \"shape\". JSX type syntax.This way it's easy for say newspapers to offer both an app format as well as a \"lite\" document format. Instead of their current offering which is a app shoehorned into a document and then a messy lite version.Users who use noscript can, instead of blocking scripts wholesale and then whitelisting the good ones, request by default the lite document format. i.e <!DOCTYPE html>.",
+    "parent": 44808542,
+    "depth": 1
+  },
+  {
+    "id": 44813399,
+    "by": "divan",
+    "timeISO": "2025-08-06T15:33:44.000Z",
+    "textPlain": "Flutter is amazing exactly because it was a response to the problem of creating modern cross-platform apps for the modern zoo of hardware. The text typesetting engine from the 80s is clearly not a good foundation for it.It's probably safe to say that the majority of the dev workforce in the last 2 decades started their career with learning HTML/JS/CSS stack, and it's understandable why they like it. It doesn't make this stack any better for creating apps, no matter how many abstractions on top we place.",
+    "parent": 44813284,
+    "depth": 2
+  },
+  {
+    "id": 44815174,
+    "by": "adrian17",
+    "timeISO": "2025-08-06T17:41:32.000Z",
+    "textPlain": "> Also note that canvas based input is also why Google Docs has so much trouble with emoji and non-English input.It's far from the only thing it has issues with; I've found obviously broken UI patterns within a couple clicks of opening Earth's map view:- right click doesn't appear to work anywhere (except input boxes), even on elements that have direct equivalents in other Google sites (like the account switcher),- when you click the account switcher, as long as its open, the rest of the site ignores the mouse events; attempting to drag the map screen doesn't close the switcher, hovering over buttons doesn't change the cursor etc.",
+    "parent": 44813284,
+    "depth": 2
+  },
+  {
+    "id": 44819376,
+    "by": "paulryanrogers",
+    "timeISO": "2025-08-07T00:26:10.000Z",
+    "textPlain": "Is Flutter as accessible as HTML out of the box? Or even compared to Win32 or MacOS APIs?",
+    "parent": 44813284,
+    "depth": 2
+  },
+  {
+    "id": 44812421,
+    "by": "omnimus",
+    "timeISO": "2025-08-06T14:22:06.000Z",
+    "textPlain": "To say that web as platform is wildly successful would be an understatement. It's so successful that probably like 95% people doing webdev don't even care about these discussions or have opinions about it.I think that scale of \"silent\" users compared to proactive devs would be the most surprising number. Like for anyone who is \"Rethinking DOM from first principles\" there is probably like 10000s of randos editing ecommerce html templates, exporting results into tables and dataviz or making small uis for some internal system.",
+    "parent": 44809677,
+    "depth": 2
+  },
+  {
+    "id": 44814564,
+    "by": "morsecodist",
+    "timeISO": "2025-08-06T16:55:18.000Z",
+    "textPlain": "I totally agree. I don't get why people feel so strongly that native apps are better. The web technologies we have are great both from a developer experience perspective and a UX perspective. People hate on electron apps but I think this is mostly due to bloat from electron. I hope Tauri closes the gap it's been great for me so far.",
+    "parent": 44814440,
+    "depth": 2
+  },
+  {
+    "id": 44809652,
+    "by": "assimpleaspossi",
+    "timeISO": "2025-08-06T09:11:48.000Z",
+    "textPlain": "I closed my web dev business just three years ago. I found that many people who work with the web don't want to do the work to understand how it all works. They think there must be a library somewhere to do \"that\" while doing \"that\" is simple enough using standard components and features.Another issue is people basing their fears of things in the past. Yes, the web was more difficult to do fancy things but often they're trying to push the web to do things it just couldn't do back then. Now you can using basic, built-in functionality and it's often easier that way.",
+    "parent": 44809412,
+    "depth": 2
+  },
+  {
+    "id": 44809708,
+    "by": "afiori",
+    "timeISO": "2025-08-06T09:19:22.000Z",
+    "textPlain": "The reason WASM does not have dom access is that many recent DOM APIs return and expect javascript objects and classes like iterators, so you would still need some thin js glue wrapper between the dom and wasm. Security has nothing to do with it as (performace aside) wasm+minimal js glue can already do anything js can do",
+    "parent": 44809412,
+    "depth": 2
+  }
+]

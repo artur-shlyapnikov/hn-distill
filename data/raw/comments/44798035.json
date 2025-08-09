@@ -1,0 +1,194 @@
+[
+  {
+    "id": 44801816,
+    "by": "avtar",
+    "timeISO": "2025-08-05T18:03:24.000Z",
+    "textPlain": "I would see Proxmox come up in so many homelab type conversations so I tried 8.* on a mini pc. The impression I got was that the project probably provides the most value in a clustered environment or even on a single node if someone prefers using a web UI. What didn't seem very clear was an out-of-box way for declaring VM and container configurations [1] that could then be version controlled. Common approaches seemed to involve writing scripts or reach for other tools like Ansible. Whereas something like LXD/Incus makes this easier [2] by default. Or maybe I'm missing some details?[1] https://forum.proxmox.com/threads/default-settings-of-contai...[2] https://linuxcontainers.org/incus/docs/main/howto/instances_...",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44799818,
+    "by": "redundantly",
+    "timeISO": "2025-08-05T16:05:02.000Z",
+    "textPlain": "I like Promox a lot, but I wish it had an equivalent to VMware's VMFS. The last time I tried, there wasn't a way to use shared storage (i.e., iscsi block devices) across multiple nodes and have a failover of VMs that use that storage. And by failover I mean moving a VM to another host and booting it there, not even keeping the VM running.",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44798785,
+    "by": "riedel",
+    "timeISO": "2025-08-05T14:53:14.000Z",
+    "textPlain": "We are really happy with proxmox for our 4 machine cluster in the group. We evaluated many things, they were either to light or to heavy for our users and/or our group of hobbyist admins. A while back we also set up a backup server. Forum is also a great resource. I just failed to contribute a pull request via their git email workflow and I am now stuck with a non-upstreamed patch to the LDAP Sync (btw. the code there is IMHO not the best part of PVE). In general, while the system works great as a monolith, extending it is IMHO really not easily possible. We have some cludges all over the place (mostly using the really good API), that could be better integrated, e.g. with the UI. At least I did not find a way to e.g. add a new auth provider easily.",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44804769,
+    "by": "BodyCulture",
+    "timeISO": "2025-08-05T21:43:18.000Z",
+    "textPlain": "Seems like it still has no official support for any kind of disk encryption, so you are on your own if you fiddle that in somehow and things may break. Such a beautiful, peaceful world where disk encryption is not needed!",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44805685,
+    "by": "BLKNSLVR",
+    "timeISO": "2025-08-05T23:14:11.000Z",
+    "textPlain": "For my homelab I switched from ESXi to Proxmox a few years ago because the consumer-level hardware I mostly used didn't have Intel network cards and ESXi didn't support the Realtek network devices that were ubiquitous in consumer gear at the time.Love Proxmox, it's done everything I needed of it.I don't use it to anywhere near it's potential, but I can vouch for the robustness of its backup process. I've had to restore more than handful of VMs for various reasons, and they've all been rock-solid upon restoration. I would like to use its high-availability features, but haven't needed them and don't really have the time to tinker so much these days.",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44799815,
+    "by": "PeterStuer",
+    "timeISO": "2025-08-05T16:04:39.000Z",
+    "textPlain": "I have only recently moved to proxmox as the Hyper-V licensing became too opressive for hobby/one-person projects use.Can someone tell me wether proxmox upgrades are usually smooth sailing, or should I prepare for this being an endeavour?",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44798446,
+    "by": "sschueller",
+    "timeISO": "2025-08-05T14:31:05.000Z",
+    "textPlain": "The official release of Debian Trixie is not until the 9th...",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44800386,
+    "by": "nativeit",
+    "timeISO": "2025-08-05T16:39:10.000Z",
+    "textPlain": "Still use/love Proxmox daily. Congrats to the team on the latest release!",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44799808,
+    "by": "grmone",
+    "timeISO": "2025-08-05T16:03:53.000Z",
+    "textPlain": "\"Proxmox VE is using a newer Linux kernel 6.14.8-2 as stable default enhancing hardware compatibility and performance.\"kernel.org don't even list version 6.14 anymore.\ndo they backport security patches on there own?",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44799620,
+    "by": "throw0101c",
+    "timeISO": "2025-08-05T15:52:12.000Z",
+    "textPlain": "Highlights of the release (release notes):* https://pve.proxmox.com/wiki/Roadmap#Proxmox_VE_9.0",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44798320,
+    "by": "Takennickname",
+    "timeISO": "2025-08-05T14:21:38.000Z",
+    "textPlain": "\"It’s also possible to install Proxmox VE 9.0 on top of Debian.\"Has that always been the case? I have a faint memory of trying once and not being able to with Proxmox 7.x",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44799240,
+    "by": "xattt",
+    "timeISO": "2025-08-05T15:26:55.000Z",
+    "textPlain": "Ugh, I’d love to make the leap, but I don’t want the headache of trying to get SR-IOV going again for my integrated Intel graphics.",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44799064,
+    "by": "yla92",
+    "timeISO": "2025-08-05T15:13:07.000Z",
+    "textPlain": "> The Proxmox VE mobile interface has been thoroughly reworked, using the new Proxmox widget toolkit powered by the Rust-based Yew framework.First time hearing about Yew (yew.rs). First time hearing about it. Is it like writing frontend code in Rust and compiled to WASM ? Is anyone using it (other than Proxmox folks, of course).",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44799499,
+    "by": "throw0101c",
+    "timeISO": "2025-08-05T15:44:18.000Z",
+    "textPlain": "I've heard good things about XCP-ng [1] as well: anyone use both that can lay out the pros/cons of each?[1] https://en.wikipedia.org/wiki/XCP-ng",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44802725,
+    "by": "krisknez",
+    "timeISO": "2025-08-05T19:05:24.000Z",
+    "textPlain": "I would love if Proxmox had a UI for port forwarding.\nI hate doing it through the terminal. I like how LXD has a UI for that.",
+    "parent": 44798035,
+    "depth": 1
+  },
+  {
+    "id": 44799417,
+    "by": "zozbot234",
+    "timeISO": "2025-08-05T15:37:55.000Z",
+    "textPlain": "Somewhat annoyingly, Proxmox relies on a non-Debian kernel for at least some of its features.  This definitely made a difference w/ Bookworm (which was on the 6.1 kernel release series), not sure about Trixie (which will be on 6.12).",
+    "parent": 44798320,
+    "depth": 2
+  },
+  {
+    "id": 44798530,
+    "by": "ChocolateGod",
+    "timeISO": "2025-08-05T14:36:55.000Z",
+    "textPlain": "Yeh. It's useful when trying to install onto partition setups the built in installer doesn't support OOTB.But, things like proxmox-boot-tool may not work.",
+    "parent": 44798320,
+    "depth": 2
+  },
+  {
+    "id": 44798692,
+    "by": "rcarmo",
+    "timeISO": "2025-08-05T14:47:05.000Z",
+    "textPlain": "I've done it a few times--8.x for sure, maybe earlier, but I've now been using it for too long to remember accurately.",
+    "parent": 44798320,
+    "depth": 2
+  },
+  {
+    "id": 44798819,
+    "by": "oakwhiz",
+    "timeISO": "2025-08-05T14:55:45.000Z",
+    "textPlain": "I do it this way every time.",
+    "parent": 44798320,
+    "depth": 2
+  },
+  {
+    "id": 44799381,
+    "by": "zozbot234",
+    "timeISO": "2025-08-05T15:35:31.000Z",
+    "textPlain": "Why not run virtio-gpu in the guest?",
+    "parent": 44799240,
+    "depth": 2
+  },
+  {
+    "id": 44804495,
+    "by": "tlamponi",
+    "timeISO": "2025-08-05T21:21:23.000Z",
+    "textPlain": "> Is it like writing frontend code in Rust and compiled to WASM ?Exactly, it's actually quite lightweight and stable plus mostly finished, so don't let the slower upstream releases discourage you from ever trying it more extensively.We build a widget library with our products as main target around Yew and native web technologies, you can check out:https://github.com/proxmox/proxmox-yew-widget-toolkitAnd the example repo:https://github.com/proxmox/proxmox-yew-widget-toolkit-exampl...For code and a little bit more info. We definitively need to clean a few documentation and resource things up, but we tried to make it so that it can be reused by others without tying them to our API types or the like.FWIW, the in-development Proxmox Datacenter Manager also uses our Rust / Yew based UI, it's basically our first 100% rust project (well, minus the Linux / Debian foundation naturally, but it's getting there ;-)",
+    "parent": 44799064,
+    "depth": 2
+  },
+  {
+    "id": 44799541,
+    "by": "dylanowen",
+    "timeISO": "2025-08-05T15:47:03.000Z",
+    "textPlain": "I'm using it for a browser extension, just because I wanted to code more in rust. It's great at what it does and has all the same paradigms from React. The best use case though, would be if all your code is already rust. If you have a complex UI I'd probably use react and typescript.",
+    "parent": 44799064,
+    "depth": 2
+  },
+  {
+    "id": 44800305,
+    "by": "nick__m",
+    "timeISO": "2025-08-05T16:34:57.000Z",
+    "textPlain": "We tried both at work and thet were more or less equivalent but proxmox appears to have more momentum behind it. Also distributed storage in proxmox is based on ceph while xcpng use the obscure xostor",
+    "parent": 44799499,
+    "depth": 2
+  },
+  {
+    "id": 44799642,
+    "by": "nirav72",
+    "timeISO": "2025-08-05T15:53:35.000Z",
+    "textPlain": "I can't speak for pros and cons with XCP-Ng.  I've been meaning to try out XCP-ng.  But feel like there just isn't a large enough community support around it yet. At least not like Proxmox, which has seen a surge in usage and popularity after the Broadcom fiasco.",
+    "parent": 44799499,
+    "depth": 2
+  }
+]

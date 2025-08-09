@@ -1,0 +1,66 @@
+[
+  {
+    "id": 44793822,
+    "by": "RodgerTheGreat",
+    "timeISO": "2025-08-05T02:50:05.000Z",
+    "textPlain": "I wrote a blog post some time ago which contrasts the \"Schwartzian transform\" with the slightly clearer alternative used by most APL-family languages and (in my opinion) an even cleaner approach which is possible in languages with a first-class table type: https://beyondloom.com/blog/rankingoffruits.html",
+    "parent": 44758068,
+    "depth": 1
+  },
+  {
+    "id": 44794507,
+    "by": "oofabz",
+    "timeISO": "2025-08-05T05:05:18.000Z",
+    "textPlain": "I find it interesting that the transform was controversial in the '90s.Today, it seems like a normal solution to the problem to me, and the controversy seems silly. I have much experience with the map function from Javascript. It is too simple to be objectionable.But in the '90s, I would also have had trouble understanding the transform. Lambdas/closures were unheard of to everyone except Lisp dweebs. Once I figured out what the code was doing, I would be suspicious of its performance and memory consumption. This was 1994! Kilobytes mattered and optimal algorithmic complexity was necessary for anything to be usable. Much safer to use a well understood for loop. I have plenty of experience making those fast, and that's what map() must be doing under the hood anyway.But I would have been wrong! map() isn't doing anything superfluous and I can't do it faster myself. The memory consumption of the temporary decorated array is worth it to parse the last word N times instead of N log N times. Lisp is certainly a slow language compared to C, but that's not because of its lambdas!",
+    "parent": 44758068,
+    "depth": 1
+  },
+  {
+    "id": 44795711,
+    "by": "ubercore",
+    "timeISO": "2025-08-05T08:43:18.000Z",
+    "textPlain": "I believe I first came across this in the early xslt days, when I had a manager that wanted to write all software with an XML requirements spec, then use xslt to simultaneously generate code AND documentations.1. It did not work because of course it didn't work\n2. This meant that all data output of the system would done in XML and transformed, so I got to know xslt quite well\n3. It did give me a fun moment at a conference where a speaker asked \"Who knows the Schwartzian transform or has used it?\" and only me and my coworkers raised their hands",
+    "parent": 44758068,
+    "depth": 1
+  },
+  {
+    "id": 44795832,
+    "by": "jiggawatts",
+    "timeISO": "2025-08-05T09:03:15.000Z",
+    "textPlain": "I was curious to see what other languages do by default (or not), so I quickly tested a few:C# evaluates the lambda only once per item, in input order: https://dotnetfiddle.net/oyG4CvJava uses \"Comparators\", which are called repeatedly: https://www.jdoodle.com/ia/1IO5Rust has sort_by_key() which is encouraging... but also calls the key transformation many times: https://play.rust-lang.org/?version=stable&mode=debug&editio...C++20 with std::range also calls the lambda repeatedly: https://godbolt.org/z/raa1766PGObviously, the Schwartzian Transform can be manually implemented in any  modern language elegantly, but it's interesting that only C# uses it implicitly!PS: The fancy solution would be a temporary \"Hashset<T,K>\" used to map values to the transformed sort keys, so that the mapping Foo(T t): K would only be called once for each unique input value 't'. That way the transformation could be invoked less than O(n) times!",
+    "parent": 44758068,
+    "depth": 1
+  },
+  {
+    "id": 44793901,
+    "by": "mont_tag",
+    "timeISO": "2025-08-05T03:06:00.000Z",
+    "textPlain": "Python's key-functions nicely encapsulate the whole process.",
+    "parent": 44758068,
+    "depth": 1
+  },
+  {
+    "id": 44796503,
+    "by": "Sharlin",
+    "timeISO": "2025-08-05T10:52:18.000Z",
+    "textPlain": "> Some people want Perl to be accessible at first glance to someone who doesn’t know the language.…oh boy.In retrospect it doesn’t seem like these people prevailed.",
+    "parent": 44758068,
+    "depth": 1
+  },
+  {
+    "id": 44794518,
+    "by": "zippyman55",
+    "timeISO": "2025-08-05T05:08:45.000Z",
+    "textPlain": "Thank you for posting! I always felt like such a badass in the late 1990s when I used this.",
+    "parent": 44758068,
+    "depth": 1
+  },
+  {
+    "id": 44794649,
+    "by": "ygritte",
+    "timeISO": "2025-08-05T05:37:33.000Z",
+    "textPlain": "I'm so grateful for the Lisp translation. Perl is such a write-only language, my hair curls up just from looking at it.",
+    "parent": 44758068,
+    "depth": 1
+  }
+]

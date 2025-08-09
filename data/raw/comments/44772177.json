@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44774742,
+    "by": "samwillis",
+    "timeISO": "2025-08-03T07:15:04.000Z",
+    "textPlain": "There is a lot valid concern on accessibility and abuse this could result in, but it think it's important to see the other side of the argument.There was a really good thread on Twitter a couple of days ago:> In light of recent Figma news, lemme reiterate that of all the goods that can happen to the web, 90% of them can't happen due to not having access to font rendering & metrics in JShttps://x.com/_chenglou/status/1951481453046538493And a few choice replies:> t’s kind of crazy that a platform specifically designed for presenting text doesn’t provide functionality to manipulate text at a detail level> Brute forcing text measurement in tldraw breaks my heartLove it or hate it, the web is a platform for application development, making this easer is only good for everyone.My argument on web APIs is what we should continue to go lower level, and so font and text metrics APIs for canvas would be awesome and an alternative to this.  But I'm also a proponent of \"using the platform\" and for text layout, web engines are incredible, and very performant. Extending that capability to layout inside a canvas enables many awesome features.One that I've repeatedly gone back to over the years is paginated rich text editing. It's simply impossible to do with contenteditable in a product level way - one of the reasons Google docs has a custom layout engine. This proposal would enable full use of contenteditable for rich text, but with full page/print layout control.I hope it lands in the browsers.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773007,
+    "by": "ha1zum",
+    "timeISO": "2025-08-03T00:30:43.000Z",
+    "textPlain": "This could have a great utility, but for me HTML in canvas in HTML feels so cursed.To make it make sense in my opinion canvas should already be a first class format for web browsers, so it doesn't have to be inside a HTML.Then we would have a choice of HTML-first page with canvas elements in it, or a canvas-first page with HTML elements in it.But what do I know.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44772682,
+    "by": "BobbyTables2",
+    "timeISO": "2025-08-02T23:35:15.000Z",
+    "textPlain": "I suppose all we need to do now is to compile a browser into WASM and run that browser inside a canvas element of the main browser…",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44772564,
+    "by": "mmastrac",
+    "timeISO": "2025-08-02T23:16:21.000Z",
+    "textPlain": "https://github.com/WICG/html-in-canvas/blob/main/security-pr...> TODO: Expand on fingerprinting risks",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773363,
+    "by": "tombh",
+    "timeISO": "2025-08-03T01:32:03.000Z",
+    "textPlain": "Where does SVG's `foreignObject` fit into this? It seems that SVG supports all of thelproposal already? As is evidenced by projects like https://github.com/zumerlab/snapdom that can take \"screenshots\" of the webpage by copying the DOM with inlined styles into a `foreignObject` tag in an SVG. Then of course that SVG can be rendered to a canvas.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44774688,
+    "by": "mircerlancerous",
+    "timeISO": "2025-08-03T07:04:21.000Z",
+    "textPlain": "Please correct me if I'm wrong, but I feel rendering html overtop of canvas solves this with vanilla just fine. Canvas is for rendering things you can't with html, and not replacement for the dom.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44772452,
+    "by": "ttoinou",
+    "timeISO": "2025-08-02T23:02:07.000Z",
+    "textPlain": "Soon we’re gonna need Canvas rendering inside of HTML-in-Canvas",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44772571,
+    "by": "codelikeawolf",
+    "timeISO": "2025-08-02T23:17:21.000Z",
+    "textPlain": "I immediately got \"Pimp My Ride\" vibes. Yo dawg, I heard you like HTML so I put HTML inside the canvas inside the HTML.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773370,
+    "by": "russellbeattie",
+    "timeISO": "2025-08-03T01:33:06.000Z",
+    "textPlain": "How about a flag on the body element like:    <body canvas=\"true\"></body> \n\nThis would make the entire visible page into a canvas-like drawing surface which also renders DOM elements as per usual. At some level there's a process which rasterizes the DOM - opening drawing APIs into that might be a better solution.It's sort of the same thing as HTML in canvas conceptually, but architecturally it makes DOM rendering and canvas rendering overlapping equals with awareness going both ways. E.g., a line drawn on the page will cause the DOM elements to reflow unless told to ignore it.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773301,
+    "by": "reactordev",
+    "timeISO": "2025-08-03T01:17:34.000Z",
+    "textPlain": "I support this, as odd as it is. There’s times when you’re needing something drawn but can easily reuse an html element from elsewhere. Previously you’d have to render that to a bitmap offscreen and then copy that to a full screen quad or draw it on the canvas. Up until recently, even if you tried to z-index elements with position absolute it would be visually overwritten by the canvas (I think this is mostly fixed though).I don’t know if this is the best solution but it’s better than previous hacks. IF you need to go that route. Basically html2canvas.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773197,
+    "by": "talkingtab",
+    "timeISO": "2025-08-03T00:58:44.000Z",
+    "textPlain": "There is a real problem  using canvas to replace HTML.Not all but most HTML. I have not found a good solution for the issue of doing something like MDX in canvas. I have tried SDF, looked at 2D canvas Text, Troika, MSDF. You can get text, it is just that laying it out is very difficult. React three drei has the ability to put HTML into the threejs ecosystem, but there are issues about CSS and text that make that impractical.For me the use case is very simple. I would like to take an MDX file and show it  in a mesh. Laid out. Maybe I am missing something because I am new to the whole threejs thing, but I really tried.A good article about text https://css-tricks.com/techniques-for-rendering-text-with-we...And an example from the above article: https://codesandbox.io/p/sandbox/css-tricks-msdf-text-fks8wThis shows it can be done, I gave up trying to reproduce it in React-three-fiber.Why? Personally, I think the use of 3D graphics produces an interface for users that is an order or magnitude better for users. The real question (and an interesting one to consider) is why are we still building HTML first websites?",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44772563,
+    "by": "SeanAnderson",
+    "timeISO": "2025-08-02T23:16:21.000Z",
+    "textPlain": "I read the title and said \"shut the fuck up, don't do that.\" but then I read the rationale and it's fair. It's true there is no layout engine inside canvas, and that is a pain, but I'm not sure it's such a pain as to invite this recursive hell.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44772468,
+    "by": "hyperhello",
+    "timeISO": "2025-08-02T23:03:57.000Z",
+    "textPlain": "I see reliable rich text editing as more of a priority.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773081,
+    "by": "c-smile",
+    "timeISO": "2025-08-03T00:40:59.000Z",
+    "textPlain": "From the very beginning in Sciter an Image can be constructed in two ways at runtime ( other than just getting loaded image reference):1. By painting on it using Canvas/Graphics API:    new Graphics.Image(width, height, painter(graphics) [,initColor]);  \n\nWhere _painter_ is a function used for paining on the image surface using Canvas/Graphics reference.2. By making snapshot of the existing DOM element:    new Graphics.Image(width, height, element [,initColor])\n\nSuch images can be used in DOM, rendered by other Canvas/Graphics as also in WebGL as textures.See: https://docs.sciter.com/docs/Graphics/Image#constructor",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44777076,
+    "by": "TheRealPomax",
+    "timeISO": "2025-08-03T15:07:21.000Z",
+    "textPlain": "I pointed out text deficiencies in Canvas decades ago, only for Hixie to go \"so put your text in a div and position the div over the canvas\".I wonder if the working groups are still run by that attitude.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44783805,
+    "by": "j45",
+    "timeISO": "2025-08-04T10:03:21.000Z",
+    "textPlain": "This isn't bad, or good.Having this type of control, for certain use cases can be perfectly valid.It also feels Flash like.The javascriptists began on a journey 15 years ago to replace Flash.  Things have gotten more complicated before becoming simpler, but maybe things will head in a direction soon.Flash itself was actionscript (ECMAScript) which is the same syntax as Javascript.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44774704,
+    "by": "fullstackwife",
+    "timeISO": "2025-08-03T07:06:44.000Z",
+    "textPlain": "Text rendering on canvas is currently a huge pain, custom layouting code, lack of accessibility, so I'm happy to see this!",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44776465,
+    "by": "wg0",
+    "timeISO": "2025-08-03T13:29:50.000Z",
+    "textPlain": "What we also need is a simple API that given a dom element, takes a screenshot of the subtree.Nothing such is available.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44772425,
+    "by": "tantalor",
+    "timeISO": "2025-08-02T22:58:00.000Z",
+    "textPlain": "https://html2canvas.hertzen.com/",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44775117,
+    "by": "pacifika",
+    "timeISO": "2025-08-03T08:44:58.000Z",
+    "textPlain": "Yeah let’s break user control over text.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44772931,
+    "by": "turnsout",
+    "timeISO": "2025-08-03T00:15:28.000Z",
+    "textPlain": "Sad to say, but the first thing I thought was \"oh good, a new fingerprinting target.\"",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773112,
+    "by": "cheeaun",
+    "timeISO": "2025-08-03T00:45:37.000Z",
+    "textPlain": "Kinda reminds me of Flipboard https://engineering.flipboard.com/2015/02/mobile-web (2015)",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44777887,
+    "by": "pbohun",
+    "timeISO": "2025-08-03T16:51:43.000Z",
+    "textPlain": "The whole point of canvas is to get away from the awful kludge that is HTML and CSS. I'd much rather see a new simple UI library that's developed for canvas.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773256,
+    "by": "nikeee",
+    "timeISO": "2025-08-03T01:09:58.000Z",
+    "textPlain": "Is that being made to make Flutter not being like Flash on the web?",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773420,
+    "by": "erichocean",
+    "timeISO": "2025-08-03T01:45:49.000Z",
+    "textPlain": "My Blossom library has a layout engine for Canvas [0][0] https://github.com/erichocean/blossom",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773514,
+    "by": "jonplackett",
+    "timeISO": "2025-08-03T02:08:31.000Z",
+    "textPlain": "Can it just be CSS on canvas - so you can do styling and layout nicely but not weirdness of an html sandwich?",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773109,
+    "by": "donatj",
+    "timeISO": "2025-08-03T00:45:06.000Z",
+    "textPlain": "I feel like this is bound to get kneecapped for the same reason as other canvas features, fingerprinting.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44776963,
+    "by": "Ono-Sendai",
+    "timeISO": "2025-08-03T14:52:49.000Z",
+    "textPlain": "I would love this.  I have to do disgusting hacks to get an embedded browser window in my metaverse (https://substrata.info/) that uses webgl.\nThe disgusting hack is to render the browser window behind the main webgl canvas, and then punch a hole through the webgl canvas with zero alpha.  Event handling  (mouse, keyboard) is also a total pain.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44772970,
+    "by": "charcircuit",
+    "timeISO": "2025-08-03T00:25:01.000Z",
+    "textPlain": "This sounds really useful for being able to use standard web technology with webxr.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44775294,
+    "by": "rikroots",
+    "timeISO": "2025-08-03T09:23:56.000Z",
+    "textPlain": "Please excuse me for spamming this thread with examples of how my canvas library approaches these issues:> Use case: Styled, Laid Out Content in Canvas. There’s a strong need for better styled text support in Canvas. Examples include chart components (legend, axes, etc.), rich content boxes in creative tools, and in-game menus.Single line, unstyled text is relatively easy using the Canvas API. Multiline text is a world-of-pain. Styled text is a completely separate world-of-pain. Underlined text? Same! So that's gives us a problem space of world-of-pain-cubed. Don't talk to me about RTL text, vertical text, CJK punctuation, Thai text ignoring spaces as a word separator, heavily kerned fonts (staring at you, Arabic and Devangari), etc.Demo: https://scrawl-v8.rikweb.org.uk/demo/canvas-207.htmlThis demo takes the following html markup and displays it in a truncated circle shape. The styling itself happens in CSS - see here: https://github.com/KaliedaRik/Scrawl-canvas/blob/v8/demo/can...  const westernText = '<span class=\"underline\">Lorem</span> ipsum <b>dolor sit</b> amet, con&shy;sectetur  adi&shy;piscing &eacute;lit, sed <s>do eius-mod</s> <u>tempoj yn&shy;figizqunt</u> ut <span class=\"stamp-outlined\">labore et dolore</span> <span class=\"green-highlight\">magna aliqua.</span> Ut enim ad <span class=\"bold\">minim veniam,</span> quis <span class=\"letter-spaced\">nostrud</span> exercit-ation <span class=\"strike\">ullamco laboris</span> nisi ut aliquip ex ea <span class=\"make-monospace\">\"commodo\"</span> consequat. Duis <em>(aute irure d&ouml;lor)</em> in reprehenderit &icirc;n <i>voluptate</i> velit &copy;2024 <i>esse &lt;cillum&gt; <b>dolore</b> eu fugiat nulla</i> pariatur. <span class=\"red\">Excepteur sint</span> occaecat &iexcl;cupidatat! <strong>non proident,</strong> <span class=\"word-spaced\">sunt in culpa qui</span> offici&thorn;a deserunt <span class=\"make-bigger\"><span class=\"green-highlight\">mollit</span> anim</span> id est laborum.';\n\nAs for the other things I don't",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44778530,
+    "by": "kookamamie",
+    "timeISO": "2025-08-03T18:22:25.000Z",
+    "textPlain": "HTML with a canvas with HTML with a canvas…",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773055,
+    "by": "tinalovely101",
+    "timeISO": "2025-08-03T00:37:41.000Z",
+    "textPlain": "It seems to be impossible with html version.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773263,
+    "by": "sampton",
+    "timeISO": "2025-08-03T01:10:58.000Z",
+    "textPlain": "Servo + wasm.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44772914,
+    "by": "deadbabe",
+    "timeISO": "2025-08-03T00:11:43.000Z",
+    "textPlain": "true horror is finding every element of the HTML page your on has been rendered in a Canvas",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773070,
+    "by": "ivanjermakov",
+    "timeISO": "2025-08-03T00:40:15.000Z",
+    "textPlain": "RIP accessibility",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44774753,
+    "by": "troupo",
+    "timeISO": "2025-08-03T07:16:38.000Z",
+    "textPlain": "> As a result, <canvas>-based content suffers in accessibilty, internationalization, performance and quality.Ah yes. Because HTML is renowned for its performance and quality.Instead of pushing this idiocy they should add the things that canvas lacks instead",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773185,
+    "by": "wetpaws",
+    "timeISO": "2025-08-03T00:55:47.000Z",
+    "textPlain": "[dead]",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773541,
+    "by": "tones411",
+    "timeISO": "2025-08-03T02:15:22.000Z",
+    "textPlain": "Next someone will want to render a canvas in the html in the canvas.",
+    "parent": 44772177,
+    "depth": 1
+  },
+  {
+    "id": 44773504,
+    "by": "jonplackett",
+    "timeISO": "2025-08-03T02:06:37.000Z",
+    "textPlain": "I think you invented Flash, though saying that embedding flash in harm as also a pain!",
+    "parent": 44773007,
+    "depth": 2
+  },
+  {
+    "id": 44773079,
+    "by": "Liron",
+    "timeISO": "2025-08-03T00:40:52.000Z",
+    "textPlain": "What if you want an HTML-first page with a canvas in it, but then you realize you want some layout/styling for the text within the canvas? Seems unnecessary to propagate that situation up to the type of top-level page.",
+    "parent": 44773007,
+    "depth": 2
+  }
+]

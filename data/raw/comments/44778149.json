@@ -1,0 +1,26 @@
+[
+  {
+    "id": 44804421,
+    "by": "crazygringo",
+    "timeISO": "2025-08-05T21:15:39.000Z",
+    "textPlain": "I wonder why cp on the Mac doesn't create a clone by default, the way duplicating a file in Finder does? And therefore why Python doesn't clone by default as well?Is there any use case where you need to avoid a clone on the same disk? I see only benefits (less disk usage). Am I missing something? Isn't the clone status just as file system implementation detail?",
+    "parent": 44778149,
+    "depth": 1
+  },
+  {
+    "id": 44809630,
+    "by": "mikeyla85",
+    "timeISO": "2025-08-06T09:08:30.000Z",
+    "textPlain": "Be careful with messing under the hood on this one. I’ve used this feature in the finder for years, but recently used fclones to replace all my duplicate files with clones on my Mac, and completely messed up my free space. Months later, some programs see 1TB free and others see almost nothing.",
+    "parent": 44778149,
+    "depth": 1
+  },
+  {
+    "id": 44804967,
+    "by": "zahlman",
+    "timeISO": "2025-08-05T22:00:46.000Z",
+    "textPlain": "> Although cloned files share data, they’re independent – you can edit one copy without affecting the other (unlike symlinks or hard links). APFS uses a technique called copy-on-write to store the data efficiently on disk – the cloned files continue to share any pieces they have in common.... So, reflinks?... It seems so. https://pypi.org/project/reflink/ claims to support this for APFS, specifically by using `clonefile`.",
+    "parent": 44778149,
+    "depth": 1
+  }
+]

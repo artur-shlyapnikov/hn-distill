@@ -1,0 +1,234 @@
+[
+  {
+    "id": 44840152,
+    "by": "epolanski",
+    "timeISO": "2025-08-08T18:30:28.000Z",
+    "textPlain": "I will just say that AI is forcing me to document and write a lot more than I used to, and I feel it's super boring yet beneficial for everyone, there are no more excuses to procrastinate on those aspects.The difference from before was: all stakeholders lived on a shared yet personal interpretation of the domain (business, code, whatever). This often leads to wastes of times, onboarding issues, etc, etc.LLMs are forcing me to plan, document and define everything, and I think that's making the codebases/documentation/tests/prs and myself all better.",
+    "parent": 44837875,
+    "depth": 1
+  },
+  {
+    "id": 44839168,
+    "by": "actuallyalys",
+    "timeISO": "2025-08-08T16:51:50.000Z",
+    "textPlain": "> At this point, most tech writing shops are serving llms.txt files and LLM-optimized MarkdownI find this hard to believe. I‘m not sure I’ve ever seen llms.txt in the wild and in general I don’t think most tech writing shops are that much on the cutting edge.I have seen more companies add options to search their docs via some sort of AI, but I doubt that’s a majority yet.",
+    "parent": 44837875,
+    "depth": 1
+  },
+  {
+    "id": 44841489,
+    "by": "stillsut",
+    "timeISO": "2025-08-08T20:41:33.000Z",
+    "textPlain": "I've been finding adding context for your external packages is really important when the package is relatively new and or has breaking changes since the model training cut-off date.Two that stick out this week are google's genai (client for vertex/gemini ednpoints)  that is updating methods and moviepy in their 2.x breaking changes (most of the corpus for this library was trained with v1.x).I wrote about some findings here, and that there's still not a great way to have the models examine only the pieces of documentation that they need for their work: https://github.com/sutt/agro/blob/master/docs/case-studies/a...",
+    "parent": 44837875,
+    "depth": 1
+  },
+  {
+    "id": 44839444,
+    "by": "tokyolights2",
+    "timeISO": "2025-08-08T17:19:06.000Z",
+    "textPlain": "Tangentially related: for those of you using AI tools more than I am, how do LLMs handle things like API updates? I assume the Python2/3 transition was far enough in the past that there aren't too many issues. How about other libraries that have received major updates in the last year?Maybe a secret positive outcome of using automation to write code is that library maintainers have a new pressure to stop releasing totally incompatible versions every few years (looking at Angular, React...)",
+    "parent": 44837875,
+    "depth": 1
+  },
+  {
+    "id": 44840551,
+    "by": "sixtyj",
+    "timeISO": "2025-08-08T19:09:14.000Z",
+    "textPlain": "AI reads your “prompt”, but you have to very specific and to know what and how you want achieve it.Typical example is when you’ve asked about JSON once then Claude or ChatGPT starts to think that you want everything with JSON. :)I have spent last two months using Google Gemini with 1 mil token window, and I have to say - inaccurate assignment leads to inaccurate result. And time really runs by days.On the other side, I wouldn’t be able to have anything without it, as I am solo plus a bad coder :)But you have spend a lot of time with writing and refining  the assignment.Sometimes it was better to start over than to end up in a dead end after 2-3 hours of wrangling the code from ai.AI probably knows all main documentation. But in case you want to give more documentation before starting a project, just upload it as markdown.",
+    "parent": 44837875,
+    "depth": 1
+  },
+  {
+    "id": 44841312,
+    "by": "zzo38computer",
+    "timeISO": "2025-08-08T20:23:18.000Z",
+    "textPlain": "I think it is good to write good documentation, whether or not you use LLMs. I do not use LLMs but I still try to write good documentation because it is helpful to have good documentation even if you do not use LLMs.However, it is not my intention to write documentation specifically for use with LLM, or for LLMs to scrape my servers for this purpose. If someone wants to use them with LLMs they will have to do that by themself, which you are free to do.",
+    "parent": 44837875,
+    "depth": 1
+  },
+  {
+    "id": 44840507,
+    "by": "dang",
+    "timeISO": "2025-08-08T19:05:06.000Z",
+    "textPlain": "Related (I think?)We revamped our docs for AI-driven development - https://news.ycombinator.com/item?id=44697689 - July 2025 (35 comments)",
+    "parent": 44837875,
+    "depth": 1
+  },
+  {
+    "id": 44840514,
+    "by": "jimbokun",
+    "timeISO": "2025-08-08T19:05:41.000Z",
+    "textPlain": "It makes sense that technical writers would make the best Vibe Coders.Giving the LLM a clear, thorough, fluent description of the system requirements, architecture, and constraints sufficient to specify a good implementation.",
+    "parent": 44837875,
+    "depth": 1
+  },
+  {
+    "id": 44840949,
+    "by": "cb321",
+    "timeISO": "2025-08-08T19:49:14.000Z",
+    "textPlain": "There are anthropomorphic euphemisms like \"hallucination\", but isn't it true that LLMs literally Randomize TFM?",
+    "parent": 44837875,
+    "depth": 1
+  },
+  {
+    "id": 44839769,
+    "by": "coffeecoders",
+    "timeISO": "2025-08-08T17:55:10.000Z",
+    "textPlain": "To put it bluntly, the current state of AI often comes down to this: describing a problem in plain English (or your local language) vs writing code.Say, “Give me the stock status of an iPhone 16e 256GB White in San Francisco.”I still have to provide the API details somewhere — whether it’s via an agent framework (e.g. LangChain) or a custom function making REST calls.The LLM’s real job in this flow is mostly translating your natural language request into structured parameters and summarizing the API’s response back into something human-readable.",
+    "parent": 44837875,
+    "depth": 1
+  },
+  {
+    "id": 44839457,
+    "by": "devmor",
+    "timeISO": "2025-08-08T17:20:34.000Z",
+    "textPlain": "I think something people really misunderstand about these tools is that for them to be useful outside of very general, basic contexts, you have to already know the problem you want to solve, and the gist of how to solve it - and then you have to provide that as context to the LLM.That's what the point of these text documents is, and that's why it doesn't actually produce an efficiency gain the majority of the time.A programmer who expects the LLM to solve an engineering problem is rolling the dice and hoping. A programmer who has solved an engineering problem and expects the implementation from the LLM will usually get something close to what they want. Will it be faster than doing it yourself? Maybe. Is it worth the cost of the LLM? Probably not.The wild estimates and hype about AI-assisted programming paradigms come from people winning the dice roll on the former case and thinking that result is not only consistent, but also the same for the latter case.",
+    "parent": 44837875,
+    "depth": 1
+  },
+  {
+    "id": 44838553,
+    "by": "bgwalter",
+    "timeISO": "2025-08-08T16:00:44.000Z",
+    "textPlain": "They add claude.md files because they are forced by their employers. They could have done that years ago for humans.I also see it in mostly spaghetti code bases, not in great code bases where no one uses \"AI\".",
+    "parent": 44837875,
+    "depth": 1
+  },
+  {
+    "id": 44838481,
+    "by": "righthand",
+    "timeISO": "2025-08-08T15:54:22.000Z",
+    "textPlain": "I think I found where efficiency is being lost.",
+    "parent": 44837875,
+    "depth": 1
+  },
+  {
+    "id": 44842497,
+    "by": "vlod",
+    "timeISO": "2025-08-08T22:50:01.000Z",
+    "textPlain": "> and I feel it's super boring yet beneficial for everyoneWhat we find (or used to find) interesting (hacking code), the AI is doing and what we used to hate doing (writing documentation) we do that now.Truly bizarro world we live in.",
+    "parent": 44840152,
+    "depth": 2
+  },
+  {
+    "id": 44840390,
+    "by": "jerpint",
+    "timeISO": "2025-08-08T18:53:54.000Z",
+    "textPlain": "I’ve been building a tool to help me co-manage context better with LLMsWhen you load it to your favourite agents, you can safely assume whatever agent you’re interacting is immediately up to speed with what needs to get done, and it too can update the context via MCPhttps://github.com/jerpint/context-llemur",
+    "parent": 44840152,
+    "depth": 2
+  },
+  {
+    "id": 44839948,
+    "by": "ryandv",
+    "timeISO": "2025-08-08T18:14:03.000Z",
+    "textPlain": "At this point I can't tell if all these blog posts hyping LLMs are themselves written by LLMs, and thus hallucinating alleged productivity boosts and \"next-generation development practices\" that are nowhere to actually be found in reality.Shame, because it's a bunch of nice looking words - but it doesn't matter if they're completely false.",
+    "parent": 44839168,
+    "depth": 2
+  },
+  {
+    "id": 44839210,
+    "by": "theletterf",
+    "timeISO": "2025-08-08T16:55:17.000Z",
+    "textPlain": "No, not a majority yet. Forgot to add \"bleeding edge\" :)",
+    "parent": 44839168,
+    "depth": 2
+  },
+  {
+    "id": 44839920,
+    "by": "shortrounddev2",
+    "timeISO": "2025-08-08T18:10:33.000Z",
+    "textPlain": "Im not sure why any publisher would go out of their way to make it easier for an LLM tor read their site. If it were possible id block them entirely",
+    "parent": 44839168,
+    "depth": 2
+  },
+  {
+    "id": 44842480,
+    "by": "dinfinity",
+    "timeISO": "2025-08-08T22:47:19.000Z",
+    "textPlain": "Instruct it to look at the actual code of your dependencies directly. It should be able to (quickly) figure out how the exact version of the dependency you have should be used.",
+    "parent": 44841489,
+    "depth": 2
+  },
+  {
+    "id": 44839739,
+    "by": "mrbungie",
+    "timeISO": "2025-08-08T17:52:08.000Z",
+    "textPlain": "Horribly. In my experience when dealing with \"unstable\" or rapidly evolving APIs/designs like IaC with OpenTofu you need MCP connected to tf provider documentation (or just example/markdown files, whichever you like most) for LLMs to actually work correctly.",
+    "parent": 44839444,
+    "depth": 2
+  },
+  {
+    "id": 44839669,
+    "by": "kaycebasques",
+    "timeISO": "2025-08-08T17:43:31.000Z",
+    "textPlain": "> how do LLMs handle things like API updates?Quite badly. Can't tell you how many times an LLM has suggested WORKSPACE solutions to my Bazel problems, even when I explicitly tell them that I'm using Bzlmod.",
+    "parent": 44839444,
+    "depth": 2
+  },
+  {
+    "id": 44839716,
+    "by": "gopalv",
+    "timeISO": "2025-08-08T17:49:48.000Z",
+    "textPlain": ">  for those of you using AI tools more than I am, how do LLMs handle things like API updates?From recent experience, 95% of changes are good and are done in 15 minutes.5% of changes are made, but break things because the API might have documentation, but your code probably doesn't document \"Why I use this here\" and instead has \"What I do here\" in bits.In hindsight it was an overall positive experience, but if you'd asked me at the end of the first day, I'd have been very annoyed.I thought this would take me from Mon-Fri if I was asked to estimate, but it took me till Wed afternoon.But half a day in I thought I was 95% done, but then it took me 2+ more days to close that 5% of hidden issues.And that's because the test-suite was catching enough class of issues to go find them everywhere.",
+    "parent": 44839444,
+    "depth": 2
+  },
+  {
+    "id": 44839631,
+    "by": "whynotmaybe",
+    "timeISO": "2025-08-08T17:39:22.000Z",
+    "textPlain": "With Dart/Flutter, it's often recommending deprecated code and practice.Deprecated code is quickly identified by VSCode (like Text.textScaleFactor) but not the new way of separating items in a column/row by using the \"Spacing\" parameters (instead of manually adding a SizedBox between every items).Coding with an LLM is like coding with a Senior Dev who doesn't follow the latest trends. \nIt works, has insights and experience that you don't always have, but sometimes it might code a full quicksort instead of just calling list.sort().",
+    "parent": 44839444,
+    "depth": 2
+  },
+  {
+    "id": 44839483,
+    "by": "aydyn",
+    "timeISO": "2025-08-08T17:23:51.000Z",
+    "textPlain": "If you think the correct API is not going to be in its  weights (or if there are different versions in current use), you ask nicely for it to \"please look at the latest API documentation before answering\".Sometimes it ignores you but it works more often than not.",
+    "parent": 44839444,
+    "depth": 2
+  },
+  {
+    "id": 44840107,
+    "by": "remify",
+    "timeISO": "2025-08-08T18:27:22.000Z",
+    "textPlain": "LLMs fall short on most edge cases",
+    "parent": 44839444,
+    "depth": 2
+  },
+  {
+    "id": 44840572,
+    "by": "theletterf",
+    "timeISO": "2025-08-08T19:11:04.000Z",
+    "textPlain": "Indeed. :)",
+    "parent": 44840507,
+    "depth": 2
+  },
+  {
+    "id": 44839858,
+    "by": "quantdev1",
+    "timeISO": "2025-08-08T18:05:51.000Z",
+    "textPlain": "> I think something people really misunderstand about these tools is that for them to be useful outside of very general, basic contexts, you have to already know the problem you want to solve, and the gist of how to solve it - and then you have to provide that as context to the LLM.Politely need to disagree with this.Quick example. I'm wrapping up a project where I built an options back-tester from scratch.The thing is, before starting this, I had zero experience or knowledge with:1. Python (knew it was a language, but that's it)2. Financial microstructure (couldn't have told you what an option was - let alone puts/calls/greeks/etc)3. Docker, PostgreSQL, git, etc.4. Cursor/IDE/CLIs5. SWE principles/practicesThis project used or touched every single one of these.There were countless (majority?) of situations where I didn't know how to define the problem or how to articulate the solution.It came down to interrogating AI at multiple levels (using multiple models at times).",
+    "parent": 44839457,
+    "depth": 2
+  },
+  {
+    "id": 44838558,
+    "by": "theletterf",
+    "timeISO": "2025-08-08T16:01:35.000Z",
+    "textPlain": "Author here: If the LLM revolution helps us get more accessible and better docs, I, for one, welcome it.Edit: I guess some commenters misunderstood my message. I'm saying that by serving also the needs of LLMs we might get more resources to improve docs overall.",
+    "parent": 44838553,
+    "depth": 2
+  },
+  {
+    "id": 44838515,
+    "by": "theletterf",
+    "timeISO": "2025-08-08T15:56:48.000Z",
+    "textPlain": "Could you elaborate?",
+    "parent": 44838481,
+    "depth": 2
+  }
+]

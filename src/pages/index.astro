@@ -1,0 +1,99 @@
+---
+import StorySection from '../components/StorySection.astro';
+import '../styles/global.css';
+import { env } from '@config/env';
+import { formatDateHuman } from '@utils/date';
+import type { AggregatedItem } from '@config/schemas';
+import { loadAggregated } from '@utils/load-aggregated';
+
+const PAGE_SIZE = 10;
+
+const lang = env.SUMMARY_LANG;
+const dataPath = new URL('../../data/aggregated.json', import.meta.url).pathname;
+const { items, updatedISO } = loadAggregated(dataPath);
+const updatedPretty = formatDateHuman(updatedISO);
+
+const totalPages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
+const pageItems = items.slice(0, PAGE_SIZE);
+
+function pageHref(n: number): string {
+  const u = new URL(`page/${n}/`, Astro.site ?? 'http://localhost/');
+  const path = u.pathname;
+  return path.endsWith('/') ? path : `${path}/`;
+}
+
+// Generate date for navigation links based on latest data
+const firstItem = items[0];
+const latestDate = firstItem?.timeISO
+  ? new Date(firstItem.timeISO).toISOString().slice(0, 10)
+  : new Date().toISOString().slice(0, 10);
+
+// Generate current week for weekly link (consistent with toWeekKeyUTC format)
+const now = new Date();
+const startOfYear = new Date(now.getFullYear(), 0, 1);
+const pastDaysOfYear = (now.getTime() - startOfYear.getTime()) / 86400000;
+const weekNumber = Math.ceil((pastDaysOfYear + startOfYear.getDay() + 1) / 7);
+const currentWeek = `${now.getFullYear()}-w${weekNumber.toString().padStart(2, '0')}`;
+
+const i18n = {
+  ru: {
+    updated: 'Обновлено',
+    stories: 'Постов',
+    noData: 'Нет данных для отображения. Попробуйте позже.',
+    page: 'Страница',
+    next: 'Вперёд »',
+    navDaily: 'За день',
+    nav3d: 'За три дня',
+    navWeekly: 'За неделю',
+  },
+  en: {
+    updated: 'Updated',
+    stories: 'Stories',
+    noData: 'No data to display. Please try again later.',
+    page: 'Page',
+    next: 'Next »',
+    navDaily: 'Daily',
+    nav3d: '3 days',
+    navWeekly: 'Weekly',
+  }
+};
+const t = i18n[lang];
+---
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <title>Hacker News Digest — {t.page} 1/{totalPages}</title>
+    <meta name="robots" content="index,follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1220" />
+  </head>
+  <body>
+    <header>
+      <div class="header-top">
+        <h1><a href="/">Hacker News Digest</a></h1>
+        <nav class="header-nav" aria-label="Site navigation">
+          <a href={`/daily/${latestDate}/`}>{t.navDaily}</a>
+          <a href={`/3d/${latestDate}/`}>{t.nav3d}</a>
+          <a href={`/weekly/${currentWeek}/`}>{t.navWeekly}</a>
+        </nav>
+      </div>
+      <p class="meta">{t.updated}: {updatedPretty}</p>
+      <p class="meta">{t.stories}: {items.length} • {t.page} 1/{totalPages}</p>
+    </header>
+    <main>
+      {items.length === 0 ? (
+        <p class="meta">{t.noData}</p>
+      ) : (
+        pageItems.map((it: AggregatedItem) => <StorySection item={it} />)
+      )}
+      {items.length > 0 && totalPages > 1 && (
+        <nav class="pagination" aria-label="Pagination">
+          <span>{t.page} 1 / {totalPages}</span>
+          <a href={pageHref(2)} rel="next">{t.next}</a>
+        </nav>
+      )}
+    </main>
+  </body>
+</html>

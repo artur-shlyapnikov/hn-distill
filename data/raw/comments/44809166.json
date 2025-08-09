@@ -1,0 +1,42 @@
+[
+  {
+    "id": 44822140,
+    "by": "thrown-0825",
+    "timeISO": "2025-08-07T08:45:31.000Z",
+    "textPlain": "I use a similar setup, but for anyone following this guide i would not recommend hosting your custom oidc server behind the same tailnet it authorizes.Any configuration issues will lock you out entirely and you will need to have tailscale support re-enable an oauth provider and its not reversible.I use an oauth provider to log in to tailscale and keycloak internally as an oidc provider for service to service auth.",
+    "parent": 44809166,
+    "depth": 1
+  },
+  {
+    "id": 44818657,
+    "by": "8n4vidtmkvmk",
+    "timeISO": "2025-08-06T22:36:33.000Z",
+    "textPlain": "Sounds a bit like a fancier ngrok.Accidentally wiring everything to everything else sounds kind of scary.There's 1 or 2 things I wouldn't mind securely exposing to the internet (like Plex) but nothing I need so desperately while I'm out and about that I'd even want to take that risk.Sounds like this is just for self-hosting?",
+    "parent": 44809166,
+    "depth": 1
+  },
+  {
+    "id": 44817950,
+    "by": "sixothree",
+    "timeISO": "2025-08-06T21:15:11.000Z",
+    "textPlain": "I love me some tailscale. But it kills the battery on my phone and it kills resolve.conf every time I boot wsl. I wish I had better luck.",
+    "parent": 44809166,
+    "depth": 1
+  },
+  {
+    "id": 44823723,
+    "by": "em-bee",
+    "timeISO": "2025-08-07T12:40:13.000Z",
+    "textPlain": "Speaking of SSH, Tailscale has special support for it whereby it handles any incoming connection to port 22 from the Tailscale network, and deals with authentication itself. No public keys or passwords: if you’re logged into Tailscale you can be logged into the machine. This is particularly handy when you SSH from a phone, as proper credential management is a bit of a nightmare there.this has me worried. i would not want that. i use zerotier, not tailscale, but the principle is the same. i have my laptops and my phone connected to my servers. given that all of those machines are already on the internet, connecting them into a virtual network does not add any risk in my opinion. (at least as long as you don't use features like the above). all i get is a known ip address for all my devices, with the ability to connect to them if they have an ssh server running. when i am outside the primary benefit is that i can tell which devices are online.",
+    "parent": 44818657,
+    "depth": 2
+  },
+  {
+    "id": 44823629,
+    "by": "em-bee",
+    "timeISO": "2025-08-07T12:31:57.000Z",
+    "textPlain": "i use zerotier without problems on the phone. yes, they are no longer open source, but source is accessible and it's not worth the effort to switch.",
+    "parent": 44817950,
+    "depth": 2
+  }
+]

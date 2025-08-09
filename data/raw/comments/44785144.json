@@ -1,0 +1,66 @@
+[
+  {
+    "id": 44836323,
+    "by": "pentium166",
+    "timeISO": "2025-08-08T12:41:47.000Z",
+    "textPlain": "I've been trying to use HTML's native popover and dialog recently. The promise of not having to write/import focus traps, better integration with standard platform \"cancel\" UX, the top layer concept, etc made them sound great, but in reality it's been kind of painful.Stacking order when you have multiple modal dialogs and popovers in the top layer is based on most recently revealed element, so that toast that just opened is now hidden under a dialog. Anchoring is currently only supported in Chrome, so popover tooltips show up in the corner. Firefox supports transition animations when opening a dialog but not closing it. The web platform feature needed to tie the mobile back button to closing a dialog isn't actually implemented yet. Frameworks that patch the DOM might clobber modal dialog state because it's a function of both the \"open\" attribute and the result of showModal().Some of these will improve but I think the display order problem is here for the long haul.",
+    "parent": 44785144,
+    "depth": 1
+  },
+  {
+    "id": 44835217,
+    "by": "vintagedave",
+    "timeISO": "2025-08-08T09:49:04.000Z",
+    "textPlain": "This is confusing. In the screen recording, I see two popovers, _both_ of which appear when clicking.Yet I would view a hint as one that appears simply on hover: a tooltip.The article jumps ahead \"But wait, didn’t clicking on the hint popover close the auto one? ... Because you’re inducing an action (click), it activates the light-dismiss of the auto popover. This is almost certainly not what you want when you’re creating a hint popover.\" but completely omits what a hint is supposed to be in the first place and whether this actually is a hint. As far as I can tell, this hint type of popover is not actually behaving like a desktop-style tooltip hint.",
+    "parent": 44785144,
+    "depth": 1
+  },
+  {
+    "id": 44837272,
+    "by": "zahlman",
+    "timeISO": "2025-08-08T14:19:18.000Z",
+    "textPlain": "I feel like a page trying to teach something about new CSS features should not be showing me code spans (in dark mode) with the colour combination of rgb(236, 210, 197) on rgb(250, 243, 243)...",
+    "parent": 44785144,
+    "depth": 1
+  },
+  {
+    "id": 44836014,
+    "by": "mirkodrummer",
+    "timeISO": "2025-08-08T12:02:52.000Z",
+    "textPlain": "I have whys not whats. Why we waited so much(years!) for such api as a browser built in? Why I feel it overwhelming/not well thought off for such simple use case? I still feel like including a 3rd party library and instantiating a tooltip to be more straight forward, if anything these libraries are built upon years of know how and we don't need to wait for a browser vendor to add a new attribute on his own for a marginal improvement. Marginal improvement one would understand immediately right? No \"hint\" is a not a simple tooltip. And why the heck we would ever need a table grid to explain a feature that should be simple? I'm so sick of the web platform and its inefficiencies",
+    "parent": 44785144,
+    "depth": 1
+  },
+  {
+    "id": 44837271,
+    "by": "ronbenton",
+    "timeISO": "2025-08-08T14:19:17.000Z",
+    "textPlain": ">Stacking order when you have multiple modal dialogs and popovers in the top layer is based on most recently revealed element, so that toast that just opened is now hidden under a dialog.Whenever I have to fight something like this it always makes me question the goodness of the pattern to begin with. Stacking multiple modals/popovers/tooltips can’t be a great UX (or accessibility) pattern, can it? I find at least half the time that I’m fighting the browsers it’s because I’m trying to do something suboptimal",
+    "parent": 44836323,
+    "depth": 2
+  },
+  {
+    "id": 44835312,
+    "by": "cwillu",
+    "timeISO": "2025-08-08T10:07:01.000Z",
+    "textPlain": "Scroll down to the last example: https://una.im/popover-hint/#lets-see-it-in-action",
+    "parent": 44835217,
+    "depth": 2
+  },
+  {
+    "id": 44838048,
+    "by": "webstrand",
+    "timeISO": "2025-08-08T15:18:21.000Z",
+    "textPlain": "I see rgb(35, 48, 43) background on the code spans. Do you have some plugin installed that's messing it up?",
+    "parent": 44837272,
+    "depth": 2
+  },
+  {
+    "id": 44838096,
+    "by": "webstrand",
+    "timeISO": "2025-08-08T15:21:47.000Z",
+    "textPlain": "One big reason is that light-dismiss behavior is built into the browser now, and its way more consistent than what various tooltip libraries provide. In my experience, there's usually some pattern of input/focusing that can make a library-provided tooltip fail to dismiss and become stuck on the screen.",
+    "parent": 44836014,
+    "depth": 2
+  }
+]

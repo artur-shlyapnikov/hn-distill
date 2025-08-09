@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44831872,
+    "by": "WrongOnInternet",
+    "timeISO": "2025-08-07T23:58:15.000Z",
+    "textPlain": "Kevin Mitnick figured out how to get around police radio encryption in the 90's. From 'Ghost in the Wires':\n\"Whenever I heard any hiss of communication, I’d hold down my Transmit button. That would send\nout a radio signal on the same exact frequency, which would jam the signal.\nThen the second agent wouldn’t be able to hear the first agent’s transmission. After two or three tries back and forth, the agents would get\nfrustrated with the radio. I could imagine one of them saying something like, “Something’s wrong with the radio. Let’s go in the clear.”\nThey’d throw a switch on their radios to take them out of encryption mode, and I’d be able to hear both sides of the conversation! Even today\nI’m amused to remember how easy it was to work around that encryption without even cracking the code.\"",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44831028,
+    "by": "mindcrime",
+    "timeISO": "2025-08-07T22:13:55.000Z",
+    "textPlain": "For anyone who's curious, the closest equivalent in the US is P25[1] or \"Project 25\". And if you're wondering, yes, P25 systems have been known to have their own share of vulnerabilities of various sorts. My favorite one[2] is the one that lets an attacker force a P25 radio to broadcast tokens \"on demand\" allow you to (theoretically, with the right receiving setup and software) track the location of P25 radios more or less in real-time.And on a related note, for anyone who is interested in listening in on any local P25 transmissions, you can do so in a fairly inexpensive manner, using an RTL-SDR dongle and the Open Source op25[3] software package. No listening to encrypted traffic, but IME, many (maybe most) public safety agencies keep most of their traffic in the clear. More so for fire/ems traffic. Law enforcement is more likely to be encrypted, but even then, I find that many jurisdictions only encrypt a small number of channels, like maybe a dedicated vice/narc squad channel, SWAT team channel, etc. General LE dispatch and tac channels are still in the clear in many areas.[1]: https://en.wikipedia.org/wiki/Project_25[2]: https://www.reddit.com/r/tacticalgear/comments/1f4d5dr/psa_p...[3]: https://github.com/boatbod/op25",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44832395,
+    "by": "gloyoyo",
+    "timeISO": "2025-08-08T01:25:16.000Z",
+    "textPlain": "The local PD in my area has/had the laptops in their vehicles set to ad-hoc mode, and each broadcast static MAC addresses in the open, and could simply be looked up on the Wigle database. At about 100-yards, you could pick up the broadcast on any phone, and it would be trivial for someone to deduce that you could setup an active monitor w/ alerts for when these specific MAC addresses were present in a designated area, let alone what a distributed monitoring/alert effort would be capable of...",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44829353,
+    "by": "tptacek",
+    "timeISO": "2025-08-07T19:39:08.000Z",
+    "textPlain": "The funny thing about this is that my municipality just recently started encrypting their radios at all. And it was controversial! Residents liked being able to listen in to the scanners.",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44830178,
+    "by": "genocidicbunny",
+    "timeISO": "2025-08-07T20:50:07.000Z",
+    "textPlain": "Huh, I was catching up on DEFCON videos recently, and just earlier this morning watched the talk about Tetra. How serendipitous.https://www.youtube.com/watch?v=iGINoIYQwak",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44829517,
+    "by": "drewnick",
+    "timeISO": "2025-08-07T19:52:09.000Z",
+    "textPlain": "Note this affects TETRA which is not used in North America.  Most US systems use P25 which is not mentioned in the article.",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44830071,
+    "by": "tonetegeatinst",
+    "timeISO": "2025-08-07T20:41:35.000Z",
+    "textPlain": "I believe TETRA was already vulnerable to being broken based of some research that a group did into the protocol. They showed a proof video but didn't release any technical info or poc due to security fear.",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44835516,
+    "by": "LeGrosDadai",
+    "timeISO": "2025-08-08T10:42:54.000Z",
+    "textPlain": "Related: https://www.usenix.org/conference/usenixsecurity23/presentat... and https://tosc.iacr.org/index.php/ToSC/article/view/12077Why EU saw fit to buy very expensive proprietary software encryption, when there are open source standards, some of them designed in the EU itself is beyond me. Of course, you still someone to build the hardware and so on.",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44836884,
+    "by": "__alexander",
+    "timeISO": "2025-08-08T13:46:29.000Z",
+    "textPlain": "> 128-bit key, but this gets compressed to 56 bits before it encrypts trafficA5/1 had a similar issue in which the weakness was deliberately added. I have some notes and references on it. Super interestinghttps://github.com/alexander-hanel/asm-examples/tree/master/...",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44831297,
+    "by": "tamimio",
+    "timeISO": "2025-08-07T22:41:49.000Z",
+    "textPlain": "http://archive.today/5GMa5",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44830104,
+    "by": "theturtle",
+    "timeISO": "2025-08-07T20:44:13.000Z",
+    "textPlain": "Cool! Maybe all the apps and sites intended to let you keep track of what your local kopz are doing will work again!",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44834865,
+    "by": "HexPhantom",
+    "timeISO": "2025-08-08T08:43:55.000Z",
+    "textPlain": "This is what happens when security is treated like a checklist item instead of a core requirement",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44830137,
+    "by": "anfractuosity",
+    "timeISO": "2025-08-07T20:46:59.000Z",
+    "textPlain": "Very interesting, curious how long it would take to brute force the 56 bit key, with something like a GPU/FPGA.  It looks like hashcat supports DES, which is also 56 bit.",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44830895,
+    "by": "dokyun",
+    "timeISO": "2025-08-07T21:58:58.000Z",
+    "textPlain": "> The flaws remained unknown publicly until their disclosure, because ETSI refused for decades to let anyone examine the proprietary algorithms.Got what they asked for.",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44836411,
+    "by": "gonzo41",
+    "timeISO": "2025-08-08T12:52:08.000Z",
+    "textPlain": "So what's really important with military radio's is the concept of tactically perishable information. If i give battle directions duing a fight, that information only needs to be secure for a few days, after that, I'm somewhere else.",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44833682,
+    "by": "fortran77",
+    "timeISO": "2025-08-08T05:14:36.000Z",
+    "textPlain": "Good. I used to listen to police calls in the US. I don’t like the fact that my police is now the “secret police” with encrypted digits radios.",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44835933,
+    "by": "jedisct1",
+    "timeISO": "2025-08-08T11:50:35.000Z",
+    "textPlain": "\"military grade\" encryption.",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44829967,
+    "by": "drumhead",
+    "timeISO": "2025-08-07T20:32:22.000Z",
+    "textPlain": "I mean, in this day and age is it such a bad thing that police and military radio is crackable?",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44829433,
+    "by": "dist-epoch",
+    "timeISO": "2025-08-07T19:46:20.000Z",
+    "textPlain": "Is it still illegal in Europe to buy radios with 128 bit encryption?",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44836483,
+    "by": "throwaway48476",
+    "timeISO": "2025-08-08T13:00:22.000Z",
+    "textPlain": "Another Crypto AG",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44829790,
+    "by": "eitland",
+    "timeISO": "2025-08-07T20:14:43.000Z",
+    "textPlain": "> You’ve read your last free article.Haven't read a Wired article in months :-|And thanks to poster for adding archive link.",
+    "parent": 44828504,
+    "depth": 1
+  },
+  {
+    "id": 44837519,
+    "by": "staplung",
+    "timeISO": "2025-08-08T14:36:56.000Z",
+    "textPlain": "Mitnick's hack probably wouldn't work today but I don't know the specifics of who he was listening into nor with which gear he was using. Most P25 networks these days are set up with trunking, so the conversations hop around a bunch of frequencies at random. Holding down the transmit button would do nothing to interfere with the conversation taking place. Even with sophisticated gear you wouldn't be able to who was transmitting at any given time so you'd have to be willing to jam all the frequencies in a group.Of course, P25 systems are still sometimes set up without trunking so in some situations it might work.",
+    "parent": 44831872,
+    "depth": 2
+  },
+  {
+    "id": 44832420,
+    "by": "jvanderbot",
+    "timeISO": "2025-08-08T01:29:56.000Z",
+    "textPlain": "That is the most 90s story I've heard. Nowadays you'd be shot.",
+    "parent": 44831872,
+    "depth": 2
+  },
+  {
+    "id": 44832198,
+    "by": "tptacek",
+    "timeISO": "2025-08-08T00:52:48.000Z",
+    "textPlain": "It's an odd story, since until pretty recently most North American police radio was plaintext to begin with.",
+    "parent": 44831872,
+    "depth": 2
+  },
+  {
+    "id": 44836845,
+    "by": "robaato",
+    "timeISO": "2025-08-08T13:43:03.000Z",
+    "textPlain": "There's the entertaining bit in the film The Imitation Game (the breaking of Enigma code by Alan Turing) where they realised that a weakness was the daily weather report always containing the words \"weatherreport\" and \"heil bloody hitler\" (with obvious addition!) \nhttps://www.youtube.com/shorts/fAsSNjedZWI or longer version: https://www.youtube.com/watch?v=SkETN-xENAMAlso a more proper explanation: https://www.youtube.com/watch?v=V4V2bpZlqx8",
+    "parent": 44831872,
+    "depth": 2
+  },
+  {
+    "id": 44834933,
+    "by": "HexPhantom",
+    "timeISO": "2025-08-08T08:56:01.000Z",
+    "textPlain": "It's a perfect example of why security is never just about the algorithm",
+    "parent": 44831872,
+    "depth": 2
+  },
+  {
+    "id": 44837653,
+    "by": "freedomben",
+    "timeISO": "2025-08-08T14:47:24.000Z",
+    "textPlain": "\"Ghost in the Wires\" was an amazing book.  Everyone with an interest in technology should definitely read it",
+    "parent": 44831872,
+    "depth": 2
+  },
+  {
+    "id": 44831923,
+    "by": "theoreticalmal",
+    "timeISO": "2025-08-08T00:05:48.000Z",
+    "textPlain": "I wonder if it would be illegal to employ this method. Tracking law enforcement isn’t explicitly illegal, right?",
+    "parent": 44831028,
+    "depth": 2
+  },
+  {
+    "id": 44832638,
+    "by": "mindcrime",
+    "timeISO": "2025-08-08T02:02:36.000Z",
+    "textPlain": "a distributed monitoring/alert effort would be capable of...Thinking out loud... an RTL-SDR dongle costs like $35.00 or so (well maybe more now due to tariffs, I haven't bought one in a while), plenty of relevant software is open source (GNURadio etc.), drones are cheap, small solar panels are fairly inexpensive.  Hmm...  I almost think a motivated individual (or small group of individuals) could piece together a rather capable \"distributed monitoring/alert\" system.Not that I'm encouraging anyone to do such a thing, of course.",
+    "parent": 44832395,
+    "depth": 2
+  },
+  {
+    "id": 44835679,
+    "by": "thenthenthen",
+    "timeISO": "2025-08-08T11:10:55.000Z",
+    "textPlain": "There is this Target Blue device that works in a similar way but based, i think on detection of p2000 encrypted signals. Basically an sdr. Anyway. I also believe it is highly illegal to use. Link: https://blu-eye.eu/",
+    "parent": 44832395,
+    "depth": 2
+  },
+  {
+    "id": 44835471,
+    "by": "ian_d",
+    "timeISO": "2025-08-08T10:36:00.000Z",
+    "textPlain": "There was actually a good DC31 talk called \"Snoop On To Them, As They Snoop On To Us\" kinda in this vein, but with Bluetooth devices that are part of a lot of cop's gear.https://www.youtube.com/watch?v=cO1JSzAdPM8",
+    "parent": 44832395,
+    "depth": 2
+  },
+  {
+    "id": 44834943,
+    "by": "HexPhantom",
+    "timeISO": "2025-08-08T08:58:55.000Z",
+    "textPlain": "What's wild is how often agencies spend millions on comms gear and security tools, but overlook basics like this",
+    "parent": 44832395,
+    "depth": 2
+  },
+  {
+    "id": 44830858,
+    "by": "LeoPanthera",
+    "timeISO": "2025-08-07T21:55:36.000Z",
+    "textPlain": "> Residents liked being able to listen in to the scanners.They're a public service funded by taxpayer dollars. Knowing what they're doing seems reasonable.",
+    "parent": 44829353,
+    "depth": 2
+  },
+  {
+    "id": 44829877,
+    "by": "nonameiguess",
+    "timeISO": "2025-08-07T20:24:00.000Z",
+    "textPlain": "I'll never forget 8 years ago someone managed to set off every tornado siren in Dallas for an entire Friday night, apparently because they're controlled by radio and the control signal was not encrypted, so the \"hacker\" just recorded it during a real alert and then played it back to attack the system.",
+    "parent": 44829353,
+    "depth": 2
+  },
+  {
+    "id": 44830281,
+    "by": "lazide",
+    "timeISO": "2025-08-07T20:58:19.000Z",
+    "textPlain": "Previously you could hear what was going on in town - a degree of transparency around police.Now you can’t. For better or worse, eh?",
+    "parent": 44829353,
+    "depth": 2
+  },
+  {
+    "id": 44834949,
+    "by": "HexPhantom",
+    "timeISO": "2025-08-08T09:00:09.000Z",
+    "textPlain": "And yeah, the scanner culture thing is real",
+    "parent": 44829353,
+    "depth": 2
+  },
+  {
+    "id": 44831755,
+    "by": "throwawayoldie",
+    "timeISO": "2025-08-07T23:41:01.000Z",
+    "textPlain": "Boston?",
+    "parent": 44829353,
+    "depth": 2
+  },
+  {
+    "id": 44830834,
+    "by": "cptskippy",
+    "timeISO": "2025-08-07T21:52:51.000Z",
+    "textPlain": "San Diego?",
+    "parent": 44829353,
+    "depth": 2
+  },
+  {
+    "id": 44829435,
+    "by": "ronsor",
+    "timeISO": "2025-08-07T19:46:31.000Z",
+    "textPlain": "And now they're going to be unencrypted again, but not by choice!",
+    "parent": 44829353,
+    "depth": 2
+  },
+  {
+    "id": 44830877,
+    "by": "LeoPanthera",
+    "timeISO": "2025-08-07T21:57:05.000Z",
+    "textPlain": "Northern California services use P25 but with encryption turned off. They also have analogue repeaters. Presumably because that way they can still use old radios and don't have to worry about key rotation.The audio quality on the analogue signal is a lot better than the P25 version, which is often harder to understand.",
+    "parent": 44829517,
+    "depth": 2
+  }
+]

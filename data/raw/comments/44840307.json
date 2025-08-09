@@ -1,0 +1,114 @@
+[
+  {
+    "id": 44841439,
+    "by": "tadfisher",
+    "timeISO": "2025-08-08T20:35:59.000Z",
+    "textPlain": "It's amusing that nixpkgs contributors have spent thousands of human-hours to craft a module system suitable for patching and wrapping any piece of software to accept static configuration, but NixOS, home-manager, and now json2dir end up producing an activation script which litters the filesystem with said configuration.Everything runs just so much better if the binaries in your profile are wrapper scripts that essentially run \"program --config /nix/store/<hash>-program.config\". Each file that needs to be copied or symlinked to a \"blessed\" location in the global mount namespace via an activation script is a failure opportunity, which breaks the atomicity of profile activation and leaves you (or some complicated logic in NixOS/home-manager) to clean up the mess.Even in the case that a program cannot be patched to run this way, it is easy these days to bind-mount into a clean namespace via bwrap or similar. Alas, shared libraries  are kind of the Achilles' heel of this approach.",
+    "parent": 44840307,
+    "depth": 1
+  },
+  {
+    "id": 44843974,
+    "by": "bapak",
+    "timeISO": "2025-08-09T04:10:26.000Z",
+    "textPlain": "I guess this could be a cross-platform format but you could also just store it as a sequence of commands    echo \"Hello, world!\" > file\n    mkdir -p dir/subdir\n    echo -n \"Content.\\n\" > dir/subfile\n    ln -s \"target path\" link\n    printf '#!/bin/sh\\necho Howdy!' > script\n    chmod +x script\n\nWould be the same as what's in the readme:    {\n    \"file\": \"Hello, world!\",\n    \"dir\": {\n        \"subfile\": \"Content.\\n\",\n        \"subdir\": {}\n    },\n    \"symlink\": [\"link\", \"target path\"],\n    \"script\": [\"script\", \"#!/bin/sh\\necho Howdy!\"]\n    }",
+    "parent": 44840307,
+    "depth": 1
+  },
+  {
+    "id": 44843135,
+    "by": "thayne",
+    "timeISO": "2025-08-09T00:46:15.000Z",
+    "textPlain": "I don't think json is the right language for this. You can't really have comments, and your scripts have to be in a single line (because json doesn't support multi-line strings).",
+    "parent": 44840307,
+    "depth": 1
+  },
+  {
+    "id": 44841349,
+    "by": "Rucadi",
+    "timeISO": "2025-08-08T20:26:13.000Z",
+    "textPlain": "Cool project!I'm kinda of the opinion that the real option to handle dotfiles is to override/overlay the package itself with the dotfiles, patching if necessary in order to make it look to the dotfile inside the store, so you can copy the closure of *your* whole app to any machine even if they don't use/can't use nix tho.",
+    "parent": 44840307,
+    "depth": 1
+  },
+  {
+    "id": 44843366,
+    "by": "netsharc",
+    "timeISO": "2025-08-09T01:36:01.000Z",
+    "textPlain": "Man, I feel like I'd rather reengineer this as sh2dir, using shell commands like echo, cat, ln, mkdir, touch, and so on...",
+    "parent": 44840307,
+    "depth": 1
+  },
+  {
+    "id": 44841522,
+    "by": "mdtrooper",
+    "timeISO": "2025-08-08T20:45:00.000Z",
+    "textPlain": "And dir2json?",
+    "parent": 44840307,
+    "depth": 1
+  },
+  {
+    "id": 44840638,
+    "by": "jauntywundrkind",
+    "timeISO": "2025-08-08T19:18:53.000Z",
+    "textPlain": "I have a js proxy project that auto-persists changes out live, as you change the object, rathre like this. I really need to get back to it.The advantage of being able to see state easily is incredible. It's so scriptable. I only demo'ed it for myself, but I've also run a git-auto-commit program on the data as it changes over time, which is much more useful commits to look at over time than seeing data in a huge JSON file change.I really really hope we can start using the hierarchical file system to hold data. For transport, its convenient to have data glommed together, but I think we're really missing out on end user programming and malleable systems by having these rich data formats everywhere and keeping the filesystem dumb.",
+    "parent": 44840307,
+    "depth": 1
+  },
+  {
+    "id": 44844475,
+    "by": "setheron",
+    "timeISO": "2025-08-09T06:25:01.000Z",
+    "textPlain": "I agree and worry about that idea https://fzakaria.com/2025/07/07/home-manager-is-a-false-enli...",
+    "parent": 44841439,
+    "depth": 2
+  },
+  {
+    "id": 44841612,
+    "by": "benreesman",
+    "timeISO": "2025-08-08T20:56:36.000Z",
+    "textPlain": "This is a legitimately hard problem (as an `emacs` user on NixOS I see both sides of it and their merits).NixOS is directionally the future but the implementation is self-crippled by ideology in a few important places. There is absolutely no reason why `buildFHSEnv` couldn't come by default rather than `/sw/` or `/run`: links into the store are links into the store, putting them in a place that breaks everything? That's incompatible by design and you know it's intentional because symlinks are cheap you could just do both!Ditto `nix-ld` being necessary, it's a great piece of work but the dynamic linker should be in the normal place and know about all the libraries on the system by default. It's possible to do this in my NixOS modules? `uv add flash-attention-blah`? Works without any trouble on my machine. But it was a super pain to set up that most people won't put up with.`home-manager` is awesome, it pioneered a bunch of great stuff, but it's not maintained with the vigor it once was, and some dated ideas got wired in really deep. I still run it, and I probably will forever because it slays at some stuff, but that's the nice thing about symlinking into a a store! I can use it where it works well, and use other stuff where it's trouble. This is the magic of NixOS. The next thing I'm trying is https://github.com/outfoxxed/impurity.nix, which comes highly recommended by heavy Nix people I know.I think it's time to just update NixOS to run things properly by default. It can be done with zero sacrifice on real pure builds and caching/substitors working properly and all of that. I sometimes call Nix \"advanced alien technology that was badly damaged on crash re-entry\". @jade is a boss and says kind of the same thing a different way.But again, the beauty of NixOS is that you can do this yourself, an overlay is a pure function from the world as it is to the world as it ought to be.EDIT: I know talk is cheap and code wins arguments, and I know this is about a year overdue an",
+    "parent": 44841439,
+    "depth": 2
+  },
+  {
+    "id": 44842789,
+    "by": "yencabulator",
+    "timeISO": "2025-08-08T23:36:01.000Z",
+    "textPlain": "Meanwhile, more and more software are turds that insist on overwriting their own config files :-(",
+    "parent": 44841439,
+    "depth": 2
+  },
+  {
+    "id": 44843187,
+    "by": "alurm",
+    "timeISO": "2025-08-09T00:58:27.000Z",
+    "textPlain": "Yes, but you can generate JSON with other tools easily. home.md describes how you can do it with Nix, but just as easily you can use Cue or something else.Edit: mentioned this in the README explicitly. Thanks!",
+    "parent": 44843135,
+    "depth": 2
+  },
+  {
+    "id": 44842422,
+    "by": "sunshine-o",
+    "timeISO": "2025-08-08T22:39:08.000Z",
+    "textPlain": "I actually do that a lot, I often keep my data in dirs and files as a flexible universal format. And I have a few generic scripts to transform it to any format needed.",
+    "parent": 44841522,
+    "depth": 2
+  },
+  {
+    "id": 44840826,
+    "by": "QuantumNomad_",
+    "timeISO": "2025-08-08T19:37:15.000Z",
+    "textPlain": "If I understand correctly:- OP project manages contents of multiple files as a single JSON with the intention of tracking that one single file in git, and splits it into the original files when you apply it- Your tool sounds like it can do the same thing, split one JSON file into multiple files, but it’s geared for use the other way around, to track in git as separate files the pieces that make up the total JSON as a.Both tools can probably be used for the same, it’s up to the user to decide if the combined file is the result and the split files are for git or the other way around.And fwiw, I agree with you that keeping the split up thing in git is more helpful for reading diffs than a single massive JSON file. I have some scripts in one of my projects too, that takes fragments split across multiple files which are separately tracked, and combine those into single JSON files when I use them.",
+    "parent": 44840638,
+    "depth": 2
+  },
+  {
+    "id": 44840907,
+    "by": "porridgeraisin",
+    "timeISO": "2025-08-08T19:45:19.000Z",
+    "textPlain": "> file system to hold dataMy bespoke clipboard manager also uses the filesystem as the primary data structure.h/$serial_number/$mime_type/{data, index}H for history. data has the actual paste data. index has metadata useful for search - window name, day name, I also include wifi network so I can find clipboard history in terms of place, if I remember it that way. It also includes a copy of the data file if it's a text paste. You can include anything really it's fairly flexible. You can write whatever executable you want to the *-posthook file and they are all executed with argv having the path to the history entry directory. You can then modify the index as you please.I have a few frontends to actually use this clipboard history as well. One is a gtk3 frontend searchbar + list below. Another is a cli fzf based thing.Since the data structure is just the filesystem it's really composable and amazing.Various things like blacklisting windows, \"pausing\" clipboard history, etc are all just files as well.If you create a pause file it will pause (there's an if test -f pause check). You can add a grep -E pattern  to the blacklist file and it won't paste from those window names.Unlimited history since I don't care about space. But it does support wrapping around after N items.Sync with phones is one thing i have to figure out...syncing across my different computers is dead easy of course.",
+    "parent": 44840638,
+    "depth": 2
+  }
+]

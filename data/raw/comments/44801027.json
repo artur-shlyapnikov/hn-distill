@@ -1,0 +1,114 @@
+[
+  {
+    "id": 44802079,
+    "by": "e-topy",
+    "timeISO": "2025-08-05T18:21:37.000Z",
+    "textPlain": "Instead of using a new PNG standard, I'd still rather use JPEG XL just because it has progressive decoding.\nAnd you know, whilst looking like png, being as small as webp, supporting HDR and animations, and having even faster decoding speed.https://dennisforbes.ca/articles/jpegxl_just_won_the_image_w...",
+    "parent": 44801027,
+    "depth": 1
+  },
+  {
+    "id": 44801666,
+    "by": "arp242",
+    "timeISO": "2025-08-05T17:55:19.000Z",
+    "textPlain": "Comparison of \"zpng\" (PNG wth zstd) and WebP lossless, with current PNG. From https://github.com/WangXuan95/Image-Compression-Benchmark :  Compressed format    Compressed size (bytes)  Compress Time  Decompress Time\n  WEBP (lossless m5)   1,475,908,700           1,112          49\n  WEBP (lossless m1)   1,496,478,650             720          37\n  ZPNG (-19)           1,703,197,687 1,529          20\n  ZPNG 1,755,786,378              26          24\n\n  PNG (optipng -o5)    1,899,273,578 27,680         26\n  PNG (optipng -o2)    1,905,215,734 4,395         27\n  PNG (optimize=True)  1,935,713,540 1,120         29\n  PNG (optimize=False) 2,003,016,524 335         34\n\nDoesn't really seem worth it? It doesn't compress better, and only slightly faster in decompression time.",
+    "parent": 44801027,
+    "depth": 1
+  },
+  {
+    "id": 44805747,
+    "by": "pornel",
+    "timeISO": "2025-08-05T23:22:19.000Z",
+    "textPlain": "The developer who asked for the faster compression formats has later solved the problem himself:https://github.com/richgel999/fpngIt turns out that deflate can be much faster when implemented specifically for PNG data, instead general-purpose compression (while still remaining 100%-standard-compatible).",
+    "parent": 44801027,
+    "depth": 1
+  },
+  {
+    "id": 44804301,
+    "by": "jasonthorsness",
+    "timeISO": "2025-08-05T21:06:43.000Z",
+    "textPlain": "One of the interesting features of ZStandard is the support for external dictionaries. It supports \"training\" a dictionary on a set of samples, of whatever size (16KiB, 64 KiB, etc.), then applying that dictionary as a separate input file for compression and decompression. This lets you compress short content much more effectively.I doubt it would apply to PNG because of the length and content doesn't seem to be dictionary-friendly, but it would be interesting to try from some giant collection of scraped PNGs. This approach was important enough for Brotli to include a \"built-in\" dictionary covering HTML.",
+    "parent": 44801027,
+    "depth": 1
+  },
+  {
+    "id": 44804587,
+    "by": "citrin_ru",
+    "timeISO": "2025-08-05T21:28:52.000Z",
+    "textPlain": "ZSTD is a great compression algorithm but an important PNG (v1.2) advantage is that implementations are available in almost all actively used operating systems and in most popular languages. The same cannot be said about ZSTD with very few implementations except https://github.com/facebook/zstdI'm not even sure there is a good pure Java (no JNI) and Go (without Cgo) implementations for ZSTD. And it definitely would require more powerful hardware - some micro-controllers which can use PNG are too small for ZSTD.",
+    "parent": 44801027,
+    "depth": 1
+  },
+  {
+    "id": 44801581,
+    "by": "zX41ZdbW",
+    "timeISO": "2025-08-05T17:50:21.000Z",
+    "textPlain": "Very reasonable.I've recently experimented with the methods of serving bitmaps out of the database in my project[1]. One option was to generate PNG on the fly, but simply outputting an array of pixel color values over HTTP with Content-Encoding: zstd has won over PNG.Combined with the 2D-delta-encoding as in PNG, it will be even better.[1] https://adsb.exposed/",
+    "parent": 44801027,
+    "depth": 1
+  },
+  {
+    "id": 44807656,
+    "by": "physicles",
+    "timeISO": "2025-08-06T04:30:44.000Z",
+    "textPlain": "Years ago I built a slippy map (google maps-style) tile server for non-image data. One of the use cases was to be able to quickly sample elevation data at an arbitrary lat/lng in a few milliseconds.The data set is so large that you obviously want to delay decompression as long as possible. I turned to 16-bit grayscale PNGs, because PNG is a widely-used a standard. These were fine, but I wasn't close to my target latency.After some experimentation, I was surprised to discover two things:1. Deflate, this widely used standard, is just super slow compared to other algorithms (at least, in Go's native PNG decoder)2. Tool and library support for formats other than ARGB32 is pretty lackingSo I turned to some bespoke integer compression algorithms like Snappy and Simple8b, and got a 20x decompression speedup, with maybe 20% worse compression ratios. This, along with some other tricks, got me where I needed to go.Maybe there are some niche file formats out there that would've solved this. But in total we're not even talking about that much code, so it was easier to just invent my own.",
+    "parent": 44801027,
+    "depth": 1
+  },
+  {
+    "id": 44802528,
+    "by": "bawolff",
+    "timeISO": "2025-08-05T18:53:03.000Z",
+    "textPlain": "I think there is a benefit to knowing that if you have a png file it works everywhere that supports png.Better to make the back compat breaks be entirely new formats.",
+    "parent": 44801027,
+    "depth": 1
+  },
+  {
+    "id": 44804090,
+    "by": "hughw",
+    "timeISO": "2025-08-05T20:50:40.000Z",
+    "textPlain": "Related: what's the status of content negotiation? Any browsers use it seriously, and has it been successful? If so, then why not zpng.",
+    "parent": 44801027,
+    "depth": 1
+  },
+  {
+    "id": 44807725,
+    "by": "electroly",
+    "timeISO": "2025-08-06T04:45:39.000Z",
+    "textPlain": "Zstandard gets a lot of attention but I love LZ4 for speed. At least in the .NET world we have a fast LZ4 compressor/decompressor that is barely slower than memcpy. If you're already copying the data, you might as well LZ4 it. It's great over the wire when I control both the server and the client.",
+    "parent": 44801027,
+    "depth": 1
+  },
+  {
+    "id": 44801599,
+    "by": "privatelypublic",
+    "timeISO": "2025-08-05T17:51:22.000Z",
+    "textPlain": "Does deflate lead the pack in any metric at all anymore? Only one I can think of is extreme low spec compression (microcontrollers).",
+    "parent": 44801027,
+    "depth": 1
+  },
+  {
+    "id": 44802565,
+    "by": "encom",
+    "timeISO": "2025-08-05T18:55:13.000Z",
+    "textPlain": "(2021)In my opinion PNG doesn't need fixing. Being ancient is a feature. Everything supports it. As much as I appreciate the nerdy exercise, PNG is fine as it is. My only gripe is that some software writes needlessly bloated files (like adding a useless alpha channel, when it's not needed). I wish we didn't need tools like OptiPNG etc.",
+    "parent": 44801027,
+    "depth": 1
+  },
+  {
+    "id": 44803550,
+    "by": "HocusLocus",
+    "timeISO": "2025-08-05T20:05:59.000Z",
+    "textPlain": "The reason we have a world full of .gif today is that the .png committee rejected animation back when everyone was saying PNG would be the \"GIF killer\".  Just sayin'. Don't hold your breath.",
+    "parent": 44801027,
+    "depth": 1
+  },
+  {
+    "id": 44803405,
+    "by": "willvarfar",
+    "timeISO": "2025-08-05T19:53:22.000Z",
+    "textPlain": "We ought consider using QOI instead.QOI is often equivalent or better compression than PNG, _before_ you even compress it with something like LZ4 etc.Compressing QOI with something like LZ4 would generally outperform PNG.",
+    "parent": 44801027,
+    "depth": 1
+  }
+]

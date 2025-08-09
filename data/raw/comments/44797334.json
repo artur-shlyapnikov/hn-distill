@@ -1,0 +1,26 @@
+[
+  {
+    "id": 44797335,
+    "by": "death_eternal",
+    "timeISO": "2025-08-05T12:45:47.000Z",
+    "textPlain": "Repo: https://github.com/navid-m/scarBecause of the relatively poor state of multithreading in Nim and the reliance on external libraries like Arraymancer for heavy numerical workloads (also the performance issues with boxed values due to `ref object` everywhere), I started writing a language from scratch, with built-in support for concurrency via parallel blocks (without macros) and a C backend, similar to Nim.GC is optional and the stdlib will work with or without the GC.Example:    int glob_value = 0\n    float glob_value_2 = 0.0\n\n    parallel:\n        glob_value = some_heavy_task()\n        glob_value_2 = some_other_heavy_task()\n\nThe idea is to make things like accessing shared memory concurrently a trivial process by automating the generation of thread synchronization code.Also there are parallel fors, like so:    parallel for x = 1 to 5:\n        print \"x = %d\" | x\n        parallel for y = 10 to 20:\n            print \"y = %d\" | y\n        sleep 0.1\n\n    print \"Nested parallel for loop completed.\"\n\nIt is not ready for use at all currently, though will likely see further development until it is.Compiler implemented in Go, originally with Participle, recursive-descent approach. All examples in the examples directory compile.",
+    "parent": 44797334,
+    "depth": 1
+  },
+  {
+    "id": 44798622,
+    "by": "ljchen",
+    "timeISO": "2025-08-05T14:43:03.000Z",
+    "textPlain": "Interesing idea. I am wondering what are the use cases on top of your head? I am asking because in my understanding people who care concurrency and parallelism are often those who care performance.",
+    "parent": 44797334,
+    "depth": 1
+  },
+  {
+    "id": 44798866,
+    "by": "renox",
+    "timeISO": "2025-08-05T14:59:40.000Z",
+    "textPlain": "That's a minor detail but C's \"%d\" isn't something to copy in a new language, python's format/template string is much better.",
+    "parent": 44797334,
+    "depth": 1
+  }
+]

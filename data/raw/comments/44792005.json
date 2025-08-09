@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44792765,
+    "by": "danpalmer",
+    "timeISO": "2025-08-05T00:00:35.000Z",
+    "textPlain": "First off, congrats, this is no small feat, well done.A question: in my (limited) experience, ERPs are made on the basis of integrations. I'd have thought the best priority order would be data-model first, integration second, everything else third. How do you think about this? What's the goal here?And secondly, some feedback: It looks like Carbon falls into the same trap as many self-hostable SaaS-like products (including my own!), and that is that software designed for one single hoster is often more complex to deploy and built in a different way, whereas software designed primarily to self-host looks much simpler. As an example, installing Wordpress or Odoo is relatively simple, with basic frontend webserver config and easy to run open source databases. Carbon on the other hand appears to be quite a few different components, with many dependencies, some of which are SaaS products, and uses a database (Supabase) which is itself a whole microservice ecosystem that is a considerable effort to deploy. What's the strategy here? Despite having the skills for it, I'm not sure I'd ever consider self-hosting Carbon, and maybe that's good for Carbon as a business, but it's also less good for the ecosystem.",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44793390,
+    "by": "robertritz",
+    "timeISO": "2025-08-05T01:34:40.000Z",
+    "textPlain": "I’m the owner of a smallish furniture manufacturer. About 15 employees. I built out the order management system myself because nothing really fit our process.After looking at the site I can’t really say I know how this software could help us. I’ll look at it later on my desktop but first I think some better demo videos or gifs on the landing page would be nice.",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44793165,
+    "by": "ronameels",
+    "timeISO": "2025-08-05T00:55:41.000Z",
+    "textPlain": "Do you have any users yet? What’s your target size manufacturing company? I’ve been in the industrial software space for a while, and at least for large MFG, you only see the major players, with SAP being the most common. There is this “UNS” concept that’s been around for 5ish years now and has caught steam (unified namespace, google and you’ll find it). It has holes from a technical standpoint, but it will get attention if you can show how it works with factory data in a UNS. Happy to help if i can. I work at a company that does industrial dataops now, focused on getting shop floor data in/out of the factory with context.",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44793854,
+    "by": "calvinmorrison",
+    "timeISO": "2025-08-05T02:57:20.000Z",
+    "textPlain": "I'll bite. I am a ERP consultant in the SMB manufacturing and distribution space. Primarily we operate on Acumatica, Sage and Netsuite.The most important thing about ERP systems is - customization. IE: Scripting (netsuite), or even core programming (Sage100 for example). Not just user defined fields but workflows and  being able to override and hook into core parts of the system. Say you want to override your cost basis for a certain productline or maybe serve different prices based on the shipping warehouse.How do you approach that?EDIT:How do you handle the finances, G/L auditing, and allt hat financial wizardy?customers.. they love PDFs. How do you handle generating things like pick lists, invoice sheets, etc? templating?EDIT2:One thing big ERPs provide is basically a cohesive way to extend. Not just an API in a RESTFUL sense, it's more akin to an IDE or like GTK+, there's almost everything rolled in for extension inside the 'world view' of the ERP. Every ERP makes some decisions and the rest of the world may flow, be that how you issue credit memos, handle multiple financial entities (do they all have the same chart of accounts? do they all have the same modules? Are there shared users) and so forth. How do you approach that? IE: when you need to slap something like PO's on top of AP, so basically AP + Items and a whole bunch more, does that \"flow\"? Do you receive those goods and they end up in your inventory for AR? etc.... Having an extensible system is great for addons and consulting, but the bigger piece is - for you, letting your ERP grow and add capabilities.EDIT3: \"Stripe\" is not a billing techstack. Mostly CFOs make decisions about billing options, not us lowly tech monkies. Do you support pluggable vaults or anything akin?",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44794058,
+    "by": "SilverElfin",
+    "timeISO": "2025-08-05T03:32:09.000Z",
+    "textPlain": "What exactly is an “ERP”? Virtually everything I read about them or on the website of products, is so vague and broad that it sounds like “it’s everything”. How would a business know they need this product? For the big ERPs out there, is there a clear guide with screenshots that show what they concretely do?",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44795008,
+    "by": "contingencies",
+    "timeISO": "2025-08-05T06:48:51.000Z",
+    "textPlain": "I am setting up a large manufacturing operation now.Red flags with your site are: (a) seems to assume a sales order based process; (b) seems to assume B2C sales via Stripe; (c) has a huge bunch of layers but no actual user view.I would suggest beginning your page with \"Assumptions\". In there, list all the things you have assumed.Then I would suggest having a section for each area: ERP, MES, whatever, with a screenshot or two and a quick table based comparison vs. other tools.Finally, include something about the layers you used and what they do. Nobody really cares about that stuff, it's almost developer documentation rather than user documentation.",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44793000,
+    "by": "xupybd",
+    "timeISO": "2025-08-05T00:31:20.000Z",
+    "textPlain": "We built a lot of the custom ERP related systems outside of our ERP. Leaving the financials to the big boys and just talk to the ERP. It's working really well.",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44796792,
+    "by": "sails",
+    "timeISO": "2025-08-05T11:31:47.000Z",
+    "textPlain": "I did an ERP implementation for manufacturing years ago, it was such a nightmare.I imagine a good approach  that would solve some of my reservations would be a strict core ledger, especially as it relates to inventory and finance related transactions, but then relatively flexible around the specific product domain (we did craft beer, which in the end was a nightmare to map to the ERP processes)Flexible where it matters, strict where it matters. Idk, but good luck!",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44793645,
+    "by": "fiatjaf",
+    "timeISO": "2025-08-05T02:16:55.000Z",
+    "textPlain": "A stupid question from a layman: is it really how people do it?I would have thought \"manufacturing\" was too generic and that you would need different software for each industry and so on.But instead it looks like it doesn't matter if you're making shoes or cars or umbrellas or computer chips, everything uses the same software?",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44793104,
+    "by": "mfrye0",
+    "timeISO": "2025-08-05T00:48:12.000Z",
+    "textPlain": "Congrats on the launch! Love seeing modern manufacturing systems.Do you handle supplier master data management? We're seeing procurement teams struggle with duplicate vendors in their ERPs - same supplier gets entered 5 different ways, messes up spend analytics and supplier relationships.We're building AI agents for business data cleanup (still in stealth, docs coming). Manufacturing/supply chain customers seem to have the messiest supplier data - way worse than other industries.Curious if this is something you're thinking about for Carbon? (CTO here, happy to chat)",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44797563,
+    "by": "jimnotgym",
+    "timeISO": "2025-08-05T13:09:51.000Z",
+    "textPlain": "Great work.  Everything you say in your Readme about existing systems is true.I notice you don't have financials yet.  In my opinion  the API approach is really difficult to get right with financials. Every finance professional will tell you nightmares about 'the stock doesn't balance between the two systems'. The first reason on stock is a costing problem,  you must have the same costs in both systems,  so every purchase cost change,  every bom roll up must change both.  The second is on quantities.  This is usually caused by a stock movement that somehow failed in the API to the financials. If it is done in a more tightly coupled way,  you post the stock movement and the financial movement inside a database transaction and it either fails everywhere or posts everywhere. I worked on one system where it posted each half of the double entry in different transactions, so would fail and leave the ledger out of balance! Happy to chat further",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44798009,
+    "by": "vindin",
+    "timeISO": "2025-08-05T13:55:02.000Z",
+    "textPlain": "I really recommend you do more reading on DDD. This codebase is looking like a ticking time bomb. Biggest red flag I’m seeing right now is your supabase/functions/create/index.js. You have 2000 lines of code that contain what I see is your domain logic mixed with database queries and http concerns. In some places there are 8+ levels of conditionals, promises, and error handling. For an ERP system, this is not good. Ideally the domain logic (accounting, rules, core erp stuff) should be isolated by itself, with solid test coverage, free of any external communications/concerns, etc. The reason being that this is not something you want to fuck up. Business rules are tough as I’m sure you know, and this is going to be a pain to maintain in its current state",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44796502,
+    "by": "jacquesm",
+    "timeISO": "2025-08-05T10:51:53.000Z",
+    "textPlain": "Impressive. Some questions:- Who is 'I'?- How do you see continuity if something were to happen to you?- How does it stack up against ERPNext?- Why did you decide to build an ERP system from the ground up?- What is the deployment situation?",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44795032,
+    "by": "progx",
+    "timeISO": "2025-08-05T06:52:15.000Z",
+    "textPlain": "Is this a kind of developer BINGO? ;-)\"Techstack\n    Remix – framework\n    Typescript – language\n    Tailwind – styling\n    Radix UI - behavior\n    Supabase - database\n    Supabase – auth\n    Upstash - cache\n    Trigger - jobs\n    Resend – email\n    Novu – notifications\n    Vercel – hosting\n    Stripe - billing\"And no joke: congrats to your product!",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44794266,
+    "by": "rubenvanwyk",
+    "timeISO": "2025-08-05T04:12:35.000Z",
+    "textPlain": "Congrats on this! Quite interesting for me as I have been working on vertical ERPs for a while, not at all related to manufacturing and as far as I know, accounting is usually the core of any ERP. Who is your ICP at companies in your target groups - ops managers? I’ve mostly seen CFOs being the drivers behind ERP purchasing.",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44801199,
+    "by": "stillsut",
+    "timeISO": "2025-08-05T17:28:01.000Z",
+    "textPlain": "This has repo has a great prebuilt llm docs sections. This seems like a killer feature for clients who want to roll their own customizations.https://github.com/crbnos/carbon/blob/main/CLAUDE.mdhttps://github.com/crbnos/carbon/tree/main/llm",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44793324,
+    "by": "MutedEstate45",
+    "timeISO": "2025-08-05T01:23:53.000Z",
+    "textPlain": "The modular ERP/MES/QMS approach is interesting and challenges traditional manufacturing processes. Most manufacturers obsess over single source of truth. (I.e. ensuring a part number means exactly the same thing across planning, production, and quality systems.) On the one hand, breaking these into separate apps creates potential data consistency risks. On the other hand, it could enable much better adoption. Start with MES for shop floor visibility then add QMS for compliance later rather than massive all-in-one ERP implementations that often fail. Curious, how are you handling data consistency across modules? What's been the feedback from your current or potential customers on this approach versus traditional monolithic ERP systems?",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44796877,
+    "by": "FrustratedMonky",
+    "timeISO": "2025-08-05T11:43:43.000Z",
+    "textPlain": "I'm in this industry and very interested in efforts like this.What is the plan to monetize and support.You'll never get market share without support, and that takes money.  Support contracts.  SLA's.  Any company larger than 10 people aren't going to bother with something that doesn't provide support.> Edit.  Sorry. Had to click around a bit.  90$/Month for business.  \n>  Probably light.  If business is 1000 people, this could be 1000$/month.I have to add, I think all of the current tools that do have the market share, are not very good. So I do want something like this to succeed.",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44794424,
+    "by": "davidw",
+    "timeISO": "2025-08-05T04:44:29.000Z",
+    "textPlain": "How's it compare with Apache OFBiz and the things people are building on top of that?",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44799013,
+    "by": "gh0stcat",
+    "timeISO": "2025-08-05T15:09:54.000Z",
+    "textPlain": "I just wanted to throw my 2 cents, I work in IT and in meat processing there is perhaps only one or two software products that does catch-weight processing well due to the time constraints and custom labeling. If you can do that well you stand to gain a lot in that industry. It doesn't look like you guys are focusing on specific industries, but I actually think you can provide an incredible value to real businesses by doing so.",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44793583,
+    "by": "twarge",
+    "timeISO": "2025-08-05T02:06:05.000Z",
+    "textPlain": "How does this compare with the manufacturing capabilities in ERPNext?",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44794476,
+    "by": "yc-kraln",
+    "timeISO": "2025-08-05T04:59:32.000Z",
+    "textPlain": "For me this is a space that has been long dominated by MRPeasy--it's just such a perfect fit. Happy to see open source solutions slowly catching up.",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44796162,
+    "by": "wiradikusuma",
+    "timeISO": "2025-08-05T09:57:49.000Z",
+    "textPlain": "While we're on the topic of ERP:I have noticed that, in 2025, many small businesses still use Excel. Is there an underserved market? Or simply a \"tarpit idea\" (deceptively attractive but actually unscalable, time-consuming)I asked 5 friends who are business owners and 5 who are working for SMEs. None of them use \"apps\". The best they use is accounting app.",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44792697,
+    "by": "jdhn",
+    "timeISO": "2025-08-04T23:50:14.000Z",
+    "textPlain": "As a UX person, this is the type of stuff I love to see posted here. So many people don't understand how atrocious the UX is in non-sexy career tracks such as manufacturing. One question I have is how users have reacted to your leftmost nav bar. 13 icons is a lot, do you show them all at one time, or do they dynamically appear based on the user role of the person who's logged in at the time?",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44810241,
+    "by": "wiradikusuma",
+    "timeISO": "2025-08-06T10:35:02.000Z",
+    "textPlain": "Congratulations on launching! Just curious, why open source vs making a free plan?",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44794763,
+    "by": "hedshodd",
+    "timeISO": "2025-08-05T06:00:57.000Z",
+    "textPlain": "Hm, interesting. With how slow the testimonial carousel on the web page is though, I don't have much confidence that Carbon is performant either. How many pieces of that (frankly massive) techstack require dedicated network trips?",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44798118,
+    "by": "mattfrommars",
+    "timeISO": "2025-08-05T14:03:52.000Z",
+    "textPlain": "Tangent thought as I've been trying to adopt new programming language. I'm amazed how prolific is typescript in open source project space.",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44797160,
+    "by": "phkahler",
+    "timeISO": "2025-08-05T12:23:18.000Z",
+    "textPlain": "Accounting is still not checked off. Has anyone done integrations with FLOSS software like GnuCash?",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44794927,
+    "by": "mahidalhan",
+    "timeISO": "2025-08-05T06:33:05.000Z",
+    "textPlain": "This is all cool but i think traditional erp systems are going to get eaten away by software like Optifye.ai, using vision for counting, and then certifying through manual data entry. If there’s no Vision integrated into your erp, you’ll get eaten away by competitors who run faster lean teams through using such systesm",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44813450,
+    "by": "JeremyTheo",
+    "timeISO": "2025-08-06T15:36:53.000Z",
+    "textPlain": "Hey guys, Jeremy from UMH (www.umh.app) here. We are OSS as well and focus on data infrastructure for manufacturing. Let me write you guys via Discord to get in contact",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44792756,
+    "by": "healthbjk",
+    "timeISO": "2025-08-04T23:58:01.000Z",
+    "textPlain": "What vertical ERPs does it replace?",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44793839,
+    "by": "yahoozoo",
+    "timeISO": "2025-08-05T02:54:18.000Z",
+    "textPlain": "Great UI! Congrats on the launch",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44798333,
+    "by": "scarface_74",
+    "timeISO": "2025-08-05T14:23:18.000Z",
+    "textPlain": "Most companies that want an ERP systems are not and should not be a software development shop.  They hire an outside consulting company and sign a statement of work.  They aren’t going to want to use a non standard offering.Besides, no one cares about “vendor lockin”.  Every company of any size has a dozen plus SaaS products they subscribe to every month.",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44795539,
+    "by": "roschdal",
+    "timeISO": "2025-08-05T08:15:19.000Z",
+    "textPlain": "Simply use SAP.",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44793251,
+    "by": "486sx33",
+    "timeISO": "2025-08-05T01:10:30.000Z",
+    "textPlain": "[dead]",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44793630,
+    "by": "qotgalaxy",
+    "timeISO": "2025-08-05T02:14:24.000Z",
+    "textPlain": "[dead]",
+    "parent": 44792005,
+    "depth": 1
+  },
+  {
+    "id": 44793410,
+    "by": "barbinbrad",
+    "timeISO": "2025-08-05T01:37:12.000Z",
+    "textPlain": "yeah, good point. the docs could definitely use some work. check this out if you're interested. it's not complete, but it goes through the software pretty well: https://learn.carbon.msi don't know if you build anything custom, but we do have a configurator",
+    "parent": 44793390,
+    "depth": 2
+  },
+  {
+    "id": 44793190,
+    "by": "barbinbrad",
+    "timeISO": "2025-08-05T00:59:30.000Z",
+    "textPlain": "Hey I'd love to learn more about your thoughts. We have a discord if you'd like to join.I see the market like this:\n- small job shops and startups are using it now (we have 5 customers today using it to run operations)\n- mid-market manufacturers with 200-ish employees are where i'd like to go, but many want all the accounting baked in and that's still a WIP\n- large players have to use SAP for accounting because they have multiple-ledgers, but i see this as a good \"custom MES starting point\"",
+    "parent": 44793165,
+    "depth": 2
+  },
+  {
+    "id": 44796909,
+    "by": "FrustratedMonky",
+    "timeISO": "2025-08-05T11:49:11.000Z",
+    "textPlain": "The current offerings,  like SAP, GE tools, etc..  Are so over-complicated and bloated,  that most of the money spent is just to figure out how to configure them.Most people hate SAP but don't know what to do. Caught in catch-22, they hate it, but don't trust any other options.",
+    "parent": 44793165,
+    "depth": 2
+  },
+  {
+    "id": 44794187,
+    "by": "barbinbrad",
+    "timeISO": "2025-08-05T03:56:22.000Z",
+    "textPlain": "these are all excellent questions! i think, interestingly, the answer to all of them is basically -- there's an off the shelf version that's opinionated and good. and if you want to take it a step further, you'd want to just modify the source code.i think open-source gives consultatnts and integrators super powers that they may not be used to -- everything currently has to be done through abstractions on abstractions. if you can just modify the source code, it becomes a little simpler i think.take the PDFs for example. just make them how you want them in your instance of the software using the most popular tools on the planet (i don't mean crystal reports): https://github.com/crbnos/carbon/tree/main/packages/document...",
+    "parent": 44793854,
+    "depth": 2
+  }
+]

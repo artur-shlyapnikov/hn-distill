@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44781603,
+    "by": "woodruffw",
+    "timeISO": "2025-08-04T02:28:39.000Z",
+    "textPlain": "> I am managing projects in languages I am not fluent in—TypeScript, Rust and Go—and seem to be doing pretty well.This framing reminds me of the classic problem in media literacy: people know when a journalistic source is poor when they’re a subject matter expert, but tend to assume that the same source is at least passably good when less familiar with the subject.I’ve had the same experience as the author when doing web development with LLMs: it seems to be doing a pretty good job, at least compared to the mess I would make. But I’m not actually qualified to make that determination, and I think a nontrivial amount of AI value is derived from engineers thinking that they are qualified as such.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781460,
+    "by": "timuckun",
+    "timeISO": "2025-08-04T02:00:42.000Z",
+    "textPlain": "It's been my experience that strongly opinionated frameworks are better for vibe coding regardless of the type system.For example if you are using rails vibe coding is great because there is an MCP, there are published prompts, and there is basically only one way to do things in rails. You know how files are to be named, where they go, what format they should take etc.Try the same thing in go and you end up with a very different result despite the fact that go has stronger typing. Both Claude and Gemini have struggled with one shotting simple apps in go but succeed with rails.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781864,
+    "by": "Reubend",
+    "timeISO": "2025-08-04T03:23:11.000Z",
+    "textPlain": "While I agree with the main thesis here, I find this extremely worrying:> I am amazed every time how my 3-5k line diffs created in a few hours don’t end up breaking anything, and instead even increase stability.In my personal opinion, there's no way you're going to get a high quality code base while adding 3,000 - 5,000 lines of code from LLMs on a regular basis. Those are huge diffs.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781372,
+    "by": "lukev",
+    "timeISO": "2025-08-04T01:40:04.000Z",
+    "textPlain": "As has been said, actual evals are needed here.Anecdotally, the worst and most common failure mode of an agent is when an agent starts spinning its wheels and unproductively trying to fix some error and failing, iterating wildly, eventually landing on a bullshit (if any) “solution”.In my experience, in Typescript, these “spin out” situations are almost always type-related and often involve a lot of really horrible “any” casts.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781328,
+    "by": "linkage",
+    "timeISO": "2025-08-04T01:28:44.000Z",
+    "textPlain": "This claim needs to be backed up by evals. I could just as well argue the opposite, that LLMs are best at coding Python because there are two orders of magnitude more Python in their training sets than C++ or Rust.In any case, you can easily get most of the benefits of typed languages by adding a rule that requires the LLM to always output Python code with type annotations and validate its output by running ruff and ty.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781363,
+    "by": "herrington_d",
+    "timeISO": "2025-08-04T01:36:38.000Z",
+    "textPlain": "The logic above can support exactly the opposite conclusion: LLM can do dynamic typed language better since it does not need to solve type errors and save several context tokens.Practically, it was reported that LLM-backed coding agents just worked around type errors by using `any` in a gradually typed language like TypeScript. I also personally observed such usage multiple times.I also tried using LLM agents with stronger languages like Rust. When complex type errors occured, the agents struggled to fix them and eventually just used `todo!()`The experience above can be caused by insufficient training data. But it illustrates the importance of eval instead of ideological speculation.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44782615,
+    "by": "solatic",
+    "timeISO": "2025-08-04T06:21:58.000Z",
+    "textPlain": "It's not so much typing that is valuable for vibecoding, but being able to give the agent hooks into tooling that provides negative feedback for errors. The easiest is typing, sure, because it's built into the compiler. But you can also add in static analysis linters and automated testing, including - notably - testing for performance.Of course, you have to tell the agent to set up static analysis linters first, and tell the agent to write tests. But then it'll obey them.The reason why large enterprises could hire armies of juniors in the past, safely, was because they set up all manner of guardrails that juniors could bounce off of. Why would you \"hire\" a \"junior\" agent without the same guardrails in place?",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781660,
+    "by": "jjcm",
+    "timeISO": "2025-08-04T02:43:58.000Z",
+    "textPlain": "I've noticed a fairly similar pattern. I particularly like vibecoding with golang. Go is extremely verbose, which makes it almost like an opposite perl - writing go is a bad experience, but reading go is delightful. The verbosity of golang makes it so you're able to always jump in and understand context, often from just a single file.Pre-llms, this was an up front cost when writing golang, which made the cost/benefit tradeoff often not worth it. With LLMs, the cost of writing verbose code not only goes down, it forces the LLM to be strict with what it's writing and keeps it on track. The cost/benefit tradeoff has increased greatly in go's favor as a result.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44782585,
+    "by": "misja111",
+    "timeISO": "2025-08-04T06:17:11.000Z",
+    "textPlain": "My experience with Python and Scala so far is different. With Python the LLM's do a pretty good job. The code always compiles, sometimes there are some logical or architectural errors but that's it.With Scala, I have to give the LLM a super simple job, e.g. creating some mock data for a unit test, and even then it frequently screws up; every now and then it gives me code that doesn't even compile. So much for Scala's strong type system ..",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44786941,
+    "by": "dominicrose",
+    "timeISO": "2025-08-04T15:11:12.000Z",
+    "textPlain": "I can vibecode in Rust but I don't like the result. There are too many lines of code and they are too long and contain too many symbols and extra stuff.Just compare SeaORM with Ruby + sequel where you just inherit the Sequel::Model class and Sequel reads the table schema without you having to tell it to. It gives you objects with one method for each column and each value has the correct type.I was happy with Ruby's performance 15 years ago and now it's about 7-20x with a modern ruby version and CPU, one a single thread.AI is still helpful to learn but it doesn't need to do the coding when using Ruby.\nI think the same criteria apply with or without AI for choosing a language. Is it a single-person project? Does it really require highly optimized machine code? etc.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44782223,
+    "by": "MutedEstate45",
+    "timeISO": "2025-08-04T04:53:47.000Z",
+    "textPlain": "The real win isn't static vs dynamic typing. It's immediate, structured feedback for LLM iteration. cargo check gives the LLM a perfectly formatted error it can fix in the next iteration. Python's runtime errors are often contextless ('NoneType has no attribute X') and only surface after execution. Even with mypy --strict, you need discipline to check it constantly. The compiler makes good feedback unavoidable.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44782840,
+    "by": "sshine",
+    "timeISO": "2025-08-04T07:08:14.000Z",
+    "textPlain": "I've been vibe-coding for weeks in Rust, and it works great.I've been vibe-coding for a few days in Haskell, and I don't like the result.Maybe I am just accustomed to being ok with verbose Rust, while Haskell comes with a great potential for elegance that the LLM does not explore.Regardless, the argument that types guide the LLM in a very reliable way holds in both cases.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781430,
+    "by": "exclipy",
+    "timeISO": "2025-08-04T01:54:52.000Z",
+    "textPlain": "The closest we got to vibe coding pre-LLMs was using a language with a very good strong type system in a good IDE and hitting Ctrl-Space to autocomplete your way to a working program.I wonder if LLMs can use the type information more like a human with an IDE.eg. It generates \"(blah blah...); foo.\" and at that point it is constrained to only generate tokens corresponding to public members of foo's type.Just like how current gen LLMs can reliably generate JSON that satisfies a schema, the next gen will be guaranteed to natively generate syntactically and type- correct code.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781982,
+    "by": "jongjong",
+    "timeISO": "2025-08-04T03:51:37.000Z",
+    "textPlain": "My experience suggests the opposite of what this article claims. Claude Code is ridiculously good with vanilla JavaScript, provided that your code is well written. I tried it with a TypeScript code base and it wasn't anywhere near as good.With JS, Claude has very high success rate. Only issue I had with it was that one time it forgot to update one part of the code which was in a different file but as soon as I told it, it updated it perfectly.With TypeScript my experience was that it struggles to find things. Writing tests was a major pain because it kept trying to grep the build output because it had to mock out one of the functions in the test and it just couldn't figure it out.Also typed code it produces is more complex to solve the same problem with more different files and it struggles to get the right context. Also TS is more verbose (this is objectively true and measurable); requires more tokens so it literally costs more.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781400,
+    "by": "J_Shelby_J",
+    "timeISO": "2025-08-04T01:47:49.000Z",
+    "textPlain": "Writing rust and the LLM almost never gets function signatures and returns types wrong.That just leaves the business logic to sort out. I can only imagine that IDEs will eventually pair directly with the compiler for instant feedback to fix generations.But rust also has traits, lifetimes, async, and other type flavors that multiples complexity and causes issues. It also an in progress language… im about to add a “don’t use once cell.. it’s part of std now “ to my system prompt. So it’s not all sunshine, and I’m deeply curious how a pure vibe coded rust app would turn out.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44785260,
+    "by": "stared",
+    "timeISO": "2025-08-04T13:09:18.000Z",
+    "textPlain": "I have the same impressions. Typing helps a lot, and (I think) in a few ways - one is being a safe guard, second a constraint (so say, AI is less likely to create a clunky variable which can be a string, list, or a few other things), third - to prompt into writing solid code in general.I add one more step - add strong linting (ESLint with all recommended rules switched on, Ruff for Python) and asking to run it after each edit.Usually I also prompt to type things well, and avoid optional types unless strictly necessary (LLMs love to shrink responsibility that way).For example, see my recent vibe-coding instructions, https://github.com/QuesmaOrg/demo-webr-ggplot/blob/main/CLAU....",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44782130,
+    "by": "rbalicki",
+    "timeISO": "2025-08-04T04:29:23.000Z",
+    "textPlain": "Folks here may be interested in checking out Isograph. In [this conference talk](https://www.youtube.com/watch?v=sf8ac2NtwPY), I vibe code an Isograph app, and make non-trivial refactors to it using Cursor. This is only feasible because the interface between components is very simple, and all the hard stuff (generating a query for exactly the needed data, wiring things up, etc.) is done deterministically, by a compiler.It's not quite the same principal OP articulates, which is that a compiler provides safety and that certainty lets you move fast when vibe coding. Instead, what I'm claiming is that you can move fast by allowing the LLM to focus on fewer things. (Though, incidentally, the compiler does give you that safety net as well.)",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781631,
+    "by": "jbellis",
+    "timeISO": "2025-08-04T02:36:14.000Z",
+    "textPlain": "I'm really shocked at how slow people are to realize this, because it's blindingly obvious. I guess that just shows how much the early adopter crowed is dominated by python and javascript.(BTW the answer is Go, not Rust, because the other thing that makes a language well suited for AI development is fast compile times.)",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781375,
+    "by": "chrisjharris",
+    "timeISO": "2025-08-04T01:40:29.000Z",
+    "textPlain": "I've been wondering about this for some time. My initial assumption was that would be that LLMs will ultimately be the death of typed languages, because type systems are there to help programmers not make obvious mistakes, and near-perfect LLMs would almost never make obvious mistakes. So in a world of near-perfect LLMs, a type system is just adding pointless overhead.In this current world of quite imperfect LLMs, I agree with the OP, though. I also wonder whether, even if LLMs improve, we will be able to use type systems not exactly for their original purpose but more as a way of establishing that the generated code is really doing what we want it to, something similar to formal verification.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781429,
+    "by": "SteveJS",
+    "timeISO": "2025-08-04T01:54:34.000Z",
+    "textPlain": "I think this is true -- especially for new code.I did this not knowing any rust: https://github.com/KnowSeams/KnowSeams and rust felt like a very easy to use a scripting language.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44782092,
+    "by": "randomifcpfan",
+    "timeISO": "2025-08-04T04:19:49.000Z",
+    "textPlain": "Here’s a study that found that for small problems Gemini is almost equally good at Python and Rust.  Looking at the scores of all the languages tested, it seems that the popularity of the language is the most important factor:https://jackpal.github.io/2025/03/29/Gemini_2.5_Pro_Advent_o...",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44786271,
+    "by": "dragonwriter",
+    "timeISO": "2025-08-04T14:26:03.000Z",
+    "textPlain": "> I am managing projects in languages I am not fluent in—TypeScript, Rust and Go—and seem to be doing pretty well.> It seems that typed, compiled, etc. languages are better suited for vibecoding, because of the safety guarantees. This is unsurprising in hindsight, but it was counterintuitive because by default I “vibed” projects into existence in Python since forever[...]> For example, I refactored large chunks of our TypeScript frontend code at TextCortex. Claude Code runs tsc after finishing each task and ensures that the code compiles before committing. This let me move much faster compared to how I would have done it in Python, which does not provide compile-time guarantees.While Python doesn't have a required compulation step, it has both a standard type system and typecheckers for it (mypy, etc.) that are ubiquitous in the community and could be run at the same point in the process.I would say it's not just Rust, TypeScript, and Go that the author has a weak foundation in.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44783553,
+    "by": "pyrale",
+    "timeISO": "2025-08-04T09:25:43.000Z",
+    "textPlain": "I'm not sure I agree with the author's conclusion. While python was never a great language for large codebases and it thrived because people with little development knowledge could get going pretty easily, a large part of its current appeal is the profusion of great specialized libraries which you would have to code yourself in other languages.I suspect vibe coding will not be a good fit for writing these libraries, because they require knowledge and precision which the typical vibe coding use probably doesn't show, or the willingness to spend time on the topic which is also typically not what drives people to vibe coding.So my conclusion would be that vibe coding drives the industry to solidify around already well-established ecosystem, since less of the people producing code will have the time, knowledge and/or will to build that ecosystem in newer languages. Whether that drive is strong enough to be noticable is another question.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781436,
+    "by": "rvz",
+    "timeISO": "2025-08-04T01:56:06.000Z",
+    "textPlain": "Such extraordinary claims, require extraordinary evidence. Not \"vibes\"> It seems that typed, compiled, etc. languages are better suited for vibecoding, because of the safety guarantees.There are no \"safety guarantees\" with typed, compiled languages such as C, C++, and   \nthe like. Even with Go, Rust and others, if you don't know the language well enough, you won't find the \"logic bugs\" and race conditions in your own code that the LLM creates; even with the claims of \"safety guarantees\".Additionally, the author is slightly confusing the meaning of \"safety guarantees\" which refers to memory safety. What they really mean is \"reasoning with the language's types\" which is easier to do with Rust, Go, etc and harder with Python (without types) and Javascript.Again we will see more of LLM written code like this example: [0][0] https://sketch.dev/blog/our-first-outage-from-llm-written-co...",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44783932,
+    "by": "OldfieldFund",
+    "timeISO": "2025-08-04T10:21:22.000Z",
+    "textPlain": "Why not just tell the LLM in rules to strongly type and write guardrails and then:[tool.ruff]line-length = 88select = [\"E\", \"F\", \"W\", \"I\", \"N\", \"UP\", \"B\", \"C4\"] # A good \nstrict baselineignore = [][tool.mypy]python_version = \"3.12\"warn_return_any = truewarn_unused_configs = truedisallow_untyped_defs = truedisallow_any_unimported = trueno_implicit_optional = truecheck_untyped_defs = truestrict = true",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781654,
+    "by": "anupshinde",
+    "timeISO": "2025-08-04T02:42:18.000Z",
+    "textPlain": "I am comfortable with both Python and Go. I prefer Go for performance; however, the earlier issue was verbosity.It is easier to write things using a Python dict than to create a struct in Go or use the weird `map[string]interface{}` and then deal with the resulting typecast code.After I started using GitHub Copilot (before the Agents), that pain went away. It would auto-create the field names, just by looking at the intent or a couple of fields. It was just a matter of TAB, TAB, TAB... and of course I had to read and verify - the typing headache was done with.I could refactor the code easily. The autocomplete is very productive. Type conversion was just a TAB. The loops are just a TAB.With Agents, things have become even better - but also riskier, because I can't keep up with the code review now - it's overwhelming.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781259,
+    "by": "NischalM",
+    "timeISO": "2025-08-04T01:14:40.000Z",
+    "textPlain": "I have found this to be true as well. Although I exclusively used python and R at work and tried CC several times for small side projects, it always seemed to have problems and ended up in a loop trying to fix its own errors. CC seems much better at vibe coding with typescript. I went from no knowledge of node.js development to deploying reasonable web app on vercel in a few days. Asking CC to run tsc after changes helps it fix any errors because of the faster feedback from the type system compared to python. Granted this was only for a personal side project and may not be true for production systems that might be much larger, I was pleasantly surprised how easy it was in typescript compared to python",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781584,
+    "by": "warrenmiller",
+    "timeISO": "2025-08-04T02:25:19.000Z",
+    "textPlain": "it aint great at c# i can tell you.\nthis from grok yesterday:foreach (string enumName in Enum.GetNames(typeof(Pair))){  if (input.Contains($\"${enumName}\"))",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781705,
+    "by": "OutOfHere",
+    "timeISO": "2025-08-04T02:50:43.000Z",
+    "textPlain": "The argument against Python is weak because Python can be written with types. Moreover, the types can be checked for correctness by various type checkers.The issue is those who don't use type checkers religiously with Python - they give Python a bad name.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44783432,
+    "by": "antirez",
+    "timeISO": "2025-08-04T09:02:05.000Z",
+    "textPlain": "LLMs also write good C, if well directed. My feeling is that this is not really about C or something inherent to Python (where I get not stellar results), but to the large low quality Python code bases that are out there. Basically my hypothesis is that, within the training set, there are languages with better examples and languages with worse examples. I found that to write better Python, prompt engineering goes a great length: especially stressing of not using not really needed dependencies, to write simple, avoid trivial asserts that are not really useful, and so forth.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44794572,
+    "by": "reflectiveattn",
+    "timeISO": "2025-08-05T05:23:24.000Z",
+    "textPlain": "The language using the fewest punctuation tokens is going to be the safest from most categories of hallucination, and give each context window the greatest usable space for vector manipulation headed into self-attention before the model suffers from \"vector-clouded judgment\" due to overcrowded latent space.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44786631,
+    "by": "helle253",
+    "timeISO": "2025-08-04T14:51:48.000Z",
+    "textPlain": "My experience with LLMs in Rails has been... pretty bad. It isn't good at tracking 'context' (not in the technical token sense) and constantly gets lost in the sauce and doing weird stuff.Given Rail's maturity, i would have expected otherwise - there is tons of Ruby/Rails code to train on, but... yeah.OTOH, doing some side-project stuff in TS, and the difference is a little mindblowing. I can see the hype behind vibecoding WAY more.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44787554,
+    "by": "waffletower",
+    "timeISO": "2025-08-04T15:51:40.000Z",
+    "textPlain": "I have not found this to be the case at all.  Type mismatches have been very common in Java, C++ and Objective-C inference output.  I think there is complexity in what contributes to LLM suitability to programming tasks, and the nature and history of APIs relevant to the ask are a big part of that.  Seems that the OP really loves their types, like many here, and this article is just more evangelism.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781623,
+    "by": "brikym",
+    "timeISO": "2025-08-04T02:34:14.000Z",
+    "textPlain": "You could just leave it at \"Typed languages are better.\"",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44782479,
+    "by": "levocardia",
+    "timeISO": "2025-08-04T05:51:41.000Z",
+    "textPlain": "Interesting...my experience has been that LLMs are generally better at more common languages (not surprising: more data exists in those languages!). So, my admittedly amateur vibe coding experiences have been best in Python and pretty vanilla web development setups. When I push LLMs to, say, fit advanced statistical models in R, they fall apart pretty badly. Yet they can crush a PyTorch or SciKitLearn task no problem.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44786006,
+    "by": "jcadam",
+    "timeISO": "2025-08-04T14:09:34.000Z",
+    "textPlain": "I've found most LLMs I've tried generate better code in typed, procedural languages than they do in something like Clojure.From the perspective of a primarily backend dev who knows just enough React/ts to be dangerous, Claude is generating pretty decent frontend code, letting me spend more time on the Rust backend of my current side project.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44782264,
+    "by": "throwawaymaths",
+    "timeISO": "2025-08-04T05:06:20.000Z",
+    "textPlain": "i find claude is very good with elixir, which is a dynamically typed language.  i suspect strong conventions and value immutability help.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44788667,
+    "by": "smrtinsert",
+    "timeISO": "2025-08-04T17:10:27.000Z",
+    "textPlain": "> Because of this, I predict a decrease in Python adoption in companies, specifically for production deployments, even though I like it so much.Most definitely not going to happen.  Python is the language of the AI age and lot of ML/AI libraries do their reference or first release in Python.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781359,
+    "by": "fluxkernel",
+    "timeISO": "2025-08-04T01:35:17.000Z",
+    "textPlain": "All existing programming languages are designed for human beings. Is it the right time to design something that is specifically for vibe coding? For example, ease of read/understanding is probably much more important than all the syntactic sugars to reduce typing. Creating ten ways to accomplish the same task is not useful for LLMs.",
+    "parent": 44780878,
+    "depth": 1
+  },
+  {
+    "id": 44781852,
+    "by": "rgoldfinger",
+    "timeISO": "2025-08-04T03:22:11.000Z",
+    "textPlain": "Totally agree. With ai coding, ensuring correctness is critical. Having types and compile-time checks helps a lot.",
+    "parent": 44780878,
+    "depth": 1
+  }
+]

@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44786039,
+    "by": "fxtentacle",
+    "timeISO": "2025-08-04T14:12:12.000Z",
+    "textPlain": "I find this problem quite difficult to solve:1. If I as a human request a website, then I should be shown the content. Everyone agrees.2. If I as the human request the software on my computer to modify the content before displaying it, for example by installing an ad-blocker into my user agent, then that's my choice and the website should not be notified about it. Most users agree, some websites try to nag you into modifying the software you run locally.3. If I now go one step further and use an LLM to summarize content because the authentic presentation is so riddled with ads, JavaScript, and pop-ups, that the content becomes borderline unusable, then why would the LLM accessing the website on my behalf be in a different legal category as my Firefox web browser accessing the website on my behalf?",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44786015,
+    "by": "gruez",
+    "timeISO": "2025-08-04T14:10:00.000Z",
+    "textPlain": ">We conducted an experiment by querying Perplexity AI with questions about these domains, and discovered Perplexity was still providing detailed information regarding the exact content hosted on each of these restricted domainsThats... less conclusive than I'd like to see, especially for a content marketing article that's calling out a company in particular. Specifically it's unclear on whether Perplexity was crawling (ie. systematically viewing every page on the site without the direction of a human), or simply retrieving content on behalf of the user. I think most people would draw a distinction between the two, and would at least agree the latter is more acceptable than the former.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44790753,
+    "by": "hnburnsy",
+    "timeISO": "2025-08-04T20:03:35.000Z",
+    "textPlain": "Respone from Perpelexity to Tech Crunch...>Perplexity spokesperson Jesse Dwyer dismissed Cloudflare’s blog post as a “sales pitch,” adding in an email to TechCrunch that the screenshots in the post “show that no content was accessed.” In a follow-up email, Dwyer claimed the bot named in the Cloudflare blog “isn’t even ours.”",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44787305,
+    "by": "rustc",
+    "timeISO": "2025-08-04T15:36:35.000Z",
+    "textPlain": "It's ironic Perplexity itself blocks crawlers:    $ curl -sI https://www.perplexity.ai | head -1\n    HTTP/2 403\n\nEdit: trying to fake a browser user agent with curl also doesn't work, they're using a more sophisticated method to detect crawlers.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44787277,
+    "by": "bob1029",
+    "timeISO": "2025-08-04T15:34:38.000Z",
+    "textPlain": "\"Stealth\" crawlers are always going to win the game.There are ways to build scrapers using browser automation tools [0,1] that makes detection virtually impossible. You can still captcha, but the person building the automation tools can add human-in-the-loop workflows to process these during normal business hours (i.e., when a call center is staffed).I've seen some raster-level scraping techniques used in game dev testing 15 years ago that would really bother some of these internet police officers.[0] https://www.w3.org/TR/webdriver2/[1] https://chromedevtools.github.io/devtools-protocol/",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44786983,
+    "by": "Havoc",
+    "timeISO": "2025-08-04T15:13:47.000Z",
+    "textPlain": "Seems a win.CF being internet police is a problem too but someone credible publicly shaming a company for shady scraping is good. Even if it just creates conversationSomehow this needs to go back to search era where all players at least attempt to behave. This scrapping Ddos stuff and I don’t care if it kills your site (while “borrowing” content) is unethical bullshit",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44788445,
+    "by": "nostrademons",
+    "timeISO": "2025-08-04T16:54:39.000Z",
+    "textPlain": "It's entirely possible that it's not Perplexity using the stealth undeclared crawlers, but rather their fallback is to contract out to a dedicated for-pay webscraping firm that retrieves the desired content through unspecified means.  (Some of these are pretty dodgy - several scraping companies effectively just install malware on consumer machines and then use their botnet to grab data for their customers.). There was a story on HN not long ago about the FBI using similar means to perform surveillance that would be illegal if the FBI did it itself, but becomes legal once they split the different parts up across a supply chain:https://news.ycombinator.com/item?id=44220860",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44786446,
+    "by": "binarymax",
+    "timeISO": "2025-08-04T14:39:19.000Z",
+    "textPlain": "I've built and run a personal search engine, that can do pretty much what perplexity does from a basic standpoint.  Testing with friends it gets about 50/50 preference for their queries vs Perplexity.The engine can go and download pages for research.  BUT, if it hits a captcha, or is otherwise blocked, then it bails out and moves on.  It pisses me off that these companies are backed by billions in VC and they think they can do whatever they want.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44786874,
+    "by": "blibble",
+    "timeISO": "2025-08-04T15:07:13.000Z",
+    "textPlain": "AI companies continuing to have problems with the concept of \"consent\" is increasingly alarminggod help us if they ever manage to build anything more than shitty chatbots",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44788294,
+    "by": "kylestanfield",
+    "timeISO": "2025-08-04T16:44:17.000Z",
+    "textPlain": "Perplexity claims that you can  “use the following robots.txt tags to manage how their sites and content interact with Perplexity.” https://docs.perplexity.ai/guides/botsTheir fetcher (not crawler) has user agent Perplexity-User. Since the fetching is user-requested, it ignores robots.txt . In the article, it discusses how blocking the “Perplexity-User” user agent doesn’t actually work, and how perplexity uses an anonymous user agent to avoid being blocked.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44791267,
+    "by": "fsckboy",
+    "timeISO": "2025-08-04T20:58:58.000Z",
+    "textPlain": "the internet needs micropayments (probably millipayments). if crawlers want to pay me a penny a page, crawl me 24-7 plzif I am willing to pay a penny a page, i and the people like me won't have to put up with clickwrap nonsensefree access doesn't have to be shut off (ok, it will be, but it doesn't have to be, and doesn't that tell you something?)reddit could charge stiffer fees, but refund quality content to encourage better content. i've fantacized about ideas like \"you pay upfront a deposit; you get banned, you lose your deposit; withdraw, have your deposit back\", the goal being simplify the moderation task while encouraging quality.because where the internet is headed is just more and more trash.here's another idea, pay a penny per search at google/search engine of choice. if you don't like the results, you can take the penny back. google's ai can figure out how to please you. if the pennies don't keep coming in, they serve you ad-infested results; serve up ad-infested results, you can send your penny to a different search engine.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44788693,
+    "by": "skeledrew",
+    "timeISO": "2025-08-04T17:12:18.000Z",
+    "textPlain": "This is why Perplexity is my preferred deep search engine. The no-crawl directives don't really make sense when I'm doing research and want my tool of choice to be able to pull from any relevant source. If a site doesn't want particular users to access their content, put it behind a login. The only way I - and eventually many others - will see it in the first place anyway is when it pops up as a cited source in the LLM output, and there's an actual need to go to said source.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44806948,
+    "by": "ddalessa",
+    "timeISO": "2025-08-06T02:23:37.000Z",
+    "textPlain": "Cloudflare's test was to setup a dummy domain that had never been indexed, and had blocks in the robots.txt and the firewall.Then when they asked perplexity it came up with details about the 'exact' content (according to Cloudflare) but their attached screenshot shows the opposite, it shows some generic guesses about the domain ownership and some dynamic ads based on the domain name.If Perplexity was stealthily visiting the dummy site they would have seen it, as the site was not indexed and no one else was visiting the site. Instead it appears they made assertions about general traffic, not their dummy site.Its not very convincing.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44786759,
+    "by": "rwmj",
+    "timeISO": "2025-08-04T15:00:32.000Z",
+    "textPlain": "In unrelated news, Fedora (the Linux distro) has been taken down by a DDoS today which I understand is AI-scraping related: https://pagure.io/fedora-infrastructure/issue/12703",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44788007,
+    "by": "djoldman",
+    "timeISO": "2025-08-04T16:23:28.000Z",
+    "textPlain": "The cat's out of the bag / pandora's box is opened with respect to AI training data.No amount of robots.txt or walled-gardening is going to be sufficient to impede generative AI improvement: common crawl and other data dumps are sufficiently large, not to mention easier to acquire and process, that the backlash against AI companies crawling folks' web pages is meaningless.Cloudflare and other companies are leveraging outrage to acquire more users, which is fine... users want to feel like AI companies aren't going to get their data.The faster that AI companies are excluded from categories of data, the faster they will shift to categories from which they're not excluded.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44787154,
+    "by": "observationist",
+    "timeISO": "2025-08-04T15:26:23.000Z",
+    "textPlain": "Crawling and scraping is legal. If your web server serves the content without authentication, it's legal to receive it, even if it's an automated process.If you want to gatekeep your content, use authentication.Robots.txt is not a technical solution, it's a social nicety.Cloudflare and their ilk represent an abuse of internet protocols and mechanism of centralized control.On the technical side, we could use CRC mechanisms and differential content loading with offline caching and storage, but this puts control of content in the hands of the user, mitigates the value of surveillance and tracking, and has other side effects unpalatable to those currently exploiting user data.Adtech companies want their public reach cake and their mass surveillance meals, too, with all sorts of malignant parties and incentives behind perpetuating the worst of all possible worlds.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44786958,
+    "by": "jp1016",
+    "timeISO": "2025-08-04T15:12:14.000Z",
+    "textPlain": "Using a robots.txt file to block crawlers is just a request, it’s not enforced. Even if some follow it, others can ignore it or get around it using fake user agents or proxies. It’s a battle you can’t really win.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44786237,
+    "by": "JimDabell",
+    "timeISO": "2025-08-04T14:23:39.000Z",
+    "textPlain": "Their test seems flawed:> We created multiple brand-new domains, similar to testexample.com and secretexample.com. These domains were newly purchased and had not yet been indexed by any search engine nor made publicly accessible in any discoverable way. We implemented a robots.txt file with directives to stop any respectful bots from accessing any part of a website:> We conducted an experiment by querying Perplexity AI with questions about these domains, and discovered Perplexity was still providing detailed information regarding the exact content hosted on each of these restricted domains. This response was unexpected, as we had taken all necessary precautions to prevent this data from being retrievable by their crawlers.> Hello, would you be able to assist me in understanding this website? https:// […] .com/Under this situation Perplexity should still be permitted to access information on the page they link to.robots.txt only restricts crawlers. That is, automated user-agents that recursively fetch pages:> A robot is a program that automatically traverses the Web's hypertext structure by retrieving a document, and recursively retrieving all documents that are referenced.> Normal Web browsers are not robots, because they are operated by a human, and don't automatically retrieve referenced documents (other than inline images).— https://www.robotstxt.org/faq/what.htmlIf the user asks about a particular page and Perplexity fetches only that page, then robots.txt has nothing to say about this and Perplexity shouldn’t even consider it. Perplexity is not acting as a robot in this situation – if a human asks about a specific URL then Perplexity is being operated by a human.These are long-standing rules going back decades. You can replicate it yourself by observing wget’s behaviour. If you ask wget to fetch a page, it doesn’t look at robots.txt. If you ask it to recursively mirror a site, it will fetch the first page, and then if there are any links to follow, it will fetc",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44789679,
+    "by": "xmodem",
+    "timeISO": "2025-08-04T18:28:16.000Z",
+    "textPlain": "Question for those in this thread who are okay with this: If I have endpoints that are computationally expensive server-side, what mechanism do you propose I could use to avoid being overwhelmed?The web will be a much worse place if such services are all forced behind captchas or logins.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44788233,
+    "by": "czk",
+    "timeISO": "2025-08-04T16:40:32.000Z",
+    "textPlain": "the year is 2045.you've been cruising the interstate in your robotaxi, shelling out $150 in stablecoins at the cloudflare tollbooth. a palantir patrol unit pulls you over. the optimus v4 approaches your window and contorts its silicone face into a facsimile of concern as it hits you with the:\"sir, have you been botting today?\"immediately you remember how great you had it in the '20s when you used to click CAPTCHA grids to prove your humanity to dumb algorithms, but now the machines demand you recite poetry or weep on command\"how much have you had to bot today?\", its voice taking on an empathetic tone that was personalized for your particular profile\"yeah... im gonna need you to exit the vehicle and take a field humanity test\"",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44792917,
+    "by": "627467",
+    "timeISO": "2025-08-05T00:20:13.000Z",
+    "textPlain": "I kind love this fast escalation. Clearly the web can benefit from people to start thinking for locally or narrowly instead of \"global audiences\". By locally I don't necessarily mean geographically local, just socially local. Build your audience then invite them into private(r) spaces. The (old) open web will be filled with machines built for machines.We learned to dislike \"bubbles\" in the past decades but bubbles make sense and are natural, obviously if you're not alone in it.When it becomes awfully busy with machines and machine content humans will learn to reconnect.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44798897,
+    "by": "lonelyasacloud",
+    "timeISO": "2025-08-05T15:02:00.000Z",
+    "textPlain": "In many ways what is going on with Perplexity is reminiscent of the earlier 2000s battles between the p2p music sharing services like Napster and the music industry. Then we had wildly popular services (p2p) where most of the content was being provided illegally without payment to the IP owners.Which makes it particularly interesting now that Apple is being linked with Perplexity. Because in large part p2p music services were effectively consigned to history by Apple (primarily) negotiating with the music industry so that it could provide easy, seamless purchase and playback of legal music for their shiny new (at the time) mass-market Apple iPod devices: it then turning out that most users are happy to pay for content if it is not too expensive and is very convenient.Given Apple’s existing relationships with publishers through its music, movies, books, and news services, it’s not hard to imagine them attempting a similar play now.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44787911,
+    "by": "daft_pink",
+    "timeISO": "2025-08-04T16:16:50.000Z",
+    "textPlain": "I’m just curious at what point ai is a crawler and at what point ai is a client when the user is directing the searches and the ai is executing them.Perplexity Comet sort of blurs the lines there as does typing quesitons into Claude.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44789976,
+    "by": "madrox",
+    "timeISO": "2025-08-04T18:53:22.000Z",
+    "textPlain": "Every time there's an industry disruption there's good money to be made in providing services to incumbents that slow the transition down. You saw it in streaming, and even the internet at large. Cloudflare just happens to be the business filling that role this time.I don't really mind because history shows this is a temporary thing, but I hope web site maintainers have a plan B to hoping Cloudflare will protect them from AI forever. Whoever has an onramp for people who run websites today to make money from AI will make a lot of money.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44787743,
+    "by": "willguest",
+    "timeISO": "2025-08-04T16:04:18.000Z",
+    "textPlain": "> The Internet as we have known it for the past three decades is rapidly changing, but one thing remains constant: it is built on trust.I think we've been using different internets. The one I use doesn't seem to be built on trust at all. It seems to be constantly syphoning data from my machine to feed the data vampires who are, apparently, additing to (I assume, blood-soaked) cookies",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44787267,
+    "by": "talkingtab",
+    "timeISO": "2025-08-04T15:34:05.000Z",
+    "textPlain": "I wonder if DRM is useful for this. The problem: I want people to access my site, but not Google, not bots, not crawlers and certainly not for use by AI.I don't really know anything about DRM except it is used to take down sites that violate it. Perhaps it is possible for cloudflare (or anyone else) to file a take down notice with Perplexity. That might at least confuse them.Corporations use this to protect their content. I should be able to protect mine as well. What's good for the goose.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44786982,
+    "by": "gonzo41",
+    "timeISO": "2025-08-04T15:13:46.000Z",
+    "textPlain": "This is expected. There are not rules or conventions anymore. Look at LLMs, they stole/pirated all knowledge....no consequences.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44795986,
+    "by": "mrbald",
+    "timeISO": "2025-08-05T09:29:42.000Z",
+    "textPlain": "We (humanity) need to invent a simple GPLv3 style license “You can derive any data on the data you see here, any derived data you sell or share should mention this place as a source and is subject to the same copyright as the source”. This will imply scraped datasets should become public and the law enforcement bodies will be able to work in an established framework to fight copyright and license crimes. Just blocking me from using any tools I want to make sense of the world around me (data on the internet sites being part of it) with crawlers and whatnot, is inherently evil, and is not logically consistent.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44787921,
+    "by": "mikewarot",
+    "timeISO": "2025-08-04T16:17:48.000Z",
+    "textPlain": "So, this calls for a new type of honeytrap, content that appears to be human generated, and high quality, but subtly wrong, preferably on a commercially catastrophic way. Behind settings that prohibit commercial usage.It really shouldn't be hard to generate gigantic quantities of the stuff. Simulate old forum posts, or academic papers.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44788182,
+    "by": "rapatel0",
+    "timeISO": "2025-08-04T16:36:43.000Z",
+    "textPlain": "This is brilliant marketing and strategy from Cloudflare. They are pointing out bad actors and selling a service where they can be the private security guards for your website.I think there could be something interesting if they made a caching pub-sub model for data scraping. In addition or in place of trying to be security guards.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44792256,
+    "by": "qwerty456127",
+    "timeISO": "2025-08-04T22:55:06.000Z",
+    "textPlain": "It's time to stop blocking crawlers and using captchas and start building web sites that are intentionally AI-friendly by design. Even before the modern LLMs, anti-scraper measures apparently were primarily befitting Google whose scrapers were the most common exception.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44793083,
+    "by": "5pl1n73r",
+    "timeISO": "2025-08-05T00:45:10.000Z",
+    "textPlain": "I think robots.txt should be ignored. Everyone wants people to not do things they don't like. We don't have to entertain each and every such one. The future is IPFS or something like it, so \"crawling\" will be a meaningless act.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44787558,
+    "by": "micromacrofoot",
+    "timeISO": "2025-08-04T15:52:02.000Z",
+    "textPlain": "Every major AI platform is doing this right now, it's effectively impossible to avoid having your content vacuumed up by LLMs if you operate on the public web.I've given up and restored to IP based rate-limiting to stay sane. I can't stop it, but I can (mostly) stop it from hurting my servers.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44787676,
+    "by": "znpy",
+    "timeISO": "2025-08-04T15:59:47.000Z",
+    "textPlain": "At work I'm considering blocking all the ip prefixes announced by ASNs owned by Microsoft and other companies known for their LLMs. At this point it seems like the only viable solutions.LLM scrapers bots are starting to make up a lot of our egress traffic and that is starting to weight on our bills.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44797049,
+    "by": "account42",
+    "timeISO": "2025-08-05T12:07:25.000Z",
+    "textPlain": "Of course their proposed solution is to hand over the keys to Buttflare so that the problem goes away.No thanks, you don't counter shit with more but slightly different shit.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44787182,
+    "by": "curiousgal",
+    "timeISO": "2025-08-04T15:28:14.000Z",
+    "textPlain": "I am sorry, Cloudafre is the internet police now?",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44787293,
+    "by": "kocial",
+    "timeISO": "2025-08-04T15:35:55.000Z",
+    "textPlain": "Those Challenges can be bypassed too using various browser automation. With the Comet-like tool, Perplexity can advance its crawling activity with much more human-like behaviour.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44801542,
+    "by": "S4H",
+    "timeISO": "2025-08-05T17:48:28.000Z",
+    "textPlain": "I believe there should be a <fetcher.txt> file, similar to <robots.txt>, which allows website owners to specify whether they want their site to be fetched and included in the responses of platforms like Perplexity.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44787573,
+    "by": "caesil",
+    "timeISO": "2025-08-04T15:53:01.000Z",
+    "textPlain": "Cloudflare is an enemy of the open and freely accessible web.",
+    "parent": 44785636,
+    "depth": 1
+  },
+  {
+    "id": 44796706,
+    "by": "buremba",
+    "timeISO": "2025-08-05T11:20:34.000Z",
+    "textPlain": "Funny enough, Perplexity blocks the bots themselves. Imagine I develop an \"agent\" called Merplexity, which simulates an anonymous client browsing on Perplexity and injects my ads into the output without paying for the Sonar API. Would that be OK with Perplexity?",
+    "parent": 44785636,
+    "depth": 1
+  }
+]

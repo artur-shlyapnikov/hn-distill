@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44782481,
+    "by": "nickm12",
+    "timeISO": "2025-08-04T05:52:24.000Z",
+    "textPlain": "The structure I prefer for a technical design document is like a three-layer onion.The first layer is the problem statement, goals, non-goals, and requirements, both functional and non-functional. The next layer is the functional specification, which describes precisely how the system will work from an external perspective. The third and final layer is the technical specification, which describes the internals.Each section should follow from the previous. The design doc should justify to the reader (and author) that the problem is understood, the requirements are necessary and sufficient, the functional spec meets the requirements, and the technical spec implements the functionality and non-functional requirements.As a corollary, if one section has a fatal flaw, there is no need to read on. If the problem is misunderstood, then the functional spec is likely wrong. If the functional spec doesn't meet the requirements, then the implementation is moot.The issue I see very frequently is technical design documents that provide only the final section—a simple description of the system that will be built. As a design reviewer, there is limited feedback I can provide on such a design. Sure, it's a system, but will it solve the problem? Does the team even agree on the problem to be solved?",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44779891,
+    "by": "patrickmay",
+    "timeISO": "2025-08-03T21:16:03.000Z",
+    "textPlain": "Two quotes from the article stand out.  First, from the X screenshot:  \"something about the process of writing makes your ideas 10x better\". Second from near the beginning:  \"The most important person to convince is the author.\"Design documents are so essential that even after mumble years in the industry, I am amazed when people, including putative \"Product Managers\" push back on the idea.  As Leslie Lamport noted, \"Writing is nature's way of telling us how sloppy our thinking is.\"For those wanting to learn how to improve the quality of their technical writing, see Write Like an Amazonian:  https://medium.com/@apappascs/write-like-an-amazonian-14-tip...",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44780141,
+    "by": "B-Con",
+    "timeISO": "2025-08-03T21:51:05.000Z",
+    "textPlain": "As a design reviewer, I think all design authors should internalize this concept:> But a good doc will lay out the problem and mental models in a way that the solution that took weeks of hard thought to invent will be clear to the reader by the time the doc presents it.Perhaps my favorite quote is: \"If I had more time, I would have written a shorter letter.\"Design docs should make complex things simple. They should not be a dumping ground for all the intellectual hardships and false starts the engineer went through. It may still worth capturing this, but that should be in another doc, or at least an appendix. Keep the path forward simple and understandable.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44782439,
+    "by": "nickm12",
+    "timeISO": "2025-08-04T05:39:11.000Z",
+    "textPlain": "> The goal of a design document is to convince the reader the design is optimal given the situation.This is a nitpick, but I don't think the goal of a design is to be optimal so much as sufficient.Software systems design, like any design, is about coping with constraints and tradeoffs. The design doc should clearly lay out these out and present an approach that meets the requirements and constraints with acceptable tradeoffs. Where multiple reasonable alternatives exist, they should be make explicit along with a justification for why one option was chosen over the others.Will it be perfect? Probably not, unless it is an easy problem or you over-designed. And even if it's a good design, it can hit unforeseen issues during implementation. The goal of design is not to eliminate all possibility of such issues but to mitigate risks and communicate to the stakeholders what we're building and why we're building it that way.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44780755,
+    "by": "farkin88",
+    "timeISO": "2025-08-03T23:34:23.000Z",
+    "textPlain": "Solid advice on clarity and editing. The only gap is what happens after the doc is approved? Without upkeep it decays into \"design archaeology.\" A few years ago, Andrew Harmel-Law wrote about an interesting approach to scaling architecture conversationally, which includes lightweight Architecture Decision Records (ADRs) as one tool that could help here. ADRs live beside the code (adr/001-use-postgres.md) and capture context, decision, and status in a format short enough to, I think, revisit in every PR and easy to supersede when reality changes so the original rationale stays searchable months later.Here’s a link to Harmel-Laws’post if anyone's interested: https://martinfowler.com/articles/scaling-architecture-conve...",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44781171,
+    "by": "mtlynch",
+    "timeISO": "2025-08-04T00:52:56.000Z",
+    "textPlain": ">Amazon meetings start with the presenter passing out copies... of a prose document... The meeting starts with everyone sitting in silence, reading the document, and adding notes and questions in the margins with red pen.I've never worked at Amazon, but I've heard this a lot, and it always strikes me as an odd practice. Odder still is that it apparently works and everyone I hear talk about it seems to love it.You're squandering precious meeting time by having everyone sit and read a document together. They could easily do the same thing ahead of the meeting, and you'd have much shorter meetings.And doing it synchronously means everyone either sits idle until the slowest reader is ready or not everyone gets to finish in time. And \"slowest reader\" isn't even just about reading speed. Presumably, some people can understand the document more quickly because they have more context.In design reviews at Google, it was obvious that the majority of attendees came unprepared and were reading the docs for the first time while their teammates were discussing the doc. I suspect that the reason was that Google just didn't have a strong docs culture, and leads/managers quietly tolerated people coming unprepared (and sometimes, they themselves were unprepared).I've never seen it done in practice, but I don't think it would be hard to have the best of both worlds where people review docs ahead of the review meeting, but there are strong cultural norms around reading docs ahead of time so the meeting is just for discussion, not just for reading or pretending that you've read.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44780692,
+    "by": "lastdong",
+    "timeISO": "2025-08-03T23:23:51.000Z",
+    "textPlain": "Taking a class in technical writing greatly improved my ability to summarize written documents. The course emphasized a “cut with a red pen” approach (write, cross out, rewrite), which focused on using as few words as possible to communicate concepts and ideas clearly. This method has multiple layers and becomes easier with practice. I also try to share this knowledge with the teams I work with, but it’s important to remember that it’s a skill that requires regular training.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44782675,
+    "by": "chartered_stack",
+    "timeISO": "2025-08-04T06:33:03.000Z",
+    "textPlain": "I often come across tips/pointers/exhortations about how to write good design documents. I generally agree that it's an important step: not just for clarifying your own thinking, but also for communicating effectively with others.However, these types of posts often lack are concrete examples of what a good design document actually looks like. I understand that many of these documents are proprietary and intended for internal use. Still, are there any examples of well-written design documents available publicly that learners can study to get a clearer idea of what one should look like?",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44781173,
+    "by": "cadamsdotcom",
+    "timeISO": "2025-08-04T00:54:17.000Z",
+    "textPlain": "One process that can work:Step 1. Brain dump into a doc (consider using dictation to get more thoughts down faster)Step 2. Have an LLM give it structure & progression. You are ordering your thoughts for readability, so you'll probably want to throw it away. You're still refining your thoughts at this stage.Step 3. Take the LLM output as a starting point, or write an outline from scratch. Flesh it out into a first draftStep 4. simplify: cut words, swap big words for small words, etc.Step 5. Repeat step 4.LLMs bridge the gap from word-vomit to structure. You should be willing to throw away what you get from the LLM.At least 30% can always be cut. It's amazing how much can be trimmed without losing the intent.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44780168,
+    "by": "norseboar",
+    "timeISO": "2025-08-03T21:55:05.000Z",
+    "textPlain": "I love docs written like this, and writing culture generally. But I've also seen something like this backfire a bit.I think this approach is particularly good for docs where the assumption is the audience wants to understand why you reached the conclusions you came to, and the doc is sort of a persuasive argument. I think this is a valuable doc (and how I like writing and reading), but it is not always the case.I think often you do want to start with the conclusion, the \"end\" so to speak, to orient the reader. And also to address the reader who trusts your judgement, and just wants to get up to speed. I've seen a lot of cases where the audience might not be ready/want to follow along w/ a train of reasoning, they want to know the punchline. And once they do, then they might want to follow up.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44779920,
+    "by": "kator",
+    "timeISO": "2025-08-03T21:20:55.000Z",
+    "textPlain": "7.5 Years at Amazon, and even for my side projects, I write PRFAQs and share them with my stakeholders to gather feedback. I'm a PMT at Amazon, but in my alternative life, I code on many projects, and develop infrastructure, architecture, etc, and enjoy writing as much of it as I can.That said, work back from your customer!",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44780557,
+    "by": "ryanmadden",
+    "timeISO": "2025-08-03T22:58:08.000Z",
+    "textPlain": "In my experience, organization/clarity is the biggest hurdle for SWEs trying to improve their doc writing. I like the author's spaghetti code analogy for the importance of idea organization within a doc -- I've struggled to convey the same concept before and I will use this in the future. In the past I've talked about 'ferrying' the reader through your thought process but this post explains the concept in a more familiar way.I wrote a similar post last year[0] and it was interesting to see the similarities (concision, importance of practice) and differences with someone from a different company. I'm not sure I agree about 'short paragraphs' -- that may be a natural consequence of high information density writing but line breaks themselves aren't much help if the ideas aren't distilled. The 'Editing' section gets at that underlying idea more directly imo.[0]https://ryanmadden.net/things-i-learned-at-google-design-doc...",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44779907,
+    "by": "matt-p",
+    "timeISO": "2025-08-03T21:18:42.000Z",
+    "textPlain": "I sometimes even write design docs that will probably only ever really be read by me. It's so powerful to write these things down.A example doc would of been really helpful, I'd love to compare the final structure of mine with others.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44783601,
+    "by": "metadat",
+    "timeISO": "2025-08-04T09:32:31.000Z",
+    "textPlain": "This article is written front-loaded with vague ideologies, basic mostly-intuitive foundational concepts followed by a random mishmash of general tips.  I was hoping for a more applied and structured tour with effective examples that work for common classes of problems.A reasonable starting place: The best design document conveys the critical aspects, requirements, and relevant information in a way the audience will understand and be able to further reason about.p.s. Sorry for the complaint, I was a bit disappointed because this is potentially a really interesting subject!  Why does cargo-cult content get such good traction so consistently?  Cargo-cult driven design leads to some odd outcomes IME.  Sigh",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44784994,
+    "by": "chnsh",
+    "timeISO": "2025-08-04T12:39:14.000Z",
+    "textPlain": "Logistically speaking, is there a good hosting service for design docs but have google docs-like functionality to be able to comment and share feedback? I increasingly use tools like cursor to iterate on design docs that are in markdown format and currently I move things over to google docs manually and when there is feedback, I need to go back to cursor which creates a slow and weird loop. Have people identified better structures/processes for this?",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44780895,
+    "by": "breckognize",
+    "timeISO": "2025-08-03T23:58:01.000Z",
+    "textPlain": "It's worth noting the author led the implementation of the file system at the bottom of S3.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44789415,
+    "by": "nrvn",
+    "timeISO": "2025-08-04T18:04:48.000Z",
+    "textPlain": "I used the following sources to create an RFC template (and promote the document culture across the engineering documentation):- https://www.industrialempathy.com/posts/design-docs-at-googl...- https://github.com/rust-lang/rfcs- https://github.com/kubernetes/enhancements/blob/master/keps/...- https://blog.pragmaticengineer.com/rfcs-and-design-docs/Hint: tailor the process and template structure based on your org size/maturity and needs. Don’t try to blindly mimic/imitate.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44779963,
+    "by": "alphazard",
+    "timeISO": "2025-08-03T21:25:23.000Z",
+    "textPlain": "> work at a place with a writing cultureI would extend that to working at a place with a design culture.  That is engineers prefer to work on projects that have been designed including a written plan before starting.  And mistrust or avoid leaders that cannot plan in writing, and projects that have not been planned.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44782552,
+    "by": "Scarblac",
+    "timeISO": "2025-08-04T06:10:28.000Z",
+    "textPlain": "Is there a collection of good design documents somewhere?I'm a few decades into my career and can't recall ever seeing any.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44783775,
+    "by": "tpoacher",
+    "timeISO": "2025-08-04T09:59:20.000Z",
+    "textPlain": "Going off on a tangent, but:> This disappoints the ego-seeking behavior of many engineers. Good engineers often want people to realize how clever they were.This is probably partly true to a small extent, but for the most part I think it trivialises a larger problem.I have had this exact problem as an academic publishing papers. My ability to write straightforward easy to follow manuscripts has backfired on me many times, whereby explaining the steps in a clear, intuitive order has led reviewers to state that the findings were non-novel since they were a clear intuitive series of logical steps. My (sad) experience has taught me that if you make the reader 'work' a  tiny bit towards developing the intuition themselves, and appreciate how this specific sequence of steps wasn't necessarily trivially obvious before announcing it on paper, then they will appreciate the novelty and the thinking that went behind it a lot more.Obviously I don't necessarily think the mass of obfuscated papers out there are academics intentionally obfuscating to prevent rejection and raise appreciation in their readers (it's more likely to be a lack of skill or interest in investing the effort to write more clearly). But (despite it's frequent abuse as a phrase) leaving _some_ things as \"an exercise to the reader\" turns out to not always be the 'lazy' or 'ignorant' thing to do.Now, of course, design documents may not necessarily have the same goals or gatekeepers as academic papers do, but I think attributing leaving some steps up to the reader to be entirely about engineering ego-seeking behaviour is a bit misguided. If your goal is to make someone understand and appreciate something, then there is such a thing as \"explaining it too much\" (and thus robbing them of the experience of developing their own, and far more useful, insight).And this is doubly true in teaching contexts (arguably not the usual purpose of a design document, but ...).",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44785099,
+    "by": "chromatin",
+    "timeISO": "2025-08-04T12:50:03.000Z",
+    "textPlain": "The author makes the following assertion:    Let me illustrate a common code organization issue some programmers run into on their first day. The novice writes\n\n    terminal.print(\"Hello world\")\n\n    Then they decide they want to make the text red, so they edit their program to\n\n    \n    terminal.print(\"Hello world\")\n\n    terminal.setPrintColor(\"red\")\n        \n    And then they're confused that it didn't come out red. They haven't internalized that the first line of code happens before the second. They just get a soup of code on the screen that kind of has the ingredients for a program, and expect the computer to do what they want.\n\nI find this _extremely_ surprising???",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44782141,
+    "by": "codemac",
+    "timeISO": "2025-08-04T04:32:32.000Z",
+    "textPlain": "I should write a lot more, but the two paths I see are: B.O.O. and Good Strategy/Bad Strategy.B.O.O.: Background, Objective, Overview. Basically, a history lesson for how you got here, an objective for what you want to fix/change, and an overview of how you'll implement that change.Good Strategy/Bad Strategy: An amazing book, but the organization is similar to boo. Problem Diagnosis, Guidelines/Assumptions/Requirements, and Actions.I find BOO is better for targeted design documents in a google-like culture where you should write up a design document for almost any architecture change. The Good Strategy/Bad Strategy method scales pretty amazingly up to almost anything, but you need to be a much more experienced author to get things to fit it.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44781245,
+    "by": "commandersaki",
+    "timeISO": "2025-08-04T01:10:59.000Z",
+    "textPlain": "The meeting starts with everyone sitting in silence, reading the document, and adding notes and questions in the margins with red pen. Watching people mark up the document you spent so much time polishing is a strong forcing function to become a better writer.Hated this about Amazon; I need to be in a certain state of mind when reading technical prose which is hard to arouse on a whim. Happy to make and submit edits prior to meeting and then discuss. I also much prefer token passing when making modification of the document, rather than simultaneous people marking it up.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44780551,
+    "by": "ChrisMarshallNY",
+    "timeISO": "2025-08-03T22:57:08.000Z",
+    "textPlain": "That note in the tweets above, spoke to me.I'm usually the only person that ever reads my docs, so I write docs for me.I also often write design docs during, and sometimes after my projects.I call it Forensic Design Documentation[0].[0] https://littlegreenviper.com/miscellany/forensic-design-docu...",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44784150,
+    "by": "cgio",
+    "timeISO": "2025-08-04T10:57:32.000Z",
+    "textPlain": "I think the article would be much more useful if the author applied the principles to design a good design document.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44783830,
+    "by": "bsaul",
+    "timeISO": "2025-08-04T10:06:51.000Z",
+    "textPlain": "i'm really surprised drawings aren't mentionned.Engineers have used drawing for millennia and yet software developers seem to be completely unfamiliar with them. A good drawing will help people visualize the problem in an instant, and let people talk about the different options much more easily.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44781081,
+    "by": "xrd",
+    "timeISO": "2025-08-04T00:31:56.000Z",
+    "textPlain": "The opposite of this is a culture where \"we just work it out in slack.\"",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44782913,
+    "by": "jeffrallen",
+    "timeISO": "2025-08-04T07:23:31.000Z",
+    "textPlain": "This looks like excellent advice and I'm going to have my apprentices read it and use it to critique some design docs we use at $WORK.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44780087,
+    "by": "jmbwell",
+    "timeISO": "2025-08-03T21:42:31.000Z",
+    "textPlain": "All of this, plus, writing the documentation before building the app. I remember a Dilbert cartoon making fun of this being about the time I started realizing Dilbert wasn’t as smart as I had thought.If you can’t write the documentation before you’ve written the code, you don’t understand well enough what you’re building the code for.It’s one thing to jump into code because it’s fun to write code. But writing code is not designing software, and vice versa.Same goes for APIs. Writing docs for an API that doesn’t yet exist can help create a much more complete and coherent API.This is why I’m often trying to help stakeholders understand that the vast majority of software development has very little to do with actually writing code.Herein also lies a concern I have about AI assisted development. It can be a powerful aid to the design stages, and it can be a powerful aid to writing code, but I’m not sure it enables skipping the design aspects altogether and somehow coming up with a complete, coherent product.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44780227,
+    "by": "klinquist",
+    "timeISO": "2025-08-03T22:03:21.000Z",
+    "textPlain": "Perfect for dragging into my context window :). Thanks!",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44780687,
+    "by": "blamestross",
+    "timeISO": "2025-08-03T23:23:35.000Z",
+    "textPlain": "I wish i was allowed by my employer /organization/work culture to write DD in a format this reasonable.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44780208,
+    "by": "kingkongjaffa",
+    "timeISO": "2025-08-03T22:00:23.000Z",
+    "textPlain": "> Think of a design document like a proof in mathematics. The goal of a proof is to convince the reader that the theorem is true. The goal of a design document is to convince the reader the design is optimal given the situation.We don't need to veneer technical writing in faux rigour for it to be worthwhile. That's the silly stuff that belongs on LinkedIn.This kind of psuedo-rigor feels good to nod along to, but it's nonsense.'We're not writing code, we're programming', 'we're not just programming, we're doing software engineering', and now 'we're not doing software engineering we're doing rigorous proof based mathematics' all of a sudden.IDK how you write 'Think of a design document like a proof in mathematics.' without feeling at least a little bit silly.> The goal of a design document is to convince the reader the design is optimal given the situation.A proposed design may be optimal, or it may not, but the purpose of a design document is not to prove that the proposed design is optimal by any definition.In a software development setting you're virtually NEVER formally proving  anything, nevermind optimality.You're writing technical fiction based in reality, nothing more. It's not a 'proof' of anything.You're convincing stakeholders that your proposal can be feasibly built, is viable to run in the ecosystem of the rest of your codebases and infrastructure, and satisfies whatever business requirements that led to someone asking you to create a new $thing the design doc is aiming to propose the technical solution for.Nothing more IMHO.If your doc isn't doing those things then it's not effective, if it's giving the illusion of trying to do more than those things then it's just theatre.The rest of the article is standard good writing advice, but can we not put design docs and PRFAQs on an altar as anything more than technical business fiction to communicate ideas and proposals for scrutiny to stakeholders.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44782953,
+    "by": "Surac",
+    "timeISO": "2025-08-04T07:31:18.000Z",
+    "textPlain": "Compressing your text can not be stressed enough. It makes you think „what do I like to say here“ and that is what most text I have read are missing. In my bussines there is a software called DOORS for req. writing and it’s the death of each document. Like ai slop",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44783451,
+    "by": "amelius",
+    "timeISO": "2025-08-04T09:05:15.000Z",
+    "textPlain": "Yes, and we need more people writing RFCs.",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44783162,
+    "by": "jillesvangurp",
+    "timeISO": "2025-08-04T08:05:49.000Z",
+    "textPlain": "I'm writing this with a background of having studied and done a PhD. in software architecture in the early 2000s.Simply put, good software documentation matters but has the annoying habit of getting out of sync with your software the second you lift your fingers from the keyboard. So, moderate the amount of time you spend on writing especially up-front documentation, like design documents, because they'll have a short shelf life and an even smaller audience. Worst case it's just you. And that's actually fine.Use them to structure your thoughts. Shoot some versions back and forth with your colleagues to build consensus. And then archive them.Back when I was doing my PhD. it was peak UML hype. I was interviewing people with important sounding job titles (e.g. Lead Architect) and they'd be in a private office with a prominently displayed Rational Rose box on the shelves. They'd be spending lots of time making diagrams. This job does not really exist any more.A few years later I decided to practice instead of preach and became a software developer. Now it's a few decades later and I don't do a lot of diagrams. But I do quick Markdown documents or inline documentation. The closer to the source code, the better. I'm actually pretty good about this stuff. And it's stupidly easy to generate this stuff as well these days. Which you should do. Because it really helps others and the future you (come back in four months and you'll find that your short term memory has blanked out everything you used to know about the code).Why no diagrams? Very simple, they are either too simplistic/trivial or way too convoluted (won't fit on a single screen/slide/document page). Anything in between is quite pointless and tedious to produce. It won't communicate anything of real value that cannot be expressed in a few quick lines of text. Which is much easier to produce. The diagram is what you whip out if you need to put some lipstick on the pig that is your design for marketing purposes. \"We h",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44783796,
+    "by": "neo_fishpond",
+    "timeISO": "2025-08-04T10:02:15.000Z",
+    "textPlain": "[dead]",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44784808,
+    "by": "miningape",
+    "timeISO": "2025-08-04T12:19:29.000Z",
+    "textPlain": "I like to start my design documents with a solution section (sometimes including time breakdowns) - it's a good way to get non-technical audiences up to speed on what will happen, and allows the technical audience to frame their thoughts on the rest of the document.They usually follow the structure:1. Solution2. Context (problem space)3. Alternatives + Details4. Logic behind the decision for the solution (reiterating drawbacks)5. Time/task breakdown (if applicable)6. Closing remarks7. Notes (usually only useful for technical audiences engaged in the implementation)",
+    "parent": 44779428,
+    "depth": 1
+  },
+  {
+    "id": 44782935,
+    "by": "jeffrallen",
+    "timeISO": "2025-08-04T07:27:48.000Z",
+    "textPlain": "Yes! Non-goals are SO important.In IT, it's all virtual, so in theory anything is possible. Setting hard limits is necessary, or else the solution space is overwhelming, and the second system effect can kill your project (even in the first system!)In mechanical or electrical engineering, some potential goals are blatantly physically or economically impossible and do not need to be mentioned as non-goals.",
+    "parent": 44782481,
+    "depth": 2
+  },
+  {
+    "id": 44780159,
+    "by": "apwell23",
+    "timeISO": "2025-08-03T21:53:42.000Z",
+    "textPlain": "> Replace adjectives with dataI think this idea got so pervasive all throughout tech that all the resumes that i now get are filled with so many numbers that i don't even know what to make of them.",
+    "parent": 44779891,
+    "depth": 2
+  },
+  {
+    "id": 44781921,
+    "by": "zeroCalories",
+    "timeISO": "2025-08-04T03:36:27.000Z",
+    "textPlain": "Two questions I ask myself are \"will I get bikeshedding around this?\" and \"is this worth bikeshedding about?\" My goal is to make the most difficult ideas trivial to talk about for first time readers, while avoiding the problems I know don't matter but will get a lot of comments.",
+    "parent": 44780141,
+    "depth": 2
+  }
+]

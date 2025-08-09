@@ -1,0 +1,290 @@
+[
+  {
+    "id": 44825134,
+    "by": "chrismorgan",
+    "timeISO": "2025-08-07T14:43:22.000Z",
+    "textPlain": "Firefox simply ignores height declarations that resolve to a value greater than exactly 17895697px. What’s this value? Just a smidgeon under 2³⁰ sixtieths of a pixel, which is Firefox’s layout unit. (It’s the last integer before 2³⁰ sixtieths, which is 17,895,697.06̅ pixels, 4⁄60 more.) I presume Firefox is using a 32-bit signed integer, and reserving another bit for something else, maybe overflow control.Five years ago, Firefox would ignore any CSS declarations resolving like that, but somewhere along the way it changed so that most things now clamp instead, matching WebKit-heritage behaviour. But height is not acting like that, to my surprise (I though it was).WebKit-heritage browsers use a 1⁄64 pixel layout unit instead. Viewed in that light, the 2²⁵ − 1 pixels is actually 2³¹ − 1 layout units, a less-surprising number.IE had the same behaviour as Firefox used to, but with a much lower limit, 10,737,418.23 pixels (2³⁰ − 1 hundredth pixels), which was low enough to realistically cause problems for Fastmail, all you needed was about 200,000 messages in a mailbox. I’ve written about that more a few times, https://news.ycombinator.com/item?id=42347382, https://news.ycombinator.com/item?id=34299569, https://news.ycombinator.com/item?id=32010160.",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44829055,
+    "by": "fnordpiglet",
+    "timeISO": "2025-08-07T19:13:58.000Z",
+    "textPlain": "So only slightly related Netscape used to assume the layout during load was infinite and would resolve features to their size as the sizes are known, which meant usually nothing showed until everything was loaded in a world of div and tables.IE4 did the opposite and assumed everything was sized zero and filled sizes as they become known. this allowed them to load objects and render them as the page objects load appearing to be substantially faster at loading than Netscape.Early engineering decisions like this can make or break a company. Not saying this was the only challenge Netscape had, but it was one that really drove the need to build the Gecko layout engine. Despite some wildly misleading yet famous blogs written by a Microsoft engineer discussing what happened internally at Netscape that he couldn’t possibly know about and basically got totally upside down and self serving ……",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44825205,
+    "by": "samweinig",
+    "timeISO": "2025-08-07T14:48:21.000Z",
+    "textPlain": "For those curious, in WebKit, this stems from the use of the LayoutUnit (https://github.com/WebKit/webkit/blob/main/Source/WebCore/pl...) for most computed length values. LayoutUnits use a fixed point representation where the smallest unit is 1/64 of a pixel. https://trac.webkit.org/wiki/LayoutUnit is a bit old, but has some good information on the topic.",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44826649,
+    "by": "gregsadetsky",
+    "timeISO": "2025-08-07T16:32:12.000Z",
+    "textPlain": "As noted by another comment here [0], when you use a virtual DOM/canvas based \"infinite\" data grid such as Glide Data Grid [1] or TanStack Virtual [2], you get the performance/usability of native scrollbars because under the hood, both of those libraries create scrollable DIVs with a very large height. ie, you're scrolling a big empty div, and a viewport into the \"infinite\" grid is actually drawn in the canvas.But this does fall apart for very very large grids, as you get close to the height limit described in this article.For a project that I'm working on, I ended up re-implementing scrollbars, but it's super janky - and even more so on mobile where you lose the \"flick\"/inertia/momentum touch gestures (or you have to re-implement them at your peril).Are there any good tricks/libraries to tackle this? Thanks![0] https://news.ycombinator.com/item?id=44825028[1] https://github.com/glideapps/glide-data-grid[2] https://tanstack.com/virtual/latest",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44825708,
+    "by": "echoangle",
+    "timeISO": "2025-08-07T15:24:51.000Z",
+    "textPlain": "> Chrome and Safari both get very close to 225-1 (33,554,431), with Safari backing off from that by just 3 pixels, and Firefox by 31.Typo, the last browser in this sentence should be \"Chrome\", right?",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44824563,
+    "by": "RoryH",
+    "timeISO": "2025-08-07T14:00:29.000Z",
+    "textPlain": "This article triggered flashbacks to 20 years ago and using all sorts of crazy CSS to hack the browser to do what you needed it to. Nowadays CSS is (usually) a remarkable land of sanity in comparison.",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44824755,
+    "by": "maxloh",
+    "timeISO": "2025-08-07T14:16:37.000Z",
+    "textPlain": "Blink, Chrome's rendering engine, was forked from WebKit (Safari) in 2013.Since WebKit already supported the infinity value at the time of the fork [0], it's highly probable that they share the same underlying code. This would explain their similar behavior.[0]: https://caniuse.com/?search=infinity",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44825266,
+    "by": "aarestad",
+    "timeISO": "2025-08-07T14:52:37.000Z",
+    "textPlain": "Is the almost-24-bit limit related to the fact that 32-bit floats have 24 bits of significand? (cf. https://en.wikipedia.org/wiki/Single-precision_floating-poin...)",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44825095,
+    "by": "calibas",
+    "timeISO": "2025-08-07T14:40:53.000Z",
+    "textPlain": "What's the actual use case for \"infinity\" in CSS?",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44829241,
+    "by": "waynecochran",
+    "timeISO": "2025-08-07T19:29:38.000Z",
+    "textPlain": "if there was a period of time where 24-bit values were in vogue, I must have missed it. \n\nThe mantissa in a single precision IEEE float is 23 bits. Count the hidden bit for normalized floats and you have 24 bits.",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44826112,
+    "by": "r0b05",
+    "timeISO": "2025-08-07T15:52:43.000Z",
+    "textPlain": "This website is pure art. I enjoyed visiting.",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44825028,
+    "by": "breckognize",
+    "timeISO": "2025-08-07T14:36:34.000Z",
+    "textPlain": "Kinda related - our product, rowzero.io, is a browser-based spreadsheet with a 2 billion row limit. We initially built the client as anyone would, using a div per cell. We tried to use an off-screen div to take advantage of the browser's native scrollbars but ran into document height limits. Firefox's was 6M pixels iirc. The solution was to do rendering in canvas and draw the scrollbars ourselves.",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44825062,
+    "by": "echelon",
+    "timeISO": "2025-08-07T14:39:01.000Z",
+    "textPlain": "> came across a toot> For the sake of my aching skullmeats> My skullmeats did not thank me for this> I hear you asking.> Maybe if I give my whimpering neurons a rest> I’d be much happier if someone just explained it to me; bonus points if their name is Clarissa.> my gray matter needs a rest and possibly a pressure washingThere is a software engineering equivalent of the \"theater kids\" meme, and this is it. There's an abundance of exuberance in this writing.I'm glad we have such diversity in perspective. It's a nice change from the usual terseness, though I'm not sure I could read in this style for an extended period.",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44826228,
+    "by": "evrennetwork",
+    "timeISO": "2025-08-07T16:00:19.000Z",
+    "textPlain": "[dead]",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44825158,
+    "by": "jondusaza",
+    "timeISO": "2025-08-07T14:45:01.000Z",
+    "textPlain": "[dead]",
+    "parent": 44824056,
+    "depth": 1
+  },
+  {
+    "id": 44828666,
+    "by": "AndriyKunitsyn",
+    "timeISO": "2025-08-07T18:41:05.000Z",
+    "textPlain": "Firefox's units are quite smart, actually. 60 is divisible by 3, 4, 5 and 6, so they are quite future-proof for the future when we'll have the displays with devicePixelRatio = 6.",
+    "parent": 44825134,
+    "depth": 2
+  },
+  {
+    "id": 44830306,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-07T21:00:46.000Z",
+    "textPlain": "This 2^25-1 pixel limit makes perfect sense - with 1/64 pixel precision, that's exactly 2^31-1 layout units (the max value of a signed 32-bit integer).",
+    "parent": 44825205,
+    "depth": 2
+  },
+  {
+    "id": 44832764,
+    "by": "internetter",
+    "timeISO": "2025-08-08T02:25:28.000Z",
+    "textPlain": "its the same in chrome I think",
+    "parent": 44825205,
+    "depth": 2
+  },
+  {
+    "id": 44828798,
+    "by": "moritzwarhier",
+    "timeISO": "2025-08-07T18:52:47.000Z",
+    "textPlain": "Since it seems unlikely that a single scroll gesture passes the threshold, and also the  scrollbar thumb probably is invisible (either intentionally or due to the extreme height): maybe an \"infinite scroll\" paginated stack of virtual lists would be enough? I mean a dumb \"load more\" implementation that swaps out the main container once you reach the end/start of each \"item\" (virtual lists themselves)?If that doesn't help, maybe check out this fun post (no native scrolling experience):https://everyuuid.comhttps://eieio.games/blog/writing-down-every-uuid/",
+    "parent": 44826649,
+    "depth": 2
+  },
+  {
+    "id": 44824910,
+    "by": "Brajeshwar",
+    "timeISO": "2025-08-07T14:28:59.000Z",
+    "textPlain": "It was also a fun time to interview. Can you write a CSS snippet that will make a box red in IE5, Blue in IE6+, and is Yellow in Firefox but black in Netscape? CSS these days is no longer an adventure — they just tend to work.",
+    "parent": 44824563,
+    "depth": 2
+  },
+  {
+    "id": 44825509,
+    "by": "ge96",
+    "timeISO": "2025-08-07T15:10:25.000Z",
+    "textPlain": "I always grab the CSS reset\nAlso the purple story",
+    "parent": 44824563,
+    "depth": 2
+  },
+  {
+    "id": 44824918,
+    "by": "chrismorgan",
+    "timeISO": "2025-08-07T14:29:35.000Z",
+    "textPlain": "You’re confusing the JavaScript keyword Infinity, which has been around forever, with the CSS keyword infinity, which has only been around for 2–3 years <https://caniuse.com/mdn-css_types_calc-keyword_infinity>.And actually I’d be quite surprised if the infinity keyword is even relevant here; I would expect the same results if you changed each calc(infinity * 1px) to 9999999999999999px. Firefox (and, if you go far enough back, IE) will still ignore overly large height declarations, and WebKit-heritage browsers will clamp it.",
+    "parent": 44824755,
+    "depth": 2
+  },
+  {
+    "id": 44826071,
+    "by": "chrismorgan",
+    "timeISO": "2025-08-07T15:49:37.000Z",
+    "textPlain": "No. Everyone has always used fixed-point numbers for layout, see my comment for further details.Now SVG… try defining a view box up where float precision drops, and interesting things happen.",
+    "parent": 44825266,
+    "depth": 2
+  },
+  {
+    "id": 44825910,
+    "by": "AnotherGoodName",
+    "timeISO": "2025-08-07T15:38:28.000Z",
+    "textPlain": "But it's specifically 25bits not 24?As in n+1 == n once you go past 2^24 on a float and here they are at 2^25-1. So it doesn't quite make sense as a reason to me.There's a post above that browsers divide pixels into 1/64th of a unit which accounts for 6bits which puts this limit at precisely that of a signed 32bit integer. This makes much much more sense than the significand of a float.",
+    "parent": 44825266,
+    "depth": 2
+  },
+  {
+    "id": 44825394,
+    "by": "chriseing",
+    "timeISO": "2025-08-07T15:01:47.000Z",
+    "textPlain": "The correct answer. In particular, up to 2 ^ 24 the float32 behaves like a regular integer, which can be important in some cases. Above that value, the integer starts to have missing values, and strange int behavior such as (n+1)+1 not equal to (n+2)",
+    "parent": 44825266,
+    "depth": 2
+  },
+  {
+    "id": 44825685,
+    "by": "szatkus",
+    "timeISO": "2025-08-07T15:22:46.000Z",
+    "textPlain": "According to the spec:These constants are defined mostly to make serialization of infinite/NaN values simpler and more obvious, but can be used to indicate a \"largest possible value\", since an infinite value gets clamped to the allowed range. It’s rare for this to be reasonable, but when it is, using infinity is clearer in its intent than just putting an enormous number in one’s stylesheet.",
+    "parent": 44825095,
+    "depth": 2
+  },
+  {
+    "id": 44825124,
+    "by": "jdauriemma",
+    "timeISO": "2025-08-07T14:42:55.000Z",
+    "textPlain": "Final boss of z-index",
+    "parent": 44825095,
+    "depth": 2
+  },
+  {
+    "id": 44825494,
+    "by": "adamwathan",
+    "timeISO": "2025-08-07T15:09:10.000Z",
+    "textPlain": "We use it in Tailwind CSS v4 for pill-shaped borders:  .rounded-full {\n    border-radius: calc(1px * infinity);\n  }\n\n...as opposed to what everyone has done historically, which is pick some arbitrary huge value like:  .rounded-full {\n    border-radius: 9999px;\n  }\n\nNo real practical benefit, just satisfyingly more \"correct\".",
+    "parent": 44825095,
+    "depth": 2
+  },
+  {
+    "id": 44825819,
+    "by": "stronglikedan",
+    "timeISO": "2025-08-07T15:32:59.000Z",
+    "textPlain": "Selling pixels at a dollar each to make an Infinity Dollar Website™.",
+    "parent": 44825095,
+    "depth": 2
+  },
+  {
+    "id": 44826183,
+    "by": "omnicognate",
+    "timeISO": "2025-08-07T15:57:09.000Z",
+    "textPlain": "As befits the author of CSS: The Definitive Guide.",
+    "parent": 44826112,
+    "depth": 2
+  },
+  {
+    "id": 44825878,
+    "by": "chrismorgan",
+    "timeISO": "2025-08-07T15:36:35.000Z",
+    "textPlain": "Firefox’s limit is 17,895,697 pixels. Others have a limit less than twice as high, so given you’re aiming for a value way higher than that, it’s not a browser-specific issue, except insofar as Firefox ignores rather than clamping, so you have to detect Firefox and clamp it manually.In Fastmail’s case (see my top-level comment), making the end of a ridiculously large mailbox inaccessible was considered acceptable. In a spreadsheet, that’s probably not so, so you need to do something different. But frankly I think you needed to use a custom scrollbar anyway, as a linear scrollbar will be useless for almost all documents for anything except returning to the top.Rendering the content, however, to a canvas is not particularly necessary: make a 4 million pixel square area, hide its scrollbars, render the outermost million pixels of all edges at their edge, and where you’re anywhere in the middle (e.g. 1.7 billion rows in), render starting at 2 million pixels, and if the user scrolls a million pixels in any direction, recentre (potentially disrupting scrolling inertia, but that’s about it). That’s basically perfect, allowing native rendering and scrolling interaction, meaning better behaviour and lower latency.",
+    "parent": 44825028,
+    "depth": 2
+  },
+  {
+    "id": 44825151,
+    "by": "zwnow",
+    "timeISO": "2025-08-07T14:44:42.000Z",
+    "textPlain": "Is it completely client side? Why does it have a 2 billion row limit? Where are the limitations coming from?",
+    "parent": 44825028,
+    "depth": 2
+  },
+  {
+    "id": 44825084,
+    "by": "mmastrac",
+    "timeISO": "2025-08-07T14:40:02.000Z",
+    "textPlain": "Do you even need to have one scroll pixel == one screen pixel (or even one scroll pixel == one spreadsheet row)? At the point of 2 billion rows, the scrollbar really falls apart and just jumping to an approximation of the correct location in the document is all anyone can hope for.",
+    "parent": 44825028,
+    "depth": 2
+  },
+  {
+    "id": 44825883,
+    "by": "allears",
+    "timeISO": "2025-08-07T15:36:38.000Z",
+    "textPlain": "Totally refreshing to me. Imagine -- a techie who doesn't take himself too seriously!",
+    "parent": 44825062,
+    "depth": 2
+  },
+  {
+    "id": 44825534,
+    "by": "baggy_trough",
+    "timeISO": "2025-08-07T15:11:41.000Z",
+    "textPlain": "\"skullmeats\" definitely made me wince.",
+    "parent": 44825062,
+    "depth": 2
+  },
+  {
+    "id": 44826285,
+    "by": "Pxtl",
+    "timeISO": "2025-08-07T16:03:34.000Z",
+    "textPlain": "It works for this context, which is about an experiment that is fundamentally a bit silly.  10 years ago this would've been all memes, and 20 years ago it would've been performatively elaborate insults.  I'll definitely take it over those.btw \"toot\" is the de-facto standard jargon for \"post\" on Mastodon-based social media, so that sentence isn't actually an example of this silliness.",
+    "parent": 44825062,
+    "depth": 2
+  }
+]

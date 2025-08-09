@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44818052,
+    "by": "duskwuff",
+    "timeISO": "2025-08-06T21:27:01.000Z",
+    "textPlain": "Non-power-of-2 sizes are awkward from a hardware perspective. A lot of designs for e.g. optimized multipliers depend on the operands being divisible into halves; that doesn't work with units of 9 bits. It's also nice to be able to describe a bit position using a fixed number of bits (e.g. 0-7 in 3 bits, 0-31 in 5 bits, 0-63 in 6 bits), e.g. to represent a number of bitwise shift operations, or to select a bit from a byte; this also falls apart with 9, where you'd have to use four bits and have a bunch of invalid values.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44817813,
+    "by": "zamadatix",
+    "timeISO": "2025-08-06T21:03:03.000Z",
+    "textPlain": "Because we have 8 bit bytes we are familiar with the famous or obvious cases multiples-of-8-bits ran out, and those cases sound a lot better with 12.5% extra bits. What's harder to see in this kind of thought experiment is what the famously obvious cases multiples-of-9-bits ran out would have been. The article starts to think about some of these towards the end, but it's hard as it's not immediately obvious how many others there might be (or, alternatively, why it'd be significantly different total number of issues than 8 bit bytes had). ChatGPT particularly isn't going to have a ton of training data about the problems with 9 bit multiples running out to hand feed you.It also works in the reverse direction too. E.g. knowing networking headers don't even care about byte alignment for sub fields (e.g. a VID is 10 bits because it's packed with a few other fields in 2 bytes) I wouldn't be surprised if IPv4 would have ended up being 3 byte addresses = 27 bits, instead of 4*9=36, since they were more worried with small packet overheads than matching specific word sizes in certain CPUs.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44822496,
+    "by": "dpassens",
+    "timeISO": "2025-08-07T09:40:46.000Z",
+    "textPlain": "What exactly is the argument here? Bigger numbers are bigger? But then we could also argue that by that logic, octets are better than 9-bit bytes because you need more bytes sooner and that gives you seven more bits over the additional one in 9-bit.> Thank you to GPT 4o and o4 for discussions, research, and drafting.That explains a lot.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44823806,
+    "by": "hn92726819",
+    "timeISO": "2025-08-07T12:48:08.000Z",
+    "textPlain": "This article reminds me a lot of a conversation with an expert DBA recently. We were talking about performance improvements and he said that upgrading hardware is almost negligible. Upgrading from HDD to SSD gives you 10x boost. SSD to nvme maybe 4x. But optimizing queries and fixing indexes can give you 100x or 1000x improvements.Of course, every little bit counts, so we still did upgrade the hardware, but (at least in our area), almost all speed improvements came from code optimization.This article is talking about kicking the ipv4 can down down the road only 10 years and increasing process memory from 2G to 32G. Seems like such small fries when we could just double it and move on. If you brought the 2038 problem to Unix devs, I'm sure they would have said \"thanks! We'll start with 64-bit\" instead of \"yes... Let's use an unaligned 36 bits so the problem is hidden slightly longer\".",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44817964,
+    "by": "bawolff",
+    "timeISO": "2025-08-06T21:16:41.000Z",
+    "textPlain": "> But in a world with 9-bit bytes IPv4 would have had 36-bit addresses, about 64 billion total.Or we would have had 27 bit addresses and ran into problems sooner.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44818615,
+    "by": "PaulHoule",
+    "timeISO": "2025-08-06T22:30:33.000Z",
+    "textPlain": "I thought the PDP 10 had 6-bit bytes,  or at least 6-bit charactershttps://en.wikipedia.org/wiki/Six-bit_character_code#DEC_SIX...Notably the PDP 8 had 12 bit words (2x6) and the PDP 10 had 36 bit words (6x6)Notably the PDP 10 had addressing modes where it could address a run of bits inside a word so it was adaptable to working with data from other systems.  I've got some notes on a fantasy computer that has 48-bit words (fit inside a Javascript double!) and a mechanism like the PDP 10 where you can write \"deep pointers\" that have a bit offset and length that can even hang into the next word,  with the length set to zero bits this could address UTF-8 character sequences.  Think of a world where something like the PDP 10 inspired microcomputers,  was used by people who used CJK characters and has a video system that would make the NeoGeo blush.  Crazy I know.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44819612,
+    "by": "miiiiiike",
+    "timeISO": "2025-08-07T01:13:31.000Z",
+    "textPlain": "This is just an argument for longer roads and can kicking. He thanks ChatGPT for \"discussions, research, and drafting\". A real friend would have talked him out of posting this.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44819138,
+    "by": "adrianmonk",
+    "timeISO": "2025-08-06T23:43:45.000Z",
+    "textPlain": "> IPv4 would have had 36-bit addresses, about 64 billion total. That would still be enough right now, and even with continuing growth in India and Africa it would probably be enough for about a decade more. [ ... ] When exhaustion does set in, it would plausibly at a time where there's not a lot of growth left in penetration, population, or devices, and mild market mechanisms instead of NATs would be the solution.I think it's actually better to run out of IPv4 addresses before the world is covered!The later-adopting countries that can't get IPv4 addresses will just start with IPv6 from the beginning. This gives IPv6 more momentum. In big, expensive transitions, momentum is incredibly helpful because it eliminates that \"is this transition even really happening?\" collective self-doubt feeling. Individual members of the herd feel like the herd as a whole is moving, so they ought to move too.It also means that funds available for initial deployment get spent on IPv6 infrastructure, not IPv4. If you try to transition after deployment, you've got a system that mostly works already and you need to cough up more money to change it. That's a hard sell in a lot of cases.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44818067,
+    "by": "smallstepforman",
+    "timeISO": "2025-08-06T21:28:40.000Z",
+    "textPlain": "The elephant in the room nobody talks about is silicon cost (wires, gates, multiplexirs, AND and OR gates etc).  With a 4th lane, you may as well go straight to 16 bits to a byte.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44824489,
+    "by": "whoomp12342",
+    "timeISO": "2025-08-07T13:54:03.000Z",
+    "textPlain": "10-bt bytes seems a bit more logical as atleast its a recognizable base",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44818164,
+    "by": "NelsonMinar",
+    "timeISO": "2025-08-06T21:39:12.000Z",
+    "textPlain": "This is ignoring the natural fact that we have 8 bit bytes because programmers have 8 fingers.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44822264,
+    "by": "ordu",
+    "timeISO": "2025-08-07T09:06:55.000Z",
+    "textPlain": "I used to think, how the history of computing and Internet would look like, if computers converged on 3-base system, with trits instead of bits, and trytes instead of bytes.If one tryte was 9 trites, it would have 3^3=19693 values. All the European characters and a lot of others can be encoded with this. There would be no need to invent char/int integer types in C (with the added mess of short, short short, long, and long long) int would be enough at the time. Maybe at the point when it would become necessary to add different integer types, C would choose a saner approach of stdint.h, and there would be no legacy code playing with legacy integer types?And 27 trites (or 3 trytes) is around 2^42.8 values, like 42 bits. It would be enough even now, I think.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44818790,
+    "by": "kyralis",
+    "timeISO": "2025-08-06T22:52:43.000Z",
+    "textPlain": "\"We've guessed wrong historically on data sizes, and if we had 9 bit bytes those guesses (if otherwise unchanged) would have been less wrong, so 9 bit bytes would be better!\" is an extremely tenuous argument.  Different decisions would have been made.We need to be better at estimating require sizes, not trying to trick ourselves into accomplishing that by slipping in an extra bit to our bytes.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44817755,
+    "by": "Keyframe",
+    "timeISO": "2025-08-06T20:57:13.000Z",
+    "textPlain": "Yeah, but hear me out - 10-bit bytes!",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44818873,
+    "by": "crazygringo",
+    "timeISO": "2025-08-06T23:04:50.000Z",
+    "textPlain": "It's an interesting observation that 2^16 = 65K is a number that isn't quite big enough for things it's mostly big enough for, like characters.And that 2^32 = 4B is similarly awkwardly not quite big enough for global things related to numbers of people, or for second-based timestamps.But a 9th bit isn't going to solve those things either. The real problem is that powers-of-two-of-powers-of-two, where we jump from 256 to 65K to 4B to 18QN (quintillion), are just not fine-grained enough for efficient usage of space.It might be nice if we could also have 2^12=4K, 2^24=16M, and 2^48=281T as more supported integer bit lengths used for storage both in memory and on disk. But, is it really worth the effort? Maybe in databases? Obviously 16M colors has a long history, but that's another example where color banding in gradients makes it clear where that hasn't been quite enough either.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44823155,
+    "by": "mxfh",
+    "timeISO": "2025-08-07T11:31:23.000Z",
+    "textPlain": "I just consider ourselves lucky, that we're not stuck with 6- or 7-bit bytes in ASCII-land and made it to Code page 437.https://en.wikipedia.org/wiki/Six-bit_character_code",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44817871,
+    "by": "monocasa",
+    "timeISO": "2025-08-06T21:08:30.000Z",
+    "textPlain": "Ohh, and then we could write the digits in octal.Interestingly, the N64 internally had 9 bit bytes, just accesses from the CPU ignored one of the bits.  This wasn't a parity bit, but instead a true extra data bit that was used by the GPU.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44823298,
+    "by": "account42",
+    "timeISO": "2025-08-07T11:53:22.000Z",
+    "textPlain": "A measly factor 16 doesn't really make it worth having to deal with non-power of two sizes. You're also assuming that everything would have used the same number of bites when most sizes are chosen based on how much was needed at the time or in the foreseeable future - with 9 bit bytes that would just have meant that we're just going to run out earlier for different things than with 8 bit bytes.> IPv4: Everyone knows the story: IPv4 had 32-bit addresses, so about 4 billion total.44 Less due to various reserved subnets. That's not enough in a world with 8 billion humans, and that's lead to NATs, more active network middleware, and the impossibly glacial pace of IPv6 roll-out. It's 2025 and Github—Github!—doesn't support IPv6. But in a world with 9-bit bytes IPv4 would have had 36-bit addresses, about 64 billion total. That would still be enough right now, and even with continuing growth in India and Africa it would probably be enough for about a decade more.Only if you assume there is only one device per human, which is ridiculous.> Unicode: In our universe, there are 65 thousand 16-bit characters, which looked like maybe enough for all the world's languages, assuming you're really careful about which Chinese characters you let in.77 Known as CJK unification, a real design flaw in Unicode that we're stuck with. With 9-bit bytes we'd have 262 thousand 18-bit characters instead, which would totally be enough—there are only 155 thousand Unicode characters today, and that's with all the cat smileys and emojis we can dream of. UTF-9 would be thought of more as a compression format and largely sidelined by GZip.Which would be a lot worse than the current situation because most text like data only uses 8 bits per character.  Text isn't just what humans type and includes tons of computer generated ASCII constructs.Not to mention that now it becomes an active process to upgrade ASCII data to Unicode, which would have the argument of increased size against it for many files and",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44824892,
+    "by": "entaloneralie",
+    "timeISO": "2025-08-07T14:27:42.000Z",
+    "textPlain": "Let's go ternary!",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44818105,
+    "by": "alphazard",
+    "timeISO": "2025-08-06T21:32:43.000Z",
+    "textPlain": "When you stop to think about it, it really doesn't make sense to have memory addresses map to 8-bit values, instead of bits directly.  Storage, memory, and CPUs all deal with larger blocks of bits, which have names like \"pages\" and \"sectors\" and \"words\" depending on the context.If accessing a bit is really accessing a larger block and throwing away most of it in every case, then the additional byte grouping isn't really helping much.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44818569,
+    "by": "sedatk",
+    "timeISO": "2025-08-06T22:24:28.000Z",
+    "textPlain": "Our capability to mispredict wouldn't have been different. We would have still picked the wrong size, and got stuck with scaling problems.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44817893,
+    "by": "Retr0id",
+    "timeISO": "2025-08-06T21:10:32.000Z",
+    "textPlain": "Aside from memory limits, one of the problems with 32-bit pointers is that ASLR is weakened as a security mitigation - there's simply fewer bits left to randomise. A 36-bit address space doesn't improve on this much.64-bit pointers are pretty spacious and have \"spare\" bits for metadata (e.g. PAC, NaN-boxing). 72-bit pointers are even better I suppose, but their adoption would've come later.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44818037,
+    "by": "SlowTao",
+    "timeISO": "2025-08-06T21:24:58.000Z",
+    "textPlain": "Can you imagine the argument for 8bit bytes if we still lived in the original 6bit world of the 1950s?A big part of the move to 8bit systems was that it allowed expanded text systems with letter casing, punctuation and various ASCII stuff.We could move to the world of Fortran 36bit if really needed and solve all these problems while introducing a problem called Fortran.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44817824,
+    "by": "folsom",
+    "timeISO": "2025-08-06T21:04:21.000Z",
+    "textPlain": "I don't know what if we ended up with a 27 bit address space?As far as ISPs competing on speeds in the mid 90s, for some reason it feels like historical retrospectives are always about ten years off.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44820186,
+    "by": "calebh",
+    "timeISO": "2025-08-07T03:09:35.000Z",
+    "textPlain": "Perhaps the reason modern programs use so much memory vs what I remember from the Windows XP era is precisely because we went to 64 bits. Imagine how many pointers are used in the average program. When we switched over to 64 bits, the memory used by all those pointers instantly doubled. It's clear that 32 bits wasn't enough, but maybe some intermediate number between 32 and 64 would have added sufficient capacity without wasting a ton of extra space.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44820554,
+    "by": "usr1106",
+    "timeISO": "2025-08-07T04:23:16.000Z",
+    "textPlain": "Didn't follow how Github not supporting IPv6 is caused by the \"wrong\" byte size. Wouldn't 36 bit IP adresses have made that a non-topic?The author seems to assume Github! is a leader. The masses in IT never have followed leading technology. How many Microsoft engineers do you need to change a light bulb? Zero, MS makes darkness an industry standard.Are Github actions the leading CI technology?",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44818782,
+    "by": "brudgers",
+    "timeISO": "2025-08-06T22:51:53.000Z",
+    "textPlain": "I'm writing this on a four-year-old Macbook Pro and it only has 16 GB of RAM. Server-class machines would still need to address more memory than that, but they're usually running specialized software or virtualizing; databases and hypervisors are already tricky code and segmentation wouldn't be the end of the world.Because, I have a ten year old Dell laptop with 40GB of RAM, 16GB seems like an arbitrary limitation, an engineering compromise, or something like that.I don’t see how it is a result of 8 bit bytes because 64bits has a lot of address space.And because my laptop is running Windows 10 currently and ram Ubuntu before that, ordinary operating systems are sufficient.—-Also ECC RAM is 9 bits per byte.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44821289,
+    "by": "gblargg",
+    "timeISO": "2025-08-07T06:35:09.000Z",
+    "textPlain": "This article's setup seems to be: we could go back and change bytes to be 9 bits, but make all the same decisions for sizes of things as we did, so that everything would be the same now except we'd have a little more room.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44819235,
+    "by": "mhandley",
+    "timeISO": "2025-08-06T23:56:42.000Z",
+    "textPlain": "If we had 9-bit bytes and 36-bit words, then for the same hardware budget, we'd have 12.5% fewer bytes/words of memory.  It seems likely that despite the examples in the article, in most cases we'd very likely not make use of the extra range as 8/32 is enough for most common cases.  And so in all those cases where 8/32 is enough, the tradeoff isn't actually an advantage but instead is a disadvantage - 9/36 gives less addressable memory, with the upper bits generally unused.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44820005,
+    "by": "djcapelis",
+    "timeISO": "2025-08-07T02:35:58.000Z",
+    "textPlain": "Most proposals for 9 bit bytes weren't for adopting 8 bits of data in a byte, they were to have 8 bits for data and 1 bit for something else, typically either error detection or differentiating between control/data.  Very few folks argued for 9 bit bytes in the sense of having 9 bits of data per byte.9 bit bytes never made significant headway because a 12.5% overhead cost for any of these alternatives is pretty wild.  But there are folks and were folks then who thought it was worth debating and there certainly are advantages to it, especially if you look at use beyond memory storage.  (i.e. closer to \"Harvard\" architecture separation between data / code and security implications around strict separation of control / data in applications like networking.)It's worth noting that SECDED ECC memory adds about a 20% overhead, though it can correct single bit flips whereas 9-bit bytes with a parity bit can only detect (but not correct) bit flips which makes it useful in theory but not very useful in practice.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44822239,
+    "by": "childintime",
+    "timeISO": "2025-08-07T09:02:33.000Z",
+    "textPlain": "I can think of only one flavor in favor of 9 bit bytes: variable length integers. The 9th bit would indicate there is more data to come. This would apply to instructions too. A homo iconic ISA, anyone?",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44817851,
+    "by": "jayd16",
+    "timeISO": "2025-08-06T21:06:47.000Z",
+    "textPlain": "I guess nibbles would be 3 bits and you'd 3 per byte?",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44816878,
+    "by": "FrankWilhoit",
+    "timeISO": "2025-08-06T19:53:40.000Z",
+    "textPlain": "That's what the PDP-10 community was saying decades ago.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44821509,
+    "by": "1GZ0",
+    "timeISO": "2025-08-07T07:14:46.000Z",
+    "textPlain": "But why stop there? based on your arguments 10-bit bytes would be even more better.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44818663,
+    "by": "nayuki",
+    "timeISO": "2025-08-06T22:37:15.000Z",
+    "textPlain": "Today, we all agree that \"byte\" means 8 bits. But half a century ago, this was not so clear and the different hardware manufacturers were battling it out with different sized bytes.A reminder of that past history is that in Internet standards documents, the word \"octet\" is used to unambiguously refer to an 8-bit byte. Also, \"octet\" is the French word for byte, so a \"gigaoctet (Go)\" is a gigabyte (GB) in English.(Now, if only we could pin down the sizes of C/C++'s char/short/int/long/long-long integer types...)",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44818136,
+    "by": "nottorp",
+    "timeISO": "2025-08-06T21:35:51.000Z",
+    "textPlain": "Of course, if that happens we'll get an article demanding 10-bit bytes.Got to stop somewhere.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44818822,
+    "by": "LarMachinarum",
+    "timeISO": "2025-08-06T22:56:28.000Z",
+    "textPlain": "while none of the arguments of the article came even close to being convincing or to balancing out the disadvantages of a non-power-of-two orientation, there actually is one totally different argument/domain where the 9 bit per byte thing would hold true, that is: ECC bits in consumer devices (as opposed to just on servers):The fact that Intel managed to push their shitty market segmentation strategy of only even supporting ECC RAM on servers has rather nefarious and long-lasting consequences.",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44818375,
+    "by": "zokier",
+    "timeISO": "2025-08-06T22:02:28.000Z",
+    "textPlain": "Another interesting thought experiment would what if we went down to 6 bit bytes instead? Then the common values probably would be 24 and especially 48 bits (4 and 8 bytes), but 36 bit values might have appeared also in some places. In many ways 6 bit bytes would have had similar effect than 9 bit bytes; 18 and 36 bits would have been 3 and 6 bytes instead of 2 and 4 bytes. Notably with 6 bit bytes text encoding would have needed to be multibyte from the get-go, which might have been significant benefit (12 bit ASCII?)",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44817963,
+    "by": "TruffleLabs",
+    "timeISO": "2025-08-06T21:16:35.000Z",
+    "textPlain": "PDP-8 has a 12-bit word size",
+    "parent": 44816692,
+    "depth": 1
+  },
+  {
+    "id": 44820882,
+    "by": "necovek",
+    "timeISO": "2025-08-07T05:22:31.000Z",
+    "textPlain": "I don't think at the time ASCII was being \"upgraded\" with localized 8-bit codepages, Greek would have had primacy over, say, Cyrillic.I wonder what came first, CP737 for Greek or CP855 and CP866 for Cyrillic.",
+    "parent": 44816692,
+    "depth": 1
+  }
+]

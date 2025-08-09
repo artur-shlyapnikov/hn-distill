@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44764007,
+    "by": "Flux159",
+    "timeISO": "2025-08-02T00:47:19.000Z",
+    "textPlain": "Tried this out with Cline using my own API key (Cerebras is also available as a provider for Qwen3 Coder via via openrouter here: https://openrouter.ai/qwen/qwen3-coder) and realized that without caching, this becomes very expensive very quickly. Specifically, after each new tool call, you're sending the entire previous message history as input tokens - which are priced at $2/1M via the API just like output tokens.The quality is also not quite what Claude Code gave me, but the speed is definitely way faster. If Cerebras supported caching & reduced token pricing for using the cache I think I would run this more, but right now it's too expensive per agent run.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763317,
+    "by": "thanhhaimai",
+    "timeISO": "2025-08-01T22:51:38.000Z",
+    "textPlain": "> running at speeds of up to 2,000 tokens per second, with a 131k-token context window, no proprietary IDE lock-in, and no weekly limits!I was excited, then I read this:> Send up to 1,000 messages per day—enough for 3–4 hours of uninterrupted vibe coding.I don't mind paying for services I use. But it's hard to take this seriously when the first paragraph claim is contradicting the fine prints.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44764610,
+    "by": "unraveller",
+    "timeISO": "2025-08-02T03:07:24.000Z",
+    "textPlain": "Some users who signed up for pro ($50 p.m.) are reporting further limitations than those advertised.>While they advertise a 1,000-request limit, the actual daily constraint is a 7.5 million-token limit. [1]Assumes an average of 7.5k/request whereas in their marketing videos they show API requests ballooning by ~24k per request. Still lower than the API price.[1] https://old.reddit.com/r/LocalLLaMA/comments/1mfeazc/cerebra...",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763634,
+    "by": "crawshaw",
+    "timeISO": "2025-08-01T23:43:24.000Z",
+    "textPlain": "If you would like to try this in a coding agent (we find the qwen3-coder model works really well in agents!), we have been experimenting with Cerebras Code in Sketch. We just pushed support, so you can run it with the latest version, 0.0.33:  brew install boldsoftware/tap/sketch\n  CEREBRAS_API_KEY=...\n  sketch --model=qwen3-coder-cerebras -skaband-addr=\n\nOur experience is it seems overloaded right now, to the point where we have better results with our usual hosted version:  sketch --model=qwen",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763369,
+    "by": "alfalfasprout",
+    "timeISO": "2025-08-01T22:58:59.000Z",
+    "textPlain": "2k tokens/second is insane. While I'm very much against vibe coding, such performance essentially means you can get near-github copilot level speed with drastically better quality.For in-editor use that's game changing.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44765201,
+    "by": "exclipy",
+    "timeISO": "2025-08-02T06:06:34.000Z",
+    "textPlain": "Windsurf also has Cerebras/Qwen3-Coder. 1000 user messages per month for $15https://x.com/windsurf/status/1951340259192742063",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763172,
+    "by": "namanyayg",
+    "timeISO": "2025-08-01T22:31:56.000Z",
+    "textPlain": "I was waiting for more subscription base services to pop up to compete with the influence provider on a commodities level.I think a lot more companies will follow suit and the competition will make pricing much better for the end user.congrats on the launch Cerebras team!",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763281,
+    "by": "ktsakas",
+    "timeISO": "2025-08-01T22:47:50.000Z",
+    "textPlain": "Does it work with claude-code-router? I was getting API errors this week trying to use qwen3 Cerebras through OpenRouter with Claude code router.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763364,
+    "by": "sneilan1",
+    "timeISO": "2025-08-01T22:58:23.000Z",
+    "textPlain": "I'm so excited to see a real competitor to Claude Code! Gemini CLI, while decent, does not have a $200/month pricing model and they charge per API access - Codex is the same. I'm trying to get into the https://cloud.cerebras.ai/ to try the $50/month plan but I can't even get in.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763722,
+    "by": "lvl155",
+    "timeISO": "2025-08-01T23:57:16.000Z",
+    "textPlain": "Their hardware is incredible. Why aren’t more investors lining up for this in this environment?",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44766555,
+    "by": "jedisct1",
+    "timeISO": "2025-08-02T11:00:05.000Z",
+    "textPlain": "I'm a little bit confused.I subscribed to the $50 plan. It's super fast for sure, but rate limits kick in after just a couple requests. completely defeating the fact that responses are fast.Did I miss something?",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44764497,
+    "by": "attentive",
+    "timeISO": "2025-08-02T02:40:06.000Z",
+    "textPlain": "Attn: CerebrasAny attempt to deal with \"<think>\" in the code gets it replaced with \"<tool_call>\".Both in inference.cerebras.ai chat and API.Same model on chat.qwen.ai doesn't do it.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44764832,
+    "by": "segmondy",
+    "timeISO": "2025-08-02T04:06:42.000Z",
+    "textPlain": "FYI, you are probably going to use up your tokens because there's a total limit of tokens per day, so in about 300 requests it's feasible to use it all up.  See https://www.reddit.com/r/LocalLLaMA/comments/1mfeazc/cerebra...",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44768368,
+    "by": "rbitar",
+    "timeISO": "2025-08-02T15:22:42.000Z",
+    "textPlain": "This token throughput is incredible and going to set a new bar in the industry.  The main issue with the cerebras code plan is that number of requests/minute is throttled, and with agentic coding systems each tool call is treated as new \"message\" so you can easily hit the api limits (10 messages/minute).One workaround we're doing now that seems to work is use claude for all tasks but delegate specific tools with cerebras/qwen-3-coder-480b model to generate files or other token heavy tasks to avoid spiking the total number of requests. This has cost and latency consequences (and adds complexity to the code), but until those throttle limits are lifted seems to be a good combo. I also find that claude has better quality with tool selection when the number of tools required is > 15 which our current setup has.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763219,
+    "by": "sophia01",
+    "timeISO": "2025-08-01T22:39:11.000Z",
+    "textPlain": "My understanding is that the coding agents people use can be modified to plug into any LLM provider's API?The difference here seems to be that Cerebras does not appear to have Qwen3-Coder through their API! So now there is a crazy fast (and apparently good too?) model that they only provide if you pay the crazy monthly sub?",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763437,
+    "by": "clbrmbr",
+    "timeISO": "2025-08-01T23:08:08.000Z",
+    "textPlain": "At $200/month the comparable should be Opus 4 not Sonnet 4.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44766706,
+    "by": "ixel",
+    "timeISO": "2025-08-02T11:26:41.000Z",
+    "textPlain": "The usage limit on Cerebras Code is rather limited, $50 plan apparently gives you 7.5 million tokens per day which doesn't last long. This also isn't clearly advertised on the plans prior to purchasing.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44768089,
+    "by": "scosman",
+    "timeISO": "2025-08-02T14:52:29.000Z",
+    "textPlain": "Anyone get this working in Cursor? I can connect openrouter just fine, but Cerebras just errors out instantly. Same url/key works via curl, so some sort of Cerebras/Cursor compatibility issue.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44766650,
+    "by": "saberience",
+    "timeISO": "2025-08-02T11:17:26.000Z",
+    "textPlain": "Ok it's fast, but rate limits seem to kick in extremely quickly and the results are less good than Claude Code and it ends up more expensive?Who is the intended audience for Cerebras?",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763270,
+    "by": "JackYoustra",
+    "timeISO": "2025-08-01T22:47:10.000Z",
+    "textPlain": "I've been waiting on this for a LONG time. Integration with Cursor when Cerebras released their earlier models was patchy at best, even through openrouter. It's nice to finally see official support, although I'm a bit worried about long-term the time for bash mcp calls ending up dominating.Still, definitely the right direction!EDIT: doesn't seem like anything but a first-party api with a monthly plan.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44764365,
+    "by": "deevus",
+    "timeISO": "2025-08-02T02:09:50.000Z",
+    "textPlain": "I'm finding myself switching between subscriptions to ChatGPT, T3 Chat, DeepSeek, Claude Code etc. Their subscription models aren't compatible with making it easy to take your data with you. I wish I could try this out and import all my data.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44768249,
+    "by": "hereme888",
+    "timeISO": "2025-08-02T15:09:21.000Z",
+    "textPlain": "So for <$1.7/day I can hire a programmer at a sort-of Claude Sonnet 4 level? I know it's got its quirks, limits, and needs supervision, but it's like 20x cheaper than an average programmer.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763392,
+    "by": "HardCodedBias",
+    "timeISO": "2025-08-01T23:02:38.000Z",
+    "textPlain": "This has to be a monstrous money loser.If they can maintain this pricing level, and if Qwen3‑Coder is as good as people say then they will have an enormous hit on their hands. A massive money losing hit, but a hit.Very interesting!PS: Did they reduce the context window, it looks like it.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44765725,
+    "by": "another_twist",
+    "timeISO": "2025-08-02T08:23:49.000Z",
+    "textPlain": "How does context buildup work for the code generating machines generally ? \nDo the programs just use human notes + current code directly ? Are there some specific ranking steps that need to be done ?",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763508,
+    "by": "unshavedyak",
+    "timeISO": "2025-08-01T23:21:27.000Z",
+    "textPlain": "Super curious to see some comparisons to claude code. Especially Opus, since they're primarily comparing it to Sonnet in that graph.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763760,
+    "by": "lxe",
+    "timeISO": "2025-08-02T00:02:57.000Z",
+    "textPlain": "Is this available as cline/roo-code integration? I think it might be on openrouter too.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763628,
+    "by": "dpkirchner",
+    "timeISO": "2025-08-01T23:42:57.000Z",
+    "textPlain": "For those that have tried this, what kind of time-to-first-token latency are you seeing?",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44764378,
+    "by": "atkailash",
+    "timeISO": "2025-08-02T02:12:22.000Z",
+    "textPlain": "I use regular cerebras for plan stage in cline, so I’m very excited to try this out",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763808,
+    "by": "scosman",
+    "timeISO": "2025-08-02T00:12:46.000Z",
+    "textPlain": "Groq also probably has this in the works. Fun times.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44764209,
+    "by": "cellis",
+    "timeISO": "2025-08-02T01:27:02.000Z",
+    "textPlain": "What are the token prices?",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44767096,
+    "by": "romanovcode",
+    "timeISO": "2025-08-02T12:36:47.000Z",
+    "textPlain": "> and no weekly limits!No weekly limits so far. Just you wait if you get same or more traction as Claude you are going to go same playbook as they did.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763376,
+    "by": "knicholes",
+    "timeISO": "2025-08-01T23:00:07.000Z",
+    "textPlain": "It says it works with your favorite IDE-- How do you (the reader) plan to use this?  I use Cursor, but I'm not sure if this replaces my need to pay for Cursor, or if I need to pay for Cursor AND this, and add in the LLM?Or is VS code pretty good at this point?  Or is there something better?  These are the only two ways I'd know how to actually consume this with any success.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44764671,
+    "by": "esafak",
+    "timeISO": "2025-08-02T03:24:15.000Z",
+    "textPlain": "They should just host all the latest open source models FTW.",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763436,
+    "by": "supernova8",
+    "timeISO": "2025-08-01T23:08:01.000Z",
+    "textPlain": "How is this even possible?",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44765331,
+    "by": "evrennetwork",
+    "timeISO": "2025-08-02T06:43:47.000Z",
+    "textPlain": "[dead]",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44764759,
+    "by": "hexagrams64",
+    "timeISO": "2025-08-02T03:48:18.000Z",
+    "textPlain": "[dead]",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44763339,
+    "by": "dude250711",
+    "timeISO": "2025-08-01T22:55:09.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44762959,
+    "depth": 1
+  },
+  {
+    "id": 44764183,
+    "by": "Havoc",
+    "timeISO": "2025-08-02T01:20:47.000Z",
+    "textPlain": "This seems to be rate limited by message not token so the lack of cache may matter less",
+    "parent": 44764007,
+    "depth": 2
+  },
+  {
+    "id": 44765591,
+    "by": "BenGosub",
+    "timeISO": "2025-08-02T07:49:08.000Z",
+    "textPlain": "If they say it costs $50 per month, why do you need to make additional payments?",
+    "parent": 44764007,
+    "depth": 2
+  },
+  {
+    "id": 44767777,
+    "by": "beastman82",
+    "timeISO": "2025-08-02T14:10:06.000Z",
+    "textPlain": "the API price is not very relevant to this flat fee service announcement.In fact it seems obvious that you should use the flat fee model instead",
+    "parent": 44764007,
+    "depth": 2
+  }
+]

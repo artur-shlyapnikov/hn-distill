@@ -1,0 +1,74 @@
+[
+  {
+    "id": 44833590,
+    "by": "rubenvanwyk",
+    "timeISO": "2025-08-08T04:59:05.000Z",
+    "textPlain": "I’ve always wondered why OLTP databases didn’t go the route of tiered storage systems: save to memory, cache to NVME, save permanently to object storage, with different levels of guarantees for each level.",
+    "parent": 44783368,
+    "depth": 1
+  },
+  {
+    "id": 44833201,
+    "by": "o11c",
+    "timeISO": "2025-08-08T03:52:17.000Z",
+    "textPlain": "(2023), but this still seems to be the only real documentation on the internet.For reference, the (very minimal!) official docs: https://www.postgresql.org/docs/current/tableam.html",
+    "parent": 44783368,
+    "depth": 1
+  },
+  {
+    "id": 44834101,
+    "by": "hans_castorp",
+    "timeISO": "2025-08-08T06:24:58.000Z",
+    "textPlain": "Oracle's \"flash cache\" was that, but that was mainly intended to mitigate performance of spinning hard disks. Not sure if that is still a thing though.If I'm not mistaken, then Oracle's Exadata puts \"intelligence\" into the storage nodes, so they can evaluate WHERE conditions independently, so they seem to take the role of a compute node as well, not only storage. I don't know if they are capable of evaluating other operations there as well (e.g. aggregations or joins)",
+    "parent": 44833590,
+    "depth": 2
+  },
+  {
+    "id": 44836190,
+    "by": "bittermandel",
+    "timeISO": "2025-08-08T12:24:35.000Z",
+    "textPlain": "Neon does a variant of this. The WAL goes through a Paxos consensus directly on NVMe, which then is transformed to page files and stored in Object Storage",
+    "parent": 44833590,
+    "depth": 2
+  },
+  {
+    "id": 44834480,
+    "by": "branko_d",
+    "timeISO": "2025-08-08T07:29:48.000Z",
+    "textPlain": "Probably because of the \"D\" in ACID transactions, so the transaction log cannot be meaningfully write-cached.OTOH, writing to tables/indexes is already done \"out of order\" and aggressively cached in the buffer pool, and flushed to permanent storage only occasionally (and relatively rarely, e.g. SQL Server does it approximately once a minute).",
+    "parent": 44833590,
+    "depth": 2
+  },
+  {
+    "id": 44833823,
+    "by": "hardwaresofton",
+    "timeISO": "2025-08-08T05:43:54.000Z",
+    "textPlain": "See:https://github.com/neondatabase/neon",
+    "parent": 44833590,
+    "depth": 2
+  },
+  {
+    "id": 44833691,
+    "by": "beoberha",
+    "timeISO": "2025-08-08T05:15:59.000Z",
+    "textPlain": "This is what SQL Server Hyperscale does. I’d assume Aurora does something similar too",
+    "parent": 44833590,
+    "depth": 2
+  },
+  {
+    "id": 44834399,
+    "by": "whizzter",
+    "timeISO": "2025-08-08T07:15:47.000Z",
+    "textPlain": "Even if they wanted to try something like that, it many cases it'd probably require a fair bit of code-restructuring so ideas aren't tried willy-nilly.PostgreSQL is great in that they've put serious engineering effort into things like SQL standard,reliability,etc , but one thing that's frankly quite horrid in 2025 is that their reliance on a fork-model for processing has left them with many _important global variables_ that needs a fair bit of refactoring to take out (the fork-model does give some stability perks since the code is written in C, so it's not an entirely horrible choice).",
+    "parent": 44833590,
+    "depth": 2
+  },
+  {
+    "id": 44836502,
+    "by": "eatonphil",
+    "timeISO": "2025-08-08T13:03:11.000Z",
+    "textPlain": "I contributed back a bit more info but you'll only see it in the 18/devel docs.",
+    "parent": 44833201,
+    "depth": 2
+  }
+]

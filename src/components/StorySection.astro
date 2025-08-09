@@ -1,0 +1,268 @@
+---
+import type { AggregatedItem } from '@config/schemas';
+import { env } from '@config/env';
+import { formatDateHuman } from '@utils/date';
+import mdToHtmlUtil from '@utils/mdToHtml';
+
+const { item } = Astro.props as { item: AggregatedItem };
+const lang = env.SUMMARY_LANG;
+
+const safeTitle = item.title || '(no title)';
+const safeBy = item.by || 'unknown';
+const safeTime = item.timeISO ? formatDateHuman(item.timeISO) : '—';
+const pts = typeof item.score === 'number' ? ` • ${item.score} points` : '';
+const commentsLabel = typeof item.commentsCount === 'number' ? ` (${item.commentsCount})` : '';
+const hnUrl = item.hnUrl ?? `https://news.ycombinator.com/item?id=${item.id}`;
+
+// Thresholds for badges (tweak as needed)
+const LONG_DISCUSSION_THRESHOLD = 150; // comments
+const HOT_SCORE_THRESHOLD = 250; // points
+
+const commentsCount = typeof item.commentsCount === 'number' ? item.commentsCount : 0;
+const score = typeof item.score === 'number' ? item.score : 0;
+const isLongDiscussion = commentsCount > LONG_DISCUSSION_THRESHOLD;
+const isHot = score > HOT_SCORE_THRESHOLD;
+
+const i18n = {
+  ru: {
+    comments: 'Комментарии',
+    hot: 'Горячее',
+    long: 'Длинная дискуссия'
+  },
+  en: {
+    comments: 'Comments',
+    hot: 'Hot',
+    long: 'Long discussion'
+  }
+};
+const t = i18n[lang];
+
+function escapeHtml(input: string): string {
+  if (!input) return '';
+  return input
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function mdToHtmlLegacy(md: string): string {
+  if (!md) return '';
+  const src = md.replace(/\r\n?/g, '\n').trim();
+  const lines = src.split('\n');
+  const out: string[] = [];
+
+  let i = 0;
+  while (i < lines.length) {
+    let line = lines[i];
+    if (!line || !line.trim()) { i++; continue; }
+
+    // Fenced code block ```lang?
+    const fenceStart = /^```\s*([A-Za-z0-9_+-]+)?\s*$/.exec(line!);
+    if (fenceStart) {
+      const lang = fenceStart[1] || '';
+      i++;
+      const codeLines: string[] = [];
+      while (i < lines.length && !/^```\s*$/.test(lines[i]!)) {
+        codeLines.push(lines[i]!);
+        i++;
+      }
+      if (i < lines.length && /^```\s*$/.test(lines[i]!)) i++;
+      const code = escapeHtml(codeLines.join('\n'));
+      const cls = lang ? ` class="language-${lang.toLowerCase()}"` : '';
+      out.push(`<pre><code${cls}>${code}</code></pre>`);
+      continue;
+    }
+
+    // Horizontal rule
+    if (/^(?:\*\s*\*\s*\*|[-*_]{3,})\s*$/.test(line!.trim())) {
+      out.push('<hr/>' );
+      i++;
+      continue;
+    }
+
+    // Heading
+    const heading = /^(#{1,6})\s+(.+)$/.exec(line!);
+    if (heading && heading[1] && heading[2]) {
+      const level = Math.min(6, heading[1].length);
+      out.push(`<h${level}>${inline(heading[2])}</h${level}>`);
+      i++;
+      continue;
+    }
+
+    // Blockquote
+    if (/^>\s?/.test(line!)) {
+      const quoteLines: string[] = [];
+      while (i < lines.length && /^>\s?/.test(lines[i]!)) {
+        quoteLines.push(lines[i]!.replace(/^>\s?/, ''));
+        i++;
+      }
+      const inner = mdToHtmlLegacy(quoteLines.join('\n'));
+      out.push(`<blockquote>${inner}</blockquote>`);
+      continue;
+    }
+
+    // Simple pipe table
+    if (line!.includes('|') && i + 1 < lines.length && /^[|\s:\-]+$/.test(lines[i + 1]!)) {
+      const headerCells = splitTableRow(line!);
+      const sep = lines[i + 1]!;
+      if (/^\s*\|?\s*:?\s*-{3,}.*\|?.*$/.test(sep)) {
+        i += 2;
+        const bodyRows: string[][] = [];
+        while (i < lines.length && lines[i]!.includes('|') && lines[i]!.trim() !== '') {
+          bodyRows.push(splitTableRow(lines[i]!));
+          i++;
+        }
+        const thead = `<thead><tr>${headerCells.map(c => `<th>${inline(c)}</th>`).join('')}</tr></thead>`;
+        const tbody = `<tbody>${bodyRows.map(r => `<tr>${r.map(c => `<td>${inline(c)}</td>`).join('')}</tr>`).join('')}</tbody>`;
+        out.push(`<table>${thead}${tbody}</table>`);
+        continue;
+      }
+    }
+
+    // Lists with nesting and numbering normalization
+    if (/^\s*(?:[*\-+]|\d+[.)])\s+/.test(line!)) {
+      const listLines: string[] = [];
+      while (i < lines.length && (/^\s*(?:[*\-+]|\d+[.)])\s+/.test(lines[i]!) || lines[i]!.trim() === '')) {
+        if (lines[i]!.trim() === '') { listLines.push(''); i++; continue; }
+        listLines.push(lines[i]!);
+        i++;
+      }
+      out.push(renderNestedList(listLines));
+      continue;
+    }
+
+    // Paragraph
+    const para: string[] = [line!];
+    i++;
+    while (
+      i < lines.length &&
+      lines[i]!.trim() !== '' &&
+      !/^```/.test(lines[i]!) &&
+      !/^(?:\*\s*\*\s*\*|[-*_]{3,})\s*$/.test(lines[i]!) &&
+      !/^#/.test(lines[i]!) &&
+      !/^>\s?/.test(lines[i]!) &&
+      !/^\s*(?:[*\-+]|\d+[.)])\s+/.test(lines[i]!)
+    ) {
+      para.push(lines[i]!);
+      i++;
+    }
+    const html = inline(para.join('\n')).replace(/\n/g, '<br/>');
+    out.push(`<p>${html}</p>`);
+  }
+
+  return out.join('\n');
+
+  function splitTableRow(row: string): string[] {
+    const trimmed = row.replace(/^\s*\|\s*/, '').replace(/\s*\|\s*$/, '');
+    return trimmed.split('|').map(c => c.trim());
+  }
+
+  function renderNestedList(linesIn: string[]): string {
+    interface LineItem { level: number; type: 'ul' | 'ol'; body: string; order: number | undefined }
+    const items: LineItem[] = [];
+    for (const raw of linesIn) {
+      if (raw.trim() === '') continue;
+      const m = /^(\s*)(?:([*\-+])|(\d+)[.)])\s+(.*)$/.exec(raw);
+      if (!m) continue;
+      const indent = m[1] || '';
+      const level = Math.floor(indent.replace(/\t/g, '    ').length / 2);
+      const isUl = !!m[2];
+      const order = m[3] ? parseInt(m[3], 10) : undefined;
+      const body = m[4] || '';
+      items.push({ level, type: isUl ? 'ul' : 'ol', body, order: order ?? undefined });
+    }
+    let html = '';
+    type StackItem = { type: 'ul' | 'ol'; level: number; start: number | undefined };
+    const stack: StackItem[] = [];
+
+    const closeTo = (targetLevel: number) => {
+      while (stack.length > targetLevel) {
+        const popped = stack.pop();
+        if (popped) html += `</${popped.type}>`;
+      }
+    };
+
+    for (let idx = 0; idx < items.length; idx++) {
+      const it = items[idx];
+      if (!it) continue;
+      // Open lists up to current level
+      while (stack.length <= it.level) {
+        const type = it.type;
+        const startAttr = type === 'ol' && it.order && it.order !== 1 ? ` start="${it.order}"` : '';
+        stack.push({ type, level: stack.length, start: it.order ?? undefined });
+        html += `<${type}${startAttr}>`;
+      }
+      // If type changes on same level, close then open
+      const top = stack[stack.length - 1];
+      if (top && top.type !== it.type) {
+        html += `</${top.type}>`;
+        const startAttr = it.type === 'ol' && it.order && it.order !== 1 ? ` start="${it.order}"` : '';
+        html += `<${it.type}${startAttr}>`;
+        stack[stack.length - 1] = { type: it.type, level: it.level, start: it.order ?? undefined };
+      }
+      html += `<li>${inline(it.body)}</li>`;
+      const next = items[idx + 1];
+      const nextLevel = next ? next.level : 0;
+      if (!next || nextLevel < it.level) {
+        closeTo(nextLevel);
+      }
+    }
+    closeTo(0);
+    while (stack.length) {
+      const s = stack.pop();
+      if (s) html += `</${s.type}>`;
+    }
+    return html;
+  }
+
+  function inline(text: string): string {
+    let t = escapeHtml(text);
+    // Inline code
+    t = t.replace(/`([^`]+)`/g, (_m, a) => `<code>${a}</code>`);
+    // Bold
+    t = t.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    t = t.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+    // Italic
+    t = t.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, (_m, pre, a) => `${pre}<em>${a}</em>`);
+    t = t.replace(/(^|[^_])_([^_\n]+)_(?!_)/g, (_m, pre, a) => `${pre}<em>${a}</em>`);
+    // Links [label](url)
+    t = t.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, (_m, label, url) => {
+      const safeLabel = escapeHtml(label);
+      const safeUrl = url;
+      return `<a href="${safeUrl}" target="_blank" rel="noopener noreferrer nofollow">${safeLabel}</a>`;
+    });
+    // Auto-link bare URLs
+    t = t.replace(/(^|[\s(])((https?:\/\/[^\s<>()]+))/g, (_m, pre, url) => {
+      return `${pre}<a href="${url}" target="_blank" rel="noopener noreferrer nofollow">${url}</a>`;
+    });
+    return t;
+  }
+}
+
+const postHtml = item.postSummary ? mdToHtmlUtil(item.postSummary) : '';
+const commentsHtml = item.commentsSummary ? mdToHtmlUtil(item.commentsSummary) : '';
+---
+<section class="grid2" aria-labelledby={`t-${item.id}`}>
+  <div class="card">
+    <h2 id={`t-${item.id}`} class="title">
+      {item.url ? <a href={item.url} target="_blank" rel="noopener noreferrer nofollow">{safeTitle}</a> : safeTitle}
+      {item.domain && <span class="meta" style="font-weight: normal; margin-left: 0.5rem;">({item.domain})</span>}
+      {(isHot || isLongDiscussion) && (
+        <span class="badges">
+          {isHot && <span class="badge badge--hot">🔥 {t.hot}</span>}
+          {isLongDiscussion && <span class="badge badge--long">💬 {t.long}</span>}
+        </span>
+      )}
+    </h2>
+    {postHtml ? <div class="md" set:html={postHtml} /> : <p>—</p>}
+    <p class="meta">by {safeBy} • {safeTime}{pts}</p>
+  </div>
+  <div class="card">
+    <h3 class="title">
+      <a href={hnUrl} target="_blank" rel="noopener noreferrer nofollow">{t.comments}{commentsLabel}</a>
+    </h3>
+    {commentsHtml ? <div class="md" set:html={commentsHtml} /> : <p>—</p>}
+  </div>
+</section>

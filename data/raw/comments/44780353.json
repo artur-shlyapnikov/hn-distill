@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44780982,
+    "by": "diptanu",
+    "timeISO": "2025-08-04T00:13:35.000Z",
+    "textPlain": "Disclaimer - Founder of Tensorlake, we built a Document Parsing API for developers.This is exactly the reason why Computer Vision approaches for parsing PDFs works so well in the real world. Relying on metadata in files just doesn't scale across different source of PDFs.We convert PDFs to images, run a layout understanding model on them first, and then apply specialized models like text recognition and table recognition models on them, stitch them back together to get acceptable results for domains where accuracy is table stakes.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44782085,
+    "by": "gcanyon",
+    "timeISO": "2025-08-04T04:18:23.000Z",
+    "textPlain": "The answer seems obvious to me:   1. PDFs support arbitrary attached/included metadata in whatever format you like.\n   2. So everything that produces PDFs should attach the same information in a machine-friendly format.\n   3. Then everyone who wants to \"parse\" the PDF can refer to the metadata instead.\n\nFrom a practical standpoint: my first name is Geoff. Half the resume parsers out there interpret my name as \"Geo\" and \"ff\" separately. Because that's how the text gets placed into the PDF. This happens out of multiple source applications.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44780855,
+    "by": "farkin88",
+    "timeISO": "2025-08-03T23:53:07.000Z",
+    "textPlain": "Great rundown. One thing you didn't mention that I thought was interesting to note is incremental-save chains: the first startxref offset is fine, but the /Prev links that Acrobat appends on successive edits may point a few bytes short of the next xref. Most viewers (PDF.js, MuPDF, even Adobe Reader in \"repair\" mode) fall back to a brute-force scan for obj tokens and reconstruct a fresh table so they work fine while a spec-accurate parser explodes. Building a similar salvage path is pretty much necessary if you want to work with real-world documents that have been edited multiple times by different applications.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44783410,
+    "by": "jupin",
+    "timeISO": "2025-08-04T08:59:47.000Z",
+    "textPlain": "> Assuming everything is well behaved and you have a reasonable parser for PDF objects this is fairly simple. But you cannot assume everything is well behaved. That would be very foolish, foolish indeed. You're in PDF hell now. PDF isn't a specification, it's a social construct, it's a vibe. The more you struggle the deeper you sink. You live in the bog now, with the rest of us, far from the sight of God.This put a smile on my face:)",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44781092,
+    "by": "userbinator",
+    "timeISO": "2025-08-04T00:35:50.000Z",
+    "textPlain": "As someone who has written a PDF parser - it's definitely one of the weirdest formats I've seen, and IMHO much of it is caused by attempting to be a mix of both binary and text; and I suspect at least some of these weird cases of bad \"incorrect but close\" xref offsets may be caused by buggy code that's dealing with LF/CR conversions.What the article doesn't mention is a lot of newer PDFs (v1.5+) don't even have a regular textual xref table, but the xref table is itself inside an \"xref stream\", and I believe v1.6+ can have the option of putting objects inside \"object streams\" too.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44780672,
+    "by": "wackget",
+    "timeISO": "2025-08-03T23:21:43.000Z",
+    "textPlain": "> So you want to parse a PDF?Absolutely not. For the reasons in the article.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44780626,
+    "by": "JKCalhoun",
+    "timeISO": "2025-08-03T23:14:53.000Z",
+    "textPlain": "Yeah, PDF didn't anticipate streaming. That pesky trailer dictionary at the end means you have to wait for the file to fully load to parse it.Having said that, I believe there are \"streamable\" PDF's where there is enough info up front to render the first page (but only the first page).(But I have been out of the PDF loop for over a decade now so keep that in mind.)",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44780797,
+    "by": "simonw",
+    "timeISO": "2025-08-03T23:42:53.000Z",
+    "textPlain": "I convert the PDF into an image per page, then dump those images into either an OCR program (if the PDF is a single column) or a vision-LLM (for double columns or more complex layouts).Some vision LLMs can accept PDF inputs directly too, but you need to check that they're going to convert to images and process those rather than attempting and failing to extract the text some other way. I think OpenAI, Anthropic and Gemini all do the images-version of this now, thankfully.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44780747,
+    "by": "yoyohello13",
+    "timeISO": "2025-08-03T23:33:19.000Z",
+    "textPlain": "One of the very first programming projects I tried, after learning Python, was a PDF parser to try to automate grabbing maps for one of my DnD campaigns. It did not go well lol.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44783966,
+    "by": "mft_",
+    "timeISO": "2025-08-04T10:27:11.000Z",
+    "textPlain": "I've been pondering for a while that we need to move away from layout-based written communication.  As in, the need to make things look professionally laid out is an anachronism, and is (very) rarely related to comprehension of the actual content.For example, submissions to regulatory agencies are huge documents; we spend lots of time in (typically) Microsoft Word creating documents that follow a layout tradition.  Aside from this time spent (wasted), the downside is that to guarantee that layout for the recipient, the file must be submitted in DOCX or PDF.  These formats are then unfriendly if you want to do anything programatically with them, extract raw data, etc.  And of course, while LLMs can read such files, there's likely a significant computational overhead vs. a file in a simple machine-readable format (e.g. text, markdown, XML, JSON).---An alternative approach would be to adopt a very simple 'machine first', or 'content first' format - for example, based on JSON, XML, even HTML - with minimum metadata to support strurcture, intra-document links, and embedding of images.  For human comsumption, a simple viewer app would reconstitute the file into something more readable; for machine consumption, the content is already directly available.  I'm well aware that such formats already exist - HTML/browsers, or EPUB/readers, for example - the issue is to take the rational step towards adopting such a format in place of the legacy alternatives.I'm hoping that the LLM revolutoion will drive us in just this direction, and that in time, expensive parsing of PDFs is a thing of the past.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44781048,
+    "by": "HocusLocus",
+    "timeISO": "2025-08-04T00:25:35.000Z",
+    "textPlain": "Thanks kindly for this well done and brave introduction. There are few people these days who'd even recognize the bare ASCII 'Postscript' form of a PDF at first sight. First step is to unroll into ASCII of course and remove the first wrapper of Flate/ZIP,LZW,RLE.  I recently teased Gemini for accepting .PDF and not .EPUB (chapterized html inna zip basically, with almost-guaranteed paragraph streams of UTF-8) and it lamented apologetically that its pdf support was opaque and library oriented.  That was very human of it.  Aside from a quick recap of the most likely LZW wrapper format, a deep dive into Lineariziation and reordering the objects by 'first use on page X' and writing them out again preceding each page would be a good pain project.UglyToad is a good name for someone who likes pain. ;-)",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44781265,
+    "by": "leeter",
+    "timeISO": "2025-08-04T01:15:25.000Z",
+    "textPlain": "I remember having a prior boss of mine asked if the application the company I was working for made could use PDF as an input. His response was to laugh then say \"No, there is no coming back from chaos.\" The article has only reinforced that he was right.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44783736,
+    "by": "AtNightWeCode",
+    "timeISO": "2025-08-04T09:51:21.000Z",
+    "textPlain": "PDF is a format for preserving layouts across different platforms when viewing and printing. It is not intended for data processing and so on. I don't see why a structured document format can't exist that simplifies processing and increases accessibility while still preserving the layouts.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44781393,
+    "by": "ccgreg",
+    "timeISO": "2025-08-04T01:44:44.000Z",
+    "textPlain": "See https://digitalcorpora.org/corpora/file-corpora/cc-main-2021... for a set of 8 million PDF files from the web, as seen by a single crawl of Common Crawl.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44784799,
+    "by": "sychou",
+    "timeISO": "2025-08-04T12:18:21.000Z",
+    "textPlain": "Amusing, cringey, and also painful that two of our most common formats - PDF and HTML/CSS/JS - are such a challenge to parse and display. Probably a quarter of AI compute power seems to go into understanding just those two.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44783210,
+    "by": "constantinum",
+    "timeISO": "2025-08-04T08:19:13.000Z",
+    "textPlain": "Other PDF parsing woes include:1. Identifying form elements like check boxes and radio buttons. \n2. Badly oriented PDF scans\n3. Text rendered as bezier curves\n4. Images embedded in a PDF\n5. Background watermarks\n6. Handwritten documentsPDF parsing is hell indeed: https://unstract.com/blog/pdf-hell-and-practical-rag-applica...",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44784568,
+    "by": "bjoli",
+    "timeISO": "2025-08-04T11:50:55.000Z",
+    "textPlain": "The correct answer is, and has always been: Haha. What? Of course I don't. Are you insane?",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44789630,
+    "by": "csours",
+    "timeISO": "2025-08-04T18:24:00.000Z",
+    "textPlain": "The subsequent article \"So you want to PRINT a PDF\" is stuck in a queue somewhere.Well, I say 'stuck' - it actually got timed out of the queue, but that doesn't raise an error so no one knows about it.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44780924,
+    "by": "coldcode",
+    "timeISO": "2025-08-04T00:02:49.000Z",
+    "textPlain": "I parsed the original Illustrator format in 1988 or 1989, which is a precursor to PDF. It was simpler than today's PDF, but of course I had zero documentation to guide me. I was mostly interested in writing Illustrator files, not importing them, so it was easier than this.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44783336,
+    "by": "BenGosub",
+    "timeISO": "2025-08-04T08:46:35.000Z",
+    "textPlain": "Docling* works pretty well in PDF hell, but is terribly slow.*https://docling-project.github.io/docling/",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44789510,
+    "by": "butlike",
+    "timeISO": "2025-08-04T18:12:18.000Z",
+    "textPlain": "Parsing PDFs is filed under 'might make me quit on the spot,' depending on the severity of the ask.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44780975,
+    "by": "sergiotapia",
+    "timeISO": "2025-08-04T00:12:29.000Z",
+    "textPlain": "I did some exploration using LLMs to parse, understand then fill in PDFs. It was brutal but doable. I don't think I could build a \"generalized\" solution like this without LLMs. The internals are spaghetti!Also, god bless the open source developers. Without them also impossible to do this in a timely fashion. pymupdf is incredible.https://www.linkedin.com/posts/sergiotapia_completed-a-reall...",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44783993,
+    "by": "ChrisMarshallNY",
+    "timeISO": "2025-08-04T10:31:23.000Z",
+    "textPlain": "I've written TIFF readers.Same sort of deal. It's really easy to write a TIFF; not so easy to read one.Looks like PDF is much the same.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44789874,
+    "by": "gethly",
+    "timeISO": "2025-08-04T18:46:03.000Z",
+    "textPlain": "If microsoft was able to push their docx garbage into being a standard, nothing surprise me any more.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44781378,
+    "by": "brentm",
+    "timeISO": "2025-08-04T01:41:43.000Z",
+    "textPlain": "This is one of those things that seems like it shouldn't be that hard until you start to dig in.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44781811,
+    "by": "Animats",
+    "timeISO": "2025-08-04T03:12:16.000Z",
+    "textPlain": "Can you just ignore the index and read the entire file to find all the objects?",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44782472,
+    "by": "pss314",
+    "timeISO": "2025-08-04T05:49:28.000Z",
+    "textPlain": "pdfgrep (as a command line utility) is pretty great if one simply needs to search text in PDF files https://pdfgrep.org/",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44781637,
+    "by": "Beefin",
+    "timeISO": "2025-08-04T02:38:07.000Z",
+    "textPlain": "founder of mixpeek here, we fine-tune late interaction models on pdfs based on domain https://mixpeek.com/extractors",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44785874,
+    "by": "pcunite",
+    "timeISO": "2025-08-04T14:00:11.000Z",
+    "textPlain": "Be sure and talk to Derek Noonburg, he knows PDF!",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44781756,
+    "by": "anon-3988",
+    "timeISO": "2025-08-04T03:01:26.000Z",
+    "textPlain": "Last weekend I was trying to convert some PDF of Upanishads which contains some Sanskrit and English word.By god its so annoying, I don't think I would be able to without the help of Claude Code with it just reiterating different libraries and methods over and over again.Can we just write things in markdown from now on? I really, really, really, don't care that the images you put is nicely aligned to the right side and every is boxed together nicely.Just give me the text and let me render it however I want on my end.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44788423,
+    "by": "ulrischa",
+    "timeISO": "2025-08-04T16:53:24.000Z",
+    "textPlain": "Parsing a pdf is the most painful thing you can do",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44783352,
+    "by": "v5v3",
+    "timeISO": "2025-08-04T08:50:27.000Z",
+    "textPlain": "Those of you saying OCR and Vision LLM are missing the point.This is an article by a geek for other geeks. Not aimed at solution developers.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44794114,
+    "by": "akaybk",
+    "timeISO": "2025-08-05T03:42:03.000Z",
+    "textPlain": "[dead]",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44780846,
+    "by": "throwaway840932",
+    "timeISO": "2025-08-03T23:51:33.000Z",
+    "textPlain": "As a matter of urgency PDF needs to go the way of Flash, same goes for TTF. Those that know, know why.",
+    "parent": 44780353,
+    "depth": 1
+  },
+  {
+    "id": 44782105,
+    "by": "jiveturkey",
+    "timeISO": "2025-08-04T04:22:25.000Z",
+    "textPlain": "Doesn't rendering to an image require proper parsing of the PDF?",
+    "parent": 44780982,
+    "depth": 2
+  },
+  {
+    "id": 44783686,
+    "by": "nurettin",
+    "timeISO": "2025-08-04T09:43:42.000Z",
+    "textPlain": "It sounds like a trap coyote would use to catch roadrunner. Does it really have to be so convoluted?",
+    "parent": 44780982,
+    "depth": 2
+  },
+  {
+    "id": 44783007,
+    "by": "retinaros",
+    "timeISO": "2025-08-04T07:40:24.000Z",
+    "textPlain": "I do same but for document search. Colqwen + a VLM like claude.",
+    "parent": 44780982,
+    "depth": 2
+  },
+  {
+    "id": 44781388,
+    "by": "achillesheels",
+    "timeISO": "2025-08-04T01:43:56.000Z",
+    "textPlain": "Thanks for the pointer!",
+    "parent": 44780982,
+    "depth": 2
+  },
+  {
+    "id": 44782578,
+    "by": "jlarocco",
+    "timeISO": "2025-08-04T06:16:09.000Z",
+    "textPlain": "How ridiculous.`mutool convert -o <some-txt-file-name.txt> -F text <somefile.pdf>`Disclaimer: I work at a company that generates and works with PDFs.",
+    "parent": 44780982,
+    "depth": 2
+  },
+  {
+    "id": 44781042,
+    "by": "throwaway4496",
+    "timeISO": "2025-08-04T00:24:04.000Z",
+    "textPlain": "So you parse PDFs, but also OCR images, to somehow get better results?Do you know you could just use the parsing engine that renders the PDF to get the output? I mean, why raster it, OCR it, and then use AI? Sounds creating a problem to use AI to solve it.",
+    "parent": 44780982,
+    "depth": 2
+  }
+]

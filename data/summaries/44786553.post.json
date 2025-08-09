@@ -1,0 +1,8 @@
+{
+  "id": 44786553,
+  "lang": "ru",
+  "summary": "JavaScript-итераторы удобны, но медленны: сложный метод `next()` не может быть встроен (inlined) оптимизатором, и каждый шаг цикла `for…of` превращается в дорогой вызов функции.  \n\n**Пример.**  \nИтератор:  \n```js\nwhile (true) {\n  const {value, done} = iter.next(); // не встроен\n  if (done) break;\n  total += value;\n}\n```\n\nТа же логика через callback:  \n```js\nfunction myIterator(cb) {\n  for (let i = 0; i < 1000; i++) {\n    // сложный код\n    cb(i); // может быть встроен\n  }\n}\n```\n\n**Бенчмарк (Deno):**  \n- callback: 1.2 µs / итерацию  \n- iterator: 4.8 µs / итерацию (×4 медленнее)  \n\nЕсли убрать «тяжёлый» код из `next()`, разница сокращается до 1.2 µs vs 1.8 µs.  \n\n**Вывод.**  \nГорячие циклы с не-тривиальной логикой лучше писать через callback-версию, а не через итераторы, генераторы или промисы.",
+  "inputHash": "acf7f711a06ef6a78ab0f13be66fbec8d1d1eaf004273db6a47c8569042195e5",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-08T12:59:26.633Z"
+}

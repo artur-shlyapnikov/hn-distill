@@ -1,0 +1,162 @@
+[
+  {
+    "id": 44835762,
+    "by": "Calavar",
+    "timeISO": "2025-08-08T11:24:47.000Z",
+    "textPlain": "> Researchers had observed similar patterns in BERT, where \"a surprisingly large amount of attention focuses on the delimiter token [SEP] and periods,\" which they argued was used by the model as a sort of no-op. The same summer at Meta, researchers studying vision transformers found similar behavior, observing that models would repurpose uninformative background patches as computational scratchpads.This seems to go beyond just transformers. For example, I recall reading a paper a while ago that showed a similar effect in an image to image model with a GAN/U-Net architecture [1].[1] https://arxiv.org/abs/1712.02950",
+    "parent": 44834918,
+    "depth": 1
+  },
+  {
+    "id": 44836836,
+    "by": "canjobear",
+    "timeISO": "2025-08-08T13:42:48.000Z",
+    "textPlain": "Seems like this was a better solution to the same problem https://www.evanmiller.org/attention-is-off-by-one.html",
+    "parent": 44834918,
+    "depth": 1
+  },
+  {
+    "id": 44837863,
+    "by": "innerlee",
+    "timeISO": "2025-08-08T15:03:50.000Z",
+    "textPlain": "The singular defects (or high-norm tokens) [1] may be related to attention sinks. It is interesting that the direction of all high-norm tokens share the same direction. Maybe the theory behind is not very complex and the issue can be fixed cleverly during training.[1] https://openreview.net/pdf?id=4yBnUokU2v",
+    "parent": 44834918,
+    "depth": 1
+  },
+  {
+    "id": 44836310,
+    "by": "esafak",
+    "timeISO": "2025-08-08T12:40:26.000Z",
+    "textPlain": "> Barbero et al. have shown that attention sinks serve as \"pressure valves\" preventing what researchers call \"over-mixing\"—a pathological state where deep models processing long sequences blur important distinctions between tokens. The presence of a sink draws attention away from other tokens, limiting the spread of information (and noise) and resulting in more stable embeddings.This sounds like it is working for the wrong reasons. Surely the right behavior is for the right neurons to receive attention rather than the first handful. Jamming everything there is the complementary sin of blurring. I would investigate attention equalization paired with a sparsity prior or something similar to prevent blurring.",
+    "parent": 44834918,
+    "depth": 1
+  },
+  {
+    "id": 44837403,
+    "by": "Scene_Cast2",
+    "timeISO": "2025-08-08T14:27:54.000Z",
+    "textPlain": "I found a fairly large improvement in my toy transformer model where I added a \"global\" token akin to the CLS token in ViT.Another approach I've seen is the \"Diff transformer\" from MS Research (https://github.com/microsoft/unilm/tree/master/Diff-Transfor...).",
+    "parent": 44834918,
+    "depth": 1
+  },
+  {
+    "id": 44835732,
+    "by": "Havoc",
+    "timeISO": "2025-08-08T11:19:00.000Z",
+    "textPlain": "> The first few tokens often carried minimal semantic information—sometimes just a start-of-sequence marker or common words like \"the\" or \"a.\"I wonder if it makes sense to use the first word as a title of sorts rather than going straight in grammatically correct sentence when prompting",
+    "parent": 44834918,
+    "depth": 1
+  },
+  {
+    "id": 44844032,
+    "by": "flimflamm",
+    "timeISO": "2025-08-09T04:27:50.000Z",
+    "textPlain": "Hah they kind of found \"NULL\" pointer in LLMs.",
+    "parent": 44834918,
+    "depth": 1
+  },
+  {
+    "id": 44842811,
+    "by": "smaddox",
+    "timeISO": "2025-08-08T23:40:41.000Z",
+    "textPlain": "> though we did not delve into the observationOh, the irony.",
+    "parent": 44834918,
+    "depth": 1
+  },
+  {
+    "id": 44838291,
+    "by": "sanj",
+    "timeISO": "2025-08-08T15:38:05.000Z",
+    "textPlain": "Is there a way to hint in the prompting what information should be retained in the attention sinks?",
+    "parent": 44834918,
+    "depth": 1
+  },
+  {
+    "id": 44836029,
+    "by": "am17an",
+    "timeISO": "2025-08-08T12:04:51.000Z",
+    "textPlain": "This is nice and useful because the new GPT-OSS model uses this technique. Kudos to the original authors!",
+    "parent": 44834918,
+    "depth": 1
+  },
+  {
+    "id": 44840413,
+    "by": "varelse",
+    "timeISO": "2025-08-08T18:56:27.000Z",
+    "textPlain": "[dead]",
+    "parent": 44834918,
+    "depth": 1
+  },
+  {
+    "id": 44845218,
+    "by": "derbOac",
+    "timeISO": "2025-08-09T09:38:50.000Z",
+    "textPlain": "> This seems to go beyond just transformersAnd beyond that. Sometimes I feel like AI research is reinventing wheels that exist elsewhere. Maybe just the wheels, but still.",
+    "parent": 44835762,
+    "depth": 2
+  },
+  {
+    "id": 44841098,
+    "by": "SpaceManNabs",
+    "timeISO": "2025-08-08T20:04:25.000Z",
+    "textPlain": "I miss GANs. I understand that they are much harder to train than transformers for the same performance even with high data regime and high parameter regime, but there was such good optimization research and tricks that came out of them.The work on the capacity of discriminators was super cool.",
+    "parent": 44835762,
+    "depth": 2
+  },
+  {
+    "id": 44841203,
+    "by": "danieldk",
+    "timeISO": "2025-08-08T20:14:22.000Z",
+    "textPlain": "The attention sink as used in gpt-oss is similar to your link. But rather than adding one to the denominator, they add a trainable 'logit' (a different logit for each head).",
+    "parent": 44836836,
+    "depth": 2
+  },
+  {
+    "id": 44837858,
+    "by": "markisus",
+    "timeISO": "2025-08-08T15:03:36.000Z",
+    "textPlain": "Did this end up working? It sounds plausible but it needs some empirical validation.",
+    "parent": 44836836,
+    "depth": 2
+  },
+  {
+    "id": 44844910,
+    "by": "scotty79",
+    "timeISO": "2025-08-09T08:20:39.000Z",
+    "textPlain": "It would be super funny if it was sufficient.This all reminds me of the bias term of a perceptron.And with transformers we started with not having any and the network repurposed one of the inputs for that which annoyed people because now dropping this particular input makes the whole thing be unreasonably affected but also annoyed some other people because weight on that input was unreasonably high because it sort of balanced all others.So initially people (from hanlab) tried to affix this input so it doesn't get dropped. Then they (from openai this time) decided to just skip the input by providing learnable bias inside of the network (doing the thing that classical perceptron does) and now this guy proposes further optimization just by setting bias to 1 everywhere, which might work perfectly fine since we don't really care about absolute values because ultimately we just pick largest one and don't care what it was. So in training all other weights just get scaled by the bias so it can be 1. It's little like doing physics calculations with speed of light set to 1.If you have simple feed forward network of perceptrons where ultimately in the end you just pick the largest output and don't care about absolute values then maybe you'd also be fine with just setting all perceptron bias terms to 1 and excluding them from the learning.Is bias learnable in biological neurons? Doesn't activation potential threshold (or whatever it's called) rely on some chemistry and isn't the same for all neurons?",
+    "parent": 44836836,
+    "depth": 2
+  },
+  {
+    "id": 44836640,
+    "by": "yorwba",
+    "timeISO": "2025-08-08T13:21:35.000Z",
+    "textPlain": "The point is that there's not always a right token to attend to. If the information you're looking for is not there, no clever attention scheme will find it. The best you can hope for when that happens is that the value returned in the \"not found\" case is distinguishable from the \"found\" case. Having an attention sink serve as a fixed \"not found\" value is one way to do this.",
+    "parent": 44836310,
+    "depth": 2
+  },
+  {
+    "id": 44837706,
+    "by": "xg15",
+    "timeISO": "2025-08-08T14:51:50.000Z",
+    "textPlain": "Some people start their prompts with \"Hello\" or \"Please\" or something similar, out of some habitual sense of politeness, I think. It would be hilarious if those prompts really work better because the model can use those words as attention sinks.",
+    "parent": 44835732,
+    "depth": 2
+  },
+  {
+    "id": 44837154,
+    "by": "optimalsolver",
+    "timeISO": "2025-08-08T14:08:42.000Z",
+    "textPlain": "\"Magnets. How do they work?\"",
+    "parent": 44835732,
+    "depth": 2
+  },
+  {
+    "id": 44836864,
+    "by": "diggan",
+    "timeISO": "2025-08-08T13:44:37.000Z",
+    "textPlain": "And, as always, the FOSS ecosystem moves quickly, llama.cpp already fully support them! https://github.com/ggml-org/llama.cpp/pull/15157",
+    "parent": 44836029,
+    "depth": 2
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "id": 44843624,
+    "by": "comex",
+    "timeISO": "2025-08-09T02:36:22.000Z",
+    "textPlain": "If you're evaluating JSON as JavaScript, you also need to make sure none of the objects have a key named \"__proto__\", or else you can end up with some strange results.(This is related to the 'prototype pollution' attack, although searching that phrase will mostly give you information about the more-dangerous variant where two objects are being merged together with some JS library.  If __proto__ is just part of a literal, the behavior is not as dangerous, but still surprising.)",
+    "parent": 44842442,
+    "depth": 1
+  },
+  {
+    "id": 44843946,
+    "by": "dullcrisp",
+    "timeISO": "2025-08-09T04:04:40.000Z",
+    "textPlain": "Wait can someone explain why a script tag inside a comment inside a script tag needs to be closed, while a script tag inside a script tag without a comment does not? They explained why comments inside script tags are a thing, but nothing further than that.",
+    "parent": 44842442,
+    "depth": 1
+  },
+  {
+    "id": 44842443,
+    "by": "dmsnell",
+    "timeISO": "2025-08-08T22:42:42.000Z",
+    "textPlain": "Discussing why parsing HTML SCRIPT elements is so complicated, the history of why it became the way it is, and how to safely and securely embed JSON content inside of a SCRIPT element today.",
+    "parent": 44842442,
+    "depth": 1
+  },
+  {
+    "id": 44844290,
+    "by": "TOGoS",
+    "timeISO": "2025-08-09T05:40:15.000Z",
+    "textPlain": "> Not so fast, things are about to get messyThat ship sailed several paragraphs ago, when <script> got special treatment by the HTML parser.  Too bad we couldn't all agree to parse <![CDATA[...]]> consistently, or, you know, just &-escape the text like we do /everywhere else/ in HTML.",
+    "parent": 44842442,
+    "depth": 1
+  },
+  {
+    "id": 44843945,
+    "by": "o11c",
+    "timeISO": "2025-08-09T04:03:59.000Z",
+    "textPlain": "But note that there's also `<script type=\"application/json\">` these days (usually only useful with `id=`) ... and `importmap` I guess.",
+    "parent": 44843624,
+    "depth": 2
+  },
+  {
+    "id": 44844195,
+    "by": "dmsnell",
+    "timeISO": "2025-08-09T05:20:14.000Z",
+    "textPlain": "The other comment explains this, but I think it can also be viewed differently.It’s helpful to recognize that the inner script tags are not actual script tags. Yes, once entering a script element, the browser switches parsers and wants to skip everything until a closing script tag appears. The STYLE element, TITLE, TEXTAREA, and a few others do this. Once they chop up the HTML like this they send the contents to the separate inner parser (in this case, the JS engine). SCRIPT is unique due to the legacy behavior^1.HTML5 specifies these “inner” tags as transitions into escape modes. The entire goal is to allow JavaScript to contain the string “</script>” without it leaking to the outer parser. The early pattern of hiding inside an HTML comment is what determined the escaping mechanism rather than making some special syntax (which today does exist as noted in the post).The opening script tag inside the comment is actually what triggers the escaping mode, and so it’s less an HTML tag and more some kind of pseudo JS syntax. The inner closing tag is therefore the escaped string value and simultaneously closes the escaped mode.Consider the use of double quotes inside a string. We have to close the outer quote, but if the inner quote is escaped like `\\”` then we don’t have to close it — it’s merely data and not syntax.There is only one level of nesting, and eight opening tags would still be “closed” by the single closing tag.^1: (edit) This is one reason HTML and XML (XHTML) are incompatible. The content of SCRIPT and STYLE elements are essentially just bytes. In XML they must be well-formed markup. XML parsers cannot parse HTML.",
+    "parent": 44843946,
+    "depth": 2
+  },
+  {
+    "id": 44844143,
+    "by": "AdieuToLogic",
+    "timeISO": "2025-08-09T05:02:39.000Z",
+    "textPlain": "From the post:  Everything until the tag closer </script> is inside\n  the script element.\n\nAnd:  In fact, script tags can contain any language (not \n  necessarily JavaScript) or even arbitrary data. In order to \n  support this behavior, script tags have special parsing \n  rules. For the most part, the browser accepts whatever is \n  inside the script tag until it finds the script close tag \n  </script>.\n\nNote the sentence fragment \"even arbitrary data.\"  This explains the second part of your question as to why nested script tags without HTML comments do not require matching closing tags.  Similar compatibility hacks exist for other closing tags (search for Chrome closing tags being optional for a fun ride down a rabbit hole).As to:  why a script tag inside a comment inside a script tag needs\n  to be closed ...\n\nWell, this again is due to maximizing backward compatibility in order to support broken browsers (thanks IE4, you bastard!).  As the article states:  When JavaScript was first introduced, many browsers did not \n  support it. So they would render the content of the script \n  tag – the JavaScript code itself. The normal way to get \n  around that was to put the script into a comment ...\n\nHTH",
+    "parent": 44843946,
+    "depth": 2
+  },
+  {
+    "id": 44844154,
+    "by": "dmsnell",
+    "timeISO": "2025-08-09T05:05:41.000Z",
+    "textPlain": "This was my first submission, and the above comment was what I added to the text box. It wasn’t clear to me what the purpose was, but it seemed like it would want an excerpt. I only discovered after submitting that it created this comment.I guess people just generally don’t add those?Still, to help me out, could someone clarify why this was down-voted? I don’t want to mess up again if I did, but I don't understand what that was.",
+    "parent": 44842443,
+    "depth": 2
+  },
+  {
+    "id": 44844718,
+    "by": "forty",
+    "timeISO": "2025-08-09T07:26:27.000Z",
+    "textPlain": "What's wrong with CDATA? Do you have concrete examples when that would not work?",
+    "parent": 44844290,
+    "depth": 2
+  }
+]

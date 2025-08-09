@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44810477,
+    "by": "btown",
+    "timeISO": "2025-08-06T11:11:19.000Z",
+    "textPlain": "I think an important bit of context here is that computers are very, very good at speculative happy-path execution.The examples in the article seem gloomy: how could a JIT possibly do all the checks to make sure the arguments aren’t funky before adding them together, in a way that’s meaningfully better than just running the interpreter? But in practice, a JIT can create code that does these checks, and modern processors will branch-predict the happy path and effectively run it in parallel with the checks.JavaScript, too, has complex prototype chains and common use of boxed objects - but v8 has made common use cases extremely fast. I’m excited for the future of Python.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44822773,
+    "by": "johnisgood",
+    "timeISO": "2025-08-07T10:29:34.000Z",
+    "textPlain": "> Python is fast enough for some tasks, he said, which is why there are so many people using it and attending conferences like EuroPython.The conclusion is logically flawed: it conflates language popularity with performance, and conference attendance and widespread use are sociological indicators, not evidence of Python's performance. Conflating the two is intellectually negligent.Additionally, Python's speed is largely due to C extensions handling performance-critical tasks, not the interpreter itself. Perl, however, is often faster even in pure code, especially for text processing and regex, thanks to its optimized engine, making it inherently quicker in many common scenarios.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44811159,
+    "by": "dgan",
+    "timeISO": "2025-08-06T12:37:33.000Z",
+    "textPlain": "\"Rewrite the hot path in C/C++\" is also a landmine because how inefficient the boundary crossing is. so you really need \"dispatch as much as possible at once\" instead of continuously calling the native code",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44818003,
+    "by": "ehsantn",
+    "timeISO": "2025-08-06T21:21:25.000Z",
+    "textPlain": "The article highlights important challenges regarding Python performance optimization, particularly due to its highly dynamic nature. However, a practical solution involves viewing Python fundamentally as a Domain Specific Language (DSL) framework, rather than purely as a general-purpose interpreted language. DSLs can effectively be compiled into highly efficient machine code.Examples such as Numba JIT for numerical computation, Bodo JIT/dataframes for data processing, and PyTorch for deep learning demonstrate this clearly. Python’s flexible syntax enables creating complex objects and their operators such as array and dataframe operations, which these compilers efficiently transform into code approaching C++-level performance. DSL operator implementations can also leverage lower-level languages such as C++ or Rust when necessary. Another important aspect not  addressed in the article is parallelism, which DSL compilers typically handle quite effectively.Given that data science and AI are major use cases for Python, compilers like Numba, Bodo, and PyTorch illustrate how many performance-critical scenarios can already be effectively addressed. Investing further in DSL compilers presents a practical pathway to enhancing Python’s performance and scalability across numerous domains, without compromising developer usability and productivity.Disclaimer: I have previously worked on Numba and Bodo JIT.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44811481,
+    "by": "nu11ptr",
+    "timeISO": "2025-08-06T13:09:46.000Z",
+    "textPlain": "The primary focus here is good and something I hadn't considered: python memory being so dynamic leads to poor cache locality. Makes sense. I will leave that to others to dig into.That aside, I was expecting some level of a pedantic argument, and wasn't disappointed by this one:\"A compiler for C/C++/Rust could turn that kind of expression into three operations: load the value of x, multiply it by two, and then store the result. In Python, however, there is a long list of operations that have to be performed, starting with finding the type of p, calling its __getattribute__() method, through unboxing p.x and 2, to finally boxing the result, which requires memory allocation. None of that is dependent on whether Python is interpreted or not, those steps are required based on the language semantics.\"The problem with this argument is the user isn't trying to do these things, they are trying to do multiplication, so the fact that the lang. has to do all things things in the end DOES mean it is slow. Why? Because if these things weren't done, the end result could still be achieved. They are pure overhead, for no value in this situation. Iow, if Python had a sufficiently intelligent compiler/JIT, these things could be optimized away (in this use case, but certainly not all). The argument is akin to: \"Python isn't slow, it is just doing a lot of work\". That might be true, but you can't leave it there. You have to ask if this work has value, and in this case, it does not.By the same argument, someone could say that any interpreted language that is highly optimized is \"fast\" because the interpreter itself is optimized. But again, this is the wrong way to think about this. You always have to start by asking \"What is the user trying to do? And (in comparison to what is considered a fast language) is it fast to compute?\". If the answer is \"no\", then the language isn't fast, even if it meets the expected objectives. Playing games with things like this is why users get confused on ",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44813843,
+    "by": "Mithriil",
+    "timeISO": "2025-08-06T16:04:56.000Z",
+    "textPlain": "> His \"sad truth\" conclusion is that \"Python cannot be super-fast\" without breaking compatibility.A decent case of Python 4.0?> So, maybe, \"a JIT compiler can solve all of your problems\"; they can go a long way toward making Python, or any dynamic language, faster, Cuni said. But that leads to \"a more subtle problem\". He put up a slide with a trilemma triangle: a dynamic language, speed, or a simple implementation. You can have two of those, but not all three.This trilemma keeps getting me back towards Julia. It's less simple than Python, but much faster (mitigated by pre-compilation time), and almost as dynamic. I'm glad this language didn't die.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44810851,
+    "by": "Ulti",
+    "timeISO": "2025-08-06T12:02:29.000Z",
+    "textPlain": "Feel like Mojo is worth a shoutout in this context https://www.modular.com/mojo Solves the issue of having a superset of Python in syntax where \"fn\" instead of \"def\" functions are assumed static typed and compilable with Numba style optimisations.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44810434,
+    "by": "nromiun",
+    "timeISO": "2025-08-06T11:04:11.000Z",
+    "textPlain": "I really hope PyPy gets more popular so that I don't have to argue Python is pretty fast for the nth time.Even if you have to stick to CPython, Numba, Pythran etc, can give you amazing performance for minimal code changes.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44810515,
+    "by": "mrkeen",
+    "timeISO": "2025-08-06T11:17:43.000Z",
+    "textPlain": "I didn't read with 100% focus, but this lwn account of the talk seemed to confirm those myths instead of debunking.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44810993,
+    "by": "ic_fly2",
+    "timeISO": "2025-08-06T12:19:42.000Z",
+    "textPlain": "It’s a good article on speed.But honestly the thing that makes any of my programs slow is network calls. And there a nice async setup goes a long way. And then k8 for the scaling.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44810367,
+    "by": "quantumspandex",
+    "timeISO": "2025-08-06T10:55:31.000Z",
+    "textPlain": "So we are paying 99% of the performance just for the 1% of cases where it's nice to code in.Why do people think it's a good trade-off?",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44810123,
+    "by": "NeutralForest",
+    "timeISO": "2025-08-06T10:16:27.000Z",
+    "textPlain": "Cool article, I think a lot of those issues are not Python specific so it's a good overview of whatever others can learn from a now 30 years old language! I think we'll probably go down the JS/TS route where another compiler (Pypy or mypyc or something else) will work alongside CPython but I don't see Python4 happening.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44812417,
+    "by": "adsharma",
+    "timeISO": "2025-08-06T14:21:57.000Z",
+    "textPlain": "The most interesting part of this article is the link to SPy. Attempts to find a subset of python that could be made performant.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44811680,
+    "by": "teo_zero",
+    "timeISO": "2025-08-06T13:26:01.000Z",
+    "textPlain": "I don't know Python so well as to propose any meaningful contribution, but it seems to me that most issues would be mitigated by a sort of \"final\" statement or qualifier, that prohibits any further changes to the underlying data structure, thus enabling all the nice optimizations, tricks and shortcuts that compilers and interpreters can't afford when data is allowed to change shape under their feet.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44814026,
+    "by": "taeric",
+    "timeISO": "2025-08-06T16:15:35.000Z",
+    "textPlain": "Is amusing to see the top comment on the site be about how Common LISP approached this.  And hard not to agree with it.I don't understand how we had super dynamic systems decades ago that were easier to optimize than people care to understand.  Heaven help folks if they ever get a chance to use Mathematica.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44812586,
+    "by": "hansvm",
+    "timeISO": "2025-08-06T14:34:02.000Z",
+    "textPlain": "In the \"dynamic\" section, it's much worse than the author outlines. You can't even assume that the constant named \"10\" will point to a value which behaves like you expect the number 10 to behave.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44812825,
+    "by": "pu_pe",
+    "timeISO": "2025-08-06T14:51:23.000Z",
+    "textPlain": "Python and other high-level languages may actually decrease in popularity with better LLMs. If you are not the one programming it, might as well do it in a more performant language from the start.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44810987,
+    "by": "abhijeetpbodas",
+    "timeISO": "2025-08-06T12:19:06.000Z",
+    "textPlain": "An earlier version of the talk is at https://www.youtube.com/watch?v=ir5ShHRi5lw (I could not find the EuroPython one).",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44815583,
+    "by": "actinium226",
+    "timeISO": "2025-08-06T18:11:39.000Z",
+    "textPlain": "A lot of the examples he gives, like the numpy/calc function, are easily converted to C/C++/Rust. The article sort of dismisses this at the start, and that's fine if we want to focus on the speed of Python itself, but it seems like both the only solution and the obvious solution to many of the problems specified.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44819183,
+    "by": "coldtea",
+    "timeISO": "2025-08-06T23:48:52.000Z",
+    "textPlain": "One big Python performance myth is the promise made several years ago that Python will get 5x faster in the next 5 years. So far the related changes have brought not even 2x gains.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44816998,
+    "by": "1vuio0pswjnm7",
+    "timeISO": "2025-08-06T20:02:47.000Z",
+    "textPlain": "\"He started by asking the audience to raise their hands if they thought \"Python is slow or not fast enough\";\"Wrong questionMaybe something like, \"Python startup time is as fast as other interpreters\"Comparatively, Python (startup time) is slow(er)",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44816054,
+    "by": "lkirk",
+    "timeISO": "2025-08-06T18:51:28.000Z",
+    "textPlain": "For me, in my use of Python as a data analysis language, it's not python's speed that is an annoyance or pain point, it's the concurrency story. Julia's built in concurrency primatives are much more ergonomic in my opinion.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44812562,
+    "by": "pabe",
+    "timeISO": "2025-08-06T14:32:15.000Z",
+    "textPlain": "The SPy demo is really good in showing the the difference in performance between Python and their derivative. Well done!",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44810341,
+    "by": "writebetterc",
+    "timeISO": "2025-08-06T10:51:12.000Z",
+    "textPlain": "Good job on dispelling the myth of \"compiler = fast\". I hope SPython will be able to transfer some of its ideas to CPython with time.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44813672,
+    "by": "fumeux_fume",
+    "timeISO": "2025-08-06T15:53:08.000Z",
+    "textPlain": "Slow or fast ultimately matter in the context for which you need to use it. Perhaps these are only myths and fairly tales for an incredibly small subset of people who value execution speed as the highest priority, but choose to use Python for implementation.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44811043,
+    "by": "ntoll",
+    "timeISO": "2025-08-06T12:24:41.000Z",
+    "textPlain": "Antonio is a star. He's also a very talented artist.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44815268,
+    "by": "Redoubts",
+    "timeISO": "2025-08-06T17:48:52.000Z",
+    "textPlain": "Wonder if mojo has gotten anywhere further, since they’re trying to bring speed while not sacrificing most of the syntaxhttps://docs.modular.com/mojo/why-mojo/#a-member-of-the-pyth...",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44810652,
+    "by": "pjmlp",
+    "timeISO": "2025-08-06T11:38:14.000Z",
+    "textPlain": "Basically, leave Python for OS and application scripting tasks, and as BASIC replacement for those learning to program.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44810440,
+    "by": "meinersbur",
+    "timeISO": "2025-08-06T11:05:03.000Z",
+    "textPlain": "Is it just me or does the talk actually confirm all its Python \"myths and fairy tales\"?",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44812168,
+    "by": "crabbone",
+    "timeISO": "2025-08-06T14:00:59.000Z",
+    "textPlain": "Again and again, the most important question is \"why?\" not \"how?\". Python isn't made to be fast. If you wanted a language that can go fast, you needed to build it into the language from the start: give developers tools to manage memory layout, give developers tools to manage execution flow, hint the compiler about situations that present potential for optimization, restrict dispatch and polymorphism, restrict semantics to fewer interpretations.Python has none of that. It's a hyper-bloated language with extremely poor design choices all around. Many ways of doing the same thing, many ways of doing stupid things, no way of communicating programmer's intention to the compiler... So why even bother? Why not use a language that's designed by a sensible designer for this specific purpose?The news about performance improvements in Python just sound to me like spending useful resources on useless goals. We aren't going forward by making Python slightly faster and slightly more bloated, we just make this bad language even harder to get rid of.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44810231,
+    "by": "PontingClarke",
+    "timeISO": "2025-08-06T10:33:07.000Z",
+    "textPlain": "[dead]",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44812107,
+    "by": "game_the0ry",
+    "timeISO": "2025-08-06T13:56:32.000Z",
+    "textPlain": "I know I am going to get some hate for this from the \"Python-stans\" but...\"python\" and \"performance\" should never be associated with each other, and same for any scripting/interpreted programming language. Especially if it has a global interpreter lock.While performance (however you may mean that) is always a worthy goal, you may need to question your choice of language if you start hitting performance ceilings.As the saying goes - \"Use the right tool for the job.\" Use case should dictate tech choices, with few exceptions.Ok, now that I have said my piece, now you can down vote me :)",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44810280,
+    "by": "2d8a875f-39a2-4",
+    "timeISO": "2025-08-06T10:40:58.000Z",
+    "textPlain": "Do you still need an add-on library to use more than one core?",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44814660,
+    "by": "tuna74",
+    "timeISO": "2025-08-06T17:02:17.000Z",
+    "textPlain": "In computing terms, saying something is \"slow\" is kind of pointless. Saying something is \"effective\" or \"low latency\" provides much more information.",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44811196,
+    "by": "robmccoll",
+    "timeISO": "2025-08-06T12:41:09.000Z",
+    "textPlain": "Python as a language will likely never have a \"fast\" implementation and still be Python. It is way too dynamic to be predictable from the code alone or even an execution stream in a way that allows you to simplify the actual code that will be executed at runtime either through AOC or JIT. The language is itself is also quite large in terms of syntax and built-in capability at this point which makes new feature-conplete implementations that don't make major trade offs quite challenging. Given how capable LLMs are at translating code, it seems like the perfect time to build a language with similar syntax, but better scoped behavior, stricter rules around typing, and tooling to make porting code and libraries automated and relatively painless. What would existing candidates be and why won't they work as a replacement?",
+    "parent": 44809387,
+    "depth": 1
+  },
+  {
+    "id": 44813085,
+    "by": "mcdeltat",
+    "timeISO": "2025-08-06T15:11:53.000Z",
+    "textPlain": "I wonder if branch prediction can still hide the performance loss when the happy path checks become large/complex. Branch prediction is a very low level optimisation. And if the predictor is right you don't get everything for free. The CPU must still evaluate the condition, which takes resources, albeit it's no longer on the critical path. However I'd think the CPU would stall if it got too far ahead of the condition execution (ultimately all the code must execute before the program completes). Perhaps given the nature of Python, the checks would be so complex that in a tight loop they'd exert significant resource pressure?",
+    "parent": 44810477,
+    "depth": 2
+  },
+  {
+    "id": 44811290,
+    "by": "nxobject",
+    "timeISO": "2025-08-06T12:50:48.000Z",
+    "textPlain": "To be slightly flip, we could say that the Lisp Machine CISC-supports-language full stack design philosophy lives on in how massive M-series reorder buffers and ILP supports JavaScriptCore.",
+    "parent": 44810477,
+    "depth": 2
+  },
+  {
+    "id": 44815350,
+    "by": "IshKebab",
+    "timeISO": "2025-08-06T17:54:09.000Z",
+    "textPlain": "And it's not just inefficiency. Even with fancy FFI generators like PyO3 or SWIG, adding FFI adds a ton of work, complexity, makes debugging harder, distribution harder, etc.In my opinion in most cases where you might want to write a project in two languages with FFI, it's usually better not to and just use one language even if that language isn't optimal. In this case, just write the whole thing in C++ (or Rust).There are some exceptions but generally FFI is a huge cost and Python doesn't bring enough to the table to justify its use if you are already using C++.",
+    "parent": 44811159,
+    "depth": 2
+  },
+  {
+    "id": 44815015,
+    "by": "pavon",
+    "timeISO": "2025-08-06T17:30:01.000Z",
+    "textPlain": "One use of Python as a \"glue language\" I've seen that actually avoids the performance problems of those bindings is GNU Radio. That is because its architecture basically uses python as a config language that sets up the computation flow-graph at startup, and then the rest of runtime is entirely in compiled code (generally C++). Obviously that approach isn't applicable to all problems, but it really shaped my opinion of when/how a slow glue language is acceptable.",
+    "parent": 44811159,
+    "depth": 2
+  },
+  {
+    "id": 44814604,
+    "by": "didip",
+    "timeISO": "2025-08-06T16:58:21.000Z",
+    "textPlain": "These days it's \"rewrite in Rust\".Typically Python is just the entry and exit point (with a little bit of massaging), right?And then the overwhelming majority of the business logic is done in Rust/C++/Fortran, no?",
+    "parent": 44811159,
+    "depth": 2
+  }
+]

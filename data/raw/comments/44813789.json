@@ -1,0 +1,114 @@
+[
+  {
+    "id": 44814720,
+    "by": "fabiensanglard",
+    "timeISO": "2025-08-06T17:08:30.000Z",
+    "textPlain": "Great article. But too short. I was just getting excited about it and it ended. I look forward reading the other parts.",
+    "parent": 44813789,
+    "depth": 1
+  },
+  {
+    "id": 44814682,
+    "by": "Muromec",
+    "timeISO": "2025-08-06T17:05:22.000Z",
+    "textPlain": "Oh, that's cool. I use one of the rk3588 things with panfrost as a desktop and it sometimes bugs out with black or transparent patches in firefox. Weird thing.",
+    "parent": 44813789,
+    "depth": 1
+  },
+  {
+    "id": 44816973,
+    "by": "skavi",
+    "timeISO": "2025-08-06T20:01:17.000Z",
+    "textPlain": "Curious as to whether uring_cmd was considered instead of ioctls since this looks green field. Would the benefits have been negligible to nonexistent? If so, why?",
+    "parent": 44813789,
+    "depth": 1
+  },
+  {
+    "id": 44816285,
+    "by": "taminka",
+    "timeISO": "2025-08-06T19:07:59.000Z",
+    "textPlain": "very interesting, is there a second part to this? or logical continuation...",
+    "parent": 44813789,
+    "depth": 1
+  },
+  {
+    "id": 44815011,
+    "by": "TZubiri",
+    "timeISO": "2025-08-06T17:29:47.000Z",
+    "textPlain": "I know that \"Rust GPU driver\" on the titles gets you more clicks than \"Arm Mali CSF Based GPU Driver\". But isn't this a Arm Mali CSF-based GPU driver?I hate focusing on the metatools (tools for building tools). It really sounds like the objective here was to build something in Rust. In the article it is even described as \"a gpu driver kernel supporting arm mali..\" instead of just an arm mali driverIt is a misunderstanding of what the job of writing a driver is, you are connecting some wires between the OS api and the manufacturer api, you are not to build a framework that adds an additional layer of abstraction, sorry to put it so bluntly, but you are not that guy.Sorry for being rough.",
+    "parent": 44813789,
+    "depth": 1
+  },
+  {
+    "id": 44816897,
+    "by": "Animats",
+    "timeISO": "2025-08-06T19:55:27.000Z",
+    "textPlain": "Tune in next week for the next exciting episode, where we will see a command taken off the queue and executed in the GPU!The abstraction level discussed here is just where data gets passed across the user/kernel boundary. It's mostly queue and buffer management, which is why there are so few operations. The real action happens as queued commands are executed.There's another stream of command completions coming back from the GPU. Looking forward to seeing how that works. All this asynchrony is mostly not the driver's problem. That's kicked up to the user code level, as the driver delivers completions.",
+    "parent": 44814720,
+    "depth": 2
+  },
+  {
+    "id": 44816319,
+    "by": "rjsw",
+    "timeISO": "2025-08-06T19:10:51.000Z",
+    "textPlain": "The RK3588 uses the panthor driver that is the subject of the article, not panfrost.",
+    "parent": 44814682,
+    "depth": 2
+  },
+  {
+    "id": 44819301,
+    "by": "kimixa",
+    "timeISO": "2025-08-07T00:09:45.000Z",
+    "textPlain": "As GPUs are already asynchronous devices with their own command queue, and the IOCTLS generally just abstracting a relatively cheap write into that command queue, I suspect there's limited utility in making another asynchronous command queue on the CPU to schedule those writes.Unless you mean to make the GPU command queue itself the uring and map that into userspace, but that would likely require significant firmware changes to support the specifics of the io_uring API, if even possible at all due to hardware specifics.",
+    "parent": 44816973,
+    "depth": 2
+  },
+  {
+    "id": 44817219,
+    "by": "rjsw",
+    "timeISO": "2025-08-06T20:18:27.000Z",
+    "textPlain": "The driver described in the article uses the API that the userspace Mesa libraries expect.",
+    "parent": 44816973,
+    "depth": 2
+  },
+  {
+    "id": 44816352,
+    "by": "steveklabnik",
+    "timeISO": "2025-08-06T19:12:42.000Z",
+    "textPlain": "It came out today, so I am assuming more will come later.",
+    "parent": 44816285,
+    "depth": 2
+  },
+  {
+    "id": 44815494,
+    "by": "dralley",
+    "timeISO": "2025-08-06T18:04:47.000Z",
+    "textPlain": "It's somewhat relevant given that this is one of the first Rust-based GPU drivers for Linux.",
+    "parent": 44815011,
+    "depth": 2
+  },
+  {
+    "id": 44816601,
+    "by": "CJefferson",
+    "timeISO": "2025-08-06T19:33:31.000Z",
+    "textPlain": "I'm not sorry for being rough, you sound like someone who has no idea what a modern GPU driver is like. I haven't written any in about 15 years, and I know it's only gotten worse since then.Go look in the Linux kernel source code -- GPU drivers are, by lines of code, the single biggest component. Also, lots of drivers support multiple cards. Do you think it would be sensible to have a seperate driver, completely independant, for every single GPU card?GPU drivers aren't about \"connecting some wires\" between two APIs, because those two APIs turn out to be quite different.Of course, feel free to prove me wrong. Show me a GPU driver you've written, go link some wires together.",
+    "parent": 44815011,
+    "depth": 2
+  },
+  {
+    "id": 44815207,
+    "by": "UK-AL",
+    "timeISO": "2025-08-06T17:43:29.000Z",
+    "textPlain": "Rust is important here because it's one of the first(if not the first) to use the rust infrastructure for a GPU.",
+    "parent": 44815011,
+    "depth": 2
+  },
+  {
+    "id": 44815331,
+    "by": "amiga386",
+    "timeISO": "2025-08-06T17:52:48.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44815011,
+    "depth": 2
+  }
+]

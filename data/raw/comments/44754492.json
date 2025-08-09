@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44755212,
+    "by": "jelder",
+    "timeISO": "2025-08-01T11:01:12.000Z",
+    "textPlain": "This is written for the Linux-on-the-Desktop crowd, and good for them. But tmux really shines for folks using MacBooks with iTerm2. Its tmux integration is so good that it simply disappears into my workflow.With this in my `~/.ssh/config`, I can just type `ssh tmux` to get back to my remote dev box whenever I wake my computer or change connections.    Host tmux\n      HostName 1.2.3.4\n      IdentityFile ~/.ssh/etc.etc.etc\n      RequestTTY force\n      RemoteCommand tmux -CC new -A -s 0\n\nWith iTerm2's tmux integration enabled, this will pop open a new window where the remote tmux tabs and scroll buffer look and act just like native, local iTerm2 tabs and scroll buffer. I don't even know any tmux commands.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44759236,
+    "by": "bitbasher",
+    "timeISO": "2025-08-01T16:42:14.000Z",
+    "textPlain": "This blog post reminds me of _why_ I use tmux. Did you see how much they needed to do to even resemble the workflow of tmux? Jeez, just use tmux. I don't mind dealing with wonky copy and paste once in a while.> In summary: multiplexers add unnecessary overhead, suffer from a complexity cascade, because they actually have to translate escape codes, modifying them in hackish ways to get them to work with their concepts of windows/sessions.What does that have to do with you using tmux? You're not the one maintaining tmux's codebase.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755086,
+    "by": "d4rkp4ttern",
+    "timeISO": "2025-08-01T10:42:28.000Z",
+    "textPlain": "I learned about Tmux just a few weeks ago and found out that one of the nifty features is that it is scriptable, I.e allows programmatically sending keystrokes to a specific pane. Then, inspired by some Japanese forums I asked myself if I can leverage this to have Claude Code actually interact with an interactive CLI script — we know CC can launch a script via bash but if said script waits for user input then CC can’t (easily) interact with it. Turns out yes we can leverage Tmux for this!So I used Claude Code to build a little el tool called Tmux-cli, which gives a convenient way to have CC (or any CLI coding agent for that matter) spawn a Tmux\nPane, launch a script there, and actually interact with it.So it’s like Playwright/Puppeteer for the terminal.You can get it via    uv tool install claude-code-tools\n\nhttps://github.com/pchalasani/claude-code-toolsThere are some interesting possibilities this enables:Let CC autonomously test interactive CLI scripts, without me having to intervene and point out errors.Have the CLI coding agent launch UI from another pane and then use Puppeteer MCP to test from a browser.Let CC launch a cli script with a debugger enabled (e.g. Pdb) and set breakpoints etc — for token-efficient code understanding, debugging and explaining.Let the CLI coding agent spawn and drive another instance of the same or other CLI coding agent, AND interact with it. Note this is way better than CC sub-agents which are “spawn and let go” black-boxes.I wonder if the discussed Tmux alternatives enable building this type of tool.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755081,
+    "by": "JdeBP",
+    "timeISO": "2025-08-01T10:41:27.000Z",
+    "textPlain": "> if you do not set TERM with tmux properly, your colors will render incorrectlyThis is of course true of every other terminal emulator as well, and indeed it's not only colours that are incorrect.  Function and editing keys get recognized incorrectly; REP can get used where it does not work; and even simple relative cursor motions can be done wrongly.TERM and the ideas incorporated into terminfo/termcap are inherent in the way that terminal devices work on Unices and Linux-based operating systems.  That there are different terminals and terminal emulators not all speaking exactly the same protocol is also an unavoidable reality.Setting TERM properly isn't some tmux-specific problem.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755143,
+    "by": "wkat4242",
+    "timeISO": "2025-08-01T10:50:30.000Z",
+    "textPlain": "> In summary: multiplexers add unnecessary overhead, suffer from a complexity cascade, because they actually have to translate escape codes, modifying them in hackish ways to get them to work with their concepts of windows/sessions.This is a feature for me. Because less and less applications bother supporting termcap, this way some applications can still work on my VT520.I don't really care what the kitty dev thinks anyway. He's entitled to his opinion but for me tmux is way more important. Also I think alacritty is better (though I generally just use Konsole).As a user I only care about what works well for me, not what's architecturally the most elegant solution.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755397,
+    "by": "nickjj",
+    "timeISO": "2025-08-01T11:33:12.000Z",
+    "textPlain": "I still plan to keep using tmux. I like how it manages multiple sessions, making it easy to switch between projects and even resurrect them after rebooting. I also never had a problem with mouse copy / paste using tmux-yank. I've been using this set up for many years.One cool feature of tmux is its ability to send keys. I did that a few months ago when I was revamping my dotfiles. I kept changing aliases and other shell files and wanted to source those files in dozens of panes at once and also reload neovim when I changed certain config files.The above was pretty easy to pull off using a combo of tmux's built-in commands and a shell script. I made a post and video about that here: https://nickjanetakis.com/blog/running-commands-in-all-tmux-...",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755743,
+    "by": "jdbernard",
+    "timeISO": "2025-08-01T12:23:33.000Z",
+    "textPlain": "I don't use tmux because I have to. I use it because I love the way it works. The issues the author of the article and Kovid Goyal raise are not issues for me in practice. If something is built that better suits my needs, I'll be happy to switch. I am particularly sympathetic to Goyal's gripes about the performance/resource wastes of a multiplexer.But I also take issue with statements like \"terminal multiplexers are a bad idea, do not use them, if at all possible\" (from the kitty FAQ and the YouTube video linked in the article). Tmux solves a number of real problems for me that Kitty doesn't. Kitty also seems to be moving in a direction that I am not interested in. It's tied to a windowing system when I want a terminal that I can use headless. Even with the hacky workarounds the article mentions, it doesn't really support session persistence when I use this feature of tmux weekly. It introduces a lot of features that are likely to lead to visual noise when the constraints of text-only are one of the main reasons I like terminals (personally I don't want images in my terminal, full stop).Now, all of this is fine. It's the other statement,  \"[tmux acts] as a drag on the ecosystem as a whole, making it very hard to get any new features,\" that causes it all to rub me the wrong way. The only reason you feel like tmux acts like a drag is because there are users like me who won't switch to something like Kitty if it doesn't support tmux. So don't worry about us. Build a new thing that is not backwards compatible and live with the fact that many people won't use it. If you really want to drive the ecosystem forward as a whole, be less condescending about real use-cases that bring benefit to real users.To be clear (because text is a limited medium), I'm not grumpy, angry, or against Kitty because of this. But I am dismissive.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44754950,
+    "by": "plett",
+    "timeISO": "2025-08-01T10:23:56.000Z",
+    "textPlain": "I view \"you might not need tmux\" in the same way as \"you might not need browser tabs\".Yes, if you only have one or two terminal sessions or open web pages then you can probably live without using them, but anything beyond that leads you into reimplementing features to cope with your desktop's lack of ability to manage dozens of windows.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755984,
+    "by": "FergusArgyll",
+    "timeISO": "2025-08-01T12:46:10.000Z",
+    "textPlain": "> Another example is buffer scrollback. It's one of those things where you\n    have to  learn the tmux way of scrolling a window. You get used to it, of\n   course, but it's just not great.   And what about mouse select to copy/paste? It works most of the time, but\n   sometimes tmux gets ignored and I'm selecting across splits which makes the\n   thing I'm copying impossible to grab without bailing.\n\nfunny, those things make me use tmux! My 2nd laptop is a debian terminal-only laptop (it's very old), the mouse doesn't work so the only way to copy paste is tmux (or screen probably but I never learned it) For me, tmux is not replaceable",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755059,
+    "by": "esjeon",
+    "timeISO": "2025-08-01T10:38:09.000Z",
+    "textPlain": "Interestingly enough, suckless folks took the opposite approach with their terminal:> Goals … Do not reimplement tmux and his comrades.( From https://st.suckless.org/goals/ )",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755513,
+    "by": "sevensor",
+    "timeISO": "2025-08-01T11:51:51.000Z",
+    "textPlain": "Kitty is great; I want to see it succeed in pushing terminal emulators forward into the current millennium. However, I can’t use kitty at work, and I absolutely live inside of tmux. The server is where all the action is, and when I get disconnected, I want to be able to pick things up exactly where I left them. Window layout, the state of each shell and text editor, what’s in the copy buffer, scrollback, everything. I can’t give that up unless I have a suitable replacement on Windows. Until then I will continue to use tmux at work and kitty at home.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44754827,
+    "by": "pure-orange",
+    "timeISO": "2025-08-01T10:06:23.000Z",
+    "textPlain": "This doesn’t sound like a “you might not need tmux” argument. It more just argues than tmux is a pita on the terminal ecosystem which I’m sure is true. But the workarounds described are just reimplementing tmux features by taping together a bunch of tools. A better argument I think is - a lot of people do need tmux, so perhaps we should rethink protocols etc to make many of these features more native",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44758203,
+    "by": "aidenn0",
+    "timeISO": "2025-08-01T15:24:33.000Z",
+    "textPlain": "[edit]The below is fixed (https://github.com/shell-pool/shpool/pull/213/files) upstream already, but is pending a release.I never heard of shpool, so just tried it.  shpool completely breaks my PROMPT_COMMAND because it assumes that each word (in the shell sense) is a separate command.  My PROMPT_COMMAND included \"history -a\" thus causing it to run \"history\" and \"-a\" on every prompt, making things quite unusable.It's quite maddening because all they had to do was write a lot less code to fix it:    eval \"${SHPOOL__OLD_PROMPT_COMMAND}\"\n\nWould run the old prompt command just nicely instead of the much longer:    for prompt_hook in ${SHPOOL__OLD_PROMPT_COMMAND};\n    do\n        ${prompt_hook};\n    done;",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44765230,
+    "by": "meitham",
+    "timeISO": "2025-08-02T06:17:35.000Z",
+    "textPlain": "The author of Kitty, Kovid Goyal, calls running tmux on local sessions an “anti-pattern” in the linked GitHub issue. I can’t help but find that a bit ironic, because the very first time I tried Kitty, I was in the middle of work when I discovered Arabic support was broken - https://github.com/kovidgoyal/kitty/issues/536 . I simply launched the macOS Terminal app, attached to the same tmux session, verified my Arabic text rendered correctly, and then closed Kitty. Without tmux, I would’ve been forced to recreate my entire workflow from scratch.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44754941,
+    "by": "mickeyp",
+    "timeISO": "2025-08-01T10:22:01.000Z",
+    "textPlain": "Better still, use Emacs as your terminal multiplexer:https://www.masteringemacs.org/article/replacing-tmux-gnu-sc...",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44757948,
+    "by": "GNOMES",
+    "timeISO": "2025-08-01T15:08:49.000Z",
+    "textPlain": "I have been tempted to drop tmux locally for native Ghostty panes/tabs, but I prefer the single height tmux status bar with window list only (set -g status-left '' + set -g status-right '') vs the thicker window decorations using macos-titlebar-style = tabs.I did come up with Ghostty bindings to replicate my tmux settings if it helps anyone (my tmux leader is ctrl + space):    # clear default bindings + add paste back\n    keybind=clear\n    keybind=super+v=paste_from_clipboard\n\n    # navigate panes\n    keybind=ctrl+h=goto_split:left\n    keybind=ctrl+j=goto_split:bottom\n    keybind=ctrl+k=goto_split:top\n    keybind=ctrl+l=goto_split:right\n    keybind=ctrl+space>shift+apostrophe=new_split:down\n    keybind=ctrl+space>shift+five=new_split:right\n    keybind=ctrl+space>space=equalize_splits\n    keybind=ctrl+space>z=toggle_split_zoom\n\n    # navigate tabs\n    keybind=ctrl+space>c=new_tab\n    keybind=ctrl+space>one=goto_tab:1\n    ...\n    keybind=ctrl+space>zero=goto_tab:10",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755076,
+    "by": "tombert",
+    "timeISO": "2025-08-01T10:40:35.000Z",
+    "textPlain": "The keystrokes are so ingrained into me that you can take tmux from my cold dead hands.I use it a bit with remote connections, but tmux is basically my IDE for development.  I have the backtick mapped as my prefix and I hope between terminals and  Neovim, and I am considerably less productive when I don’t have this setup.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755250,
+    "by": "canistel",
+    "timeISO": "2025-08-01T11:06:42.000Z",
+    "textPlain": "From what I have seen, tmux is the _only_ multiplexer with with you can select from the scroll-back buffer using only the keyboard (without using the mouse).",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44759103,
+    "by": "cogman10",
+    "timeISO": "2025-08-01T16:30:58.000Z",
+    "textPlain": "I'm by no means a tmux power user, but it does have really nice features for when I need it.The primary usecase I've had for it is I can kick off 1 or multiple long running jobs, exit, and then come back later and checkout the various stdout logs to see how it worked.Could I accomplish the same thing with a bunch of stdout pipes, disown, fg, ctrl-z, etc?  Sure.  However, tmux makes it really easy to do that and then quickly switch around sessions to see how things are going.In the simplest workflow, it looks like this    tmux\n    longcommand()\n    ctrl + B D\n\nand later    tmux -a\n\nto checkout and see what's gone on with the command long after I disconnected with ssh.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44754932,
+    "by": "panki27",
+    "timeISO": "2025-08-01T10:20:38.000Z",
+    "textPlain": "Switching to WezTerm has completely eliminated the need for tmux for me - except for stuff I want to run server side, disconnect and come back to.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755470,
+    "by": "aragilar",
+    "timeISO": "2025-08-01T11:44:54.000Z",
+    "textPlain": "It's a bit unclear what the limitations of the non-screen/tmux alternatives are E.g. how does the scrollback work if I were to disconnect and then reconnect with a different machine, can I view the scrollback like screen/tmux?It's also nice to be able to re-connect and be able to resume a session without having to reopen many terminals, which you would lose with the lack of window management.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44754618,
+    "by": "znpy",
+    "timeISO": "2025-08-01T09:25:11.000Z",
+    "textPlain": "Sounds like work-arounds and duck-tape-tier re-implementation of tmux features, to be honest.I'm still a gnu screen guy, but for me the trade-off is still in favour of screen/tmux.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755547,
+    "by": "submeta",
+    "timeISO": "2025-08-01T11:56:56.000Z",
+    "textPlain": "I love tmux in combination with tmuxinator. Because with one command I can start my dev setup with one split for nvim, one for lazygit, one for yazi and one for claude code. In another window I can run the server, in another I can tail the logfiles.I have similar setups for various projetcts and do not need to manually start services, tools, whatnot. With `mx projectx` everything is started within seconds.And navigating panes and windows is super easy with the proper shortcuts (opt+h,j,k,l), even across tmux and nvim.Why would I give up on that?",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44763008,
+    "by": "lou1306",
+    "timeISO": "2025-08-01T22:08:54.000Z",
+    "textPlain": "> \"You might not need tmux\"First step, reimplementing the (arguably) one essential thing tmux provides, i.e., persistence: all tools have \"varying degrees of success\" and \"are buggy\". Scrollback? In tmux you \"have to learn the tmux way\", with the alternatives you might have it if you're lucky.I went into the post with an open mind but I don't think I will be ditching tmux anytime soon...",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44764917,
+    "by": "qalmakka",
+    "timeISO": "2025-08-02T04:31:32.000Z",
+    "textPlain": "I've been a decade long of tmux (I have switched to Zellij a few years ago though) and I don't give a damn about missing terminal features, I have Alacritty set-up to automatically spawn and attach to Zellij so I can close and reopen my terminal window whenever I want without ever losing the current state. Copy and paste is also arguably less wonky on Zellij compared to tmux",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755630,
+    "by": "c120",
+    "timeISO": "2025-08-01T12:09:49.000Z",
+    "textPlain": "I need \"tmux\" on remote linux machines that don't allow me to install \"screen\". If there's an easier way to keep a session running (and interactive) over internet disconnects, I have not found it yet",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44760802,
+    "by": "5pl1n73r",
+    "timeISO": "2025-08-01T18:47:48.000Z",
+    "textPlain": "> Further, I'm slowly noticing things that tmux didn't handle well, but now, \"just work\": native scrollback, terminal notifications, and terminal titles being the most notable changes.You can make tmux's OS window title and its internal window titles be whatever you want:Add \"set -g set-titles\" to ~/.tmux.conf. To test without changing the config, type `^B : set -g set-titles`, and to restore it back to default, `^B : set -gu set-titles`. This will be useful but overly verbose. It can be configured further. For example, `set -g set-titles-string \"tmux | #{pane_title}\"` will make it contain the title set by the shell (for PS1, I just make it set the current directory with `\\w` or `\\W`).Then, to make tmux's window titles (so, what will show up in the \"window list\") also be named after the current directory, you can use `set -g automatic-rename-format \"#{pane_title}\"`.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44758054,
+    "by": "jrm4",
+    "timeISO": "2025-08-01T15:14:59.000Z",
+    "textPlain": "Obviously, different ways for different folks -- I never got into tmux, but perhaps relatedly, what I want is a well thought out and stable terminal/GUI filemanager hybrid thing; e.g. I can either \"cd\" or just click where I want to go, etc. I've seen half done implementations of this but nothing comprehensive?",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44757762,
+    "by": "finaard",
+    "timeISO": "2025-08-01T14:58:27.000Z",
+    "textPlain": "If you're using kitty and have terminal related problems the easiest solution usually is just not using kitty.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44758051,
+    "by": "dankobgd",
+    "timeISO": "2025-08-01T15:14:28.000Z",
+    "textPlain": "I don't need much. I tried zellij but i couldn't stick with it.\nI either had to lock/unlock or change keybinds which is also annoying.\nNow i use ghostty and i can create new splits, tabs and i know few shortcuts to move around and resize and that's it.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44757138,
+    "by": "sbinnee",
+    "timeISO": "2025-08-01T14:12:47.000Z",
+    "textPlain": "My fingers are just too used to tmux and I can do all I want to do. But I hear the scroll issue. When I have to copy multiple chunks, I have to go to cp mode visual a chunk and as soon as I enter tmux goes to the bottom line and I have to scroll up again…",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755621,
+    "by": "zettabomb",
+    "timeISO": "2025-08-01T12:08:54.000Z",
+    "textPlain": "The conclusion I come to from this is that yes, I actually do need tmux, as the alternatives proposed are far more annoying and provide no benefit. I don't have a need for graphics in the terminal, and frankly I find it odd that we wouldn't simply display graphics... with the graphics system. But I do have a need for seamless session persistence and multiple terminals, and I do enjoy splitting a window when I'm running a command on multiple servers.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755344,
+    "by": "Myrmornis",
+    "timeISO": "2025-08-01T11:23:12.000Z",
+    "textPlain": "If I were to stop using tmux, the things I would need to replace are:1. zoom-pane (temporarily make one pane be the only pane) (also can someone please add this to vscode!)2. keybindings to navigate focus between panes according to their layout positions3. ability for another process to programmatically change which terminal window has focus, and window namingI think that's it. Could probably hack most/all of that together with hammerspoon I guess. I don't use it for persistence, and I certainly don't like the scrollback UX. It has got in the way from time to time, principally with its slow adoption of hyperlinks. But I'm general it's been a huge win for years.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44754857,
+    "by": "imcritic",
+    "timeISO": "2025-08-01T10:10:40.000Z",
+    "textPlain": "Correct statement, but poorly chosen alternatives: zellij is like tmux, but with less scrollback issues and supports mouse.It is also extensible.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44766544,
+    "by": "WhyNotHugo",
+    "timeISO": "2025-08-02T10:58:17.000Z",
+    "textPlain": "My usage of tmux gradually dwindled when I started using i3wm/sway.I really needed spilt and tabbed windows.  My window manager does that for me, and I can mix terminal windows and browser windows and windows of any other non-terminal program.I group windows on different workspaces. I only need a few, I have up to ten configured, but could have infinitely more if needed.I still use tmux for window persistence or remote servers. For me, that's a very infrequent use. Not even once a week.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44755039,
+    "by": "ramon156",
+    "timeISO": "2025-08-01T10:35:45.000Z",
+    "textPlain": "Zellij has started to become messy in my setup (i don't mean to blame zellij, i just suck), so I'm looking into tmux now.I liked the fact I didn't need to set anything up for Zellij and could gradually add stuff",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44756147,
+    "by": "tpoacher",
+    "timeISO": "2025-08-01T13:00:53.000Z",
+    "textPlain": "Don't use tmux. Use a nice wrapper for tmux instead (e.g. like byobu).Otherwise complaining about tmux and talking about hacky workaround alternatives is a bit like complaining about the internet and advocating for the telegraph as a hacky alternative because you don't like writing your own HTTP requests by hand and morse code is so much simpler.Having said that, if really all you want is pane splits / window management, lots of terminals have their own solutions for this. Guake is a good one.disclaimer: I use Guake and still prefer to just use tmux (byobu) from Guake",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44759095,
+    "by": "jauntywundrkind",
+    "timeISO": "2025-08-01T16:30:19.000Z",
+    "textPlain": "Tmux has definitely caused me some pain too. I'm mostly back now (semi alas) but for a while I was using shpool adjacent dtach to leave nvim sessions running even if I logout. If I was doing things on the terminal, it would be inside an nvim terminal window.My workflow is project oriented, and I have to juggle multiple projects. So I wrote a small script to let me quickly either attach to an existing dtach session for a project by name, or to start a dtach+nvim session for a project.Also included some fun wildcarding, so I didn't have to type the full name of the project out, could just type some letters and hit enter.https://github.com/jauntywunderkind/dtachmentI don't see change as likely, but it does strike me as absurd that although I had gotten rid of tmux as a redundant window management system, I still had both the OS and nvim's window management going. The author talks about how things would work over ssh, but ideally to me, I could ssh in, forward some ports, and start some new terminal emulators that open multiple nvim clients that attach to a persistent perhaps headless nvim session.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44760110,
+    "by": "ho_schi",
+    "timeISO": "2025-08-01T17:56:10.000Z",
+    "textPlain": "I keep using GNU Screen    * Scrolling on TTY (Linux itself doesn’t support this for some years)\n    * Window-Tabs on TTY, Wayland, SSH\n    * Sessions\n    * Copy/Paste\n\nI’m not using ZelliJ or Tmux because I don’t need more features and I know the shortcuts. I’m fine and don’t need weird workarounds. This article even confirms my decision!Would love some good C developers helping the Screen people.",
+    "parent": 44754492,
+    "depth": 1
+  },
+  {
+    "id": 44754831,
+    "by": "ivanjermakov",
+    "timeISO": "2025-08-01T10:07:17.000Z",
+    "textPlain": "Most important tmux functionality is substituted with a window manager and a terminal emulator with normal mode support: https://wiki.archlinux.org/title/Alacritty#Vi_mode_and_copy/...But I agree that tmux sessions are convenient.",
+    "parent": 44754492,
+    "depth": 1
+  }
+]

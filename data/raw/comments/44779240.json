@@ -1,0 +1,58 @@
+[
+  {
+    "id": 44780251,
+    "by": "bb01100100",
+    "timeISO": "2025-08-03T22:05:52.000Z",
+    "textPlain": "I was doing some looping recently with tcl and comparing against another implementation (called Jim [1], a very cool project in its own right) and wondered why datetime formatting was so slow when using `clock format`.The code at [2] provided an alternative approach using C via critcl. It was interesting to see how malleable tcl can be.[1] https://github.com/msteveb/jimtcl\n[2] https://wiki.tcl-lang.org/page/speed+up+clock+format+and+clo...",
+    "parent": 44779240,
+    "depth": 1
+  },
+  {
+    "id": 44780138,
+    "by": "NelsonMinar",
+    "timeISO": "2025-08-03T21:49:53.000Z",
+    "textPlain": "Still in active development, or at least maintenance. https://github.com/andreas-kupries/critcl/commits/master/",
+    "parent": 44779240,
+    "depth": 1
+  },
+  {
+    "id": 44780825,
+    "by": "monetus",
+    "timeISO": "2025-08-03T23:48:40.000Z",
+    "textPlain": "I've been using critcl for a long time, and maybe weirdly still end up using it despite often using nim.  Fantastic software.",
+    "parent": 44779240,
+    "depth": 1
+  },
+  {
+    "id": 44813963,
+    "by": "qalmakka",
+    "timeISO": "2025-08-06T16:11:44.000Z",
+    "textPlain": "This is insane and I love it. Just like Tcl. The fact everything is a string in Tcl makes embedding languages wonderfully simple.",
+    "parent": 44779240,
+    "depth": 1
+  },
+  {
+    "id": 44815317,
+    "by": "johnisgood",
+    "timeISO": "2025-08-06T17:52:13.000Z",
+    "textPlain": "Somewhat related, it is something I have been trying to figure out, and I did, successfully! This information might help others.You can create a standalone binary from .tcl files by using KitCreator and sdx (Starkit Developer eXtension). You need to wrap your Tcl script into a .kit file (a virtual filesystem), then combine it with a Tcl runtime to produce a native ELF (or Windows) binary. Optionally, you can encrypt your Tcl code with AES (e.g., using openssl enc) before embedding it, and decrypt it at runtime via a custom loader. The result is a self-contained executable that runs anywhere Tcl is supported. :)I have a script for it!  Standalone encrypted application created:\n  -> /tmp/tcl/app.run\n  -> AES KEY (hex): 95a8a95e8322344b808ebd3fd3986b5b\n  -> AES IV  (hex): 69eac67341d2657a0b00d3006addb131\n  -> To run it: ./app.run\n\n  $ ./app.run\n  Hello world from binary!\n  $ file app.run\n  app.run: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=f3fabb748cc7e61c2fafc7c288f282db2f6de0c7, for GNU/Linux 3.2.0, stripped\n\nThe generated app.run is 10 MB and ldd shows it only needs \"linux-vdso\", \"libm\", \"libc\", and \"ld-linux-*\".Useful links (taken from my script):  TCL_VERSION=\"9.0.1\"\n  TCL_SRC_URL=\"https://sourceforge.net/projects/tcl/files/Tcl/${TCL_VERSION}/tcl${TCL_VERSION}-src.tar.gz\"\n  SDX_KIT_URL=\"https://chiselapp.com/user/aspect/repository/sdx/uv/sdx-20110317.kit\"\n  TCLLIB_URL=\"https://github.com/tcltk/tcllib/archive/refs/heads/main.zip\"\n\nI wonder if there is a more recent sdx, although it still works.FWIW, the steps are:  1. Download and build Tcl\n  2. Clone KitCreator and build Tclkit\n  3. Download SDX\n  4. Create the loader ($VFS_DIR/main.tcl)\n  5. Download and extract Tcllib (optional)\n  6. Copy any modules you want from Tcllib (optional)\n  7. Add dummy assets to $VFS_DIR/assets/data.json (has a specific format) (probably optional)\n  8. Wrap and generate .kit and final .run ELF (y",
+    "parent": 44779240,
+    "depth": 1
+  },
+  {
+    "id": 44780057,
+    "by": "forinti",
+    "timeISO": "2025-08-03T21:38:57.000Z",
+    "textPlain": "I suppose you would use this to do low level stuff because it's much harder to do in TCL, but it just doesn't feel right.It makes more sense to me to embed Tk into a C program.",
+    "parent": 44779240,
+    "depth": 1
+  },
+  {
+    "id": 44781417,
+    "by": "hoherd",
+    "timeISO": "2025-08-04T01:52:45.000Z",
+    "textPlain": "Not to be confused with the kubernetes container runtime interface CLI https://github.com/kubernetes-sigs/cri-tools/blob/master/doc...",
+    "parent": 44779240,
+    "depth": 1
+  }
+]

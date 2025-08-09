@@ -1,0 +1,50 @@
+[
+  {
+    "id": 44839854,
+    "by": "mattkrick",
+    "timeISO": "2025-08-08T18:05:30.000Z",
+    "textPlain": "I want to believe, and I promise I'm not trying to be a luddite here. Has anyone with decent (5+ years) experience built a non-trivial new feature in a production codebase quicker by letting AI write it?Agents are great at familiarizing me with a new codebase. They're great at debugging because even when they're wrong, they get me thinking about the problem differently so I ultimately get the right solution quicker. I love using it like a super-powered search tool and writing single functions or SQL queries about the size of a unit test. However, reviewing a junior's code ALWAYS takes more time than writing it myself, and I feel like AI quality is typically at the junior level. When it comes to authorship, either I'm prompting it wrong, or the emperor just isn't wearing clothes. How can I become a believer?",
+    "parent": 44838170,
+    "depth": 1
+  },
+  {
+    "id": 44839824,
+    "by": "ActionHank",
+    "timeISO": "2025-08-08T18:02:37.000Z",
+    "textPlain": "\"If you are only using your hammer to hammer nails, you're doing it wrong\" then goes on to explain how you should use agents.I would've thought that following the initial argument and the progression to the latest trend we would've ended at use agents and write specs and these several currently popular MCPs.I guess my rant is it to arrive at the point that no one knows what the \"correct\" way to use them is yet. A hammer has many uses.",
+    "parent": 44838170,
+    "depth": 1
+  },
+  {
+    "id": 44840071,
+    "by": "rco8786",
+    "timeISO": "2025-08-08T18:23:50.000Z",
+    "textPlain": "“Kinda”. I run Claude code on a parallel copy of our monorepo, while I use my primary copy.I typically only give Claude the boring stuff. Refactors, tech debt cleanup, etc. But occasionally will give it a real feature if the urgency is low and the feature is extremely well defined.That said, I still spend a considerable amount of time reviewing and massaging Claude’s code before it gets to PR. I haven’t timed myself or anything, but I suspect that when the task is suitable for an LLM, it’s maybe 20-40% faster. But when it’s not, it’s considerably slower and sometimes just fails completely.",
+    "parent": 44839854,
+    "depth": 2
+  },
+  {
+    "id": 44839907,
+    "by": "9rx",
+    "timeISO": "2025-08-08T18:09:26.000Z",
+    "textPlain": "> Has anyone with decent (5+ years) experience built a non-trivial new feature in a production codebase quicker by letting AI write it?I would say yes. I have been blown away a couple of times. But find it is like playing a slot machine. Occasionally you win — most of the time you lose. As long as my employer is willing to continue to cover the bet, I may as well pull the handle. I think it would be pretty hard to convince myself to pay for it myself, though.",
+    "parent": 44839854,
+    "depth": 2
+  },
+  {
+    "id": 44840082,
+    "by": "ramesh31",
+    "timeISO": "2025-08-08T18:24:51.000Z",
+    "textPlain": ">Has anyone with decent (5+ years) experience built a non-trivial new feature in a production codebase quicker by letting AI write it?Yes. Claude Code has turned quarter long initiatives into a few afternoons of prompting for me, in the context of multiple different massive legacy enterprise codebases. It all comes down to just reaching that \"jesus take the wheel\" level of trust in it. You have to be ok with letting it go off and potentially waste hundreds of dollars in tokens giving you nonsense, which it will some times. But when it doesn't it's like magic, and makes the times that it does worth the cost. Obviously you'll still review every line before merging, but that takes an order of magnitude less time than wrestling with it in the first place. It has fundamentally changed what myself and our team is able to accomplish.",
+    "parent": 44839854,
+    "depth": 2
+  },
+  {
+    "id": 44840064,
+    "by": "ath3nd",
+    "timeISO": "2025-08-08T18:23:20.000Z",
+    "textPlain": ">  and I feel like AI quality is typically at the junior level. When it comes to authorship, either I'm prompting it wrong, or the emperor just isn't wearing clothes. How can I become a believer?The emperor is stark naked, but the hype is making people see clothes where there is only an hairy shriveled old man.Sure, I can produce \"working\" code with Claude, but I have not ever been able to produce good working code. Yes, it can write a okay-ish unit test (almost 100% identical to how I'd have written it), and on a well structured codebase (not built with Claude) and with some preparation, it can kind of produce a feature. However, on more interesting problems it's just slop and you gotta keep trying and prodding until it produces something remotely reasonable.It's addictive to watch it conjure up trash and you constantly trying to steer it in the right direction, but I have never ever ever been able to achieve the code quality level that I am comfortable with. Fast prototype? Sure. Code that can pass my code review? Nah.What is also funny is how non-deterministic the quality of the output is. Sometimes it really does feel like you almost  fly off with it, and then bam, garbage. It feels like a roulette, and you gotta keep spinning the wheel to get your dopamine hit/reward.All while wasting money and time, and still it ends up far far worse than you doing it in the first place. Hard pass.",
+    "parent": 44839854,
+    "depth": 2
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 44816153,
+    "by": "steventhedev",
+    "timeISO": "2025-08-06T18:59:24.000Z",
+    "textPlain": "Temperature sensors are a great example for alerting because they fluctuate constantly, have multiple seasonalities, and failures can be subtle. In the end, you'll want:1. If the sensor dies and there is no data at all2. If the sensor gets stuck (giving same value)3. If the sensor slowly drifts (adjusting for daily, weekly, and yearly seasons) - indicating a clogged filter or leaking refrigerant4. Statistical spikes - this is the hardest to tune so you need to treat it as a model that detects anomalies and it takes a long time to label extremely rare events5. Static thresholds, over varying windows to deal with sensor error and transient spikes.It also raises questions like \"if the sensor is reporting 400C then either the building is on fire or the sensor is broken\", or \"how do we get the alert if the building is indeed on fire\" and the inevitable followup: do we even need to get an alert if the building is on literal fire?",
+    "parent": 44781683,
+    "depth": 1
+  },
+  {
+    "id": 44816492,
+    "by": "mmmlinux",
+    "timeISO": "2025-08-06T19:24:45.000Z",
+    "textPlain": "Maybe they should be directly monitoring the AC if they are so concerned about it. Having temperature sensors are nice, but there are plenty of ways to detect what the AC unit is actually doing. These are all very common BAS control problems.",
+    "parent": 44781683,
+    "depth": 1
+  },
+  {
+    "id": 44816362,
+    "by": "mjlee",
+    "timeISO": "2025-08-06T19:13:54.000Z",
+    "textPlain": "I recently came across almost exactly this with my smoker! I have a controller which uses ambient and meat temperature probes and a fan to control the fire’s temperature. I need to know when the ambient temperature falls below a certain point as I then have to intervene before dinner is ruined. I also want to know when the fan is struggling to keep up, as that means the fire needs more fuel, and it’s easier to deal with that before the temperature drops too low.I love that I have taken humanity’s oldest technology and complicated it to the point where I have the same problems as the buildings running our very newest technology. Makes a good brisket though.",
+    "parent": 44781683,
+    "depth": 1
+  }
+]

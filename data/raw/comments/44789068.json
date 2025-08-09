@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44796888,
+    "by": "augment_me",
+    "timeISO": "2025-08-05T11:45:11.000Z",
+    "textPlain": "Documentation is the most valuable if it captures the design decision and intention at the time of the creation of the software, rather than the functionality of the software itself.Its pointless to write \"This function splits the input data into two equally sized chunks, multiplies each chunk with Y and then adds it together\"It makes more sense to write \"The hardware X that this code runs on has a cache size of Y which makes this split necessary for optimal compute throughput\".This provides the next person an understanding of why the code looks as it does, and if it should be changed at this new moment in time, when perhaps new hardware is available.I have seen so many design decisions being forgotten with time, and despite \"documented code\", a new engineer comes in and spends weeks trying to solve something that it inherently correct or is there for a good reason.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44794886,
+    "by": "kaffekaka",
+    "timeISO": "2025-08-05T06:25:40.000Z",
+    "textPlain": "Not a trick of the programming trade, but: life will not be clean, smooth and according to plan. Learn how to deal with things getting messy and derailed, and to accept that you \"lost your streak\" or whatever. Tomorrow is a new day, it is always ok to start over.Do optimize for the long term, but also realize you could be dead by next morning.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44795437,
+    "by": "augment_me",
+    "timeISO": "2025-08-05T08:00:54.000Z",
+    "textPlain": "Temporary solutions will become permanent solutions unless you explicitly hold yourself to fixing it within a certain time window because it becomes harder the longer time has passed.This ranges from TODO's in codebases, to unpacked moving boxes, to replacing that sofa you got from your friend, to leaving a toxic relationship.After a while you acclimatize to the situation and no longer see the issue, and unless something is really broken, it grows harder to motivate yourself to change.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44791033,
+    "by": "treetalker",
+    "timeISO": "2025-08-04T20:34:11.000Z",
+    "textPlain": "The big one, for keeping my focus on the power of repeated, consistent action, and prioritizing my \"future selves\":What is likely to happen if I do (or don't do) this thing one thousand days (or times) in a row?Examples:- exercising 2h per day and eating right --> I'm going to look and feel great and my health will be far better than that of my peers- Should I buy these cookies along with the rest of my groceries? If I do that 1,000 grocery trips in a row …- spending 30+ minutes per day reading the highest quality material I can find; taking notes; and figuring out ways to implement the knowledge and ideas I gain --> …",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44790852,
+    "by": "yummypaint",
+    "timeISO": "2025-08-04T20:14:36.000Z",
+    "textPlain": "Most problems (including analytically intractible ones) can be modeled with a relatively simple monte-carlo simulation. Most simple monte-carlo simulations can be fully implemented in a spreadsheet.Using timing coincidences in particle physics experiments is incredibly powerful. If multiple products from the same reaction can be measured at once, it's usually worth looking into.Circular saws using wood cutting blades with carbide teeth can cut aluminum plates.You can handle and attach atomically thin metal foils to things by floating them on water.Use library search tools and academic databases. They are entirely superior to web search and AI.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44797131,
+    "by": "alexpotato",
+    "timeISO": "2025-08-05T12:19:07.000Z",
+    "textPlain": "If you have a giant legacy code base with no unit tests, there are probably 2-3 unit tests you can write that will MASSIVELY improve delivery rate.Example:- owned a legacy system that deployed software to production- there were \"deployment windows\" for different applications- the \"is now time to deploy app X?\" logic was a giant rat's nest of if/then statements- AND it used datetime.now() in the function- that meant you had to wait for the window to actually hit to see if any changes worked- changed the function to be can_deploy(current_time = datetime.now()) so you could pass in a time- meant we could add unit tests- changes to the logic went from taking two people 45 minutes hand tracing to <30 secondsI tell this story whenever people say \"I don't have time for unit tests!\". I think they mean \"I don't have time to write an entire suite of unit tests\" which might be fair. But there is ALWAYS time to write a couple key tests.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44796079,
+    "by": "pif",
+    "timeISO": "2025-08-05T09:45:18.000Z",
+    "textPlain": "Concerning professional software development:Customers buy solutions. They don't buy specifications documents, they don't buy elegant code, they don't buy automatic test coverage. All of these are useful only as long as they help you deliver solutions to customers faster. Any effort more is better spent on actually building solutions for customers. Maintainability is nearly top priority; real top priority is to have something to maintain in the first place.Corollary: quick-and-dirty exist for a reason. It's easy to say that quick-and-dirty is just dirty, and it's true: in the long run, quick-and-dirty takes longer than the-right-thing. But, there is a but: time doesn't always have the same value! Time just before a deadline is much more precious than the time after the deadline, when you can relax a bit and fix things before the next stress wave. Have it working and ship it now; we'll get it in better shape next week, while the customer will be happy playing with their new toy.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44794622,
+    "by": "m463",
+    "timeISO": "2025-08-05T05:33:00.000Z",
+    "textPlain": "good code may not look like you expect- duplicate code isn't always badSometimes* the same code copy/pasted or repeated is much easier to understand than pulling it all into a subroutine.  It seems logical when writing code, but kills understanding when reading code.  Predictable is better than compact a lot of times.- code should fail earlySometimes* \"being robust\", correcting errors or continuing after an error is the wrong thing to do.  When something unexpected happens, failing, and failing quickly might be important.- explicit is better than implicitSometimes* it is much better hardcode a list of things instead of constructing the list from whatever is there.concrete example would be a makefile that compiles .c vs a makefile that compiles one.c two.c three.c.  Hardcode the list.  Make it hard fail if something is missing or something is added.  Yeah, it is more work, but the madness it prevents is worthwhile.there are probably thousands of these things.  All are opinion, like camelcase sucks and indent should be 4, but not with tab characters.* not always",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44791609,
+    "by": "rickcarlino",
+    "timeISO": "2025-08-04T21:32:28.000Z",
+    "textPlain": "Git bisect. For certain classes of software regressions, it makes life easier. Many people (me) don’t know this feature exists and end up reinventing the wheel on their own. https://git-scm.com/docs/git-bisect",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44793964,
+    "by": "chthonicdaemon",
+    "timeISO": "2025-08-05T03:16:42.000Z",
+    "textPlain": "Most people really cannot tell you what they want in any reasonable way. So expecting good specs for software without a very laborious interview and review process is pure wishful thinking. People \"know what they like when they see it\", so spend time rapid prototyping.Smaller and more recent: iTerm has deep tmux support. Just do `tmux -CC` to start your session or `tmux -CC a` to attach to it and you don't have to memorise all the tmux commands.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44797130,
+    "by": "seidleroni",
+    "timeISO": "2025-08-05T12:19:06.000Z",
+    "textPlain": "I work in embedded systems, and the best advice I can offer is: resist the urge to speculate when problems arise. Stay quiet, grab an oscilloscope, and start probing the problem area. Objective measurements beat conjecture every time. It's hard to argue with scope captures that clearly show what's happening. As Jack Ganssle says, \"One test is worth a thousand opinions.\"",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44795628,
+    "by": "shafyy",
+    "timeISO": "2025-08-05T08:28:02.000Z",
+    "textPlain": "There's a Germany saying \"Auch nur mit Wasser kochen\". Loosely translated, it means \"they are also only cooking with water\". What it means is that nobody knows shit and nobody is special.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44792099,
+    "by": "gopalv",
+    "timeISO": "2025-08-04T22:35:54.000Z",
+    "textPlain": "> What Trick of the Trade took you too long to learn?\"Everything worth doing is worth doing badly\"And as a corollary, every complex system that works came from a simple system that works.I learned this in programming, but now I apply it on everything from motorcycle maintenance, home appliance repair to parenting.--Often the easier way to fix a complex system is to pretend that it could be simpler and then reintroduce the complexity-inducing requirements.I had a professor who taught debugging as a whole another skill from programming and used to say \"Most of programming is starting from an empty editor and debugging until your code works\".The debugging \"lab\" in Java course (in the year 2000) was one of my transformational after-school classes - where I got a java program which fits within 2-3 pages of print code with a bug and was told to go find it in print for ~20 minutes, then given 40 minutes with a debugger instead.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44794716,
+    "by": "Eduard",
+    "timeISO": "2025-08-05T05:49:52.000Z",
+    "textPlain": "It took me two decades to finally decide to memorize \"... | awk '{print $1}'\" as a command pipeline idiom for filtering stdout for the first column (... \"awk '{print $2}'\" for the second column, and so on).All it required from me was to intentionally and manually type it down by hand instead of copy-pasting, on two purposeful occasions (within two minutes). Since then it's successfully saved in my brain.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44797358,
+    "by": "malwrar",
+    "timeISO": "2025-08-05T12:48:22.000Z",
+    "textPlain": "This one took me years to develop: build minimal demos with all new technologies you want to use in a new project, _then_ begin thinking about how you’re going to build your project. You need to understand how a tech works and _if it even works the way you think it does_ before you use it. Otherwise, you’re gambling on hope and overconfidence.Maybe I’m just dumb, but I always find that learning new tech while simultaneously trying to build with that new tech usually ends up in me rethinking the project repeatedly as I learn new tricks and techniques. I’ve dropped projects that I realized were too ambitious or just weren’t evolving right after months, years of effort. I’ve since learned that building needs to feel more like assembly than fabrication. You can dream, but it shouldn’t leave the whiteboard until _all_ of your technical assumptions not backed by experience are resolved into certainty. You move so much quicker and more predictably if you can predict success.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44789137,
+    "by": "vouaobrasil",
+    "timeISO": "2025-08-04T17:45:58.000Z",
+    "textPlain": "I only learned this in the last five years: do less, automate less, do more by hand, and use the limited capability of the manual method to really choose projects that are worthwile, rather than aim for maximum efficiency.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44793892,
+    "by": "hintklb",
+    "timeISO": "2025-08-05T03:05:08.000Z",
+    "textPlain": "Understanding the concept of Opportunity Cost and how it applies to everything in life.- Buying a house: Is this the best return I can get on a downpayment. (Spoiler: It is not).- Accepting a specific job offer: Is this the best way to spend 8 hours a day?- Not making a successful trade, is as much as a loss than losing money explicitely on a trade.- If you own something, you should consider what could you do with it's cash value if you sold it instead.- If you have a paid off home, could you sell it and get a better ROI with the cash equivalent and rent instead? (The answer is yes and you should do it).",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44795887,
+    "by": "suchoudh",
+    "timeISO": "2025-08-05T09:12:58.000Z",
+    "textPlain": "I took too much time to1. Empathise about effect of menstrual cycle in women.Its so well hidden from boys (at least Indian). They wonder why girls behave erratically ( sex education needed much earlier at least in India as more kids are exposed to adult content)2. be very careful when using rm command (use alias rm='rm -i' )3. Have backup of backup of backup.4. keep checking if backups restore correctly. (can have a very rude awakening if it does not work someday )5. People who report to you are different on different days . Dont judge them on few events. (20+ chances at least be given before giving them negative feedback privately )6. Friends are more useful than family. ( because you have similar priorities in life) They are a lifesaver after 50 so be in touch with school buddies and college buddies esp as its so much easier now. ( Lost few classmates in Covid who had less family support)7. Learn to cook all your favorite recipes ( of your mom/wife/grandmother). You will never be sad. Make them at least for two people, share it.( right size the utensils you use regularly. not too small not too big)8. Meet Reality as it is by using Vipassana. It is a super power to counter the unethical AI use.\n(just finished 10 day course in Bhopal, India\nNew courses are across world )\n* They are not paying me anything for this.  I genuinely believe #Vipassana works. BTW Yuval Noah Harare (Wrote Sapiens and Nexus) has endorsed it as well.\nhttps://www.youtube.com/watch?v=i1_YhlXiuxEYou can find course near you in this link. \nhttps://www.dhamma.org/en-US/courses/search?current_state=Ne...  (Its free and runs on donations)9. Keep a water bottle and flat tiffin (empty is also ok but can keep biscuits/leftover for later in day)10. Remember to have fun. (we often forget) (kk.org has advice on how2)",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44793643,
+    "by": "david422",
+    "timeISO": "2025-08-05T02:16:17.000Z",
+    "textPlain": "When you buy a house and get a mortgage, you are going to be paying MUCH more in interest (than expected). Over the course of the mortgage, you are going to be paying MUCH more than the sticker price. Between closing costs and taxes and fees maintenance, you will need more cash than you think.My advice is look at the numbers very carefully and choose something that is (below) or fits your budget. Sudden financial issues like the loss of a job or new vehicle purchase can put a big strain on all this.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44790699,
+    "by": "oumua_don17",
+    "timeISO": "2025-08-04T19:58:06.000Z",
+    "textPlain": "Start as early as possible in investing (in index funds) and otherwise being financially savvy. It is very beneficial to realise early on that growing your hard earned money and spending it wisely is way more important as it will in the future lead to some unexpected benefits. Freedom of thought and action!",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44790171,
+    "by": "zappb",
+    "timeISO": "2025-08-04T19:11:47.000Z",
+    "textPlain": "Writing tests first is a good way to end up with testable code. If you skip that, retrofitting tests is incredibly difficult.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44790915,
+    "by": "MrDresden",
+    "timeISO": "2025-08-04T20:20:19.000Z",
+    "textPlain": "Technical skills will only take you so far in most orgs. Learn to play the soft game.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44796812,
+    "by": "UmGuys",
+    "timeISO": "2025-08-05T11:33:43.000Z",
+    "textPlain": "The best programming advice I was ever given was given to me before I started while I was in college. It took me too long to appreciate how strong it made me. KEEP AN ENGINEERING JOURNAL. Keep it somewhere you have access to outside company property and update it daily with what you worked on learned. Bonus: take notes in every meeting. Also: how to make bad co-workers hate you.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44793743,
+    "by": "01HNNWZ0MV43FF",
+    "timeISO": "2025-08-05T02:36:49.000Z",
+    "textPlain": "Always fix errors in reverse order, from the bottom of the file to the top. That way the line numbers don't change as you go.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44796057,
+    "by": "jeremyscanvic",
+    "timeISO": "2025-08-05T09:43:02.000Z",
+    "textPlain": "Writing code from bottom to top instead of from top to bottom. Usually the interesting stuff happens in the bottom part and the top part is merely prepping data and taking care of edge cases: it's way easier to write it once you know how you're gonna end up using it.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44793050,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-05T00:39:28.000Z",
+    "textPlain": "Make use of L1 wetware cache by learning how to do common things and dont make AI do them.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44798352,
+    "by": "mrweasel",
+    "timeISO": "2025-08-05T14:24:44.000Z",
+    "textPlain": "Weird one for me, also not really a trick, I just never really thought about coding in that way. A former colleague showed of some code and it was completely reversed from how I'd write.The code uses a library, which provides a number of classes. Rather than encapsulating those classes within his own code, he'd simple use them as base classes and overwrite and extend a needed. Again no tricks, but basic OOP, but I just never really considered doing it like that, but it saves a ton of code.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44794139,
+    "by": "kevinqi",
+    "timeISO": "2025-08-05T03:47:27.000Z",
+    "textPlain": "duplicate code is not that bad. reduce duplication over time as you find the common patterns/abstractions, instead of trying to build abstractions too early",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44793708,
+    "by": "tibbar",
+    "timeISO": "2025-08-05T02:29:10.000Z",
+    "textPlain": "You can memorize the correct opening moves in chess. For maybe my first year playing chess, I just YOLO'd the opening moves. My judgement there was probably not much worse than the rest of my play, but with other players playing engine moves in the opening, I was probably in a losing position early on in most of my games. I gained about, I think, 100 ELO after learning some 3 or 4 move opening combinations.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44795171,
+    "by": "Minor49er",
+    "timeISO": "2025-08-05T07:16:56.000Z",
+    "textPlain": "My most productive hours are towards the evening because the day is spent addressing points and problems that people have brought up since the previous day. Once others' activity has been addressed and everything has been caught up with, my mind is able to focus on technical details and achieve a state of flow",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44796154,
+    "by": "zwnow",
+    "timeISO": "2025-08-05T09:56:54.000Z",
+    "textPlain": "That people in the industry barely code, its just stitching together 3rd party dependencies.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44816399,
+    "by": "doppelgunner",
+    "timeISO": "2025-08-06T19:16:36.000Z",
+    "textPlain": "For all those obese/overweight people who wants to change:If you want to complete intermittent fasting or control your diet more easily, use water. When hunger strikes, drink water first. It helps reduce cravings, keeps you full, and resets your focus. Since water doesn’t convert to calories and just passes through your system, it won’t break your fast. Most hunger is manageable if you stay hydrated — water becomes a tool, not just a drink.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44790820,
+    "by": "TMWNN",
+    "timeISO": "2025-08-04T20:10:17.000Z",
+    "textPlain": "When I realized that a) `screen` exists and b) what it does, I felt like an utter fool for having gone for years—YEARS—without benefiting from it.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44797951,
+    "by": "rorylaitila",
+    "timeISO": "2025-08-05T13:49:38.000Z",
+    "textPlain": "Don't think about the task at hand at all, like don't think about what you need to get done or how you're going to accomplish it, in advance. This creates anxiety. Just think about how good the end goal will feel to have done. Virtually eliminates procrastinating and analysis paralysis.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44816508,
+    "by": "nicbou",
+    "timeISO": "2025-08-06T19:25:51.000Z",
+    "textPlain": "Networking!It's ridiculously effective, and fun! I never quite grasped what it meant until I experienced it. It's basically just business friends. You help each other informally, without contracts or invoices. You think of them and they think of you, and generally you both come out ahead. It's barter with intangible goods.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44794039,
+    "by": "sagarpatil",
+    "timeISO": "2025-08-05T03:29:38.000Z",
+    "textPlain": "Claude Code recently showcased how powerful it can be when you don’t have to memorize commands. My AI agent works similarly. It finds the right CLI commands instead of relying on Playwright or an MCP server to perform tasks. What’s interesting is that even the agent doesn’t know many commands upfront; it simply uses the help option to discover what’s available.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44795542,
+    "by": "muzani",
+    "timeISO": "2025-08-05T08:15:28.000Z",
+    "textPlain": "Get a screenshot app. Shottr is awesome. CMD+SHIFT+CTRL+4 and I can take a picture. Paste UI on a GitHub PR. Paste Figma into a LLM. Paste bugs into Slack or a support tool. It does text recognition too, so whenever my wife sends me some kind of ID via a screenshot, I can just copy from that.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44793112,
+    "by": "mixmastamyk",
+    "timeISO": "2025-08-05T00:49:02.000Z",
+    "textPlain": "Environment variables can be expanded at the command line, just like files.  Believe I started before it was a thing and never thought to check until twenty years later(?), when I hit the tab key by mistake. :-D",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44789428,
+    "by": "entrepy123",
+    "timeISO": "2025-08-04T18:05:47.000Z",
+    "textPlain": "How do you maintain tests, in order for LLM edits to not keep breaking things?  - As a formal test suite in the program's own language?\n  - Or using a .md natural language \"tests\" collection that must pass, which an LLM can understand?\n\nTo answer the OP, I learned use different models for reasoning vs. coding.",
+    "parent": 44789068,
+    "depth": 1
+  },
+  {
+    "id": 44793618,
+    "by": "thebeardisred",
+    "timeISO": "2025-08-05T02:12:31.000Z",
+    "textPlain": "A shell script has to start with \"#!\" with no spaces before it. I spent about a week figuring that out 25+ years ago.",
+    "parent": 44789068,
+    "depth": 1
+  }
+]

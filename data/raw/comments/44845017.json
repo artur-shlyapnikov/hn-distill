@@ -1,0 +1,66 @@
+[
+  {
+    "id": 44845426,
+    "by": "judofyr",
+    "timeISO": "2025-08-09T10:35:31.000Z",
+    "textPlain": "This is one the reasons I find it so silly when people disregard Zig «because it’s just another memory unsafe language»: There’s plenty of innovation within Zig, especially related to comptime and metaprogramming. I really hope other languages are paying attention and steals some of these ideas.«inline else» is also very powerful tool to easily abstract away code with no runtime cost.",
+    "parent": 44845017,
+    "depth": 1
+  },
+  {
+    "id": 44845375,
+    "by": "spiffyk",
+    "timeISO": "2025-08-09T10:23:00.000Z",
+    "textPlain": "This post shows how versatile Zig's comptime is not only in terms of expressing what to pre-compute before the program ever runs, but also for doing arbitrary compile time bug-checks like these.  At least to me, the former is a really obvious use-case and I have no problem using that to my advantage like that.  But I often seem to overlook the latter, even though it could prove really valuable.",
+    "parent": 44845017,
+    "depth": 1
+  },
+  {
+    "id": 44845403,
+    "by": "dlahoda",
+    "timeISO": "2025-08-09T10:30:37.000Z",
+    "textPlain": "fn main() {    if false {\n\n        const _:() =  panic!();\n\n    }\n\n}Fails to compile in Rust.",
+    "parent": 44845017,
+    "depth": 1
+  },
+  {
+    "id": 44845553,
+    "by": "diegocg",
+    "timeISO": "2025-08-09T11:04:08.000Z",
+    "textPlain": "As someone who uses D and has been doing things like what you see in the post for a long time, I wonder why other languages would put attention to these tricks and steal them when they have been completely ignoring them forever when done in D. Perhaps Zig will make these features more popular, but I'm skeptic.",
+    "parent": 44845426,
+    "depth": 2
+  },
+  {
+    "id": 44845438,
+    "by": "Ygg2",
+    "timeISO": "2025-08-09T10:37:52.000Z",
+    "textPlain": "> «inline else» is also very powerful tool to easily abstract away code with no runtime cost.Sure, but you lose the clarity of errors. The error wasn't in `comptime unreachable` but in `inline .a .b .c`.",
+    "parent": 44845426,
+    "depth": 2
+  },
+  {
+    "id": 44845401,
+    "by": "dwattttt",
+    "timeISO": "2025-08-09T10:29:52.000Z",
+    "textPlain": "I love the idea, but something being \"provable\" in this way feels like relying on optimisations.If a dead code elimination pass didn't remove the 'comptime unreachable' statement, you'll now fail to compile (I expect?)",
+    "parent": 44845375,
+    "depth": 2
+  },
+  {
+    "id": 44845492,
+    "by": "Sharlin",
+    "timeISO": "2025-08-09T10:49:42.000Z",
+    "textPlain": "Sure, because it's compile-time code inside a (semantically) run-time check. In recent Rust versions you can do    fn main() {\n        const {\n            if false {\n                let _:() = panic!();\n            }\n        }\n    }\n\nwhich compiles as expected. (Note that if the binding were `const` instead of `let`, it'd still have failed to compile, because the semantics don't change.)",
+    "parent": 44845403,
+    "depth": 2
+  },
+  {
+    "id": 44845432,
+    "by": "Ygg2",
+    "timeISO": "2025-08-09T10:36:52.000Z",
+    "textPlain": "Why would it? If I recall correctly, const and static stuff basically gets inlined at the beginning of the program.",
+    "parent": 44845403,
+    "depth": 2
+  }
+]

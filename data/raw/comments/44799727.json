@@ -1,0 +1,98 @@
+[
+  {
+    "id": 44845631,
+    "by": "v5v3",
+    "timeISO": "2025-08-09T11:18:59.000Z",
+    "textPlain": "Building a self-hosted SaaS is hard mainly because the variety of skills needed have been split into a series of distinct roles. Front end dev, backend dev, database admin, network engineer, DevOps etcAnd so it requires an investment in time, which maybe 1year+, to learn a wider set of skills which many don't want to do",
+    "parent": 44799727,
+    "depth": 1
+  },
+  {
+    "id": 44842982,
+    "by": "impure",
+    "timeISO": "2025-08-09T00:14:44.000Z",
+    "textPlain": "> Even low-risk fixes like renaming a database column can break a billing run when a job is currently using that data.You should tell me how you rename database columns in AWS without breaking anything.I’m not really sure what the point of this article is, it just seems to promote the company’s migration method with a misleading title. But I highly disagree that self-hosted is harder. With many self-hosted BaaS systems I’d argue it’s easier.",
+    "parent": 44799727,
+    "depth": 1
+  },
+  {
+    "id": 44844371,
+    "by": "jillesvangurp",
+    "timeISO": "2025-08-09T06:03:03.000Z",
+    "textPlain": "Self-hosted SAAS kind of defeats the purpose. The whole point of software as a service is to get rid of the overhead and cost of self hosting.We deal with industrial customers in Germany. And they always ask about on premise setups. We can do multi tenant SAAS, we can do dedicated hosting (more expensive). But we won't really entertain on premise setups of our produce unless we are talking seven figure deals. That stuff just has to be expensive because it usually means hard to access (firewalled systems without internet access), obsolete (we installed a thingy in 1995!), and requiring lots of hand holding, integration overhead, and all the rest. It's doable technically but we're not going to be doing that for free and it's going to put an enormous burden on my team if we do it properly. That's the point of seven figure deals. It needs to cover all that cost, inconvenience, pain, etc. And it needs to be a sufficiently scary high number that customers will think twice about maybe not going for dedicated hosting instead.The German industry is being dragged kicking and screaming into this century of course. But regardless, we deal with a lot of customers in various stages of completing their migration to SAP cloud, and otherwise modernizing their setups. They worry about compliance, certifications, etc. Those are the real obstacles.Infrastructure hosting as a service is also becoming a thing of course. Self hosted no longer means having guys installing AC in your basement and mounting a lot of servers. You can get some nice managed data centers with decent support and all the rest. It's not that different from using cloud infrastructure. Spinning up a new machine might take a bit longer but there are tools and APIs for that. But otherwise it's not that different from a devops perspective. If you orchestrate that stuff properly, there's very little difference.Paying a premium for public cloud is a thing that companies should question. But they probably shouldn't be buyin",
+    "parent": 44799727,
+    "depth": 1
+  },
+  {
+    "id": 44845453,
+    "by": "anonzzzies",
+    "timeISO": "2025-08-09T10:41:00.000Z",
+    "textPlain": ">  nobody wants to contort software to run on a 10 year-old server rack your eighth-biggest customer is still using.why? those are the clients that bother me the least and just pay every year without whining. I have 20 year old SaaS running in a rack with 10-20 year old servers. I wish all my clients ran like that as it's stable, no modern blergh stacks; it works & is fast.",
+    "parent": 44799727,
+    "depth": 1
+  },
+  {
+    "id": 44843550,
+    "by": "selfhosttoday",
+    "timeISO": "2025-08-09T02:20:28.000Z",
+    "textPlain": "self hosting is obviously a spectrum - with building a physical building for space, getting power, equipment, techs, etc on one end, and something like Google Cloud Run or DynamoDB on the other, but...I don't see why it's that hard these days. is it really so unreliable to go on something like Hetzner, install Ubuntu, Docker Swarm, and a clustered database like TiDB or CockroachDB both of which support functionality to make it easy to schedule backups to something like s3, or other hosts, or ftp, etc.Even if you have updates, do it one machine at a time, swarm by default is load balancing your traffic, and you're using a clustered DB so it shouldn't be a problem.and of course, put it all behind cloud flare, because why not.I get how like in 2012 it was annoying. you had to use Postgres, which is a great database, but then you had to deal with backups and k8s and swarm barely existed, so you had to roll your own nginx or apache config for load balancing and was annoying. in 2025 seems crazy to not do it. going to the article, obviously you should as a sass support it, if my premise is accepted =)and before someone talks about security - it's also very easy to set up service accounts or iam improperly and leave your rds, firebase, whatever thing totally open or on defaults...",
+    "parent": 44799727,
+    "depth": 1
+  },
+  {
+    "id": 44843180,
+    "by": "ocdtrekkie",
+    "timeISO": "2025-08-09T00:57:26.000Z",
+    "textPlain": "Some vendors I work with have transitioned to SaaS-only models and it's truly painful. I have a perfectly good enterprise datacenter, but I also rent some Windows VMs in Amazon's cloud apparently that I still have to manage the application updates myself, but have to put in a support ticket for the .NET system dependencies if they're missing, because you know, it's in the cloud now so I'm not supposed to access the underlying infrastructure.I don't always have a choice, but if I do, I will always choose the vendor which will give me an on-premise product. And I guarantee you the companies that do will outlast the SaaS-only ones.",
+    "parent": 44799727,
+    "depth": 1
+  },
+  {
+    "id": 44845359,
+    "by": "tetha",
+    "timeISO": "2025-08-09T10:18:21.000Z",
+    "textPlain": "The strange part: In my experience, this is easier at a single-tenant/single-customer on-prem system than in AWS / a multi-tenant hosting.On-Prem, the operations team can announce: Hey, System XYZ won't be available Saturday Morning in two weeks due to an upgrade. Then you shutdown the entire thing, change the column name and start it back up on a new version. I've had a few chats with system responsible people at customers even for very large customer support organizations - to them, a well coordinated and controlled downtime is something they can just work around and it might even be preferable over a more complex, less controlled maintenance without downtime.In our own hosting, the more complex migration procedure would be easier to coordinate and execute though, than coordinating such a downtime with a lot of customers.",
+    "parent": 44842982,
+    "depth": 2
+  },
+  {
+    "id": 44843361,
+    "by": "nchmy",
+    "timeISO": "2025-08-09T01:35:06.000Z",
+    "textPlain": "Agreed on both counts - absolutely awful article, and self-hosting is not hard. You seemingly need a phd to do the most basic things on AWS",
+    "parent": 44842982,
+    "depth": 2
+  },
+  {
+    "id": 44844053,
+    "by": "paulryanrogers",
+    "timeISO": "2025-08-09T04:34:49.000Z",
+    "textPlain": "> You should tell me how you rename database columns in AWS without breaking anything.Intermediate updatable views is one way.",
+    "parent": 44842982,
+    "depth": 2
+  },
+  {
+    "id": 44843072,
+    "by": "merth",
+    "timeISO": "2025-08-09T00:33:14.000Z",
+    "textPlain": "I didnt read the article but how you do is, you should create new column without deleting the old one, and your code should be updated to use the new column, once you phase out the old version of the code, you backfill data from old column to new one, and delete the old column.",
+    "parent": 44842982,
+    "depth": 2
+  },
+  {
+    "id": 44845597,
+    "by": "jonathanlydall",
+    "timeISO": "2025-08-09T11:12:50.000Z",
+    "textPlain": "> Self-hosted SAAS kind of defeats the purpose. The whole point of software as a service is to get rid of the overhead and cost of self hosting.This is far from universally true.SAAS for a lot of businesses is about lack of large upfront costs and lock-in.The theoretic appeal is that instead of negotiating a large (possibly multi-million dollar) deal upfront, you instead pay a monthly or annual rate which includes an agreed upon level of ongoing support and you have the option of terminating the deal at your leisure. This incentivizes the service provider to offer a good enough level of service to try prevent you from dropping them.In practice it can be more complicated depending on the particular product, for example migrating data between systems of different vendors can be very difficult or possibly even practically impossible, allowing the vendor to effectively lock you in and get away with sub-standard service.Vendors who offer to manage and handle the hosting of their SAAS products for customers are just providing a feature to make their product more appealing to people looking for that.",
+    "parent": 44844371,
+    "depth": 2
+  },
+  {
+    "id": 44844930,
+    "by": "john01dav",
+    "timeISO": "2025-08-09T08:26:07.000Z",
+    "textPlain": "If you put it behind cloud flare make sure to have a way to get off of them instantly. Look up what they do when you get big enough to look like a possible cash cow to see why.",
+    "parent": 44843550,
+    "depth": 2
+  }
+]

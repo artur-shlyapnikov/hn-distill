@@ -1,0 +1,58 @@
+[
+  {
+    "id": 44818703,
+    "by": "sgarland",
+    "timeISO": "2025-08-06T22:41:43.000Z",
+    "textPlain": "I don’t understand the obsession with systemd managing everything. I do not want it to manage my logs, NTP, DNS resolution, and I sure as hell don’t want it to manage /home.",
+    "parent": 44773480,
+    "depth": 1
+  },
+  {
+    "id": 44819576,
+    "by": "throw0101d",
+    "timeISO": "2025-08-07T01:05:59.000Z",
+    "textPlain": "It seems to be that a lot of what systemd is doing (over and above being 'just' an init system) seems to be focused on standalone systems.And that's fine and all for some folks, but for those of us sysadmin-ing servers/VMs, it's all sorts of annoying that these sub-systems exist for dynamic environments (laptops using networkd/resolvd/etc to handle moving around), but I just want my system to be static and not have (e.g.) resolv.conf futzed around with (I've taken to doing a chattr +i on the file quite often).",
+    "parent": 44773480,
+    "depth": 1
+  },
+  {
+    "id": 44818557,
+    "by": "WCSTombs",
+    "timeISO": "2025-08-06T22:22:48.000Z",
+    "textPlain": "> With the advent of systemd-homed it might be desirable to convert an existing, traditional user account to a systemd-homed managed one.As someone unfamiliar with systemd-homed, I have a very basic question: why would someone want (or not want) to do this?",
+    "parent": 44773480,
+    "depth": 1
+  },
+  {
+    "id": 44819030,
+    "by": "themafia",
+    "timeISO": "2025-08-06T23:28:01.000Z",
+    "textPlain": "The continued pathology of systemd.You can't use d-bus for this because d-bus isn't available early enough,  relies on user accounts,  and can't enumerate through large sets of objects with optional filtering they had to create and invoke the completely separate \"Varlink.\"  Which is _closer_ to the traditional Unix/Plan9 service model without  actually achieving it meaningfully.The infamous part of d-bus,  that it helps inject arbitrary binary payloads into existing text protocols,  is now reversed in varlink,  it takes what should be arbitrary binary payloads (user records, certificates, etc..) and instead forces you to manage them as JSON objects.  Signing and conveying signatures for this object are predictably painful.\"The signature section contains one or more cryptographic signatures of a reduced version of the user record. This is used to ensure that only user records defined by a specific source are accepted on a system, by validating the signature against the set of locally accepted signature public keys. The signature is calculated from the JSON user record with all sections removed, except for regular, privileged, perMachine. Specifically, binding, status, signature itself and secret are removed first and thus not covered by the signature. This section is optional, and is only used when cryptographic validation of user records is required (as it is by systemd-homed.service for example).\"This all seems very brittle and I don't see the kinds of testing that would project confidence in this system.  Good luck to all who use this and trust it.",
+    "parent": 44773480,
+    "depth": 1
+  },
+  {
+    "id": 44818286,
+    "by": "Valodim",
+    "timeISO": "2025-08-06T21:51:50.000Z",
+    "textPlain": "> Please note that this specification assumes that JSON numbers may cover the full integer range of -2^63 … 2^64-1 without loss of precision (i.e. INT64_MIN … UINT64_MAX). Please read, write and process user records as defined by this specification only with JSON implementations that provide this number range.Wait, so.. not javascript?",
+    "parent": 44773480,
+    "depth": 1
+  },
+  {
+    "id": 44819160,
+    "by": "aryonoco",
+    "timeISO": "2025-08-06T23:45:58.000Z",
+    "textPlain": "For those curious about systemd-homed, lwn had a writeup about a discussion in Fedora about it which provides a good summary of the pros and cons of systemd-homed.https://lwn.net/Articles/995915/",
+    "parent": 44773480,
+    "depth": 1
+  },
+  {
+    "id": 44820110,
+    "by": "erlkonig",
+    "timeISO": "2025-08-07T02:58:00.000Z",
+    "textPlain": "<tirade style=\"justified\">F*k systemd, and systemd-homed along with it.Their docs don't even mention homes mounted over NFS, or LDAP managed users.  This is the same sort of pathetically marginal garbage that damns Snaps, which somehow think that large environments put all user directories in /home - even that that is NOT a standard and doesn't scale worth a damn.Systemd is a curse, the TRON MCP that doesn't even seem have a system for alternate solutions to compete.  Before systemd we saw a more lively environment of alternatives for each service area, but systemd strangles this with a collection of mediocrities, and lack of foresight.Looking through the doc at https://systemd.io/HOME_DIRECTORY/ shows a entire webpage built of ideas many would rightfully reject, some defy standards, some defy common sense, and best practices, fail to scale, add arbitrary constraints, or have other problems.I've been a sysadmin at large sites before. systemd-homed looks a lot like unusable trash.</tirade>",
+    "parent": 44773480,
+    "depth": 1
+  }
+]

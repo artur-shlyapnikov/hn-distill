@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44798564,
+    "by": "modeless",
+    "timeISO": "2025-08-05T14:39:25.000Z",
+    "textPlain": "Consistency over multiple minutes and it runs in real time at 720p? I did not expect world models to be this good yet.> Genie 3’s consistency is an emergent capabilitySo this just happened from scaling the model, rather than being a consequence of deliberate architecture changes?Edit: here is some commentary on limitations from someone who tried it: https://x.com/tejasdkulkarni/status/1952737669894574264> - Physics is still hard and there are obvious failure cases when I tried the classical intuitive physics experiments from psychology (tower of blocks).> - Social and multi-agent interactions are tricky to handle. 1vs1 combat games do not work> - Long instruction following and simple combinatorial game logic fails (e.g. collect some points / keys etc, go to the door, unlock and so on)> - Action space is limited> - It is far from being a real game engines and has a long way to go but this is a clear glimpse into the future.Even with these limitations, this is still bonkers. It suggests to me that world models may have a bigger part to play in robotics and real world AI than I realized. Future robots may learn in their dreams...",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44799022,
+    "by": "ollin",
+    "timeISO": "2025-08-05T15:10:43.000Z",
+    "textPlain": "This is very encouraging progress, and probably what Demis was teasing [1] last month. A few speculations on technical details based on staring at the released clips:1. You can see fine textures \"jump\" every 4 frames - which means they're most likely using a 4x-temporal-downscaling VAE with at least 4-frame interaction latency (unless the VAE is also control-conditional). Unfortunately I didn't see any real-time footage to confirm the latency (at one point they intercut screen recordings with \"fingers on keyboard\" b-roll? hmm).2. There's some 16x16 spatial blocking during fast motion which could mean 16x16 spatial downscaling in the VAE. Combined with 1, this would mean 24x1280x720/(4x16x16) = 21,600 tokens per second, or around 1.3 million tokens per minute.3. The first frame of each clip looks a bit sharper and less videogamey than later stationary frames, which suggests this is could be a combination of text-to-image + image-to-world system (where the t2i system is trained on general data but the i2w system is finetuned on game data with labeled controls). Noticeable in e.g. the dirt/textures in [2]. I still noticed some trend towards more contrast/saturation over time, but it's not as bad as in other autoregressive video models I've seen.[1] https://x.com/demishassabis/status/1940248521111961988[2] https://deepmind.google/api/blob/website/media/genie_environ...",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44799882,
+    "by": "addisonj",
+    "timeISO": "2025-08-05T16:08:55.000Z",
+    "textPlain": "Really impressive... but wow this is light on details.While I don't fully align with the sentiment of other commenters that this is meaningless unless you can go hands on... it is crazy to think of how different this announcement is than a few years ago when this would be accompanied by an actual paper that shared the research.Instead... we get this thing that has a few aspects of a paper - authors, demos, a bibtex citation(!) - but none of the actual research shared.I was discussing with a friend that my biggest concern with AI right now is not that it isn't capable of doing things... but that we switched from research/academic mode to full value extraction so fast that we are way out over our skis in terms of what is being promised, which, in the realm of exciting new field of academic research is pretty low-stakes all things considered... to being terrifying when we bet policy and economics on it.To be clear, I am not against commercialization, but the dissonance of this product announcement made to look like research written in this way at the same time that one of the preeminent mathematicians writing about how our shift in funding of real academic research is having real, serious impact is... uh... not confidence inspiring for the long term.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44804956,
+    "by": "Vipitis",
+    "timeISO": "2025-08-05T22:00:03.000Z",
+    "textPlain": "I wish they would share more about how it works. Maybe a reseach paper for once? we didn't even get a technical report.From my best guess: it's a video generation model like the ones we already head. But they condition inputs (movement direction, viewangle). Perhaps they aren't relative inputs but absolute and there is a bit of state simulation going on? [although some demo videos show physics interactions like bumping against objects - so that might be unlikely, or maybe it's 2D and the up axis is generated??].It's clearly trained on a game engine as I can see screenspace reflection artefacts being learned. They also train on photoscans/splats... some non realistic elements look significantly lower fidelity too..some inconsistencies I have noticed in the demo videos:- wingsuit discollcusions are lower fidelity (maybe initialized by high resolution image?)- garden demo has different \"geometry\" for each variation, look at the 2nd hose only existing in one version (new \"geometry\" is made up when first looked at, not beforehand).- school demo has half a caroutside the window? and a suspiciously repeating pattern (infinite loop patterns are common in transformer models that lack parameters, so they can scale this even more! also might be greedy sampling for stability)- museum scene has odd reflection in the amethyst box, like the rear mammoth doesn't have reflections on the right most side of the box before it's shown through the box. The tusk reflection just pops in. This isn't fresnel effect.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44804860,
+    "by": "maerF0x0",
+    "timeISO": "2025-08-05T21:50:29.000Z",
+    "textPlain": "I'm still struggling to imagine a world where predicting the next pixel wins over over building a deterministic thing that is then ran.Eg: Using AI to generate textures, wire models, motion sequences which themselves sum up to something that local graphics card can then render into a scene.I'm very much not an expert in this space, but to me it seems if you do that, then you can tweak the wire model, the texture, move the camera to wherever you want in the scene etc.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44798295,
+    "by": "yanis_t",
+    "timeISO": "2025-08-05T14:19:12.000Z",
+    "textPlain": "> Text rendering. Clear and legible text is often only generated when provided in the input world description.Reminds me of when image AIs weren't able to generate text. It wasn't too long until they fixed it.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44804455,
+    "by": "qwertox",
+    "timeISO": "2025-08-05T21:18:46.000Z",
+    "textPlain": "This is revolutionary. I mean, we already could see this coming, but now it's here. With limitations, but this is the beginning.In game engines it's the engineers, the software developers who make sure triangles are at the perfect location, mapping to the correct pixels, but this here, this is now like a drawing made by a computer, frame by frame, with no triangles computed.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44800702,
+    "by": "_hark",
+    "timeISO": "2025-08-05T16:58:40.000Z",
+    "textPlain": "Very cool! I've done research on reinforcement/imitation learning in world models. A great intro to these ideas is here: https://worldmodels.github.io/I'm most excited for when these methods will make a meaningful difference in robotics. RL is still not quite there for long-horizon, sparse reward tasks in non-zero-sum environments, even with a perfect simulator; e.g. an assistant which books travel for you. Pay attention to when virtual agents start to really work well as a leading signal for this. Virtual agents are strictly easier than physical ones.Compounding on that, mismatches between the simulated dynamics and real dynamics make the problem harder (sim2real problem). Although with domain randomization and online corrections (control loop, search) this is less of an issue these days.Multi-scale effects are also tricky: the characteristic temporal length scale for many actions in robotics can be quite different from the temporal scale of the task (e.g. manipulating ingredients to cook a meal). Locomotion was solved first because it's periodic imo.Check out PufferAI if you're scale-pilled for RL: just do RL bigger, better, get the basics right. Check out Physical Intelligence for the same in robotics, with a more imitation/offline RL feel.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44798740,
+    "by": "Oarch",
+    "timeISO": "2025-08-05T14:50:04.000Z",
+    "textPlain": "I don't think I've ever seen a presentation that's had me question reality multiple times before. My mind is suitably blown.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44799500,
+    "by": "timeattack",
+    "timeISO": "2025-08-05T15:44:25.000Z",
+    "textPlain": "Advances in generative AI are making me progressively more and more depressive.Creativity is taken from us at exponential rate. And I don't buy argument from people who are saying they are excited to live in this age. I can get that if that technology stopped at current state and remained to be just tools for our creative endeavours, but it doesn't seem to be an endgame here. Instead it aims to be a complete replacement.Granted, you can say \"you still can play musical instruments/paint pictures/etc for yourself\", but I don't think there was ever a period of time where creative works were just created for sake of itself rather for sharing it with others at masse.So what is final state here for us? Return to menial not-yet-automated work? And when this would be eventually automated, what's left? Plug our brains to personalized autogenerated worlds that are tailored to trigger related neuronal circuitry for producing ever increasing dopamine levels and finally burn our brains out (which is arguably already happening with tiktok-style leasure)? And how you are supposed to pay for that, if all work is automated? How economics of that is supposed to work?Looks like a pretty decent explanation of Fermi paradox. No-one would know how technology works, there are no easily available resources left to make use of simpler tech and planet is littered to the point of no return.How to even find the value in living given all of that?",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44805021,
+    "by": "slj",
+    "timeISO": "2025-08-05T22:05:53.000Z",
+    "textPlain": "Everyone is in agreement, this is impressive stuff. Mind blowing, even. But have the good people at Google decided why exactly we need to build the torment nexus?",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44798923,
+    "by": "Workaccount2",
+    "timeISO": "2025-08-05T15:03:48.000Z",
+    "textPlain": "I wonder how hard it would be to get VR output?That's an insane product right there just waiting to happen. Too bad Google sleeps so hard on the tech they create.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44800218,
+    "by": "Bjorkbat",
+    "timeISO": "2025-08-05T16:30:22.000Z",
+    "textPlain": "Genuinely technically impressive, but I have a weird issue with calling these world simulator models.  To me, they're video game simulator models.I've only ever seen demos of these models where things happen from a first-person or 3rd-person perspective, often in the sort of context where you are controlling some sort of playable avatar.  I've never seen a demo where they prompted a model to simulate a forest ecology and it simulated the complex interplay of life.Hence, it feels like a video game simulator, or put another way, a simulator of a simulator of a world model.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44800967,
+    "by": "red_hare",
+    "timeISO": "2025-08-05T17:15:04.000Z",
+    "textPlain": "Can you imagine explaining to someone from the 1800s that we've created a fully generative virtual world experience and the demo was \"painting a wall blue\"",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44822897,
+    "by": "federico_puddu",
+    "timeISO": "2025-08-07T10:50:04.000Z",
+    "textPlain": "have they released a research paper / do we have details on the architecture and training?",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44819686,
+    "by": "w_for_wumbo",
+    "timeISO": "2025-08-07T01:30:33.000Z",
+    "textPlain": "The next version of this, paired with a generative sound model + VR.\nMatched with the tech that already exists that is able to convert thoughts to words, you could pre-empt what someone wants and display it to them in real-time.\nAllowing them to explore their conscious and unconscious, meeting and interacting and forming deeper relationships with the aspects of themselves that they had forgotten about.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44798310,
+    "by": "yanis_t",
+    "timeISO": "2025-08-05T14:20:42.000Z",
+    "textPlain": "And unfortunately not possible to play around for the general public.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44810246,
+    "by": "mdp2021",
+    "timeISO": "2025-08-06T10:36:18.000Z",
+    "textPlain": "> world modelAnother linguistic devastation. A \"world model\" is in epistemology the content of a representation of states of thing - all states of things, facts and logic.This use of the expression \"world model\" seems to be a reduction. An that's too bad, because we needed the idea in its good form to speak about what neural networks contain, in this LLM sub-era.Like the new widespread sloppy use of the expression \"AI\", this does not contribute to collective mental clarity.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44800764,
+    "by": "jimmySixDOF",
+    "timeISO": "2025-08-05T17:03:18.000Z",
+    "textPlain": "What gets me is the egocentric perspective it has naturally produced from its training data, where you have the perception of a 3D 6 degrees of freedom world space around you. Once it's running at 90 frames per second and working in a meshed geometry space, this will intersect with augmented virtual XR headsets, and the metaverse will become an interaction arena for working with artificial intelligence using our physical action, our gaze, our location, and a million other points of background noise telemetry, all of which will be integrated into what we now today call context and the response will be adjusting in a useful, meaningful way what we see painted into our environment.  Imagine the world as a tangible user interface.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44799596,
+    "by": "seydor",
+    "timeISO": "2025-08-05T15:50:18.000Z",
+    "textPlain": "Would progress in these be faster if they created 3d meshes and animations instead of full frame videos?",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44798527,
+    "by": "NoScopeNinja",
+    "timeISO": "2025-08-05T14:36:33.000Z",
+    "textPlain": "It sounds cool that Genie 3 can make whole worlds you can explore, but I wonder how soon regular people will actually get to try it out?",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44802830,
+    "by": "bluehat974",
+    "timeISO": "2025-08-05T19:13:47.000Z",
+    "textPlain": "It's feel like Ready Player One on Vision Pro will arrive soon",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44808523,
+    "by": "fedorlong",
+    "timeISO": "2025-08-06T06:46:16.000Z",
+    "textPlain": "I feel like it’s gonna shake up the gaming world big time down the road. And I just made a site to record the impact of it: https://www.genie3ai.app/",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44801814,
+    "by": "internetter",
+    "timeISO": "2025-08-05T18:03:19.000Z",
+    "textPlain": "I feel like this tech is a dead end. If it could instead generate 3d models which are then rendered, that would be immensely useful. Eliminates memory and playtime constraints, allows it to be embedded in applications like games. But this? Where do we go from here? Even if we eliminate all graphical issues and get latency from 1s to 0, what purpose does it serve?",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44799601,
+    "by": "kouteiheika",
+    "timeISO": "2025-08-05T15:50:33.000Z",
+    "textPlain": "> To that end, we're exploring how we can make Genie 3 available to additional testers in the future.No need to explore; I can tell you how. Release the weights to the general public so that everyone can play with it and non-Google researchers can build their work upon it.Of course this isn't going to happen because \"safety\". Even telling us how many parameters this model has is \"unsafe\".",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44801944,
+    "by": "arjie",
+    "timeISO": "2025-08-05T18:12:21.000Z",
+    "textPlain": "This is beautiful. An incredible device that could expand people's view of history and science. We could create such immersive experiences with this.I know that everyone always worries about trapping people in a simulation of reality etc. etc. but this would have blown my mind as a child. Even Riven was unbelievable to me. I spent hours in Terragen.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44799352,
+    "by": "lackoftactics",
+    "timeISO": "2025-08-05T15:33:57.000Z",
+    "textPlain": "I thought I was not going to see too many negative comments here, yet I was mistaken. I thought if it's not LLM, people would have a more nuanced take and could look at the research with an open mind. The examples on the website are probably cherry-picked, but progress is really nice compared to Genie 2.It's a nice step towards gains in embodied AI. Good work, DeepMind.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44798789,
+    "by": "gundmc",
+    "timeISO": "2025-08-05T14:53:51.000Z",
+    "textPlain": "Interesting! This feels like they're trying to position it as a competitor to Nvidia's Omniverse, which is based on the Universal Scene Descriptor format as the backbone. I wonder what format world objects can be ingested into Genie in - e.g. for the manufacturing use cases mentioned.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44798519,
+    "by": "brotchie",
+    "timeISO": "2025-08-05T14:35:49.000Z",
+    "textPlain": "First AI thing that’s made me feel a bit of derealization……and this is the worst the capabilities will ever be.Watching the video created a glimmer of doubt that perhaps my current reality is a future version of myself, or some other consciousness, that’s living its life in an AI hallucinated environment.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44802265,
+    "by": "jp1016",
+    "timeISO": "2025-08-05T18:34:45.000Z",
+    "textPlain": "This looks incredibly promising not just for AI research but for practical use cases in game development. Being able to generate dynamic, navigable 3D environments from text prompts could save studios hundreds of hours of manual asset design and prototyping. It could also be a game-changer for indie devs who don’t have big teams.Another interesting angle is retrofitting existing 2D content (like videos, images, or even map data) into interactive 3D experiences. Imagine integrating something like this into Google Maps suddenly street view becomes a fully explorable 3D simulation generated from just text or limited visual data.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44806254,
+    "by": "ProofHouse",
+    "timeISO": "2025-08-06T00:28:11.000Z",
+    "textPlain": "Can anyone specifically working or with expertise in this field, give even a best guest breakdown (or better) of the technology and architecture, system design or possibly even the compute requirement's of how they think this was implemented? Very curious as to how thing works and methods employed, as they are atm tight lipped generally. So kind of curious for those who are specialists in this space what they could surmise or speculate on the implementation of Genie 3",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44800014,
+    "by": "superjan",
+    "timeISO": "2025-08-05T16:16:30.000Z",
+    "textPlain": "There are very few people visible in the demo’s. I suppose that is harder?",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44799611,
+    "by": "Davidzheng",
+    "timeISO": "2025-08-05T15:51:34.000Z",
+    "textPlain": "This is one of the most insane feats of AI I have ever seen to be honest.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44803383,
+    "by": "unboxingelf",
+    "timeISO": "2025-08-05T19:51:53.000Z",
+    "textPlain": "The Simulation Theory presents the following trilemma, one of which must be true:1. Almost all human-level civilizations go extinct before reaching a technologically mature “posthuman” stage capable of running high-fidelity ancestor simulations.2. Almost no posthuman civilizations are interested in running simulations of their evolutionary history or beings like their ancestors.3. We are almost certainly living in a computer simulation.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44801337,
+    "by": "sys32768",
+    "timeISO": "2025-08-05T17:36:12.000Z",
+    "textPlain": "I'm imagining how these worlds combined with AI NPCs could help people learn real-world skills, or overcome serious anxiety disorders, etc.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44799970,
+    "by": "dev0p",
+    "timeISO": "2025-08-05T16:14:02.000Z",
+    "textPlain": "That's completely bonkers. We are making machines dream of explorable, editable, interactable worlds.I wonder how much it costs to run something like this.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44818074,
+    "by": "budoso",
+    "timeISO": "2025-08-06T21:29:24.000Z",
+    "textPlain": "This better be enough of a technological leap for Half Life 3 to come out",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44804205,
+    "by": "mason_mpls",
+    "timeISO": "2025-08-05T20:59:56.000Z",
+    "textPlain": "The demo looks like they’re being very gentle with the AI, this doesn’t look like much of an advancement.",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44813765,
+    "by": "rcarmo",
+    "timeISO": "2025-08-06T15:59:14.000Z",
+    "textPlain": "I can't believe it's been 24 hours and nobody mentioned the word \"holodeck\" :)",
+    "parent": 44798166,
+    "depth": 1
+  },
+  {
+    "id": 44807909,
+    "by": "makaking",
+    "timeISO": "2025-08-06T05:11:21.000Z",
+    "textPlain": "The idea of a possible new AI winter to come seems less likely with each new announcement. Robust world models can be used as an effectively infinite source of training data.",
+    "parent": 44798166,
+    "depth": 1
+  }
+]

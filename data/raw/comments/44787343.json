@@ -1,0 +1,114 @@
+[
+  {
+    "id": 44791627,
+    "by": "kristianc",
+    "timeISO": "2025-08-04T21:35:03.000Z",
+    "textPlain": "I'm not sure I follow with the LGPL requirement.. how do you envision downstream users complying with the relinking requirement, particularly  in cases where Sidequest is orchestrating jobs across tightly-coupled backend infrastructure?",
+    "parent": 44787343,
+    "depth": 1
+  },
+  {
+    "id": 44792997,
+    "by": "spiffytech",
+    "timeISO": "2025-08-05T00:30:45.000Z",
+    "textPlain": "This is great! I sometimes have projects that could use SQLite, but they're just big enough to need a persistent job queue. Great to have an option for that.I also like that there's a dashboard. That's really important when a project gets serious, and a surprising number of job queue libraries don't have admin tools.",
+    "parent": 44787343,
+    "depth": 1
+  },
+  {
+    "id": 44795753,
+    "by": "sleiben",
+    "timeISO": "2025-08-05T08:49:58.000Z",
+    "textPlain": "Looks really interesting, especially with the dashboards.Just to validate an idea here:\nI’m using k8s (20+ services) and trying to stick to the 12factor design pattern by having all the baking/companion services, also like cron jobs deployed from within the service directory. Right now I’m using k8s cron services for cron jobs and log the steps and observe with DataDog. Using k8s cron services feels right somehow but the observability with DataDog not. So, would it make sense for me, to deploy a baking k8s web service running sidequest instead?",
+    "parent": 44787343,
+    "depth": 1
+  },
+  {
+    "id": 44794823,
+    "by": "seymon",
+    "timeISO": "2025-08-05T06:13:21.000Z",
+    "textPlain": "How does Sidequest compare to Graphile Worker https://worker.graphile.org/ ?",
+    "parent": 44787343,
+    "depth": 1
+  },
+  {
+    "id": 44794514,
+    "by": "anonzzzies",
+    "timeISO": "2025-08-05T05:07:42.000Z",
+    "textPlain": "Ah!Nice, was looking for that as all are either redis or postgres (and we don't use postgres and prefer not to use redis). So thanks for that.",
+    "parent": 44787343,
+    "depth": 1
+  },
+  {
+    "id": 44795689,
+    "by": "drewrbaker",
+    "timeISO": "2025-08-05T08:39:18.000Z",
+    "textPlain": "This looks like exactly what I need, but our DB is Postgres on Supabase and I don’t think their version supports transaction locking…",
+    "parent": 44787343,
+    "depth": 1
+  },
+  {
+    "id": 44790730,
+    "by": "MutedEstate45",
+    "timeISO": "2025-08-04T20:01:10.000Z",
+    "textPlain": "Really like your approach of using existing Postgres/MySQL instead of dragging in Redis. It feels genuinely drop-in, but still Sidekiq-class. I know it's a bit early to ask about production patterns, but I was curious: if the worker thread flood hits the same Postgres that serves the web API, how do the job-fetch queries avoid contending with OLTP traffic? Does Sidequest follow Oban's advisory-lock approach or use a different throttling strategy?",
+    "parent": 44787343,
+    "depth": 1
+  },
+  {
+    "id": 44791035,
+    "by": "drewbitt",
+    "timeISO": "2025-08-04T20:34:30.000Z",
+    "textPlain": "https://github.com/timgit/pg-boss https://github.com/hatchet-dev/hatchet are both on top of Postgres, but I like the SQLite here for a project I have in mind.",
+    "parent": 44787343,
+    "depth": 1
+  },
+  {
+    "id": 44791007,
+    "by": "nip",
+    "timeISO": "2025-08-04T20:31:08.000Z",
+    "textPlain": "Looks really neat! Starred on GitHub!If you have heard of pg-boss \n[1], how does sidequest compare to it? I’m about to embark on some « jobification » on some flows and I’d love to have your opinion (possibly biased, but still)![1] https://github.com/timgit/pg-boss",
+    "parent": 44787343,
+    "depth": 1
+  },
+  {
+    "id": 44790740,
+    "by": "mousetree",
+    "timeISO": "2025-08-04T20:01:46.000Z",
+    "textPlain": "I'm a big fan of ActiveJob in Rails. I was considering building a version inspired by it in Node but now it looks like I don't have to. Thank you for building this.",
+    "parent": 44787343,
+    "depth": 1
+  },
+  {
+    "id": 44811283,
+    "by": "someone4874726",
+    "timeISO": "2025-08-06T12:50:10.000Z",
+    "textPlain": "Hi, how would this compare to something like BullMQ (apart from it using your exising DB instead of i.e. redis).",
+    "parent": 44787343,
+    "depth": 1
+  },
+  {
+    "id": 44792554,
+    "by": "shireboy",
+    "timeISO": "2025-08-04T23:31:09.000Z",
+    "textPlain": "Excellent!  I’m a .NET developer who dabbles in Node and have been looking for a Hangfire alternative for a while.  This looks like just what I would want.",
+    "parent": 44787343,
+    "depth": 1
+  },
+  {
+    "id": 44790898,
+    "by": "hersko",
+    "timeISO": "2025-08-04T20:18:40.000Z",
+    "textPlain": "This looks really cool.",
+    "parent": 44787343,
+    "depth": 1
+  },
+  {
+    "id": 44801481,
+    "by": "stephenlf",
+    "timeISO": "2025-08-05T17:43:40.000Z",
+    "textPlain": "This is awesome. Nice and simple. Thanks.",
+    "parent": 44787343,
+    "depth": 1
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 44844762,
+    "by": "bob1029",
+    "timeISO": "2025-08-09T07:39:08.000Z",
+    "textPlain": "It is fairly obvious to me that FPGAs and ASICs would do a really good job at optimizing the operation of a spiking neural network. I think the biggest challenge is not the operation of a SNN though. It's searching for them.Iterating topology is way more powerful than iterating weights. As far as I am aware, FPGAs can only be reprogrammed a fixed # of times, so you won't get very far into the open sea before you run out of provisions. It doesn't matter how fast you can run the network if you can't find any useful instances of it.The fastest thing we have right now for searching the space of SNNs is the x86/ARM CPU. You could try to build something bespoke, but it would probably start to look like the same thing after a while. Decades of OoO, prefetching and branch prediction optimizations go a very long way in making this stuff run fast. Proper, deterministic SNNs have a requirement for global serialization of spiking events, which typically suggests use of a priority queue. These kinds of data structures and operational principles are not very compatible with mass scale GPU compute we have on hand. A tight L1 latency domain is critical for rapidly evaluating many candidates per unit time.Of all the computational substrates available to us, spiking neural networks are probably the least friendly when it comes to practical implementation, but they also seem to offer the most interesting dynamics due to the sparsity and high dimensionality. I've seen tiny RNNs provide seemingly impossible performance in small-scale neuroevolution experiments, even with wild constraints like all connection weights being fixed to a global constant.",
+    "parent": 44790472,
+    "depth": 1
+  },
+  {
+    "id": 44843648,
+    "by": "npatrick04",
+    "timeISO": "2025-08-09T02:40:48.000Z",
+    "textPlain": "This is a good paper exploring how computation with spiking neural networks is likely to work.https://www.izhikevich.org/publications/spnet.htm",
+    "parent": 44790472,
+    "depth": 1
+  },
+  {
+    "id": 44840783,
+    "by": "kingstnap",
+    "timeISO": "2025-08-08T19:32:22.000Z",
+    "textPlain": "I don't understand the point of spiking in the context of computer hardware.Your energy costs are a function of activity factor. Which is how many 0 to 1 transitions you have.If you wanted to be efficient, the correct thing to do is have most voltages remain unchanged.What makes more sense to me is something like mixture of experts routing but you only update the activated experts. Stock fish does something similar with partial updating NN for board positions.",
+    "parent": 44790472,
+    "depth": 1
+  },
+  {
+    "id": 44844939,
+    "by": "imtringued",
+    "timeISO": "2025-08-09T08:28:54.000Z",
+    "textPlain": ">As far as I am aware, FPGAs can only be reprogrammed a fixed # of times, so you won't get very far into the open sea before you run out of provisionsThat's not true unless you're talking about mask programmed FPGAs where the configuration is burned into the metal layers to avoid the silicon area overhead of configuration memory and even in this case the finite number is exactly one, because the FPGA comes preprogrammed out of the fab.Almost every conventional FPGA stores its configuration in SRAM. This means you have the opposite problem. You need an extra SPI chip to store your FPGA configuration and program the FPGA every time you start it up.The big problem with SNNs is that there is no easy way to train them.\nYou train them like ANNs with back propagation, which means SNNs are just an exotic inference target and not a full platform for both training and inference.",
+    "parent": 44844762,
+    "depth": 2
+  },
+  {
+    "id": 44844975,
+    "by": "imtringued",
+    "timeISO": "2025-08-09T08:38:33.000Z",
+    "textPlain": "A spiking neural network encodes analog values through time based encoding. The duration between two transitions encodes an analog value with a single connection in a similar manner to PWM. You need fewer connections and the gaps between transitions are larger.For those who don't know why this matters. Transistors and all electrical devices including wires are tiny capacitors. For a transistor to switch from one state to another it needs to charge or discharge as quickly as possible. This charging/discharging process costs energy and the more you do it, the more energy is used.A fully trained SNN does not change its synapses, which means that the voltages inside the routing hardware, that most likely dominate the energy costs by far, do not change. Meanwhile classic ANNs have to perform the routing via GEMV over and over again.",
+    "parent": 44840783,
+    "depth": 2
+  }
+]

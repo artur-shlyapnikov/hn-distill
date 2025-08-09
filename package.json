@@ -1,0 +1,39 @@
+{
+  "name": "hn-digest-astro",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "data:fetch": "bun run tsx scripts/fetch-hn.mts",
+    "data:summarize": "bun run tsx scripts/summarize.mts",
+    "data:aggregate": "bun run tsx scripts/aggregate.mts",
+    "data:all": "bun run tsx scripts/fetch-hn.mts && bun run tsx scripts/summarize.mts && bun run tsx scripts/aggregate.mts",
+    "build": "astro build",
+    "dev": "bunx astro dev",
+    "preview": "bunx astro preview",
+    "typecheck": "bunx tsc --noEmit",
+    "test": "bun test",
+    "test:watch": "bun test --watch",
+    "test:cov": "bun test --coverage"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "astro": "^5.12.8",
+    "date-fns": "^4.1.0",
+    "markdown-it": "^14.1.0",
+    "he": "^1.2.0",
+    "p-limit": "^6.2.0",
+    "sanitize-html": "^2.17.0",
+    "zod": "^4.0.15"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.0",
+    "@types/markdown-it": "^14.1.2",
+    "@types/sanitize-html": "^2.13.0",
+    "tsx": "^4.20.3",
+    "typescript": "^5.9.2"
+  }
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "id": 44820128,
+    "by": "rlk",
+    "timeISO": "2025-08-07T02:59:52.000Z",
+    "textPlain": "I found a couple of fun tricks you can do with this (for some definition of \"fun\" anyway).Go's http.Redirect function allows non-3xx statuses, and also renders a trivial page with a status message and link:https://301party.com/451?url=javascript:alert(%27hello%27)Alas not infinitely recursive but enough to make your browser give up:https://301party.com/301?url=/301?url=/301?url=/301?url=/301...[edit to add:] https://301party.com/0 causes a panic",
+    "parent": 44817725,
+    "depth": 1
+  },
+  {
+    "id": 44818427,
+    "by": "mmsc",
+    "timeISO": "2025-08-06T22:08:09.000Z",
+    "textPlain": "Is there a bug bounty? I found an open redirect.",
+    "parent": 44817725,
+    "depth": 1
+  },
+  {
+    "id": 44818895,
+    "by": "yjftsjthsd-h",
+    "timeISO": "2025-08-06T23:09:08.000Z",
+    "textPlain": "metadata.301party.com: 169.254.169.254\n  ipv6.metadata.301party.com: [::169.254.169.254]\n\nWhy not just one name with both A and AAAA records? ...er, and why not fd00:ec2::254? (I now suspect that there's a subjoke here that I'm missing)",
+    "parent": 44817725,
+    "depth": 1
+  },
+  {
+    "id": 44818259,
+    "by": "denysvitali",
+    "timeISO": "2025-08-06T21:49:34.000Z",
+    "textPlain": "Created by wtfismyip.com - had a good laugh",
+    "parent": 44817725,
+    "depth": 1
+  },
+  {
+    "id": 44819452,
+    "by": "arjvik",
+    "timeISO": "2025-08-07T00:38:55.000Z",
+    "textPlain": "Also of interest: https://redirect.pizza/",
+    "parent": 44817725,
+    "depth": 1
+  },
+  {
+    "id": 44818876,
+    "by": "zzo38computer",
+    "timeISO": "2025-08-06T23:05:44.000Z",
+    "textPlain": "Fortunately, redirection to a file: URL will result in a browser error. Unfortunately, the browser does not explain what is wrong (although the redirect can be viewed in the developer tools, you might not know to look there, and it still doesn't have an error message to explain the problem).",
+    "parent": 44817725,
+    "depth": 1
+  },
+  {
+    "id": 44819164,
+    "by": "65",
+    "timeISO": "2025-08-06T23:46:45.000Z",
+    "textPlain": "Can someone explain what this is?",
+    "parent": 44817725,
+    "depth": 1
+  },
+  {
+    "id": 44819001,
+    "by": "croemer",
+    "timeISO": "2025-08-06T23:23:57.000Z",
+    "textPlain": "Couple of s/redirct/redirect typos",
+    "parent": 44817725,
+    "depth": 1
+  },
+  {
+    "id": 44818820,
+    "by": "cheesekunator",
+    "timeISO": "2025-08-06T22:56:13.000Z",
+    "textPlain": "\"You cannot add 127.0.0.1 or localhost as a callback URL\"...watch me.",
+    "parent": 44817725,
+    "depth": 1
+  },
+  {
+    "id": 44818493,
+    "by": "mmastrac",
+    "timeISO": "2025-08-06T22:15:15.000Z",
+    "textPlain": "I think you can report them here: http://localhost.301party.com",
+    "parent": 44818427,
+    "depth": 2
+  },
+  {
+    "id": 44819389,
+    "by": "bombcar",
+    "timeISO": "2025-08-07T00:28:17.000Z",
+    "textPlain": "It can be nice to have an address that is guaranteed to be one or the other.",
+    "parent": 44818895,
+    "depth": 2
+  },
+  {
+    "id": 44820762,
+    "by": "jasonjayr",
+    "timeISO": "2025-08-07T05:02:01.000Z",
+    "textPlain": "While that is true for modern browsers, some backend http client libraries will follow the redirects. So; if you have a system that given an URL that fetches + displays the content, and you use a service that issues redirects to things like the AWS metadata service, or file:///etc/passwd --- well, the backend library is gonna redirect to the bad place, if it only checks the initially submitted url.",
+    "parent": 44818876,
+    "depth": 2
+  },
+  {
+    "id": 44819343,
+    "by": "Jeremy1026",
+    "timeISO": "2025-08-07T00:19:08.000Z",
+    "textPlain": "A simple utility to test 301 redirects in your project.",
+    "parent": 44819164,
+    "depth": 2
+  },
+  {
+    "id": 44819528,
+    "by": "russelg",
+    "timeISO": "2025-08-07T00:55:23.000Z",
+    "textPlain": "I was wondering about use cases for this, this makes so much sense now.",
+    "parent": 44818820,
+    "depth": 2
+  }
+]

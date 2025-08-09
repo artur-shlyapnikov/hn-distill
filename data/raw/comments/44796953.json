@@ -1,0 +1,138 @@
+[
+  {
+    "id": 44802308,
+    "by": "gorgoiler",
+    "timeISO": "2025-08-05T18:38:07.000Z",
+    "textPlain": "I learned recently that the creator of the Iosevka typeface did so using their own Lisp implementation.The typeface:https://github.com/be5invis/IosevkaThe language:https://github.com/be5invis/PatELTheir tool which they used to build the language:https://github.com/be5invis/patrisikaThese kinds of projects are deeply inspirational.  Striving to achieve one percent of this output would be enough for me.  Knowing there are people like Belleve / Renzhi Li and their team in the world -- that I might be able to do something like what they do if I, too, try hard -- is what makes me get out of bed in the morning.  It is incredible that there are people like them, doing what they do, and sharing it freely.  Thank you so much.PS: Re: inspo: Hope 16 is next week :D https://www.hope.net/pdf/hope_16_schedule.pdf",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44797849,
+    "by": "cardanome",
+    "timeISO": "2025-08-05T13:41:06.000Z",
+    "textPlain": "Don’t Build Your Own Lisp: https://gist.github.com/no-defun-allowed/7e3e238c959e27d4919...Just so people are aware of it. It is not a good source if you want to learn how to make a lisp that could scale beyond a toy.You can still learn a bit of C and get a taster of how to make a language, just be aware that some stuff you learn will hold you back in the long term.",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44797580,
+    "by": "lskfiep",
+    "timeISO": "2025-08-05T13:12:28.000Z",
+    "textPlain": "This is MUCH more than a 'Build Your Own Lisp'.  To the point of almost being anything but.This is an amazing resource for getting started with learning C by making your own \"programming language\", independent of any Lisp conventions.For me, the most 'lispy' aspect of 'making your own lisp' is prebaked by the author with their using their own prebuilt parser library 'mpc'. (I was unable to find a link to the source in the book, so https://github.com/orangeduck/mpc )I was unable to find any instance of 'car' or 'cdr' or 'caddar' and their like, which I feel is the real 'build your own lisp' epiphany.https://en.wikipedia.org/wiki/CAR_and_CDRThe parser is so widely, and wildly, useful that it is independent of notation style, for instance, lisp's nearly ubiquitous 'polish notation'. (or its variants, for instance, 'cambridge polish notation')Perfect example:Under 'Chapter 9: Reading Expressions':> Don't Lisps use Cons cells?> Other Lisps have a slightly different definition of what an S-Expression is. In most other Lisps S-Expressions are defined inductively as either an atom such as a symbol of number, or two other S-Expressions joined, or cons, together.> This naturally leads to an implementation using linked lists, a different data structure to the one we are using. I choose to represent S-Expressions as a variable sized array in this book for the purposes of simplicity, but it is important to be aware that the official definition, and typical implementation are both subtly different.https://www.buildyourownlisp.com/chapter9_s_expressions#Read...This is an awesome educational resource.I think I would promote it more broadly than \"Build Your Own Lisp\".",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44803750,
+    "by": "staplung",
+    "timeISO": "2025-08-05T20:22:44.000Z",
+    "textPlain": "As others have pointed out, this is as much about learning C as it is about making a Lisp.If you're interested in the latter, Peter Norvig has a little project that builds a stripped down Scheme interpreter in python. Takes some shortcuts, provides only a few functions (about 30) to its environment and only recognizes 5 special forms (`quote`, `if`, `define`, `set!`, and `lambda`) but the whole thing is less than 150 lines and very informative if you're new to that kind of thing.https://norvig.com/lispy.html",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44804680,
+    "by": "atan2",
+    "timeISO": "2025-08-05T21:36:38.000Z",
+    "textPlain": "The iso-9899.info C language website also includes this book in their \"Stuff That Should Be Avoided\" section.https://www.iso-9899.info/wiki/Books#Stuff_that_should_be_av...",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44800553,
+    "by": "dang",
+    "timeISO": "2025-08-05T16:50:23.000Z",
+    "textPlain": "Related:Build Your Own Lisp - https://news.ycombinator.com/item?id=36103946 - May 2023 (12 comments)Learn C and build your own Lisp (2014) - https://news.ycombinator.com/item?id=35726033 - April 2023 (45 comments)Learn C and build your own Lisp (2014) - https://news.ycombinator.com/item?id=27598424 - June 2021 (86 comments)Learn C and Build Your Own Lisp (2014) - https://news.ycombinator.com/item?id=17478489 - July 2018 (86 comments)Learn C and build your own Lisp - https://news.ycombinator.com/item?id=10474717 - Oct 2015 (49 comments)Learn C and build your own Lisp - https://news.ycombinator.com/item?id=7530427 - April 2014 (145 comments)",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44812006,
+    "by": "potato-peeler",
+    "timeISO": "2025-08-06T13:48:48.000Z",
+    "textPlain": "It seems to use c99, I would like to know from folks who have read this book, for learning newer features in C, what do you recommend?Also, does this book also teach some of the pitfalls of stdlib like gets or scanf?Basically I always read in HN/lobsters/other forums that modern C is just as safe as newer languages but I don’t see much book or tutorials teaching modern concepts or even industry standards like Misra?",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44798985,
+    "by": "tnlogy",
+    "timeISO": "2025-08-05T15:08:26.000Z",
+    "textPlain": "Someone seems to have saved my old self-compiling scheme-to-c compiler in about 1k lines of scheme code. https://github.com/veqqq/llvm_scheme/blob/main/compile.ccode... (also an llvm version)Maybe I should read and compare it. Mine was a really slow Poc to inspired by SICP, is that book still used in courses somewhere?",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44797277,
+    "by": "coderatlarge",
+    "timeISO": "2025-08-05T12:38:21.000Z",
+    "textPlain": "i’m grateful to the author for making their work available online for free.i once did an exercise like this myself (just the code not the book) for fun and found it extremely gratifying even though the code does not survive and never made it into any of my other projects as i had hoped at the outset.mine got to be around 5 kloc with all the error handling but i wasn’t optimizing for keeping it short. i’m impressed by the many super brief ones that others with deeper understanding have built.the point of view that this is really about learning C might have been buttressed further by starting with an existing super brief personal lisp and reading through that in a structured way; something that i personally would still like to do and that i semi-resorted to when debugging my way through the eval of the y-combinator which was one of the moments that exposed my poor design choices and the flaws i wasn’t cognizant of when doing simple expression evaluation. building a proper test harness was also a big deal as i went which seems like a highly relevant bit to highlight in a journey like this.some references to existing high-quality short personal lisps and schemes might also be a welcome addition.",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44797450,
+    "by": "nyrikki",
+    "timeISO": "2025-08-05T12:56:54.000Z",
+    "textPlain": "I may be old. But use to use the pure Lisp Chatlin included in C with his papers to learn languages a few times.Not as complete as this version of the language, but apparently ~300 lines of even REXX was enough although I never tried REXX.",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44800849,
+    "by": "codr7",
+    "timeISO": "2025-08-05T17:08:29.000Z",
+    "textPlain": "I've been working this problem from different angles for a while now:https://github.com/codr7/shi-chttps://github.com/codr7/hacktical-c",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44799850,
+    "by": "adz5a",
+    "timeISO": "2025-08-05T16:06:53.000Z",
+    "textPlain": "Is there a resource which compares Lisps (expressiveness, limitations, available special forms, ...)? I often read about lisp 1 and 2.0, clojure being a lisp 1.5 (because of the callable keywords if iirc).Dabbling into llms I think that lisps could be very interesting format to expose tools to llms, ie prompting a llm to craft programs in a Lisp and then processing (by that I mean parsing, correcting, analyzing and evaluating the programs) those programs within the system to achieve the user's goal.",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44798824,
+    "by": "golly_ned",
+    "timeISO": "2025-08-05T14:55:54.000Z",
+    "textPlain": "Are there any such build-a-lisp books/guides using modern c++?",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44797260,
+    "by": "ale",
+    "timeISO": "2025-08-05T12:37:11.000Z",
+    "textPlain": "Given how this is about building and compiling programming languages a portrait of Admiral Grace Hopper would have been more appropriate than Ada Lovelace.",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44797650,
+    "by": "dark-star",
+    "timeISO": "2025-08-05T13:22:04.000Z",
+    "textPlain": "Like most of these tutorials, this stops right where things get interesting. Taill-Call Optimization, Continuations, CPS, Call/CC... those are the things that are tricky to implement and without those the language is only a toy language.Then again, creating a toy-language is a worthwhile goal in itself, so kudos to everyone who follows this through to the end",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44816533,
+    "by": "frimmy",
+    "timeISO": "2025-08-06T19:27:59.000Z",
+    "textPlain": "lfg",
+    "parent": 44796953,
+    "depth": 1
+  },
+  {
+    "id": 44798634,
+    "by": "intellectronica",
+    "timeISO": "2025-08-05T14:43:49.000Z",
+    "textPlain": "or just ask AI to do it for you :Dhttps://gist.github.com/intellectronica/593885fcb02b0d10c4b9...",
+    "parent": 44796953,
+    "depth": 1
+  }
+]

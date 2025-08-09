@@ -1,0 +1,98 @@
+[
+  {
+    "id": 44828152,
+    "by": "chubot",
+    "timeISO": "2025-08-07T18:06:29.000Z",
+    "textPlain": "let’s implement split-by-double-dash, a function (or a program) that would return two lists: args that come before -- and ones that come after.split-by-double-dash a b c -- d e f should return the lists [a, b, c] and [d, e, f]FWIW in YSH (https://oils.pub/ysh.html), you can do this in a style that's like Python and JavaScript, but you can also combine it with shell idioms.First create it and pretty print it:    ysh-0.34$ var li = :| a b c -- d e f |  # shell word style, ['a', 'b'] style is also accepted\n\n    ysh-0.34$ = li  # pretty print with =\n    (List)  ['a', 'b', 'c', '--', 'd', 'e', 'f']\n\nThen test out the indexOf() method on strings:    ysh-0.34$ = li.indexOf('--')\n    (Int)   3\n\nThen write the function:    ysh-0.34$ func splitBy(li) {\n            >   var i = li.indexOf('--')\n            >   assert [i !== -1]\n            >   return ( [li[ : i], li[i+1 : ]] )  # same slicing as Python\n            > }\n\nCall it and unpack it    ysh-0.34$ var front, back = splitBy(li)\n\n    ysh-0.34$ = front\n    (List)  ['a', 'b', 'c']\n\nUse it in shell argv, with @myarray as splicing:    ysh-0.34$ write -- @back\n    d\n    e\n    f",
+    "parent": 44825175,
+    "depth": 1
+  },
+  {
+    "id": 44827433,
+    "by": "delta_p_delta_x",
+    "timeISO": "2025-08-07T17:24:40.000Z",
+    "textPlain": "I was about to comment with my usual 'why not PowerShell', but it seems the author acknowledges this anyway at the end:> I’ll quote Rich’s sh (POSIX shell) tricks to end this:> I am a strong believer that Bourne-derived languages are extremely bad, on the same order of badness as Perl, for programming, and consider programming sh for any purpose other than as a super-portable, lowest-common-denominator platform for build or bootstrap scripts and the like, as an extremely misguided endeavor",
+    "parent": 44825175,
+    "depth": 1
+  },
+  {
+    "id": 44829203,
+    "by": "kjellsbells",
+    "timeISO": "2025-08-07T19:26:15.000Z",
+    "textPlain": "I know Perl gets no love here, and for good reason sometimes, but I have a hard time believing that code full of syntactical characters like  if .[\"found\"] then\n    . | .after += [$arg]\n  elif $arg == \"--\" then\n    . | .found = true\n  else\n    . | .before += [$arg]\n  end\n\nor for (i = $indicies) if { ~ $*($i) -- } {\n      before = <= {\n  ...\n\n...is more readable and maintainable than:  my ($before, $after) = split /\\s*--\\s*/, $input;\n  my @list1 = split ' ', $before;\n  ...",
+    "parent": 44825175,
+    "depth": 1
+  },
+  {
+    "id": 44827755,
+    "by": "its-summertime",
+    "timeISO": "2025-08-07T17:43:52.000Z",
+    "textPlain": "with bash namerefs, having a function like    split-on-ddash outputa outputb a b c -- x y z\n    for x in \"${outputa[@]}\"; do # ...\n\nbecomes feasible. Of course, don't do it.",
+    "parent": 44825175,
+    "depth": 1
+  },
+  {
+    "id": 44826542,
+    "by": "jeffrallen",
+    "timeISO": "2025-08-07T16:23:49.000Z",
+    "textPlain": "I review shell scripts from beginner ops people. I would not approve any of this stuff. Once you need this complexity in shell, you need other things you should be getting from the language's stdlib. So I'd ask them to switch to Python or Go.Do not fall into the trap of big complex shell scripts.",
+    "parent": 44825175,
+    "depth": 1
+  },
+  {
+    "id": 44829461,
+    "by": "alurm",
+    "timeISO": "2025-08-07T19:48:44.000Z",
+    "textPlain": "YSH looks very nice here, thanks. I thought to mention YSH, but have no experience with it, so I hoped you would comment.(I guess we're duplicating threads at this point :D)",
+    "parent": 44828152,
+    "depth": 2
+  },
+  {
+    "id": 44828864,
+    "by": "packetlost",
+    "timeISO": "2025-08-07T18:58:39.000Z",
+    "textPlain": "This is why I use Plan9's rc shell for a lot of my scripting needs. It's dramatically nicer to write but even more nice to read.",
+    "parent": 44827433,
+    "depth": 2
+  },
+  {
+    "id": 44827587,
+    "by": "alurm",
+    "timeISO": "2025-08-07T17:33:48.000Z",
+    "textPlain": "Yeah, PowerShell and nushell are pretty cool, I hope they gain more adoption.",
+    "parent": 44827433,
+    "depth": 2
+  },
+  {
+    "id": 44828052,
+    "by": "alurm",
+    "timeISO": "2025-08-07T18:00:44.000Z",
+    "textPlain": "Sure.I have tried Bash namerefs. I found them to be kinda awkward, since you need to name them uniquely. So, you have to pretend that they are global variables, even though they are declared inside a function, which makes their usage verbose.Here, this could look like:  split_by_double_dash() {\n    declare -n split_by_double_dash_before=$1\n    declare -n split_by_double_dash_after=$2\n    \n    split_by_double_dash_before=()\n    split_by_double_dash_after=()\n\n    ...\n  }",
+    "parent": 44827755,
+    "depth": 2
+  },
+  {
+    "id": 44827605,
+    "by": "SoftTalker",
+    "timeISO": "2025-08-07T17:35:04.000Z",
+    "textPlain": "There's a point where what you say is true but I would not view using 'jq' to tease a list out of some JSON data to be it. Isn't that what your python or go code is going to do? All jq is is a packaged set of calls to stdlib stuff.Systems admins are generally not Python or Go experts. And those are two dependencies which may not be available anyway (or will require installation, and maintenancee, may introduce new vulns, etc.). You could say the same about 'jq' though.",
+    "parent": 44826542,
+    "depth": 2
+  },
+  {
+    "id": 44828938,
+    "by": "calmbonsai",
+    "timeISO": "2025-08-07T19:03:52.000Z",
+    "textPlain": "I'll go further.Shell is great for personal or local-group/team automation, but outside of a bootstrap, it should _never_ be used for anything in deployed production.The 3 main issues are hidden deps, error handling, and performance.",
+    "parent": 44826542,
+    "depth": 2
+  },
+  {
+    "id": 44826870,
+    "by": "zhouzhao",
+    "timeISO": "2025-08-07T16:49:34.000Z",
+    "textPlain": ">Do not fall into the trap of big complex shell scriptsThis so much.",
+    "parent": 44826542,
+    "depth": 2
+  }
+]

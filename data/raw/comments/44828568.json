@@ -1,0 +1,162 @@
+[
+  {
+    "id": 44829793,
+    "by": "ascorbic",
+    "timeISO": "2025-08-07T20:15:04.000Z",
+    "textPlain": "This looks interesting, but it is quite buggy. A few things I've found:- error handling is not good. It just dumps the error JSON in the console, and doesn't read and understand it, so keeps retrying even if it's something that it clearly needs to change- ESC is pretty unreliable at interrupting ongoing activity- I'd expect to be able to use arrow keys to navigate through history- is there a way to change the preference order for models?It succeeded in my standard task of adding support for detecting itself to am-i-vibing, but it got stuck in some API errors before it was able to create a PR. It does now have support though after a little help: https://github.com/ascorbic/am-i-vibing",
+    "parent": 44828568,
+    "depth": 1
+  },
+  {
+    "id": 44834475,
+    "by": "throwdbaaway",
+    "timeISO": "2025-08-08T07:28:37.000Z",
+    "textPlain": "With GLM-4.5, we can disable thinking by appending /nothink to the user message. Is that how we suppose to use Octofriend, e.g. \"Plan looks good. Go ahead and implement feature X. /nothink\"",
+    "parent": 44828568,
+    "depth": 1
+  },
+  {
+    "id": 44834334,
+    "by": "Incipient",
+    "timeISO": "2025-08-08T07:06:15.000Z",
+    "textPlain": "Do you have any typical costs for various models, for a \"typical\" day of use? 6 hours of sitting at desk writing code (rather than code reviews etc)",
+    "parent": 44828568,
+    "depth": 1
+  },
+  {
+    "id": 44832895,
+    "by": "wkirby",
+    "timeISO": "2025-08-08T02:47:48.000Z",
+    "textPlain": "Looking forward to trying this out. An early comment: I would love to be able to override tool descriptions and system prompts from a config. Especially when working with local models, context management is king and the tool descriptions can be a hidden source of uncontrollable context.",
+    "parent": 44828568,
+    "depth": 1
+  },
+  {
+    "id": 44829196,
+    "by": "earino",
+    "timeISO": "2025-08-07T19:25:47.000Z",
+    "textPlain": "This looks very interesting. I wish it came with some guides for using it with a local LLM. I have an MBP with 128gb of ram and I have been trying to find a local open source coding agent. This feels like it could be the thing.",
+    "parent": 44828568,
+    "depth": 1
+  },
+  {
+    "id": 44829443,
+    "by": "john_max_1",
+    "timeISO": "2025-08-07T19:46:55.000Z",
+    "textPlain": "https://deps.dev/npm/octofriend/0.0.18/dependencies - huge list of dependencies",
+    "parent": 44828568,
+    "depth": 1
+  },
+  {
+    "id": 44832331,
+    "by": "esafak",
+    "timeISO": "2025-08-08T01:14:26.000Z",
+    "textPlain": "How does it differ from existing ones like Aider and OpenCode, besides being less mature?",
+    "parent": 44828568,
+    "depth": 1
+  },
+  {
+    "id": 44829455,
+    "by": "ancientrevolver",
+    "timeISO": "2025-08-07T19:47:57.000Z",
+    "textPlain": "Looks interesting! How would you say it compares against Claude/Gemini code or any of the other major terminal-based coding assistants?",
+    "parent": 44828568,
+    "depth": 1
+  },
+  {
+    "id": 44829644,
+    "by": "rbren",
+    "timeISO": "2025-08-07T20:02:44.000Z",
+    "textPlain": "Quick plug for the OpenHands CLI: https://docs.all-hands.dev/usage/how-to/cli-modeWe're working on creating an SDK that will allow other folks to build their own CLIs with OpenHands, so you can take advantage of our SOTA agent, but implement the TUI/GUI of your dreams.",
+    "parent": 44828568,
+    "depth": 1
+  },
+  {
+    "id": 44832823,
+    "by": "insane_dreamer",
+    "timeISO": "2025-08-08T02:36:10.000Z",
+    "textPlain": "The main problem for me is that afaik the only agent that works with Claude Max subscription is Claude Code.",
+    "parent": 44828568,
+    "depth": 1
+  },
+  {
+    "id": 44829618,
+    "by": "dingnuts",
+    "timeISO": "2025-08-07T20:00:13.000Z",
+    "textPlain": "wow the fake Studio Ghibli artwork is really unsettling. Seriously creepy uncanny valley vibes on top of the stolen style. I hate it. Please never do that again.",
+    "parent": 44828568,
+    "depth": 1
+  },
+  {
+    "id": 44829817,
+    "by": "reissbaker",
+    "timeISO": "2025-08-07T20:17:26.000Z",
+    "textPlain": "Ah, I actually find it useful to see the error output! But I can add a flag to hide it. Yes, you can change the ordering by going to the menu (via ESC), and going to \"Settings\" and then \"Set default model.\" (You can also just edit the model order in the config file at ~/.config/octofriend/octofriend.json5).ESC should reliably interrupt the model, although it doesn't currently interrupt tool calls — I'll add that (although all tool calls have timeouts currently).",
+    "parent": 44829793,
+    "depth": 2
+  },
+  {
+    "id": 44833048,
+    "by": "esafak",
+    "timeISO": "2025-08-08T03:21:29.000Z",
+    "textPlain": "After reading this comment I checked the repo's tests. There were few.",
+    "parent": 44829793,
+    "depth": 2
+  },
+  {
+    "id": 44829246,
+    "by": "reissbaker",
+    "timeISO": "2025-08-07T19:30:11.000Z",
+    "textPlain": "I'll add docs! Tl;DR: in the onboarding (or in the Add Model menu section), you can select adding a custom LLM. It'll ask you for your API base URL, which is whatever localhost+port setup you're using, and then an env var to use as an API credential. Just put in any non-empty credential, since local models typically don't actually use authentication. Then you're good to go.IMO gpt-oss-120b is actually a very competent local coding agent — and it should fit on your 128GB Macbook Pro. I've used it while testing Octo actually, it's quite good for a local model. The best open model in my opinion is zai-org/GLM-4.5, but it probably won't fit on your machine (although it works well with APIs — my tip is to avoid OpenRouter though since quite a few of the round-robin hosts have broken implementations.)",
+    "parent": 44829196,
+    "depth": 2
+  },
+  {
+    "id": 44829620,
+    "by": "ZYbCRq22HbJ2y7",
+    "timeISO": "2025-08-07T20:00:24.000Z",
+    "textPlain": "They should hide them, like Anthropic does, to confuse dependency hawks.https://deps.dev/npm/%40anthropic-ai%2Fclaude-code/1.0.69/de...",
+    "parent": 44829443,
+    "depth": 2
+  },
+  {
+    "id": 44829629,
+    "by": "billycao",
+    "timeISO": "2025-08-07T20:01:03.000Z",
+    "textPlain": "There are only 16 direct dependencies, and they all look pretty reasonable to me.Have you worked with any Node.js projects before? I'd actually say this is a relatively sparse list of dependencies for a user-facing tool.",
+    "parent": 44829443,
+    "depth": 2
+  },
+  {
+    "id": 44832587,
+    "by": "reissbaker",
+    "timeISO": "2025-08-08T01:54:53.000Z",
+    "textPlain": "OpenCode doesn't handle thinking tokens particularly well, so the LLMs are dumber (it doesn't pass the encrypted reasoning tokens back during multi-turn). Aider is very different in terms of UX.Also, Octo has a couple of optional custom-trained ML models to autofix minor diff edit failures and JSON encoding errors. You'll notice on the Aider benchmarks that some LLMs end up failing due to edit format errors: Octo should have much fewer of those thanks to the autofix models.",
+    "parent": 44832331,
+    "depth": 2
+  },
+  {
+    "id": 44829523,
+    "by": "reissbaker",
+    "timeISO": "2025-08-07T19:52:33.000Z",
+    "textPlain": "It's quite similar to Claude Code. The main advantages are that it's super easy to use with different models when new ones come out (like GPT-5!), and with local LLMs, and we have some optional, custom-trained small models that help auto-fix diff edit failures and minor JSON inaccuracies — they work with any model and especially help with some of the open-source coding models.We also open-sourced the autofix models:https://huggingface.co/syntheticlab/diff-applyhttps://huggingface.co/syntheticlab/fix-jsonThey're truly open source, not just open weight BTW: the entire training pipeline is in the Octofriend repo.",
+    "parent": 44829455,
+    "depth": 2
+  },
+  {
+    "id": 44832930,
+    "by": "virgildotcodes",
+    "timeISO": "2025-08-08T02:56:13.000Z",
+    "textPlain": "I believe opencode also uses Claude Max somehow - https://github.com/sst/opencode",
+    "parent": 44832823,
+    "depth": 2
+  },
+  {
+    "id": 44833825,
+    "by": "userbinator",
+    "timeISO": "2025-08-08T05:44:44.000Z",
+    "textPlain": "The art is definitely creepy. I don't know how an octopus (or is that a decapus?) in a jar could be considered \"cute\". It reminds me of Cthulhu and undesirably branchy codebases.",
+    "parent": 44829618,
+    "depth": 2
+  }
+]

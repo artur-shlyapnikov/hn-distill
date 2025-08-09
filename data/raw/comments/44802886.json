@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44803186,
+    "by": "mmastrac",
+    "timeISO": "2025-08-05T19:37:34.000Z",
+    "textPlain": "I built a JWT support library at work (https://github.com/geldata/gel-rust/tree/master/gel-jwt) and I can confirm that JWTs all sound like \"eyyyyyy\" in my head.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44806359,
+    "by": "nneonneo",
+    "timeISO": "2025-08-06T00:44:54.000Z",
+    "textPlain": "Useful ones to know:- `R0lGOD` - GIF files- `iVBOR` - PNG files- `/9j/` - JPG files- `eyJ` - JSON- `PD94` - XML- `MII` - ASN.1 file, such as a certificate or private keyThese are nice to know since they show up pretty frequently (images in data: URLs, JSON/XML/ASN.1 in various protocols).",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44804062,
+    "by": "Sophira",
+    "timeISO": "2025-08-05T20:48:24.000Z",
+    "textPlain": "Mathematically, base64 is such that every block of three characters of raw input will result in four characters of base64'd output.These blocks can be considered independent of each other. So for example, with the string \"Hello world\", you can do the following base64 transformations:* \"Hel\" -> \"SGVs\"* \"lo \" -> \"bG8g\"* \"wor\" -> \"d29y\"* \"ld\" -> \"bGQ=\"These encoded blocks can then be concatenated together and you have your final encoded string: \"SGVsbG8gd29ybGQ=\"(Notice that the last one ends in an equals sign. This is because the input is less than 3 characters, and so in order to produce 4 characters of output, it has to apply padding - part of which is encoded in the third digit as well.)It's important to note that this is simply a byproduct of the way that base64 works, not actually an intended thing. My understanding is that it's basically like how if you take an ASCII character - which could be considered a base 256 digit - and convert it to hexadecimal (base 16), the resulting hex number will always be two digits long - the same two digits, at that - even if the original was part of a larger string.In this case, every three base 256 digits will convert to four base 64 digits, in the same way that it would convert to six base 16 digits.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803260,
+    "by": "gnabgib",
+    "timeISO": "2025-08-05T19:42:50.000Z",
+    "textPlain": "You can spot Base64 encoded JSON.The PEM format (that begins with `-----BEGIN [CERTIFICATE|CERTIFICATE REQUEST|PRIVATE KEY|X509 CRL|PUBLIC KEY]-----`) is already Base64 within the body.. the header and footer are ASCII, and shouldn't be encoded[0] (there's no link to the claim so perhaps there's another format similar to PEM?)You can't spot private keys, unless they start with a repeating text sequence (or use the PEM format with header also encoded).[0]: https://datatracker.ietf.org/doc/html/rfc7468",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803100,
+    "by": "rgovostes",
+    "timeISO": "2025-08-05T19:31:22.000Z",
+    "textPlain": "There is a Base64 quasi-fixed point:    $ echo -n Vm0 | base64\n    Vm0w\n\nIt can be extended indefinitely one character at a time, but there will always be some suffix.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803454,
+    "by": "Muromec",
+    "timeISO": "2025-08-05T19:58:04.000Z",
+    "textPlain": "After staring one time too much at base64-encoded or hex-encoded asn1 I started to believe that scene in the Matrix where operator was looking at raw stream from Matrix at his terminal and was seeing things in it.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803173,
+    "by": "cogman10",
+    "timeISO": "2025-08-05T19:36:28.000Z",
+    "textPlain": "I don't really love this.  It just feels so wasteful.JWT does it as well.Even in this example, they are double base64 encoding strings (the salt).It's really too bad that there's really nothing quite like json.  Everything speaks it and can write it.  It'd be nice if something like protobuf was easier to write and read in a schemeless fashion.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44804114,
+    "by": "tetha",
+    "timeISO": "2025-08-05T20:52:19.000Z",
+    "textPlain": "Reminds me of 1213486160[1]Besides that,  I just spent way too much time figuring out this is an encrypted OpenTofu state. It just looked way too much like a terraform state but not entirely. Tells ya what I spend a lot of time with at work.This is probably another interesting situation in which you cannot read the state, but you can observe changes and growth by observing the ciphertext. It's probably fine, but remains interesting.1: https://rachelbythebay.com/w/2016/02/21/malloc/",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803677,
+    "by": "dhosek",
+    "timeISO": "2025-08-05T20:15:41.000Z",
+    "textPlain": "Kind of reminds me of a junior being amazed when I was able to read ascii strings out of a hex stream. Us old folks have seen a lot.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44804277,
+    "by": "calibas",
+    "timeISO": "2025-08-05T21:05:07.000Z",
+    "textPlain": "The encoded JSON string is going to start with \"ey\", unless there's whitespace in the first couple characters.Also, it seem like the really important point is kind of glossed over. Base64 is not a kind of encryption, it's an encoding that anybody can easily decode. Using it to hide secrets in a GitHub repo is a really really dumb thing to do.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44805098,
+    "by": "cfontes",
+    "timeISO": "2025-08-05T22:13:19.000Z",
+    "textPlain": "Not directly correlated but I know a old guy that can decrypt EBCDIC and credit card positional data format on the fly. And sometimes it was a \"feeling\" he couldn't explain it properlly but knew exactly the value, name and other data.It was amazing to see him decode VISA and MASTER transactions on the fly in logs and other places.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803813,
+    "by": "netsharc",
+    "timeISO": "2025-08-05T20:28:14.000Z",
+    "textPlain": "Good knowledge, now explain why it's like that.{\" is ASCII 01111011, 00100010Base64 takes 3 bytes x 8 bits = 24 bits, groups that 24 bit-sequence into four parts of 6 bits each, and then converts each to a number between 0-63. If there aren't enough bits (we only have 2 bytes = 16 bits, we need 18 bits), pad them with 0. Of course in reality the last 2 bits would be taken from the 3rd character of the JSON string, which is variable.The first 6 bits are 011110, which in decimal is 30.The second 6 bits are 110010, which in decimal is 50.The last 4 bits are 0010. Pad it with 00 and you get 001000, which is 8.Using an encoding table (https://base64.guru/learn/base64-characters), 30 is e, 50 is y and 8 is I. There's your \"ey\".Funny how CS people are so incurious now, this blog post touches the surface but didn't get into the explanation.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803673,
+    "by": "Faaak",
+    "timeISO": "2025-08-05T20:15:19.000Z",
+    "textPlain": "Nitpick, but enclosing the first string in single quotes would make the reading better:$ echo '{\"' | base64Vs$ echo \"{\\\"\" | base64",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803050,
+    "by": "delecti",
+    "timeISO": "2025-08-05T19:28:16.000Z",
+    "textPlain": "Oh that's nifty. Spotting base64 encoded strings is easy enough (and easy enough to test that I give it a shot if I'm even vaguely curious), but I'd never looked at them closely enough to spot patterns.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803211,
+    "by": "snickerdoodle12",
+    "timeISO": "2025-08-05T19:39:32.000Z",
+    "textPlain": "Isn't this obvious to anyone who has seen a few base64 encoded json strings or certificates? ey and LS are a staple.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803899,
+    "by": "karel-3d",
+    "timeISO": "2025-08-05T20:34:00.000Z",
+    "textPlain": "I debugged way too many JWT tokensI know eyJhbG by heart",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803185,
+    "by": "gabesullice",
+    "timeISO": "2025-08-05T19:37:25.000Z",
+    "textPlain": "I love this post style. Never stop learning friend!",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803259,
+    "by": "athorax",
+    "timeISO": "2025-08-05T19:42:39.000Z",
+    "textPlain": "Base64 encoded yaml files will also be LS-prefixed if they have the document marker (---)",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44810423,
+    "by": "bashwizard",
+    "timeISO": "2025-08-06T11:03:07.000Z",
+    "textPlain": "A dev who have never seen a base64 string before? Fascinating.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44811341,
+    "by": "doppelgunner",
+    "timeISO": "2025-08-06T12:56:49.000Z",
+    "textPlain": "You should not store sensitive data into jwt.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44807038,
+    "by": "pabs3",
+    "timeISO": "2025-08-06T02:41:33.000Z",
+    "textPlain": "Are there any secret scanning tools that know about base64 encoded stuff?",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803126,
+    "by": "metalliqaz",
+    "timeISO": "2025-08-05T19:33:28.000Z",
+    "textPlain": "Something similar pops up if you have to spend a lot of time looking at binary blobs with a hex editor.  Certain common character sequences become familiar.  This also leads to choosing magic numbers in data formats that decode to easily recognized ASCII strings.  I'm sure if I worked with base64 I'd be choosing something that encoded nicely into particular strings for the same purpose.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44804199,
+    "by": "koolba",
+    "timeISO": "2025-08-05T20:59:24.000Z",
+    "textPlain": "Well duh. It’s a deterministic encoding. Does not matter if it’s base64, hex, or even rot13.Is this the state of modern understanding of basic primitives?",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803434,
+    "by": "cluckindan",
+    "timeISO": "2025-08-05T19:56:24.000Z",
+    "textPlain": "On mobile, the long rows in the code blocks blow up the layout.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44805155,
+    "by": "benatkin",
+    "timeISO": "2025-08-05T22:18:34.000Z",
+    "textPlain": "I'm more partial to PCFkb2N0eXBlIGh0bWw+",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44806358,
+    "by": "Naru41",
+    "timeISO": "2025-08-06T00:44:50.000Z",
+    "textPlain": "Funny trivia. But of course -- there is absolute zero reason to base64 encode ascii text. Evenmore laughable to put Json encoded in base64 text inside regular Json.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803154,
+    "by": "shortrounddev2",
+    "timeISO": "2025-08-05T19:35:13.000Z",
+    "textPlain": "I discovered this when I created a JWT system for my internship. I got really good at spotting JWTs, or any base64 encoded json payloads in our Kafka streams",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803738,
+    "by": "iou",
+    "timeISO": "2025-08-05T20:21:09.000Z",
+    "textPlain": "“Welcome to the party, pal!”",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803274,
+    "by": "yahoozoo",
+    "timeISO": "2025-08-05T19:43:51.000Z",
+    "textPlain": "babby's first base64",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803580,
+    "by": "curiousObject",
+    "timeISO": "2025-08-05T20:08:03.000Z",
+    "textPlain": "Yikes! It would be smart to bury these strings in an ad hoc obfuscation so they aren’t so obvious.It doesn’t even need to be much better than ROT13. Security by obscurity is good for this situation.",
+    "parent": 44802886,
+    "depth": 1
+  },
+  {
+    "id": 44803530,
+    "by": "o11c",
+    "timeISO": "2025-08-05T20:03:53.000Z",
+    "textPlain": "For reference, a program to generate the quasi-fixed point from scratch:  #!/usr/bin/env python3\n  import base64\n\n  def len_common_prefix(a, b):\n      assert len(a) < len(b)\n      for i in range(len(a)):\n          if a[i] != b[i]:\n              return i\n      return len(a)\n\n  def calculate_quasi_fixed_point(start, length):\n      while True:\n          tmp = base64.b64encode(start)\n          l = len_common_prefix(start, tmp)\n          if l >= length:\n              return tmp[:length]\n          print(tmp[:l].decode('ascii'), tmp[l:].decode('ascii'), sep='\\v')\n          # Slicing beyond end of buffer will safely truncate in Python.\n          start = tmp[:l*4//3+4] # TODO is this ideal?\n\n  if __name__ == '__main__':\n      final = calculate_quasi_fixed_point(b'\\0', 80)\n      print(final.decode('ascii'))\n\nThis ultimately produces:  Vm0wd2QyUXlVWGxWV0d4V1YwZDRWMVl3WkRSV01WbDNXa1JTVjAxV2JETlhhMUpUVmpBeFYySkVUbGho",
+    "parent": 44803100,
+    "depth": 2
+  },
+  {
+    "id": 44804789,
+    "by": "syncsynchalt",
+    "timeISO": "2025-08-05T21:44:29.000Z",
+    "textPlain": "From the other direction, you'd call it a tail-eating unquine?",
+    "parent": 44803100,
+    "depth": 2
+  },
+  {
+    "id": 44803146,
+    "by": "thaumasiotes",
+    "timeISO": "2025-08-05T19:34:33.000Z",
+    "textPlain": "Note that the suffix will grow in length with the input, making it less and less interesting.(Because the output is necessarily 8/6 the size of the input, the suffix always adds 33% to the length.)",
+    "parent": 44803100,
+    "depth": 2
+  },
+  {
+    "id": 44803528,
+    "by": "cestith",
+    "timeISO": "2025-08-05T20:03:53.000Z",
+    "textPlain": "Years ago I was part of a group of people I knew who could read and edit large parts of sendmail.cf by hand without using m4. Other people who had to deal with mail servers at the time certainly treated it like a superpower.",
+    "parent": 44803454,
+    "depth": 2
+  },
+  {
+    "id": 44803658,
+    "by": "dlt713705",
+    "timeISO": "2025-08-05T20:13:28.000Z",
+    "textPlain": "What’s wrong with this?The purpose of Base64 is to encode data—especially binary data—into a limited set of ASCII characters to allow transmission over text-based protocols.It is not a cryptographic library nor an obfuscation tool.Avoid encoding sensitive data using Base64 or include sensitive data in your JWT payload unless it is encrypted first.",
+    "parent": 44803173,
+    "depth": 2
+  },
+  {
+    "id": 44803695,
+    "by": "zokier",
+    "timeISO": "2025-08-05T20:17:19.000Z",
+    "textPlain": "> It's really too bad that there's really nothing quite like jsonmessagepack/cbor are very similar to json (schemaless, similar primitive types) but can support binary data. bson is another similar alternative. All three have implementations available in many languages, and have been used in big mature projects.",
+    "parent": 44803173,
+    "depth": 2
+  },
+  {
+    "id": 44803241,
+    "by": "reactordev",
+    "timeISO": "2025-08-05T19:41:48.000Z",
+    "textPlain": "We just need to sacrifice n*field_count to a header describing the structure. We also need to define allowed types.",
+    "parent": 44803173,
+    "depth": 2
+  },
+  {
+    "id": 44803526,
+    "by": "Muromec",
+    "timeISO": "2025-08-05T20:03:47.000Z",
+    "textPlain": ">Everything speaks it and can write it.asn.1 is super nice -- everything speaks it and tooling is just great (runs away and hides)",
+    "parent": 44803173,
+    "depth": 2
+  },
+  {
+    "id": 44803752,
+    "by": "derefr",
+    "timeISO": "2025-08-05T20:22:54.000Z",
+    "textPlain": "> It'd be nice if something like protobuf was easier to write and read in a schemeless fashion.If you just want a generic, binary, hierarchical type-length-value encoding, have you considered https://en.wikipedia.org/wiki/Interchange_File_Format ?It's not that there are widely-supported IFF libraries, per se; but rather that the format is so simple that as long as your language has a byte-array type, you can code a bug-free IFF encoder/decoder in said language about five minutes.(And this is why there are no generic IFF metaformat libraries, ala JSON or XML libraries; it's \"too simple to bother everyone depending on my library with a transitive dependency\", so everyone just implements IFF encoding/decoding as part of the parser + generator for their IFF-based concrete file format.)What's IFF used in? AIFF; RIFF (and therefore WAV, AVI, ANI, and — perhaps surprisingly — WebP); JPEG2000; PNG [with tweaks]...• There's also a descendant metaformat, the ISO Base Media File Format (\"BMFF\"), which in turn means that MP4, MOV, and HEIF/HEIC can all be parsed by a generic IFF parser (though you'll miss breaking some per-leaf-chunk metadata fields out from the chunk body if you don't use a BMFF-specific parser.)• And, as an alternative, there's https://en.wikipedia.org/wiki/Extensible_Binary_Meta_Languag... (\"EBML\"), which is basically IFF but with varint-encoding of the \"type\" and \"length\" parts of TLV (see https://matroska-org.github.io/libebml/specs.html). This is mostly currently used as the metaformat of the Matroska (MKV) format. It's also just complex enough to have a standalone generic codec library (https://github.com/Matroska-Org/libebml).My personal recommendation, if you have some structured binary data to dump to disk, is to just hand-generate IFF chunks inline in your dump/export/send logic, the same way one would e.g. hand-emit CSV inline in a printf call. Just say \"this is an IFF-based format\" or put an .iff extension on it or send it as application/x-iff, and",
+    "parent": 44803173,
+    "depth": 2
+  },
+  {
+    "id": 44805698,
+    "by": "Rygian",
+    "timeISO": "2025-08-05T23:16:26.000Z",
+    "textPlain": "I've seen that done live, during audits, on live logs on the screen. Needles to say, audit didn't fly first time round (those logs should have been redacted).",
+    "parent": 44805098,
+    "depth": 2
+  }
+]

@@ -1,0 +1,106 @@
+[
+  {
+    "id": 44791327,
+    "by": "joshdavham",
+    "timeISO": "2025-08-04T21:05:26.000Z",
+    "textPlain": "I've been thinking about this for a while too as an FSRS developer [1].In general, we can think of a spaced repetition system as being (i) Content-aware vs. Content-agnostic and (ii) Deck-aware vs. Deck-agnosticContent-aware systems care about what you're studying (language, medecine, etc) while Content-agnostic systems don't care about what you're studying.Deck-aware systems consider each card in the context of the rest of the cards (the \"deck\") while Deck-agnostic systems consider each card in pure isolation.Currently, FSRS is both Content-agnostic as well as Deck-agnostic. This makes it extremely easy to integrate into a spaced repetition system, but this also means the model will underfit a bit.It it interesting to note that you could in practice optimize seperate FSRS models for each deck covering different topics, which would make it Content-aware in a sense. Additionally, \"fuzz\" is a somewhat Deck-aware feature of the model in that it exists specifically to reduce interactions between other cards in the deck.[1] https://github.com/open-spaced-repetition/py-fsrs",
+    "parent": 44790422,
+    "depth": 1
+  },
+  {
+    "id": 44794552,
+    "by": "barrell",
+    "timeISO": "2025-08-05T05:18:53.000Z",
+    "textPlain": "I’ve been working on https://phrasing.app for a while now, including many iterations of the SRS. It’s been my experience that most of these sorts of improvements are really imperceptible. While I use FSRS as a base, and I’m very happy with the results it provides, it’s really only a few percentage points off of the SM-2 algorithm from the 90s. It’s slightly less stressful, definitely more accurate, but I think only astute users would even notice the difference.I’ve incorporated many different things into the SRS, from vector embeddings to graph based association to lemma clustering to morpheme linking, and was surprised how much of these I took out.Most of the unlocks with the SRS have been more in application space. Doing reviews with Anki feels like a chore, and I’m always counting down the reviews left to do. Reviews with Phrasing however are much more addictive, and I routinely spent an extra 30+ minutes in that “ok just one more card” loop.We will never be able to know with 100% certainty how well you know a card, but FSRS gets us darn close. I think the interesting stuff is less about improving that metric, and more about what can you do with that information.Thanks to the whole FSRS team btw (I assume y’all will be reading this hn post) <3And if anyone is curious I wrote up a bit about my SRS here: https://phrasing.app/blog/humane-srs",
+    "parent": 44790422,
+    "depth": 1
+  },
+  {
+    "id": 44791884,
+    "by": "mabster",
+    "timeISO": "2025-08-04T22:08:27.000Z",
+    "textPlain": "On the scheduling end, I'm surprised the article didn't mention https://github.com/fasiha/ebisu which uses Bayesian statistics.When I was studying Japanese, I was thinking how it's always best to learn words in sentences and that it would be good if the sentences for a particular word were random.Extending that, the sentences could be picked such that the other words are words scheduled for today meaning much more bang for buck per learning hour.",
+    "parent": 44790422,
+    "depth": 1
+  },
+  {
+    "id": 44790429,
+    "by": "ran3000",
+    "timeISO": "2025-08-04T19:32:38.000Z",
+    "textPlain": "I explored memory models for spaced repetition in my master's thesis and later built an SRS product. This post shares my thoughts on content-aware memory models.I believe this technical shift in how SRS models the student's memory won't just improve scheduling accuracy but, more critically, will unlock better product UX and new types of SRS.",
+    "parent": 44790422,
+    "depth": 1
+  },
+  {
+    "id": 44791894,
+    "by": "kebsup",
+    "timeISO": "2025-08-04T22:09:31.000Z",
+    "textPlain": "I'm building a SRS language learning app [1] so I've thought about this topic a bit, but I've come to a conclusion that srs algorithms might be just a nerd optimization obsession. My app has \"stupid\" 1,3,7,15,30 or something like that intervals, and the reality is that if I know a card, I can swipe it within 2 seconds, and if I just barely know it, I can spend 30 seconds on it.So optimizing the algorithm such that every card comes at the exact right moment might cause all cards to feel too hard or too easy. I think having a mix of difficult and easy cards is actually a feature, not a bug.[1] https://vocabuo.com",
+    "parent": 44790422,
+    "depth": 1
+  },
+  {
+    "id": 44791136,
+    "by": "pessimizer",
+    "timeISO": "2025-08-04T20:44:28.000Z",
+    "textPlain": "> [....] Ignoring the following factors means we are leaving useful information on the table:> 1. The review histories of related cards. Card semantics allow us to identify related cards. This enables memory models to account for the review histories of all relevant cards when estimating a specific card’s retrievability.> 2. [...]I've been thinking that card semantics shouldn't be analyzed at all, and just treated as a black box. You can get so much data off of just a few users of a flashcard deck that you could build your own map of the relationships between cards, just by noticing the ones that get failed or pass together over time. Just package that map with the deck and the scheduler might get a lot smarter.That map could give you good info on which cards were redundant, too.edit: this may be interesting to someone, but I've also been trying to flesh out a model where agents buy questions from a market, trade questions with each other, and make bets with each other about whether the user will be able to recall the question when asked. Bankrupt agents are replaced by new agents. Every incentive in the system is parameterized by the user's learning requirements.",
+    "parent": 44790422,
+    "depth": 1
+  },
+  {
+    "id": 44792004,
+    "by": "jeffalyanak",
+    "timeISO": "2025-08-04T22:24:19.000Z",
+    "textPlain": "In the language learning world there are some great tools already for adding content-awareness.AnkiMorphs[1] will analyze the morphemes in your sentences and, taking into account the interval of each card as a sign of how well you know each one, will re-order your new cards to, ideally, present you with cards that have only one unknown word.It doesn't do anything to affect the FSRS directly—it only changes the order of new, unlearned cards—but in my experience it's so effective at shrinking the time from new card to stable/mature that I'm not sure how much more it would help to have the FSRS intervals being adjusted in this particular domain.1: https://mortii.github.io/anki-morphs/intro.html",
+    "parent": 44790422,
+    "depth": 1
+  },
+  {
+    "id": 44791312,
+    "by": "rahimnathwani",
+    "timeISO": "2025-08-04T21:04:28.000Z",
+    "textPlain": "You mention that FSRS treats each card independently, even if they derive from the same note. I wonder whether you've tried this Anki plugin, which tries to increase the interval between reviews of 'sibling' cards: https://ankiweb.net/shared/info/759844606",
+    "parent": 44790422,
+    "depth": 1
+  },
+  {
+    "id": 44796220,
+    "by": "huhtenberg",
+    "timeISO": "2025-08-05T10:04:24.000Z",
+    "textPlain": "To help with language learning I tried Anki, didn't like the UX and ended up writing my own SRS, from scratch.One thing that becomes very obvious very quickly is that all cards derived from the same piece of information should be treated as a group. The last thing you'd want is to see \"a cow / ?\" quickly followed by \"una mucca / ?\". This is just pointless.So while I appreciate the in-depth write-up by the author, I must say that its main insight - that the scheduling needs to account for the inter-card dependencies - lies right there on the surface. The fact that Anki doesn't support this doesn't make it any less obvious.",
+    "parent": 44790422,
+    "depth": 1
+  },
+  {
+    "id": 44793095,
+    "by": "vhrrsrivr",
+    "timeISO": "2025-08-05T00:46:40.000Z",
+    "textPlain": "Rather than relying on an embedding space, my approach is to have the cards themselves be grammars that can define the relationships between concepts explicitly. Then the problem becomes what specific sampling of all the possible outputs is optimal for a learner to see at any given time, given their knowledge state.See how it's applied to Japanese learning here: https://elldev.com/feed/grsly",
+    "parent": 44790422,
+    "depth": 1
+  },
+  {
+    "id": 44794687,
+    "by": "HDMI_Cable",
+    "timeISO": "2025-08-05T05:44:45.000Z",
+    "textPlain": "| The main challenge in building content-aware memory models is lack of data. To my knowledge, no publicly available dataset exists that contains real-world usage data with both card textual content and review histories.I wonder if the author has ever considered reaching out to makers of Anki decks used by premeds and medical students like the AnKing [1]. They create Anki decks for users studying the MCAT and various Med School curricula, so have a) relatively stable deck content (which is very well annotated and contains lots of key words that would make semantic grouping quite easy) b) probably contains loads of statistics on user reviews (since they have an Anki addon that sends telemetry to their team to make the decks better IIRC), and c) contains incredibly disparate information (all the way from high-school physics to neurochemistry).---[1]: https://www.theanking.com",
+    "parent": 44790422,
+    "depth": 1
+  },
+  {
+    "id": 44791639,
+    "by": "daft_pink",
+    "timeISO": "2025-08-04T21:36:40.000Z",
+    "textPlain": "After reading this, I would really like to know what other spaced repetition software there is for things like ai driven speech?I love Anki and used it before when I needed to memorize things, but would love to know what other options on the market exist.",
+    "parent": 44790422,
+    "depth": 1
+  },
+  {
+    "id": 44797476,
+    "by": "charcircuit",
+    "timeISO": "2025-08-05T12:59:46.000Z",
+    "textPlain": "The one thing I would want from a content aware scheduler would be to not put similar together.What ends up happening is I have two  similar cards mixed up. For the first card I take a 50/50 and get it right. Then for the second card I get it correct by process of information instead of having to take another 50/50. This results in the system incorrectly thinking I knew the second card that came up.",
+    "parent": 44790422,
+    "depth": 1
+  }
+]

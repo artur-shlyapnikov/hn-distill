@@ -1,0 +1,234 @@
+[
+  {
+    "id": 44801187,
+    "by": "maltalex",
+    "timeISO": "2025-08-05T17:27:24.000Z",
+    "textPlain": "If you’re working in the .net ecosystem, you need to grok msbuild. Is not exactly painless or elegant, but is incredibly powerful. Creating a nuget package that applies settings and configuration files to consuming projects is the tip of a very deep iceberg.I’m the author and owner of a similar code style/code quality package in a fairly large company and went through a very similar process, culminating with writing our own Roslyn-based analyzers to enforce various internal practices to supplant the customized configuration of the Microsoft provided analyzers. Also, we discovered that different projects need different level of analysis. We’re less strict with e.g test projects than core infrastructure. But all projects need to have the same formatting and style. \nThat too can be easily done with one nuget using msbuild.",
+    "parent": 44791301,
+    "depth": 1
+  },
+  {
+    "id": 44836541,
+    "by": "tedggh",
+    "timeISO": "2025-08-08T13:09:12.000Z",
+    "textPlain": "This is a good article and I appreciate the author sharing his ideas. But that screenshot showing an example of poorly written code. Man if someone in your team is writing code like that you have much more serious problems. I understand the need for guardrails and standards, but when you go through the right process of hiring someone and giving an offer this should not happen. This is the equivalent of a law firm hiring a lawyer then adding a tool that checks their work when drafting documents making sure they don’t make mistakes. I’m not talking about complex compliance issues but fundamental knowledge a lawyer should have. The case can be made this is for junior developers, and I agree it can be useful, but there’s usually a path for junior developers that involves 1:1 mentorship before they start pushing critical code. We do have standards and guidelines in my team, but most of them are nice-to-haves. We assume we are all professionals and trust each other’s work even when many times we disagree on design and coding style. Our effort and enforcement is testing, accountability and good documentation. We nudge for readable code. We have a guy that loves Regex and we let him use it if well documented.",
+    "parent": 44791301,
+    "depth": 1
+  },
+  {
+    "id": 44836743,
+    "by": "giancarlostoro",
+    "timeISO": "2025-08-08T13:34:13.000Z",
+    "textPlain": "I used to recommend editorconfig and better tools for .NET nearly ten years ago. I never seem to get hired anywhere that appreciates better tooling and sane processes. All to the impediment of everyones productivity no less.Just kind of giving up at this point. They are perfectly fine with waiting an extra day for every developer to finish simple tasks that better tooling could have helped with and I am not even talking about AI. Better database tools, better code refactoring that catches bugs before they happen. Lots of simple things.",
+    "parent": 44791301,
+    "depth": 1
+  },
+  {
+    "id": 44836654,
+    "by": "bob1029",
+    "timeISO": "2025-08-08T13:23:19.000Z",
+    "textPlain": "It's probably a bit overkill for most shops, but you can actually write your own code fixes if you've got some common pattern:https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/t...These suggestions being immediately executable can dramatically improve compliance. I find myself taking things like range operator syntax even though I don't really prefer it simply because the tool does the conversion automatically for me.",
+    "parent": 44791301,
+    "depth": 1
+  },
+  {
+    "id": 44836745,
+    "by": "gwbas1c",
+    "timeISO": "2025-08-08T13:34:39.000Z",
+    "textPlain": "I can vouche for .editorconfig. I set it up at my current job (although not to the degree in this article.)The big problem we had was an old codebase, with a very inconsistent style, that had a lot of code written by junior developers and non-developers.This resulted in a situation where, every time I had to work in an area of the code I hadn't seen before, the style was so different I had to refactor it just to understand it..editorconfig (with dotnet-format) fixed this.",
+    "parent": 44791301,
+    "depth": 1
+  },
+  {
+    "id": 44836848,
+    "by": "jasonthorsness",
+    "timeISO": "2025-08-08T13:43:21.000Z",
+    "textPlain": "Haven’t done much in C# since Claude Code has been available but I’ve found strict linting and style rules are very helpful for such agents when writing Go. I used to run a fairly strict and customized config with StyleCop etc; I wonder if something maybe more standardized like this will be more effective.",
+    "parent": 44791301,
+    "depth": 1
+  },
+  {
+    "id": 44836751,
+    "by": "jbjbjbjb",
+    "timeISO": "2025-08-08T13:35:11.000Z",
+    "textPlain": "Nuget Audit is an odd one. I usually don’t want all devs to jump on fixing the latest vulnerability right away. We have a separate pipeline for resolving those issues.",
+    "parent": 44791301,
+    "depth": 1
+  },
+  {
+    "id": 44836137,
+    "by": "pestkranker",
+    "timeISO": "2025-08-08T12:18:08.000Z",
+    "textPlain": "Is there a 'prettier' equivalent for code formatting? In my opinion, it's the only thing missing for a truly scalable codebase.",
+    "parent": 44791301,
+    "depth": 1
+  },
+  {
+    "id": 44835527,
+    "by": "graboid",
+    "timeISO": "2025-08-08T10:44:50.000Z",
+    "textPlain": "At work, we use the .editorconfig of the .NET runtime, with slight modifications:https://github.com/dotnet/runtime/blob/main/.editorconfig",
+    "parent": 44791301,
+    "depth": 1
+  },
+  {
+    "id": 44794749,
+    "by": "reverseblade2",
+    "timeISO": "2025-08-05T05:58:22.000Z",
+    "textPlain": "Title should be C# not .Net",
+    "parent": 44791301,
+    "depth": 1
+  },
+  {
+    "id": 44835578,
+    "by": "000ooo000",
+    "timeISO": "2025-08-08T10:56:03.000Z",
+    "textPlain": "Pretty long article with not a great deal of substance beyond what is mentioned early on. Would be interested to know how much input teams had in the rule configuration before this was foisted on them.",
+    "parent": 44791301,
+    "depth": 1
+  },
+  {
+    "id": 44836636,
+    "by": "Quarrelsome",
+    "timeISO": "2025-08-08T13:21:03.000Z",
+    "textPlain": "> If you’re working in the .net ecosystem, you need to grok msbuild.Agreed, it makes a huge difference.Sadly Visual Studio made that difficult from the start of .net, given its history with attempting to hide the .csproj files from developers and thus reduce their exposure to it. Its a real shame they decided to build visual studio like that and didn't change it for years.",
+    "parent": 44801187,
+    "depth": 2
+  },
+  {
+    "id": 44835977,
+    "by": "johnfonesca",
+    "timeISO": "2025-08-08T11:57:15.000Z",
+    "textPlain": ">But all projects need to have the same formatting and style.That too can be easily done with one nuget using msbuild.That's like using a car for \"traveling\" 3 meters. Why not just use dotnet format + .editorconfig , they were created just for this purpose.",
+    "parent": 44801187,
+    "depth": 2
+  },
+  {
+    "id": 44836431,
+    "by": "kreco",
+    "timeISO": "2025-08-08T12:53:55.000Z",
+    "textPlain": "While msbuild is powerful, I strongly believe it should have been a standard C# language build system instead of a XML-based one.Any non-trivial thing to do is a pain to figure out if the documentation is not extensive enough.I really love C#, but msbuild is one of the weak links to me, almost everything else is a joy to use.",
+    "parent": 44801187,
+    "depth": 2
+  },
+  {
+    "id": 44836123,
+    "by": "tailspin2019",
+    "timeISO": "2025-08-08T12:16:50.000Z",
+    "textPlain": "I agree with you on MsBuild being powerful.I often really hate certain technologies like MsBuild and use them begrudgingly for years, fighting with the tooling, right up until I decide once and for all to give it enough of my attention to properly learn, and then realise how powerful and useful it actually is!I went through the same thing with webpack too.MsBuild is far from perfect though. I often think about trying to find some sort of simple universal build system that I can use across all my projects regardless of the tech stack.I’ve never really dug much into `make`… Maybe something like that is what I’m yearning for.",
+    "parent": 44801187,
+    "depth": 2
+  },
+  {
+    "id": 44836697,
+    "by": "gwbas1c",
+    "timeISO": "2025-08-08T13:28:43.000Z",
+    "textPlain": "> But that screenshot showing an example of poorly written code.That screenshot looks like it was specifically written for the blog entry. (The project is called ConsoleApp1.)I suspect the author didn't want to show their employer's proprietary code on their blog, and probably wanted to make a concise screenshot with multiple errors.(Otherwise, they might have people who don't have a programming background occasionally writing non-production tools as part of a non-software-engineering job. This is quite common in many workplaces.)",
+    "parent": 44836541,
+    "depth": 2
+  },
+  {
+    "id": 44837043,
+    "by": "motorest",
+    "timeISO": "2025-08-08T13:59:25.000Z",
+    "textPlain": "> This is the equivalent of a law firm hiring a lawyer then adding a tool that checks their work when drafting documents making sure they don’t make mistakesI don't agree. A better fitting comparison would be if a law firm enables spell checkers and proofreads documents to verify they use the law firm's letterhead. Do you waste your time complaining whether the space should go left or right of a bracket?",
+    "parent": 44836541,
+    "depth": 2
+  },
+  {
+    "id": 44836642,
+    "by": "hk1337",
+    "timeISO": "2025-08-08T13:22:00.000Z",
+    "textPlain": "I remember seeing at one job, to share a “token” that was in a byte array, they iterated the byte array and concatenated the values. It was supposed to be an internal “auth tool”/“sso” but was unusable in the php app I was trying to use it with because it couldn’t (or at least I wasn’t sure how to) convert the byte array back. I ended up writing a small Java console app to convert it for me.",
+    "parent": 44836541,
+    "depth": 2
+  },
+  {
+    "id": 44836618,
+    "by": "Quarrelsome",
+    "timeISO": "2025-08-08T13:18:25.000Z",
+    "textPlain": "isn't it[0] intentionally bad, so as to highlight the things .editorconfig might suggest to improve it?[0] https://anthonysimmon.com/workleap-dotnet-coding-standards/w...",
+    "parent": 44836541,
+    "depth": 2
+  },
+  {
+    "id": 44836749,
+    "by": "xnorswap",
+    "timeISO": "2025-08-08T13:34:48.000Z",
+    "textPlain": "I couldn't disagree more.How do you expect junior programmers to become senior ones without help? Having automated guard-rails saves a large amount of your senior devs time by avoiding them having to pick such things up in code review, and you'll find the junior programmers absorb the rules in time and learn.Several of the examples are nitpicking naming, this is exactly what should be automated. It's not like even experienced people won't accidentally use camelCase instead of PascalCase sometimes, or maybe accidentally snake_case something especially if they're having to mix C# back-end with JS frontend with different naming conventions.Picking it up immediately in the IDE is a massive time-save for everyone.The \"There is an Async alternative\" is a great roslyn rule. Depending on the API, some of those async overloads might not even have existed in the past, e.g. JSON serialisation, so having something to prompt \"Hey, there's a better way to do this!\" is actually magical.Unused local variables are less likely, but they still happen, especially if a branch later has been removed. Having it become a compiler error helps force the dev to clean up as they go.",
+    "parent": 44836541,
+    "depth": 2
+  },
+  {
+    "id": 44836000,
+    "by": "tailspin2019",
+    "timeISO": "2025-08-08T12:00:29.000Z",
+    "textPlain": "The article does mention they only turn on “TreatWarningAsErrors” in production builds.It’s definitely a tough balance to strike. I go back and forth on this myself.Maybe the happy medium is to have everything strictly enforced in CI, relatively relaxed settings during normal dev loop builds and then perhaps a pre-commit build configuration that forces/reminds you to do one production build before pushing… (which if you miss, just means you may end up with a failed CI build to fix…)",
+    "parent": 44835951,
+    "depth": 2
+  },
+  {
+    "id": 44837005,
+    "by": "xnorswap",
+    "timeISO": "2025-08-08T13:56:41.000Z",
+    "textPlain": "The trick isn't to convince, it's to just do.How I approached it for an org with 300 projects and 10k+ failures after adding the analyzer.1. Add .editorconfig and analyzer anyway2. Ignore all the failing analyzer rules in .editorconfigThat's your baseline. Even if you have to ignore 80% of rules, that's still 20% of rules now being enforced going forward, which puts a stake in the ground.Even if the .editorconfig doesn't enforce much yet, it allows incremental progress.Crucially, your build still passes, it can get through code review, and it doesn't need to change a huge amount of existing code, so you won't cause massive merge issues or git-blame headaches.3. Over time, take a rule from the ignored list, clean up the code base to meet that rule, then un-ignore.How often you do such \"weeding\", and whether you can get any help with it, is up to you, but it's no longer a blocker, it's not on any critical path, it's just an easy way to pay down some technical debt.Eventually you might be able to convince your team of the value. When they have fewer merge conflicts because there's fewer \"random\" whitespace changes. When they save time and get to address and fix a problem in private rather than getting to PR, etc.Generally it's easier to ask forgiveness than permission. But you've got to also minimise the disruption when you introduce tooling. Make it easy for teammates to pick up the tooling, not a problem they now have to deal with.",
+    "parent": 44836743,
+    "depth": 2
+  },
+  {
+    "id": 44836974,
+    "by": "pc86",
+    "timeISO": "2025-08-08T13:53:04.000Z",
+    "textPlain": "I've actually changed my mind on this, if you're working in a project that's doesn't have a ton of early-lifecycle v0 packages. If there is a lot of quick churn in your dependencies, yeah you want to devote dedicated engineering resources to keeping these up-to-date and regression testing things.If everything is pretty stable, it's nice to have each developer share the work with keeping things up-to-date and functional. Broad automated test coverage makes this a lot easier of course.",
+    "parent": 44836751,
+    "depth": 2
+  },
+  {
+    "id": 44836425,
+    "by": "leosanchez",
+    "timeISO": "2025-08-08T12:53:33.000Z",
+    "textPlain": "dotnet format[0] with .editorconfig should do the job.[0]: https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-f...",
+    "parent": 44836137,
+    "depth": 2
+  },
+  {
+    "id": 44836505,
+    "by": "rasmuskl",
+    "timeISO": "2025-08-08T13:03:30.000Z",
+    "textPlain": "CSharpier is pretty good for a prettier like feel: https://csharpier.com/",
+    "parent": 44836137,
+    "depth": 2
+  },
+  {
+    "id": 44836204,
+    "by": "jimlawruk",
+    "timeISO": "2025-08-08T12:26:31.000Z",
+    "textPlain": "This appears to be the OP / Workleap's editor config. https://github.com/workleap/wl-dotnet-codingstandards/blob/m...",
+    "parent": 44835527,
+    "depth": 2
+  },
+  {
+    "id": 44797365,
+    "by": "algorithmsRcool",
+    "timeISO": "2025-08-05T12:49:10.000Z",
+    "textPlain": "I'm not sure i understand your comment, .editorconfig works just fine for VB files as well as F#",
+    "parent": 44794749,
+    "depth": 2
+  },
+  {
+    "id": 44836274,
+    "by": "bragh",
+    "timeISO": "2025-08-08T12:35:12.000Z",
+    "textPlain": "There is quite useful content in there, but the writing style makes it very annoying to read, it feels as if the original text went through some kind of LLM filter and made it corporately soulless, as seems to be the good practice now.",
+    "parent": 44835578,
+    "depth": 2
+  },
+  {
+    "id": 44836019,
+    "by": "tailspin2019",
+    "timeISO": "2025-08-08T12:03:21.000Z",
+    "textPlain": "Plenty of substance in there for me. I’ve been building with dotnet since it existed and still learned a couple of new techniques/ideas from this article.",
+    "parent": 44835578,
+    "depth": 2
+  }
+]

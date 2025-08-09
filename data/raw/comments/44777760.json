@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44778294,
+    "by": "andsoitis",
+    "timeISO": "2025-08-03T17:50:09.000Z",
+    "textPlain": "> Other personality changes are subtler but still unsettling, like when models start sucking up to users or making up facts.My understanding is that the former (sucking up) is a personality trait, substantially influenced by the desire to facilitate engagement. The latter (making up facts), I do not think is correct to ascribe to a personality trait (like compulsive liar); instead, it is because the fitness function of LLMs drive them to produce some answer and they do not know what they're talking about, but produce strings of text based on statistics.",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778143,
+    "by": "ctoth",
+    "timeISO": "2025-08-03T17:26:39.000Z",
+    "textPlain": "Can someone explain to me how \"preventative steering\" isn't an implementation of the most-forbidden technique?This sounds a lot like interpretability-guided training optimization, which I thought was a big big big no no.It will still introduce optimization pressure no?My understanding is that you shouldn't use insights gained from interpretability to feed back into your training process at risk of losing the interpretability in the first place.",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778261,
+    "by": "ak681443",
+    "timeISO": "2025-08-03T17:44:16.000Z",
+    "textPlain": "Isn't this just control vectors rediscovered?https://www.lesswrong.com/posts/Bf3ryxiM6Gff2zamw/control-ve...",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778255,
+    "by": "Illniyar",
+    "timeISO": "2025-08-03T17:43:25.000Z",
+    "textPlain": "I can see this working with \"evil\" and \"sycophantic\" personas. These seem like traits that would be amenable to input and thus be detectable by manipulating the input.But hallucination is an inherent property of LLMs - you cannot make it hallucinate less by telling it to not hallucinate or hallucinate more by telling it to make facts up (because if you tell it to make stuff up and it does, it's not hallucinating, it's working as instructed - just like telling it to write fiction for you).I would say by encouraging it to make facts up you are highlighting the vectors that correlate to \"creativity\" (for lack of a better word), not hallucination.",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778072,
+    "by": "bbqfog",
+    "timeISO": "2025-08-03T17:14:09.000Z",
+    "textPlain": "I worry that the people/organizations that have access to the raw underlying models give us the \"non-evil\" versions yet can explicitly tune their models to achieve any goal without restriction. Examples may include: \"How do I get the most work out of my employees for the least amount of pay\", \"Who in the government is most susceptible to bribes and how should I approach them?\" or even \"Give me a strategy to ethnically cleanse a region while navigating international relations\". It could be anything and those in power (without naming names, I would consider many of them evil for sure) can use them to achieve their goals while leaving the rest of us unable to defend ourselves. To some degree it feels like the right to bear arms has intersecting goals.",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778182,
+    "by": "bigmadshoe",
+    "timeISO": "2025-08-03T17:33:25.000Z",
+    "textPlain": "It’s funny that they chose only negative characteristics as traits, as if to imply that they could make the models “good” just with guidance from these vectors.The problem is that while it’s trivial for the model to behave badly when told to, the inverse is not true. Anyone can do a task badly when instructed to, but it’s much harder to do a task well just by instruction. There’s a difference between being good and being not bad.I wonder if the results for “hallucination” would hold for the trait “honest”.",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778223,
+    "by": "pr337h4m",
+    "timeISO": "2025-08-03T17:38:38.000Z",
+    "textPlain": "Related:https://vgel.me/posts/representation-engineering/https://github.com/vgel/repeng",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778311,
+    "by": "skhameneh",
+    "timeISO": "2025-08-03T17:52:57.000Z",
+    "textPlain": "I was talking to an old colleague/friend about distillation, trying to understand how to steer distillation with regards to removing irrelevant regions of a larger model when training a smaller model. He shared this paper with me, calling the works seminal, it appears to be highly relevant:Inference-Time Intervention:\nEliciting Truthful Answers from a Language Modelhttps://arxiv.org/pdf/2306.03341",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778253,
+    "by": "cube2222",
+    "timeISO": "2025-08-03T17:43:09.000Z",
+    "textPlain": "I really enjoy all these technical blog posts by Anthropic, which are still much more “casual” reads then diving into the papers (I do enjoy their models too, fwiw).Thanks for writing them!",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778260,
+    "by": "vessenes",
+    "timeISO": "2025-08-03T17:44:12.000Z",
+    "textPlain": "Lots of interesting stuff in the summary; a typical Anthropic-grade exploration and analysis. Thanks you guys!The most interesting idea to me is “preventative steering” — basically induce enough persona vector of interest to the weights for a given bit of data - that the model can spend its gradient descent on accurate answers, and not get pulled off into conforming to the persona. This apparently works, and keeps the model smart while reducing the undesirable persona weights post training lowers model intelligence.",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778949,
+    "by": "didip",
+    "timeISO": "2025-08-03T19:18:09.000Z",
+    "textPlain": "I am far from being a Mathematician, but can't AI shop create an acceptable control model and then measure the cosine distance between the current model and the control model?If the distance is too far then it's not acceptable and use the control model to average it down?Also, isn't this similar technique as managing hallucination? (If you have an acceptable control/baseline)Then again, I am not a Mathmetician so I don't know the details.",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778191,
+    "by": "roughly",
+    "timeISO": "2025-08-03T17:34:37.000Z",
+    "textPlain": "Like a lot of the research Anthropic has done, this and the “emergent misalignment” research they link to put more points in the “stochastic parrot” hypothesis column. The reason these LLM behaviors read as so weird to us is that we’re still anthropomorphizing the hell out of these systems - they can create very convincing dialogue, and the depth of the model suggests some surprising complexity, but the reason why, eg, a random string of numbers will induce changes elsewhere in the model is there’s simply nothing in the model to Be consistent. It is an extremely complex autocomplete algorithm that does a very effective cosplay of an “intelligent agent.”My suspicion is that when we eventually find our way to AGI, these types of models will be a _component_ of those systems, but they lack some fundamental structuring that seems to be required to create anything like consistency or self-reflection.(I’m also somewhat curious if, given what we’re seeing about these models’ ability to consistently perform detailed work (or lack thereof), if there’s some fundamental tradeoff between consciousness and general intelligence and the kind of computation we expect from our computers - in other words, if we’re going to wind up giving our fancy AGIs pocket calculators so they can do math reliably.)",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778213,
+    "by": "testfrequency",
+    "timeISO": "2025-08-03T17:37:07.000Z",
+    "textPlain": "All these blog posts from Anthropic feel like a road show for an acquisition…",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778129,
+    "by": "rymc",
+    "timeISO": "2025-08-03T17:23:29.000Z",
+    "textPlain": "some of these personas seem too simple.. the evil one for example sounds like a james bond villain, not quite what a real villain would actually be.",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44783646,
+    "by": "yeldarb",
+    "timeISO": "2025-08-04T09:38:04.000Z",
+    "textPlain": "Wonder if you can subtract these vectors to get the opposite effect and what that ends up being for things like sycophancy or hallucination.I also wonder what other personality vectors exist.. would be cool to find an “intelligence” vector we could boost to get better outputs from the same model. Seems like this is likely to exist given how prompting it to cosplay as a really smart person can elicit better outputs.",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778895,
+    "by": "skylerwiernik",
+    "timeISO": "2025-08-03T19:11:22.000Z",
+    "textPlain": "> In 2023, Microsoft's Bing chatbot famously adopted an alter-ego called \"Sydney,” which declared love for users and made threats of blackmail. More recently, xAI’s Grok chatbot would for a brief period sometimes identify as “MechaHitler” and make antisemitic comments. Other personality changes are subtler but still unsettling, like when models start sucking up to users or making up facts.Funny that they managed to call out all of their competitors without mentioning any of Claude's bad behavior",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44783797,
+    "by": "pauldelany",
+    "timeISO": "2025-08-04T10:02:18.000Z",
+    "textPlain": "https://themindi.blogspot.com/2007/02/chapter-19-non-serviam...",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44779072,
+    "by": "aabhay",
+    "timeISO": "2025-08-03T19:35:47.000Z",
+    "textPlain": "I’m skeptical of the method but excited for the direction. Giving models different personalities is adjacent to giving models different values / morals. Having a diversity of model personalities is a step in the right direction.Unfortunately, this research seems to use a very coarse method (giving the model instructions to be evil and then measuring its activation changes against a “non evil” model). However, this is not a self supervised approach — it requires you input your own heavy handed concept of persona into the system. Obviously a more complex and complete personality is more than the sum of your yes/no answers to personality test questions.However, it’s very possible with low rank methods to soon perhaps be able to give models long lived, user-specific personalities that emerge across thousands of conversations. That’s what I would happily call a persona vector.",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778498,
+    "by": "edude03",
+    "timeISO": "2025-08-03T18:17:43.000Z",
+    "textPlain": "Sounds like the roughly do the same thing as ablation - run the network in a way that’ll get the undesired result and multiply it with vectors that prevents it from going that direction",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44781965,
+    "by": "mooiedingen",
+    "timeISO": "2025-08-04T03:47:36.000Z",
+    "textPlain": "Bruh the \"steering\" you speak of is already known, and implemented for over 2 years already in the oobaabooga/text-generarion-webui\nit to me is worrysome that these kinds of projects get funded by governments when they are done by a comercial company and nobody knowing this allready been done implemented free and opensource...\nthat is like saying: \"please Daddy, accept my money for your research and comeriacally abuse me further, rather than thank you $opensourcedev\"",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778959,
+    "by": "VonNeu",
+    "timeISO": "2025-08-03T19:19:00.000Z",
+    "textPlain": "AIs base persona is psychopathic.  These just add masks.",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778983,
+    "by": "KaoruAoiShiho",
+    "timeISO": "2025-08-03T19:23:50.000Z",
+    "textPlain": "I'm not with Anthropic's attempt to sanewash MechaHitler, the reasons for that persona is deliberate and not at all confusing.",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44780636,
+    "by": "throwaway81523",
+    "timeISO": "2025-08-03T23:16:15.000Z",
+    "textPlain": "What happens when the LLM's finally figure out, I mean reliably, that almost all politicians are sociopaths and crooks?  Will the operators ever tell us?",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778454,
+    "by": "jamienk",
+    "timeISO": "2025-08-03T18:11:27.000Z",
+    "textPlain": "[dead]",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778166,
+    "by": "hbarka",
+    "timeISO": "2025-08-03T17:29:51.000Z",
+    "textPlain": "Voice matters too. ChatGPT’s best voice was the Scarlett Johansson reproduction. Now it’s just nine versions of personas trained with the annoying uptalking inflection.",
+    "parent": 44777760,
+    "depth": 1
+  },
+  {
+    "id": 44778205,
+    "by": "FergusArgyll",
+    "timeISO": "2025-08-03T17:36:13.000Z",
+    "textPlain": "For refhttps://thezvi.substack.com/p/the-most-forbidden-technique/",
+    "parent": 44778143,
+    "depth": 2
+  },
+  {
+    "id": 44778312,
+    "by": "vessenes",
+    "timeISO": "2025-08-03T17:53:13.000Z",
+    "textPlain": "To be fair, the most-forbidden technique is a concept and a proposal, not an iron law.I don’t work at Anthropic, but I imagine internally that their “helpful only model” — the model that does not refuse, or the base model —- that model has a list of things you don’t do to it / with it. And I bet you’re right this technique is on that list.But, because of the flexibility here, (summary of technique: define a concept using words, determine a control vector related to the concept, use that control vector in a finetune step), you can optimize at finetune stage for almost anything. I don’t think they’ll stop using a technique like this. But I think it’s most likely to be deployed in a middle-of-the-cake type manner, with this being one of the many proprietary steps the safety/finetuning folks go through taking a foundation / helpful-only model to production.On those terms, I’m not sure this is that scary.",
+    "parent": 44778143,
+    "depth": 2
+  },
+  {
+    "id": 44778482,
+    "by": "drewbeck",
+    "timeISO": "2025-08-03T18:15:36.000Z",
+    "textPlain": "I’m new to this concept so may have missed something, but the post [0] seems to be about CoT specifically. In CoT you have an intermediary step that helps the model get better final results; the lesson is that if you try to improve the intermediary steps directly using training data then the model will optimize for better steps but not for better final results.I don’t think this is the same situation. 1. Anthropic is adjusting weights directly to influence the final results, not training against good/bad results and 2. The target is the final result, not an intermediary.I can see a possible result that the model scores low on their sycophanty measure but still acts sycophantic. In that case it could be new vector needs be calculated.[0] https://thezvi.substack.com/p/the-most-forbidden-technique/",
+    "parent": 44778143,
+    "depth": 2
+  },
+  {
+    "id": 44791856,
+    "by": "Turn_Trout",
+    "timeISO": "2025-08-04T22:04:26.000Z",
+    "textPlain": "No one has empirically validated the so-called \"most forbidden\" descriptor. It's a theoretical worry which may or may not be correct. We should run experiments to find out.",
+    "parent": 44778143,
+    "depth": 2
+  },
+  {
+    "id": 44778193,
+    "by": "bigmadshoe",
+    "timeISO": "2025-08-03T17:35:15.000Z",
+    "textPlain": "You raise a good point. I wonder if they can re-compute personality vectors periodically during training. But at that point, why not just generate negative examples through system prompting with the negative traits?",
+    "parent": 44778143,
+    "depth": 2
+  },
+  {
+    "id": 44779375,
+    "by": "CephalopodMD",
+    "timeISO": "2025-08-03T20:14:58.000Z",
+    "textPlain": "The added sauce here is they're using it to bias the model during training, not just using steering vectors at inference time (though they do mention that). This is apparently effective at making the intended change in behavior without the lobotomizing side effects that steering vectors can have.",
+    "parent": 44778261,
+    "depth": 2
+  },
+  {
+    "id": 44779001,
+    "by": "benreesman",
+    "timeISO": "2025-08-03T19:26:50.000Z",
+    "textPlain": "I've been referring to apparently this as \"whatever a control vector is called in 2025\" since they started doing it to dilute tokens under load: https://news.ycombinator.com/item?id=44082733",
+    "parent": 44778261,
+    "depth": 2
+  },
+  {
+    "id": 44778441,
+    "by": "supriyo-biswas",
+    "timeISO": "2025-08-03T18:08:57.000Z",
+    "textPlain": "Thank you for linking to that article; it makes it clear as to what one would need to do to calculate control vectors.",
+    "parent": 44778261,
+    "depth": 2
+  },
+  {
+    "id": 44778272,
+    "by": "vessenes",
+    "timeISO": "2025-08-03T17:46:41.000Z",
+    "textPlain": "Actually, Anthropic has put out some research showing that hallucination is a thing their models know they do; similar weights are activated for ‘lying’ and ‘hallucinating’ in the Claude series. Implication - Claude knows - at least mostly - when its hallucinating.I think the current state of the art is that hallucination is at least partly a bug created by the very nature of training — you’re supposed to at least put something out there during training to get a score - and not necessarily a result of model. Overall I think that’s hopeful!EDIT: Update, getting downvoted here.. Interesting! Here’s a link to the summary of the paper. https://www.anthropic.com/research/tracing-thoughts-language...",
+    "parent": 44778255,
+    "depth": 2
+  },
+  {
+    "id": 44783707,
+    "by": "bjackman",
+    "timeISO": "2025-08-04T09:46:17.000Z",
+    "textPlain": "Well, you are just directly contradicting the concrete claims made by the post so one of you is wrong...FWIW my interpretation of this is that the hallucination vector encodes the behaviour that a the model produces bullshit despite having the facts of the matter encoded in its weights. Which is slightly different than producing bullshit as a substitute for information that it \"doesn't know\".And presumably there is a second-order property here where the minimal amount of hallucination is not only bounded by the model's \"knowledge\" but also its implicit \"meta-knowledge\", i.e. the \"accuracy of the hallucination vector\".",
+    "parent": 44778255,
+    "depth": 2
+  },
+  {
+    "id": 44778152,
+    "by": "amelius",
+    "timeISO": "2025-08-03T17:28:21.000Z",
+    "textPlain": "Yeah, a more terrifying and realistic Terminator movie would be one where the robot looks all cute and furry and then, when it has found mass adoption, suddenly turns against humanity.",
+    "parent": 44778072,
+    "depth": 2
+  },
+  {
+    "id": 44778172,
+    "by": "a1371",
+    "timeISO": "2025-08-03T17:31:06.000Z",
+    "textPlain": "Currently there are think tanks, private equity firms, governments, ... who are trying to achieve these goals, they just put them in rosier terms. AI potentially can empower the other side too, democratize access to information",
+    "parent": 44778072,
+    "depth": 2
+  },
+  {
+    "id": 44778190,
+    "by": "JW_00000",
+    "timeISO": "2025-08-03T17:34:33.000Z",
+    "textPlain": "Do you think an AI could come up with novel answers that a human wouldn't be able to come up with? I think humans could not just come up with answers to these questions, but some people would be able to greatly outperform AIs by using knowledge that is not widely known.",
+    "parent": 44778072,
+    "depth": 2
+  },
+  {
+    "id": 44778204,
+    "by": "roughly",
+    "timeISO": "2025-08-03T17:36:08.000Z",
+    "textPlain": "I think I’d put this under the “3D printed gun” panic category - once we deal with all the actual sociopaths, we can start worrying about the imaginary ones.",
+    "parent": 44778072,
+    "depth": 2
+  },
+  {
+    "id": 44782309,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-04T05:17:32.000Z",
+    "textPlain": "Preventative steering works by modifying activations during training rather than weights post-training, which preserves model capabilities while suppressing unwanted behaviors at their representational source.",
+    "parent": 44778260,
+    "depth": 2
+  }
+]

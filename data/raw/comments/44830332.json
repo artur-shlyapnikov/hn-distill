@@ -1,0 +1,58 @@
+[
+  {
+    "id": 44830433,
+    "by": "cnst",
+    "timeISO": "2025-08-07T21:12:44.000Z",
+    "textPlain": "> 79% of OpenBSD kernel source is AMD DRMThe sys.tar.gz from https://ftp.eu.openbsd.org/pub/OpenBSD/7.7/ (normally unpacked into /usr/src/sys on an OpenBSD machine) represents the entire kernel source code of OpenBSD 7.7.  (The userland and compiler are in src.tar.gz, Xorg is in xenocara.tar.gz, and ports are in ports.tar.gz.)It has grown to 634MB unpacked for the entire kernel source tree.But the vast majority of this growth is attributable to the sys/dev/pci/drm/amd directory, which is AMD Direct Rendering Manager, standing at 499MB, with the include files at sys/dev/pci/drm/amd/include being 458MB, the biggest of which is the asic_reg directory.499/634 is 79%.It follows that 79% of OpenBSD kernel by source code is dedicated to AMD's DRM implementation.  Note that we're talking about the source code, NOT compiled code.It's a huge part of Linux, too, over at drivers/gpu/drm/amd/include/asic_reg:https://github.com/torvalds/linux/tree/master/drivers/gpu/dr...In OpenBSD, the last release before the explosive growth, was OpenBSD 6.5 (Apr 2019) with sys.tar.gz at 20MB.  With OpenBSD 6.6 (Oct 2019), it went to 30MB, now with 7.7 (Apr 2025) it's 64MB compressed.",
+    "parent": 44830332,
+    "depth": 1
+  },
+  {
+    "id": 44831899,
+    "by": "somat",
+    "timeISO": "2025-08-08T00:01:22.000Z",
+    "textPlain": "On the one hand I sort of understand it, by not having a stable ISA you don't get tied down in past mistakes and can have really clever hardware innovations. But on the other hand it leads to bullshit like this. where every hardware device is a special snowflake and effectively needs it's own unique driver.Final thoughts, It's not perfect but I really appreciate AMD's more open stance that gives us this source. And to the absolute heroes who are able to take this big steaming linux centric turd and make it work on openbsd, huge salutes. well done.However I do wish AMD would clean up their driver. Or at least settle on an ISA.",
+    "parent": 44830332,
+    "depth": 1
+  },
+  {
+    "id": 44831844,
+    "by": "bombcar",
+    "timeISO": "2025-08-07T23:54:24.000Z",
+    "textPlain": "This lends some credence to the idea that modern computers are actually GPUs and the CPU and OS are just boot support software.",
+    "parent": 44830332,
+    "depth": 1
+  },
+  {
+    "id": 44832109,
+    "by": "snvzz",
+    "timeISO": "2025-08-08T00:35:38.000Z",
+    "textPlain": "Belongs in userspace. Absolutely not the kernel.But we can't seem to move past archaic UNIX architecture.",
+    "parent": 44830332,
+    "depth": 1
+  },
+  {
+    "id": 44831457,
+    "by": "rasz",
+    "timeISO": "2025-08-07T23:02:26.000Z",
+    "textPlain": "related \"Linux kernel maintainer says no to AMDGPU patch\" https://news.ycombinator.com/item?id=13136426",
+    "parent": 44830332,
+    "depth": 1
+  },
+  {
+    "id": 44830815,
+    "by": "Y_Y",
+    "timeISO": "2025-08-07T21:50:18.000Z",
+    "textPlain": "https://github.com/torvalds/linux/blob/master/drivers/gpu/dr...11k lines of #definesIs this truly necessary?",
+    "parent": 44830433,
+    "depth": 2
+  },
+  {
+    "id": 44832018,
+    "by": "almostgotcaught",
+    "timeISO": "2025-08-08T00:23:07.000Z",
+    "textPlain": "> However I do wish AMD would clean up their driver. Or at least settle on an ISA.These two things have absolutely nothing to do with each other - drivers don't talk to the cores, which \"run\" the ISA, they talk to the command processors (which are RISCV or MIPS or some other uC) using the command packet protocol.",
+    "parent": 44831899,
+    "depth": 2
+  }
+]

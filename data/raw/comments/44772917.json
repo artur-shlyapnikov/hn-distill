@@ -1,0 +1,66 @@
+[
+  {
+    "id": 44773705,
+    "by": "matt123456789",
+    "timeISO": "2025-08-03T02:55:19.000Z",
+    "textPlain": "Whenever I start to feel like a real programmer making games and webapps and AI-enhanced ETL pipelines, I inevitably come across the blog post of a C++ expert and reminded that I am basically playing with legos and play-doh.",
+    "parent": 44772917,
+    "depth": 1
+  },
+  {
+    "id": 44773696,
+    "by": "tombert",
+    "timeISO": "2025-08-03T02:54:12.000Z",
+    "textPlain": "I had to do a UML thing for the first time in years for a class a few weeks ago[2].I'm not 100% convinced that UML is actually useful at all.  Obviously if you find value from it, don't let me take that from you, by all means keep doing it, but all it seemed to provide was boxes pointing to other boxes for stuff that really wasn't unclear from looking directly at the code anyway. It's really not that hard to look directly at the class and look directly at the \"extends\" keyword (or the equivalent for whatever language you're using) and then follow from there.  Maybe if you had like ten layers of inheritance it could be valuable, but if you're doing ten layers of inheritance there's a good chance that your code will be incomprehensible regardless.I'm not against visual diagrams for code, I draw logic out with Draw.io all the time and I've been hacking on the RoboTool [1] toolkit a bit in my free time, but what UML offers always felt more masturbatory than useful.Maybe I'm wrong, it certainly wouldn't be the first time, but every time I've tried to convince myself to like it I've left a little disappointed.  It always kind of felt like stuff the enterprise world does to look like they're working hard and creating value.[1] https://robostar.cs.york.ac.uk/robotool/ETA:[2] By \"class\", I meant like an education class, not a Java class.*",
+    "parent": 44772917,
+    "depth": 1
+  },
+  {
+    "id": 44773875,
+    "by": "edg5000",
+    "timeISO": "2025-08-03T03:31:05.000Z",
+    "textPlain": "Reflection really was the missing piece, it's one of the things that are so nice in Java. Being able to serialize/deserialize a struct to JSON fully dynamically saves a lot of code.",
+    "parent": 44772917,
+    "depth": 1
+  },
+  {
+    "id": 44774771,
+    "by": "delusional",
+    "timeISO": "2025-08-03T07:19:36.000Z",
+    "textPlain": "This is interesting because it interacts with consteval. It would be cool if the standards committee could so somehow figure out how to do codegen from consteval. Then we'd be kinda close to the promised land of procedural macros written in real C++.",
+    "parent": 44772917,
+    "depth": 1
+  },
+  {
+    "id": 44775442,
+    "by": "a_t48",
+    "timeISO": "2025-08-03T09:56:59.000Z",
+    "textPlain": "Oh man, some of the code in the linked proposal:Old:    template<class...> struct list {};\n\n    using types = list<int, float, double>;\n\n    constexpr auto sizes = []<template<class...> class L, class... T>(L<T...>) {\n      return std::array<std::size_t, sizeof...(T)>{{ sizeof(T)... }};\n    }(types{});\n\nNew:    constexpr std::array types = {^^int, ^^float, ^^double};\n    constexpr std::array sizes = []{\n      std::array<std::size_t, types.size()> r;\n      std::ranges::transform(types, r.begin(), std::meta::size_of);\n      return r;\n    }();\n\nI'm so tired of parameter packs, as useful as they are. Just give me a regular range based for loop or something similar like this. Thank you, this can't come soon enough.",
+    "parent": 44772917,
+    "depth": 1
+  },
+  {
+    "id": 44775764,
+    "by": "criddell",
+    "timeISO": "2025-08-03T11:13:47.000Z",
+    "textPlain": "If you’re like me and haven’t read much about this feature, here’s a link to the committee’s paper:https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2025/p29...The examples section was pretty helpful for me.",
+    "parent": 44772917,
+    "depth": 1
+  },
+  {
+    "id": 44776151,
+    "by": "dgfitz",
+    "timeISO": "2025-08-03T12:39:45.000Z",
+    "textPlain": "Meta: why does c++ feel almost political on this forum?",
+    "parent": 44772917,
+    "depth": 1
+  },
+  {
+    "id": 44774039,
+    "by": "peapicker",
+    "timeISO": "2025-08-03T04:15:57.000Z",
+    "textPlain": "Still waiting for IBMi to support C++11.",
+    "parent": 44772917,
+    "depth": 1
+  }
+]

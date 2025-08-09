@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44822948,
+    "by": "thecupisblue",
+    "timeISO": "2025-08-07T11:00:35.000Z",
+    "textPlain": "Wait, is this CLI or is this a github action or is this a github application?Also, I thought Jules was the \"coding agent\" they are working on. Now this is taking it over or is this like another case of Google self-competing?Someone needs to take charge at this company with a strong vision, because they are all over the place and spreading themselves thin, which in turn spreads thin the customer/brand equity.At this point, as someone who:\n- Has been writing Android code for about 13 years now- Has collaborated with Google on stuff- Lead Google developer communities and conferences- Knows many, many GDE's and has discussions with them often- Uses Gemini API for their productI'm so damn confused. How is a normal customer expected to understand then?- They have 2 SDK's for communicating to their Gemini API.- The documentation is spread and thrown all over the place.- Half the time I'm trying to do something I have to dig through their code to find how to.- The features I really want are rate limited or available only to private testers.- They have 3 coding agents now.- Even thought they have access to my Google Account and my phone, their Gemini app is useless.- I tried to do a basic thing (add a service account) in Google Cloud recently, which wasn't allowed due to default rules that are deprecated and are so confusing to change due to their confusing UX.The only usable thing is the AI studio, which is a great tool for experimenting with diff models and improved the DX of getting a Gemini API key by a mile.I'd say congrats on the release, but honestly this is such a mid low hanging fruit of a product.",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44826026,
+    "by": "grogenaut",
+    "timeISO": "2025-08-07T15:45:46.000Z",
+    "textPlain": "I understand Google feels they need to compete in coding AI. The crazy thing to me is:- Gemini can't make me a calendar appointment between myself and another person for 30 minutes in the next week. Heck it can't make appointments yet.\n- it can't edit or collaborate on Google docs, just insert. I edit my docs in cline or Claude code as markdown and upload.\n- speaking of, I don't think they have a MCP for working with docs or sheets\n- Gemini is worse than a Google search at helping me with sheet formulasThere's all these unique places in googles ecosystem I feel they could/should be excelling at AI at. They're not.Hell I noticed yesterday searching for my remarkable preorder from years ago that you can't exact string search Gmail anymore. Searching for remarkable was pulling up \"amazing\". They're just degrading all of their products to stupidity at a time when I and AI can use more powertools",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44823103,
+    "by": "jtrn",
+    "timeISO": "2025-08-07T11:22:13.000Z",
+    "textPlain": "The amount of time I have to spend on investigations, to understand the basics of what something ACTUALLY IS, never ceases to amaze me. Having to scrape away buzzwords, ill-conceived descriptions, and unnecessary verbose stuff... it's tiresome.So i THINK this is what it IS:A GitHub Action that can be included in GitHub workflow YAML files. It executes the Gemini CLI, passing in prompts, repo context, and event data (like issue text or PR diffs) to generate responses or perform actions. In other words: it's a wrapper that installs and runs the Gemini CLI inside GitHub Actions environments.It can use GitHub's API (via tokens or apps) to read repo data (issues, PRs, code) and write back (e.g., add labels, comments, or code suggestions). It makes calls to standard HTTPS API endpoints for Gemini LLM\" (via the CLI's backend interactions with Google's Gemini API)",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44831836,
+    "by": "insane_dreamer",
+    "timeISO": "2025-08-07T23:53:21.000Z",
+    "textPlain": "> \"no cost\"so the agents you spawn don't use paid Gemini tokens?",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44822827,
+    "by": "turblety",
+    "timeISO": "2025-08-07T10:38:03.000Z",
+    "textPlain": "> 7. Google One and Ultra plans, Gemini for Workspace plans\nThese plans currently apply only to the use of Gemini web-based products provided by Google-based experiences (for example, the Gemini web app or the Flow video editor). These plans do not apply to the API usage which powers the Gemini CLI. Supporting these plans is under active consideration for future support.Again, with the complicated subscription. Please just give us a monthly subscription for developers that I can pay whatever, and then use Gemini CLI, this github action, Gemini chat, Jules, etc. Just like Claude and their max subscription.This would be a game changer for me.Sorry, congrats on the release too. This looks cool!",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44823914,
+    "by": "hotfixguru",
+    "timeISO": "2025-08-07T12:57:51.000Z",
+    "textPlain": "I find their image text for the third image in the carousel funny:> Delegate work with an \"@\nmini-cli\" tag and the agent can\ncomplete a range of tasks, from writing bugs to fixing bugs",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44823142,
+    "by": "artdigital",
+    "timeISO": "2025-08-07T11:28:31.000Z",
+    "textPlain": "I wonder why they call this `gemini cli`, it's not really a CLI anymore when it's primarily used through GitHub, is it?Why not follow Claude Code naming with this and just call it `gemini github action` or `run gemini`?",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44825531,
+    "by": "stillsut",
+    "timeISO": "2025-08-07T15:11:32.000Z",
+    "textPlain": "Last year, I was actually working on a bounty platform for Github PR's.The low quality human-authored PR's that came in (due to the incentive we offered) combined with the fact that a draft PR could be made for pennies with AI made this concept dead in the water as far as I'm concerned.The pain point of getting some attention and action on your opensource codebase is really no longer relevant, in fact the pain point seems to be moving to how to optimize the limited reviewer / maintainer bandwidth under the onslaught of proposed suggestions.To this end I've been experimenting with a framework that builds PR's from the major agents and but with a focus on how to structure the tasks and review process that optimize the review => accept/revise cycle. If you're interested I've been writing up some case studies here: https://github.com/sutt/agro/blob/master/docs/case-studies/a...",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44829142,
+    "by": "PanMan",
+    "timeISO": "2025-08-07T19:20:27.000Z",
+    "textPlain": "The setup for this is So confusing. I had cursor bugbot (and copilot, but that's github themselves) where it was just a few clicks. Here it's a command line tool you can install in github but you also need a google cloud project?",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44823453,
+    "by": "brtkwr",
+    "timeISO": "2025-08-07T12:14:05.000Z",
+    "textPlain": "It seems too good to be true that this is free, unless training data is the price we'll end up paying with. Also there is no option to opt-out which is all the more sinister. I guess it should be used with caution in private/internal repos.",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44824581,
+    "by": "ncrmro",
+    "timeISO": "2025-08-07T14:02:25.000Z",
+    "textPlain": "We’ve been having really good results with Copilot Agent. Sometimes we have to close a PR and refine the issue or pull down and work locally on cursor but it also jumpstarts a lot of stuff.",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44822868,
+    "by": "OtherShrezzing",
+    "timeISO": "2025-08-07T10:45:04.000Z",
+    "textPlain": "Given the amount of setup required, this seems like a very high-friction version of the GitHub Copilot Agent that's already available for every user who could interact with this.The Gemini assistant will need to be several times better than the existing tools to even fractionally displace them.",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44826749,
+    "by": "ssalka",
+    "timeISO": "2025-08-07T16:39:15.000Z",
+    "textPlain": "Maybe a skill issue, but I've tried using Gemini 2.5 Pro in Cursor several times, and each time it is an abundance of thinking and very little (often incorrect) actions. Claude Sonnet is cheaper and much more effective for me.Having a hard time imagining the GHA integration will be much different.",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44824703,
+    "by": "gundmc",
+    "timeISO": "2025-08-07T14:12:56.000Z",
+    "textPlain": "This sounds like Gemini Code Assist rebranded under the successful Gemini CLI banner. I'm sure this was done to \"consolidate\" offerings and brands, but this is just way more confusing. CLI has a meaning, and this doesn't seem to have a CLI at all? Product looks cool, but the naming is just baffling",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44825252,
+    "by": "rurban",
+    "timeISO": "2025-08-07T14:51:33.000Z",
+    "textPlain": "I tried this out last month. It was useful to summarize big PR's, and even found minor issues. But nothing really useful for professionals, only for overworked open source maintainers to review and feedback newbies.",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44828735,
+    "by": "elpakal",
+    "timeISO": "2025-08-07T18:46:58.000Z",
+    "textPlain": "I'm just here for the PR review feature",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44823531,
+    "by": "v5v3",
+    "timeISO": "2025-08-07T12:22:49.000Z",
+    "textPlain": "Isn't there not a trademark issue over naming it Gemini CLI GitHub Actions?As Microsoft own GitHub and it's a competitor.",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44823605,
+    "by": "hi_hi",
+    "timeISO": "2025-08-07T12:29:33.000Z",
+    "textPlain": "I may not have fully grasped this, but on the surface, it looks like they want me to have an AI agents inserted directly into my git workflow...like right there with all my wonderful juicy code? Is that correct?Isn't this a recipe for disaster, or is all the FUD around agents wrecking havoc getting to me? I love Claude Code, but it can be somewhat bonkers and is at least at arms length from doing any real damage to my code (assuming I'm following good dev practices, and don't let it loose on my wider filesystem).",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44823628,
+    "by": "yahoozoo",
+    "timeISO": "2025-08-07T12:31:52.000Z",
+    "textPlain": "Not a fan of agents that require and can’t function without access to your GitHub repository. They should be local first.",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44822941,
+    "by": "criley2",
+    "timeISO": "2025-08-07T10:59:36.000Z",
+    "textPlain": "Curious to try this against the Github (website) Agent. The website Agent is definitely dumber than the vscode agent (because it has to spend 20 minutes figuring out how to build and start my monorepo apps) but on the flip side, it doesn't take up my computer and thus any value it creates is additive.We have tried out Gemini code review vs Copilot code review and Gemini is consistently offering better code review tips. It has officially caught multiple potential bugs, even a few that reviewers might have missed, so it's definitely been additive.Observability looks way worse. Github Agent has a full UX built into the Github PR that lets you dig into the agent behavior. This requires you to egress text logs and make sense of it yourself.Also curious about customization. Github just rolled out \"agent writes its own instructions\" https://github.blog/changelog/2025-08-06-copilot-coding-agen... which is super cool, how do I customize this one and teach it how to start and manage apps across my monorepo?",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44824556,
+    "by": "TNWin",
+    "timeISO": "2025-08-07T14:00:16.000Z",
+    "textPlain": "Sorry to be blunt, but Google needs a better Product Marketing team.As an engineering manager with an AI budget, I'm always looking for better and cheaper tools.I have a decade of engineering experience and consider myself fairly intelligent.I still can't figure out what this is, who it's for, or how much it costs.",
+    "parent": 44822389,
+    "depth": 1
+  },
+  {
+    "id": 44823765,
+    "by": "energy123",
+    "timeISO": "2025-08-07T12:44:32.000Z",
+    "textPlain": "They need a boundary between their research culture and their software culture. One org, two cultures.The chaos you describe is actually a significant positive in research environments. It's not spreading oneself thin, it is diversifying and decorrelating ones' efforts. You can't centrally plan all innovation.But for the interface between the customer and the research output, which is a software and product problem, that definitely needs a different approach.",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44823228,
+    "by": "gexla",
+    "timeISO": "2025-08-07T11:41:59.000Z",
+    "textPlain": "My take on this is that Google has a bunch of \"incubating\" spaces where they have teams of people building things that may or may not take off. So, when something does take off, it sort of becomes a victim of its own success. It confuses people because it's not a \"core\" Google product that fits nicely among other Google products. NotebookLLM seems to be another example.Personally, I would rather Google did this sort of experimentation even if it is more confusing.Or I could be wrong about this. But following NotebookLLM, it seemed like the team developing it had a lot of autonomy.",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44823196,
+    "by": "vasco",
+    "timeISO": "2025-08-07T11:37:06.000Z",
+    "textPlain": "> Even thought they have access to my Google Account and my phone, their Gemini app is useless.This is the funniest thing to me. When you open the app, Gemini says:\"Hello, Vasco\"In the welcome screen. I then ask this amazing intelligence this question:\"What's my name?\"\"I do not know your name. I am an AI and I don't have access to your personal information.\"I know why it happens, but it's so funny.",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44825892,
+    "by": "lubujackson",
+    "timeISO": "2025-08-07T15:37:07.000Z",
+    "textPlain": "Face it, they have hit the \"Yahoo phase\" of their company life. It was a good, long run. All that remains is buying larger and larger successful startups and grinding them in to dust.But the the \"sunsetting\" of projects good or bad, random shotgun approaches to everything, super awesome islands of product that slowly get bled dry... it is a failure of management structure, not just management.I don't know the guts of Google, but I imagine there are 500 VPs (or equivalent) each with their pet project, each trying to curry favor with the boss who sent an email blast to \"go big on Gemini\". It feels like many teams just dropped their old busted projects and moved on to the new hotness, to hell with the customers, consistency or revenue. The only metric now is \"Gemini engagement\".",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44824095,
+    "by": "barrkel",
+    "timeISO": "2025-08-07T13:17:26.000Z",
+    "textPlain": "Jules works in a VM, asynchronously, on a separate checkout of the code.Gemini CLI works synchronously with the user (unless you YOLO) and in your own directory on your own machine on your own checkout.Two different modalities.",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44824498,
+    "by": "nstart",
+    "timeISO": "2025-08-07T13:54:46.000Z",
+    "textPlain": "Also, if you are on Google Workspace, then everything changes there too. Activating the Gemini CLI is a smile while crying emoji kind of activity if you are trying to provide this to an entire organization [1][1]: https://github.com/google-gemini/gemini-cli/blob/main/docs/c...",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44823437,
+    "by": "ants_everywhere",
+    "timeISO": "2025-08-07T12:11:48.000Z",
+    "textPlain": "gemini-cli is a command line tool that calls Gemini and shells out to common text utilities and MCP for tool use.This appears to just be a plugin where you do things on GitHub, that sends out notifications to gemini-cli running on cloud, then gemini-cli responds and sends notifications back.Basically just saving you the hassle of cloning at a specific commit, calling gemini-cli manually, and then uploading the result manually.",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44823198,
+    "by": "artdigital",
+    "timeISO": "2025-08-07T11:37:25.000Z",
+    "textPlain": "And this can't authenticate the same way the normal gemini cli does, it needs an API key from the looks of it, so free, standard and enterprise plans through OAuth currently don't work for authentication, just the free tier of the Google AI Studio, which is different than gemini-cli free tier, and has way tighter rate limits.",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44823111,
+    "by": "jstummbillig",
+    "timeISO": "2025-08-07T11:23:28.000Z",
+    "textPlain": "> because they are all over the place and spreading themselves thinWell, they do have a lot to spread. But yeah, intense amount of overlap.",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44823102,
+    "by": "siva7",
+    "timeISO": "2025-08-07T11:22:06.000Z",
+    "textPlain": "> I tried to do a basic thing (add a service account) in Google Cloud recently, which wasn't allowed due to default rules that are deprecated and are so confusing to change due to their confusing UX.Similarly I tried contacting some human support for billing issues but was denied because  automated checks deemed me unworthy for consulting anything besides documentation pages which i didn't understood so i gave up and switched to another cloud provider.",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44823301,
+    "by": "Rebuff5007",
+    "timeISO": "2025-08-07T11:54:04.000Z",
+    "textPlain": "I believe in silicon valley terms, this is called \"moving fast and breaking things\"",
+    "parent": 44822948,
+    "depth": 2
+  },
+  {
+    "id": 44826528,
+    "by": "james2doyle",
+    "timeISO": "2025-08-07T16:22:21.000Z",
+    "textPlain": "I’ve actually been using Gemini on my phone to create appointments from details on my screen. For example, I have a delivery coming so there is an email with the date and time range. I can press and hold my power button and Gemini pops up. I press a button to use screen context. Then say, \"put this in my calendar\". Then it does. It isn’t perfect. Events that cross multiple days or odd location details in the description sometimes don’t get included. But that is more and more rare. I’m using an Android phone. So maybe that is why it seems to work. I do see that \"mostly works\" is not the same as \"always works\".Also, if you are a Google Workspace customer, you can connect your workspace to the Gemini web app. It can then search and manipulate your calendar and your drive. It will also summarize documents and a few other tasks. I have less use for this but it is far from \"it _can’t_ make appointments\".",
+    "parent": 44826026,
+    "depth": 2
+  },
+  {
+    "id": 44827733,
+    "by": "pmcf",
+    "timeISO": "2025-08-07T17:43:02.000Z",
+    "textPlain": "I think Google doesn’t turn Gemini loose on docs the same reason Apple doesn’t turn AI loose on your phone. It’s just not reliable enough to let 99.99% of the world use it. Those of us on the bleeding edge have been fine tweaking and working with inconsistencies. If you put a lot of work in, you get a productivity boost.\n Think of the family member you are “tech support” for. (You know who you are) would you recommend that to them? Yeah. Me neither.",
+    "parent": 44826026,
+    "depth": 2
+  },
+  {
+    "id": 44828154,
+    "by": "schainks",
+    "timeISO": "2025-08-07T18:06:32.000Z",
+    "textPlain": "I 100% agree with this, and there are just _so many use cases_ that are small and useful like this.Heck, just yesterday my partner forgot the grocery list printout so I took a picture of it and asked gemini to convert it to a format where I could copy and paste it to a specific todo list app that was already shared with her. INSTEAD, Gemini dumped the list into Google Keep, albeit with terrible formatting. Didn't miss a single item, but did not recognize categories of item (produce vs frozen food, for example)So my read on it is there's a lot of \"rough around the edges\" use cases which can be tidied with better prompting/context or just Gemini team prioritizing those things when they get around to it.What they actually _need_ is a marketing team showing off useful applications of the releases more often. OpenAI is ALL OVER TIKTOK and people I meet under 30 on that platform don't even know gemini exists. In my experience, Gemini is better than chatGPT at everything you need to do, and it can do the things that the OpenAI marketing people are constantly showing off on TikTok.",
+    "parent": 44826026,
+    "depth": 2
+  },
+  {
+    "id": 44828368,
+    "by": "machiaweliczny",
+    "timeISO": "2025-08-07T18:20:26.000Z",
+    "textPlain": "There's a need for better indexing. Seems like they switched search to pure embeddings and it doesn't work. Making performant hybrid search is hard in the sense that you cannot combine indexes. Ideally something like embedding, text match and quality vector. I had PoC that worked great when using those but making it scale is hard with reasonable latency.If something like this exist please educate me as this would make tons of products better.",
+    "parent": 44826026,
+    "depth": 2
+  },
+  {
+    "id": 44826081,
+    "by": "vidarh",
+    "timeISO": "2025-08-07T15:50:17.000Z",
+    "textPlain": "Yeah, I figured I'd try Gemini for Google Docs, but given how restricted it is, why would I?",
+    "parent": 44826026,
+    "depth": 2
+  },
+  {
+    "id": 44827077,
+    "by": "mcoliver",
+    "timeISO": "2025-08-07T17:05:29.000Z",
+    "textPlain": "Could not agree more.   Trying to use Veo3 via genai/vertexai sdks has been full of dead ends, broken specs, and confusion. Good ole curl seems to work though.",
+    "parent": 44826026,
+    "depth": 2
+  },
+  {
+    "id": 44827950,
+    "by": "moltar",
+    "timeISO": "2025-08-07T17:55:10.000Z",
+    "textPlain": "Totally agree. It’s so surprising that I spent almost an hour trying to figure out how to make Gemini collaborate with me on a Google Document as a kind of artifact. I was sure I was just holding it wrong. I couldn’t believe it wasn’t a feature. Even when I gave up I was still unsure if maybe my account isn’t on the right tier or something.",
+    "parent": 44826026,
+    "depth": 2
+  },
+  {
+    "id": 44826712,
+    "by": "pphysch",
+    "timeISO": "2025-08-07T16:36:24.000Z",
+    "textPlain": "> Heck it can't make appointments yet. - it can't edit or collaborate on Google docs, just insert.I'm sure it's capable of doing those things, but they have it turned off because of the significant risks involved in automatically editing important documents like that.",
+    "parent": 44826026,
+    "depth": 2
+  }
+]

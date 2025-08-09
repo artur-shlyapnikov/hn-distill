@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44824282,
+    "by": "dougbright",
+    "timeISO": "2025-08-07T13:35:32.000Z",
+    "textPlain": "The question I’m wrestling with is will anybody care about MCP? I’m working on my own MCP proxy to manage security, auditing, and server management and the more I think deeply about the actual use cases the more I wonder if I’m wasting my time.\n Can anyone think of a world where MCP is relevant if generic chatbots (ChatGPT, Claude Desktop) don’t become the primary human-AI interface? If LLMs are still wrapped in application wrappers, isn’t  ̶a̶n̶ ̶a̶p̶p̶r̶o̶a̶c̶h̶ ̶l̶i̶k̶e̶ ̶L̶a̶n̶g̶C̶h̶a̶i̶n̶ a more traditional agentic approach going to make more sense?",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44824529,
+    "by": "crowcroft",
+    "timeISO": "2025-08-07T13:57:35.000Z",
+    "textPlain": "I think we're probably over using MCPs.If you're a large org with an API that an ecosystem of other partners use then you should host a remote MCP and then people should connect LLMs to it.The current model of someone bundling tools into an MCP and then you download and run that MCP locally feels a bit like the wrong path. Tool definitions for LLMs are already pretty standardized if things are just running locally why am I not just importing a package of tools, I'm not sure what the MCP server is adding.",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44824217,
+    "by": "ai-christianson",
+    "timeISO": "2025-08-07T13:28:59.000Z",
+    "textPlain": "I've been building agents for a bit (RA.Aid OSS coding agent, now Gobii web browsing agents).The main problem with MCP is that it just makes tools available for the agent to use. We get the best performance when there's a small set of tools and we actively prompt the agent on the best way to use the tools.Simply making more tools available can give the agent more capabilities, but it can easily trash performance.",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44824187,
+    "by": "malpani12",
+    "timeISO": "2025-08-07T13:26:26.000Z",
+    "textPlain": "Yeah, and it's only useful if uiu want to to use multiple tools and the adding MCP complexity in your app makes sense. If all your app needs few internal calls, MCP may be an overkill in beginning.",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44824379,
+    "by": "donpepitogrillo",
+    "timeISO": "2025-08-07T13:44:13.000Z",
+    "textPlain": "Use raw HTTP calls to API, like a man",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44831955,
+    "by": "DrAwdeOccarim",
+    "timeISO": "2025-08-08T00:10:34.000Z",
+    "textPlain": "I've been building MCP servers so I can grant local LM Studio LLMs access to the internet and to my local files. The way I've been thinking about MCP has been how you unshackle the local models as I believe the future will be inference at the edge. Just look at Rednote dots.ocr, that thing is like 1.7b parameters and is the best OCR out there.",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44824177,
+    "by": "zozbot234",
+    "timeISO": "2025-08-07T13:24:46.000Z",
+    "textPlain": "I don't think this is correct because AI output can be constrained to a fixed format (such as JSON) during inference.  Then MCP is useful because the \"tool_calls\" section of that fixed JSON output can be restricted to only mention tools that are included in the MCP input, their input parameters might also be constrained etc. Free text input wouldn't give you any of that!",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44824200,
+    "by": "TechDebtDevin",
+    "timeISO": "2025-08-07T13:27:27.000Z",
+    "textPlain": "MCP seems just like a rushed concept that Anthropic shoved out there just so they could own the standard. I've been working with it a lot lately, in Go with mcp-go[0]. Very un-intuitive at first, and I constantly ask myself why I wouldn't just write this in my own way, but admittedly it can be fun.Something like https://github.com/simonw/llm seems way more intuitive (to me)[0]: https://github.com/mark3labs/mcp-go",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44824851,
+    "by": "the_arun",
+    "timeISO": "2025-08-07T14:24:33.000Z",
+    "textPlain": "In a multi model situation, shouldn't LLM A talk to LLM B as a tool call via MCP? or would it talk to LLM B directly?",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44825061,
+    "by": "aeon_ai",
+    "timeISO": "2025-08-07T14:38:57.000Z",
+    "textPlain": "> \"Context engineering is about giving your LLM the right inputs so it can generate useful outputs.\"No.If we're going to elevate and reimagine new disciplines every year (RIP prompt engineering), let's at least be thoughtful about it.Context Engineering is not just \"enhanced prompt engineering\".It is creating the context in which an agent operates such that its outcomes are realized.Yes, this is partly about the input that an agent receives, but increasingly is more about creating a context-rich environment that an agent can effectively determine relevant context within.That is a much more valuable and difficult problem space than \"Shove the square context in the square hole\"",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44824330,
+    "by": "creddit",
+    "timeISO": "2025-08-07T13:40:08.000Z",
+    "textPlain": "> But here’s the important part: LLMs don’t know how to use tools. They don’t have native tool calling support. They just generate text that represents a function call.This terrifies me. This whole time I was writing bash commands into my terminal, I thought I knew how to use the tools. Now, I’ve just learned that I had no idea how to use tools at all! I just knew how to write text that /represented/ tool use.",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44824120,
+    "by": "sharemywin",
+    "timeISO": "2025-08-07T13:19:30.000Z",
+    "textPlain": "LLMs shouldn't really care what format your tool call is in.so it seems kind of pointless. I would imagine it could ingest soap or a module definition or swagger just as easily and still make calls.",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44824163,
+    "by": "nsonha",
+    "timeISO": "2025-08-07T13:23:26.000Z",
+    "textPlain": "Yeah but when you prompt the LLM with \"use the abc MCP\" (notably missing the word \"server\"), it actually works.",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44824047,
+    "by": "dboreham",
+    "timeISO": "2025-08-07T13:12:02.000Z",
+    "textPlain": "MCP is for humans to make money.",
+    "parent": 44823850,
+    "depth": 1
+  },
+  {
+    "id": 44825181,
+    "by": "electric_muse",
+    "timeISO": "2025-08-07T14:46:37.000Z",
+    "textPlain": "I think MCP has legs well beyond just the LLM / agent world. Just like USB went from \"how I connect my mouse\" to \"how I charge my beard trimmer.\"In fact, I imagine it's going to go full-duplex with all our systems, becoming a more standard way for systems to communicate with each other.Under the hood, MCP is just JSON RPC, which is a fine format for communicating between systems.MCP layers on some useful things like authentication and discovery. Both are critical to any kind of communication between systems built by different authors (e.g. various apps and services). Discovery, especially, is the fascinating part. Rather than hoping an OpenAPI spec exists and hoping it's right, MCP has this exchange of capabilities baked in.I spent the last 9 years building integration technology, and from that perspective, the discovery-documentation-implementation problem is the core issue.Right now, LLMs basically \"solve\" the integration problem because they can do the mapping between external tools/resources/formats and internal ones.But there's nothing that strictly \"requires\" an LLM to be involved at all. That's just the primary reason to develop MCP. But you could just as well use this as a way for integrating systems, making some bets on interface stability (and using LLMs for cases only when your prior expectations no longer hold and you need a new mapping).The comparison is perhaps imperfect and overused, but I feel like we're witnessing the birth of a new USB-like standard. There's something right now that it was designed to do, but it's a decent enough standard that can actually handle many things.I wouldn't be surprised if in some period of time we see enterprise apps shift from REST to MCP for bi-directional integrations.For the OP, I'm not sure if you're working on an MCP proxy (A) as a commercial offering, (B) as something for your team to use, closed source, or (C) as something open source for fun. But we just built and started selling an MCP proxy/gateway. It handl",
+    "parent": 44824282,
+    "depth": 2
+  },
+  {
+    "id": 44825320,
+    "by": "dragonwriter",
+    "timeISO": "2025-08-07T14:55:29.000Z",
+    "textPlain": "MCP is a means of communicating information about externally-defined tools to the “application wrapper” (and your examples of “generic chatbots” are also application wrappers). Well, between the application wrapper and servers; “application wrappers” for LLMs are pretty much the motivating (but not sole) case of MCP Clients.Without something like MCP, each application wrapper is left do do its own ad hoc wrappers for external tools (tools internal to the wrapper don’t use MCP.) With MCP, it just integrates an MCP client library, and then it can use any tool, resource, or prompt provided by any MCP server available to it.",
+    "parent": 44824282,
+    "depth": 2
+  },
+  {
+    "id": 44824654,
+    "by": "fennecfoxy",
+    "timeISO": "2025-08-07T14:09:16.000Z",
+    "textPlain": "In my opinion, I get the desire to create some sort of specification for an LLM to interface with [everything else], but I don't really see the point at doing it on an inference level by smashing JSON into the context.These models are usually very decent at parsing out stuff like that anyway; we don't need the MCP spec, everyone can just specify the available tools in natural language and then we can expect large param models to just \"figure it out\".If MCP had been a specification for _training_ models to support tool use on an architectural level, not just training it to ask to use a tool with a special token as they do now.It's an interesting topic because it's the exact same as the boundary between humans (sloppy, organic, analog messes) and traditional programs (rigid types, structures, formats).To be fair if we can build tool use in architecturally and solve the boundary between these two areas then it also works for things like objective facts. LLMs are just statistical machines and data in the context doesn't really mean all that much, we just hope it is statistically relevant given some input and it is often enough that it works, but not guaranteed.",
+    "parent": 44824282,
+    "depth": 2
+  },
+  {
+    "id": 44824485,
+    "by": "blitzar",
+    "timeISO": "2025-08-07T13:53:50.000Z",
+    "textPlain": "Personally I find LLMs functionally useless without any external data besides than which I write in the prompt.One MCP that I use is as simple as todays date and time - how else would LLMs know what day of the week it is?",
+    "parent": 44824282,
+    "depth": 2
+  },
+  {
+    "id": 44831726,
+    "by": "cyanydeez",
+    "timeISO": "2025-08-07T23:36:37.000Z",
+    "textPlain": "You are wasting your time.Write a restapi, add a description field.done.",
+    "parent": 44824282,
+    "depth": 2
+  },
+  {
+    "id": 44831471,
+    "by": "j45",
+    "timeISO": "2025-08-07T23:03:58.000Z",
+    "textPlain": "Something like containerized apps are going to be important for security with MCPs or whatever it becomes, comes from it, or comes afterwards.Getting in reps on thinking through these kinds of problems are valuable since LLMs are a new type of software and existing software axioms don't always fit.",
+    "parent": 44824282,
+    "depth": 2
+  },
+  {
+    "id": 44825554,
+    "by": "whalesalad",
+    "timeISO": "2025-08-07T15:13:27.000Z",
+    "textPlain": "MCP sucks because it has to be connected to a desktop client. I'd love to build some MCP-like integrations but no one on my team can use them. We use LLM's via - as you noted - other means like via Notion, via web UI, via our own API integrations. Until there is a more central way to connect these things - yeah they won't reach mass adoption.",
+    "parent": 44824282,
+    "depth": 2
+  },
+  {
+    "id": 44824388,
+    "by": "ivape",
+    "timeISO": "2025-08-07T13:45:08.000Z",
+    "textPlain": "What about LangChain makes more sense? It’s one of the most prematurely complex libs I’ve seen. I’m calling it right now, LangChain is going to run a mind fuck on everyone and convince people that’s actually how complicated orchestrating LLM control flow should be. The community needs to fight this framework off.That’s besides the point. MCP servers let you discover function interfaces that you’ll have to implement yourself (in which case, yeah, what’s the point of this? I want the whole function body).",
+    "parent": 44824282,
+    "depth": 2
+  },
+  {
+    "id": 44824429,
+    "by": "CodeNest",
+    "timeISO": "2025-08-07T13:48:03.000Z",
+    "textPlain": "[dead]",
+    "parent": 44824282,
+    "depth": 2
+  },
+  {
+    "id": 44825354,
+    "by": "jonfw",
+    "timeISO": "2025-08-07T14:58:03.000Z",
+    "textPlain": "MCP is just packaging. It's the ideal abstraction for building AI applications.I think it provides the similar benefits of decoupling the front and back end of a standard app.I can pick my favorite AI \"front end\"- whether that's in my IDE as a dev, a desktop app as a business user, or on a server if I'm running an agentic workflow.MCP allows you to package tools, prompts, etc. in a way that works across any of those front ends.Even if you don't plan on leveraging the MCP across multiple tools in that way- I do think it has some benefits in de-coupling the lifecycle of the tool development from the model/ UI.",
+    "parent": 44824529,
+    "depth": 2
+  },
+  {
+    "id": 44825138,
+    "by": "empath75",
+    "timeISO": "2025-08-07T14:43:44.000Z",
+    "textPlain": "The auth story for MCPs is a complete mess right now, though, which is why people make ones to run locally.",
+    "parent": 44824529,
+    "depth": 2
+  },
+  {
+    "id": 44824977,
+    "by": "electric_muse",
+    "timeISO": "2025-08-07T14:33:19.000Z",
+    "textPlain": "This is 100% a problem with the MCP spec: it does not currently provide a way to narrow what tools, and therefore context, flow into the LLM.I don't really think there's an easy solution at the protocol level, since you can't just make the LLM say what tools it wants upfront. There's a whole discovery process during the handshake:LLM(Host): Hi, I'm Claude Desktop, what do you offer?MCP Server: Hi, I'm Salesforce MCP, I offer all these things: {...tools, prompts, resources, etc.}Discoverability is one of the reasons MCP has a leg up on traditional APIs. (Sure, OpenAPI helps, but it's not quite the same thing.)I'd be interested in hearing other recommendations or ideas, but when I saw this, I realized that the spec effectively necessitates a whole new layer exist: the gateway plane.Basically, you need a place where the MCPs can connect & expose everything they offer. Then, via composability and settings, you can select what you want to pass through to the LLM (host), given the specific job it has.I basically pivoted my company to start building one of these, and we're getting inundated right now.This whole thing reminds me of the early web days, where the protocols and standards were super basic and loose, and we all just built systems and tools to fill those gaps. Just because MCP isn't \"complete\" doesn't mean it's not valuable. In fact, I think leaving some things to the community & commercial offerings is a great way for this tech to keep winning.",
+    "parent": 44824217,
+    "depth": 2
+  },
+  {
+    "id": 44826559,
+    "by": "miniatureape",
+    "timeISO": "2025-08-07T16:24:46.000Z",
+    "textPlain": "Is this the problem that Claude sub agents are supposed to be solving?They say they’re are for preserving and managing context and I’ve been wondering if they help with the “too many tools” problem.https://docs.anthropic.com/en/docs/claude-code/sub-agents",
+    "parent": 44824217,
+    "depth": 2
+  },
+  {
+    "id": 44824397,
+    "by": "ProofHouse",
+    "timeISO": "2025-08-07T13:45:40.000Z",
+    "textPlain": "Can you elaborate on how the agents degrades from more tools? By paralysis or overuse? Isn’t this both ways a function of direction on correctly instructing which to use when? Tnx",
+    "parent": 44824217,
+    "depth": 2
+  },
+  {
+    "id": 44824587,
+    "by": "blitzar",
+    "timeISO": "2025-08-07T14:03:21.000Z",
+    "textPlain": "Perhaps tools trained into the model rather than exposed through prompting would mitigate the performance hit (but might affect model quality?).",
+    "parent": 44824217,
+    "depth": 2
+  },
+  {
+    "id": 44825523,
+    "by": "dbreunig",
+    "timeISO": "2025-08-07T15:11:05.000Z",
+    "textPlain": "Came here to say this: people present MCP’s verbosity as all the context the LLM needs. But almost always, this isn’t the case.I wrote recently, “ Connecting your model to random MCPs and then giving it a task is like giving someone a drill and teaching them how it works, then asking them to fix your sink. Is the drill relevant in this scenario? If it’s not, why was it given to me? It’s a classic case of context confusion.”https://www.dbreunig.com/2025/07/30/how-kimi-was-post-traine...",
+    "parent": 44824217,
+    "depth": 2
+  },
+  {
+    "id": 44824341,
+    "by": "meander_water",
+    "timeISO": "2025-08-07T13:41:41.000Z",
+    "textPlain": "I think you're mixing up tool calling and structured outputs.You can have both of those or either without MCP.MCP just standardizes the tool calling and only makes sense if you want to share your tools across the org. I wouldn't use it for simple functions like getting current date for e.g.",
+    "parent": 44824177,
+    "depth": 2
+  },
+  {
+    "id": 44826364,
+    "by": "medbrane",
+    "timeISO": "2025-08-07T16:09:08.000Z",
+    "textPlain": "Indeed, the article would have been correct one year ago.Now, modern LLM APIs do require the tools to be described outside the prompt [1]. This negates the whole article, although one bit where he's right is that it does not matter if those tools are MCP tools or local, the call to LLM looks the same.[1] https://platform.openai.com/docs/guides/function-calling?api...",
+    "parent": 44824177,
+    "depth": 2
+  },
+  {
+    "id": 44824416,
+    "by": "ProofHouse",
+    "timeISO": "2025-08-07T13:47:23.000Z",
+    "textPlain": "10000% this",
+    "parent": 44824200,
+    "depth": 2
+  },
+  {
+    "id": 44825396,
+    "by": "grork",
+    "timeISO": "2025-08-07T15:01:50.000Z",
+    "textPlain": "How can an LLM “talk” to another LLM, except by emitting tokens in its output stream?You can name the mechanism whatever you want, but the models don’t have hands. Tool calling conventions (as a concept, or as a spec) is what gives the model hands!",
+    "parent": 44824851,
+    "depth": 2
+  },
+  {
+    "id": 44825871,
+    "by": "mccoyb",
+    "timeISO": "2025-08-07T15:36:10.000Z",
+    "textPlain": "Agreed.Context engineering is \"just\" prompt engineering for LLMs with tool use: it extends the concerns of prompt engineering with the concern of setting up an environment in which tools can be used, and how the LLM can most effectively interact with the environment.",
+    "parent": 44825061,
+    "depth": 2
+  },
+  {
+    "id": 44824591,
+    "by": "nlawalker",
+    "timeISO": "2025-08-07T14:04:01.000Z",
+    "textPlain": "> writing bash commands into my terminalThis is what the author means by \"knowing how to use the tool\". The LLM alone is effectively a function that outputs text, it has no other capabilities, it cannot \"connect to\" or \"use\" anything by itself. The closest it can come is outputting an unambiguous, structured text request that can be interpreted by the application code that wraps it and does something on its behalf.The author's point hinges on the architectural distinction between the LLM itself and that application code, which is increasingly irrelevant and invisible to most people (even developers) because the application code that knows how to do things like call MCP servers is already baked in to most LLM-driven products and services. No one is \"talking directly to\" an LLM, it's all mediated by multiple layers, including layers that perform tool calling.",
+    "parent": 44824330,
+    "depth": 2
+  },
+  {
+    "id": 44824638,
+    "by": "jerf",
+    "timeISO": "2025-08-07T14:08:10.000Z",
+    "textPlain": "A lot of people resist the idea that programming is intrinsically mathematical, but this is one of the places it pops out. The power of programming lies precisely in the way it brings together text that \"represents\" something with text that \"does\" something. That is, at the core, the source of its power. You can still draw the distinction philosophically, as you just did, but at the same time there is also a profound way in which there is in fact no difference between \"using\" computers and \"representing\" your use of computers.",
+    "parent": 44824330,
+    "depth": 2
+  },
+  {
+    "id": 44824765,
+    "by": "fennecfoxy",
+    "timeISO": "2025-08-07T14:17:27.000Z",
+    "textPlain": "I think what your quote is trying to say essentially boils down to: LLMs can be given facts in the context, we _hope_ that the statistical model picks up on that information/tool calls but it isn't _guaranteed_.Unlike human beings such as yourself (presumably), LLMs do not have agency, they do not have conscious or active thought. All they do is predict the next token.I've thought about the above a lot, these models are certainly capable of a lot, but they do not in any form or fashion emulate the consciousness that we have. Not yet.",
+    "parent": 44824330,
+    "depth": 2
+  },
+  {
+    "id": 44824338,
+    "by": "johnmaguire",
+    "timeISO": "2025-08-07T13:41:18.000Z",
+    "textPlain": "I think you might be missing the point of this quote, which is that you don't have to introduce additional code into the model to support MCP.MCP happens at a different layer. You have to run the MCP commands. Or use a client that does it for you:> But the LLM will never know you are using MCP, unless you are letting it know in the system prompt of tool definitions. You, the developer, is responsible for calling the tools. The LLM only generates a snippet of what tool(s) to call with which input parameters.The article is describing how MCP works, not making an argument about what it means to \"understand\" something.",
+    "parent": 44824330,
+    "depth": 2
+  },
+  {
+    "id": 44824193,
+    "by": "selcuka",
+    "timeISO": "2025-08-07T13:26:49.000Z",
+    "textPlain": "It shouldn't care about the format, true. But the LLM needs a mechanism to be able to connect to that tool from a sandboxed environment. MCP is the glue between the LLM and the actual tool. Technically you can expose a full HTTP proxy via an MCP so that your LLM has access to the whole Internet.",
+    "parent": 44824120,
+    "depth": 2
+  }
+]

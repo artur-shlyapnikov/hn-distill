@@ -1,0 +1,82 @@
+[
+  {
+    "id": 44843740,
+    "by": "eurleif",
+    "timeISO": "2025-08-09T03:06:29.000Z",
+    "textPlain": ">Now it’s probably time to ask ourselves why we are here. We wanted a rate limiter and now we’re learning a niche programming language just to execute some code in a database that has nothing relevant to our task but a roundabout way of storing an int into RAM.I've found it quite useful to have a central slice of RAM that different processes, including ones running on different machines, can execute scripts against over the network.If you have Web servers running across different machines, you don't want rate limiter state to be local to those machines. A client shouldn't be able to make extra requests because the load balancer sends its traffic to a different machine. So that necessitates a central slice of RAM, accessed over the network.Maybe a dedicated rate limiting service? It might perform better, but I've used redis token bucket rate limiting, implemented via a Lua script, at scale without much issue. And what about the foundational things redis provides, like persistence and failover? Or what if you don't just want rate limiting; you want (for example) mutexes[0] too? You can implement all of that and more, of course, and I'm not saying that's always a bad idea, but at some point you may risk running into Greenspun's Tenth Rule (but for redis instead of Common Lisp). There's something to be said for making the central-slice-of-networked-RAM part a platform, which you can build on with scripts to do whatever you need.[0] https://redis.io/docs/latest/develop/clients/patterns/distri...",
+    "parent": 44799823,
+    "depth": 1
+  },
+  {
+    "id": 44843726,
+    "by": "theamk",
+    "timeISO": "2025-08-09T03:02:13.000Z",
+    "textPlain": "This blog is kinda strange because it presents a working solution, and then immediately dismisses it with:> We wanted a rate limiter and now we’re learning a niche programming language just to execute some code in a database that has nothing relevant to our task but a roundabout way of storing an int into RAM.If you this seems like unfair criticism, read the blog title. It is \"Ratelimitly’s Official Engineering Blog\". What you are supposed to do is (1) get scared about complexity of the task (2) contact author's startup and buy rate-limiting-as-a-service (the pricing is \"contact us\" BTW)",
+    "parent": 44799823,
+    "depth": 1
+  },
+  {
+    "id": 44843610,
+    "by": "Magmalgebra",
+    "timeISO": "2025-08-09T02:32:17.000Z",
+    "textPlain": "I wish the article talked more about why people use Redis as a rate limiter and why alternatives might be superior. Anecdotally I see the following play out repeatedly:1) You probably already have Redis running2) Adding a \"good enough\" rate limiter is easy3) Faster solutions are usually more work to maintain given modern skillsetsIf you are a b2b SaaS company odds are your company will exceed 10 billion in market cap looong before Redis rate limiting is a meaningful bottleneck.",
+    "parent": 44799823,
+    "depth": 1
+  },
+  {
+    "id": 44843572,
+    "by": "pcl",
+    "timeISO": "2025-08-09T02:25:04.000Z",
+    "textPlain": "At my previous employer, we used Redis for publicly-documented rate limits, but we applied them after our rate limiting infrastructure already evaluated defensive infrastructure-oriented rate limits.We generally found that this worked out fine. Customer-facing limits were numbers measured in hours or days; infra limits were measured in seconds or minutes.Certainly you wouldn’t want to rely on a central db for infra-oriented rate limiting, in any case.",
+    "parent": 44799823,
+    "depth": 1
+  },
+  {
+    "id": 44843544,
+    "by": "sk5t",
+    "timeISO": "2025-08-09T02:19:42.000Z",
+    "textPlain": "Decent article, with some technical misunderstandings about MULTI/EXEC, perhaps unnecessary skepticism about Lua, though I certainly do wish Redis had richer built-in functions for CAS and the like.",
+    "parent": 44799823,
+    "depth": 1
+  },
+  {
+    "id": 44843731,
+    "by": "theamk",
+    "timeISO": "2025-08-09T03:03:09.000Z",
+    "textPlain": "The superior alternative is clearly author's startup. Who does not love 3rd party, cloud-hosted service in critical dependency chain on every page of your website?",
+    "parent": 44843610,
+    "depth": 2
+  },
+  {
+    "id": 44843671,
+    "by": "pokstad",
+    "timeISO": "2025-08-09T02:46:54.000Z",
+    "textPlain": "Exactly. Don’t boil the ocean searching for a perfect solution. Create solutions that match their requirements and nothing more.",
+    "parent": 44843610,
+    "depth": 2
+  },
+  {
+    "id": 44843753,
+    "by": "biimugan",
+    "timeISO": "2025-08-09T03:10:47.000Z",
+    "textPlain": "Presumably the superior solution is the product that bears the same name as this blog post. Which I take it is in the process of being released since I can't find many technical details about it.",
+    "parent": 44843610,
+    "depth": 2
+  },
+  {
+    "id": 44843611,
+    "by": "gleenn",
+    "timeISO": "2025-08-09T02:32:40.000Z",
+    "textPlain": "Agree, there seems to be a lot of skepticism. Maybe this is a cop-out but most people probably don't even need some perfectly implemented rate limiter and having a basic, efficient, easy solution that solves most of the problem isn't horrible, it's just pragmatic. I don't think anyone is running around claiming Redis is the end-all solution to rate-limiting.",
+    "parent": 44843544,
+    "depth": 2
+  },
+  {
+    "id": 44843761,
+    "by": "lmz",
+    "timeISO": "2025-08-09T03:12:40.000Z",
+    "textPlain": "> ...unnecessary skepticism...The URL suggests they might have a product to offer to solve the problem.",
+    "parent": 44843544,
+    "depth": 2
+  }
+]

@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44836082,
+    "by": "orbital-decay",
+    "timeISO": "2025-08-08T12:11:09.000Z",
+    "textPlain": "I gave it a random sci-fi novel and made it translate a chapter, which is something I do with all models. It refused to discuss minors in sexualized contexts. I was like W.T.F.?! and started bisecting the book, trying to find the piece that triggers this. Turns out there was some absolutely innocent, two sentence long romantic remark involving two secondary 17 years old characters in an unrelated place.Another issue is that it sometimes has occasional refusals and total meltdowns where it redacts entire paragraphs with placeholder characters, while just trying to casually talk with it about some routine life matters.That's ridiculous and makes that model garbage at any form of creative writing (including translation) or real life tasks other than math or coding. It has very poor knowledge for a 120B MoE. If you look at the \"reasoning\" it does, it actually mostly checks the request against the policy.I thought they must have spent most of their post-training hunting the wrongthink and dumbing the model down as a result, but I can see how the synthetic pretraining data can explain this.",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44830588,
+    "by": "wmf",
+    "timeISO": "2025-08-07T21:27:30.000Z",
+    "textPlain": "I saw a bunch of people complaining on Twitter about how GPT-OSS can't be customized or has no soul and I noticed that none of them said what they were trying to accomplish.\"The main use-case for fine-tuning small language models is for erotic role-play, and there’s a serious demand.\"Ah.",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44833530,
+    "by": "wkat4242",
+    "timeISO": "2025-08-08T04:48:42.000Z",
+    "textPlain": "From the article:> For the same reason that Microsoft probably continued to train Phi-style models: safety. Releasing an open-source model is terrifying for a large organization. Once it’s out there, your name is associated with it forever, and thousands of researchers will be frantically trying to fine-tune it to remove the safety guardrails.I don't think this is really an issue in practice. Llama 2 and 3 were uncensored within a week. There's no bad press about this.What does give a company a bad reputation is crap models. The llama 4 disappointment hurt meta's AI reputation a lot more than some community uncensoring.",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44838153,
+    "by": "jnmandal",
+    "timeISO": "2025-08-08T15:25:26.000Z",
+    "textPlain": "I think its likely that soon the \"AI\" aspect of the \"models\" get worse and worse with each iteration. This is because:1. data pollution/dilution -- with each subsequent generation more and more LLM-produced content will make up the bulk of the web this means it either gets into get into the data set, which makes the model \"spikey\" or reduces the relevant knowledge available which dumbs the model down\n2. LLMs were sort of a freak breakthrough in deep learning and while its remarkable, tuning them only makes them marginally better. Diminishing returns apply here. Its a new LLM but its still an LLM -- years old technology nowHowever, despite these two realities, the total utility/productivity/societal gain from a product (note I didn't say model) like ChatGPT can still increase by orders of magnitude. That is because companies like OpenAI, and many, many, other technology corporations and startups are figuring out how to leverage LLMs to do stuff much more powerful than just answer questions from the corpus (ie: perform quality research, reevaluate itself, computer controls, etc, etc).Consider for example, flat screen displays were pioneered in like the 50's and arguably, they didn't become disruptively useful until the advent of smart phones. So yeah, the model may get sort of worse or maybe more brittle, but it almost doesn't matter if they are figuring out what to do with the model and making the model more useful for actual tasks. Sure its cute to talk to an AI persona and ask it questions but that is probably the least important aspect of these type of models. Microsoft word had Clippy, and yeah that was cool. But productivity gain came from word processing, the '.doc' filetype, filesharing, editing, etc. Clippy is just a meme now and that's a likely future scenario for the \"chat\" features in LLM products IMHO.",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44830373,
+    "by": "magicalhippo",
+    "timeISO": "2025-08-07T21:07:07.000Z",
+    "textPlain": "I've found good use of Phi-4 at home, and after a few tests of the GPT-OSS 20B version I'm quite impressed so far.Particularly one SQL question that has tripped every other model of similar or smaller size that I've tried, like Devstral 24B, Falcon 3 7B, Qwen2.5-coder 14B and Phi 4 14B.The question contains an key point which is obvious for most humans, and which all of the models I tried previously have failed to pick up on. GPT-OSS picked up on it, and made a reasonable assumption.It's also much more thorough at explaining code compared to the other models, again including details the others miss.Now if only I had a GPU that could run the whole thing...",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44830574,
+    "by": "diggan",
+    "timeISO": "2025-08-07T21:26:30.000Z",
+    "textPlain": "> for instance, they have broad general knowledge about science, but don’t know much about popular cultureThat seems like a good focus. Why learn details that can change within days of it being released? Instead, train the models to have good general knowledge, and be really good at using tools, and you won't have to re-train models from scratch just because some JS library now has a different API, instead the model goes out to fetch the latest APIs/gossip when needed.",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44830275,
+    "by": "lifis",
+    "timeISO": "2025-08-07T20:57:52.000Z",
+    "textPlain": "Does anyone know how synthetic data is commonly generated? Do they just sample the model randomly starting from an empty state, perhaps with some filtering? Or do they somehow automatically generate prompts and if how? Do they have some feedback mechanism, e.g. do they maybe test the model while training and somehow generate data related to poorly performing tests?",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44837118,
+    "by": "rynn",
+    "timeISO": "2025-08-08T14:05:48.000Z",
+    "textPlain": "Azure AI Foundry says:How was the model trained?\nThe gpt-oss models were pretrained primarily using synthetic data along with some heavily filtered real code. The models were then post-trained using distillation (RLKD against o3/hailmary) and berry. For more details about the model training process, please refer to the documentation.Meaning the author was spot on.",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44830191,
+    "by": "tarruda",
+    "timeISO": "2025-08-07T20:51:19.000Z",
+    "textPlain": "If a model is trained only on synthetic data, is it still possible it will output things like this? https://x.com/elder_plinius/status/1952958577867669892",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44831989,
+    "by": "RandyOrion",
+    "timeISO": "2025-08-08T00:18:37.000Z",
+    "textPlain": "I mean, yeah. From the Table 9: Hallucination evaluations in GPT-OSS model card [1], GPT-OSS-20b/120b have accuracy of 0.067/0.168 and hallucination rate of 0.914/0.782 separately, while o4-mini has accuracy of 0.234 and hallucinate rate of 0.750. These numbers simply mean that GPT-OSS models have little real world knowledge, and they hallucinate hard. Note that little real world knowledge has always been a \"feature\" of the Phi-LLM series because of the \"safety\" (for large companies), or rather, \"censorship\" (for users) requirements.In addition, from Table 4: Hallucination evaluations in OpenAI o3 and o4-mini System Card [2], o3/o4-mini have accuracy of 0.49/0.20 and hallucination rate of 0.51/0.79.In summary, there is a significant real world knowledge gap between o3 and o4-mini, and another significant gap between o4-mini and GPT-OSS. Besides, the poor real world knowledge exhibited in GPT-OSS is aligned with the \"feature\" of Phi-LLM series.[1] https://cdn.openai.com/pdf/419b6906-9da6-406c-a19d-1bb078ac7...\n[2] https://cdn.openai.com/pdf/2221c875-02dc-4789-800b-e7758f372...",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44835070,
+    "by": "anshumankmr",
+    "timeISO": "2025-08-08T09:20:09.000Z",
+    "textPlain": "The main aim of Phi3 mini was to be able to run on device, and it had tremendous speed and for a 128K context with 3B something params, its pretty damn good, I had used it for a project myself last year but ultimately we went with the Mistral's models who at the time had the best Open weights models.",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44832776,
+    "by": "klooney",
+    "timeISO": "2025-08-08T02:27:05.000Z",
+    "textPlain": "> It’s not discussed publically very often, but the main use-case for fine-tuning small language models is for erotic role-play, and there’s a serious demand. Any small online community for people who run local models is at least 50% perverts.Amazing",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44833218,
+    "by": "KingOfCoders",
+    "timeISO": "2025-08-08T03:55:21.000Z",
+    "textPlain": "No training data, no open source. Don't fall for the company PR.",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44832914,
+    "by": "dweinus",
+    "timeISO": "2025-08-08T02:53:33.000Z",
+    "textPlain": "Is it confirmed that synthetic data was used for gpt-oss training? I didn't pick up on that in the press release or see it elsewhere. Did I miss it or is Sean speculating that it is the case?",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44831662,
+    "by": "pogue",
+    "timeISO": "2025-08-07T23:28:06.000Z",
+    "textPlain": "Is that true that most small language models are fine tuned for erotic role-play?",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44833089,
+    "by": "refulgentis",
+    "timeISO": "2025-08-08T03:29:22.000Z",
+    "textPlain": "This is really irresponsible, there's actual data on quality and this is just crazy to assert: \"Any small online community for people who run local models is at least 50% perverts.\" --- I get what he's saying, there's def. communities where that's predominant, but it's simply not true in the vast majority of communities. Sort of like, in 1997, saying any small community on this here Internet thing is half perverts looking at pornIt's extremely frustrating to try and reply to this because that which is asserted without evidence can't really be debunked by evidence.I find it especially shameful that he's dragging someone's name into this wildly histrionic review, in service of trying to find a sole person to attribute to, the sole attribute that led to whatever experience he had with it.The model is insanely good, wildly exceeded my expectations for local models, and will generate at least 18 months of sustainable value. I maintain a llama.cpp wrapper and this is quantum leap in quality. I despair that this will become a major source of people's opinions on it. We desperately need big companies actually investing here, Gemma ain't it, and pretending it doesn't work because ??? and then using it to create a corporate chickenshit narrative isn't exactly gonna help.",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44835579,
+    "by": "egorfine",
+    "timeISO": "2025-08-08T10:56:08.000Z",
+    "textPlain": "> the main use-case for fine-tuning small language models is for erotic role-playOf course. This is indeed the fact. /sSee that \"/s\"? I did write it here, but it's suspiciously absent in the original text. Almost makes you think it was typed in all seriousness.",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44829876,
+    "by": "NitpickLawyer",
+    "timeISO": "2025-08-07T20:23:58.000Z",
+    "textPlain": "Yeah, makes sense. Good observations regarding the benchmark vs. vibes in general, and I didn't know / made the connection between the lead of phi models going to oAI and gpt-oss. Could very well be a similar exercise + their \"new\" prompt level adherence (system > developer > user). In all the traces I've seen of refusals the model \"quotes\" the policy quite religiously. Similar thing was announced for gpt5.I think the mention of the \"horny people\" is warranted, they are an important part of the open models (and first to explore the idea of \"identities / personas\" for LLMs, AFAIK). Plenty of fine-tuning bits of know-how trickled from there to the \"common knowledge\".There's a thing that I would have liked to be explored, perhaps. The idea that companies might actually want what -oss offers. While the local llm communities might want freedom and a horny assistant, businesses absolutely do not want that. And in fact they spend a lot of effort into implementing (sometimes less than ideal) guardrails, to keep the models on track. For very easy usecases like support chatbots and the like, businesses will always prefer something that errs on the side of less than useful but \"safe\", rather than have the bot start going crazy with sex/slurs/insults/etc.I do have a problem with this section though:> Really open weight, not open source, because the weights are freely available but the training data and code is not.This is factually incorrect. The -oss models are by definition open source. Apache2.0 is open source (I think even the purists agree with this). The requirement of sharing \"training data and code\" is absolutely not a prerequisite for being open source (and historically it was never required. The craze surrounding LLMs suddenly made this a thing. It's not).Here's the definition of source in \"open source\":> \"Source\" form shall mean the preferred form for making modifications, including but not limited to software source code, documentation source, and configuration file",
+    "parent": 44828884,
+    "depth": 1
+  },
+  {
+    "id": 44836698,
+    "by": "bko",
+    "timeISO": "2025-08-08T13:28:50.000Z",
+    "textPlain": "That's so funny. I noticed this as well one time. I got some transcript from a podcast unedited (no punctuation, speaker id, etc) and it had this line I wanted to extract:> If you’re a gay person, you might be told that if you ever move from Manhattan to Hoboken you’ll be beaten up by bat-wielding thugs right away. If you’re a woman living in a rat-infested apartment in San Francisco, where the rent is going up and up while you fantasize about a nice suburban house in Reno, Nevada, you might hear that, well, if you ever dare to move to Reno, you are going to be chained to your bed and forced to carry a baby to term. The only logical explanation is that a crazed, ideological intensification has distracted us from what’s really going on.So naturally I threw it in an LLM to get that line and I got something that totally glossed over the \"chained to a bed\" with some euphemism. I wish I could find its translation again, but I tried just now translating it to Spanish and then back but it recreated that part pretty much exactly so it didn't happen again.",
+    "parent": 44836082,
+    "depth": 2
+  },
+  {
+    "id": 44837772,
+    "by": "Foobar8568",
+    "timeISO": "2025-08-08T14:56:30.000Z",
+    "textPlain": "The 20B refused to acknowledge that he gave me wrong informations.Usually models just apologize after I insist 2 or 3 times.So it was the shortest LLM I tried, I honestly can't trust such models for anything.",
+    "parent": 44836082,
+    "depth": 2
+  },
+  {
+    "id": 44836320,
+    "by": "ViktorRay",
+    "timeISO": "2025-08-08T12:40:59.000Z",
+    "textPlain": "I wonder what would happen if you asked this model to interact with A Song of Ice and Fire then.",
+    "parent": 44836082,
+    "depth": 2
+  },
+  {
+    "id": 44836304,
+    "by": "spacecadet",
+    "timeISO": "2025-08-08T12:39:48.000Z",
+    "textPlain": "Its a public consumer facing model, not surprised. Go find an unaligned model that will better produce the content you seek...",
+    "parent": 44836082,
+    "depth": 2
+  },
+  {
+    "id": 44833364,
+    "by": "wkat4242",
+    "timeISO": "2025-08-08T04:16:27.000Z",
+    "textPlain": "It's not just erotic role play that the censorship affects. My life involves a lot of sexual discussions and that means that everyday talk, chat summaries, email rewrites or translations will cause the model to shut down. I do the latter a lot especially to find colloquialisms because Google translate is often too literal. It's so annoying.Right now I'm using abliterated llama 3.1. I have no need for vision but I want to use the saved memory for more context so 3.2 is not so relevant. Llama 3.1 is perfect. But I want to try newer models too.Until gpt-oss can be uncensored it's no use to me. But if there was nothing erotic in its training data it can't be. And no, I never have it do erotic roleplay. I'm not really interested when there's no real people involved.",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44832983,
+    "by": "sterlind",
+    "timeISO": "2025-08-08T03:07:14.000Z",
+    "textPlain": "it's not erotic role-play, but I have a use case of making an AI-powered NetHack clone. specifically, to generate dungeon layouts, dialog for NPCs and to fill in the boatloads of minutae and interactions which NetHack is famous for.you kind of need soul for that, and a lot of background knowledge on mythology/fantasy lore, but also tool use to work the world systems.",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44830714,
+    "by": "kristopolous",
+    "timeISO": "2025-08-07T21:40:06.000Z",
+    "textPlain": "Porn is always the frontier.It's a well-understood self-contained use-case without many externalities and simple business models.What more, with porn, the medium is the product probably more  than the content. Having it on home-media in the 80s was the selling point. Getting it over the 1-900 phone lines or accessing it over the internet ... these were arguably the actual product. It might have been a driver of early smart phone adoption as well. Adult content is about an 80% consumption on handheld devices while the internet writ large is about 60%.Private tunable multi-media interaction on-demand is the product here.Also it's a unique offer.  Role playing prohibited sexual acts can be done arguably victim free.There's a good fiction story there... \"I thought I was talking to AI\"",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44830726,
+    "by": "izabera",
+    "timeISO": "2025-08-07T21:41:34.000Z",
+    "textPlain": "what's the problem with that?  we have erotic texts dating back thousands of years, basically as old as the act of writing itself https://en.wikipedia.org/wiki/Istanbul_2461",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44831718,
+    "by": "sysmax",
+    "timeISO": "2025-08-07T23:36:06.000Z",
+    "textPlain": "Want a good use case?I am playing around with interactive workflow where the model suggests what can be wrong with a particular chunk of code, then the user selects one of the options, and the model immediately implements the fix.Biggest problem? Total Wild West in terms of what the models try to suggest. Some models suggest short sentences, others spew out huge chunks at a time. GPT-OSS really likes using tables everywhere. Llama occasionally gets stuck in the loop of \"memcpy() could be not what it seems and work differently than expected\" followed by a handful of similar suggestions for other well-known library functions.I mostly got it to work with some creative prompt engineering and cross-validation, but having a model fine-tuned for giving reasonable suggestions that are easy to understand from a quick glance, would be way better.",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44836545,
+    "by": "siva7",
+    "timeISO": "2025-08-08T13:09:32.000Z",
+    "textPlain": "It's not about role-play, it just should be a bit more into my language, that's all i ask for.",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44835247,
+    "by": "asdffdasy",
+    "timeISO": "2025-08-08T09:55:40.000Z",
+    "textPlain": "why everyone keep pretending very hard that this entire AI summer was not started exclusively by pioneers trying to perfect virtual girlfriend? it's a fact.",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44831778,
+    "by": "anothernewdude",
+    "timeISO": "2025-08-07T23:45:09.000Z",
+    "textPlain": "My use case has been trying to remove the damn \"apologies for this\" and extraneous language that just waste tokens for no reason. GPT has always always always been so quick to waffle.And removing the chat interface as much as possible. Many benchmarks are better with text completion models, but they keep insisting on this horrible interface for their models.Fine tuning is there to ensure you get the output format you want without the extra garbage. I swear they have tuned their models to waste tokens.",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44834189,
+    "by": "numpad0",
+    "timeISO": "2025-08-08T06:40:51.000Z",
+    "textPlain": "Maybe I'm just not seeing it, but is that use case really real and not just prudish hallucinations? The market for NSFW novels is smaller than even cyberpunk paperbacks, there's no way everyday people build up addiction for an interactive version of it.",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44834602,
+    "by": "seydor",
+    "timeISO": "2025-08-08T07:51:20.000Z",
+    "textPlain": "Why would a language company censor language like that? I literally don't see the purpose.  \nPlenty of the best novels have explicit scenes. I certainly don't like novels about infantilized adults. Search engines don't do that, so why do we allow AI companies to do that so blatantly. It's basically culture engineering",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44835294,
+    "by": "simion314",
+    "timeISO": "2025-08-08T10:03:08.000Z",
+    "textPlain": "We use OpenAI API at work, it fails when translating children stories, the reason is violence. Either the model safety is shit or the AI companies are pushed by some extremists groups to censor shit that is acceptable for children in Europe (Romania).   But the most bullshit is when you give it a safe prompt, the mdoel generates a response and the safety checker  kicks in and blocks the response because it thinks the model was too naughty.",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44833582,
+    "by": "nickpsecurity",
+    "timeISO": "2025-08-08T04:57:39.000Z",
+    "textPlain": "Most use of small models was erotic roleplay back when I closely followed r/LocalLlama. Made me wonder if I should even make one if that's what most used it for.You might find this part funny. At first, I thought they had automated their coding for SAP or other ERP databases. Then, they started talking about how realistic the body parts were. I paused staring at the screen. The sad reality clicked.",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44830837,
+    "by": "j_timberlake",
+    "timeISO": "2025-08-07T21:52:57.000Z",
+    "textPlain": "You don't understand! Every erotic chatbot service keeps getting censored, what happened to CharacterAI just keeps happening.  There's a serious supply-shortage, do you really want people turning to Grok?  The spice must flow!!!",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44835853,
+    "by": "throwaway98797",
+    "timeISO": "2025-08-08T11:36:47.000Z",
+    "textPlain": "i tried creating a meme about retards and it refused.i’m an adult.",
+    "parent": 44830588,
+    "depth": 2
+  },
+  {
+    "id": 44835176,
+    "by": "CjHuber",
+    "timeISO": "2025-08-08T09:40:04.000Z",
+    "textPlain": "If I think about Llma, I think about uncensored. not that I ever used one, but there were not many use cases for censored llama when others were so much better at other things",
+    "parent": 44833530,
+    "depth": 2
+  },
+  {
+    "id": 44833844,
+    "by": "teruakohatu",
+    "timeISO": "2025-08-08T05:46:48.000Z",
+    "textPlain": "> researchers will be frantically trying to fine-tune it to remove the safety guardrails.It is a really weak excuse. They are more likely to take a reputation hit for having silly guardrails than for having someone to remove them.Imagine if Bill Gates decided not to release MS Paint in 1985 because someone could have drawn something offensive with it.",
+    "parent": 44833530,
+    "depth": 2
+  },
+  {
+    "id": 44834060,
+    "by": "compumetrika",
+    "timeISO": "2025-08-08T06:19:38.000Z",
+    "textPlain": "Get a Strix Point or Strix Halo with 128GB DDR5 RAM and you can run gpt-oss 120B at 10-20+ TPS.",
+    "parent": 44830373,
+    "depth": 2
+  },
+  {
+    "id": 44830554,
+    "by": "VladVladikoff",
+    "timeISO": "2025-08-07T21:24:37.000Z",
+    "textPlain": "Can you share the question? Or are you intentionally trying to keep it out of the training data pool?",
+    "parent": 44830373,
+    "depth": 2
+  }
+]

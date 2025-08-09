@@ -1,0 +1,74 @@
+[
+  {
+    "id": 44808728,
+    "by": "kazinator",
+    "timeISO": "2025-08-06T07:17:17.000Z",
+    "textPlain": "Since JSON does not specify what happens with duplicate keys, that means it is \"unspecified behavior\" in language spec speak.Software which prepares JSON with duplicate keys is causing unspecified behavior in downstream processors, and therefore its output can be regarded as broken.If you put out JSON with duplicate keys, you are responsible for whatever consequently blows up in your face or the faces of downstream users.",
+    "parent": 44804043,
+    "depth": 1
+  },
+  {
+    "id": 44807256,
+    "by": "nurettin",
+    "timeISO": "2025-08-06T03:22:02.000Z",
+    "textPlain": "Not sure what they mean by \"json gem\", as it comes with ruby and not installed via gem install command.I've always usedrequire 'json/ext'This uses the C extension version and is much faster.",
+    "parent": 44804043,
+    "depth": 1
+  },
+  {
+    "id": 44804303,
+    "by": "ezekg",
+    "timeISO": "2025-08-05T21:06:50.000Z",
+    "textPlain": "First thing we could do here is rename the JSON.parse :symbolize_names keyword to :symbolize_keys -- always trips me up for some reason.",
+    "parent": 44804043,
+    "depth": 1
+  },
+  {
+    "id": 44805091,
+    "by": "jmull",
+    "timeISO": "2025-08-05T22:12:48.000Z",
+    "textPlain": "Changing the default behavior for duplicate keys is unnecessary... and therefore should not be done.IMO, it's nuts to purposely introduce random bugs into the apps of everyone who uses your dependency.",
+    "parent": 44804043,
+    "depth": 1
+  },
+  {
+    "id": 44845592,
+    "by": "xg15",
+    "timeISO": "2025-08-09T11:12:16.000Z",
+    "textPlain": "I don't know any format or application that uses this for legitimate purposes. The most frequent \"application\" seem to be exploits. As such I don't think the \"you're responsible\" call would be very helpful. Or rather, you might just as well say \"if you send a packet with an overflowing length field, you're responsible for whatever happens downstream\".",
+    "parent": 44808728,
+    "depth": 2
+  },
+  {
+    "id": 44814816,
+    "by": "byroot",
+    "timeISO": "2025-08-06T17:16:49.000Z",
+    "textPlain": "`json` is a \"default gem\": https://stdgems.org/Meaning Ruby ships with that gem pre-installed, but it's still a gem and you can upgrade/downgrade it in your gemfile if you so chose.As for `require \"json/ext\"` that's outdated knowledge.",
+    "parent": 44807256,
+    "depth": 2
+  },
+  {
+    "id": 44804497,
+    "by": "athorax",
+    "timeISO": "2025-08-05T21:21:32.000Z",
+    "textPlain": "Why? JSON is name-value pairs https://www.json.org/json-en.html",
+    "parent": 44804303,
+    "depth": 2
+  },
+  {
+    "id": 44804893,
+    "by": "fuzzy_biscuit",
+    "timeISO": "2025-08-05T21:53:30.000Z",
+    "textPlain": "Maybe it could just be an alias. People do also refer to them as key-value pairs, so that feels reasonable.",
+    "parent": 44804303,
+    "depth": 2
+  },
+  {
+    "id": 44806141,
+    "by": "anitil",
+    "timeISO": "2025-08-06T00:15:50.000Z",
+    "textPlain": "There was a post here recently about how this sort of behaviour on duplicate keys has actually led to security issues (in the context of Go) [0][0] https://news.ycombinator.com/item?id=44308953",
+    "parent": 44805091,
+    "depth": 2
+  }
+]

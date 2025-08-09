@@ -1,0 +1,242 @@
+[
+  {
+    "id": 44813761,
+    "by": "jjangkke",
+    "timeISO": "2025-08-06T15:59:00.000Z",
+    "textPlain": "I used to trade options and had about 99.5% success on all my tradesThe problem is the 0.5% of the time, it erases all the gains made on the successful ones.I'm convinced without information edge or some capital sunk cost edge (for HFT) you are literally just flipping  coins when it comes to trading.What's dangerous is fixation on strategies that form after a period of success.All in all, I think just buying stock and holding is the best and most successful approach to making money.Maybe when AI becomes sentient it will know on which days it make sense to buy and sell iron condors with huge ass wings....",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44813453,
+    "by": "iav",
+    "timeISO": "2025-08-06T15:37:03.000Z",
+    "textPlain": "This is pretty comprehensive. I work at a quant firm, and we don't even have some of this implemented in code. The tricky part is always going to be the integration. Nautilus has its own OMS system, but so does IBKR, and there is no guarantee that they are going to match.For very small funds, running entirely on IBKR platform (or Alpaca if you can live with their constraints) makes sense. For very large funds, you invariably will have a home-grown system that integrates with all of your expensive vendors. But if you are starting from scratch and want to scale up, using this to bootstrap quickly is most efficient.",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44815406,
+    "by": "bproctor",
+    "timeISO": "2025-08-06T17:57:58.000Z",
+    "textPlain": "Having wasted 6 years of my life intensively working to create an algorithmic trading system (and failing to make it consistently profitable), what they have here is the easy part. You need a system for discovering strategies. That's were almost all your effort will go. The simulator for backtesting, integrating with a broker, etc. is such a small part of it, if you're serious about it, you're probably better off writing your own.",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44812056,
+    "by": "monkeydust",
+    "timeISO": "2025-08-06T13:52:19.000Z",
+    "textPlain": "A long time ago I figured out the difference between a Trader and Investor and realized I am very much the latter. After a few years this realization lead to my wealth increasing.",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44818157,
+    "by": "copypaper",
+    "timeISO": "2025-08-06T21:38:32.000Z",
+    "textPlain": "Algorithmic trading is a deep rabbit hole that will drive you mad the more you try to understand it. There are just too many variables to account for and I genuinely don't understand how you could make a stable trading system that reliably makes money as a retail trader.Excluding HFT (which is reserved for people with hundreds of millions to invest in infra, fresh Ivy league quant analysts, and a fiber optic cable hooked up directly to the exchange; they likely already have an in-house tool that does what this project does), you're really just left with intraday trading or long term investing. Investing doesn't require algorithmic trading or back testing, so it seems that this projects demographic is aimed toward intraday retail traders.With intraday trading, your chances of making a successful trading algo are near 0%. I mean, think about it: you have to account for every single variable in the stock market. How are you supposed to account for a truth social post imposing or lifting tariffs? Or a ransomware attack crippling a company? Or if a whale decides to sell all their $BIGCORP shares on the flip of a coin? It's impossible. Your only odds of success with intraday trading is manually doing it. You yourself are an \"algo\" trader that is capable of changing their strategy on the fly and accounting for unknown variables. A pre-programmed algo can not, no matter how much context you give it.Furthermore, with back testing, it's impossible to accurately capture the context of the market during that time. Let's say you back test on 180 days of data. Well, do you know exactly what happened on the 71st day of that data? Did you account for that fed meeting, that tariff hike, etc? What about all the other days? Testing on OHLCV alone is not enough; you need the entire context of the market.While the project itself it neat, I just don't see how algorithmic trading could lead to any long term success.",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44811465,
+    "by": "mapontosevenths",
+    "timeISO": "2025-08-06T13:08:37.000Z",
+    "textPlain": "Finally, a way for me to lose all of my money automatically. What an exciting time to be alive!More seriously, for anyone else who was curious below is a list of the existing integrations.https://nautilustrader.io/docs/latest/integrations/",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44811853,
+    "by": "bhasinanant",
+    "timeISO": "2025-08-06T13:38:44.000Z",
+    "textPlain": "Interesting choice to be using CPython.\nVery impressed with the completeness, and in particular the Risk Engine. Not having delved in too deeply yet, it does have the basics, but the markets are very highly regulated, and automated trading is always in the microscope.\nAt Goldman, my team's whole job was to make sure the automated trading desks have all the checks implemented. It's a little spoilsport, but anyone seriously looking to use this, it's not gonna be very plug and play, at least while comlying with the market regulations.",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44811487,
+    "by": "William_BB",
+    "timeISO": "2025-08-06T13:10:05.000Z",
+    "textPlain": "Interesting stuff. I'm a bit confused on several points though.If your strategies care so much about performance, can you really achieve the same or comparable performance with Cython? At that point, wouldn't those strategies be better suited for a custom \"re-implementation\"?I suppose I'm not exactly sure how \"high performance\" and \"low latency\" this project is. Are there any latency stats on this project?",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44811565,
+    "by": "UK-Al05",
+    "timeISO": "2025-08-06T13:17:34.000Z",
+    "textPlain": "I wouldn't be surprised if this is sponsored by trading platform in order for customers to lose all money in record time...",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44817383,
+    "by": "k9294",
+    "timeISO": "2025-08-06T20:29:11.000Z",
+    "textPlain": "I spent almost 6 years trading crypto. Our best month's volume was $6B.1. Nothing we tried with usual strategies worked consistently. Backtesting parameters, ML with smart feature selection, boosting, neural networks - everything failed out of sample. Maybe we were dumb, I don't know.2. What worked was having a clear edge:\n   - Private exchange programs with rebates for high-volume teams\n   - Pure latency arbitrage\n   - Weird arbitrage trading obscure instruments (e.g. on chain AMMs vs crypto exchange futures).Both market maker and arbitrage strategies were very sensitive to latency. We built a low-latency trading engine in Java (on top of https://github.com/OpenHFT/Chronicle-Queue). We got 130mqs from market event to order send in a hot loop on 99.99 percentile. It was fun to optimize and benchmark.- Tail latency matters. You can have 100ms at the 90th percentile and 10-50ms at the 99.9th percentile. For low latency strategies, this is pure loss.\n- Tail latency matters even more when markets go crazy. Event rates can jump from 10 per second to 1-2k per second. If your trading engine uses trades or bid/ask events, be ready. For OHLC bars it doesn't matter, but nothing based on OHLC worked for us.---p.s.I wouldn't recommend trading to anyone. It's very stressful and exhausting. More importantly, all your hard work disappears like trying to hold sand in your hands. There's very little compounding of your work. Strategies constantly churn. You're always negotiating with managers for fees and API limits. You're always negotiating with managers for fees and API limits. They force you to buy and hold exchange tokens like Binance's BNB just to get slightly better fees, VIP status, or direct API access that bypasses firewalls.The industry is extremely secretive - it's a zero-sum game with no incentive to share anything. When you meet someone who trades, it's usually hard to have a meaningful conversation. At least that was true for me. All our strategies were small-scale an",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44812312,
+    "by": "payeurp",
+    "timeISO": "2025-08-06T14:13:21.000Z",
+    "textPlain": "How does this compare with the LEAN engine[1] and QuantConnect[2]?[1]: https://www.lean.io/[2]: https://www.quantconnect.com/",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44814980,
+    "by": "SilentM68",
+    "timeISO": "2025-08-06T17:27:46.000Z",
+    "textPlain": "I understand that most, if not all, are in the business of making money. A platform that is sorely missing is an interactive, teaching platform for trading which has suggestions on what to trade, how to trade it, why to trade it and when. A platform that teaches the art of trading without risking any capital, by providing trading simulations, using real-time pricing of as many asset classes as possible. I think people would pay a reasonable price to learn, and gain confidence. I tried to trade on my own and ended up losing, in the end.",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44815532,
+    "by": "narrator",
+    "timeISO": "2025-08-06T18:07:37.000Z",
+    "textPlain": "I've tried to write automated trading systems over the years, but they always perform worse than the stocks I pick to buy and hold and trade at most a few times a year. People do make money at this, so it's not impossible, but it's a bit of a white whale.",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44812603,
+    "by": "cahaya",
+    "timeISO": "2025-08-06T14:35:35.000Z",
+    "textPlain": "Wondering how average users can benefit from this platform with Claude Code and the relation to Vending Bench that tracks how much money LLM's can make.https://andonlabs.com/evals/vending-bench",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44812518,
+    "by": "browningstreet",
+    "timeISO": "2025-08-06T14:29:10.000Z",
+    "textPlain": "I've been wading into algo-trading for a little while now. I've read a few books, set up a few strategies on paper trading platforms.Right now I'm trying to figure out how to consistently make $1/day as a POC exercise. That's it. I did ask the various advanced LLMs the path to earning/clearing $200K/year as an algo-trader.Fun & sobering responses. I'll give the LLMs this -- no uplift in these conversations.",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44812834,
+    "by": "GolfPopper",
+    "timeISO": "2025-08-06T14:52:16.000Z",
+    "textPlain": "Obligatory xkcd:\nhttps://xkcd.com/1570/",
+    "parent": 44810552,
+    "depth": 1
+  },
+  {
+    "id": 44812467,
+    "by": "grantseltzer",
+    "timeISO": "2025-08-06T14:25:49.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44812056,
+    "depth": 2
+  },
+  {
+    "id": 44812493,
+    "by": "no_wizard",
+    "timeISO": "2025-08-06T14:27:09.000Z",
+    "textPlain": "Interesting not a single one of them is in the realm of traditional trading.Can you actually buy real stocks / etfs / mutual funds with this platform?",
+    "parent": 44811465,
+    "depth": 2
+  },
+  {
+    "id": 44812087,
+    "by": "hiatus",
+    "timeISO": "2025-08-06T13:54:37.000Z",
+    "textPlain": "I know FINRA has regulations but the CFTC proposed regulations were shelved. Are little guys who are not FINRA members encumbered by regulations here too?",
+    "parent": 44811853,
+    "depth": 2
+  },
+  {
+    "id": 44814408,
+    "by": "blitzar",
+    "timeISO": "2025-08-06T16:43:33.000Z",
+    "textPlain": "I am guessing it is \"low latency\" as in not taking 2 minutes to calculate an order size and submit it rather than \"low latency\" for HFT and 1,000 trades a second.",
+    "parent": 44811487,
+    "depth": 2
+  },
+  {
+    "id": 44811609,
+    "by": "Tepix",
+    "timeISO": "2025-08-06T13:20:43.000Z",
+    "textPlain": "I think the trading platforms earn more money if you make more trades. So it's in their interest that you trade for as long as possible.",
+    "parent": 44811565,
+    "depth": 2
+  },
+  {
+    "id": 44812023,
+    "by": "world2vec",
+    "timeISO": "2025-08-06T13:49:52.000Z",
+    "textPlain": "The website does say they're partners with OKX, nothing better than bringing more retail customers (that will promptly lose their money).I've seen stats from other crypto exchanges that are something like \"90% of the retail customers lose 90% of their funds in 90 days or less\".",
+    "parent": 44811565,
+    "depth": 2
+  },
+  {
+    "id": 44811658,
+    "by": "mapontosevenths",
+    "timeISO": "2025-08-06T13:23:54.000Z",
+    "textPlain": "Trading platforms would make more money if you made just enough money to continue to trade long term. Especially the bucket shops crypto and forex exchanges that make most of their money front-running customer orders.Unregulated exchanges are just a way to bring back the bad old days of \"boiler room\" penny stock scammers of the 80's. Most of the people making money are running 40 year old scams on 20 somethings who don't know better yet.",
+    "parent": 44811565,
+    "depth": 2
+  },
+  {
+    "id": 44813875,
+    "by": "omarhaneef",
+    "timeISO": "2025-08-06T16:06:55.000Z",
+    "textPlain": "There are a few dozen of these out there. That’s the first question anyone should answer.",
+    "parent": 44812312,
+    "depth": 2
+  },
+  {
+    "id": 44813221,
+    "by": "bwfan123",
+    "timeISO": "2025-08-06T15:20:51.000Z",
+    "textPlain": "Consistently making $1 a day may be difficult for retail trading. Rather, you could attempt to be right 51% of the time gathering a 1% edge. This is not easy for us because, it randomizes profits and losses, and we like to not lose money (make a $1 a day), and this could expose you to streaks of losses.",
+    "parent": 44812518,
+    "depth": 2
+  },
+  {
+    "id": 44816303,
+    "by": "antognini",
+    "timeISO": "2025-08-06T19:09:36.000Z",
+    "textPlain": "> Right now I'm trying to figure out how to consistently make $1/day as a POC exercise.You can do this with the following strategy:1. Buy $10,000 of Treasury bonds.It might be more interesting to target a particular Sharpe ratio rather than an absolute dollar amount since that will be proportional to the amount you invest.",
+    "parent": 44812518,
+    "depth": 2
+  },
+  {
+    "id": 44812801,
+    "by": "nemomarx",
+    "timeISO": "2025-08-06T14:49:52.000Z",
+    "textPlain": "if you could make that much money day trading wouldn't it be scale able and someone else would already make those trades?",
+    "parent": 44812518,
+    "depth": 2
+  },
+  {
+    "id": 44815359,
+    "by": "energy123",
+    "timeISO": "2025-08-06T17:54:59.000Z",
+    "textPlain": "If you can make $1/day you're already 95% of the way there.",
+    "parent": 44812518,
+    "depth": 2
+  },
+  {
+    "id": 44812693,
+    "by": "IshKebab",
+    "timeISO": "2025-08-06T14:42:56.000Z",
+    "textPlain": "Surely you can't? You don't have the latency advantages of big trading firms, nor the gazillion PhDs they employ. There's absolutely no way you are going to consistently make money, let alone $200k/year. At best you'll get lucky and think it's skill.",
+    "parent": 44812518,
+    "depth": 2
+  },
+  {
+    "id": 44813096,
+    "by": "nwhnwh",
+    "timeISO": "2025-08-06T15:12:39.000Z",
+    "textPlain": "Gold.",
+    "parent": 44812834,
+    "depth": 2
+  }
+]

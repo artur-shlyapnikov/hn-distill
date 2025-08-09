@@ -1,0 +1,74 @@
+[
+  {
+    "id": 44781205,
+    "by": "nixpulvis",
+    "timeISO": "2025-08-04T01:02:35.000Z",
+    "textPlain": "In Rust I find myself gaining a good bit of type safety without losing ergonomics by wrapping types in a newtype then implementing Deref for them. At first it might seem like a waste, but it prevents accidentally passing the wrong type of thing to a function (e.g. a user UUID as a post UUID).",
+    "parent": 44780544,
+    "depth": 1
+  },
+  {
+    "id": 44781353,
+    "by": "lmm",
+    "timeISO": "2025-08-04T01:33:34.000Z",
+    "textPlain": "IME this is exactly backwards: type safety is mostly about names, everything else is a nice-to-have. Yes, you can bypass your name checks if you want to, but you can bypass any type check if you want to. Most relevant type relationships in most programming are business relationships that would be prohibitively expensive to express in a full formalism if that was even possible. But putting names on them is cheap, easy, and effective. The biggest win from typed languages comes from using these basic techniques.",
+    "parent": 44780544,
+    "depth": 1
+  },
+  {
+    "id": 44781217,
+    "by": "5pl1n73r",
+    "timeISO": "2025-08-04T01:05:35.000Z",
+    "textPlain": "My peers and I work on a language centered around \"constructive data modeling\" (first time I hear it called that). We implement integers, and indeed, things like non empty lists using algebraic data types, for example. You can both have a theory of values that doesn't rely on trapdoors like \"int32\" or \"string\", as well as encode invariants, as this article covers.As I understand it, the primary purpose of newtypes is actually just to work around typeclass issues like in the examples mentioned at the end of the article. They are specifically designed to be zero cost, because you want to not pay when you work around the type class instance already being taken for the type you want to make an instance for. When you make an abstract data type by not exporting the data constructors, that can be done with or without newtype.",
+    "parent": 44780544,
+    "depth": 1
+  },
+  {
+    "id": 44781526,
+    "by": "skybrian",
+    "timeISO": "2025-08-04T02:13:43.000Z",
+    "textPlain": "The author seems concerned about compile-time range checking: did you handle the full range of inputs?Range checking can be very annoying to deal with if you take it too seriously. This comes up when writing a property testing framework. It's easy to generate test data that will cause out of memory errors - just pass in maximum-length strings everywhere. Your code accepts any string, right? That's what type signature says!In practice, setting compile-time limits on string sizes for the inputs to every internal function would be unreasonable. When using dynamically allocated memory, the maximum input size is really a system property: how much memory does the system have? Limits on input sizes need to be set at system boundaries.",
+    "parent": 44780544,
+    "depth": 1
+  },
+  {
+    "id": 44781293,
+    "by": "kazinator",
+    "timeISO": "2025-08-04T01:21:01.000Z",
+    "textPlain": "What if I want a type called MinusIntMaxToPlusIntMax?In other words the full range of Int?Is newtype still bad?In other words how much of this criticism has to do with newtype not providing sub-ranging for enumerable types?It seems that it could be extended to do that.",
+    "parent": 44780544,
+    "depth": 1
+  },
+  {
+    "id": 44781782,
+    "by": "andyferris",
+    "timeISO": "2025-08-04T03:04:59.000Z",
+    "textPlain": "These are possibly situations where I’d resort to a panic on the extra branch rather than complicate the return type.Providing a proof of program correctness is pretty challenging even in languages that support it. In most cases careful checking  of invariants at runtime (where not possible at compile time) and crashing loudly and early is sufficient for reliable-enough software.",
+    "parent": 44780544,
+    "depth": 1
+  },
+  {
+    "id": 44782418,
+    "by": "auggierose",
+    "timeISO": "2025-08-04T05:36:17.000Z",
+    "textPlain": "These kinds of types are just a waste of time. It is going to be OneToSix or OneToSeven very soon...It's just an example! Well, if you cannot come up with a good example, maybe you don't have a point.",
+    "parent": 44780544,
+    "depth": 1
+  },
+  {
+    "id": 44781655,
+    "by": "b_e_n_t_o_n",
+    "timeISO": "2025-08-04T02:42:31.000Z",
+    "textPlain": "Perhaps it's because I'm not a haskeller but I'm not sure if I'm sold on encoding this into the type system. In go (and other languages for example), you would simply use a struct with a hidden Int, and receiver methods for construction/modification/access. I'm not sure I see the benefit of the type ceremony around it.",
+    "parent": 44780544,
+    "depth": 1
+  },
+  {
+    "id": 44781842,
+    "by": "valenterry",
+    "timeISO": "2025-08-04T03:18:36.000Z",
+    "textPlain": "Title should been \"names are not ENOUGH for type-safety\" but then no one would have read it I guess...",
+    "parent": 44780544,
+    "depth": 1
+  }
+]

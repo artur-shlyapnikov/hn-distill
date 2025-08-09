@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44749375,
+    "by": "kjksf",
+    "timeISO": "2025-07-31T19:47:57.000Z",
+    "textPlain": "I think this page describes \"what\" but not \"why\" of Carbon.Carbon exists so that it's possible to migrate a large C++ code base, like Chrome, from C++ to something saner, incrementally.The most important attribute of Carbon is not the specifics of the syntax but the fact that it's designed to be used in a mixed C++ / Carbon code base and comes with tooling to convert as much of C++ as possible to Carbon.That's what makes Carbon different from any other language: D, Zig, Nim, Rust etc.It's not possible to port a millions line C++ code base, like Chrome, to another language so large C++ projects are stuck with objectively pretty bad language and are forced to continue to use C++ even though a better language might exist.That's why Carbon is designed for incremental adoption in large C++ projects: you can add Carbon code to existing C++ code and incrementally port C++ over to Carbon until only Carbon code exists.Still a very large investment but at least possible and not dissimilar to refactoring to adopt newer C++ features like e.g. replacing use of std::string with std::string_view.That's why it's a rational project for Google. Even though it's a large investment, it might pay off if they can write new software in Carbon instead of C++ and refactor old code into Carbon.",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44747122,
+    "by": "nxobject",
+    "timeISO": "2025-07-31T16:14:53.000Z",
+    "textPlain": "If you've seen this before, it's worth looking at the 2025 roadmap – it's long-term work, a full safety story hasn't been quite figured out (TBD end 2025), and 0.1 is TBD end 2026. About the pace of Rust, although without the active forum that Rust had in its early days.https://docs.carbon-lang.dev/docs/project/roadmap.htmlWhat _is_ interesting is that I get the impression that Carbon is being workshopped with the C++ community, rather than the wider PLT community -- I worry that they won't benefit from the broader perspectives that'll help it avoid well-known warts elsewhere.",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44749686,
+    "by": "dang",
+    "timeISO": "2025-07-31T20:19:01.000Z",
+    "textPlain": "Related. Others?Carbon is not a programming language (sort of) - https://news.ycombinator.com/item?id=42983733 - Feb 2025 (97 comments)Ask HN: How is the Carbon language going? - https://news.ycombinator.com/item?id=40480446 - May 2024 (1 comment)Will Carbon Replace C++? - https://news.ycombinator.com/item?id=34957215 - Feb 2023 (321 comments)Carbon Programming Language from Google - https://news.ycombinator.com/item?id=32250267 - July 2022 (1 comment)Google Launches Carbon, an Experimental Replacement for C++ - https://news.ycombinator.com/item?id=32223270 - July 2022 (232 comments)Carbon Language: An experimental successor to C++ - https://news.ycombinator.com/item?id=32151609 - July 2022 (504 comments)Carbon: high level programming language that compiles to plain C - https://news.ycombinator.com/item?id=4676789 - Oct 2012 (39 comments)",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44748768,
+    "by": "Animats",
+    "timeISO": "2025-07-31T18:44:24.000Z",
+    "textPlain": "\"Longer term, we will build on this to introduce a safe Carbon subset. This will be a large and complex undertaking, and won’t be in the 0.1 design.\"If they can't get safety right at the design stage, they'll never get it right.\nWe already have D and Zig in this space.",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44749816,
+    "by": "NooneAtAll3",
+    "timeISO": "2025-07-31T20:35:00.000Z",
+    "textPlain": "I remember back when carbon first appeared, I immediately thought it's not gonna get popular simply because it has \"fn\" and \"var\"superficial details matter - people that stayed on C++ instead of transitioning to flashy new ones have type-before-name as part of programming identityyou can have all the features in the world (and be recognized by it), but if the code doesn't _look_ like C++, then it's of no interest",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44754832,
+    "by": "imtringued",
+    "timeISO": "2025-08-01T10:07:44.000Z",
+    "textPlain": "This language changes too much and too little all at the same time. It creates a burden on the developers without lifting many of the burdens of C++.I can imagine the thought process behind the designers of the language went as follows:\"It's not possible to improve C++ without breaking backwards compatibility\"\"That's correct, but if we're going to break backwards compatibility anyways, why not use this as an opportunity to change a bunch of things?\"aka the python 3 mentality, where necessary changes were combined with unnecessary changes that caused pointless migration costs. The fallacy is derived from the fact that breaking backwards compatibility is considered a massive fixed cost due to the fact that libraries have to be updated, therefore adding small incremental costs will not meaningfully increase overall cost. In reality the fixed cost of breaking backwards compatibility can be reduced massively if the proper care is taken, which means all the \"just because\" changes that were thrown in as a bonus, end up representing a much larger share of the migration cost than initially anticipated.",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44751587,
+    "by": "JonChesterfield",
+    "timeISO": "2025-07-31T23:57:37.000Z",
+    "textPlain": "One could presumably compile arbitrary C++ to rust or D without changing semantics, then slowly go through the result making it look more native to the new language.That would either be a wholesale conversion or emitting a translation shim style thing at the boundary between legacy c++ and the new language.I'm not sure Carbon is necessary to achieve such a conversion.",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44748522,
+    "by": "self_awareness",
+    "timeISO": "2025-07-31T18:22:01.000Z",
+    "textPlain": "It's strange that they sometimes use [] to specify a type, other times they use (). That doesn't look very consistent to me.I like the use of [] though, it reminds me of Scala, which I liked before they did the scala 3 fork.",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44747981,
+    "by": "darksaints",
+    "timeISO": "2025-07-31T17:32:35.000Z",
+    "textPlain": "I remember back when Rust was still in so much flux that there were regular discussions about syntax, and there was a proposal very similar to the syntax of carbon: square brackets for generics and type annotations, parens for indexing, etc. It was basically turned down because they wanted to win over C++ devs. I still wish it was the favored outcome...it looks so much cleaner and less jarring.",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44748948,
+    "by": "Imustaskforhelp",
+    "timeISO": "2025-07-31T19:02:30.000Z",
+    "textPlain": "Zig seems like a better approach but I still remember the carbon C killer video from fireship before that channel was bought by vc funding and turned into AI slop news reporter most likely using AI.I don't even watch fireship anymore. I actively resist the urge to. There are some other better channels like typecraft or primagen or dreams of code and so many other enthusiasts, there is this one bash guy that I watch whose having fun in life doing side quests like going to gym and gardening and I am all for that too.",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44753972,
+    "by": "benob",
+    "timeISO": "2025-08-01T07:31:58.000Z",
+    "textPlain": "How is it different from mere syntactic sugar over the same programming concepts? What does it bring that C++ cannot do?Isn't it just a way of controlling the language vs using normative bodies?",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44752139,
+    "by": "uvas_pasas_per",
+    "timeISO": "2025-08-01T01:30:58.000Z",
+    "textPlain": "Given the huge effort to make this language, I wonder if they could have directed that toward some kind of Rust-to-C++ bridge instead?",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44750023,
+    "by": "z_open",
+    "timeISO": "2025-07-31T20:54:34.000Z",
+    "textPlain": "Are all major programming languages going to come from corporations in web 2.0?",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44764511,
+    "by": "verysorry42",
+    "timeISO": "2025-08-02T02:42:06.000Z",
+    "textPlain": "Chandler Carruth and his Carbon team might be both incompetent and dishonest. Is he and his team just scamming Google while working effectively without accountability, racking in money? How have they not gotten further? Why does the language seem so incompetently and carelessly designed? Do they put any effort or thought into it?",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44753381,
+    "by": "ygritte",
+    "timeISO": "2025-08-01T05:48:59.000Z",
+    "textPlain": "What's the pro of not having a stable ABI?",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44746678,
+    "by": "bananapub",
+    "timeISO": "2025-07-31T15:29:36.000Z",
+    "textPlain": "[2022]",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44746000,
+    "by": "KingLancelot",
+    "timeISO": "2025-07-31T14:24:55.000Z",
+    "textPlain": "[dead]",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44747304,
+    "by": "mihaic",
+    "timeISO": "2025-07-31T16:34:05.000Z",
+    "textPlain": "It's become a pet peeve of mine, but for the love of God, if anyone with input in Carbon is scanning this, what can be done to use \"func\" instead of \"fn\" as a keyword?That all-consonant keyword always makes it seem like I'm reading Hungarian notation when reading Rust for instance. An other options I've seen for instance in Pony, \"fun\", is already an English word with a completely different meaning.Even the \"function\" from Javascript seems fine to me.",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44753540,
+    "by": "fooker",
+    "timeISO": "2025-08-01T06:18:35.000Z",
+    "textPlain": "Wow the syntax looks terrible.",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44753440,
+    "by": "Surac",
+    "timeISO": "2025-08-01T06:02:12.000Z",
+    "textPlain": "in the end it's all bits in ram that a cpu has to execute. as long as the cpu ISA is build around common coding patterns found in c there seems no reason to use anything other than c. I get it that people do not like to code in a language that does not hold your hand. I myself prototype most of my code in c#. But in the end it has to fit inside the cpu ISA architecture.",
+    "parent": 44745984,
+    "depth": 1
+  },
+  {
+    "id": 44752187,
+    "by": "Buttons840",
+    "timeISO": "2025-08-01T01:39:56.000Z",
+    "textPlain": "Stockholm syndrome, after learning C++ syntax, surely it wasn't all for nothing, I can't accept that.",
+    "parent": 44749816,
+    "depth": 2
+  },
+  {
+    "id": 44751803,
+    "by": "zem",
+    "timeISO": "2025-08-01T00:35:56.000Z",
+    "textPlain": "I would be stunned if you could compile arbitrary c++ to rust or d, unless by \"compile\" you mean \"painfully hand-translate and spend months fixing subtle errors\". you are underestimating the sheer complexity of the language.",
+    "parent": 44751587,
+    "depth": 2
+  },
+  {
+    "id": 44752137,
+    "by": "nicwilson",
+    "timeISO": "2025-08-01T01:30:33.000Z",
+    "textPlain": "This was essentially how DMD (the reference D compiler) was translated to D.\nHowever this was mostly a restricted subset of C++ common to both of them, e.g. no diamond inheritance, no operator overloading whackiness.",
+    "parent": 44751587,
+    "depth": 2
+  },
+  {
+    "id": 44751964,
+    "by": "miguel_martin",
+    "timeISO": "2025-08-01T01:04:27.000Z",
+    "textPlain": "Nim would be the best choice for this at the moment, imhoimportcpp what you need. exportcpp for the other way around",
+    "parent": 44751587,
+    "depth": 2
+  },
+  {
+    "id": 44750860,
+    "by": "Jtsummers",
+    "timeISO": "2025-07-31T22:26:20.000Z",
+    "textPlain": "[] here can be read as similar to <> in Rust, C#, Java, or C++ templates (but move the content after the `template` into the function declaration). It's not weird if you're familiar with generic programming (and C++ programmers, the target audience of Carbon right now, will all be familiar with it, they use it with their STL algorithms and collections if nothing else). The () is the ordinary \"here is the parameter list\" used in pretty much every C-syntax language. C doesn't have generics, so there are several ways people have extended that base C-ish syntax to support generics: <>, [], template<>, and a few others have all been done in the past.https://en.wikipedia.org/wiki/Generic_programming - Worth studying up on if you're unfamiliar with it.",
+    "parent": 44748522,
+    "depth": 2
+  },
+  {
+    "id": 44748835,
+    "by": "Arnavion",
+    "timeISO": "2025-07-31T18:51:02.000Z",
+    "textPlain": "`fn partition[T: ...]` uses `[]` to define T. `s: Slice(T)` uses `(T)` to invoke the type constructor `Slice` with the type argument T. So you could say that's fine because these are different operations.But then defining a type constructor itself still uses `()`, like `class UnsafeAllowDelete(T:! Concrete) { ... }`. It does seem somewhat inconsistent.",
+    "parent": 44748522,
+    "depth": 2
+  },
+  {
+    "id": 44749351,
+    "by": "cjj_swe",
+    "timeISO": "2025-07-31T19:46:16.000Z",
+    "textPlain": "Square brackets do not indicate \"this is a type\". Instead they indicate \"these things were deduced from their context\"",
+    "parent": 44748522,
+    "depth": 2
+  },
+  {
+    "id": 44803215,
+    "by": "cjj_swe",
+    "timeISO": "2025-08-05T19:39:50.000Z",
+    "textPlain": "Well for one, in addition to templates it has definition checked generics. That alone justifies it to me, but it's far from the only improvement.",
+    "parent": 44753972,
+    "depth": 2
+  },
+  {
+    "id": 44755616,
+    "by": "pzo",
+    "timeISO": "2025-08-01T12:08:31.000Z",
+    "textPlain": "I think they had another such effort for a while here:\nhttps://github.com/google/crubit",
+    "parent": 44752139,
+    "depth": 2
+  },
+  {
+    "id": 44759318,
+    "by": "pjmlp",
+    "timeISO": "2025-08-01T16:50:34.000Z",
+    "textPlain": "Where do you think even C and C++ came from?",
+    "parent": 44750023,
+    "depth": 2
+  },
+  {
+    "id": 44750246,
+    "by": "actionfromafar",
+    "timeISO": "2025-07-31T21:14:15.000Z",
+    "textPlain": "Web 2.0?",
+    "parent": 44750023,
+    "depth": 2
+  },
+  {
+    "id": 44754063,
+    "by": "Ygg2",
+    "timeISO": "2025-08-01T07:49:29.000Z",
+    "textPlain": "Being able to change things. It's like all downsides of backwards compatibility but on a binary levelAs to things ABI prevents:- scoped_lock was added to not break ABI by modifying lock_guard- int128_t has never been standardized because modifying intmax_t is an ABI break. Although if you ask me, intmax_t should just be deprecated.- unique_ptr could fit in register with language modifications, which would be needed to make it zero-overhead, compared to a pointer- Many changes to error_code were rejected because they would break ABI- status_code raised ABI concerns- A proposal to add a filter to recursive_directory_iterator was rejected because it was an ABI break- A proposal to make most of <cstring> constexpr (including strlen) will probably die because it would be an ABI break.- Adding UTF-8 support to regex is an ABI break- Adding support for realloc or returning the allocated size is an ABI break for polymorphic allocators- Making destructors implicitly virtual in polymorphic classes- Return type of push_back could be improved with an ABI break- Improving shared_ptr would be an ABI break- [[no_unique_address]] could be inferred by the compiler should we not care at all about ABISource: https://cor3ntin.github.io/posts/abi/",
+    "parent": 44753381,
+    "depth": 2
+  },
+  {
+    "id": 44747045,
+    "by": "Jtsummers",
+    "timeISO": "2025-07-31T16:06:52.000Z",
+    "textPlain": "It's an ongoing project, specifying a date here wouldn't make much sense.",
+    "parent": 44746678,
+    "depth": 2
+  },
+  {
+    "id": 44747518,
+    "by": "seanw444",
+    "timeISO": "2025-07-31T16:51:25.000Z",
+    "textPlain": "I kind of appreciate fn, personally. It's nice having function declaration lines with two less unnecessary characters in their length.",
+    "parent": 44747304,
+    "depth": 2
+  },
+  {
+    "id": 44747943,
+    "by": "lvass",
+    "timeISO": "2025-07-31T17:29:23.000Z",
+    "textPlain": "I use emacs' prettify-symbol mode to turn every language's function keyword into ʩ. Don't think I incurred in God's wrath just yet.",
+    "parent": 44747304,
+    "depth": 2
+  },
+  {
+    "id": 44748147,
+    "by": "pton_xd",
+    "timeISO": "2025-07-31T17:47:48.000Z",
+    "textPlain": "How about \"proc\"? Too different? I don't like fn either but function is too much. Fun and func aren't great either. I'd go with proc or fn.",
+    "parent": 44747304,
+    "depth": 2
+  },
+  {
+    "id": 44747791,
+    "by": "cyber1",
+    "timeISO": "2025-07-31T17:15:35.000Z",
+    "textPlain": "\"func\" is fine; \"function\" is too long. \"fn\" is also good, but for example, Go was designed with \"func,\" and it's one of the most successful, readable languages in the world, so why not?",
+    "parent": 44747304,
+    "depth": 2
+  },
+  {
+    "id": 44747604,
+    "by": "mckravchyk",
+    "timeISO": "2025-07-31T16:59:47.000Z",
+    "textPlain": "C++ does not have a function keyword at all, I wonder why did they add it in the first place.",
+    "parent": 44747304,
+    "depth": 2
+  },
+  {
+    "id": 44747974,
+    "by": "munchler",
+    "timeISO": "2025-07-31T17:31:45.000Z",
+    "textPlain": "F# uses “fun” and I like it. The vowel does help a bit and I never confuse it with the English word. The worst one IMHO is Haskell’s “\\”.",
+    "parent": 44747304,
+    "depth": 2
+  },
+  {
+    "id": 44748672,
+    "by": "bhawks",
+    "timeISO": "2025-07-31T18:34:17.000Z",
+    "textPlain": "Since interop is such a big design goal I wonder if fn was chosen after analyzing the impact of alternative keywords present in large c++ code based that would impact interop in a negative way (eg requiring more escaping).",
+    "parent": 44747304,
+    "depth": 2
+  }
+]

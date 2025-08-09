@@ -1,0 +1,98 @@
+[
+  {
+    "id": 44749968,
+    "by": "laurencerowe",
+    "timeISO": "2025-07-31T20:50:50.000Z",
+    "textPlain": "TinyKVM [1] has similarities to the gVisor approach but runs at the KVM level instead, proxying a limited set of system calls through to the host.EDIT: It seems that gVisor has a KVM mode too. https://gvisor.dev/docs/architecture_guide/platforms/#kvmI've been working on KVMServer [2] recently which uses TinyKVM to run existing Linux server applications by intercepting epoll calls. While there is a small overhead to crossing the KVM boundary to handle sys calls we get the ability to quickly reset the state of the guest. This means we can provide per-request isolation with an order of magnitude less overhead than alternative approaches like forking a process or even spinning up a v8 isolate.[1] Previous discussion: https://news.ycombinator.com/item?id=43358980[2] https://github.com/libriscv/kvmserver",
+    "parent": 44745539,
+    "depth": 1
+  },
+  {
+    "id": 44745889,
+    "by": "ericpauley",
+    "timeISO": "2025-07-31T14:15:36.000Z",
+    "textPlain": "One of the coolest things about gVisor to me is that it's the ultimate implication of core computer engineering concepts like \"the OS is just software\" and \"network traffic is just bytes\". It's one thing to learn these ideas in theory, but it's another altogether to be able to play with an entire network stack in userspace and inject arbitrary behavior in the OSI stack. It's also been cool to see what companies like Fly.io and Tailscale can do with complete flexibility in the network, enabled by tools like gVisor.",
+    "parent": 44745539,
+    "depth": 1
+  },
+  {
+    "id": 44747283,
+    "by": "thundergolfer",
+    "timeISO": "2025-07-31T16:31:55.000Z",
+    "textPlain": "We've run gVisor for over 2 years at Modal, and it's been a huge unlock for us. We get a secure sandbox with GPU support that can run on VMs. Just recently it allowed us to checkpoint/restore containers AND its GPUs[1].gVisor's achilles heel is it's missing or inaccurate syscalls, but the gVisor team is first class in responding to Github issues so it's really quite manageable in practice if you know how to debug and hack on a userspace kernel.1. https://news.ycombinator.com/item?id=44747116",
+    "parent": 44745539,
+    "depth": 1
+  },
+  {
+    "id": 44746215,
+    "by": "mikepurvis",
+    "timeISO": "2025-07-31T14:43:58.000Z",
+    "textPlain": "I love the concept of gVisor; it's surprising to me that it hasn't seemingly gotten more real world traction— even GHA is booting you a fresh machine for every build when probably 80%+ of them could run just fine in a gVisor sandbox.I'd be curious to hear from someone at Google if gVisor gets a ton of internal use there, or it really was built mainly for GCP/GKE",
+    "parent": 44745539,
+    "depth": 1
+  },
+  {
+    "id": 44746359,
+    "by": "gowld",
+    "timeISO": "2025-07-31T14:57:21.000Z",
+    "textPlain": "What in this article is different for the gvisor intro docs (where the gVisor pictures are plagiarized from)? https://gvisor.dev/docs/",
+    "parent": 44745539,
+    "depth": 1
+  },
+  {
+    "id": 44748704,
+    "by": "Nican",
+    "timeISO": "2025-07-31T18:38:03.000Z",
+    "textPlain": "Microsoft's blog post on Hyperlight got my attention a while ago: https://opensource.microsoft.com/blog/2025/02/11/hyperlight-...I am way out of my depth here, but can anyone make a comparison with the \"micro virtual machines\" concept?",
+    "parent": 44745539,
+    "depth": 1
+  },
+  {
+    "id": 44746801,
+    "by": "sneak",
+    "timeISO": "2025-07-31T15:41:33.000Z",
+    "textPlain": "I have wondered for a long time why we don’t see more networking in userspace for high security applications that don’t require high performance.  I guess the answer is just that Linux has enough features now to hook into the kernel with userspace code that it usually isn’t necessary to move the whole IP and TCP stacks out.",
+    "parent": 44745539,
+    "depth": 1
+  },
+  {
+    "id": 44746826,
+    "by": "illamint",
+    "timeISO": "2025-07-31T15:44:46.000Z",
+    "textPlain": "gVisor also has a complete userspace networking stack that you can pull in, which makes it a lot easier to do some neat things like run an HTTP server responding to packets intercepted via eBPF and sent to an AF_XDP socket, which would otherwise be a pain.",
+    "parent": 44745539,
+    "depth": 1
+  },
+  {
+    "id": 44746043,
+    "by": "udev4096",
+    "timeISO": "2025-07-31T14:27:40.000Z",
+    "textPlain": "Moving to unikernel [0] is the best way to get strong isolation and high performance[0] - https://unikraft.org",
+    "parent": 44745539,
+    "depth": 1
+  },
+  {
+    "id": 44746576,
+    "by": "setheron",
+    "timeISO": "2025-07-31T15:20:25.000Z",
+    "textPlain": "Is gVisor a libc LD_PRELOAD ?",
+    "parent": 44745539,
+    "depth": 1
+  },
+  {
+    "id": 44746658,
+    "by": "lanigone",
+    "timeISO": "2025-07-31T15:28:06.000Z",
+    "textPlain": "ask chatgpt to run dmesg via python and you’ll find another use of gvisor in prod…",
+    "parent": 44745539,
+    "depth": 1
+  },
+  {
+    "id": 44747104,
+    "by": "spr-alex",
+    "timeISO": "2025-07-31T16:13:14.000Z",
+    "textPlain": "We're adding support to gvisor for container plugins, it's a reasonable approach for limiting the rich attack surface on linux",
+    "parent": 44745539,
+    "depth": 1
+  }
+]

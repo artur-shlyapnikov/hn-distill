@@ -1,0 +1,99 @@
+---
+import StorySection from '../../components/StorySection.astro';
+import '../../styles/global.css';
+import { env } from '@config/env';
+import { formatDateHuman } from '@utils/date';
+import { readFileSync, existsSync } from 'node:fs';
+import type { AggregatedItem, AggregatedFile } from '@config/schemas';
+
+function toDateKeyUTC(iso: string): string {
+  return typeof iso === 'string' && iso.length >= 10 ? iso.slice(0, 10) : '0000-00-00';
+}
+
+function addDaysUTC(dateKey: string, days: number): string {
+  const parts = dateKey.split('-').map((n) => parseInt(n, 10));
+  if (parts.length !== 3) return dateKey;
+  const y = parts[0];
+  const m = parts[1];
+  const d = parts[2];
+  if (!Number.isFinite(y) || !Number.isFinite(m) || !Number.isFinite(d)) return dateKey;
+  const dt = new globalThis.Date(globalThis.Date.UTC(y!, m! - 1, d!));
+  dt.setUTCDate(dt.getUTCDate() + days);
+  const yy = dt.getUTCFullYear();
+  const mm = String(dt.getUTCMonth() + 1).padStart(2, '0');
+  const dd = String(dt.getUTCDate()).padStart(2, '0');
+  return `${yy}-${mm}-${dd}`;
+}
+
+export async function getStaticPaths() {
+  function toDateKeyUTC(iso: string): string {
+    return typeof iso === 'string' && iso.length >= 10 ? iso.slice(0, 10) : '0000-00-00';
+  }
+
+  const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
+  const data: AggregatedFile = existsSync(dataPath)
+    ? JSON.parse(readFileSync(dataPath, 'utf8'))
+    : { items: [], updatedISO: '—' };
+  const items = Array.isArray((data as any).items) ? (data as any).items as AggregatedItem[] : [];
+  const keys = Array.from(new Set(items.map((it) => toDateKeyUTC(it.timeISO))));
+  keys.sort((a, b) => (a < b ? 1 : a > b ? -1 : 0));
+  return keys.map((key) => ({ params: { date: key } }));
+}
+
+const lang = env.SUMMARY_LANG;
+const dateParam = Astro.params.date ?? '';
+const dateKey = typeof dateParam === 'string' ? dateParam : '';
+
+const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
+const data: AggregatedFile = existsSync(dataPath)
+  ? JSON.parse(readFileSync(dataPath, 'utf8'))
+  : { items: [], updatedISO: '—' };
+
+const allItems: AggregatedItem[] = Array.isArray((data as any).items) ? (data as any).items as AggregatedItem[] : [];
+const endExclusive = addDaysUTC(dateKey, 1);
+const startInclusive = addDaysUTC(dateKey, -2);
+const triItems = allItems.filter((it) => {
+  const key = toDateKeyUTC(it.timeISO);
+  return key >= startInclusive && key < endExclusive;
+});
+
+// Format dates for display
+const displayStartDate = startInclusive ? formatDateHuman(`${startInclusive}T12:00:00Z`) : startInclusive;
+const displayEndDate = dateKey ? formatDateHuman(`${dateKey}T12:00:00Z`) : dateKey;
+
+const i18n = {
+  ru: {
+    title: 'За три дня',
+    noData: 'Нет данных для выбранного периода.',
+  },
+  en: {
+    title: 'Last 3 days',
+    noData: 'No data for the selected period.',
+  },
+} as const;
+const t = i18n[lang as 'ru' | 'en'];
+---
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <title>{t.title} — Hacker News Digest</title>
+    <meta name="robots" content="index,follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Hacker News Digest</a></h1>
+      <p class="meta">{t.title}: {displayStartDate} — {displayEndDate}</p>
+      <p class="meta">Постов: {triItems.length}</p>
+    </header>
+    <main>
+      {triItems.length === 0 ? (
+        <p class="meta">{t.noData}</p>
+      ) : (
+        triItems.map((it: AggregatedItem) => <StorySection item={it} />)
+      )}
+    </main>
+  </body>
+  </html>
+
+

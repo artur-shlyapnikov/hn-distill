@@ -1,0 +1,42 @@
+[
+  {
+    "id": 44782157,
+    "by": "eru",
+    "timeISO": "2025-08-04T04:36:20.000Z",
+    "textPlain": "Python (or more precisely CPython) uses something like a bitmask and rejection.  Alas, there's a bug in the code, so that when you generate a range whose size is a power of two, instead of getting the best case (no rejections), you get half of your values rejected.For clarity, this worst case for this approach should happen for ranges with size 2*x+1, ie one more than a power of two.The bug is known but not being fixed right now to keep random number output consistent.",
+    "parent": 44767508,
+    "depth": 1
+  },
+  {
+    "id": 44784421,
+    "by": "stevan",
+    "timeISO": "2025-08-04T11:35:26.000Z",
+    "textPlain": "This post https://jacquesheunis.com/post/bounded-random/ from 2021 contains some newer techniques.",
+    "parent": 44767508,
+    "depth": 1
+  },
+  {
+    "id": 44782952,
+    "by": "dspillett",
+    "timeISO": "2025-08-04T07:31:09.000Z",
+    "textPlain": "> Back when I was a student writing homework assignments rolling dice or drawing cards, no one really worried about these tiny biases,That brings back an old (> 3 decades) memory… Way back when, not actually part of a homework assignment but a time in my life I would get them, I noticed a bias while picking random cards. This IIRC was with a 16 (or maybe even 8) bit PRNG, I'm not sure if the significance of the bias was due to that or just if the PRNG overall was terrible. After doing some simple analysis to prove some cards were less likely to be picked, my answer was to actually shuffle the deck: move the cards around in an array, looping over the whole array picking a new position for each card, multiple times. Of course it was slow so would not fit in with the \"efficient\" goal of this article, but it did seem to smooth out the bias, and picking in order from a pre shuffled deck much better emulated the real world game I was trying to implement at the time (so why wasn't I doing that from the offset?: the bad design process of a early-teens self-taught fledgeling programmer!).The analysis (written almost entirely in BASIC though the shuffle was in 6502 assembly as I was learning that a bit at the time) was my first experience of running a programmed process over several hours, my parents were dubious about the good ol' BBC Master needing to be left powered on all night! The results may have been completely wrong but (very) young me was convinced at the time. Ahh, innocent times…",
+    "parent": 44767508,
+    "depth": 1
+  },
+  {
+    "id": 44784445,
+    "by": "zokier",
+    "timeISO": "2025-08-04T11:38:27.000Z",
+    "textPlain": "The bitmask approach is the clear winner in my books. It is just so simple and easy to understand while also having decent perf. It is kinda surprising that apparently those slower and (imho) more difficult to understand solutions are in use anywhere.I wonder what is the best real-time (fixed latency) approach for unbiased ranges?",
+    "parent": 44767508,
+    "depth": 1
+  },
+  {
+    "id": 44781986,
+    "by": "cbarrick",
+    "timeISO": "2025-08-04T03:53:35.000Z",
+    "textPlain": "https://archive.ph/oeZQw",
+    "parent": 44767508,
+    "depth": 1
+  }
+]

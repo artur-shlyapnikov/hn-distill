@@ -1,0 +1,18 @@
+[
+  {
+    "id": 44820741,
+    "by": "a2128",
+    "timeISO": "2025-08-07T04:59:02.000Z",
+    "textPlain": "Link to actual GitHub PR since Reddit blocks some ASNs: https://github.com/rust-lang/rust/pull/144232From documentation, and a test in the PR:    When tail calling a function, instead of its stack frame being added to the\n    stack, the stack frame of the caller is directly replaced with the callee's.\n    This means that as long as a loop in a call graph only uses tail calls, the\n    stack growth will be bounded.\n\n    This is useful for writing functional-style code (since it prevent recursion\n    from exhausting resources) or for code optimization (since a tail call\n    *might* be cheaper than a normal call, tail calls can be used in a similar\n    manner to computed goto).\n\n    pub fn fibonacci(n: u64, a: u64, b: u64) -> u64 {\n        match n {\n            0 => a,\n            1 => b,\n            _ => become fibonacci(n - 1, b, a + b),\n        }\n    }",
+    "parent": 44820404,
+    "depth": 1
+  },
+  {
+    "id": 44821698,
+    "by": "burnt-resistor",
+    "timeISO": "2025-08-07T07:45:05.000Z",
+    "textPlain": "See also: https://docs.rs/tailcall",
+    "parent": 44820404,
+    "depth": 1
+  }
+]

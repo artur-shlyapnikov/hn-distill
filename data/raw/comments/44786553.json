@@ -1,0 +1,66 @@
+[
+  {
+    "id": 44837000,
+    "by": "dzaima",
+    "timeISO": "2025-08-08T13:56:21.000Z",
+    "textPlain": "Doesn't this just replace the \"slow if next() is complex\" with \"slow if the body of the loop is complex\"? A complex iterator does have the problem of having the allocation for its result, not being able to directly branch on the `done` computation, but the usage body could also have drawbacks from not being inlined with its scope (though of course if you know that next() is sufficiently complex, there's largely no downside to at least try the other way around).Also, depending on the VM implementation, it might run into issues if you use the same iterator-function with many different callbacks, if there's a limit to how many different values for the callback argument it specializes; don't know what exactly the limits or effects are, but in some simple testing, both Node/V8 and FF/SpiderMonkey slow down on a callback-based-iterator bench if before the main bench the \"iterator\" was used with multiple different callbacks (whereas the inverse of a single loop iterating through many different iterator types is probably quite a bit more rare).",
+    "parent": 44786553,
+    "depth": 1
+  },
+  {
+    "id": 44837076,
+    "by": "kccqzy",
+    "timeISO": "2025-08-08T14:02:00.000Z",
+    "textPlain": "The fast code eventually looks like:    myIterator(value => {\n        total += value;\n    });\n\nAnd most people would say this isn't really an iterator in JavaScript any more. This is more like a forEach function. And herein lies the rub: this callback style iteration used to be called internal iterators; the kind of normal iterators shown by the author and also in languages like Rust used to be called external iterators. Eventually people stopped referring to the former style as iterator and I think that's a good terminology change: the internal/external distinction isn't immediately understandable, and it's better to call it a forEach function.I think early Rust even supported the internal iterator style but they abandoned it because IIRC they found external iterations more performant, which is the exact opposite case here.",
+    "parent": 44786553,
+    "depth": 1
+  },
+  {
+    "id": 44836395,
+    "by": "afdbcreid",
+    "timeISO": "2025-08-08T12:49:58.000Z",
+    "textPlain": "That's (part of the reason) I like Rust. There complex iterators are just are fast as a `for` loop, or even faster! (although there are pitfalls to be aware in high-performance iterators code).",
+    "parent": 44786553,
+    "depth": 1
+  },
+  {
+    "id": 44836976,
+    "by": "kevingadd",
+    "timeISO": "2025-08-08T13:53:10.000Z",
+    "textPlain": "Part of the complexity here is the temporary object allocation and the need to read properties out of it as you iterate. This is one of the things I tried to push back on but the spec people were in a hard spot, since JS doesn't have native multiple return values. I think in ideal circumstances the allocation can be optimized out by doing store-to-load forwarding on the properties, but in cases like the post here since inlining can't happen, no such luck. :(",
+    "parent": 44786553,
+    "depth": 1
+  },
+  {
+    "id": 44836994,
+    "by": "arto",
+    "timeISO": "2025-08-08T13:55:38.000Z",
+    "textPlain": "*in JavaScript",
+    "parent": 44786553,
+    "depth": 1
+  },
+  {
+    "id": 44837813,
+    "by": "lmz",
+    "timeISO": "2025-08-08T15:00:08.000Z",
+    "textPlain": "But as the data structure's author they know next() is always complex. At least this way they win if the loop body is simple instead of always losing.",
+    "parent": 44837000,
+    "depth": 2
+  },
+  {
+    "id": 44837540,
+    "by": "dralley",
+    "timeISO": "2025-08-08T14:38:22.000Z",
+    "textPlain": "Debug build performance of iterators isn't great unfortunately. And crunching all the generated code down into something performant is a contributor to Rust's below-average compile times.",
+    "parent": 44836395,
+    "depth": 2
+  },
+  {
+    "id": 44837705,
+    "by": "conartist6",
+    "timeISO": "2025-08-08T14:51:45.000Z",
+    "textPlain": "I'm working on a new (unauthorized) iteration protocol (Symbol.streamIterator) to bridge the yawning chasm between sync and async iteration. After reading this I thought perhaps I might be able to flatten out my protocol to get rid of the objects, but funny enough they serve a much more concrete purpose in stream iteration than they do in either normal sync or async iteration: they allow you to distinguish between `next => Promise.resolve({ done, value })` which means \"wait for this before continuing\" and `next => ({ done, value: Promise.resolve() })` which means \"the data being yielded is a promise, but the iterator is ready to proceed immediately.\" Huge stacks of pointlessly complex kludges (like the web streams API) have already accumulated as a result of this bedrock protocol being absent from the language.",
+    "parent": 44836976,
+    "depth": 2
+  }
+]

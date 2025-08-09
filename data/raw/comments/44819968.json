@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44822202,
+    "by": "blitzar",
+    "timeISO": "2025-08-07T08:54:48.000Z",
+    "textPlain": "> widely-available H100 GPUsJust looked in the parts drawer at home and dont seem to have a $25,000 GPU for some inexplicable reason.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44822195,
+    "by": "wcallahan",
+    "timeISO": "2025-08-07T08:54:03.000Z",
+    "textPlain": "I just used GPT-OSS-120B on a cross Atlantic flight on my MacBook Pro (M4, 128GB RAM).A few things I noticed: \n- it’s only fast with with small context windows and small total token context; once more than ~10k tokens you’re basically queueing everything for a long time\n- MCPs/web search/url fetch have already become a very important part of interacting with LLMs; when they’re not available the LLM utility is greatly diminished\n- a lot of CLI/TUI coding tools (e.g., opencode) were not working reliably offline at this time with the model, despite being setup prior to being offlineThat’s in addition to the other quirks others have noted with the OSS models.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44824828,
+    "by": "mikewarot",
+    "timeISO": "2025-08-07T14:23:00.000Z",
+    "textPlain": "You know what's actually hard to find in all this?  The actual dimensions of the arrays in the model GPT-OSS-120B.  At least with statically typed languages, you know how big your arrays are at a glance. I'm trying to find it in the GitHub repo[1], and I'm not seeing it.I'm just trying to figure out how wide the datastream through this is, in particular, the actual data (not the weights) that flow through all of it. The width of the output stream.  Just how big is a token at the output, prior to reducing it with \"temperature\" to a few bytes?Assume infinitely fast compute in a magic black box, but you have to send the output through gigabit ethernet... what's the maximum number of tokens per second?[1] https://github.com/openai/gpt-oss/tree/main/gpt_oss",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44824676,
+    "by": "zackangelo",
+    "timeISO": "2025-08-07T14:10:42.000Z",
+    "textPlain": "GPT-OSS will run even faster on Blackwell chips because of its hardware support for fp4.If anyone is working on training or inference in Rust, I'm currently working on adding fp8 and fp4 support to cudarc[0] and candle[1]. This is being done so I can support these models in our inference engine for Mixlayer[2].[0] https://github.com/coreylowman/cudarc/pull/449\n[1] https://github.com/huggingface/candle/pull/2989\n[2] https://mixlayer.com",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44821466,
+    "by": "mutkach",
+    "timeISO": "2025-08-07T07:08:03.000Z",
+    "textPlain": "> Inspired by GPUs, we parallelized this effort across multiple engineers. One engineer tried vLLM, another SGLang, and a third worked on TensorRT-LLM. We were able to quickly get TensorRT-LLM working, which was fortunate as it is usually the most performant inference framework for LLMs.> TensorRT-LLMIt is usually the hardest to setup correctly and is often out of the date regarding the relevant architectures. It also requires compiling the model on the exact same hardware-drivers-libraries stack as your production environment which is a great pain in the rear end to say the least. Multimodal setups also been a disaster - at least for a while - when it was near-impossible to make it work even for mainstream models - like Multimodal Llamas. The big question is whether it's worth it, since when running the GPT-OSS-120B on H100 using vLLM is flawless in comparison - and the throughput stays at 130-140 t/s for a single H100. (It's also somewhat a clickbait of a title - I was expecting to see 500t/s for a single GPU, when in fact it's just a tensor-parallel setup)It's also funny that they went for a separate release of TRT-LLM just to make sure that gpt-oss will work correctly, TRT-LLM is a mess",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44821329,
+    "by": "sarthaksoni",
+    "timeISO": "2025-08-07T06:42:56.000Z",
+    "textPlain": "Reading this made me realize how easy it is to set up GPT-OSS 20B in comparison. I had it running on my Mac in five minutes, thanks to Llama.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44826583,
+    "by": "OldfieldFund",
+    "timeISO": "2025-08-07T16:26:13.000Z",
+    "textPlain": "laughs in Cerebras",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44820656,
+    "by": "tmshapland",
+    "timeISO": "2025-08-07T04:44:51.000Z",
+    "textPlain": "Such a fascinating read. I didn't realize how much massaging needed to be done to get the models to perform well. I just sort of assumed they worked out of the box.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44822835,
+    "by": "lagrange77",
+    "timeISO": "2025-08-07T10:38:52.000Z",
+    "textPlain": "While you're here..Do you guys know a website that clearly shows which OS LLM models run on / fit into a specific GPU(setup)?The best heuristic i could find for the necessary VRAM is Number of Parameters × (Precision / 8) × 1.2 from here [0].[0] https://medium.com/@lmpo/a-guide-to-estimating-vram-for-llms...",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44820778,
+    "by": "magicalhippo",
+    "timeISO": "2025-08-07T05:05:22.000Z",
+    "textPlain": "Maybe I'm especially daft this morning but I don't get the point of the speculative decoding.How does the target model validate the draft tokens without running the inference as normal?Because if it is doing just that, I don't get the point as you can't trust the draft tokens before they are validated, so you're still stuck waiting for the target model.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44824410,
+    "by": "radarsat1",
+    "timeISO": "2025-08-07T13:47:00.000Z",
+    "textPlain": "Would love to try fully local agentic coding. Is it feasible yet?  I have a laptop with a 3050 but that's not nearly enough VRAM, I guess. Still, would be interested to know what's possible today on reasonable consumer hardware.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44821372,
+    "by": "eric-burel",
+    "timeISO": "2025-08-07T06:52:03.000Z",
+    "textPlain": "\"Encourage Open-Source and Open-Weight AI\" is the part just after \"Ensure that Frontier AI Protects Free Speech and American Values\" in America's AI Action Plan. I know this is not rational but OpenAI OSS models kinda give me chills as I am reading the Plan in parallel.\nAnyway I like seeing oss model providers talking about hardware, because that's a limiting point for most developers that are not familiar with this layer.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44822814,
+    "by": "nektro",
+    "timeISO": "2025-08-07T10:35:01.000Z",
+    "textPlain": "> we were the clear leader running on NVIDIA GPUs for both latency and throughput per public data from real-world use on OpenRouter.Baseten: 592.6 tps\nGroq: 784.6 tps\nCerebras: 4,245 tpsstill impressive work",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44822522,
+    "by": "smcleod",
+    "timeISO": "2025-08-07T09:45:26.000Z",
+    "textPlain": "TensorRT-LLM is a right nightmare to setup and maintain. Good on them for getting it to work for them - but it's not for everyone.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44820925,
+    "by": "modeless",
+    "timeISO": "2025-08-07T05:30:13.000Z",
+    "textPlain": "What's the best speed people have gotten on 4090s?",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44821465,
+    "by": "hsaliak",
+    "timeISO": "2025-08-07T07:07:52.000Z",
+    "textPlain": "TLDR: tensorrt",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44821066,
+    "by": "littlestymaar",
+    "timeISO": "2025-08-07T05:54:31.000Z",
+    "textPlain": "Very fast “Sorry I can't help with that” generator.",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44823840,
+    "by": "philipkiely",
+    "timeISO": "2025-08-07T12:51:08.000Z",
+    "textPlain": "Went to bed with 2 votes, woke up to this. Thank you so much HN!",
+    "parent": 44819968,
+    "depth": 1
+  },
+  {
+    "id": 44822263,
+    "by": "Kurtz79",
+    "timeISO": "2025-08-07T09:06:46.000Z",
+    "textPlain": "Does it even make sense calling them 'GPUs' (I just checked NVIDIA product page for the H100 and it is indeed so)?There should be a quicker way to differentiate between 'consumer-grade hardware that is mainly meant to be used for gaming and can also run LLMs inference in a limited way' and 'business-grade hardware whose main purpose is AI training or running inference for LLMs\".",
+    "parent": 44822202,
+    "depth": 2
+  },
+  {
+    "id": 44823921,
+    "by": "Aurornis",
+    "timeISO": "2025-08-07T12:59:01.000Z",
+    "textPlain": "They’re widely available to rent.Unless you’re running it 24/7 for multiple years, it’s not going to be cost effective to buy the GPU instead of renting a hosted one.For personal use you wouldn’t get a recent generation data center card anyway. You’d get something like a Mac Studio or Strix Halo and deal with the slower speed.",
+    "parent": 44822202,
+    "depth": 2
+  },
+  {
+    "id": 44824783,
+    "by": "vonneumannstan",
+    "timeISO": "2025-08-07T14:18:38.000Z",
+    "textPlain": ">Just looked in the parts drawer at home and dont seem to have a $25,000 GPU for some inexplicable reason.It just means you CAN buy one if you want, as in they're in stock and \"available\", not that you can necessarily afford one.",
+    "parent": 44822202,
+    "depth": 2
+  },
+  {
+    "id": 44823877,
+    "by": "philipkiely",
+    "timeISO": "2025-08-07T12:55:06.000Z",
+    "textPlain": "This comment made my day ty! Yeah definitely speaking from a datacenter perspective -- fastest piece of hardware I have in the parts drawer is probably my old iPhone 8.",
+    "parent": 44822202,
+    "depth": 2
+  },
+  {
+    "id": 44822721,
+    "by": "dougSF70",
+    "timeISO": "2025-08-07T10:22:10.000Z",
+    "textPlain": "With Ollama i got the 20B model running on 8 TitanX cards (2015). Ollama distributed the model so that the 15GB of vram required was split evenly accross the 8 cards.  The tok/s were faster than reading speed.",
+    "parent": 44822202,
+    "depth": 2
+  },
+  {
+    "id": 44822311,
+    "by": "lopuhin",
+    "timeISO": "2025-08-07T09:16:49.000Z",
+    "textPlain": "you can rent them for less then $2/h in a lot of places (maybe not in the drawer)",
+    "parent": 44822202,
+    "depth": 2
+  },
+  {
+    "id": 44824521,
+    "by": "blueboo",
+    "timeISO": "2025-08-07T13:57:00.000Z",
+    "textPlain": "You might find $2.50 in change to use one for an hour though",
+    "parent": 44822202,
+    "depth": 2
+  },
+  {
+    "id": 44822243,
+    "by": "KolmogorovComp",
+    "timeISO": "2025-08-07T09:03:30.000Z",
+    "textPlain": "available != cheap",
+    "parent": 44822202,
+    "depth": 2
+  },
+  {
+    "id": 44822675,
+    "by": "XCSme",
+    "timeISO": "2025-08-07T10:13:48.000Z",
+    "textPlain": "I know there was a downloadable version of Wikipedia (not that large). Maybe soon we'll have a lot of data stored locally and expose it via MCP, then the AIs can do \"web search\" locally.I think 99% of web searches lead to the same 100-1k websites. I assume it's only a few GBs to have a copy of those locally, thus this raises copyright concerns.",
+    "parent": 44822195,
+    "depth": 2
+  },
+  {
+    "id": 44825807,
+    "by": "fouc",
+    "timeISO": "2025-08-07T15:32:21.000Z",
+    "textPlain": "What was your iogpu.wired_limit_mb set to?  By default only ~70% or ~90GB of your RAM will be available to your GPU cores unless you change your wired limit setting.",
+    "parent": 44822195,
+    "depth": 2
+  },
+  {
+    "id": 44825487,
+    "by": "mich5632",
+    "timeISO": "2025-08-07T15:08:40.000Z",
+    "textPlain": "I think this the difference between compute bound pre-fill (a cpu has a high bandwidth/compute ratio), vs decode. \nThe time to first token is below 0.5s - even for a 10k context.",
+    "parent": 44822195,
+    "depth": 2
+  },
+  {
+    "id": 44822556,
+    "by": "conradev",
+    "timeISO": "2025-08-07T09:53:12.000Z",
+    "textPlain": "Are you using Ollama or LMStudio/llama.cpp? https://x.com/ggerganov/status/1953088008816619637",
+    "parent": 44822195,
+    "depth": 2
+  },
+  {
+    "id": 44822547,
+    "by": "MoonObserver",
+    "timeISO": "2025-08-07T09:51:00.000Z",
+    "textPlain": "M2 Max processor.\nI saw 60+ tok/s on short conversations, but it degraded to 30 tok/s as the conversation got longer.\nDo you know what actually accounts for this slowdown? I don’t believe it was thermal throttling.",
+    "parent": 44822195,
+    "depth": 2
+  },
+  {
+    "id": 44822743,
+    "by": "gigatexal",
+    "timeISO": "2025-08-07T10:25:01.000Z",
+    "textPlain": "M3 Max 128GB here and it’s mad impressive.Im spec’ing out a Mac Studio with 512GB ram because I can window shop and wish but I think the trend for local LLMs is getting really good.Do we know WHY openAI even released them?",
+    "parent": 44822195,
+    "depth": 2
+  },
+  {
+    "id": 44824382,
+    "by": "radarsat1",
+    "timeISO": "2025-08-07T13:44:37.000Z",
+    "textPlain": "How long did your battery last?!",
+    "parent": 44822195,
+    "depth": 2
+  },
+  {
+    "id": 44823400,
+    "by": "zackify",
+    "timeISO": "2025-08-07T12:08:00.000Z",
+    "textPlain": "You didn’t even mention how it’ll be on fire unless you use low power mode.Yes all this has been known since the M4 came out. The memory bandwidth is too low.Try using it with real tasks like cline or opencode and the context length is too long and slow to be practical",
+    "parent": 44822195,
+    "depth": 2
+  },
+  {
+    "id": 44825031,
+    "by": "amluto",
+    "timeISO": "2025-08-07T14:36:43.000Z",
+    "textPlain": "What’s the application where you want to stream out the logits for each consecutive token while still sampling each token according to the usual rule?  Keep in mind that, if you are doing the usual clever tricks like restricting the next token sampled to something that satisfies a grammar, you need to process the logits and sample them and return a token before running the next round of inference.",
+    "parent": 44824828,
+    "depth": 2
+  },
+  {
+    "id": 44825603,
+    "by": "diggan",
+    "timeISO": "2025-08-07T15:16:55.000Z",
+    "textPlain": "Ah, interesting. As someone with a RTX Pro 6000, is it ready today to be able to run gpt-oss-120b inference, or are there still missing pieces? Both linked PRs seems merged already, so unsure if it's ready to be played around with or not.",
+    "parent": 44824676,
+    "depth": 2
+  },
+  {
+    "id": 44823907,
+    "by": "philipkiely",
+    "timeISO": "2025-08-07T12:57:19.000Z",
+    "textPlain": "TRT-LLM has its challenges from a DX perspective and yeah for Multi-modal we still use vLLM pretty often.But for the kind of traffic we are trying to serve -- high volume and latency sensitive -- it consistently wins head-to-head in our benchmarking and we have invested a ton of dev work in the tooling around it.",
+    "parent": 44821466,
+    "depth": 2
+  },
+  {
+    "id": 44821414,
+    "by": "DrPhish",
+    "timeISO": "2025-08-07T06:58:12.000Z",
+    "textPlain": "Its also easy to do 120b on CPU if you have the resources. I had 120b running on my home LLM CPU inference box in just as long as it took to download the GGUFs, git pull and rebuild llama-server.\nI had it running at 40t/s with zero effort and 50t/s with a brief tweaking.\nIts just too bad that even the 120b isn't really worth running compared to the other models that are out there.It really is amazing what ggerganov and the llama.cpp team have done to democratize LLMs for individuals that can't afford a massive GPU farm worth more than the average annual salary.",
+    "parent": 44821329,
+    "depth": 2
+  },
+  {
+    "id": 44822301,
+    "by": "amelius",
+    "timeISO": "2025-08-07T09:14:56.000Z",
+    "textPlain": "Why is it hard to set up llms? You can just ask an llm to do it for you, no? If this relatively simple task is already too much for llms then what good are they?",
+    "parent": 44821329,
+    "depth": 2
+  },
+  {
+    "id": 44822338,
+    "by": "CraigRood",
+    "timeISO": "2025-08-07T09:21:13.000Z",
+    "textPlain": "I was playing with it yesterday and every single session gave me factually incorrect information.Speed and ease of use is one thing, but it shouldn't be at the cost of accuracy.",
+    "parent": 44821329,
+    "depth": 2
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "id": 44815256,
+    "by": "vrnvu",
+    "timeISO": "2025-08-06T17:47:39.000Z",
+    "textPlain": "It's amazing how coherent Zig's fundamental building blocks are as a programming language, everything fits together like a puzzle.This post reminds me of one of Andrew's early talks about the type system and the comptime... With the core building blocks, we can achieve elegant solutions without adding unnecessary syntax complexity.",
+    "parent": 44812985,
+    "depth": 1
+  },
+  {
+    "id": 44815545,
+    "by": "davidkunz",
+    "timeISO": "2025-08-06T18:08:46.000Z",
+    "textPlain": "A little bit unrelated, but how do people deal with the abstinence of payloads in zig errors? For example, when parsing a JSON string, the error `UnexpectedToken` is not very helpful. Are libraries typically designed to accept an optional input to store potential errors?",
+    "parent": 44812985,
+    "depth": 1
+  },
+  {
+    "id": 44814789,
+    "by": "etyp",
+    "timeISO": "2025-08-06T17:14:24.000Z",
+    "textPlain": "This goes to show how Zig's language design makes everything look nicer and simpler - the `errdefer` patterns in tests are super nice! I've debugged my Zig tests with simple print debugging (or try to narrow it down to a standalone case I can use a debugger), but I'll certainly use some of these tricks in the future.",
+    "parent": 44812985,
+    "depth": 1
+  },
+  {
+    "id": 44814415,
+    "by": "ijustlovemath",
+    "timeISO": "2025-08-06T16:44:17.000Z",
+    "textPlain": "The website design is so pleasing, props!",
+    "parent": 44812985,
+    "depth": 1
+  },
+  {
+    "id": 44815081,
+    "by": "skrebbel",
+    "timeISO": "2025-08-06T17:35:16.000Z",
+    "textPlain": "Wow, errdefer sounds like the kind of thing every language ought to have.",
+    "parent": 44812985,
+    "depth": 1
+  },
+  {
+    "id": 44822727,
+    "by": "brianzelip",
+    "timeISO": "2025-08-07T10:23:07.000Z",
+    "textPlain": "Beautiful web site!",
+    "parent": 44812985,
+    "depth": 1
+  },
+  {
+    "id": 44815663,
+    "by": "rkagerer",
+    "timeISO": "2025-08-06T18:18:43.000Z",
+    "textPlain": "I love the formatting and coloring on this blog page, it's delightful to read.  Like an old school DOS game.",
+    "parent": 44812985,
+    "depth": 1
+  },
+  {
+    "id": 44815156,
+    "by": "jiehong",
+    "timeISO": "2025-08-06T17:40:11.000Z",
+    "textPlain": "Nice Font! (Berkeley Mono)",
+    "parent": 44812985,
+    "depth": 1
+  },
+  {
+    "id": 44814837,
+    "by": "ww520",
+    "timeISO": "2025-08-06T17:17:53.000Z",
+    "textPlain": "These are excellent tips. I especially like the debugger integration in build.zig. I used to grep the cache directory to find the exe. The integration avoids all the extra steps.",
+    "parent": 44812985,
+    "depth": 1
+  },
+  {
+    "id": 44816025,
+    "by": "yahoozoo",
+    "timeISO": "2025-08-06T18:49:17.000Z",
+    "textPlain": "Cool stuff, but the mixed casings I see here (and have in other Zig code) puts me on edge (not literally but yeah). You’ve got `addSystemCommand` then a variable named `debug_step` which has a call `dependOn`. That said, looks like most of the stdlib stuff is camel case so the snake case variables are just the authors preference.",
+    "parent": 44812985,
+    "depth": 1
+  },
+  {
+    "id": 44819842,
+    "by": "delifue",
+    "timeISO": "2025-08-07T02:03:12.000Z",
+    "textPlain": "In my opinion Zig is elegant except for one thing: cannot attach data to error.https://github.com/ziglang/zig/issues/2647You have to workaround by things like passing into a pointer to error object.",
+    "parent": 44815256,
+    "depth": 2
+  },
+  {
+    "id": 44816736,
+    "by": "quantummagic",
+    "timeISO": "2025-08-06T19:41:49.000Z",
+    "textPlain": "The idiomatic way in Zig is to return the simple unadorned error, but return detailed error data through a pointer argument passed into the function, allowing the function to fill in extra information before returning an error.    const MyError = error{ FileNotFound, PermissionDenied };\n\n    fn readFile(path: []const u8, outErrInfo: *ErrorInfo) ![]const u8 {\n      if (fileMissing) {\n        if (outErrInfo) |info| {\n            info.* = ErrorInfo{\n                .code = MyError.FileNotFound,\n                .message = \"File missing\",\n                .line = @line(),\n            };\n        }\n        return MyError.FileNotFound;\n      }\n      return data; // success\n    }\n\nThe advantage of this is that everything is explicit, and it is up to the caller to arrange memory usage for error data; ie. the compiler does not trigger any implicit memory allocation to accommodate error returns.  This is a fundamental element of Zig's design, that there are no hidden or implicit memory allocations",
+    "parent": 44815545,
+    "depth": 2
+  },
+  {
+    "id": 44815908,
+    "by": "maleldil",
+    "timeISO": "2025-08-06T18:39:07.000Z",
+    "textPlain": "> Are libraries typically designed to accept an optional input to store potential errors?Yes. Stdlib's JSON module has a separate diagnostics object [1]. IMO, this is the weakest part of Zig's error handling story, although the reasons for this are understandable.[1] https://ziglang.org/documentation/master/std/#std.json.Scann...",
+    "parent": 44815545,
+    "depth": 2
+  },
+  {
+    "id": 44817144,
+    "by": "dnautics",
+    "timeISO": "2025-08-06T20:13:48.000Z",
+    "textPlain": "I wrote an article about one possible pattern which is a concrete realization of your question -- though with more ceremony and complexity since the pathway is fully compiled out if you don't use it (vs a nullable pointer strategy):> Are libraries typically designed to accept an optional input to store potential errors?https://zig.news/ityonemo/sneaky-error-payloads-1akaif you prefer video form:https://www.youtube.com/watch?v=aFeqWWJP4LEThe answer is no, libraries are not typically designed with a standardized convention for payload return.",
+    "parent": 44815545,
+    "depth": 2
+  },
+  {
+    "id": 44817816,
+    "by": "davidkunz",
+    "timeISO": "2025-08-06T21:03:32.000Z",
+    "textPlain": "Thank you all for these great and detailed explanations, I've learned a lot! I like the approach with an optional pointer, it fits to zig's philosophy quite well. Although there's a bit of a disconnect between the unadorned error and the corresponding data struct. I could imagine it requires care when the data struct is a union, as one needs to know which error corresponds to which variant.",
+    "parent": 44815545,
+    "depth": 2
+  },
+  {
+    "id": 44816131,
+    "by": "hansvm",
+    "timeISO": "2025-08-06T18:57:47.000Z",
+    "textPlain": "At a practical level, most of the language doesn't care about the distinction between errors and other types. You mostly just have to consider `try/catch/errdefer`. Your question then, mildly restated, is \"how do people deal with cases where they want to use `try/catch/errdefer` but also want to return a payload?\"It's worth asking, at least a little, how often you want that in the first place.Contrasting with Rust as an example, suppose you want Zig's \"try\" functionality with arbitrary payloads. Both functions need a compatible error type (a notable source of minor refactors bubbling into whole-project changes), or else you can accept a little more boilerplate and box everything with a library like `anyhow`. That's _fine_, but does it help you solve real problems? Opinions vary, but I think it mostly makes your life harder. You have stack unwinding available if you really need to see the source of a thing, and since the whole point of `try` is to bubble things up to callers who don't have the appropriate context to handle them, they likely don't really care about the metadata you're tacking on.Suppose you want Zig's \"catch\" functionality with arbitrary payloads. That's just a `union` type. If you actually expect callers to inspect and care about the details of each possible return branch, you should provide a return type allowing them to do stuff with that information.The odd duck out is `errdefer`. IMO it's reasonably common for libraries to want to do some sort of cleanup on \"error\" conditions, where that cleanup often doesn't depend on which error you hit, and you lose that functionality if you just return a union type. My usual workaround (in the few cases where I actually want that information returned and also have to do some sort of cleanup) is to have a private inner function and a public outer function. The inner function has some sort of `out` parameter where it sticks that unioned metadata. The outer function executes the code which might have to be clean",
+    "parent": 44815545,
+    "depth": 2
+  },
+  {
+    "id": 44816301,
+    "by": "jmull",
+    "timeISO": "2025-08-06T19:09:28.000Z",
+    "textPlain": "I think the idea is errors are for control flow. If you have other information to return from a function, you can just return it — whether directly as the return value or through an “out” parameter or setting it in some context.",
+    "parent": 44815545,
+    "depth": 2
+  },
+  {
+    "id": 44819418,
+    "by": "jayd16",
+    "timeISO": "2025-08-07T00:32:54.000Z",
+    "textPlain": "Is it significantly different than a try-catch block?",
+    "parent": 44815081,
+    "depth": 2
+  },
+  {
+    "id": 44816443,
+    "by": "sedatk",
+    "timeISO": "2025-08-06T19:20:18.000Z",
+    "textPlain": "It felt like a man page to me :)",
+    "parent": 44815663,
+    "depth": 2
+  },
+  {
+    "id": 44816278,
+    "by": "schroffl",
+    "timeISO": "2025-08-06T19:07:40.000Z",
+    "textPlain": "The language reference has a section about naming identifiers https://ziglang.org/documentation/0.14.1/#Names",
+    "parent": 44816025,
+    "depth": 2
+  }
+]

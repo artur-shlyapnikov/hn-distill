@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44769257,
+    "by": "lukaslalinsky",
+    "timeISO": "2025-08-02T17:03:22.000Z",
+    "textPlain": "I have about two weeks of using Claude Code and to be honest, as a vibe coding skeptic, I was amazed. It has a learning curve. You need to learn how to give it proper context, how to chunk up the work, etc. And you need to know how to program, obviously. Asking it to do something you don't know how to do, that's just asking for a disaster. I have more than 25 years of experience, so I'm confident with anything Claude Code will try to do and can review it, or stop and redirect it. About 10-15 years ago, I was dreaming about some kind of neural interface, where I could program without writing any code. And I realized that with Claude Code, it's kind of here.A couple of times I hit the daily limits and decided to try Gemini CLI with the 2.5 pro model as a replacement. That's not even comparable to Claude Code. The frustration with Gemini is just not worth it.I couldn't imagine paying >100$/month for a dev tool in the past, but I'm seriously considering upgrading to the Max plans.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44768193,
+    "by": "jeswin",
+    "timeISO": "2025-08-02T15:03:54.000Z",
+    "textPlain": "Claude Code is ahead of anything else, in a very noticeable way. (I've been writing my own cli tooling for AI codegen from 2023 - and in that journey I've tried most of the options out there. It has been a big part of my work - so that's how I know.)I agree with many things that the author is doing:1. Monorepos can save time2. Start with a good spec. Spend enough time on the spec. You can get AI to write most of the spec for you, if you provide a good outline.3. Make sure you have tests from the beginning. This is the most important part. Tests (along with good specs) are how an AI agent can recurse into a good solution. TDD is back.4. Types help (a lot!). Linters help as well. These are guard rails.5. Put external documentation inside project docs, for example in docs/external-deps.6. And finally, like every tool it takes time to figure out a technique that works best for you. It's arguably easier than it was (especially with Claude Code), but there's still stuff to learn. Everyone I know has a slightly different workflow - so it's a bit like coding.I vibe coded quite a lot this week. Among them, Permiso [1] - a super simple GraphQL RBAC server. It's nowhere close to best tested and reviewed, but can be quite useful already if you want something simple (and can wait until it's reviewed.)[1]: https://github.com/codespin-ai/permiso",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44770370,
+    "by": "arrowsmith",
+    "timeISO": "2025-08-02T19:01:52.000Z",
+    "textPlain": "The real power of Claude Code comes when you realise it can do far more than just write code.It can, in fact, control your entire computer. If there's a CLI tool, Claude can run it. If there's not a CLI tool... ask Claude anyway, you might be \nsurprised.E.g. I've used Claude to crop and resize images, rip MP3s from YouTube videos, trim silence from audio files, the list goes on. It saves me incredible amounts of time.I don't remember life before it. Never going back.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44770231,
+    "by": "buffer1337",
+    "timeISO": "2025-08-02T18:47:12.000Z",
+    "textPlain": "I've been using Claude code 12-16 hours a day since I first got it running two weeks ago.\nHere's the tips I've discovered:1. Immediately change to sonnet (the cli defaults to opus for max users). I tested coding with opus extensively and it never matches the quality of sonnet.2. Compacting often ends progress - it's difficult to get back to the same quality of code after compacting.3. First prompt is very important and sets the vibe. If your instance of Claude seems hesitant, doubtful, sometimes even rude, it's always better to end the session and start again.4. There are phrases that make it more effective. Try, \"I'm so sorry if this is a bad suggestion, but I want to implement x and y.\" For whatever reason it makes Claude more eager to help.5. Monolithic with docker orchestration: I essentially 10x'd when I started letting Claude itself manage docker containers, check their logs for errors, rm them, rebuild them, etc. Now I can get an entirely new service online in a docker container, from zero to operational, in one Claude prompt.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44767921,
+    "by": "Fraterkes",
+    "timeISO": "2025-08-02T14:31:02.000Z",
+    "textPlain": "Irrespective of how good Claude code actually is (I haven’t used it, but I think this article makes a really cogent case), here’s something that bothers me: I’m very junior, I have a big slow ugly codebase of gdscript (basically python) that I’m going to convert to C# to both clean it up and speed it up.This is for a personal project, I haven’t written a ton of C# or done this amount of refactoring before, so this could be educational in multiple ways.If I were to use Claude for this Id feel like I was robbing myself of something that could teach me a lot (and maybe motivate me to start out with structuring my code better in the future). If I don’t use Claude I feel like Im wasting my (very sparse) free time on a pretty uninspiring task that may very well be automated away in most future jobs, mostly out of some (misplaced? Masochistic?) belief about programming craft.This sort of back and forth happens a lot in my head now with projects.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44770125,
+    "by": "lysecret",
+    "timeISO": "2025-08-02T18:36:22.000Z",
+    "textPlain": "I have been coding with claude code for about 3 weeks and I love it. I have bout 10yoe and mostly do Python ML / Data Eng. Here are a few reasons:1. It takes away the pain of starting. I have no barrier to writing text but there is a barrier to writing the first line of code, to a large extend coming form just remembering the context, where to import what from, setting up boilerplate etc.2. While it works I can use my brain capacity to think about what I'm doing.3. I can now do multiple things in parallel.4. It makes it so much easier to \"go the extra mile\" (I don't add \"TODOs\" anymore in the code I just spin up a new Claude for it)5. I can do much more analysis, (like spinnig up detailed plotting / analysis scripts)6. It fixes most simple linting/typing/simple test bugs for me automatically.Overall I feel like this kind of coding allows me to focus about the essence: What should I be doing? Is the output correct? What can we do to make it better?",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44774427,
+    "by": "philbo",
+    "timeISO": "2025-08-03T06:05:37.000Z",
+    "textPlain": "As one of the curious minority who keeps trying agentic coding but not liking it, I've been looking for explanations why my experience differs from the mainstream. I think it might lie in this nugget:    > I believe with Claude Code, we are at the\n    > “introduction of photography” period of\n    > programming. Painting by hand just doesn’t\n    > have the same appeal anymore when a single\n    > concept can just appear and you shape it\n    > into the thing you want with your code review\n    > and editing skills.\n\nThe comparison seems apt and yet, still people paint, still people pay for paintings, still people paint for fun.I like coding by hand. I dislike reviewing code (although I do it, of course). Given the choice, I'll opt for the former (and perhaps that's why I'm still an IC).When people talk about coding agents as very enthusiastic but very junior engineering interns, it fills me with dread rather than joy.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44769037,
+    "by": "acedTrex",
+    "timeISO": "2025-08-02T16:40:49.000Z",
+    "textPlain": "I try to use claude code a lot, I keep getting very frustrated with how slow it is and how it always does things wrong. It does not feel like its saving my any mental energy on most tasks. I do gravitate towards it for some things. But then I am sometimes burned on doing that and its not pleasent.For example, last week i decided to play with nushell, i have a somewhat simple .zshrc so i just gave it to claude and asked it to convert it to nushell. The nu it generated for the most part was not even valid, i spent 30 mins with it, it never worked. took me about 10 minutes in the docs to convert it.So it's miserable experiences like that that make me want to never touch it, because I might get burned again. There are certainly things that I have found value in, but its so hit or miss that i just find my self not wanting to bother.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44767801,
+    "by": "iwontberude",
+    "timeISO": "2025-08-02T14:12:52.000Z",
+    "textPlain": "I stopped writing as much code because of RSI and carpal tunnel but Claude has given me a way to program without pain (perhaps an order of magnitude less pain). As much as I was wanting to reject it, I literally am going to need it to continue my career.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44767993,
+    "by": "slackpad",
+    "timeISO": "2025-08-02T14:41:36.000Z",
+    "textPlain": "Really agree with the author's thoughts on maintenance here. I've run into a ton of cases where I would have written a TODO or made a ticket to capture some refactoring and instead just knocked it out right then with Claude. I've also used Claude to quickly try out a refactoring idea and then abandoned it because I didn't like how it came out. It really lowers the activation energy for these kinds of maintenance things.Letting Claude rest was a great point in the article, too. I easily get manifold value compared to what I pay, so I haven't got it grinding on its own on a bunch of things in parallel and offline. I think it could quickly be an accelerator for burnout and cruft if you aren't careful, so I keep to a supervised-by-human mode.Wrote up some more thoughts a few weeks ago at https://www.modulecollective.com/posts/agent-assisted-coding....",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44776371,
+    "by": "actinium226",
+    "timeISO": "2025-08-03T13:15:57.000Z",
+    "textPlain": "I see a lot of comments here gushing about CC but I've used and I really don't get it. I find that it takes me just as long to explain to it what I need done as it takes to just do the work myself.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44767942,
+    "by": "jansan",
+    "timeISO": "2025-08-02T14:34:53.000Z",
+    "textPlain": "A lot of things that the author achieved with Claude Code is migrating or refactoring of code. To me, who started using Claude Code just two weeks ago, this seems to be one of the real strengths at the moment. We have a large business app that uses an abandoned component library and contains a lot of cruft. Migrating to another component library seemed next to impossible, but with Claude Code the whole process took me just about one week. It is making mistakes (non-matching tags for example), but with some human oversight we reached the first goal. Next goal is removing as much cruft as possible, so working on the app becomes possible or even fun again.I remember when JetBrains made programming so much easier with their refactoring tools in IntelliJ IDEA. To me (with very limited AI experience) this seems to be a similar step, but bigger.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44769079,
+    "by": "searls",
+    "timeISO": "2025-08-02T16:45:34.000Z",
+    "textPlain": "I appreciate that Orta linked to my \"Full-breadth Developers\" post here, for two reasons:1. I am vain and having people link to my stuff fills the void in my broken soul2. He REALLY put in the legwork to document in a concrete way what it looks like for these tools to enable someone to move up a level of abstraction. The iron triangle has always been Quality, Scope, Time. This innovation is such an accelerant that that ambitious programmers can now imagine game-changing increases in scope without sacrificing quality and in the same amount of time.For this particular moment we're in, I think this post will serve as a great artifact of what it felt like.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44774162,
+    "by": "calrain",
+    "timeISO": "2025-08-03T04:55:56.000Z",
+    "textPlain": "Lets stop calling it Vibe Coding.I'm a heavy user of Claude Code and I use it like a coding assistant.How well you can manage a development team in real life has strong correlations on how much value you get out of an LLM based coding assistant.If you can't describe what success looks like, expect people to read your mind, and get angry at validating questions, then you will have problems both with coding assistants and leading teams of developers.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44770671,
+    "by": "softwaredoug",
+    "timeISO": "2025-08-02T19:36:53.000Z",
+    "textPlain": "I think it's possible Claude Code might be the most transformative piece of software since ChatGPT. It's a step towards an AI agent that can actually _act_ at a fundamental level - with any command that can be found on a computer - in a way that's beyond the sandboxed ChatGPT or even just driving a browser.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44771048,
+    "by": "softwaredoug",
+    "timeISO": "2025-08-02T20:20:11.000Z",
+    "textPlain": "So far what I've noticed with Claude Code is not _productivity gains_ but _gains in my thoughtfulness_As in the former is hyped, but the latter - stopping to ask questions, reflect, what should we do - is really powerful. I find I'm more thoughtful, doing deeper research, and asking deeper questions than if I was just hacking something together on the weekend that I regretted later.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44771108,
+    "by": "lbrito",
+    "timeISO": "2025-08-02T20:26:20.000Z",
+    "textPlain": "It's less that I'm a skeptic, but more that I'm finding I intensely abhor the world we're building for ourselves with these tools (which I admittedly use a lot).",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44772007,
+    "by": "globular-toast",
+    "timeISO": "2025-08-02T22:04:33.000Z",
+    "textPlain": "I've used it a bit. I've done some very useful stuff, and I've given up with other stuff and just done it manually.What it excels at is translation. This is what LLMs were originally designed for after all.It could be between programming languages, like \"translate this helm chart into a controller in Go\". It will happily spit out all the structs and basic reconciliation logic. Gets some wrong but even after correcting those bits still saves so much time.And of course writing precise specs in English, it will translate them to code. Whether this really saves time I'm not so convinced. I still have to type those specs in English, but now what I'm typing is lost and what I get is not my own words.Of course it's good at generating boilerplate, but I never wrote much boilerplate by hand anyway.I've found it's quite over eager to generate swathes of code when you wanted to go step by step and write tests for each new bit. It doesn't really \"get\" test-driven development and just wants to write untested code.Overall I think it's without doubt amazing. But then so is a clown at a children's birthday party. Have you seen those balloon animals?! I think it's useful to remain sceptical and not be amazed by something just because you can't do it. Amazing doesn't mean useful.I worry a lot about what's happening in our industry. Already developers get away with incredibly shoddy practices. In other industries such practices would get you struck off, licences stripped, or even sent to prison. Now we have to contend with juniors and people who don't even understand programming generating software that runs.I can really see LLMs becoming outlawed in software development for software that matters, like medical equipment or anything that puts the public in danger. But maybe I'm being overly optimistic. I think generally people understand the dangers of an electrician mislabelling a fusebox or something, but don't understand the dangers of shoddy software.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44771588,
+    "by": "socalgal2",
+    "timeISO": "2025-08-02T21:18:11.000Z",
+    "textPlain": "I wish I got this level of productivity. I think every article should list exactly what they asked the LLM to do because I'm not getting as much use from it and I don't know if it's because what I work on is rare compared to say website front and backend code and/or if I just suck at prompts/context or I'm using the wrong services or don't have the correct MCPs etc....",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44771909,
+    "by": "deadbabe",
+    "timeISO": "2025-08-02T21:51:19.000Z",
+    "textPlain": "For me, the most compelling use of LLMs is to one shot scripts, small functions, unit tests, etc.I don’t understand how people have the patience to do an entire application just vibe coding the whole time. As the article suggests, it doesn’t even save that much time.If it can’t be done in one shot with simple context I don’t want it.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44770546,
+    "by": "wjnc",
+    "timeISO": "2025-08-02T19:21:08.000Z",
+    "textPlain": "Over the holidays I built a plan for an app that would be worthwhile to my children, oldest son first. That plan developed to several thousand words of planning documents (MVP, technical stack, layout). That was just me lying in the sun with Claude on mobile.Today I (not a programmer, although programming for 20+ years, but mostly statistics) started building with Claude Code via Pro. Burned through my credits in about 3 hours. Got to MVP (happy tear in my eye). Actually one of the best looks I've ever gotten from my son. A look like, wow, dad, that's more than I'd ever think you could manage.Tips:- Plan ahead! I've had Claude tell me that a request would fit better way back on the roadmap. My roadmap manages me.- Force Claude to build a test suite and give debugging info everywhere (backend, frontend).- Claude and me work together on a clear TODO. He needs guidance as well as I do. It forgot a very central feature of my MVP. Do not yet know why. Asked kindly and it was built.Questions (not specifically to you kind HN-folks, although tips are welcome):- Why did I burn through my credits in 3 hours?- How can I force Claude to keep committed to my plans, my CLAUDE.md, etc.- Is there a way to ask Claude to check the entire project for consistency? And/Or should I accept that vibing will leave crusts spread around?",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44771393,
+    "by": "blackqueeriroh",
+    "timeISO": "2025-08-02T20:55:34.000Z",
+    "textPlain": "I have nearly 20 years of experience in technology, and have been writing toy scripts or baby automations for most of my career. I started out in a managed services help desk and took that route many folks take across and around the different IT disciplines.I mostly spend my days administering SaaS tools, and one of my largest frustrations has always been that I didn’t know enough to really build a good plugin or add-on for whatever tool I was struggling with, and I’d find a limited set of good documentation or open source examples to help me out. With my limited time (full time job) and attendant challenges (ADHD & autism + all the fun trauma that comes from that along with being Black, fat and queer), I struggled to ever start anything out of fear of failure or I’d begin a course and get bored because I wasn’t doing anything that captured my imagination & motivation.Tools like Claude Code, Cursor, and even the Claude app have absolutely changed the game for me. I’m learning more than ever, because even the shitty code that these tools can write is an opportunity for debugging and exploration, but I have something tangible to iterate on. Additionally, I’ve found that Claude is really good at giving me lessons and learning based on an idea I have, and then I have targeted learning I can go do using source docs and tutorials that are immediately relevant to what I’m doing instead of being faced with choice paralysis. Being able to build broken stuff in seconds that I want to get working (a present problem is so much more satisfying than a future one) and having a tool that knows more than I do about code most of the time but never gets bored of my silly questions or weird metaphors has been so helpful in helping me build my own tools. Now I think about building my own stuff first before I think about buying something!",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44775798,
+    "by": "d4rkp4ttern",
+    "timeISO": "2025-08-03T11:21:26.000Z",
+    "textPlain": "Agreed. CC lets you attempt things that you wouldn’t have dared to try. For example here are two things I recently added to the Langroid LLM agent framework with CC help:Nice collapsible HTML logs of agent conversations (inspired by Mario Zechner’s Claude-trace), which took a couple hours of iterations, involving HTML/js/CSS:https://langroid.github.io/langroid/notes/html-logger/A migration from Pydantic-v1 to v2, which took around 7 hours of iterations (would have taken a week at least if I even tried it manually and still probably wouldn’t have been as bullet-proof):https://github.com/langroid/langroid/releases/tag/0.59.0-b3",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44772865,
+    "by": "zmmmmm",
+    "timeISO": "2025-08-03T00:03:20.000Z",
+    "textPlain": "I'm most interested in how well these tools can tackle complex legacy systems.We have tonnes of code that's been built over a decade with all kinds of idioms and stylistic conventions that are enforced primarily through manual review. This relates in part to working in a regulated environment where we know certain types of things need radical transparency and auditability, so writing code the \"normal\" way a developer would is problematic.So I am curious how well it can see the existing code style and then implicitly emulate that? My current testing of other tools seems to suggest they don't handle it very well; typically I am getting code that looks very foreign to the existing code. It exhibits the true \"regression to the mean\" spirit of LLMs where it's providing me with \"how would the average competent engineer write this\", which is not at all how we need the code written.Currently, this is the main barrier to us using these tools in our codebase.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44772996,
+    "by": "jadbox",
+    "timeISO": "2025-08-03T00:29:05.000Z",
+    "textPlain": "Good article, but fwiw, I think GraphQL is a bane for web dev for 90% of projects. It overcomplicates, bloats, and doesn't add anything over regular OpenAPI specs for what is usually just CRUD resource operations.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44775592,
+    "by": "linuxhansl",
+    "timeISO": "2025-08-03T10:42:27.000Z",
+    "textPlain": "It seems to be great at writing tests, spitting out UI code, and many other things where there are many examples around.Among other things I work on database optimizers and there Claude fails spectacularly. It produces wrong code, fails to find the right places where to hook up an abstraction, overlooks affects on other parts of the code, and generally confidently proposes changes that simply do not work at all (to put it mildly).Your mileage may vary... It seems to be depend heavily on the amount of existing (open) code around.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44770571,
+    "by": "floppyd",
+    "timeISO": "2025-08-02T19:23:39.000Z",
+    "textPlain": "Anybody had similarly good experience with Gemini CLI? I'm only a hobbyist coder, so paying for Claude feels silly when Gemini is free (at least for now), but so far I've only used it inside Cline-like extensions",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44768358,
+    "by": "qaq",
+    "timeISO": "2025-08-02T15:21:40.000Z",
+    "textPlain": "For me real limit is the amount of code I can read and lucidly understand to spot issues in a given day.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44768242,
+    "by": "qaq",
+    "timeISO": "2025-08-02T15:08:53.000Z",
+    "textPlain": "Another really nice use case building very sophisticated test tooling. Normally a company might not allocate enough resources to a task like that but with Claude Code it's a no brainer. Also can create very sophisticated mocks like say db mock that can parse all queries in the codebase and apply them to in memory fake tables. Would be total pain to build and maintain by hand but with claude code takes literally minutes.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44773909,
+    "by": "afro88",
+    "timeISO": "2025-08-03T03:41:11.000Z",
+    "textPlain": "Being able to do big refactors quickly in the moment really helps in a solo dev environment, but in a team it puts a lot of review (and QA) burden on them. It makes me wonder if we're moving towards a teams model where individuals own different parts of the system, rather than everyone reviewing each others code and working together",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44768124,
+    "by": "delduca",
+    "timeISO": "2025-08-02T14:56:43.000Z",
+    "textPlain": "My opinion on Claude as ChatGPT user.It feels like ChatGPT on cocaine, I mean, I asked for a small change and it came with 5 solutions changing all my codebase.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44782034,
+    "by": "throw10920",
+    "timeISO": "2025-08-04T04:06:46.000Z",
+    "textPlain": "> I feel like I have a new freedom of expression which is hard to fully articulateWhen I hear this, I think of this recently-released study, which showed that LLMs both make coders less productive and convinced that they're more productive:https://metr.org/blog/2025-07-10-early-2025-ai-experienced-o...Until there's more research published that shows the opposite effect, I don't think we can really take peoples' squishy feelings like this as faithful to reality.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44768156,
+    "by": "MuffinFlavored",
+    "timeISO": "2025-08-02T15:00:14.000Z",
+    "textPlain": "I think Claude Code is great, but I really grew accustomed to the \"Cursor-tab tab tab\" autocomplete style. A little perplexed why the Claude Code integration into VS Code doesn't add something like this? It would make it the perfect product to me. Surprised more people do not talk about this/it isn't a more commonly requested feature.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44770976,
+    "by": "mirkodrummer",
+    "timeISO": "2025-08-02T20:12:48.000Z",
+    "textPlain": "> Painting by hand just doesn’t have the same appeal anymore when a single concept can just appear and you shape it into the thing you want with your code review and editing skills.In the meanwhile one the most anticipated game in the industry, a second chapter of an already acclaimed product, has its art totally hand painted",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44769180,
+    "by": "esafak",
+    "timeISO": "2025-08-02T16:55:53.000Z",
+    "textPlain": "Coding agents are empowering, but it is not well appreciated that they are setting a new baseline. It will soon not be considered impressive to do all the things that the author did, but expected. And you will not work less but the same hours -- or more, if you don't use agents.Despite this, I think agents are a very welcome new weapon.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44771837,
+    "by": "nrclark",
+    "timeISO": "2025-08-02T21:42:35.000Z",
+    "textPlain": "Does Claude Code use a different model then Claude.ai? Because Sonnet 4 and Opus 4 routinely get things wrong for me. Both of them have sent me on wild goose chases, where they confidently claimed \"X is happening\" about my code but were 100% wrong. They also hallucinated APIs, and just got a lot of details wrong in general.The problem-space I was exploring was libusb and Python, and I used ChatGPT and also Claude.ai to help debug some issues and flesh out some skeleton code. Claude's output was almost universally wrong. ChatGPT got a few things wrong, but was in general a lot closer to the truth.AI might be coming for our jobs eventually, but it won't be Claude.ai.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44772761,
+    "by": "trjordan",
+    "timeISO": "2025-08-02T23:49:16.000Z",
+    "textPlain": "I think the most interesting change Claude enables is letting AI try stuff. We do this all the time.I have this sense this works best in small teams right now, because Claude wants to produce code changes and PRs. Puzzmo, where OP works, is <5 engineers.In larger codebases, PRs don't feel like the right medium in every case for provocative AI explorations. If you're going to kick something off before a meeting and see what it might look like to solve it, it might be better to get back a plan, or a pile of regexps, or a list of teams that will care.Having an AI produce a detailed plan for larger efforts, based on an idea, seems amazing.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44776678,
+    "by": "brentm",
+    "timeISO": "2025-08-03T14:05:10.000Z",
+    "textPlain": "To me it feels like we're in the VC subsidized days for tools like Claude Code. Given how expensive we know GPU usage is and that it's not likely to come down, and these companies will need to eventually be profitable, I wonder if we're all heading for a point where ultimately Claude Code and the like will be like $2K per month instead of $200 on the high end.",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44778283,
+    "by": "laughing_snyder",
+    "timeISO": "2025-08-03T17:48:34.000Z",
+    "textPlain": "Has anyone had their own experience of how Claude or similar AI agents perform in large (1M+ lines) legacy code bases? To give a bit more context, I work on a Java code base that is 20+ years old. It was continuously updated and expanded but contains mostly spaghetti code. Would Claude add any value here?",
+    "parent": 44746621,
+    "depth": 1
+  },
+  {
+    "id": 44774605,
+    "by": "AtNightWeCode",
+    "timeISO": "2025-08-03T06:47:24.000Z",
+    "textPlain": "The problem for me is to predict what AI might get wrong. Claude can solve hard coding problems one day just to fail with basic stuff like thread safety the next. But overall I think it is clear that we reached the point where AI, if used correctly, saves a lot of development time.",
+    "parent": 44746621,
+    "depth": 1
+  }
+]

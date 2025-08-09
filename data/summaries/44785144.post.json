@@ -1,0 +1,8 @@
+{
+  "id": 44785144,
+  "lang": "ru",
+  "summary": "`popover=\"hint\"` (Chrome 133+) позволяет показывать подсказку, не закрывая уже открытые `auto`-поповеры. Подходит для тултипов и превью при наведении.\n\n| Тип | `auto` | `manual` | `hint` |\n|---|---|---|---|\n| Закрывается кликом/ESC | ✓ | ✗ | ✓ |\n| Закрывает `auto` | ✓ | ✗ | ✗ |\n| Закрывает `hint` | ✓ | ✗ | ✓ |\n\nПример:\n\n```html\n<button popovertarget=\"comments\" popovertargetaction=\"hint\">24 комментария</button>\n<div id=\"comments\" popover=\"hint\">…</div>\n```\n\nНо клик всё равно закроет `auto`-поповер. Чтобы обойти это, нужен JS:\n\n```js\nbtn.addEventListener('mouseenter', () => pop.showPopover());\nbtn.addEventListener('mouseleave', () => setTimeout(() => pop.hidePopover(), 100));\n```\n\nДля ссылок и без JS в будущем появится **interest invokers**:\n\n```html\n<a interestfor=\"comments\" href=\"#\">24 комментария</a>\n```\n\nФлаг `chrome://flags/#experimental-web-platform-features` в Canary.",
+  "inputHash": "da240d68a7bb9e491f7f133574a022528ce3799b08415148bd573747504b2dd1",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-08T10:30:41.323Z"
+}

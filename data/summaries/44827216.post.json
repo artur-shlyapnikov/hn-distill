@@ -1,0 +1,8 @@
+{
+  "id": 44827216,
+  "lang": "ru",
+  "summary": "**Notte** — фреймворк для создания и развёртывания браузерных AI-агентов.  \nОбъединяет скрипты и ИИ: детерминированные части пишутся кодом, ИИ вызывается только при необходимости, снижая расходы >50 % и повышая надёжность.\n\n### Основные возможности\n- **Агенты** выполняют задачи на сайтах естественным языком.  \n- **Структурированный вывод** через Pydantic-модели.  \n- **Взаимодействие с сайтами**: скрапинг, клики, ввод текста (Playwright-совместимо).  \n- **API-сервис**: скрытые сессии, решение CAPTCHA, прокси, хранилище секретов, цифровые персоны.\n\n### Быстрый старт\n```bash\npip install notte\npatchright install --with-deps chromium\n```\n\n**Локально** (нужен ключ LLM):\n```python\nimport notte\nwith notte.Session(headless=False) as s:\n    agent = notte.Agent(s, reasoning_model='gemini/gemini-2.5-flash')\n    agent.run(\"doom scroll cat memes on google images\")\n```\n\n**Через SDK** (рекомендовано):\n```python\nfrom notte_sdk import NotteClient\ncli = NotteClient(api_key=\"your-api-key\")\nwith cli.Session() as s:\n    cli.Agent(s).run(\"ваша задача\")\n```\n\n### Бенчмарк\n| Провайдер | Успех (self) | Успех (LLM) | Время | Надёжность |\n|-----------|--------------|-------------|--------|------------|\n| **Notte** | **86 %**     | **79 %**    | **47 с** | **97 %** |\n| Browser-Use | 77 %        | 60 %        | 113 с  | 83 % |\n\nПолный отчёт: [open-operator-evals](https://github.com/nottelabs/open-operator-evals)",
+  "inputHash": "26af431f323f955638bdc2e73001681b47e3ac1750103eb61d51c3ad1ced1f0b",
+  "model": "moonshotai/kimi-k2",
+  "createdISO": "2025-08-07T23:57:44.322Z"
+}

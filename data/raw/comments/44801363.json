@@ -1,0 +1,34 @@
+[
+  {
+    "id": 44844980,
+    "by": "procaryote",
+    "timeISO": "2025-08-09T08:39:17.000Z",
+    "textPlain": "> The symptoms were confusing: streaming worked perfectly with cURL and Postman, but failed completely with node-fetch and browser fetch.It would have been helpful to mention what \"failed completely\" means. Did you get garbage data? Did the connection close abruptly? Did the connection hang and not deliver data? Did it deliver the data, just with a significant delay?Paying attention to these things also tends to make it easier to debug.",
+    "parent": 44801363,
+    "depth": 1
+  },
+  {
+    "id": 44844524,
+    "by": "Charon77",
+    "timeISO": "2025-08-09T06:36:37.000Z",
+    "textPlain": "I don't quite get it.cURL works because it doesn't compression.Browsers do not work because they're accepting compression and cloudflare silently enables compression to browser who advertises that they can accept compression.So cloudflare's compression is just flawed?",
+    "parent": 44801363,
+    "depth": 1
+  },
+  {
+    "id": 44844609,
+    "by": "deathanatos",
+    "timeISO": "2025-08-09T06:57:40.000Z",
+    "textPlain": "> One thing that stuck out was that our egress systems (ALB and Cloudflare) were stripping these headers:  'Transfer-Encoding': 'chunked',\n  'Connection': 'keep-alive',\n  'Content-Encoding': 'none',\n\nTransfer-Encoding and Connection are both hop-by-hop headers.> Unlike Content-Encoding (Section 8.4.1 of [HTTP]), Transfer-Encoding is a property of the message, not of the representation. Any recipient along the request/response chain MAY decode the received transfer coding(s) or apply additional transfer coding(s) to the message body, assuming that corresponding changes are made to the Transfer-Encoding field value.(https://www.rfc-editor.org/rfc/rfc9112#section-6.1)> Intermediaries MUST parse a received Connection header field before a message is forwarded and, for each connection-option in this field, remove any header or trailer field(s) from the message with the same name as the connection-option, and then remove the Connection header field itself (or replace it with the intermediary's own control options for the forwarded message).(https://datatracker.ietf.org/doc/html/rfc9110#section-7.6.1-...)> Furthermore, intermediaries SHOULD remove or replace fields that are known to require removal before forwarding, whether or not they appear as a connection-option, after applying those fields' semantics. […] Transfer-Encoding(https://www.rfc-editor.org/rfc/rfc9110#section-7.6.1-7)I.e., it is spec-legal for an intermediary to remove these headers; it should be obvious that these are a property of the hop if you consider their purpose.E.g., say your load-balancer is maintaining a keep-alive with the backend; a client sending Connection: close is not having it's header \"stripped\" by the LB proxying the request to the backend but without forwarding the header, it's a property of the client<->LB connection, and not the LB<->BE connection.Same for Transfer-Encoding: consider an HTTP/1.1 connection hitting an intermediary that will upgrade it to HTTP/2; Transfer-Encoding: chunk",
+    "parent": 44801363,
+    "depth": 1
+  },
+  {
+    "id": 44844651,
+    "by": "refulgentis",
+    "timeISO": "2025-08-09T07:08:57.000Z",
+    "textPlain": "\"This isn't just about compression—it's about\"This isn't just about a technical issue—it's about......the effort one puts into their writing and how it affects perception of content, i.e. here's some extremely common LLM slop the writer couldn't be sussed to edit, what else did they miss? Does it affect anything I gleaned from the article?",
+    "parent": 44801363,
+    "depth": 1
+  }
+]

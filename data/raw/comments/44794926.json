@@ -1,0 +1,122 @@
+[
+  {
+    "id": 44796974,
+    "by": "homebrewer",
+    "timeISO": "2025-08-05T11:57:14.000Z",
+    "textPlain": "Props to them for keeping backwards compatibility. I always dread seeing these major releases, especially after being burned several times by the tire fire of react-router. Migrating a rather large project from 5.6 to 6.0 (10 chart types, around 1k charts in total) took maybe 15 minutes of work. IIRC the only breaking change was them moving the legend to the bottom, which was easy to revert by importing the old theme.And all that for free. The project was using a commercial library until about a year ago; no regrets since moving to echarts.",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44796300,
+    "by": "dev_l1x_be",
+    "timeISO": "2025-08-05T10:17:31.000Z",
+    "textPlain": "Echarts is the best charting library when you need a full fledge solution.  It is worth to know that you can reduce the bundle size with this:https://echarts.apache.org/en/builder.html",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44798153,
+    "by": "rorylaitila",
+    "timeISO": "2025-08-05T14:07:23.000Z",
+    "textPlain": "I feel I've tried them all. Echarts is the best overall charting library. Fast, complete, easy to start, advanced options, looks great by default, good examples, server and client rendering, SVG and canvas.My only complaint is the chart-data data structures. Each chart type takes a different structure and axis data structure. They bolted on a data table feature (columns and rows), but it's not as documented and last I tried, incomplete.",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44801080,
+    "by": "ggregoire",
+    "timeISO": "2025-08-05T17:21:39.000Z",
+    "textPlain": "I've toyed with various JS charting libraries over the last 15 years and I always come back to Echarts. Other libraries always miss options you eventually need if you are trying to do anything non trivial (e.g. the last one I tried didn't support multiple Y axises). It's feature complete while not having the complexity of coding a chart from scratch with D3. Works well with React too.",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44796668,
+    "by": "elric",
+    "timeISO": "2025-08-05T11:15:43.000Z",
+    "textPlain": "Their new chord chart is easily the clearest chord chart I've seen. Tooltips with directional arrows, clear gradients.",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44802029,
+    "by": "RyanHamilton",
+    "timeISO": "2025-08-05T18:18:49.000Z",
+    "textPlain": "I evaluated a lot of chart frameworks 3 years ago before choosing echarts.  We use it in our real time database visualization to to display charts at 10+ frames per second: https://www.timestored.com/pulse/ it's proved to be an excellent choice.  There's been only one essential feature that I couldn't achieve and rechecking the github issue I see they merged a fix so I'm going to have to upgrade.  Great work.  Thanks.",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44796819,
+    "by": "kakadu",
+    "timeISO": "2025-08-05T11:34:39.000Z",
+    "textPlain": "While I like echarts I have found it somewhat challenging to extend their functionality.I wanted a Gantt chart and while I did achieve what I wanted it wasn't without having to delve into the their source and putting log statements everywhere.I happen to be using ant design and I've had the same issues there.Its a bit all over the place and the translations are not great, but i will stick with it.",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44809230,
+    "by": "derkades",
+    "timeISO": "2025-08-06T08:18:47.000Z",
+    "textPlain": "Seems like a good release! Looking forward to upgrade my project. The LLM-speak was hard to read, though.",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44798108,
+    "by": "kylecordes",
+    "timeISO": "2025-08-05T14:02:43.000Z",
+    "textPlain": "I'm always thrilled to see eCharts mentioned anywhere. It is a highly featureful, complete solution for making sophisticated data-intense charts. Various commercial alternatives pale in comparison.",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44796730,
+    "by": "tnolet",
+    "timeISO": "2025-08-05T11:23:07.000Z",
+    "textPlain": "Anyone ever tried switching from Highcharts to ECharts?",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44799264,
+    "by": "porridgeraisin",
+    "timeISO": "2025-08-05T15:28:01.000Z",
+    "textPlain": "Recently tried a bunch of frontend charging libraries.Disclaimer: I only tried line charts for time series X axis and bar charts for categorical X axis. No other charts. I had filters, group by and sort by options in control panel. Data was fetched everytime from database when control panel was modified, so no client side number crunching.My requirements were:Control panel at top (which I'll manage).\nThen a grid of charts below with synced cursors and zooms (toggleable).Basically, grafana, but they're not necessarily time series graphs.I found uPlot(which is iirc what grafana uses) and eCharts to be the handsdown winners. Within those two, I preferred eCharts as first of all uplot didn't have any docs, LLMs didn't really perform well, and also vue-eplot wrapper didn't work.Secondly, eCharts had nice animations, which uPlot does not support and I understand why, but I just wanted it for this project. It's really neat, when you add a group by in your control panel the charts nicely animate and the legend shows up etcThe others just did not impress, highcharts, chart.js, c3.js, ag-grid.But maybe they're better fit for another usecase.Vue-echarts is such a nice wrapper too.  // your refs from control panel inputs\n  // chartOption = computed(() => make from inputs)\n  // <v-chart :chartOption />\n\nPerformance wise, it didn't lag upto few month date ranges for daily data that arises out of user interaction. So not super dense like logs or telemetry measurements, but not that sparse either. I didn't really benchmark it with proper stress tests beyond checking if it worked for the usecase at hand.It is also ridiculously reliable. When you have empty/missing data there's no annoying try-catch or guards you have to do when rendering, it automatically shows an empty graph with the size you specified. The title and other decorations still remain.It also works well inside flex/grid layouts. No nonsense with CSS needed.",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44799736,
+    "by": "nirav72",
+    "timeISO": "2025-08-05T15:58:40.000Z",
+    "textPlain": "This is neat. Anyone using these for live charts with real time data?",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44802658,
+    "by": "billfruit",
+    "timeISO": "2025-08-05T19:00:52.000Z",
+    "textPlain": "Can it do interactive 3d plots?",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44798559,
+    "by": "hbarka",
+    "timeISO": "2025-08-05T14:39:13.000Z",
+    "textPlain": "Where’s Sankey charts?",
+    "parent": 44794926,
+    "depth": 1
+  },
+  {
+    "id": 44796893,
+    "by": "antman",
+    "timeISO": "2025-08-05T11:45:58.000Z",
+    "textPlain": "Examples not clickable and failed to find the bar range example documentation. Hope it has a horizontal option!",
+    "parent": 44794926,
+    "depth": 1
+  }
+]

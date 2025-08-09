@@ -1,0 +1,8 @@
+{
+  "id": 44783368,
+  "lang": "ru",
+  "summary": "**Краткое содержание**\n\nС Postgres 12 появилась возможность заменять собственный механизм хранения через Table Access Method (TAM). Это позволяет выбирать формат хранения под конкретную нагрузку: колоночный для аналитики, LSM-дерево для записи, in-memory для тестов. В отличие от FDW, TAM работает на более низком уровне и лучше интегрируется с ядром СУБД.\n\nАвтор собрал отладочную сборку Postgres, создал расширение `pgtam` и реализовал минимальный in-memory движок на C. Ключевые шаги:\n\n1. Отладочная сборка Postgres  \n   ```bash\n   ./configure --enable-cassert --enable-debug ...\n   make && sudo make install\n   ```\n\n2. Makefile расширения  \n   ```\n   MODULES = pgtam\n   EXTENSION = pgtam\n   DATA = pgtam--0.0.1.sql\n   include $(shell pg_config --pgxs)\n   ```\n\n3. Минимальный C-код `pgtam.c` регистрирует обработчик `mem_tableam_handler`, возвращающий структуру `TableAmRoutine`.  \n\nКод прототипа выложен на GitHub.",
+  "inputHash": "9457f9167521e1bc314694b7728a2e7cca7f80e9821aa5aa7fdc529cdb0af55a",
+  "model": "moonshotai/kimi-k2",
+  "createdISO": "2025-08-08T04:07:20.447Z"
+}

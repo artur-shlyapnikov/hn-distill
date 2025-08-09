@@ -1,0 +1,50 @@
+[
+  {
+    "id": 44810216,
+    "by": "zero_k",
+    "timeISO": "2025-08-06T10:30:35.000Z",
+    "textPlain": "I work on a (once top-of-the-line) SAT solver [1] and a (currently top-of-the-line) model counter [2]. Actually, I am very interested in the part of the rebuttal of \"when each constraint has at most two variables, then the constraint satisfaction problem (and even the more difficult problem of counting the number of solutions) can be solved in time less than the lower bound that is claimed\" -- in the model counting competition [3] there are actually problems that are binary-clause only, and I have to admit I am having trouble counting them any smarter than I already do normal (i.e. >=3 length clause) problems. Is there some very fun algorithm I'm missing that I could use for only-binary clause solution counting? I have thought about it, but I just... can't come up with anything smarter than compiling it into a d-DNNF form, which most SOTA model counters (and so I as well) do.[1] https://github.com/msoos/cryptominisat/\n[2] https://github.com/meelgroup/ganak/\n[3] https://mccompetition.org/",
+    "parent": 44808693,
+    "depth": 1
+  },
+  {
+    "id": 44811963,
+    "by": "pron",
+    "timeISO": "2025-08-06T13:45:41.000Z",
+    "textPlain": "The paper's authors' reply to the comment is really bad. E.g., it says this:> With respect to the assumption, we have clearly elaborated on why a mathematical assumption is essential for proving computational hardness results in Appendix A of our paper as follows: In fact, the Turing machine itself is an assumption about machines (i.e., mechanized finite formal systems) that can be realized in the physical universe. In essence, the Turing machine represents a fundamental physical assumption, and Turing’s findings on uncomputability signify the physical limits of mechanically solving all instances of a problem.But Turing's assumption was necessary precisely because it was not mathematical. He had to cross the gap between physics (where computation takes place) and mathematics (which he wanted to use to discuss computation) with an assumption about physics that allowed him to construct a mathematical definition of computation. The authors of the paper, on the other hand, make an assumption within mathematics that could simply be mathematically wrong. It's like \"proving\" Golbach's conjecture by assuming that if an even number were ever not the sum of two primes, then that number must also be divisible by 17 and proceeding from there. Their \"proof\" is essentially: we assume that if a tractable algorithm (a mathematical construct) for SAT existed, it would be done in a certain way [1], but that way isn't possible ergo a tractable algorithm for SAT cannot exist.Physics is based on (mathematically) unprovable assumptions. In mathematics, though, \"assumptions\" are conditionals. The paper should have said, we make a mathematical conjecture that, if true, would lead to our conclusion. You can't assume a mathematical conjecture and then call the entailment (from that conjecture) of X a proof of X. It's calling a proof of `A ⇒ B` a proof of `B`. I agree that a paper that aims to present a mathematical proof that is based on a redefinition of what a mathematical proof means shou",
+    "parent": 44808693,
+    "depth": 1
+  },
+  {
+    "id": 44810414,
+    "by": "Xcelerate",
+    "timeISO": "2025-08-06T11:01:13.000Z",
+    "textPlain": "I’m not up-to-date on how advanced proof assistants have become, but are we not nearing the point where serious attempts at proving P vs NP can be automatically validated (or not) by a widely vetted collection of Lean libraries?The P vs NP problem is expressible as the question of whether a specific Π_2 sentence is true or not (more specifically, whether a particular base theory proves the sentence or its negation). Unlike problems involving higher order set theory or analytical mathematics, I would think any claimed proof of a relatively short arithmetical sentence shouldn’t be too difficult to write up formally for Lean (although I suppose Fermat’s Last Theorem isn’t quite there either, but my understanding is we’re getting closer to having a formal version of it).The impact of this would be that journals could publicly post which specific sentences they consider to represent various famous open problems, and a prerequisite to review is that all purported proofs require a formal version that automatically Lean-validates. This would nix the whole crank issue.Then again, I may be way off base with how close we are to achieving something like I’ve described. My impression is that this goal seems about 5 years away for “arithmetical” mathematics, but someone better in the know feel free to correct me.",
+    "parent": 44808693,
+    "depth": 1
+  },
+  {
+    "id": 44813192,
+    "by": "brohee",
+    "timeISO": "2025-08-06T15:18:36.000Z",
+    "textPlain": "Wait, the obviously wrong paper was written by GPT-4? https://arxiv.org/pdf/2309.05689 (from the comments on the original blog)",
+    "parent": 44808693,
+    "depth": 1
+  },
+  {
+    "id": 44810553,
+    "by": "shusaku",
+    "timeISO": "2025-08-06T11:23:47.000Z",
+    "textPlain": "“Frontiers” journals are crap, so it’s no surprise. But I don’t understand why editors let this happen. It’s similar to academic fraud: if you lie about results nobody cares about, you’ll never get caught; if you lie about big things, suddenly the hammer comes down. And for what benefit? It’s not like they walked away with a payday from splitting the open access fee. There’s nothing wrong with desk rejecting an author by saying “if your result is true, publish it somewhere better”",
+    "parent": 44808693,
+    "depth": 1
+  },
+  {
+    "id": 44809293,
+    "by": "qsort",
+    "timeISO": "2025-08-06T08:26:15.000Z",
+    "textPlain": "Tangential, but for some reason P vs. NP attracts an ungodly amount of cranks, probably because as far as open problems of that importance go it's easy to understand the question.",
+    "parent": 44808693,
+    "depth": 1
+  }
+]

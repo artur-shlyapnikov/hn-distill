@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44813743,
+    "by": "alisonatwork",
+    "timeISO": "2025-08-06T15:58:08.000Z",
+    "textPlain": "The first UNIX account I ever got was on a BSD, and the first thing I saw in the first file I learned how to open was:  # A righteous umask\n  umask 22\n\nI'll never forget those lines because they seemed so mysterious and cool. And they informed my philosophy on how the internet should be. People should be able to see other people's stuff by default. It's nice for us to be able to learn from one another. It's harder to rely on the honor system for privacy nowadays, but I still think \"share by default\" is a noble ideal.That said, I also am unsure how best to overlap aliases and configs that are sensitive to my workplace with my everywhere config. Maybe I should have a .employer file that I source if it's there, but something about including that into my everywhere config feels decidedly not righteous.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44814569,
+    "by": "justonceokay",
+    "timeISO": "2025-08-06T16:55:44.000Z",
+    "textPlain": "Installing a (read: many) custom vim plugins and color scheme and screen version and etc… stops being fun about the third time you have to log into a nameless server. That being said, there are some settings that I absolutely cannot live without; `j=gj` being a good example in vim.IMO your dot files are only useful to share if they are usable with the default software of the place you’ve shared them to. Otherwise they become a prison that forces you to install all your special versions and plugins and scripts and etc. on the other hand, I felt like making my dotfiles easy to share forced me to use as many default settings as possible, which in the long run saves me a lot of time and energy.“The only zen you’ll find on a mountain top is the zen you brought with you” is one of my favorite sayings, and in a weird way I find it fitting here. If you learn to love the default settings then every server feels like home.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44813707,
+    "by": "twp",
+    "timeISO": "2025-08-06T15:55:29.000Z",
+    "textPlain": "It's not a question of share everything or share nothing - with https://chezmoi.io you can choose exactly what you want to share:* You can keep your entire dotfile repo secret by using any private git hosting, including your own git hosting or a private GitHub repo.* You can keep individual files secret by using age or gpg encryption. If you repo is public, this only reveals the existence of the file, not its contents.* You can keep individual parts of your dotfiles secrets, e.g. API keys, by encrypting them or storing them in your password manager. All popular password managers are supported.Disclaimer: I'm the author of chezmoi.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44812739,
+    "by": "cipehr",
+    "timeISO": "2025-08-06T14:45:55.000Z",
+    "textPlain": "I feel similarly. For me it’s less about my unique customizations and more about this paranoia of there being something remotely sensitive in my ssh configs or something… the idea of hostnames, ips, domains, etc “leaking” worries me.I use chezmoi to manage my dotfiles, if anyone has any advice on how to handle these worries I am all ears. I would love to share mine, even to just be able to point coworkers at my config.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44813671,
+    "by": "kernc",
+    "timeISO": "2025-08-06T15:53:06.000Z",
+    "textPlain": "Too personal to share, but maybe too personal and important to share even with the members of the cloudy cartel, i.e. the Providers. Is exactly why I wrote myba that does full contents and paths encryption before syncing with the lapsable remotes ...https://kernc.github.io/myba/Some things are better public. Some are not ...",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44813459,
+    "by": "err4nt",
+    "timeISO": "2025-08-06T15:37:24.000Z",
+    "textPlain": "I think the key is that dotfiles are a different genre of (code) writing than production code, with different investment, different motivations, different pain points and histories, and a sensitivity to the author that's not required when analyzing production code. You're looking into someone's daily writings, not their polished releases.I think the fear is scrutiny, rejection, mockery for something that clearly works for you and you don't ever expect anyone else to use. But also partly that it's exposure without much reward in return. All these feelings are normal and it's fine to share or not share them. Just please honour the authors of the dotfiles you read even if you wouldn't ever think to use code in the way they do!",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44812881,
+    "by": "incognito124",
+    "timeISO": "2025-08-06T14:55:49.000Z",
+    "textPlain": "I truly appreciate people sharing their dotfiles, I learned so much about vim and zsh just by reading other people's configuration alone (and the occasional comments there).Also, the quality of life improvements like `alias ..='cd ..'`, or mapping `l` such that it either opens a pager or lists a dir, depending on the argument. I'd never come up with those, and they're beyond useful.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44813183,
+    "by": "nobleach",
+    "timeISO": "2025-08-06T15:17:54.000Z",
+    "textPlain": "My dots are open to anyone who cares to view my GitHub. I do tend to keep employer specific aliases/stuff in an `.employer.zsh` file that is sourced by my main `.zshrc`. But my NeoVim config is completely open for inspection. I'm not doing anything all that extraordinary though. I don't share my dots on Reddit simply because I don't feel like using my real identity on that platform.When it comes to consuming the dots of others, I just switched to AxOS for Linux... and am auditioning Celestia (https://github.com/caelestia-dots/shell). This means that in 3 months, my desktop will likely look like everyone else's. I probably won't even commit any of this as it's not really my stuff.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44812807,
+    "by": "alexandroqc",
+    "timeISO": "2025-08-06T14:50:07.000Z",
+    "textPlain": "I used to use chezmoi and had a great experience with it .It made it easy to choose exactly what I wanted to share. These days, I don’t have many devices, so I stopped using it. Still, it feels great when someone asks, “How did you set that up?” and I can instantly share my entire configuration through a GitHub repo.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44813848,
+    "by": "gchamonlive",
+    "timeISO": "2025-08-06T16:05:24.000Z",
+    "textPlain": "You just have to put some effort into separating your dotfiles into a generic layer and a customization layer. Done something like this with my dotfiles repo, which now triples as a generic archlinux customisation tutorial with hyprland and a description of the backup strategy that is tightly coupled with the configuration layout: https://github.com/gchamon/archlinux-system-config",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44822326,
+    "by": "burnt-resistor",
+    "timeISO": "2025-08-07T09:19:27.000Z",
+    "textPlain": "Sigh. 3 buckets:- Secrets and environment specifics <- these needs secure storage and don't get shared obviously- Local configuration overrides <- these need to be backed-up somehow and probably aren't useful for sharing either- Generic configuration <- these are the type of dotfiles that can be shared",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44815061,
+    "by": "lrvick",
+    "timeISO": "2025-08-06T17:33:45.000Z",
+    "textPlain": "Professional security researcher here.I would strongly discourage threat modeling with vibes.Your post already reveals potentially the scariest things someone might learn if you published your dotfiles: that you  use Homebrew, pip, etc as part of them. In doing so you are telling everyone you allow any internet rando to have remote code execution rights on your computer. To me that is like boldly saying you like privacy in the same breath as saying you never lock your front door or close your drapes.Those package managers operate like Wikipedia where anyone can push whatever they want without signatures or vetting from poorly secured accounts without phishing-resistant 2FA etc.At that point you already allow anyone capable of creating a few useful PRs to Homebrew, basic phishing, or sim swapping the ability to see and publish anything on your computer, so your dotfiles being public should be the least of your concerns.Now you are probably thinking \"There is no way tools that every smart person I know uses could be that wildly insecure\"Ask yourself if those same people have experience exposing and exploiting supply chain attacks. We all have blind spots, and almost everyone has a massive blind spot here and my team and I have exploited it many times in audits.All said though, I personally publish my dotfiles because I am confident they are of more use to me and others public, and do not reveal anything useful to someone targeting me other than that I use some kind of Linux distro and neovim.Any sensitive work I do is in offline stateless virtual machines deterministically built from a supply chain with high accountability and I do not use any dotfiles in those environments.With good separation of concerns between yolo systems and hardened trusted systems, publishing information about either is perfectly fine. Almost no one has that kind of workflow separation though, usually accessing prod from their compromised dev macbooks.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44812792,
+    "by": "athorax",
+    "timeISO": "2025-08-06T14:49:20.000Z",
+    "textPlain": "I feel similarly. For me I know it is because of my rejection sensitive dysphoria. The fear of someone seeing and judging something personal of mine is quite uncomfortable. I don't have the same issue with code I write professionally.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44813782,
+    "by": "Cu3PO42",
+    "timeISO": "2025-08-06T16:00:25.000Z",
+    "textPlain": "My dotfiles are public [0], but getting there was work. I went through everyhing to make sure I don't accidentally leak something, all secrets are managed separately, you don't accidentally distribute something violating its licence, etc.I also feel the need to write docs for some things, that I never would if they were private (I haven't actually done that, I just feel that I should).I get everyone who wants to keep them private, but I'm also thankful for everyone who made them public so others can learn from them.[0] github.com/Cu3PO42/gleaming-glacier/tree/next",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44814479,
+    "by": "CMCDragonkai",
+    "timeISO": "2025-08-06T16:48:25.000Z",
+    "textPlain": "I've been keeping my personal .dotfiles publically for the past decade. https://github.com/cmcdragonkai/.dotfiles-nixos.But I do agree that secrets need to be handled carefully. Look at my list of `.gitignore`! But (I'm biased of course) I would recommend using Polykey to manage your secrets instead leaving any trace of things on disk.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44812837,
+    "by": "pavel_lishin",
+    "timeISO": "2025-08-06T14:52:43.000Z",
+    "textPlain": "I have two sets of dotfiles - public and private. I don't mind sharing my public ones - what do I care if someone on the internet thinks my tmux setup is non-optimal? But there are some things I do keep private, though they probably don't qualify as dotfiles, exactly - RSS subscription backups, some backup scripts that reveal filepaths I'd rather not have revealed, old outdated things like my znc, irssi, etc. configs...",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44815513,
+    "by": "wlindley",
+    "timeISO": "2025-08-06T18:06:14.000Z",
+    "textPlain": "\"...whenever 'a software' doesn't....\" Ugh.  \"A software package\" or \"a piece of software\" or perhaps \"a program\" but you don't have \"one software\" any more than you can have \"one hardware\" or \"one information.\" Grammar, please!",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44816722,
+    "by": "cyrialize",
+    "timeISO": "2025-08-06T19:41:00.000Z",
+    "textPlain": "I get this feeling.I have a setup with my Emacs configuration that uses a file that is meant to live locally only, since I feel the contents of it feel too personal to share. (These are mainly Org-mode settings for specific file names and directories).https://github.com/cyrialize/.emacs.d/blob/main/private-temp...",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44815226,
+    "by": "vkaku",
+    "timeISO": "2025-08-06T17:44:42.000Z",
+    "textPlain": "I keep my DotFiles on my GitHub not without its embarrassments, this will help me backup and restore my tools and workflows on systems anywhere I want it to.https://github.com/guilt/DotFilesThere's no knowledge shared here, just my own setup which can be barebones git cloned. Planning to add a curlbash installer here to help me set it up with a oneliner.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44817064,
+    "by": "wulfstan",
+    "timeISO": "2025-08-06T20:07:05.000Z",
+    "textPlain": "I would like to say an enormous thank you to Dave, who after a huge amount of pestering (and probably to try to save himself from further pestering) shared his .emacs filetree with me and told me to learn Lisp.Be generous with your dotfiles, and especially with the young and curious engineers who ask lots of questions about your setup. Pay it forward.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44814627,
+    "by": "alkh",
+    "timeISO": "2025-08-06T17:00:07.000Z",
+    "textPlain": "That's something I was a little bit conflicted about for some time. After using a few open source tools(shoutout to syncthing and linkding :)) and I realised that if you want to use something for free, sharing is the least you can do.My dotfiles are private for now cause I need to clean some commits(I think I might have added some private info before) but I intend to publish them eventually",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44814377,
+    "by": "holman",
+    "timeISO": "2025-08-06T16:41:39.000Z",
+    "textPlain": "I have like 7500 stars on my dotfiles over the last 15 years or so; it's definitely weird. It's kind of a different open source project entirely; the goal isn't really to make good software... it's to make good software for me. Most of the time in open source those overlap completely, but with dotfiles I'll get pulls that make sense, that can be helpful, but... at the end of the day they're my dotfiles and I don't really make large changes to them anymore. It's just a lot different from my other projects I manage.That said, mine also started before things like Oh My Zsh popped up, which are better frameworks to share and collaborate on these things. I think frameworks like that are great, and I think seeing someone's more \"intimate\" dotfiles is helpful, too- you get a look at how someone sets up their environment, which tends to be private unless you're doing a lot of pair programming. So yeah, just interesting all around.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44813939,
+    "by": "Insanity",
+    "timeISO": "2025-08-06T16:10:22.000Z",
+    "textPlain": "I actually resonate with this as well, but similarly can't really explain why. I have my own set of dotfiles (one set for my 'home setup' and one set for my 'work setup').They are versioned and stored on GitHub, and are actually relatively static at this point. And even though it's pretty standard stuff, I wouldn't feel comfortable sharing them publicly. Odd.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44815290,
+    "by": "jacobsenscott",
+    "timeISO": "2025-08-06T17:50:25.000Z",
+    "textPlain": "It takes a lot of discipline to keep secretes out of dotfiles. You should do that anyway, even if you have a private dotfile repo. Even if they aren't secrets per se - they can still be useful for social engineering. I don't understand why people think their configs are so special it is worth the risk.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44816823,
+    "by": "profunctor",
+    "timeISO": "2025-08-06T19:48:44.000Z",
+    "textPlain": "This article feels like it’s about what and how this person stores their dotfiles and then has two lines about them feeling too personal to share. I’m surprised it’s so highly voted since it’s basically “I use stow”.Must be due to the interesting title.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44814745,
+    "by": "superzamp",
+    "timeISO": "2025-08-06T17:10:25.000Z",
+    "textPlain": "I think it's even realistic to say that dotfiles are vulnerable to being used as a fingerprint mechanism by nefarious packages. One could easily create an inventory of github profiles <> dotfiles; then read local dotfiles when their package gets installed on a developer laptop.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44813144,
+    "by": "qiine",
+    "timeISO": "2025-08-06T15:15:34.000Z",
+    "textPlain": "I was close to upload my full dotfile dir to github, telling myself it would be handy when I switch computers..Then I realized that some of those config files reflected a lot about my systems and personal preferences... and it was only going to be ever more detailed, so I said NOPE making separate repos for my nvim config maybe and that will be it!sorry.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44813051,
+    "by": "fishbacon",
+    "timeISO": "2025-08-06T15:08:45.000Z",
+    "textPlain": "I share my .emacs with people who ask. Not really for privacy, but because I would feel bad: If someone tried to use any of it and was not able to ask me what I was thinking.The usual answer is that I was not and we should change it.I would also have to distribute a couple of novel go programs that I am not proud of if I was sharing it publicly.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44815065,
+    "by": "sodapopcan",
+    "timeISO": "2025-08-06T17:33:55.000Z",
+    "textPlain": "I'll never understand people not wanting to share their dots.  Obviously you have to have a way to not share the private stuff of which there are many simple solutions, but I've learned so much from reading other peoples.  To each their own, of course.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44814847,
+    "by": "paffdragon",
+    "timeISO": "2025-08-06T17:18:55.000Z",
+    "textPlain": "I once set out to share dotfiles as I set up a new workstation, but later removed the public repo. I realized I am often careless with that stuff, since it only lives on my machine and I am not managing them as public content, nor I want that extra overhead.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44816625,
+    "by": "hk1337",
+    "timeISO": "2025-08-06T19:35:04.000Z",
+    "textPlain": "I am more concerned about sharing something that someone can use to get access to my things that I keep locked away.I still have it public but I try and think about what I am pushing before I push.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44813505,
+    "by": "jrockway",
+    "timeISO": "2025-08-06T15:40:52.000Z",
+    "textPlain": "I've never felt that icky.  I don't really have any secrets in my dotfiles, though I have in the past.  In that case, I just encrypt the private stuff using my SSH private key (stored in 1password) and age (via sops-nix).",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44813605,
+    "by": "seethishat",
+    "timeISO": "2025-08-06T15:49:26.000Z",
+    "textPlain": "They are private. Many people store env secrets (db conn strings, etc.) in .bashrc. It's meant to be a private place in your home folder for private things.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44812979,
+    "by": "jrm4",
+    "timeISO": "2025-08-06T15:03:03.000Z",
+    "textPlain": "RIGHT?I could MAYBE see it if you were sharing your things on your personal blog -- but \"github dotfile repos\" feels wildly icky to me.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44813224,
+    "by": "tylergetsay",
+    "timeISO": "2025-08-06T15:21:05.000Z",
+    "textPlain": "I feel the same about my NixOS config despite the \"open repo\" model kind of being a default in that ecosystem",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44814384,
+    "by": "zahlman",
+    "timeISO": "2025-08-06T16:41:59.000Z",
+    "textPlain": "Sometimes there are valid security reasons for this, after all. (Looking at you, .pypirc .)",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44812802,
+    "by": "awill88",
+    "timeISO": "2025-08-06T14:49:53.000Z",
+    "textPlain": "I feel similarly. There is virtually zero chance I’m going to clone and run someone else’s dotfiles. So the act of sharing them is a generous look into a developer’s toolchain and I’ve been inspired by others’ choices. So, if you know how, please share them!",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44814150,
+    "by": "dcchambers",
+    "timeISO": "2025-08-06T16:23:31.000Z",
+    "textPlain": "I split mine. I have public dotfiles and private. No need to share everything.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44813323,
+    "by": "tootie",
+    "timeISO": "2025-08-06T15:28:01.000Z",
+    "textPlain": "One trick I use is putting secrets in 1password and just including the 1password URLs in my checked in my sample dotfile.",
+    "parent": 44812611,
+    "depth": 1
+  },
+  {
+    "id": 44815463,
+    "by": "saagarjha",
+    "timeISO": "2025-08-06T18:01:41.000Z",
+    "textPlain": "I keep mine public but sensitive data goes into another, private GitHub repo.",
+    "parent": 44812611,
+    "depth": 1
+  }
+]

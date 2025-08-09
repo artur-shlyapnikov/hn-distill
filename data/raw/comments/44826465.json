@@ -1,0 +1,50 @@
+[
+  {
+    "id": 44828857,
+    "by": "zahlman",
+    "timeISO": "2025-08-07T18:57:42.000Z",
+    "textPlain": "> This has been done in response to the discovery that the popular installer uv has a different extraction behavior to many Python-based installers that use the ZIP parser implementation provided by the zipfile standard library module.> For maintainers of installer projects: Ensure that your ZIP implementation follows the ZIP standard and checks the Central Directory before proceeding with decompression. See the CPython zipfile module for a ZIP implementation that implements this logic. Begin checking the RECORD file against ZIP contents and erroring or warning the user that the wheel is incorrectly formatted.Good to know that I won't need to work around any issues with `zipfile` — and it would be rather absurd for any Python-based installer to use anything else to do the decompression. (Checking RECORD for consistency is straightforward, although of course it takes time.)... but surely uv got its zip-decompression logic from a crate rather than hand-rolling it? How many other Rust projects out there might have questionable handling of zip files?> PyPI already implements ZIP and tarball compression-bomb detection as a part of upload processing.... The implication is that `zipfile` doesn't handle this. But perhaps it can't really? Are there valid uses for zips that work that way? (Or maybe there isn't a clear rule for what counts as a \"bomb\", and PyPI has to choose a threshold value?)",
+    "parent": 44826465,
+    "depth": 1
+  },
+  {
+    "id": 44828075,
+    "by": "captn3m0",
+    "timeISO": "2025-08-07T18:02:11.000Z",
+    "textPlain": "Now I am curious at whether these ZIP confusion attacks are mitigated at other registries that use ZIPs? Are there any such?",
+    "parent": 44826465,
+    "depth": 1
+  },
+  {
+    "id": 44826481,
+    "by": "jspiner",
+    "timeISO": "2025-08-07T16:18:13.000Z",
+    "textPlain": "Thank you for the interesting article.",
+    "parent": 44826465,
+    "depth": 1
+  },
+  {
+    "id": 44829212,
+    "by": "woodruffw",
+    "timeISO": "2025-08-07T19:26:55.000Z",
+    "textPlain": "> and it would be rather absurd for any Python-based installer to use anything else to do the decompression.You'd reasonably think, but it's difficult to assert this: a lot of people use third-party tooling (uv, but also a lot of hand-rolled stuff), and Python packages aren't always processed in a straight-line-from-the-index manner.(I think a good reference example of this is security scanners: a scanner might fetch a wheel ZIP and analyze it, and use whatever ZIP implementation it pleases.)It's also worth noting that one of the differentials here concerns the Central Directory, but the other one is more pernicious: the ZIP APPNOTE[1] isn't really clear about how implementations should key from to EOCDR back to the local file entries, and implementations have (reasonably, IMO) interpreted the language differently. Python's zipfile chooses to do it in one way that I think is justifiable, but it's a \"true\" differential in the sense that there's no golden answer.> (Or maybe there isn't a clear rule for what counts as a \"bomb\", and PyPI has to choose a threshold value?)Yes, it's this. There are legitimate uses for high-ratio archives (e.g. compressed OS images), but Python package distributions are (generally) not one of them. PyPI has its own compression ratio that's intended to be a sweet spot between \"that was compressed really well\" and \"someone is trying to ZIP-bomb the index.\"[1]: https://pkware.cachefly.net/webdocs/casestudies/APPNOTE.TXT",
+    "parent": 44828857,
+    "depth": 2
+  },
+  {
+    "id": 44828963,
+    "by": "lexicality",
+    "timeISO": "2025-08-07T19:05:39.000Z",
+    "textPlain": "> but surely uv got its zip-decompression logic from a crate rather than hand-rolling it?well... https://github.com/astral-sh/rs-async-zip",
+    "parent": 44828857,
+    "depth": 2
+  },
+  {
+    "id": 44830152,
+    "by": "calebbrown",
+    "timeISO": "2025-08-07T20:48:31.000Z",
+    "textPlain": "Apart from Python Wheels, the other popular ecosystems using zip files are Java jar files, and NuGet.Of these Java is the most interesting as there a few JDKs commonly in use.But I’m also interested in various security scanners that are built in other languages that can be fooled.",
+    "parent": 44828075,
+    "depth": 2
+  }
+]

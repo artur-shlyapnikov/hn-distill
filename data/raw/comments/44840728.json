@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44840935,
+    "by": "canyon289",
+    "timeISO": "2025-08-08T19:47:42.000Z",
+    "textPlain": "I work at Google on these systems everyday (caveat this is my own words not my employers)). So I simultaneously can tell you that its smart people really thinking about every facet of the problem, and I can't tell you much more than that.However I can share this written by my colleagues! You'll find great explanations about accelerator architectures and the considerations made to make things fast.https://jax-ml.github.io/scaling-book/In particular your questions are around inference which is the focus of this chapter\nhttps://jax-ml.github.io/scaling-book/inference/Edit:\nAnother great resource to look at is the unsloth guides. These folks are incredibly good at getting deep into various models and finding optimizations, and they're very good at writing it up. Here's the Gemma 3n guide, and you'll find others as well.https://docs.unsloth.ai/basics/gemma-3n-how-to-run-and-fine-...",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44840970,
+    "by": "airhangerf15",
+    "timeISO": "2025-08-08T19:50:51.000Z",
+    "textPlain": "An H100 is a $20k USD card and has 80GB of vRAM. Imagine a 2U rack server with $100k of these cards in it. Now imagine an entire rack of these things, plus all the other components (CPUs, RAM, passive cooling or water cooling) and you're talking $1 million per rack, not including the costs to run them or the engineers needed to maintain them. Even the \"cheaper\"I don't think people realize the size of these compute units.When the AI bubble pops is when you're likely to be able to realistically run good local models. I imagine some of these $100k servers going for $3k on eBay in 10 years, and a lot of electricians being asked to install new 240v connectors in makeshift server rooms or garages.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44840989,
+    "by": "piyh",
+    "timeISO": "2025-08-08T19:53:13.000Z",
+    "textPlain": "You have thousands of dollars, they have tens of billions.  $1,000 vs $10,000,000,000.  They have 7 more zeros than you, which is one less zero than the scale difference in users: 1 user (you) vs 700,000,000 users (openai).  They managed to squeak out at least one or two zeros worth of efficiency at scale vs what you're doing.Also, you CAN run local models that are as good as GPT 4 was on launch on a macbook with 24 gigs of ram.https://artificialanalysis.ai/?models=gpt-oss-20b%2Cgemma-3-...",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841828,
+    "by": "abathologist",
+    "timeISO": "2025-08-08T21:22:26.000Z",
+    "textPlain": "One clever ingredient in OpenAI's secret sauce is billions of dollars of losses. About $5 billion dollars lost in 2024. https://www.cnbc.com/2024/09/27/openai-sees-5-billion-loss-t...",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44844180,
+    "by": "joshhart",
+    "timeISO": "2025-08-09T05:15:08.000Z",
+    "textPlain": "A single node with GPUs has a lot of FLOPs and very high memory bandwidth. When only processing a few requests at a time, the GPUs are mostly waiting on the model weights to stream from the GPU ram to the processing units. When batching requests together, they can stream a group of weights and score many requests in parallel with that group of weights. That allows them to have great efficiency.Some of the other main tricks - compress the model to 8 bit floating point formats or even lower. This reduces the amount of data that has to stream to the compute unit, also newer GPUs can do math in 8-bit or 4-bit floating point. Mixture of expert models are another trick where for a given token, a router in the model decides which subset of the parameters are used so not all weights have to be streamed. Another one is speculative decoding, which uses a smaller model to generate many possible tokens in the future and, in parallel, checks whether some of those matched what the full model would have produced.Add all of these up and you get efficiency! \nSource - was director of the inference team at Databricks",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841070,
+    "by": "fergal_reid",
+    "timeISO": "2025-08-08T20:01:55.000Z",
+    "textPlain": "I think the most direct answer is that at scale, inference can be batched, so that processing many queries together in a parallel batch is more efficient than interactively dedicating a single GPU per user (like your home setup).If you want a survey of intermediate level engineering tricks, this post we wrote on the Fin AI blog might be interesting. (There's probably a level of proprietary techniques OpenAI etc have again beyond these):\nhttps://fin.ai/research/think-fast-reasoning-at-3ms-a-token/",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841902,
+    "by": "jp57",
+    "timeISO": "2025-08-08T21:31:30.000Z",
+    "textPlain": "700M weekly users doesn't say much about how much load they have.I think the thing to remember is that the majority of chatGPT users, even those who use it every day, are idle 99.9% of the time.  Even someone who has it actively processing for an hour a day, seven days a week, is idle 96% of the time.   On top of that, many are using less-intensive models.  The fact that they chose to mention weekly users implies that there is a significant tail of their user distribution who don't even use it once a day.So your question factors into a few of easier-but-still-not-trivial problems:- Making individual hosts that can fit their models in memory and run them at acceptable toks/sec.- Making enough of them to handle the combined demand, as measured in peak aggregate toks/sec.- Multiplexing all the requests onto the hosts efficiently.Of course there are nuances, but honestly, from a high level last problem does not seem so different from running a search engine.   All the state is in the chat transcript, so I don't think there any particular reason reason that successive interactions on the same chat need be handled by the same server.  They could just be load-balanced to whatever server is free.We don't know, for example, when the chat says \"Thinking...\" whether the model is running or if it's just queued waiting for a free server.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841961,
+    "by": "ritz_labringue",
+    "timeISO": "2025-08-08T21:39:30.000Z",
+    "textPlain": "The short answer is \"batch size\". These days, LLMs are what we call \"Mixture of Experts\", meaning they only activate a small subset of their weights at a time.\nThis makes them a lot more efficient to run at high batch size.If you try to run GPT4 at home, you'll still need enough VRAM to load the entire model, which means you'll need several H100s (each one costs like $40k). But you will be under-utilizing those cards by a huge amount for personal use.It's a bit like saying \"How come Apple can make iphones for billions of people but I can't even build a single one in my garage\"",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44840981,
+    "by": "roadside_picnic",
+    "timeISO": "2025-08-08T19:52:01.000Z",
+    "textPlain": "I'm sure there are countless tricks, but one that can implemented at home, and I know plays a major part in Cerebras' performance is: speculative decoding.Speculative decoding uses a smaller draft model to generate tokens with much less compute and memory required. Then the main model will accept those tokens based on the probability it would have generated them. In practice this case easily result in a 3x speedup in inference.Another trick for structured outputs that I know of is \"fast forwarding\" where you can skip tokens if you know they are going to be the only acceptable outputs. For example, you know that when generating JSON you need to start with `{ \"<first key>\": ` etc. This can also lead to a ~3x speedup in when responding in JSON.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841868,
+    "by": "ryao",
+    "timeISO": "2025-08-08T21:27:56.000Z",
+    "textPlain": "At the heart of inference is matrix-vector multiplication. If you have many of these operations to do and only the vector part differs (which is the case when you have multiple queries), you can do matrix-matrix multiplication by stuffing the vectors into a matrix. Computing hardware is able to run the equivalent of dozens of matrix-vector multiplication operations in the same time it takes to do 1 matrix-matrix multiplication operation. This is called batching. That is the main trick.A second trick is to implement something called speculative decoding. Inference has two phases. One is prompt processing and another is token generation. They actually work the same way using what is called a forward pass, except prompt processing can do them in parallel by switching from matrix-vector to matrix-matrix multiplication and dumping the prompt’s tokens into each forward pass in parallel. Each forward pass will create a new token, but it can be discarded unless it is from the last forward pass, as that will be the first new token generated as part of token generation. Now, you put that token into the next forward pass to get the token after it, and so on. It would be nice if all of the forward passes could be done in parallel, but you do not know the future, so you ordinarily cannot. However, if you make a draft model that is a very fast model runs in a fraction of the time and guesses the next token correctly most of the time, then you can sequentially run the forward pass for that instead N times. Now, you can take the N tokens and put it into the prompt processing routine that did N forward passes in parallel. Instead of discarding all tokens except the last one like in prompt processing, we will compare them to the input tokens. All tokens up to and including the first token that differ, that come out of the parallel forward pass are valid tokens for the output of the main model. This is guaranteed to always produce at least 1 valid token since in the worse case the fir",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841133,
+    "by": "Szpadel",
+    "timeISO": "2025-08-08T20:07:14.000Z",
+    "textPlain": "AFAIK main trick is batching, GPU can do same work on batch of data, you can work on many requests at the same time more efficiently.batching requests increase latency to first token, so it's tradeoff and MoE makes it more tricky because they are not equally used.there was somewhere great article explaining deepseek efficiency that explained it in great detail (basically latency - throughput tradeoff)",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44843262,
+    "by": "venusenvy47",
+    "timeISO": "2025-08-09T01:17:01.000Z",
+    "textPlain": "The big players use parallel processing of multiple users to keep the GPUs and memory filled as much as possible during the inference they are providing to users.  They can make use of the fact that they have a fairly steady stream of requests coming into their data centers at all times. This article describes some of how this is accomplished.https://www.infracloud.io/blogs/inference-parallelism/",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841066,
+    "by": "mquander",
+    "timeISO": "2025-08-08T20:01:32.000Z",
+    "textPlain": "I'm pretty much an AI layperson but my basic understanding of how LLMs usually run on my or your box is:1. You load all the weights of the model into GPU VRAM, plus the context.2. You construct a data structure called the \"KV cache\" representing the context, and it hopefully stays in the GPU cache.3. For each token in the response, for each layer of the model, you read the weights of that layer out of VRAM and use them plus the KV cache to compute the inputs to the next layer. After all the layers you output a new token and update the KV cache with it.Furthermore, my understanding is that the bottleneck of this process is usually in step 3 where you read the weights of the layer from VRAM.As a result, this process is very parallelizable if you have lots of different people doing independent queries at the same time, because you can have all their contexts in cache at once, and then process them through each layer at the same time, reading the weights from VRAM only once.So once you got the VRAM it's much more efficient for you to serve lots of people's different queries than for you to be one guy doing one query at a time.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841738,
+    "by": "simne",
+    "timeISO": "2025-08-08T21:12:13.000Z",
+    "textPlain": "It is not just engineering. There are also huge, very huge, investments into infrastructure.As already answered, AI companies use extremely expensive setups (servers with professional cards) in large numbers and all these things concentrated in big datcenters with powerful networking and huge power consumption.Imagine - last time, so huge investments (~1.2% of GDP, and unknown if investments will grow or not) was into telecom infrastructure - mostly wired telephones, but also cable TV and later added Internet and cell communications and clouds (in some countries wired phones just don't cover whole country and they jumped directly into wireless communications).Larger investments was into railroads - ~6% of GDP (and I'm also not sure, some people said, AI will surpass them as share of possible for AI tasks constantly grow).So to conclude, just now AI boom looks like main consumer of telecom (Internet) and cloud infrastructure. If you've seen old mainframes in datacenters, and extremely thick core network cables (with hundreds wires or fibers in just one cable), and huge satellite dishes, you could imagine, what I'm talking about.And yes, I'm not sure, will this boom end like dot-coms (Y2K), or such huge usage of resources will sustain. Why it is not obvious, because for telecoms (internet) also was unknown, if people will use phones and other p2p communications for leisure as now, or will leave phones just for work. Even worse, if AI agents become ordinary things, possible scenario, number of AI agents will surpass number of people.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44844765,
+    "by": "lhl",
+    "timeISO": "2025-08-09T07:39:40.000Z",
+    "textPlain": "A few people have mentioned looking a the vLLM docs and blog (recommended!). I'd also recommend SGLang's docs and blog as well.If you're interested in a bit of a deeper dive, I can highly recommend reading some of what DeepSeek has published: https://arxiv.org/abs/2505.09343 (and actually quite a few of their Technical Reports and papers).I'd also say that while the original GPT-4 was a huge model when it was originally released (rumored 1.7T-A220B), these days you can get (original release) \"GPT-4-class\" performance at ~30B dense/100B sparse MoE - and almost all the leading MoEs have between 12-37B activations no matter how big they get - Kimi K2 (1T param weights) has only 32B activations). If you do a basic quants (FP8/INT8) you can easily push 100+ tok/s on pretty bog standard data center GPUs/nodes. You quant even lower for even better speeds (tg is just MBW) for not much in quality loss (although for open source kernels, usually without getting much overall throughput or latency improvements).A few people have mentioned speculative decoding, if you want to learn more, I'd recommend taking a look at the papers for one of the (IMO) best open techniques, EAGLE: https://github.com/SafeAILab/EAGLEThe other thing that is often ignored, especially for multiturn that I haven't seen mentioned yet is better caching, specifically prefix caching (radix-tree, block-level hash) or tiered/offloaded kvcaches (LMCache as one example). If you search for those keywords, you'll find lots there as well.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44842740,
+    "by": "afr0ck",
+    "timeISO": "2025-08-08T23:27:36.000Z",
+    "textPlain": "Inference runs like a stateless web server. If you have 50K or 100K machines, each with a tons of GPUs (usually 8 GPUs per node), then you end up with a massive GPU infrastructure that can run hundreds of thousands, if not millions, of inference instances. They use something like Kubernetes on top for scheduling, scaling and spinning up instances as needed.For storage, they also have massive amount of hard disks and SSD behind planet scale object file systems (like AWS's S3 or Tectonic at Meta or MinIO in prem) all connected by massive amount of switches and routers of varying capacity.So in the end, it's just the good old Cloud, but also with GPUs.Btw, OpenAI's infrastructure is provided and managed by Microsoft Azure.And, yes, all of this requires billions of dollars to build and operate.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44845366,
+    "by": "gabrieledarrigo",
+    "timeISO": "2025-08-09T10:20:06.000Z",
+    "textPlain": "How is the routing to the hardware available?\nLet's say that a request hit the datacenter, how is it routed to an available GPU in a rack?",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841572,
+    "by": "rythie",
+    "timeISO": "2025-08-08T20:51:31.000Z",
+    "textPlain": "First off I’d say you can run models locally at good speed, llama3.1:8b runs fine a MacBook Air M2 with 16GB RAM and much better on a Nvidia RTX3050 which are fairly affordable.For OpenAI, I’d assume that a GPU is dedicated to your task from the point you press enter to the point it finishes writing. I would think most of the 700 million barely use ChatGPT and a small proportion use it a lot and likely would need to pay due to the limits. Most of the time you have the website/app open I’d think you are either reading what it has written, writing something or it’s just open in the background, so ChatGPT isn’t doing anything in that time. If we assume 20 queries a week taking 25 seconds each. That’s 8.33 minutes a week. That would mean a single GPU could serve up to 1209 users, meaning for 700 million users you’d need at least 578,703 GPUs. Sam Altman has said OpenAI is due to have over a million GPUs by the end of year.I’ve found that the inference speed on newer GPUs is barely faster than older ones (perhaps it’s memory speed limited?). They could be using older clusters of V100, A100 or even H100 GPUs for inference if they can get the model to fit or multiple GPUs if it doesn’t fit. A100s were available in 40GB and 80GB versions.I would think they use a queuing system to allocate your message to a GPU. Slurm is widely used in HPC compute clusters, so might use that, though likely they have rolled their own system for inference.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44840756,
+    "by": "minimaxir",
+    "timeISO": "2025-08-08T19:29:56.000Z",
+    "textPlain": "> Sure, they have huge GPU clustersThat's a really, really big \"sure.\"Almost every trick to run a LLM at OpenAI's scale is a trade secret and may not be easily understood by mere mortals anyways (e.g. bare-metal CUDA optimizations)",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841511,
+    "by": "highfrequency",
+    "timeISO": "2025-08-08T20:43:41.000Z",
+    "textPlain": "Multi-tenancy likely explains the bulk of it. $10k vs. $10b gives them six orders of magnitude more GPU resources, but they have 9 orders of magnitude more users. The average user is probably only running an active ChatGPT query for a few minutes per day, which covers the remaining 3 orders of magnitude.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44842902,
+    "by": "kazinator",
+    "timeISO": "2025-08-08T23:54:44.000Z",
+    "textPlain": "One trick is that multiple prompts are combined into a batch that is subject to the token prediction simultaneously.I've had Google Gemini start talking to be in the context of someone else's chat, unrelated to mine.ME: Does POSIX have any API for creating a filesystem object (such as a file) with a predetermined inode number supplied by the caller?AI: <reformats my question into LaTeX syntax, out of the blue>  \\documentclass{article}\n  \\usepackage{amsmath}\n  \\usepackage{amsfonts}\n  \\usepackage{amssymb}\n  \\begin{document}\n  \\section*{Does POSIX have any API for creating a filesystem object with a predetermined inode number supplied by the caller?}\n  \\textbf{No, POSIX does not provide a standard API for creating a filesystem object (like a file or directory) with a caller-specified inode number.}\n\n  \\subsection*{Inode Allocation in POSIX Filesystems}\n  [... SNIP]\n\nME: Why are you spewing LaTeX syntax at me?AI: You are absolutely right! My apologies. That was a mistake on my part. I got carried away with the instruction to use LaTeX for mathematical and scientific notations and incorrectly applied it to the entire response. [... SNIP]There was no such instruction. I've never chatted with any AI about LaTeX. it leaked from the tokens of someone else's chat.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44842869,
+    "by": "wisty",
+    "timeISO": "2025-08-08T23:48:53.000Z",
+    "textPlain": "They can have a very even load if they use their nodes for training when the customer use is low, so that massively helps. If they have 3x as much hardware as they need to serve peak demand (even with throttling) this will cost a lot, unless they have a another use for lots of GPU.Just illustrative guesses, not real numbers, I underestimate overheads here but anyway ...Let's assume a $20k expert node can produce 500 tokens per second (15,000 per year). $5k a year for the machine per year. $5k overheads. 5 experts per token (so $50k to produce 15,000 megatokens with a\n100% throughput). Say they charge up to $10 per million tokens ... yeah it's tight but I can see how it's doable.Say they cost $100 per user per year. If it's $10 per million tokens (depends on the model) then they are budgeting 10 million tokens per user. That's like 100 books per year. The answer is that users probably don't use as much as the api would cost.The real question is, how does it cost $10 per megatoken?500 tokens per second per node is like 15,000 megatokens per year. So a 500 token node can bring in $150,000 per node.Call it 5 live experts and a router. That's maybe $20k per expert per year. If it's a kilowatt power supply per expert, and $0.1 per kW power that's $1000 for power. The hardware is good for 4 years so $5k for that. Toss in overheads, and it's maybe $10k costs.So at full capacity they can make $5 off $10 revenue. With uneven loads they make nothing, unless they have some optimisation and very good load balancing (if they can double the tokens per second then they make a decent profit).",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44842037,
+    "by": "mattnewton",
+    "timeISO": "2025-08-08T21:49:52.000Z",
+    "textPlain": "Lots of good answers that mention the big things (money, scale, and expertise). But one thing I haven’t seen mentioned yet is that the transformer math is probably against your use case. Batch compute on beefy hardware is currently more efficient than computing small sequences for a single user at a time, since these models tend to be memory bound and not compute bound. They have the users that makes the beefy hardware make sense, enough people are querying around the same time to make some batching possible.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44840925,
+    "by": "gundmc",
+    "timeISO": "2025-08-08T19:46:50.000Z",
+    "textPlain": "Well, their huge GPU clusters have \"insane VRAM\". Once you can actually load the model without offloading, inference isn't all that computationally expensive for the most part.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44844164,
+    "by": "pavelstoev",
+    "timeISO": "2025-08-09T05:08:12.000Z",
+    "textPlain": "When I think about serving large-scale LLM inference (like ChatGPT), I see it a lot like high-speed web serving — there are layers to it, much like in the OSI model.1. Physical/Hardware Layer\nAt the very bottom is the GPU silicon and its associated high-bandwidth VRAM. The model weights are partitioned, compiled, and efficiently placed so that each GPU chip and its VRAM are used to the fullest (ideally). This is where low-level kernel optimizations, fused operations, and memory access patterns matter so that everything above the chip level tries to play nice with the lowest level.2. Intra-Node Coordination Layer\nInside a single server, multiple GPUs are connected via NVLink (or equivalent high-speed interconnect). Here you use tensor parallelism (splitting matrices across GPUs), pipeline parallelism (splitting model layers across GPUs), or expert parallelism (only activating parts of the model per request) to make the model fit and run faster. The key is minimizing cross-GPU communication latency while keeping all GPUs running at full load - many low level software tricks here.3. Inter-Node Coordination Layer\nWhen the model spans multiple servers, high-speed networking like InfiniBand comes into play. Techniques like data parallelism (replicating the model and splitting requests), hybrid parallelism (mixing tensor/pipeline/data/expert parallelism), and careful orchestration of collectives (all-reduce, all-to-all) keep throughput high while hiding model communication (slow) behind model computation (fast).4. Request Processing Layer\nAbove the hardware/multi-GPU layers is the serving logic: batching incoming prompts together to maximize GPU efficiency and mold them into ideal shapes to max out compute, offloading less urgent work to background processes, caching key/value attention states (KV cache) to avoid recomputing past tokens, and using paged caches to handle variable-length sequences.5. User-Facing Serving Layer\nAt the top are optimizations users see indirectly",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841432,
+    "by": "jl6",
+    "timeISO": "2025-08-08T20:35:08.000Z",
+    "textPlain": "If the explanation really is, as many comments here suggest, that prompts can be run in parallel in batches at low marginal additional cost, then that feels like bad news for the democratization and/or local running of LLMs. If it’s only cost-effective to run a model for ~thousands of people at the same time, it’s never going to be cost-effective to run on your own.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841119,
+    "by": "ilaksh",
+    "timeISO": "2025-08-08T20:06:14.000Z",
+    "textPlain": "You and your engineering team might be able to figure it out and purchase enough equipment also if you had received billions of dollars. And billions and billions. And more billions and billions and billions. Then additional billions, and more billions and billions and even more billions and billions of dollars. They have had 11 rounds of funding totaling around $60 billion.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841678,
+    "by": "nmca",
+    "timeISO": "2025-08-08T21:05:33.000Z",
+    "textPlain": "Isn’t the answer to the question just classic economies of scale?You can’t run GPT4 for yourself because the fixed costs are high. But the variable costs are low, so OAI can serve a shit ton.Or equivalently the smallest available unit of “serving a gpt4” is more gpt4 than one person needs.I think all the inference optimisation answers are plain wrong for the actual question asked?",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44842141,
+    "by": "dan-robertson",
+    "timeISO": "2025-08-08T22:02:11.000Z",
+    "textPlain": "I think it’s some combination of:- the models are not too big for the cards. Specifically, they know the cards they have and they modify the topology of the model to fit their hardware well- lots of optimisations. Eg the most trivial implementation of transformer-with-attention inference is going to be quadratic in the size of your output but actual implementations are not quadratic. Then there are lots of small things: tracing the specific model running on the specific gpu, optimising kernels, etc- more costs are amortized. Your hardware is relatively expensive because it is mostly sitting idle. AI company hardware gets much more utilization and therefore can be relatively more expensive hardware, where customers are mostly paying for energy.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841184,
+    "by": "captainmuon",
+    "timeISO": "2025-08-08T20:13:12.000Z",
+    "textPlain": "I work at a university data center, although not on LLMs. We host state of the art models for a large number of users. As far as I understand, there is no secret sauce. We just have a big GPU cluster with a batch system, where we spin up jobs to run certain models. The tricky part for us is to have the various models available on demand with no waiting time.But I also have to say 700M weekly users could mean 100M daily or 70k a minute (low ball estimate with no returning users...) is a lot, but achievable at startup scale. I don't have out current numbers but we are several orders of magnitude smaller of course :-)The big difference to home use is the amount of VRAM. Large VRAM GPUs such as H100 are gated being support contracts and cost 20k. Theoretically you could buy a Mac Pro with a ton of RAM as an individual if you wanted to run auch models yourself.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841818,
+    "by": "kj4ips",
+    "timeISO": "2025-08-08T21:21:39.000Z",
+    "textPlain": "TL;DR: It's massively easier to run a few models really fast than it is to run many different models acceptably.They probably are using some interesting hardware, but there's a strange economy of scale when serving lots of requests for a small number of models. Regardless of if you are running single GPU, clustered GPU, FPGAs, or ASICs, there is a cost with initializing the model that dwarfs the cost of inferring on it by many orders of magnitude.If you build a workstation with enough accelerator-accessible memory to have \"good\" performance on a larger model, but only use it with typical user access patterns, that hardware will be sitting idle the vast majority of the time. If you switch between models for different situations, that incurs a load penalty, which might evict other models, which you might have to load in again.However, if you build an inference farm, you likely have only a few models you are working with (possibly with some dynamic weight shifting[1]) and there are already some number of ready instances of each, so that load cost is only incurred when scaling a given model up or down.I've had the pleasure to work with some folks around provisioning an FPGA+ASIC based appliance, and it can produce mind-boggling amounts of tokens/sec, but it takes 30m+ to load a model.[1] there was a neat paper at SC a few years ago about that, but I can't find it now",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44842554,
+    "by": "valbaca",
+    "timeISO": "2025-08-08T22:59:14.000Z",
+    "textPlain": "How can Google serve 3B users when I can't do one internet search locally? [2001]",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44844345,
+    "by": "Ozzie_osman",
+    "timeISO": "2025-08-09T05:55:39.000Z",
+    "textPlain": "My mental model is: \"How can an airline move 100 customers from NY to LA with such low latency, when my car can't even move me without painfully slow speeds\".Different hardware, batching, etc.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841520,
+    "by": "aziis98",
+    "timeISO": "2025-08-08T20:44:56.000Z",
+    "textPlain": "I think this article can be interesting:https://www.seangoedecke.com/inference-batching-and-deepseek...Here is an example of what happens> The only way to do fast inference here is to pipeline those layers by having one GPU handle the first ten layers, another handle the next ten, and so on. Otherwise you just won’t be able to fit all the weights in a single GPU’s memory, so you’ll spend a ton of time swapping weights in and out of memory and it’ll end up being really slow. During inference, each token (typically in a “micro batch” of a few tens of tokens each) passes sequentially through that pipeline of GPUs",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44844173,
+    "by": "gniv",
+    "timeISO": "2025-08-09T05:11:24.000Z",
+    "textPlain": "I would also point out that 700 million per week is not that much. It probably translated to thousands of qps, which is \"easily\" served by thousands of big machines.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44842782,
+    "by": "nbardy",
+    "timeISO": "2025-08-08T23:35:04.000Z",
+    "textPlain": "The serving infrastructure becomes very efficient when serving requests in parallel.Look at VLLM. It's the top open source version of this.But the idea is you can service 5000 or so people in parallel.You get about 1.5-2x slowdown on per token speed per user, but you get 2000x-3000x throughput on the server.The main insight is that memory bandwidth is the main bottleneck so if you batch requests and use a clever KV cache along with the batching you can drastically increase parallel throughput.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44840945,
+    "by": "suspended_state",
+    "timeISO": "2025-08-08T19:48:50.000Z",
+    "textPlain": "Look for positron.ai talks about their tech, they discuss their approach to scaling LLM workloads with their dedicated hardware. It may not be what is done by OpenAI or other vendors, but you'll get an idea of the underlying problems.",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44842082,
+    "by": "HPsquared",
+    "timeISO": "2025-08-08T21:55:14.000Z",
+    "textPlain": "You also can't run a Google search. Some systems are just large!",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44842069,
+    "by": "davepeck",
+    "timeISO": "2025-08-08T21:53:47.000Z",
+    "textPlain": "Baseten serves models as a service, at scale. There’s quite a lot of interesting engineering both for inference and infrastructure perf. This is a pretty good deep dive into the tricks they employ: https://www.baseten.co/resources/guide/the-baseten-inference...",
+    "parent": 44840728,
+    "depth": 1
+  },
+  {
+    "id": 44841261,
+    "by": "nestorD",
+    "timeISO": "2025-08-08T20:19:08.000Z",
+    "textPlain": "The first step is to acquire hardware fast enough to run one query quickly (and yes, for some model size you are looking at sharding the model and distributed runs). The next one is to batch request, improving GPU use significantly.Take a look at vLLM for an open source solution that is pretty close to the state of the art as far as handling many user queries:https://docs.vllm.ai/en/stable/",
+    "parent": 44840728,
+    "depth": 1
+  }
+]

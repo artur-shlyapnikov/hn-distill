@@ -1,0 +1,66 @@
+[
+  {
+    "id": 44786740,
+    "by": "david-gpu",
+    "timeISO": "2025-08-04T14:59:17.000Z",
+    "textPlain": "This looks a lot like some line anti aliasing I had to hack together many years ago when a customer started complaining loudly about the lack of hardware support for it. I think I had something like a week to put together three different alternatives for them to pick from, and this was the winner. It looked the best by far.Years later my boss was telling me how satisfied he was that he could throw any problem in my general direction and it would be gone in no time. There is nothing like the risk of losing his work permit to motivate a young guy to work himself down to a crisp, all for peanuts.",
+    "parent": 44784141,
+    "depth": 1
+  },
+  {
+    "id": 44785047,
+    "by": "NohatCoder",
+    "timeISO": "2025-08-04T12:45:09.000Z",
+    "textPlain": "Reminds me that I found an alternative way of sampling an SDF:First take a sample in each corner of the pixel to be rendered (s1 s2 s3 s4), then compute:    coverage=0.5 + (s1+s2+s3+s4)/(abs(s1)+abs(s2)+abs(s3)+abs(s4))/2\n\nIt is a good approximation, and it keeps on working no matter how you scale and stretch the field.Relative to the standard method it is expensive to calculate. But for a modern GPU it is still a very light workload to do this once per screen pixel.",
+    "parent": 44784141,
+    "depth": 1
+  },
+  {
+    "id": 44784880,
+    "by": "mxfh",
+    "timeISO": "2025-08-04T12:27:35.000Z",
+    "textPlain": "The minute black area on the inner part of the sector getting perceptually boosted with the same ramp width like the outer area is effectively how an outline on a shape would behave, not two shapes with no stroke width. I would expect the output brightness should scale with the volume/depth under a pixel in the 3d visualization.Is this intentional? To me this is an opiniated (aka artistic preference) feature preserving method not the perfect one.Btw the common visualization has a source and an author:https://iquilezles.org/articles/distfunctions2d/\nhttps://www.shadertoy.com/playlist/MXdSRf",
+    "parent": 44784141,
+    "depth": 1
+  },
+  {
+    "id": 44786588,
+    "by": "Const-me",
+    "timeISO": "2025-08-04T14:49:04.000Z",
+    "textPlain": "Good article, but I believe it lacks information what specifically these magical dFdx, dFdy, and fwidth = abs(dFdx) + abs(dFdy) functions are computing.The following stackexchange answer addresses that question rather well: https://gamedev.stackexchange.com/a/130933/3355 As you see, dFdx and dFdx are not exactly derivatives, these are discrete screen-space approximations of these derivativities. Very cheap to compute due to the weird execution model of pixel shaders running in hardware GPUs.",
+    "parent": 44784141,
+    "depth": 1
+  },
+  {
+    "id": 44785379,
+    "by": "talkingtab",
+    "timeISO": "2025-08-04T13:19:46.000Z",
+    "textPlain": "A very good example of SDF thinking, using signed distance fields in shaders. Both shaders and SDF are new to me and very interesting. Another example of what is being done is MSDF here: https://github.com/Chlumsky/msdfgen.",
+    "parent": 44784141,
+    "depth": 1
+  },
+  {
+    "id": 44785853,
+    "by": "WithinReason",
+    "timeISO": "2025-08-04T13:59:09.000Z",
+    "textPlain": "Instead of OKLAB isn't it simpler to just use a linear color space and only do gamma correction at the very end?",
+    "parent": 44784141,
+    "depth": 1
+  },
+  {
+    "id": 44789148,
+    "by": "pcwalton",
+    "timeISO": "2025-08-04T17:46:58.000Z",
+    "textPlain": "Mathematically, what you want to do here is to calculate the area of the pixel square (or circle; however you want to approximate it) that the shape covers. In this case a linear ramp actually approximates the true value better than smoothstep does. (I had the derivation worked out at some point; I don't have it handy, unfortunately.) Of course, beauty is in the eye of the beholder, and aesthetically one might prefer smoothstep.By the way, since the article mentions ellipse distance approximations, the fastest way to approximate distance to an ellipse is to use a trick I came up with based on a paper from 1994 [1]: https://github.com/servo/webrender/blob/c4bd5b47d8f5cd684334... Unless it's changed recently, this is what Firefox uses for border radius.[1]: http://mesh.brown.edu/taubin/pdfs/Taubin-tog94.pdf",
+    "parent": 44784141,
+    "depth": 1
+  },
+  {
+    "id": 44786866,
+    "by": "jeremyscanvic",
+    "timeISO": "2025-08-04T15:06:44.000Z",
+    "textPlain": "Really interesting write-up! I'm not very familiar with signed distance functions but aliasing is a major part of my PhD and this is really insightful to me!",
+    "parent": 44784141,
+    "depth": 1
+  }
+]

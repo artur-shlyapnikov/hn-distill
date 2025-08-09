@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44757363,
+    "by": "foundry27",
+    "timeISO": "2025-08-01T14:31:49.000Z",
+    "textPlain": "I started doing some experimentation with this new Deep Think agent, and after five prompts I reached my daily usage limit. For $250 USD/mo that’s what you’ll be getting folks.It’s just bizarrely uncompetitive with o3-pro and Grok 4 Heavy. Anecdotally (from my experience) this was the one feature that enthusiasts in the AI community were interested in to justify the exorbitant price of Google’s Ultra subscription. I find it astonishing that the same company providing free usage of their top models to everybody via AI Studio is nickel-and-diming their actual customers like that.Performance-wise. So far, I couldn’t even tell. I provided it with a challenging organizational problem that my business was facing, with the relevant context, and it proposed a lucid and well-thought-out solution that was consistent with our internal discussions on the matter. But o3 came to an equally effective conclusion for a fraction of the cost, even if it was less “cohesive” of a report. I guess I’ll have to wait until tomorrow to learn more.",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44757551,
+    "by": "nickandbro",
+    "timeISO": "2025-08-01T14:45:23.000Z",
+    "textPlain": "Ladies and Gentlemen,Here's Gemini Deep Think when prompted with:\"Create a svg of a pelican riding on a bicycle\"https://www.svgviewer.dev/s/5R5iTexQBeat Simon Willison to it :)",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44757478,
+    "by": "irthomasthomas",
+    "timeISO": "2025-08-01T14:40:52.000Z",
+    "textPlain": "You can spin up a version of this at home using \nsimonw's LLM cli with the llm-consortium plugin.Bonus 1: Use any combination of models. Mix n match models from any lab.Bonus 2: Serve your custom consortium on a local API from a single command using the llm-model-gateway plugin and use it in your apps and coding assistants.https://x.com/karpathy/status/1870692546969735361  > uv tool install llm\n  llm install llm-consortium\n  llm consortium save gthink-n5       -m gemini-pro -n 5 --arbiter gemini-flash --confidence-threshold 99 --max-iterations 4\n\n  llm serve --host 0.0.0.0\n\n  curl http://0.0.0.0:8000/v1/chat/completions \\\n  -X POST \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"model\": \"gthink-n5\",\n    \"messages\": [{\"role\": \"user\", \"content\": \"find a polynomial algorithm for graph-isomorphism\"}]\n  }'\n\nYou can also build a consortium of consortiums like so:  llm consortium save gem-squared -m gthink-n5 -n 2 --arbiter gem-flash\n\nOr even make the arbiter a consortium:  llm consortium save gem-cubed -m gthink-n5 -n 2 --arbiter gthink-n5 --max-iteration 2\n\nor go openweights only:  llm consortium save open-council -m qwen3:2 -m kimi-k2:2 -m glm-4.5:2 -m mistral:2 --arbiter minimax-m1 --min-iterations 2 --confidence-threshold 95\n\nhttps://GitHub.com/irthomasthomas/llm-consortium",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44756155,
+    "by": "highfrequency",
+    "timeISO": "2025-08-01T13:01:22.000Z",
+    "textPlain": "Approach is analogous to Grok 4 Heavy: use multiple \"reasoning\" agents in parallel and then compare answers before coming back with a single response, taking ~30 minutes. Great results, though it would be more fair for the benchmark comparisons to be against Grok 4 Heavy rather than Grok 4 (the fast, single-agent model).",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44757126,
+    "by": "simonw",
+    "timeISO": "2025-08-01T14:11:54.000Z",
+    "textPlain": "This isn't the exact same model that achieved gold in the IMO a few weeks ago but is a close relative: https://x.com/OfficialLoganK/status/1951262261512659430It's not yet available via an API.",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44756848,
+    "by": "asaddhamani",
+    "timeISO": "2025-08-01T13:52:13.000Z",
+    "textPlain": "I find it interesting, how OpenAI came out with a $200 plan, Anthropic did $100 and $200, then Gemini ups it to $250, and now Grok is at $300.OpenAI is the only one that says \"practically unlimited\" and I have never hit any limit on my ChatGPT Pro plan. I hit limits on Claude Max (both plans) several times.Why are these companies not upfront about what the limits are?",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44822089,
+    "by": "qnleigh",
+    "timeISO": "2025-08-07T08:39:11.000Z",
+    "textPlain": "Can someone with an ultra subscription ask it how many rs are in the word strawberry? And report back how long it takes to answer?",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44758171,
+    "by": "nusl",
+    "timeISO": "2025-08-01T15:22:04.000Z",
+    "textPlain": "Been using Gemini for a few months, somehow it's gotten much, much worse in that time. Hallucinations are very common, and it will argue with you when you point it out. So, don't have much confidence.",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44756877,
+    "by": "cpursley",
+    "timeISO": "2025-08-01T13:53:30.000Z",
+    "textPlain": "I can’t even convince Gemini CLI while planning things to not go off and make a bunch of random changes on its own, even after being very clear not to do so, intercepting to tell it to stop doing that, then it just continues on fucking everything up.",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44756706,
+    "by": "resoluteteeth",
+    "timeISO": "2025-08-01T13:41:52.000Z",
+    "textPlain": "> If you’re a Google AI Ultra subscriber, you can use Deep Think in the Gemini app today with a fixed set of prompts a day by toggling “Deep Think” in the prompt bar when selecting 2.5 Pro in the model drop down.If fixed set means fixed number it would be nice to know how many.Otherwise i would like to know what fixed set means here.",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44759692,
+    "by": "tdhz77",
+    "timeISO": "2025-08-01T17:24:24.000Z",
+    "textPlain": "I think at this point its fair to say that I've switched modals more than Leonardo Dicaprio.",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44759730,
+    "by": "mclau157",
+    "timeISO": "2025-08-01T17:27:56.000Z",
+    "textPlain": "Asking AI to create 3D scenes like the example in the page seems like asking someone to hammer something with a screwdriver, we would need an AI compatible 3D software that either has easier to use voxels built in so it can create similar to pixel art, or easier math defined curves that can be meshed, either way AI just does not currently have the right tools to generate 3D scenes",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44757731,
+    "by": "judge123",
+    "timeISO": "2025-08-01T14:56:46.000Z",
+    "textPlain": "I'm wondering if 'slow AI' like this is a temporary bridge, or a whole new category we need to get used to. Is the future really about having these specialized 'deep thinkers' alongside our fast, everyday models? Or is this just a clunky V1 until the main models get this powerful on their own in seconds?",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44756319,
+    "by": "lynx97",
+    "timeISO": "2025-08-01T13:13:48.000Z",
+    "textPlain": "Wait...So if someone cool enough, they could actually give us a DeepThought model?Please, let that happen.Vendor-DeepThought-42B maybe?",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44758831,
+    "by": "childintime",
+    "timeISO": "2025-08-01T16:09:25.000Z",
+    "textPlain": "This comes at a time where my experience with Gemini is lacking, it seems to get worse. It's not picking up on my intention, sometimes replies in the wrong language, etc. Either that or I am just transparent that it's a tool and its feelings are hurt. I've had to call it a moron several times, and it was funny when it started reprimanding me for my foul language once. But it was wrong. This behavior seems new. I could never trust it to not do random edits everywhere in a document, so nowadays I use it to check Claude, which can be trusted with a document.",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44757396,
+    "by": "TheAceOfHearts",
+    "timeISO": "2025-08-01T14:34:48.000Z",
+    "textPlain": "I would be interested in reading about how people who are paying for access to Google's top AI plan are intending to use this. Do you have any examples of immediate use-cases that might benefit?Is Google using this tool internally? One would expect them to give some examples of how it's helping internal teams accelerate or solve more challenging problems, if they were eating their own dogfood.",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44761300,
+    "by": "srameshc",
+    "timeISO": "2025-08-01T19:28:46.000Z",
+    "textPlain": "I've been using Gemini 2.5 Pro for a few months now and have found my experience to be very positive. I primarily use it for coding and through the API, and I feel it's consistently improving. I haven't yet tried Deep Think, though.",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44756116,
+    "by": "amatic",
+    "timeISO": "2025-08-01T12:58:08.000Z",
+    "textPlain": "At the moment, Deep Think is only available with the ULTRA subscription ($250 per month).",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44762767,
+    "by": "Invictus0",
+    "timeISO": "2025-08-01T21:37:21.000Z",
+    "textPlain": "I used to be enthusiastic about Gemini-2.5-Pro but now I can't even get it to do decent file-diff summaries for a PR commit.",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44762242,
+    "by": "motbus3",
+    "timeISO": "2025-08-01T20:41:06.000Z",
+    "textPlain": "I wonder how long it will take for someone starts o investigating the relation between SEO and Google AI crawler",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44758343,
+    "by": "AtlanticThird",
+    "timeISO": "2025-08-01T15:33:01.000Z",
+    "textPlain": "Upgraded and quickly hit my limit. And find that they have limits, I just wish that they were more transparent. Even if it's just a vague statement about limited usage. I assumed it would be similar to regular Gemini 2.5 on the pro plan but it's not",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44761158,
+    "by": "depluber",
+    "timeISO": "2025-08-01T19:17:35.000Z",
+    "textPlain": "Is this a joke? I am paying $250/month because I want to use Deep Think and I literally just burned through my daily quota in 5 PROMPTS. That is insane!",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44759281,
+    "by": "jawerty",
+    "timeISO": "2025-08-01T16:46:37.000Z",
+    "textPlain": "If anyone wants a free to use research agent try rex I've been building it for a couple months: https://projectrex.onrender.com/",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44759274,
+    "by": "jawerty",
+    "timeISO": "2025-08-01T16:46:14.000Z",
+    "textPlain": "If anyone wants a free to use deep research agent check out what i'm working on: https://projectrex.onrender.com/",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44761961,
+    "by": "km3k",
+    "timeISO": "2025-08-01T20:16:30.000Z",
+    "textPlain": "They missed an oppportunity to name it Deep Thought.",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44759275,
+    "by": "44za12",
+    "timeISO": "2025-08-01T16:46:15.000Z",
+    "textPlain": "Is it something like tree of thought reasoning?",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44756709,
+    "by": "barapa",
+    "timeISO": "2025-08-01T13:42:04.000Z",
+    "textPlain": "Available via API?",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44759478,
+    "by": "kelvinjps10",
+    "timeISO": "2025-08-01T17:05:34.000Z",
+    "textPlain": "These AI names are getting ridiculous",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44758352,
+    "by": "unsupp0rted",
+    "timeISO": "2025-08-01T15:33:33.000Z",
+    "textPlain": "Interesting they compared Gemini 2.5 Deep Think on code to all the top models EXCEPT Claude, the best top model at code.",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44756505,
+    "by": "simianwords",
+    "timeISO": "2025-08-01T13:28:03.000Z",
+    "textPlain": "Grok 4 heavy, o3 pro and Gemini Deep Think all are equivalent. I wonder how they compare?",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44756506,
+    "by": "askl",
+    "timeISO": "2025-08-01T13:28:10.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44756633,
+    "by": "reddalo",
+    "timeISO": "2025-08-01T13:36:46.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44758727,
+    "by": "greybox",
+    "timeISO": "2025-08-01T16:01:20.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44757033,
+    "by": "TechDebtDevin",
+    "timeISO": "2025-08-01T14:04:38.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44757699,
+    "by": "TechDebtDevin",
+    "timeISO": "2025-08-01T14:54:17.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44756304,
+    "by": "7373737373",
+    "timeISO": "2025-08-01T13:12:31.000Z",
+    "textPlain": "139.99€/month for something you can't even test first, lol",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44756546,
+    "by": "baggachipz",
+    "timeISO": "2025-08-01T13:31:16.000Z",
+    "textPlain": "You can't go anywhere without having Gemini shoved in your face. I had an immediate visceral reaction to this.",
+    "parent": 44755279,
+    "depth": 1
+  },
+  {
+    "id": 44759660,
+    "by": "Closi",
+    "timeISO": "2025-08-01T17:20:31.000Z",
+    "textPlain": "It's not particularly interesting if Deep Mind comes to the same (correct) conclusion on a single problem as o3 but costs more. You could ask gpt 2.5 and gpt4 what 1+1= and would get the same response with gpt 4 costing more, but this doesn't tell us much about model capability or value.It would be more interesting to know if it can handle problems that o3 can't do, or if it is 'correct' more often than o3 pro on these sort of problems.i.e. if o3 is correct 90% of the time, but deep mind is correct 91% of the time on challenging organisational problems, it will be worth paying $250 for an extra 1% certainty (assuming the problem is high-value / high-risk enough).",
+    "parent": 44757363,
+    "depth": 2
+  },
+  {
+    "id": 44757530,
+    "by": "thimabi",
+    "timeISO": "2025-08-01T14:43:51.000Z",
+    "textPlain": "> I find it astonishing that the same company providing free usage of their top models to everybody via AI Studio is nickel-and-diming their actual customers like that.I agree that’s not a good posture, but it is entirely unsurprising.Google is probably not profiting from AI Ultra customers either, and grabbing all that sweet usage data from the free tier of AI Studio is what matters most to improve their models.Giving free access to the best models allows Google to capture market share among the most demanding users, which are precisely the ones that will be charged more in the future. In a certain sense, it’s a great way for Google to use its huge idle server capacity nowadays.",
+    "parent": 44757363,
+    "depth": 2
+  },
+  {
+    "id": 44759427,
+    "by": "827a",
+    "timeISO": "2025-08-01T17:00:24.000Z",
+    "textPlain": "Similar complaints are happening all over reddit with the Claude Code $200/mo plan and Cursor. The companies with deep VC funding have been subsidizing usage for a year now, but we're starting to see that bleed off.I think the primary concern of this industry right now is how, relative to the current latest generation models, we simultaneously need intelligence to increase, cost to decrease, effective context windows to increase, and token bandwidths to increase. All four of these things are real bottlenecks to unlocking the \"next level\" of these tools for software engineering usage.Google isn't going to make billions on solving advanced math exams.",
+    "parent": 44757363,
+    "depth": 2
+  }
+]

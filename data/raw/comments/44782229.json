@@ -1,0 +1,82 @@
+[
+  {
+    "id": 44824165,
+    "by": "cgadski",
+    "timeISO": "2025-08-07T13:23:33.000Z",
+    "textPlain": "To summarize: we're making a series of i.i.d. draws from a distribution and asking how many draws N we need to make until we get something larger than our first draw.Conditional on the value of the first draw, N is geometrically distributed. If we're drawing from an absolutely continuous distribution on the first line, then of course the details of our distribution don't matter: N is a draw from a geometric distribution with rate lambda, where lambda in turn is drawn uniformly from [0, 1]. It follows that N has a thick tail; for example, the expected value of N is the expected value of 1/lambda, which is infinite. In fact, N turns out to have a power law tail.However, this isn't true if we're drawing from a distribution that's not absolutely continuous. If you coarse-grain into just \"fast\" and \"slow\" cars, then N again has a thin (geometric) tail. More to the point, if we imagine that our queues of cars need to be formed within a finite amount of time, then a car is only added to the queue in front of it if its velocity is epsilon larger than the velocity of the queue, and the problematic situation where lambda -> 0 goes away. In this idealized scenario, I guess you could relate the rate of the exponential tail of N to how long the cars have been travelling for.Finally, it's worth remembering the old \"waiting-time paradox\": the variable N we're talking about is not the same as the length of the queue that a randomly selected driver finds themself in. What's the distribution of the latter---the distribution of \"experienced\" queue lengths? In this post the author computed that P(N = n) = 1/n(n + 1). It stands to reason that to get the density of the distribution of experienced lengths we need to multiply by n and divide by a normalizing constant. Unfortunately, you can't multiply 1/(n + 1) by any constant to get a probability distribution, since the sum over n diverges.What does it mean that the distribution of experienced queues lengths doesn't exist? If you did a hu",
+    "parent": 44782229,
+    "depth": 1
+  },
+  {
+    "id": 44821421,
+    "by": "dmurray",
+    "timeISO": "2025-08-07T06:59:08.000Z",
+    "textPlain": "The conclusion looks correct for the wrong question: isn't this the formula for the  number of queues?The first car starts a queue with probability 1, the second car starts a queue if and only if it is slower (probability 1/2), the third car starts a queue if and only if it is the slowest so far (probability 1/3), and so on. Total is 1 + 1/2 + 1/3... which is the formula at the end of the blog post, with an off-by-one error.The average queue length should be the number of cars divided by this harmonic sum. Which also diverges to infinity.",
+    "parent": 44782229,
+    "depth": 1
+  },
+  {
+    "id": 44822506,
+    "by": "shawabawa3",
+    "timeISO": "2025-08-07T09:43:04.000Z",
+    "textPlain": "> Moreover, if the reasoning above was correct, observing a queue of 22,849 cars would be essentially impossible!One of the cars in the 100,000 cars is going to be the slowest car, and when that car appears every car behind it will join that queueSo on average wouldn't you expect there to be one large queue of 50,000 cars at the back?",
+    "parent": 44782229,
+    "depth": 1
+  },
+  {
+    "id": 44820839,
+    "by": "alexchamberlain",
+    "timeISO": "2025-08-07T05:14:41.000Z",
+    "textPlain": "> Assume that the road has a single entry, no exits, and is infinitely longI couldn't help but think that the author forgot to assume the road is inelastic and has no mass...",
+    "parent": 44782229,
+    "depth": 1
+  },
+  {
+    "id": 44822426,
+    "by": "aaron695",
+    "timeISO": "2025-08-07T09:32:01.000Z",
+    "textPlain": "[dead]",
+    "parent": 44782229,
+    "depth": 1
+  },
+  {
+    "id": 44823316,
+    "by": "shiandow",
+    "timeISO": "2025-08-07T11:56:01.000Z",
+    "textPlain": "The number of queues is infinite by assumption.Though it wouldn't surprise me if the number of queues formed by N cars and the average length of a random queue turn out to have similar formulas.",
+    "parent": 44821421,
+    "depth": 2
+  },
+  {
+    "id": 44823246,
+    "by": "robertlagrant",
+    "timeISO": "2025-08-07T11:45:41.000Z",
+    "textPlain": "Wherever there's a bus it will create space in front of it, as it creates a queue behind it, for each stop.",
+    "parent": 44822506,
+    "depth": 2
+  },
+  {
+    "id": 44822895,
+    "by": "blackbear_",
+    "timeISO": "2025-08-07T10:49:51.000Z",
+    "textPlain": "No because the number of cars in each simulation not fixed. There are 100,000 simulations, but each simulation runs until a car slower than the first appear.",
+    "parent": 44822506,
+    "depth": 2
+  },
+  {
+    "id": 44821134,
+    "by": "nottorp",
+    "timeISO": "2025-08-07T06:04:53.000Z",
+    "textPlain": "Spherical cars too?",
+    "parent": 44820839,
+    "depth": 2
+  },
+  {
+    "id": 44822463,
+    "by": "Qwertious",
+    "timeISO": "2025-08-07T09:36:50.000Z",
+    "textPlain": "It's a highway, basically.",
+    "parent": 44820839,
+    "depth": 2
+  }
+]

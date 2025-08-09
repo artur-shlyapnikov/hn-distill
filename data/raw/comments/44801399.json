@@ -1,0 +1,282 @@
+[
+  {
+    "id": 44802772,
+    "by": "jsnell",
+    "timeISO": "2025-08-05T19:08:45.000Z",
+    "textPlain": "Nice! You definitely have something there.I would love a dictionary lookup. I'd expect a big part of the strategy to be working backwards from the possible 1/2 letter words, but there's no way to tell how reasonable the dictionary is without testing, and getting the game into the proper state to test would be just as hard as solving the puzzle in the first place.Having two separate goals (eliminate all letters, find all the words) seems confusing. Honestly I find the latter to be a fairly tedious prospect, but the game really seems to push you toward it especially with the colors on the calendar depending on the % of words found. \"Damn it, I got a perfect score with no undos, and all I have to show for it is a red square showing how bad a job I did!\"The UI (on a desktop) felt kind of broken at the start because nothing has hover effects. Anything clickable would benefit from some kind of an effect, but especially the letters on the words. If you don't want color changes or animations, at least set the cursor style.",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44810041,
+    "by": "unnamed76ri",
+    "timeISO": "2025-08-06T10:05:16.000Z",
+    "textPlain": "There should be an “I give up” button to let you finish the game and be locked into that result for the day. I like the idea, there’s just something about the UX that’s weird to me.",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44816372,
+    "by": "jodrellblank",
+    "timeISO": "2025-08-06T19:14:21.000Z",
+    "textPlain": "A solver in SWI Prolog: https://swish.swi-prolog.org/p/PlayWhittle_Solver.pl which you can run by querying in the lower right window:    solve(\"brats herbs\", Steps).\n\nand seeing:    Steps = ['rats herbs', 'rat herbs', 'rat hers', 'rat her', rather, rater, rate, ate, at, a, ''] ;\n\nThe core is this grammar:    whittle(S0) --> [S1],                  % state S1 comes from\n                    { select(_, S0, S1),   % removing a char from S0,\n                      phrase(valid_state(_), S1) }, % S1 must be all words,\n                      whittle(S1).         % and recurse.\n    whittle([]) --> [].\n\nwhich describes a solution as a list of successful state changes from input to empty string. Each change removes one character from the string and must leave a valid state after doing that. Prolog's implicit backtracking search means that when it tries \"cat\",\"at\",\"t\" the valid_state check fails because \"t\" is not in the wordlist, it backtracks to the previous state \"cat\",\"at\" and retries, getting to \"cat,\"at\",\"a\",\"\" and success.So it's doing a depth-first search of the tree of all possible game states that come from removing each letter from each substring, only exploring each branch as deep as the first failure. It stops at the first success, but spacebar or 'next' will search for another solution. Find all 136 solutions by querying: findall(Steps, solve(\"brats herbs\", Steps), Solutions).It won't work in Scryer, it would need select/3 and the DCG helpers ported/included in the code, then changes to run on strings instead of character code lists. It would likely be more memory efficient then.",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44802013,
+    "by": "duncancarroll",
+    "timeISO": "2025-08-05T18:17:28.000Z",
+    "textPlain": "Fun!  I was a bit confused at the end because there's no \"victory\" state or indication.  I think I was expecting it to give me a new word pair once I got to the end, or tell me \"come back tomorrow for another round\"",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44821343,
+    "by": "jzting",
+    "timeISO": "2025-08-07T06:46:49.000Z",
+    "textPlain": "Love the concept and execution! After finishing today’s I am going backwards to play the archive :)If anyone else likes simple but fun word games, I made one for iOS here: https://apps.apple.com/app/id1248738929",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44803301,
+    "by": "jangerhofer",
+    "timeISO": "2025-08-05T19:45:24.000Z",
+    "textPlain": "For those who are initially as dense as I am: spaces are also 'whittleable' characters!",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44803505,
+    "by": "onion92",
+    "timeISO": "2025-08-05T20:02:14.000Z",
+    "textPlain": "WOW, we had a similar idea: https://www.shrinkle.orghttps://news.ycombinator.com/item?id=44714167Great work!",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44820070,
+    "by": "stephenlf",
+    "timeISO": "2025-08-07T02:48:51.000Z",
+    "textPlain": "> I think you just found the perfect game for my brain, I just did August 4th first try too lol— my wifeThat’s three puzzles in a row that she did first try. Nice work on the game.",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44803480,
+    "by": "c22",
+    "timeISO": "2025-08-05T20:00:11.000Z",
+    "textPlain": "This is cool, it's kind of the inverse of a game I used to play with my mother: One player says a letter and thinks of a word that starts with that letter, the next player adds a letter (while thinking of a valid word that that could be created with the new prefix). Play continues in this fashion until someone is forced to spell an actual word, then they lose and you can start a new round.",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44804824,
+    "by": "pimlottc",
+    "timeISO": "2025-08-05T21:47:00.000Z",
+    "textPlain": "Feedback: I wasn’t sure what to do in the initial game state. It wasn’t obvious that the letters could be “clicked” directly.  In a similar word game [0] (also posted on HN recently; perhaps your inspiration?), the letters are in boxes that make them seem more like buttons you can press.  The unlabeled tabs at the bottom were also mysterious; many other games like Wordle have their inputs (e.g. a keyboard) at the bottom, so that was initially a bit confusing.It’s also easy to accidentally spoil the game by clicking the unlabeled right tab. EDIT: Oops, didn't realize that was the words discovered list, not the complete wordlist. This should have a label to make it clearer.Also, in the help screen, the dots in the UI made me expect to swipe (on mobile) to navigate between screens, so that was a bit confusing at first.0: https://www.shrinkle.org/",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44818399,
+    "by": "porjo",
+    "timeISO": "2025-08-06T22:05:01.000Z",
+    "textPlain": "Nice work! One suggestion would be to allow moving a letter (or space) to a new location, like a life line - one or two moves allowed per game.",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44802293,
+    "by": "teach",
+    "timeISO": "2025-08-05T18:36:57.000Z",
+    "textPlain": "Is it always possible to go all the way down to a single letter? I'm working on August 4, and it's proving challenging",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44806268,
+    "by": "davidsojevic",
+    "timeISO": "2025-08-06T00:30:35.000Z",
+    "textPlain": "I like the idea of it; though I think the latest update (around puzzle solveability?) may have broken the game as I'm unable to begin in any browser I've tried:    Uncaught TypeError: can't access property \"puzzleLog\", G is null",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44810597,
+    "by": "zimpenfish",
+    "timeISO": "2025-08-06T11:30:37.000Z",
+    "textPlain": "Minor nit - \"back to archive\" should take you back to the archive page you were on, not \"today\".Other than that, nicely done game.",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44805587,
+    "by": "yobananaboy",
+    "timeISO": "2025-08-05T23:02:59.000Z",
+    "textPlain": "I didn't realize that I was supposed to get to 0, but just trying to get as many words as possible. I got down to 'a' and reset, it would be nice if just getting to a 1 letter word prompted the win state.",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44804817,
+    "by": "jessecoleman",
+    "timeISO": "2025-08-05T21:46:48.000Z",
+    "textPlain": "Cool, the description reminded me a bit of my word game https://gramjam.app, but after playing they're pretty different. I like your UX!",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44803594,
+    "by": "werds",
+    "timeISO": "2025-08-05T20:09:17.000Z",
+    "textPlain": "Congrats on your imminent acquisition by the New York times (a'la Wordle)",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44802449,
+    "by": "spadros",
+    "timeISO": "2025-08-05T18:49:01.000Z",
+    "textPlain": "Really fun! Could use a hint function though. I got %100 of all words on Aug 4 but still have not found a way to get it down to zero letters. If anyone has figured it out please let me know!",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44806267,
+    "by": "hackyhacky",
+    "timeISO": "2025-08-06T00:30:28.000Z",
+    "textPlain": "Crashes for me under Firefox and Chromium.    Uncaught TypeError: Cannot read properties of null (reading 'puzzleLog')",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44802127,
+    "by": "fao_",
+    "timeISO": "2025-08-05T18:25:11.000Z",
+    "textPlain": "Hey! I absolutely love it! I wanted to share the results with my partner but it looks like the share button doesn't work on the PC? (Firefox 141.0, Linux)",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44801639,
+    "by": "dylanhouli",
+    "timeISO": "2025-08-05T17:53:30.000Z",
+    "textPlain": "Good game! Nice little touches on the website too like the tray at the bottom and the header click easter egg.",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44802394,
+    "by": "kipukun",
+    "timeISO": "2025-08-05T18:44:25.000Z",
+    "textPlain": "This game is awesome. I have no other feedback other than I had a lot of fun.",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44803017,
+    "by": "strongpigeon",
+    "timeISO": "2025-08-05T19:25:26.000Z",
+    "textPlain": "I had much more fun than anticipated. Nice work! Sharing with some friends",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44806758,
+    "by": "kps",
+    "timeISO": "2025-08-06T01:49:28.000Z",
+    "textPlain": "Please respect `:prefers-color-scheme`.",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44806354,
+    "by": "avidiax",
+    "timeISO": "2025-08-06T00:44:27.000Z",
+    "textPlain": "You could add some lexicographic whittling, like:Q -> OW -> VETIPFHKLNM -> IE -> FB-> RPR -> PU -> JGO -> CM -> V",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44804153,
+    "by": "busymom0",
+    "timeISO": "2025-08-05T20:56:03.000Z",
+    "textPlain": "I ended at:rat   heI remove \"h\" but it doesn't accept \"rate\" as a correct word. Am I missing something?",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44818971,
+    "by": "stephenlf",
+    "timeISO": "2025-08-06T23:20:03.000Z",
+    "textPlain": "[dead]",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44808725,
+    "by": "cailai",
+    "timeISO": "2025-08-06T07:16:47.000Z",
+    "textPlain": "[dead]",
+    "parent": 44801399,
+    "depth": 1
+  },
+  {
+    "id": 44802391,
+    "by": "spadros",
+    "timeISO": "2025-08-05T18:44:07.000Z",
+    "textPlain": "I’m stuck on that one too! Got 100% of all possible words but cannot figure out how to reduce to zero. A “show hint” feature would be nice when you’re stuck.",
+    "parent": 44802293,
+    "depth": 2
+  },
+  {
+    "id": 44806324,
+    "by": "babel16",
+    "timeISO": "2025-08-06T00:40:18.000Z",
+    "textPlain": "Fixed now! Sorry, bug fixing on the fly is trepidatious :')",
+    "parent": 44806268,
+    "depth": 2
+  },
+  {
+    "id": 44806202,
+    "by": "babel16",
+    "timeISO": "2025-08-06T00:22:59.000Z",
+    "textPlain": "Thanks! I've been thinking about adding a hint function for a while, but not sure what form I want it to take.Also, Aug 4 was broken-- please try again for a new, solvable puzzle :)",
+    "parent": 44802449,
+    "depth": 2
+  },
+  {
+    "id": 44804308,
+    "by": "tobr",
+    "timeISO": "2025-08-05T21:07:14.000Z",
+    "textPlain": "If you found all the words, surely that means there is no 1-letter word to find? Unless I’m completely misunderstanding the rules.",
+    "parent": 44802449,
+    "depth": 2
+  },
+  {
+    "id": 44806332,
+    "by": "babel16",
+    "timeISO": "2025-08-06T00:41:05.000Z",
+    "textPlain": "Fixed now! Sorry about the trouble.",
+    "parent": 44806267,
+    "depth": 2
+  },
+  {
+    "id": 44805458,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-05T22:49:29.000Z",
+    "textPlain": "You need to remove a single letter while keeping the remaining letters in the same order - removing \"h\" from \"rat he\" leaves \"rat e\" not \"rate\".",
+    "parent": 44804153,
+    "depth": 2
+  },
+  {
+    "id": 44805431,
+    "by": "JadeNB",
+    "timeISO": "2025-08-05T22:46:27.000Z",
+    "textPlain": "In case anyone else finds this question before the other one, it was answered at https://news.ycombinator.com/item?id=44804178.",
+    "parent": 44804153,
+    "depth": 2
+  }
+]

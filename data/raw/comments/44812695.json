@@ -1,0 +1,130 @@
+[
+  {
+    "id": 44815509,
+    "by": "o11c",
+    "timeISO": "2025-08-06T18:06:07.000Z",
+    "textPlain": "First, note that this complexity is actually worse for highly dense graphs, where `m` (number of edges) dominates rather than `n` (number of nodes) [note that a useful graph always has `m > n`, and often `m <= 2d  n`, where `d` is the number of dimensions and the 2 is because we're using directed edges. Ugh, how do we compare log powers?].Additionally, the `n` in the complexity only matters if for the Dijkstra approach you actually need a frontier of size proportional to `n` [remember that for open-grid-like graphs, the frontier is limited is limited to `sqrt(n)` for a plane, and for linear-ish graphs, the frontier is even more limited].Also note that the \"sorting barrier\" only applies to comparison-based sorts, not e.g. various kinds of bucket sorts (which are easy to use when your weights are small integers). Which seems to be part of what this algorithm does, though I haven't understood it fully.",
+    "parent": 44812695,
+    "depth": 1
+  },
+  {
+    "id": 44818667,
+    "by": "karussell",
+    "timeISO": "2025-08-06T22:37:34.000Z",
+    "textPlain": "It is somewhat funny that it took 12 submissions here on hackernews to bring it to a wider audience :) https://hn.algolia.com/?query=\"2504.17033\"",
+    "parent": 44812695,
+    "depth": 1
+  },
+  {
+    "id": 44813223,
+    "by": "polytely",
+    "timeISO": "2025-08-06T15:21:03.000Z",
+    "textPlain": "> But curiously, none of the pieces use fancy mathematics.> “This thing might as well have been discovered 50 years ago, but it wasn’t,” Thorup said. “That makes it that much more impressive.”this is so cool to me, it feel like a solution you could* have stumbled upon while doing game development or something*probably wouldn't but still",
+    "parent": 44812695,
+    "depth": 1
+  },
+  {
+    "id": 44813038,
+    "by": "ljlolel",
+    "timeISO": "2025-08-06T15:07:53.000Z",
+    "textPlain": "Tarjan was my algorithms professor. He invented many of them",
+    "parent": 44812695,
+    "depth": 1
+  },
+  {
+    "id": 44814703,
+    "by": "aDyslecticCrow",
+    "timeISO": "2025-08-06T17:07:26.000Z",
+    "textPlain": "I'm intrigued but the article is very verbose with little detail. Mabie the paper will give a more satisfying description.Im most curiosity how the algorithm fulfil the \"global minima\" that djixtra guarantees. The clumping of front-tier nodes seem prone to missing some solutions if unlucky.",
+    "parent": 44812695,
+    "depth": 1
+  },
+  {
+    "id": 44814193,
+    "by": "flafla2",
+    "timeISO": "2025-08-06T16:26:52.000Z",
+    "textPlain": "O(m log^2/3 n) !!!  What a triumph.",
+    "parent": 44812695,
+    "depth": 1
+  },
+  {
+    "id": 44813454,
+    "by": "ape4",
+    "timeISO": "2025-08-06T15:37:10.000Z",
+    "textPlain": "Sounds a lot more complicated that Dijkstra.  But I guess that's the way it goes.",
+    "parent": 44812695,
+    "depth": 1
+  },
+  {
+    "id": 44816228,
+    "by": "crawfordcomeaux",
+    "timeISO": "2025-08-06T19:04:03.000Z",
+    "textPlain": "I wonder if hybridizing this with selective use of randomness to probe beyond frontiers leads to another speedup.",
+    "parent": 44812695,
+    "depth": 1
+  },
+  {
+    "id": 44816176,
+    "by": "lqet",
+    "timeISO": "2025-08-06T19:00:48.000Z",
+    "textPlain": "Very good points. I wonder what this means for real-world street network graphs. In my experience, m can be considered proportional to n in road network graphs (I would estimate m ≈ 2C n, with C being between 2 and 3). This would mean that the asymptotic running time of this new algorithm on a classic road transportation network would be more like O(Cn log^2/3 n) = O(n log^2/3 n), so definitely better than classic Dijkstra (O(n log n) in this scenario). On the other hand, the frontier in road network graphs is usually not very big, and (as you also said for grid graphs) you normally never \"max out\" the priority queue with n nodes, not even close. I would be surprised if the ^2/3 beats the additional constant overhead of the new approach in this case.",
+    "parent": 44815509,
+    "depth": 2
+  },
+  {
+    "id": 44819440,
+    "by": "hinkley",
+    "timeISO": "2025-08-07T00:36:09.000Z",
+    "textPlain": "So that means it doesn’t work for Traveling Salesman, where the edges are nearly n^2? That might explain why it’s not been found before.",
+    "parent": 44815509,
+    "depth": 2
+  },
+  {
+    "id": 44815568,
+    "by": "RobRivera",
+    "timeISO": "2025-08-06T18:10:26.000Z",
+    "textPlain": "Gamedevs -I find at least- are so obsessively deep at SOLVING their problem at hand that their headspace is indexed on shipping the game, the project, deadlines, and what to eat for the next meal (probably pizza).Rather than the academia.Just a hunch tho",
+    "parent": 44813223,
+    "depth": 2
+  },
+  {
+    "id": 44815506,
+    "by": "hinkley",
+    "timeISO": "2025-08-06T18:05:50.000Z",
+    "textPlain": "Maybe someone did and just didn’t see it as novel?",
+    "parent": 44813223,
+    "depth": 2
+  },
+  {
+    "id": 44814304,
+    "by": "larodi",
+    "timeISO": "2025-08-06T16:35:27.000Z",
+    "textPlain": "…invented many of them algorithms? like which?",
+    "parent": 44813038,
+    "depth": 2
+  },
+  {
+    "id": 44814242,
+    "by": "supernetworks_",
+    "timeISO": "2025-08-06T16:29:45.000Z",
+    "textPlain": "https://arxiv.org/abs/2504.17033We give a deterministic O(mlog2/3n)-time algorithm for single-source shortest paths (SSSP) on directed graphs with real non-negative edge weights in the comparison-addition model. This is the first result to break the O(m+nlogn) time bound of Dijkstra's algorithm on sparse graphs, showing that Dijkstra's algorithm is not optimal for SSSP.",
+    "parent": 44814193,
+    "depth": 2
+  },
+  {
+    "id": 44814318,
+    "by": "larodi",
+    "timeISO": "2025-08-06T16:37:00.000Z",
+    "textPlain": "Dijkstra is still very difficult for many and not universally taught in 7th grade even though you can arguably explain what a shortest path in a graph is to 14 y.o.",
+    "parent": 44813454,
+    "depth": 2
+  },
+  {
+    "id": 44813584,
+    "by": "cantor_S_drug",
+    "timeISO": "2025-08-06T15:47:52.000Z",
+    "textPlain": "reminds me of TimSort.",
+    "parent": 44813454,
+    "depth": 2
+  }
+]

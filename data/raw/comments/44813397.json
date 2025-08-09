@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44813767,
+    "by": "hyperpape",
+    "timeISO": "2025-08-06T15:59:25.000Z",
+    "textPlain": "> But if you want an existence proof: Maven. The Java library ecosystem has been going strong for 20 years, and during that time not once have we needed a lockfile. And we are pulling hundreds of libraries just to log two lines of text, so it is actively used at scale.Maven, by default, does not check your transitive dependencies for version conflicts. To do that, you need a frustrating plugin that produces much worse error messages than NPM does: https://ourcraft.wordpress.com/2016/08/22/how-to-read-maven-....How does Maven resolve dependencies when two libraries pull in different versions? It does something insane. https://maven.apache.org/guides/introduction/introduction-to....Do not pretend, for even half a second, that dependency resolution is not hell in maven (though I do like that packages are namespaced by creators, npm shoulda stolen that).",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44813815,
+    "by": "trjordan",
+    "timeISO": "2025-08-06T16:02:28.000Z",
+    "textPlain": "There is absolutely a good reason for version ranges: security updates.When I, the owner of an application, choose a library (libuseful 2.1.1), I think it's fine that the library author uses other libraries (libinsecure 0.2.0).But in 3 months, libinsecure is discovered (surprise!) to be insecure. So they release libinsecure 0.2.1, because they're good at semver. The libuseful library authors, meanwhile, are on vacation because it's August.I would like to update. Turns out libinsecure's vulnerability is kind of a big deal. And with fully hardcoded dependencies, I cannot, without some horrible annoying work like forking/building/repackaging libuseful. I'd much rather libuseful depend on libinsecure 0.2.*, even if libinsecure isn't terribly good at semver.I would love software to be deterministically built. But as long as we have security bugs, the current state is a reasonable compromise.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44816292,
+    "by": "zaptheimpaler",
+    "timeISO": "2025-08-06T19:08:40.000Z",
+    "textPlain": "Dependency management is a deep problem with a 100 different concerns, and every time someone says \"oh here it's easy, you don't need that complexity\" it turns out to only apply to a tiny subset of dependency management that they thought about.Maven/Java does absolutely insane things, it will just compile and run programs with incompatible version dependencies and then they crash at some point, and pick some arbitrary first version of a dependency it sees. Then you start shading JARs and writing regex rules to change import paths in dependencies and your program crashes with a mysterious error with 1 google result and you spend 8 hours figuring out WTF happened and doing weird surgery on your dependencies dependencies in an XML file with terrible plugins.This proposed solution is \"let's just never use version ranges and hard-code dependency versions\". Now a package 5 layers deep is unmaintained and is on an ancient dependency version, other stuff needs a newer version. Now what? Manually dig through dependencies and update versions?It doesn't even understand lockfiles fully. They don't make your build non-reproducible, they give you both reproducible builds (by not updating the lockfile) and an easy way to update dependencies if and when you want to. They were made for the express purpose of making your build reproducible.I wish there was a mega article explaining all the concerns, tradeoffs and approaches to dependency management - there are a lot of them.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44814853,
+    "by": "andy99",
+    "timeISO": "2025-08-06T17:19:17.000Z",
+    "textPlain": "In case the author is reading,  I can't read your article because of that animation at the bottom. I get it, it's cute, but it makes it too distracting to concentrate on the article, so I ended up just closing it.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44813800,
+    "by": "epage",
+    "timeISO": "2025-08-06T16:01:28.000Z",
+    "textPlain": "Let's play this out in a compiled language like Cargo.If every dependency was a `=` and cargo allowed multiple versions of SemVer compatible packages.The first impact will be that your build will fail.  Say you are using `regex` and you are interacting with two libraries that take a `regex::Regex`.  All of the versions need to align to pass `Regex` between yourself and your dependencies.The second impact will be that your builds will be slow.  People are already annoyed when there are multiple SemVer incompatible versions of their dependencies in their dependency tree, now it can happen to any of your dependencies and you are working across your dependency tree to get everything aligned.The third impact is if you, as the application developer, need a security fix in a transitive dependency.  You now need to work through the entire bubble up process before it becomes available to you.Ultimately, lockfiles are about giving the top-level application control over their dependency tree balanced with build times and cross-package interoperability.  Similarly, SemVer is a tool any library with transitive dependencies [0][0] https://matklad.github.io/2024/11/23/semver-is-not-about-you...",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44815911,
+    "by": "maxmcd",
+    "timeISO": "2025-08-06T18:39:13.000Z",
+    "textPlain": "For what it's worth I think Go's MVS somewhat meets the desire here. It does not require lockfiles, but also doesn't allow use of multiple different minor/patch versions of a library: https://research.swtch.com/vgo-mvsI believe Zig is also considering adopting it.If there are any dependencies with the same major version the algorithm simply picks the newest one of them all (but not the newest in the package registry), so you don't need a lockfile to track version decisions.Go's go.sum contains checksums to validate content, but is not required for version selection decisions.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44816271,
+    "by": "jchw",
+    "timeISO": "2025-08-06T19:07:15.000Z",
+    "textPlain": "Go MVS ought to be deterministic, but it still benefits from modules having lockfiles as it allows one to guarantee that the resolution of modules is consistent without needing to trust a central authority.Go's system may be worth emulating in future designs. It's not perfect (still requires some centralized elements, module identities for versions ≥2 are confusing, etc.) but it does present a way to both not depend strongly on specific centralized authorities without also making any random VCS server on the Internet a potential SPoF for compiling software. On the other hand, it only really works well for module systems that purely deal with source code and not binary artifacts, and it also is going to be the least hazardous when fetching and compiling modules is defined to not allow arbitrary code execution. Those constraints together make this system pretty much uniquely suited to Go for now, which is a bit of a shame, because it has some cool knock-on effects.(Regarding deterministic MVS resolution: imagine a@1.0 depending on b@1.0, and c@1.0 depending on a@1.1. What if a@1.1 no longer depends on b? You can construct trickier versions of this possibly using loops, but the basic idea is that it might be tricky to give a stable resolution to version constraints when the set of constraints that are applied depends on the set of constraints that are applied. There are possible deterministic ways to resolve this of course, it's just that a lot of these edge cases are pretty hard to reason about and I think Go MVS had a lot of bugs early on.)",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44813775,
+    "by": "lalaithion",
+    "timeISO": "2025-08-06T15:59:54.000Z",
+    "textPlain": "What if your program depends on library a1.0 and library b1.0, and library a1.0 depends on c2.1 and library b1.0 depends on c2.3? Which one do you install in your executable? Choosing one randomly might break the other library. Installing both _might_ work, unless you need to pass a struct defined in library c from a1.0 to b1.0, in which case a1.0 and b1.0 may expect different memory layouts (even if the public interface for the struct is the exact same between versions).The reason we have dependency ranges and lockfiles is so that library a1.0 can declare \"I need >2.1\" and b1.0 can declare \"I need >2.3\" and when you depend on a1.0 and b1.0, we can do dependency resolution and lock in c2.3 as the dependency for the binary.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44815925,
+    "by": "nemothekid",
+    "timeISO": "2025-08-06T18:40:25.000Z",
+    "textPlain": "Most of the issues in this thread and the article, are, IMO, problems with Node, not with lockfiles.>How could they know that liblupa 0.7.9, whenever it will be released, will continue to work with libpupa? Surely they can’t see the future? Semantic versioning is a hint, but it has never been a guarantee.Yes, this is a social contract. Not everything in the universe can be locked into code, and with Semantic versioning, we hope that our fellow humans won't unnecessarily break packages in non-major releases. It happens, and people usually apologize and fix, but it's rare.This has worked successfully if you look at RubyGems which is 6 years older than npm (although Gemfile.lock was introduced in 2010, npm didn't introduce it until 2017).RubyGems doesn't have the same reputation for dysfunction as Node does. Neither does Rust, Go, PHP, and Haskell. Even more that I probably don't use a daily basis. Node is the only language that I will come back and find a docker container that straight up won't build or a package that requires the entire dependency tree to update because one package pushed a minor-version change that ended up requiring a minor version change to Node, then that new version of Node isn't compatible with some hack that another package did in it's C extension.In fact, I expect some Node developer to read this article and deploy yet another tool that will break _everything_ in the build process. In other languages I don't even think I've ever really thought about dependency resolution in years.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44816325,
+    "by": "RangerScience",
+    "timeISO": "2025-08-06T19:11:02.000Z",
+    "textPlain": "No, no, a thousand times no.The package file (whatever your system) is communication to other humans about what you know about the versions you need.The lockfile is the communication to other computers about the versions you are using.What you shouldn't have needed is fully defined versions in your package files (but you do need it, in case some package or another doesn't do a good enough job following semver)So, this:  package1: latest\n\n  # We're stuck on an old version b/c of X, Y, Z\n  package2: ~1.2\n\n(Related: npm/yarn should use a JSON variant (or YAML, regular or simplified) that allows for comments for precisely this reason)",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44813774,
+    "by": "simonw",
+    "timeISO": "2025-08-06T15:59:44.000Z",
+    "textPlain": "I see lockfiles as something you use for applications you are deploying - if you run something like a web app it's very useful to know exactly what is being deployed to production, make sure it exactly matches staging and development environments, make sure you can audit new upgrades to your dependencies etc.This article appears to be talking about lockfiles for libraries - and I agree, for libraries you shouldn't be locking exact versions because it will inevitably pay havoc with other dependencies.Or maybe I'm missing something about the JavaScript ecosystem here? I mainly understand Python.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44813798,
+    "by": "boscillator",
+    "timeISO": "2025-08-06T16:01:25.000Z",
+    "textPlain": "Ok, but what happens when lib-a depends on lib-x:0.1.4 and lib-b depends on lib-x:0.1.5, even though it could have worked with any lib-x:0.1.*? Are these libraries just incompatible now? Lockfiles don't guarantee that new versions are compatible, but it guarantees that if your code works in development, it will work in production (at least in terms of dependencies).I assume java gets around this by bundling libraries into the deployed .jar file. That this is better than a lock file, but doesn't make sense for scripting languages that don't have a build stage. (You won't have trouble convincing me that every language should have a proper build stage, but you might have trouble convincing the millions of lines of code already written in languages that don't.)",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44815043,
+    "by": "wedn3sday",
+    "timeISO": "2025-08-06T17:32:25.000Z",
+    "textPlain": "I absolutely abhor the design of this site. I cannot engage with the content as Im filled with a deep burning hatred of the delivery. Anyone making a personal site: do not do this.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44813681,
+    "by": "ratelimitsteve",
+    "timeISO": "2025-08-06T15:53:40.000Z",
+    "textPlain": "anyone find a way to get rid of the constantly shifting icons at the bottom of the screen? I'm trying to read and the motion keeps pulling my attention away from the words toward the dancing critters.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44814018,
+    "by": "spooky_deep",
+    "timeISO": "2025-08-06T16:15:07.000Z",
+    "textPlain": "> The important point of this algorithm is that it’s fully deterministic.The algorithm can be deterministic, but fetching the dependencies of a package is not.It is usually an HTTP call to some endpoint that might flake out or change its mind.Lock files were invented to make it either deterministic or fail.Even with Maven, deterministic builds (such as with Bazel) lock the hashes down.This article is mistaken.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44813780,
+    "by": "egh",
+    "timeISO": "2025-08-06T16:00:24.000Z",
+    "textPlain": "we've all learned about things, not understood them, and thought \"wow, these people must be idiots. why would they have made this complicated thing? makes no sense whatsoever. I can't believe these people, idiots, never thought this through like I have.\"Most of us, fortunately, don't post these thoughts to the internet for anybody to read.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44813842,
+    "by": "andix",
+    "timeISO": "2025-08-06T16:04:53.000Z",
+    "textPlain": "Lockfiles are essential for somewhat reproducible  builds.If a transient dependency (not directly referenced) updates, this might introduce different behavior. if you test a piece of software and fix some bugs, the next build shouldn't contain completely different versions of dependencies. This might introduce new bugs.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44818546,
+    "by": "xp84",
+    "timeISO": "2025-08-06T22:21:11.000Z",
+    "textPlain": "This is weird to me. (Note: i'll use ruby terms like 'gem' and 'bundle' but the same basic deal applies everywhere)Generally our practice is to pin everything to major versions, in ruby-speak this means like `gem 'net-sftp', '~> 4.0'` which allows 4.0.0 up to 4.9999.9999 but not 5. Exceptions for non-semver such as `pg` and `rails` which we just pin to exact versions and monitor manually. This little file contains our intentions of which gems to update automatically and for any exceptions, why not.Then we encourage aggressive performances of `bundle update` which pulls in tons of little security patches and minor bugfixes frequently, but intentionally.Without the lockfile though, you would not be able to do our approach. Every bundle install would be a bundle update, so any random build might upgrade a gem without anyone even meaning to or realizing it, so, your builds are no longer reproducible.So we'd fix reproducibility by reverting to pinning everything to X.Y.Z, specifically to make the build deterministic, and then count on someone to go in and update every gem's approved version numbers manually on a weekly or monthly basis. (yeah right, definitely will happen).",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44814014,
+    "by": "freetonik",
+    "timeISO": "2025-08-06T16:14:47.000Z",
+    "textPlain": "In the world of Python-based end-user libraries the pinned (non-ranged) versions result in users being unable to use your library in an environment with other libraries. I’d love to lock my library to numpy 2.3.4, but if the developers of another library pin theirs to 2.3.5 then game over.For server-side or other completely controlled environments the only good reason to have lock files is if they are actually hashed and thus allow to confirm security audits. Lock files without hashes do not guarantee security (depending on the package registry, of course, but at least in Python world (damn it) the maintainer can re-publish a package with an existing version but different content).",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44817649,
+    "by": "_verandaguy",
+    "timeISO": "2025-08-06T20:47:18.000Z",
+    "textPlain": "> But... why would libpupa’s author write a version range that includes versions that don’t exist yet? How could they know that liblupa 0.7.9, whenever it will be released, will continue to work with libpupa? Surely they can’t see the future? Semantic versioning is a hint, but it has never been a guarantee.\n\n    > For that, kids, I have no good answer.\n\nBecause semantic version is good enough for me, as a package author, to say with a good degree of confidence, \"if security or stability patches land within the patch (or sometimes, even minor) fields of a semver version number, I'd like to have those rolled out with all new installs, and I'm willing to shoulder the risk.\"You actually kind-of answer your own question with this bit. Semver not being a guarantee of anything is true, but I'd extend this (and hopefully it's not a stretch): package authors will republish packages with the same version number, but different package contents or dependency specs. Especially newer authors, or authors new to a language or packaging system, or with packages that are very early in their lifecycle.There are also cases where packages get yanked! While this isn't a universally-available behaviour, many packaging systems acknolwedge that software will ship with unintentional vulnerabilities or serious stability/correctness issues, and give authors the ability to say, \"I absolutely have to make sure that nobody can install this specific version again because it could cause problems.\" In those cases, having flexible subdependency version constraints helps.It might be helpful to think by analogy here. If a structure is _completely rigid,_ it does have some desirable properties, not the least of which being that you don't have to account for the cascading effects of beams compressing and extending, elements of the structure coming under changing loads, and you can forget about accounting for thermal expansion or contraction and other external factors. Which is great, in a vacuum, but str",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44817653,
+    "by": "sjrd",
+    "timeISO": "2025-08-06T20:47:40.000Z",
+    "textPlain": "Having read the article and read some of the comments here, I think many could learn from dependency management rules in the Scala ecosystem.Scala uses Maven repositories (where the common practice is to use fixed dependency versions) but with different resolution rules:* When there are conflicting transitive versions, the highest number prevails (not the closest to the root).* Artifacts declare the versioning scheme they use (SemVer is common, but there are others)* When resolving a conflict, the resolution checks whether the chosen version is compatible with the evicted version according to the declared version scheme. If incompatible, an error is reported.* You can manually override a transitive resolution and bypass the error if you need to.The above has all the advantages of all the approaches advocated for here:* Deterministic, time-independent resolution.* No need for lock files.* No silent eviction of a version in favor of an incompatible one.* For compatible evictions, everything works out of the box.* Security update in a transitive dependency? No problem, declare a dependency on the new version. (We have bots that even automatically send PRs for this.)* Conflicting dependencies, but you know what you're doing? No problem, force an override.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44813763,
+    "by": "omnicognate",
+    "timeISO": "2025-08-06T15:59:04.000Z",
+    "textPlain": "What if your project also uses librupa, which also depends on liblupa? Follow the chain of reasoning from that thought, or maybe spend a couple of decades dealing with the horror created by people who didn't, and you'll get to lockfiles.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44814379,
+    "by": "hosh",
+    "timeISO": "2025-08-06T16:41:42.000Z",
+    "textPlain": "Many comments talk about how top-level and transitive dependencies can conflict. I think the article is suggesting you can resolve those by specifying them in the top-level packages and overriding any transitive package versions. If we are doing that anyways, it circles back to if lock files are necessary.Given that, I still see some consequences:The burden for testing if a library can use its dependency falls back on the application developer instead of the library developer. A case could be made that, while library developers should test what their libraries are compatible with, the application developer has the ultimate responsibility for making sure everything can work together.I also see that there would need to be tooling to automate resolutions. If ranges are retained, the resolver needs to report every conflict and force the developer to explicitly specify the version they want at the top-level. Many package managers automatically pick one and write it into the lock file.If we don’t have lock files, and we want it to be automatic, then we can have it write to the top level package manager and not the lock file. That creates its own problems.One of those problems comes from humans and tooling writing to the same configuration file. I have seen problems with that idea pop up — most recently, letting letsencrypt modify nginx configs, and now I have to manually edit those. Letsencrypt can no longer manage them. Arguably, we can also say LLMs can work with that, but I am a pessimist when it comes to LLM capabilities.So in conclusion, I think the article writer’s reasoning is sound, but incomplete. Humans don’t need lockfiles, but our tooling need lockfiles until it is capable of working with the chaos of human-managed package files.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44820667,
+    "by": "burnt-resistor",
+    "timeISO": "2025-08-07T04:46:33.000Z",
+    "textPlain": "Requirements provide absolute maximal bounds on interoperability. (This is why setting bounds to be only very recent versions arbitrarily is unhelpful because barely  much of the world exists in bleeding-edge, rolling releases.)A lockfile provide a specific, concrete, minimized, satisfied solution on what an application or library uses to operate.Generally, deployed applications have and save lock files so that nothing changes without testing and interactive approval.Libraries don't usually ship lock files to give the end user more flexibility.What solved system package dependency hell is allowing multiple versions and configurations of side-by-side dependencies rather than demanding a single, one-size-fits-all dependency that forces exclusion and creates unsatisfiable constraints.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44815553,
+    "by": "broken_broken_",
+    "timeISO": "2025-08-06T18:09:14.000Z",
+    "textPlain": "I agree with the premise, just use a specific version of your dependencies, that’s generally fine.However: You absolutely do need a lock file to store a cryptographic hash of each dependency to ensure that what is fetched has not been tampered with. And users are definitely not typing a hash when adding a new dependency to package.json or Cargo.toml.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44822896,
+    "by": "dent9",
+    "timeISO": "2025-08-07T10:50:01.000Z",
+    "textPlain": "This article is written by someone who has never worked outside a single ecosystem",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44813877,
+    "by": "nine_k",
+    "timeISO": "2025-08-06T16:07:04.000Z",
+    "textPlain": "The author seems to miss the point of version ranges. Yes, specific versions of dependencies get frozen in the lock file at the moment of building. But the only way to determine these specific versions is to run version resolution across the whole tree. The process finds out which specific versions within the ranges can be chosen to satisfy all the version constraints.This works with minimal coordination between authors of the dependencies. It becomes a big deal when you have several unrelated dependencies, each transitively requiring that libpupa. The chance they converge on the same exact version is slim. The chance a satisfying version can be found within specified ranges is much higher.Physical things that are built from many parts have the very same limitation: they need to specify tolerances to account for the differences in production, and would be unable to be assembled otherwise.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44818611,
+    "by": "chriswarbo",
+    "timeISO": "2025-08-06T22:29:49.000Z",
+    "textPlain": "I would agree with this if the author's examples were using hashes, rather than \"version numbers\". Specifying a hash lets us check whether any random blob of code is or isn't what we specified; versions can't do this, because any blob of code can claim to have any name, version, etc. it likes. As long as we have a hash, we don't need version numbers (or names, though it's usually helpful to provide them).Using hashes also makes it easier to distribute, fetch, proxy, etc. since there's no need for trust. In contrast, fetching code based only on (name and) version number requires more centralised repositories with a bunch of security hoops to jump through.Also, on that note, I can plug my own post on the topic: http://www.chriswarbo.net/blog/2024-05-17-lock_files_conside...",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44815951,
+    "by": "untech",
+    "timeISO": "2025-08-06T18:42:30.000Z",
+    "textPlain": "Don’t see it mentioned in the comments, but the names liblupa and libpupa are based on a penis joke.The joke is this:Lupa and Pupa received their paycheques, but the accountant messed up, so Lupa received payment belonging to Pupa, and Pupa — belonging to Lupa.“To Lupa” sounds like “dick head” when translated to Russian. The ending reads as if Pupa received a dick head, which means that he didn’t receive anything.I am not sure, but it could that the entire post intent is to get English-speaking folks to discuss “libpupa” and “liblupa”.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44819073,
+    "by": "pnt12",
+    "timeISO": "2025-08-06T23:34:00.000Z",
+    "textPlain": "To me, it's the opposite. In Python, every time I see 'requirements.txt' without lock files, I cry a bit.A: You're handling problem X and then unrelated problem Y suddenly arises because you're not locking package versions thoroughly. It's not fun.B: Now the opposite. You lock all versions of the libs you use. You use renovate or schedule time for updates periodically. You have a thorough test suite that you can automatically exercise when trying the new updates. You can apply the updates and deoy the new version to a test environment to run a final test manually. Things look good. You deploy to production and, quite often, things go smoothly.A is the blue pill, easy to taste but things are out of your control and will  bite you eventually. B is the red pill: you're in control, for the better or worst.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44814196,
+    "by": "jedberg",
+    "timeISO": "2025-08-06T16:27:03.000Z",
+    "textPlain": "Tangential, but what is up with all those flashing icons at the bottom of the page?  It made it nearly unreadable.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44817930,
+    "by": "pentagrama",
+    "timeISO": "2025-08-06T21:13:34.000Z",
+    "textPlain": "The OP is well-versed in UX design, so it's hard for me to understand why they shipped that feature showing user avatars in real time [1]. It's mostly useless, distracting, takes up valuable screen space, and feels creepy.[1] https://imgur.com/a/q1XVDZU",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44816106,
+    "by": "jacksavage",
+    "timeISO": "2025-08-06T18:55:28.000Z",
+    "textPlain": "Let's say \"A\" has a direct dependency on \"B\". The author of \"A\" knows how they use \"B\" and are qualified to state what versions of \"B\" that \"A\" is compatible with. Yes, some assumptions are made about \"B\" respecting semver. It's imperfect but helpful. If I'm writing package/app \"C\" and I consume \"A\", I'm not qualified to decide what versions of \"B\" to use without studying the source code of \"A\". Some situations necessitate this, but it doesn't scale.As a separate thought, it seems that it would be possible to statically analyze the usage of \"B\" in the source code of \"A\" and compare it to the public API for any version of \"B\" to determine API compatibility. This doesn't account for package incompatibility due to side effects that occur behind the API of \"B\", but it seems that it would get you pretty far. I assume this would be a solution for purely functional languages.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44818901,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-06T23:10:12.000Z",
+    "textPlain": "This works to a point. It would work well on a curated ecosystem. You could get to the point where one package with one version has everything you need. They are called SDKs.However for NPM you will hit issues where 2 packages need a different React version and if you want to use them both you need to pick. In addition it is better for security. The lock file is a distributed checksum. Not impervious to supply chain attacks but better equipped than trusting the package author not to retrospectively bump (I guess you could have a hash for this tbat included the downloaded source code and claimed deps).",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44813818,
+    "by": "alexandrehtrb",
+    "timeISO": "2025-08-06T16:02:30.000Z",
+    "textPlain": "I completely agree..NET doesn't have lock files either, and its dependency tree runs great.Using fixed versions for dependencies is a best practice, in my opinion.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44816696,
+    "by": "jmull",
+    "timeISO": "2025-08-06T19:39:35.000Z",
+    "textPlain": "> …why would [an] author write a version range that includes versions that don’t exist yet? … For that, kids, I have no good answer.When you first take a dependency, you typically want the latest compatible version, to have all the available bug fixes (especially security fixes).Once you’ve started building on top of a dependency you need stability and have to choose when to take updates.It’s about validating the dependency… on first use, there’s no question you will be validating its use in your app. Later, you have to control when you take an update so you can ensure you have a chance to validate it.BTW, of course semantics versioning isn’t perfect. It just lowers the risk of taking certain bug fixes, making it feasible to take them more frequently.The lock file just holds the state for this mechanism.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44814107,
+    "by": "palotasb",
+    "timeISO": "2025-08-06T16:21:14.000Z",
+    "textPlain": "The author is perhaps presenting a good argument for languages/runtimes like JavaScript/Node where dependencies may be isolated and conflicting dependencies may coexist in the dependency tree (e.g., \"app -> { libpupa 1.2.3 -> liblupa 0.7.8 }, { libxyz 2.0 -> liblupa 2.4.5 }\" would be fine), but the proposed dependency resolution algorithm...> Our dependency resolution algorithm thus is like this:> 1. Get the top-level dependency versions> 2. Look up versions of libraries they depend on> 3. Look up versions of libraries they depend on...would fail in languages like Python where dependencies are shared, and the steps 2, 3, etc. would result in conflicting versions.In these languages, there is good reason to define dependencies in a relaxed way (with constraints that exclude known-bad versions; but without pins to any specific known-to-work version and without constraining only to existing known-good versions) at first. This way dependency resolution always involves some sort of constraint solving (with indeterminate results due to the constraints being open-ended), but then for the sake of reproducibility the result of the constraint solving process may be used as a lockfile. In the Python world this is only done in the final application (the final environment running the code, this may be the test suite in for a pure library) and the pins in the lock aren't published for anyone to reuse.To reiterate, the originally proposed algorithm doesn't work for languages with shared dependencies. Using version constraints and then lockfiles as a two-layer solution is a common and reasonable way of resolving the dependency topic in these languages.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44818200,
+    "by": "_kst_",
+    "timeISO": "2025-08-06T21:42:49.000Z",
+    "textPlain": "The author seems to have assumed that readers are going to know that he's talking about NPM and JavaScript, and that \"lockfiles\" are an NPM-specific feature (to me, it means something completely different).Perhaps that's a valid assumption for readers of his blog, but once it appears here there are going to be a lot of readers who don't have the context to know what it's about.Can an \"NPM\" tag be added to the subject of this post? More generally, I encourage authors to include a bit more context at the top of an article.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44817907,
+    "by": "pyrale",
+    "timeISO": "2025-08-06T21:11:41.000Z",
+    "textPlain": "Semver was always a scam. Or rather, people were glad to scam themselves with semver rather than fixing their dependencies.Languages ecosystems who try to make it sane for developers usually end up with some sort of snapshot/bom system that lists that are compatible together, and that nudges lib developers to stay compatible with each other. I'm not going to pretend this is easy, because this is hard work on the side of lib devs, but it's invaluable for the community.Compared to that, people extolling the virtues of semver always seem to miss the mark.",
+    "parent": 44813397,
+    "depth": 1
+  },
+  {
+    "id": 44816672,
+    "by": "TJTorola",
+    "timeISO": "2025-08-06T19:38:20.000Z",
+    "textPlain": "I generally agree, pinning versions and then having some script to automatically update to capture security updates makes sense, except that it also assumes that every package is just using standard symver, which in my experience is something like 99% true.But it's also missing the value of hashes, even if every package used symver, then you had a script that could easily update to get recent security updates, we would still gain value from a lockfile hashes to protect against source code changing underneath the same version code.",
+    "parent": 44813397,
+    "depth": 1
+  }
+]

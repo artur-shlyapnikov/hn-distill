@@ -1,0 +1,90 @@
+[
+  {
+    "id": 44840143,
+    "by": "bawana",
+    "timeISO": "2025-08-08T18:29:59.000Z",
+    "textPlain": "Mem bandwidth sucks compared to Mac Studio ultra 3. And you cant add gpus easily although as an apu it is impressive and way better than nvidias gold box. Wendell said it better. Im waiting for the Mac Studio ultra 5",
+    "parent": 44839459,
+    "depth": 1
+  },
+  {
+    "id": 44840137,
+    "by": "dylan604",
+    "timeISO": "2025-08-08T18:29:44.000Z",
+    "textPlain": "I read the title and thought that sounds like something...saw the domain at the end, yup. Exactly.",
+    "parent": 44839459,
+    "depth": 1
+  },
+  {
+    "id": 44840063,
+    "by": "sliken",
+    "timeISO": "2025-08-08T18:23:19.000Z",
+    "textPlain": "Apparently the frameworks desktop's 5g bit network isn't fast enough to scale well with LLM inference workloads, even for a modest GPU.  Anyone know what kind of network is required to scale well for a single modest GPU?",
+    "parent": 44839459,
+    "depth": 1
+  },
+  {
+    "id": 44839648,
+    "by": "_joel",
+    "timeISO": "2025-08-08T17:40:59.000Z",
+    "textPlain": "> usually resulting in one word repeating ad infinitumI've had that using gemini (via windsurf). Doesn't seem to happen with other models. No idea if there's any correlation but it's an interesting failure mode.",
+    "parent": 44839459,
+    "depth": 1
+  },
+  {
+    "id": 44839874,
+    "by": "hinkley",
+    "timeISO": "2025-08-08T18:07:05.000Z",
+    "textPlain": "Jeff! Someone needs to make Framework MBs work in a blade arrangement, and you seem to be the likely person to get it done.",
+    "parent": 44839459,
+    "depth": 1
+  },
+  {
+    "id": 44840048,
+    "by": "lifeinthevoid",
+    "timeISO": "2025-08-08T18:22:22.000Z",
+    "textPlain": "Setup looks very sexy.",
+    "parent": 44839459,
+    "depth": 1
+  },
+  {
+    "id": 44839852,
+    "by": "oblio",
+    "timeISO": "2025-08-08T18:05:27.000Z",
+    "textPlain": "Those numbers are better than I was expecting.",
+    "parent": 44839459,
+    "depth": 1
+  },
+  {
+    "id": 44840121,
+    "by": "geerlingguy",
+    "timeISO": "2025-08-08T18:28:24.000Z",
+    "textPlain": "In the case of llama.cpp's RPC mode, the network isn't the limiting factor for inference, but for distributing layers to nodes.I was monitoring the network while running various models, and for all models, the first step was to copy over layers (a few gigabytes to 100 or so GB for the huge models), and that would max out the 5 Gbps connection.But then while warming up and processing, there were only 5-10 Mbps of traffic, so you could do it over a string and tin cans, almost.But that's a limitation of the current RPC architecture, it can't really parallelize processing, so as I noted in the post and in my video, it kinda uses resources round-robin style, and you can only get worse performance across the entire cluster than on a single node for any model you can fit on the single node.",
+    "parent": 44840063,
+    "depth": 2
+  },
+  {
+    "id": 44840126,
+    "by": "rtkwe",
+    "timeISO": "2025-08-08T18:28:44.000Z",
+    "textPlain": "No network interconnect is going to scale well until you get into the expensive enterprise realm where infiniband and other direct connect copper/fiber reigns. The issue is less raw bandwidth but latency. Network is inherently 100x+ slower than memory access so when you start sharing a memory intensive workload like an LLM across a normal network it's going to crater your performance unless the work can be somewhat chunked to keep communication between nodes on the network to a minimum.",
+    "parent": 44840063,
+    "depth": 2
+  },
+  {
+    "id": 44839708,
+    "by": "mattnewton",
+    "timeISO": "2025-08-08T17:48:37.000Z",
+    "textPlain": "This is usually a symptom of greedy sampling (always picking the most probable token) on smaller models. It's possible that configuration had different sampling defaults, ie. was not using top p or temperature. I'm not familiar with distributed-llama but from searching the git repo it looks like it at least takes a --temperature flag and probably has one for top p.I'd recommend rerunning the benchmarks with the sampling methods explicitly configured the same in each tool. It's tempting to benchmark with all the nondeterminism turned off, but I think it's less useful since in practice for any model you're self hosting for real work you're going to probably want top-p sampling or something like it and you want to benchmark the implementation of that too.I've never seen gemini do this though, that'd be kinda wild if they shipped something that samples that way. I wonder if windsurf was sending a different config over the api or if this was a different bug.",
+    "parent": 44839648,
+    "depth": 2
+  },
+  {
+    "id": 44839771,
+    "by": "mrbungie",
+    "timeISO": "2025-08-08T17:55:19.000Z",
+    "textPlain": "Yep, sometimes Gemini for some reason ends up in what I call \"ergodic self-flagellation\".Here are some examples: https://www.reddit.com/r/GeminiAI/comments/1lxqbxa/i_am_actu...",
+    "parent": 44839648,
+    "depth": 2
+  }
+]

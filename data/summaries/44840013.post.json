@@ -1,0 +1,8 @@
+{
+  "id": 44840013,
+  "lang": "ru",
+  "summary": "- **Локальный стек**: Ollama (LLM), assistant-ui (веб-интерфейс), Apple `container` (изолированные ВМ), Playwright (браузер), coderunner (MCP-сервер с Jupyter).  \n- **Цель**: чат, запуск кода и доступ в интернет без облаков и утечек данных.  \n- **Проблемы**:  \n  – Модели Ollama пока не поддерживают вызовы инструментов.  \n  – Создание нативного Mac-приложения провалилось: `a0.dev` заточен под iOS, Electron + NextJS оказались геморроем.  \n  – Apple `container` часто падает с `Trap`; помогает `pkill` + перезапуск.  \n- **Решения**:  \n  – Веб-версия `assistant-ui` через `ai-sdk` с выпадающим списком моделей (локальных и облачных).  \n  – Jupyter в изолированной ВМ, доступен по MCP: `http://coderunner.local:8222/mcp`.  \n  – Конфиг для Claude Desktop: `\"coderunner\": { \"httpUrl\": \"http://coderunner.local:8222/mcp\" }`.",
+  "inputHash": "2aae9dbf1876d2ebeaceae6e73f4a1420ed2a75f3c91373fe2a54c681d6cb2fc",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-08T18:36:13.517Z"
+}

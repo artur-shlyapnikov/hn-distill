@@ -1,0 +1,66 @@
+[
+  {
+    "id": 44803474,
+    "by": "rnhmjoj",
+    "timeISO": "2025-08-05T19:59:56.000Z",
+    "textPlain": "> What does it protect against?Unless you're doing SELinux or using some tool like firejail, absolutely nothing?The average desktop is completely insecure, regardless of the display protocol. If a program is running as your user it's already game over: it can do whatever it likes. For example, I can simply change your shell profile to add an LD_PRELOAD shim, hook some libc syscall wrapper and run arbitrary code in any user process. There's no need to log key presses.",
+    "parent": 44768745,
+    "depth": 1
+  },
+  {
+    "id": 44803616,
+    "by": "farkin88",
+    "timeISO": "2025-08-05T20:10:59.000Z",
+    "textPlain": "X11's SECURITY extension was its long-forgotten stab at sandboxing: flip a bit and every client is either trusted or untrusted. It does kill trivial key-logging, but it also breaks the clipboard, disables GLX and makes various apps fall over, leaving the desktop unusable while Firefox somehow works just fine. A cool reminder that X11 could've had proper sandboxing 25 years ago, but the UX cost sank it and Wayland is the lifeboat now.",
+    "parent": 44768745,
+    "depth": 1
+  },
+  {
+    "id": 44807321,
+    "by": "wkat4242",
+    "timeISO": "2025-08-06T03:34:42.000Z",
+    "textPlain": "I remember back then xauth didn't even exist. You could simply dump a window on anyone else's screen. It was heaven for practical jokers like me.",
+    "parent": 44768745,
+    "depth": 1
+  },
+  {
+    "id": 44804841,
+    "by": "ChocolateGod",
+    "timeISO": "2025-08-05T21:48:47.000Z",
+    "textPlain": "To me it seems the security extension is more useful for protecting elevated prompts (such as running an application as admin) than actually sandboxing between applications.",
+    "parent": 44768745,
+    "depth": 1
+  },
+  {
+    "id": 44804082,
+    "by": "eqvinox",
+    "timeISO": "2025-08-05T20:49:45.000Z",
+    "textPlain": "> It's widely known that X11 has a problem with, for example, keyloggers. The issue is not that keyloggers are possible through security holes -- but keyloggers are trivial on X11, as they are part of normal operation and don't require exploits. It is one of the reasons why people push for Wayland.Sorry, but did I miss news about a keylogger epidemic? On Linux?In all seriousness, is this solving an actual problem or an imagined one?And even assuming a 'Yes': A problem that isn't better solved elsewhere? How did the keylogger get access to the system and its desktop session? What else does it have access to?",
+    "parent": 44768745,
+    "depth": 1
+  },
+  {
+    "id": 44804709,
+    "by": "themafia",
+    "timeISO": "2025-08-05T21:38:55.000Z",
+    "textPlain": "> It is one of the reasons why people push for Wayland.Really?  You think they'd just push for a _firewall_.  Wouldn't that just solve the actual problem?  Oh,  wait,  yea,  X11 disabled TCP networking by default more than a decade ago.> it cannot use the active X11 connection to spy on your keyboard.You understand what /dev/input/* is,  right?> I understand that this means this blog post lacks substance.The whole undertaking lacks substance.Too many projects drank the early 2000s kool-aid and thought they would get a second suck at the salve (a.k.a \"start from scratch\").  It never worked out and you just fraction an already annoyed userbase into an overtly warring userbase.  I can't think of anything more wasteful of talent and energy.",
+    "parent": 44768745,
+    "depth": 1
+  },
+  {
+    "id": 44804175,
+    "by": "zzo38computer",
+    "timeISO": "2025-08-05T20:57:57.000Z",
+    "textPlain": "I think a proxy server might be a better way to handle security, than the way it is done as described in this article. (On a computer, the security will need to consider more than only the X server, but that will be one part of it.)",
+    "parent": 44768745,
+    "depth": 1
+  },
+  {
+    "id": 44810657,
+    "by": "naikrovek",
+    "timeISO": "2025-08-06T11:38:36.000Z",
+    "textPlain": "Plan 9 had this all sorted out, didn't it?  It didn't use X11, it used something called 8½ which became the Plan 9 display server, and used 9p as the communication protocol.What was clever about it was that each window got its own view of the keyboard and mouse.  Literally their own virtual devices in /dev.  Each window only saw what went on when that window was in focus, and for the mouse, it only saw what the mouse was doing when the mouse was within the boundaries of the window and that window was directly under the cursor (no windows between the cursor and the window in question.)9P isn't encrypted, so these remote sessions weren't encrypted, but the Bell Labs folks knew that X11 security wasn't good and seem to have evolved it well.  I wonder what things would be like if we didn't latch onto 40 year old operating systems like our lives depended on them.If we can't get a useful Plan9 going (one that has a web browser and to which applications can easily be ported) maybe we can bring X11 forward a bit with inspiration from Plan 9.  Wayland has been \"2 years away\" for about 15 years, and that shows no signs of changing.I'm told that the entire source code for Plan 9 can be held in the mind of a single person, and that any skilled C developer can read what's going on with ease.  I don't know if that's true, but if such a display server has semi-obvious improvements over X11, maybe we can come up with an X12 which adopts these improvements.  We do not need to maintain backwards compatibility, we only need to support X11 and X12 at the same time, I imagine.",
+    "parent": 44768745,
+    "depth": 1
+  }
+]

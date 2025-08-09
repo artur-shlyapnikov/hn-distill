@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44788495,
+    "by": "miiiiiike",
+    "timeISO": "2025-08-04T16:57:31.000Z",
+    "textPlain": "Whenever I look into IP cameras I close the tabs because it feels like I walked into a store brand cereal aisle where all the boxes are exclaiming “Now with fewer razor blades!” or “Only half the reported cases of salmonella than similar store brands!”What’s a good brand for IP cameras? What’s the best, in terms of open source support and reliability?I need a mix of PoE indoor and outdoor cameras. 15 outdoor/10 indoor. Cost isn't a factor, I need something reliable.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44787259,
+    "by": "roacato",
+    "timeISO": "2025-08-04T15:33:31.000Z",
+    "textPlain": "Despite the name, openipc isn't fully open - the main recorder/encoder app (majestic) is closed source. Many openipc developers have moved to an alternative project named \"thingino\" which has a fully open source recorder/encoder/streamer.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44787781,
+    "by": "cnst",
+    "timeISO": "2025-08-04T16:07:24.000Z",
+    "textPlain": "I looked at the list on https://thingino.com/ , and one of the cheapest cameras supported by thingino is Wansview Q5.I'm NOT exactly sure on the exact version, because 2 different versions exist on Amazon, 3MP/2019 and 5MP/2024, in 2 colors each, but the older 3MP version is available for under $20.00 USD with FBA:https://www.amazon.com/stores/Wansview/page/1E1F86AB-C01A-45...https://www.amazon.com/dp/B07QKXM2D3 — $16.14 FBA for black 3MP Q5 Wansviewhttps://www.amazon.com/dp/B07QKWPT8J — $19.78 FBA for white 3MP Q5 WansviewIt's also been on sale at $9.99 on Woot a few months ago, but sold out.https://electronics.woot.com/offers/wansview-2k-ip-security-...EDIT: looks like the cheapest one in the US is actually Cinnado D1 2k, it's under $14.99 on Amazon.https://github.com/wltechblog/thingino-installers/tree/main/...https://www.amazon.com/dp/B0CBBT5RMP — ≤$14.99 FBA for Cinnado D1",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44790134,
+    "by": "jtchang",
+    "timeISO": "2025-08-04T19:08:24.000Z",
+    "textPlain": "A number of years back I got bored during covid and decided to reverse engineer as much of the Wyze Cam V2 camera I could and make some custom firmware for it. Right now that lives at https://github.com/openmiko/openmikoThat said it's really hard to make long term supportable open source camera software/firmware. And when picking cameras it is even harder because the market as it stands now does not let you have it all. You need to pick what facets you really care about.Also keep in mind even the above code is not really opensource all the way: I still had to load the driver binaries. Not sure that source will ever be released. The kernel is also old as heck.What I do feel good about though is saving these old cameras from the dumpster if Wyze ever stops supporting them. The firmware works for simple cases: just load it up and you can start curl'ing frames. I used it in scripts to put together timelapse videos with ffmpeg. No need to screw around with authentication, phones apps, email, etc.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44790037,
+    "by": "KyleBerezin",
+    "timeISO": "2025-08-04T18:59:55.000Z",
+    "textPlain": "I actually tried this before and it led nowhere. The list of supported hardware is specifically referring to the SoC, not a brand or anything. It can be very hard determining which physical cameras have which chips. On top of that, despite the name, most of the supported devices seem to be for webcams, and not chips used in modern off-the-shelf IP cameras. I really wish there was a ground up guide that used an obtainable, normal camera.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44788808,
+    "by": "pbasista",
+    "timeISO": "2025-08-04T17:20:30.000Z",
+    "textPlain": "This seems nice. But if I am looking correctly, it does not support the devices from the mainstream brands like Hikvision.I am unaware of how good those typical $20 cameras are. Maybe they are decent. But for instance some of the Hikvision ones with 8MP sensors support 4K@25 fps.I think that it would be great if there would be an open source firmware for higher-end cameras like those.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44760465,
+    "by": "roscas",
+    "timeISO": "2025-08-01T18:20:58.000Z",
+    "textPlain": "We need more projects like this. I have a tp-link \"tapo\" home \"security\" camera.Setup is made online. Then try to use that without a permanent internet connection... it turns itself off.It needs a permament connection to tp-link. Now you imagine why.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44790175,
+    "by": "dang",
+    "timeISO": "2025-08-04T19:12:02.000Z",
+    "textPlain": "Related:Show HN: WFB-ng – long range high speed link for drones and robotics - https://news.ycombinator.com/item?id=41293934 - Aug 2024 (3 comments)Thingino: Camera firmware derived from OpenIPC focused on the Ingenic SoC - https://news.ycombinator.com/item?id=40261046 - May 2024 (2 comments)OpenIPC is an alternative open firmware for your IP camera - https://news.ycombinator.com/item?id=39571025 - March 2024 (70 comments)OpenIPC: Alternative open firmware for your IP camera - https://news.ycombinator.com/item?id=37812217 - Oct 2023 (59 comments)OpenIPC: Alternative open firmware for your IP camera - https://news.ycombinator.com/item?id=35975383 - May 2023 (1 comment)",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44786782,
+    "by": "happyPersonR",
+    "timeISO": "2025-08-04T15:01:36.000Z",
+    "textPlain": "Is there a list of camera models that are known compatible? I took a quick glance, this looks really cool!",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44792047,
+    "by": "TheMagicHorsey",
+    "timeISO": "2025-08-04T22:28:45.000Z",
+    "textPlain": "The licensing on this project is wonky.  They have an MIT license, but then they say you can't use the software for commercial purposes without contacting them.  That's in contradiction to an MIT license.  An MIT license is basically \"use it for anything\".  If you don't want that, then use some kind of \"copyleft\" license for non-commercial users, and specify separate commercial terms for users who want to keep closed source with their modifications.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44788946,
+    "by": "infogulch",
+    "timeISO": "2025-08-04T17:30:33.000Z",
+    "textPlain": "Does this firmware work with open source camera recorders (\"NVR\") like Shinobi [1], Frigate [2], ZoneMinder [3], etc?[1]: https://shinobi.video/ [2]: https://frigate.video/ [3]: https://zoneminder.com/",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44787049,
+    "by": "cnst",
+    "timeISO": "2025-08-04T15:19:00.000Z",
+    "textPlain": "I've looked into it a few years ago when I was shopping and setting up my security cams.  Super cool!But, unfortunately, I wasn't able to translate any supported devices into an Amazon ASIN in the US.Normally, many services on the internet only work in America.  With OSS security cams, it seems to be the exact opposite.  Eastern Europe and China are way ahead here.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44792685,
+    "by": "ACCount36",
+    "timeISO": "2025-08-04T23:48:14.000Z",
+    "textPlain": "Fun fact: none of the cheap IP camera SoC vendors implement v4l2.They all have their own off-spec kernel drivers, compatible with absolutely nothing. You even have to rewrite camera sensor drivers from scratch for every vendor's middleware.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44790980,
+    "by": "MostlyStable",
+    "timeISO": "2025-08-04T20:27:33.000Z",
+    "textPlain": "I recently got a FOSCAM 3k wifi camera. It supports the RTSP stream standard and CGIProxy commands over http. After the initial setup (mostly just providing it with your network details), you never need to use the official app or cloud anything and it can be restricted to only your LAN with router firewall rules. This is, at least for me, a \"good enough\" solution that is not dependent on any cloud infrastructure and can be integrated, completely locally, with whatever services you want.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44790597,
+    "by": "illwrks",
+    "timeISO": "2025-08-04T19:47:41.000Z",
+    "textPlain": "Somewhat related…  I have an old dead Wi-Fi camera, it was always buggy but was useful when it worked initially.With a spare raspberry pi kicking around, I’ve put together a better solution using Motion, a Webcam, iNotify and a Dropbox uploader script.\nIt works like a charm, after a powerloss etc the pi boots up, starts Motion and then starts watching for events, motion triggers and saves video clips to a folder, iNotify watches for new files saved and then uploads to Dropbox.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44791161,
+    "by": "radredgreen2",
+    "timeISO": "2025-08-04T20:47:35.000Z",
+    "textPlain": "This may be a good place to introduce my HomeKit based Wyze v3 camera reflashing side project.  If you're already in the apple ecosystem and want cheap, secure cameras, Wyrecam is an open source, vanilla HomeKit Secure Video (HKSV) firmware: https://github.com/radredgreen/wyrecam.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44788165,
+    "by": "ck2",
+    "timeISO": "2025-08-04T16:35:34.000Z",
+    "textPlain": "this is neat too as it can control some of my camerashttps://team.openipc.org/ipcam_dms/(note the english translated link)",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44790042,
+    "by": "codr7",
+    "timeISO": "2025-08-04T19:00:27.000Z",
+    "textPlain": "Sounds promising but soldering electronics is pretty far outside of my comfort zone, think I'm going to let this marinate for a while.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44789131,
+    "by": "boredemployee",
+    "timeISO": "2025-08-04T17:45:37.000Z",
+    "textPlain": "tangentially, does anyone know of any open-source and reliable implementations of the \"AI\" algorithms used in those expensive cameras? I'm looking to use features like face recognition, people counting, and similar capabilities, but with my own hardware and regular cameras. someone said to \"avoid at all costs yolo\" so i'm looking for alternatives",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44797706,
+    "by": "miladyincontrol",
+    "timeISO": "2025-08-05T13:28:39.000Z",
+    "textPlain": "I'll admit I use reolink, however isolated on vlans with zero connectivity allowed other than caddy's L4 module encrypting and encapsulating it's stream which then is restricted to only my frigate setup.Even if I had a higher level of trust on the hardware and firmware, principle of least privilege.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44789906,
+    "by": "asdefghyk",
+    "timeISO": "2025-08-04T18:48:17.000Z",
+    "textPlain": "I would post this if to IPVM ( IPvm.com ) if  I had not been kicked out, because I did not have a company email address ...",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44791226,
+    "by": "cyanydeez",
+    "timeISO": "2025-08-04T20:54:50.000Z",
+    "textPlain": "Seems like figuring out the SoC is the hard part.",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44763108,
+    "by": "systemswizard",
+    "timeISO": "2025-08-01T22:22:35.000Z",
+    "textPlain": "This is great",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44791497,
+    "by": "geophph",
+    "timeISO": "2025-08-04T21:20:51.000Z",
+    "textPlain": "would love to see something like this for ycam homemonitor products",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44791963,
+    "by": "john_kl79",
+    "timeISO": "2025-08-04T22:18:03.000Z",
+    "textPlain": "[dead]",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44790513,
+    "by": "john_kl79",
+    "timeISO": "2025-08-04T19:40:06.000Z",
+    "textPlain": "[dead]",
+    "parent": 44758463,
+    "depth": 1
+  },
+  {
+    "id": 44790784,
+    "by": "qmr",
+    "timeISO": "2025-08-04T20:06:16.000Z",
+    "textPlain": "Last time I bought cameras refurbished Wyze cams were available stupid cheap, $5-$10 or something.",
+    "parent": 44787781,
+    "depth": 2
+  },
+  {
+    "id": 44788513,
+    "by": "defraudbah",
+    "timeISO": "2025-08-04T16:59:16.000Z",
+    "textPlain": "is thingino an alternative to open ipc? A newbie questionupdate seems like it's software for a camera module. Now I have to figure how to match that with cameras or how to connect it to my raspberry pi",
+    "parent": 44787781,
+    "depth": 2
+  },
+  {
+    "id": 44797359,
+    "by": "n8henrie",
+    "timeISO": "2025-08-05T12:48:36.000Z",
+    "textPlain": "Learning to do something like this (reverse engineer electronics and flash them with custom firmware) from scratch is one of my life dreams!Having read https://github.com/openmiko/openmiko/blob/master/doc/develop... -- is there anywhere that you document how you learned to do this / how you got started with this project?I would love to find a \"zero to hello world, from scratch\" type tutorial for putting custom firmware on a camera not supported by one of the existing projects (or a similar writeup detailing how one of these projects got started in the first place).",
+    "parent": 44790134,
+    "depth": 2
+  },
+  {
+    "id": 44795835,
+    "by": "themactep",
+    "timeISO": "2025-08-05T09:04:00.000Z",
+    "textPlain": "Hey, Openmiko is a nice project. With your baggage of knowledge, I would love to see you contributing to Thingino as well. While we still depend on binary blobs from the manufacturer SDK, there is a work on alternatives to replace what is replaceable with open stack. Join the team, have fun.",
+    "parent": 44790134,
+    "depth": 2
+  },
+  {
+    "id": 44790234,
+    "by": "wltechblog",
+    "timeISO": "2025-08-04T19:17:50.000Z",
+    "textPlain": "You might have better luck with the Thingino project, we target specific devices.",
+    "parent": 44790037,
+    "depth": 2
+  },
+  {
+    "id": 44790482,
+    "by": "fock",
+    "timeISO": "2025-08-04T19:36:47.000Z",
+    "textPlain": "looking at the russian sponsors linked on the russian site I suppose this is mostly for the  people putting these things on drones or in trenches... I suppose they obtain their cameras somewhere...",
+    "parent": 44790037,
+    "depth": 2
+  },
+  {
+    "id": 44789214,
+    "by": "wltechblog",
+    "timeISO": "2025-08-04T17:51:32.000Z",
+    "textPlain": "Thingino doesn't support cams with ARM processors, we only support the chips made by Ingenic (which are a MIPS superset they call Xburst). We have a number of 4 megapixel (not 4k) devices we support, and are in the process of adding support for the next generation of Ingenic chips (Xburst2) which will bring up support for 8 megapixel (4k) devices.We're also focused mostly on the less expensive models, because they're obviously within reach for a lot more folks but also they're almost always subsidized by the expectation that a discounted purchase price is made up for by the vendor's cloud subscription. You can get a LOT of great camera models for a low price.I will say that there is a story about Hikvision that would likely steer most folks away from their brand.. it's bad enough that Google won't index it... With that said, I don't believe anyone should be trusting any third party with their video data in the first place...",
+    "parent": 44788808,
+    "depth": 2
+  },
+  {
+    "id": 44787484,
+    "by": "Sanzig",
+    "timeISO": "2025-08-04T15:47:33.000Z",
+    "textPlain": "I have two Tapo units at home, they seem to be working fine without an internet connection.I created a new subnet and an associated WiFi SSID for it, connected the Tapo cameras, and set them up to act as RTSP cams. I then firewalled the subnet off from anything other than my Frigate NVR server and gateway. They still work fine, they are streaming video to Frigate without complaint. Maybe because they have DNS from my gateway still? (I should probably block that off, it's a common data exfil vector).Very annoying that internet connectivity is required for initial setup, I'll agree there. They could have just had a bare bones web interface.",
+    "parent": 44760465,
+    "depth": 2
+  },
+  {
+    "id": 44794855,
+    "by": "raffraffraff",
+    "timeISO": "2025-08-05T06:21:52.000Z",
+    "textPlain": "It's hard to say for sure if this firmware will work on a specific Tapo camera, but the Tapo TC60 uses the Ingenic T31 SOC, which is supported. If there's a strong chance that their cameras use any of the Ingenic SOCs on this list, it would be worthwhile trying.",
+    "parent": 44760465,
+    "depth": 2
+  },
+  {
+    "id": 44786934,
+    "by": "cnst",
+    "timeISO": "2025-08-04T15:10:33.000Z",
+    "textPlain": "Yup, requiring permanent internet connection is such BS.I had one of these \"no-brand\" cameras that had an integrated MicroSD card, which would make you think that it'd work just fine even without the internet.We had no power in Austin for several days, but I kept my camera on a portable battery, because, why not?After the power and the internet were restored and I checked the app, turns out, nothing was recorded!  Even though it was online the whole time.Such a major disappointment.",
+    "parent": 44760465,
+    "depth": 2
+  },
+  {
+    "id": 44793057,
+    "by": "ACCount36",
+    "timeISO": "2025-08-05T00:40:45.000Z",
+    "textPlain": "Most of their code is MIT, but there's a proprietary streamer engine at the heart of it.",
+    "parent": 44792047,
+    "depth": 2
+  },
+  {
+    "id": 44792165,
+    "by": "baby_souffle",
+    "timeISO": "2025-08-04T22:43:25.000Z",
+    "textPlain": "Yes. I have a few of these cameras all pointed to a frigate instance.This firmware offers a variety of protocols so basically anything designed for viewing streaming video should just work",
+    "parent": 44788946,
+    "depth": 2
+  },
+  {
+    "id": 44793203,
+    "by": "arjvik",
+    "timeISO": "2025-08-05T01:02:27.000Z",
+    "textPlain": "I'm confused why such a device needs to run Linux instead of an RTOS",
+    "parent": 44792685,
+    "depth": 2
+  },
+  {
+    "id": 44798709,
+    "by": "TheCondor",
+    "timeISO": "2025-08-05T14:47:41.000Z",
+    "textPlain": "Their cameras and hardware are pretty solid.   They work with ONVIF reasonably well too.It would be awesome if there was an openfirmware option for this hardware.",
+    "parent": 44790980,
+    "depth": 2
+  }
+]

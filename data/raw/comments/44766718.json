@@ -1,0 +1,170 @@
+[
+  {
+    "id": 44767015,
+    "by": "treetalker",
+    "timeISO": "2025-08-02T12:23:01.000Z",
+    "textPlain": "I remember that when I was first learning Spanish in high school, I found a piece of (Windows) software that pelted you with a series of pairs of an infinitive and a tense, and you had to conjugate the infinitive accordingly. (Spanish conjugation typically changes the end of the word; irregular verbs tend to involve stem changes). It was fantastic practice and really ingrained the rules; I became a whiz at it.When I started learning Russian, the declensions (like the ones mentioned in the article) really threw me for a loop. I looked all over for a similar app to explain the patterns and drill rote practice, but never found one.While slightly off-topic, does anyone know of such an app (web-based or macOS/iOS)?",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44767133,
+    "by": "dmurray",
+    "timeISO": "2025-08-02T12:41:44.000Z",
+    "textPlain": "For the 800 names that were missing declension data in the database, it seems like the most straightforward thing to do would be to assign their declensions by hand. It shouldn't take a native speaker more than a couple of hours (if some name they haven't seen before is ambiguous, then whatever they guess at least won't sound obviously wrong to other native speakers). Alternatively, very cheap to ask an LLM to do it.Encoding them into a trie like this would still be a good way to distribute the result, but you don't have to rely on the trie also being a good way to guess the declensions.",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44767118,
+    "by": "robin_reala",
+    "timeISO": "2025-08-02T12:39:33.000Z",
+    "textPlain": "No idea if Rails copes with this automatically, but it feels like the sort of magic it’s historically been really good at. I remember reading the source code for `pluralise` and finding that someone had encoded the pluralisation rules including irregular cases for Welsh.",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44768226,
+    "by": "silvestrov",
+    "timeISO": "2025-08-02T15:07:19.000Z",
+    "textPlain": "One more optimization idea: instead of the trie mapping to the suffix string directly, then instead make an array of unique suffixes and let the trie map to the index into the array, e.g.    const suffixes = [\",,,\", \"a,u,u,u\", \",,i,s\", \",,,s\", \"i,a,a,a\", ...];\n\nand then use the index of this list in the    var serializedInput = \"{e:{n:{ein:0_r: ...",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44766983,
+    "by": "jedimastert",
+    "timeISO": "2025-08-02T12:17:48.000Z",
+    "textPlain": "It's like an interview question from hell. Reversing a trie is those things that I might ever use once in my life, but that one time I will look like an absolute wizard.",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44769388,
+    "by": "SonOfLilit",
+    "timeISO": "2025-08-02T17:17:32.000Z",
+    "textPlain": "My brain is screaming that there has to be a solution in <1kb uncompressed (for the non-strict version).Maybe generating a minimal list of regexes that classifies 100% of names correctly? Maybe a big enough bloom filter? Maybe like a bloom filter but instead of hashes we use engineered features?",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44767671,
+    "by": "radpanda",
+    "timeISO": "2025-08-02T13:56:38.000Z",
+    "textPlain": "> There are, in fact, 88 approved Icelandic names with this exact pattern of declension, and they all end with “dur”, “tur” or “ður”.…> But that quickly breaks down. There are other names ending with “ður” or “dur” that follow a different pattern of declensionMy “everything should be completely orderly” comp-sci brain is always triggered by these almost trivial problems that end up being much more interesting.Is the suffix pattern based on the pronunciation of the syllable(s) before the suffix? If one wanted to improve upon your work for unknown names, rather than consider the letters used, would you have to do some NLP on the name to get a representation of the pronunciation and look that up (in a trie or otherwise)?",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44769082,
+    "by": "mikepurvis",
+    "timeISO": "2025-08-02T16:45:51.000Z",
+    "textPlain": "I’m surprised there’d be a benefit to doing this in the JS vs having your database just return all the cases with the name and then you select which one you need at display time — basically in the same layer that’s populating your localized language templates.That said I’m curious how this manifests with cross-language situations. I guess the Icelandic UI displaying French names would just always use the nomitive case, and likewise for the English UI displaying Icelandic names? I assume this all mostly matters where the user is directly being addressed, or perhaps in an admin panel (“user x responded to user y”).",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44767110,
+    "by": "lifthrasiir",
+    "timeISO": "2025-08-02T12:38:31.000Z",
+    "textPlain": "A possible alternative, especially for beygla/strict, would be perfect hashing.",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44769107,
+    "by": "tempodox",
+    "timeISO": "2025-08-02T16:48:00.000Z",
+    "textPlain": "Is Icelandic name declension deterministic enough that this method reliably works?  That would be a lucky break.  Language is typically quite messy.",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44768553,
+    "by": "ryanjshaw",
+    "timeISO": "2025-08-02T15:44:51.000Z",
+    "textPlain": "An interesting article but I was surprised there was no discussion about what humans do to address this problem?",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44767754,
+    "by": "sneak",
+    "timeISO": "2025-08-02T14:06:04.000Z",
+    "textPlain": "This seems complicated.Why not just reuse the existing standard and change everyone’s last names to Kim, Lee, or Park?",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44769302,
+    "by": "ralferoo",
+    "timeISO": "2025-08-02T17:08:49.000Z",
+    "textPlain": "I mean, it's an interesting problem for Icelandic sites, but because he's explaining the basic concepts of how declensions work, it seems like he's aiming this at non-Icelandic developers. If they were to use this, no doubt it'll end up butchering names in some other language and lead to all manner of hard to track down bugs.For example, if an English person called Arthur uses the site in Icelandic, I'm not sure they'd expect their name to be changed to presumably \"Arth\", \"Arthi\" or \"Arthar\" even if they were a keen learner of Icelandic. Their name is their name. So, as well as storing someone's name, you also have to ask them what language their name is, or guess and get it wrong. At that point, you might as well just ask them for all the different forms for the name as well, and then you don't have to worry about whether their name is on an approved list or not.And if the website isn't localised into Icelandic, I've also got to wonder if Icelandic visitors would have an expectation of Icelandic grammar rules being applied to English (or whatever) text. Most Icelandic people I've spoken to before have an excellent command of English anyway, and I'm sure they'd understand why their name isn't changing form in English.",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44767115,
+    "by": "kmmbvnr_",
+    "timeISO": "2025-08-02T12:39:06.000Z",
+    "textPlain": "Doesn't that look like an interesting approach for highly optimized embeddings?",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44768672,
+    "by": "gackletackle",
+    "timeISO": "2025-08-02T15:59:02.000Z",
+    "textPlain": "[dead]",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44767112,
+    "by": "quuwuebab",
+    "timeISO": "2025-08-02T12:38:43.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44767151,
+    "by": "alucardo",
+    "timeISO": "2025-08-02T12:44:22.000Z",
+    "textPlain": "Hmm, is this lib GDPR compliant?",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44768150,
+    "by": "yujzgzc",
+    "timeISO": "2025-08-02T14:59:45.000Z",
+    "textPlain": "Valiant effort at old-school engineering applied to a niche problem. (Iceland has a population of only around 400,000 people!) As much as I love the geekery of this stuff though, isn't it already a better ROI to get an LLM to generate the strings you need? It has its own other problems (not claiming it'll be perfect) but for something so language related, it makes a lot of sense. Would also work for other languages that have the same problem with declension of proper nouns like Russian or Finnish.",
+    "parent": 44766718,
+    "depth": 1
+  },
+  {
+    "id": 44770502,
+    "by": "pelorat",
+    "timeISO": "2025-08-02T19:16:21.000Z",
+    "textPlain": "Not sure how it is nowadays, but Iceland used to force anyone immigrating to officialy change or \"icelandify\" their names.So if your name was Arthur, and you wanted to emigrate to Iceland you would you change name.Might still be like this.",
+    "parent": 44769302,
+    "depth": 2
+  },
+  {
+    "id": 44768019,
+    "by": "kiicia",
+    "timeISO": "2025-08-02T14:44:08.000Z",
+    "textPlain": "GDPR is about accountability for handling identifiers like full name of actual person. Using parts of names, where each part does not identify any particular person, in generalized list like described here does not fall under GDPR.",
+    "parent": 44767151,
+    "depth": 2
+  },
+  {
+    "id": 44769125,
+    "by": "tomsmeding",
+    "timeISO": "2025-08-02T16:49:59.000Z",
+    "textPlain": "The article describes that a government body is using this library to generate indictments. In that situation, you do not want something that is mostly usually correct. Indeed, they asked the author for a strict version that does not try to guess the declension of unknown names based on their suffix, presumably so that they can just not decline them, which is better than picking the wrong declension 0.05% of the time.",
+    "parent": 44768150,
+    "depth": 2
+  }
+]

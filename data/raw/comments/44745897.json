@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44746922,
+    "by": "atombender",
+    "timeISO": "2025-07-31T15:54:02.000Z",
+    "textPlain": "Another trick is to open Activity Monitor, switch to the Energy tab, and sort by the \"Preventing sleep\" column. Some apps prevent macOS from sleeping.In my case, I've discovered that Devonthink (document/notes management app) is responsible. I've been meaning to file a bug report about it.I'm surprised that Apple's power management doesn't have an alert for this. Surely an app that causes my Mac to become glowing hot while sitting in my backpack, not to mention slowly running out of battery, is a pretty important thing to intercept. Meanwhile, I keep being asked if Chrome should be allowed to find devices on my network, which doesn't seem nearly as important.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44746596,
+    "by": "pauljara",
+    "timeISO": "2025-07-31T15:23:14.000Z",
+    "textPlain": "This used to happen to my MacBook Pro, although it was a non Apple Silicon one. The issue was that I had changed the DHCP lease time on my router from the default to a really low value. I believe I had set it to 15 minutes. What I believe was happening was the MBP was waking up to renew its IP address every 15 minutes and by the time it went to sleep again, it was probably waking back up to repeat the process. Changing the value on the router back to its default completely fixed the battery drain issue on my MacBook Pro. I'd never have guessed the cause-effect except I made the change around the same time I purchased that new MacBook Pro and was paying more attention to any issues that might arise.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44746377,
+    "by": "sangeeth96",
+    "timeISO": "2025-07-31T14:58:15.000Z",
+    "textPlain": "> In my case, the “Wake for maintenance” option was disabled, and Sleep Aid helpfully showed in the settings interface that this could lead to frequent wake up events.Did author mean to write \"option was enabled\" instead?",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44746992,
+    "by": "teejmya",
+    "timeISO": "2025-07-31T16:02:07.000Z",
+    "textPlain": "I've worked around this problem on each mac laptop I've owned over the years by configuring \"hibernate on lid close.\"When I open the lid of the mac it takes maybe 20-30 seconds to resume. I consider this a small price to pay in exchange for reliable sleep and less battery drain with the lid closed.If you want to try this, run in the terminal:sudo pmset -a hibernatemode 25If you don't like it, you can restore defaults with:sudo pmset -a hibernatemode 3",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44749533,
+    "by": "asoneth",
+    "timeISO": "2025-07-31T20:03:42.000Z",
+    "textPlain": "I've spent many hours debugging my Macbook's erratic insomnia and the only thing I know is that WindowServer is the culprit and it'll likely require a full OS reinstall, which has been on my todo list for months.The only thing worse than opening my laptop bag to find a hot, dead laptop a couple times a month is the inevitable response of: \"Well, you must be doing it wrong, that doesn't happen to me!\"",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44746530,
+    "by": "kylehotchkiss",
+    "timeISO": "2025-07-31T15:15:04.000Z",
+    "textPlain": "https://support.apple.com/en-mn/guide/mac-help/mh40774/macThis seems to be available as a first party config option",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44747294,
+    "by": "dewey",
+    "timeISO": "2025-07-31T16:33:00.000Z",
+    "textPlain": "Funnily I wrote almost the same blog post last week, sadly that solution didn't work for me as there's some other processes that are not power nap that wake up my Macs: https://annoying.technology/posts/3e451c7b/",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44746986,
+    "by": "thimabi",
+    "timeISO": "2025-07-31T16:01:21.000Z",
+    "textPlain": "I’ve been facing a similar issue with my MacBook Pro with Apple Silicon.While sleeping with an SSD connected, it seems to wake up periodically and activate the drive to do something. The result? Both the laptop and the SSD eventually overheat, and the battery quickly drains.The only way I managed to mitigate this issue is by disconnecting all drives and plugging in the MBP before setting it to sleep. It’s an annoying bug, to say the least. It reeks of insufficient quality control and testing…",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44746942,
+    "by": "paxys",
+    "timeISO": "2025-07-31T15:56:35.000Z",
+    "textPlain": "In my case the culprit is always all the security spyware/crapware that my employer has installed on the macbook.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44746401,
+    "by": "resters",
+    "timeISO": "2025-07-31T15:00:16.000Z",
+    "textPlain": "My iPad only lasts a few days even with zero use. I have not been able to figure out what settings to modify so that I can (for example) pick it up a month later and not find the battery dead.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44746893,
+    "by": "neilalexander",
+    "timeISO": "2025-07-31T15:51:08.000Z",
+    "textPlain": "Activity Monitor has an \"Energy\" tab that is useful in situations like this. It can tell you when an application is preventing sleep altogether and it can also show power usage of a process over the last 12 hours, so if you investigate this straight after a \"night's sleep\", you can usually spot culprits pretty quickly.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44746875,
+    "by": "darknavi",
+    "timeISO": "2025-07-31T15:49:25.000Z",
+    "textPlain": "I've used an Intel MBP for a few years and now an M2 MBP for a few more.  I've always had extremely stellar standby battery life.  That is, until a few months ago.  Now I get home and my backpack is warm from my MBP turning on while sitting in my backpack.This is the one biggest thing I loved Apple hardware for over Windows laptops.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44769741,
+    "by": "Consumer9366",
+    "timeISO": "2025-08-02T17:53:39.000Z",
+    "textPlain": "Combined with disable wake for maintenance, I also disable wifi and bluetooth on sleep using sleepwatcher. The tradeoff is a couple of seconds for wifi to start up and find my Mac not being tracked before waking the machine again. But battery lasts forever in sleep, so I find it well worth it.Install sleepwatcher and blueutil using brew, add these two files:~/.sleep  #!/bin/sh\n  networksetup -setairportpower en0 off 2>&1 | tee /tmp/sleep_logs\n  /run/current-system/sw/bin/blueutil -p off 2>&1 | tee /tmp/sleep_logs\n\n~/.wakeup    #!/bin/sh\n    networksetup -setairportpower en0 on 2>&1 | tee /tmp/sleep_logs\n    /run/current-system/sw/bin/blueutil -p on 2>&1 | tee /tmp/sleep_logs",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44749065,
+    "by": "Waterluvian",
+    "timeISO": "2025-07-31T19:14:42.000Z",
+    "textPlain": "I remember having a recurring issue with my original 1st gen unibody aluminum iMac where I'd close it at the end of a lecture, but it apparently wouldn't go to sleep, so hours later I'd go to fish it out of my backpack and it was dangerously scorching hot to the touch and the battery was all but fully drained.  I tried debugging but ultimately resigned to just shutting it down every time, which sucked so much. At least I didn't wake up on fire.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44747028,
+    "by": "Doohickey-d",
+    "timeISO": "2025-07-31T16:05:07.000Z",
+    "textPlain": "I'm using this instead: https://gist.github.com/mijorus/b9fabea963fabd435139654c6ebe...Turn off WiFi when going to sleep, turn it back on on wake.I don't need my laptop to be doing things when it's in my bag. It's not a phone, unlike what Apple seems to think...",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44747058,
+    "by": "ceedan",
+    "timeISO": "2025-07-31T16:07:43.000Z",
+    "textPlain": "I shut mine down every day. It stops battery drain and is a point of friction if I am thinking about \"jumping on to work for a sec\" at night. If the work is truly not important, I won't want to boot up and get situated.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44749376,
+    "by": "elicash",
+    "timeISO": "2025-07-31T19:48:02.000Z",
+    "textPlain": "I was on a trip and two nights in a ROW the battery went from 100% to 0% overnight while closed and on standby.It turned out I was just leaving it too close to the split A/C unit at the airbnb.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44754674,
+    "by": "Shacklz",
+    "timeISO": "2025-08-01T09:35:52.000Z",
+    "textPlain": "I'm one of those apparently super rare weirdos who just shut down any computer over night. Takes me just a tiny wee bit longer the next day to get started, but given all the issues my work colleagues have with battery life and whatnot (something I've never had troubles with on several machines going 5+ years), I just stick to it - and stories like OPs are definitely reaffirming :)",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44755124,
+    "by": "ctm92",
+    "timeISO": "2025-08-01T10:48:44.000Z",
+    "textPlain": "I am so happy to learn that I'm not the only one experiencing these issues! For me it was so bad at some times that the MacBook woke up in my backpack and somehow did some really CPU intense tasks, leading to the fan going full speed. When taking it out it was almost too hot to touch, I was scared at times that it would break or set the bag on fire.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44753094,
+    "by": "jwrallie",
+    "timeISO": "2025-08-01T04:45:51.000Z",
+    "textPlain": "I had some trouble with Linux in the past but sticking to ThinkPads gives me no problem nowadays.I always thought it was hard to support sleep properly due to the diversity of hardware, but isn’t Apple supposed to have a big advantage here where it controls the hardware revisions and can test the software properly by knowing exactly which hardware is going to run it?",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44753873,
+    "by": "drej",
+    "timeISO": "2025-08-01T07:15:10.000Z",
+    "textPlain": "Whoa, I've been battling with an issue where my new M4 Mac Mini, disconnected from all peripherals, just sips power and gets rather warm overnight. Cools itself when I wake it up. I wonder if the changes suggested in the post and the comments here will help me resolve this issue. Thanks for upvoting this.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44746493,
+    "by": "gww",
+    "timeISO": "2025-07-31T15:11:07.000Z",
+    "textPlain": "I have a different problem with my M3 Macbook Pro.  If I leave chrome (sometimes other apps too) open with the macbook plugged in and the lid closed the computer will get very warm and stay very warm until I unplug it / close chrome.Edit: It's also not warm when plugged in and using chrome with the lid open.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44783961,
+    "by": "ptsd_dalmatian",
+    "timeISO": "2025-08-04T10:26:11.000Z",
+    "textPlain": "I've been using Sleep Aid for last couple of days and this finally helped me fix this issue: turning off wifi and bt automatically on macbook lid close. It's not ideal, but I finally don't have to worry about leaving my macbook in a backpack.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44758456,
+    "by": "matthewfcarlson",
+    "timeISO": "2025-08-01T15:41:25.000Z",
+    "textPlain": "I also have a MacBook that does not sleep. You click on the sleep button in the menu and nothing happens. You shut the lid and nothing happens. If I have anything running when I finish for the day I'll wake up to a completely dead laptop. Like dead as in time lost, clock is 12:00. I was hoping this post might provide some helpful tips, but sadly not. Definitely going to use this tool in the future.It's a really nice machine (128GB ram, 4TB machine). The default for devs here is to get re-use units (ie laptops that people returned or were store demos). Part of me wonders if this laptop was returned for a reason.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44751614,
+    "by": "neuroelectron",
+    "timeISO": "2025-08-01T00:01:18.000Z",
+    "textPlain": "I feel like MacOS has been in maintenance mode for a decade. There must have been a lot of work to port it the ARM/Mac silicon. That and the AI update, which is terrible, there haven't been a lot of work done.I had a Intel Macbook Air, the one with the power button right next to the backspace. I ran a script I found in the Mac forums to make it so you have to hold the power button instead of tapping it. Turns out that script had a trojan in it and they had to factory reset my mac and wipe my iCloud to get rid of it.It had a GUID in it and apparently that can just download a resource from anywhere. I assumed it was an unlabeled internal variable.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44783047,
+    "by": "DavideNL",
+    "timeISO": "2025-08-04T07:46:44.000Z",
+    "textPlain": "My solution to prevent Macbook Pro M1 insomnia was to create a Keyboard Maestro Macro that disables Wi-Fi and Bluetooth with the Trigger \"At System Sleep\" (and re-enables them at wake.)Worked perfectly... no more issues since.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44747084,
+    "by": "TuringNYC",
+    "timeISO": "2025-07-31T16:10:29.000Z",
+    "textPlain": "I have the opposite problem -- i wish i could lock my Macbook but show my screen, with everything running and viewable (e.g., logs, dashboards) (but locked so people cannot do anything). I'm so used to this with xtrlock on Linux.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44750795,
+    "by": "Raed667",
+    "timeISO": "2025-07-31T22:17:53.000Z",
+    "textPlain": "I killed an intel macbook air as I closed the lid and placed it in my backpack.For some reason (i suspect iTerm) it didn't go sleep, it overheated. When i opened the backpack hours later I i found the insides like a sauna.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44748013,
+    "by": "ectocardia",
+    "timeISO": "2025-07-31T17:36:11.000Z",
+    "textPlain": "In case this helps anyone, I found that removing a Yubikey (i.e. with that contact sensor) seemed to reduce the number of times I opened my bag to find a Macbook Pro unexpectedly warm and with a drained battery.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44749415,
+    "by": "msgodel",
+    "timeISO": "2025-07-31T19:52:26.000Z",
+    "textPlain": "See if this were happening on Linux I'd just rip out rtcwake and anything else that touches sleep other than s2ram.Ripping things you don't like out of the OS when it misbehaves is very underrated.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44754605,
+    "by": "social_quotient",
+    "timeISO": "2025-08-01T09:23:36.000Z",
+    "textPlain": "Unrelated, but this reminds me of a persistent headache on Windows. My screensaver refuses to kick in, no matter what. After tumbling down a rabbit hole longer than I’d care to admit, it’s clear I’m not alone… tons of apps and processes hijack idle detection, leaving my OLED panels stuck on static displays overnight (hello, burn-in risk).Anyone know of a solid Windows equivalent to Sleep Aid for diagnosing and fixing these wake/sleep ghosts?",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44751318,
+    "by": "bondolo",
+    "timeISO": "2025-07-31T23:19:42.000Z",
+    "textPlain": "I have similar issues over the years on various devices and it has always been frustrating to determine the cause. Power management in general is so inscrutable. I wish there was a tool which let me go back through recent history, even just since the last 100% charge, and tell me why my machine was not sleeping or idling and what was consuming power. Apple has added some energy tools over the years but has never offered tools to explain system behaviour.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44748328,
+    "by": "magic_hamster",
+    "timeISO": "2025-07-31T18:03:37.000Z",
+    "textPlain": "Apple's definition of \"sleep\" is unique, to put it mildly. My MBP may be \"sleeping\" but it will still aggressively connect to any wireless interface. Sometimes when passing by with my Bluetooth headphones, the MBP will often steal my current connection.When a device goes to sleep, I don't expect it to interact with anything, even if I didn't deliberately turn off all wireless communication.Apple is the only one doing this. I've had dozens of linux and windows devices by now, and Apple are the only ones to aggressively maintain or connect to wireless while sleeping.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44754904,
+    "by": "smooc",
+    "timeISO": "2025-08-01T10:16:01.000Z",
+    "textPlain": "I have SentinelOne as part of my install. Since that got upgraded, my Mac started eating its battery during sleep. Possibly due to SentinelOne's network scanner, as that takes up 100% cpu for awhile when just returning from sleep. So my mac awakes 3 times an hour to connect to iCloud and then adding SentinelOne overhead...I think I might try this setting (Prevent Wake for Maintenance)",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44755336,
+    "by": "dielll",
+    "timeISO": "2025-08-01T11:22:10.000Z",
+    "textPlain": "I have the exact model as my work device and I have had this problem since like October 2024. On my personal M4 Pro, none of this. At some point I thought it might be the corporate spyware software. Let me try this solution and see if it fixes it",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44746516,
+    "by": "sugarpimpdorsey",
+    "timeISO": "2025-07-31T15:14:05.000Z",
+    "textPlain": "Apple's power management isn't as great as everyone claims.I've an older MacBook Air with a severe battery drain problem.The battery will last maybe a day or two when SHUT DOWN (not sleep) before being fully drained and refuses to power on.It's done this since day one.I tried resetting everything possible which could be reset and nothing helped.Allegedly the problem is related to a Bluetooth radio which does not shut down properly but as usual Apple is tight-lipped, and the cult members that moderate their community forum try to gaslight you into believing the computers are perfect and you're doing something wrong.Eventually I just gave up and lugged the power adapter everywhere.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44750757,
+    "by": "Drew_",
+    "timeISO": "2025-07-31T22:12:59.000Z",
+    "textPlain": "The amount of \"looses\" (loses) typos I see everywhere lately is actually crazy",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44749875,
+    "by": "msukkarieh",
+    "timeISO": "2025-07-31T20:41:33.000Z",
+    "textPlain": "I once set the \"dont sleep on disable mode\" and totally forgot about it. Took me a month to realize after my laptop would be drained over night. That tool definitely would've been helpful in this case!",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44755358,
+    "by": "v5v3",
+    "timeISO": "2025-08-01T11:25:32.000Z",
+    "textPlain": "One thing to note is that FindMyMac works as the Mac wakes up when asleep and so updates it's location.If you lose your Mac and power settings are too stringent, location may not show up.",
+    "parent": 44745897,
+    "depth": 1
+  },
+  {
+    "id": 44750464,
+    "by": "ideamotor",
+    "timeISO": "2025-07-31T21:35:32.000Z",
+    "textPlain": "Awesome. Has anyone solved the issue where google websites (google search, gmail, google calendar, and so on) start running incredibly slow using Safari?",
+    "parent": 44745897,
+    "depth": 1
+  }
+]

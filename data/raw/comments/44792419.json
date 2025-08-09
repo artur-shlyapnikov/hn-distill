@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44834395,
+    "by": "BLKNSLVR",
+    "timeISO": "2025-08-08T07:15:16.000Z",
+    "textPlain": "> But my server could be shut down because of a power outage or another reason. I might be at work or even on holidays when it happens, and even wireguard can’t solve this.A 'power outage' incident doesn't seem to have been mitigated. My homelab has had evolving mitigations: I cut a hole in the side of a small UPS so I could connect it to a larger (car) battery for longer uptime, which got replaced by a dedicated inverter/charger/transfer-switch attached to a big-ass AGM caravan battery (which on a couple of occasions powered through two-to-three hour power outages), and has now been replaced with these recent LiFePo4 battery power station thingies.Of course, it's only a homelab, there's nothing critically important that I'm hosting, but that's not the dang point, I want to beat most of \"the things\", and I don't like having to check that everything has rebooted properly after a minor power fluctuation (I have a few things that mount remote file stores and these mounts usually fail upon boot due to the speed at which certain devices boot up - and I've decided not to solve that yet).",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44840635,
+    "by": "rpcope1",
+    "timeISO": "2025-08-08T19:18:40.000Z",
+    "textPlain": "I really don't get why people like the Minisforum stuff over alternatives. I've unfortunately been given one, and honestly I'm really unimpressed between crap firmware, no real expandability and just all of the other compromises that come with buying Aliexpress hardware. For the same money you can either pick up a used entry model Dell/HP/Lenovo server (and if they're E3/W/other entry level Xeon, they're usually not terrible on power) or get a good ATX chassis and power it with some off lease Supermicro hardware. Then you don't need to compromise on things like OOB management, hot swap bays, a real SAS card, real 10G nics, ECC ram, etc. etc. Maybe people are just afraid of doing a little bit of putting hardware together? I've seen and have systems that use the above gear that have been going for well over a decade now, with basically no hiccups, and even the old Sandy Bridge era E3 stuff both punches above probably even RPi5 and N100 and doesn't draw more than 30-40W when you don't have spinning disks in there. I'm sure if you avoid AMD and go find a newer T variant Intel chip, you can both have your cake and eat it.",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44834893,
+    "by": "8fingerlouie",
+    "timeISO": "2025-08-08T08:48:36.000Z",
+    "textPlain": "While i get the whole homelab thing is exiting and a great learning experience, it's simply not worth the time and effort for the majority of people.You will end up paying much more for your services, along with spending a ton of time maintaining it (and if you don't, you will probably find yourself on the end of a 0-day hack sometime).In Northern/Western Europe, where power costs around €0.3/kWh on average, just the power consumption of a simple 4 bay NAS will cost you almost as much as buying Google Drive / OneDrive / iCloud / Dropbox / Jottacloud / Whatever.A simple Synology 4 bay NAS like a DS923+ with 4 x 4TB Seagate Ironwolf drives will use between 150 kWh and 300 kWh per year (100% idle vs 100% active, so somewhere in between), which will cost you between €45 and €90 per year, and that's power alone.  Factoring in the cost of the hardware will probably double that (over a 5 year period).It's cheaper (and easier) to use public cloud, and then use something like Cryptomator (https://cryptomator.org/) to encrypt data before uploading it. That way you get the best of both worlds, privacy without any of the sysadm tasks.Edit: I'll just add, as you grow older, you come to realize that time is a finite resource, and while money may seem like it is finite, you can always make more money.Don't spend your time hunched over servers. Spend it doing things you love with people that matter to you. Eventually those people won't be there anymore, and the memories you make with those people will matter far more to you in 20 years, than the €20/month you paid for cloud services.",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44833350,
+    "by": "treve",
+    "timeISO": "2025-08-08T04:14:25.000Z",
+    "textPlain": "If anyone is looking to get started with a homelab at a good price, I can highly recommend checking ebay for a Dell Wyse 5070. They flooded the market for $50 and are likely powerful enough for many needs. They have a M.2 slot that support SATA. The 'extended' version also has space for a small pcie card and has a parallel and 2 serial ports for a blast to the past.",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44841925,
+    "by": "jackhalford",
+    "timeISO": "2025-08-08T21:33:55.000Z",
+    "textPlain": "Why install proxmox on top of debian? Proxmox distributes an iso that basically does the same as you with preseeding.\nAlthough recently had to install proxmox as an apt pkg on top of debian happened because the proxmox iso wouldn’t install properly. That actually happened twice. I think I’ll just install debian from now on…",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44840001,
+    "by": "philip1209",
+    "timeISO": "2025-08-08T18:18:25.000Z",
+    "textPlain": "This is cool - I have a similar home lab on a Mac Mini [1].The encryption question is interesting. I don't have disk encryption turned on, because I want the computer to recover from power failure. If power turns off then on, the server would be offline until I decrypt it.How does your \"Wake on LAN\" work with the encryption?[1] https://github.com/contraptionco/toolbox",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44834885,
+    "by": "cyprien_g",
+    "timeISO": "2025-08-08T08:47:39.000Z",
+    "textPlain": "Building a homelab is an awesome way to learn a lot of things.I also used to over-engineer my homelab, but I recently took a more simplistic approach (https://www.cyprien.io/posts/homelab/), even though it’s probably still over-engineered for most people.I realized that I already do too much of this in my day job, so I don’t want to do it at home anymore.",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44834821,
+    "by": "arjie",
+    "timeISO": "2025-08-08T08:35:03.000Z",
+    "textPlain": "I have a setup that is perhaps not as robust, but where my primary aim was that I should be able to incrementally encapsulate the parts. https://wiki.roshangeorge.dev/w/One_Quick_Way_To_Host_A_WebA...As an example, I use cloudflare tunnel to point to an nginx that reverse proxies all the services, but I could just as well point DNS to that nginx and it would still work. I had to rebuild the entire thing on my home server when I found that the cheap VPS I was using was super over-provisioned ($2/mo for 2 Ryzen 7950 cores? Of course it was) and I had this thing at home anyway, and this served me well for that use-case.When I rebuilt it, I was able to get it running pretty quickly and each piece could be incrementally done: i.e. I could run without cloudflare tunnel and then add it to the mix, I could run without R2 and then switch file storage to R2 because I used FUSE s3fs to mount R2, so on and so forth.",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44834817,
+    "by": "MaKey",
+    "timeISO": "2025-08-08T08:33:58.000Z",
+    "textPlain": "Your VPS provider likely uses servers with ECC RAM, this home server doesn't. For most people it doesn't seem to matter but for me it does - a home server where I store my data needs to have ECC RAM.",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44833661,
+    "by": "czhu12",
+    "timeISO": "2025-08-08T05:11:12.000Z",
+    "textPlain": "This was exactly a use case I had in mind when building https://canine.sh -- also uses k3s as a provider, and provides a Heroku-like devex.How to actually reliably expose a homelab to the broader internet is a little tricky, cloudflare tunnels mostly does the trick but can only expose one port at a time, so the set up is somewhat annoying",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44833785,
+    "by": "timc3",
+    "timeISO": "2025-08-08T05:35:10.000Z",
+    "textPlain": "The encryption is interesting but I wouldn’t call this over engineered at all, in fact it’s rather basic compared to a lot of homelabs I see people building particularly where people are doing K8s or similar over multiple machines.Also Proxmox was called out as the only choice when that is very much not the case. It is a good choice for sure, but there are others.",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44840083,
+    "by": "st3fan",
+    "timeISO": "2025-08-08T18:24:57.000Z",
+    "textPlain": "\"I used the full disk with LLM, and set up disk encryption\"I know we're in the AI hype cycle but I bet you meant LVM there >:-)",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44842419,
+    "by": "kayson",
+    "timeISO": "2025-08-08T22:38:49.000Z",
+    "textPlain": "After some research, it seems much easier to just back up the Proxmox config (and VM disk images, if they're needed) than to define or deploy Proxmox VMs with OpenTofu or ansible.https://pve.proxmox.com/wiki/Proxmox_Cluster_File_System_(pm...",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44834621,
+    "by": "tietjens",
+    "timeISO": "2025-08-08T07:55:04.000Z",
+    "textPlain": "This is such a great post. I have a small collection of posts for inspiration in creating my homelab and this is getting added to it. Current have a Pi 4 with PiHole and a Beelink. Going to add one or two more machines.",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44839507,
+    "by": "tehlike",
+    "timeISO": "2025-08-08T17:25:56.000Z",
+    "textPlain": "I moved my side project to my garage so I don't have to pay hetzner 600+$ and counting every month",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44839846,
+    "by": "annoyingnoob",
+    "timeISO": "2025-08-08T18:04:48.000Z",
+    "textPlain": "I love infrastructure. I run my own services at home too, and have for many years. But to be honest, the older I get the less fun it is to deal with issues that come up from time to time.At some point you'll need to upgrade hardware and software, you get to do the exercise over again. There will always be lessons learned and its get better each time. Its still work.",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44835076,
+    "by": "crinkly",
+    "timeISO": "2025-08-08T09:22:06.000Z",
+    "textPlain": "Yeah good luck with that one.I ran a home lab for a number of years. This was a fairly extensive set up - 4 rack mount servers, UPS, ethernet switch etc with LTO backups. Did streaming, email and file storage for the whole family as well as my own experiments.One morning I woke up to a dead node. The DMZ service node. I found this out because my wife had no internet. It was running the NAT and email too. Some swapping of power supplies later and I found the whole thing was a complete brick. Board gone. It's 07:45 and my wife can't check her schedule and I'm still trying to get 3 kids out of the door.At that point I realised I'd fucked up by running a home lab. I didn't have the time or redundancy to have anyone rely on me.I dug the ISP's provided WiFi router out, plugged it in and configured it quickly and got her laptop and phone working on it. Her email was down but she could check calendar etc (on icloud). By the end of the day I'd moved all the family email off to fastmail and fixed everything to talk to the ISP router properly. I spent the next year cleaning up the shit that was on those servers and found out that between us we only had about 300 gig of data worth keeping which was distributed out to individual macbooks and everyone is responsible for backing their own stuff up (time machine makes this easy). Eventually email was moved to icloud as well when domains came along.I burned 7TB of crap, sold all the kit and never ran a home lab again. Then I realised I didn't have to pay for the energy, the hardware or expend the time running it. There are no total outages and no problems if there's a power failure. The backups are simple, cheap and reliable. I don't even have a NAS now - I just bought everyone some Samsung T7 shield disks.I have a huge weight off my shoulders and more free time and money. I didn't learn anything I wouldn't have learned at work anyway.",
+    "parent": 44792419,
+    "depth": 1
+  },
+  {
+    "id": 44840690,
+    "by": "rpcope1",
+    "timeISO": "2025-08-08T19:23:59.000Z",
+    "textPlain": "For anyone thinking of doing this, please please don't. A car battery is probably never a sealed deep cycle battery, and the UPS's charging circuitry is not intended to charge a battery of this size (this is assuming you're using a lead based battery, and not something even more crazy and dangerous like Li-Po or LiFePO4). God forbid you have a cell fail on a car battery and that charger starts cooking the battery. I've had actual car lead acid batteries explode because of poor choices someone else made trying to do something like this, and man when they go, they're dangerous and scary. You really need to pick hardware that's all properly specced and sized for the job...there's a reason Eaton and APC charge what they do.",
+    "parent": 44834395,
+    "depth": 2
+  },
+  {
+    "id": 44840242,
+    "by": "thibaultamartin",
+    "timeISO": "2025-08-08T18:39:22.000Z",
+    "textPlain": "Author here, indeed I didn't install a UPS. I've tried to keep my setup fairly minimal, and I'm consciously accepting that if there's a power outage my services will be down. I self-host exclusively for myself, not for others.What I don't want though is a power outage putting my server offline while I'm on holidays, and not be able to access my services at all.My ISP-provided router supports Wireguard, so I can use that to connect to my KVM and send the Wake on LAN packages.",
+    "parent": 44834395,
+    "depth": 2
+  },
+  {
+    "id": 44835181,
+    "by": "mschuster91",
+    "timeISO": "2025-08-08T09:40:23.000Z",
+    "textPlain": "> I have a few things that mount remote file stores and these mounts usually fail upon boot due to the speed at which certain devices boot up - and I've decided not to solve that yetIf your OS is using systemd, you can fix that pretty easily by adding an After=network-online.target (so the ExecStart doesn't even try to check if there is no networking yet) and an ExecCondition shell script [1] to actually check if nfs / smb on the target host is alive as an override to the fs mounts.Add a bunch of BindsTo overrides to the mounts and the services that need the data, and you have yourself a way to stop the services automatically when the filesystem goes away.I've long been in the systemd hater camp, but honestly, not having to wrangle with once-a-minute cronjobs to check for issues is actually worth it.[1] https://forum.manjaro.org/t/for-those-who-use-systemd-servic...",
+    "parent": 44834395,
+    "depth": 2
+  },
+  {
+    "id": 44834600,
+    "by": "qwertox",
+    "timeISO": "2025-08-08T07:51:14.000Z",
+    "textPlain": "> I cut a hole in the side of a small UPS so I could connect it to a larger (car) battery for longer uptimeCan you share more about this? I have a APC Back UPS PRO USV 1500VA (BR1500G-GR) and it would be nice to know if this is possible with that one as well.",
+    "parent": 44834395,
+    "depth": 2
+  },
+  {
+    "id": 44834713,
+    "by": "preisschild",
+    "timeISO": "2025-08-08T08:11:45.000Z",
+    "textPlain": "I just use a small UPS to make sure all data is written to the drives properly before the battery runs out.Do you have power outages often? Even if I have one, my services can come up automatically without doing anything, when the power is restored.",
+    "parent": 44834395,
+    "depth": 2
+  },
+  {
+    "id": 44840159,
+    "by": "trod1234",
+    "timeISO": "2025-08-08T18:31:20.000Z",
+    "textPlain": "Even then, that doesn't resolve the power outage primarily because the local nodes that your Modem transmits to will also be down in the area from same said power outage, most only have backup power for 10-30m, if even that many say there is no backup power for those which is why they disclaim that in their service agreement with regards to emergency phone calling over voip (for services that include unified communications).So even if your local node could transmit, none of the others could, and they can't buffer either.To mitigate power outage, you would need both power, and a cellular connection, and that connection would only be good for 2-3 hours (Cell tower backups), and those would require a Cradlepoint.",
+    "parent": 44834395,
+    "depth": 2
+  },
+  {
+    "id": 44841542,
+    "by": "nodesocket",
+    "timeISO": "2025-08-08T20:47:28.000Z",
+    "textPlain": "I’ve spend a decent amount on EcoFlow units (Delta 2) that I use as online UPS for my servers and networking. They work great and I also recently installed dual 220watt EcoFlow solar panels on my roof that pump in solar during the day. Works nicely though the ROI admittedly is not there at all, just a cool thing.",
+    "parent": 44834395,
+    "depth": 2
+  },
+  {
+    "id": 44841415,
+    "by": "Derelicte",
+    "timeISO": "2025-08-08T20:33:23.000Z",
+    "textPlain": "N100 is faster and more efficienct than any Ivy bridge E3. At idle the Xeon draws roughly 20W more, which works out to $30USD/year at the national average electricity prices. That gap widens as the load increases.I can totally see why someone who doesnt need expandability would choose the cheap mini PC.",
+    "parent": 44840635,
+    "depth": 2
+  },
+  {
+    "id": 44842166,
+    "by": "nullwarp",
+    "timeISO": "2025-08-08T22:05:13.000Z",
+    "textPlain": "I used to really like the minis but I had to basically e-waste two of them because the ethernet went bad (lightning strike i think) and there was really no way to replace them and the OS would crash from hardware issues from it.",
+    "parent": 44840635,
+    "depth": 2
+  },
+  {
+    "id": 44841104,
+    "by": "daymanstep",
+    "timeISO": "2025-08-08T20:05:04.000Z",
+    "textPlain": "ECC capable hardware tend to be very power hungry.",
+    "parent": 44840635,
+    "depth": 2
+  },
+  {
+    "id": 44841465,
+    "by": "nodesocket",
+    "timeISO": "2025-08-08T20:38:49.000Z",
+    "textPlain": "I just purchased a Minisforum mobo BD795i SE with a Ryzen 9 7945HX (16 core, 32 thread). Can’t beat the price to performance. Building a NAS / VM server with 5x 14TB Seagate Exos drives, 2TB NVME, 500GB boot SSD, and 96GB of DDR5 memory. I was able to buy all components including a 3u hotswap 5x drive caddy for less than $1,200 all in. Can’t really beat that.",
+    "parent": 44840635,
+    "depth": 2
+  },
+  {
+    "id": 44835050,
+    "by": "Hamcha",
+    "timeISO": "2025-08-08T09:16:54.000Z",
+    "textPlain": "Have you seen the prices for Google Drive et al? The NAS setup you describe (which I wouldn't consider worth the money for that little space) is what, 12GB with 1 parity drive?Google One for 10TB is 274,99€/mo (at least in my country) so you'd make the entire nas price and subscription cost within a few months, let alone years.There just aren't compelling public cloud for large sizes (My NAS is 30TB capacity and I'm using 18 right now) and even if you go the more complex loops with like S3 and whatnot you still get billed more than it's worth. Public cloud is meant for public files, there's a lot of costs you're paying for stuff you don't need like being fast to access from everywhere.",
+    "parent": 44834893,
+    "depth": 2
+  },
+  {
+    "id": 44835185,
+    "by": "cyprien_g",
+    "timeISO": "2025-08-08T09:41:09.000Z",
+    "textPlain": "The maintenance time is a bit overestimated if you keep it simple.On my homelab, I update everything every quarter and it takes about 1 hour, so 4 hours a year is pretty reasonable. Docker helps a lot with this.And I’ve almost never run into trouble in years, so I have very few unexpected maintenance tasks.EDIT: I am referring to a homelab that is only accessible for private purposes through a VPN.",
+    "parent": 44834893,
+    "depth": 2
+  },
+  {
+    "id": 44839495,
+    "by": "mannyv",
+    "timeISO": "2025-08-08T17:25:02.000Z",
+    "textPlain": "Once you know how to build and maintain infrastructure you realize that while it's nice to know how to do it, it's not cost-effective.The thing is, it's worth it to learn. Do you know the basics of how to set up a completely redundant environment? There's no conceptual difference between setting one up at home by using consumer equipment and setting it up in a data center. You can get pretty capable equipment (Mikrotik) for less. The enterprise stuff has more configuration options, but it's doubtful that you'll use most of them.Set up backup WANs, redundant routing, DNS, power, etc is fun. Setting up redundant load balancers, backend services, databases, etc is also fun. It's not hard to do, it's just hard to get it all right. There are probably a zillion configuration parameters you can mess with, and only a few sets actually work. Unfortunately, the sets that work in your home won't be the ones that will work in production, but you could possibly run load tests etc to simulate a real environment (though simulating multiple clients from multiple endpoints is harder than you think).And of course, getting production equipment is hard. Nobody has 2 F5s lying around. And you really need at least 4 F5s, because you have redundant locations. That's a lot of cashola. And in most environments you wouldn't want some random person messing around with the production (or test) F5s. It's the same with NAS, VM servers, docker registries, etc.I suspect getting the whole end-to-end setup isn't something people experience anymore, because small companies have (or at least should have) moved to the cloud by now.",
+    "parent": 44834893,
+    "depth": 2
+  },
+  {
+    "id": 44835155,
+    "by": "Pooge",
+    "timeISO": "2025-08-08T09:35:49.000Z",
+    "textPlain": "But on a homelab you can host any service you want and start/stop it whenever you need to. Sure cloud storage might cost less in the short-term, but if you need more storage or more services, a selfhosted option is far cheaper.VPS are very expensive for what you get. If you have the capital, doing it yourself saves you money very quickly. It's not rare to pay $50 for a semi-decent VPS, but for $2000 you would get an absolute beast that would last 10 years at the very least.With Docker, maintenance is basically zero and unused services are stopped or restarted with 1 command.",
+    "parent": 44834893,
+    "depth": 2
+  },
+  {
+    "id": 44840284,
+    "by": "thibaultamartin",
+    "timeISO": "2025-08-08T18:43:53.000Z",
+    "textPlain": "Author here, I completely agree. In fact, I even wrote about it: https://ergaster.org/posts/2023/08/09-i-dont-want-to-host-se...My homelab is my hobby. I maintain it for my pleasure and to learn new skills. We have an infra nerds club with a few colleagues and we're having a lot of fun comparing our approaches!",
+    "parent": 44834893,
+    "depth": 2
+  },
+  {
+    "id": 44835261,
+    "by": "hshdhdhj4444",
+    "timeISO": "2025-08-08T09:58:10.000Z",
+    "textPlain": "Google Premium storage, is $100/yr (paid annually) for 2TB of storage.Even at the high end estimate the homelab is giving you several times the storage for the same cost.",
+    "parent": 44834893,
+    "depth": 2
+  },
+  {
+    "id": 44839579,
+    "by": "vladvasiliu",
+    "timeISO": "2025-08-08T17:33:34.000Z",
+    "textPlain": "The others' points are valid. Google Drive is rather expensive, Hetzner is cheaper and works well enough.However, it also depends on how you use that data. In my case, I'm a Sunday photographer, so I tend to wrangle multiple GB of data at a time. I usually edit my photos locally, but I sometimes will want to revisit older stuff. I can download it, but it's a PITA and s_l_o_w. Google drive file stream is terrible for this, you never know if the files are uplaoded or not. Onedrive isn't any better. I haven't tried dropbox.Hetzner has some storage box which exposes SMB but doesn't seem to enforce encryption nor IP filtering, so I'm not very comfortable with that.Also, my internet connection pretends I have 5 Gb down, 0.5 up. The down part is usually as expected (my machine only has a 1 Gb nic), but upload is sometimes very slow. Running a local NAS is much faster. It's ZFS, so backups are trivial to send to encrypted offsite storage.It also doesn't need to run 24/7, which helps with power usage (0.22 €/kWh here).> I'll just add, as you grow older, you come to realize that time is a finite resource, and while money may seem like it is finite, you can always make more money.Indeed. Waiting around for files to transfer gets old quick. I have better things to do with my time. My NAS needs a whopping five minutes of my time every now and again when a new kernel comes out.",
+    "parent": 44834893,
+    "depth": 2
+  },
+  {
+    "id": 44834986,
+    "by": "guappa",
+    "timeISO": "2025-08-08T09:07:45.000Z",
+    "textPlain": "a NAS has like 10000x more storage than google drive and is also way faster locally.",
+    "parent": 44834893,
+    "depth": 2
+  },
+  {
+    "id": 44835236,
+    "by": "rootsudo",
+    "timeISO": "2025-08-08T09:53:47.000Z",
+    "textPlain": "It’s great to learn on, and if you happen to have a place with free electricity then even more fun :)It’s also an excuse for me to stay in most summer days.",
+    "parent": 44834893,
+    "depth": 2
+  },
+  {
+    "id": 44835257,
+    "by": "onre",
+    "timeISO": "2025-08-08T09:57:34.000Z",
+    "textPlain": "As a Northern European (Finland) I can tell you that the electricity cost here for last year was closer to 0,1 € per kWh including the transfer fee and taxes. Additionally, more than 40 % of houses here have electric heating. The heating season starts in early autumn and ends in late spring, lasting 8 to 9 months depending on the year. As the electricity used by the device is turned into heat, during the heating season running it costs nothing.",
+    "parent": 44834893,
+    "depth": 2
+  },
+  {
+    "id": 44840859,
+    "by": "alnwlsn",
+    "timeISO": "2025-08-08T19:39:35.000Z",
+    "textPlain": "The price and effort is practically irrelevant. My homelab is mine, local, and answers only to myself and a wall outlet. Also, where I live, the internet is simply not dependable enough to consider otherwise.",
+    "parent": 44834893,
+    "depth": 2
+  },
+  {
+    "id": 44835127,
+    "by": "thomascountz",
+    "timeISO": "2025-08-08T09:31:02.000Z",
+    "textPlain": "OP has admittedly over-engineered their setup. Depending on your goals (cost, speed, space, autonomy), there are less-rigorous solutions for the layperson.I, for one, don't want to have Google, etc. as a dependency[1], so I will pay some energy cost to do that.1: see: https://hn.algolia.com/?dateRange=all&page=0&prefix=true&que...",
+    "parent": 44834893,
+    "depth": 2
+  }
+]

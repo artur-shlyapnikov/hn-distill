@@ -1,0 +1,258 @@
+[
+  {
+    "id": 44781729,
+    "by": "farkin88",
+    "timeISO": "2025-08-04T02:55:27.000Z",
+    "textPlain": "The prod-readiness concerns are fair, but mcp-use fills a real gap in the MCP stack: orchestration across many servers with far less boilerplate than the official SDK. Even if the agent is as another commenter fairly pointed out, just a LangChain wrapper, the six-line setup and server manager are a nice DX upgrade.What’s still missing is structured error semantics. Right now, when a tool explodes the LLM only sees a raw stack trace, so it can’t decide whether to retry or bail. Today, I saw another Show HN post on MCP here: https://news.ycombinator.com/item?id=44778968 which converts exceptions into a small JSON envelope (error, details, isRetryable, etc.) that agents can interpret. Dropping that into mcp-use’s client loop would give you observability + smarter retries for almost free.I might be missing some important nuances here between client side and server side MCP error handling, which I’ll leave to the authors to discuss. Just thought there might be a good open source collab opportunity here.",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44748820,
+    "by": "zwaps",
+    "timeISO": "2025-07-31T18:49:29.000Z",
+    "textPlain": "I get the client part, great job!However, the agent is really just a wrapper of Langchain AgentExecutor. This doesn't seem like something someone would want to put into production.",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44749303,
+    "by": "saberience",
+    "timeISO": "2025-07-31T19:40:29.000Z",
+    "textPlain": "Huge variety of problems with this for mid-market or enterprise use. This is basically a toy right now and can’t be used for solving repeatable, valuable problems for actual businesses, ie: stuff that matters.One: dependence on langchain.Two: Security? Observability?Three: You have never asked yourself, why would someone want to connect an LLM to infinite random mcp servers. The vast majority (of mcp tools and servers) are insecure, vibe coded, basically terrible.Four: There needs to be way more focus on quality versus quantity. It’s easy to connect LLMs to MCP servers, it’s not a problem companies are willing to spend much money on, the issue is ensuring LLMs call the right tools 98%+ of the time with the right parameters.Five: There are tons and tons of existing projects for connecting LLMs to 1000s of MCP servers, it’s not a novel project, has no technical moat, and importantly, doesn’t solve a super valuable problem.The better question to ask or problem to solve is this, given a high value problem, how do you get high values of accurate tool use, first time, while providing security and protection against side effects, jail breaking, random issues etc.Most companies using “mcp” have a model which is using one or two tools (max) at a time and struggling making it work consistently. Giving them a meta tool to connect to 1000s of (mostly useless) tools isn’t helpful and won’t be taken seriously.",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44750847,
+    "by": "preem_palver",
+    "timeISO": "2025-07-31T22:24:19.000Z",
+    "textPlain": "Great idea! Definitely going to use it. What are some good reasons to prefer this over fastmcp clients? https://gofastmcp.com/clients/client",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44751518,
+    "by": "d4rkp4ttern",
+    "timeISO": "2025-07-31T23:48:20.000Z",
+    "textPlain": "For what it’s worth, several months ago, in Langroid (an agent framework that works with any LLM) we added an adaptor using FastMCP that translates between Langroid’s Tools and MCP tools, so effectively it’s a way to connect any LLM to any MCP server.Https://github.com/langroid/langroidMCP integration:https://langroid.github.io/langroid/notes/mcp-tools/",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44750214,
+    "by": "jonfw",
+    "timeISO": "2025-07-31T21:11:26.000Z",
+    "textPlain": "I have used mcp-use to write some demo functionality and it is very easy to use and works great!",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44749486,
+    "by": "mkagenius",
+    "timeISO": "2025-07-31T19:59:32.000Z",
+    "textPlain": "> MCP-Use supports running MCP servers in a sandboxed environment using E2B's cloud infrastructure.If you want to support a local and privacy friendly sandboxed environment for code execution, you may consider something I have built, Coderunner - https://github.com/instavm/coderunner - it uses Apple's native container for hosting a jupyter server and a headless browser.",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44750665,
+    "by": "scosman",
+    "timeISO": "2025-07-31T22:00:43.000Z",
+    "textPlain": "How does the sandboxing work? Is it cross platform? Options for filesystem/netork?",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44753497,
+    "by": "maxarnold",
+    "timeISO": "2025-08-01T06:11:59.000Z",
+    "textPlain": "Introduced the tool at Porsche last week. Looks like there might be a big corporate partnership coming up",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44748293,
+    "by": "0xDA7A",
+    "timeISO": "2025-07-31T17:59:49.000Z",
+    "textPlain": "Do you do anything to deal with the model performance degradation caused by having too many MCP tools? Would be cool to see a smart MCP router added here",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44753936,
+    "by": "miotts",
+    "timeISO": "2025-08-01T07:26:52.000Z",
+    "textPlain": "neat idea and exec. With the # of MCPs exploding, I assume there will be different MCPs offering similar services, and selecting the \"right\" one will require more time for the devs. I see interesting implications in the Server Manager component that will hide the complexity under the hood (for practical and security reasons). Good job.",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44808909,
+    "by": "revskill",
+    "timeISO": "2025-08-06T07:41:53.000Z",
+    "textPlain": "Need a typescript alternative",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44751188,
+    "by": "jijji",
+    "timeISO": "2025-07-31T23:02:47.000Z",
+    "textPlain": "What is really interesting in this article is that no where in either the github link presented nor on his web site, mcp-use.com, does he actually explain what an \"MCP\" server is, what it might be used for, the benefits of doing this.  It seems he is so far in the weeds with this that it was an after thought to describe what any of this means or might be useful for.",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44751271,
+    "by": "apwell23",
+    "timeISO": "2025-07-31T23:14:14.000Z",
+    "textPlain": "it can be used via claude code on ubuntu too",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44751285,
+    "by": "d4rkp4ttern",
+    "timeISO": "2025-07-31T23:15:21.000Z",
+    "textPlain": "Not sure what is going on,  but I see a lot of 1-karma-point HN users hyping this.",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44751530,
+    "by": "Tadpole9181",
+    "timeISO": "2025-07-31T23:50:21.000Z",
+    "textPlain": "I'm not sure how this relates to the comment you replied to?",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44748745,
+    "by": "hubraumhugo",
+    "timeISO": "2025-07-31T18:42:46.000Z",
+    "textPlain": "Since you're in the current YC batch, why is this a Show HN instead of a Launch HN?",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44752791,
+    "by": "dang",
+    "timeISO": "2025-08-01T03:36:29.000Z",
+    "textPlain": "[stub][explained at https://news.ycombinator.com/item?id=44752814]",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44747464,
+    "by": "alessiapacca",
+    "timeISO": "2025-07-31T16:48:37.000Z",
+    "textPlain": "Hey, this is really cool. But why should I use this and not the official SDK?",
+    "parent": 44747229,
+    "depth": 1
+  },
+  {
+    "id": 44752423,
+    "by": "pengli1707",
+    "timeISO": "2025-08-01T02:21:44.000Z",
+    "textPlain": "Good, I have not dig into the code, just one question: how to deal with other stuff supplied by MCP server, I mean besides tools, server also supplied \"resources\", \"prompt\" and other functionality, I saw some struggle here(https://github.com/vincent-pli/mcp-cli-host/blob/main/docs/r...) and here(https://github.com/vincent-pli/mcp-cli-host/blob/main/docs/p...),",
+    "parent": 44752791,
+    "depth": 2
+  },
+  {
+    "id": 44749068,
+    "by": "xinweihe",
+    "timeISO": "2025-07-31T19:14:48.000Z",
+    "textPlain": "Super cool project — love the direction you're taking with simplifying MCP integration and tooling! The search layer between agent and servers is a clever abstraction to reduce cognitive + compute load. Also appreciate the IKEA curtain flexWould love to see how this evolves toward more dynamic infra setups. Keep it up!",
+    "parent": 44752791,
+    "depth": 2
+  },
+  {
+    "id": 44752267,
+    "by": "valebearzotti",
+    "timeISO": "2025-08-01T01:55:04.000Z",
+    "textPlain": "nice. i feel interaction with mcps now is sort of broken, and building on top of the sdk is a pain. being compliant with the specification is a way better take.i'm curious to see how this scales. and it's a good starting point on reshaping our interaction with basically every single application.",
+    "parent": 44752791,
+    "depth": 2
+  },
+  {
+    "id": 44748072,
+    "by": "cap_andrea",
+    "timeISO": "2025-07-31T17:39:57.000Z",
+    "textPlain": "Love this! Finally someone breaking open the MCP ecosystem for real dev use. mcp-use looks like the right balance between power and simplicity. The agent abstraction + tool discovery is super smart.Also, hacking an IKEA curtain with MCP is an all-time flex.Curious if you’re planning to build infra on top or keep it strictly dev tools?",
+    "parent": 44752791,
+    "depth": 2
+  },
+  {
+    "id": 44757313,
+    "by": "aanthonymax",
+    "timeISO": "2025-08-01T14:27:59.000Z",
+    "textPlain": "Interesting project! Today, AI projects move progress forward. Good luck to you!",
+    "parent": 44752791,
+    "depth": 2
+  },
+  {
+    "id": 44747688,
+    "by": "jellothere",
+    "timeISO": "2025-07-31T17:06:53.000Z",
+    "textPlain": "Really great work! We’ve been integrating LLMs into production chat-based workflows for a while, and mcp-use has given us the biggest DX boost we’ve seen all year. It strips away the boilerplate of the official SDK, so spinning up a new MCP backend becomes almost a copy‑paste job.From a company perspective that’s huge: adding a new chatbot feature that used to take a couple of sprints and a lot of glue code can now be done in hours instead of weeks.",
+    "parent": 44752791,
+    "depth": 2
+  },
+  {
+    "id": 44747546,
+    "by": "kenlo",
+    "timeISO": "2025-07-31T16:54:15.000Z",
+    "textPlain": "Thank you for sharing this!\nAt Product Weaver we love how mcp-use makes our life easier when accessing MCP servers like Jira, Linear, Notion and many others. We like the clean code we can write, as it's vital for maintaining it.\nAd maiora!",
+    "parent": 44752791,
+    "depth": 2
+  },
+  {
+    "id": 44748646,
+    "by": "zechengz",
+    "timeISO": "2025-07-31T18:31:52.000Z",
+    "textPlain": "Love this! This is super helpful!",
+    "parent": 44752791,
+    "depth": 2
+  },
+  {
+    "id": 44751225,
+    "by": "olivieropinotti",
+    "timeISO": "2025-07-31T23:08:47.000Z",
+    "textPlain": "This is super cool! Building with MCP is such a hassle right now, this is a game changer.",
+    "parent": 44752791,
+    "depth": 2
+  },
+  {
+    "id": 44752287,
+    "by": "moron4hire",
+    "timeISO": "2025-08-01T01:58:46.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44752791,
+    "depth": 2
+  },
+  {
+    "id": 44750733,
+    "by": "orliesaurus",
+    "timeISO": "2025-07-31T22:09:07.000Z",
+    "textPlain": "belli e bravi",
+    "parent": 44752791,
+    "depth": 2
+  },
+  {
+    "id": 44747556,
+    "by": "pzullo",
+    "timeISO": "2025-07-31T16:55:22.000Z",
+    "textPlain": "I think the original SDK is quite low level, not assembly low level, but if you want to get started and expose a tool to an LLM you would have to write something in the neighborhood of ~200 lines of code, and they would have to be wrapped in a double nested async loop. If you want to develop authorization with Dynamic Client Registration, it going to be another ~1000 lines. I think many developers will want to avoid that. Plus, if the spec changes, and it does very often, you would have to keep track of it, we take care of that for you.",
+    "parent": 44747464,
+    "depth": 2
+  },
+  {
+    "id": 44750302,
+    "by": "jonfw",
+    "timeISO": "2025-07-31T21:19:06.000Z",
+    "textPlain": "As somebody who has done both- mcp-use makes it very very simple.If you are at all familiar w/ python back-end development, it's literally just as easy use this tool to make an API as it is to put your MCP into claude desktop.MCP SDK is not hard to do per se... but it's more than a 5 minute job",
+    "parent": 44747464,
+    "depth": 2
+  }
+]

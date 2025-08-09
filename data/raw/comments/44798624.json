@@ -1,0 +1,50 @@
+[
+  {
+    "id": 44844798,
+    "by": "radarsat1",
+    "timeISO": "2025-08-09T07:49:41.000Z",
+    "textPlain": "Regarding the typewriter approach, I've wondered for a while if anyone has explored simple backtracking with LLMs? Like, have the LLM be able to generate a backspace/delete token that lets it \"undo\" previously generated tokens in an append-only fashion. Not sure how this would work with teacher forcing but seems feasible with RL.",
+    "parent": 44798624,
+    "depth": 1
+  },
+  {
+    "id": 44843910,
+    "by": "mNovak",
+    "timeISO": "2025-08-09T03:52:57.000Z",
+    "textPlain": "Really interesting to see the diffusion model solve the puzzles in an iterative way, which feels more similar to how I (and probably most humans) solve them.Outwardly, it seems to be limited by unmasking too few tokens per round, even when the heatmap shows many more high-confidence guesses available. On some of the larger puzzles it looks like it's wasting many rounds filling in the 'obvious' shapes, and then gets the interesting bit in the last round. It also doesn't seem to have learned the idea of \"the background is blue with shapes drawn on top,\" where background is often 50% of the solution in these puzzles.",
+    "parent": 44798624,
+    "depth": 1
+  },
+  {
+    "id": 44844174,
+    "by": "twotwotwo",
+    "timeISO": "2025-08-09T05:11:27.000Z",
+    "textPlain": "It is kind of wild that most coding tasks are editing tasks, and we humans care a lot about code editing tools, but automated tools use code generation for editing where a valid block must be generated top-to-bottom in one go.Fixing a mistake requires re-generating the file or block of code. Or, if something generated later has implications for earlier code--a new import or function parameter's required, something like that--the only option is to go back and re-generate a big chunk. That'd be inefficient for humans, not implausible it's wrong for other code generators too.I don't know if diffusion specifically will be the approach.  (Maybe there's something to generating edit sequences?) This post's note that diffusion kills KV caching is something I hadn't even considered. It does seem right to experiment with things other than strict start-to-end generation.",
+    "parent": 44798624,
+    "depth": 1
+  },
+  {
+    "id": 44842969,
+    "by": "gen3",
+    "timeISO": "2025-08-09T00:12:00.000Z",
+    "textPlain": "Incredibly cool work, and a great primer on diffusion",
+    "parent": 44798624,
+    "depth": 1
+  },
+  {
+    "id": 44844999,
+    "by": "namibj",
+    "timeISO": "2025-08-09T08:44:26.000Z",
+    "textPlain": "You can still cache prompts; this just affects the cache for during generation produced tokens. And that's fairly harmless relatively speaking.",
+    "parent": 44844174,
+    "depth": 2
+  },
+  {
+    "id": 44844761,
+    "by": "imtringued",
+    "timeISO": "2025-08-09T07:39:01.000Z",
+    "textPlain": "A massive problem with current generation llms is that they have a single globally ordered context and that the model is only allowed to append to the context.This is like having a single tape Turing machine. They can simulate a multi tape machine, but at O(n^2) complexity.The computation budget of an LLM is finite, so this has a massive practical impact.",
+    "parent": 44844174,
+    "depth": 2
+  }
+]

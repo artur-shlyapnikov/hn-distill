@@ -1,0 +1,8 @@
+{
+  "id": 44840307,
+  "lang": "ru",
+  "summary": "**json2dir** — утилита, превращающая JSON в каталоги и файлы.  \nПозволяет хранить dot-файлы в одном JSON и разворачивать их за миллисекунды без home-manager.\n\n### Установка\n```bash\nnix build github:alurm/json2dir\n# или\ncargo install json2dir\n```\n\n### Использование\n```bash\n# создать дерево из JSON\njson2dir config.json ~/.config\n\n# собрать JSON обратно\njson2dir --reverse ~/.config > config.json\n```\n\n### Формат JSON\n```json\n{\n  \"nvim/init.lua\": \"vim.opt.number = true\",\n  \"zsh/.zshrc\": \"export PATH=$HOME/.local/bin:$PATH\",\n  \"ssh/config\": \"Host *\\n  ServerAliveInterval 60\"\n}\n```\n\n### Плюсы\n- мгновенный вывод без Nix-пересборок  \n- лёгкая синхронизация через Git  \n- работает на любой ОС",
+  "inputHash": "ae8c774dc12315fd0983b595a4dd45e2034b6e1349829b4cdbb5cd1d174b0e1d",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-08T19:20:05.163Z"
+}

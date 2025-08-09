@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44840267,
+    "by": "aboodman",
+    "timeISO": "2025-08-08T18:42:19.000Z",
+    "textPlain": "> Using Zero is another option, it has many similarities to Electric, while also directly supporting mutations.The core differentiator of Zero is actually query-driven sync. We apparently need to make this more clear.You build your app out of queries. You don't have to decide or configure what to sync up front. You can sync as much, or as little as you want, just by deciding which queries to run.If Zero does not have the data that it needs on the client, queries automatically fall back to the server. Then that data is synced, and available for next query.This ends up being really useful for:- Any reasonably sized app. You can't sync all data to client.- Fast startup. Most apps have publicly visible views that they want to load fast.- Permissions. Zero doesn't require you to express your permissions in some separate system, you just use queries.So the experience of using Zero is actually much closer to a reactive db, something like Convex or RethinkDB ().Except that it uses standard Postgres, and you also get the instant interactions of a sync engine.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44838063,
+    "by": "bob1029",
+    "timeISO": "2025-08-08T15:19:22.000Z",
+    "textPlain": "I'm all-in on SSR. The client shouldn't have any state other than the session token, current URL and DOM.Networks and servers will only get faster. Speed of light is constant, but we aren't even using its full capabilities right now. Hollow core fiber promises upward of 30% reduction in latency for everyone using the internet. There are RF-based solutions that provide some of this promise today. Even ignoring a wild RTT of 500ms, a SSR page rendered in 16ms would feel relatively instantaneous next to any of the mainstream web properties online today if delivered on that connection.I propose that there is little justification to take longer than a 60hz frame to render a client's HTML response on the server. A Zen5 core can serialize something like 30-40 megabytes of JSON in this timeframe. From the server's perspective, this is all just a really fancy UTF-8 string. You should be measuring this stuff in microseconds, not milliseconds. The transport delay being \"high\" is not a good excuse to get lazy with CPU time. Using SQLite is the easiest way I've found to get out of millisecond jail. Any hosted SQL provider is like a ball & chain when you want to get under 1ms.There are even browser standards that can mitigate some of the navigation delay concerns:https://developer.mozilla.org/en-US/docs/Web/API/Speculation...",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44835003,
+    "by": "Cassandra99",
+    "timeISO": "2025-08-08T09:10:40.000Z",
+    "textPlain": "I developed an open-source task management software based on CRDT with a local-first approach. The motivation was that I primarily manage personal tasks without needing collaboration features, and tools like Linear are overly complex for my use case.This architecture offers several advantages:1. Data is stored locally, resulting in extremely fast software response times\n2. Supports convenient full database export and import\n3. Server-side logic is lightweight, requiring minimal performance overhead and development complexity, with all business logic implemented on the client\n4. Simplified feature development, requiring only local logic operationsThere are also some limitations:1. Only suitable for text data storage; object storage services are recommended for images and large files\n2. Synchronization-related code requires extra caution in development, as bugs could have serious consequences\n3. Implementing collaborative features with end-to-end encryption is relatively complexThe technical architecture is designed as follows:1. Built on the Loro CRDT open-source library, allowing me to focus on business logic development2. Data processing flow:\nUser operations trigger CRDT model updates, which export JSON state to update the UI. Simultaneously, data is written to the local database and synchronized with the server.3. The local storage layer is abstracted through three unified interfaces (list, save, read), using platform-appropriate storage solutions: IndexedDB for browsers, file system for Electron desktop, and Capacitor Filesystem for iOS and Android.4. Implemented end-to-end encryption and incremental synchronization. Before syncing, the system calculates differences based on server and client versions, encrypts data using AES before uploading. The server maintains a base version with its content and incremental patches between versions. When accumulated patches reach a certain size, the system uploads an encrypted full database as the new base version, keeping s",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44835128,
+    "by": "blixt",
+    "timeISO": "2025-08-08T09:31:03.000Z",
+    "textPlain": "I've been very impressed by Jazz -- it enables great DX (you're mostly writing sync, imperative code) and great UX (everything feels instant, you can work offline, etc).Main problems I have are related to distribution and longevity -- as the article mentions, it only grows in data (which is not a big deal if most clients don't have to see that), and another thing I think is more important is that it's lacking good solutions for public indexes that change very often (you can in theory have a public readable list of ids). However, I recently spoke with Anselm, who said these things have solutions in the works.All in all local-first benefits often come with a lot of costs that are not critical to most use cases (such as the need for much more state). But if Jazz figures out the main weaknesses it has compared to traditional central server solutions, it's basically a very good replacement for something like Firebase's Firestore in just about every regard.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44834568,
+    "by": "petralithic",
+    "timeISO": "2025-08-08T07:44:34.000Z",
+    "textPlain": "ElectricSQL and TanStack DB are great, but I wonder why they focus so much on local first for the web over other platforms, as in, I see mobile being the primary local first use case since you may not always have internet. In contrast, typically if you're using a web browser to any capacity, you'll have internet.Also the former technologies are local first in theory but without conflict resolution they can break down easily. This has been from my experience making mobile apps that need to be local first, which led me to using CRDTs for that use case.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44837755,
+    "by": "jeremy_k",
+    "timeISO": "2025-08-08T14:55:04.000Z",
+    "textPlain": "Not a lot of mention for the collaboration aspect that local first / sync engines enabled. I've been building a project using Zero that is meant to replace a Google Sheet a friend of mine uses for his business. He routinely gets on a Google Meet with a client, they both open the Sheet and then go through the data.Before the emergence of tools like Zero I wouldn't have ever considered attempting to recreate the experience of a Google Sheet in a web app. I've previously built many live updating UIs using web sockets but managing that incoming data and applying it to the right area in the UI is not trivial. Take that and multiply it by 1000 cells in a Sheet (which is the wrong approach anyway, but it's what I knew how to build) and I can only imagine the mess of code.Now with Zero, I write a query to select the data and a mutator to change the data and everything syncs to anyone viewing the page. It is a pleasure to work with and I enjoy building the application rather than sweating dealing with applying incoming hyper specific data changes.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44834732,
+    "by": "mentalgear",
+    "timeISO": "2025-08-08T08:15:25.000Z",
+    "textPlain": "Local-First & Sync-Engines are the future. Here's a great filterable datatable overview of the local-first framework landscape:\nhttps://www.localfirst.fm/landscapeMy favorite so far is Triplit.dev (which can also be combined with TanStack DB); 2 more I like to explore are PowerSync and NextGraph. Also, the recent LocalFirst Conf has some great videos, currently watching the NextGraph one (https://www.youtube.com/watch?v=gaadDmZWIzE).",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44840650,
+    "by": "JusticeJuice",
+    "timeISO": "2025-08-08T19:20:13.000Z",
+    "textPlain": "I remember being literally 12 when google docs was launched, which featured real-time sync, and a collaborative cursor. I remember thinking that this is how all web experience will be in the future, at the time 'cloud computing' was the buzzword - I (incorrectly) thought realtime collaboration was the very definition of cloud computing.And then it just... never happened. 20 years went by, and most web products are still CRUD experiences, such as this site included.The funny thing is it feels like it's been on the verge of becoming mainstream for all this time. When meteor.js got popular I was really excited, and then with react surely it was gonna happen - but even now, it's still not the default choice for new software.I'm still really excited to see it happen, and I do think it will happen eventually - it's just trickier than it looks, and it's tricky to make the tooling so cheap that it's worth it in all situations.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44836922,
+    "by": "sergioisidoro",
+    "timeISO": "2025-08-08T13:49:19.000Z",
+    "textPlain": "I really like electric approach and it has been on my radar for a long time, because it just leaves the writing complexity to you and the API.Most of the solutions with 2 way sync I see work great in simple rest and hobby \"Todo app\" projects. Start adding permissions and evolving business logic, migrations, growing product and such, and I can't see how they can hold up for very long.Electric gives you the sync for reads with their \"views\", but all writes still happen normally through your existing api / rest / rpc. That also makes it a really nice tool to adopt in existing projects.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44835932,
+    "by": "10us",
+    "timeISO": "2025-08-08T11:50:31.000Z",
+    "textPlain": "Man why arent couchdb / pouchdb not listed? Still works like a charm!",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44834714,
+    "by": "mkarliner",
+    "timeISO": "2025-08-08T08:12:01.000Z",
+    "textPlain": "Meteor was/is a very similar technology. And I did some fairly major projects with it.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44837929,
+    "by": "nicoritschel",
+    "timeISO": "2025-08-08T15:08:58.000Z",
+    "textPlain": "I've been down this rabbit hole as well. Many of the sync projects seem great at first glance (and are very impressive technically) but perhaps a bit idealistic. Reactive queries are fantastic from a dx perspective, but any of the \"real\" databases running in the browser like sqlite or pglite store database pages in IndexedDB as there are some data longevity issues with OPFS (IIRC Safari aggressively purges this with a week of inactivity). Maybe the solution is just storing caches in the users' home directory with the filesystem api, like a native application.Long story short, if requirements aren't strictly real time collaborative and online-enabled, I've found rolling something yourself more in the vein of a \"fat client\" works pretty well too for a nice performance boost. I generally prefer using IndexedDB directly— well via Dexie, which has reactive query support.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44836855,
+    "by": "CafeRacer",
+    "timeISO": "2025-08-08T13:43:48.000Z",
+    "textPlain": "We're using dexie+rxjs. A killer combination.Described here\nhttps://blog-doe.pages.dev/p/my-front-end-state-management-a...I've already made improvements to that approach. decoupling of backend and front end actually feels like you're reducing complexity.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44835081,
+    "by": "minikomi",
+    "timeISO": "2025-08-08T09:22:46.000Z",
+    "textPlain": "My kingdom for a team organised by org mode files through a got repo",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44834727,
+    "by": "terencege",
+    "timeISO": "2025-08-08T08:14:44.000Z",
+    "textPlain": "I'm also building a local first editor and rolling my own CRDTs. There are enormous challenges to make it work. For example the storage size issue mentioned in the blog, I end up using with yjs' approach which only increase the clock for upsertion, and for deletion remove the content and only remain deleted item ids which can be efficiently compressed since most ids are continuous.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44837853,
+    "by": "thruflo",
+    "timeISO": "2025-08-08T15:03:26.000Z",
+    "textPlain": "> Electric’s approach is compelling given it works with existing Postgres databases. However, one gap remains to fill, how to handle mutations?Just to note that, with TanStack DB, Electric now has first class support for local writes / write-path sync using transactional optimistic mutations:https://electric-sql.com/blog/2025/07/29/local-first-sync-wi...",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44836476,
+    "by": "sturza",
+    "timeISO": "2025-08-08T12:59:45.000Z",
+    "textPlain": "Local-first buys you instant UX by moving state to the client, and then makes everything else a little harder",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44836362,
+    "by": "antgiant",
+    "timeISO": "2025-08-08T12:46:58.000Z",
+    "textPlain": "I’ve been working on a small browser app that is local first and have been trying to figure out how to pair it with static hosting. It feels like this should be possible but so far the tooling all seems stuck in the mindset of having a server somewhere.My use case is scoring live events that may or may not have Internet connection. So normal usage is a single person but sometimes it would be nice to allow for multi person scoring without relying on centralized infrastructure.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44835251,
+    "by": "b_e_n_t_o_n",
+    "timeISO": "2025-08-08T09:56:16.000Z",
+    "textPlain": "Local first is super interesting and absolutely needed - I think most of the bugs I run into with web apps have to do with sync, exacerbated by poor internet connectivity. The local properties don't interest me as much as request ordering and explicit transactions. You aren't guaranteed that requests resolve in order, and thus can result in a lot of inconsistencies. These local-first sync abstractions are a bit like bringing a bazooka to a water gun fight - it would be interesting to see some halfway approaches to this problem.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44835048,
+    "by": "preaching5271",
+    "timeISO": "2025-08-08T09:16:45.000Z",
+    "textPlain": "Automerge + Keyhive is the future https://www.inkandswitch.com/project/keyhive/",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44835167,
+    "by": "madisvain",
+    "timeISO": "2025-08-08T09:37:15.000Z",
+    "textPlain": "Local first is amazing. I have been building a local first application for Invoicing since 2020 called Upcount https://www.upcount.app/.First I used PouchDB which is also awesome https://pouchdb.com/ but now switched to SQLite and Turso https://turso.tech/ which seems to fit my needs much better.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44835681,
+    "by": "qweiopqweiop",
+    "timeISO": "2025-08-08T11:11:29.000Z",
+    "textPlain": "It's starting to feel to me that a lot of tech is just converging on other platforms solutions. This for example sounds incredibly similar to how a mobile app works (on the surface). Of course it goes the other way too, with mobile tech taking declarative UIs from the Web.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44837201,
+    "by": "rylan-talerico",
+    "timeISO": "2025-08-08T14:13:34.000Z",
+    "textPlain": "I'm a big fan of local-first. InstantDB has productized it – worth looking into if you're interested in taking a local-first approach.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44836402,
+    "by": "mizzao",
+    "timeISO": "2025-08-08T12:50:49.000Z",
+    "textPlain": "Is this technical architecture so different from Meteor back in the day? Just curious for those who have a deeper understanding.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44834219,
+    "by": "Gravityloss",
+    "timeISO": "2025-08-08T06:46:27.000Z",
+    "textPlain": "Some problem on the site. Too much traffic?    Secure Connection Failed\n    An error occurred during a connection to bytemash.net. PR_END_OF_FILE_ERROR\n    Error code: PR_END_OF_FILE_ERROR",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44834604,
+    "by": "incorrecthorse",
+    "timeISO": "2025-08-08T07:51:24.000Z",
+    "textPlain": "> For the uninitiated, Linear is a project management tool that feels impossibly fast. Click an issue, it opens instantly. Update a status and watch in a second browser, it updates almost as fast as the source. No loading states, no page refreshes - just instant, interactions.How garbage the web has become for a low-latency click action being qualified as \"impossibly fast\". This is ridiculous.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44835313,
+    "by": "croes",
+    "timeISO": "2025-08-08T10:07:03.000Z",
+    "textPlain": "But how is conflicting data handled?For instance one closes an something and another aborts the same thing.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44835089,
+    "by": "yanis_t",
+    "timeISO": "2025-08-08T09:24:50.000Z",
+    "textPlain": "I don't get it. You still have to sync the state one way or another, network latency is still there.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44836485,
+    "by": "tommoor",
+    "timeISO": "2025-08-08T13:00:39.000Z",
+    "textPlain": "If you want to work on Linear's sync infrastructure or product – we're hiring. The day-to-day DX is incredible.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44834017,
+    "by": "ivape",
+    "timeISO": "2025-08-08T06:13:13.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44834557,
+    "by": "mbaranturkmen",
+    "timeISO": "2025-08-08T07:42:27.000Z",
+    "textPlain": "How is this approach better than using react-query to persist storage which periodically sync the local storage and the server storage? Perhaps I am missing something.",
+    "parent": 44833834,
+    "depth": 1
+  },
+  {
+    "id": 44838253,
+    "by": "random3",
+    "timeISO": "2025-08-08T15:34:18.000Z",
+    "textPlain": "> networks and servers are will only get fasterthis isn't an argument for SSR. In fact there's hardly a universal argument for SSR. You're thinking of a specific use-case where there's more compute capacity on the server, where logic can't be easily split, etc. There are plenty of examples that make the client-side rendering faster.Rendering logic can be disproportionately complex relative to the data size. Moreover, client resources may actually be larger in aggregate than sever. If SSR would be the only reasonable game in we wouldn't have excitement around Web Assembly.Also take a look at the local-computation post https://news.ycombinator.com/item?id=44833834The reality is that you can't know which one is better and you should be able to decide at request time.",
+    "parent": 44838063,
+    "depth": 2
+  },
+  {
+    "id": 44838248,
+    "by": "TimTheTinker",
+    "timeISO": "2025-08-08T15:33:30.000Z",
+    "textPlain": "If you could simply drop in a library to any of your existing SSR apps that:- is 50kb (gzipped)- requires no further changes required from you (either now or in the future)- enables offline/low bandwidth use of your app with automatic state syncing and zero UX degradationwould you do it?The problem I see with SSR evangelism is that it assumes that compromising that one use case (offline/low bandwidth use of the app) is necessary to achieve developer happiness and a good UX. And in some cases (like this) it goes on to justify that compromise with promises of future network improvements.The fact is, low bandwidth requirement will always be a valuable feature, no matter the context. It's especially valuable to people in third-world countries, in remote locations, or being served by Comcast (note I'm being a little sarcastic with that last one).",
+    "parent": 44838063,
+    "depth": 2
+  },
+  {
+    "id": 44841120,
+    "by": "whizzter",
+    "timeISO": "2025-08-08T20:06:27.000Z",
+    "textPlain": "RightToolForTheRightJob!Would you try to write/work on a collaboratibe text document (ie Google Docs or Sheets?) by editing a paragraph/sentence that's server side rendered and hope nobody changes the paragraph mid-work because the developers insisted on SSR ?These kinds of tools (Docs, Sheets, Figma, Linear,etc) work well because changes have little impact but conflict resolution is better avoided by users noticing that someone else is working on it and hopefully just get realtime updates.Then again, hotel booking or similar has no need for something like that.Then there's been middle-ground like an enterprise logistics app that had some badly YOLO'd syncing, it kinda needed some of it but there was no upfront planning and it took a time to retrofit a sane design since there was so much domain and system specifics things lurking with surprises.",
+    "parent": 44838063,
+    "depth": 2
+  },
+  {
+    "id": 44841192,
+    "by": "b_e_n_t_o_n",
+    "timeISO": "2025-08-08T20:13:51.000Z",
+    "textPlain": "This is called happy-path engineering, and it's really frustrating for people who don't live on the happy path.",
+    "parent": 44838063,
+    "depth": 2
+  },
+  {
+    "id": 44841260,
+    "by": "SJC_Hacker",
+    "timeISO": "2025-08-08T20:19:07.000Z",
+    "textPlain": "The use case for SSR now and in the future is on initial page load, especially on mobile.After that, with competent engineering everything should be faster on the client, since it only needs state updates, not a complete re-renderIf you don't have competent engineering, SSR isn't going to save you",
+    "parent": 44838063,
+    "depth": 2
+  },
+  {
+    "id": 44838233,
+    "by": "packetlost",
+    "timeISO": "2025-08-08T15:32:21.000Z",
+    "textPlain": "Latency is additive, so all that copper coax that and mux/demux in between a sizeable chunk of Americans and the rest of the internet means you're looking at a minimum roundtrip latency of 30ms if server is in the same city. Most users are also on Wi-Fi which adds and additional mux/demux + rebroadcast step that adds even more. And most people do not have the latest CPU. Not to mention mobile users over LTE.Sorry, but this is 100% a case of privileged developers thinking their compute infrastruction situation generalizes: it doesn't and it is a mistake to take shortcuts that assume as such.",
+    "parent": 44838063,
+    "depth": 2
+  },
+  {
+    "id": 44841316,
+    "by": "b_e_n_t_o_n",
+    "timeISO": "2025-08-08T20:23:34.000Z",
+    "textPlain": "very cool!",
+    "parent": 44835003,
+    "depth": 2
+  },
+  {
+    "id": 44839918,
+    "by": "ChadNauseam",
+    "timeISO": "2025-08-08T18:10:25.000Z",
+    "textPlain": "Yeah, Jazz is amazing. The DX is unmatched. My issue when I used it was, they mainly supported passkey-based encryption, which was poorly implemented on windows. That made it kind of a non-starter for me, although I'm sure they'll support traditional auth methods soon. But I love that it's end-to-end encrypted and it's super fun to use.",
+    "parent": 44835128,
+    "depth": 2
+  },
+  {
+    "id": 44834684,
+    "by": "jitl",
+    "timeISO": "2025-08-08T08:07:25.000Z",
+    "textPlain": "Because building local first with web technologies is like infinity harder than building local first with native app toolkits.Native app is installed and available offline by default. Website needs a bunch of weird shenanigans to use AppManifest or ServiceWorker which is more like a bunch of parts you can maybe use to build available offline.Native apps can just… make files, read and write from files with whatever 30 year old C code, and the files will be there on your storage. Web you have to fuck around with IndexedDB (total pain in the ass), localStorage (completely insufficient for any serious scale, will drop concurrent writes), or OriginPrivateFileSystem. User needs to visit regularly (at least once a month?) or Apple will erase all the local browser state. You can use JavaScript or hit C code with a wrench until it builds for WASM w/ Emscripten, and even then struggle to make sync C deal with waiting on async web APIs.Apple has offered CoreData + CloudKit since 2015, a completed first party solution for local apps that sync, no backend required. I’m not a Google enthusiast, maybe Firebase is their equivalent? Idk.",
+    "parent": 44834568,
+    "depth": 2
+  }
+]

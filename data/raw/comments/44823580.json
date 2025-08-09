@@ -1,0 +1,130 @@
+[
+  {
+    "id": 44830360,
+    "by": "cogman10",
+    "timeISO": "2025-08-07T21:06:30.000Z",
+    "textPlain": "The biggest issue of ARM to me is the fact that ARM hardware never seems to have good or updated drivers.If I pull an x86 machine or even laptop off the shelf, I'm like 90% sure I can perpetually support that machine for 30 or so years with the latest linux kernel.For arm, I'm almost guaranteed that the only kernel support I can get is their custom kernel, which I'd have to scrape out of their custom OS.  That means being locked into a vendored 3.10 linux kernel forever because there was never any real effort to upstream drivers into the kernel.It's frankly a bit bizarre that it's so bad.  x86 just works even with the latest CPUs.  ARM doesn't.",
+    "parent": 44823580,
+    "depth": 1
+  },
+  {
+    "id": 44825443,
+    "by": "CoastalCoder",
+    "timeISO": "2025-08-07T15:04:54.000Z",
+    "textPlain": "I'm curious how long until most users just don't care if their CPU has native x86 support.As someone developing HPC applications, I generally don't care either, as long as the hardware has good fundamentals, and is well supported by the available compilers and profiling tools.Honestly at this point the only reason that I'm aware of to prefer Intel for my workloads is the awesomeness of VTune.How's the quality of the equivalent AMD or Arm tooling these days?",
+    "parent": 44823580,
+    "depth": 1
+  },
+  {
+    "id": 44824620,
+    "by": "ezcrypt",
+    "timeISO": "2025-08-07T14:06:32.000Z",
+    "textPlain": "Tried box64 on a Raspberry Pi 5 the other day and it worked above expectations. Except for a minor glitch with OGG audio, I got about 60 FPS in Xonotic (x86_64 emulated on AArch64).",
+    "parent": 44823580,
+    "depth": 1
+  },
+  {
+    "id": 44826980,
+    "by": "hackcasual",
+    "timeISO": "2025-08-07T16:59:02.000Z",
+    "textPlain": "There's a handful of Windows game emulators taking off for Android. Using a modern snapdragon GPU, folks are playing Witcher 3, GTA 5. Some suffering gamer is playing through Dark Souls 2 using touch controls",
+    "parent": 44823580,
+    "depth": 1
+  },
+  {
+    "id": 44824853,
+    "by": "ignoramous",
+    "timeISO": "2025-08-07T14:24:40.000Z",
+    "textPlain": "Tangential: Google engs recently presented RISC-V -> x64 binary translation in Android viz. Berberis: https://youtube.com/watch?v=HjhzXZqjFrUAlso: https://github.com/MattPD/cpplinks/blob/master/assembly.risc...",
+    "parent": 44823580,
+    "depth": 1
+  },
+  {
+    "id": 44827996,
+    "by": "ekianjo",
+    "timeISO": "2025-08-07T17:57:20.000Z",
+    "textPlain": "Why ignore box64?",
+    "parent": 44823580,
+    "depth": 1
+  },
+  {
+    "id": 44831566,
+    "by": "kimixa",
+    "timeISO": "2025-08-07T23:17:06.000Z",
+    "textPlain": "From my experience working on GPU drivers, the ISA is one of the least important parts of porting. 99% of the time, it's just changing a compiler flag. Thankfully, the era of \"Ancient Quirky Proprietary Toolchain\" is a thing of the past, even on small embedded platforms.Sure, you might have have a little \"optimised\" ASM for some specific conversions, but that's always just performance, and a driver even touching bulk data on the CPU means you're already in the slow path.Stuff like how the busses are enumerated, cache coherency specifics, and interoperability with other devices (some mobile SoCs can be a grab bag of different GPU/Display block/Video encoder/Image processing/whatever else) is waayyyyy more important from what I've seen/.And while we all hate on stuff like PCI and ACPI, at least it's (kinda) standard and (somewhat) works.",
+    "parent": 44830360,
+    "depth": 2
+  },
+  {
+    "id": 44825967,
+    "by": "chainingsolid",
+    "timeISO": "2025-08-07T15:42:44.000Z",
+    "textPlain": "Personally for me I only care about x86 for 2 reasons.1) Steam library.2) And the just works combo of ATX & the ability to use any ISO on almost any x86 machine.I'm personally scared if x86 dies the open market of ATX and bring your own OS won't exist as every company will just lock you in to only there stuff on their devices.",
+    "parent": 44825443,
+    "depth": 2
+  },
+  {
+    "id": 44825973,
+    "by": "dagmx",
+    "timeISO": "2025-08-07T15:42:58.000Z",
+    "textPlain": "The majority of compute users do not care.Everyone who uses a tablet or smartphone obviously doesn’t care.Anyone on a Mac doesn’t care, and even on windows, only very performance sensitive people would care if Prism isn’t doing its thing.You’d essentially be left with AAA PC gamers and other performance sensitive people, which are a small percentage of overall users.",
+    "parent": 44825443,
+    "depth": 2
+  },
+  {
+    "id": 44825465,
+    "by": "testing22321",
+    "timeISO": "2025-08-07T15:07:02.000Z",
+    "textPlain": "I have an M1 MacBook Air I bought used a year ago for $800.I edit a ton of 4K video, photos off my Sony Mirrorless, write articles, web, etc.It is by far the fastest computer I’ve ever used. I have never once known or cared if anything is running x86.",
+    "parent": 44825443,
+    "depth": 2
+  },
+  {
+    "id": 44827944,
+    "by": "pacetherace",
+    "timeISO": "2025-08-07T17:54:21.000Z",
+    "textPlain": "I think we are already past that point. With Apple Macbook, Google Chromebook and Microsoft Surface, we pretty much have all consumer computer echo system become ARM based.\nThanks to AMDs resurgence the server space is still heavily x86 based.",
+    "parent": 44825443,
+    "depth": 2
+  },
+  {
+    "id": 44830882,
+    "by": "rollcat",
+    "timeISO": "2025-08-07T21:57:23.000Z",
+    "textPlain": "> I'm curious how long until most users just don't care if their CPU has native x86 support.None of the machines I regularly use are x86-native, this has been the case for 4 years now. I only care because deploying x86 containers is still a thing.I might be getting a gaming PC at some point, but there are very few titles I'm actually really interested in.",
+    "parent": 44825443,
+    "depth": 2
+  },
+  {
+    "id": 44826984,
+    "by": "dboreham",
+    "timeISO": "2025-08-07T16:59:13.000Z",
+    "textPlain": "Working on the back-end side, there are still edge cases where ARM just doesn't work. You'll be using some container image and there's no ARM build. So you build it yourself and the build fails. After two days of poking and prodding it turns out the image is based on some wonky base image that has a libc that has never been ported to ARM. Re-creating the image on a different base turns out to be a big project. I've run into 2-3 similar but different issues like this in the past couple of years.",
+    "parent": 44825443,
+    "depth": 2
+  },
+  {
+    "id": 44825545,
+    "by": "varispeed",
+    "timeISO": "2025-08-07T15:12:55.000Z",
+    "textPlain": "Sadly some companies are stubborn and just won't support ARM. For instance if you need to use Autodesk Revit for work, you are sentenced to Windows x86 hell.",
+    "parent": 44825443,
+    "depth": 2
+  },
+  {
+    "id": 44824749,
+    "by": "geerlingguy",
+    "timeISO": "2025-08-07T14:16:17.000Z",
+    "textPlain": "For games in particular, the best performance comes if you use a dedicated GPU [1]. Though the CPU emulation can still be a limiting factor.I'm able to play most 5-10 year old games that aren't tied to DRMs at 30-60 fps on a Pi [2] (and certainly on Ampere) using box64 and an AMD GPU (or Nvidia on an Ampere system), haven't spent much time with FEX-emu though.[1] https://www.jeffgeerling.com/blog/2025/system76-built-fastes...[2] https://www.jeffgeerling.com/blog/2024/use-external-gpu-on-r...",
+    "parent": 44824620,
+    "depth": 2
+  },
+  {
+    "id": 44828391,
+    "by": "3036e4",
+    "timeISO": "2025-08-07T18:21:48.000Z",
+    "textPlain": "Problem is, I assume, being stuck relying on some brittle apps that might or might not still run after some OS upgrade or after buying a new device. Like the DOSBox app I use on my Android phone is amazing but knowing that eventually it will suddenly expire (when the developer abandons it), like the previous one, makes me enjoy the games a lot less than I do when I have a more stable platform set up like when playing using some fully open source emulator on a rpi or x86 desktop pc.",
+    "parent": 44826980,
+    "depth": 2
+  }
+]

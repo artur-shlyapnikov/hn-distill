@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44837672,
+    "by": "aosaigh",
+    "timeISO": "2025-08-08T14:48:58.000Z",
+    "textPlain": "I’m just today after having my first real success with Claude (and generally with coding agents). I’ve played with Cursor in the past but am now trying Claude and others.As mentioned in the article, the big trick is having clear specs. In my case I sat down for 2 hours and wrote a 12 step document on how I would implement this (along with background information). Claude went through step by step and wrote the code. I imagine this saved me probably 6-10 hours. I’m now reviewing and am going to test etc. and start adjusting and adding future functionality.Its success was rooted in the fact I knew exactly how to do what it needed to do. I wrote out all the steps and it just followed my lead.It makes it clear to me that mid and senior developers aren’t going anywhere.That said, it was amazing to just see it go through the requirements and implement modules full of organised documented code that I didn’t have to write.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44844847,
+    "by": "vemv",
+    "timeISO": "2025-08-09T08:05:42.000Z",
+    "textPlain": "I'm not gonna lie, that ~/.claude/CLAUDE.md is not going to work.There are a lot of subjective, ambigous instructions that really won't affect what Claude writes. Remember it's not a human, it's not performing careful reasoning over each individual LOC.Context rot is a thing (https://news.ycombinator.com/item?id=44564248 ).As of today, you cannot squeeze a true rule system out of a single file given as context. Many of us have done this mistake at some point – believing that you can specify arbitrarily many rules and that they'll be honored.If you really care about every such rule, you'd have to create sub-agents, one per rule, and make the agents a required part of a deterministic (non-AI orchestrated) pipeline. Then costs would explode of course.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44837975,
+    "by": "time0ut",
+    "timeISO": "2025-08-08T15:13:18.000Z",
+    "textPlain": "I've been working with Claude Code daily for a month or so. It is quite excellent and better than the other agents I have used (Cursor, Q). This article has some good tips that echo some of the things I have learned.Some additional thoughts:- I like to start with an ideation session with Claude in the web console. I explain the goals of the project, work through high level domain modeling, and break the project down into milestones with a target releasable goal in mind. For a small project, this might be a couple hours of back and forth. The output of this is the first version of CLAUDE.md.- Then I start the project with Claude Code, have it read my global CLAUDE.md and the project CLAUDE.md and start going. Each session begins this way.- I have Claude Code update the project CLAUDE.md as it goes. I have it mark its progress through the plan as it goes. Usually, at the end of the session, I will have it rewrite a special section that contains its summary of the project, how it works, and how to navigate the code. I treat this like Claude's long term memory basically. I have found it helps a lot.- Even with good guidelines, Claude seems to have a tendency to get ahead of itself. I like to keep it focused and build little increments as I would myself if it is something I care about. If its just some one off or prototype, I let it go crazy and churn whatever works.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44845054,
+    "by": "anonzzzies",
+    "timeISO": "2025-08-09T09:02:57.000Z",
+    "textPlain": "> A key is writing a clear spec ahead of time, which provides context to the agent as it works in the codebase.Yeah, people say that. I even was sitting next to some 'expert' (not him saying; others saying) who told me this and we did a CC session with Opus 4 & Sonnet 4. He had this well written, clear spec. It really didn't do even an inch better than my adhoc shooting in features as they came to me in /clear contexts without CLAUDE.md. His workflow kept forgetting vital things (even though there are in the context doc), making up things that are NOT in the context doc and sometimes forbidden etc. While I just typed stuff like; now add a crud page for invoices, first study the codebase and got far better results. It is anecdotal obviously but I now managed to write 100+ projects with Claude and, outside hooks to prevent it from overstepping, I found no flow working better than another; people keep claiming it does, but when asked to 'show me', it turns out they are spending countless hours fixing completely wrong stuff EVEN when told explicitly NOT to do things like that in CLAUDE.md.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44844503,
+    "by": "Nizoss",
+    "timeISO": "2025-08-09T06:31:18.000Z",
+    "textPlain": "I've found that keeping my CLAUDE.md minimal (under 100 lines) yields the best results. I focus mainly on these areas:- Essential project context and purpose- A minimal project structure to help locate types, interfaces, and helpers- Common commands to avoid parsing package.json repeatedly.Regarding the specific practices mentioned:Implementation Flow: I've noticed Claude Code often tries to write all tests at once, then implements everything when import fails (not true TDD). To address this, I created a TDD-Guard hook that enforces one test at a time, test fail for the right reason, only implement the minimal code to make the test pass.Code quality: I've had good success automating these with husky, lint-staged, and commitlint. This gives deterministic results and frees up the context for more important information.When Stuck: I agree that developer intervention is often the best path. I'm just afraid the specific guidance here might be too generic.For anyone interested in this automated approach:https://github.com/nizos/tdd-guard (includes example configuration)https://github.com/typicode/huskyhttps://github.com/conventional-changelog/commitlinthttps://github.com/lint-staged/lint-staged",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44838372,
+    "by": "maherbeg",
+    "timeISO": "2025-08-08T15:44:54.000Z",
+    "textPlain": "I highly recommend having fairly succinct project level CLAUDE.md files, and defer more things into sub-folders. Use the top level as a map. Then during your planning of a feature, it can reach into each folder as it sees fit to find useful context to build out your phased implementation plan. I have it use thinking mode to figure out the right set of context.At the end of each phase, I ask claude to update my implementation plan with new context for a new instance of claude to pick it up. This way it propagates context forward, and then I can clear the context window to start fresh on the next phase.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44837817,
+    "by": "bgirard",
+    "timeISO": "2025-08-08T15:00:15.000Z",
+    "textPlain": "I'm playing with Claude Code to build an ASCII factorio-like. I first had it write code without much code supervision. It quickly added most of the core features you'd expect (save/load, options, debug, building, map generation, building, belts, crafting, smart belt placing, QoL). Then I started fixing minor bugs and each time it would break something eg. tweaking movement broke belts. So I prompted it to add Playwright automation. Then it wasn't able to write good quality tests and have them all pass, the test were full of sleep calls, etc...So I looked at the code more closely and it was using the React frontend and useEffect instead of a proper game engine. It's also not great at following hook rules and understanding their timing in advance scenarios. So now I'm prompting it to use a proper tick based game engine and rebuilding the game up, doing code reviews. It's going 'slower' now, but it's going much better now.My goal is to make a Show HN post when I have a good demo.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44839616,
+    "by": "JulesRosser",
+    "timeISO": "2025-08-08T17:37:52.000Z",
+    "textPlain": "For anyone like me who was struggling to manage work and personal Claude subscriptions, you can just use an alias like this:alias claude-personal=\"CLAUDE_CONFIG_DIR=~/.claude-personal claude\"https://julesrosser.com/blog/Multiple-Claude-accounts.html",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44838178,
+    "by": "libraryofbabel",
+    "timeISO": "2025-08-08T15:27:37.000Z",
+    "textPlain": "I use Claude Code regularly and have been responsible for introducing colleagues to it. The consensus here seems to be that it’s the best coding agent out there. But since it’s the only coding agent I’ve used, when colleagues ask why it’s better than Cursor, Cline, GitHub Copilot, Gemini CLI, etc., I sometimes struggle to articulate reasons.Claude Code power users, what would you say makes it superior to other agents?",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44841590,
+    "by": "kleyd",
+    "timeISO": "2025-08-08T20:53:38.000Z",
+    "textPlain": "Does anyone else find themselves starting projects that wouldn't otherwise be worth the time investment, while avoiding Claude Code for the tasks that actually have high priority?Who has had success using Claude Code on features in older, bigger, messier projects?",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44844114,
+    "by": "kookamamie",
+    "timeISO": "2025-08-09T04:52:48.000Z",
+    "textPlain": "I think the guidelines look over-engineered. I'm getting good results with a bare minimum set of instructions, such as \"use spaces instead of tabs. This is in C++/Python and computer vision.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44840349,
+    "by": "gabrielpoca118",
+    "timeISO": "2025-08-08T18:50:41.000Z",
+    "textPlain": "I don’t write any structured specs and I still get a lot of value out of it. I basically use it in incremental steps where I’m telling it what I want at a much lower level. Am always watching what it is doing and stopping it to correct the action. At least for me this approach has worked much better than asking it for bigger things.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44845125,
+    "by": "StarterPro",
+    "timeISO": "2025-08-09T09:17:36.000Z",
+    "textPlain": "At a certain point though,  you lose any creative input.If you review the code and it needs a change, do you run it back through Claude with the requested changes or do you make the changes yourself?",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44837789,
+    "by": "delichon",
+    "timeISO": "2025-08-08T14:57:45.000Z",
+    "textPlain": "Asking the agent to perform a code review on its own work is surprisingly fruitful.\n\nI do this routinely with its suggestions, usually before I apply them. It is surprising how often Claude immediately dumps on its own last output, talking both of us out if it, and usually with good reasons. I'd like to automate this double-take.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44837922,
+    "by": "iambateman",
+    "timeISO": "2025-08-08T15:08:23.000Z",
+    "textPlain": "if you use Laravel, I wrote github.com/iambateman/speedrun to help get good results. You type /feature [[description of feature]] and it takes it from there.The system helps you build out a spec first, then uses a few subagents which are tuned for placing files, reviewing for best practice, etc.I've been using it for about a week and about 70% of my Claude Code usage runs through /feature right now.The nice thing is you can give it a _lot_ of requests and let it run for 10-15 minutes without interruption. Plus, it makes a set of planning documents before it implements, so you can see exactly what it thought it was changing.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44838002,
+    "by": "abroun_beholder",
+    "timeISO": "2025-08-08T15:15:08.000Z",
+    "textPlain": "Nice post, I'll try a few of those in my own file. From my side, one thing in the troubleshooting section that I think is missing is telling the agent that it should collect some proof of what it thinks is wrong before trying to proceed with a fix. I have burnt through a large number of tokens in the past in situations where Claude took a look at the dodgy code (that it had written) and went 'aha! I know what the problem is here' before proceeding to make things worse. Telling Claude to add in debug print statements can be remarkably effective but I'm sure it can also come up with other approaches.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44838279,
+    "by": "monkeydust",
+    "timeISO": "2025-08-08T15:37:03.000Z",
+    "textPlain": "Been playing around with Claude Code for a home project over the last week.I started with an idea but no spec. I got it to a happy place I can deploy yesterday. Spent around $75 on tokens. It was starting to feel expensive towards the end.I did wonder if I had started with a clearer specification could I have got there quicker and for less money.The thing is though, looking back at the conversations I had with it, the back and forth (vibe coding I guess) helped me refine what I was actually after so in two minds if a proper tight specification upfront would have been the best thing.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44840277,
+    "by": "michaelteter",
+    "timeISO": "2025-08-08T18:43:09.000Z",
+    "textPlain": "There’s an interesting transition point that we must keep in mind when using these tools.For research, investigation, and proof of concept, it is good to be flexible and a bit imprecise.But once a path seems clear, writing a single detailed document (even with “help”) is valuable before working with a separate AI assistant.The challenge is recognizing that transition point.  It’s very easy to just meander from zero to sort-of-product without making this separation.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44837977,
+    "by": "nlh",
+    "timeISO": "2025-08-08T15:13:33.000Z",
+    "textPlain": "One fantastic tip I discovered (sorry I've forgotten who wrote it but probably a fellow HNer):If you're using an AI for the \"architecture\" / spec phase, play a few of the models off each other.I will start with a conversation in Cursor (with appropriate context) and ask Gemini 2.5 Pro to ask clarifying questions and then propose a solution, and once I've got something, switch the model to O3 (or your other preferred thinking model of choice - GPT-5 now?).  Add the line \"please review the previous conversation and critique the design, ask clarifying questions, and proposal alternatives if you think this is the wrong direction.\"Do that a few times back and forth and with your own brain input, you should have a pretty robust conversation log and outline of a good solution.Export that whole conversation into an .md doc, and use THAT in context with Claude Code to actually dive in and start writing code.You'll still need to review everything and there will still be errors and bad decisions, but overall this has worked surprisingly well and efficiently for me so far.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44844406,
+    "by": "jen729w",
+    "timeISO": "2025-08-09T06:09:19.000Z",
+    "textPlain": "> Use for AI training prohibited.Yep, that’ll do it.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44838790,
+    "by": "naiv",
+    "timeISO": "2025-08-08T16:21:11.000Z",
+    "textPlain": "The update to Opus 4.1 really improved the quality.I personally really like to use Claude Code together with Zen MCP https://github.com/BeehiveInnovations/zen-mcp-server to analyse existing and review fresh code with additional eyes from Gpt5 and Gemini.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44837957,
+    "by": "softwaredoug",
+    "timeISO": "2025-08-08T15:11:32.000Z",
+    "textPlain": "I get a lot of success when I’ve laid out the patterns and first implementation of an idea in my code. Then tell Claude to repeat the pattern to implement X feature.And do it very step by step in what would equate to a tiny PR that gradually roles out the functionality. Too big and I find lots of ugly surprises and bugs and reorganizations that don’t make sense.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44842805,
+    "by": "catigula",
+    "timeISO": "2025-08-08T23:39:03.000Z",
+    "textPlain": "The magic of these agents is how quickly and adaptably they enable you to plagiarize work they've seen many times before.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44837917,
+    "by": "berlinismycity",
+    "timeISO": "2025-08-08T15:08:02.000Z",
+    "textPlain": "Including Claude Code into the normal subscription was a genius move by Anthrophic. It's so much better than copy and pasting code from chat windows, but that's hard to tell if I had to pay via an API for that service",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44838383,
+    "by": "andrew_lastmile",
+    "timeISO": "2025-08-08T15:45:38.000Z",
+    "textPlain": "Creating temporary artifacts of implementation plans seem to be very useful for breaking down complex tasks and even more so, for me to double check the logic and plans.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44837935,
+    "by": "tobyhinloopen",
+    "timeISO": "2025-08-08T15:09:14.000Z",
+    "textPlain": "That's a great, short prompt. I'm going to steal it.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44842164,
+    "by": "1zael",
+    "timeISO": "2025-08-08T22:05:00.000Z",
+    "textPlain": "I’ve found my workflow is much faster now after implementing a dedicated Claude agent for test-driven development. This TDD agent reviews code and generates comprehensive tests for my primary agent before commits enter the CI/CD pipeline. I have multiple terminals open running various Claude agents.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44840347,
+    "by": "renewiltord",
+    "timeISO": "2025-08-08T18:50:27.000Z",
+    "textPlain": "Claude code is fantastic. For me, the insight was that you have to give it the ability to close the loop. If it writes code it will try to reason about the code. \"The button has the right CSS and so should be visible\".But everything is better if it can close the loop. So I instead instruct it to always use the puppeteer tool to launch the app and use some test credentials and see if the functionality works.That's for a web app but you can see how you can do this for other things. Either unit tests, integration tests, or the appropriate MCP.It needs to see what it's done and observe the resulting world. Not just attempt to reason to it.Claude also leans towards what it's good at. Repetition costs it nothing so it doesn't mind implementing the same 5 times. One thing it did when I started is implement a sidebar on every page rather than using a component. So you need to provide some pressure against that with your prompts or at least force it to refactor at the end.",
+    "parent": 44836879,
+    "depth": 1
+  },
+  {
+    "id": 44843263,
+    "by": "fooster",
+    "timeISO": "2025-08-09T01:17:12.000Z",
+    "textPlain": "I get excellent results and don’t do anything like that. Basically I ask Claude to write code as I do. A small step at a time. I literally prompt it to do the next step I’d do and so on and so forth. I accept all changes immediate and then commit after every change and then review the diff. If Claude did some badness then I ask it to fix that. I typically also give references to existing code that I want it to model or functions to use.This gives me excellent results with far less typing and time.",
+    "parent": 44837672,
+    "depth": 2
+  },
+  {
+    "id": 44841716,
+    "by": "andrewgleave",
+    "timeISO": "2025-08-08T21:10:05.000Z",
+    "textPlain": "Yeah. Read “Programming as Theory Building” by Naur [1] to understand why you need to still need to develop a theory of the problem and how to model it yourself lest the LLM concoct (an incorrect) one for you.[1] https://gwern.net/doc/cs/algorithm/1985-naur.pdf",
+    "parent": 44837672,
+    "depth": 2
+  },
+  {
+    "id": 44843003,
+    "by": "wiremine",
+    "timeISO": "2025-08-09T00:18:33.000Z",
+    "textPlain": "> As mentioned in the article, the big trick is having clear specsI've been building a programming language using Claude, and this is my findings, too.Which, after discovering this, makes sense. There are a LOT of small decisions that go into programming. Without detailed guidance, LLMs will end up making educated guesses for a lot of these decision, many of which will be incorrect. This creates a compounding effect where the net effect is a wrong solution.",
+    "parent": 44837672,
+    "depth": 2
+  },
+  {
+    "id": 44837795,
+    "by": "mft_",
+    "timeISO": "2025-08-08T14:58:18.000Z",
+    "textPlain": "Can you (or anyone) share an example of such a specification document?  As an amateur programmer experimenting with CC, it would be very helpful to understand the nature and depth of the information that is helpful.",
+    "parent": 44837672,
+    "depth": 2
+  },
+  {
+    "id": 44838154,
+    "by": "camel_gopher",
+    "timeISO": "2025-08-08T15:25:30.000Z",
+    "textPlain": "Many mid and senior developers cannot write specs. I agree with the intent of your statement.",
+    "parent": 44837672,
+    "depth": 2
+  },
+  {
+    "id": 44844108,
+    "by": "cortesoft",
+    "timeISO": "2025-08-09T04:50:29.000Z",
+    "textPlain": "> It makes it clear to me that mid and senior developers aren’t going anywhere.I kinda feel like this is a self-placating statement that is not going to stay true for that long. We are so early in the process of developing AI good enough to do any of these things. Yes, right now you need senior level design skills and programming knowledge, but that doesn't mean that will stay true.",
+    "parent": 44837672,
+    "depth": 2
+  },
+  {
+    "id": 44844124,
+    "by": "kookamamie",
+    "timeISO": "2025-08-09T04:56:33.000Z",
+    "textPlain": "I think it can already replace mid-level engineers, based on my experience. Also, you really don't need meticulously crafted specs for this - I've completed multiple projects with Claude with loose specs, iterating in case the direction is not looking good. You can always esc-out in case you see it doing something you didn't wish for.",
+    "parent": 44837672,
+    "depth": 2
+  },
+  {
+    "id": 44837899,
+    "by": "miroljub",
+    "timeISO": "2025-08-08T15:06:22.000Z",
+    "textPlain": "> That said, it was amazing to just see it go through the requirements and implement modules full of organised documented code that I didn’t have to writeSmall side remark, but what is the value added of the AI generated documentation for the AI generated code. It's just a burden that increases context size whenever AI needs to re-analyse or change the existing code. It's not like any human is ever going to read the code docs, when he can just ask AI what it is about.",
+    "parent": 44837672,
+    "depth": 2
+  },
+  {
+    "id": 44844155,
+    "by": "gronglo",
+    "timeISO": "2025-08-09T05:05:51.000Z",
+    "textPlain": "You could have saved yourself another 2 hours by getting Claude 4 Opus to write out the specs for you first. Why did you need to write them at all?",
+    "parent": 44837672,
+    "depth": 2
+  },
+  {
+    "id": 44837692,
+    "by": "philipwhiuk",
+    "timeISO": "2025-08-08T14:50:19.000Z",
+    "textPlain": "Frankly, even if you ignore Claude entirely, being able to write a good spec for yourself is a worthwhile endeavour.",
+    "parent": 44837672,
+    "depth": 2
+  },
+  {
+    "id": 44839184,
+    "by": "The_Fox",
+    "timeISO": "2025-08-08T16:53:27.000Z",
+    "textPlain": "I too just yesterday had my first positive experience with Claude writing code in my project. I used plan mode for the first time and gave it the \"think harder\" shove. It was a straightforward improvement but not trivial. The spec wasn't even very detailed- I mentioned a couple specific classes and the behaviour to change, and it wrote the code I would have expected to write, with even a bit more safety checking than I would have done.",
+    "parent": 44837672,
+    "depth": 2
+  },
+  {
+    "id": 44838492,
+    "by": "dewey",
+    "timeISO": "2025-08-08T15:54:52.000Z",
+    "textPlain": "After someone mentioned that recently I've started to write really detailed specs with the help of ChatGPT Deep Research and editing it myself. Then getting this exported as a Markdown document and passing it to Cursor really worked very well.It puts you in a different mind space to sit down and think about it instead of iterating too much and in the end feeling productive while actually not achieving much and going mostly in circles.",
+    "parent": 44837672,
+    "depth": 2
+  }
+]

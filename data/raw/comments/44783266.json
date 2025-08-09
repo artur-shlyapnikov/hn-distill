@@ -1,0 +1,306 @@
+[
+  {
+    "id": 44785106,
+    "by": "masfoobar",
+    "timeISO": "2025-08-04T12:51:09.000Z",
+    "textPlain": "I enjoyed reading this. It follows a similar experience with our first htmx website, away from using modern frontends, or just simple jQuery with ajax json data.I remember, working with a co-worker, we planned out the process (a step-by-step on the application like this post) and it made sense to me - but this journey was much harder for my co-worker.Why is this? Simply because he is familiar with MVC pattern of sending json data back and forth, and getting the frontend to update and render it, etc. The idea of html flying with htmx as the behaviour (inside html tags) was just too much.For me, I always preferred the old school way of just letting the server-side generate the html. All htmx does is adds extra functionality.I tried hard to explain that we are sending html back, and to break things down one at a time but each new task was left scratching his head.In the end, our website had somewhere around 20-50 lines of javascript! Much smaller footprint than over 400 lines in our previous project (that being generous). Sure, our server side code was larger, but it was all organised into View/PartalView files. To me, it made really good sense.In the end, I dont think I won htmx over with my co-worker. As for another co-worker, who had a chance to build a new project with htmx, decided on some client javascript tool instead. I dont think I got a legit answer why he did that.With all this above, I learned that some (perhaps most... perhaps all) struggle to adapt to htmx based on their many years building websites a particular way, with popular tools and javascript libraries. Overall htmx does not really change anything - you are still building a website. If anything htmx just add an additional layer to have website really work.Yoda's words now have new meaning :-\n\"No! No different. Only different in your mind. You must unlearn what you have learned.\"For some its just not happening. I guess Luke Skywalker really shows his willpower, being able to adapt to htmx easier th",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44784279,
+    "by": "bookofcooks",
+    "timeISO": "2025-08-04T11:18:33.000Z",
+    "textPlain": "Hey, author here! Ask me anything!I want to make the intent of this blog post extremely clear (which tragically got lost when I got deep into the writing).I love HTMX, and I've built entire sites around it. But all over the internet, I've seen HTMX praised as this pristine perfect one-stop-solution that makes all problems simple & easy (or at least... easier than any framework could ever do).This is a sentiment I have not found to be true in my work, and even one where the author of HTMX spoke out against (although I can't find the link :(It's not a bad solution (it's actually a very good solution), but in real production sites, you will find yourself scratching your head sometimes. For most applications, I believe it will make ALMOST everything simpler (and lighter) than traditional SPA frameworks.But for some \"parts\" of it, it is a little tricker, do read \"When Should You Use Hypermedia?\" [1];In the next blog post (where we'll be implementing the \"REAL\" killer features), I hope to demonstrate that \"yes, HTMX can do this, but it's not all sunshine & rainbows.\"---On a completely separate note, one may ask, then, \"why use HTMX?\" Personally, for me, it's not even about the features of HTMX. It's actually all about rendering HTML in the backend with something like Templ [2] (or any type-safe html templating language).With Templ (or any type-safe templating language), I get to render UI from the server in a type-safe language (Golang) accessing properties that I KNOW exist in my data model. As in, the application literally won't compile & run if I reference a property in the UI that doesn't exist or is of the incorrect type.You don't get that with a middle-man API communication layer maintained between frontend and backend.All I need now is reactivity, and htmx was the answer. Hope you understand![1] https://htmx.org/essays/when-to-use-hypermedia/#if-your-ui-h...[2] https://templ.guide/",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44784019,
+    "by": "throw310822",
+    "timeISO": "2025-08-04T10:37:27.000Z",
+    "textPlain": "I read through this and I don't get it. Recreating an entire form on the backend and swapping it with the current one, and then missing the update of the label status?Then solving this by recreating the entire stepper html at each step, with the added complexity that if it contains something you want to keep \"it's a nightmare\"?Then having to create a temporary server-side session to store data that somehow the browser can't keep between two clicks?Etc.. it's write web apps like it's 1999.",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44785775,
+    "by": "mtlynch",
+    "timeISO": "2025-08-04T13:51:12.000Z",
+    "textPlain": "return pox.Templ(http.StatusOK, templates.AlertError(\"Name cannot be empty\")), nil\n\nOof, an HTTP 200 OK response with a body that says the request actually was not OK.I like htmx, but this is probably the weakest part of it.htmx is supposed to let you write semantic HTML, but it's obviously not semantic HTML/HTTP to respond HTTP 200 to incorrect user input. But I think OP is doing this because if they had responded HTTP 400 - Bad Request, htmx would have thrown away the response body by default.[0][0] https://htmx.org/docs/#modifying_swapping_behavior_with_even...",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44784256,
+    "by": "brokegrammer",
+    "timeISO": "2025-08-04T11:13:57.000Z",
+    "textPlain": "I built my latest SaaS (https://clarohq.com) using HTMX, backed by Django. I really enjoy the process because HTMX allows reactivity using swaps and plain Javascript events instead of server side state management, useeffect, and API endpoints.However, it's difficult to get things right. I spent way too much time on some basic features that I could have shipped quicker if I used React.The issue with React though, is that you end up with a ton of dependencies, which makes your app harder to maintain in the long-term. For example, I have to use a third-party library called react-hook-form to build forms, when I can do the same thing using plain HTML and a few AlpineJS directives if I need dynamic  fields.I'm not sure if I'll ever build an app using HTMX again but we need more people to write about it so that we can nail down patterns for quickly building server rendered reactive UIs.",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44784103,
+    "by": "kissgyorgy",
+    "timeISO": "2025-08-04T10:48:44.000Z",
+    "textPlain": "This implementation is unnecessary complicated. For the step update, you can use Out Of Band update: https://htmx.org/attributes/hx-swap-oob/ which works in a way that you can send multiple HTML fragments which can be anywhere on the page and HTML swaps them out. Good for notifications, step update, breadcrumb update, menu highlight, etc...I usually solve the second problem by simply saving the state of the individual input fields, you only need a user session. \nDepending your use-case, you might need to be transactional, but you can still do this saving everything as \"partial\" and close the \"transaction\" (whatever it might mean in the given context) at the last step. Much-much simpler than sending form data over and over.",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44784121,
+    "by": "devnull3",
+    "timeISO": "2025-08-04T10:52:01.000Z",
+    "textPlain": "This should be trivial with the HTMX alternative: datastar [1]In datastar the \"Out Of Band\" updates is a first class notion.[1] https://data-star.dev",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44783503,
+    "by": "alex-moon",
+    "timeISO": "2025-08-04T09:16:13.000Z",
+    "textPlain": "These kinds of write-ups are so key to driving adoption of a new technology. I'm still not super interested in HTMX but this write-up has done a lot of the work already toward nudging me that way. Well done!",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44784156,
+    "by": "karel-3d",
+    "timeISO": "2025-08-04T10:57:55.000Z",
+    "textPlain": "Every time I attempt to use HTMX and backend-rendered templates because it's \"simpler\", in the end I always end up doing JSON APIs and something like Svelte. Because all the \"simplicity\" explodes in complexity 5 seconds later, and it's very user-hostile with the constant reloads.This blogpost affirms it",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44785574,
+    "by": "PaulHoule",
+    "timeISO": "2025-08-04T13:34:18.000Z",
+    "textPlain": "I think you need to make peace with OOB if you want to enjoy working with HTMX.  You need to have a framework such that you can draw a partial inside the page when you send the whole HTML document but also render and draw a group of partials to update several things that change with a request.",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44788331,
+    "by": "gr4vityWall",
+    "timeISO": "2025-08-04T16:46:51.000Z",
+    "textPlain": "I liked the article a lot, thanks to the author for writing it and sharing it.At that point, personally I think it'd be easier to use Preact with a no-build workflow for those bits of the app that have a lot of contained logic themselves, and don't necessarily require a round-trip to the server.I wouldn't use HTMX for that specific use case.",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44785377,
+    "by": "npilk",
+    "timeISO": "2025-08-04T13:19:27.000Z",
+    "textPlain": "HTMX is amazing for simpler web apps. If you have a ton of complexity, need to manage a lot of state, etc., I can see how it would be frustrating trying to get everything to fit into HTMX's patterns. In fact, it might actually increase complexity. But, if you have something smaller and want to make it more interactive, React is way overkill and HTMX is a breath of fresh air.I think a lot of the arguments over HTMX come down to this difference. The people that love it see how much better it is for their use case than something like React, while the critics are finding it can't replace bigger frameworks for more demanding projects.(Here's an example interface made with HTMX. IMO React would have been overkill for this compared to how simple it was with HTMX. https://www.bulletyn.co )",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44799831,
+    "by": "tremon",
+    "timeISO": "2025-08-05T16:05:46.000Z",
+    "textPlain": "I don't really understand the example problem. Why is the first problem statement \"each step is a <form> that calls an endpoint like /form/step1 and swaps out itself with the returned form\", and not the (to me) more obvious \"each step is a page in a tabset and on successful submission, the active tab is automatically advanced\"?",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44784195,
+    "by": "hackrmn",
+    "timeISO": "2025-08-04T11:03:55.000Z",
+    "textPlain": "Related: https://htmx.org/essays/htmx-sucks/ (on the actual HTMX upstream site)",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44785968,
+    "by": "vFunct",
+    "timeISO": "2025-08-04T14:06:53.000Z",
+    "textPlain": "HTMX needs an easy way to update multiple named targets at a time. That's my current biggest problem with it.",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44784078,
+    "by": "Polarity",
+    "timeISO": "2025-08-04T10:44:23.000Z",
+    "textPlain": "> I originally planned to make a simple non-functional uploader, then progressively bring it from \"it works™\" to \"high-quality production-grade Uploader with S3 Presigned, Multipart, Accelerated Uploads, along with Auto-Saving and Non-Linear NavigationWhy is every developer trying to make things complicated?",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44784180,
+    "by": "devnull3",
+    "timeISO": "2025-08-04T11:00:47.000Z",
+    "textPlain": "> Challenge 2: Passing data down each stepWhy not use cookies?",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44784218,
+    "by": "rtpg",
+    "timeISO": "2025-08-04T11:07:57.000Z",
+    "textPlain": "that form state persistence looks soooo gnarly. Really have a hard time arguing that's better than a client side header",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44785627,
+    "by": "bilinguliar",
+    "timeISO": "2025-08-04T13:38:57.000Z",
+    "textPlain": "It is a nice post. A point of improvement would be to name fields idiomatically. Author should run a few Go linters.",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44785061,
+    "by": "bargainbin",
+    "timeISO": "2025-08-04T12:46:33.000Z",
+    "textPlain": "I’ve attempted to use HTMX a few times (as a React-hater, its hype lures me in) and every time I’ve come away feeling like I’ve wasted my time implementing a subpar solution.From reading this, I’ve decided I will never attempt to use it again. All I could think was, just use Go’s HTML templating. What is HTMX adding, really?",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44794710,
+    "by": "librasteve",
+    "timeISO": "2025-08-05T05:48:49.000Z",
+    "textPlain": "great articlecan’t wait to steal this uploader for my https://harcstack.org project[HTMX, Air, Red and Cro]",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44786008,
+    "by": "sgt",
+    "timeISO": "2025-08-04T14:09:40.000Z",
+    "textPlain": "Great stuff and same applies to Django of course.",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44787204,
+    "by": "thevivekshukla",
+    "timeISO": "2025-08-04T15:29:45.000Z",
+    "textPlain": "I've been building something with HTMX since the last week, I have not done whole lot of complex things with it but I don't think it will pose any problem when time comes.I get the premise of HTMX and when and why to use it, it's not solution to everything however it is a blessing for backend developers' who wants to work on frontend.-> A bit of backstoryFor my project Daestro[0], which is bit complex (and big) I chose Rust as backend and Svelte (with Sveltekit) as frontend SPA app. This was my first time working on both. After years of working on Django, I wanted to try statically typed language, after some research and trial, I chose Rust. Sveltekit was obvious because it made sense to me compared to other frameworks and it was super easy to pick up.After working on Sveltekit for a year, I realised I've been spending a lot of time doing these same thing:\n1. You create the api on the backend\n2. then you create Zod schema on the frontend for form validation\n3. the create +page.ts to initialize the form\n4. in +page.svelte you create the actual form and validate it there itself with zod before sending it to the serverHopping over two code bases just for a simple form, and Daestro has a lot of forms. I was just exhausted with this. Then HTMX started to get a lot of traction, I was watching it from a distant but having worked with Django and it's template, I was dismissive of it and thought having separate frontend is best approach.-> Why I'm leaning towards HTMX now?- Askama (rust crate) is a template engine which is compile time checked\n- Askama supports block fragments[1], which is you can render certain part (block) of template, plus for HTMX usage\n- Askama's macro almost don't make me miss Svelte's components\n- Rust has amazing type system, now you can just use it, no need to replicate those on Typescript\n- same codebase, no more hopping\n- only one binary to deploy (currently for Daestro I've 3 separate deployments)-> My rules for using HTMXYou must self-impose a s",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44784094,
+    "by": "andrewstuart",
+    "timeISO": "2025-08-04T10:46:13.000Z",
+    "textPlain": "All that seems rather ….. indirect. Every step of the way I kept urging him to use JavaScript.",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44783868,
+    "by": "totaa",
+    "timeISO": "2025-08-04T10:11:50.000Z",
+    "textPlain": "congrats on the first blog post, been using Go+Templ+HTMX when implementing my first startupI think at least some of these issues can be avoided with a different UI/UX to avoid passing temporal/unsaved data between screens.looking forward to the next instalment!",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44786211,
+    "by": "draw_down",
+    "timeISO": "2025-08-04T14:22:23.000Z",
+    "textPlain": "[dead]",
+    "parent": 44783266,
+    "depth": 1
+  },
+  {
+    "id": 44786153,
+    "by": "andrewstuart",
+    "timeISO": "2025-08-04T14:18:56.000Z",
+    "textPlain": "Don’t use a form library, use the machine - program the browser DOM forms API.",
+    "parent": 44784256,
+    "depth": 2
+  },
+  {
+    "id": 44784426,
+    "by": "worble",
+    "timeISO": "2025-08-04T11:36:10.000Z",
+    "textPlain": ">  I have to use a third-party library called react-hook-form to build formsRegular form elements work just fine in React, all you need to do is interrupt the onInput and onSubmit handler and deal with the form data yourself. I've tried a handful of these form libraries and frankly they make everything way more complicated and painful than it needs to be.",
+    "parent": 44784256,
+    "depth": 2
+  },
+  {
+    "id": 44784428,
+    "by": "bookofcooks",
+    "timeISO": "2025-08-04T11:36:19.000Z",
+    "textPlain": "> For the step update, you can use Out Of Band updateI did mention using OOB, but I preferred swapping the entire Stepper because the logic on the backend was just a little bit cleaner, and the Stepper didn't include anything else anyways.> I usually solve the second problem by simply saving the state of the individual input fields, you only need a user session.I believe this is exactly what I did in the article, no?",
+    "parent": 44784103,
+    "depth": 2
+  },
+  {
+    "id": 44784741,
+    "by": "spiffytech",
+    "timeISO": "2025-08-04T12:10:17.000Z",
+    "textPlain": "Unrelated: datastar doesn't use a two-way connection for interaction <-> updates. It uses two unconnected one-way channels: a long-lived long-lived SSE for updates, and new HTTP requests for interaction.I didn't see guidance in the docs for routing one tab's interaction events to the backend process managing that tab's SSE. What's the recommend practice? A global, cross-server event bus? Sticky sessions with no multiprocessing, and an in-process event bus?If a user opened the same page in two tabs, how should a datastar backend know which tab's SSE to tie an interaction event to?",
+    "parent": 44784121,
+    "depth": 2
+  },
+  {
+    "id": 44784210,
+    "by": "meander_water",
+    "timeISO": "2025-08-04T11:06:20.000Z",
+    "textPlain": "HTMX has out of band updates too [0], what's the differentiator?[0] https://htmx.org/attributes/hx-swap-oob/",
+    "parent": 44784121,
+    "depth": 2
+  },
+  {
+    "id": 44786165,
+    "by": "sgt",
+    "timeISO": "2025-08-04T14:19:37.000Z",
+    "textPlain": "Doesn't datastar require an async backend? I prefer Django without async.",
+    "parent": 44784121,
+    "depth": 2
+  },
+  {
+    "id": 44784122,
+    "by": "rapnie",
+    "timeISO": "2025-08-04T10:52:07.000Z",
+    "textPlain": "Yes, as I remember it it was a 'back to simplicity' of the early web idea. Rediscover the power of hypermedia. I don't know HTMX well, but am following Datastar [0] which was inspired by it, and their selling points are Simplicity and Performance and take it some steps further than HTMX. The approach does shift logic / complexity towards the backend though.[0] https://data-star.dev",
+    "parent": 44783503,
+    "depth": 2
+  },
+  {
+    "id": 44790857,
+    "by": "farmeroy",
+    "timeISO": "2025-08-04T20:14:52.000Z",
+    "textPlain": "I've been building a largish webapp with htmx and I've leaned into web components for these more complicated interactions. I've found htmx great for everything that _should_ involve a call to the backend, anything that does need to fetch data or perform some crud operations, then i can return the necessary markup with oob swaps etc. and mostly forget about client side stateBut yeah it's great to see people sharing their approaches!",
+    "parent": 44788331,
+    "depth": 2
+  },
+  {
+    "id": 44784404,
+    "by": "bookofcooks",
+    "timeISO": "2025-08-04T11:33:16.000Z",
+    "textPlain": "You can... I guess.",
+    "parent": 44784180,
+    "depth": 2
+  },
+  {
+    "id": 44785313,
+    "by": "bananapub",
+    "timeISO": "2025-08-04T13:14:15.000Z",
+    "textPlain": "(out of interest: did you ever write web apps before ~2010 or so?  the answer to your question seems so obvious to me I'm not even sure where the confusion could come from, unless you've only ever written web apps that are \"JS frontend, JS backend, magic communication between them, it's often not clear where some bit of code is running\").HTMX here is making it so the page works without doing a full HTTP form submission + page load for each stage of the \"wizard\".  instead, you write some HTMX stuff in the page that submits the form asynchronously, then the server sends back the HTML to replace part of the page to move to you to the next step in the \"wizard\", and then HTMX replaces the relevant DOM nodes to make that so.Go's templating is completely unrelated to any of this happening on the front end - it's just generating some HTML, both the \"whole page loaded by the browser normally\" and the \"here's the new widget state code\", and so obviously:>  just use Go’s HTML templating.is incorrect.",
+    "parent": 44785061,
+    "depth": 2
+  },
+  {
+    "id": 44789231,
+    "by": "hirvi74",
+    "timeISO": "2025-08-04T17:52:58.000Z",
+    "textPlain": "I have had similar experiences too. To me, HTMX felt like a wrapper around vanilla JS's .fetch() or jQuery's AJAX calls except one just litters the HTML with specific custom HTML attributes..fetch() has no issues returning server-side rendered HTML and has a lot more options and freedom than what HTMX provides.I do not think HTMX is a bad library by any means. I just can't see what it buys over vanilla JS.",
+    "parent": 44785061,
+    "depth": 2
+  },
+  {
+    "id": 44784258,
+    "by": "lmz",
+    "timeISO": "2025-08-04T11:14:13.000Z",
+    "textPlain": "They could have done all that in one long form with JS for client side progressive enhancement (show/ hide different parts) and that would probably be much easier.",
+    "parent": 44784094,
+    "depth": 2
+  }
+]

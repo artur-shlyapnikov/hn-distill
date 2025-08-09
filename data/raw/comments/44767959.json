@@ -1,0 +1,114 @@
+[
+  {
+    "id": 44769280,
+    "by": "fanf2",
+    "timeISO": "2025-08-02T17:06:35.000Z",
+    "textPlain": "This is one of the features that Ruby cribbed directly from Perl. The Ruby documentation seems really bad, in particular “interpolation mode” is grievously misleading.Perl’s documentation is far more clear about the consequences:(https://perldoc.perl.org/perlop#Regexp-Quote-Like-Operators)   o   Compile pattern only once.\n\n  […]\n\n  PATTERN may contain variables, which will be\n  interpolated every time the pattern search is\n  evaluated, except for when the delimiter is a\n  single quote. […] Perl will not recompile the\n  pattern unless an interpolated variable that\n  it contains changes. You can force Perl to skip\n  the test and never recompile by adding a /o\n  (which stands for \"once\") after the trailing\n  delimiter. Once upon a time, Perl would recompile\n  regular expressions unnecessarily, and this\n  modifier was useful to tell it not to do so,\n  in the interests of speed. But now, the only\n  reasons to use /o are one of:\n\n  [reasons]\n\n  The bottom line is that using /o is almost\n  never a good idea.\n\nIn the days before Perl automatically memoized the compilation of regexes with interpolation, even back in the 1990s, it said,  However, mentioning /o constitutes a promise\n  that you won't change the variables in the\n  pattern. If you change them, Perl won't even\n  notice.\n\nPerl 4’s documentation is briefer. It says,(https://github.com/Perl/perl5/blob/perl-4.0.00/perl.man#L272...)  PATTERN may contain references to scalar\n  variables, which will be interpolated\n  (and the pattern recompiled) every time the\n  pattern search is evaluated. […] If you want\n  such a pattern to be compiled only once, add\n  an “o” after the trailing delimiter. This\n  avoids expensive run-time recompilations, and\n  is useful when the value you are interpolating\n  won't change over the life of the script.",
+    "parent": 44767959,
+    "depth": 1
+  },
+  {
+    "id": 44772417,
+    "by": "tialaramex",
+    "timeISO": "2025-08-02T22:57:30.000Z",
+    "textPlain": "This is a footgun. A language should strive not to add footguns. Every footgun you provide, somebody is going to blow their foot off with it, so that's a high price. If your language is popular it might be a lot of somebodies.The opposite behaviour (we have a constant regular expression, we re-use it often but the tooling doesn't realise and so it's created each time we mention it) is not a footgun, it results in poor performance, and so you might want (especially in some managed languages) to just magically optimise this case, but if not you won't cause mysterious bugs. An expert, asked \"Why is this slow?\" can just fix it - you have to supply basic tools for that, but this flag is not a sensible tool.",
+    "parent": 44767959,
+    "depth": 1
+  },
+  {
+    "id": 44771737,
+    "by": "jononor",
+    "timeISO": "2025-08-02T21:32:43.000Z",
+    "textPlain": "It looks like an emoji for someone getting bashed in the head with a long stick. So that makes sense?",
+    "parent": 44767959,
+    "depth": 1
+  },
+  {
+    "id": 44768828,
+    "by": "riffraff",
+    "timeISO": "2025-08-02T16:16:26.000Z",
+    "textPlain": "Unsurprisingly, `END {}` is also inherited from perl, tho I think it originally comes from awk.",
+    "parent": 44767959,
+    "depth": 1
+  },
+  {
+    "id": 44768781,
+    "by": "cbsmith",
+    "timeISO": "2025-08-02T16:10:51.000Z",
+    "textPlain": "As an old Perl programmer, I knew immediately what the /o would do. ;-)",
+    "parent": 44767959,
+    "depth": 1
+  },
+  {
+    "id": 44769074,
+    "by": "lupire",
+    "timeISO": "2025-08-02T16:44:42.000Z",
+    "textPlain": "This is the same problem people have with closures, where it's unclear to the user whether the argument is captured by name or by value.",
+    "parent": 44767959,
+    "depth": 1
+  },
+  {
+    "id": 44770743,
+    "by": "kazinator",
+    "timeISO": "2025-08-02T19:45:23.000Z",
+    "textPlain": "> Modifier o means that the first time a literal regexp with interpolations is encountered, the generated Regexp object is saved and used for all future evaluations of that literal regexp.That is crystal clear to me. It means that on the next execution, the new values of the interpolation will be ignored; the regexp is now \"baked\" with the first ones.Like this in C++:  void fun(int arg)\n  {\n     static int once = arg;\n  }\n\nif we call this as f(42) the first time, once gets initialized to 42. If we then call it f(73), once stays 42.There is a function in POSIX for once-only initializations: pthread_once. C++ compilers for multithreaded environments emit thread-safe code to do something similar to pthread_once to ensure that even if there are several concurrent first invocations of the function, the initialization happens once.",
+    "parent": 44767959,
+    "depth": 1
+  },
+  {
+    "id": 44774743,
+    "by": "alfiedotwtf",
+    "timeISO": "2025-08-03T07:15:27.000Z",
+    "textPlain": "If you don’t like /o, you’re going to hate Perl’s /e",
+    "parent": 44767959,
+    "depth": 1
+  },
+  {
+    "id": 44768711,
+    "by": "rco8786",
+    "timeISO": "2025-08-02T16:03:06.000Z",
+    "textPlain": "Love these sorts of deep dives, thanks!",
+    "parent": 44767959,
+    "depth": 1
+  },
+  {
+    "id": 44768976,
+    "by": "phoronixrly",
+    "timeISO": "2025-08-02T16:34:14.000Z",
+    "textPlain": "It's kind of a cool feature. I like it.",
+    "parent": 44767959,
+    "depth": 1
+  },
+  {
+    "id": 44773494,
+    "by": "jwlake",
+    "timeISO": "2025-08-03T02:03:43.000Z",
+    "textPlain": "this is similar to the g modifier in javascript?",
+    "parent": 44767959,
+    "depth": 1
+  },
+  {
+    "id": 44771572,
+    "by": "IshKebab",
+    "timeISO": "2025-08-02T21:16:47.000Z",
+    "textPlain": "Seems par for the course for Ruby.",
+    "parent": 44767959,
+    "depth": 1
+  },
+  {
+    "id": 44769121,
+    "by": "zer00eyz",
+    "timeISO": "2025-08-02T16:49:38.000Z",
+    "textPlain": "Im sorry but the classics never go out of style:\"Some people, when confronted with a problem, think 'I know, I'll use regular expressions.' Now they have two problems.\"",
+    "parent": 44767959,
+    "depth": 1
+  },
+  {
+    "id": 44769699,
+    "by": "Joker_vD",
+    "timeISO": "2025-08-02T17:48:21.000Z",
+    "textPlain": "> I didn’t recognize /o. It didn’t seem critically important to lookup yet.> With nothing else to investigate, I finally looked up the docs for what the /o regex modifier does.I'll probably never understand this mode of thinkning. But then again, Ruby programmers are, after all, people who chose to write Ruby.> /o is referred to as “Interpolation mode”, which sounded pretty harmless.Really? Those words sound quite alarming to me, due to personal reminiscences of eval.Also, this whole \"/o\" feaure seems insane. If I have an interpolation in my regex, obviously I have to re-interpolate it every time a new value is submitted, or I'd hit this very bug. And if the value is expected to the same every time, then I can just compile it once and save the result myself, right? In which case, I probably could even do without interpolation in the first place.",
+    "parent": 44767959,
+    "depth": 1
+  }
+]

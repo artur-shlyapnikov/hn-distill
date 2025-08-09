@@ -1,0 +1,34 @@
+[
+  {
+    "id": 44809896,
+    "by": "eadmund",
+    "timeISO": "2025-08-06T09:44:31.000Z",
+    "textPlain": "> {\"p2\":{\"x\":141,\"y\":85},\"mode\":\"line\",\"p1\":{\"x\":34,\"y\":44}}Embracing ordered rather than named parameters can make this so much cleaner (that’s why most folks would prefer add(1, 2) to {\"function\":\"add\", \"augend\": 1, \"addend\": 2}).  It’s strange that p2 comes before p1.    [\"line\",{\"x\":34,\"y\":44},{\"x\":141,\"y\":85}]\n\nThe same argument applies to points — way name their components when they will always be the same?    [\"line\",[34,44],[141,85]]\n\nIf you’re willing to abandon JSON, you can make it even cleaner.  There’s no real need for quotes around the mode:    [line,[34,44],[141,85]]\n\nAnd it’d be nice to have some whitespace:    [line, [34, 44], [141, 85]]\n\nAnd come to think of it, those commas don’t really add anything:    [line [34 44] [141 85]]\n\nHmmm, if you switched from brackets to parentheses I bet you have a library which could handle this for you:    (line (34 44) (141 85))",
+    "parent": 44805483,
+    "depth": 1
+  },
+  {
+    "id": 44813007,
+    "by": "jauco",
+    "timeISO": "2025-08-06T15:05:27.000Z",
+    "textPlain": "The solution I use for this problem is a vs code excalidraw plugin that saves the drawing inside the png rendering of it.So you include the image into your markdown or code comments and can then edit it in a vscode window.Another one I used for a while is asciiflow.com or the monodraw mac apphttps://marketplace.visualstudio.com/items?itemName=pomdtr.e... (I didn’t make it, just a happy user)",
+    "parent": 44805483,
+    "depth": 1
+  },
+  {
+    "id": 44806362,
+    "by": "sxp",
+    "timeISO": "2025-08-06T00:45:05.000Z",
+    "textPlain": "Why use a new format instead of SVG or JS+canvas? The latter would deviate from \"plain text\" but it's still pretty close. It avoids reinventing the wheel and a webbrower is installed on almost every computer with a display.Another format to look at is Markdeep which has support for rendering ASCII diagrams and is very close to plain text: https://casual-effects.com/markdeep/features.md.htmlPersonally, I just wrote a thin wrapper around the somewhat verbose JS Canvas API that lets me write code such as  ctx4b.save();\n    ctx4b.translate(x+=10, 10);\n    new Line(ctx4b).b().m(36,50).lAD(180 + 50, 56).lXY(0, -7.1).lXY(7, 0).lAD(50, 55).f();\n    ctx4b.fillRect(36, 0, 10, 50);\n  ctx4b.restore();\n\nwhen I want to draw diagrams in my Markdeep notes.",
+    "parent": 44805483,
+    "depth": 1
+  },
+  {
+    "id": 44807622,
+    "by": "akkartik",
+    "timeISO": "2025-08-06T04:24:37.000Z",
+    "textPlain": "Previously: https://news.ycombinator.com/item?id=31637910 (Jun 2022, 192 comments)",
+    "parent": 44805483,
+    "depth": 1
+  }
+]

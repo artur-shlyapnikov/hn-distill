@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44767960,
+    "by": "paavohtl",
+    "timeISO": "2025-08-02T14:37:58.000Z",
+    "textPlain": "I am worried about the future of native UI technologies on Windows. Traditionally at least the developers of operating systems have eaten their own dogfood and  have at least tried to implement well-performing & visually consistent native applications to serve as an example to others. Windows 11 has largely done the opposite. Windows has had minimal but perfectly functional native email and calendar apps at least since Windows 10 (could have been in 8, never used that). Windows 11 originally shipped with those apps, but they were removed in a later update and replaced with laggy webview wrappers that take seconds to start.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44767926,
+    "by": "arunc",
+    "timeISO": "2025-08-02T14:31:57.000Z",
+    "textPlain": ">  Alignment with Microsoft Goals> We are being thoughtful about resourcing. This effort is happening alongside other critical responsibilities like security, platform stability, and support for existing products. Our current focus is on foundational work that unlocks value for contributors and increase transparency. We are aligning this work with Microsoft’s broader business priorities to ensure long-term support and impact.I don't sense any benevolence in their words. They are just pulling off their resources and dumping the framework on the public, hoping passionate losers will contribute.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44768375,
+    "by": "pjmlp",
+    "timeISO": "2025-08-02T15:23:28.000Z",
+    "textPlain": "No one in Windows development community cares about WinUI, other than those with sunken costs that bought into the WinRT/UWP dream and now are stuck with a dead technology.Too many burned bridges since Windows 8 came out.If anything, this is Microsoft confirmation that they are unwilling to fix all the broken issues, and hoping the community will somehow still care.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44766131,
+    "by": "muhehe",
+    "timeISO": "2025-08-02T09:48:22.000Z",
+    "textPlain": "I already lost count how many UI frameworks are in windows. It looks like complete chaos and mess.I really wonder what they expect from open-sourcing it. Just to pretend how open they are? Or is there any real benefit to developers who target windows?",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44769791,
+    "by": "tekdude",
+    "timeISO": "2025-08-02T17:59:03.000Z",
+    "textPlain": "I kind of wish Microsoft would just continue development of WPF. I've used it for years for various projects, and there is a learning curve but I've since enjoyed working with it. XAML, data bindings, ViewModels... all of it I actually like. But, WPF needs a few improvements to really make it perfect. I tried several of Microsoft's newer frameworks and the open source ones (Avalonia, Uno), but I either couldn't get the sample projects to even build successfully on my machine, or I never got comfortable with development workflow, and went back to what I know.My big idea to fix WPF is to rebuild the data binding system to use the .NET compile-time code generation feature instead of run-time reflection. I think that would solve a lot of problems. For one, projects could do an actual AOT build of their applications (right now, you either need to rely on an installed .NET runtime or \"publish\" the project with a lot of .NET libraries included for self-extract, bloating the final file size). Code generation would probably improve performance quite a bit too, maybe open up the possibility to compile for cross-platform, introduce type safety for XAML bindings (rather than getting vague runtime binding errors), remove the need for so much class scaffolding, etc... I've thought about starting an open source project to do it myself, but seems like a pretty big task and I would essentially be starting a project to help with my other project which I already don't have enough time to work on...",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44766017,
+    "by": "daemin",
+    "timeISO": "2025-08-02T09:27:57.000Z",
+    "textPlain": "Last I evaluated it WinUI3 was a terrible developer experience. The application had to be literally installed on the system to even debug it, which means you end up with a large number of useless start menu entries, not to mention registry entries and such. Another thing was that the example programs crashed when I clicked on a button.All I want is something simple to work with to make applications for Windows, and so far I'm still using Win32 with WTL.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44783621,
+    "by": "LarMachinarum",
+    "timeISO": "2025-08-04T09:35:13.000Z",
+    "textPlain": "Many here point out, and rightly so, what an abominable mess UI frameworks have been on Windows for quite a while.That being said, I'd point out that the situation has been (and still is) unfortunately far from satisfying on the cross-platform and open-source side as well: GTK has also been a mess for quite long; Qt has - aside from the bloat - an increasingly repulsive licensing model for professional use (too bad the hopes from the early Nokia adoption days got smashed by MS mole Elop and the later owners of Qt), …… and while there are some nice solutions for specific niches (e.g. Dear Imgui), the overall situation in general-purpose cross-platform native UI frameworks looks quite bleak and unsatisfying imho. There's a huge gaping opening for a permissive-licensed open-source cross-platform UI/Widgets framework that compiles to native, has a good set of widgets and gives access to Vulkan contexts for 3D rendering.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44765903,
+    "by": "Springtime",
+    "timeISO": "2025-08-02T09:06:31.000Z",
+    "textPlain": "I hope this leads to having a native vertical taskbar, which has been absent in W11 despite being a taskbar feature dating back as early as Windows 98.Third-party tools have tried to reimplement it but it's either been by bastardizing the native W11 horizontal taskbar to be vertical (eg: Windhawk) or just restoring the old W10 taskbar code (eg: StartAllBack).",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44769003,
+    "by": "bob1029",
+    "timeISO": "2025-08-02T16:36:59.000Z",
+    "textPlain": "For Windows UIs I've been getting into Win32/GDI/DirectDraw/etc.Tools like CsWin32 and modern C# (ref returns) make working with these APIs a lot more approachable today. It used to be the case that you had to create a nasty C++ project to do any of this. Now you can just list the methods you need access to in your nativemethods.txt file and the codegen takes care of the rest.Win32 is a lot lower level than other things you'd typically consider to be a \"UI framework\", but the important tradeoff is that it is also a lot harder for Microsoft to remove or screw with in any meaningful way. I cannot come up with something that has been more stable than these APIs. The web doesn't even come close if we are looking at the same timescales.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44775942,
+    "by": "chiph",
+    "timeISO": "2025-08-03T11:59:14.000Z",
+    "textPlain": "What I miss about UI development on Windows is the commitment to help me create applications that seamless blend in, and look like something that Microsoft themselves had created. The introduction of web technologies has allowed the visual language of the Windows experience to fragment. Not just because Microsoft hasn't kept older applications up to date (like the Control Panel), but also because the modern tooling isn't providing the libraries to match their style.From memory, this first started during Vista, where 3rd party devs just weren't able to match the translucency of the new Aero UI. And the lack of articles being published by the MSDN group with titles like \"Here's how you add this new feature to your app\" with examples in C, C# and Visual Basic.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44765708,
+    "by": "BoorishBears",
+    "timeISO": "2025-08-02T08:19:10.000Z",
+    "textPlain": "Seasons may come and go, but one thing will never change.Windows and an absolutely baffling array of UI frameworks with various pitfalls, uncertain futures, and no clear winners.(honorable mention to WinForms though.)",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44768876,
+    "by": "bobajeff",
+    "timeISO": "2025-08-02T16:22:40.000Z",
+    "textPlain": "As someone reading the comments here and never made a real Windows app outside of a visual basic hello world a pretty long time ago. Why doesn't Microsoft just stop making these? They already own GitHub and vscode so why not just admit that electron/typescript is the Windows UI framework now?",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44769296,
+    "by": "dehrmann",
+    "timeISO": "2025-08-02T17:08:14.000Z",
+    "textPlain": "I wonder how much longer Microsoft stays committed to Windows as a whole. Windows is less than 10% of the company, users are migrating to phones, tablets, and Chromebooks (all of which can run Office), and with .NET on Linux, Windows servers are making less sense. It's a shrinking market.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44770767,
+    "by": "eska",
+    "timeISO": "2025-08-02T19:47:58.000Z",
+    "textPlain": "Meanwhile a single developer makes performant native UIs in his first native program by actually learning how the OS and winapi workhttps://m.youtube.com/watch?v=bUOOaXf9qIM",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44768647,
+    "by": "wslh",
+    "timeISO": "2025-08-02T15:56:49.000Z",
+    "textPlain": "Microsoft has a long history of releasing numerous UI frameworks: VB, MFC, WTL, Silverlight, WPF, WinForms, and others. Yet despite this abundance, many of the core components Microsoft used in its own applications were never available to developers. They rarely ate their own dog food, and desktop UI development relied on third party components. For the past two decades, native desktop UIs have steadily declined in favor of web-based components, so it's unclear what the real benefit of another native framework would be today.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44766187,
+    "by": "elygre",
+    "timeISO": "2025-08-02T09:56:49.000Z",
+    "textPlain": "I won’t benefit from this. At the same time, I cannot see a single bad thing about it, so I’m surprised about all the negative energy.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44783331,
+    "by": "AraceliHarker",
+    "timeISO": "2025-08-04T08:44:36.000Z",
+    "textPlain": "Microsoft probably has no interest in WinUI anymore and intends to replace it with WebView, which is why they're making it 'open source.' Microsoft's open source is literally a graveyard.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44774255,
+    "by": "vachina",
+    "timeISO": "2025-08-03T05:22:05.000Z",
+    "textPlain": "Open source the mess and hope someone else picks up the tab.I hope nobody contributes to this, MSFT is a multi billion dollar company and they can afford to fix it themselves.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44768179,
+    "by": "bluescrn",
+    "timeISO": "2025-08-02T15:02:39.000Z",
+    "textPlain": "If only they'd open source Windows Explorer and the taskbar/start menu, rather than resisting peoples attempts to customise them through other hackery.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44768345,
+    "by": "dist-epoch",
+    "timeISO": "2025-08-02T15:20:34.000Z",
+    "textPlain": "Confused, the Win 11 UI framework, Electron, is already open source.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44768108,
+    "by": "tomovo",
+    "timeISO": "2025-08-02T14:55:12.000Z",
+    "textPlain": "They need to feed it to all the LLMs to get help keeping it from falling apart.They could go back to Win32 + WinForms and everything would be fine.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44765843,
+    "by": "feverzsj",
+    "timeISO": "2025-08-02T08:49:10.000Z",
+    "textPlain": "So, they gonna abandon it soon?",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44768516,
+    "by": "ashoeafoot",
+    "timeISO": "2025-08-02T15:40:37.000Z",
+    "textPlain": "Could microsoft still build windows today?",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44766503,
+    "by": "zerr",
+    "timeISO": "2025-08-02T10:51:31.000Z",
+    "textPlain": "Even for Windows-only GUI software, it is much safer and sane to use cross-platform frameworks such as wxWidgets and Qt Widgets.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44765888,
+    "by": "bobsmooth",
+    "timeISO": "2025-08-02T09:01:09.000Z",
+    "textPlain": "What \"UI framework\"? Windows is a Frankenstein's monster of different UI elements.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44774883,
+    "by": "Woodi",
+    "timeISO": "2025-08-03T07:44:52.000Z",
+    "textPlain": "If abandonware of Win11 UI means Win12 then maybe I like that direction :)On the other hand it it is smpossibility that MS is working on something better, right ? They probably plan some worse UI prison...ASCI was [business] enforced by some EU project, POSIX - the same and probably there are more examples of such things so we just need some sanity __OS with UI__ project from someone...",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44768237,
+    "by": "donutshop",
+    "timeISO": "2025-08-02T15:08:34.000Z",
+    "textPlain": "\"We laid off most of the team despite record profits and need free labor to maintain what remains\"",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44768158,
+    "by": "mellosouls",
+    "timeISO": "2025-08-02T15:00:28.000Z",
+    "textPlain": "Actual - and rather different - title (as borne out by reading the article):Microsoft is taking steps to open-sourcing Windows 11 user interface framework",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44766048,
+    "by": "deafpolygon",
+    "timeISO": "2025-08-02T09:33:06.000Z",
+    "textPlain": "open-sourcing it so they can get free labor.winui3 was abandoned the moment it was conceived.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44765769,
+    "by": "bloomca",
+    "timeISO": "2025-08-02T08:33:41.000Z",
+    "textPlain": "I really hope they do and the rendering engine is decently decoupled, I'll give a try building a framework on top of it.I wish all platforms gave access to their rendering engine similar to DOM on the web, imo SwiftUI/WinUI (or WPF, but they are very similar) are not that good.Haven't built anything native on Linux, though, no idea how good those are.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44771963,
+    "by": "daft_pink",
+    "timeISO": "2025-08-02T21:58:21.000Z",
+    "textPlain": "I want to spam them with pull requests every day to remove onedrive. (sarcasm)",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44775168,
+    "by": "falcor84",
+    "timeISO": "2025-08-03T08:56:09.000Z",
+    "textPlain": "For a second there I read it as \"Windows 3.11's UI\" and it got me really nostalgic. I wonder if it's been long enough that it's ready to be hip again now.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44793012,
+    "by": "sershe",
+    "timeISO": "2025-08-05T00:32:17.000Z",
+    "textPlain": "Cool, I always wanted to have a non-movable toolbar in all my software, I miss 1997.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44768022,
+    "by": "1970-01-01",
+    "timeISO": "2025-08-02T14:44:32.000Z",
+    "textPlain": "What we wanted: Win7 UI open sourceWhat we got: Win11 dumpster fire, free for everyone to fix",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44766348,
+    "by": "rvba",
+    "timeISO": "2025-08-02T10:23:21.000Z",
+    "textPlain": "So will we be able to have more than 11 programs on the taskbar without them being compacted?Or a 2 row taskbar?So I can easily switch between my 40 windows open? What is good for productivity?",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44790602,
+    "by": "jasonvorhe",
+    "timeISO": "2025-08-04T19:48:21.000Z",
+    "textPlain": "Having had to setup some Windows systems for a client of mine, all I can say it that they've long abandoned all hope of ever shipping a somewhat coherent UI. It's just not going to happen. Lipstick upon lipstick on frankensteined pigs just aren't going to work. At some point they'll have to start from clean slate or else we'll see 1990s ui remnants leaking through into the 2040s. It's just not going to happen until they start bleeding market share on the desktop. iirc it took desktop linux ~10 years from 1 to 2% and 1 year from 3 to 4% so there's movement in the market.DHH pushing desktop Linux for developers, Pewdiepie making videos about Linux and GrapheneOS, there's definitely an accelerationist argument to be made here.",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44771344,
+    "by": "userbinator",
+    "timeISO": "2025-08-02T20:50:28.000Z",
+    "textPlain": "Ironic that they're opening up all the new crappy stuff, but not the good old stuff like Win32.Maybe they're scared of WINE?",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44768638,
+    "by": "bee_rider",
+    "timeISO": "2025-08-02T15:55:02.000Z",
+    "textPlain": "Dumb question from somebody who doesn’t do gui stuff: is this like a Window Manager, or more like GTK or QT or whatever?",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44771878,
+    "by": "specproc",
+    "timeISO": "2025-08-02T21:47:54.000Z",
+    "textPlain": "I get there are old people and stuff, but why should anyone consider Windows these days?",
+    "parent": 44765600,
+    "depth": 1
+  },
+  {
+    "id": 44766419,
+    "by": "Rochus",
+    "timeISO": "2025-08-02T10:36:50.000Z",
+    "textPlain": "How was it implemented? C#? C++?",
+    "parent": 44765600,
+    "depth": 1
+  }
+]

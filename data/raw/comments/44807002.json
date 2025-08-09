@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44808925,
+    "by": "noduerme",
+    "timeISO": "2025-08-06T07:43:08.000Z",
+    "textPlain": "I wish I could write all the business logic I write on an NES and never have to worry about requirements going bad. I guess the thing is, if you're writing anything on top of a network layer of any kind, eventually it's going to require patches unless you literally own all the wires and all the nodes in the network, like a secure power plant or some money clearing system in a bank that's been running the same COBOL since the 1960s. And since you're probably not writing code that directly interfaces with the network layer, you're going to be reliant on all the libraries that do, which in turn will be subject to change at the whims of breaking changes in language specs and stuff like that, which in turn are subject to security patches, etc.In other words, if you need your software to live in the dirty world we live in, and not just in a pristine bubble, things are gonna rot.Picking tools and libraries and languages that will rot less quickly however seems like a good idea. Which to me means not chaining myself to anything that hasn't been around for a decade at least.I got royally screwed because 50-60% of my lifetime code output before 2018, and pretty much all the large libraries I had written, were in AS3. In a way, having so much code I would have maintained become forced abandonware was sort of liberating. But now, no more closed source and no more reliance on any libs I don't roll or branch and heavily modify myself.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44812588,
+    "by": "asa400",
+    "timeISO": "2025-08-06T14:34:05.000Z",
+    "textPlain": "SQLite has an explicitly stated policy on this: \"The intent of the developers is to support SQLite through the year 2050.\"https://www.sqlite.org/lts.htmlPeople talk about SQLite's reliability but they should also mention its stability and longevity. It's first-class in both. This is what serious engineering looks like.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44808600,
+    "by": "codeflo",
+    "timeISO": "2025-08-06T06:59:12.000Z",
+    "textPlain": "We as an industry need to seriously tackle the social and market dynamics that lead to this situation. When and why has \"stable\" become synonymous with \"unmaintained\"? Why is it that practically every attempt to build a stable abstraction layer has turned out to be significantly less stable than the layer it abstracts over?",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44811700,
+    "by": "roda73",
+    "timeISO": "2025-08-06T13:27:40.000Z",
+    "textPlain": "This is one of the reasons I absolutely hate Linux based development and operating systems built with it.We all know it now as dependency hell, but what it is in fact is just a lazy shortcut for the current development that will bite you down the path. The corporate software is not a problem, because the corporate users don't care as long as it works now, in the future they will still rely on paid solutions that will continue working for them. For me, I run a local mirror of arch linux, because I don't want to connect to internet all the time to download a library that I might need or some software that I may require. I like it all here, but since I haven't updated in a while I might see some destructive update if I were to choose to update now. This should never happen, another thing that should never happen is if I were to compile an old version of some software. Time and time again, I will find a useful piece of software on github and I will naturally try compiling it, it's never easy, I will have to hunt the dependency it requires, then try compiling old versions of various libraries. It's just stupid, I wish it were easier and built smarter. Yes sometimes I want to run old software, that has no reason not to work. When you look at windows, it all works magically, well it's not magic it's just done smart. On GNU+Linux smart thinking like this is not welcome, it never has been. Instead they rely on huge amounts of people that develop this software, to perpetually update their programs for no reason, but to satisfy a meaningless number of a dependency.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44807496,
+    "by": "forgotmypw17",
+    "timeISO": "2025-08-06T04:01:23.000Z",
+    "textPlain": "This and Lindy Effect factors a lot into my choices for what to use for my projects. My choice for a project I want to be as maintenance-free as possible are special subsets of ASCII/txt, SQLite, Perl, Bash, PHP, HTML, JS, CSS. The subsets I choose are the parts of these languages which have persisted the longest.Using the Lindy Effect for guidance, I've built a stack/framework that works across 20 years of different versions of these languages, which increases the chances of it continuing to work without breaking changes for another 20 years.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44808180,
+    "by": "icameron",
+    "timeISO": "2025-08-06T05:53:59.000Z",
+    "textPlain": "Nobody has a better ecosystem of “industrial marine grade code rot resistance” than Microsoft.  That I can run the same .NET web app code compiled 20 years ago on a new Server 2025 is an easy experience unequaled by others.  Or the same 30 year old VBA macros still doing their thing in Excel 365.  There’s a company that knows how to do backwards compatibility.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44808110,
+    "by": "Daub",
+    "timeISO": "2025-08-06T05:42:00.000Z",
+    "textPlain": "As a software user and teacher, I think about software rot a lot. My concern is that it has a tendency to grow by addition rather than replacement. New features are added whilst the fundamental limits of the architecture are left unattended to.The reason that Blender grew from being an inside joke to a real contender is the painful re-factoring it underwent between 2009 and 2011.In contrast, I can feel the fact that the code in After Effects is now over 30 years old. Its native tracker is slow and ancient and not viable for anything but the most simple of tasks. Tracking was 'improved' by sub-contracting the task to a sub-licensed version of Mocha via a truly inelegant integration hack.There is so much to be said for throwing everything away and starting again, like Apple successfully did with OSX (and Steve Job did to his own career when he left Apple to start Next). However, I also remember how Blackberry tried something similar and in the process lost most of their voodoo.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44812231,
+    "by": "phkahler",
+    "timeISO": "2025-08-06T14:06:42.000Z",
+    "textPlain": "I'm looking at GTK here. Don't get me wrong, I like GTK and think it should be the preferred choice of GUI toolkit for many reasons. However, I have the same complaints a lot of people do about constant change and API compatibility issues. In some cases things need to change, but why going form 3 to 4 have menus been removed and require using other constructs? Could you at least provide a wrapper? Don't use event struct members directly, OK use accessor functions... But then you change the names and other details of the functions. It's not a \"window\" any more, it's a \"surface\" just because what? Beause Wayland calls them that? API stability is an important feature but these guys are talking about regular (say every 5 years) major version bumps that break things.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44808522,
+    "by": "foxrider",
+    "timeISO": "2025-08-06T06:45:50.000Z",
+    "textPlain": "Python 2 situation opened my eyes to this. To this day I see a lot of py2 stuff floating around, especially around work environments. So much so, in fact, that I had to make scripts that automatically pull the sources of 2.7.18 and build them in the minimal configuration to run stuff.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44811788,
+    "by": "perrygeo",
+    "timeISO": "2025-08-06T13:34:23.000Z",
+    "textPlain": "I don't like the term \"rot\" - your software isn't rotting, it's exactly the same as when you last edited it. The rest of the software ecosystem didn't \"rot\" either, it evolved. And your old code didn't. \"Extinction\" seems a much better fit.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44810182,
+    "by": "pvtmert",
+    "timeISO": "2025-08-06T10:26:13.000Z",
+    "textPlain": "It is interesting that one of the most solid piece of software component that is relatively resistant to rotting is Shell/Bash scripts. (Including Makefiles)Python, Ruby, etc. constantly get obsolete over time, packages get removed from the central repositories, ceasing to work.Obviously shell scripts contain _many_ external dependencies, but overall the semantics are well-defined even if the actual definitions are loose against the shell script itself.P.S: I have written couple of Bash-script projects that are still running (mostly deployment automation scripts) meanwhile, some of which I was being \"smart\" and wrote them in Python 2.7, unfortunately ceased to function, requiring upgrades...",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44810399,
+    "by": "dusted",
+    "timeISO": "2025-08-06T10:59:23.000Z",
+    "textPlain": "Perfect little text, that article is.Same site has this article about \"bedrock platforms\" which resonate deeply with me https://permacomputing.net/bedrock_platform/Software does not rot, the environment around software, the very foundation which owes its existence: the singular task of enabling the software, is what rots.Let's look at any environment snapshot in time, the software keeps working like it always did.. Start updating the environment, and the software stops working, or rather, the software works fine, but the environment no longer works.I'm not saying never to update software, but, only do it if it increases speed, decreases memory usage, and broadens compatibility.I like things better the way they were.I like things better now than how they will be tomorrow.I can't remember the last time I saw a software update that didn't make it worse.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44808896,
+    "by": "rgmerk",
+    "timeISO": "2025-08-06T07:38:52.000Z",
+    "textPlain": "You can't build permanent software in a world where a) everything is connected to everything else, and b) hackers will exploit anything and everything they can get their hands on.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44810526,
+    "by": "prinny_",
+    "timeISO": "2025-08-06T11:19:53.000Z",
+    "textPlain": "I don’t get the comparison to building a house. Houses have a ton of maintenance. You can’t build a house on steady ground and leave it unattended for 20 years either. And sometimes what you need to do is not even construction type of maintenance, it’s bills, legal paperwork, replacing old furnitures just because you grew tired of that 15 year old sofa etc.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44810569,
+    "by": "collinmcnulty",
+    "timeISO": "2025-08-06T11:26:57.000Z",
+    "textPlain": "In my experience, the most common type of rot is that the real world the software describes has changed. For instance, I wrote software that modeled electrical power contracts, and when those real world contracts’ structure changes, no amount of “bedrock platform” is going to prevent that rot.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44808132,
+    "by": "userbinator",
+    "timeISO": "2025-08-06T05:46:37.000Z",
+    "textPlain": "those written for e.g. Linux will likely cease working in a decade or twoHave we already passed the era of DON'T BREAK USERSPACE when Linus would famously loudly berate anyone who did?I suspect Win32 is still a good target for stability; I have various tiny utilities written decades ago that still work on Win11. With the continued degradation of Microsoft, at least there is WINE.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44817762,
+    "by": "1vuio0pswjnm7",
+    "timeISO": "2025-08-06T20:57:59.000Z",
+    "textPlain": "\"HTTP vs HTTPSIt is possible to consult this wiki on port 80, that is to say using http:// instead of https://.\"https://permacomputing.net/about/\"If you do not have access to git on your operating system, you can download a zip file that contains both the markdown source files and the generated HTML files, with the paths fixed. The zip file is generated once a week.\"https://permacomputing.net/cloning/http://permacomputing.net/permacomputing.net.zipWould it be appropriate to include a digital signature, as is commonly found on mirrorsThought experiment: If it was standard practice to offer a compressed archive then would websites still be hammered by unwanted crawlersIf answer is yes, then what if remove/deny access to online pages and only allow access to the compressed archive",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44811923,
+    "by": "jgb1984",
+    "timeISO": "2025-08-06T13:43:17.000Z",
+    "textPlain": "Today we vibecode our software, so the rot is built in from day one!",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44808062,
+    "by": "Copenjin",
+    "timeISO": "2025-08-06T05:36:38.000Z",
+    "textPlain": "> Software rot is a big issue for cultures that constantly produce new programsCough cough vibing cough cough",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44808153,
+    "by": "b_e_n_t_o_n",
+    "timeISO": "2025-08-06T05:49:25.000Z",
+    "textPlain": "Is it possible that software is not like anything else, that it is meant to be discarded: that the whole point is to always see it as a soap bubble?",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44810421,
+    "by": "ManBeardPc",
+    "timeISO": "2025-08-06T11:02:29.000Z",
+    "textPlain": "Software rot is a big problem in many business tools. Everything not recently built from the tip of main is probably no longer working. APIs change, URLs change, Processes change, newer versions of dependencies no longer work because of version conflicts or deprecation without replacement. The amount of work just to fix the rot is constantly rising. No care is spent to keep things stable. Stable interfaces are really something I learnt to appreciate more and more, even if sometimes crusty and verbose. If it is reliably working don't replace it without a very good reason. I attribute these problems mostly to agile the way it is practiced in many companies. Only thinking in providing \"value\" per sprint and little to no planning ahead, prioritizing ease of change over everything else.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44807664,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-06T04:32:17.000Z",
+    "textPlain": "JS is hated but if you compile to browser JS that code will run in 2100. If you mainly deal with files / blobs not databases you will have these things in 2100 too. I think a lot of apps can be JS plus Dropbox integration to sync files. Dropbox may rot but make that a plugin (seperate .js file) and offer local read/write too and I think you'd be pretty future proof.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44809247,
+    "by": "Falkon1313",
+    "timeISO": "2025-08-06T08:21:40.000Z",
+    "textPlain": "Over the course of my learning and my career, I've kind of gone back and forth on this a bit.On the one hand, software is like a living thing. Once you bring it into this world, you need to nurture it and care for it, because its needs, and the environment around it, and the people who use it, are constantly changing and evolving. This is a beautiful sentiment.On the other hand, it's really nice to just be done with something. To have it completed, finished, move on to something else. And still be able to use the thing you built two or three decades later and have it work just fine.The sheer drudgery of maintenance and porting and constant updates and incompatibilities sucks my will to live. I could be creating something new, building something else, improving something, instead, I'm stuck here doing CPR on everything that I have to keep alive.I'm leaning more and more toward things that will stand on their own in the long-term. Stable. Done. Boring. Lasting. You can always come back and add or fix something if you want. But you don't have to lose sleep just keeping it alive. You can relax and go do other things.I feel like we've put ourselves in a weird predicament with that.I can't help but think of Super Star Trek, originally written in the 1970s on a mainframe, based on a late 1960s program (the original mainframe Star Trek), I think. It was ported to DOS in the 1990s and still runs fine today. There's not a new release every two weeks. Doesn't need to be. Just a typo or bugfix every few years. And they're not that big a deal. -- https://almy.us/sst.htmlI think that's more what we should be striving for. If someone reports a rare bug after 50 years, sure, fix it and make a new release. The rest of your time, you can be doing other stuff.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44808616,
+    "by": "joegibbs",
+    "timeISO": "2025-08-06T07:01:54.000Z",
+    "textPlain": "I think don’t worry too much about trying to avoid it. Think 5-10 years ahead max, rather than 20.In 20-30 years there’s a good chance that what you’ve written will be obsolete regardless - even if programs from 1995 ran perfectly on modern systems they’d have very few users because of changing tastes. A word processor wouldn’t have networked collaborative editing (fine for GRRM though), an image editor wouldn’t have PNG support, and they wouldn’t be optimised for modern hardware (who would foresee 4K screens and GPUs back then - who knows how we’ll use computers in 2055).There are also always containers if the system needs those old versions.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44809598,
+    "by": "account42",
+    "timeISO": "2025-08-06T09:03:23.000Z",
+    "textPlain": "The OS/libraries changing is one example of software rot but another one is requirements changing and you can't completely eliminate that.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44814258,
+    "by": "Vegenoid",
+    "timeISO": "2025-08-06T16:31:09.000Z",
+    "textPlain": "This is why I put so much effort into working with POSIX shell code, despite its painful syntax. I can be pretty damn sure my knowledge will still be relevant in 30 years.LLMs have also made reading and writing shell code much easier.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44812706,
+    "by": "biscuits1",
+    "timeISO": "2025-08-06T14:43:27.000Z",
+    "textPlain": "\". . . whose specifications are static and solid.\"\nWell, thats the problem with software. There isn't agreement of such specifications. We aren't working with wood, nails nor forming a sill footing on bedrock.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44809087,
+    "by": "xenodium",
+    "timeISO": "2025-08-06T08:00:53.000Z",
+    "textPlain": "While Emacs itself is not entirely immune to software rot (external dependencies and all), it’s truly amazing how little to no rot is experienced by elisp software (packages). If you find an Emacs package written 15 years ago, the chances of successfully running out of the box are incredibly high.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44815289,
+    "by": "kragen",
+    "timeISO": "2025-08-06T17:50:23.000Z",
+    "textPlain": "Konrad Hinsen calls this \"software collapse\": when the platform has been eroded out from underneath your software and it collapses.  https://hal.science/hal-02117588/documentThere's no reason such a \"bedrock platform\"♢ needs to be a shitty pain in the ass like the IBM PC or NES (the examples on https://permacomputing.net/bedrock_platform/).  Those platforms were pragmatic tradeoffs for the existing hardware and fabrication technology in the market at the time, based on then-current knowledge.  We know how to do much better tradeoffs now.  The 8088 in the IBM PC was 29000 transistors, but the ARM 2 was only 27000 transistors†.  Both could run at 8 MHz (the 8088 in its later 8088-2 and 80C88 incarnations), but the ARM 2 was a 32-bit processor that delivered about 4 VAX MIPS at that speed (assuming about ½DMIPS/MHz like the ARM3‡) while the 8088 would only deliver about 0.3 VAX MIPS (it was 0.04DMIPS/MHz).  And programming for the 8088's segmented memory model was a huge pain in the ass, and it was crippled by only having 20 address lines.  8088 assembly is full of special-purpose registers that certain instructions have to use; ARM assembly is orthogonal and almost as high-level as C.Same transistor count, same clock speed, dramatically better performance, dramatically better programming experience.Similarly, Unix and Smalltalk came out about the same time as Nova RDOS and RT-11, and for literally the same machines, but the power Unix and Smalltalk put in the hands of users far outstripped that of those worse-designed systems.So, let's put together a bedrock platform that we could actually use for our daily computing in practice.  Unlike the NES.______♢ Stanislav Datskovskiy's term: http://www.loper-os.org/?p=55† https://en.wikipedia.org/wiki/Transistor_count‡ https://netlib.org/performance/html/dhrystone.data.col0.html but note that the ARM3 had a cache, so this depends on having RAM that can keep up with 8MHz.  Both the ARM2 and ARM3 were mostly-1-instruction-per-cl",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44813241,
+    "by": "sbrkYourMmap",
+    "timeISO": "2025-08-06T15:22:18.000Z",
+    "textPlain": "This is the side effect of open source. And open source philosophy is at fault but rather developers themselves. We heavily rely upon code written by strangers and maintained by individual or a community without any obligation to any guarantees, including comparability and maintainability. At work when we are working with vendors that provide proprietary software we have contractual obligations, that amongst other things requires stable interfaces for long periods of time, and could be held liable for damages. Something modern model of open source can't offer",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44810557,
+    "by": "conartist6",
+    "timeISO": "2025-08-06T11:25:08.000Z",
+    "textPlain": "If you're listening VSCode forkers, ya built on bog",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44807963,
+    "by": "fuzzfactor",
+    "timeISO": "2025-08-06T05:18:27.000Z",
+    "textPlain": "There were companies not quite worth a $billion who would have never made it that far if they couldn't convince masses of people that platform rot was good for them.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44812626,
+    "by": "BirAdam",
+    "timeISO": "2025-08-06T14:36:49.000Z",
+    "textPlain": "The most reliable targets I’ve seen recently are Win32 and CGI. They just work. Linux, Windows, macOS. Decade after decade.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44810795,
+    "by": "jongjong",
+    "timeISO": "2025-08-06T11:55:50.000Z",
+    "textPlain": "This is a good discussion to have. I spend a lot of effort on evaluating dependencies. I look for a number of things like how popular/widely used it is, who the author is (if I recognize them) and I also look at code quality and number of sub-dependencies.If I see a library which is solving a simple problem but it uses a lot of dependencies, I usually don't use that library. Every dependency and sub-dependency is a major risk... If a library author doesn't understand this, I simply cannot trust them. I want the authors of my dependencies to demonstrate some kind of wisdom and care in the way they wrote and packaged their library.I have several open source projects which have been going for over a decade and I rarely need to update them. I was careful about dependencies and also I was careful about what language features I used. Also, every time some dependency gave me too much trouble I replaced it... Now all my dependencies are highly stable and reliable.My open source projects became a kind of a Darwinian selection environment for the best libraries. I think it's why I started recognizing the names of good library authors. They're not always super popular but good devs tend to produce consistent quality and usually gets better with time. So if I see a new library and I recognize the author's name, it's a strong positive signal.It feels nice seeing familiar niche names come up when I'm searching for new libraries to use. It's a small secret club and we're in it.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44808171,
+    "by": "superkuh",
+    "timeISO": "2025-08-06T05:52:42.000Z",
+    "textPlain": "Unless explicitly addressed rot rate is proportional to popularity.Unpopular targets, platforms, languages, etc don't get changed and provide a much needed refuge. There are some interpreted languages like perl where a program written today could run on a perl from 2001 and a program from 2001 would run on perl today. And I'm not talking about in a container or with some special version. I'm talking about the system perl.Some popular languages these days can lose forwards compatibility (gain features, etc) within just a few months that every dev will use within a few more months. In these cultures sofware rot is really fast.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44808374,
+    "by": "alexshendi",
+    "timeISO": "2025-08-06T06:22:06.000Z",
+    "textPlain": "I think once you get rid of dynamic libraries and GUIs your software rot will be greatly reduced.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44808557,
+    "by": "alexjurkiewicz",
+    "timeISO": "2025-08-06T06:53:17.000Z",
+    "textPlain": "It's hard to take this article seriously. We should write software for DOS because we won't need to maintain it post-release?Maybe software written in the age of DOS was relatively trivial compared to modern tools. Maybe there's a benefit to writing code in Rust rather than C89.",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44808457,
+    "by": "nektro",
+    "timeISO": "2025-08-06T06:34:58.000Z",
+    "textPlain": "lovely article aside from this bit:> while those written for e.g. Linux will likely cease working in a decade or twothere's nothing to support this claim in practice. linux is incredibly stable",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44810605,
+    "by": "9w389s98s9sjs",
+    "timeISO": "2025-08-06T11:31:32.000Z",
+    "textPlain": "javascript will run forever!",
+    "parent": 44807002,
+    "depth": 1
+  },
+  {
+    "id": 44810056,
+    "by": "cess11",
+    "timeISO": "2025-08-06T10:06:42.000Z",
+    "textPlain": "I like this one as well.https://how.complexsystems.fail/",
+    "parent": 44807002,
+    "depth": 1
+  }
+]

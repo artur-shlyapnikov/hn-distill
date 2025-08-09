@@ -1,0 +1,66 @@
+name: hourly-build
+on:
+  schedule:
+    - cron: "0 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: "1.2.19"
+
+      - name: Install
+        run: make install
+
+      - name: Generate data
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          JINA_API_KEY: ${{ secrets.JINA_API_KEY }}
+          SUMMARY_LANG: ${{ vars.SUMMARY_LANG || 'ru' }}
+          TOP_N: ${{ vars.TOP_N || 40 }}
+          MAX_COMMENTS_PER_STORY: ${{ vars.MAX_COMMENTS_PER_STORY || 40 }}
+          MAX_DEPTH: ${{ vars.MAX_DEPTH || 2 }}
+          CONCURRENCY: ${{ vars.CONCURRENCY || 8 }}
+        run: make run
+
+      - name: Commit data
+        run: |
+          set -e
+          git config user.email "bot@example.com"
+          git config user.name "bot"
+          git add data
+
+          MSG="hourly data"
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "no changes"
+            exit 0
+          fi
+
+          # Always create a new commit; never amend/force-push
+          git commit -m "$MSG" || echo "no changes"
+          git push || true
+
+      - name: Build
+        env:
+          SITE: ${{ vars.SITE }}
+          BASE: ${{ vars.BASE || '/' }}
+        run: make build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist

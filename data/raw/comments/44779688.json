@@ -1,0 +1,58 @@
+[
+  {
+    "id": 44826068,
+    "by": "seanhunter",
+    "timeISO": "2025-08-07T15:49:16.000Z",
+    "textPlain": "Cool article.A couple of things which might not be obvious to people who haven't used monte carlo simulators in practise.1) The fact that a prng is weak[1] and that the MC is deterministic given a particular seed is almost always a good thing.  You want the thing to be as fast as possible and you're going to run a lot of paths.  Secondly you very often need repeated runs to give the same result. For example say you're using an MC method to price something, you want exactly the same price every time otherwise you'll get some p&l noise every day arising purely from the difference in the random sequence.  That's not what you want.2) Low-discrepancy sequences like Sobol sequences take this one step further because they don't even pretend to be random, because they give better coverage of the search space for a given number of paths so you can use fewer paths.  However, if your path evaluation is cheaper than generating the Sobol sequence then you probably just want to use a normal PRNG and more paths rather than a Sobol sequence. Say there is a bullseye hidden somewhere in a circle and to find the circle you need to throw a dart at it and if the dart lands near to the bullseye you get some feedback. One approach would be to precisely divide the circle into squares and carefully aim each dart to land in a different square (this is a low-discrepancy sequence).  But another way is just to throw a lot of darts quickly and not really care where they go (this is the lots of paths approach).[1] in the Cryptographic sense. Generating even weak random variates is slow especially if you need them to satisfy some property like being distributed in a particular way.  Say you're trying to simulate the path of the snp 500.  For each path you're simulating 500 stocks so you might be running say a million paths and each path will need 500*x random numbers.  That computation time adds up pretty quickly. Cryptographically random numbers are extremely expensive computationally and you don",
+    "parent": 44779688,
+    "depth": 1
+  },
+  {
+    "id": 44826042,
+    "by": "hnhg",
+    "timeISO": "2025-08-07T15:47:02.000Z",
+    "textPlain": "This feels like a crash course for people already very familiar with it all. For everyone else, Steve Brunton's courses cover a lot of the foundational stuff here on probability and stats and might be a lot more accessible:\nhttps://www.youtube.com/@Eigensteve",
+    "parent": 44779688,
+    "depth": 1
+  },
+  {
+    "id": 44826615,
+    "by": "clickety_clack",
+    "timeISO": "2025-08-07T16:29:16.000Z",
+    "textPlain": "I seem to be in the minority, but I don’t think you should use a fixed seed in the MC runs you use for decision making. It gives a false sense of the accuracy of process as the answers stay the same. I think a decision maker should be exposed to the effects of the standard error.That said, I know sometimes the point of analysis is more about narrative building than decision making, and changing numbers make it harder to maintain trust in a narrative.",
+    "parent": 44826068,
+    "depth": 2
+  },
+  {
+    "id": 44826355,
+    "by": "FredPret",
+    "timeISO": "2025-08-07T16:08:28.000Z",
+    "textPlain": "You'd also have to account for the covariances among all 500 stocks, as well as many subgroups. Almost impossible to do properly given the contact area between even one of these 500 organizations and a universe full of random events, never mind one another",
+    "parent": 44826068,
+    "depth": 2
+  },
+  {
+    "id": 44827065,
+    "by": "rainworld",
+    "timeISO": "2025-08-07T17:04:46.000Z",
+    "textPlain": "extremely expensiveNo. CSPRNGs can be pretty competitive these days: https://github.com/google/randenYes, in some cases that’s still (a bit) too slow or too much code but best to benchmark first.",
+    "parent": 44826068,
+    "depth": 2
+  },
+  {
+    "id": 44826220,
+    "by": "seanhunter",
+    "timeISO": "2025-08-07T15:59:35.000Z",
+    "textPlain": "Strong agree.  He's an amazing teacher.  Working through his course on dynamic systems and differential equations is some of the most fun I've ever had while learning.",
+    "parent": 44826042,
+    "depth": 2
+  },
+  {
+    "id": 44826306,
+    "by": "FredPret",
+    "timeISO": "2025-08-07T16:04:41.000Z",
+    "textPlain": "Thanks for this link. I've never heard of Eigen Steve but his channel looks amazing, which is to be expected from a name like Eigen Steve.",
+    "parent": 44826042,
+    "depth": 2
+  }
+]

@@ -1,0 +1,90 @@
+[
+  {
+    "id": 44839401,
+    "by": "dabockster",
+    "timeISO": "2025-08-08T17:15:34.000Z",
+    "textPlain": "> We believe that all agents will long more like this in the future - long running, asynchronous, more autonomous. Specifically, we think that they will:> Run asynchronously in the cloud> cloudReality check:https://huggingface.co/Menlo/Jan-nano-128k-ggufThat model will run, with decent conversation quality, at roughly the same memory footprint as a few Chrome tabs. It's only a matter of time until we get coding models that can do that, and then only a further matter of time until we see agentic capabilities at that memory footprint. I mean, I can already get agentic coding with one of the new Qwen3 models - super slowly, but it works in the first place. And the quality matches or even beats some of the cloud models and vibe coding apps.And that model is just one example. Researchers all over the world are making new models almost daily that can run on an off-the-shelf gaming computer. If you have a modern Nvidia graphics card, you can run AI on your own computer totally offline. That's the reality.",
+    "parent": 44838733,
+    "depth": 1
+  },
+  {
+    "id": 44840840,
+    "by": "lta",
+    "timeISO": "2025-08-08T19:38:06.000Z",
+    "textPlain": "Nice, but I want exactly the opposite. I want my agents to run locally without any sort of black box and I certainly don't want to be stuck with whatever UI you've designed to interact with the git provider you've selected.It's not a super surprising coming from this pole of over engineering so thick I'm surprised it wasn't developed by Microsoft in the 90s or 00s",
+    "parent": 44838733,
+    "depth": 1
+  },
+  {
+    "id": 44839828,
+    "by": "tevon",
+    "timeISO": "2025-08-08T18:03:11.000Z",
+    "textPlain": "Very cool! Am using it now and really like the sidebar chat that allows you to add context during a run.I hit an error that was not recoverable. I'd love to see functionality to bring all that context over to a new thread, or otherwise force it to attempt to recover.",
+    "parent": 44838733,
+    "depth": 1
+  },
+  {
+    "id": 44844593,
+    "by": "IceDane",
+    "timeISO": "2025-08-09T06:54:18.000Z",
+    "textPlain": "Unfortunately, after using langchain and the rest of their ecosystem extensively, I have very little faith in their abilities. The fact that the top contributor to langgraph is an agent they built is a huge red flag from my perspective.",
+    "parent": 44838733,
+    "depth": 1
+  },
+  {
+    "id": 44839808,
+    "by": "cowpig",
+    "timeISO": "2025-08-08T18:01:12.000Z",
+    "textPlain": "I was excited by the announcement but then> Runs in an isolated sandbox Every task runs in a secure, isolated Daytona sandbox.Oh, so fake open source? Daytona is an AGPL-licensed codebase that doesn't actually open-source the control plane, and the first instruction in the README is to sign up for their service.> From the \"open-swe\" README:Open SWE can be used in multiple ways:*  From the UI. You can create, manage and execute Open SWE tasks from the web application. See the 'From the UI' page in the docs for more information.*  From GitHub. You can start Open SWE tasks directly from GitHub issues simply by adding a label open-swe, or open-swe-auto (adding -auto will cause Open SWE to automatically accept the plan, requiring no intervention from you). For enhanced performance on complex tasks, use open-swe-max or open-swe-max-auto labels which utilize Claude Opus 4.1 for both planning and programming. See the 'From GitHub' page in the docs for more information.* * *The \"from the UI\" links to their hosted web interface. If I cannot run it myself it's fake open-source",
+    "parent": 44838733,
+    "depth": 1
+  },
+  {
+    "id": 44840124,
+    "by": "prophesi",
+    "timeISO": "2025-08-08T18:28:40.000Z",
+    "textPlain": "I'm also excited for local LLM's to be capable of assisting with nontrivial coding tasks, but we're far from reaching that point. VRAM remains a huge bottleneck for even a top-of-the-line gaming PC to run them. The best these days for agentic coding that get close to the vibe-check of frontier models seem to be Qwen3-Coder-480B-A35B-Instruct, DeepSeek-Coder-V2-236B, GLM 4.5, and GPT-OSS-120B. The latter being the only one capable of fitting on a 64 to 96GB VRAM machine with quantization.Of course, the line will always be pushed back as frontier models incrementally improve, but the quality is night and day between these open models consumers can feasibly run versus even the cheaper frontier models.That said, I too have no interest in this if local models aren't supported and hope that's down the pipeline just so I can try tinkering with it. Though it looks like it utilizes multiple models for various tasks (planner, programmer, reviewer, router, and summarizer) so that only adds to the difficulty of the VRAM bottleneck if you'd like to load different models per task. So I think it makes sense for them to focus on just Claude for now to prove the concept.edit: I personally use Qwen3 Coder 30B 4bit for both autocomplete and talking to an agent, and switch to a frontier model for the agent when Qwen3 starts running in circles.",
+    "parent": 44839401,
+    "depth": 2
+  },
+  {
+    "id": 44839736,
+    "by": "Martinussen",
+    "timeISO": "2025-08-08T17:51:54.000Z",
+    "textPlain": "Data storage has gotten cheaper and more efficient/manageable every year for decades, yet people seem content with having less storage than a mid-range desktop from a decade and a half ago, split between their phone and laptop, and leaving everything else to the \"> cloud\" - I wouldn't be so sure we're going to see people reach for technological independence this time either.",
+    "parent": 44839401,
+    "depth": 2
+  },
+  {
+    "id": 44839604,
+    "by": "koakuma-chan",
+    "timeISO": "2025-08-08T17:36:33.000Z",
+    "textPlain": "Do you know what \"MCP-based methodology\" is? I am skeptical of a 4B model scoring twice as high as Gemini 2.5 Pro",
+    "parent": 44839401,
+    "depth": 2
+  },
+  {
+    "id": 44841930,
+    "by": "kristianp",
+    "timeISO": "2025-08-08T21:34:19.000Z",
+    "textPlain": "Yes, where's the open source agent that runs on the command line?",
+    "parent": 44840840,
+    "depth": 2
+  },
+  {
+    "id": 44839922,
+    "by": "mitchitized",
+    "timeISO": "2025-08-08T18:11:09.000Z",
+    "textPlain": "Hol upHow can it be AGPL and not provide full source? AGPL is like the most aggressive of the GPL license variants. If they somehow circumvented the intent behind this license that is a problem.",
+    "parent": 44839808,
+    "depth": 2
+  },
+  {
+    "id": 44840058,
+    "by": "esafak",
+    "timeISO": "2025-08-08T18:23:12.000Z",
+    "textPlain": "It's a hosted service with an open source client?",
+    "parent": 44839808,
+    "depth": 2
+  }
+]

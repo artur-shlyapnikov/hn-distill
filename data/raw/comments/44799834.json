@@ -1,0 +1,34 @@
+[
+  {
+    "id": 44800848,
+    "by": "mooreds",
+    "timeISO": "2025-08-05T17:08:28.000Z",
+    "textPlain": "Interesting approach! (Full disclosure, I work for a Stytch competitor.)Some initial thoughts:* nice to ship an OSS version and I appreciated that the OSS limits were clearly called out (only supports node, 1MB limit on XML payload size, you have to update it regularly)* the docs were helpful and it's great they provide a bad saml response to test with https://samlshield.com/examples/unsigned_saml_response.txt* critically important to understand that a solution like this isn't the whole enchilada (and they declare that a couple of places): \"important to enforce critical checks such as strict Audience and Issuer validation\" from https://samlshield.com/docs/get-started-open-source So this isn't a set -and-forget solution.* if you use the proxy ( https://samlshield.com/docs/get-started-proxy ), it won't be able to check encrypted SAML assertions (how could it, it won't have the key)* you should definitely read the security coverage page to see what it helps with and what it does not: https://samlshield.com/docs/security-coverage* replay attacks better protected against by using unique identifiers and invalidating when you've seen one before (they just check for time based validity). But I get that's hard to do with a proxy!* great to see a transparent pricing page! https://samlshield.com/pricingI'm all for improving security. SAML unfortunately is going to be around for a long long time and the protocol won't see any updates. This seems like a good step forward in examining SAML requests/responses, even if there are limits to the proxy approach.",
+    "parent": 44799834,
+    "depth": 1
+  },
+  {
+    "id": 44803880,
+    "by": "aleksejs",
+    "timeISO": "2025-08-05T20:32:46.000Z",
+    "textPlain": "This is neat! We're building something similar at work, but instead of hand-rolling specific checks (like \"first signature must be direct child of Response\" in samlshield) we're fingerprinting the structure of the SAML response and checking if it matches what we've previously seen from that IdP. We figured that would be more likely to catch any exploitation attempts we didn't anticipate while giving us some flexibility to not have to hardcode specific IdP behaviors. Having specific hard checks seems really valuable too, though, especially for applications that might not have many SAML responses to backtest on. And kudos for sharing a great corpus of test cases!One thing that would worry me when deploying this in the Proxy mode is that you'll likely end up with two different XML parsers in play: xmldom in samlshield and then whatever the actual application is using. As we saw with CVE-2025-25292, it may be possible to exploit different parser behavior to construct a document that will be interpreted differently between the two applications, potentially bypassing the checks in samlshield.",
+    "parent": 44799834,
+    "depth": 1
+  },
+  {
+    "id": 44803669,
+    "by": "dudeinjapan",
+    "timeISO": "2025-08-05T20:14:37.000Z",
+    "textPlain": "RubySaml contributor here. What I’d like to see is a public repo of known SAML exploit test cases that every lib can validate itself against.",
+    "parent": 44799834,
+    "depth": 1
+  },
+  {
+    "id": 44800639,
+    "by": "jelambs",
+    "timeISO": "2025-08-05T16:55:45.000Z",
+    "textPlain": "thanks for sharing! excited to help make the SAML ecosystem more secure. would love to hear any feedback people have!",
+    "parent": 44799834,
+    "depth": 1
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "id": 44824079,
+    "by": "1gn15",
+    "timeISO": "2025-08-07T13:16:12.000Z",
+    "textPlain": "As with what others had said, this is less of a robots.txt and more of a sitemap.The issue with this is that website owners don't want to do this. Take Reddit removing the API for example. Everyone just switched to scraping the Reddit website instead for any remaining third party clients.Yes, APIs were supposed to be a compromise to lower the resources needed on both sides, but Reddit's stock price is linked to the value of \"their\" data, so...Alternatively, malicious website owners may make incorrect Aura files to mislead user agents. Then we're back to screen scraping as the ground truth, because behaving like a human is the best way to avoid discrimination.",
+    "parent": 44811840,
+    "depth": 1
+  },
+  {
+    "id": 44823908,
+    "by": "input_sh",
+    "timeISO": "2025-08-07T12:57:22.000Z",
+    "textPlain": "How is it different than llms.txt? https://llmstxt.org/Are any websites actually using it (for llms.txt: https://llmstxt.site/)? Why do I need to npm install anything instead of writing a text file?",
+    "parent": 44811840,
+    "depth": 1
+  },
+  {
+    "id": 44824955,
+    "by": "JimDabell",
+    "timeISO": "2025-08-07T14:31:42.000Z",
+    "textPlain": "I’m not sure this is targeted correctly. As a general rule, new protocols for the web work best when they are associated with individual URLs, not with the somewhat nebulous concept of a site.Have you considered something like <script type=\"text/llm\"> or Link: <https://api.example.com/llms/foo>; rel=\"llm:foo\", or just normal content negotiation on individual pages?",
+    "parent": 44811840,
+    "depth": 1
+  },
+  {
+    "id": 44825644,
+    "by": "flufluflufluffy",
+    "timeISO": "2025-08-07T15:19:46.000Z",
+    "textPlain": "I will purposefully implement this with a bunch of incorrect information for every website I make",
+    "parent": 44811840,
+    "depth": 1
+  },
+  {
+    "id": 44812046,
+    "by": "JohnFen",
+    "timeISO": "2025-08-06T13:51:52.000Z",
+    "textPlain": "Like robots.txt, it has the fatal flaw of being unenforceable.",
+    "parent": 44811840,
+    "depth": 1
+  },
+  {
+    "id": 44823716,
+    "by": "Nikkau",
+    "timeISO": "2025-08-07T12:39:37.000Z",
+    "textPlain": "You should add a section to explain why OpenAPI isn't enough (narrator's voice: it is).Otherwise, it just seems you vibecoded the wheel.",
+    "parent": 44811840,
+    "depth": 1
+  },
+  {
+    "id": 44826242,
+    "by": "Hitton",
+    "timeISO": "2025-08-07T16:00:47.000Z",
+    "textPlain": "Hm, I don't see much reason to use it unless the website in question is paid. Web today is run on ad revenue and not only won't the site extract any revenue from the agent, it even won't look as a person for ad purposes.",
+    "parent": 44811840,
+    "depth": 1
+  },
+  {
+    "id": 44824112,
+    "by": "zveyaeyv3sfye",
+    "timeISO": "2025-08-07T13:18:26.000Z",
+    "textPlain": "How about we don't cater the web for the handful of companies hell bent on killing it?> I actually used AI extensively to help me write the reference implementation for AURA.So that's why. You drank the kool aid.",
+    "parent": 44811840,
+    "depth": 1
+  },
+  {
+    "id": 44823911,
+    "by": "tempfile",
+    "timeISO": "2025-08-07T12:57:41.000Z",
+    "textPlain": "> It proposes a new standard for AI-web interaction that moves beyond fragile screen scraping and DOM manipulation towards a robust, secure, and efficient machine-readable layer for the internet.This is nothing like robots.txt, it is much more like a sitemap. In fact, this design goal is almost word for word the point of the semantic web in general. You may find that there are existing working groups for similar resource description frameworks. Given how poor adoption of semantic tagging has been, I somewhat doubt sites start doing it just for LLMs.Incidentally, I thought the whole point of an AI agent was that it could read and understand things by itself. I welcome any improvement in the semantic content of the web, but isn't scraping kind of the point?",
+    "parent": 44811840,
+    "depth": 1
+  },
+  {
+    "id": 44827727,
+    "by": "OsmanDKitay",
+    "timeISO": "2025-08-07T17:42:34.000Z",
+    "textPlain": "The Reddit example gets right to the heart of it: when a platform loses control over its data and how it makes money, it just shuts the door on open access.And that s really what aura is trying to address. If we dont figure something out the web could easily end up just being a handful of big ai sites, and all the smaller, independent sites might just fade away.The goal with aura is to give control back to the people running the websites. It s not about blocking ai but about giving sites a clear, standard way to say \"here s how you can work with me meaningfully...\".\nThis means an agent can do something specific and useful without costly, aimless scraping, and it lets site owners build cool, new features just for ais.and you re right to worry about malicious manifests but that s a trust problem. A site that lies in its aura file would get a bad reputation fast just like a phishing site does now.At the end of the day aura is a bet that we can build an open, capability based web where site creators can join in on the AI revolution on their own terms. Time will tell if it's the right technical answer, but it s a conversation i think we absolutely need to have to keep the web diverse and creative.",
+    "parent": 44824079,
+    "depth": 2
+  },
+  {
+    "id": 44826801,
+    "by": "OsmanDKitay",
+    "timeISO": "2025-08-07T16:44:10.000Z",
+    "textPlain": "The main difference is\n-llms.txt is for reading content\n --while aura is for performing actions-llms.txt tells an AI here is a clean, simple version of this page for you to read\n --Aura tells an AI here is a capability called create_post, it needs a title and content, and you can use it by POSTing to the /api/posts endpoint.llms.txt is for reading, aura is for doing.You also asked why you need npm install. You dont! \nTo add Aura to your own website, you only need to create one static file\n- public/.well-known/aura.json. That's it. \nIt s just as simple as creating a llms.txt file.The npm install command in my project is for people who want to download and run my full reference implementation (the example server and client). \nIt is not a requirement for the protocol itself.And for your last question, Aura is new so no other websites are using it yet.",
+    "parent": 44823908,
+    "depth": 2
+  },
+  {
+    "id": 44825553,
+    "by": "tempfile",
+    "timeISO": "2025-08-07T15:13:18.000Z",
+    "textPlain": "> While websites serve both human readers and LLMs, the latter benefit from more concise, expert-level information gathered in a single, accessible location.This honestly made me laugh out loud.",
+    "parent": 44823908,
+    "depth": 2
+  },
+  {
+    "id": 44824170,
+    "by": "pbronez",
+    "timeISO": "2025-08-07T13:24:20.000Z",
+    "textPlain": "Honestly I love the llmstxt idea if only because it implies that I can get an unbloated version of the web for my own use. Reader mode gets way easier if a .md is available everywhere.Which of course means this is never going to fly with any site that needs to show you ads.",
+    "parent": 44823908,
+    "depth": 2
+  },
+  {
+    "id": 44828014,
+    "by": "OsmanDKitay",
+    "timeISO": "2025-08-07T17:58:54.000Z",
+    "textPlain": "I chose a single site-wide /.well-known/aura.json manifest primarily for agent efficiency. The goal is for an agent to understand the website s entire capability map with a single, predictable request, rather than having to crawl and parse individual pages to piece that map together. Aura is conceptually similar to robots.txt one file that defines the rules and possibilities for the whole site.However you are right that context is critical for individual URLs. \nI handle that with the dynamic aura-state http header. While the manifest is the static map of everything possible, the aura-state header in each response tells the agent what's available right now for that specific page or state. \n(e.g \"you are logged in so create_post is now available\").So i get the best of both worlds\nefficient site-wide discovery\ndynamic\n*state-aware execution",
+    "parent": 44824955,
+    "depth": 2
+  },
+  {
+    "id": 44812286,
+    "by": "OsmanDKitay",
+    "timeISO": "2025-08-06T14:11:16.000Z",
+    "textPlain": "You're right...\nAura.json file itself is completely voluntary. A badly behaved agent can just ignore it.\nBut this is where the model differs from robots.txt. Aura isnt the fence, it s the official map to the gates. The real enforcement happens on the backend at the API endpoint, just like any normal web app.For example, aura manifest says the create_post capability needs auth. If an agent ignores that and POSTs to /api/posts without a valid cookie, our server's API will reject it with a 401. The manifest doesnt do the blocking, the backend does. It just tells the cooperative agents the rules of the road ahead of time.So the real incentive for an agent to use Aura isnt about avoiding punishment, it s about the huge upside in efficiency and reliability. Why scrape a page and guess at DOM elements when you can make a single, clean API call that you know will work? It saves the agent developer time, compute resources, and the headache of maintaining brittle scrapers.So;robots.txt tells good bots what they shouldn't do.aura.json tells them what they can do, and gives them the most efficient way to do it, all backed by the server's actual security logic.",
+    "parent": 44812046,
+    "depth": 2
+  },
+  {
+    "id": 44825757,
+    "by": "OsmanDKitay",
+    "timeISO": "2025-08-07T15:28:27.000Z",
+    "textPlain": "The comparison to OpenAPI is the main thing to address and you re right to ask why it isn t enough.OpenAPI is fantastic for describing a static API for a developer to read. But the web is more than that its a dynamic stateful environment built for human interaction. The current trend of forcing AI agents to navigate this human-centric web with screen scraping and DOM manipulation is brittle and I believe, unsustainable. Its like sending a robot into a grocery store to read the label on every single can instead of just asking the manager for the inventory list.This is where Aura tries to be different in two key waysControl & Permission:not just Documentation: Aura is designed from the website owner's perspective. It's a way for a site to say \"This is my property and here are the explicit rules for how an automated agent can interact with it.\" The aura.json file is a handshake a declaration of consent. It gives control back to the site owner.Statefulness(This is the big one): An OpenAPI spec is stateless. It cant tell an agent what it can do right now based on its current context. This is what the AURA-State header solves. So for example before you log in the AURA-State might only show you list_posts and login capabilities. After you successfully call login the very next response from the server includes a new AURA-State header that now unlocks capabilities like create_post and update_profile. The agent discovers its new powers dynamically. This state management is core to the protocol and doesn't really have a parallel in OpenAPI.You re right to be skeptical and as I said in my post maybe Aura isnt the final answer. But I strongly believe the web needs a native capability-aware layer for the coming wave of AI agents. The current path of brute force interaction feels like it will break the open, human-centric web we ve all built.",
+    "parent": 44823716,
+    "depth": 2
+  },
+  {
+    "id": 44823942,
+    "by": "YVoyiatzis",
+    "timeISO": "2025-08-07T13:00:37.000Z",
+    "textPlain": "\"vibecoded the wheel\". Where did you get this from‽",
+    "parent": 44823716,
+    "depth": 2
+  },
+  {
+    "id": 44825787,
+    "by": "jakeydus",
+    "timeISO": "2025-08-07T15:30:57.000Z",
+    "textPlain": "> The project is MIT licensed. I'm here all day to answer questions and listen to your feedback—especially the critical kind. Let's discuss it.You can tell that OP is a big AI believer by the final sentence. That's gotta be one of the most ChatGPT lines I've ever read.",
+    "parent": 44824112,
+    "depth": 2
+  },
+  {
+    "id": 44825922,
+    "by": "OsmanDKitay",
+    "timeISO": "2025-08-07T15:39:31.000Z",
+    "textPlain": "The current way agents interact with the web is a problem.My view isnt that we should \"cater\" to them but that we should define the terms of engagement before they define it for us. Right now they re using scraping. That gives site owners zero control. Aura is an attempt to hand control back to the site owner by providing a clear aura.json manifest. It s about consent. As for using AI to build it, I believe you have to deeply understand a technology to help steer it.",
+    "parent": 44824112,
+    "depth": 2
+  },
+  {
+    "id": 44826171,
+    "by": "OsmanDKitay",
+    "timeISO": "2025-08-07T15:56:29.000Z",
+    "textPlain": "You made good points. Aura is more like a sitemap for actions than robotstxt. I just wanted to make Aura much simpler, using only plain JSON and HTTP. I think the Semantic Web was too complex for people to use.\nSo why is now a good time for this idea? I think it s because of AI agents. Today big companies spend a lot of money on web scraping and their tools break all the time. This gives them a real reason to want a better way.\nAnd for your last question, can't AI just read the page? Yes it can, but it s very slow and it breaks easily. It s the difference between using a clean API versus guessing where to click on a page. Aura is just a way for a website to offer that clean API-like path. It's faster for everyone and doesnt break when a small thing like a button s color changes. Thanks for the feedback.",
+    "parent": 44823911,
+    "depth": 2
+  }
+]

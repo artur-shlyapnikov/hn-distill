@@ -1,0 +1,250 @@
+[
+  {
+    "id": 44840102,
+    "by": "roadside_picnic",
+    "timeISO": "2025-08-08T18:26:56.000Z",
+    "textPlain": "Interviewed with HRT awhile back. While I didn't get past the final round, their Python internals interview (which I did pass) was an absolute blast to prepare for, and required a really deep dive into implementation specific details of CPython around things like exactly how collisions are handled in dict, details about memory management, etc. Pretty much had to spend a few weeks in the CPython source to prep, and was, for me, worth the interview just to really learn what's going on.For most teams I would be pretty skeptical of a internal Python fork, but the Python devs at HRT really know their stuff.",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44841021,
+    "by": "tracnar",
+    "timeISO": "2025-08-08T19:56:49.000Z",
+    "textPlain": "While I see the usefulness of lazy imports, it always seemed a bit backward to me for the importer to ask for lazy import, especially if you make it an import keyword rather than a Python flag. Instead I'd expect the modules to declare (and maybe enforce) that they don't have side effects, that way you know they can be lazily imported, and it opens the door for more optimizations, like declaring the module immutable. That links to the performance barrier of Python due to its dynamic nature as discussed in https://news.ycombinator.com/item?id=44809387Of course that doesn't solve the overhead of finding the modules, but that could be optimized without lazy import, for example by having a way to pre-compute the module locations at install time.",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44843830,
+    "by": "rsyring",
+    "timeISO": "2025-08-09T03:33:33.000Z",
+    "textPlain": "> we support the Steering Council in their rejection of PEP 690—the implicit lazy imports are not a good fit for upstream due to the same, subtle bugs we encountered during our migration. However, as time permits, we hope to propose a revised lazy imports PEP that introduces an explicit lazy keyword, e.g. lazy import foo or lazy from foo import bar. This approach will satisfy migration and compatibility concerns, allow users to opt-in gradually, and enable all Python users to reap the speed benefits of lazy imports in a safe way.",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44840528,
+    "by": "nasretdinov",
+    "timeISO": "2025-08-08T19:06:59.000Z",
+    "textPlain": "I wonder how much can be saved by using a local file system for imports though. In my testing just a mere presense of a home directory on NFS already dramatically slows down imports (by ~10x) due to Python searching for modules in home directory too by default.",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44839583,
+    "by": "fabioz",
+    "timeISO": "2025-08-08T17:34:10.000Z",
+    "textPlain": "It'd have been really nice to have that PEP in as it'd have helped me not have to write local imports everywhere.As it is, top-level imports IMHO are only meant to be used for modules required to be used in the startup, everything else should be a local import -- getting everyone convinced of that is the main issue though as it really goes against the regular coding of most Python modules (but the time saved to start up apps I work on does definitely make it worth it).",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44838750,
+    "by": "davidteather",
+    "timeISO": "2025-08-08T16:17:55.000Z",
+    "textPlain": "The author interviewed me and talked about this project, so it was cool seeing a blog post posted about it",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44841236,
+    "by": "procaryote",
+    "timeISO": "2025-08-08T20:16:49.000Z",
+    "textPlain": "> python> monorepo> vast proliferation of imports> large modules> distributed file system> side-effects> many transitive importsThis sounds like a very optional problem to have.",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44839098,
+    "by": "rasjani",
+    "timeISO": "2025-08-08T16:46:23.000Z",
+    "textPlain": "I know few modules that can take seconds to import but  would have been nice to hear how much they actually gained?Also maybe, if this approach could yield stats on if some import was needed or not ?",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44840632,
+    "by": "its-summertime",
+    "timeISO": "2025-08-08T19:18:23.000Z",
+    "textPlain": "> There’s also no way to make imports of the form from module import * lazyI'd say if you see    from typing import Final\n    [...]\n    __all__: Final = (\"a\", \"b\", \"c\")\n\nIts probably 99% safe to pull that from a quick run over of the AST (and caching that for the later import if you want to be fancy)Of course, should one be doing a star import in a proper codebase?",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44843227,
+    "by": "skeledrew",
+    "timeISO": "2025-08-09T01:08:57.000Z",
+    "textPlain": "Hmm it strikes me that is they really wanted to go this lazy route, they could've implemented an import hook, instead of creating and maintaining an entire fork.",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44840147,
+    "by": "Spivak",
+    "timeISO": "2025-08-08T18:30:07.000Z",
+    "textPlain": "> This process gets dramatically slower for … modules on distributed file systems, modules with slow side-effectsOh no. Look I'm not saying you're holding it wrong, it's perfectly valid to host your modules on what is presumably NFS as well as having modules with side effects but what if you didn't.I've been down this road with NFS (and SMB if it matters) and pain is the only thing that awaits you. It seems like they're feeling it. Storing what is spiritually executable code on shared storage was a never ending source of bugs and mysterious performance issues.",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44839649,
+    "by": "zzzeek",
+    "timeISO": "2025-08-08T17:41:10.000Z",
+    "textPlain": "Gonna call this an antipattern.  Do you need all those modules imported in every script ?   Well then you save nothing on loadup time, the time will be spent regardless.  Does every script not need those imports ?  Well they shouldn't be importing those things and this small set of top level imports should be curated into a better, more fine grained list (and if you want to write tools, you can certainly identify these patterns using tooling similar to that which you wrote for LazyImports).",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44839677,
+    "by": "ecshafer",
+    "timeISO": "2025-08-08T17:45:11.000Z",
+    "textPlain": "I thought HRT was a Cpp shop? Is Python used in their main business applications, or more for quants / data scientists?",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44840278,
+    "by": "patrick91",
+    "timeISO": "2025-08-08T18:43:09.000Z",
+    "textPlain": "I really really want lazy imports in Python, it's would be a godsend for CLIs",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44840668,
+    "by": "instig007",
+    "timeISO": "2025-08-08T19:22:33.000Z",
+    "textPlain": "If only compiled languages with dead code elimination existed...",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44840244,
+    "by": "globular-toast",
+    "timeISO": "2025-08-08T18:39:34.000Z",
+    "textPlain": "Imagine if these guys put their intelligence towards improving the world.",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44838993,
+    "by": "rirze",
+    "timeISO": "2025-08-08T16:37:38.000Z",
+    "textPlain": "Oh, it's a trading firm. That's why they can fund an internal fork of Python... That sounds nice...",
+    "parent": 44838687,
+    "depth": 1
+  },
+  {
+    "id": 44840515,
+    "by": "nly",
+    "timeISO": "2025-08-08T19:05:59.000Z",
+    "textPlain": "I interviewed with them as well. Something like 6-8 interviews only to be told they then, after that, were circulating my CV amongst teams and didn't have a fit for me...But yes, like you I had a great experience",
+    "parent": 44840102,
+    "depth": 2
+  },
+  {
+    "id": 44840496,
+    "by": "htrp",
+    "timeISO": "2025-08-08T19:04:05.000Z",
+    "textPlain": "when milliseconds mean millions",
+    "parent": 44840102,
+    "depth": 2
+  },
+  {
+    "id": 44841118,
+    "by": "ActorNightly",
+    "timeISO": "2025-08-08T20:06:09.000Z",
+    "textPlain": ">Python devs at HRT really know their stuff.Its a finance firm - i.e scam firm. \"We have a fancy trading algorithm that statistically is never going to outperform just buying VOO and holding it, but the thing is if you get lucky, it could\".Scammers are not tech people. And its pretty from their post.> In Python, imports occur at runtime. For each imported name, the interpreter must find, load, and evaluate the contents of a corresponding module. This process gets dramatically slower for large modules, modules on distributed file systems, modules with slow side-effects (code that runs during evaluation), modules with many transitive imports, and C/C++ extension modules with many library dependencies.As they should.The idea that when you type something in the code and then the interpreter just doesn't execute it is how you end up with Java like services, where you have dependency injection chains that are so massive that when the first time everything has to get lazily injected the code takes a massive amount of time to run. Then you have to go figure out where is the initialization code that slows everything down, and start figuring out how to modify your code to make that load first, which leads to a mess.If your python module takes a long time to load, this is a module problem. There is a reason why you can import submodules of modules directly, and overall the __init__.py in the module shouldn't import all the submodules by default. Structure your modules so they don't do massive initialization routines and problem solved.Furthermore, because of pythons dynamic nature, you can do run time imports, including imports in functions. In use, whether you import something up at the top and it gets lazily loaded or you import something right when you have to use it has absolutely no difference other than code syntax, and the latter is actually better because you can see what is going on rather than the lazy loading being hidden away in the interpreter.Or if you really car",
+    "parent": 44840102,
+    "depth": 2
+  },
+  {
+    "id": 44841266,
+    "by": "instig007",
+    "timeISO": "2025-08-08T20:19:19.000Z",
+    "textPlain": ">  it always seemed a bit backward to me for the importer to ask for lazy import, especially if you make it an import keyword rather than a Python flagExactly this. There must be zero side effects at module import time, not just for load times, but because the order of such effects is 1) undefined, 2) heavily dependent on a import protocol implementation, and 3) poses safety and security nightmares that Python devs don't seem to care much about until bad things happen at the most inconvenient time possible.> Of course that doesn't solve the overhead of finding the modules, but that could be optimized without lazy import, for example by having a way to pre-compute the module locations at install time.1) opt for https://docs.python.org/3/reference/import.html#replacing-th...2) pre-compute everything in CI by using a solution from (1) and doing universal toplevel import of the entire Python monorepo (safe, given no side effects).3) This step can be used to scan all toplevel definitions too, to gather extra code meta useful for various dynamic dispatch at runtime without complex lookups. See for example: https://docs.pylonsproject.org/projects/venusian/en/latest/i...3) put the result of (2) and (3) as a machine-readable dump, read by (1) as the alternative optimised loading branch.4) deploy (3) together with your program.",
+    "parent": 44841021,
+    "depth": 2
+  },
+  {
+    "id": 44843784,
+    "by": "gjvc",
+    "timeISO": "2025-08-09T03:20:03.000Z",
+    "textPlain": "to prevent this, set PYTHONNOUSERSITE=1 will prevent searching for modules in ~/.local/ (for convenience, try calling python through a wrapper in your project, say bin/run-python, and there you can set all the python-specific environment variables you need, set at the time of execution and not have to worry about setting them in the user's shell etc)",
+    "parent": 44840528,
+    "depth": 2
+  },
+  {
+    "id": 44840660,
+    "by": "theLiminator",
+    "timeISO": "2025-08-08T19:22:03.000Z",
+    "textPlain": "Yeah, imo that's the way that python should've worked in the first place.Import-time side effects are definitely nasty though and I wonder what the implications on all downstream code would be. Perhaps a lazy import keyword is a better way forward.",
+    "parent": 44839583,
+    "depth": 2
+  },
+  {
+    "id": 44842783,
+    "by": "mgaunard",
+    "timeISO": "2025-08-08T23:35:07.000Z",
+    "textPlain": "Trading companies are really disciplined about their tech stack.",
+    "parent": 44841236,
+    "depth": 2
+  },
+  {
+    "id": 44844555,
+    "by": "gkze",
+    "timeISO": "2025-08-09T06:45:33.000Z",
+    "textPlain": "Yeah I wonder what led them down the drastic fork trajectory rather than considering this approach… kind of interesting this wasn’t even acknowledged in the article",
+    "parent": 44843227,
+    "depth": 2
+  },
+  {
+    "id": 44840588,
+    "by": "its-summertime",
+    "timeISO": "2025-08-08T19:13:26.000Z",
+    "textPlain": "import argparse\n    parser = argparse.ArgumentParser()\n    parser.parse_args()\n    import requests\n\nIs an annoying bodge that a programmer should not have to think about, as a random example",
+    "parent": 44839649,
+    "depth": 2
+  },
+  {
+    "id": 44839744,
+    "by": "sunshowers",
+    "timeISO": "2025-08-08T17:52:42.000Z",
+    "textPlain": "There are often large programs where not every invocation imports every module.The lazy import approach was pioneered in Mercurial I believe, where it cut down startup times by 3x.",
+    "parent": 44839649,
+    "depth": 2
+  },
+  {
+    "id": 44839837,
+    "by": "spicybright",
+    "timeISO": "2025-08-08T18:03:48.000Z",
+    "textPlain": "For personal one file utility scripts, I'll sometimes only import a module on a code path that needs it. And make it global if the scope gets in the way.It's dirty, but speeds things up vs putting all imports at the top.",
+    "parent": 44839649,
+    "depth": 2
+  },
+  {
+    "id": 44839751,
+    "by": "almostgotcaught",
+    "timeISO": "2025-08-08T17:53:21.000Z",
+    "textPlain": "every quant shop has QR and QT people that can barely write passable python let alone cpp - then the QD people have to integrate that stuff with prod cpp pipelines.",
+    "parent": 44839677,
+    "depth": 2
+  },
+  {
+    "id": 44840980,
+    "by": "nomel",
+    "timeISO": "2025-08-08T19:51:59.000Z",
+    "textPlain": "Libraries for this have always existed, triggering import on first access. The problem was, they would break linters. But that's not an issue anymore with typing.TYPE_CHECKING.A PEP is very much welcome, but using lazy import libraries is a fairly common, very old, method of speeding things up. My pre PEP 690 code looks like this:    import typing\n    from lazy import LazyImport\n\n    member = LazyImport('my_module.subpackage', 'member')\n    member1, member2, = LazyImport('my_module', 'member1', 'member2')\n    \n    if typing.TYPE_CHECKING:\n        # normal import, for linter/IDE/navigation. \n        from my_module.subpackage import member\n        from my_module import member1, member2",
+    "parent": 44840278,
+    "depth": 2
+  },
+  {
+    "id": 44841044,
+    "by": "formerly_proven",
+    "timeISO": "2025-08-08T19:58:50.000Z",
+    "textPlain": "Well if you use argparse or one of the many argparse wrappers for a moderately complex CLI you end up lazyfing the CLI parser itself because just fully populating the argparse data structures can easily take half a second or more, so with other startup costs you easily end up with \"program --help\" taking >1s and any CLI parsing error also taking >1s.",
+    "parent": 44840278,
+    "depth": 2
+  }
+]

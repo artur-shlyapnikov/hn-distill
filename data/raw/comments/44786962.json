@@ -1,0 +1,114 @@
+[
+  {
+    "id": 44787564,
+    "by": "veber-alex",
+    "timeISO": "2025-08-04T15:52:25.000Z",
+    "textPlain": "The reason you are not seeing crashes when allocating with Rust and freeing with C (or vice versa) is that by default Rust also uses the libc allocator.https://stdrs.dev/nightly/x86_64-unknown-linux-gnu/src/std/s...",
+    "parent": 44786962,
+    "depth": 1
+  },
+  {
+    "id": 44790323,
+    "by": "mwkaufma",
+    "timeISO": "2025-08-04T19:24:34.000Z",
+    "textPlain": "Lots of detail, little substance, and misleading section headers. GPT-generated red flags.",
+    "parent": 44786962,
+    "depth": 1
+  },
+  {
+    "id": 44787409,
+    "by": "eatonphil",
+    "timeISO": "2025-08-04T15:43:39.000Z",
+    "textPlain": "One of the areas I wonder about this a lot is when integrating Rust code into Postgres which has its own allocator system. Mostly right now when we need to have complex data structures (non-Postgres data structures) that must live outside of the lexical scope we put them somewhere global and return a handle to the C code to reference the object. But with the upcoming support for passing an allocator to any data structure (in the Rust standard library anyway) I think this gets a lot easier?",
+    "parent": 44786962,
+    "depth": 1
+  },
+  {
+    "id": 44787403,
+    "by": "7e",
+    "timeISO": "2025-08-04T15:43:22.000Z",
+    "textPlain": "Allocating memory with C and freeing it with Rust is silly. If you want to free a C-allocated pointer in Rust, just have Rust call back in to C. Expecting that allocators work identically in both runtimes is unreasonable and borderline insane. Heck, I wouldn't expect allocators to work the same even across releases of libc from the same vendor (or across releases of Rust's std).",
+    "parent": 44786962,
+    "depth": 1
+  },
+  {
+    "id": 44787269,
+    "by": "phkahler",
+    "timeISO": "2025-08-04T15:34:11.000Z",
+    "textPlain": "Something I'd like to know for mixing Rust and C.  I know it's possible to access a struct from both C and Rust code and have seen examples. But those all use accessor functions on the Rust side rather than accessing the members directly. Is it possible to define a structure in one of the languages and then via some wrapper or definitions be able to access it idiomatically in the other language? Can you point to some blog or documentation explaining how?",
+    "parent": 44786962,
+    "depth": 1
+  },
+  {
+    "id": 44792183,
+    "by": "commandersaki",
+    "timeISO": "2025-08-04T22:45:53.000Z",
+    "textPlain": "Me: “If we do it via FFI then there’s a possibility the program may continue working (because the underlying structs share the same memory layout? right? …right?)”I didn't understand what was being said here; was he suggesting that you call libc free using FFI; which would be fine? I understand the interviewer asked about using Rust dealloc though. I think the FFI bit is confusing me.",
+    "parent": 44786962,
+    "depth": 1
+  },
+  {
+    "id": 44787577,
+    "by": "tracker1",
+    "timeISO": "2025-08-04T15:53:18.000Z",
+    "textPlain": "Interesting read... and definitely good to know base of knowledge especially if you're working in transitional or mixed codebases.",
+    "parent": 44786962,
+    "depth": 1
+  },
+  {
+    "id": 44787128,
+    "by": "sesm",
+    "timeISO": "2025-08-04T15:24:47.000Z",
+    "textPlain": "Section named \"The Interview Question That Started Everything\" doesn't contain the interview question.",
+    "parent": 44786962,
+    "depth": 1
+  },
+  {
+    "id": 44787537,
+    "by": "ryanf",
+    "timeISO": "2025-08-04T15:50:52.000Z",
+    "textPlain": "This article looked interesting, but I bounced off it because the author appears to have made heavy use of an LLM to generate the text. How can I trust that the content is worth reading if a person didn't care enough to write it themselves?",
+    "parent": 44786962,
+    "depth": 1
+  },
+  {
+    "id": 44789377,
+    "by": "techlatest_net",
+    "timeISO": "2025-08-04T18:02:44.000Z",
+    "textPlain": "[dead]",
+    "parent": 44786962,
+    "depth": 1
+  },
+  {
+    "id": 44787722,
+    "by": "potatogotato",
+    "timeISO": "2025-08-04T16:03:15.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44786962,
+    "depth": 1
+  },
+  {
+    "id": 44787729,
+    "by": "potatogotato",
+    "timeISO": "2025-08-04T16:03:30.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44786962,
+    "depth": 1
+  },
+  {
+    "id": 44788137,
+    "by": "jokoon",
+    "timeISO": "2025-08-04T16:33:26.000Z",
+    "textPlain": "Any insight on the quantity of paid rust job out there?",
+    "parent": 44786962,
+    "depth": 1
+  },
+  {
+    "id": 44788152,
+    "by": "Tony_Delco",
+    "timeISO": "2025-08-04T16:34:42.000Z",
+    "textPlain": "Fantastic opening line (“Memory oppresses me.”). If this article was written by an AI, it’s the best AI I’ve seen in months.Seriously though: I already knew the “don’t mix allocators” rule, but I really enjoyed seeing such a careful and hands-on exploration of why it’s dangerous. Thanks for sharing it.",
+    "parent": 44786962,
+    "depth": 1
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 44844699,
+    "by": "maxhille",
+    "timeISO": "2025-08-09T07:22:10.000Z",
+    "textPlain": "I was using different file watching methods for personal projects over the years and they all suffered in some way. So I built a really simplistic one for my use cases.https://git.sr.ht/~mh/remake",
+    "parent": 44799886,
+    "depth": 1
+  },
+  {
+    "id": 44842852,
+    "by": "flashgordon",
+    "timeISO": "2025-08-08T23:46:35.000Z",
+    "textPlain": "Nice.  I built something similar but to be like the Air tool but instead of being only for Golang, it was for all my artifacts in a project.   Very unopinionated, fast and light weight:https://github.com/panyam/devloop",
+    "parent": 44799886,
+    "depth": 1
+  },
+  {
+    "id": 44841938,
+    "by": "dataflow",
+    "timeISO": "2025-08-08T21:35:31.000Z",
+    "textPlain": "If only life was so simple.So file A gets saved... a rebuild starts... and now file B gets saved a few seconds later.What do you do? Do you kill the build and start a new one? Do you wait for it to finish?What about the race conditions - what if half the build process sees the old contents and the other half sees the new contents of some of the files - do you contaminate the output/cache? Do you even detect it to tell the user?",
+    "parent": 44799886,
+    "depth": 1
+  },
+  {
+    "id": 44843291,
+    "by": "wonderwonder",
+    "timeISO": "2025-08-09T01:21:46.000Z",
+    "textPlain": "I have nothing useful to say except I dig the name choice. Very fun.",
+    "parent": 44799886,
+    "depth": 1
+  },
+  {
+    "id": 44842030,
+    "by": "brendoncarroll",
+    "timeISO": "2025-08-08T21:49:08.000Z",
+    "textPlain": "All of those issues can be solved by doing an import of the changed file into the build system's content addressed store, and creating a new version of the entire input tree.  You also don't need to choose between cancelling, waiting, or dropping.  You can do 2 builds simultaneously, and anything consuming results can show the user the first one until a more recent one is available.  If the builds are at all similar, then the similar components can be deduplicated at runtime.These techniques are used in a build system that I work on[0].  Although it does not do automatic rebuilds like Poltergeist.[0] https://github.com/wantbuild/want",
+    "parent": 44841938,
+    "depth": 2
+  }
+]

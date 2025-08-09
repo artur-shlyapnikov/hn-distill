@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44791157,
+    "by": "lemonwaterlime",
+    "timeISO": "2025-08-04T20:46:41.000Z",
+    "textPlain": "The best way I have found to use tmux is to unbind everything and set only the things I use for my workflow. Then the configuration (.tmux.conf) becomes the docs.I was inspired by the \"How to Configure tmux from scratch\" post [1].I came up with my use cases:- I want to create sessions- I want to open and close windows- I want to create split panes- I want to use vim-style text select- etc.Then I made mappings for the things I care about for my workflow specifically.Before this, I would accidentally hit a keybinding while doing something else and not know how I got to that state, taking me out of flow to troubleshoot.Afterwards, only the keybindings I have defined take action.Now tmux fits like a glove. Because tmux is so stable, I haven't had to touch my config in years. It's worth the one time effort.[1] https://ianthehenry.com/posts/how-to-configure-tmux/",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44791100,
+    "by": "akkartik",
+    "timeISO": "2025-08-04T20:41:18.000Z",
+    "textPlain": "\"When I first started using tmux, I felt overwhelmed by the very poor default UI that it offers and the amount of options and shortcuts that I needed to know to operate it well and be productive. It took me several tries before I started to feel more or less comfortable with it. One of the things that stood out to me right away was how dreadful UI looked. Not only it felt uninviting, but it almost felt “gatekeepy” - if you don’t know how to use it in this configuration, then might as well forget about it.\"EPendragon elaborate on this. It seems like you understand the shell enough to use it productively and customize it to be how you like it. The screenshot this quote is talking about looks like a shell? In what way is it dreadful, and in what way do your customizations make it not dreadful?For example, it seems like a valid criticism that shells are not very discoverable and a prompt and blinking cursor can be intimidating to a noob, and that surely applies to tmux as well. But then changing the shortcuts doesn't really address that, does it?To me it seems your article is either saying, \"tmux is a pig, and here's me putting some lipstick on it,\" :) or the problems are not insurmountable, and the solutions are nice but not life-changing.It's great that you like it better now, and we're all having fun chatting around it about how we configure our tools here on the Hacker News :) But I don't see why it's \"dreadful\". It's just.. computers, no? Tmux seems no more gatekeepy than any other aspect of computers. And I say this as someone who stopped using tmux a few years ago after getting super annoyed with it.",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44796574,
+    "by": "mrweasel",
+    "timeISO": "2025-08-05T11:02:00.000Z",
+    "textPlain": "I have to admit I don't like customizing tools like tmux too much. Personally I prefer to just learn and live with the defaults. That mean losing out on some things, but I think it's a good trade off for having thing just work like you expect on random server you sign in to.Especially something like keyboard shortcuts and leader keys doesn't make sense to change in my mind. It just confuses you when login in to a remote host.",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44789391,
+    "by": "benrutter",
+    "timeISO": "2025-08-04T18:03:34.000Z",
+    "textPlain": "I love tmux! Using it as a tool suddenly enabled me to do so many things. Lately I've been using Zellij, which I'd massively recommend for anyone not wanting to do a load of customisation. It just works great out the box (but probably has less wiggle room to \"make your own\")https://zellij.dev/",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44790546,
+    "by": "EPendragon",
+    "timeISO": "2025-08-04T19:42:41.000Z",
+    "textPlain": "@HNModerators, I don't know why it was necessary to change the title of my post from \"Customizing tmux and making it less dreadful\" to \"Customizing tmux\". The point of the title was not the overview of all of the customization options, but the effort to make it more usable, convenient, and pleasant to use.",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44789628,
+    "by": "mikepurvis",
+    "timeISO": "2025-08-04T18:23:51.000Z",
+    "textPlain": "The article is focused on interactive use, but I would be interested to also hear from folks using tmux as a process manager / dashboard for server-type environments. I was pretty unenthused about this practice when I first encountered it, but it's grown on me as a way to quickly get a sense of state from onboard a running system without having to rely on off-board dashboard or log parsers / alert systems.In particular, I'm curious about libtmux/tmuxp and how well it works to have a more declarative bringup than just a bash script launching things into the background and then attaching tmux windows to them.And I guess the broader question of whether this approach is an evolutionary dead end— like does it just become a pile of hacks as one discovers the need for restart policies, backoffs, ordering, whatever other stuff that is built into a \"normal\" process manager like systemd or runit? If you do end up wanting to send process stdout/stderr elsewhere or do alerting, is that now annoying if those streams are \"trapped\" in tmux sessions vs being written into log files or the journal?",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44793386,
+    "by": "Jedd",
+    "timeISO": "2025-08-05T01:33:33.000Z",
+    "textPlain": "I tend to use byobu as a wrapper around tmux wherever possible - this combination might have gotten the author close enough to where they wanted to be.Well, they'd still need to bring their own ascii teacup.https://www.byobu.org/",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44795196,
+    "by": "AceJohnny2",
+    "timeISO": "2025-08-05T07:19:53.000Z",
+    "textPlain": "use iTerm2. (if you're on a Mac)It's free https://iterm2.com/As someone who lives in terminals, iTerm2 may be the Killer App for Macbooks.You see, it has Tmux Integration [1], which makes tmux windows and panes become native tabs and panes in iTerm, which means I don't need to use weird chords to manipulate tmux, but most importantly, most UX-ily, it has native scrollback. No need to escape into a weird secondary mode just to do the most basic thing that all graphical terminals are good for.If you work with terminals on remote machines, you owe yourself to use tmux. If your client is a Mac(book), you owe yourself to use iTerm2.The weird thing is that iTerm2 is the only Terminal Emulator to leverage Tmux's Control Channel mode, for the integration. For all the breadth of copycat terminal emulators on Linux, none of them perform this one killer feature.[1] https://iterm2.com/documentation-tmux-integration.html",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44795564,
+    "by": "hnarn",
+    "timeISO": "2025-08-05T08:19:31.000Z",
+    "textPlain": "I only customized tmux once, and that was just for fun to change the colors at a previous job to match the branding on some of our servers.Other than that, I always use the default CTRL+B (MOD) and rarely if ever do anything other than the following:- MOD + d to detach, \"tmux a\" to attach- MOD + c to create new window- MOD + % to create new split pane, \" for horizontal- MOD + space to change between pane layouts- MOD + pgup to scroll in buffer",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44789950,
+    "by": "triyambakam",
+    "timeISO": "2025-08-04T18:51:30.000Z",
+    "textPlain": "Setting a single key as my leader 10 years ago has been really nice. Personally it is back tick for me, but space is probably a good one too.",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44794400,
+    "by": "glaucon",
+    "timeISO": "2025-08-05T04:39:26.000Z",
+    "textPlain": "\"One of the things that stood out to me right away was how dreadful UI looked. Not only it felt uninviting, but it almost felt “gatekeepy” - if you don’t know how to use it in this configuration, then might as well forget about it.\"I'm puzzled how we get from unintuitive interface to \"gatekeepy\" (which I'm assuming implies a deliberate attempt to make the set of users small). Things can be difficult to use without anyone setting out to exclude new users, some things _are_ difficult to use, and other things are written by people who haven't been paid to make them address the needs of a wider range of users than they want to.",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44789269,
+    "by": "sjbr",
+    "timeISO": "2025-08-04T17:55:24.000Z",
+    "textPlain": "you could also use Oh my tmux!:\nhttps://github.com/gpakosz/.tmux",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44796708,
+    "by": "d4rkp4ttern",
+    "timeISO": "2025-08-05T11:20:54.000Z",
+    "textPlain": "I recently dove into Tmux just to be able to combine it with Claude-Code(CC): allowing CC to watch and interact with a CLI application in a separate pane. A nice feature of tmux is that it is scriptable, I.e allows programmatically sending keystrokes to a specific pane. So I built this little tool \"tmux-cli\" that creates a convenient, safe wrapper (that prevents self-killing, and has built-in delays for Enter key, etc) around tmux that lets CC spawn another pane, launch a CLI script and actually interact with it. This gives CC some interesting abilities: interact with CLI scripts expecting user input; spawn another instance of CC and give it a task (like sub-agents but fully-visible); launch a CLI script with a debugger like Pdb and stepping thru it; launch UI servers and use Puppeteer MCP to check the browser.It's easy to install via uv:    uv tool install claude-code-tools\n\nhttps://github.com/pchalasani/claude-code-tools",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44796817,
+    "by": "christophilus",
+    "timeISO": "2025-08-05T11:34:20.000Z",
+    "textPlain": "I use a window manager and have never bothered with tmux, except as a screen alternative to keep processes alive on servers every once in a while. I don’t like the idea of learning a 3rd set of key bindings in order to get what my window manager mostly gives me.For those of you who use a tiling or scrolling window manager and tmux, what’s your selling point?",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44791944,
+    "by": "burnt-resistor",
+    "timeISO": "2025-08-04T22:16:51.000Z",
+    "textPlain": "I was sad to discover that not all string-like config items accept input from external processes. I had to resort to on-the-fly sed templating as a hackaround.Glad that that it supports XDG though.",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44795222,
+    "by": "ascorbic",
+    "timeISO": "2025-08-05T07:22:43.000Z",
+    "textPlain": "Have you used iTerm's built-in tmux integration? It's a while since I used it because I don't do development on a remote machine anymore, but I liked the way it mapped tmux tabs and panes to native iTerm ones",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44793675,
+    "by": "linsomniac",
+    "timeISO": "2025-08-05T02:22:22.000Z",
+    "textPlain": "I've largely given up using tmux in favor of wezterm: wezterm has the ability to remote connect to a persistent terminal running on another machine, and has native window objects so things like mouse support and copy/paste work out of the box.  It also has a kind of mosh-like support, though not quite as good at persisting connections over bad networks or network disconnections as mosh+tmux.The down side is that it's really sensitive to versions, right now I'm struggling to get it to work on NixOS in the version that I have running on my Ubuntu dev box and MacOS laptop.",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44796626,
+    "by": "d4rkp4ttern",
+    "timeISO": "2025-08-05T11:10:29.000Z",
+    "textPlain": "Speaking of prefix-key binding -- I find all control-key combos painful. I use the UHK split keyboard, and set mod-space as the prefix key which is very ergonomic.",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44798125,
+    "by": "timonoko",
+    "timeISO": "2025-08-05T14:04:43.000Z",
+    "textPlain": "Tmux is reborn, because there is only one terminal window available on Termux.But only customization so far is metahar = C-b, because C-a needed on Emacs.",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44790025,
+    "by": "alfiedotwtf",
+    "timeISO": "2025-08-04T18:58:23.000Z",
+    "textPlain": "When I was a Vim user, tmux was always the first thing I ran when connecting to a machine…But the after moving to Emacs and using Tramp for remote sessions, followed by VS Code with its built-in session management, I never feel the need to even leave the editor let along manage sessions",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44789803,
+    "by": "godelski",
+    "timeISO": "2025-08-04T18:38:59.000Z",
+    "textPlain": "So many people miss the point of tmux.The only reason to still use tmux (or screen) is because you use remote sessions. All modern terminal emulators are already capable of doing tabs and panes (okay, maybe not sessions, but some can locally). If you're using tmux for this reason, stop. Go pick up a modern terminal like ghostty, Alacritty, or WezTerm.But why tmux still exists today is because people are working on computers they aren't sitting in front of. Because I don't want to have to be running nohup or detaching, moving to the background, and resetting the session so error messages don't appear in my active instance. Hell, technically I can do this with vim and get something pretty similar to tmux by using the terminal. But that's a pain.Tmux is for *terminals*",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44790358,
+    "by": "aboardRat4",
+    "timeISO": "2025-08-04T19:27:16.000Z",
+    "textPlain": ">I felt overwhelmed by the very poor default UI that it offers and the amount of options and shortcuts that I needed to know to operate it well and be productiveTypical Macintosh user.",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44798183,
+    "by": "masfoobar",
+    "timeISO": "2025-08-05T14:10:08.000Z",
+    "textPlain": "As an emacs user, I struggle to see the purpose of tmux when emacs gives me a \nlot of control of my screen layout.I can see its purpose for vim users... maybe tmux can still have some features for neovim users. For emacs.. my answer is simply all-in emacs.\nWhen I saw a screenshot of emacs in the article, I thought I was in for some education... but sadly not the case.Maybe I am missing the point - but I am happy to learn.",
+    "parent": 44787374,
+    "depth": 1
+  },
+  {
+    "id": 44797256,
+    "by": "EPendragon",
+    "timeISO": "2025-08-05T12:36:46.000Z",
+    "textPlain": "glaucon, I agree with you. Most of feeling of \"gatekeepiness\" came from being a novice at using tmux and having to get used to a new workflow. tmux is as gatekeepy as vim, or other complex cli tool is - if you have never used it in the past, you might find it to be a challenge. That was all I was trying to point out. It is an entry in a diary of a noob tmux user :D",
+    "parent": 44794400,
+    "depth": 2
+  },
+  {
+    "id": 44789432,
+    "by": "EPendragon",
+    "timeISO": "2025-08-04T18:06:15.000Z",
+    "textPlain": "I have checked it out initially. It hd a good set of defaults. I didn’t like everything that came with it, but I did read through its config file and borrowed a couple of lines from there into my own setup. IMO the problem with using a prebuilt config like that is that it requires you to learn all of its keybinds, styling, layout. I would rather build my own incrementally but have a sense of knowing everything that is going on in my setup.",
+    "parent": 44789269,
+    "depth": 2
+  },
+  {
+    "id": 44797173,
+    "by": "EPendragon",
+    "timeISO": "2025-08-05T12:25:26.000Z",
+    "textPlain": "That's an awesome tool you made! For me scriptability of tmux is one of its selling points. You have taken it a step further. Love to see it!",
+    "parent": 44796708,
+    "depth": 2
+  },
+  {
+    "id": 44797629,
+    "by": "donkeybeer",
+    "timeISO": "2025-08-05T13:19:15.000Z",
+    "textPlain": "SSH",
+    "parent": 44796817,
+    "depth": 2
+  },
+  {
+    "id": 44797286,
+    "by": "EPendragon",
+    "timeISO": "2025-08-05T12:39:30.000Z",
+    "textPlain": "I will need to try iTerm's tools to see if I can do all of the same flow. Is it scriptable and does it have the same persistence features?",
+    "parent": 44795222,
+    "depth": 2
+  },
+  {
+    "id": 44798621,
+    "by": "NoGravitas",
+    "timeISO": "2025-08-05T14:42:58.000Z",
+    "textPlain": "C-b is used by Emacs, though, and I'd hate to lose that family of keys. I use C-z, which is bound by default in Emacs, but also largely useless.",
+    "parent": 44798125,
+    "depth": 2
+  },
+  {
+    "id": 44790274,
+    "by": "valcron1000",
+    "timeISO": "2025-08-04T19:20:53.000Z",
+    "textPlain": "How do you deal with persistent sessions in VSCode? I have a remote VM to which I connect through SSH using VSCode, but I need to have certain programs running even after I disconnect from the VM. It's the only reason why I use tmux and I haven't been able to get rid of it.",
+    "parent": 44790025,
+    "depth": 2
+  },
+  {
+    "id": 44790069,
+    "by": "jnpnj",
+    "timeISO": "2025-08-04T19:03:02.000Z",
+    "textPlain": "I just found out about https://stackoverflow.com/a/52838493    Host myhost\n      Hostname host\n      User user\n      RequestTTY yes \n      RemoteCommand tmux new -A -s foobar",
+    "parent": 44790025,
+    "depth": 2
+  },
+  {
+    "id": 44790350,
+    "by": "EPendragon",
+    "timeISO": "2025-08-04T19:26:29.000Z",
+    "textPlain": "For me the value in using a tool like tmux is that it remains scriptable - startup scripts - and could be used in conjunction with other cli tools. The same applies to Vim/Neovim. Both of these tools remain unrivaled in regards to combining them with other flows and pipelines.",
+    "parent": 44790025,
+    "depth": 2
+  },
+  {
+    "id": 44791031,
+    "by": "osmsucks",
+    "timeISO": "2025-08-04T20:34:05.000Z",
+    "textPlain": "I would mostly agree, but I like that I can use tmux locally and remotely and thus have the same interface wherever I do my work (and regardless of what terminal I use).Then, there's the fact that some terminals capture too many keybindings and get in the way of some terminal code editors I'd like to use (e.g. recently I was again trying to use flow <https://github.com/neurocyte/flow> and its next-tab and previous-tab shortcuts clash with Ghostty's). If I had a terminal that 1) was nothing but a black box with the capability to display Unicode font glyphs and ligatures correctly, 2) works under Wayland, and 3) captures as few keybindings as possible, I'd use it locally with tmux and live happy.",
+    "parent": 44789803,
+    "depth": 2
+  },
+  {
+    "id": 44790052,
+    "by": "apazzolini",
+    "timeISO": "2025-08-04T19:01:19.000Z",
+    "textPlain": "> The only reason to still use tmux (or screen) is because you use remote sessionsDo you think it's possible that someone might have a different workflow from you and tmux fits their use case in a way you haven't thought of?",
+    "parent": 44789803,
+    "depth": 2
+  },
+  {
+    "id": 44790054,
+    "by": "quesera",
+    "timeISO": "2025-08-04T19:01:33.000Z",
+    "textPlain": "Using tmux locally lets me use a single interface and interaction model for multiple sessions, regardless of whether they are local, remote, or a mix of both.",
+    "parent": 44789803,
+    "depth": 2
+  },
+  {
+    "id": 44790874,
+    "by": "urquhartfe",
+    "timeISO": "2025-08-04T20:16:36.000Z",
+    "textPlain": "> okay, maybe not sessionsOkay, but sessions are one of the best things about tmux.Sessions aside, in my opinion tmux's flow is just better than terminal emulators I've tried. It slots into my brain in a way no terminal emulator's tabbing support ever has, and I have never found a terminal emulator who supported keybindings in such a sophisticated and seamless manner as tmux does.I also concur with other commenters, who mention that having uniform multiplexing of shell windows between local and remote environments is super useful for muscle memory.",
+    "parent": 44789803,
+    "depth": 2
+  },
+  {
+    "id": 44789944,
+    "by": "EPendragon",
+    "timeISO": "2025-08-04T18:51:23.000Z",
+    "textPlain": "For me tmux ended up being the solution for my dev needs. With a little bit of time, I learnt the ropes and became more or less productive with the default setup. Afterwards, I made it my own.Like you mention, tmux sessions was one of the biggest features that I enjoyed about this tool: it does the job and does it well. Aside from that I love that I can use Vim-bindings with it, that it feels very similar to Neovim for me, so using them together is a no-brainer. Learning a couple of specific keyboard shortcuts is all it takes to make me productive.I haven't needed to use a remote session yet like you note. While working with tmux locally I have learnt about all of these other features that I will definitely be looking forward to using once the opportunity arises.I don't doubt that tools like ghostty, Alacritty, or WezTerm are great. I have heard lots about the first two. And I do intend to check them out.What would you say is your favorite terminal and why as it relates to local development experience use? Are there features that these tools have that tmux lacks?",
+    "parent": 44789803,
+    "depth": 2
+  },
+  {
+    "id": 44790306,
+    "by": "Zizizizz",
+    "timeISO": "2025-08-04T19:23:17.000Z",
+    "textPlain": "I use ghostty and native splits, however there is no way to move a pane to a new tab. Which you can do in tmux very easily. That's one thing I wish it could do.",
+    "parent": 44789803,
+    "depth": 2
+  },
+  {
+    "id": 44792731,
+    "by": "kriops",
+    "timeISO": "2025-08-04T23:54:49.000Z",
+    "textPlain": "I love Alacritty, but it does not have tabs. You need to use, e.g., tmux for that. ZelliJ if you want the fully oxidized experience.",
+    "parent": 44789803,
+    "depth": 2
+  },
+  {
+    "id": 44790434,
+    "by": "EPendragon",
+    "timeISO": "2025-08-04T19:32:59.000Z",
+    "textPlain": "lol, that's likely part of the problem :DI have started using nvim about a year ago, and that one also took three separate tries before it finally stuck with me :) After that, about 8 months ago I found tmux and had a harsh \"first impression\".These days I enjoy using both of those tools and get more excited the more I learn about them.",
+    "parent": 44790358,
+    "depth": 2
+  }
+]

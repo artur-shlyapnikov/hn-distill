@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44822601,
+    "by": "shahartal",
+    "timeISO": "2025-08-07T10:01:42.000Z",
+    "textPlain": "Hey all — authors of Vault Fault here (I’m Shahar, CEO at Cyata), really appreciate all the thoughtful comments.Just to clarify - all the vulnerabilities were found manually by a very real human, Yarden Porat.The writeup was mostly human-written as well, just aimed at a broader audience - which explains the verbosity. We did work with a content writer to help shape the structure and flow, and I totally get that some parts read a bit “sheeny.” \nFeedback noted and appreciated - and yep, there’s more coming :)btw likely missed with the direct link - we also found pre-auth RCE in CyberArk Conjur - cyata.ai/vault-fault",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44822290,
+    "by": "mike_hearn",
+    "timeISO": "2025-08-07T09:11:37.000Z",
+    "textPlain": "Impressive. It's worth reading despite the slight AI sheen to the writing, as it's unusually informative relative to most security articles. The primary takeaway from my POV is to watch out for \"helpful\" string normalization calls in security sensitive software. Strings should be bags of bytes as much as possible. A lot of the exploits boil down to trying to treat security identifiers as text instead of fixed numeric sequences. Also, even things that look trivial like file paths in error messages can be deadly.",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44823027,
+    "by": "cipherboy",
+    "timeISO": "2025-08-07T11:10:43.000Z",
+    "textPlain": "On behalf of the OpenBao project, I welcome collaboration with future researchers. We were not informed of these vulnerabilities before HashiCorp posted their usual CVE bulletins, which is disappointing. (Especially as HashiCorp's Vault no longer has an Open Source edition ;-)We've triaged as being affected by 8 of the 9 CVEs (in fixing an earlier Cert Auth vulnerability, we correctly remediated this one) and have merged patches for most of them.Happily, the community has done some great work on remediating these and I'm very appreciative of them.I'm most excited about the audit changes: this was the impetus needed to make them be configuration driven in the next release series. Leaving audit device (which, as a reminder, have a socket mode which can make arbitrary TCP calls!) open to API callers is rather unsafe, even with prefix being limited.(Edit: And of course it goes without saying, but we're more than happy to accept contributions to the community -- code, docs, technical, or otherwise!)",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44822251,
+    "by": "neuralkoi",
+    "timeISO": "2025-08-07T09:04:51.000Z",
+    "textPlain": "In non-CA mode, an attacker who has access to the private key of a pinned certificate can:\n\n       Present a certificate with the correct public key\n\n       Modify the CN in the client certificate to any arbitrary value\n\n       Cause Vault to assign the resulting alias.Name to that CN\n\nI agree that this is an issue, but if an attacker has access to the private key of a pinned certificate, you might have some bigger issues...",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44823273,
+    "by": "themk",
+    "timeISO": "2025-08-07T11:49:45.000Z",
+    "textPlain": "I've run Vault for a long time, and none of this surprises me. I've even reported some of these to Hashicorp in the past, along with other equally shocking bugs.The code base is an absolute mess.The number of bugs and weird edge cases I've found with my quickcheck property testing of their API is shocking, and makes me think their test suites are woefully inadequate.",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44821779,
+    "by": "neom",
+    "timeISO": "2025-08-07T07:55:36.000Z",
+    "textPlain": "The post covers 9 CVEs May-June 2025\n(Full chain from default user > admin > root > RCE):CVE-2025-6010 - [REDACTED]CVE-2025-6004 - Lockout Bypass https://feedly.com/cve/CVE-2025-6004Via case permutation in userpass auth\nVia input normalization mismatch in LDAP authCVE-2025-6011 - Timing-Based Username Enumeration https://feedly.com/cve/CVE-2025-6011Identify valid usernamesCVE-2025-6003 - MFA Enforcement Bypass https://feedly.com/cve/CVE-2025-6003Via username_as_alias configuration in LDAPCVE-2025-6013 - Multiple EntityID Generation https://feedly.com/cve/CVE-2025-6013Allows LDAP users to generate multiple EntityIDs for the same identityCVE-2025-6016 - TOTP MFA Weaknesses https://feedly.com/cve/CVE-2025-6016Aggregated logic flaws in TOTP implementationCVE-2025-6037 - Certificate Entity Impersonation https://feedly.com/cve/CVE-2025-6037Existed for 8+ years in VaultCVE-2025-5999 - Root Privilege Escalation https://feedly.com/cve/CVE-2025-5999Admin to root escalation via policy normalizationCVE-2025-6000 - Remote Code Execution\nhttps://feedly.com/cve/CVE-2025-6000First public RCE in Vault (existed for 9 years)\nVia plugin catalog abuse > https://discuss.hashicorp.com/t/hcsec-2025-14-privileged-vau...",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44821757,
+    "by": "procaryote",
+    "timeISO": "2025-08-07T07:51:57.000Z",
+    "textPlain": "> This default is 30 seconds, matching the default TOTP period. But due to skew, passcodes may remain valid for up to 60 seconds (“daka” in Hebrew), spanning two time windows.Wait, why would I care this is \"daka\" in Hebrew? Is this a hallucination or did they edit poorly?",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44823838,
+    "by": "tptacek",
+    "timeISO": "2025-08-07T12:50:49.000Z",
+    "textPlain": "It's a good writeup, and I understand that it's Black Hat week and so the intensity meter is dialed up to 11 on these things. Some of these vulnerabilities are pretty clever. But these are mostly situational, things that would typically get sev:med or lower on an assessment.The RCE reported here is the product of an admin->root (Vault root, not Unix root) privilege escalation that already required a privileged account. It's a good bug! They got audit logs to get parsed as an executable plugin. The privilege escalation bug they used to allow admin accounts to set up plugins is also clever (they noticed that the sanity check for assuming the \"root\" token hardcoded \"root\", but the code that actually selected the token sanitized the token name, so you could use \" ROOT\").",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44822658,
+    "by": "technion",
+    "timeISO": "2025-08-07T10:12:18.000Z",
+    "textPlain": "I generally dont like seeing these \"blind username enumeration\" type issues.Its nearly always possible to get usernames elsewhere, they are basically public and the private part is the key and any mfa token. Usernames can get locked out, but the workaround of having user enumeration sprays always burn CPU hashing time delaying passwords doesn't seem like a step forward.",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44821666,
+    "by": "unwind",
+    "timeISO": "2025-08-07T07:40:22.000Z",
+    "textPlain": "This feels like a dupe of https://news.ycombinator.com/item?id=44821250.Edit: replaced link with link to HN post, not the article in that post.",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44829750,
+    "by": "AgentMatrixAI",
+    "timeISO": "2025-08-07T20:11:24.000Z",
+    "textPlain": "Anybody else just wrapping SOPS in a rest api call and using that? Feel like that is just as good from my experience. While I think Vault is useful for large companies, I just need something to encrypt and decrypt and not rely on pgycrypto",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44822809,
+    "by": "v5v3",
+    "timeISO": "2025-08-07T10:34:31.000Z",
+    "textPlain": "Going by the naming, this was reported to Hashicorp prior to 10th June?And as it's now August, is it redacted as not fixed yet? Why notCVE-2025-6010 - [REDACTED]",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44821721,
+    "by": "edoceo",
+    "timeISO": "2025-08-07T07:47:54.000Z",
+    "textPlain": "But does it affect Bao? Could test there since they are so closely related.",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44831451,
+    "by": "stmw",
+    "timeISO": "2025-08-07T23:01:33.000Z",
+    "textPlain": "Website link is broken?",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44821761,
+    "by": "gtirloni",
+    "timeISO": "2025-08-07T07:52:19.000Z",
+    "textPlain": "Something feels odd reading the article. It's so verbose like it's trying to explain things like the reader is 5yo.",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44821596,
+    "by": "maxall4",
+    "timeISO": "2025-08-07T07:28:55.000Z",
+    "textPlain": "Mmm AI writing gotta love it… /s",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44821652,
+    "by": "klas_segeljakt",
+    "timeISO": "2025-08-07T07:38:07.000Z",
+    "textPlain": "https://youtu.be/SbeNRICgzTA?si=YdLrozOEtCBTclW2",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44821681,
+    "by": "tiedemann",
+    "timeISO": "2025-08-07T07:43:14.000Z",
+    "textPlain": "TLDR: string parsing is hard and most of us are vulnerable to assumptions and/or never get around to do those fuzzy tests properly when checking that input is handled correctly.",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44822848,
+    "by": "TheDong",
+    "timeISO": "2025-08-07T10:41:37.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44821532,
+    "by": "v5v3",
+    "timeISO": "2025-08-07T07:18:11.000Z",
+    "textPlain": "Fantastic work guys. Thank you.",
+    "parent": 44821434,
+    "depth": 1
+  },
+  {
+    "id": 44824511,
+    "by": "yodon",
+    "timeISO": "2025-08-07T13:56:05.000Z",
+    "textPlain": "Your writeup was excellent. There's no more ubiquitous or lower signal comment here these days than \"I think this was written by AI.\" There is no piece of English writing one can link to on HN without someone spamming us with a sentence or that form.Well written? AI. Poorly written? AI. Has a non-sequitor? AI. No non-sequitors? AI. Includes an em-dash (added automatically by Word for almost two decades)? AI. No em-dashes? AI.Eventually, hopefully, dang will declare \"I think this was written by AI\" to not be a productive topic for comments, just like commenters are already encouraged to engage with the strongest and best form of the ideas presented instead of attacking the most easily taken down strawman interpretation of them, but until then we all have to scroll through it on every post, no matter how well written it is, as yours is.",
+    "parent": 44822601,
+    "depth": 2
+  },
+  {
+    "id": 44822328,
+    "by": "progbits",
+    "timeISO": "2025-08-07T09:19:46.000Z",
+    "textPlain": "My take on the normalization is that it happens in the wrong place - you should not do it adhoc.If your input from user is a string, define a newtype like UserName and do all validation and normalization once to convert it. All subsequent code should be using that type and not raw strings, so it will be consistent everywhere.",
+    "parent": 44822290,
+    "depth": 2
+  },
+  {
+    "id": 44822723,
+    "by": "benterix",
+    "timeISO": "2025-08-07T10:22:56.000Z",
+    "textPlain": "Yeah, I tolerated the AI tint in this article only because it was very informative otherwise.",
+    "parent": 44822290,
+    "depth": 2
+  },
+  {
+    "id": 44826361,
+    "by": "tptacek",
+    "timeISO": "2025-08-07T16:08:46.000Z",
+    "textPlain": "Somebody has to say this so I guess I'll take the hit: part of the cost of an unsanctioned fork of a large project is that you're not going to be in the embargo list. Even with a large base of developers and users, the mechanics of a community-driven open source project can make people gun-shy about pre-disclosing.Over the long term, increasing prominence of your project will probably get you most disclosures directly, because vulnerability researchers are incentivized to confirm big targets for findings. But in the short term, I don't think this complaint about HashiCorp is based in any real norm of vulnerability disclosure.",
+    "parent": 44823027,
+    "depth": 2
+  },
+  {
+    "id": 44825333,
+    "by": "booleanbetrayal",
+    "timeISO": "2025-08-07T14:56:41.000Z",
+    "textPlain": "As someone who is actively migrating from HCP Vault Dedicated to self-hosted OpenBao, thanks for this update. Any CVE issues worth tracking / linking here?",
+    "parent": 44823027,
+    "depth": 2
+  },
+  {
+    "id": 44826413,
+    "by": "tptacek",
+    "timeISO": "2025-08-07T16:12:29.000Z",
+    "textPlain": "This is authz bypass, not authn, right? You're an unprivileged user and can assume privileged roles.",
+    "parent": 44822251,
+    "depth": 2
+  },
+  {
+    "id": 44824571,
+    "by": "nailer",
+    "timeISO": "2025-08-07T14:00:52.000Z",
+    "textPlain": "when I first read your comment, I agreed, but it’s actually a little bit deeper than that.You have access to the private key of the public key in a certificate. The certificate is making an attestation that the signer has verified that this canonical name belongs to this public key.You as the holder of the private key that matches the public key in the certificate should not allow you to change what the signer has attested about you.",
+    "parent": 44822251,
+    "depth": 2
+  },
+  {
+    "id": 44823317,
+    "by": "cipherboy",
+    "timeISO": "2025-08-07T11:56:06.000Z",
+    "textPlain": "OpenBao, under the Linux Foundation's OpenSSF, is making meaningful improvements to the code. I'd love to have high-quality reports, if you're willing to re-visit these. :-)",
+    "parent": 44823273,
+    "depth": 2
+  },
+  {
+    "id": 44826425,
+    "by": "tptacek",
+    "timeISO": "2025-08-07T16:13:31.000Z",
+    "textPlain": "I don't think the code is a mess (I've had to work with it before) and I don't think these vulnerabilities are shocking. This is an unusually thorough research project and if you look at any project you're going to find these kinds of logic vulnerabilities; the TOCTTOU parse differential thing is a classic insidious finding, because there's no pattern to match it to.",
+    "parent": 44823273,
+    "depth": 2
+  },
+  {
+    "id": 44823325,
+    "by": "fidotron",
+    "timeISO": "2025-08-07T11:57:18.000Z",
+    "textPlain": "> The code base is an absolute mess.This is an understatement, and honestly when I saw it the first time it was enough to make me wonder about all things Hashicorp.",
+    "parent": 44823273,
+    "depth": 2
+  },
+  {
+    "id": 44823929,
+    "by": "Hilift",
+    "timeISO": "2025-08-07T12:59:31.000Z",
+    "textPlain": "Where were all these people when Vault was released in 2015? I remember being told we were switching to Vault in 2018 and nada. It was like the economists before the 2008 mortgage salad. Did Vault not hire security people? This reminds me of when HeartBleed occurred in 2014. It was after that when someone looked at the code and bugs everywhere. The guy that created Heartbleed got a Phd and the guy that discovered it got a t-shirt. \"And then it was acquired by IBM\".",
+    "parent": 44823273,
+    "depth": 2
+  },
+  {
+    "id": 44827621,
+    "by": "RankingMember",
+    "timeISO": "2025-08-07T17:36:19.000Z",
+    "textPlain": "> The code base is an absolute mess.As a bystander, can you give any examples? Is it just poorly structured, full of spaghetti, or something else?",
+    "parent": 44823273,
+    "depth": 2
+  },
+  {
+    "id": 44823035,
+    "by": "cipherboy",
+    "timeISO": "2025-08-07T11:11:29.000Z",
+    "textPlain": "For anyone interested in CVE-2025-6010: https://discuss.hashicorp.com/t/hcsec-2025-21-vault-user-enu...",
+    "parent": 44821779,
+    "depth": 2
+  },
+  {
+    "id": 44821826,
+    "by": "neom",
+    "timeISO": "2025-08-07T08:01:58.000Z",
+    "textPlain": "Maybe just being cute. Author is Yarden Porat from Cyata, an Israeli cybersecurity company.",
+    "parent": 44821757,
+    "depth": 2
+  },
+  {
+    "id": 44822206,
+    "by": "tecleandor",
+    "timeISO": "2025-08-07T08:55:30.000Z",
+    "textPlain": "Also... what is \"daka\" ? 60 seconds? passcodes that remain valid for two time windows?  I've been checking the dictionary and \"daka\" might mean \"minute\".",
+    "parent": 44821757,
+    "depth": 2
+  },
+  {
+    "id": 44826381,
+    "by": "tptacek",
+    "timeISO": "2025-08-07T16:09:53.000Z",
+    "textPlain": "Please don't pick the most provocative thing in an article or post to complain about in the thread. Find something interesting to respond to instead.https://news.ycombinator.com/newsguidelines.html",
+    "parent": 44821757,
+    "depth": 2
+  },
+  {
+    "id": 44821771,
+    "by": "1a527dd5",
+    "timeISO": "2025-08-07T07:54:24.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44821757,
+    "depth": 2
+  },
+  {
+    "id": 44822031,
+    "by": "adhamsalama",
+    "timeISO": "2025-08-07T08:29:56.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44821757,
+    "depth": 2
+  },
+  {
+    "id": 44825387,
+    "by": "mdaniel",
+    "timeISO": "2025-08-07T15:00:52.000Z",
+    "textPlain": "There's no way a general security aggregator website qualifies as a better submission than the actual folks who actually discovered the vulns. They deserve all the recognition and to tell the story in their own words",
+    "parent": 44821666,
+    "depth": 2
+  },
+  {
+    "id": 44823247,
+    "by": "cipherboy",
+    "timeISO": "2025-08-07T11:45:49.000Z",
+    "textPlain": "I do not speak for HashiCorp, but they have published information on this CVE here: https://discuss.hashicorp.com/t/hcsec-2025-21-vault-user-enu...OpenBao is reasonably confident in our fix: https://github.com/openbao/openbao/pull/1628We had earlier pulled support for pre-Vault-1.0 userpass pre-bcrypt hashing (so there's no longer a timing difference there that could be used for enumeration) and using cache busting on lookup should also ensure consistency across storage layers. Plus, normalizing the remaining error messages through when the user's credential is fully validated as correct.",
+    "parent": 44822809,
+    "depth": 2
+  }
+]

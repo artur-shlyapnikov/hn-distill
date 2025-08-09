@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44817651,
+    "by": "andrewla",
+    "timeISO": "2025-08-06T20:47:36.000Z",
+    "textPlain": "This is really clever but better to call this a list rather than an array; functions which expect array semantics will simply not work, and there's no way to transparently pass slices of this data structure around.In the past I've abused virtual memory systems to block off a bunch of pages after my array. This lets you use an array data structure, have guard pages to prevent out of bounds access, and to have stable pointers in the data structure.",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44816354,
+    "by": "zokier",
+    "timeISO": "2025-08-06T19:12:45.000Z",
+    "textPlain": "> Today’s computers use only 48 bits of the 64 bits in a pointerhttps://en.wikipedia.org/wiki/Intel_5-level_paging introduced in Ice Lake 6 years ago.But anyways, isn't this just variant of std::deque? https://en.cppreference.com/w/cpp/container/deque.html",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44818643,
+    "by": "Lichtso",
+    "timeISO": "2025-08-06T22:34:58.000Z",
+    "textPlain": "Another similar data structure which has a balanced tree (instead of a list) that references array segments is the https://en.wikipedia.org/wiki/Rope_(data_structure)Its main advantages are the O(log n) time complexity for all size changes at any index, meaning you can efficiently insert and delete anywhere, and it is easy to implement copy-on-write version control on top of it.",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44820179,
+    "by": "kazinator",
+    "timeISO": "2025-08-07T03:08:30.000Z",
+    "textPlain": "> In other words [because the access sequence is just 10 instructions], memory will be the bottleneck, not the instructions to calculate where an index is.Ha, that is wishful thinking. If you do this in a tight loop in which everything is in the L1 cache, the instructions hurt!\"Memory bandwidth is the bottleneck\" reasoning applies when you access bulk data without localized repetition.",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44816649,
+    "by": "variadix",
+    "timeISO": "2025-08-06T19:36:54.000Z",
+    "textPlain": "You can also use virtual memory for a stable resizable vector implementation, up to some max length based on how much you virtual memory you reserve initially, then commit as required to grow the physical capacity.",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44817135,
+    "by": "unwind",
+    "timeISO": "2025-08-06T20:12:52.000Z",
+    "textPlain": "Very nice, although I think the level of \"trickery\" with the macros becomes a bit much. I do understand that is The Way in C (I've written C for 30 years), it's just not something I'd do very often.Also, from a strictly prose point of view, isn't it strange that the `clz` instruction doesn't actually appear in the 10-instruction disassembly of the indexing function? It feels like it was optimized out by the compiler perhaps due to the index being compile-time known or something, but after the setup and explanation that was a bit jarring to me.",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44818120,
+    "by": "zoogeny",
+    "timeISO": "2025-08-06T21:34:23.000Z",
+    "textPlain": "I think the article buries a significant drawback: contiguity. It is obviously implied by the design but I think this approach would have hard-to-define characteristics for things like cache prefetching. The next address is a function, not an easily predictable change.One frequent reason to use an array is to iterate the items. In those cases, non-contiguous memory layout is not ideal.",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44817536,
+    "by": "pfg_",
+    "timeISO": "2025-08-06T20:40:02.000Z",
+    "textPlain": "Zig has this as std.SegmentedList, but it can resize the segment array dynamically",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44820159,
+    "by": "willtemperley",
+    "timeISO": "2025-08-07T03:04:04.000Z",
+    "textPlain": "Looks a bit like rust-array-stump [1] which was built to optimise insertions in the middle of an array in computational geometry.[1] https://github.com/bluenote10/rust-array-stump",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44817117,
+    "by": "o11c",
+    "timeISO": "2025-08-06T20:10:53.000Z",
+    "textPlain": "Can we really call it an array if it's not contiguous (or at least strided)? Only a small fraction of APIs take an `iovec, iovcnt`-equivalent ...",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44818360,
+    "by": "listeria",
+    "timeISO": "2025-08-06T22:00:33.000Z",
+    "textPlain": "They mention using this as the backing array for a power-of-two-sized hash table, but I don't think it would be very useful considering that the hash table won't provide stable pointers, given that you would need to rehash every element as the table grows.\nEven if you just wanted to reuse the memory, rehashing in-place would be a PITA.",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44822116,
+    "by": "mgaunard",
+    "timeISO": "2025-08-07T08:42:12.000Z",
+    "textPlain": "It's called a deque, part of C++'s standard library",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44818319,
+    "by": "taminka",
+    "timeISO": "2025-08-06T21:55:55.000Z",
+    "textPlain": "i love a nice single header project, it's c23 only tho (bc of typeof)?",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44816487,
+    "by": "01HNNWZ0MV43FF",
+    "timeISO": "2025-08-06T19:24:13.000Z",
+    "textPlain": "Readers might also find `plf::colony` interesting: https://www.plflib.org/colony.htm",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44818959,
+    "by": "leecommamichael",
+    "timeISO": "2025-08-06T23:18:28.000Z",
+    "textPlain": "I’d rather do it in Odin, and I do.",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44821213,
+    "by": "tobyhinloopen",
+    "timeISO": "2025-08-07T06:18:28.000Z",
+    "textPlain": "This is amazing, why did I never come up with this",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44818341,
+    "by": "gotoeleven",
+    "timeISO": "2025-08-06T21:58:58.000Z",
+    "textPlain": "Under what conditions is exponential segment sizing preferable to fixed size segments?  Are there any specific algorithms or situations where this is especially good?  It seems like the likelihood of large amounts of wasted space is a major downside.",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44816656,
+    "by": "tovej",
+    "timeISO": "2025-08-06T19:37:17.000Z",
+    "textPlain": "Very nice! I do wonder if it would be useful to be able to skip even more smaller segments, maybe a ctor argument for the minimum segment size. Or maybe some housekeeping functions to collapse the smallest segments into one.Mostly the thing that feels strange is when using say, n > 10 segments, then the smallest segment will be less than a thousandth of the largest, and iterating over the first half will access n-1 or n-2 segments, worse cache behaviour, while iterating over the second half will access 1 or two segments.Seems like, in most cases, you would want to be able to collapse those earlier segments together.",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44817152,
+    "by": "jovial_cavalier",
+    "timeISO": "2025-08-06T20:14:13.000Z",
+    "textPlain": "The example code doesn't seem to compile.",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44819284,
+    "by": "KingLancelot",
+    "timeISO": "2025-08-07T00:06:31.000Z",
+    "textPlain": "[dead]",
+    "parent": 44815702,
+    "depth": 1
+  },
+  {
+    "id": 44819621,
+    "by": "benlwalker",
+    "timeISO": "2025-08-07T01:14:53.000Z",
+    "textPlain": "For an expanding array in a 64 bit address space, reserving a big region and mmaping it in as you go is usually the top performing solution by a wide margin. At least on Linux, it is faster to speculatively mmap ahead with MAP_POPULATE rather than relying on page faults, too.And, if you find you didn't reserve enough address space, Linux has mremap() which can grow the reserved region. Or map the region to two places at once (the original place and a new, larger place).",
+    "parent": 44817651,
+    "depth": 2
+  },
+  {
+    "id": 44819232,
+    "by": "stmw",
+    "timeISO": "2025-08-06T23:56:23.000Z",
+    "textPlain": "Same re: virtual memory systems (using guard pages), that is an old idea that works well  but it did once produce a really unpleasant bug in production... But that was an unfortunate implementation mishap.",
+    "parent": 44817651,
+    "depth": 2
+  },
+  {
+    "id": 44818505,
+    "by": "hinkley",
+    "timeISO": "2025-08-06T22:16:16.000Z",
+    "textPlain": "I believe I've seen problems like this also solved with arena allocators. You have certain very special allocations have an arena unto themselves.",
+    "parent": 44817651,
+    "depth": 2
+  },
+  {
+    "id": 44822336,
+    "by": "nly",
+    "timeISO": "2025-08-07T09:21:05.000Z",
+    "textPlain": "Unfortunately std::deque is hobbled in the Microsoft implementation. Its block size is such that if T is larger than 8 bytes it devolves to a linked list.And it can't be fixed due to binary compatibility.https://github.com/microsoft/STL/issues/147By contrast the GNU implementation has a block size of 512 bytesFortunately in high performance systems the times where you actually want an unbounded queue are limited.",
+    "parent": 44816354,
+    "depth": 2
+  },
+  {
+    "id": 44816567,
+    "by": "mwkaufma",
+    "timeISO": "2025-08-06T19:30:22.000Z",
+    "textPlain": "In principle it's not that different that deque, though:(1) deque uses fixed-sized blocks, not increasing-size blocks.\n(2) dequeue supports prepending, which adds another level of indirection internally.",
+    "parent": 44816354,
+    "depth": 2
+  },
+  {
+    "id": 44816579,
+    "by": "sigbottle",
+    "timeISO": "2025-08-06T19:31:34.000Z",
+    "textPlain": "I don't know the precise details of how deques are implemented in C++, but given the most popular stack overflow explanation of them, some immidiate pitfalls are that the T* map itself sounds unbounded and if each chunk allocates only a fixed constant size it's probably horrible for fragmentation or overallocation. The indexing also seems dependent on division.With this power of twos approach you can't really truly delete from the front of the array but the amount of pointers you store is constant and the memory fragmentation is better. (Though OP never claimed to want to support deque behavior, it shouldn't be that hard to modify, though indexing seems like it has to go thru more arithmetic again)I haven't used OP's array, but I have been bit plenty of times with std::deque's memory allocation patterns and had to rewrite with raw arrays and pointer tracking.",
+    "parent": 44816354,
+    "depth": 2
+  },
+  {
+    "id": 44816485,
+    "by": "cornstalks",
+    "timeISO": "2025-08-06T19:23:56.000Z",
+    "textPlain": "What kind of setups use over 256 TiB of RAM?",
+    "parent": 44816354,
+    "depth": 2
+  },
+  {
+    "id": 44821376,
+    "by": "penguin_booze",
+    "timeISO": "2025-08-07T06:52:25.000Z",
+    "textPlain": "What's all that icons on the diagram that illustrates 5-level paging - snowflakes and triangles?",
+    "parent": 44816354,
+    "depth": 2
+  },
+  {
+    "id": 44818222,
+    "by": "forrestthewoods",
+    "timeISO": "2025-08-06T21:44:58.000Z",
+    "textPlain": "std::deque details vary by implementation and is largely considered unusable for MSVC.MSVC uses a too small block size making it worthless. libc++ block size is 16 elements or 4096 bytes.It is generally better to use a container you can actually understand the implementation details and control.I would not call it a variant of std::deque myself. Not wrong. But not a helpful observation imho.",
+    "parent": 44816354,
+    "depth": 2
+  },
+  {
+    "id": 44816515,
+    "by": "sestep",
+    "timeISO": "2025-08-06T19:26:29.000Z",
+    "textPlain": "Does std::deque support random access?",
+    "parent": 44816354,
+    "depth": 2
+  },
+  {
+    "id": 44819401,
+    "by": "monkeyelite",
+    "timeISO": "2025-08-07T00:30:05.000Z",
+    "textPlain": "A lot of standard libraries have tried to implement ropes for things like strings and it usually is reverted for a simpler structure.",
+    "parent": 44818643,
+    "depth": 2
+  },
+  {
+    "id": 44822107,
+    "by": "HelloNurse",
+    "timeISO": "2025-08-07T08:41:19.000Z",
+    "textPlain": "Those 10 instructions are for one access, not for a tight loop. A tight loop could be done with a much more complex macro that iterates separately in each segment, amortizing the overhead.",
+    "parent": 44820179,
+    "depth": 2
+  },
+  {
+    "id": 44816795,
+    "by": "loeg",
+    "timeISO": "2025-08-06T19:46:38.000Z",
+    "textPlain": "Yeah, with less runtime overhead, so long as you're ok with the ~4kB minimum allocation size.",
+    "parent": 44816649,
+    "depth": 2
+  },
+  {
+    "id": 44817617,
+    "by": "fyrn_",
+    "timeISO": "2025-08-06T20:45:02.000Z",
+    "textPlain": "This mention this alturnative in the article, and also point out how it does not work in embeded contexts or with WASM",
+    "parent": 44816649,
+    "depth": 2
+  },
+  {
+    "id": 44817307,
+    "by": "mananaysiempre",
+    "timeISO": "2025-08-06T20:23:04.000Z",
+    "textPlain": "The POSIX name for the function is clz() [the C23 name is stdc_leading_zeros(), because that's how the committee names things now, while the GCC intrinsic is __builtin_clz()]. The name of the x86 instruction, on the other hand, is BSR (80386+) or LZCNT (Nehalem+, K10+) depending on what semantics you want for zero inputs (keep in mind that early implementations of BSF/BSR are very slow and take time proportional to the output value). The compiled code uses BSR. (All of these are specified slightly differently, take care if you plan to actually use them.)",
+    "parent": 44817135,
+    "depth": 2
+  },
+  {
+    "id": 44822310,
+    "by": "kilpikaarna",
+    "timeISO": "2025-08-07T09:16:43.000Z",
+    "textPlain": "> The Way in CIs it though? (Ab)using C macros so you can write obviously-not-C stuff like (from the example):SegmentArray(Entity) entities = {0};Seeing that kind of thing in example C code just makes my hair stand on end because you know it's someone who actually wants to write C++ but for whatever reason has decided to try to implement their thing in C and be clever about it. And I'm going to have to go parse through multiple levels of macro indirection to just understand what the hell is going on.Seems like a useful data structure, despite the shortcoming that it can't be accessed like a regular array. Normally auto-expanding arrays involves realloc which is tricky with arena allocation. But jeez, just pass void pointers + size and have it assert if there's a mismatch.",
+    "parent": 44817135,
+    "depth": 2
+  },
+  {
+    "id": 44822847,
+    "by": "exDM69",
+    "timeISO": "2025-08-07T10:41:26.000Z",
+    "textPlain": "> Also, from a strictly prose point of view, isn't it strange that the `clz` instructionIt's using the `bsr` instruction which is similar (but worse). The `lzcnt` instruction in x86_64 is a part of the BMI feature introduced in Intel Haswell. The compiler does not generate these instructions by default so it runs on any x86_64.If you add `-mbmi` or `-march=haswell` or newer to the compiler command line, you should get `clz`/`lzcnt` instead.",
+    "parent": 44817135,
+    "depth": 2
+  },
+  {
+    "id": 44818170,
+    "by": "dhooper",
+    "timeISO": "2025-08-06T21:39:43.000Z",
+    "textPlain": "1. The image at the top of the article makes it clear the segments aren't contiguous2. iterating a 4 billion item segmented array would have 26 cache misses. Not a big deal.",
+    "parent": 44818120,
+    "depth": 2
+  },
+  {
+    "id": 44818166,
+    "by": "forrestthewoods",
+    "timeISO": "2025-08-06T21:39:26.000Z",
+    "textPlain": "I would not call it “non-contiguous”. It’s more like “mostly contiguous”. Which for large amounts data is “amortized contiguous” just like a regular vector has “amortized constant” time to add an element.",
+    "parent": 44818120,
+    "depth": 2
+  },
+  {
+    "id": 44817237,
+    "by": "jandrese",
+    "timeISO": "2025-08-06T20:19:24.000Z",
+    "textPlain": "Yeah, the limitation that it can't be just dumped into anything that expects a C array is a large one.  You need to structure your code around the access primitives this project implements.",
+    "parent": 44817117,
+    "depth": 2
+  }
+]

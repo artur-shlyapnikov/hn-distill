@@ -1,0 +1,274 @@
+[
+  {
+    "id": 44841546,
+    "by": "cmdtab",
+    "timeISO": "2025-08-08T20:47:48.000Z",
+    "textPlain": "Recently moved some of the background jobs from graphile worker to DBOS. Really recommend for the simplicity. Took me half an hour.I evaluated temporal, trigger, cloudflare workflows (highly not recommended), etc and this was the easiest to implement incrementally. Didn't need to change our infrastructure at all. Just plugged the worker where I had graphile worker.The hosted service UX and frontend can use a lot of work though but it's not necessary for someone to use. OTEL support was there.",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44843337,
+    "by": "lacoolj",
+    "timeISO": "2025-08-09T01:32:32.000Z",
+    "textPlain": "So we do this exact thing in our software, and I implement it (along with other devs), and I was still entranced enough to read through the end.  No differences between ours and theirs (this is a fairly common practice anyway) but article is written in succinct, informative chunks with \"images\" (of code) in between.This is how you write a technical article.  Thanks to the author for the nice read :)",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44841606,
+    "by": "rlili",
+    "timeISO": "2025-08-08T20:55:40.000Z",
+    "textPlain": "Some other lightweight solutions around:https://github.com/iopsystems/durablehttps://github.com/maxcountryman/underway",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44841185,
+    "by": "alpb",
+    "timeISO": "2025-08-08T20:13:17.000Z",
+    "textPlain": "I've been following DBOS for a while and I think the model isn't too different than Azure Durable Functions (which uses Azure Queues/Tables under the covers to maintain state). \nhttps://learn.microsoft.com/en-us/azure/azure-functions/dura...Perhaps the only difference is that Azure Durable Functions has more syntactic sugar in C# (instead of DBOS choice being Python) to preserve call results in the persistent storage? Where else do they differ? At the end, all of them seem to be doing what Temporal is doing (which has its own shortcomings and it's also possible to get it wrong if you call a function directly instead of invoking it via an Activity etc)?",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44840923,
+    "by": "cpursley",
+    "timeISO": "2025-08-08T19:46:46.000Z",
+    "textPlain": "I've been using https://www.pgflow.dev for workflows which is built on pgmq and am really impressed so far. Most of the logic is in the database so I'm considering building an Elixir adapter DSL.",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44842332,
+    "by": "jumploops",
+    "timeISO": "2025-08-08T22:27:07.000Z",
+    "textPlain": "I've been looking at migrating to Temporal, but this looks interesting.For context, we have a simple (read: home-built) \"durable\" worker setup that uses BullMQ for scheduling/queueing, but all of the actual jobs are Postgres-based.Due to the cron-nature of the many disparate jobs (bespoke AI-native workflows), we have workers that scale up/down basically on the hour, every hour.Temporal is the obvious solution, but it will take some rearchitecting to get our jobs to fit their structure. We're also concerned with some of their limits (payload size, language restrictions, etc.).Looking at DBOS, it's unclear from the docs how to scale the workers:> DBOS is just a library for your program to import, so it can run with any Python/Node program.In our ideal case, we can add DBOS to our main application for scheduling jobs, and then have a simple worker app that scales independently.How \"easy\" would it be to migrate our current system to DBOS?",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44842307,
+    "by": "atombender",
+    "timeISO": "2025-08-08T22:24:20.000Z",
+    "textPlain": "While DBOS looks like a nice system, I was really disappointed to learn that Conductor, which is the DBOS equivalent of the Temporal server, is not open source.Without it, you get no centralized coordination of workflow recovery. On Kubernetes, for example, my understanding is that you will need to use a stateful set to assign stable executor IDs, which the Conductor doesn't need.I suppose that's their business model, to provide a simplistic foundation where you have to pay money to get the grown up stuff.",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44841973,
+    "by": "darkteflon",
+    "timeISO": "2025-08-08T21:41:03.000Z",
+    "textPlain": "Often wondered whether it would be possible / advisable to combine DBOS with, e.g., Dagster if you have complex data orchestration requirements. They seem to deal with orthogonal concerns but complement nicely. Is integration with orchestration frameworks something the DBOS team has any thoughts on?",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44844576,
+    "by": "rubenvanwyk",
+    "timeISO": "2025-08-09T06:49:26.000Z",
+    "textPlain": "Been looking at DBOS for a while ~ are there plans to port to other languages such as Java or C#?? Are you open to community ports??",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44842156,
+    "by": "agambrahma",
+    "timeISO": "2025-08-08T22:04:09.000Z",
+    "textPlain": "Curious how this compares to Cloudflare, which is the other provider that is really going for simplified workflows",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44842954,
+    "by": "krashidov",
+    "timeISO": "2025-08-09T00:08:24.000Z",
+    "textPlain": "How does this compare with inngest or restate? We currently use inngest right now and it works great but the typescript API is a bit clunky",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44841131,
+    "by": "at0mic22",
+    "timeISO": "2025-08-08T20:07:04.000Z",
+    "textPlain": "Every few years someone discovers FOR UPDATE SKIP LOCKED and represents it. I remember it lasting for 15 years at least",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44841116,
+    "by": "abtinf",
+    "timeISO": "2025-08-08T20:05:55.000Z",
+    "textPlain": "Why not just use Temporal?",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44841097,
+    "by": "tonyhb",
+    "timeISO": "2025-08-08T20:04:16.000Z",
+    "textPlain": "Anything that guarantees exactly once is selling snake oil.  Side effects happen inside any transaction, and only when it commits (checkpoints) are the side effects safe.Want to send an email, but the app crashes before committing?  Now you're at-least-once.You can compress the window that causes at-least-once semantics, but it's always there.  For this reason, this blog post oversells the capabilities of these types of systems as a whole.  DBOS (and Inngest, see the disclaimer below) try to get as close to exactly once as possible, but the risk always exists, which is why you should always try to use idempotency in external API requests if they support it.  Defense in layers.Disclaimer:  I built the original `step.run` APIs at https://www.inngest.com, which offers similar things on any platform... without being tied to DB transactions.",
+    "parent": 44840693,
+    "depth": 1
+  },
+  {
+    "id": 44842945,
+    "by": "johtso",
+    "timeISO": "2025-08-09T00:06:05.000Z",
+    "textPlain": "Why would you not recommend Cloudflare workflows? Was thinking of using them in my current project..",
+    "parent": 44841546,
+    "depth": 2
+  },
+  {
+    "id": 44843377,
+    "by": "barapa",
+    "timeISO": "2025-08-09T01:39:02.000Z",
+    "textPlain": "Agree on the UI - I wish it was improved",
+    "parent": 44841546,
+    "depth": 2
+  },
+  {
+    "id": 44841662,
+    "by": "LudwigNagasena",
+    "timeISO": "2025-08-08T21:03:15.000Z",
+    "textPlain": "What was the reason for the transition?",
+    "parent": 44841546,
+    "depth": 2
+  },
+  {
+    "id": 44841827,
+    "by": "diarrhea",
+    "timeISO": "2025-08-08T21:22:16.000Z",
+    "textPlain": "Interesting!What made you opt for DBOS over Temporal?",
+    "parent": 44841546,
+    "depth": 2
+  },
+  {
+    "id": 44844571,
+    "by": "rubenvanwyk",
+    "timeISO": "2025-08-09T06:47:48.000Z",
+    "textPlain": "This actually looks super amazing for C# ~ but doesn’t use Postgres?? All the backends seem to be purely Azure related / Microsoft products, so although the Framework is Apache2, your infrastructure needs to rely on MS?",
+    "parent": 44841185,
+    "depth": 2
+  },
+  {
+    "id": 44841240,
+    "by": "KraftyOne",
+    "timeISO": "2025-08-08T20:16:58.000Z",
+    "textPlain": "Both do durable workflows with similar guarantees. The big difference is that DBOS is an open-source library you can add to your existing code and run anywhere, whereas Durable Functions is a cloud offering for orchestrating serverless functions on Azure.",
+    "parent": 44841185,
+    "depth": 2
+  },
+  {
+    "id": 44842400,
+    "by": "mmcclure",
+    "timeISO": "2025-08-08T22:37:09.000Z",
+    "textPlain": "Just curious, if you’re already in Elixir and using Postgres, why not use Oban[1]? It’s my absolute favorite background job library, and the thing I often miss most when working in other ecosystems.[1] https://github.com/oban-bg/oban",
+    "parent": 44840923,
+    "depth": 2
+  },
+  {
+    "id": 44841045,
+    "by": "ishita_julep",
+    "timeISO": "2025-08-08T19:59:12.000Z",
+    "textPlain": "what are you using the DSL for?",
+    "parent": 44840923,
+    "depth": 2
+  },
+  {
+    "id": 44844763,
+    "by": "mnahkies",
+    "timeISO": "2025-08-09T07:39:22.000Z",
+    "textPlain": "As another commentator said, temporal is quite tricky to self host/scale in a cost effective manner. This is also reflected in their cloud pricing (which should've been the warning sign to us tbh)Overall it's a pretty heavy/expensive solution and I've come to the conclusion it's usage is best limited to lower frequency and/or higher \"value\" (eg: revenue or risk) tasks.Orchestrating a food delivery that's paying you $3 of service fees - good use case. Orchestrating some high frequency task that pays you $3 / month - not so good.",
+    "parent": 44842332,
+    "depth": 2
+  },
+  {
+    "id": 44844506,
+    "by": "cyberpunk",
+    "timeISO": "2025-08-09T06:31:56.000Z",
+    "textPlain": "Unless you’re planning on using their (temporalio’s) saas you’re in for building a very large database cluster for this if you need some scale.(source: i run way more cassandra than i ever thought reasonable)",
+    "parent": 44842332,
+    "depth": 2
+  },
+  {
+    "id": 44842373,
+    "by": "KraftyOne",
+    "timeISO": "2025-08-08T22:32:48.000Z",
+    "textPlain": "I'd love to learn more about what you're building--just reach out at peter.kraft@dbos.dev.One option is that you have DBOS workflows that schedule and submit jobs to an external worker app. Another option is that your workers use DBOS queues (https://docs.dbos.dev/python/tutorials/queue-tutorial). I'd have to better understand your use case to figure out what would be the best fit.",
+    "parent": 44842332,
+    "depth": 2
+  },
+  {
+    "id": 44844194,
+    "by": "jedberg",
+    "timeISO": "2025-08-09T05:20:09.000Z",
+    "textPlain": "> Conductor, which is the DBOS equivalent of the Temporal server,Just to clarify, Conductor is not anything like the Temporal server.  In Temporal, the server is a critical component that stores all the running state and is required for Temporal to work (and blocks your app from working if it's down).Conductor is an out of band connector to give Transact users access to the same observability and workflow management as DBOS Cloud users have, but it isn't required and your app will keep working even if it breaks.You can run a durable, and scalable, application with just Transact, it's just a lot harder without Conductor to help you.You are correct that the business model is to provide add ons for Transact applications, but I'd say it's unfair to call Transact a \"simplistic foundation\" and not \"grown up\".Transact is absolutely Enterprise grade software that can run at massive scale.",
+    "parent": 44842307,
+    "depth": 2
+  },
+  {
+    "id": 44842027,
+    "by": "KraftyOne",
+    "timeISO": "2025-08-08T21:48:45.000Z",
+    "textPlain": "Would love to learn more about what you're building--what problems or parts of your system would you solve with Dagster vs DBOS?",
+    "parent": 44841973,
+    "depth": 2
+  },
+  {
+    "id": 44844627,
+    "by": "qianli_cs",
+    "timeISO": "2025-08-09T07:02:10.000Z",
+    "textPlain": "Yeah, we plan to add more languages. Currently supports Python and TypeScript, and Go and Java will be released soon. We’re having a preview of DBOS Java at our user group meeting on August 28: https://lu.ma/8rqv5o5z\nWelcome to join us! We’d love to hear your feedback.We welcome community contributions to the open source repos.",
+    "parent": 44844576,
+    "depth": 2
+  },
+  {
+    "id": 44843022,
+    "by": "KraftyOne",
+    "timeISO": "2025-08-09T00:22:56.000Z",
+    "textPlain": "Like Inngest and Restate, DBOS provides durable workflows. The difference is that DBOS is implemented as a Postgres-backed library you can \"npm install\" into your project (no external dependencies except Postgres), while Inngest and Restate require an external workflow orchestrator.Here's a blog post explaining the DBOS architecture in more detail: https://www.dbos.dev/blog/what-is-lightweight-durable-execut...Here's a comparison with Temporal, which is architecturally similar to Restate and Inngest: https://www.dbos.dev/blog/durable-execution-coding-compariso...",
+    "parent": 44842954,
+    "depth": 2
+  },
+  {
+    "id": 44842247,
+    "by": "atombender",
+    "timeISO": "2025-08-08T22:16:05.000Z",
+    "textPlain": "The \"someone\" in this case happens to be Michael Stonebraker, the creator of Postgres and CTO of DBOS.",
+    "parent": 44841131,
+    "depth": 2
+  },
+  {
+    "id": 44841295,
+    "by": "qianli_cs",
+    "timeISO": "2025-08-08T20:22:08.000Z",
+    "textPlain": "Yup, some features are timeless and deserve a re-intro every now and then. SKIP LOCKED is definitely one of them.",
+    "parent": 44841131,
+    "depth": 2
+  },
+  {
+    "id": 44841289,
+    "by": "KraftyOne",
+    "timeISO": "2025-08-08T20:21:42.000Z",
+    "textPlain": "We wanted to make workflows more lightweight--we're building a Postgres-backed library you can add to your existing application instead of an external orchestrator that requires you to rearchitect your system around it. This post goes into more detail: https://www.dbos.dev/blog/durable-execution-coding-compariso...",
+    "parent": 44841116,
+    "depth": 2
+  },
+  {
+    "id": 44841141,
+    "by": "KraftyOne",
+    "timeISO": "2025-08-08T20:08:03.000Z",
+    "textPlain": "As the post says, the exactly-once guarantee is ONLY for steps performing database operations. For those, you actually can get an exactly-once guarantee by running the database operations in the same Postgres transaction as your durable checkpoint. That's a pretty cool benefit of building workflows on Postgres! Of course, if there are side effects outside the database, those happen at-least-once.",
+    "parent": 44841097,
+    "depth": 2
+  },
+  {
+    "id": 44841323,
+    "by": "jedberg",
+    "timeISO": "2025-08-08T20:24:13.000Z",
+    "textPlain": "> Anything that guarantees exactly once is selling snake oil.That's a pretty spicy take.  I'll agree that exactly-once is hard, but it's not impossible.  Obviously there are caveats, but the beauty of DBOS using Postgres as the method of coordination instead of the an external server (like Temporal or Inngest) is that the exactly-once guarantees of Postgres can carry over to the application.  Especially so if you're using that same Postgres to store your application data.",
+    "parent": 44841097,
+    "depth": 2
+  }
+]

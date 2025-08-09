@@ -1,0 +1,130 @@
+[
+  {
+    "id": 44845077,
+    "by": "tiu",
+    "timeISO": "2025-08-09T09:08:24.000Z",
+    "textPlain": "Off topic but without going RTFM, is there a guide that goes through setting up emacs 'with the modern way'? I have done it before but in a mish-mash way where I want something that tells how to go from configuring comp-speed, elpaca, eglot, auto treesitter etc",
+    "parent": 44840654,
+    "depth": 1
+  },
+  {
+    "id": 44844222,
+    "by": "defanor",
+    "timeISO": "2025-08-09T05:25:47.000Z",
+    "textPlain": "It appears to have a feature overlap with gptel; would be nice to highlight the differences.",
+    "parent": 44840654,
+    "depth": 1
+  },
+  {
+    "id": 44842016,
+    "by": "Bilal_io",
+    "timeISO": "2025-08-08T21:46:27.000Z",
+    "textPlain": "Clever name. For thos curious Efrit is Genie in Arabic and possibly the same in neighboring languages such as Persian and Turkish..",
+    "parent": 44840654,
+    "depth": 1
+  },
+  {
+    "id": 44842404,
+    "by": "jwmcq",
+    "timeISO": "2025-08-08T22:37:35.000Z",
+    "textPlain": "I wonder if this could be updated to use OpenRouter in a similar way to Emigo[1] was aiming to do.(I use the past tense, because Emigo has not been updated in a quarter of a year, which seems as if it may as well be decades in the timeline of this sort of stuff.)[1] https://github.com/MatthewZMD/emigo",
+    "parent": 44840654,
+    "depth": 1
+  },
+  {
+    "id": 44842163,
+    "by": "foobarqux",
+    "timeISO": "2025-08-08T22:04:59.000Z",
+    "textPlain": "I managed to get this working with gemini by using a proxy [1]\nand the following config (I used quelpa)    (use-package efrit\n    :quelpa (efrit :fetcher git :repo \"steveyegge/efrit\")\n    :init\n    (setq efrit-model \"gemini-2.5-pro\")\n    ;; (setq efrit-api-url \"https://generativelanguage.googleapis.com/v1beta/opena\n    (setq efrit-api-url \"http://127.0.0.1:8089/v1/messages\")\n    :config (defun efrit--get-api-key () (key-from-file \"~/.keys/gemini.txt\")) ; this isn't needed, it's set by the proxy\n    :ensure t)\n\nI needed to remove the uvicorn version constraint when importing the project to uv to get it to find a version solution.Initially I thought you could send it directly to Gemini but apparently you need to proxy and translate the responses.[1] Seems sketchy, use at your risk: https://github.com/coffeegrind123/gemini-for-claude-code",
+    "parent": 44840654,
+    "depth": 1
+  },
+  {
+    "id": 44843024,
+    "by": "xrd",
+    "timeISO": "2025-08-09T00:23:19.000Z",
+    "textPlain": "I'm fascinated by this and the recent claude-code-ide package: https://github.com/manzaltu/claude-code-ide.elBut, I cannot seem to get past this error when I run claude-code-ide: \"Symbol’s function definition is void: project-root\" I know this is defined in project.el, but claude has been surprisingly unhelpful at fixing this issue.I'm feeling a bit frustrated by the state of emacs packages lately. I've used emacs for 30 years and it feels like things are getting worse.",
+    "parent": 44840654,
+    "depth": 1
+  },
+  {
+    "id": 44841644,
+    "by": "cmrdporcupine",
+    "timeISO": "2025-08-08T21:00:54.000Z",
+    "textPlain": "Neat.  As a Claude Code plan user can I use this ? I've never tried the API access method.Claude is remarkably effective at writing elisp I surprisingly found. I had it whip up a mode today for something today (Notation3/N3 RDF triples) complete with etags support, etc. and it just... did it.",
+    "parent": 44840654,
+    "depth": 1
+  },
+  {
+    "id": 44845437,
+    "by": "kreyenborgi",
+    "timeISO": "2025-08-09T10:37:30.000Z",
+    "textPlain": "One way is to start with bedrock https://git.sr.ht/~ashton314/emacs-bedrock \nYou will understand your config. Packages like elpaca and auto treesitter, just follow their readme's.Or if you don't feel like learning the details, go with doom.",
+    "parent": 44845077,
+    "depth": 2
+  },
+  {
+    "id": 44845386,
+    "by": "zzygan",
+    "timeISO": "2025-08-09T10:26:27.000Z",
+    "textPlain": "There is a few solid prepackaged systems around now. Doom emacs is very comprehensive. Similar systems also exist rather than starting from nothing.Elisp is a programming language that supports many ways to do things so there is lots of ways people do things.",
+    "parent": 44845077,
+    "depth": 2
+  },
+  {
+    "id": 44845203,
+    "by": "skydhash",
+    "timeISO": "2025-08-09T09:35:16.000Z",
+    "textPlain": "What is the modern way? Emacs is self documented like vim. Vim has the :help command, emacs have the Control + h prefix (or <f1> for an overview). You can start with a minimal config like Emacs Bedrock or Prelude, and then learn about those options first.But the manual is very well written and worth the read. Emacs has its own culture, and the sooner you learn the conventions, the smoother your path will be.",
+    "parent": 44845077,
+    "depth": 2
+  },
+  {
+    "id": 44844950,
+    "by": "3036e4",
+    "timeISO": "2025-08-09T08:31:29.000Z",
+    "textPlain": "Looks like efrit requires an Anthropic API Key, or at least that is what the README says, while gptel works with several different remote or local backends?",
+    "parent": 44844222,
+    "depth": 2
+  },
+  {
+    "id": 44842055,
+    "by": "dragonwriter",
+    "timeISO": "2025-08-08T21:52:06.000Z",
+    "textPlain": "> For thos curious Efrit is Genie in ArabiMore precisely, as I understand it, “genie\" is  an anglicization of its Arabic equivalent, “jinn\"; Efrit is a specific kind of jinn.",
+    "parent": 44842016,
+    "depth": 2
+  },
+  {
+    "id": 44842750,
+    "by": "wging",
+    "timeISO": "2025-08-08T23:29:09.000Z",
+    "textPlain": "I think it might be 'e' for 'emacs' (there's precedent: eglot, eldoc, eshell, erc, emms) combined with 'ifrit', since \"efrit\" is a much less common spelling.",
+    "parent": 44842016,
+    "depth": 2
+  },
+  {
+    "id": 44843107,
+    "by": "_steve_yegge_",
+    "timeISO": "2025-08-09T00:40:00.000Z",
+    "textPlain": "Congrats on getting it running! This thing is a huge POC (and arguably a POS) so be careful with it.It's terrible at multi-step tasks right now. I'm evolving it to work more like claude code.",
+    "parent": 44842163,
+    "depth": 2
+  },
+  {
+    "id": 44843195,
+    "by": "_steve_yegge_",
+    "timeISO": "2025-08-09T01:00:29.000Z",
+    "textPlain": "I'm sorry it's not working. I've used emacs for almost 40 years and I'm definitely contributing to it being worse, by uploading efrit in its current state. But people were asking me for it. Damned if you do and all that.I'm more than happy to work with you to get it working, with the caveat that it actually kind of sucks right now. It's no Claude Code. But I am quickly evolving it in that direction.",
+    "parent": 44843024,
+    "depth": 2
+  },
+  {
+    "id": 44843044,
+    "by": "xrd",
+    "timeISO": "2025-08-09T00:29:15.000Z",
+    "textPlain": "This project does not work for me either. Drat.  This is turn 4. Focus on any remaining tasks that haven't been completed yet.   Don't repeat work that was already done in previous turns.\n  Assistant: I notice from the context that we're in a directory that might be related to a xxx project. Let me try to find and open the yyyy.ts file.                                                               \n  [Result: Error: Unknown tool 'resolve_path']",
+    "parent": 44843024,
+    "depth": 2
+  }
+]

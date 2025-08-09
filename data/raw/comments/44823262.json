@@ -1,0 +1,178 @@
+[
+  {
+    "id": 44825044,
+    "by": "coldstartops",
+    "timeISO": "2025-08-07T14:37:36.000Z",
+    "textPlain": "You built it because you wanted to share passwords:And your flow is: I encrypt my password; I upload the encrypted password to your server.And I share the password to the encrypted password as plain text.Why do I have to upload the encrypted password to your server, and not just use signal disapearing messages, or telegram secure channel disappearing messages to share the encrypted password there.And I can use any other side channel to share the second password, like whatsapp, or regular plain mail.It feels to me that you made a two step process into a one step process but increased the risk by adding you in the middle.Why would I offload my trust to you instead of doing the second step?",
+    "parent": 44823262,
+    "depth": 1
+  },
+  {
+    "id": 44826173,
+    "by": "indigodaddy",
+    "timeISO": "2025-08-07T15:56:39.000Z",
+    "textPlain": "The best tool I've found for password dissemination (you can create with it too, or not) is Password Pusherhttps://github.com/pglombardo/PasswordPusherEast to deploy, and just works, nice set of sane features and defaults.",
+    "parent": 44823262,
+    "depth": 1
+  },
+  {
+    "id": 44823833,
+    "by": "scosman",
+    "timeISO": "2025-08-07T12:50:23.000Z",
+    "textPlain": "I feel like I’d rather send “uuid:cipertext” so the cipertext never touches a server, but logically the security seems the same.",
+    "parent": 44823262,
+    "depth": 1
+  },
+  {
+    "id": 44823968,
+    "by": "cmeacham98",
+    "timeISO": "2025-08-07T13:03:15.000Z",
+    "textPlain": "I'm sorry, but I would never use this because of two major dealbreakers (and I would encourage others to exercise serious caution as well):1. Code is largely if not entirely written by AI2. Author is completely anonymous, using a dedicated GitHub and HN account for this specific projectBoth of these are really bad for security-sensitive software.",
+    "parent": 44823262,
+    "depth": 1
+  },
+  {
+    "id": 44824032,
+    "by": "pastage",
+    "timeISO": "2025-08-07T13:10:08.000Z",
+    "textPlain": "I wish it was easier to run code in browser that you could know did not make any network connections, thinking mostly of the client creating secrets here.",
+    "parent": 44823262,
+    "depth": 1
+  },
+  {
+    "id": 44824629,
+    "by": "h43z",
+    "timeISO": "2025-08-07T14:07:07.000Z",
+    "textPlain": "Do I understand this correctly that the server here is only needed to make sure the secret it's only read once?",
+    "parent": 44823262,
+    "depth": 1
+  },
+  {
+    "id": 44823917,
+    "by": "oats",
+    "timeISO": "2025-08-07T12:58:27.000Z",
+    "textPlain": "What does \"burn-after-read\" mean? Just that it can't be retrieved a second time?",
+    "parent": 44823262,
+    "depth": 1
+  },
+  {
+    "id": 44824522,
+    "by": "i_am_proteus",
+    "timeISO": "2025-08-07T13:57:07.000Z",
+    "textPlain": "Why use this instead of GPG?",
+    "parent": 44823262,
+    "depth": 1
+  },
+  {
+    "id": 44831142,
+    "by": "Thatdudeyouknow",
+    "timeISO": "2025-08-07T22:24:36.000Z",
+    "textPlain": "Trust me bro!",
+    "parent": 44823262,
+    "depth": 1
+  },
+  {
+    "id": 44825331,
+    "by": "precompute",
+    "timeISO": "2025-08-07T14:56:31.000Z",
+    "textPlain": ">LLM generated>Buzzwords>Author's English (when not written by a LLM) sounds translatedDoesn't inspire confidence.Use GPG, it's not difficult.  For non-technical folks, use signal or disappearing messages.  For slightly more secure comms with non-technical people, use a combination of rot13 / caesar / similar.",
+    "parent": 44823262,
+    "depth": 1
+  },
+  {
+    "id": 44823791,
+    "by": "jijji",
+    "timeISO": "2025-08-07T12:46:55.000Z",
+    "textPlain": "wouldnt that command line output be sent to .bash_history of the logged in user?you probably want to unset HISTFILE\n and then set +o history  before sending these commands to bash",
+    "parent": 44823262,
+    "depth": 1
+  },
+  {
+    "id": 44825255,
+    "by": "stasher-dev",
+    "timeISO": "2025-08-07T14:51:56.000Z",
+    "textPlain": "Your skepticism is valid and if your flow already includes: A secure messaging tool (e.g. Signal), a GPG workflow or local encryption or a team that uses shared password vaults. Then to be fair Stasher might not be better.I built Stasher for me. I wanted an easy, CLI-first way to share one-time secrets without worrying about accounts, apps, or trust. If Signal or GPG works better for you that’s totally cool.Stasher exists to make casual, secure sharing simpler not to replace tools you already trust.",
+    "parent": 44825044,
+    "depth": 2
+  },
+  {
+    "id": 44823870,
+    "by": "stasher-dev",
+    "timeISO": "2025-08-07T12:54:42.000Z",
+    "textPlain": "Hey. Only the ciphertext is stored on the server; the key never leaves your machine. The uuid:key format is just a pointer to the encrypted payload. Without the key, the server’s stash is useless. Zero-knowledge by design",
+    "parent": 44823833,
+    "depth": 2
+  },
+  {
+    "id": 44824207,
+    "by": "mbreese",
+    "timeISO": "2025-08-07T13:28:12.000Z",
+    "textPlain": "I’d also add the language to the mix. I know you can write good code with TS/JS, but the dependency surface is just so large, I’m not comfortable with security code written in it yet (maybe at some point). Add that the repositories were created in the past week, so we can’t see the actual dev practice (was it all vibe coded? What bugs were there?).I hadn’t considered your second point, but even the authors GH account has an AI picture. I have no idea who this person is or what online/HN reputation they have.",
+    "parent": 44823968,
+    "depth": 2
+  },
+  {
+    "id": 44824092,
+    "by": "stasher-dev",
+    "timeISO": "2025-08-07T13:17:16.000Z",
+    "textPlain": "Thanks for raising these concerns — totally fair in the context of security tools.I’m not anonymous, just cautious. I’m a solo builder, and this is a focused identity for the project. In fact, that's why I implemented full supply chain transparency from day one: signed releases, SLSA attestations, SBOMs, and Rekor logs. You don't need to trust me you can see the code for your self.Ultimately, you're right — if you can't verify it, you shouldn't trust it.That’s the whole point of the system: zero trust and verifiable cryptographic guarantees.Appreciate the scrutiny",
+    "parent": 44823968,
+    "depth": 2
+  },
+  {
+    "id": 44824057,
+    "by": "kbbgl87",
+    "timeISO": "2025-08-07T13:12:54.000Z",
+    "textPlain": "whats preventing setting up a proxy (like mitmproxy, burpsuite interceptor) in the browser? pretty easy",
+    "parent": 44824032,
+    "depth": 2
+  },
+  {
+    "id": 44824838,
+    "by": "stasher-dev",
+    "timeISO": "2025-08-07T14:23:36.000Z",
+    "textPlain": "Yes, you are understanding it correctly, the server (Cloudflare Worker + Durable Object + KV) in Stasher is only needed to enforce the burn-after-read behaviour",
+    "parent": 44824629,
+    "depth": 2
+  },
+  {
+    "id": 44823932,
+    "by": "stasher-dev",
+    "timeISO": "2025-08-07T12:59:35.000Z",
+    "textPlain": "Exactly. Once it's read it's gone. If it's not read within 10 minutes... It's gone.",
+    "parent": 44823917,
+    "depth": 2
+  },
+  {
+    "id": 44824692,
+    "by": "stasher-dev",
+    "timeISO": "2025-08-07T14:12:11.000Z",
+    "textPlain": "zero setup, burn after read, no key exchange required, GPG is ideal for persistent trust relationships (e.g., signing emails), Stasher is purpose-built for temporary relationships. To me GPG is overkill for sharing simple shares. Defo not trying to replace GPG, just a different use case.",
+    "parent": 44824522,
+    "depth": 2
+  },
+  {
+    "id": 44831464,
+    "by": "elpocko",
+    "timeISO": "2025-08-07T23:03:30.000Z",
+    "textPlain": ">>Author's English (when not written by a LLM) sounds translated>Doesn't inspire confidence.I too have confidence only in projects made by those who English good. It's the reason why I'm estranged from my Swahili-speaking parents.",
+    "parent": 44825331,
+    "depth": 2
+  },
+  {
+    "id": 44826442,
+    "by": "freedomben",
+    "timeISO": "2025-08-07T16:14:33.000Z",
+    "textPlain": "> Use GPG, it's not difficult.Heh, maybe not for you and me, but if you've never tried to coach a less-technical person through setting up GPG and then using to encrypt/decrypt, it's an eye-opening experience",
+    "parent": 44825331,
+    "depth": 2
+  },
+  {
+    "id": 44823854,
+    "by": "stasher-dev",
+    "timeISO": "2025-08-07T12:52:44.000Z",
+    "textPlain": "Great point — I’m planning to add a --stdin option explicitly for cases like this. Thanks for raising it. I will add to the readme in the meanwhile.",
+    "parent": 44823791,
+    "depth": 2
+  }
+]

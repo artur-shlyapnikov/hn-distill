@@ -1,0 +1,322 @@
+[
+  {
+    "id": 44788594,
+    "by": "hinkley",
+    "timeISO": "2025-08-04T17:05:39.000Z",
+    "textPlain": "JSON encoding is a huge impediment to interprocess communication in NodeJS.Sooner or later is seems like everyone gets the idea of reducing event loop stalls in their NodeJS code by trying to offload it to another thread, only to discover they’ve tripled the CPU load in the main thread.I’ve seen people stringify arrays one entry at a time. Sounds like maybe they are doing that internally now.If anything I would encourage the V8 team to go farther with this. Can you avoid bailing out for subsets of data? What about the CString issue? Does this bring faststr back from the dead?",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44791452,
+    "by": "jonas21",
+    "timeISO": "2025-08-04T21:16:12.000Z",
+    "textPlain": "The part that was most surprising to me was how much the performance of serializing floating-point numbers has improved, even just in the past decade [1].[1] https://github.com/jk-jeon/dragonbox?tab=readme-ov-file#perf...",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44792088,
+    "by": "ot",
+    "timeISO": "2025-08-04T22:34:16.000Z",
+    "textPlain": "The SWAR escaping algorithm [1] is very similar to the one I implemented in Folly JSON a few years ago [2]. The latter works on 8 byte words instead of 4 bytes, and it also returns the position of the first byte that needs escaping, so that the fast path does not add noticeable overhead on escape-heavy strings.[1] https://source.chromium.org/chromium/_/chromium/v8/v8/+/5cbc...[2] https://github.com/facebook/folly/commit/2f0cabfb48b8a8df84f...",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44791728,
+    "by": "monster_truck",
+    "timeISO": "2025-08-04T21:48:14.000Z",
+    "textPlain": "I don't think v8 gets enough praise. It is fucking insane how fast javascript can be these days",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44793134,
+    "by": "Tiberium",
+    "timeISO": "2025-08-05T00:52:26.000Z",
+    "textPlain": "V8 is extremely good, but (maybe due to JS itself?) it still falls short of LuaJIT and even JVM performance. Although at least for JVM it takes way longer to warm up than the other two.",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44796648,
+    "by": "gampleman",
+    "timeISO": "2025-08-05T11:12:22.000Z",
+    "textPlain": "> No replacer or space arguments: Providing a replacer function or a space/gap argument for pretty-printing are features handled exclusively by the general-purpose path. The fast path is designed for compact, non-transformed serialization.Do we get this even if you call `JSON.stringify(data, null, 0)`? Or do the arguments literally have to be undefined?",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44797975,
+    "by": "Hendrikto",
+    "timeISO": "2025-08-05T13:51:42.000Z",
+    "textPlain": "Absolutely incredible how much effort has been put into making a horrible language bearable and performant.Imagine how far we could have come if we started from a reasonable basis.",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44790957,
+    "by": "MutedEstate45",
+    "timeISO": "2025-08-04T20:24:39.000Z",
+    "textPlain": "I really like seeing the segmented buffer approach. It's basically the rope data structure trick I used to hand-roll in userland with libraries like fast-json-stringify, now native and way cleaner. Have you run into the bailout conditions much? Any replacer, space, or custom .toJSON() kicks you back to the slow path?",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44794564,
+    "by": "notpushkin",
+    "timeISO": "2025-08-05T05:21:54.000Z",
+    "textPlain": "> No indexed properties on objects: The fast path is optimized for objects with regular, string-based keys. If an object contains array-like indexed properties (e.g., '0', '1', ...), it will be handled by the slower, more general serializer.Any idea why?",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44796347,
+    "by": "deathwarmedover",
+    "timeISO": "2025-08-05T10:25:23.000Z",
+    "textPlain": "Not that I doubt the value of the work, and the reasoning of its performance directly affecting common operations makes intuitive sense, but I would have liked to hear more about what concrete problems were being solved. Was there any interesting data across the V8 ecosystem about `JSON.stringify` dominating runtimes?",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44794091,
+    "by": "bgdkbtv",
+    "timeISO": "2025-08-05T03:37:57.000Z",
+    "textPlain": "Unrelated, but v8.dev website is incredibly fast! Thought it would be content preloading with link hovering but no. Refreshing",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44793401,
+    "by": "jongjong",
+    "timeISO": "2025-08-05T01:36:16.000Z",
+    "textPlain": "JSON serialization is already quite fast IMO so this is quite good. I think last time I compared JSON serialization to Protocol Buffers, JSON was just a little bit slower for typical scenarios but not materially so. These kinds of optimizations can shift the balance in terms of performance.JSON is a great minimalist format which is both human and machine readable. I never quite understood the popularity of ProtoBuf; the binary format is a major sacrifice to readability. I get that some people appreciate the type validation but it adds a lot of complexity and friction to the transport protocol layer.",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44793806,
+    "by": "65",
+    "timeISO": "2025-08-05T02:47:39.000Z",
+    "textPlain": "I'd like to see how object duplication now compares in speed when using JSON.parse(JSON.stringify()) vs. recursive duplication.",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44796121,
+    "by": "bob1029",
+    "timeISO": "2025-08-05T09:50:51.000Z",
+    "textPlain": "How is this compared to other ecosystems? I've been serializing JSON for about a decade and it's been so fast I haven't really thought about it. Simdjson can do gigabytes per second per core.Once you factor in prefetching, branch prediction, etc., a highly optimized JSON serializer should be effectively free for most real world workloads.The part where json sucks is IO overhead when modifying blobs. It doesn't matter how fast your serializer is if you have to push 100 megabytes to block storage every time a user changes a boolean preference.",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44795667,
+    "by": "smagin",
+    "timeISO": "2025-08-05T08:36:06.000Z",
+    "textPlain": "Unrelated but I have the easiest design improvement for your website: change <html> background color to #4285f4 (same as in topbar) so it looks like a sheet of paper on a blue base",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44794162,
+    "by": "dvrp",
+    "timeISO": "2025-08-05T03:52:04.000Z",
+    "textPlain": "Woah, I didn't know about Packed SIMD/SIMD within a register (SWAR).",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44793553,
+    "by": "tisdadd",
+    "timeISO": "2025-08-05T02:01:17.000Z",
+    "textPlain": "I will need to check this vs the usual safe-stable-stringify package I usually use in my projects now when I'm back on the computer, but it is always nice to see the speedup.",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44794677,
+    "by": "seanwilson",
+    "timeISO": "2025-08-05T05:43:14.000Z",
+    "textPlain": "Slightly related: I die a little inside each time I see `JSON.parse(JSON.stringify(object))` thinking about the inefficiencies involved compared to how you'd do this in a more efficient language.There's structuredClone (https://developer.mozilla.org/en-US/docs/Web/API/Window/stru... https://caniuse.com/?search=structuredClone) with baseline support (93% of users), but it doesn't work if fields contain DOM objects or functions meaning you might have to iterate over and preprocess objects before cloning so more error-prone, manual and again inefficient?",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44797549,
+    "by": "harel",
+    "timeISO": "2025-08-05T13:08:44.000Z",
+    "textPlain": "Am I the only one that finds the use of \"stringify\" as the method name to serialise a data structure a bit... unsavoury on the tongue? A touch Mickey Mouse? I always wondered why this word was chosen for something so \"core\".",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44792502,
+    "by": "lifthrasiir",
+    "timeISO": "2025-08-04T23:24:55.000Z",
+    "textPlain": "As usual, the advancement in double-to-string algorithms is usually driven by JSON (this time Dragonbox).",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44791563,
+    "by": "taeric",
+    "timeISO": "2025-08-04T21:27:45.000Z",
+    "textPlain": "I confess that I'm at a bit of a loss to know what sort of side effects would be common when serializing something?  Is there an obvious class of reasons for this that I'm just accidentally ignoring right off?",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44797239,
+    "by": "countofarthur",
+    "timeISO": "2025-08-05T12:34:50.000Z",
+    "textPlain": "Reminded me the quote \"do things quickly\"",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44792298,
+    "by": "greatgib",
+    "timeISO": "2025-08-04T22:59:43.000Z",
+    "textPlain": "An important question that was not addressed is whether the general path will be slower to account for what is needed to check first if the fast path can be used.",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44792655,
+    "by": "t1234s",
+    "timeISO": "2025-08-04T23:44:10.000Z",
+    "textPlain": "speed is always good!",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44792772,
+    "by": "stephenlf",
+    "timeISO": "2025-08-05T00:02:17.000Z",
+    "textPlain": "Yo nice",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44792172,
+    "by": "pyrolistical",
+    "timeISO": "2025-08-04T22:44:35.000Z",
+    "textPlain": "> Optimizing the underlying temporary bufferSo array list instead of array?",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44791490,
+    "by": "iouser",
+    "timeISO": "2025-08-04T21:20:18.000Z",
+    "textPlain": "Did you run any tests/regressions against the security problems that are common with parsers?  Seems like the solution might be at risk of creating CVEs later",
+    "parent": 44786005,
+    "depth": 1
+  },
+  {
+    "id": 44796272,
+    "by": "mhh__",
+    "timeISO": "2025-08-05T10:12:25.000Z",
+    "textPlain": "It's JS, V8 is afaict much more advanced than luajit and jvm.Although java also has the advantage of not having to be ~ real time (i.e. has a compiler)",
+    "parent": 44793134,
+    "depth": 2
+  },
+  {
+    "id": 44795514,
+    "by": "Cthulhu_",
+    "timeISO": "2025-08-05T08:12:22.000Z",
+    "textPlain": "> maybe due to JS itself?Nail on the head; a lot of JS overhead is due to its dynamic nature. asm.js disallowed some of this dynamic behaviour (like changing the shape of objects, iirc), meaning they could skip a lot of these checks.",
+    "parent": 44793134,
+    "depth": 2
+  },
+  {
+    "id": 44793561,
+    "by": "MrBuddyCasino",
+    "timeISO": "2025-08-05T02:02:33.000Z",
+    "textPlain": "„even“Hombre, you’re about the best there is.",
+    "parent": 44793134,
+    "depth": 2
+  },
+  {
+    "id": 44797897,
+    "by": "tln",
+    "timeISO": "2025-08-05T13:45:06.000Z",
+    "textPlain": "I don't think so. I just got ~2.4 for a 512KB json using JSON.stringify(data, null, 0) and ~1.4 for JSON.stringify(data). JSON.stringify(data, undefined, undefined) was the same as JSON.stringify(data). Other combos were slowerhttps://microsoftedge.github.io/Demos/json-dummy-data/512KB....\nChrome 138.0.7204.184",
+    "parent": 44796648,
+    "depth": 2
+  },
+  {
+    "id": 44796973,
+    "by": "inbx0",
+    "timeISO": "2025-08-05T11:57:12.000Z",
+    "textPlain": "My guess would be because they affect property ordering, complicating the stringification.The default object property iteration rules in JS define that numeric properties are traversed first in their numeric order, and only then others in the order they were added to the object.\nSince the numbers need to be in their numeric, not lexical, order, the engine would also need to parse them to ints before sorting.    > JSON.stringify({b: null, 10: null, 1: null, a: null})\n    '{\"1\":null,\"10\":null,\"b\":null,\"a\":null}'",
+    "parent": 44794564,
+    "depth": 2
+  },
+  {
+    "id": 44796036,
+    "by": "Timwi",
+    "timeISO": "2025-08-05T09:39:08.000Z",
+    "textPlain": "I wonder that too. Are they saying that objects with integer-looking keys are serialized as JSON arrays?? Surely not...?",
+    "parent": 44794564,
+    "depth": 2
+  },
+  {
+    "id": 44796412,
+    "by": "abdulhaq",
+    "timeISO": "2025-08-05T10:38:14.000Z",
+    "textPlain": "it doesn't need to dominate run times when it's being called by hundreds of millions of pages every day. The power saving worldwide will be considerable.",
+    "parent": 44796347,
+    "depth": 2
+  },
+  {
+    "id": 44797213,
+    "by": "qw",
+    "timeISO": "2025-08-05T12:30:26.000Z",
+    "textPlain": "Looking at the site it seems to be a (static?) HTML and shared \"main.css\" and \"main.js\" files. Both files can be cached by the browser, so it only needs to download a few KB of compressed HTML for each page. I don't think we would notice much of a difference in the navigation from one page to another if they used content preloadingIt's how we used to make websites before SPA, and it's refreshing to see that it still makes a noticeable difference even on today's powerful CPUs and high speed networks.",
+    "parent": 44794091,
+    "depth": 2
+  },
+  {
+    "id": 44795956,
+    "by": "hereonout2",
+    "timeISO": "2025-08-05T09:24:28.000Z",
+    "textPlain": "It's also very simple and free of ads or any other extraneous clutter, a bit like hacker news, which is also fast.There's probably a lesson in there somewhere.",
+    "parent": 44794091,
+    "depth": 2
+  },
+  {
+    "id": 44794133,
+    "by": "Culonavirus",
+    "timeISO": "2025-08-05T03:46:46.000Z",
+    "textPlain": "Speaking of websites, does anyone know when will this land in Node? Node 24 has v8 13.6, and this is 13.8... I mean, this seems like a too big of a performance upgrade to just put it in the next release, especially since Node 24 will be the next LTS version.",
+    "parent": 44794091,
+    "depth": 2
+  },
+  {
+    "id": 44794482,
+    "by": "hamandcheese",
+    "timeISO": "2025-08-05T05:00:22.000Z",
+    "textPlain": "For me the appeal of protobuf is the wire-format forward-backward compatibility.It's hard enough to not break logical compatibility, so I appreciate not having to think too hard about wire compat. You can of course solve the same thing with JSON, but, well, YOU have to solve it.(Also worth noting, there are a lot of things I don't like about the grpc ecosystem so I don't actually use it that much. But this is one of the pieces I really like a lot).",
+    "parent": 44793401,
+    "depth": 2
+  },
+  {
+    "id": 44795658,
+    "by": "secondcoming",
+    "timeISO": "2025-08-05T08:33:16.000Z",
+    "textPlain": "A format cannot be both human and machine readable. JSON is human readable, that's the point of it. Human readability is great for debugging only but it has an overhead because it's not machine friendly. Protobuf messages are both smaller and quicker to decode. If you're in an environment where you're handling millions of messages per second binary formats pay dividends. The number of messages viewed by a human is miniscule so there's no real gain to having that slow path. Just write a message dump tool.",
+    "parent": 44793401,
+    "depth": 2
+  },
+  {
+    "id": 44795836,
+    "by": "xxs",
+    "timeISO": "2025-08-05T09:04:05.000Z",
+    "textPlain": "> machine readableIt is readable but it's not a good/fast format. IEEE754<->string is just expensive even w/ all the shortcuts and improvements. byte[]s have no good way to be presented either.",
+    "parent": 44793401,
+    "depth": 2
+  }
+]
