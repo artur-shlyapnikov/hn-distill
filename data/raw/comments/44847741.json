@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44849868,
+    "by": "spenrose",
+    "timeISO": "2025-08-09T20:26:00.000Z",
+    "textPlain": "So many articles should prepend “My experience with ...” to their title. Here is OP's first sentence: “I spent the past ~4 weeks trying out all the new and fancy AI tools for software development.” Dude, you have had some experiences and they are worth writing up and sharing. But your experiences are not a stand-in for \"the current state.\" This point applies to a significant fraction of HN articles, to the point that I wish the headlines were flagged “blog”.",
+    "parent": 44847741,
+    "depth": 1
+  },
+  {
     "id": 44848846,
     "by": "ebiester",
     "timeISO": "2025-08-09T18:25:28.000Z",
@@ -16,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44848603,
-    "by": "randfish",
-    "timeISO": "2025-08-09T17:57:38.000Z",
-    "textPlain": "Deeply curious to know if this is an outlier opinion, a mainstream but pessimistic one, or the general consensus. My LinkedIn feed and personal network certainly suggests that it's an outlier, but I wonder if the people around me are overly optimistic or out of synch with what the HN community is experiencing more broadly.",
+    "id": 44849921,
+    "by": "kodisha",
+    "timeISO": "2025-08-09T20:31:58.000Z",
+    "textPlain": "LLM driven coding can yield awesome results, but you will be typing a lot and, as article states, requires already well structured codebase.I recently started with fresh project, and until I got to the desired structure I only used AI to ask questions or suggestions. I organized and written most of the code.Once it started to get into the shape that felt semi-permanent to me, I started a lot of queries like:```- Look at existing service X at folder services/x- see how I deploy the service using k8s/services/x- see how the docker file for service X looks like at services/x/Dockerfile- now, I started service Y that does [this and that]- create all that is needed for service Y to be skaffolded and deployed, follow the same pattern as service X```And it would go, read existing stuff for X, then generate all of the deployment/monitoring/readme/docker/k8s/helm/skaffold for YWith zero to none mistakes.\nBoth claude and gemini are more than capable to do such task.\nI had both of them generate 10-15 files with no errors, with code being able to be deployed right after (of course service will just answer and not do much more than that)Then, I will take over again for a bit, do some business logic specific to Y, then again leverage AI to fill in missing bits, review, suggest stuff etc.It might look slow, but it actually cuts most boring and most error prone steps when developing medium to large k8s backed project.",
     "parent": 44847741,
     "depth": 1
   },
   {
-    "id": 44849807,
-    "by": "weeksie",
-    "timeISO": "2025-08-09T20:20:07.000Z",
-    "textPlain": "Yet another developer who is too full of themselves to admit that they have no idea how to use LLMs for development. There's an arrogance that can set in when you get to be more senior and unless you're capable of force feeding yourself a bit of humility you'll end up missing big, important changes in your field.It becomes farcical when not only are you missing the big thing but you're also proud of your ignorance and this guy is both.",
+    "id": 44848603,
+    "by": "randfish",
+    "timeISO": "2025-08-09T17:57:38.000Z",
+    "textPlain": "Deeply curious to know if this is an outlier opinion, a mainstream but pessimistic one, or the general consensus. My LinkedIn feed and personal network certainly suggests that it's an outlier, but I wonder if the people around me are overly optimistic or out of synch with what the HN community is experiencing more broadly.",
     "parent": 44847741,
     "depth": 1
   },
@@ -56,12 +64,44 @@
     "depth": 1
   },
   {
-    "id": 44849854,
-    "by": "bgwalter",
-    "timeISO": "2025-08-09T20:24:21.000Z",
-    "textPlain": "Pianists' results are well known to be proportional to their talent/effort. In open source hardly anyone is even using LLMs and the ones that do have barely any output, In many cases less output than they had before using LLMs.The blogging output on the other hand ...",
-    "parent": 44849147,
-    "depth": 2
+    "id": 44850118,
+    "by": "SadErn",
+    "timeISO": "2025-08-09T20:54:54.000Z",
+    "textPlain": "It's all about the Kilo Code extension.",
+    "parent": 44847741,
+    "depth": 1
+  },
+  {
+    "id": 44850022,
+    "by": "philipwhiuk",
+    "timeISO": "2025-08-09T20:44:42.000Z",
+    "textPlain": "There’s an IntelliJ extension for GitHub CoPilot.It’s not perfect but it’s okay.",
+    "parent": 44847741,
+    "depth": 1
+  },
+  {
+    "id": 44849899,
+    "by": "dash2",
+    "timeISO": "2025-08-09T20:29:24.000Z",
+    "textPlain": "They missed OpenAI Codex, maybe deliberately? It's less llm-development and more vibe-coding, or maybe \"being a PHB of robots\". I'm enjoying it for my side project this week.",
+    "parent": 44847741,
+    "depth": 1
+  },
+  {
+    "id": 44850279,
+    "by": "yogthos",
+    "timeISO": "2025-08-09T21:12:08.000Z",
+    "textPlain": "Personally, I’ve had a pretty positive experience with the coding assistants, but I had to spend some time to develop intuition for the types of tasks they’re likely to do well. I would not say that this was trivial to do.Like if you need to crap out a UI based on a JSON payload, make a service call, add a server endpoint, LLMs will typically do this correctly in one shot. These are common operations that are easily extrapolated from their training data. Where they tend to fail are tasks like business logic which have specific requirements that aren’t easily generalized.I’ve also found that writing the scaffolding for the code yourself really helps focus the agent. I’ll typically add stubs for the functions I want, and create overall code structure, then have the agent fill the blanks. I’ve found this is a really effective approach for preventing the agent from going off into the weeds.I also find that if it doesn’t get things right on the first shot, the chances are it’s not going to fix the underlying problems. It tends to just add kludges on top to address the problems you tell it about. If it didn’t get it mostly right at the start, then it’s better to just do it yourself.All that said, I find enjoyment is an important aspect as well and shouldn’t be dismissed. If you’re less productive, but you enjoy the process more, then I see that as a net positive. If all LLMs accomplish is to make development more fun, that’s a good thing.As a side note, got curious and asked GLM-4.5 to make a token field widget with React, and it did it in one shot.It's also strange not to mention DeepSeek and GLM as options given that they cost orders of magnitude less per token than Claude or Gemini.",
+    "parent": 44847741,
+    "depth": 1
+  },
+  {
+    "id": 44849807,
+    "by": "weeksie",
+    "timeISO": "2025-08-09T20:20:07.000Z",
+    "textPlain": "Yet another developer who is too full of themselves to admit that they have no idea how to use LLMs for development. There's an arrogance that can set in when you get to be more senior and unless you're capable of force feeding yourself a bit of humility you'll end up missing big, important changes in your field.It becomes farcical when not only are you missing the big thing but you're also proud of your ignorance and this guy is both.",
+    "parent": 44847741,
+    "depth": 1
   },
   {
     "id": 44849317,
@@ -80,19 +120,35 @@
     "depth": 2
   },
   {
+    "id": 44849887,
+    "by": "troupo",
+    "timeISO": "2025-08-09T20:27:59.000Z",
+    "textPlain": "> I have never heard anybody successfully using LLMs say this before. Most of what I've learned from talking to people about their workflows is counterintuitive and subtle.Because for all our posturing about being skeptical and data driven we all believe in magic.Those \"counterintuitive non-trivial workflows\"? They work about as well as just prompting \"implement X\" with no rules, agents.md, careful lists etc.Because 1) literally no one actually measures whether magical incarnations work and 2) it's impossible to make such measurements due to non-determinism",
+    "parent": 44849147,
+    "depth": 2
+  },
+  {
+    "id": 44849854,
+    "by": "bgwalter",
+    "timeISO": "2025-08-09T20:24:21.000Z",
+    "textPlain": "Pianists' results are well known to be proportional to their talent/effort. In open source hardly anyone is even using LLMs and the ones that do have barely any output, In many cases less output than they had before using LLMs.The blogging output on the other hand ...",
+    "parent": 44849147,
+    "depth": 2
+  },
+  {
+    "id": 44850115,
+    "by": "mettamage",
+    "timeISO": "2025-08-09T20:54:25.000Z",
+    "textPlain": "Clickbait gets more reach. It's an unfortunate thing. I remember Veritasium in a video even saying something along the lines of him feeling forced to do clickbaity YouTube because it works so well.The reach is big enough to not care about our feelings. I wish it wasn't this way.",
+    "parent": 44849868,
+    "depth": 2
+  },
+  {
     "id": 44848923,
     "by": "mkozlows",
     "timeISO": "2025-08-09T18:34:20.000Z",
     "textPlain": "\"There's no learning curve\" just means this guy didn't get very far up, which is definitely backed up by thinking that Copilot and other tools are all basically the same.",
     "parent": 44848846,
-    "depth": 2
-  },
-  {
-    "id": 44849782,
-    "by": "procaryote",
-    "timeISO": "2025-08-09T20:17:54.000Z",
-    "textPlain": "Linkedin posts seems like an awful source. The people I see posting for themselves there are either pre-successful or just very fond of personal branding",
-    "parent": 44848603,
     "depth": 2
   },
   {
@@ -120,11 +176,27 @@
     "depth": 2
   },
   {
+    "id": 44849782,
+    "by": "procaryote",
+    "timeISO": "2025-08-09T20:17:54.000Z",
+    "textPlain": "Linkedin posts seems like an awful source. The people I see posting for themselves there are either pre-successful or just very fond of personal branding",
+    "parent": 44848603,
+    "depth": 2
+  },
+  {
     "id": 44849488,
     "by": "TheSamFischer",
     "timeISO": "2025-08-09T19:44:00.000Z",
     "textPlain": "[dead]",
     "parent": 44849341,
+    "depth": 2
+  },
+  {
+    "id": 44849913,
+    "by": "troupo",
+    "timeISO": "2025-08-09T20:30:12.000Z",
+    "textPlain": "And those mythical better tools tools that you didn't even bother to mention are?",
+    "parent": 44849200,
     "depth": 2
   }
 ]

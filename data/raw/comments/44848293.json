@@ -1,13 +1,5 @@
 [
   {
-    "id": 44849690,
-    "by": "gregsadetsky",
-    "timeISO": "2025-08-09T20:07:55.000Z",
-    "textPlain": "Hey @kens, congrats on the page! Extremely super small usability note/suggestion: if you changed your inputs (above the tool that lets you see all of the layers) to something like this:    <input name=\"layer\" type=\"radio\" onclick=\"show('https://static.righto.com/images/386-package/layer0.jpg')\" id=\"layer1\">\n    <label for=\"layer1\">Pins</label>\n\nthen it would be possible to click the label name (i.e. Pins, I/O Vcc, etc.) instead of having to click the small radio circles.It's a small thing, but I think it's a lot more fun/easy/fast to click the different label names rather than the circles. It's truly a small nit - just in case it's an easy fix for you. Cheers!(just to make sure: you need to add a unique \"id\" attribute for each \"input\", and then make a <label> tag for each label referencing that id in the \"for\")",
-    "parent": 44848293,
-    "depth": 1
-  },
-  {
     "id": 44849785,
     "by": "mlhpdx",
     "timeISO": "2025-08-09T20:18:15.000Z",
@@ -32,10 +24,26 @@
     "depth": 1
   },
   {
+    "id": 44849969,
+    "by": "devmor",
+    "timeISO": "2025-08-09T20:38:04.000Z",
+    "textPlain": "Super cool! This was the CPU in my very first PC (which I got to build myself, under the tutelage of a family friend). I remember that it was cooled by nothing but a tiny stick-on heatsink and a small plastic fan that clipped on top of that.8MB of DRAM, a 250MB spinning disk hard drive, 5.25 and 3.5 inch floppy bays, removable bios that I had to sort through a tupperware of chips to find the correct unit, some unnamed AGP video card that I had to slot removable chips into as well and a great big 16\" CRT.I think I had to install a special serial card in an ISA slot to use a mouse too.",
+    "parent": 44848293,
+    "depth": 1
+  },
+  {
     "id": 44849098,
     "by": "mrlonglong",
     "timeISO": "2025-08-09T18:56:05.000Z",
     "textPlain": "Where's A0 and A1?",
+    "parent": 44848293,
+    "depth": 1
+  },
+  {
+    "id": 44849690,
+    "by": "gregsadetsky",
+    "timeISO": "2025-08-09T20:07:55.000Z",
+    "textPlain": "Hey @kens, congrats on the page! Extremely super small usability note/suggestion: if you changed your inputs (above the tool that lets you see all of the layers) to something like this:    <input name=\"layer\" type=\"radio\" onclick=\"show('https://static.righto.com/images/386-package/layer0.jpg')\" id=\"layer1\">\n    <label for=\"layer1\">Pins</label>\n\nthen it would be possible to click the label name (i.e. Pins, I/O Vcc, etc.) instead of having to click the small radio circles.It's a small thing, but I think it's a lot more fun/easy/fast to click the different label names rather than the circles. It's truly a small nit - just in case it's an easy fix for you. Cheers!(just to make sure: you need to add a unique \"id\" attribute for each \"input\", and then make a <label> tag for each label referencing that id in the \"for\")",
     "parent": 44848293,
     "depth": 1
   },
@@ -64,6 +72,14 @@
     "depth": 2
   },
   {
+    "id": 44849977,
+    "by": "TZubiri",
+    "timeISO": "2025-08-09T20:38:52.000Z",
+    "textPlain": "What CT scanner was used? The images are surprisingly detailed for something so small, while we are used to coarser scales of human anatomy.",
+    "parent": 44848348,
+    "depth": 2
+  },
+  {
     "id": 44848481,
     "by": "OptionOfT",
     "timeISO": "2025-08-09T17:42:29.000Z",
@@ -72,11 +88,27 @@
     "depth": 2
   },
   {
+    "id": 44850110,
+    "by": "bartread",
+    "timeISO": "2025-08-09T20:53:39.000Z",
+    "textPlain": "> some unnamed AGP video cardDo you mean VGA rather than AGP? AGP came much later than the 386 and wouldn’t have been supported by its motherboard chipsets.",
+    "parent": 44849969,
+    "depth": 2
+  },
+  {
     "id": 44849190,
     "by": "kens",
     "timeISO": "2025-08-09T19:08:01.000Z",
-    "textPlain": "Since the 386 is a 32-bit processor, the address specifies a 32-bit word and doesn't use address bits A0 and A1. But what if you just want to read a byte or a 16-bit word? The trick is that the 386 provides four Byte Enable outputs (BE0#-BE3#) that indicates which bytes in the word are being transferred. Of course, it's not that simple. If the lower 16 bits of the data bus aren't being used, the upper 16 bits of the data bus are duplicated on the lower 16 bits to make 16-bit buses more efficient (somehow).",
+    "textPlain": "Since the 386 is a 32-bit processor, the address specifies a 32-bit word and doesn't use address bits A0 and A1. But what if you just want to read a byte or a 16-bit word? The trick is that the 386 provides four Byte Enable outputs (BE0#-BE3#) that indicate which bytes in the word are being transferred. Of course, it's not that simple. If the lower 16 bits of the data bus aren't being used, the upper 16 bits of the data bus are duplicated on the lower 16 bits to make 16-bit buses more efficient (somehow).",
     "parent": 44849098,
+    "depth": 2
+  },
+  {
+    "id": 44849882,
+    "by": "kens",
+    "timeISO": "2025-08-09T20:27:26.000Z",
+    "textPlain": "Thanks for pointing this out. I should have remembered the label tag. I've updated the page so it should work better now.",
+    "parent": 44849690,
     "depth": 2
   }
 ]
