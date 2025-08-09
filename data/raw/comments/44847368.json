@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44849285,
+    "by": "icapybara",
+    "timeISO": "2025-08-09T19:19:56.000Z",
+    "textPlain": "Hard to be excited about ChatGPT Agent - Claude Code feels like the right form factor for an agent.",
+    "parent": 44847368,
+    "depth": 1
+  },
+  {
     "id": 44847369,
     "by": "Topfi",
     "timeISO": "2025-08-09T15:41:57.000Z",
@@ -48,10 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44849246,
-    "by": "adastra22",
-    "timeISO": "2025-08-09T19:14:46.000Z",
-    "textPlain": "Which is exactly what agentic tools do--I focus on making decisions, not carrying out the gruntwork actions.",
+    "id": 44849379,
+    "by": "SequoiaHope",
+    "timeISO": "2025-08-09T19:28:52.000Z",
+    "textPlain": "I’m finding agentic coding to be a fascinating tool. The output is a mess but it takes so little input to make something quite functional. I had an app that I wrote with a python GUI framework I didn’t quite like. ChatGPT rewrote it to use GTK and it is so much faster now. Later Claude added a browser mode where the app can be run via GTK or a browser tab. I have never written a GTK app in my life past some hello world text box.The output is very problematic. It breaks itself all the time, makes the same mistakes multiple times, I have to retread my steps. I’m going to have it write tests so it can better tell what it’s breaking.But being able to say “take this GTK app and add a web server and browser based mode” and it just kinda does it with minimal manual debugging is something remarkable. I don’t fully understand it, it is a new capability. I do robotics and I wish we had this for PCB design and mechanical CAD, but those will take much longer to solve. Still, I am eager to point Claude at my hand written python robotics stack from my last major project [1] and have it clean up and document what was a years long chaotic prototyping process with results I was reasonably happy with.The current systems have flaws but if you look at where LLMs were five years ago and you see the potential value in fixing the flaws with agentic coding, it is easy to imagine that those flaws will be addressed. There will be higher level flaws and those will eventually be addressed, etc. Maybe not, but I’m quite curious to see where this goes, and what it means for engineering as a human being at these times.[1] https://github.com/sequoia-hope/acorn-precision-farming-rove...",
     "parent": 44848498,
     "depth": 2
   },
@@ -64,6 +72,14 @@
     "depth": 2
   },
   {
+    "id": 44849246,
+    "by": "adastra22",
+    "timeISO": "2025-08-09T19:14:46.000Z",
+    "textPlain": "Which is exactly what agentic tools do--I focus on making decisions, not carrying out the gruntwork actions.",
+    "parent": 44848498,
+    "depth": 2
+  },
+  {
     "id": 44847602,
     "by": "andix",
     "timeISO": "2025-08-09T16:04:12.000Z",
@@ -72,10 +88,18 @@
     "depth": 2
   },
   {
-    "id": 44849252,
-    "by": "adastra22",
-    "timeISO": "2025-08-09T19:15:30.000Z",
-    "textPlain": "Claude Code / Cursor / Windsurf are agents. LLMs with tools.",
+    "id": 44849543,
+    "by": "jeroenhd",
+    "timeISO": "2025-08-09T19:51:18.000Z",
+    "textPlain": "An agent as far as I've seen people use it is a script that will add some stuff to your prompt and monitor the LLM's output for a specific pattern and execute code when it encounters that.For instance, you could have an \"agent\" that can read/edit files on your computer by adding something like \"to read a file, issue the `read_file $path`\" to your prompt, and whenever a line of LLM output that starts with `read_file` is finished, the script running on your computer will read that file, paste it into the prompt, and let the LLM continue its autocomplete-on-steroids.If you write enough tools and a complicated enough prompt, you end up with an LLM that can do stuff. By default, smart tools usually require user confirmation before actually doing stuff, but if you run the LLM in full agent mode, you trust the LLM not to do anything it shouldn't. curl2bash with LLMs, basically.An LLM with significant training and access to file access, HTTP(S) API access, and access to some OS APIs can do a lot of work for you if you prompt it right. My experience with Claude/Copilot/etc. is that 75% of the time, the LLM will fail to do what it should be doing without manually repairing its mistakes, but in the other 25% of the time it does look rather sci-fi-ish.With some tools you can tell your computer \"take this directory, examine the EXIF data of each image, map the coordinates to the country and nearest town the picture was taken in, then make directories for each town and move the pictures to their corresponding locations\". The LLM will type out shell commands (`ls /some/directory`), interpret the results as part of the prompt response that your computer sends back, and repeat that until its task has been completed. If you prepare a specific prompt and set of tools for the purpose of managing files, you could call that a \"file management agent\".Generally, this works best for things you can do by hand in a couple of minutes or maybe an hour if it's a big set of images, but something ",
+    "parent": 44848604,
+    "depth": 2
+  },
+  {
+    "id": 44849275,
+    "by": "dragonwriter",
+    "timeISO": "2025-08-09T19:18:01.000Z",
+    "textPlain": "An agent (in the way the term is commonly currently used around LLMs) is a combination of LLM, external tools, and management framework such that the total system can make (and make use of the results of) one or multiple multiple tool calls at the LLM direction without intervening user interaction to serve user needs. (Usually, in practice, this takes place in between the request and response in what is otherwise a typical chatbot-style interaction, though there are other possibilities.)",
     "parent": 44848604,
     "depth": 2
   },
@@ -96,10 +120,26 @@
     "depth": 2
   },
   {
+    "id": 44849252,
+    "by": "adastra22",
+    "timeISO": "2025-08-09T19:15:30.000Z",
+    "textPlain": "Claude Code / Cursor / Windsurf are agents. LLMs with tools.",
+    "parent": 44848604,
+    "depth": 2
+  },
+  {
     "id": 44848896,
     "by": "koakuma-chan",
     "timeISO": "2025-08-09T18:31:10.000Z",
     "textPlain": "An agent in this context is simply an LLM that has tools.",
+    "parent": 44848604,
+    "depth": 2
+  },
+  {
+    "id": 44849475,
+    "by": "beacon294",
+    "timeISO": "2025-08-09T19:41:38.000Z",
+    "textPlain": "An agent is a while loop.",
     "parent": 44848604,
     "depth": 2
   },

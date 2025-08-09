@@ -1,5 +1,29 @@
 [
   {
+    "id": 44849719,
+    "by": "Pet_Ant",
+    "timeISO": "2025-08-09T20:11:06.000Z",
+    "textPlain": "It can be a little hard to navigate to so the .torrent links for x86-64 areMinimal:\nhttps://cdimage.debian.org/debian-cd/current/amd64/bt-cd/deb...Full:\nhttps://cdimage.debian.org/debian-cd/current/amd64/bt-dvd/de...",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849723,
+    "by": "yonatan8070",
+    "timeISO": "2025-08-09T20:11:25.000Z",
+    "textPlain": "A total of seven architectures are officially supported for \"trixie\":     \"trixie\"\n     64-bit PC (amd64),\n     64-bit ARM (arm64),\n     ARM EABI (armel),\n     ARMv7 (EABI hard-float ABI, armhf),\n     64-bit little-endian PowerPC (ppc64el),\n     64-bit little-endian RISC-V (riscv64),\n     IBM System z (s390x)\n\nIt's good to see RISC-V becoming a first-class citizen, despite the general lack of hardware using it at the moment.I do wonder, where are PowerPC and IBM System z being used these days? Are there modern Linux systems being deployed with something other than amd64, arm64, and (soon?) riscv64?",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849402,
+    "by": "ACS_Solver",
+    "timeISO": "2025-08-09T19:32:33.000Z",
+    "textPlain": "Writing this from my Debian system, it's a great distro that has been excellent to me as a daily driver. I switched to Debian 6 after Ubuntu went way downhill and haven't had cause to regret it.I like Debian's measured pragmatism with ideology, how it's a distro of free software by default but it also makes it easy to install non-free software or firmware blobs. I like Debian's package guidelines, I like dpkg, I like the Debian documentation even if Arch remains the best on that front. I like the stable/testing package streams, which make it easy to choose old but rock-stable vs just a bit old and almost as stable.And one of the best parts is, I've never had a Debian system break without it being my fault in some way. Every case I've had of Debian being outright unbootable or having other serious problems, it's been due to me trying to add things from third-party repositories, or messing up the configuration or something else, but not a fault of the Debian system itself.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44849053,
     "by": "gorgoiler",
     "timeISO": "2025-08-09T18:49:38.000Z",
@@ -8,18 +32,90 @@
     "depth": 1
   },
   {
-    "id": 44849250,
-    "by": "hiprob",
-    "timeISO": "2025-08-09T19:15:23.000Z",
-    "textPlain": "I can't believe we've come to such a high number, and a particularly lucky one at thatAlas it's still not suitable as a daily driver for the average home user and probably never will be. It is unfortunate that Ubuntu has to reign supreme in that regard.",
+    "id": 44849340,
+    "by": "accrual",
+    "timeISO": "2025-08-09T19:25:31.000Z",
+    "textPlain": "> i386 is no longer supported as a regular architecture: there is no official kernel and no Debian installer for i386 systems. The i386 architecture is now only intended to be used on a 64-bit (amd64) CPU. Users running i386 systems should not upgrade to trixie. Instead, Debian recommends either reinstalling them as amd64, where possible, or retiring the hardware.Impressive that i386 support made it all the way to August 2025. I have Debian 10 Buster running on a Pentium 3 which only EOL'd last year in June 2024. It's still useful on that hardware and I'm grateful support continued as long as it did!OpenBSD still supports i386 for those looking for a modern OS on old 32-bit hardware.",
     "parent": 44848782,
     "depth": 1
   },
   {
-    "id": 44849196,
-    "by": "3eb7988a1663",
-    "timeISO": "2025-08-09T19:08:41.000Z",
-    "textPlain": "Maybe title should note that it has now been released? There has been many updates about Trixie in the past few months in preparation for today.",
+    "id": 44849709,
+    "by": "bayindirh",
+    "timeISO": "2025-08-09T20:09:54.000Z",
+    "textPlain": "Debian's signature feature (upgrade from stable to stable under 15 minutes) shines here too.My first system migrated in less than 10 minutes, incl. package downloads and reboot. It's not a beast either. N100 mini PC connected to a ~50mbps network.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849542,
+    "by": "binwiederhier",
+    "timeISO": "2025-08-09T19:51:18.000Z",
+    "textPlain": "Thank you to all the Debian volunteers that make Debian and all its derivatives possible. It's remarkable how many people and businesses have been enabled by your work. Thank you!On a personal note, Trixie is very exciting for me because my side project, ntfy [1], was packaged [2] and is now included in Trixie. I only learned about the fact that it was included very late in cycle when the package maintainer asked for license clarifications. As a result the Debian-ized version of ntfy doesn't contain a web app (which is a reaaal bummer), and has a few things \"patched out\" (which is fine). I approached the maintainer and just recently added build tags [3] to make it easier to remove Stripe, Firebase and WebPush, so that the next Debian-ized version will not have to contain (so many) awkward patches.As an \"upstream maintainer\", I must say it isn't obvious at all why the web app wasn't included. It was clearly removed on purpose [4], but I don't really know what to do to get it into the next Debian release. Doing an \"apt install ntfy\" is going to be quite disappointing for most if the web app doesn't work. Any help or guidance is very welcome![1] https://github.com/binwiederhier/ntfy[2] https://tracker.debian.org/pkg/ntfy[3] https://github.com/binwiederhier/ntfy/pull/1420[4] https://salsa.debian.org/ahmadkhalifa/ntfy/-/blob/debian/lat...",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849610,
+    "by": "imoverclocked",
+    "timeISO": "2025-08-09T19:59:21.000Z",
+    "textPlain": "I have used Debian starting sometime around slink. I still type \"apt-get ...\" and it still works reasonably well. There have definitely been hiccups in upgrades over the last 25+ years but the amount of time/effort dealing with those is almost nothing in comparison to other linux and non-OSS systems I've dealt with over the same span of time. My only regret is not contributing more to the community.The thing I like most about Debian is that you need to know at least a little about what is going on to use it. For me, it does a good job of following \"as simple as possible and no simpler.\"",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849625,
+    "by": "juujian",
+    "timeISO": "2025-08-09T20:00:21.000Z",
+    "textPlain": "I have been using Debian Trixie for a few months in testing now, I can attest that its a great, stable operating system. Definitely better than Ubuntu in terms of user experience.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849514,
+    "by": "master_crab",
+    "timeISO": "2025-08-09T19:47:41.000Z",
+    "textPlain": "Debian 13 trixie includes numerous updated software packages (over 63% of all packages from the previous release)I’m not familiar with the metric definition they use, but I’d be worried if close to 100% of the packages they included in bookworm hadn’t been updated in the roughly 2 years between releases.I use Debian for most of my servers, so I’m sure there is a valid explanation of that phrase.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849362,
+    "by": "potato-peeler",
+    "timeISO": "2025-08-09T19:27:31.000Z",
+    "textPlain": "> The overall disk usage for trixie is 403,854,660 kB (403 GB)What does this mean? If all 69k+ packages are installed, it will take up this much space?",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849561,
+    "by": "Venn1",
+    "timeISO": "2025-08-09T19:53:14.000Z",
+    "textPlain": "I have been tracking Trixie on my Resolve workstation for the past couple of months. The only hiccup was that the latest kernel did not support the ondemand governor, so I had to build a custom kernel to fix that.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849564,
+    "by": "sheerun",
+    "timeISO": "2025-08-09T19:53:46.000Z",
+    "textPlain": "Debian was often the only linux os that worked on old \"spacestations\" of mine. Great sentiment",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849565,
+    "by": "gcarvalho",
+    "timeISO": "2025-08-09T19:53:55.000Z",
+    "textPlain": "Looking forward to upgrade over the weekend.Have had my RPi on Debian since Debian 9, with smooth upgrades every time.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849617,
+    "by": "markus_zhang",
+    "timeISO": "2025-08-09T19:59:47.000Z",
+    "textPlain": "When can we have Bandit or Bluey?",
     "parent": 44848782,
     "depth": 1
   },
@@ -32,10 +128,58 @@
     "depth": 1
   },
   {
+    "id": 44849654,
+    "by": "bbarnett",
+    "timeISO": "2025-08-09T20:04:33.000Z",
+    "textPlain": "For those worrying about the NIC change with systemd, this comes from the release doc:https://www.debian.org/releases/trixie/release-notes/issues....  # example:\n  udevadm test-builtin net_setup_link /sys/class/net/eno4 2>/dev/null\n  ID_NET_LINK_FILE=/usr/lib/systemd/network/99-default.link\n  ID_NET_LINK_FILE_DROPINS=\n  ID_NET_NAME=eno4  <-- note the NIC name that will happen after reboot\n\nHere's a one-liner, excluding a bond interface and lo.  Gives a nice list of pre and post change.  for x in $(cat /etc/network/interfaces | grep auto | cut -d ' ' -f 2 | grep -Ev 'lo|bond0'); do echo -n $x:; udevadm test-builtin net_setup_link /sys/class/net/$x 2>/dev/null | grep NET_NAME| cut -d = -f 2; done\n\nThe doc's logic is that after you've upgraded to trixie, and before reboot, you're running enough of systemd to see what it will name interfaces after reboot.So far I have not had an interface change due to upgrade, so I cannot say that the above does detect it.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849196,
+    "by": "3eb7988a1663",
+    "timeISO": "2025-08-09T19:08:41.000Z",
+    "textPlain": "Maybe title should note that it has now been released? There has been many updates about Trixie in the past few months in preparation for today.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849292,
+    "by": "bbarnett",
+    "timeISO": "2025-08-09T19:20:41.000Z",
+    "textPlain": "You can still use sysvinit, I've already tested servers and desktop builds.From my build box:  chroot $MOUNTPOINT/ /bin/bash -c \"http_proxy=$aptproxy apt-get -y --purge --allow remove-essential install sysvinit-core sysvinit-utils systemd-sysv- systemd-\"\n\nThere is a weird depends you cannot get around without simultaneously removing and installing in parallel.  A Debian bug highlighted the above, with a \"-\" for systemd-sysv- systemd- as a fix, along with allow remove essential.After this fix, sysvinit builds with debootstrap were almost identical as to bookworm.  This includes for desktops.As per with bookworm through buster, you'll still need something like this too:  $ cat /etc/apt/preferences.d/systemd\n\n  # this is the only systemd package that is required, so we up its priority first...\n  Package: libsystemd0\n  Pin: release trixie\n  Pin-Priority: 700\n\n  # exclude the rest\n  Package: systemd\n  Pin: release *\n  Pin-Priority: -1\n\n  Package: *systemd*\n  Pin: release *\n  Pin-Priority: -1\n\n  Package: systemd:i386\n  Pin: release *\n  Pin-Priority: -1\n\n  Package: systemd:amd64\n  Pin: release *\n  Pin-Priority: -1",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44849164,
     "by": "Paianni",
     "timeISO": "2025-08-09T19:04:40.000Z",
     "textPlain": "The Devuan version may end up being the last that GNOME will run on...",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849287,
+    "by": "josteink",
+    "timeISO": "2025-08-09T19:20:08.000Z",
+    "textPlain": "I've upgraded all my servers and laptops to Debian 13.Lucky 13 and all... And not a single issue so far. Very happy!Thanks to the Debian team for putting out yet another high quality, reliable release :)",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849250,
+    "by": "hiprob",
+    "timeISO": "2025-08-09T19:15:23.000Z",
+    "textPlain": "I can't believe we've come to such a high number, and a particularly lucky one at thatAlas it's still not suitable as a daily driver for the average home user and probably never will be. It is unfortunate that Ubuntu has to reign supreme in that regard.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849513,
+    "by": "SilverElfin",
+    "timeISO": "2025-08-09T19:47:34.000Z",
+    "textPlain": "I have been trying to learn how to use Linux recently as a hobby, and weirdly searching for tutorials brought me to content about the increasing politicization of Linux. Surprising to hear something sciency affected by this sort of thing.https://youtu.be/_Let6RDuZJU",
     "parent": 44848782,
     "depth": 1
   },
@@ -48,19 +192,131 @@
     "depth": 1
   },
   {
-    "id": 44849204,
-    "by": "heikkilevanto",
-    "timeISO": "2025-08-09T19:09:34.000Z",
-    "textPlain": "Citation needed. I honestly do not know what you are referring to. Even if I had to take your \"sexual predator\" at face value, I would still have to balance that against the good stable reliable distro they have been done for so many years.",
-    "parent": 44849132,
+    "id": 44849621,
+    "by": "zvmaz",
+    "timeISO": "2025-08-09T20:00:01.000Z",
+    "textPlain": "> after Ubuntu went way downhill and haven't had cause to regret it.In what way Ubuntu went downhill?",
+    "parent": 44849402,
     "depth": 2
   },
   {
-    "id": 44849156,
-    "by": "wiseowise",
-    "timeISO": "2025-08-09T19:03:17.000Z",
-    "textPlain": "Your comment might be taken more seriously if you provide more context.",
-    "parent": 44849132,
+    "id": 44849382,
+    "by": "zozbot234",
+    "timeISO": "2025-08-09T19:29:06.000Z",
+    "textPlain": "Hopefully i386 (or perhaps a new i386-like port with added support for 64-bit time values) can move to the unofficial Debian Ports infrastructure for Debian 14 (forky) or Debian 15 (duke).  Debian Ports has a m68k port, so supporting one for i386 shouldn't be a huge problem.",
+    "parent": 44849340,
+    "depth": 2
+  },
+  {
+    "id": 44849467,
+    "by": "NewJazz",
+    "timeISO": "2025-08-09T19:40:23.000Z",
+    "textPlain": "Well, isn't there an additional year or so of support for old stable? So beyond 2025.",
+    "parent": 44849340,
+    "depth": 2
+  },
+  {
+    "id": 44849659,
+    "by": "heywire",
+    "timeISO": "2025-08-09T20:04:57.000Z",
+    "textPlain": "Just wanted to say thanks for ntfy! I use it daily to notify me on events from my home Meshtastic node.",
+    "parent": 44849542,
+    "depth": 2
+  },
+  {
+    "id": 44849566,
+    "by": "baobun",
+    "timeISO": "2025-08-09T19:53:57.000Z",
+    "textPlain": "> I’d be worried if close to 100% of the packages they included in bookworm hadn’t been updated in the roughly 2 years between releases.Code doesn't \"go bad\" and not everything is affected by ecosystem churn and CVEs.An established package not having updates for 2y is not in and of itself problematic.",
+    "parent": 44849514,
+    "depth": 2
+  },
+  {
+    "id": 44849601,
+    "by": "bbarnett",
+    "timeISO": "2025-08-09T19:58:39.000Z",
+    "textPlain": "I don't know why you think it would be different.  Are you concerned about security updates?  That's not part of the metric, as far as I can see.And even if it was?If you look at the number of packages in Debian, only a small portion have CVEs.  There are nearly 30k package sources, and an output of 60k binary packages.Yet we only get a few security updates weekly.Another example?  Both trixie and bookworm use the same firefox ESR (extended release) version.  Both will get updated when firefox forces everyone to the next ESR.Beyond that, some packages are docs.  Some are 'glue' packages, eg scripts to manage Debian.  These may not change between releases.Lastly, Debian actually maintains an enormous number of upstream orphaned packages.  In those cases, the version number is the same (sometimes), but with security updates slapped on if required.From my perspective, outside of timely and quick security updates, I have zero desire for a lot of churn.  Why would I?  Churn means work.  Churn means changed stability.We get plenty of fun and churn from kernel, and driver related changes (X, Wayland, audio/nic, etc), and desktop apps.  And of course from anything running forward, with scissors, like network connected joy.",
+    "parent": 44849514,
+    "depth": 2
+  },
+  {
+    "id": 44849672,
+    "by": "toenail",
+    "timeISO": "2025-08-09T20:06:14.000Z",
+    "textPlain": "As this also lists lines of code, it sounds more like sources plus packages. Think space that a full mirror (src + generic + arch specific packages) would need.",
+    "parent": 44849362,
+    "depth": 2
+  },
+  {
+    "id": 44849587,
+    "by": "sheerun",
+    "timeISO": "2025-08-09T19:55:55.000Z",
+    "textPlain": "And I mean Debian 12, not some old version, much more impressive",
+    "parent": 44849564,
+    "depth": 2
+  },
+  {
+    "id": 44849606,
+    "by": "bryanlarsen",
+    "timeISO": "2025-08-09T19:58:58.000Z",
+    "textPlain": "Infinite scroll length on terminals can chew through /tmp, and systems misbehave strangely when they're out of /tmp.",
+    "parent": 44849191,
+    "depth": 2
+  },
+  {
+    "id": 44849271,
+    "by": "bbarnett",
+    "timeISO": "2025-08-09T19:17:44.000Z",
+    "textPlain": "Also watch out for surprise file deletes in /tmp and /var/tmp at 10 and 30 days.This too can be turned off.",
+    "parent": 44849191,
+    "depth": 2
+  },
+  {
+    "id": 44849370,
+    "by": "cocoto",
+    "timeISO": "2025-08-09T19:28:18.000Z",
+    "textPlain": "I think the title has been trimmed from the word “realeased”. Might be another case of HN auto title edit botching the original title.",
+    "parent": 44849196,
+    "depth": 2
+  },
+  {
+    "id": 44849387,
+    "by": "accrual",
+    "timeISO": "2025-08-09T19:29:41.000Z",
+    "textPlain": "> Alas it's still not suitable as a daily driver for the average home userI think that's fine for Debian. Maybe even a good thing.Debian supplies a rock solid base for many general purpose tasks. Ubuntu and other distros are free to package that up in a user friendly way, but as a technical user I want to be able to go upstream and get a basic Linux system without extra stuff.",
+    "parent": 44849250,
+    "depth": 2
+  },
+  {
+    "id": 44849376,
+    "by": "amtamt",
+    "timeISO": "2025-08-09T19:28:37.000Z",
+    "textPlain": "Two kids in 4 to 16 range, and two adults in 30 to 46 age ranges have been using Debian on daily basis for almost a decade now. At least three of them are pretty \"average home user\". There has been forced use of windows (since school and employers wanted), but for home use Debian has always been better due to less maintenance needs and no distractions.",
+    "parent": 44849250,
+    "depth": 2
+  },
+  {
+    "id": 44849350,
+    "by": "cocoto",
+    "timeISO": "2025-08-09T19:26:21.000Z",
+    "textPlain": "The installation is slightly easier (but still hard because of USB install) and the website has a more appealing design. Except from that what is better in Ubuntu for the average casual user? Proprietary blobs are now included in the default installer since version 12.",
+    "parent": 44849250,
+    "depth": 2
+  },
+  {
+    "id": 44849407,
+    "by": "josteink",
+    "timeISO": "2025-08-09T19:33:13.000Z",
+    "textPlain": "Don't feed the troll, etc... But I just had to bite on this bit:> Alas it's still not suitable as a daily driver for the average home user and probably never will be. It is unfortunate that Ubuntu has to reign supreme in that regard.It's true that Ubuntu used to be the OOB ready version of Debian, which \"just worked\", while base Debian took look of fiddling to even have wifi working.These day though I find the opposite to be true: Ubuntu does lots of weird things I don't want, and I have to \"fiddle\" to disable all that.A base Debian install however (ISO with firmware bundled), just works.For me, Ubuntu is officially off my list of distros I bother spending my time on.",
+    "parent": 44849250,
+    "depth": 2
+  },
+  {
+    "id": 44849607,
+    "by": "baobun",
+    "timeISO": "2025-08-09T19:58:59.000Z",
+    "textPlain": "The \"controversy\" in this case seems manufactured and flames mostly fuelled by talking heads like this one and their herds. Psyops with a dash of opportunism. The man is a professional agitator.",
+    "parent": 44849513,
     "depth": 2
   }
 ]

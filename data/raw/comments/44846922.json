@@ -1,5 +1,13 @@
 [
   {
+    "id": 44849429,
+    "by": "vidarh",
+    "timeISO": "2025-08-09T19:36:00.000Z",
+    "textPlain": "The key thing, it seems to me, is that as a starting point, if an LLM is allowed to read a field that is under even partial control by entity X, then the agent calling the LLM must be assumed unless you can prove otherwise to be under control of entity X, and so the agents privileges must be restricted to the intersection of their current privileges and the privileges of entity X.So if you read a support ticket by an anonymous user, you can't in this context allow actions you wouldn't allow an anonymous user to take. If you read an e-mail by person X, and another email by person Y, you can't let the agent take actions that you wouldn't allow both X and Y to take.If you then want to avoid being tied down that much, you need to isolate, delegate, and filter:- Have a sub-agent read the data and extract a structured request for information or list of requested actions. This agent must be treated as an agent of the user that submitted the data.- Have a filter, that does not use AI, that filters the request and applies security policies that rejects all requests that the sending side are not authorised to make. No data that can is sufficient to contain instructions can be allowed to pass through this without being rendered inert, e.g. by being encrypted or similar, so the reading side is limited to moving the data around, not interpret it. It needs to be strictly structured. E.g. the sender might request a list of information; the filter needs to validate that against access control rules for the sender.- Have the main agent operate on those instructions alone.All interaction with the outside world needs to be done by the agent acting on behalf of the sender/untrusted user, only on data that has passed through that middle layer.This is really back to the original concept of agents acting on behalf of both (or multiple) sides of an interaction, and negotiating.But what we need to accept is that this negotiation can't involve the exchange arbitrary natural language.",
+    "parent": 44846922,
+    "depth": 1
+  },
+  {
     "id": 44848687,
     "by": "toomuchtodo",
     "timeISO": "2025-08-09T18:08:12.000Z",
@@ -20,6 +28,30 @@
     "by": "pryelluw",
     "timeISO": "2025-08-09T16:29:39.000Z",
     "textPlain": "Im still fixing sql and db command injection through APIs from juniors and now vibe coders. This just adds more work to do.The ITT/TTI and TTS/STT have been particularly annoying to protect against. I don’t feel we’ve matured enough to have solid protections against such vectors yet.",
+    "parent": 44846922,
+    "depth": 1
+  },
+  {
+    "id": 44849431,
+    "by": "quercusa",
+    "timeISO": "2025-08-09T19:36:17.000Z",
+    "textPlain": "If you were wondering about the pelicans:   \nhttps://baynature.org/article/ask-naturalist-many-birds-beac...",
+    "parent": 44846922,
+    "depth": 1
+  },
+  {
+    "id": 44849365,
+    "by": "nerevarthelame",
+    "timeISO": "2025-08-09T19:27:46.000Z",
+    "textPlain": "The link to the article covering Google Deepmind's CaMeL doesn't work.Presumably intended to go to https://simonwillison.net/2025/Apr/11/camel/ though",
+    "parent": 44846922,
+    "depth": 1
+  },
+  {
+    "id": 44849286,
+    "by": "wunderwuzzi23",
+    "timeISO": "2025-08-09T19:20:02.000Z",
+    "textPlain": "Great work! Great name!I'm currently doing a Month of AI bugs series and there are already many lethal trifecta findings, and there will be more in the coming days - but also some full remote code execution ones in AI-powered IDEs.https://monthofaibugs.com/",
     "parent": 44846922,
     "depth": 1
   },
@@ -56,14 +88,6 @@
     "depth": 1
   },
   {
-    "id": 44848737,
-    "by": "rvz",
-    "timeISO": "2025-08-09T18:14:44.000Z",
-    "textPlain": "There is a single reason why this is happening and it is due to a flawed standard called “MCP”.It has thrown away almost all the best security practices in software engineering and even does away with security 101 first principles to never trust user input by default.It is the equivalent of reverting back to 1970 level of security and effectively repeating the exact mistakes but far worse.Can’t wait for stories of exposed servers and databases with MCP servers waiting to be  breached via prompt injection and data exfiltration.",
-    "parent": 44846922,
-    "depth": 1
-  },
-  {
     "id": 44848195,
     "by": "dingnuts",
     "timeISO": "2025-08-09T17:05:30.000Z",
@@ -80,11 +104,19 @@
     "depth": 1
   },
   {
-    "id": 44848693,
-    "by": "benlivengood",
-    "timeISO": "2025-08-09T18:09:05.000Z",
-    "textPlain": "Dia is currently (as of last week) not vulnerable to this kind of exfiltration in a pretty straightforward way that may still be covered by NDA.",
-    "parent": 44847933,
+    "id": 44848737,
+    "by": "rvz",
+    "timeISO": "2025-08-09T18:14:44.000Z",
+    "textPlain": "There is a single reason why this is happening and it is due to a flawed standard called “MCP”.It has thrown away almost all the best security practices in software engineering and even does away with security 101 first principles to never trust user input by default.It is the equivalent of reverting back to 1970 level of security and effectively repeating the exact mistakes but far worse.Can’t wait for stories of exposed servers and databases with MCP servers waiting to be  breached via prompt injection and data exfiltration.",
+    "parent": 44846922,
+    "depth": 1
+  },
+  {
+    "id": 44849494,
+    "by": "simonw",
+    "timeISO": "2025-08-09T19:44:44.000Z",
+    "textPlain": "> if an LLM is allowed to read a field that is under even partial control by entity X, then the agent calling the LLM must be assumed unless you can prove otherwise to be under control of entity XThat's exactly right, great way of putting it.",
+    "parent": 44849429,
     "depth": 2
   },
   {
@@ -96,11 +128,27 @@
     "depth": 2
   },
   {
+    "id": 44848693,
+    "by": "benlivengood",
+    "timeISO": "2025-08-09T18:09:05.000Z",
+    "textPlain": "Dia is currently (as of last week) not vulnerable to this kind of exfiltration in a pretty straightforward way that may still be covered by NDA.These opinions are my own blah blah blah",
+    "parent": 44847933,
+    "depth": 2
+  },
+  {
     "id": 44848132,
     "by": "wglb",
     "timeISO": "2025-08-09T16:59:43.000Z",
     "textPlain": "Write a prompt that asks to detect sql injection in each source code model. Or other security issues.",
     "parent": 44847847,
+    "depth": 2
+  },
+  {
+    "id": 44849403,
+    "by": "simonw",
+    "timeISO": "2025-08-09T19:32:35.000Z",
+    "textPlain": "Oops! Thanks, I fixed that link.",
+    "parent": 44849365,
     "depth": 2
   },
   {
@@ -144,14 +192,6 @@
     "depth": 2
   },
   {
-    "id": 44848806,
-    "by": "simonw",
-    "timeISO": "2025-08-09T18:21:48.000Z",
-    "textPlain": "I actually don't think MCP is to blame here. At its root MCP is a standard abstraction layer over the tool calling mechanism of modern LLMs, which solves the problem of not having to implant each tool in different ways in order to integrate with different models. That's good, and it should exist.The problem is the very idea of giving an LLM that can be \"tricked\" by malicious input the ability to take actions that can cause harm if subverted by an attacker.That's why I've been talking about prompt injection for the past three years. It's a huge barrier to securely implementing so many of the things we want to do with LLMs.My problem with MCP is that it makes it trivial for end users to combine tools in insecure ways, because MCP affords mix-and-matching different tools.Older approaches like ChatGPT Plugins had exactly the same problem, but mostly failed to capture the zeitgeist in the way that MCP has.",
-    "parent": 44848737,
-    "depth": 2
-  },
-  {
     "id": 44848237,
     "by": "overbytecode",
     "timeISO": "2025-08-09T17:10:01.000Z",
@@ -165,6 +205,14 @@
     "timeISO": "2025-08-09T18:15:18.000Z",
     "textPlain": "Especially seeing that Gruber is persona non grata now at Apple because of his “something is rotten in Cupertino” post…",
     "parent": 44848195,
+    "depth": 2
+  },
+  {
+    "id": 44848806,
+    "by": "simonw",
+    "timeISO": "2025-08-09T18:21:48.000Z",
+    "textPlain": "I actually don't think MCP is to blame here. At its root MCP is a standard abstraction layer over the tool calling mechanism of modern LLMs, which solves the problem of not having to implant each tool in different ways in order to integrate with different models. That's good, and it should exist.The problem is the very idea of giving an LLM that can be \"tricked\" by malicious input the ability to take actions that can cause harm if subverted by an attacker.That's why I've been talking about prompt injection for the past three years. It's a huge barrier to securely implementing so many of the things we want to do with LLMs.My problem with MCP is that it makes it trivial for end users to combine tools in insecure ways, because MCP affords mix-and-matching different tools.Older approaches like ChatGPT Plugins had exactly the same problem, but mostly failed to capture the zeitgeist in the way that MCP has.",
+    "parent": 44848737,
     "depth": 2
   }
 ]
