@@ -78,6 +78,7 @@ const t = i18n[lang];
           <a href={`/3d/${latestDate}/`}>{t.nav3d}</a>
           <a href={`/weekly/${currentWeek}/`}>{t.navWeekly}</a>
         </nav>
+        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
       </div>
       <p class="meta">{t.updated}: {updatedPretty}</p>
       <p class="meta">{t.stories}: {items.length} • {t.page} 1/{totalPages}</p>
@@ -95,5 +96,22 @@ const t = i18n[lang];
         </nav>
       )}
     </main>
+    <script>
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      if (localStorage.getItem('theme') === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+      }
+      btn?.addEventListener('click', () => {
+        const isDark = root.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+          root.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+        } else {
+          root.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+    </script>
   </body>
 </html>
