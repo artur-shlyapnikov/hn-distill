@@ -48,14 +48,6 @@
     "depth": 1
   },
   {
-    "id": 44852961,
-    "by": "monkeyelite",
-    "timeISO": "2025-08-10T05:26:12.000Z",
-    "textPlain": "This seems specific to BEAM as crashing a fast-cgi process is fine and response will be handled correctly with Apache or nginx.",
-    "parent": 44810890,
-    "depth": 1
-  },
-  {
     "id": 44852663,
     "by": "refactor_master",
     "timeISO": "2025-08-10T04:01:11.000Z",
@@ -64,10 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44853844,
-    "by": "PicassoCTs",
-    "timeISO": "2025-08-10T09:02:02.000Z",
-    "textPlain": "https://fsharpforfunandprofit.com/rop/Railway orientated programming to the rescue?",
+    "id": 44852961,
+    "by": "monkeyelite",
+    "timeISO": "2025-08-10T05:26:12.000Z",
+    "textPlain": "This seems specific to BEAM as crashing a fast-cgi process is fine and response will be handled correctly with Apache or nginx.",
     "parent": 44810890,
     "depth": 1
   },
@@ -92,6 +84,14 @@
     "by": "bitwize",
     "timeISO": "2025-08-10T03:04:52.000Z",
     "textPlain": "I don't code in Erlang or Elixir, aside from messing about. But I've found that letting an entire application crash is something that I can do under certain circumstances, especially when \"you have a very big problem and will not go to space today\". For example, if there's an error reading some piece of data that's in the application bundle and is needed to legitimately start up in the first place (assets for my game for instance). Then upon error it just \"screams and dies\" (spits out a stack trace and terminates).",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44853844,
+    "by": "PicassoCTs",
+    "timeISO": "2025-08-10T09:02:02.000Z",
+    "textPlain": "https://fsharpforfunandprofit.com/rop/Railway orientated programming to the rescue?",
     "parent": 44810890,
     "depth": 1
   },
@@ -152,18 +152,18 @@
     "depth": 2
   },
   {
-    "id": 44853829,
-    "by": "conradfr",
-    "timeISO": "2025-08-10T08:57:53.000Z",
-    "textPlain": "If the rest of the program is still running while you fix it, yes?Also, restarting endlessly is just one strategy between multiple others.",
-    "parent": 44852737,
-    "depth": 2
-  },
-  {
     "id": 44853599,
     "by": "masklinn",
     "timeISO": "2025-08-10T08:05:10.000Z",
     "textPlain": "> Is an infinite crash-loop considered success in Erlang?Of course not, but usually that's not what happens, instead a process crashes because some condition was not considered, the corresponding request is aborted, and a supervisor restarts the process (or doesn't because the acceptor spawns a process per request / client).Or a long-running worker got into an incorrect state and crashed, and a supervisor will restart it in a known good state (that's a pretty common thing to do in hardware, BEAM makes that idiomatic in software).",
+    "parent": 44852737,
+    "depth": 2
+  },
+  {
+    "id": 44853829,
+    "by": "conradfr",
+    "timeISO": "2025-08-10T08:57:53.000Z",
+    "textPlain": "If the rest of the program is still running while you fix it, yes?Also, restarting endlessly is just one strategy between multiple others.",
     "parent": 44852737,
     "depth": 2
   },
@@ -184,18 +184,18 @@
     "depth": 2
   },
   {
-    "id": 44853248,
-    "by": "josevalim",
-    "timeISO": "2025-08-10T06:42:57.000Z",
-    "textPlain": "Processes can be marked as temporary, which means they are not restarted, and that’s what is used when managing http connections, as you can’t really restart a request on the server without the client.  So the scenario above wouldn’t happen.You still want those processes to crash though, as it allows it to automatically clean up any concurrent work. For example, if during a request you start three processes to do concurrent work, like fetching APIs, then the request process crashes, the concurrent processes are automatically cleaned up.",
-    "parent": 44853160,
-    "depth": 2
-  },
-  {
     "id": 44853459,
     "by": "davidclark",
     "timeISO": "2025-08-10T07:34:02.000Z",
     "textPlain": "You should try to do some load testing of a real Erlang system and compare how it handles this scenario against other languages/frameworks. What you are describing is one of the exact things the Erlang system is strong against due to the scheduler.",
+    "parent": 44853160,
+    "depth": 2
+  },
+  {
+    "id": 44853248,
+    "by": "josevalim",
+    "timeISO": "2025-08-10T06:42:57.000Z",
+    "textPlain": "Processes can be marked as temporary, which means they are not restarted, and that’s what is used when managing http connections, as you can’t really restart a request on the server without the client.  So the scenario above wouldn’t happen.You still want those processes to crash though, as it allows it to automatically clean up any concurrent work. For example, if during a request you start three processes to do concurrent work, like fetching APIs, then the request process crashes, the concurrent processes are automatically cleaned up.",
     "parent": 44853160,
     "depth": 2
   },
@@ -232,18 +232,18 @@
     "depth": 2
   },
   {
-    "id": 44853779,
-    "by": "valenterry",
-    "timeISO": "2025-08-10T08:42:52.000Z",
-    "textPlain": "In general, if you can move any kind of logic to a lower level, that's better.For example, testing that kubernetes restarts work correctly is tricky and requires a complicated setup. Testing that an erlang process/actor behaves as expected is basically a unit test.",
-    "parent": 44852663,
-    "depth": 2
-  },
-  {
     "id": 44852743,
     "by": "adastra22",
     "timeISO": "2025-08-10T04:24:32.000Z",
     "textPlain": "Conceptually similar, different implementation. The perhaps most visible difference is that supervisors aren’t polling application state but are rather notified about errors (crashes), and restarting is extremely low latency.  Erlang/BEAM was invented for telephony, and it is possible for this to happen on the middle of a protocol and the user not even notice.",
+    "parent": 44852663,
+    "depth": 2
+  },
+  {
+    "id": 44853779,
+    "by": "valenterry",
+    "timeISO": "2025-08-10T08:42:52.000Z",
+    "textPlain": "In general, if you can move any kind of logic to a lower level, that's better.For example, testing that kubernetes restarts work correctly is tricky and requires a complicated setup. Testing that an erlang process/actor behaves as expected is basically a unit test.",
     "parent": 44852663,
     "depth": 2
   },

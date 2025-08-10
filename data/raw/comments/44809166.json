@@ -1,5 +1,13 @@
 [
   {
+    "id": 44854176,
+    "by": "m11a",
+    "timeISO": "2025-08-10T10:22:28.000Z",
+    "textPlain": "I don't know enough about networking as I should, so to plug for my gap in knowledge, I generally prefer to use more comprehensible (to me) forms of security. And a feature like this:> Speaking of SSH, Tailscale has special support for it whereby it handles any incoming connection to port 22 from the Tailscale network, and deals with authentication itself. No public keys or passwords: if you’re logged into Tailscale you can be logged into the machine.kinda worries me (given also IP spoofing is possible?), compared to SSH keys whose mechanism is more obvious and thus easier to trust.I definitely like the idea of Tailscale as an extra layer of protection, but I'm not sure I'd loosen existing protections while using it, whereas many Tailscale articles often present it as a panacea for internal-network-over-the-internet security. Are my concerns misplaced?",
+    "parent": 44809166,
+    "depth": 1
+  },
+  {
     "id": 44850881,
     "by": "abdusco",
     "timeISO": "2025-08-09T22:23:27.000Z",
@@ -72,18 +80,18 @@
     "depth": 2
   },
   {
-    "id": 44853632,
-    "by": "exac",
-    "timeISO": "2025-08-10T08:11:36.000Z",
-    "textPlain": "All the dev servers I've used over the past 10 years come with warnings that they're not security hardened, so I'd be wary of using `tailscale funnel` even though it is awesome to share like that so easily.",
-    "parent": 44850881,
-    "depth": 2
-  },
-  {
     "id": 44851004,
     "by": "mh-",
     "timeISO": "2025-08-09T22:38:33.000Z",
     "textPlain": "Yeah, I have mixed feelings about CT (certificate transparency) for this reason. Folks are just consuming the firehose and scanning.And in this case, if the thing you're funnel'ing is on your residential connection, it basically amounts to you summoning a DDoS.One (obvious?) tip I'd offer is to put your stuff on high non-standard ports if you can. It'll reduce the amount of connections you get dramatically.",
+    "parent": 44850881,
+    "depth": 2
+  },
+  {
+    "id": 44853632,
+    "by": "exac",
+    "timeISO": "2025-08-10T08:11:36.000Z",
+    "textPlain": "All the dev servers I've used over the past 10 years come with warnings that they're not security hardened, so I'd be wary of using `tailscale funnel` even though it is awesome to share like that so easily.",
     "parent": 44850881,
     "depth": 2
   },
@@ -152,18 +160,18 @@
     "depth": 2
   },
   {
-    "id": 44853842,
-    "by": "jaxxstorm",
-    "timeISO": "2025-08-10T09:00:35.000Z",
-    "textPlain": "I wrote a POC for using Tailscale serve and funnel similarly to ngrok here:https://github.com/jaxxstorm/tgate",
-    "parent": 44818657,
-    "depth": 2
-  },
-  {
     "id": 44823723,
     "by": "em-bee",
     "timeISO": "2025-08-07T12:40:13.000Z",
     "textPlain": "Speaking of SSH, Tailscale has special support for it whereby it handles any incoming connection to port 22 from the Tailscale network, and deals with authentication itself. No public keys or passwords: if you’re logged into Tailscale you can be logged into the machine. This is particularly handy when you SSH from a phone, as proper credential management is a bit of a nightmare there.this has me worried. i would not want that. i use zerotier, not tailscale, but the principle is the same. i have my laptops and my phone connected to my servers. given that all of those machines are already on the internet, connecting them into a virtual network does not add any risk in my opinion. (at least as long as you don't use features like the above). all i get is a known ip address for all my devices, with the ability to connect to them if they have an ssh server running. when i am outside the primary benefit is that i can tell which devices are online.",
+    "parent": 44818657,
+    "depth": 2
+  },
+  {
+    "id": 44853842,
+    "by": "jaxxstorm",
+    "timeISO": "2025-08-10T09:00:35.000Z",
+    "textPlain": "I wrote a POC for using Tailscale serve and funnel similarly to ngrok here:https://github.com/jaxxstorm/tgate",
     "parent": 44818657,
     "depth": 2
   },
