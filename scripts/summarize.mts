@@ -13,6 +13,7 @@ import { HttpClient } from "@utils/http-client";
 import { readJsonSafeOr, writeJsonFile } from "@utils/json";
 import { log } from "@utils/log";
 import { OpenRouter, type ChatMessage } from "@utils/openrouter";
+import htmlToMd from "@utils/htmlToMd";
 import { createHash } from "crypto";
 import { dirname } from "path";
 import type { z } from "zod";
@@ -20,7 +21,7 @@ import type { z } from "zod";
 type Services = {
   http: HttpClient;
   openrouter: OpenRouter;
-  jina: { fetchMarkdown: (url: string) => Promise<string> };
+  fetchArticleMarkdown: (url: string) => Promise<string>;
 };
 
 export function makeServices(e: Env): Services {
@@ -38,27 +39,17 @@ export function makeServices(e: Env): Services {
   );
   const openrouter = new OpenRouter(http, e.OPENROUTER_API_KEY ?? "", e.OPENROUTER_MODEL);
 
-  function makeJinaFetcher(envIn: Env, httpIn: HttpClient) {
-    return async (url: string) => {
-      const headers: Record<string, string> = {
-        Accept: "text/markdown, text/plain;q=0.9",
-        "X-Retain-Images": "none",
-      };
-      if (envIn.JINA_API_KEY) {
-        headers["Authorization"] = `Bearer ${envIn.JINA_API_KEY}`;
-      }
-      return httpIn.text(`https://r.jina.ai/${url}`, { headers });
-    };
+  async function fetchArticleMarkdown(url: string): Promise<string> {
+    const html = await http.text(url);
+    return htmlToMd(html);
   }
-  const jina = { fetchMarkdown: makeJinaFetcher(e, http) };
 
   log.debug("summarize/services", "initialized", {
     hasOpenRouterKey: !!e.OPENROUTER_API_KEY,
-    hasJinaKey: !!e.JINA_API_KEY,
     model: e.OPENROUTER_MODEL,
   });
 
-  return { http, openrouter, jina };
+  return { http, openrouter, fetchArticleMarkdown };
 }
 
 const SUMMARY_LANG = env.SUMMARY_LANG;
@@ -204,8 +195,12 @@ async function getOrFetchArticleMarkdown(services: Services, story: NormalizedSt
   }
   try {
     await ensureDir(dirname(path));
-    log.info("summarize/article", "Fetching markdown via Jina", { id: story.id, url: story.url });
-    const md = await services.jina.fetchMarkdown(story.url);
+    log.info(
+      "summarize/article",
+      "Fetching article and converting via Turndown",
+      { id: story.id, url: story.url }
+    );
+    const md = await services.fetchArticleMarkdown(story.url);
     const text = md.trim();
     if (!text) {
       log.warn("summarize/article", "Fetched markdown is empty", { id: story.id, url: story.url });
