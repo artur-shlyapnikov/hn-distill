@@ -48,18 +48,18 @@
     "depth": 1
   },
   {
-    "id": 44852735,
-    "by": "mcapodici",
-    "timeISO": "2025-08-10T04:22:34.000Z",
-    "textPlain": "The lethal trifecta is a problem problem (a big problem) but not the only one. You need to break a leg of all the lethal stools of AI tool use.For example a system that only reads github issues and runs commands can be tricked into modifying your codebase without direct exfiltration. You could argue that any persistent IO not shown to a human is exfiltration though...OK then you can sudo rm -rf /. Less useful for the attacker but an attack nonetheless.However I like the post its good to have common terminology when talking about these things and mental models for people designing these kinds of systems. I think the issue with MCP is that the end user who may not be across these issues could be clicking away adding MCP servers and not know the issues with doing so.",
-    "parent": 44846922,
-    "depth": 1
-  },
-  {
     "id": 44851581,
     "by": "zmmmmm",
     "timeISO": "2025-08-10T00:10:59.000Z",
     "textPlain": "This is a fantastic way of framing it, in terms of simple fundamental principles.The problem with most presentations of injection attacks is it only inspires people to start thinking of broken workarounds - all the things mentioned in the article. And they really believe they can do it. Instead, as put here, we have to start from a strong assumption that we can't fix a breakage of the lethal trifecta rule. Rather, if you want to break it, you have to analyse, mitigate and then accept the irreducible risk you just incurred.",
+    "parent": 44846922,
+    "depth": 1
+  },
+  {
+    "id": 44852735,
+    "by": "mcapodici",
+    "timeISO": "2025-08-10T04:22:34.000Z",
+    "textPlain": "The lethal trifecta is a problem problem (a big problem) but not the only one. You need to break a leg of all the lethal stools of AI tool use.For example a system that only reads github issues and runs commands can be tricked into modifying your codebase without direct exfiltration. You could argue that any persistent IO not shown to a human is exfiltration though...OK then you can sudo rm -rf /. Less useful for the attacker but an attack nonetheless.However I like the post its good to have common terminology when talking about these things and mental models for people designing these kinds of systems. I think the issue with MCP is that the end user who may not be across these issues could be clicking away adding MCP servers and not know the issues with doing so.",
     "parent": 44846922,
     "depth": 1
   },
@@ -80,18 +80,18 @@
     "depth": 1
   },
   {
-    "id": 44850351,
-    "by": "lbeurerkellner",
-    "timeISO": "2025-08-09T21:22:11.000Z",
-    "textPlain": "This is way more common with popular MCP server/agent toolsets than you would think.For those interested in some threat modeling exercise, we recently added a feature to mcp-scan that can analyze toolsets for potential lethal trifecta scenarios. See [1] and [2].[1] toxic flow analysis, https://invariantlabs.ai/blog/toxic-flow-analysis[2] mcp-scan, https://github.com/invariantlabs-ai/mcp-scan",
-    "parent": 44846922,
-    "depth": 1
-  },
-  {
     "id": 44849431,
     "by": "quercusa",
     "timeISO": "2025-08-09T19:36:17.000Z",
     "textPlain": "If you were wondering about the pelicans:   \nhttps://baynature.org/article/ask-naturalist-many-birds-beac...",
+    "parent": 44846922,
+    "depth": 1
+  },
+  {
+    "id": 44850351,
+    "by": "lbeurerkellner",
+    "timeISO": "2025-08-09T21:22:11.000Z",
+    "textPlain": "This is way more common with popular MCP server/agent toolsets than you would think.For those interested in some threat modeling exercise, we recently added a feature to mcp-scan that can analyze toolsets for potential lethal trifecta scenarios. See [1] and [2].[1] toxic flow analysis, https://invariantlabs.ai/blog/toxic-flow-analysis[2] mcp-scan, https://github.com/invariantlabs-ai/mcp-scan",
     "parent": 44846922,
     "depth": 1
   },
@@ -200,6 +200,14 @@
     "depth": 2
   },
   {
+    "id": 44854567,
+    "by": "grafmax",
+    "timeISO": "2025-08-10T11:50:06.000Z",
+    "textPlain": "LLMs read the web through a second vector as well - their training data. Simply separating security concerns in MCP is insufficient to block these attacks.",
+    "parent": 44849429,
+    "depth": 2
+  },
+  {
     "id": 44850703,
     "by": "pama",
     "timeISO": "2025-08-09T22:02:33.000Z",
@@ -280,19 +288,19 @@
     "depth": 2
   },
   {
-    "id": 44853636,
-    "by": "Terr_",
-    "timeISO": "2025-08-10T08:13:03.000Z",
-    "textPlain": "Perhaps both exfiltration and a disk-wipe on the server can be can be classed under \"Irrecoverable un-reviewed side-effects.\"",
-    "parent": 44852735,
-    "depth": 2
-  },
-  {
     "id": 44853792,
     "by": "Terr_",
     "timeISO": "2025-08-10T08:46:45.000Z",
     "textPlain": "> The problem with most presentations of injection attacks is it only inspires people to start thinking of broken workarounds - all the things mentioned in the article. And they really believe they can do it.They will be doomed to repeat the mistakes of prior developers, who \"fixed\" SQL injections at their companies with kludges like rejecting input with suspicious words like \"UPDATE\"...",
     "parent": 44851581,
+    "depth": 2
+  },
+  {
+    "id": 44853636,
+    "by": "Terr_",
+    "timeISO": "2025-08-10T08:13:03.000Z",
+    "textPlain": "Perhaps both exfiltration and a disk-wipe on the server can be can be classed under \"Irrecoverable un-reviewed side-effects.\"",
+    "parent": 44852735,
     "depth": 2
   },
   {
@@ -308,14 +316,6 @@
     "by": "mcapodici",
     "timeISO": "2025-08-10T04:27:38.000Z",
     "textPlain": "Problem is if people are vibecoding with these tools then the capability \"can write to local folder\" is safe but once that code is deployed it may have wider consequences. Anything. Any piece of data can be a confused deputy these days.",
-    "parent": 44847886,
-    "depth": 2
-  },
-  {
-    "id": 44848206,
-    "by": "yorwba",
-    "timeISO": "2025-08-09T17:06:49.000Z",
-    "textPlain": "People will use the equivalent of audit2allow https://linux.die.net/man/1/audit2allow and not go the extra mile of defining fine-grained capabilities to reduce the attack surface to a minimum.",
     "parent": 44847886,
     "depth": 2
   }

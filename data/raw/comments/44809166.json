@@ -24,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44854464,
+    "by": "marcogarces",
+    "timeISO": "2025-08-10T11:24:35.000Z",
+    "textPlain": "if you guys love Tailscale, perhaps take a look at NetBird, an open source solution, which also has a commercial offer. Really recommend this one",
+    "parent": 44809166,
+    "depth": 1
+  },
+  {
     "id": 44822140,
     "by": "thrown-0825",
     "timeISO": "2025-08-07T08:45:31.000Z",
@@ -88,18 +96,18 @@
     "depth": 2
   },
   {
-    "id": 44853632,
-    "by": "exac",
-    "timeISO": "2025-08-10T08:11:36.000Z",
-    "textPlain": "All the dev servers I've used over the past 10 years come with warnings that they're not security hardened, so I'd be wary of using `tailscale funnel` even though it is awesome to share like that so easily.",
-    "parent": 44850881,
-    "depth": 2
-  },
-  {
     "id": 44851004,
     "by": "mh-",
     "timeISO": "2025-08-09T22:38:33.000Z",
     "textPlain": "Yeah, I have mixed feelings about CT (certificate transparency) for this reason. Folks are just consuming the firehose and scanning.And in this case, if the thing you're funnel'ing is on your residential connection, it basically amounts to you summoning a DDoS.One (obvious?) tip I'd offer is to put your stuff on high non-standard ports if you can. It'll reduce the amount of connections you get dramatically.",
+    "parent": 44850881,
+    "depth": 2
+  },
+  {
+    "id": 44853632,
+    "by": "exac",
+    "timeISO": "2025-08-10T08:11:36.000Z",
+    "textPlain": "All the dev servers I've used over the past 10 years come with warnings that they're not security hardened, so I'd be wary of using `tailscale funnel` even though it is awesome to share like that so easily.",
     "parent": 44850881,
     "depth": 2
   },
@@ -117,6 +125,22 @@
     "timeISO": "2025-08-09T22:42:41.000Z",
     "textPlain": "Wait, so bots watch for new records added to this HTTPS cert public ledger, then immediately start attacking?To me that sounds like enabling HTTPS is actually a risk here…",
     "parent": 44850881,
+    "depth": 2
+  },
+  {
+    "id": 44854509,
+    "by": "codethief",
+    "timeISO": "2025-08-10T11:38:48.000Z",
+    "textPlain": "> kinda worries me (given also IP spoofing is possible?),It's not, Tailscale authenticates incoming connections. (Note that we're not talking a regular SSH connection to the server's public IP here. You'd connect to the server's SSH daemon through Tailscale.)",
+    "parent": 44854176,
+    "depth": 2
+  },
+  {
+    "id": 44854524,
+    "by": "codethief",
+    "timeISO": "2025-08-10T11:41:24.000Z",
+    "textPlain": "> One useful additional aspect to Tailscale that I've not seen mentioned so far, is the integration with Mullvad.Indeed, this saved my butt earlier this year when I was at Qatar airport and they tried to MITM most of my connections (including to mullvad.net). Luckily, they didn't MITM tailscale.net, so I could log in, enable Mullvad, and thereby secure my entire traffic.",
+    "parent": 44854193,
     "depth": 2
   },
   {
@@ -144,18 +168,18 @@
     "depth": 2
   },
   {
-    "id": 44852250,
-    "by": "benreesman",
-    "timeISO": "2025-08-10T02:13:04.000Z",
-    "textPlain": "Eh, as a network administrator you want the netlogs on by default and you very clearly onboard everyone to the network with a memorable warning to do their personal browsing over some other interface. You've usually got at least some minimal audit requirement on any network with high value stuff on it.It's probably not great that someone trying to use the free sample product lands in the same netlogging regime as the work network default, but I suspect thats more about allocation of attention and priority which understandably goes to the companies that make up approximately all of their business. Keeping the free sample product around after its long bern clear \"this is for work computers\" is just one of those things. The \"no support\" suffix on a setting is not to me the smoking gun you make it out to be, and I'm pretty hardcore in my attitudes about surveilance.I agree it's the wrong default for a purely personal user, but TailScale has enough \"good faith actor\" points with me that I'll give them the benefit of the doubt on malicious/evil dragnet surveilance ambitions. What could they possibly want with the data of a group of people who are by construction not spending money on a VPN? They'd be storing it at a loss.",
-    "parent": 44851348,
-    "depth": 2
-  },
-  {
     "id": 44851864,
     "by": "mcsniff",
     "timeISO": "2025-08-10T00:56:20.000Z",
     "textPlain": "This comment should really be much higher.",
+    "parent": 44851348,
+    "depth": 2
+  },
+  {
+    "id": 44852250,
+    "by": "benreesman",
+    "timeISO": "2025-08-10T02:13:04.000Z",
+    "textPlain": "Eh, as a network administrator you want the netlogs on by default and you very clearly onboard everyone to the network with a memorable warning to do their personal browsing over some other interface. You've usually got at least some minimal audit requirement on any network with high value stuff on it.It's probably not great that someone trying to use the free sample product lands in the same netlogging regime as the work network default, but I suspect thats more about allocation of attention and priority which understandably goes to the companies that make up approximately all of their business. Keeping the free sample product around after its long bern clear \"this is for work computers\" is just one of those things. The \"no support\" suffix on a setting is not to me the smoking gun you make it out to be, and I'm pretty hardcore in my attitudes about surveilance.I agree it's the wrong default for a purely personal user, but TailScale has enough \"good faith actor\" points with me that I'll give them the benefit of the doubt on malicious/evil dragnet surveilance ambitions. What could they possibly want with the data of a group of people who are by construction not spending money on a VPN? They'd be storing it at a loss.",
     "parent": 44851348,
     "depth": 2
   },

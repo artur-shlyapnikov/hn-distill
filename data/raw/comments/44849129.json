@@ -24,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44853405,
-    "by": "dakinitribe",
-    "timeISO": "2025-08-10T07:22:33.000Z",
-    "textPlain": "This is beautiful, thank you.Quickly allowed me to hook up this script, using dmenu and notify on i3:\nhttps://files.catbox.moe/vbhtg0.jpgAnd then trigger it with Mod+l for super quick answers as I'm working! Priceless <3",
-    "parent": 44849129,
-    "depth": 1
-  },
-  {
     "id": 44851607,
     "by": "puppymaster",
     "timeISO": "2025-08-10T00:14:03.000Z",
     "textPlain": "been using it on a plane for the past one month. it's a great way to do some light reading and learning about obscure topics.dig @ch.at \"why is gua musang the king of durian\" TXT +short",
+    "parent": 44849129,
+    "depth": 1
+  },
+  {
+    "id": 44853405,
+    "by": "dakinitribe",
+    "timeISO": "2025-08-10T07:22:33.000Z",
+    "textPlain": "This is beautiful, thank you.Quickly allowed me to hook up this script, using dmenu and notify on i3:\nhttps://files.catbox.moe/vbhtg0.jpgAnd then trigger it with Mod+l for super quick answers as I'm working! Priceless <3",
     "parent": 44849129,
     "depth": 1
   },
@@ -200,14 +200,6 @@
     "depth": 2
   },
   {
-    "id": 44853478,
-    "by": "HiPHInch",
-    "timeISO": "2025-08-10T07:37:37.000Z",
-    "textPlain": "ported to macos using raycast```#!/bin/bash# Required parameters:\n# @raycast.schemaVersion 1\n# @raycast.title Ask LLM\n# @raycast.mode fullOutput# Optional parameters:\n# @raycast.icon \n# @raycast.argument1 { \"type\": \"text\", \"placeholder\": \"Your question\" }# Documentation:\n# @raycast.author Your Name\n# @raycast.authorURL https://github.com/youQUERY=\"$1\"\n[ -z \"$QUERY\" ] && exit 0FULL_QUERY=\"Answer in as little words as possible, concisely, for an intelligent person: $QUERY\"# URL encode (pure bash)\nencode_query() {\n  local query=\"$1\"\n  local encoded=\"\"\n  local c\n  for (( i=0; i<${#query}; i++ )); do\n    c=\"${query:$i:1}\"\n    case $c in\n      [a-zA-Z0-9.~_-]) encoded+=\"$c\" ;;\n      *) encoded+=$(printf '%%%02X' \"'$c\") ;;\n    esac\n  done\n  echo \"$encoded\"\n}ENCODED_QUERY=$(encode_query \"$FULL_QUERY\")# Get response\nRESPONSE=$(curl -s \"https://ch.at/?q=$ENCODED_QUERY\")# Output to Raycast\necho \"$RESPONSE\"# --- Optional: also pop up a big dialog ---\nosascript -e 'display dialog \"'\"$RESPONSE\"'\" buttons {\"OK\"} default button 1 with title \"LLM Answer\"'```",
-    "parent": 44853405,
-    "depth": 2
-  },
-  {
     "id": 44852017,
     "by": "indigodaddy",
     "timeISO": "2025-08-10T01:26:03.000Z",
@@ -224,6 +216,14 @@
     "depth": 2
   },
   {
+    "id": 44853478,
+    "by": "HiPHInch",
+    "timeISO": "2025-08-10T07:37:37.000Z",
+    "textPlain": "ported to macos using raycast```#!/bin/bash# Required parameters:\n# @raycast.schemaVersion 1\n# @raycast.title Ask LLM\n# @raycast.mode fullOutput# Optional parameters:\n# @raycast.icon \n# @raycast.argument1 { \"type\": \"text\", \"placeholder\": \"Your question\" }# Documentation:\n# @raycast.author Your Name\n# @raycast.authorURL https://github.com/youQUERY=\"$1\"\n[ -z \"$QUERY\" ] && exit 0FULL_QUERY=\"Answer in as little words as possible, concisely, for an intelligent person: $QUERY\"# URL encode (pure bash)\nencode_query() {\n  local query=\"$1\"\n  local encoded=\"\"\n  local c\n  for (( i=0; i<${#query}; i++ )); do\n    c=\"${query:$i:1}\"\n    case $c in\n      [a-zA-Z0-9.~_-]) encoded+=\"$c\" ;;\n      *) encoded+=$(printf '%%%02X' \"'$c\") ;;\n    esac\n  done\n  echo \"$encoded\"\n}ENCODED_QUERY=$(encode_query \"$FULL_QUERY\")# Get response\nRESPONSE=$(curl -s \"https://ch.at/?q=$ENCODED_QUERY\")# Output to Raycast\necho \"$RESPONSE\"# --- Optional: also pop up a big dialog ---\nosascript -e 'display dialog \"'\"$RESPONSE\"'\" buttons {\"OK\"} default button 1 with title \"LLM Answer\"'```",
+    "parent": 44853405,
+    "depth": 2
+  },
+  {
     "id": 44853707,
     "by": "moi2388",
     "timeISO": "2025-08-10T08:27:54.000Z",
@@ -236,6 +236,14 @@
     "by": "leumon",
     "timeISO": "2025-08-10T10:09:04.000Z",
     "textPlain": "Lmstudio or something like that on a laptop which has a lot of vram.",
+    "parent": 44853023,
+    "depth": 2
+  },
+  {
+    "id": 44854473,
+    "by": "anthk",
+    "timeISO": "2025-08-10T11:28:51.000Z",
+    "textPlain": "If you can do DNS queries set up a Iodine server at home and tunnel into it.",
     "parent": 44853023,
     "depth": 2
   },
@@ -309,14 +317,6 @@
     "timeISO": "2025-08-10T00:07:49.000Z",
     "textPlain": "This (or something very similar) was on X last week. The use case was so funny: using an LLM on an airplane connected to WiFi when you had not paid for WiFi … because DNS queries are allowed before paying :)",
     "parent": 44851518,
-    "depth": 2
-  },
-  {
-    "id": 44853528,
-    "by": "dzhiurgis",
-    "timeISO": "2025-08-10T07:46:32.000Z",
-    "textPlain": "That would be too good way to bypass corporate firewalls",
-    "parent": 44853389,
     "depth": 2
   }
 ]

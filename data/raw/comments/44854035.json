@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44854574,
+    "by": "vbezhenar",
+    "timeISO": "2025-08-10T11:51:29.000Z",
+    "textPlain": "Here's zsh snippet I've came up with for my own simple functions. I'm using it as a base for other completions. In this example, function `set-java-home zulu-21` sets JAVA_HOME to `~/apps/java/zulu-21`. Here's `_set-java-home`:    #compdef set-java-home\n    \n    local -a versions=(~/apps/java/*(:t))\n    _describe 'version' versions\n\nSo basically almost a one-liner (but couldn't do it really one-liner, unfortunately).",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
     "id": 44854164,
     "by": "lihaoyi",
     "timeISO": "2025-08-10T10:21:14.000Z",
@@ -48,18 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44854228,
-    "by": "wiseowise",
-    "timeISO": "2025-08-10T10:33:45.000Z",
-    "textPlain": "Shell syntax is the exact reason why we've needed LLMs in the first place.",
-    "parent": 44854035,
-    "depth": 1
-  },
-  {
     "id": 44854278,
     "by": "camdroidw",
     "timeISO": "2025-08-10T10:43:46.000Z",
     "textPlain": "Why doesn't someone (not me) just build a basic DSL and a transpiler that does this?",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44854228,
+    "by": "wiseowise",
+    "timeISO": "2025-08-10T10:33:45.000Z",
+    "textPlain": "Shell syntax is the exact reason why we've needed LLMs in the first place.",
     "parent": 44854035,
     "depth": 1
   },
@@ -69,6 +77,30 @@
     "timeISO": "2025-08-10T10:47:56.000Z",
     "textPlain": "When I screen share, people don't realize I'm not using zsh and dozen plugins. It's just fish and it's beautiful out of the box.",
     "parent": 44854235,
+    "depth": 2
+  },
+  {
+    "id": 44854453,
+    "by": "kekebo",
+    "timeISO": "2025-08-10T11:22:15.000Z",
+    "textPlain": "Thank you for the comment.  \nhttps://github.com/umlx5h/zsh-manpage-completion-generator appears to adapt this to ZSH. Have yet to try through",
+    "parent": 44854235,
+    "depth": 2
+  },
+  {
+    "id": 44854543,
+    "by": "IshKebab",
+    "timeISO": "2025-08-10T11:44:53.000Z",
+    "textPlain": "I agree that is annoying. It's waaay less confusing to complete a filename and then get an error from the actual program than it is for just ...nothing to happen so you get confused and have to `ls` to check if the file actually exists and it does and so you think tab completion is broken for some reason and you copy & paste the filename and then finally you get the error that explains what is going on.It should at least print a message like \"file foo.exe exists but it isn't executable\".",
+    "parent": 44854384,
+    "depth": 2
+  },
+  {
+    "id": 44854534,
+    "by": "compressedgas",
+    "timeISO": "2025-08-10T11:43:05.000Z",
+    "textPlain": "As it works as desired after running: complete -r; there is something broken about the bash-completion script.",
+    "parent": 44854384,
     "depth": 2
   },
   {
@@ -104,6 +136,14 @@
     "depth": 2
   },
   {
+    "id": 44854479,
+    "by": "mnahkies",
+    "timeISO": "2025-08-10T11:30:01.000Z",
+    "textPlain": "I've wondered this as well - it would sure be nice if there was a standard --completion or something that common argument parsing libraries could automatically implement for us (much like they often implement automatic help text)",
+    "parent": 44854174,
+    "depth": 2
+  },
+  {
     "id": 44854251,
     "by": "homebrewer",
     "timeISO": "2025-08-10T10:38:02.000Z",
@@ -112,19 +152,19 @@
     "depth": 2
   },
   {
+    "id": 44854385,
+    "by": "cb321",
+    "timeISO": "2025-08-10T11:07:14.000Z",
+    "textPlain": "The answer to your question is that command-lines have a much larger diversity of syntax (even to get help!) than most people realize.  Folks have their 30..60 commands they run frequently and don't run into many or conveniently forget/neglect older ones like `gcc` or `tar` or `dd`.  Many people (not saying you specifically) do not even realize that double-dash long options are a GNU extension never standardized or that Python toolkits typically allow --my-opt for --my-option abbreviations, just to name a couple of the dozen variations (space or '=', or ':' or '/' or any of the above or etc., etc.).  There are probably hundreds if not thousands of syntax possibilities, but people often act like there is only one.As an example of diversity estimation that you can try at home, a couple of times I have run every single command in my command search PATH with --help </dev/null >/tmp/help.$c 2>&1 .  Caution - be careful if you do this!  Have backups/checksums of everything important and run as an unprivileged user.  I always have to kill off several processes that just hang doing something or otherwise manually intervene.  Anyway, this alone suggests data collection of help text is not a trivial problem.Beyond data collection, many commands did not/do not use CLI toolkits at all.  Their commands may have even less regular syntax.  Freeform help makes it harder to produce a regular help syntax to convert into the interpreter needed by a completion system.  That said, as elsethread commented for some toolkits the Zsh _gnu_generic works great!  It essentially IS the \"automagic\" system you might want, just for a highly restricted circumstance.Any CLI toolkit itself does have the data, by necessity.  So, if the CLI framework supports the 2 or 3 common shells there is no need for a translator exactly.  You just need a code generator.  There is a stab at an auto-generation framework from said data for the Nim CLI toolkit, cligen, over at:https://github.com/c-blake/cligen/blob/ma",
+    "parent": 44854278,
+    "depth": 2
+  },
+  {
     "id": 44854270,
     "by": "camdroidw",
     "timeISO": "2025-08-10T10:42:13.000Z",
     "textPlain": "You mean Unix shell syntax. Powershell has got this absolutely right ,and only this (which is probably still a 50% of what a shell is)",
     "parent": 44854228,
-    "depth": 2
-  },
-  {
-    "id": 44854385,
-    "by": "cb321",
-    "timeISO": "2025-08-10T11:07:14.000Z",
-    "textPlain": "The answer to your question is that command-lines have a much larger diversity of syntax (even to get help!) than most people realize.  Folks have their 30..60 commands they run frequently and don't run into many or conveniently forget/neglect older ones like gcc or tar.  Many people (not saying you specifically) do not even realize that double-dash long options are a GNU extension never standardized or that Python toolkits typically allow --my-opt for --my-option abbreviations, just to name a couple of the dozen variations (space or '=', or ':' or '/' or any of the above or etc., etc.).  There are probably hundreds if not thousands of syntax possibilities, but people often act like there is only one.As an example of diversity estimation that you can try at home, a couple of times I have run every single command in my command search PATH with --help </dev/null >/tmp/help.$c 2>&1 .  Caution - be careful if you do this!  Have backups/checksums of everything important and run as an unprivileged user.  I always have to kill off several processes that just hang doing something or otherwise manually intervene.  Anyway, this alone suggests data collection of help text is not a trivial problem.Beyond data collection, many commands did not/do not use CLI toolkits at all.  Their commands may have even less regular syntax.  Freeform help makes it harder to produce a regular help syntax to convert into the interpreter needed by a completion system.  That said, as elsethread commented for some toolkits the Zsh _gnu_generic works great!Any CLI toolkit itself does have the data, by necessity.  So, if the CLI framework supports the 2 or 3 common shells there is no need for a translator exactly.  You just need a code generator.  There is a stab at an auto-generation framework from said data for the Nim CLI toolkit, cligen, over at:https://github.com/c-blake/cligen/blob/master/util/complgen....but it only works for Zsh right now.  Anyway, I don't think perfect should be the enemy of ",
-    "parent": 44854278,
     "depth": 2
   }
 ]

@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44851519,
-    "by": "medhir",
-    "timeISO": "2025-08-10T00:00:53.000Z",
-    "textPlain": "ohhhh the gifts multi-tenant app authorization keeps giving!(laid off) Microsoft PM here that worked on the patch described as a result of the research from Wiz.One correction I’d like to suggest to the article: the guidance given is to check either the “iss” or “tid” claim when authorizing multi-tenant apps.The actual recommended guidance we provided is slightly more involved. There is a chance that when only validating the tenant, any service principal could be granted authorized access.You should always validate the subject in addition to validating the tenant for the token being authorized. One method for this would be to validate the token using a combined key (for example, tid+oid) or perform checks on both the tenant and subject before authorizing access. More info can be found here:https://learn.microsoft.com/en-us/entra/identity-platform/cl...",
+    "id": 44854565,
+    "by": "Keyframe",
+    "timeISO": "2025-08-10T11:49:40.000Z",
+    "textPlain": "It's Microsoft. I'm sure there are wonderful people there, but haven't we witnessed recently their master key leak, their engineers begging GPT in PRs to do stuff, their CEO boasting 'backend' engineers are going away.. I wouldn't rely on that company for anything, but I acknowledge a ton of people are not in that position. If they do stay however, it's malpractice.",
     "parent": 44850681,
     "depth": 1
   },
   {
-    "id": 44854351,
-    "by": "firesteelrain",
-    "timeISO": "2025-08-10T10:58:57.000Z",
-    "textPlain": "This dumb stuff is why even Microsoft should use a common, secured and vetted pipeline for service principals so this does not happen.",
+    "id": 44851519,
+    "by": "medhir",
+    "timeISO": "2025-08-10T00:00:53.000Z",
+    "textPlain": "ohhhh the gifts multi-tenant app authorization keeps giving!(laid off) Microsoft PM here that worked on the patch described as a result of the research from Wiz.One correction I’d like to suggest to the article: the guidance given is to check either the “iss” or “tid” claim when authorizing multi-tenant apps.The actual recommended guidance we provided is slightly more involved. There is a chance that when only validating the tenant, any service principal could be granted authorized access.You should always validate the subject in addition to validating the tenant for the token being authorized. One method for this would be to validate the token using a combined key (for example, tid+oid) or perform checks on both the tenant and subject before authorizing access. More info can be found here:https://learn.microsoft.com/en-us/entra/identity-platform/cl...",
     "parent": 44850681,
     "depth": 1
   },
@@ -56,6 +56,14 @@
     "depth": 1
   },
   {
+    "id": 44854351,
+    "by": "firesteelrain",
+    "timeISO": "2025-08-10T10:58:57.000Z",
+    "textPlain": "This dumb stuff is why even Microsoft should use a common, secured and vetted pipeline for service principals so this does not happen.",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
     "id": 44852939,
     "by": "moi2388",
     "timeISO": "2025-08-10T05:19:01.000Z",
@@ -64,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44853861,
-    "by": "rootsudo",
-    "timeISO": "2025-08-10T09:08:35.000Z",
-    "textPlain": "This is still very effective for other organizations, not just microsoft. Of course they won't pay a bounty but any org that uses Micorosft 365/Office 365, Entrea ID which was Azure Active Directory can be polled and abused.Was not new news, AFAIK from the article they just patched the microsoft tools but they won't be pushing it tenant wide for all orgs.",
-    "parent": 44850681,
-    "depth": 1
-  },
-  {
     "id": 44852020,
     "by": "9cb14c1ec0",
     "timeISO": "2025-08-10T01:26:53.000Z",
     "textPlain": "OAuth is frequently marketed as \"more secure\".  But implementations often confuse authentication with authorization, resulting in problems like this.",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
+    "id": 44853861,
+    "by": "rootsudo",
+    "timeISO": "2025-08-10T09:08:35.000Z",
+    "textPlain": "This is still very effective for other organizations, not just microsoft. Of course they won't pay a bounty but any org that uses Micorosft 365/Office 365, Entrea ID which was Azure Active Directory can be polled and abused.Was not new news, AFAIK from the article they just patched the microsoft tools but they won't be pushing it tenant wide for all orgs.",
     "parent": 44850681,
     "depth": 1
   },

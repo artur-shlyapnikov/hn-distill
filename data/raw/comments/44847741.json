@@ -1,5 +1,13 @@
 [
   {
+    "id": 44849147,
+    "by": "tptacek",
+    "timeISO": "2025-08-09T19:01:59.000Z",
+    "textPlain": "Learning how to use LLMs in a coding workflow is trivial. There is no learning curve. You can safely ignore them if they don’t fit your workflows at the moment.I have never heard anybody successfully using LLMs say this before. Most of what I've learned from talking to people about their workflows is counterintuitive and subtle.It's a really weird way to open up an article concluding that LLMs make one a worse programmer: \"I definitely know how to use this tool optimally, and I conclude the tool sucks\". Ok then. Also: the piano is a terrible, awful instrument; what a racket it makes.",
+    "parent": 44847741,
+    "depth": 1
+  },
+  {
     "id": 44853504,
     "by": "donperignon",
     "timeISO": "2025-08-10T07:42:19.000Z",
@@ -8,10 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44849147,
-    "by": "tptacek",
-    "timeISO": "2025-08-09T19:01:59.000Z",
-    "textPlain": "Learning how to use LLMs in a coding workflow is trivial. There is no learning curve. You can safely ignore them if they don’t fit your workflows at the moment.I have never heard anybody successfully using LLMs say this before. Most of what I've learned from talking to people about their workflows is counterintuitive and subtle.It's a really weird way to open up an article concluding that LLMs make one a worse programmer: \"I definitely know how to use this tool optimally, and I conclude the tool sucks\". Ok then. Also: the piano is a terrible, awful instrument; what a racket it makes.",
+    "id": 44854555,
+    "by": "softwaredoug",
+    "timeISO": "2025-08-10T11:46:44.000Z",
+    "textPlain": "I find all AI coding goes something like this algorithm* I let the AI do something* I find bad bug or horrifying code* I realize I have it too much slack* hand code for a while* go back to narrow prompts* get lazy, review code a bit less add more complexity* GOTO 1, hopefully with a better instinct for where/how to trust this modelThen over time you hone your instinct on what to delegate and what to handle yourself. And how deeply to pay attention.",
+    "parent": 44847741,
+    "depth": 1
+  },
+  {
+    "id": 44854446,
+    "by": "fnordsensei",
+    "timeISO": "2025-08-10T11:21:36.000Z",
+    "textPlain": "> By being particularly bad at anything outside of the most popular languages and frameworks, LLMs force you to pick a very mainstream stack if you want to be efficient.Do they? I’ve found Clojure-MCP[1] to be very useful. OTOH, I’m not attempting to replace myself, only augment myself.1: https://github.com/bhauman/clojure-mcp",
     "parent": 44847741,
     "depth": 1
   },
@@ -32,26 +48,18 @@
     "depth": 1
   },
   {
-    "id": 44853604,
-    "by": "jamboca",
-    "timeISO": "2025-08-10T08:06:29.000Z",
-    "textPlain": "Have built many pipelines integrating LLMs to drive real $ results. I think this article boils it down too simply. But i always remember, if the LLM is the most interesting part of your work, something is severely wrong and you probably aren’t adding much value. Context management based on some aspects of your input is where LLMs get good, but you need to do lots of experimentation to tune something. Most cases i have seen are about developing one pipeline to fit 100s of extremely different cases; LLM does not solve this problem but basically serves as an approximator for you to discretize previously large problems in to some information sub space where you can treat the infinite set of inputs as something you know. LLMs are like a lasso (and a better/worse one than traditional lassos depending on use case) but once you get your catch you still need to process it, deal with it progammatically to solve some greater problem. I hate how so many LLM related articles/comments say “ai is useless throw it away dont use it” or “ai is the future if we dont do it now we’re doomed lets integrate it everywhere it can solve all our problems” like can anyone pick a happy medium? Maybe thats what being in a bubble looks like",
-    "parent": 44847741,
-    "depth": 1
-  },
-  {
-    "id": 44854275,
-    "by": "bubblebeard",
-    "timeISO": "2025-08-10T10:43:15.000Z",
-    "textPlain": "Strange post. It reads in part like an incoherent rant and in part as a well made analysis.It’s mostly on point though. Although, in recent years I’ve been assigned to manage and plan projects at work, and the skills I’ve learnt from that greatly help to get effective results from an LLM I think.",
-    "parent": 44847741,
-    "depth": 1
-  },
-  {
     "id": 44849341,
     "by": "simonw",
     "timeISO": "2025-08-09T19:25:31.000Z",
     "textPlain": "Learning how to use LLMs in a coding workflow is trivial. There is no learning curve. [...]LLMs will always suck at writing code that has not be written millions of times before. As soon as you venture slightly offroad, they falter.That right there is your learning curve! Getting LLMs to write code that's not heavily represented in their training data takes experience and skill and isn't obvious to learn.",
+    "parent": 44847741,
+    "depth": 1
+  },
+  {
+    "id": 44853604,
+    "by": "jamboca",
+    "timeISO": "2025-08-10T08:06:29.000Z",
+    "textPlain": "Have built many pipelines integrating LLMs to drive real $ results. I think this article boils it down too simply. But i always remember, if the LLM is the most interesting part of your work, something is severely wrong and you probably aren’t adding much value. Context management based on some aspects of your input is where LLMs get good, but you need to do lots of experimentation to tune something. Most cases i have seen are about developing one pipeline to fit 100s of extremely different cases; LLM does not solve this problem but basically serves as an approximator for you to discretize previously large problems in to some information sub space where you can treat the infinite set of inputs as something you know. LLMs are like a lasso (and a better/worse one than traditional lassos depending on use case) but once you get your catch you still need to process it, deal with it progammatically to solve some greater problem. I hate how so many LLM related articles/comments say “ai is useless throw it away dont use it” or “ai is the future if we dont do it now we’re doomed lets integrate it everywhere it can solve all our problems” like can anyone pick a happy medium? Maybe thats what being in a bubble looks like",
     "parent": 44847741,
     "depth": 1
   },
@@ -64,10 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44853846,
-    "by": "hiAndrewQuinn",
-    "timeISO": "2025-08-10T09:03:15.000Z",
-    "textPlain": ">I made a CLI logs viewers and querier for my job, which is very useful but would have taken me a few days to write (~3k LoC)I recall The Mythical Man-Month stating a rough calculation that the average software developer writes about 10 net lines of new, production-ready code per day. For a tool like this going up an order of magnitude to about 100 lines of pretty good internal tooling seems reasonable.OP sounds a few cuts above the 'average' software developer in terms of skill level. But here we also need to point out a CLI log viewer and querier is not the kind of thing you actually needed to be a top tier developer to crank out even in the pre-LLM era, unless you were going for lnav [1] levels of polish.[1]: https://lnav.org/",
+    "id": 44854275,
+    "by": "bubblebeard",
+    "timeISO": "2025-08-10T10:43:15.000Z",
+    "textPlain": "Strange post. It reads in part like an incoherent rant and in part as a well made analysis.It’s mostly on point though. Although, in recent years I’ve been assigned to manage and plan projects at work, and the skills I’ve learnt from that greatly help to get effective results from an LLM I think.",
     "parent": 44847741,
     "depth": 1
   },
@@ -76,6 +84,14 @@
     "by": "kodisha",
     "timeISO": "2025-08-09T20:31:58.000Z",
     "textPlain": "LLM driven coding can yield awesome results, but you will be typing a lot and, as article states, requires already well structured codebase.I recently started with fresh project, and until I got to the desired structure I only used AI to ask questions or suggestions. I organized and written most of the code.Once it started to get into the shape that felt semi-permanent to me, I started a lot of queries like:```- Look at existing service X at folder services/x- see how I deploy the service using k8s/services/x- see how the docker file for service X looks like at services/x/Dockerfile- now, I started service Y that does [this and that]- create all that is needed for service Y to be skaffolded and deployed, follow the same pattern as service X```And it would go, read existing stuff for X, then generate all of the deployment/monitoring/readme/docker/k8s/helm/skaffold for YWith zero to none mistakes.\nBoth claude and gemini are more than capable to do such task.\nI had both of them generate 10-15 files with no errors, with code being able to be deployed right after (of course service will just answer and not do much more than that)Then, I will take over again for a bit, do some business logic specific to Y, then again leverage AI to fill in missing bits, review, suggest stuff etc.It might look slow, but it actually cuts most boring and most error prone steps when developing medium to large k8s backed project.",
+    "parent": 44847741,
+    "depth": 1
+  },
+  {
+    "id": 44853846,
+    "by": "hiAndrewQuinn",
+    "timeISO": "2025-08-10T09:03:15.000Z",
+    "textPlain": ">I made a CLI logs viewers and querier for my job, which is very useful but would have taken me a few days to write (~3k LoC)I recall The Mythical Man-Month stating a rough calculation that the average software developer writes about 10 net lines of new, production-ready code per day. For a tool like this going up an order of magnitude to about 100 lines of pretty good internal tooling seems reasonable.OP sounds a few cuts above the 'average' software developer in terms of skill level. But here we also need to point out a CLI log viewer and querier is not the kind of thing you actually needed to be a top tier developer to crank out even in the pre-LLM era, unless you were going for lnav [1] levels of polish.[1]: https://lnav.org/",
     "parent": 44847741,
     "depth": 1
   },
@@ -168,18 +184,18 @@
     "depth": 1
   },
   {
-    "id": 44851649,
-    "by": "stopachka",
-    "timeISO": "2025-08-10T00:23:23.000Z",
-    "textPlain": "> By being particularly bad at anything outside of the most popular languages and frameworks, LLMs force you to pick a very mainstream stack if you want to be efficient.I use clojure for my day-to-day work, and I haven't found this to be true. Opus and GPT-5 are great friends when you start pushing limits on Clojure and the JVM.> Or 4.1 Opus if you are a millionaire and want to pollute as much possibleI know this was written tongue-in-cheek, but at least in my opinion it's worth it to use the best model if you can. Opus is definitely better on harder programming problems.> GPT 4.1 and 5 are mostly bad, but are very good at following strict guidelines.This was interesting. At least in my experience GPT-5 seemed about as good as Opus. I found it to be _less_ good at following strict guidelines though. In one test Opus avoided a bug by strictly following the rules, while GPT-5 missed.",
-    "parent": 44847741,
-    "depth": 1
-  },
-  {
     "id": 44850022,
     "by": "philipwhiuk",
     "timeISO": "2025-08-09T20:44:42.000Z",
     "textPlain": "There’s an IntelliJ extension for GitHub CoPilot.It’s not perfect but it’s okay.",
+    "parent": 44847741,
+    "depth": 1
+  },
+  {
+    "id": 44851649,
+    "by": "stopachka",
+    "timeISO": "2025-08-10T00:23:23.000Z",
+    "textPlain": "> By being particularly bad at anything outside of the most popular languages and frameworks, LLMs force you to pick a very mainstream stack if you want to be efficient.I use clojure for my day-to-day work, and I haven't found this to be true. Opus and GPT-5 are great friends when you start pushing limits on Clojure and the JVM.> Or 4.1 Opus if you are a millionaire and want to pollute as much possibleI know this was written tongue-in-cheek, but at least in my opinion it's worth it to use the best model if you can. Opus is definitely better on harder programming problems.> GPT 4.1 and 5 are mostly bad, but are very good at following strict guidelines.This was interesting. At least in my experience GPT-5 seemed about as good as Opus. I found it to be _less_ good at following strict guidelines though. In one test Opus avoided a bug by strictly following the rules, while GPT-5 missed.",
     "parent": 44847741,
     "depth": 1
   },
@@ -240,22 +256,6 @@
     "depth": 1
   },
   {
-    "id": 44854258,
-    "by": "gloomyday",
-    "timeISO": "2025-08-10T10:40:11.000Z",
-    "textPlain": "This is not a good analogy. The parameters of slot machines can be changed to make the casino lose money. Just because something is random, doesn't mean it is useless. If you get 7 good outputs out of 10 from an LLM, you can still use it for your benefit. The frequency of good outputs and how much babysitting it requires determine whether it is worth using or not. Humans make mistakes too, although way less often.",
-    "parent": 44853504,
-    "depth": 2
-  },
-  {
-    "id": 44853606,
-    "by": "jstummbillig",
-    "timeISO": "2025-08-10T08:07:04.000Z",
-    "textPlain": "We know what random* looks like: a coin toss, the roll of a die. Token generation is neither.",
-    "parent": 44853504,
-    "depth": 2
-  },
-  {
     "id": 44851031,
     "by": "SkyPuncher",
     "timeISO": "2025-08-09T22:42:30.000Z",
@@ -312,11 +312,11 @@
     "depth": 2
   },
   {
-    "id": 44848923,
-    "by": "mkozlows",
-    "timeISO": "2025-08-09T18:34:20.000Z",
-    "textPlain": "\"There's no learning curve\" just means this guy didn't get very far up, which is definitely backed up by thinking that Copilot and other tools are all basically the same.",
-    "parent": 44848846,
+    "id": 44854258,
+    "by": "gloomyday",
+    "timeISO": "2025-08-10T10:40:11.000Z",
+    "textPlain": "This is not a good analogy. The parameters of slot machines can be changed to make the casino lose money. Just because something is random, doesn't mean it is useless. If you get 7 good outputs out of 10 from an LLM, you can still use it for your benefit. The frequency of good outputs and how much babysitting it requires determine whether it is worth using or not. Humans make mistakes too, although way less often.",
+    "parent": 44853504,
     "depth": 2
   }
 ]

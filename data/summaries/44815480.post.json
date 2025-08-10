@@ -1,0 +1,8 @@
+{
+  "id": 44815480,
+  "lang": "ru",
+  "summary": "**Краткий перевод**\n\n- **Автор советует** использовать готовый action `mxschmitt/action-tmate@v3` вместо описанного ниже способа.  \n  ```yaml\n  - name: Debug with tmate on failure\n    if: ${{ failure() }}\n    uses: mxschmitt/action-tmate@v3\n  ```\n  При падении шага откроется `tmate`-сессия; ссылка и SSH-команда выводятся в логе.\n\n- **Идея оригинального поста**: запустить reverse-shell из GitHub Actions.  \n  1. На локальной машине слушаем порт:  \n     ```bash\n     nc -nlvp 4444\n     ```  \n  2. Прокидываем порт наружу через ngrok:  \n     ```bash\n     ngrok tcp 4444\n     ```  \n     Получаем адрес вроде `2.tcp.ngrok.io:13604`.\n\n- В репозитории создаём секреты `DEBUG_HOST` и `DEBUG_PORT` со значениями из ngrok.\n\n- Добавляем шаг в workflow:  \n  ```yaml\n  - name: Throw interactive shell\n    shell: bash -i {0}\n    run: |\n      rm /tmp/f 2>/dev/null; mkfifo /tmp/f\n      cat /tmp/f | /bin/sh -i 2>&1 | nc ${{ secrets.DEBUG_HOST }} ${{ secrets.DEBUG_PORT }}\n  ```\n\n- **Важно**: соединение не шифруется и не требует авторизации, поэтому подходит только для быстрого отладочного теста.",
+  "inputHash": "4c0a9faa5a1f356b41556baced716ee39de673433f1858ce191d3880ecc1c9ca",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-10T12:13:57.457Z"
+}
