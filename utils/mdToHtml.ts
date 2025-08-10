@@ -28,6 +28,7 @@ const allowedAttributes = {
 const transformTags = {
   // Enforce safe link attributes
   a: (tagName: string, attribs: Record<string, string>) => {
+    void tagName; // mark parameter as used
     const href = attribs['href'] || '';
     // Disallow dangerous protocols
     const safeHref = /^\s*javascript:/i.test(href) ? '' : href;

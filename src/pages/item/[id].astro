@@ -6,20 +6,19 @@ import { formatDateHuman } from '@utils/date';
 import { readFileSync, existsSync } from 'node:fs';
 import { mdToHtml } from '@utils/mdToHtml';
 import type { AggregatedItem } from '@config/schemas';
+import type { GetStaticPaths } from 'astro';
 
-function storyHref(id: number): string {
-  const u = new URL(`item/${id}/`, Astro.site ?? 'http://localhost/');
-  return u.pathname.endsWith('/') ? u.pathname : `${u.pathname}/`;
-}
+// no-op
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const p = new URL('../../../data/aggregated.json', import.meta.url).pathname;
   const { items = [] } = existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : { items: [] };
   return items.map((it: any) => ({ params: { id: String(it.id) } }));
-}
+};
 
 const lang = env.SUMMARY_LANG;
-const id = Number(Astro.params.id);
+const { id: idParam } = Astro.params as { id: string };
+const id = Number(idParam);
 const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
 const data = existsSync(dataPath) ? JSON.parse(readFileSync(dataPath, 'utf8')) : { items: [] };
 const item = (data.items as AggregatedItem[]).find((x) => x.id === id);
