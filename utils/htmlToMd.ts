@@ -5,6 +5,8 @@ const turndown = new TurndownService({
   codeBlockStyle: 'fenced',
 });
 
+turndown.remove(["script", "style"]);
+
 export function htmlToMd(html: string): string {
   if (!html) return '';
   return turndown.turndown(html);
