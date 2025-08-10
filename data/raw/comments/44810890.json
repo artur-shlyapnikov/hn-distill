@@ -56,6 +56,14 @@
     "depth": 1
   },
   {
+    "id": 44856523,
+    "by": "Jtsummers",
+    "timeISO": "2025-08-10T17:02:26.000Z",
+    "textPlain": "I think a lot of folks who have never looked at Erlang or Elixir and BEAM before misunderstand this concept because they don't understand how fine-grained processes are, or can be, in Erlang. A very important note: Processes in BEAM languages are cheap, both to create and for context switching, compared to OS threads. While design-wise they offer similar capabilities, this cost difference results in a substantially different approach to design in Erlang than in systems where the cost of introducing and switching between threads is more expensive.In a more conventional language where concurrency is relatively expensive, and assuming you're not an idiot who writes 1-10k SLOC functions, you end up with functions that have a \"single responsibility\" (maybe not actually a single responsibility, but closer to it than having 100 duties in one function) near the bottom of your call tree, but they all exist in one thread of execution. In a system, hypothetical, created in this model if your lowest level function is something like:  retrieve_data(db_connection, query_parameters) -> data\n\nAnd the database connection fails, would you attempt to restart the database connection in this function? Maybe, but that'd be bad design. You'd most likely raise an exception or change the signature so you could express an error return, in Rust and similar it would become something like:  retrieve_data(db_connection, query_parameters) -> Result<data, error>\n\nSomewhere higher in the call stack you have a handler which will catch the exception or process the error and determine what to do. That is, the function `retrieve_data` crashes, it fails to achieve its objective and does not attempt any corrective action (beyond maybe a few retries in case the error is transient).In Erlang, you have a supervision tree which corresponds to this call tree concept but for processes. The process handling data retrieval, having been given some db_conn handler and the parameters, will fail for some reason. Ins",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
     "id": 44852463,
     "by": "bgdkbtv",
     "timeISO": "2025-08-10T03:01:11.000Z",
@@ -308,14 +316,6 @@
     "by": "zwnow",
     "timeISO": "2025-08-10T06:28:30.000Z",
     "textPlain": "This is funny given Elixir/Erlangs whole idea is \"let it crash\". In Go I just have a Recovery Middleware for any type of problem. Don't know how other langs do it tho",
-    "parent": 44853160,
-    "depth": 2
-  },
-  {
-    "id": 44853243,
-    "by": "cyberax",
-    "timeISO": "2025-08-10T06:41:59.000Z",
-    "textPlain": "\"Let it crash\" in Erlang/Elixir means that the process that serves the request is allowed to crash. It then will be restarted by the supervisor.Supervisors themselves form a tree, so for a crash to take down the whole app, it needs to propagate all the way to the top.Another explanation for people familiar with exceptions in other languages: \"Don't try to catch the exception inside a request handler\".",
     "parent": 44853160,
     "depth": 2
   }

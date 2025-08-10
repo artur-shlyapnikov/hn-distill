@@ -1,17 +1,17 @@
 [
   {
-    "id": 44851519,
-    "by": "medhir",
-    "timeISO": "2025-08-10T00:00:53.000Z",
-    "textPlain": "ohhhh the gifts multi-tenant app authorization keeps giving!(laid off) Microsoft PM here that worked on the patch described as a result of the research from Wiz.One correction I’d like to suggest to the article: the guidance given is to check either the “iss” or “tid” claim when authorizing multi-tenant apps.The actual recommended guidance we provided is slightly more involved. There is a chance that when only validating the tenant, any service principal could be granted authorized access.You should always validate the subject in addition to validating the tenant for the token being authorized. One method for this would be to validate the token using a combined key (for example, tid+oid) or perform checks on both the tenant and subject before authorizing access. More info can be found here:https://learn.microsoft.com/en-us/entra/identity-platform/cl...",
-    "parent": 44850681,
-    "depth": 1
-  },
-  {
     "id": 44853635,
     "by": "Too",
     "timeISO": "2025-08-10T08:12:52.000Z",
     "textPlain": "Not surprising at all. The configuration and docs for Oauth2 on Entra is an absolute cluster-f. Evidently, it’s so confusing that not even Microsoft themselves can get it right.Their solution to this will be to add even more documentation, as if anyone had the stomach to read through the spaghetti that exist today.",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
+    "id": 44851519,
+    "by": "medhir",
+    "timeISO": "2025-08-10T00:00:53.000Z",
+    "textPlain": "ohhhh the gifts multi-tenant app authorization keeps giving!(laid off) Microsoft PM here that worked on the patch described as a result of the research from Wiz.One correction I’d like to suggest to the article: the guidance given is to check either the “iss” or “tid” claim when authorizing multi-tenant apps.The actual recommended guidance we provided is slightly more involved. There is a chance that when only validating the tenant, any service principal could be granted authorized access.You should always validate the subject in addition to validating the tenant for the token being authorized. One method for this would be to validate the token using a combined key (for example, tid+oid) or perform checks on both the tenant and subject before authorizing access. More info can be found here:https://learn.microsoft.com/en-us/entra/identity-platform/cl...",
     "parent": 44850681,
     "depth": 1
   },
@@ -80,18 +80,18 @@
     "depth": 1
   },
   {
-    "id": 44854351,
-    "by": "firesteelrain",
-    "timeISO": "2025-08-10T10:58:57.000Z",
-    "textPlain": "This dumb stuff is why even Microsoft should use a common, secured and vetted pipeline for service principals so this does not happen.",
-    "parent": 44850681,
-    "depth": 1
-  },
-  {
     "id": 44853861,
     "by": "rootsudo",
     "timeISO": "2025-08-10T09:08:35.000Z",
     "textPlain": "This is still very effective for other organizations, not just microsoft. Of course they won't pay a bounty but any org that uses Micorosft 365/Office 365, Entrea ID which was Azure Active Directory can be polled and abused.Was not new news, AFAIK from the article they just patched the microsoft tools but they won't be pushing it tenant wide for all orgs.",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
+    "id": 44854351,
+    "by": "firesteelrain",
+    "timeISO": "2025-08-10T10:58:57.000Z",
+    "textPlain": "This dumb stuff is why even Microsoft should use a common, secured and vetted pipeline for service principals so this does not happen.",
     "parent": 44850681,
     "depth": 1
   },
@@ -128,6 +128,14 @@
     "depth": 1
   },
   {
+    "id": 44853804,
+    "by": "trallnag",
+    "timeISO": "2025-08-10T08:51:50.000Z",
+    "textPlain": "Ran into this just a few weeks ago. According to the documentation it should be impossible to perform the authorization code flow with a scope that targets multiple resource servers. But if I request \"openid $clientid/.default\" it works. Kinda. At the end of the flow I get back an ID token and and access token. The ID token indicates that Azure has acknowledged the OIDC scope. But when I check the access token I can see that the scope has been adjusted to not include \"openid\". And indeed I'm unable to call Microsoft Graph which serves as the UserInfo endpoint. I was unable to find any good explanation for this behavior.",
+    "parent": 44853635,
+    "depth": 2
+  },
+  {
     "id": 44851623,
     "by": "reactordev",
     "timeISO": "2025-08-10T00:17:52.000Z",
@@ -152,19 +160,19 @@
     "depth": 2
   },
   {
-    "id": 44853804,
-    "by": "trallnag",
-    "timeISO": "2025-08-10T08:51:50.000Z",
-    "textPlain": "Ran into this just a few weeks ago. According to the documentation it should be impossible to perform the authorization code flow with a scope that targets multiple resource servers. But if I request \"openid $clientid/.default\" it works. Kinda. At the end of the flow I get back an ID token and and access token. The ID token indicates that Azure has acknowledged the OIDC scope. But when I check the access token I can see that the scope has been adjusted to not include \"openid\". And indeed I'm unable to call Microsoft Graph which serves as the UserInfo endpoint. I was unable to find any good explanation for this behavior.",
-    "parent": 44853635,
-    "depth": 2
-  },
-  {
     "id": 44855327,
     "by": "xtajv",
     "timeISO": "2025-08-10T14:14:16.000Z",
     "textPlain": "> Network security is such an afterthought but it’s the best layer of defense you can have!I mean, it's an additional layer.Defense-in-depth is about having multiple.",
     "parent": 44852564,
+    "depth": 2
+  },
+  {
+    "id": 44856425,
+    "by": "securesaml",
+    "timeISO": "2025-08-10T16:50:33.000Z",
+    "textPlain": "For me, I don't think that the application is public exposed is really the problem (i.e. not in intranet).I think the real problem is that these applications (Entra ID) are multi-tenant, rather than a dedicated single-tenant instance.Here, we have critical identity information that is being stored and shared in the same database with other tenants (malicious attackers). This makes multi-tenancy violations common.\nEven if Entra ID had a robust mechanism to perform tenancy checks i.e. object belongs to some tenant, there are still vulnerabilities.\nFor example, as you saw in the blog post, multi-tenant requests (requests that span >= 2 tenants), are fundamentally difficult to authorize. A single mistake, can lead to complete compromise.Compare this to a single tenant app. First, the attacker would need to be authenticated as an user within your tenant. This makes pre-auth attacks more difficult.",
+    "parent": 44851391,
     "depth": 2
   },
   {

@@ -32,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44854992,
-    "by": "sebtron",
-    "timeISO": "2025-08-10T13:16:06.000Z",
-    "textPlain": "Basic completion in ksh is as easy as defining an array. From https://man.openbsd.org/ksh :Custom completions may be configured by creating an array named ‘complete_command’, optionally suffixed with an argument number to complete only for a single argument. So defining an array named ‘complete_kill’ provides possible completions for any argument to the kill(1) command, but ‘complete_kill_1’ only completes the first argument. For example, the following command makes ksh offer a selection of signal names for the first argument to kill(1):    set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM",
-    "parent": 44854035,
-    "depth": 1
-  },
-  {
     "id": 44854174,
     "by": "oezi",
     "timeISO": "2025-08-10T10:22:26.000Z",
     "textPlain": "Isn't there a standard flag which programs can implement to avoid writing this bash script?Ideally this could all be part of a library such as argparse for typical cases, right?",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44854992,
+    "by": "sebtron",
+    "timeISO": "2025-08-10T13:16:06.000Z",
+    "textPlain": "Basic completion in ksh is as easy as defining an array. From https://man.openbsd.org/ksh :Custom completions may be configured by creating an array named ‘complete_command’, optionally suffixed with an argument number to complete only for a single argument. So defining an array named ‘complete_kill’ provides possible completions for any argument to the kill(1) command, but ‘complete_kill_1’ only completes the first argument. For example, the following command makes ksh offer a selection of signal names for the first argument to kill(1):    set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM",
     "parent": 44854035,
     "depth": 1
   },
@@ -128,18 +128,18 @@
     "depth": 2
   },
   {
-    "id": 44855114,
-    "by": "sanewombat",
-    "timeISO": "2025-08-10T13:37:56.000Z",
-    "textPlain": "It's surprising that on OpenSUSE `zypper search fish-completion` returns more than 200 packages. Something is fishy here.",
-    "parent": 44854235,
-    "depth": 2
-  },
-  {
     "id": 44854808,
     "by": "cb321",
     "timeISO": "2025-08-10T12:43:08.000Z",
     "textPlain": "For those programs that have betrayed shipping man pages, instead say relying only on a --help system, do you happen to know if the fish shell has an analogue to Zsh `_gnu_generic` and Bash `complete -F _longopt`?  If not, do you have any insight into why not/what it would take to make that happen?",
+    "parent": 44854235,
+    "depth": 2
+  },
+  {
+    "id": 44855114,
+    "by": "sanewombat",
+    "timeISO": "2025-08-10T13:37:56.000Z",
+    "textPlain": "It's surprising that on OpenSUSE `zypper search fish-completion` returns more than 200 packages. Something is fishy here.",
     "parent": 44854235,
     "depth": 2
   },
@@ -160,18 +160,18 @@
     "depth": 2
   },
   {
-    "id": 44855140,
-    "by": "loeg",
-    "timeISO": "2025-08-10T13:41:46.000Z",
-    "textPlain": "There is one particular command I occasionally use that has totally broken completion for files, so I've taken to just using 'ls X Y Z' to get the right completion behavior and then changing 'ls' to the right command as the last step.",
-    "parent": 44854384,
-    "depth": 2
-  },
-  {
     "id": 44855551,
     "by": "JNRowe",
     "timeISO": "2025-08-10T14:45:22.000Z",
     "textPlain": "There is the complete-filename function that only completes filenames in bash, bound to M-/ by default.  You can use that in any place you want a filename where \"complete\"(the function normally bound to tab) would do something you don't desire.There are a collection of other non-context aware completion functions that are bound by default too, useful for example when you when you wish to complete hostnames in a for-loop.zle has what is largely a significant superset of this, the documentation is spread about between the zshzle and zshcomp* manpages.",
+    "parent": 44854384,
+    "depth": 2
+  },
+  {
+    "id": 44855140,
+    "by": "loeg",
+    "timeISO": "2025-08-10T13:41:46.000Z",
+    "textPlain": "There is one particular command I occasionally use that has totally broken completion for files, so I've taken to just using 'ls X Y Z' to get the right completion behavior and then changing 'ls' to the right command as the last step.",
     "parent": 44854384,
     "depth": 2
   },
@@ -232,14 +232,6 @@
     "depth": 2
   },
   {
-    "id": 44855957,
-    "by": "chasil",
-    "timeISO": "2025-08-10T15:44:52.000Z",
-    "textPlain": "Is this in the Korn & Bolsy ksh88 book?Or is this ksh93 syntax that oksh back ported?",
-    "parent": 44854992,
-    "depth": 2
-  },
-  {
     "id": 44855703,
     "by": "duckerude",
     "timeISO": "2025-08-10T15:08:13.000Z",
@@ -261,6 +253,14 @@
     "timeISO": "2025-08-10T11:30:01.000Z",
     "textPlain": "I've wondered this as well - it would sure be nice if there was a standard --completion or something that common argument parsing libraries could automatically implement for us (much like they often implement automatic help text)",
     "parent": 44854174,
+    "depth": 2
+  },
+  {
+    "id": 44855957,
+    "by": "chasil",
+    "timeISO": "2025-08-10T15:44:52.000Z",
+    "textPlain": "Is this in the Korn & Bolsy ksh88 book?Or is this ksh93 syntax that oksh back ported?",
+    "parent": 44854992,
     "depth": 2
   },
   {
@@ -301,6 +301,14 @@
     "timeISO": "2025-08-10T15:23:43.000Z",
     "textPlain": "Why, it's a dinosaur? Have you tried nushell, murex, oil shell or xonsh?",
     "parent": 44854959,
+    "depth": 2
+  },
+  {
+    "id": 44856571,
+    "by": "anthk",
+    "timeISO": "2025-08-10T17:08:48.000Z",
+    "textPlain": "Perl solved that 20 years ago.And `rc` under plan9/9front did a Unix shell better than the classic Unix itself.",
+    "parent": 44854228,
     "depth": 2
   },
   {

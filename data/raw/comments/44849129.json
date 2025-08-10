@@ -40,14 +40,6 @@
     "depth": 1
   },
   {
-    "id": 44853696,
-    "by": "userbinator",
-    "timeISO": "2025-08-10T08:26:02.000Z",
-    "textPlain": "Does anyone else think \"and API\" makes as much sense as \"apples, oranges, pears, and fruits\"?",
-    "parent": 44849129,
-    "depth": 1
-  },
-  {
     "id": 44853405,
     "by": "dakinitribe",
     "timeISO": "2025-08-10T07:22:33.000Z",
@@ -56,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44855186,
-    "by": "tamimio",
-    "timeISO": "2025-08-10T13:48:38.000Z",
-    "textPlain": "I asked 5 questions, 4/5 of them said it can’t answer them because “it doesn’t have access to real time data”",
+    "id": 44853696,
+    "by": "userbinator",
+    "timeISO": "2025-08-10T08:26:02.000Z",
+    "textPlain": "Does anyone else think \"and API\" makes as much sense as \"apples, oranges, pears, and fruits\"?",
     "parent": 44849129,
     "depth": 1
   },
@@ -72,10 +64,26 @@
     "depth": 1
   },
   {
+    "id": 44855186,
+    "by": "tamimio",
+    "timeISO": "2025-08-10T13:48:38.000Z",
+    "textPlain": "I asked 5 questions, 4/5 of them said it can’t answer them because “it doesn’t have access to real time data”",
+    "parent": 44849129,
+    "depth": 1
+  },
+  {
     "id": 44849783,
     "by": "WhatsName",
     "timeISO": "2025-08-09T20:18:03.000Z",
     "textPlain": "I find the fact that in this day people can own two letter domains absolutely staggering, based on rarity, those should be worth millions I guess?",
+    "parent": 44849129,
+    "depth": 1
+  },
+  {
+    "id": 44853397,
+    "by": "HiPHInch",
+    "timeISO": "2025-08-10T07:20:40.000Z",
+    "textPlain": "is it a good idea to alias \"dig @ch.at TXT +short\" to a command say `c`then use `c \"the prompt\"`",
     "parent": 44849129,
     "depth": 1
   },
@@ -92,14 +100,6 @@
     "by": "indigodaddy",
     "timeISO": "2025-08-10T01:29:50.000Z",
     "textPlain": "These are the kinds of sites/tools that make me excited/optimistic about the AI/LLM future in general",
-    "parent": 44849129,
-    "depth": 1
-  },
-  {
-    "id": 44853397,
-    "by": "HiPHInch",
-    "timeISO": "2025-08-10T07:20:40.000Z",
-    "textPlain": "is it a good idea to alias \"dig @ch.at TXT +short\" to a command say `c`then use `c \"the prompt\"`",
     "parent": 44849129,
     "depth": 1
   },
@@ -240,19 +240,19 @@
     "depth": 2
   },
   {
-    "id": 44853707,
-    "by": "moi2388",
-    "timeISO": "2025-08-10T08:27:54.000Z",
-    "textPlain": "I do, I do!",
-    "parent": 44853696,
-    "depth": 2
-  },
-  {
     "id": 44853478,
     "by": "HiPHInch",
     "timeISO": "2025-08-10T07:37:37.000Z",
     "textPlain": "ported to macos using raycast```#!/bin/bash# Required parameters:\n# @raycast.schemaVersion 1\n# @raycast.title Ask LLM\n# @raycast.mode fullOutput# Optional parameters:\n# @raycast.icon \n# @raycast.argument1 { \"type\": \"text\", \"placeholder\": \"Your question\" }# Documentation:\n# @raycast.author Your Name\n# @raycast.authorURL https://github.com/youQUERY=\"$1\"\n[ -z \"$QUERY\" ] && exit 0FULL_QUERY=\"Answer in as little words as possible, concisely, for an intelligent person: $QUERY\"# URL encode (pure bash)\nencode_query() {\n  local query=\"$1\"\n  local encoded=\"\"\n  local c\n  for (( i=0; i<${#query}; i++ )); do\n    c=\"${query:$i:1}\"\n    case $c in\n      [a-zA-Z0-9.~_-]) encoded+=\"$c\" ;;\n      *) encoded+=$(printf '%%%02X' \"'$c\") ;;\n    esac\n  done\n  echo \"$encoded\"\n}ENCODED_QUERY=$(encode_query \"$FULL_QUERY\")# Get response\nRESPONSE=$(curl -s \"https://ch.at/?q=$ENCODED_QUERY\")# Output to Raycast\necho \"$RESPONSE\"# --- Optional: also pop up a big dialog ---\nosascript -e 'display dialog \"'\"$RESPONSE\"'\" buttons {\"OK\"} default button 1 with title \"LLM Answer\"'```",
     "parent": 44853405,
+    "depth": 2
+  },
+  {
+    "id": 44853707,
+    "by": "moi2388",
+    "timeISO": "2025-08-10T08:27:54.000Z",
+    "textPlain": "I do, I do!",
+    "parent": 44853696,
     "depth": 2
   },
   {
