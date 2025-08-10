@@ -52,8 +52,11 @@ jobs:
           fi
 
           # Always create a new commit; never amend/force-push
-          git commit -m "$MSG" || echo "no changes"
-          git push || true
+          git commit -m "$MSG"
+
+          # Rebase on top of the latest remote and retry the push if needed
+          git pull --rebase origin main
+          git push
 
       - name: Build
         env:
