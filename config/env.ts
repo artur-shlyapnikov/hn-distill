@@ -2,7 +2,6 @@ import { z } from "zod";
 
 const EnvSchema = z.object({
   OPENROUTER_API_KEY: z.string().optional(),
-  JINA_API_KEY: z.string().optional(),
   SUMMARY_LANG: z.enum(["ru", "en"]).default("ru"),
   TOP_N: z.coerce.number().int().min(1).max(500).default(40),
   MAX_COMMENTS_PER_STORY: z.coerce.number().int().min(1).max(5000).default(40),
