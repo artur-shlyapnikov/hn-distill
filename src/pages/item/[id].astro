@@ -1,0 +1,80 @@
+---
+// src/pages/item/[id].astro
+import '../../styles/global.css';
+import { env } from '@config/env';
+import { formatDateHuman } from '@utils/date';
+import { readFileSync, existsSync } from 'node:fs';
+import { mdToHtml } from '@utils/mdToHtml';
+import type { AggregatedItem } from '@config/schemas';
+
+function storyHref(id: number): string {
+  const u = new URL(`item/${id}/`, Astro.site ?? 'http://localhost/');
+  return u.pathname.endsWith('/') ? u.pathname : `${u.pathname}/`;
+}
+
+export async function getStaticPaths() {
+  const p = new URL('../../../data/aggregated.json', import.meta.url).pathname;
+  const { items = [] } = existsSync(p) ? JSON.parse(readFileSync(p, 'utf8')) : { items: [] };
+  return items.map((it: any) => ({ params: { id: String(it.id) } }));
+}
+
+const lang = env.SUMMARY_LANG;
+const id = Number(Astro.params.id);
+const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
+const data = existsSync(dataPath) ? JSON.parse(readFileSync(dataPath, 'utf8')) : { items: [] };
+const item = (data.items as AggregatedItem[]).find((x) => x.id === id);
+
+if (!item) throw new Error('Missing item for id ' + id);
+
+function loadSummary(kind: 'post' | 'comments'): string | undefined {
+  const p = new URL(`../../../data/summaries/${id}.${kind}.json`, import.meta.url).pathname;
+  if (!existsSync(p)) return undefined;
+  try { return (JSON.parse(readFileSync(p, 'utf8')).summary as string) || undefined; } catch { return undefined; }
+}
+
+const postMd = loadSummary('post') ?? item.postSummary ?? '';
+const commentsMd = loadSummary('comments') ?? item.commentsSummary ?? '';
+const postHtml = postMd ? mdToHtml(postMd) : '';
+const commentsHtml = commentsMd ? mdToHtml(commentsMd) : '';
+const datePretty = formatDateHuman(item.timeISO);
+const hnUrl = item.hnUrl ?? `https://news.ycombinator.com/item?id=${item.id}`;
+
+const i18n = {
+  ru: {
+    comments: 'Комментарии',
+  },
+  en: {
+    comments: 'Comments',
+  }
+};
+const t = i18n[lang];
+const commentsLabel = typeof item.commentsCount === 'number' ? ` (${item.commentsCount})` : '';
+---
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <title>{item.title}</title>
+    <meta name="robots" content="index,follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="canonical" href={hnUrl} />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Hacker News Digest</a></h1>
+      <p class="meta">{datePretty} • {item.domain ?? 'news.ycombinator.com'} • ⭐ {item.score ?? 0} • 💬 {item.commentsCount ?? 0}</p>
+      <p class="meta"><a href={item.url ?? hnUrl} rel="noopener noreferrer">Original</a> • <a href={hnUrl}>HN</a></p>
+    </header>
+    <main>
+      <section class="grid2">
+        <div class="card">
+          <h2 class="title">{item.title}</h2>
+          {postHtml ? <div class="md" set:html={postHtml} /> : <p class="meta">No post summary.</p>}
+        </div>
+        <aside class="card">
+          <h3 class="title"><a href={hnUrl} target="_blank" rel="noopener noreferrer nofollow">{t.comments}{commentsLabel}</a></h3>
+          {commentsHtml ? <div class="md" set:html={commentsHtml} /> : <p class="meta">No comments summary.</p>}
+        </aside>
+      </section>
+    </main>
+  </body>
+</html>

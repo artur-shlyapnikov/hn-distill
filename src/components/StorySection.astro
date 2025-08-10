@@ -7,6 +7,11 @@ import mdToHtmlUtil from '@utils/mdToHtml';
 const { item } = Astro.props as { item: AggregatedItem };
 const lang = env.SUMMARY_LANG;
 
+function storyHref(id: number): string {
+  const u = new URL(`item/${id}/`, Astro.site ?? 'http://localhost/');
+  return u.pathname.endsWith('/') ? u.pathname : `${u.pathname}/`;
+}
+
 const safeTitle = item.title || '(no title)';
 const safeBy = item.by || 'unknown';
 const safeTime = item.timeISO ? formatDateHuman(item.timeISO) : '—';
@@ -27,12 +32,14 @@ const i18n = {
   ru: {
     comments: 'Комментарии',
     hot: 'Горячее',
-    long: 'Длинная дискуссия'
+    long: 'Длинная дискуссия',
+    original: 'Оригинал'
   },
   en: {
     comments: 'Comments',
     hot: 'Hot',
-    long: 'Long discussion'
+    long: 'Long discussion',
+    original: 'Original'
   }
 };
 const t = i18n[lang];
@@ -247,7 +254,7 @@ const commentsHtml = item.commentsSummary ? mdToHtmlUtil(item.commentsSummary) :
 <section class="grid2" aria-labelledby={`t-${item.id}`}>
   <div class="card">
     <h2 id={`t-${item.id}`} class="title">
-      {item.url ? <a href={item.url} target="_blank" rel="noopener noreferrer nofollow">{safeTitle}</a> : safeTitle}
+      <a href={storyHref(item.id)}>{safeTitle}</a>
       {item.domain && <span class="meta" style="font-weight: normal; margin-left: 0.5rem;">({item.domain})</span>}
       {(isHot || isLongDiscussion) && (
         <span class="badges">
@@ -258,6 +265,7 @@ const commentsHtml = item.commentsSummary ? mdToHtmlUtil(item.commentsSummary) :
     </h2>
     {postHtml ? <div class="md" set:html={postHtml} /> : <p>—</p>}
     <p class="meta">by {safeBy} • {safeTime}{pts}</p>
+    <p class="meta"><a href={item.url ?? hnUrl} rel="noopener">{t.original}</a> • <a href={hnUrl}>HN</a></p>
   </div>
   <div class="card">
     <h3 class="title">
