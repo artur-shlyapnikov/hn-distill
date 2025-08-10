@@ -182,7 +182,7 @@ export async function summarizeComments(
   return { id: storyId, lang: SUMMARY_LANG, summary, sampleComments: sampleIds };
 }
 
-async function getOrFetchArticleMarkdown(services: Services, story: NormalizedStory): Promise<string | null> {
+export async function getOrFetchArticleMarkdown(services: Services, story: NormalizedStory): Promise<string | null> {
   if (!story.url) {
     log.warn("summarize/article", "Story has no URL; cannot fetch article", { id: story.id });
     return null;

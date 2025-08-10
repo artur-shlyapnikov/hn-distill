@@ -17,6 +17,23 @@ describe("utils/htmlToMd", () => {
     expect(md).toContain("console.log('hi')");
   });
 
+  test("handles headings, links, lists and ignores scripts/styles", () => {
+    const html = `
+      <h1>Main</h1>
+      <p>Visit <a href="https://example.com">link</a></p>
+      <ul><li>One</li><li>Two</li></ul>
+      <script>console.log('x')</script>
+      <style>p { color: red; }</style>
+    `;
+    const md = htmlToMd(html);
+    expect(md).toContain("# Main");
+    expect(md).toContain("[link](https://example.com)");
+    expect(md).toContain("*   One");
+    expect(md).toContain("*   Two");
+    expect(md).not.toContain("console.log");
+    expect(md).not.toContain("color: red");
+  });
+
   test("default export works", () => {
     const html = "<p>Hello</p>";
     expect(htmlToMdDefault(html)).toBe("Hello");
