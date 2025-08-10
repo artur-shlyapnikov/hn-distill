@@ -1,0 +1,8 @@
+{
+  "id": 44858892,
+  "lang": "ru",
+  "summary": "Переписал Ghuloum-туториал на Python (~300 строк). Убрал читалку S-выражений и бинарный код — теперь текстовая ассемблерная печать.\n\n**Lambda-lifting** требует:\n- знать связанные переменные;\n- собирать свободные переменные лямбд;\n- накапливать создаваемые `code`-объекты.\n\nСвязывают `let` и `lambda`; для них обновляем окружение.\n\n### Lifter\n\n```python\nclass LambdaConverter:\n    def __init__(self):\n        self.labels = {}\n\n    def convert(self, expr, bound, free):\n        match expr:\n            case int() | Char() | bool():\n                return expr\n            case str() if expr in bound or expr in BUILTINS:\n                return expr\n            case str():\n                free.add(expr)\n                return expr\n            case [\"if\", t, c, a]:\n                return [\"if\",\n                        self.convert(t, bound, free),\n                        self.convert(c, bound, free),\n                        self.convert(a, bound, free)]\n```\n\n`lift_lambdas` запускает обход и возвращает `(labels …)`.\n\n### Lambda\n\nЛямбда:\n- связывает параметры;\n- выделяет код;\n- захватывает внешнее окружение.\n\nПример:\n\n```lisp\n(lambda () x)  ; x свободна\n```\n\nпревращается в\n\n```lisp\n(labels ((f0 (code () (x) x)))\n  (closure f0 x))\n```\n\nДаже если `x` связан снаружи, внутри лямбды он считается свободным.",
+  "inputHash": "b7b1b483f7fc355859a814b2eee949da2b6177b241248658eff6619a57e636dc",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-10T23:22:37.351Z"
+}

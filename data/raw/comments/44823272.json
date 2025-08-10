@@ -1,1 +1,26 @@
-[]
+[
+  {
+    "id": 44858958,
+    "by": "tobinfekkes",
+    "timeISO": "2025-08-10T22:43:45.000Z",
+    "textPlain": "Can someone smarter than me explain what they mean by \"reified generics\", \"erased generics\", and a use case for when to use one over the other?",
+    "parent": 44823272,
+    "depth": 1
+  },
+  {
+    "id": 44859047,
+    "by": "gloryjulio",
+    "timeISO": "2025-08-10T22:54:23.000Z",
+    "textPlain": "Example, Java is using erased generics. Once the code is compiled, the generics information is no longer in the bytecode. List<String> becomes List<>. This is called type erasure.C# is using reified generics where this information is preserved. List<String> is still List<String> after compilation",
+    "parent": 44858958,
+    "depth": 2
+  },
+  {
+    "id": 44859080,
+    "by": "Gibbon1",
+    "timeISO": "2025-08-10T22:57:33.000Z",
+    "textPlain": "I'm not smarter than you but.I believe the terms reified generics and erased generics is the type sweaty donkey ball terminology you get for professional CS academics.Sticking my neck out further.Reified generics means the type is available at run time. In C# you can write if(obj.GetType() == typeof(typename))Erased generics the type information is not available at run time. That's the way Java does it and it kinda sucks.",
+    "parent": 44858958,
+    "depth": 2
+  }
+]
