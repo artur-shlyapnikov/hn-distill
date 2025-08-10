@@ -1,13 +1,5 @@
 [
   {
-    "id": 44853696,
-    "by": "userbinator",
-    "timeISO": "2025-08-10T08:26:02.000Z",
-    "textPlain": "Does anyone else think \"and API\" makes as much sense as \"apples, oranges, pears, and fruits\"?",
-    "parent": 44849129,
-    "depth": 1
-  },
-  {
     "id": 44852102,
     "by": "etaioinshrdlu",
     "timeISO": "2025-08-10T01:44:35.000Z",
@@ -24,14 +16,6 @@
     "depth": 1
   },
   {
-    "id": 44853405,
-    "by": "dakinitribe",
-    "timeISO": "2025-08-10T07:22:33.000Z",
-    "textPlain": "This is beautiful, thank you.Quickly allowed me to hook up this script, using dmenu and notify on i3:\nhttps://files.catbox.moe/vbhtg0.jpgAnd then trigger it with Mod+l for super quick answers as I'm working! Priceless <3",
-    "parent": 44849129,
-    "depth": 1
-  },
-  {
     "id": 44849851,
     "by": "FraserGreenlee",
     "timeISO": "2025-08-09T20:24:14.000Z",
@@ -40,10 +24,34 @@
     "depth": 1
   },
   {
+    "id": 44853696,
+    "by": "userbinator",
+    "timeISO": "2025-08-10T08:26:02.000Z",
+    "textPlain": "Does anyone else think \"and API\" makes as much sense as \"apples, oranges, pears, and fruits\"?",
+    "parent": 44849129,
+    "depth": 1
+  },
+  {
+    "id": 44853405,
+    "by": "dakinitribe",
+    "timeISO": "2025-08-10T07:22:33.000Z",
+    "textPlain": "This is beautiful, thank you.Quickly allowed me to hook up this script, using dmenu and notify on i3:\nhttps://files.catbox.moe/vbhtg0.jpgAnd then trigger it with Mod+l for super quick answers as I'm working! Priceless <3",
+    "parent": 44849129,
+    "depth": 1
+  },
+  {
     "id": 44851607,
     "by": "puppymaster",
     "timeISO": "2025-08-10T00:14:03.000Z",
     "textPlain": "been using it on a plane for the past one month. it's a great way to do some light reading and learning about obscure topics.dig @ch.at \"why is gua musang the king of durian\" TXT +short",
+    "parent": 44849129,
+    "depth": 1
+  },
+  {
+    "id": 44851954,
+    "by": "indigodaddy",
+    "timeISO": "2025-08-10T01:16:50.000Z",
+    "textPlain": "How are you/will you deal with basically your service getting overwhelmed/ddosed with requests?",
     "parent": 44849129,
     "depth": 1
   },
@@ -64,14 +72,6 @@
     "depth": 1
   },
   {
-    "id": 44851954,
-    "by": "indigodaddy",
-    "timeISO": "2025-08-10T01:16:50.000Z",
-    "textPlain": "How are you/will you deal with basically your service getting overwhelmed/ddosed with requests?",
-    "parent": 44849129,
-    "depth": 1
-  },
-  {
     "id": 44849783,
     "by": "WhatsName",
     "timeISO": "2025-08-09T20:18:03.000Z",
@@ -80,18 +80,18 @@
     "depth": 1
   },
   {
-    "id": 44853389,
-    "by": "zoobab",
-    "timeISO": "2025-08-10T07:18:35.000Z",
-    "textPlain": "Via email?",
-    "parent": 44849129,
-    "depth": 1
-  },
-  {
     "id": 44852034,
     "by": "indigodaddy",
     "timeISO": "2025-08-10T01:29:50.000Z",
     "textPlain": "These are the kinds of sites/tools that make me excited/optimistic about the AI/LLM future in general",
+    "parent": 44849129,
+    "depth": 1
+  },
+  {
+    "id": 44853389,
+    "by": "zoobab",
+    "timeISO": "2025-08-10T07:18:35.000Z",
+    "textPlain": "Via email?",
     "parent": 44849129,
     "depth": 1
   },
@@ -120,11 +120,11 @@
     "depth": 1
   },
   {
-    "id": 44853707,
-    "by": "moi2388",
-    "timeISO": "2025-08-10T08:27:54.000Z",
-    "textPlain": "I do, I do!",
-    "parent": 44853696,
+    "id": 44853737,
+    "by": "sunnybeetroot",
+    "timeISO": "2025-08-10T08:34:08.000Z",
+    "textPlain": "Do you mind if I know how much you paid for the domain, brilliant find.",
+    "parent": 44852102,
     "depth": 2
   },
   {
@@ -184,19 +184,27 @@
     "depth": 2
   },
   {
-    "id": 44853478,
-    "by": "HiPHInch",
-    "timeISO": "2025-08-10T07:37:37.000Z",
-    "textPlain": "ported to macos using raycast```#!/bin/bash# Required parameters:\n# @raycast.schemaVersion 1\n# @raycast.title Ask LLM\n# @raycast.mode fullOutput# Optional parameters:\n# @raycast.icon \n# @raycast.argument1 { \"type\": \"text\", \"placeholder\": \"Your question\" }# Documentation:\n# @raycast.author Your Name\n# @raycast.authorURL https://github.com/youQUERY=\"$1\"\n[ -z \"$QUERY\" ] && exit 0FULL_QUERY=\"Answer in as little words as possible, concisely, for an intelligent person: $QUERY\"# URL encode (pure bash)\nencode_query() {\n  local query=\"$1\"\n  local encoded=\"\"\n  local c\n  for (( i=0; i<${#query}; i++ )); do\n    c=\"${query:$i:1}\"\n    case $c in\n      [a-zA-Z0-9.~_-]) encoded+=\"$c\" ;;\n      *) encoded+=$(printf '%%%02X' \"'$c\") ;;\n    esac\n  done\n  echo \"$encoded\"\n}ENCODED_QUERY=$(encode_query \"$FULL_QUERY\")# Get response\nRESPONSE=$(curl -s \"https://ch.at/?q=$ENCODED_QUERY\")# Output to Raycast\necho \"$RESPONSE\"# --- Optional: also pop up a big dialog ---\nosascript -e 'display dialog \"'\"$RESPONSE\"'\" buttons {\"OK\"} default button 1 with title \"LLM Answer\"'```",
-    "parent": 44853405,
-    "depth": 2
-  },
-  {
     "id": 44850687,
     "by": "ivape",
     "timeISO": "2025-08-09T22:00:26.000Z",
     "textPlain": "I wonder if a 1B model could be close to free to host. That's an eventuality, but I wonder how long it'll take for that to be real.",
     "parent": 44849851,
+    "depth": 2
+  },
+  {
+    "id": 44853707,
+    "by": "moi2388",
+    "timeISO": "2025-08-10T08:27:54.000Z",
+    "textPlain": "I do, I do!",
+    "parent": 44853696,
+    "depth": 2
+  },
+  {
+    "id": 44853478,
+    "by": "HiPHInch",
+    "timeISO": "2025-08-10T07:37:37.000Z",
+    "textPlain": "ported to macos using raycast```#!/bin/bash# Required parameters:\n# @raycast.schemaVersion 1\n# @raycast.title Ask LLM\n# @raycast.mode fullOutput# Optional parameters:\n# @raycast.icon \n# @raycast.argument1 { \"type\": \"text\", \"placeholder\": \"Your question\" }# Documentation:\n# @raycast.author Your Name\n# @raycast.authorURL https://github.com/youQUERY=\"$1\"\n[ -z \"$QUERY\" ] && exit 0FULL_QUERY=\"Answer in as little words as possible, concisely, for an intelligent person: $QUERY\"# URL encode (pure bash)\nencode_query() {\n  local query=\"$1\"\n  local encoded=\"\"\n  local c\n  for (( i=0; i<${#query}; i++ )); do\n    c=\"${query:$i:1}\"\n    case $c in\n      [a-zA-Z0-9.~_-]) encoded+=\"$c\" ;;\n      *) encoded+=$(printf '%%%02X' \"'$c\") ;;\n    esac\n  done\n  echo \"$encoded\"\n}ENCODED_QUERY=$(encode_query \"$FULL_QUERY\")# Get response\nRESPONSE=$(curl -s \"https://ch.at/?q=$ENCODED_QUERY\")# Output to Raycast\necho \"$RESPONSE\"# --- Optional: also pop up a big dialog ---\nosascript -e 'display dialog \"'\"$RESPONSE\"'\" buttons {\"OK\"} default button 1 with title \"LLM Answer\"'```",
+    "parent": 44853405,
     "depth": 2
   },
   {
@@ -224,14 +232,6 @@
     "depth": 2
   },
   {
-    "id": 44853268,
-    "by": "redindian75",
-    "timeISO": "2025-08-10T06:46:53.000Z",
-    "textPlain": "i hold a good 2 letter Chat domain: hi.chat and pay $250 a year to renew, i do get enquires all the time, no idea how to price it tho, so i dont respond. Anyone have any ideas how to go about evaluating it?",
-    "parent": 44849783,
-    "depth": 2
-  },
-  {
     "id": 44850812,
     "by": "nunobrito",
     "timeISO": "2025-08-09T22:14:59.000Z",
@@ -244,6 +244,14 @@
     "by": "weitendorf",
     "timeISO": "2025-08-09T22:48:17.000Z",
     "textPlain": "I own vecs.ai and it's surprisingly hard to find buyers. Domains are really just Xoomer NFTs",
+    "parent": 44849783,
+    "depth": 2
+  },
+  {
+    "id": 44853268,
+    "by": "redindian75",
+    "timeISO": "2025-08-10T06:46:53.000Z",
+    "textPlain": "i hold a good 2 letter Chat domain: hi.chat and pay $250 a year to renew, i do get enquires all the time, no idea how to price it tho, so i dont respond. Anyone have any ideas how to go about evaluating it?",
     "parent": 44849783,
     "depth": 2
   },

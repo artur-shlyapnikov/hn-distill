@@ -256,18 +256,18 @@
     "depth": 2
   },
   {
-    "id": 44853596,
-    "by": "Squakie",
-    "timeISO": "2025-08-10T08:04:38.000Z",
-    "textPlain": "I can offer a hacking/penetrarion testing perspective to this as a security researcher at a security consultint firm: this type of hallucination and trust is one of the largest things we exploit in our new LLM testing service. Overly agentic systems (one of the top 10 OWASP LLM vulns) is the most profound and commonly exploited issue that we've been able to leverage.If we can get an internal, sensitive-data-handling agent to ingest a crafted prompt, either via direct prompt injection against a more abstract “parent” agent, or by tainting an input file/URL it’s told to process, we can plant what I have internally coined an “unfolding injection.”The injection works like a parasitic goal, it doesn’t just trick one agent, it rewrites the downstream intent. As the orchestrator routes tasks to other agents, each one treats the tainted instructions as legitimate and works toward fulfilling them.Because many orchestrations re-summarize, re-plan, or synthesize goals between steps, the malicious instructions can actually gain fidelity as they propagate. By the time they reach a sensitive action (exfiltration, privilege escalation, external calls), there’s no trace of the original “weird” wording, just a confidently stated, fully-integrated sub-goal.It’s essentially a supply-chain attack on the orchestration layer: you compromise one node in the agent network, and the rest “help” you without realizing it. Without explicit provenance tracking and policy enforcement between agents, this kind of unfolding injection is almost trivial to pull off, and we've been able to compromise entire environments based on the information the agentic system provided us, or just gave us either a bind or reverse shell in the case it has cli access and ability to figure out its own network constraints.SSRF has been making a HUGE return in agentic systems, and Im sad defcon and black hat didnt really have many talks on this subject this year, because it is a currently evolving security domain and en",
-    "parent": 44849009,
-    "depth": 2
-  },
-  {
     "id": 44849707,
     "by": "hinkley",
     "timeISO": "2025-08-09T20:09:36.000Z",
     "textPlain": "> In healthcare, patient data types get coerced incorrectly, potentially leading to wrong medication dosing recommendations.May have changed, but unlikely. I worked with medical telemetry as a young man and it was impressed upon me thoroughly how important parsing timestamps correctly was. I have a faint memory, possibly false, of this being the first time I wrote unit tests (and without the benefit of a test framework).We even accounted for lack of NTP by recalculating times off of the timestamps I. Their message headers.And the reasons I was given were incident review as well as malpractice cases. A drug administered three seconds before a heart attack starts is a very different situation than one administered eight seconds after the patient crashed. We saw recently with the British postal service how lives can be ruined by bad data, and in medical data a minute is a world of difference.",
+    "parent": 44849009,
+    "depth": 2
+  },
+  {
+    "id": 44853596,
+    "by": "Squakie",
+    "timeISO": "2025-08-10T08:04:38.000Z",
+    "textPlain": "I can offer a hacking/penetrarion testing perspective to this as a security researcher at a security consultint firm: this type of hallucination and trust is one of the largest things we exploit in our new LLM testing service. Overly agentic systems (one of the top 10 OWASP LLM vulns) is the most profound and commonly exploited issue that we've been able to leverage.If we can get an internal, sensitive-data-handling agent to ingest a crafted prompt, either via direct prompt injection against a more abstract “parent” agent, or by tainting an input file/URL it’s told to process, we can plant what I have internally coined an “unfolding injection.”The injection works like a parasitic goal, it doesn’t just trick one agent, it rewrites the downstream intent. As the orchestrator routes tasks to other agents, each one treats the tainted instructions as legitimate and works toward fulfilling them.Because many orchestrations re-summarize, re-plan, or synthesize goals between steps, the malicious instructions can actually gain fidelity as they propagate. By the time they reach a sensitive action (exfiltration, privilege escalation, external calls), there’s no trace of the original “weird” wording, just a confidently stated, fully-integrated sub-goal.It’s essentially a supply-chain attack on the orchestration layer: you compromise one node in the agent network, and the rest “help” you without realizing it. Without explicit provenance tracking and policy enforcement between agents, this kind of unfolding injection is almost trivial to pull off, and we've been able to compromise entire environments based on the information the agentic system provided us, or just gave us either a bind or reverse shell in the case it has cli access and ability to figure out its own network constraints.SSRF has been making a HUGE return in agentic systems, and Im sad defcon and black hat didnt really have many talks on this subject this year, because it is a currently evolving security domain and en",
     "parent": 44849009,
     "depth": 2
   },
@@ -288,18 +288,18 @@
     "depth": 2
   },
   {
-    "id": 44850237,
-    "by": "jongjong",
-    "timeISO": "2025-08-09T21:08:23.000Z",
-    "textPlain": "To me, the article was just rambling about all sorts of made up issues which only exist in the minds of people who never spent any time outside of corporate environments... A lot of 'preventative' ideas which make sense in some contexts but are mis-applied in different contexts.The stuff about type validation is incorrect. You don't need client-side validation. You shouldn't be using APIs you don't trust as tools and you can always add instructions about the LLM's output format to convert to different formats.MCP is not the issue. The issue is that people are using the wrong tools or their prompts are bad.If you don't like the format of an MCP tool and don't want to give formatting instructions the LLMs, you can always create your own MCP service which outputs data in the correct format. You don't need the coercion to happen on the client side.",
-    "parent": 44849009,
-    "depth": 2
-  },
-  {
     "id": 44849059,
     "by": "throwawaymaths",
     "timeISO": "2025-08-09T18:50:14.000Z",
     "textPlain": "i mean isnt all this stuff up to the mcp author to return a reasonable error to the agent and ask for it to repeat the call with amendments to the json?",
+    "parent": 44849009,
+    "depth": 2
+  },
+  {
+    "id": 44850237,
+    "by": "jongjong",
+    "timeISO": "2025-08-09T21:08:23.000Z",
+    "textPlain": "To me, the article was just rambling about all sorts of made up issues which only exist in the minds of people who never spent any time outside of corporate environments... A lot of 'preventative' ideas which make sense in some contexts but are mis-applied in different contexts.The stuff about type validation is incorrect. You don't need client-side validation. You shouldn't be using APIs you don't trust as tools and you can always add instructions about the LLM's output format to convert to different formats.MCP is not the issue. The issue is that people are using the wrong tools or their prompts are bad.If you don't like the format of an MCP tool and don't want to give formatting instructions the LLMs, you can always create your own MCP service which outputs data in the correct format. You don't need the coercion to happen on the client side.",
     "parent": 44849009,
     "depth": 2
   },

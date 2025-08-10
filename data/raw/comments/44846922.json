@@ -32,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44852735,
-    "by": "mcapodici",
-    "timeISO": "2025-08-10T04:22:34.000Z",
-    "textPlain": "The lethal trifecta is a problem problem (a big problem) but not the only one. You need to break a leg of all the lethal stools of AI tool use.For example a system that only reads github issues and runs commands can be tricked into modifying your codebase without direct exfiltration. You could argue that any persistent IO not shown to a human is exfiltration though...OK then you can sudo rm -rf /. Less useful for the attacker but an attack nonetheless.However I like the post its good to have common terminology when talking about these things and mental models for people designing these kinds of systems. I think the issue with MCP is that the end user who may not be across these issues could be clicking away adding MCP servers and not know the issues with doing so.",
-    "parent": 44846922,
-    "depth": 1
-  },
-  {
     "id": 44847933,
     "by": "ec109685",
     "timeISO": "2025-08-09T16:40:34.000Z",
     "textPlain": "How does Perplexity Comet and Dia not suffer from data leakage like this? They seem to completely violate the lethal trifecta principle and intermix your entire browser history, scraped web page data and LLM’s.",
+    "parent": 44846922,
+    "depth": 1
+  },
+  {
+    "id": 44852735,
+    "by": "mcapodici",
+    "timeISO": "2025-08-10T04:22:34.000Z",
+    "textPlain": "The lethal trifecta is a problem problem (a big problem) but not the only one. You need to break a leg of all the lethal stools of AI tool use.For example a system that only reads github issues and runs commands can be tricked into modifying your codebase without direct exfiltration. You could argue that any persistent IO not shown to a human is exfiltration though...OK then you can sudo rm -rf /. Less useful for the attacker but an attack nonetheless.However I like the post its good to have common terminology when talking about these things and mental models for people designing these kinds of systems. I think the issue with MCP is that the end user who may not be across these issues could be clicking away adding MCP servers and not know the issues with doing so.",
     "parent": 44846922,
     "depth": 1
   },
@@ -64,18 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44850978,
-    "by": "regularfry",
-    "timeISO": "2025-08-09T22:35:22.000Z",
-    "textPlain": "One idea I've had floating about in my head is to see if we can control-vector our way out of this. If we can identify an \"instruction following\" vector and specifically suppress it while we're feeding in untrusted data, then the LLM might be aware of the information but not act on it directly.  Knowing when to switch the suppression on and off would be the job of a pre-processor which just parses out appropriate quote marks.  Or, more robustly, you could use  prepared statements, with placeholders to switch mode without relying on a parser.  Big if: if that works, it undercuts a different leg of the trifecta, because while the AI is still exposed to untrusted data, it's no longer going to act on it in an untrustworthy way.",
-    "parent": 44846922,
-    "depth": 1
-  },
-  {
     "id": 44847886,
     "by": "mikewarot",
     "timeISO": "2025-08-09T16:34:03.000Z",
     "textPlain": "Maybe this will finally get people over the hump and adopt OSs based on capability based security. Being required to give a program a whitelist at runtime is almost foolproof, for current classes of fools.",
+    "parent": 44846922,
+    "depth": 1
+  },
+  {
+    "id": 44850978,
+    "by": "regularfry",
+    "timeISO": "2025-08-09T22:35:22.000Z",
+    "textPlain": "One idea I've had floating about in my head is to see if we can control-vector our way out of this. If we can identify an \"instruction following\" vector and specifically suppress it while we're feeding in untrusted data, then the LLM might be aware of the information but not act on it directly.  Knowing when to switch the suppression on and off would be the job of a pre-processor which just parses out appropriate quote marks.  Or, more robustly, you could use  prepared statements, with placeholders to switch mode without relying on a parser.  Big if: if that works, it undercuts a different leg of the trifecta, because while the AI is still exposed to untrusted data, it's no longer going to act on it in an untrustworthy way.",
     "parent": 44846922,
     "depth": 1
   },
@@ -248,14 +248,6 @@
     "depth": 2
   },
   {
-    "id": 44853636,
-    "by": "Terr_",
-    "timeISO": "2025-08-10T08:13:03.000Z",
-    "textPlain": "Perhaps both exfiltration and a disk-wipe on the server can be can be classed under \"Irrecoverable un-reviewed side-effects.\"",
-    "parent": 44852735,
-    "depth": 2
-  },
-  {
     "id": 44848402,
     "by": "do_not_redeem",
     "timeISO": "2025-08-09T17:31:34.000Z",
@@ -269,6 +261,22 @@
     "timeISO": "2025-08-09T18:09:05.000Z",
     "textPlain": "Dia is currently (as of last week) not vulnerable to this kind of exfiltration in a pretty straightforward way that may still be covered by NDA.These opinions are my own blah blah blah",
     "parent": 44847933,
+    "depth": 2
+  },
+  {
+    "id": 44853636,
+    "by": "Terr_",
+    "timeISO": "2025-08-10T08:13:03.000Z",
+    "textPlain": "Perhaps both exfiltration and a disk-wipe on the server can be can be classed under \"Irrecoverable un-reviewed side-effects.\"",
+    "parent": 44852735,
+    "depth": 2
+  },
+  {
+    "id": 44853792,
+    "by": "Terr_",
+    "timeISO": "2025-08-10T08:46:45.000Z",
+    "textPlain": "> The problem with most presentations of injection attacks is it only inspires people to start thinking of broken workarounds - all the things mentioned in the article. And they really believe they can do it.Doomed to repeat the mistakes of generations of develoeprs who \"solved\" SQL injection attacks at their companies by rejecting strings with suspicious words in them like \"update\".",
+    "parent": 44851581,
     "depth": 2
   },
   {
@@ -308,14 +316,6 @@
     "by": "tempodox",
     "timeISO": "2025-08-09T16:50:10.000Z",
     "textPlain": "I wish I could share your optimism.",
-    "parent": 44847886,
-    "depth": 2
-  },
-  {
-    "id": 44849917,
-    "by": "whartung",
-    "timeISO": "2025-08-09T20:31:29.000Z",
-    "textPlain": "Have you, or anyone, ever lived with such a system?For human beings, they sound like a nightmare.We're already getting a taste of it right now with modern systems.Becoming numb to \"enter admin password to continue\" prompts, getting generic \"$program needs $right/privilege on your system -- OK?\".\"Uh, what does this mean? What if I say no? What if I say YES!?\"\"Sorry, $program will utterly refuse to run without $right. So, you're SOL.\"Allow location tracking, all phone tracking, allow cookies.\"YES! YES! YES! MAKE IT STOP!\"My browser routinely asks me to enable location awareness. For arbitrary web sites, and won't seem to take \"No, Heck no, not ever\" as a response.Meanwhile, I did that \"show your sky\" cool little web site, and it seemed to know exactly where I am (likely from my IP).Why does my IDE need admin to install on my Mac?Capability based systems are swell on paper. But, not so sure how they will work in practice.",
     "parent": 44847886,
     "depth": 2
   }

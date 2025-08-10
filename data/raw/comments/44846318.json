@@ -8,10 +8,10 @@
     "depth": 1
   },
   {
-    "id": 44846724,
-    "by": "colinbartlett",
-    "timeISO": "2025-08-09T14:26:14.000Z",
-    "textPlain": "Thank you for this breakdown and for this level of transparency. We have been thinking of moving from MapTiler to OpenFreeMap for StatusGator's outage maps.",
+    "id": 44853756,
+    "by": "ivanjermakov",
+    "timeISO": "2025-08-10T08:36:48.000Z",
+    "textPlain": "> Nice idea, interesting project, next time please contact me before.I understand that my popular service might bring your less popular one to the halt, but please configure it on your end so I know _programmatically_ what its capabilities are.I host no API without rate-limiting. Additionally, clearly listing usage limits might be a good idea.",
     "parent": 44846318,
     "depth": 1
   },
@@ -24,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44852267,
-    "by": "Ericson2314",
-    "timeISO": "2025-08-10T02:16:27.000Z",
-    "textPlain": "Oh wow, TIL there is finally a simple way to actually view OpenStreetMap! Gosh, that's overdue. Glad it's done though!",
+    "id": 44846724,
+    "by": "colinbartlett",
+    "timeISO": "2025-08-09T14:26:14.000Z",
+    "textPlain": "Thank you for this breakdown and for this level of transparency. We have been thinking of moving from MapTiler to OpenFreeMap for StatusGator's outage maps.",
     "parent": 44846318,
     "depth": 1
   },
@@ -40,18 +40,18 @@
     "depth": 1
   },
   {
-    "id": 44847695,
-    "by": "ch33zer",
-    "timeISO": "2025-08-09T16:12:37.000Z",
-    "textPlain": "Since the limit you ran into was number of open files could you just raise that limit? I get blocking the spammy traffic but theoretically could you have handled more if that limit was upped?",
+    "id": 44852267,
+    "by": "Ericson2314",
+    "timeISO": "2025-08-10T02:16:27.000Z",
+    "textPlain": "Oh wow, TIL there is finally a simple way to actually view OpenStreetMap! Gosh, that's overdue. Glad it's done though!",
     "parent": 44846318,
     "depth": 1
   },
   {
-    "id": 44853040,
-    "by": "parhamn",
-    "timeISO": "2025-08-10T05:50:16.000Z",
-    "textPlain": "Since cloudflare is already sponsoring it, I do wonder how much of this type of service can be implemented all on cloudflare. Their stack could be great for tile serving.",
+    "id": 44847695,
+    "by": "ch33zer",
+    "timeISO": "2025-08-09T16:12:37.000Z",
+    "textPlain": "Since the limit you ran into was number of open files could you just raise that limit? I get blocking the spammy traffic but theoretically could you have handled more if that limit was upped?",
     "parent": 44846318,
     "depth": 1
   },
@@ -68,6 +68,14 @@
     "by": "eggbrain",
     "timeISO": "2025-08-09T14:55:22.000Z",
     "textPlain": "Limiting by referrer seems strange — if you know a normal user makes 10-20 requests (let’s assume per minute), can’t you just rate limit requests to 100 requests per minute per IP (5x the average load) and still block the majority of these cases?Or, if it’s just a few bad actors, block based on JA4/JA3 fingerprint?",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44853040,
+    "by": "parhamn",
+    "timeISO": "2025-08-10T05:50:16.000Z",
+    "textPlain": "Since cloudflare is already sponsoring it, I do wonder how much of this type of service can be implemented all on cloudflare. Their stack could be great for tile serving.",
     "parent": 44846318,
     "depth": 1
   },
@@ -176,14 +184,6 @@
     "depth": 2
   },
   {
-    "id": 44852799,
-    "by": "bravesoul2",
-    "timeISO": "2025-08-10T04:41:25.000Z",
-    "textPlain": "... And then it became 1M rps!",
-    "parent": 44852267,
-    "depth": 2
-  },
-  {
     "id": 44849954,
     "by": "TylerE",
     "timeISO": "2025-08-09T20:36:54.000Z",
@@ -192,27 +192,19 @@
     "depth": 2
   },
   {
+    "id": 44852799,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-10T04:41:25.000Z",
+    "textPlain": "... And then it became 1M rps!",
+    "parent": 44852267,
+    "depth": 2
+  },
+  {
     "id": 44847968,
     "by": "hyperknot",
     "timeISO": "2025-08-09T16:43:49.000Z",
     "textPlain": "I've just written my question to the nginx community forum, after a lengthy debugging session with multiple LLMs. Right now, I believe it was the combination of multi_accept + open_file_cache > worker_rlimit_nofile.https://community.nginx.org/t/too-many-open-files-at-1000-re...Also, the servers were doing 200 Mbps, so I couldn't have kept up _much_ longer, no matter the limits.",
     "parent": 44847695,
-    "depth": 2
-  },
-  {
-    "id": 44853416,
-    "by": "PUSH_AX",
-    "timeISO": "2025-08-10T07:24:16.000Z",
-    "textPlain": "You can run containers now on CF, I think this was one of the last barriers that might have prevented a lot of software being migrated without a re-architecting.Most stuff could run there now.",
-    "parent": 44853040,
-    "depth": 2
-  },
-  {
-    "id": 44853203,
-    "by": "leobuskin",
-    "timeISO": "2025-08-10T06:29:34.000Z",
-    "textPlain": "I’m also surprised to see nginx and hetzner in this project. Why not entirely Cloudflare: workers, R2, and cache",
-    "parent": 44853040,
     "depth": 2
   },
   {
@@ -264,6 +256,22 @@
     "depth": 2
   },
   {
+    "id": 44853203,
+    "by": "leobuskin",
+    "timeISO": "2025-08-10T06:29:34.000Z",
+    "textPlain": "I’m also surprised to see nginx and hetzner in this project. Why not entirely Cloudflare: workers, R2, and cache",
+    "parent": 44853040,
+    "depth": 2
+  },
+  {
+    "id": 44853416,
+    "by": "PUSH_AX",
+    "timeISO": "2025-08-10T07:24:16.000Z",
+    "textPlain": "You can run containers now on CF, I think this was one of the last barriers that might have prevented a lot of software being migrated without a re-architecting.Most stuff could run there now.",
+    "parent": 44853040,
+    "depth": 2
+  },
+  {
     "id": 44847243,
     "by": "hyperknot",
     "timeISO": "2025-08-09T15:23:34.000Z",
@@ -304,19 +312,11 @@
     "depth": 2
   },
   {
-    "id": 44847125,
-    "by": "columb",
-    "timeISO": "2025-08-09T15:10:07.000Z",
-    "textPlain": "You are so entitled... Because of you most nice things have \"no limits but...\". Not cool stress testing someone's infrastructure. Not cool. \nThe author of this post  is more than understanding, tried to fix it and offered a solution even after blocking them. On a free service.Show us what you have done.",
-    "parent": 44846966,
-    "depth": 2
-  },
-  {
-    "id": 44848302,
-    "by": "internetter",
-    "timeISO": "2025-08-09T17:17:54.000Z",
-    "textPlain": "The tiles need to be rendered. Yes frequent tiles can be cached but you already have a cache… it’s Cloudflare. Theoretically you could port the tileserver to Cloudflare pages but then you’d need to… port it… and it probably wouldn’t be cheaper",
-    "parent": 44848262,
+    "id": 44847031,
+    "by": "alessandroberna",
+    "timeISO": "2025-08-09T15:00:17.000Z",
+    "textPlain": "99.38%",
+    "parent": 44846884,
     "depth": 2
   }
 ]

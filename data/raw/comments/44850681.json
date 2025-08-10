@@ -1,17 +1,17 @@
 [
   {
-    "id": 44853702,
-    "by": "fock",
-    "timeISO": "2025-08-10T08:27:09.000Z",
-    "textPlain": "Does this have a CVE or something? I have the weird feeling the cloud initiative here won't notice this ever otherwise...",
-    "parent": 44850681,
-    "depth": 1
-  },
-  {
     "id": 44853635,
     "by": "Too",
     "timeISO": "2025-08-10T08:12:52.000Z",
     "textPlain": "Not surprising at all. The configuration and docs for Oauth2 on Entra is an absolute cluster-f. Evidently, it’s so confusing that not even Microsoft themselves can get it right.Their solution to this will be to add even more documentation, as if anyone had the stomach to read through the spaghetti that exist today.",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
+    "id": 44853861,
+    "by": "rootsudo",
+    "timeISO": "2025-08-10T09:08:35.000Z",
+    "textPlain": "This is still very effective for other organizations, not just microsoft. Of course they won't pay a bounty but any org that uses Micorosft 365/Office 365, Entrea ID which was Azure Active Directory can be polled and abused.Was not new news, AFAIK from the article they just patched the microsoft tools but they won't be pushing it tenant wide for all orgs.",
     "parent": 44850681,
     "depth": 1
   },
@@ -24,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44852564,
+    "by": "beoberha",
+    "timeISO": "2025-08-10T03:33:26.000Z",
+    "textPlain": "Ignoring the ridiculous complexity of Entra and how easy it is to not realize you’re making a mistake with it (especially internal at Microsoft where there’s no delineation between all the internal tenants you need to support and 3P customer tenants), it’s really scary how people think an auth token is the only layer of security you need. These sites shouldn’t have ever been exposed to public internet (they’re not now). Network security is such an afterthought but it’s the best layer of defense you can have!",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
     "id": 44851391,
     "by": "muststopmyths",
     "timeISO": "2025-08-09T23:39:26.000Z",
@@ -32,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44852564,
-    "by": "beoberha",
-    "timeISO": "2025-08-10T03:33:26.000Z",
-    "textPlain": "Ignoring the ridiculous complexity of Entra and how easy it is to not realize you’re making a mistake with it (especially internal at Microsoft where there’s no delineation between all the internal tenants you need to support and 3P customer tenants), it’s really scary how people think an auth token is the only layer of security you need. These sites shouldn’t have ever been exposed to public internet (they’re not now). Network security is such an afterthought but it’s the best layer of defense you can have!",
+    "id": 44853189,
+    "by": "yyyk",
+    "timeISO": "2025-08-10T06:27:05.000Z",
+    "textPlain": "It's all very simple: Entra* (Azure AD or however you'd call it) should not be used for AuthZ. Entra AuthN is okayish, but forget about Entra AuthZ, do it all yourself. It's all very simple to avoid once you do AuthZ.* No idea why the rename happened. Does some manager in Microsoft have the plaque: \"Renomino, ergo sum.\"?",
     "parent": 44850681,
     "depth": 1
   },
@@ -48,18 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44853363,
-    "by": "bobbyraduloff",
-    "timeISO": "2025-08-10T07:11:13.000Z",
-    "textPlain": "$0 in rewards for RCE on the Windows build servers is crazy. I understand he didn’t find an actual zero-day, only a configuration issue, but still. Imagine the global havoc you can cause if you can pollute the build environment with backdoored DLLs…",
+    "id": 44853702,
+    "by": "fock",
+    "timeISO": "2025-08-10T08:27:09.000Z",
+    "textPlain": "Does this have a CVE or something? I have the weird feeling the cloud initiative here won't notice this ever otherwise...",
     "parent": 44850681,
     "depth": 1
   },
   {
-    "id": 44853189,
-    "by": "yyyk",
-    "timeISO": "2025-08-10T06:27:05.000Z",
-    "textPlain": "It's all very simple: Entra* (Azure AD or however you'd call it) should not be used for AuthZ. Entra AuthN is okayish, but forget about Entra AuthZ, do it all yourself. It's all very simple to avoid once you do AuthZ.* No idea why the rename happened. Does some manager in Microsoft have the plaque: \"Renomino, ergo sum.\"?",
+    "id": 44853363,
+    "by": "bobbyraduloff",
+    "timeISO": "2025-08-10T07:11:13.000Z",
+    "textPlain": "$0 in rewards for RCE on the Windows build servers is crazy. I understand he didn’t find an actual zero-day, only a configuration issue, but still. Imagine the global havoc you can cause if you can pollute the build environment with backdoored DLLs…",
     "parent": 44850681,
     "depth": 1
   },
@@ -80,6 +88,14 @@
     "depth": 1
   },
   {
+    "id": 44851537,
+    "by": "therein",
+    "timeISO": "2025-08-10T00:04:06.000Z",
+    "textPlain": "Did he really get no bounties out of this? The guy found a way into build boxes retail Windows is built on, potentially found the private key that would be used to generate license keys, likely could have dived in a little bit more after getting RCE on the build box to exfil the latest Windows 11 source code. He even found a way to issue rewards. They still gave him nothing?",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
     "id": 44851285,
     "by": "gjsman-1000",
     "timeISO": "2025-08-09T23:20:02.000Z",
@@ -88,12 +104,12 @@
     "depth": 1
   },
   {
-    "id": 44851537,
-    "by": "therein",
-    "timeISO": "2025-08-10T00:04:06.000Z",
-    "textPlain": "Did he really get no bounties out of this? The guy found a way into build boxes retail Windows is built on, potentially found the private key that would be used to generate license keys, likely could have dived in a little bit more after getting RCE on the build box to exfil the latest Windows 11 source code. He even found a way to issue rewards. They still gave him nothing?",
-    "parent": 44850681,
-    "depth": 1
+    "id": 44853804,
+    "by": "trallnag",
+    "timeISO": "2025-08-10T08:51:50.000Z",
+    "textPlain": "Ran into this just a few weeks ago. According to the documentation it should be impossible to perform the authorization code flow with a scope that targets multiple resource servers. But if I request \"openid $clientid/.default\" it works. Kinda. At the end of the flow I get back an ID token and and access token. The ID token indicates that Azure has acknowledged the OIDC scope. But when I check the access token I can see that the scope has been adjusted to not include \"openid\". And indeed I'm unable to call Microsoft Graph which serves as the UserInfo endpoint. I was unable to find any good explanation for this behavior.",
+    "parent": 44853635,
+    "depth": 2
   },
   {
     "id": 44851623,
@@ -144,6 +160,22 @@
     "depth": 2
   },
   {
+    "id": 44853796,
+    "by": "sofixa",
+    "timeISO": "2025-08-10T08:49:24.000Z",
+    "textPlain": "If Azure's horrific security track record (tens of exploits, often cross-tenant, often trivial) over the past few years doesn't give you pause, their joke of a bug bounty definitely should.Obviously nobody with power cares about security in Microsoft's Azure branch. Why does anyone trust continue trusting them? (I mean, I know that Azure is not something you buy by choice, you do because you got a good deal on it or were a Microsoft shop before, but still).",
+    "parent": 44851537,
+    "depth": 2
+  },
+  {
+    "id": 44852303,
+    "by": "excalibur",
+    "timeISO": "2025-08-10T02:23:04.000Z",
+    "textPlain": "If their rules say this doesn't deserve a bounty their bounty program is a sham.",
+    "parent": 44851537,
+    "depth": 2
+  },
+  {
     "id": 44853228,
     "by": "indrora",
     "timeISO": "2025-08-10T06:35:32.000Z",
@@ -165,14 +197,6 @@
     "timeISO": "2025-08-09T23:43:44.000Z",
     "textPlain": "[dead]",
     "parent": 44851285,
-    "depth": 2
-  },
-  {
-    "id": 44852303,
-    "by": "excalibur",
-    "timeISO": "2025-08-10T02:23:04.000Z",
-    "textPlain": "If their rules say this doesn't deserve a bounty their bounty program is a sham.",
-    "parent": 44851537,
     "depth": 2
   }
 ]
