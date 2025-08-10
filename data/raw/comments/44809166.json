@@ -24,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44817950,
+    "by": "sixothree",
+    "timeISO": "2025-08-06T21:15:11.000Z",
+    "textPlain": "I love me some tailscale. But it kills the battery on my phone and it kills resolve.conf every time I boot wsl. I wish I had better luck.",
+    "parent": 44809166,
+    "depth": 1
+  },
+  {
     "id": 44835323,
     "by": "redat00",
     "timeISO": "2025-08-08T10:09:41.000Z",
@@ -32,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44817950,
-    "by": "sixothree",
-    "timeISO": "2025-08-06T21:15:11.000Z",
-    "textPlain": "I love me some tailscale. But it kills the battery on my phone and it kills resolve.conf every time I boot wsl. I wish I had better luck.",
+    "id": 44852293,
+    "by": "ezst",
+    "timeISO": "2025-08-10T02:21:40.000Z",
+    "textPlain": "I think I \"get\" what tailscale is about, what I don't get is how much of it is re-implemented and available out of the box in headscale. I already do most of the things mentioned in the article (from hand-rolled WG, Apache and firewall configurations), so this level of centralised automation and orchestration has some appeal, but I'm not willing to hand over the keys to my entire network to them and would rather keep things in-house.And on the topic of headscale, some people bring up netbird as an alternative. Netbird gets some immediate sympathy from me as they put lots of emphasis opensource and self-hosted, but I'd be curious to see how they compare for the use-cases described in the article.",
     "parent": 44809166,
     "depth": 1
   },
@@ -56,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44851521,
-    "by": "Jnr",
-    "timeISO": "2025-08-10T00:01:07.000Z",
-    "textPlain": "I use Headscale, an open source implementation of Tailscale control server. And it doesn't have funnel functionality implemented out of the box, but I use a custom Traefik proxy manager Web UI in which I can expose ports on different Tailnet nodes.In order to avoid exposing something unnecessarily in the certificate transparency logs, I use a single wildcard certificate, so all the subdomains are not listed anywhere automatically.I use the same approach for services hosted in the internal subdomain, because I don't want everyone to know what exactly I'm running in my homelab.",
+    "id": 44852294,
+    "by": "0xCMP",
+    "timeISO": "2025-08-10T02:21:42.000Z",
+    "textPlain": "I don't see why people don't just run their own CAs more for private stuff.If exposed for others I think the wildcard cert is also what I did, but most tutorials have you issuing certs via ACME for internal or local-only things which doesn't even need to happen.I personally run my own CA and even setup an ACME server and internal DNS. Nobody knows what I am doing there.",
     "parent": 44850881,
     "depth": 2
   },
@@ -68,6 +76,14 @@
     "by": "mh-",
     "timeISO": "2025-08-09T22:38:33.000Z",
     "textPlain": "Yeah, I have mixed feelings about CT (certificate transparency) for this reason. Folks are just consuming the firehose and scanning.And in this case, if the thing you're funnel'ing is on your residential connection, it basically amounts to you summoning a DDoS.One (obvious?) tip I'd offer is to put your stuff on high non-standard ports if you can. It'll reduce the amount of connections you get dramatically.",
+    "parent": 44850881,
+    "depth": 2
+  },
+  {
+    "id": 44851521,
+    "by": "Jnr",
+    "timeISO": "2025-08-10T00:01:07.000Z",
+    "textPlain": "I use Headscale, an open source implementation of Tailscale control server. And it doesn't have funnel functionality implemented out of the box, but I use a custom Traefik proxy manager Web UI in which I can expose ports on different Tailnet nodes.In order to avoid exposing something unnecessarily in the certificate transparency logs, I use a single wildcard certificate, so all the subdomains are not listed anywhere automatically.I use the same approach for services hosted in the internal subdomain, because I don't want everyone to know what exactly I'm running in my homelab.",
     "parent": 44850881,
     "depth": 2
   },
@@ -84,6 +100,14 @@
     "by": "xyzzy_plugh",
     "timeISO": "2025-08-10T01:53:32.000Z",
     "textPlain": "That section of the policy simply describes how the system works. It's very valuable information for enterprise customers who are effectively their entire market revenue-wise. Think access logs, intrusion detection, and so on. I do not interpret their policies such that they are processing the information you added emphasis to beyond what is necessary to serve the customer. What evidence do you have to the contrary?The irony of your post, which brings up Fear Uncertainty and Doubt, is certainly not lost on me. I'm also sure you could just ask apenwarr directly for clarification.",
+    "parent": 44851348,
+    "depth": 2
+  },
+  {
+    "id": 44852250,
+    "by": "benreesman",
+    "timeISO": "2025-08-10T02:13:04.000Z",
+    "textPlain": "Eh, as a network administrator you want the netlogs on by default and you very clearly onboard everyone to the network with a memorable warning to do their personal browsing over some other interface. You've usually got at least some minimal audit requirement on any network with high value stuff on it.It's probably not great that someone trying to use the free sample product lands in the same netlogging regime as the work network default, but I suspect thats more about allocation of attention and priority which understandably goes to the companies that make up approximately all of their business. Keeping the free sample product around after its long bern clear \"this is for work computers\" is just one of those things. The \"no support\" suffix on a setting is not to me the smoking gun you make it out to be, and I'm pretty hardcore in my attitudes about surveilance.I agree it's the wrong default for a purely personal user, but TailScale has enough \"good faith actor\" points with me that I'll give them the benefit of the doubt on malicious/evil dragnet surveilance ambitions. What could they possibly want with the data of a group of people who are by construction not spending money on a VPN? They'd be storing it at a loss.",
     "parent": 44851348,
     "depth": 2
   },

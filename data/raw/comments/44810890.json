@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "id": 44852663,
+    "by": "refactor_master",
+    "timeISO": "2025-08-10T04:01:11.000Z",
+    "textPlain": "Question as a complete outsider: If I run idempotent Python applications in Kubernetes containers and they crash, Kubernetes will eventually restart them. Of course, knowing what to do on IO errors is nicer than destroying and restarting everything with a really bigger hammer (as the article also mentions, you can serve a better error message for whoever has to “deal” with the problem), but eventually they should end up in the same workable state.Is this conceptually similar, but perhaps at code-level instead?",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44852658,
+    "by": "goosejuice",
+    "timeISO": "2025-08-10T03:59:21.000Z",
+    "textPlain": "https://erlang.org/pipermail/erlang-questions/2003-March/007...The origin, as far as I know it. I think it still holdsis insightful , as a general case. Let it heal seems pretty close to what Joe was getting at.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44852463,
+    "by": "bgdkbtv",
+    "timeISO": "2025-08-10T03:01:11.000Z",
+    "textPlain": "This is great, thanks for sharing! I've been thinking about improving error handling in my liveview app and this might be a nice way to start.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44852476,
+    "by": "bitwize",
+    "timeISO": "2025-08-10T03:04:52.000Z",
+    "textPlain": "I don't code in Erlang or Elixir, aside from messing about. But I've found that letting an entire application crash is something that I can do under certain circumstances, especially when \"you have a very big problem and will not go to space today\". For example, if there's an error reading some piece of data that's in the application bundle and is needed to legitimately start up in the first place (assets for my game for instance). Then upon error it just \"screams and dies\" (spits out a stack trace and terminates).",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44852512,
+    "by": "borromakot",
+    "timeISO": "2025-08-10T03:14:13.000Z",
+    "textPlain": "Errors during initialization of a BEAM language application will crash the entire program, and you can decide to exit/crash a program if you get into some unrecoverable state. The important thing is the design of individual crashable/recoverable units.",
+    "parent": 44852476,
+    "depth": 2
+  }
+]
