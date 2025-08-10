@@ -1,13 +1,5 @@
 [
   {
-    "id": 44853160,
-    "by": "praptak",
-    "timeISO": "2025-08-10T06:20:11.000Z",
-    "textPlain": "A condition that \"should not happen\" might still be a problem specific to a particular request. If you \"just crash\" it turns this request from one that only triggers a http 500 response to one that crashes the process. This increases the risk of Query of Death scenarios where the frontend that needs to serve this particular request starts retrying it with different backends and triggers restarts faster than the processes come back up.So being too eager to \"just crash\" may turn a scenario where you fail to serve 1% of requests into a scenario where you serve none because all your processes keep restarting.",
-    "parent": 44810890,
-    "depth": 1
-  },
-  {
     "id": 44852934,
     "by": "valenterry",
     "timeISO": "2025-08-10T05:17:39.000Z",
@@ -32,10 +24,26 @@
     "depth": 1
   },
   {
+    "id": 44853160,
+    "by": "praptak",
+    "timeISO": "2025-08-10T06:20:11.000Z",
+    "textPlain": "A condition that \"should not happen\" might still be a problem specific to a particular request. If you \"just crash\" it turns this request from one that only triggers a http 500 response to one that crashes the process. This increases the risk of Query of Death scenarios where the frontend that needs to serve this particular request starts retrying it with different backends and triggers restarts faster than the processes come back up.So being too eager to \"just crash\" may turn a scenario where you fail to serve 1% of requests into a scenario where you serve none because all your processes keep restarting.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
     "id": 44852463,
     "by": "bgdkbtv",
     "timeISO": "2025-08-10T03:01:11.000Z",
     "textPlain": "This is great, thanks for sharing! I've been thinking about improving error handling in my liveview app and this might be a nice way to start.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44852961,
+    "by": "monkeyelite",
+    "timeISO": "2025-08-10T05:26:12.000Z",
+    "textPlain": "This seems specific to BEAM as crashing a fast-cgi process is fine and response will be handled correctly with Apache or nginx.",
     "parent": 44810890,
     "depth": 1
   },
@@ -48,10 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44852961,
-    "by": "monkeyelite",
-    "timeISO": "2025-08-10T05:26:12.000Z",
-    "textPlain": "This seems specific to BEAM as crashing a fast-cgi process is fine and response will be handled correctly with Apache or nginx.",
+    "id": 44853280,
+    "by": "atoav",
+    "timeISO": "2025-08-10T06:51:19.000Z",
+    "textPlain": "The truth is that different errors have to lead to diffrrent results.- Fundamental error: something without the process cannot functio, e.g. Missing an essential config option? Exiting with an error is totally adequate. You can't just heal from that as it would involve guessing information you don't have- Critical error: something that should not ever occur, e.g. having an active user without password and email. You don't exit, you skip it and ensure the first occurance is logged and admins are contacted- Expected error: something that is expected to happen in certain operations of the service, e.g. the other server you make requests to is being restarted and thus unreachable. Here the strategy may vary, but it could be something like retrying with random exponential backoff. Or you could briefly accept the values provided by that server are unknown and periodically retry to fill the unknown values. Or you could escalate that into a critical error after a certain amount of retries.- Warnings: These are usually about something being not exactly ideal, but do not impede with the flow of the program at all. Usually has to do with bad data quality",
     "parent": 44810890,
     "depth": 1
   },
@@ -88,14 +96,6 @@
     "depth": 1
   },
   {
-    "id": 44853197,
-    "by": "zwnow",
-    "timeISO": "2025-08-10T06:28:30.000Z",
-    "textPlain": "This is funny given Elixir/Erlangs whole idea is \"let it crash\". In Go I just have a Recovery Middleware for any type of problem. Don't know how other langs do it tho",
-    "parent": 44853160,
-    "depth": 2
-  },
-  {
     "id": 44852975,
     "by": "corysama",
     "timeISO": "2025-08-10T05:28:38.000Z",
@@ -117,6 +117,38 @@
     "timeISO": "2025-08-10T04:34:57.000Z",
     "textPlain": "Typically you then let the error bubble up in the supervisor tree if restarting multiple times doesn't fix it.Of course there are still errors that can't be recovered from, in which case the whole program may finally crash.",
     "parent": 44852737,
+    "depth": 2
+  },
+  {
+    "id": 44853325,
+    "by": "rtpg",
+    "timeISO": "2025-08-10T07:03:20.000Z",
+    "textPlain": "My impression is that in Erlang land each process handler is really cheap so you can just keep on showing up with process handlers and not reach exhaustion like you do with other systems (at least in pre-async worlds...)",
+    "parent": 44853160,
+    "depth": 2
+  },
+  {
+    "id": 44853248,
+    "by": "josevalim",
+    "timeISO": "2025-08-10T06:42:57.000Z",
+    "textPlain": "Processes can be marked as temporary, which means they are not restarted, and that’s what is used when managing http connections, as you can’t really restart a request on the server without the client.  So the scenario above wouldn’t happen.You still want those processes to crash though, as it allows it to automatically clean up any concurrent work. For example, if during a request you start three processes to do concurrent work, like fetching APIs, then the request process crashes, the concurrent processes are automatically cleaned up.",
+    "parent": 44853160,
+    "depth": 2
+  },
+  {
+    "id": 44853197,
+    "by": "zwnow",
+    "timeISO": "2025-08-10T06:28:30.000Z",
+    "textPlain": "This is funny given Elixir/Erlangs whole idea is \"let it crash\". In Go I just have a Recovery Middleware for any type of problem. Don't know how other langs do it tho",
+    "parent": 44853160,
+    "depth": 2
+  },
+  {
+    "id": 44853243,
+    "by": "cyberax",
+    "timeISO": "2025-08-10T06:41:59.000Z",
+    "textPlain": "\"Let it crash\" in Erlang/Elixir means that the process that serves the request is allowed to crash. It then will be restarted by the supervisor.Supervisors themselves form a tree, so for a crash to take down the whole app, it needs to propagate all the way to the top.Another explanation for people familiar with exceptions in other languages: \"Don't try to catch the exception inside a request handler\".",
+    "parent": 44853160,
     "depth": 2
   },
   {
@@ -149,6 +181,14 @@
     "timeISO": "2025-08-10T06:10:10.000Z",
     "textPlain": "Took me a minute to realize what you meant with \"hackers\". Quite the irony, given the name of the site we are having this conversation on.",
     "parent": 44852820,
+    "depth": 2
+  },
+  {
+    "id": 44853285,
+    "by": "toast0",
+    "timeISO": "2025-08-10T06:52:41.000Z",
+    "textPlain": "Ok, so it's not really that you're not checking error codes. It's that you can write stuff like   ok = whatever().\n\nIf whatever is successful and idomatic, it returns ok, or maybe a tuple of {ok, SomeReturn}. In that case, execution would continue. If it returns an error tuple like {error, Reason}... \"Let it crash\" says you can just let it crash... You didn't have anything better to do, the built in crash because {error, Reason} will do fine.Or you could do a   case whatever of\n      ok -> ok;\n      {error, nxdomain} -> ok\n   end.\n\nIf it was fine to get nxdomain error, but any other error isn't acceptable... It will just crash, and that's good or at least ok. Better than having to enumerate all the possible errors, or having a catchall that then explicitly throws an eeror. It's especially hard to enumerate all possible errors because the running system can change and may return a new error that wasn't enumerated when the requesting code was written.There's lots of places where crashing isn't actually what you want, and you have to capture all errors, explicitly log it, and then move on... But when you can, checking for success or success and a handful of expected and recoverable errors is very nice.",
+    "parent": 44853095,
     "depth": 2
   },
   {

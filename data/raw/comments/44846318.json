@@ -16,14 +16,6 @@
     "depth": 1
   },
   {
-    "id": 44853040,
-    "by": "parhamn",
-    "timeISO": "2025-08-10T05:50:16.000Z",
-    "textPlain": "Since cloudflare is already sponsoring it, I do wonder how much of this type of service can be implemented all on cloudflare. Their stack could be great for tile serving.",
-    "parent": 44846318,
-    "depth": 1
-  },
-  {
     "id": 44846724,
     "by": "colinbartlett",
     "timeISO": "2025-08-09T14:26:14.000Z",
@@ -40,18 +32,26 @@
     "depth": 1
   },
   {
-    "id": 44847695,
-    "by": "ch33zer",
-    "timeISO": "2025-08-09T16:12:37.000Z",
-    "textPlain": "Since the limit you ran into was number of open files could you just raise that limit? I get blocking the spammy traffic but theoretically could you have handled more if that limit was upped?",
-    "parent": 44846318,
-    "depth": 1
-  },
-  {
     "id": 44852267,
     "by": "Ericson2314",
     "timeISO": "2025-08-10T02:16:27.000Z",
     "textPlain": "Oh wow, TIL there is finally a simple way to actually view OpenStreetMap! Gosh, that's overdue. Glad it's done though!",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44853040,
+    "by": "parhamn",
+    "timeISO": "2025-08-10T05:50:16.000Z",
+    "textPlain": "Since cloudflare is already sponsoring it, I do wonder how much of this type of service can be implemented all on cloudflare. Their stack could be great for tile serving.",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44847695,
+    "by": "ch33zer",
+    "timeISO": "2025-08-09T16:12:37.000Z",
+    "textPlain": "Since the limit you ran into was number of open files could you just raise that limit? I get blocking the spammy traffic but theoretically could you have handled more if that limit was upped?",
     "parent": 44846318,
     "depth": 1
   },
@@ -64,18 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44852809,
-    "by": "bravesoul2",
-    "timeISO": "2025-08-10T04:44:48.000Z",
-    "textPlain": "429 is your friend... but well done for handling the load!",
-    "parent": 44846318,
-    "depth": 1
-  },
-  {
     "id": 44846988,
     "by": "eggbrain",
     "timeISO": "2025-08-09T14:55:22.000Z",
     "textPlain": "Limiting by referrer seems strange — if you know a normal user makes 10-20 requests (let’s assume per minute), can’t you just rate limit requests to 100 requests per minute per IP (5x the average load) and still block the majority of these cases?Or, if it’s just a few bad actors, block based on JA4/JA3 fingerprint?",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44852809,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-10T04:44:48.000Z",
+    "textPlain": "429 is your friend... but well done for handling the load!",
     "parent": 44846318,
     "depth": 1
   },
@@ -104,18 +104,18 @@
     "depth": 1
   },
   {
-    "id": 44846966,
-    "by": "charcircuit",
-    "timeISO": "2025-08-09T14:52:18.000Z",
-    "textPlain": ">Nice idea, interesting project, next time please contact me before.It's impossible to predict that one's project may go viral.>As a single user, you broke the service for everyone.Or you did by not having a high enough fd limit. Blaming sites when using it too much when you advertise there is no limit is not cool. It's not like wplace themselves were maliciously hammering the API.",
-    "parent": 44846318,
-    "depth": 1
-  },
-  {
     "id": 44846937,
     "by": "LoganDark",
     "timeISO": "2025-08-09T14:49:26.000Z",
     "textPlain": "> I believe what is happening is that those images are being drawn by some script-kiddies.Oh absolutely not. I've seen so many autistic people literally just nolifing and also collaborating on huge arts on wplace. It is absolutely not just script kiddies.> 3 billion requests / 2 million users is an average of 1,500 req/user. A normal user might make 10-20 requests when loading a map, so these are extremely high, scripted use cases.I don't know about that either. Users don't just load a map, they look all around the place to search for and see a bunch of the art others have made. I don't know how many requests is typical for \"exploring a map for hours on end\" but I imagine a lot of people are doing just that.I wouldn't completely discount automation but these usage patterns seem by far not impossible. Especially since wplace didn't expect sudden popularity so they may not have optimized their traffic patterns as much as they could have.",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44846966,
+    "by": "charcircuit",
+    "timeISO": "2025-08-09T14:52:18.000Z",
+    "textPlain": ">Nice idea, interesting project, next time please contact me before.It's impossible to predict that one's project may go viral.>As a single user, you broke the service for everyone.Or you did by not having a high enough fd limit. Blaming sites when using it too much when you advertise there is no limit is not cool. It's not like wplace themselves were maliciously hammering the API.",
     "parent": 44846318,
     "depth": 1
   },
@@ -168,14 +168,6 @@
     "depth": 1
   },
   {
-    "id": 44853203,
-    "by": "leobuskin",
-    "timeISO": "2025-08-10T06:29:34.000Z",
-    "textPlain": "I’m also surprised to see nginx and hetzner in this project. Why not entirely Cloudflare: workers, R2, and cache",
-    "parent": 44853040,
-    "depth": 2
-  },
-  {
     "id": 44846929,
     "by": "hyperknot",
     "timeISO": "2025-08-09T14:48:20.000Z",
@@ -192,19 +184,27 @@
     "depth": 2
   },
   {
-    "id": 44847968,
-    "by": "hyperknot",
-    "timeISO": "2025-08-09T16:43:49.000Z",
-    "textPlain": "I've just written my question to the nginx community forum, after a lengthy debugging session with multiple LLMs. Right now, I believe it was the combination of multi_accept + open_file_cache > worker_rlimit_nofile.https://community.nginx.org/t/too-many-open-files-at-1000-re...Also, the servers were doing 200 Mbps, so I couldn't have kept up _much_ longer, no matter the limits.",
-    "parent": 44847695,
-    "depth": 2
-  },
-  {
     "id": 44852799,
     "by": "bravesoul2",
     "timeISO": "2025-08-10T04:41:25.000Z",
     "textPlain": "... And then it became 1M rps!",
     "parent": 44852267,
+    "depth": 2
+  },
+  {
+    "id": 44853203,
+    "by": "leobuskin",
+    "timeISO": "2025-08-10T06:29:34.000Z",
+    "textPlain": "I’m also surprised to see nginx and hetzner in this project. Why not entirely Cloudflare: workers, R2, and cache",
+    "parent": 44853040,
+    "depth": 2
+  },
+  {
+    "id": 44847968,
+    "by": "hyperknot",
+    "timeISO": "2025-08-09T16:43:49.000Z",
+    "textPlain": "I've just written my question to the nginx community forum, after a lengthy debugging session with multiple LLMs. Right now, I believe it was the combination of multi_accept + open_file_cache > worker_rlimit_nofile.https://community.nginx.org/t/too-many-open-files-at-1000-re...Also, the servers were doing 200 Mbps, so I couldn't have kept up _much_ longer, no matter the limits.",
+    "parent": 44847695,
     "depth": 2
   },
   {
@@ -280,6 +280,22 @@
     "depth": 2
   },
   {
+    "id": 44847598,
+    "by": "Karliss",
+    "timeISO": "2025-08-09T16:03:45.000Z",
+    "textPlain": "Just scrolled around a little bit 2-3minutes with network monitor open. That already resulted in 500requests, 5MB transferred (after filtering by vector tile data). Not sure how many of those got cached by browser with no actual requests, cached by browser exchanging only headers or cached by cloudflare. I am guessing that the typical 10-20 requests/user case is for embedded map fragment like those commonly found in contact page where most users don't scroll at all or at most slightly zoom out to better see rest of city.",
+    "parent": 44846937,
+    "depth": 2
+  },
+  {
+    "id": 44846997,
+    "by": "nemomarx",
+    "timeISO": "2025-08-09T14:56:10.000Z",
+    "textPlain": "There are some user scripts to overlay templates on the map and coordinate working together, but I can't imagine that increases the load much. What might is that wplace has been struggling under the load and you have to refresh to see your pixels placed or any changes and that could be causing more calls an hour maybe?",
+    "parent": 44846937,
+    "depth": 2
+  },
+  {
     "id": 44847125,
     "by": "columb",
     "timeISO": "2025-08-09T15:10:07.000Z",
@@ -293,22 +309,6 @@
     "timeISO": "2025-08-09T15:17:37.000Z",
     "textPlain": "Do you expect him just to let the service remain broken or to scale up to infinite cost to himself on this volunteer project? He worked with the project author to find a solution that works for both and does not degrade service for every other user, under literally no obligation to do anything at all.\n This isn’t Anthropic deciding to throttle users paying hundreds of dollars a month for a subscription. Constructive criticism is one thing, but entitlement to something run by an individual volunteer for free is absurd.",
     "parent": 44846966,
-    "depth": 2
-  },
-  {
-    "id": 44847222,
-    "by": "rikafurude21",
-    "timeISO": "2025-08-09T15:20:57.000Z",
-    "textPlain": "the funny part is that his service didnt break- cloudflares cache caught 99% of the requests. just wanted to feel powerful and break the latest viral trend.",
-    "parent": 44846966,
-    "depth": 2
-  },
-  {
-    "id": 44847598,
-    "by": "Karliss",
-    "timeISO": "2025-08-09T16:03:45.000Z",
-    "textPlain": "Just scrolled around a little bit 2-3minutes with network monitor open. That already resulted in 500requests, 5MB transferred (after filtering by vector tile data). Not sure how many of those got cached by browser with no actual requests, cached by browser exchanging only headers or cached by cloudflare. I am guessing that the typical 10-20 requests/user case is for embedded map fragment like those commonly found in contact page where most users don't scroll at all or at most slightly zoom out to better see rest of city.",
-    "parent": 44846937,
     "depth": 2
   },
   {

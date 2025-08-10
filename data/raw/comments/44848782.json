@@ -16,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44852700,
-    "by": "int_19h",
-    "timeISO": "2025-08-10T04:12:55.000Z",
-    "textPlain": "I see that systemd is still doing this thing where they are trying to strong-arm all Linux distros into arbitrary stuff that someone decided is the only right way to do something:> 5.2.2. systemd message: System is tainted: unmerged-bin\nsystemd upstream, since version 256, considers systems having separate /usr/bin and /usr/sbin directories noteworthy. At startup systemd emits a message to record this fact: System is tainted: unmerged-bin. It is recommended to ignore this message. Merging these directories manually is unsupported and will break future upgrades. Further details can be found in bug #1085370.No option to disable this either, per discussion in https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1085370",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849053,
     "by": "gorgoiler",
     "timeISO": "2025-08-09T18:49:38.000Z",
     "textPlain": "Congratulations!Debian has been the stable footing of my Free computing life for three decades.  Everything about their approach — from showing me Condorcet, organising stable chaos, moving forward by measured consensus, and basing everything on hard wrought principles — has had an effect on me in some way, from technical to social and back again.I love this project and the immeasurable impact it has had on the world through their releases and culture.With all my love, g’o xx",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44852700,
+    "by": "int_19h",
+    "timeISO": "2025-08-10T04:12:55.000Z",
+    "textPlain": "I see that systemd is still doing this thing where they are trying to strong-arm all Linux distros into arbitrary stuff that someone decided is the only right way to do something:> 5.2.2. systemd message: System is tainted: unmerged-bin\nsystemd upstream, since version 256, considers systems having separate /usr/bin and /usr/sbin directories noteworthy. At startup systemd emits a message to record this fact: System is tainted: unmerged-bin. It is recommended to ignore this message. Merging these directories manually is unsupported and will break future upgrades. Further details can be found in bug #1085370.No option to disable this either, per discussion in https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1085370",
     "parent": 44848782,
     "depth": 1
   },
@@ -56,10 +56,26 @@
     "depth": 1
   },
   {
+    "id": 44853335,
+    "by": "LoveMortuus",
+    "timeISO": "2025-08-10T07:04:57.000Z",
+    "textPlain": "I'm very sad to see them drop support for 32-bit, since that is the computer on which I have been using Debian for the past 10 years...Does anyone have any suggestions for a 32-bit distro that's still being updated?",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44850563,
     "by": "pss314",
     "timeISO": "2025-08-09T21:44:42.000Z",
     "textPlain": "A new APT sources format \"debian.sources\" is announced with trixie. The now older \"sources.list\" format is still supported, but is likely to be deprecated in a future Debian release.See below:  APT is moving to a different format for configuring where it downloads packages from. The files /etc/apt/sources.list and *.list files in /etc/apt/sources.list.d/ are replaced by files still in that directory but with names ending in .sources, using the new, more readable (deb822 style) format. For details see sources.list(5). Examples of APT configurations in these notes will be given in the new deb822 format.\n\n  If your system is using multiple sources files then you will need to ensure they stay consistent.\n\n- https://wiki.debian.org/SourcesList#APT_sources_format- https://www.debian.org/releases/trixie/release-notes/upgradi...\"apt modernize-sources\" command can be used to simulate and replace \".list\" files with the new \".sources\" format.  Modernizing will replace .list files with the new .sources format, add Signed-By values where they can be determined automatically, and save the old files into .list.bak files.\n\n  This command supports the 'signed-by' and 'trusted' options. If you have specified other options inside [] brackets, please transfer them manually to the output files; see sources.list(5) for a mapping.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44853309,
+    "by": "endorphine",
+    "timeISO": "2025-08-10T06:59:45.000Z",
+    "textPlain": "If you're upgrading, see https://www.debian.org/releases/trixie/release-notes/upgradi....",
     "parent": 44848782,
     "depth": 1
   },
@@ -76,14 +92,6 @@
     "by": "bbarnett",
     "timeISO": "2025-08-09T20:04:33.000Z",
     "textPlain": "For those worrying about the NIC change with systemd, this comes from the release doc:https://www.debian.org/releases/trixie/release-notes/issues....  # example:\n  udevadm test-builtin net_setup_link /sys/class/net/eno4 2>/dev/null\n  ID_NET_LINK_FILE=/usr/lib/systemd/network/99-default.link\n  ID_NET_LINK_FILE_DROPINS=\n  ID_NET_NAME=eno4  <-- note the NIC name that will happen after reboot\n\nHere's a one-liner, excluding a bond interface and lo.  Gives a nice list of pre and post change.  for x in $(cat /etc/network/interfaces | grep auto | cut -d ' ' -f 2 | grep -Ev 'lo|bond0'); do echo -n $x:; udevadm test-builtin net_setup_link /sys/class/net/$x 2>/dev/null | grep NET_NAME| cut -d = -f 2; done\n\nThe doc's logic is that after you've upgraded to trixie, and before reboot, you're running enough of systemd to see what it will name interfaces after reboot.So far I have not had an interface change due to upgrade, so I cannot say that the above does detect it.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44853159,
-    "by": "starkparker",
-    "timeISO": "2025-08-10T06:20:06.000Z",
-    "textPlain": "Maybe a niche concern, but SDL2 is still in Trixie. The sdl2-compat layer (translating SDL2 APIs to SDL3) is in testing, where SDL2 also exists side-by-side with it and is intended to be used to test and verify that SDL2 apps that use it are actually compatible.Night-and-day decision-making process compared to Fedora and Arch, which both replaced SDL2 with sdl2-compat, broke a bunch of SDL2 apps because sdl2-compat isn't actually SDL2-compatible yet, and sent everyone to yell at the SDL team about it.",
     "parent": 44848782,
     "depth": 1
   },
@@ -112,18 +120,18 @@
     "depth": 1
   },
   {
-    "id": 44849625,
-    "by": "juujian",
-    "timeISO": "2025-08-09T20:00:21.000Z",
-    "textPlain": "I have been using Debian Trixie for a few months in testing now, I can attest that its a great, stable operating system. Definitely better than Ubuntu in terms of user experience.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44850070,
     "by": "aborsy",
     "timeISO": "2025-08-09T20:49:00.000Z",
     "textPlain": "The difference between Debian and Ubuntu is decreasing with each release recently. I was pleasantly surprised that Debian recognized all hardware components in my laptop released one year ago \nout of the box.Hardware support is good and UI is great! It feels snappier than Ubuntu, may be due to lack of snap and fewer services and applications installed by default.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849625,
+    "by": "juujian",
+    "timeISO": "2025-08-09T20:00:21.000Z",
+    "textPlain": "I have been using Debian Trixie for a few months in testing now, I can attest that its a great, stable operating system. Definitely better than Ubuntu in terms of user experience.",
     "parent": 44848782,
     "depth": 1
   },
@@ -168,6 +176,14 @@
     "depth": 1
   },
   {
+    "id": 44853159,
+    "by": "starkparker",
+    "timeISO": "2025-08-10T06:20:06.000Z",
+    "textPlain": "Maybe a niche concern, but SDL2 is still in Trixie. The sdl2-compat layer (translating SDL2 APIs to SDL3) is in testing, where SDL2 also exists side-by-side with it and is intended to be used to test and verify that SDL2 apps that use it are actually compatible.Night-and-day decision-making process compared to Fedora and Arch, which both replaced SDL2 with sdl2-compat, broke a bunch of SDL2 apps because sdl2-compat isn't actually SDL2-compatible yet, and sent everyone to yell at the SDL team about it.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44850740,
     "by": "lucb1e",
     "timeISO": "2025-08-09T22:05:29.000Z",
@@ -192,6 +208,14 @@
     "depth": 1
   },
   {
+    "id": 44853241,
+    "by": "anthk",
+    "timeISO": "2025-08-10T06:41:11.000Z",
+    "textPlain": "I used to like Debian when configuring ALSA/OSS, XFree86 and such was \na source of nightmares. Thus, debconf as a middle layer mechanism to\nhandle several distinct architectures, setups and hardware was\na neccesity. Ditto with Yast2 on SuSE. By 2004-2005... not much.Even a bare Slackware with KDE and KDEi (and even XFCE) can do tons of\nwork by itself by just adding an user and accepting the default group belonging\narray by pressing 'up' at the prompt.Heck, even OpenBSD, minus the volume automount, which can be \nhandled in a breeze with toadd or tray-app in seconds; and if you \nare smart you can figure DBUS/FDo mount points and integrate\nthen with XFCE/Plasma/Gnome without too much issues (hotplugd\ncan handle device umounting if you set up doas.conf accordinly).The rest? MESA and X.org will handle most of the graphics stuff. \nVideo and audio drivers are autodetected on \nalmost every GNU and *BSD.\nPrinters are often wireless bound so any assistant with \nlook it up fast and attach it to CUPS.Still, I can't handle DPKG/APT's slowness, even if there are libre distros\nas Trisquel with it. If they rebased their distro as a simpler Parabola\nLTS release with either Mate or LXDE setups,\nthe user experience would be almost the same, but installing \npackages would happen at a much faster pace.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44849860,
     "by": "kachapopopow",
     "timeISO": "2025-08-09T20:24:59.000Z",
@@ -200,18 +224,18 @@
     "depth": 1
   },
   {
-    "id": 44852524,
-    "by": "nodesocket",
-    "timeISO": "2025-08-10T03:18:59.000Z",
-    "textPlain": "I just upgraded a mini pc with no real issues. Main steps were:  1.) sudo apt-get update && sudo apt-get --yes upgrade && sudo apt-get --yes autoremove --purge\n  2.) Update all entries of bookworm to trixie in /etc/apt/sources.list.\n  3.) sudo apt full-upgrade\n  4.) sudo reboot\n  5.) sudo apt modernize-sources",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849196,
     "by": "3eb7988a1663",
     "timeISO": "2025-08-09T19:08:41.000Z",
     "textPlain": "Maybe title should note that it has now been released? There has been many updates about Trixie in the past few months in preparation for today.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44852524,
+    "by": "nodesocket",
+    "timeISO": "2025-08-10T03:18:59.000Z",
+    "textPlain": "I just upgraded a mini pc with no real issues. Main steps were:  1.) sudo apt-get update && sudo apt-get --yes upgrade && sudo apt-get --yes autoremove --purge\n  2.) Update all entries of bookworm to trixie in /etc/apt/sources.list.\n  3.) sudo apt full-upgrade\n  4.) sudo reboot\n  5.) sudo apt modernize-sources",
     "parent": 44848782,
     "depth": 1
   },
@@ -232,14 +256,6 @@
     "depth": 1
   },
   {
-    "id": 44852754,
-    "by": "vwwvwvwv",
-    "timeISO": "2025-08-10T04:28:15.000Z",
-    "textPlain": "https://www.dropbox.com/scl/fi/ntqc4lod82qxnajuubvu3/ww.jpg?...",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849565,
     "by": "gcarvalho",
     "timeISO": "2025-08-09T19:53:55.000Z",
@@ -252,6 +268,14 @@
     "by": "Venn1",
     "timeISO": "2025-08-09T19:53:14.000Z",
     "textPlain": "I have been tracking Trixie on my Resolve workstation for the past couple of months. The only hiccup was that the latest kernel did not support the ondemand governor, so I had to build a custom kernel to fix that.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44852754,
+    "by": "vwwvwvwv",
+    "timeISO": "2025-08-10T04:28:15.000Z",
+    "textPlain": "https://www.dropbox.com/scl/fi/ntqc4lod82qxnajuubvu3/ww.jpg?...",
     "parent": 44848782,
     "depth": 1
   },
@@ -272,14 +296,6 @@
     "depth": 1
   },
   {
-    "id": 44852438,
-    "by": "shmerl",
-    "timeISO": "2025-08-10T02:55:51.000Z",
-    "textPlain": "Congrats to the Debian team!",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44850211,
     "by": "perdomon",
     "timeISO": "2025-08-09T21:05:18.000Z",
@@ -288,34 +304,18 @@
     "depth": 1
   },
   {
+    "id": 44852438,
+    "by": "shmerl",
+    "timeISO": "2025-08-10T02:55:51.000Z",
+    "textPlain": "Congrats to the Debian team!",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44851879,
     "by": "theandrewbailey",
     "timeISO": "2025-08-10T00:58:23.000Z",
     "textPlain": "> The overall disk usage for trixie is 403,854,660 kB (403 GB)That's too big. I'm going to need a smaller distro.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44849164,
-    "by": "Paianni",
-    "timeISO": "2025-08-09T19:04:40.000Z",
-    "textPlain": "The Devuan version may end up being the last that GNOME will run on...",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44849617,
-    "by": "markus_zhang",
-    "timeISO": "2025-08-09T19:59:47.000Z",
-    "textPlain": "When can we have Bandit or Bluey?",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44850904,
-    "by": "dismalaf",
-    "timeISO": "2025-08-09T22:26:16.000Z",
-    "textPlain": "I've kind of been using Debian 13 for awhile now (I'm on Unstable) and for me what's impressive is how polished a default Debian installation is these days.  With Gnome, you literally can run it as is, no config needed.  It just works.That being said, I like Flatpak, so I installed it (was super easy and Flathub provides instructions), and I added a few Gnome Shell extensions (a Dock so my wife can find apps when she occasionally uses my laptop).Debian gives you a feeling of ownership of your computer in a way the corporate distros don't, but is still pretty user friendly (unlike Arch).I'd definitely install Debian Stable on a grandparents' computer.",
     "parent": 44848782,
     "depth": 1
   }
