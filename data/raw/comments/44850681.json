@@ -56,18 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44857153,
-    "by": "denysvitali",
-    "timeISO": "2025-08-10T18:23:36.000Z",
-    "textPlain": "0$ for all this? Microsoft security is a joke.",
-    "parent": 44850681,
-    "depth": 1
-  },
-  {
     "id": 44853189,
     "by": "yyyk",
     "timeISO": "2025-08-10T06:27:05.000Z",
     "textPlain": "It's all very simple: Entra* (Azure AD or however you'd call it) should not be used for AuthZ. Entra AuthN is okayish, but forget about Entra AuthZ, do it all yourself. It's all very simple to avoid once you do AuthZ.* No idea why the rename happened. Does some manager in Microsoft have the plaque: \"Renomino, ergo sum.\"?",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
+    "id": 44857153,
+    "by": "denysvitali",
+    "timeISO": "2025-08-10T18:23:36.000Z",
+    "textPlain": "0$ for all this? Microsoft security is a joke.",
     "parent": 44850681,
     "depth": 1
   },
@@ -200,18 +200,18 @@
     "depth": 2
   },
   {
-    "id": 44855284,
-    "by": "xtajv",
-    "timeISO": "2025-08-10T14:07:26.000Z",
-    "textPlain": "I guess the term \"defense in depth\" has fallen out of fashion?",
-    "parent": 44851391,
-    "depth": 2
-  },
-  {
     "id": 44852882,
     "by": "motorest",
     "timeISO": "2025-08-10T05:05:06.000Z",
     "textPlain": "> Move to the cloud they said. It will be more secure then your intranet they said. Only fools pay for their own Ops team they said.It seems that the fundamental issue surfaced in the blog post is that developers who work on authorizarion in resource servers are failing to check basic claims in tokens such as the issuer, the audience, and subject.If your developers are behind this gross oversight, do you honestly expect an intranet to make a difference?Listen, the underlying issue is not cloud vs self-hosted. The underlying issue is that security is hard and in general there is no feedback loop except security incidents. Placing your apps in a intranet, or VPN, does nothing to mitigate this issue.",
+    "parent": 44851391,
+    "depth": 2
+  },
+  {
+    "id": 44855284,
+    "by": "xtajv",
+    "timeISO": "2025-08-10T14:07:26.000Z",
+    "textPlain": "I guess the term \"defense in depth\" has fallen out of fashion?",
     "parent": 44851391,
     "depth": 2
   },
@@ -240,18 +240,18 @@
     "depth": 2
   },
   {
-    "id": 44857940,
-    "by": "will4274",
-    "timeISO": "2025-08-10T20:14:55.000Z",
-    "textPlain": "It's ok to use Entra for AuthZ. Just click the box that says \"Require users to be assigned to this application\" and assign them [1]. However - that's really the only AuthZ feature Entra has. If you don't enable AuthZ, you should not expect Entra to just magically do AuthZ for you.Edit: I would add - simple allow/deny authz is only relevant for the very simplest of apps (where all users have the same permissions). For any complex application, users will have different levels of access, which usually requires the application to do AuthZ.[1] https://learn.microsoft.com/en-us/entra/identity/enterprise-...",
-    "parent": 44853189,
-    "depth": 2
-  },
-  {
     "id": 44854132,
     "by": "aprilnya",
     "timeISO": "2025-08-10T10:15:24.000Z",
     "textPlain": "IMO “Azure AD” implies it is literally just AD hosted in Azure, when it’s become much more than that",
+    "parent": 44853189,
+    "depth": 2
+  },
+  {
+    "id": 44857940,
+    "by": "will4274",
+    "timeISO": "2025-08-10T20:14:55.000Z",
+    "textPlain": "It's ok to use Entra for AuthZ. Just click the box that says \"Require users to be assigned to this application\" and assign them [1]. However - that's really the only AuthZ feature Entra has. If you don't enable AuthZ, you should not expect Entra to just magically do AuthZ for you.Edit: I would add - simple allow/deny authz is only relevant for the very simplest of apps (where all users have the same permissions). For any complex application, users will have different levels of access, which usually requires the application to do AuthZ.[1] https://learn.microsoft.com/en-us/entra/identity/enterprise-...",
     "parent": 44853189,
     "depth": 2
   },

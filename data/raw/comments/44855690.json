@@ -1,17 +1,17 @@
 [
   {
-    "id": 44856128,
-    "by": "7moritz7",
-    "timeISO": "2025-08-10T16:09:01.000Z",
-    "textPlain": "Qwen3 is substantially better in my local testing. As in, adheres to the prompt better (pretty much exactly for the 32B parameter variant, very impressive) and is more organic sounding.In simplebench gpt-oss (120 bn) flopped hard so it doesn't appear particularly good at logical puzzles either.So presumably, this comes down to...- training technique or data- dimension- lower number of large experts vs higher number of small experts",
-    "parent": 44855690,
-    "depth": 1
-  },
-  {
     "id": 44857190,
     "by": "mark_l_watson",
     "timeISO": "2025-08-10T18:28:59.000Z",
     "textPlain": "Wow, Sebastian Raschk's blog articles are jewels - much appreciated.I use the get-oss and qwen3 models a lot (smaller models locally using Ollama and LM Studio) and commercial APIs for the full size models.For local model use, I get very good results with get-oss when I \"over prompt,\" that is, I specify a larger amount of context information than I usually do. Qwen3 is simply awesome.Until about three years ago, I have always understood neural network models (starting in the 1980s), GAN, Recurrent, LSTM, etc. well enough to write implementations. I really miss the feeling that I could develop at least simpler LLMs on my own. I am slowly working through Sebastian Raschk's excellent book https://www.manning.com/books/build-a-large-language-model-f... but I will probably never finish it (to be honest).",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
+    "id": 44856128,
+    "by": "7moritz7",
+    "timeISO": "2025-08-10T16:09:01.000Z",
+    "textPlain": "Qwen3 is substantially better in my local testing. As in, adheres to the prompt better (pretty much exactly for the 32B parameter variant, very impressive) and is more organic sounding.In simplebench gpt-oss (120 bn) flopped hard so it doesn't appear particularly good at logical puzzles either.So presumably, this comes down to...- training technique or data- dimension- lower number of large experts vs higher number of small experts",
     "parent": 44855690,
     "depth": 1
   },
@@ -24,10 +24,42 @@
     "depth": 1
   },
   {
+    "id": 44858198,
+    "by": "chaos_emergent",
+    "timeISO": "2025-08-10T20:56:01.000Z",
+    "textPlain": "> This is likely because LLMs are typically trained for only a single epoch over massive datasets, which is in contrast to the multi-hundred-epoch training regimes for which dropout was first introduced.Wait, is this true? That seems like a wild statement to make, relatively unsubstantiated?",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
+    "id": 44858076,
+    "by": "gglon",
+    "timeISO": "2025-08-10T20:34:16.000Z",
+    "textPlain": "> At the time of writing, the highest-ranking non-purely-transformer-based model on the LM Arena is Jamba, which is a transformer–state space model hybrid, at rank 96.)Tencent's hunyuan-turbos, another hybrid, is currently ranked at 22. \nhttps://arxiv.org/abs/2505.15431",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
+    "id": 44858139,
+    "by": "oezi",
+    "timeISO": "2025-08-10T20:45:30.000Z",
+    "textPlain": "One question I was wondering about regarding the open models released by big labs is how much more the could improve with additional training. GPT-OSS has 2.1m hours of training, how much score improvements could we see at double that?",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
     "id": 44857029,
     "by": "Scene_Cast2",
     "timeISO": "2025-08-10T18:05:00.000Z",
     "textPlain": "I find it interesting that the architectures of modern open weight LLMs are so similar, and that most innovation seems to be happening on the training (data, RL) front.This is contrary to what I've seen in a large ML shop, where architectural tuning was king.",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
+    "id": 44858227,
+    "by": "poorman",
+    "timeISO": "2025-08-10T20:59:49.000Z",
+    "textPlain": "This article really goes into a lot of detail which is nice. gpt-oss is just not good for agentic use in my observation.tldr; I'll save you a lot of time trying things out for yourself. If you are on a >=32 GB Mac download LMStudio and then the `qwen3-coder-30b-a3b-instruct-mlx@5bit` model. It uses ~20 GB of RAM so a 32GB machine is plenty. Set it up with opencode [1] and you're off to the races! It has great tool calling ability. The tool calling ability of gpt-oss doesn't even come close in my observations.[1] https://opencode.ai/",
     "parent": 44855690,
     "depth": 1
   },
@@ -56,6 +88,14 @@
     "depth": 1
   },
   {
+    "id": 44857673,
+    "by": "lvl155",
+    "timeISO": "2025-08-10T19:40:25.000Z",
+    "textPlain": "He does an amazing job of keeping me up to date on this insanely fast-paced space.",
+    "parent": 44857190,
+    "depth": 2
+  },
+  {
     "id": 44856139,
     "by": "jszymborski",
     "timeISO": "2025-08-10T16:11:25.000Z",
@@ -77,14 +117,6 @@
     "timeISO": "2025-08-10T20:09:03.000Z",
     "textPlain": "qwen3 is slow though. i used it. it worked, but it was slow and lacking features.",
     "parent": 44856128,
-    "depth": 2
-  },
-  {
-    "id": 44857673,
-    "by": "lvl155",
-    "timeISO": "2025-08-10T19:40:25.000Z",
-    "textPlain": "He does an amazing job of keeping me up to date on this insanely fast-paced space.",
-    "parent": 44857190,
     "depth": 2
   },
   {
@@ -117,6 +149,22 @@
     "timeISO": "2025-08-10T20:08:07.000Z",
     "textPlain": "Are you using this in an agentic way or in a copy and paste and “code this” single input single output way?I’d like to know how far the frontier models are from the local for agentic coding.",
     "parent": 44856661,
+    "depth": 2
+  },
+  {
+    "id": 44858210,
+    "by": "typon",
+    "timeISO": "2025-08-10T20:57:47.000Z",
+    "textPlain": "No this is well known. Look for Table 2.2 in GPT3 paper.",
+    "parent": 44858198,
+    "depth": 2
+  },
+  {
+    "id": 44858175,
+    "by": "poorman",
+    "timeISO": "2025-08-10T20:52:08.000Z",
+    "textPlain": "As we saw with GPT-5 the RL technique of training doesn't scale forever",
+    "parent": 44858139,
     "depth": 2
   },
   {

@@ -1,5 +1,13 @@
 [
   {
+    "id": 44858071,
+    "by": "perlgeek",
+    "timeISO": "2025-08-10T20:31:43.000Z",
+    "textPlain": "I like 99% of this, and the thing I don't like is in the very first line of the example:> import abs, epsilon from mathIMHO it's wrong to put the imported symbols first, because the same symbol could come from two different libraries and mean different things. So the library name is pretty important, and putting it last (and burying it after a potentially long list of imported symbols) just feels wrong.I get that it has a more natural-language vibe this way, but put there's a really good reason that most of the languages I know that put the package/module name first:    import packageName.member; // java\n    from package import symbol; # python\n    use Module 'symbol'; # perl\n    \nWith Typescript being the notable exception:    import { pi as π } from \"./maths.js\";t",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
     "id": 44857985,
     "by": "haberman",
     "timeISO": "2025-08-10T20:19:51.000Z",
@@ -24,10 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44857984,
-    "by": "kiririn",
-    "timeISO": "2025-08-10T20:19:22.000Z",
-    "textPlain": "Nice, gives me Pawn vibes(https://www.compuphase.com/pawn/pawn.htm)",
+    "id": 44858260,
+    "by": "freeopinion",
+    "timeISO": "2025-08-10T21:04:32.000Z",
+    "textPlain": "I see your benchmarks compare against other interpreted languages \"in its class\".We read here a couple days ago about Q which is compiled. Bolt claims to \"plow through code at over 500kloc/thread/second\". Q claims to compile in milliseconds--so fast that you can treat it like a script.Bolt and Q are both newborns. Perhaps you could include each other in your benchmarks to give each other a little publicity.",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44858159,
+    "by": "Fraterkes",
+    "timeISO": "2025-08-10T20:49:47.000Z",
+    "textPlain": "Really cool! Roughly how much memory does it take to include it in an engine? Also I'm really interested in the process of creating these really fast scripting languages, have you written anything about how you wrote Bolt?",
     "parent": 44856935,
     "depth": 1
   },
@@ -40,10 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44857827,
-    "by": "Vandash",
-    "timeISO": "2025-08-10T19:59:56.000Z",
-    "textPlain": "game dev for 15+ years here, love the first example on Github\nthis is compiled right? cannot replace lua?",
+    "id": 44858184,
+    "by": "Forgret",
+    "timeISO": "2025-08-10T20:53:45.000Z",
+    "textPlain": "It looks cool, I wish you luck in developing the language. I liked your language and I hope it becomes popular someday.",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44857984,
+    "by": "kiririn",
+    "timeISO": "2025-08-10T20:19:22.000Z",
+    "textPlain": "Nice, gives me Pawn vibes(https://www.compuphase.com/pawn/pawn.htm)",
     "parent": 44856935,
     "depth": 1
   },
@@ -52,6 +76,14 @@
     "by": "grodriguez100",
     "timeISO": "2025-08-10T18:36:24.000Z",
     "textPlain": "Sounds very good, and I can see many use cases in embedded systems. But that probably requires 32-bit arm support. Is that planned ?",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44857827,
+    "by": "Vandash",
+    "timeISO": "2025-08-10T19:59:56.000Z",
+    "textPlain": "game dev for 15+ years here, love the first example on Github\nthis is compiled right? cannot replace lua?",
     "parent": 44856935,
     "depth": 1
   },
@@ -80,10 +112,26 @@
     "depth": 1
   },
   {
+    "id": 44858126,
+    "by": "beariish",
+    "timeISO": "2025-08-10T20:43:16.000Z",
+    "textPlain": "Do you think approaching the way typescript does it for Bolt is a reasonable compromise here? Bolt already supports full-module renames like    import math as not_math\n\nSo supporting something along the lines of    import abs as absolute, sqrt as square_root from math\n\nWould be farily simple to accomplish.",
+    "parent": 44858071,
+    "depth": 2
+  },
+  {
     "id": 44858028,
     "by": "beariish",
     "timeISO": "2025-08-10T20:25:05.000Z",
     "textPlain": "I did experiment with a few different dispatch methods before settling on the one in Bolt now, though not with tailcalls specifically. The approach I landed on was largely chosen cause it in my testing competes with computed goto solutions while also compiling on msvc, but I'm absolutely open to try other things out.",
+    "parent": 44857985,
+    "depth": 2
+  },
+  {
+    "id": 44858121,
+    "by": "summerwant",
+    "timeISO": "2025-08-10T20:42:32.000Z",
+    "textPlain": "I see lua, do you know terralang?",
     "parent": 44857985,
     "depth": 2
   },
@@ -93,6 +141,22 @@
     "timeISO": "2025-08-10T18:56:01.000Z",
     "textPlain": "That's a good point, thank you. I've made a small edit to clarify.",
     "parent": 44857304,
+    "depth": 2
+  },
+  {
+    "id": 44858174,
+    "by": "beariish",
+    "timeISO": "2025-08-10T20:51:58.000Z",
+    "textPlain": "Bolt's memory usage in most cases hovers right around Lua 5.4/Luau in my own testing, but maybe I should include a few memory benchmarks to highlight that more. It does notably have a higher memory overhead during compilation than other languages in this class though.As for writeups, I'm working on putting out some material about the creation of Bolt and my learnings now that it's out there.",
+    "parent": 44858159,
+    "depth": 2
+  },
+  {
+    "id": 44857249,
+    "by": "beariish",
+    "timeISO": "2025-08-10T18:39:09.000Z",
+    "textPlain": "As of right now no - my primary target when developing this was realtime and games in particular since that's what I know best, but if there's a real target in embedded that's certainly something that could be explored.",
+    "parent": 44857233,
     "depth": 2
   },
   {
@@ -109,14 +173,6 @@
     "timeISO": "2025-08-10T20:04:41.000Z",
     "textPlain": "Bolt is not compiled ahead of time, it's bytecode interpreted just like Lua",
     "parent": 44857827,
-    "depth": 2
-  },
-  {
-    "id": 44857249,
-    "by": "beariish",
-    "timeISO": "2025-08-10T18:39:09.000Z",
-    "textPlain": "As of right now no - my primary target when developing this was realtime and games in particular since that's what I know best, but if there's a real target in embedded that's certainly something that could be explored.",
-    "parent": 44857233,
     "depth": 2
   },
   {
