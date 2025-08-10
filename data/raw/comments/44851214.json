@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44854790,
-    "by": "dweekly",
-    "timeISO": "2025-08-10T12:39:09.000Z",
-    "textPlain": "> \"anything beyond writing a simple function always leads to useless junk.\"A strong statement like this was a reasonable take six months ago, perhaps. But with Claude Opus 4.1, o3-codex/gpt5, and Gemini Pro 2.5 this statement is pretty simply disproven with half an hour with them.Just last week I spent an afternoon rewriting an old Android app that was done in butterknife and got something functional and tested in a few hours. It involved an 8,000 line diff. The work had been quoted to me by a contractor as likely to take 3-4 months and cost tens of thousands of dollars.I designed a new website for my wife's band with a custom player widget, carousel photos, fully adaptive to large and small screens, good accessibility features, built from easy to edit JSON, SEO-optimized with microformats, and fast-loading. The first version I got running in 15 minutes. The final polished version took a few more days of ducking onto my laptop a few minutes here and there during an event. Without AI this would have taken me weeks to pull off and wouldn't have looked nearly as nice.IMO part of the key to the flow here is to avoid a temptation to one shot. First establish ground rules for working together in your AGENTS.md/CLAUDE.md that lays out your software engineering best principles (use git semantics, write out your plans, add lint and tests to commit hooks...). Then have it read through existing code and architecture. Then carefully put together an architecture and set of constraints into your README/PRD. Then build a high level engineering plan divided up into sequences tasks and write it down (vs just keeping in context). Only then do you allow any code to start to get written. And yes, you still need to supervise it (and iterate on your AGENTS/CLAUDE to avoid repeating yourself). But yeah, it's about 10-100x faster than me now with a flow like that. (Context on me: been programming 40 years, Stanford CS, ACM international programming competition finalist.)This new flow is ex",
-    "parent": 44851214,
-    "depth": 1
-  },
-  {
     "id": 44852041,
     "by": "martinald",
     "timeISO": "2025-08-10T01:30:51.000Z",
@@ -24,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44853482,
-    "by": "tiddles",
-    "timeISO": "2025-08-10T07:38:10.000Z",
-    "textPlain": "Code is a liability. When I let a LLM take the wheel, I end up with thousands of lines of crappy abstractions and needless comments and strange patterns that take way more brain power to understand than if I did it myself.My current workflow has reverted to primitive copy paste into web chat (via Kagi Assistant). The friction is enough to make me put a lot of thought into each prompt and how much code context I give it (gathered via files-to-prompt from simonw).I have little experience with frontend and web apps, so I am trying out a supervised vibe coding flow. I give most of the code base per prompt, ask for a single feature, then read the code output fully and iterate on it a few times to reduce aforementioned bad patterns. Normally I will then type it out myself, or at most copy a few snippets of tens of lines.What doesn’t work I found is asking for the full file with changes applied already. Not only does it take a long time and waste tokens, it normally breaks/truncates/rewords unrelated code.So far I’m happy with how this project is going. I am familiar with all the code as I have audited and typed it out nearly entirely myself. I am actually retaining some knowledge and learning new concepts (reactive state with VanJS) and have confidence I can maintain this project even without an LLM in future, which includes handing it over to colleagues :)",
-    "parent": 44851214,
-    "depth": 1
-  },
-  {
     "id": 44852082,
     "by": "tyfighter",
     "timeISO": "2025-08-10T01:39:51.000Z",
     "textPlain": "You're (they're?) not alone. This mirrors every experience I've had trying to give them a chance. I worry that I'm just speaking another language at this point.EDIT: Just to add context seeing other comments, I almost exclusively work in C++ on GPU drivers.",
+    "parent": 44851214,
+    "depth": 1
+  },
+  {
+    "id": 44853482,
+    "by": "tiddles",
+    "timeISO": "2025-08-10T07:38:10.000Z",
+    "textPlain": "Code is a liability. When I let a LLM take the wheel, I end up with thousands of lines of crappy abstractions and needless comments and strange patterns that take way more brain power to understand than if I did it myself.My current workflow has reverted to primitive copy paste into web chat (via Kagi Assistant). The friction is enough to make me put a lot of thought into each prompt and how much code context I give it (gathered via files-to-prompt from simonw).I have little experience with frontend and web apps, so I am trying out a supervised vibe coding flow. I give most of the code base per prompt, ask for a single feature, then read the code output fully and iterate on it a few times to reduce aforementioned bad patterns. Normally I will then type it out myself, or at most copy a few snippets of tens of lines.What doesn’t work I found is asking for the full file with changes applied already. Not only does it take a long time and waste tokens, it normally breaks/truncates/rewords unrelated code.So far I’m happy with how this project is going. I am familiar with all the code as I have audited and typed it out nearly entirely myself. I am actually retaining some knowledge and learning new concepts (reactive state with VanJS) and have confidence I can maintain this project even without an LLM in future, which includes handing it over to colleagues :)",
     "parent": 44851214,
     "depth": 1
   },
@@ -60,6 +52,14 @@
     "by": "allenu",
     "timeISO": "2025-08-10T01:29:50.000Z",
     "textPlain": "I kept hearing about Claude Code for a while and never really tried it until a week ago. I used it to prototype some Mac app ideas and I quickly realized how useful it was at getting prototypes up and running very, very quickly, like within minutes. It saves so much time with boilerplate code that I would've had to type out by hand and have done hundreds of times before.With my experience, I wonder what the author of this blog post has tried to do to complete a task as that might make a difference on why they couldn't get much use out of it. Maybe other posters can chime in on how big of a difference programming language and size of project can make. I did find that it was able to glean how I had architected an app and it was able to give feedback on potential refactors, although I didn't ask it to go that far.Prior to trying out Claude Code, I had only used ChatGPT and DeepSeek to post general questions on how to use APIs and frameworks and asking for short snippets of code like functions to do text parsing with regexes, so to be honest I was very surprised at what the state of the art could actually do, at least for my projects.",
+    "parent": 44851214,
+    "depth": 1
+  },
+  {
+    "id": 44854790,
+    "by": "dweekly",
+    "timeISO": "2025-08-10T12:39:09.000Z",
+    "textPlain": "> \"anything beyond writing a simple function always leads to useless junk.\"A strong statement like this was a reasonable take six months ago, perhaps. But with Claude Opus 4.1, o3-codex/gpt5, and Gemini Pro 2.5 this statement is pretty simply disproven with half an hour with them.Just last week I spent an afternoon rewriting an old Android app that was done in butterknife and got something functional and tested in a few hours. It involved an 8,000 line diff. The work had been quoted to me by a contractor as likely to take 3-4 months and cost tens of thousands of dollars.I designed a new website for my wife's band with a custom player widget, carousel photos, fully adaptive to large and small screens, good accessibility features, built from easy to edit JSON, SEO-optimized with microformats, and fast-loading. The first version I got running in 15 minutes. The final polished version took a few more days of ducking onto my laptop a few minutes here and there during an event. Without AI this would have taken me weeks to pull off and wouldn't have looked nearly as nice.IMO part of the key to the flow here is to avoid a temptation to one shot. First establish ground rules for working together in your AGENTS.md/CLAUDE.md that lays out your software engineering best principles (use git semantics, write out your plans, add lint and tests to commit hooks...). Then have it read through existing code and architecture. Then carefully put together an architecture and set of constraints into your README/PRD. Then build a high level engineering plan divided up into sequences tasks and write it down (vs just keeping in context). Only then do you allow any code to start to get written. And yes, you still need to supervise it (and iterate on your AGENTS/CLAUDE to avoid repeating yourself). But yeah, it's about 10-100x faster than me now with a flow like that. (Context on me: been programming 40 years, Stanford CS, ACM international programming competition finalist.)This new flow is ex",
     "parent": 44851214,
     "depth": 1
   },
@@ -152,14 +152,6 @@
     "depth": 1
   },
   {
-    "id": 44852784,
-    "by": "lsy",
-    "timeISO": "2025-08-10T04:35:48.000Z",
-    "textPlain": "I think the wide variance in responses here is explainable by tool preference and the circumstance of what you want to work on. You might also have felt \"behind\" not knowing or wanting to use Dreamweaver, or React, or Ruby on Rails, or Visual Studio + .NET, all tools that allowed developers at the time to accelerate their tasks greatly. But you'll note that probably most programmers today who are successful never learned those tools, so the fact that they accelerated certain tasks didn't result in a massive gap between users and non-users.People shouldn't worry about getting \"left behind\" because influencers and bloggers are overindexing on specific tech rather than more generalist skills. At the end of the day the learning curve on these things is not that steep - that's why so many people online can post about it. When the need arises and it makes sense, the IDE/framework/tooling du jour will be there and you can learn it then in a few weeks. And if past is prologue in this industry, the people who have spent all their time fiddling with version N will need to reskill for version N+1 anyways.",
-    "parent": 44851214,
-    "depth": 1
-  },
-  {
     "id": 44852046,
     "by": "Ezhik",
     "timeISO": "2025-08-10T01:31:34.000Z",
@@ -168,10 +160,10 @@
     "depth": 1
   },
   {
-    "id": 44852605,
-    "by": "jtfrench",
-    "timeISO": "2025-08-10T03:44:54.000Z",
-    "textPlain": "I think the issue is ChatGPT. I find it to be the worst for writing shippable code beyond a single function. It plays too many mind games. If I’m trying to get any non-trivial amount of code done, it’s Gemini Pro 2.5 all the way.",
+    "id": 44852784,
+    "by": "lsy",
+    "timeISO": "2025-08-10T04:35:48.000Z",
+    "textPlain": "I think the wide variance in responses here is explainable by tool preference and the circumstance of what you want to work on. You might also have felt \"behind\" not knowing or wanting to use Dreamweaver, or React, or Ruby on Rails, or Visual Studio + .NET, all tools that allowed developers at the time to accelerate their tasks greatly. But you'll note that probably most programmers today who are successful never learned those tools, so the fact that they accelerated certain tasks didn't result in a massive gap between users and non-users.People shouldn't worry about getting \"left behind\" because influencers and bloggers are overindexing on specific tech rather than more generalist skills. At the end of the day the learning curve on these things is not that steep - that's why so many people online can post about it. When the need arises and it makes sense, the IDE/framework/tooling du jour will be there and you can learn it then in a few weeks. And if past is prologue in this industry, the people who have spent all their time fiddling with version N will need to reskill for version N+1 anyways.",
     "parent": 44851214,
     "depth": 1
   },
@@ -180,6 +172,14 @@
     "by": "cwyers",
     "timeISO": "2025-08-10T02:25:22.000Z",
     "textPlain": "The author calling them \"GPTs\" suggests to me maybe not keeping up with the state of the art.",
+    "parent": 44851214,
+    "depth": 1
+  },
+  {
+    "id": 44852605,
+    "by": "jtfrench",
+    "timeISO": "2025-08-10T03:44:54.000Z",
+    "textPlain": "I think the issue is ChatGPT. I find it to be the worst for writing shippable code beyond a single function. It plays too many mind games. If I’m trying to get any non-trivial amount of code done, it’s Gemini Pro 2.5 all the way.",
     "parent": 44851214,
     "depth": 1
   },
@@ -216,14 +216,6 @@
     "depth": 1
   },
   {
-    "id": 44853229,
-    "by": "r0ckarong",
-    "timeISO": "2025-08-10T06:35:50.000Z",
-    "textPlain": "Is it possible these companies with their vast budgets pay to have all this drivel about how useful they are plastered on the web to pump up their value? I've started to learn what useful things LLMs can do for me but self sufficient coders they ain't.",
-    "parent": 44851214,
-    "depth": 1
-  },
-  {
     "id": 44851990,
     "by": "Workaccount2",
     "timeISO": "2025-08-10T01:21:19.000Z",
@@ -232,10 +224,10 @@
     "depth": 1
   },
   {
-    "id": 44853723,
-    "by": "globular-toast",
-    "timeISO": "2025-08-10T08:30:28.000Z",
-    "textPlain": "I'm going to properly write up my experiences with LLMs at some point, but some observations so far:0. It's undeniable that LLMs are both amazing and fun. So is a clown at a children's birthday party, but you wouldn't try to ride the balloon horse,1. If you are producing code in a language you are not familiar with, you need to be aware of the Gell-Mann amnesia effect[0],2. It excels at language translation. This is what LLMs were originally designed for. So if you can clearly describe an algorithm in English, it will probably be able to translate that to Python, for example. But at that point you have to question why you didn't just write it in Python in the first place,3. It gamifies things and causes you to work longer and harder. I'm not convinced it's really more efficient, but I am convinced I simply wouldn't have bothered to put in the effort to do certain things before because the perceived effort of writing code from scratch is higher than spinning a roulette wheel that might shit out the answer first time,4. It stops you thinking for yourself. Ever worked with an incredibly knowledgable colleague who is always eager to help? Or got the feeling you've solved something before so spent time grepping through old codebases and bash history to find what you did last time instead of spending the exact same time doing it again? It's kinda like that except it knows everything and it's always there. I fear that ability will atrophy with extended use,5. I don't feel like I really own the code it outputs. It feels more like working in a large existing codebase written by a team. When I have to get into things and understand the code it's like I'm reading it for the first time, even though I did check all the diffs etc. It's like having a manic junior run rampant then coming to you when something really needs to be understood. Again, it's the question of is this really saving me any time in the long run?[0] https://en.wikipedia.org/wiki/Gell-Mann_amnesia_effect",
+    "id": 44853229,
+    "by": "r0ckarong",
+    "timeISO": "2025-08-10T06:35:50.000Z",
+    "textPlain": "Is it possible these companies with their vast budgets pay to have all this drivel about how useful they are plastered on the web to pump up their value? I've started to learn what useful things LLMs can do for me but self sufficient coders they ain't.",
     "parent": 44851214,
     "depth": 1
   },
@@ -244,6 +236,14 @@
     "by": "dmezzetti",
     "timeISO": "2025-08-10T01:40:56.000Z",
     "textPlain": "A lot of this is classic gaslighting. Gaslighting is the manipulation of someone into questioning their perception of reality (per Wikipedia).Basically, a lot of people who are experts are being told this story and they think they are the only one who doesn't get it.There are plenty of gains to be had with AI/LLMs but just not in the way it's typically marketed.",
+    "parent": 44851214,
+    "depth": 1
+  },
+  {
+    "id": 44853723,
+    "by": "globular-toast",
+    "timeISO": "2025-08-10T08:30:28.000Z",
+    "textPlain": "I'm going to properly write up my experiences with LLMs at some point, but some observations so far:0. It's undeniable that LLMs are both amazing and fun. So is a clown at a children's birthday party, but you wouldn't try to ride the balloon horse,1. If you are producing code in a language you are not familiar with, you need to be aware of the Gell-Mann amnesia effect[0],2. It excels at language translation. This is what LLMs were originally designed for. So if you can clearly describe an algorithm in English, it will probably be able to translate that to Python, for example. But at that point you have to question why you didn't just write it in Python in the first place,3. It gamifies things and causes you to work longer and harder. I'm not convinced it's really more efficient, but I am convinced I simply wouldn't have bothered to put in the effort to do certain things before because the perceived effort of writing code from scratch is higher than spinning a roulette wheel that might shit out the answer first time,4. It stops you thinking for yourself. Ever worked with an incredibly knowledgable colleague who is always eager to help? Or got the feeling you've solved something before so spent time grepping through old codebases and bash history to find what you did last time instead of spending the exact same time doing it again? It's kinda like that except it knows everything and it's always there. I fear that ability will atrophy with extended use,5. I don't feel like I really own the code it outputs. It feels more like working in a large existing codebase written by a team. When I have to get into things and understand the code it's like I'm reading it for the first time, even though I did check all the diffs etc. It's like having a manic junior run rampant then coming to you when something really needs to be understood. Again, it's the question of is this really saving me any time in the long run?[0] https://en.wikipedia.org/wiki/Gell-Mann_amnesia_effect",
     "parent": 44851214,
     "depth": 1
   },
@@ -288,18 +288,18 @@
     "depth": 1
   },
   {
-    "id": 44854819,
-    "by": "makeitdouble",
-    "timeISO": "2025-08-10T12:45:25.000Z",
-    "textPlain": "> found it incredibly helpful at saving time implementing all the bullshit involved in starting a new code base - setting up a build system, looking up libraries and APIs, implementing a framework for configuration and I/O, etc.Thanks for the very eloquent explaination.I feel that's where most people get the best value from GPTs. And that's also why ruby on rails like platforms are so popular in the first place.Avoiding the boilerplate from the start and focusing on what matters doesn't need to go through AI, same way we didn't need to stick to Java's generators and code factories. I kinda fear we lose some of these advancements as people move away from these more elegant stacks, but also hope the pendulum balances back when the hype fades away.",
-    "parent": 44851920,
-    "depth": 2
-  },
-  {
     "id": 44851962,
     "by": "dnh44",
     "timeISO": "2025-08-10T01:18:13.000Z",
     "textPlain": "Last summer I came back to software after about 12 years away and I pretty much had an identical experience to you with using AI as a helper to come back. I've now spent the last 6 months coding as much as I can in between consulting gigs. I'm not sure if I would have been able to get caught up so quickly without AI.I haven't had this much fun programming since I was at university hacking away on sun workstations, but admittedly I only write about 10% of the code myself these days.I'm currently getting Claude Code to pair program with GPT-5 and they delegate the file edits to Gemini Flash. It's pretty cool.",
+    "parent": 44851920,
+    "depth": 2
+  },
+  {
+    "id": 44854819,
+    "by": "makeitdouble",
+    "timeISO": "2025-08-10T12:45:25.000Z",
+    "textPlain": "> found it incredibly helpful at saving time implementing all the bullshit involved in starting a new code base - setting up a build system, looking up libraries and APIs, implementing a framework for configuration and I/O, etc.Thanks for the very eloquent explaination.I feel that's where most people get the best value from GPTs. And that's also why ruby on rails like platforms are so popular in the first place.Avoiding the boilerplate from the start and focusing on what matters doesn't need to go through AI, same way we didn't need to stick to Java's generators and code factories. I kinda fear we lose some of these advancements as people move away from these more elegant stacks, but also hope the pendulum balances back when the hype fades away.",
     "parent": 44851920,
     "depth": 2
   },

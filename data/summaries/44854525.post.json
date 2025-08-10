@@ -1,0 +1,8 @@
+{
+  "id": 44854525,
+  "lang": "ru",
+  "summary": "**Ampere One 192-ядерный сервер, 1 ТБ ОЗУ, цель — запустить максимум виртуальных IoT-устройств на Nerves.**\n\nПрошлый раз добрались до 500 экземпляров; теперь с KVM и новым загрузчиком **little_loader** от Frank Hunleth удалось **5000** одновременных виртуальных ARM64-машин.  \nlittle_loader — минимальный ARM64-бутлоадер, читающий переменные u-boot, загружающий ядро Linux и сохраняющий механизмы A/B-обновлений Nerves.\n\n**Что изменилось**\n- **KVM/HVF** ускоряет старт до 1-2 с и экономит ≈ 500 МБ ОЗУ на гость.\n- **EL1** вместо EL2: EL2 нужен для вложенной виртуализации, нам не требуется.\n- **Баг компиляции**: release-сборка зависает, debug-версия работает (GCC 15, вероятно, чинит).\n\n**Команда запуска** (упрощённый пример):\n```shell\nqemu-system-aarch64 \\\n  -machine virt,accel=kvm \\\n  -cpu host -smp 1 -m 150M \\\n  -kernel little_loader.elf \\\n  -netdev user,id=eth0 \\\n  -device virtio-net-device,netdev=eth0 \\\n  -drive if=none,file=disk.img,format=raw,id=vdisk \\\n  -device virtio-blk-device,drive=vdisk \\\n  -nographic\n```\n\n**Итог**: 5000 «эрлангов» на 192 ядрах, 1 ТБ ОЗУ, стартуют за секунды, потребляют по 150 МБ RAM.",
+  "inputHash": "ac7b5bf8ce44f916c8d48a7f53698d447ea14fca2cf2be6034f3ec501d029872",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-10T13:33:37.151Z"
+}

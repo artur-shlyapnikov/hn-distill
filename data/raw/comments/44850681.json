@@ -32,22 +32,6 @@
     "depth": 1
   },
   {
-    "id": 44853189,
-    "by": "yyyk",
-    "timeISO": "2025-08-10T06:27:05.000Z",
-    "textPlain": "It's all very simple: Entra* (Azure AD or however you'd call it) should not be used for AuthZ. Entra AuthN is okayish, but forget about Entra AuthZ, do it all yourself. It's all very simple to avoid once you do AuthZ.* No idea why the rename happened. Does some manager in Microsoft have the plaque: \"Renomino, ergo sum.\"?",
-    "parent": 44850681,
-    "depth": 1
-  },
-  {
-    "id": 44854565,
-    "by": "Keyframe",
-    "timeISO": "2025-08-10T11:49:40.000Z",
-    "textPlain": "It's Microsoft. I'm sure there are wonderful people there, but haven't we witnessed recently their master key leak, their engineers begging GPT in PRs to do stuff, their CEO boasting 'backend' engineers are going away.. I wouldn't rely on that company for anything, but I acknowledge a ton of people are not in that position. If they do stay however, it's malpractice.",
-    "parent": 44850681,
-    "depth": 1
-  },
-  {
     "id": 44853363,
     "by": "bobbyraduloff",
     "timeISO": "2025-08-10T07:11:13.000Z",
@@ -60,6 +44,22 @@
     "by": "moi2388",
     "timeISO": "2025-08-10T05:19:01.000Z",
     "textPlain": "That’s what you get. Entra ID doesn’t allow you to blacklist or whitelist specific tenants for multi tenant apps, which causes problems like this.Add the fact that MSAL doesn’t work for stuff like browser extensions, so people have to implement their own security solutions to interact with Entra ID and it’s not surprising there are so many issues.",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
+    "id": 44854565,
+    "by": "Keyframe",
+    "timeISO": "2025-08-10T11:49:40.000Z",
+    "textPlain": "It's Microsoft. I'm sure there are wonderful people there, but haven't we witnessed recently their master key leak, their engineers begging GPT in PRs to do stuff, their CEO boasting 'backend' engineers are going away.. I wouldn't rely on that company for anything, but I acknowledge a ton of people are not in that position. If they do stay however, it's malpractice.",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
+    "id": 44853189,
+    "by": "yyyk",
+    "timeISO": "2025-08-10T06:27:05.000Z",
+    "textPlain": "It's all very simple: Entra* (Azure AD or however you'd call it) should not be used for AuthZ. Entra AuthN is okayish, but forget about Entra AuthZ, do it all yourself. It's all very simple to avoid once you do AuthZ.* No idea why the rename happened. Does some manager in Microsoft have the plaque: \"Renomino, ergo sum.\"?",
     "parent": 44850681,
     "depth": 1
   },
@@ -165,6 +165,14 @@
     "timeISO": "2025-08-10T05:03:46.000Z",
     "textPlain": "That is probably still good advice for most companies. Joe's roof fixing business may be the best roof fixing business in 3 states, but would you want them to run their own server for their website, email, and booking?Anyone who is on this forum is capable of building their own stuff, and running their own server, but that is not most people.",
     "parent": 44851391,
+    "depth": 2
+  },
+  {
+    "id": 44854921,
+    "by": "ExoticPearTree",
+    "timeISO": "2025-08-10T13:04:44.000Z",
+    "textPlain": "> Entra ID doesn’t allow you to blacklist or whitelist specific tenants for multi tenant apps.This one very annoying \"feature\" where I could say this app is available for the following tenants. No, only \"my tenant\" or \"all tenants in Azure\".One workaround I use is to set up apps with \"only this tenant\" and invite users from other tenants into my tenant. The other approach is to say \"all tenants\" and then use a group to enforce who can actually use the app.I don't know if there are any reasons behind this limitation or just an oversight or no client big enough asked for this feature.",
+    "parent": 44852939,
     "depth": 2
   },
   {
