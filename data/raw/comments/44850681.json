@@ -1,9 +1,17 @@
 [
   {
-    "id": 44853363,
-    "by": "bobbyraduloff",
-    "timeISO": "2025-08-10T07:11:13.000Z",
-    "textPlain": "$0 in rewards for RCE on the Windows build servers is crazy. I understand he didn’t find an actual zero-day, only a configuration issue, but still. Imagine the global havoc you can cause if you can pollute the build environment with backdoored DLLs…",
+    "id": 44853702,
+    "by": "fock",
+    "timeISO": "2025-08-10T08:27:09.000Z",
+    "textPlain": "Does this have a CVE or something? I have the weird feeling the cloud initiative here won't notice this ever otherwise...",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
+    "id": 44853635,
+    "by": "Too",
+    "timeISO": "2025-08-10T08:12:52.000Z",
+    "textPlain": "Not surprising at all. The configuration and docs for Oauth2 on Entra is an absolute cluster-f. Evidently, it’s so confusing that not even Microsoft themselves can get it right.Their solution to this will be to add even more documentation, as if anyone had the stomach to read through the spaghetti that exist today.",
     "parent": 44850681,
     "depth": 1
   },
@@ -24,6 +32,14 @@
     "depth": 1
   },
   {
+    "id": 44852564,
+    "by": "beoberha",
+    "timeISO": "2025-08-10T03:33:26.000Z",
+    "textPlain": "Ignoring the ridiculous complexity of Entra and how easy it is to not realize you’re making a mistake with it (especially internal at Microsoft where there’s no delineation between all the internal tenants you need to support and 3P customer tenants), it’s really scary how people think an auth token is the only layer of security you need. These sites shouldn’t have ever been exposed to public internet (they’re not now). Network security is such an afterthought but it’s the best layer of defense you can have!",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
     "id": 44852939,
     "by": "moi2388",
     "timeISO": "2025-08-10T05:19:01.000Z",
@@ -32,18 +48,18 @@
     "depth": 1
   },
   {
-    "id": 44853189,
-    "by": "yyyk",
-    "timeISO": "2025-08-10T06:27:05.000Z",
-    "textPlain": "It's all very simple: Entra* (Azure AD or however you'd call it) should not be used for AuthZ. Entra AuthN is okayish, but forget about Entra AuthZ, do it all yourself. It's all very simple to avoid once you do AuthZ.* No idea why the rename happened. Does some manager in Microsoft have the plaque: \"Renomino, ergo sum.\"?",
+    "id": 44853363,
+    "by": "bobbyraduloff",
+    "timeISO": "2025-08-10T07:11:13.000Z",
+    "textPlain": "$0 in rewards for RCE on the Windows build servers is crazy. I understand he didn’t find an actual zero-day, only a configuration issue, but still. Imagine the global havoc you can cause if you can pollute the build environment with backdoored DLLs…",
     "parent": 44850681,
     "depth": 1
   },
   {
-    "id": 44852564,
-    "by": "beoberha",
-    "timeISO": "2025-08-10T03:33:26.000Z",
-    "textPlain": "Ignoring the ridiculous complexity of Entra and how easy it is to not realize you’re making a mistake with it (especially internal at Microsoft where there’s no delineation between all the internal tenants you need to support and 3P customer tenants), it’s really scary how people think an auth token is the only layer of security you need. These sites shouldn’t have ever been exposed to public internet (they’re not now). Network security is such an afterthought but it’s the best layer of defense you can have!",
+    "id": 44853189,
+    "by": "yyyk",
+    "timeISO": "2025-08-10T06:27:05.000Z",
+    "textPlain": "It's all very simple: Entra* (Azure AD or however you'd call it) should not be used for AuthZ. Entra AuthN is okayish, but forget about Entra AuthZ, do it all yourself. It's all very simple to avoid once you do AuthZ.* No idea why the rename happened. Does some manager in Microsoft have the plaque: \"Renomino, ergo sum.\"?",
     "parent": 44850681,
     "depth": 1
   },

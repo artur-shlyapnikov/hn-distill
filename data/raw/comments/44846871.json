@@ -72,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44849003,
-    "by": "zwaps",
-    "timeISO": "2025-08-09T18:43:44.000Z",
-    "textPlain": "The author seems to fundamentally misunderstand how MCPs are going to be used and deployed.This is really obvious when they talk about tracing and monitoring, which seem to be the main points of criticism anyway.They bemoan that they cant trace across MCP calls, assuming somehow there would be a person administering all the MCPs.\nOf course each system has tracing in whatever fashion fits its system. \nThey are just not the same system, nor owned by the same people let alone companies.Same as monitoring cost. Oh, you can’t know who racked up the LLM costs? Well of course you can, these systems are already in place and there are a million of ways to do this. It has nothing to do with MCP.Reading this, I think its rather a blessing to start fresh and without the learnings of 40 years of failed protocols or whatever",
-    "parent": 44846871,
-    "depth": 1
-  },
-  {
     "id": 44848489,
     "by": "abtinf",
     "timeISO": "2025-08-09T17:43:53.000Z",
     "textPlain": "I wish someone would write a clear, crisp explanation for why MCP is needed over simply supporting swagger or proto.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44849003,
+    "by": "zwaps",
+    "timeISO": "2025-08-09T18:43:44.000Z",
+    "textPlain": "The author seems to fundamentally misunderstand how MCPs are going to be used and deployed.This is really obvious when they talk about tracing and monitoring, which seem to be the main points of criticism anyway.They bemoan that they cant trace across MCP calls, assuming somehow there would be a person administering all the MCPs.\nOf course each system has tracing in whatever fashion fits its system. \nThey are just not the same system, nor owned by the same people let alone companies.Same as monitoring cost. Oh, you can’t know who racked up the LLM costs? Well of course you can, these systems are already in place and there are a million of ways to do this. It has nothing to do with MCP.Reading this, I think its rather a blessing to start fresh and without the learnings of 40 years of failed protocols or whatever",
     "parent": 44846871,
     "depth": 1
   },
@@ -104,10 +104,10 @@
     "depth": 1
   },
   {
-    "id": 44852917,
-    "by": "krawczstef",
-    "timeISO": "2025-08-10T05:12:32.000Z",
-    "textPlain": "I agree with this post.Otherwise the larger picture is that MCP is a land grab for building an eco-system around integrations to get access to data. Your LLM agent is not valuable if it can't access things for you... and from a market perspective enterprise pays a lot for this stuff already, and yes MCP is not thought out at all for Enterprise really... At least thankfully they added stateless connections to the spec...",
+    "id": 44849284,
+    "by": "ipython",
+    "timeISO": "2025-08-09T19:19:53.000Z",
+    "textPlain": "I am torn. I see this argument and intellectually agree with it (that interfaces need to be more explicit). However it seems that every time there is a choice between “better” design and “good enough”, the “good enough” wins handily.Multics vs Unix, xml based soap vs json based rest apis, xhtml’s failure, javascript itself, … I could keep going on.So I’ve resigned myself to admitting that we are doomed to reimplement the “good enough” every time, and continue to apply bandaid after bandaid to gradually fix problems after we rediscover them, slowly.",
     "parent": 44846871,
     "depth": 1
   },
@@ -120,10 +120,10 @@
     "depth": 1
   },
   {
-    "id": 44849284,
-    "by": "ipython",
-    "timeISO": "2025-08-09T19:19:53.000Z",
-    "textPlain": "I am torn. I see this argument and intellectually agree with it (that interfaces need to be more explicit). However it seems that every time there is a choice between “better” design and “good enough”, the “good enough” wins handily.Multics vs Unix, xml based soap vs json based rest apis, xhtml’s failure, javascript itself, … I could keep going on.So I’ve resigned myself to admitting that we are doomed to reimplement the “good enough” every time, and continue to apply bandaid after bandaid to gradually fix problems after we rediscover them, slowly.",
+    "id": 44852917,
+    "by": "krawczstef",
+    "timeISO": "2025-08-10T05:12:32.000Z",
+    "textPlain": "I agree with this post.Otherwise the larger picture is that MCP is a land grab for building an eco-system around integrations to get access to data. Your LLM agent is not valuable if it can't access things for you... and from a market perspective enterprise pays a lot for this stuff already, and yes MCP is not thought out at all for Enterprise really... At least thankfully they added stateless connections to the spec...",
     "parent": 44846871,
     "depth": 1
   },
@@ -256,6 +256,14 @@
     "depth": 2
   },
   {
+    "id": 44853596,
+    "by": "Squakie",
+    "timeISO": "2025-08-10T08:04:38.000Z",
+    "textPlain": "I can offer a hacking/penetrarion testing perspective to this as a security researcher at a security consultint firm: this type of hallucination and trust is one of the largest things we exploit in our new LLM testing service. Overly agentic systems (one of the top 10 OWASP LLM vulns) is the most profound and commonly exploited issue that we've been able to leverage.If we can get an internal, sensitive-data-handling agent to ingest a crafted prompt, either via direct prompt injection against a more abstract “parent” agent, or by tainting an input file/URL it’s told to process, we can plant what I have internally coined an “unfolding injection.”The injection works like a parasitic goal, it doesn’t just trick one agent, it rewrites the downstream intent. As the orchestrator routes tasks to other agents, each one treats the tainted instructions as legitimate and works toward fulfilling them.Because many orchestrations re-summarize, re-plan, or synthesize goals between steps, the malicious instructions can actually gain fidelity as they propagate. By the time they reach a sensitive action (exfiltration, privilege escalation, external calls), there’s no trace of the original “weird” wording, just a confidently stated, fully-integrated sub-goal.It’s essentially a supply-chain attack on the orchestration layer: you compromise one node in the agent network, and the rest “help” you without realizing it. Without explicit provenance tracking and policy enforcement between agents, this kind of unfolding injection is almost trivial to pull off, and we've been able to compromise entire environments based on the information the agentic system provided us, or just gave us either a bind or reverse shell in the case it has cli access and ability to figure out its own network constraints.SSRF has been making a HUGE return in agentic systems, and Im sad defcon and black hat didnt really have many talks on this subject this year, because it is a currently evolving security domain and en",
+    "parent": 44849009,
+    "depth": 2
+  },
+  {
     "id": 44849707,
     "by": "hinkley",
     "timeISO": "2025-08-09T20:09:36.000Z",
@@ -309,14 +317,6 @@
     "timeISO": "2025-08-09T20:02:41.000Z",
     "textPlain": "Yeah, I loughed out loud when I read that line. Mission accomplished, I guess?",
     "parent": 44849159,
-    "depth": 2
-  },
-  {
-    "id": 44849381,
-    "by": "jchw",
-    "timeISO": "2025-08-09T19:29:02.000Z",
-    "textPlain": "Agreed. In practice, SOAP was a train wreck. It's amazing how overly complicated they managed to make concepts that should've been simple, all the way down to just XML somehow being radically more complex than it looks to the wacky world of ill-defined standards for things like WSDLs and weird usage of multi-part HTTP and, to top it all off, it was all for nothing, because you couldn't guarantee that a SOAP server written in one language would be interoperable with clients in other languages. (I don't remember exactly what went wrong, but I hit issues trying to use a SOAP API powered by .NET from a Java client. I feel like that should be a pretty good case!)It doesn't take very long for people to start romanticizing things as soon as they're not in vogue. Even when the painfulness is still fresh in memory, people lament over how stupid new stuff is. Well I'm not a fan of schemaless JSON APIs (I'm one of those weird people that likes protobufs and capnp much more) but I will take 50 years of schemaless JSON API work over a month of dealing with SOAP again.",
-    "parent": 44848594,
     "depth": 2
   }
 ]

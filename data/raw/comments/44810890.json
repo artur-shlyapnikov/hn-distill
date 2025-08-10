@@ -56,14 +56,6 @@
     "depth": 1
   },
   {
-    "id": 44853280,
-    "by": "atoav",
-    "timeISO": "2025-08-10T06:51:19.000Z",
-    "textPlain": "The truth is that different errors have to lead to diffrrent results.- Fundamental error: something without the process cannot functio, e.g. Missing an essential config option? Exiting with an error is totally adequate. You can't just heal from that as it would involve guessing information you don't have- Critical error: something that should not ever occur, e.g. having an active user without password and email. You don't exit, you skip it and ensure the first occurance is logged and admins are contacted- Expected error: something that is expected to happen in certain operations of the service, e.g. the other server you make requests to is being restarted and thus unreachable. Here the strategy may vary, but it could be something like retrying with random exponential backoff. Or you could briefly accept the values provided by that server are unknown and periodically retry to fill the unknown values. Or you could escalate that into a critical error after a certain amount of retries.- Warnings: These are usually about something being not exactly ideal, but do not impede with the flow of the program at all. Usually has to do with bad data quality",
-    "parent": 44810890,
-    "depth": 1
-  },
-  {
     "id": 44852730,
     "by": "adastra22",
     "timeISO": "2025-08-10T04:21:29.000Z",
@@ -88,6 +80,14 @@
     "depth": 1
   },
   {
+    "id": 44853280,
+    "by": "atoav",
+    "timeISO": "2025-08-10T06:51:19.000Z",
+    "textPlain": "The truth is that different errors have to lead to different results if you want a good organisational outcome. These could be:- Fundamental/Fatal error: something without the process cannot function, e.g. we are missing an essential config option. Exiting with an error is totally adequate. You can't just heal from that as it would involve guessing information you don't have. Admins need to fix it- Critical error: something that should not ever occur, e.g. having an active user without password and email. You don't exit, you skip it if thst is possible and ensure the first occurance is logged and admins are contacted- Expected/Regular error: something that is expected to happen during the normal operations of the service, e.g. the other server you make requests to is being restarted and thus unreachable. Here the strategy may vary, but it could be something like retrying with random exponential backoff. Or you could briefly accept the values provided by that server are unknown and periodically retry to fill the unknown values. Or you could escalate that into a critical error after a certain amount of retries.- Warnings: These are usually about something being not exactly ideal, but do not impede with the flow of the program at all. Usually has to do with bad data qualityIf you can proceed without degrading the integrity of the system you should, the next thing is to decide jow important it is for humans to hear about it.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
     "id": 44853095,
     "by": "snickerbockers",
     "timeISO": "2025-08-10T06:04:35.000Z",
@@ -100,6 +100,14 @@
     "by": "corysama",
     "timeISO": "2025-08-10T05:28:38.000Z",
     "textPlain": "I’m only an armchair expert on Erlang. But, having looked into it repeatedly for a couple decades, my take-away is the “Let it crash” slogan is good. But, also presented a bit out of context. Or, at least assuming context that most people don’t have.Erlang is used in situations involving a zillion incoming requests. If an individual request fails… Maybe it was important. Maybe it wasn’t.  If it was important, it’s expected they’ll try again. What’s most important is that the rest of the requests are not interrupted.What makes Erlang different is that it is natural and trivial to be able to shut down an individual request on the event of an error without worrying about putting any other part of the system into a bad state.You can pull this off in other languages via careful attention to the details of your request-handling code. But, the creators of the Erlang language and foundational frameworks have set their users up for success via careful attention to the design of the system as a whole.That’s great in the contexts in which Erlang is used. But, in the context of a Java desktop app like Open Office, it’s more like saying “Let it throw”. “It” being some user action. And, the slogan being to have a language and framework with such robust exception handling built-in that error handling becomes trivial and nearly invisible.",
+    "parent": 44852737,
+    "depth": 2
+  },
+  {
+    "id": 44853599,
+    "by": "masklinn",
+    "timeISO": "2025-08-10T08:05:10.000Z",
+    "textPlain": "> Is an infinite crash-loop considered success in Erlang?Of course not, but usually that's not what happens, instead a process crashes because some condition was not considered, the corresponding request is aborted, and a supervisor restarts the process (or doesn't because the acceptor spawns a process per request / client).Or a long-running worker got into an incorrect state and crashed, and a supervisor will restart it in a known good state (that's a pretty common thing to do in hardware, BEAM makes that idiomatic in software).",
     "parent": 44852737,
     "depth": 2
   },
@@ -120,18 +128,26 @@
     "depth": 2
   },
   {
-    "id": 44853325,
-    "by": "rtpg",
-    "timeISO": "2025-08-10T07:03:20.000Z",
-    "textPlain": "My impression is that in Erlang land each process handler is really cheap so you can just keep on showing up with process handlers and not reach exhaustion like you do with other systems (at least in pre-async worlds...)",
-    "parent": 44853160,
-    "depth": 2
-  },
-  {
     "id": 44853248,
     "by": "josevalim",
     "timeISO": "2025-08-10T06:42:57.000Z",
     "textPlain": "Processes can be marked as temporary, which means they are not restarted, and that’s what is used when managing http connections, as you can’t really restart a request on the server without the client.  So the scenario above wouldn’t happen.You still want those processes to crash though, as it allows it to automatically clean up any concurrent work. For example, if during a request you start three processes to do concurrent work, like fetching APIs, then the request process crashes, the concurrent processes are automatically cleaned up.",
+    "parent": 44853160,
+    "depth": 2
+  },
+  {
+    "id": 44853459,
+    "by": "davidclark",
+    "timeISO": "2025-08-10T07:34:02.000Z",
+    "textPlain": "You should try to do some load testing of a real Erlang system and compare how it handles this scenario against other languages/frameworks. What you are describing is one of the exact things the Erlang system is strong against due to the scheduler.",
+    "parent": 44853160,
+    "depth": 2
+  },
+  {
+    "id": 44853325,
+    "by": "rtpg",
+    "timeISO": "2025-08-10T07:03:20.000Z",
+    "textPlain": "My impression is that in Erlang land each process handler is really cheap so you can just keep on showing up with process handlers and not reach exhaustion like you do with other systems (at least in pre-async worlds...)",
     "parent": 44853160,
     "depth": 2
   },
@@ -184,18 +200,18 @@
     "depth": 2
   },
   {
-    "id": 44853285,
-    "by": "toast0",
-    "timeISO": "2025-08-10T06:52:41.000Z",
-    "textPlain": "Ok, so it's not really that you're not checking error codes. It's that you can write stuff like   ok = whatever().\n\nIf whatever is successful and idomatic, it returns ok, or maybe a tuple of {ok, SomeReturn}. In that case, execution would continue. If it returns an error tuple like {error, Reason}... \"Let it crash\" says you can just let it crash... You didn't have anything better to do, the built in crash because {error, Reason} will do fine.Or you could do a   case whatever of\n      ok -> ok;\n      {error, nxdomain} -> ok\n   end.\n\nIf it was fine to get nxdomain error, but any other error isn't acceptable... It will just crash, and that's good or at least ok. Better than having to enumerate all the possible errors, or having a catchall that then explicitly throws an eeror. It's especially hard to enumerate all possible errors because the running system can change and may return a new error that wasn't enumerated when the requesting code was written.There's lots of places where crashing isn't actually what you want, and you have to capture all errors, explicitly log it, and then move on... But when you can, checking for success or success and a handful of expected and recoverable errors is very nice.",
-    "parent": 44853095,
-    "depth": 2
-  },
-  {
     "id": 44853199,
     "by": "josevalim",
     "timeISO": "2025-08-10T06:29:11.000Z",
     "textPlain": "That’s actually a good example. Imagine someone forgot to check the error code from an API response. In some languages, they may attempt to parse it as if it was successful request, and succeed, leading to a result with nulls, empty arrays, or missing data that then spreads through the system. In Elixir, parsing would most likely fail thanks to pattern matching [1] and if it by any chance that fails in a core part of the system, that failure will be isolated and that particular component can be restarted.Elixir is not about willingly ignoring error codes or failure scenarios. It is about naturally limiting the blast radius of errors without a need to program defensively (as in writing code for scenarios you don’t know “just in case”).1: https://dashbit.co/blog/writing-assertive-code-with-elixir",
+    "parent": 44853095,
+    "depth": 2
+  },
+  {
+    "id": 44853285,
+    "by": "toast0",
+    "timeISO": "2025-08-10T06:52:41.000Z",
+    "textPlain": "Ok, so it's not really that you're not checking error codes. It's that you can write stuff like   ok = whatever().\n\nIf whatever is successful and idomatic, it returns ok, or maybe a tuple of {ok, SomeReturn}. In that case, execution would continue. If it returns an error tuple like {error, Reason}... \"Let it crash\" says you can just let it crash... You didn't have anything better to do, the built in crash because {error, Reason} will do fine.Or you could do a   case whatever of\n      ok -> ok;\n      {error, nxdomain} -> ok\n   end.\n\nIf it was fine to get nxdomain error, but any other error isn't acceptable... It will just crash, and that's good or at least ok. Better than having to enumerate all the possible errors, or having a catchall that then explicitly throws an eeror. It's especially hard to enumerate all possible errors because the running system can change and may return a new error that wasn't enumerated when the requesting code was written.There's lots of places where crashing isn't actually what you want, and you have to capture all errors, explicitly log it, and then move on... But when you can, checking for success or success and a handful of expected and recoverable errors is very nice.",
     "parent": 44853095,
     "depth": 2
   }
