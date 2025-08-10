@@ -1,9 +1,9 @@
 [
   {
-    "id": 44852939,
-    "by": "moi2388",
-    "timeISO": "2025-08-10T05:19:01.000Z",
-    "textPlain": "That’s what you get. Entra ID doesn’t allow you to blacklist or whitelist specific tenants for multi tenant apps, which causes problems like this.Add the fact that MSAL doesn’t work for stuff like browser extensions, so people have to implement their own security solutions to interact with Entra ID and it’s not surprising there are so many issues.",
+    "id": 44853189,
+    "by": "yyyk",
+    "timeISO": "2025-08-10T06:27:05.000Z",
+    "textPlain": "It's all very simple: Entra* (Azure AD or however you'd call it) should not be used for AuthZ. Entra AuthN is okayish, but forget about Entra AuthZ, do it all yourself. It's all very simple to avoid once you do AuthZ.* No idea why the rename happened. Does some manager in Microsoft have the plaque: \"Renomino, ergo sum.\"?",
     "parent": 44850681,
     "depth": 1
   },
@@ -16,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44851391,
-    "by": "muststopmyths",
-    "timeISO": "2025-08-09T23:39:26.000Z",
-    "textPlain": "Move to the cloud they said. It will be more secure then your intranet they said. Only fools pay for their own Ops team they said.I’m so old and dumb that I don’t even understand why an app for internal Microsoft use is even accesible from outside its network.",
+    "id": 44852939,
+    "by": "moi2388",
+    "timeISO": "2025-08-10T05:19:01.000Z",
+    "textPlain": "That’s what you get. Entra ID doesn’t allow you to blacklist or whitelist specific tenants for multi tenant apps, which causes problems like this.Add the fact that MSAL doesn’t work for stuff like browser extensions, so people have to implement their own security solutions to interact with Entra ID and it’s not surprising there are so many issues.",
     "parent": 44850681,
     "depth": 1
   },
   {
-    "id": 44852915,
-    "by": "janci",
-    "timeISO": "2025-08-10T05:11:31.000Z",
-    "textPlain": "Ohh, that's probably why our integration suddenly stopped working for single-tenant app registrations right before release. We were using the /common endpoint for everyone. That is disallowed now.",
+    "id": 44851391,
+    "by": "muststopmyths",
+    "timeISO": "2025-08-09T23:39:26.000Z",
+    "textPlain": "Move to the cloud they said. It will be more secure then your intranet they said. Only fools pay for their own Ops team they said.I’m so old and dumb that I don’t even understand why an app for internal Microsoft use is even accesible from outside its network.",
     "parent": 44850681,
     "depth": 1
   },
@@ -44,6 +44,14 @@
     "by": "9cb14c1ec0",
     "timeISO": "2025-08-10T01:26:53.000Z",
     "textPlain": "OAuth is frequently marketed as \"more secure\".  But implementations often confuse authentication with authorization, resulting in problems like this.",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
+    "id": 44852915,
+    "by": "janci",
+    "timeISO": "2025-08-10T05:11:31.000Z",
+    "textPlain": "Ohh, that's probably why our integration suddenly stopped working for single-tenant app registrations right before release. We were using the /common endpoint for everyone. That is disallowed now.",
     "parent": 44850681,
     "depth": 1
   },
@@ -80,18 +88,18 @@
     "depth": 2
   },
   {
-    "id": 44852882,
-    "by": "motorest",
-    "timeISO": "2025-08-10T05:05:06.000Z",
-    "textPlain": "> Move to the cloud they said. It will be more secure then your intranet they said. Only fools pay for their own Ops team they said.It seems that the fundamental issue surfaced in the blog post is that developers who work on authorizarion in resource servers are failing to check basic claims in tokens such as the issuer, the audience, and subject.If your developers are behind this gross oversight, do you honestly expect an intranet to make a difference?Listen, the underlying issue is not cloud vs self-hosted. The underlying issue is that security is hard and in general there is no feedback loop except security incidents. Placing your apps in a intranet, or VPN, does nothing to mitigate this issue.",
-    "parent": 44851391,
-    "depth": 2
-  },
-  {
     "id": 44851408,
     "by": "jameskilton",
     "timeISO": "2025-08-09T23:42:09.000Z",
     "textPlain": "The last decade has seen an increase push in what Google started calling \"Zero Trust\"[0] and dropping VPNs entirely. The issue being that once someone got into a VPN it was much, much harder to prevent them from accessing important data.So everything \"internal\" is now also external and required to have its own layer of permissions and the like, making it much harder for, e.g. the article, to use one exploit to access another service.[0] https://cloud.google.com/learn/what-is-zero-trust",
+    "parent": 44851391,
+    "depth": 2
+  },
+  {
+    "id": 44852882,
+    "by": "motorest",
+    "timeISO": "2025-08-10T05:05:06.000Z",
+    "textPlain": "> Move to the cloud they said. It will be more secure then your intranet they said. Only fools pay for their own Ops team they said.It seems that the fundamental issue surfaced in the blog post is that developers who work on authorizarion in resource servers are failing to check basic claims in tokens such as the issuer, the audience, and subject.If your developers are behind this gross oversight, do you honestly expect an intranet to make a difference?Listen, the underlying issue is not cloud vs self-hosted. The underlying issue is that security is hard and in general there is no feedback loop except security incidents. Placing your apps in a intranet, or VPN, does nothing to mitigate this issue.",
     "parent": 44851391,
     "depth": 2
   },

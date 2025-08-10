@@ -1,9 +1,9 @@
 [
   {
-    "id": 44852961,
-    "by": "monkeyelite",
-    "timeISO": "2025-08-10T05:26:12.000Z",
-    "textPlain": "This seems specific to BEAM as crashing a fast-cgi process is fine and response will be handled correctly with Apache or nginx.",
+    "id": 44853160,
+    "by": "praptak",
+    "timeISO": "2025-08-10T06:20:11.000Z",
+    "textPlain": "A condition that \"should not happen\" might still be a problem specific to a particular request. If you \"just crash\" it turns this request from one that only triggers a http 500 response to one that crashes the process. This increases the risk of Query of Death scenarios where the frontend that needs to serve this particular request starts retrying it with different backends and triggers restarts faster than the processes come back up.So being too eager to \"just crash\" may turn a scenario where you fail to serve 1% of requests into a scenario where you serve none because all your processes keep restarting.",
     "parent": 44810890,
     "depth": 1
   },
@@ -48,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44852820,
-    "by": "BobbyTables2",
-    "timeISO": "2025-08-10T04:48:50.000Z",
-    "textPlain": "Hackers also love auto-restarting services.Exploitation of vulnerabilities isn’t always 100% reliable.  Heap grooming might be limited or otherwise inadequate.A quick automatic restart keeps them in business without any other human interaction involved.",
+    "id": 44852961,
+    "by": "monkeyelite",
+    "timeISO": "2025-08-10T05:26:12.000Z",
+    "textPlain": "This seems specific to BEAM as crashing a fast-cgi process is fine and response will be handled correctly with Apache or nginx.",
     "parent": 44810890,
     "depth": 1
   },
@@ -70,6 +70,38 @@
     "textPlain": "I don't code in Erlang or Elixir, aside from messing about. But I've found that letting an entire application crash is something that I can do under certain circumstances, especially when \"you have a very big problem and will not go to space today\". For example, if there's an error reading some piece of data that's in the application bundle and is needed to legitimately start up in the first place (assets for my game for instance). Then upon error it just \"screams and dies\" (spits out a stack trace and terminates).",
     "parent": 44810890,
     "depth": 1
+  },
+  {
+    "id": 44852820,
+    "by": "BobbyTables2",
+    "timeISO": "2025-08-10T04:48:50.000Z",
+    "textPlain": "Hackers also love auto-restarting services.Exploitation of vulnerabilities isn’t always 100% reliable.  Heap grooming might be limited or otherwise inadequate.A quick automatic restart keeps them in business without any other human interaction involved.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44853095,
+    "by": "snickerbockers",
+    "timeISO": "2025-08-10T06:04:35.000Z",
+    "textPlain": ">When people say “let it crash”, they are referring to the fact that practically any exited process in your application will be subsequently restarted. Because of this, you can often be much less defensive around unexpected errors. You will see far fewer try/rescue, or matching on error states in Elixir code.I just threw up in my mouth when I read this.  I've never used this language so maybe my experience doesn't apply here but I'm imagining all the different security implications that ive seen arise from failing to check error codes.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44853197,
+    "by": "zwnow",
+    "timeISO": "2025-08-10T06:28:30.000Z",
+    "textPlain": "This is funny given Elixir/Erlangs whole idea is \"let it crash\". In Go I just have a Recovery Middleware for any type of problem. Don't know how other langs do it tho",
+    "parent": 44853160,
+    "depth": 2
+  },
+  {
+    "id": 44852975,
+    "by": "corysama",
+    "timeISO": "2025-08-10T05:28:38.000Z",
+    "textPlain": "I’m only an armchair expert on Erlang. But, having looked into it repeatedly for a couple decades, my take-away is the “Let it crash” slogan is good. But, also presented a bit out of context. Or, at least assuming context that most people don’t have.Erlang is used in situations involving a zillion incoming requests. If an individual request fails… Maybe it was important. Maybe it wasn’t.  If it was important, it’s expected they’ll try again. What’s most important is that the rest of the requests are not interrupted.What makes Erlang different is that it is natural and trivial to be able to shut down an individual request on the event of an error without worrying about putting any other part of the system into a bad state.You can pull this off in other languages via careful attention to the details of your request-handling code. But, the creators of the Erlang language and foundational frameworks have set their users up for success via careful attention to the design of the system as a whole.That’s great in the contexts in which Erlang is used. But, in the context of a Java desktop app like Open Office, it’s more like saying “Let it throw”. “It” being some user action. And, the slogan being to have a language and framework with such robust exception handling built-in that error handling becomes trivial and nearly invisible.",
+    "parent": 44852737,
+    "depth": 2
   },
   {
     "id": 44852805,
@@ -109,6 +141,22 @@
     "timeISO": "2025-08-10T03:14:13.000Z",
     "textPlain": "Errors during initialization of a BEAM language application will crash the entire program, and you can decide to exit/crash a program if you get into some unrecoverable state. The important thing is the design of individual crashable/recoverable units.",
     "parent": 44852476,
+    "depth": 2
+  },
+  {
+    "id": 44853117,
+    "by": "teiferer",
+    "timeISO": "2025-08-10T06:10:10.000Z",
+    "textPlain": "Took me a minute to realize what you meant with \"hackers\". Quite the irony, given the name of the site we are having this conversation on.",
+    "parent": 44852820,
+    "depth": 2
+  },
+  {
+    "id": 44853199,
+    "by": "josevalim",
+    "timeISO": "2025-08-10T06:29:11.000Z",
+    "textPlain": "That’s actually a good example. Imagine someone forgot to check the error code from an API response. In some languages, they may attempt to parse it as if it was successful request, and succeed, leading to a result with nulls, empty arrays, or missing data that then spreads through the system. In Elixir, parsing would most likely fail thanks to pattern matching [1] and if it by any chance that fails in a core part of the system, that failure will be isolated and that particular component can be restarted.Elixir is not about willingly ignoring error codes or failure scenarios. It is about naturally limiting the blast radius of errors without a need to program defensively (as in writing code for scenarios you don’t know “just in case”).1: https://dashbit.co/blog/writing-assertive-code-with-elixir",
+    "parent": 44853095,
     "depth": 2
   }
 ]

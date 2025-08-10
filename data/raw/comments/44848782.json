@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44852700,
+    "by": "int_19h",
+    "timeISO": "2025-08-10T04:12:55.000Z",
+    "textPlain": "I see that systemd is still doing this thing where they are trying to strong-arm all Linux distros into arbitrary stuff that someone decided is the only right way to do something:> 5.2.2. systemd message: System is tainted: unmerged-bin\nsystemd upstream, since version 256, considers systems having separate /usr/bin and /usr/sbin directories noteworthy. At startup systemd emits a message to record this fact: System is tainted: unmerged-bin. It is recommended to ignore this message. Merging these directories manually is unsupported and will break future upgrades. Further details can be found in bug #1085370.No option to disable this either, per discussion in https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1085370",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44849053,
     "by": "gorgoiler",
     "timeISO": "2025-08-09T18:49:38.000Z",
@@ -28,14 +36,6 @@
     "by": "accrual",
     "timeISO": "2025-08-09T19:25:31.000Z",
     "textPlain": "> i386 is no longer supported as a regular architecture: there is no official kernel and no Debian installer for i386 systems. The i386 architecture is now only intended to be used on a 64-bit (amd64) CPU. Users running i386 systems should not upgrade to trixie. Instead, Debian recommends either reinstalling them as amd64, where possible, or retiring the hardware.Impressive that i386 support made it all the way to August 2025. I have Debian 10 Buster running on a Pentium 3 which only EOL'd last year in June 2024. It's still useful on that hardware and I'm grateful support continued as long as it did!OpenBSD still supports i386 for those looking for a modern OS on old 32-bit hardware.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44852700,
-    "by": "int_19h",
-    "timeISO": "2025-08-10T04:12:55.000Z",
-    "textPlain": "I see that systemd is still doing this thing where they are trying to strong-arm all Linux distros into arbitrary stuff that someone decided is the only right way to do something:> 5.2.2. systemd message: System is tainted: unmerged-bin\nsystemd upstream, since version 256, considers systems having separate /usr/bin and /usr/sbin directories noteworthy. At startup systemd emits a message to record this fact: System is tainted: unmerged-bin. It is recommended to ignore this message. Merging these directories manually is unsupported and will break future upgrades. Further details can be found in bug #1085370.No option to disable this either, per discussion in https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1085370",
     "parent": 44848782,
     "depth": 1
   },
@@ -80,10 +80,10 @@
     "depth": 1
   },
   {
-    "id": 44849709,
-    "by": "bayindirh",
-    "timeISO": "2025-08-09T20:09:54.000Z",
-    "textPlain": "Debian's signature feature (upgrade from stable to stable under 15 minutes) shines here too.My first system migrated in less than 10 minutes, incl. package downloads and reboot. It's not a beast either. N100 mini PC connected to a ~50mbps network.",
+    "id": 44853159,
+    "by": "starkparker",
+    "timeISO": "2025-08-10T06:20:06.000Z",
+    "textPlain": "Maybe a niche concern, but SDL2 is still in Trixie. The sdl2-compat layer (translating SDL2 APIs to SDL3) is in testing, where SDL2 also exists side-by-side with it and is intended to be used to test and verify that SDL2 apps that use it are actually compatible.Night-and-day decision-making process compared to Fedora and Arch, which both replaced SDL2 with sdl2-compat, broke a bunch of SDL2 apps because sdl2-compat isn't actually SDL2-compatible yet, and sent everyone to yell at the SDL team about it.",
     "parent": 44848782,
     "depth": 1
   },
@@ -104,18 +104,18 @@
     "depth": 1
   },
   {
-    "id": 44849625,
-    "by": "juujian",
-    "timeISO": "2025-08-09T20:00:21.000Z",
-    "textPlain": "I have been using Debian Trixie for a few months in testing now, I can attest that its a great, stable operating system. Definitely better than Ubuntu in terms of user experience.",
+    "id": 44849709,
+    "by": "bayindirh",
+    "timeISO": "2025-08-09T20:09:54.000Z",
+    "textPlain": "Debian's signature feature (upgrade from stable to stable under 15 minutes) shines here too.My first system migrated in less than 10 minutes, incl. package downloads and reboot. It's not a beast either. N100 mini PC connected to a ~50mbps network.",
     "parent": 44848782,
     "depth": 1
   },
   {
-    "id": 44851123,
-    "by": "natebc",
-    "timeISO": "2025-08-09T22:53:44.000Z",
-    "textPlain": "Lots of debian love in this thread and it's great to see. If you're so inclined I encourage you to donate to Debian. We're all better off the more support goes to an ecosystem and operation like Debian.https://www.debian.org/donationsNot affiliated, just a happy user for a long, long time.",
+    "id": 44849625,
+    "by": "juujian",
+    "timeISO": "2025-08-09T20:00:21.000Z",
+    "textPlain": "I have been using Debian Trixie for a few months in testing now, I can attest that its a great, stable operating system. Definitely better than Ubuntu in terms of user experience.",
     "parent": 44848782,
     "depth": 1
   },
@@ -128,18 +128,10 @@
     "depth": 1
   },
   {
-    "id": 44852827,
-    "by": "ilvez",
-    "timeISO": "2025-08-10T04:49:43.000Z",
-    "textPlain": "Nice, more chaos to unstable again. Sincerely happy because of the release and new stable, but also selfishly happy because now unstable starts moving again.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44850183,
-    "by": "sohrob",
-    "timeISO": "2025-08-09T21:01:29.000Z",
-    "textPlain": "I love Debian and have a tremendous amount of respect for the people who work on  the project. I no longer use Debian, but I think it's vitally important to have an anchor Linux distribution which isn't overly reliant on a for-profit entity and is truly community driven.",
+    "id": 44851123,
+    "by": "natebc",
+    "timeISO": "2025-08-09T22:53:44.000Z",
+    "textPlain": "Lots of debian love in this thread and it's great to see. If you're so inclined I encourage you to donate to Debian. We're all better off the more support goes to an ecosystem and operation like Debian.https://www.debian.org/donationsNot affiliated, just a happy user for a long, long time.",
     "parent": 44848782,
     "depth": 1
   },
@@ -148,6 +140,14 @@
     "by": "Narishma",
     "timeISO": "2025-08-09T20:21:24.000Z",
     "textPlain": "> Users running i386 systems should not upgrade to trixie. Instead, Debian recommends either reinstalling them as amd64, where possible, or retiring the hardware.What I did is switch to NetBSD.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44850183,
+    "by": "sohrob",
+    "timeISO": "2025-08-09T21:01:29.000Z",
+    "textPlain": "I love Debian and have a tremendous amount of respect for the people who work on  the project. I no longer use Debian, but I think it's vitally important to have an anchor Linux distribution which isn't overly reliant on a for-profit entity and is truly community driven.",
     "parent": 44848782,
     "depth": 1
   },
@@ -168,18 +168,18 @@
     "depth": 1
   },
   {
-    "id": 44852754,
-    "by": "vwwvwvwv",
-    "timeISO": "2025-08-10T04:28:15.000Z",
-    "textPlain": "https://www.dropbox.com/scl/fi/ntqc4lod82qxnajuubvu3/ww.jpg?...",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44850740,
     "by": "lucb1e",
     "timeISO": "2025-08-09T22:05:29.000Z",
     "textPlain": "> \"trixie\" includes numerous updated software packages (over 63% of all packages from the previous release)Wow, I'm amazed a third of packages haven't seen an update in, ehm checks> After 2 years, 1 month, and 30 days of development, the Debian project is proud to present its new stable versionI'm a fan of old software myself, in the sense that I find it cool to see F-Droid having a (usually tiny) package that is over 10 years old but it does exactly what I want with no bugs and it works perfectly on Android 10. I wonder if those 30% more commonly fall in the \"it's fine as it is\" category or in the \"no maintainers available\" category",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44852827,
+    "by": "ilvez",
+    "timeISO": "2025-08-10T04:49:43.000Z",
+    "textPlain": "Nice, more chaos to unstable again. Sincerely happy because of the release and new stable, but also selfishly happy because now unstable starts moving again.",
     "parent": 44848782,
     "depth": 1
   },
@@ -192,18 +192,18 @@
     "depth": 1
   },
   {
-    "id": 44852524,
-    "by": "nodesocket",
-    "timeISO": "2025-08-10T03:18:59.000Z",
-    "textPlain": "I just upgraded a mini pc with no real issues. Main steps were:  1.) sudo apt-get update && sudo apt-get --yes upgrade && sudo apt-get --yes autoremove --purge\n  2.) Update all entries of bookworm to trixie in /etc/apt/sources.list.\n  3.) sudo apt full-upgrade\n  4.) sudo reboot\n  5.) sudo apt modernize-sources",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849860,
     "by": "kachapopopow",
     "timeISO": "2025-08-09T20:24:59.000Z",
     "textPlain": "Plasma 6.3 - I can finally ditch kde neon.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44852524,
+    "by": "nodesocket",
+    "timeISO": "2025-08-10T03:18:59.000Z",
+    "textPlain": "I just upgraded a mini pc with no real issues. Main steps were:  1.) sudo apt-get update && sudo apt-get --yes upgrade && sudo apt-get --yes autoremove --purge\n  2.) Update all entries of bookworm to trixie in /etc/apt/sources.list.\n  3.) sudo apt full-upgrade\n  4.) sudo reboot\n  5.) sudo apt modernize-sources",
     "parent": 44848782,
     "depth": 1
   },
@@ -216,10 +216,26 @@
     "depth": 1
   },
   {
+    "id": 44849191,
+    "by": "superkuh",
+    "timeISO": "2025-08-09T19:08:05.000Z",
+    "textPlain": "Biggest change for me is /tmp behavior. In Debian 13 /tmp become RAM-disk by default (instead of files on the file system) and uses up to 50% of available ram. But as expected of Debian the release notes included an easy fix to restore normal /tmp behavior for people and applications that place many small or large files there.https://www.debian.org/releases/trixie/release-notes/issues....>\"You can return to /tmp being a regular directory by running systemctl mask tmp.mount as root and rebooting.\"I kind of wish the distros had decided on a new /tmpfs (or /tmp/tmpfs, etc) directory for applications to opt-in to using ram-disk rather than replacing /tmp and having to opt-out.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44849564,
     "by": "sheerun",
     "timeISO": "2025-08-09T19:53:46.000Z",
     "textPlain": "Debian was often the only linux os that worked on old \"spacestations\" of mine. Great sentiment",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44852754,
+    "by": "vwwvwvwv",
+    "timeISO": "2025-08-10T04:28:15.000Z",
+    "textPlain": "https://www.dropbox.com/scl/fi/ntqc4lod82qxnajuubvu3/ww.jpg?...",
     "parent": 44848782,
     "depth": 1
   },
@@ -232,18 +248,18 @@
     "depth": 1
   },
   {
-    "id": 44849191,
-    "by": "superkuh",
-    "timeISO": "2025-08-09T19:08:05.000Z",
-    "textPlain": "Biggest change for me is /tmp behavior. In Debian 13 /tmp become RAM-disk by default (instead of files on the file system) and uses up to 50% of available ram. But as expected of Debian the release notes included an easy fix to restore normal /tmp behavior for people and applications that place many small or large files there.https://www.debian.org/releases/trixie/release-notes/issues....>\"You can return to /tmp being a regular directory by running systemctl mask tmp.mount as root and rebooting.\"I kind of wish the distros had decided on a new /tmpfs (or /tmp/tmpfs, etc) directory for applications to opt-in to using ram-disk rather than replacing /tmp and having to opt-out.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849561,
     "by": "Venn1",
     "timeISO": "2025-08-09T19:53:14.000Z",
     "textPlain": "I have been tracking Trixie on my Resolve workstation for the past couple of months. The only hiccup was that the latest kernel did not support the ondemand governor, so I had to build a custom kernel to fix that.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849287,
+    "by": "josteink",
+    "timeISO": "2025-08-09T19:20:08.000Z",
+    "textPlain": "I've upgraded all my servers and laptops to Debian 13.Lucky 13 and all... And not a single issue so far. Very happy!Thanks to the Debian team for putting out yet another high quality, reliable release :)",
     "parent": 44848782,
     "depth": 1
   },
@@ -260,14 +276,6 @@
     "by": "shmerl",
     "timeISO": "2025-08-10T02:55:51.000Z",
     "textPlain": "Congrats to the Debian team!",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44849287,
-    "by": "josteink",
-    "timeISO": "2025-08-09T19:20:08.000Z",
-    "textPlain": "I've upgraded all my servers and laptops to Debian 13.Lucky 13 and all... And not a single issue so far. Very happy!Thanks to the Debian team for putting out yet another high quality, reliable release :)",
     "parent": 44848782,
     "depth": 1
   },
@@ -308,14 +316,6 @@
     "by": "dismalaf",
     "timeISO": "2025-08-09T22:26:16.000Z",
     "textPlain": "I've kind of been using Debian 13 for awhile now (I'm on Unstable) and for me what's impressive is how polished a default Debian installation is these days.  With Gnome, you literally can run it as is, no config needed.  It just works.That being said, I like Flatpak, so I installed it (was super easy and Flathub provides instructions), and I added a few Gnome Shell extensions (a Dock so my wife can find apps when she occasionally uses my laptop).Debian gives you a feeling of ownership of your computer in a way the corporate distros don't, but is still pretty user friendly (unlike Arch).I'd definitely install Debian Stable on a grandparents' computer.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44852150,
-    "by": "keernan",
-    "timeISO": "2025-08-10T01:53:24.000Z",
-    "textPlain": "Apparently Trixie needs a larger boot petition than prior versions and therefore I have to do new installs on three of my homelab machines - and probably my proxmox machine too. What a headache.",
     "parent": 44848782,
     "depth": 1
   }

@@ -40,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44852293,
-    "by": "ezst",
-    "timeISO": "2025-08-10T02:21:40.000Z",
-    "textPlain": "I think I \"get\" what tailscale is about, what I don't get is how much of it is re-implemented and available out of the box in headscale. I already do most of the things mentioned in the article (from hand-rolled WG, Apache and firewall configurations), so this level of centralised automation and orchestration has some appeal, but I'm not willing to hand over the keys to my entire network to them and would rather keep things in-house.And on the topic of headscale, some people bring up netbird as an alternative. Netbird gets some immediate sympathy from me as they put lots of emphasis opensource and self-hosted, but I'd be curious to see how they compare for the use-cases described in the article.",
+    "id": 44818657,
+    "by": "8n4vidtmkvmk",
+    "timeISO": "2025-08-06T22:36:33.000Z",
+    "textPlain": "Sounds a bit like a fancier ngrok.Accidentally wiring everything to everything else sounds kind of scary.There's 1 or 2 things I wouldn't mind securely exposing to the internet (like Plex) but nothing I need so desperately while I'm out and about that I'd even want to take that risk.Sounds like this is just for self-hosting?",
     "parent": 44809166,
     "depth": 1
   },
@@ -56,10 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44818657,
-    "by": "8n4vidtmkvmk",
-    "timeISO": "2025-08-06T22:36:33.000Z",
-    "textPlain": "Sounds a bit like a fancier ngrok.Accidentally wiring everything to everything else sounds kind of scary.There's 1 or 2 things I wouldn't mind securely exposing to the internet (like Plex) but nothing I need so desperately while I'm out and about that I'd even want to take that risk.Sounds like this is just for self-hosting?",
+    "id": 44852293,
+    "by": "ezst",
+    "timeISO": "2025-08-10T02:21:40.000Z",
+    "textPlain": "I think I \"get\" what tailscale is about, what I don't get is how much of it is re-implemented and available out of the box in headscale. I already do most of the things mentioned in the article (from hand-rolled WG, Apache and firewall configurations), so this level of centralised automation and orchestration has some appeal, but I'm not willing to hand over the keys to my entire network to them and would rather keep things in-house.And on the topic of headscale, some people bring up netbird as an alternative. Netbird gets some immediate sympathy from me as they put lots of emphasis opensource and self-hosted, but I'd be curious to see how they compare for the use-cases described in the article.",
     "parent": 44809166,
     "depth": 1
   },
@@ -80,6 +80,14 @@
     "depth": 2
   },
   {
+    "id": 44852294,
+    "by": "0xCMP",
+    "timeISO": "2025-08-10T02:21:42.000Z",
+    "textPlain": "I don't see why people don't just run their own CAs more for private stuff.If exposed for others I think the wildcard cert is also what I did, but most tutorials have you issuing certs via ACME for internal or local-only things which doesn't even need to happen.I personally run my own CA and even setup an ACME server and internal DNS. Nobody knows what I am doing there.",
+    "parent": 44850881,
+    "depth": 2
+  },
+  {
     "id": 44851033,
     "by": "gitgud",
     "timeISO": "2025-08-09T22:42:41.000Z",
@@ -88,11 +96,11 @@
     "depth": 2
   },
   {
-    "id": 44852294,
-    "by": "0xCMP",
-    "timeISO": "2025-08-10T02:21:42.000Z",
-    "textPlain": "I don't see why people don't just run their own CAs more for private stuff.If exposed for others I think the wildcard cert is also what I did, but most tutorials have you issuing certs via ACME for internal or local-only things which doesn't even need to happen.I personally run my own CA and even setup an ACME server and internal DNS. Nobody knows what I am doing there.",
-    "parent": 44850881,
+    "id": 44853153,
+    "by": "jen729w",
+    "timeISO": "2025-08-10T06:18:30.000Z",
+    "textPlain": "See their blog post about this from last week.https://tailscale.com/blog/tailscale-privacy-anonymity# What Tailscale isn't: an anonymity serviceTailscale is a secure connectivity tool that puts the highest value on the privacy of your packets. But we made an intentional choice from day one that we weren't going to try to be an anonymity tool. Quite the opposite in fact! We're an identity-centric network.Anonymity tools, like Tor, need to be architected very differently. They trade away speed to reduce traceability. They are hard to inspect and diagnose and debug, as a feature. They make enemies, both political and corporate. They are inherently hard to audit and control, by design. In short, they are the exact opposite of what you want your corporate (or even homelab) network to be.We believe anonymity tools are essential to safe network infrastructure and a free society. But, those tools are made by other people.…But if you’re looking for complete anonymity online, Tailscale is not the tool for you. Y'all, we're an identity-centric network with a centralized control plane. You should assume law enforcement can easily find out that you use Tailscale. Tailscale packets are pretty easy to detect, so you can assume they could know, through ISP logs, the shape and size of data you send between different nodes in different places (albeit without knowing the decrypted packet contents). You should assume they can correlate that flow metadata with your login identity.",
+    "parent": 44851348,
     "depth": 2
   },
   {

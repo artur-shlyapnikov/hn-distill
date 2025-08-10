@@ -8,6 +8,22 @@
     "depth": 1
   },
   {
+    "id": 44853046,
+    "by": "wiradikusuma",
+    "timeISO": "2025-08-10T05:51:42.000Z",
+    "textPlain": "\"Wplace.live happened. Out of the blue, a new collaborative drawing website appeared, built from scratch using OpenFreeMap.\" -- as a founder, you know you're working on the wrong thing when there's a \"fun project\" getting daily traffic more than what you'd get in a lifetime :)",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44853040,
+    "by": "parhamn",
+    "timeISO": "2025-08-10T05:50:16.000Z",
+    "textPlain": "Since cloudflare is already sponsoring it, I do wonder how much of this type of service can be implemented all on cloudflare. Their stack could be great for tile serving.",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
     "id": 44846724,
     "by": "colinbartlett",
     "timeISO": "2025-08-09T14:26:14.000Z",
@@ -20,14 +36,6 @@
     "by": "andai",
     "timeISO": "2025-08-09T17:29:17.000Z",
     "textPlain": "From the screenshot I wanted to say, couldn't this be done on a single VPS? Seemed over engineered to me. Then I realized the silly pixels are on top of a map of the entire earth. Dang!I'm curious what the peak req/s is like. I think it might be just barely within the range supported by benchmark-friendly web servers.Unless there's some kind of order of magnitude slowdowns due to the nature of the application.Edit: Looks like about 64 pixels per km (4096 per km^2). At full color uncompressed that's about 8TB to cover the entire earth (thinking long-term!). 10TB box is €20/month from Hetzner. You'd definitely want some caching though ;)Edit 2: wplace uses 1000x1000 px pngs for the drawing layer. The drawings load instantly, while the map itself is currently very laggy, and some chunks permanently missing.",
-    "parent": 44846318,
-    "depth": 1
-  },
-  {
-    "id": 44852809,
-    "by": "bravesoul2",
-    "timeISO": "2025-08-10T04:44:48.000Z",
-    "textPlain": "429 is your friend... but well done for handling the load!",
     "parent": 44846318,
     "depth": 1
   },
@@ -56,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44851503,
-    "by": "biker142541",
-    "timeISO": "2025-08-09T23:58:36.000Z",
-    "textPlain": "Curious how this would have compared to a static pmtiles file being read directly by maplibre. I’ve had good luck with virtually equal latency to served tiles when consuming pmtiles via range requests on Bunnycdn.",
+    "id": 44852809,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-10T04:44:48.000Z",
+    "textPlain": "429 is your friend... but well done for handling the load!",
     "parent": 44846318,
     "depth": 1
   },
@@ -68,6 +76,14 @@
     "by": "eggbrain",
     "timeISO": "2025-08-09T14:55:22.000Z",
     "textPlain": "Limiting by referrer seems strange — if you know a normal user makes 10-20 requests (let’s assume per minute), can’t you just rate limit requests to 100 requests per minute per IP (5x the average load) and still block the majority of these cases?Or, if it’s just a few bad actors, block based on JA4/JA3 fingerprint?",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44851503,
+    "by": "biker142541",
+    "timeISO": "2025-08-09T23:58:36.000Z",
+    "textPlain": "Curious how this would have compared to a static pmtiles file being read directly by maplibre. I’ve had good luck with virtually equal latency to served tiles when consuming pmtiles via range requests on Bunnycdn.",
     "parent": 44846318,
     "depth": 1
   },
@@ -152,6 +168,14 @@
     "depth": 1
   },
   {
+    "id": 44853203,
+    "by": "leobuskin",
+    "timeISO": "2025-08-10T06:29:34.000Z",
+    "textPlain": "I’m also surprised to see nginx and hetzner in this project. Why not entirely Cloudflare: workers, R2, and cache",
+    "parent": 44853040,
+    "depth": 2
+  },
+  {
     "id": 44846929,
     "by": "hyperknot",
     "timeISO": "2025-08-09T14:48:20.000Z",
@@ -216,22 +240,6 @@
     "depth": 2
   },
   {
-    "id": 44851621,
-    "by": "hyperknot",
-    "timeISO": "2025-08-10T00:17:37.000Z",
-    "textPlain": "Yes, wplace could solve their whole need by a single, custom-built static pmtile. No need to serve 150 GB of OSM data for their use-case.",
-    "parent": 44851503,
-    "depth": 2
-  },
-  {
-    "id": 44851637,
-    "by": "nielsole",
-    "timeISO": "2025-08-10T00:20:52.000Z",
-    "textPlain": "https://github.com/hyperknot/openfreemap?tab=readme-ov-file#...",
-    "parent": 44851503,
-    "depth": 2
-  },
-  {
     "id": 44847055,
     "by": "hyperknot",
     "timeISO": "2025-08-09T15:02:23.000Z",
@@ -245,6 +253,22 @@
     "timeISO": "2025-08-09T17:36:02.000Z",
     "textPlain": "Limiting by referrer is probably the right first step. (And changing the front page text)You want to track usage by the site, not the person, because you can ask a site to change usage patterns in a way you can't really ask a site's users. Maybe a per IP limit makes sense too, but you wouldn't want them low enough that it would be effective for something like this.",
     "parent": 44846988,
+    "depth": 2
+  },
+  {
+    "id": 44851621,
+    "by": "hyperknot",
+    "timeISO": "2025-08-10T00:17:37.000Z",
+    "textPlain": "Yes, wplace could solve their whole need by a single, custom-built static pmtile. No need to serve 150 GB of OSM data for their use-case.",
+    "parent": 44851503,
+    "depth": 2
+  },
+  {
+    "id": 44851637,
+    "by": "nielsole",
+    "timeISO": "2025-08-10T00:20:52.000Z",
+    "textPlain": "https://github.com/hyperknot/openfreemap?tab=readme-ov-file#...",
+    "parent": 44851503,
     "depth": 2
   },
   {
@@ -288,35 +312,11 @@
     "depth": 2
   },
   {
-    "id": 44846997,
-    "by": "nemomarx",
-    "timeISO": "2025-08-09T14:56:10.000Z",
-    "textPlain": "There are some user scripts to overlay templates on the map and coordinate working together, but I can't imagine that increases the load much. What might is that wplace has been struggling under the load and you have to refresh to see your pixels placed or any changes and that could be causing more calls an hour maybe?",
-    "parent": 44846937,
-    "depth": 2
-  },
-  {
-    "id": 44847031,
-    "by": "alessandroberna",
-    "timeISO": "2025-08-09T15:00:17.000Z",
-    "textPlain": "99.38%",
-    "parent": 44846884,
-    "depth": 2
-  },
-  {
-    "id": 44846919,
-    "by": "do_anh_tu",
-    "timeISO": "2025-08-09T14:47:29.000Z",
-    "textPlain": "Do you even read the article?",
-    "parent": 44846884,
-    "depth": 2
-  },
-  {
-    "id": 44847712,
-    "by": "ndriscoll",
-    "timeISO": "2025-08-09T16:14:31.000Z",
-    "textPlain": "If I were a consumer of a free service from someone who will not take your money to offer support or an SLA (i.e. is not trying to run a business), I would assume there's little to no monitoring at all.",
-    "parent": 44847652,
+    "id": 44848302,
+    "by": "internetter",
+    "timeISO": "2025-08-09T17:17:54.000Z",
+    "textPlain": "The tiles need to be rendered. Yes frequent tiles can be cached but you already have a cache… it’s Cloudflare. Theoretically you could port the tileserver to Cloudflare pages but then you’d need to… port it… and it probably wouldn’t be cheaper",
+    "parent": 44848262,
     "depth": 2
   }
 ]
