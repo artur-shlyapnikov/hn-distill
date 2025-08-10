@@ -1,5 +1,13 @@
 [
   {
+    "id": 44858004,
+    "by": "treve",
+    "timeISO": "2025-08-10T20:21:53.000Z",
+    "textPlain": "This article is probably the first time I 'get' why OS/2 was seen as the future and Windows 3 as a stop-gap, even without the GUI. The OS/2 GUI never really blew me away and every early non-GUI versions of OS/2 are mentioned it always seemed a bit dismissive.But seeing it laid out as just the multi-tasking kernel that it is it seems more obvious now as a major foundational upgrade of MS-DOS.Great read!",
+    "parent": 44854989,
+    "depth": 1
+  },
+  {
     "id": 44855283,
     "by": "mikewarot",
     "timeISO": "2025-08-10T14:07:21.000Z",
@@ -64,18 +72,18 @@
     "depth": 2
   },
   {
-    "id": 44856354,
-    "by": "ataylor284_",
-    "timeISO": "2025-08-10T16:40:40.000Z",
-    "textPlain": "Yup.  If you call a function with the C calling convention with the incorrect number of parameters, your cleanup code still does the right thing.  With the Pascal calling convention, your stack is corrupted.",
-    "parent": 44855214,
-    "depth": 2
-  },
-  {
     "id": 44855424,
     "by": "flohofwoe",
     "timeISO": "2025-08-10T14:27:25.000Z",
     "textPlain": "> Did this choice of a small speed boost over compatibility ever haunt the decision makers,...in the end it's just another calling convention which you annotate your system header functions with. AmigaOS had a vastly different (very assembly friendly) calling convention for OS functions which exclusively(?) used CPU registers to pass arguments. C compilers simply had to deal with it.> What could possibly go wrong?...totally makes sense though when the caller passes arguments on the stack?E.g. you probably have something like this in the caller:    push arg3      => place arg 3 on stack\n    push arg2      => place arg 2 on stack\n    push arg1      => place arg 1 on stack\n    call function  => places return address on stack\n\n...if the called function would clean up the stack it would also delete the return address needed by the return instruction (which pops the return address from the top of the stack and jumps to it).(ok, x86 has the special `ret imm16` instruction which adjusts the stack pointer after popping the return address, but I guess not all CPUs could do that back then)",
+    "parent": 44855214,
+    "depth": 2
+  },
+  {
+    "id": 44856354,
+    "by": "ataylor284_",
+    "timeISO": "2025-08-10T16:40:40.000Z",
+    "textPlain": "Yup.  If you call a function with the C calling convention with the incorrect number of parameters, your cleanup code still does the right thing.  With the Pascal calling convention, your stack is corrupted.",
     "parent": 44855214,
     "depth": 2
   },
@@ -104,18 +112,18 @@
     "depth": 2
   },
   {
-    "id": 44857440,
-    "by": "Hilift",
-    "timeISO": "2025-08-10T19:08:04.000Z",
-    "textPlain": "Microsoft was only interested in fulfilling the contracts, and some networking components such as NetBIOS and LAN Manager, then winding down. This was due to Microsoft had already been in discussion with David Cutler, and had hired him in October 1998 to essentially port VMS to Windows NT. Windows NT 3.1 appeared in July 1993.https://archive.org/details/showstopperbreak00zach",
-    "parent": 44855069,
-    "depth": 2
-  },
-  {
     "id": 44855136,
     "by": "mananaysiempre",
     "timeISO": "2025-08-10T13:41:23.000Z",
     "textPlain": "The article is from December 1987, when nobody yet knew that it would end up that way. The Compaq Deskpro 386 had just been released in 1986 (thus unmooring the “IBM PC clones” from IBM), the September 1987 release of Windows/386 2.01 was only a couple of months ago (less if you account for print turnaround), and development of what would initially be called NT OS/2 would only start in 1988, with the first documents in the NT Design Workbook dated 1989. Even OS/2 1.1, the first GUI version, would only come out in October 1988 (on one hand, really late; on the other, how the hell did they release things so fast then?..).",
+    "parent": 44855069,
+    "depth": 2
+  },
+  {
+    "id": 44857440,
+    "by": "Hilift",
+    "timeISO": "2025-08-10T19:08:04.000Z",
+    "textPlain": "Microsoft was only interested in fulfilling the contracts, and some networking components such as NetBIOS and LAN Manager, then winding down. This was due to Microsoft had already been in discussion with David Cutler, and had hired him in October 1998 to essentially port VMS to Windows NT. Windows NT 3.1 appeared in July 1993.https://archive.org/details/showstopperbreak00zach",
     "parent": 44855069,
     "depth": 2
   },

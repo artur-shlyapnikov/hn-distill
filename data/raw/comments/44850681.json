@@ -56,18 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44855105,
-    "by": "victor106",
-    "timeISO": "2025-08-10T13:36:21.000Z",
-    "textPlain": "Azure is a true cluster F.Okta (the other elephant in the room) has its own issues but at least it has decent documentation and even though it’s more expensive I think it’s worth paying that price just to keep security in a separate domain than co-mingle it with other Azure services.",
-    "parent": 44850681,
-    "depth": 1
-  },
-  {
-    "id": 44852939,
-    "by": "moi2388",
-    "timeISO": "2025-08-10T05:19:01.000Z",
-    "textPlain": "That’s what you get. Entra ID doesn’t allow you to blacklist or whitelist specific tenants for multi tenant apps, which causes problems like this.Add the fact that MSAL doesn’t work for stuff like browser extensions, so people have to implement their own security solutions to interact with Entra ID and it’s not surprising there are so many issues.",
+    "id": 44857153,
+    "by": "denysvitali",
+    "timeISO": "2025-08-10T18:23:36.000Z",
+    "textPlain": "0$ for all this? Microsoft security is a joke.",
     "parent": 44850681,
     "depth": 1
   },
@@ -80,18 +72,26 @@
     "depth": 1
   },
   {
-    "id": 44852020,
-    "by": "9cb14c1ec0",
-    "timeISO": "2025-08-10T01:26:53.000Z",
-    "textPlain": "OAuth is frequently marketed as \"more secure\".  But implementations often confuse authentication with authorization, resulting in problems like this.",
+    "id": 44852939,
+    "by": "moi2388",
+    "timeISO": "2025-08-10T05:19:01.000Z",
+    "textPlain": "That’s what you get. Entra ID doesn’t allow you to blacklist or whitelist specific tenants for multi tenant apps, which causes problems like this.Add the fact that MSAL doesn’t work for stuff like browser extensions, so people have to implement their own security solutions to interact with Entra ID and it’s not surprising there are so many issues.",
     "parent": 44850681,
     "depth": 1
   },
   {
-    "id": 44857153,
-    "by": "denysvitali",
-    "timeISO": "2025-08-10T18:23:36.000Z",
-    "textPlain": "0$ for all this? Microsoft security is a joke.",
+    "id": 44855105,
+    "by": "victor106",
+    "timeISO": "2025-08-10T13:36:21.000Z",
+    "textPlain": "Azure is a true cluster F.Okta (the other elephant in the room) has its own issues but at least it has decent documentation and even though it’s more expensive I think it’s worth paying that price just to keep security in a separate domain than co-mingle it with other Azure services.",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
+    "id": 44852020,
+    "by": "9cb14c1ec0",
+    "timeISO": "2025-08-10T01:26:53.000Z",
+    "textPlain": "OAuth is frequently marketed as \"more secure\".  But implementations often confuse authentication with authorization, resulting in problems like this.",
     "parent": 44850681,
     "depth": 1
   },
@@ -240,11 +240,11 @@
     "depth": 2
   },
   {
-    "id": 44854921,
-    "by": "ExoticPearTree",
-    "timeISO": "2025-08-10T13:04:44.000Z",
-    "textPlain": "> Entra ID doesn’t allow you to blacklist or whitelist specific tenants for multi tenant apps.This one very annoying \"feature\" where I could say this app is available for the following tenants. No, only \"my tenant\" or \"all tenants in Azure\".One workaround I use is to set up apps with \"only this tenant\" and invite users from other tenants into my tenant. The other approach is to say \"all tenants\" and then use a group to enforce who can actually use the app.I don't know if there are any reasons behind this limitation or just an oversight or no client big enough asked for this feature.",
-    "parent": 44852939,
+    "id": 44857940,
+    "by": "will4274",
+    "timeISO": "2025-08-10T20:14:55.000Z",
+    "textPlain": "It's ok to use Entra for AuthZ. Just click the box that says \"Require users to be assigned to this application\" and assign them [1]. However - that's really the only AuthZ feature Entra has. If you don't enable AuthZ, you should not expect Entra to just magically do AuthZ for you.Edit: I would add - simple allow/deny authz is only relevant for the very simplest of apps (where all users have the same permissions). For any complex application, users will have different levels of access, which usually requires the application to do AuthZ.[1] https://learn.microsoft.com/en-us/entra/identity/enterprise-...",
+    "parent": 44853189,
     "depth": 2
   },
   {
@@ -253,6 +253,14 @@
     "timeISO": "2025-08-10T10:15:24.000Z",
     "textPlain": "IMO “Azure AD” implies it is literally just AD hosted in Azure, when it’s become much more than that",
     "parent": 44853189,
+    "depth": 2
+  },
+  {
+    "id": 44854921,
+    "by": "ExoticPearTree",
+    "timeISO": "2025-08-10T13:04:44.000Z",
+    "textPlain": "> Entra ID doesn’t allow you to blacklist or whitelist specific tenants for multi tenant apps.This one very annoying \"feature\" where I could say this app is available for the following tenants. No, only \"my tenant\" or \"all tenants in Azure\".One workaround I use is to set up apps with \"only this tenant\" and invite users from other tenants into my tenant. The other approach is to say \"all tenants\" and then use a group to enforce who can actually use the app.I don't know if there are any reasons behind this limitation or just an oversight or no client big enough asked for this feature.",
+    "parent": 44852939,
     "depth": 2
   },
   {

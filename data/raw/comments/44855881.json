@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44856731,
+    "by": "kcartlidge",
+    "timeISO": "2025-08-10T17:26:36.000Z",
+    "textPlain": "I much prefer C# 11's raw string literals.  It takes the indentation of the first line and assumes the subsequent ones have the same indentation.  string json = $\"\"\"\n      <h1>{title}</h1>\n      <article>\n          Welcome to {sitename}.\n      </article>\n      \"\"\";\n\nAnd it even allows for using embedded curly braces as real characters:  string json = $$\"\"\"\n      <h1>{{title}}</h1>\n      <article>\n          Welcome to {{sitename}}, which uses the <code>{sitename}</code> syntax.\n      </article>\n      \"\"\";\n\nThe $ (meaning to interpolate curly braces) appears twice, which switches interpolation to two curly braces, leaving the single ones untouched.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
     "id": 44856660,
     "by": "z_open",
     "timeISO": "2025-08-10T17:18:41.000Z",
@@ -32,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44856731,
-    "by": "kcartlidge",
-    "timeISO": "2025-08-10T17:26:36.000Z",
-    "textPlain": "I much prefer C# 11's raw string literals.  It takes the indentation of the first line and assumes the subsequent ones have the same indentation.  string json = $\"\"\"\n      <h1>{title}</h1>\n      <article>\n          Welcome to {sitename}.\n      </article>\n      \"\"\";\n\nAnd it even allows for using embedded curly braces as real characters:  string json = $$\"\"\"\n      <h1>{{title}}</h1>\n      <article>\n          Welcome to {{sitename}}, which uses the <code>{sitename}</code> syntax.\n      </article>\n      \"\"\";\n\nThe $ (meaning to interpolate curly braces) appears twice, which switches interpolation to two curly braces, leaving the single ones untouched.",
+    "id": 44856197,
+    "by": "pton_xd",
+    "timeISO": "2025-08-10T16:18:18.000Z",
+    "textPlain": "\"Zig doesn’t have lambdas\"This surprises me (as a C++ guy). I use lambdas everywhere. What's the standard way of say defining a comparator when sorting an array in Zig?",
     "parent": 44855881,
     "depth": 1
   },
@@ -48,10 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44856197,
-    "by": "pton_xd",
-    "timeISO": "2025-08-10T16:18:18.000Z",
-    "textPlain": "\"Zig doesn’t have lambdas\"This surprises me (as a C++ guy). I use lambdas everywhere. What's the standard way of say defining a comparator when sorting an array in Zig?",
+    "id": 44856941,
+    "by": "ww520",
+    "timeISO": "2025-08-10T17:53:42.000Z",
+    "textPlain": "Zig is great. I have fun writing in it. But there’re a few things bug me.- Difficult to return a value from a block. Rust treats the value of the last expression of a block as the return value of the block. Have to jump through hoops in Zig to do it with label.- Unable to chain optional checks, e.g. a?.b?.c.  Support for monadic types would be great so general chaining operations are supported.- Lack of lambda support. Function blocks are already supported in a number of places, i.e. the for-loop block and the catch block.",
     "parent": 44855881,
     "depth": 1
   },
@@ -64,10 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44856596,
-    "by": "Twey",
-    "timeISO": "2025-08-10T17:11:29.000Z",
-    "textPlain": "> I think Kotlin nails it: val, var, fun. Note all three are monosyllable, unlike const and fn!At least in my pronunciation, all five of those are monosyllabic! (/kQnst/, /f@n/).(Nice to see someone agree with me on minimizing syllable count, though — I definitely find it easier to chunk[1] fewer syllables.)[1]: https://en.m.wikipedia.org/wiki/Chunking_(psychology)The use of Ruby block parameters for loops in a language without first-class blocks/lambdas is a bit weird to me. I might have preferred a syntax that looks more like normal variable binding.",
+    "id": 44856219,
+    "by": "hardwaregeek",
+    "timeISO": "2025-08-10T16:21:39.000Z",
+    "textPlain": "Everyone agrees that \"syntax doesn't matter\", but implicit in that is \"syntax doesn't matter, so let's do what I prefer\". So really, syntax does matter. Personally I prefer the Rust/Zig/Go syntax of vaguely C inspired with some nice fixes, as detailed in the post. Judging by the general success of that style, I do wonder if more functional languages should consider an alternative syntax in that style. The Haskell/OCaml concatenative currying style with whitespace is elegant, but sufficiently unfamiliar that I do think it hurts adoption.After all, Rust's big success is hiding the spinach of functional programming in  the brownie of a systems programming language. Why not imitate that?",
     "parent": 44855881,
     "depth": 1
   },
@@ -80,18 +88,10 @@
     "depth": 1
   },
   {
-    "id": 44856219,
-    "by": "hardwaregeek",
-    "timeISO": "2025-08-10T16:21:39.000Z",
-    "textPlain": "Everyone agrees that \"syntax doesn't matter\", but implicit in that is \"syntax doesn't matter, so let's do what I prefer\". So really, syntax does matter. Personally I prefer the Rust/Zig/Go syntax of vaguely C inspired with some nice fixes, as detailed in the post. Judging by the general success of that style, I do wonder if more functional languages should consider an alternative syntax in that style. The Haskell/OCaml concatenative currying style with whitespace is elegant, but sufficiently unfamiliar that I do think it hurts adoption.After all, Rust's big success is hiding the spinach of functional programming in  the brownie of a systems programming language. Why not imitate that?",
-    "parent": 44855881,
-    "depth": 1
-  },
-  {
-    "id": 44857140,
-    "by": "melodyogonna",
-    "timeISO": "2025-08-10T18:21:17.000Z",
-    "textPlain": "Very interesting, Zig seems really nice. There was a severe lack of resources when I tried to get into it few years ago, it is nice to see that situation improving in real time.The part about integer literal  is similar to Mojo, with a comp-time type that has to be materialized to another type at runtime. In Mojo though this can be done implicitly so you don't need explicit casting.",
+    "id": 44856596,
+    "by": "Twey",
+    "timeISO": "2025-08-10T17:11:29.000Z",
+    "textPlain": "> I think Kotlin nails it: val, var, fun. Note all three are monosyllable, unlike const and fn!At least in my pronunciation, all five of those are monosyllabic! (/kQnst/, /f@n/).(Nice to see someone agree with me on minimizing syllable count, though — I definitely find it easier to chunk[1] fewer syllables.)[1]: https://en.m.wikipedia.org/wiki/Chunking_(psychology)The use of Ruby block parameters for loops in a language without first-class blocks/lambdas is a bit weird to me. I might have preferred a syntax that looks more like normal variable binding.",
     "parent": 44855881,
     "depth": 1
   },
@@ -104,10 +104,10 @@
     "depth": 1
   },
   {
-    "id": 44856941,
-    "by": "ww520",
-    "timeISO": "2025-08-10T17:53:42.000Z",
-    "textPlain": "Zig is great. I have fun writing in it. But there’re a few things bug me.- Difficult to return a value from a block. Rust treats the value of the last expression of a block as the return value of the block. Have to jump through hoops in Zig to do it with label.- Unable to chain optional checks, e.g. a?.b?.c.  Support for monadic types would be great so general chaining operations are supported.- Lack of lambda support. Function blocks are already supported in a number of places, i.e. the for-loop block and the catch block.",
+    "id": 44856151,
+    "by": "zabzonk",
+    "timeISO": "2025-08-10T16:12:43.000Z",
+    "textPlain": "In my experience, everyone finds the syntax of their favourite language lovely - I love (mostly) C++.",
     "parent": 44855881,
     "depth": 1
   },
@@ -120,34 +120,10 @@
     "depth": 1
   },
   {
-    "id": 44856151,
-    "by": "zabzonk",
-    "timeISO": "2025-08-10T16:12:43.000Z",
-    "textPlain": "In my experience, everyone finds the syntax of their favourite language lovely - I love (mostly) C++.",
-    "parent": 44855881,
-    "depth": 1
-  },
-  {
-    "id": 44856583,
-    "by": "WalterBright",
-    "timeISO": "2025-08-10T17:09:47.000Z",
-    "textPlain": "const x: i32 = 92;\n\nD has less syntax:    const int x = 92;\n\nJust for fun, read each declaration out loud.",
-    "parent": 44855881,
-    "depth": 1
-  },
-  {
-    "id": 44856590,
-    "by": "lvl155",
-    "timeISO": "2025-08-10T17:10:55.000Z",
-    "textPlain": "Zig is just fun to write. And to me, it’s actually what I wish Rust was like. Rust is a great language, and no one’s going to argue that point but writing Zig for the first time was so refreshing. That said, Rust is now basically default for systems and Zig came too late.",
-    "parent": 44855881,
-    "depth": 1
-  },
-  {
-    "id": 44856288,
-    "by": "Y_Y",
-    "timeISO": "2025-08-10T16:30:33.000Z",
-    "textPlain": "> C uses a needlessly confusing spiral ruleLibellous! The \"spiral rule\" for C is an abomination and not part of the language. I happen to find C's type syntax a bit too clever for beginners, but it's marvellously consistent and straightforward. I can read types fine without that spiral nonsense, even if a couple of judicious typedefs are generally a good idea for any fancy function types.",
+    "id": 44857140,
+    "by": "melodyogonna",
+    "timeISO": "2025-08-10T18:21:17.000Z",
+    "textPlain": "Very interesting, Zig seems really nice. There was a severe lack of resources when I tried to get into it few years ago, it is nice to see that situation improving in real time.The part about integer literal  is similar to Mojo, with a comp-time type that has to be materialized to another type at runtime. In Mojo though this can be done implicitly so you don't need explicit casting.",
     "parent": 44855881,
     "depth": 1
   },
@@ -160,6 +136,14 @@
     "depth": 1
   },
   {
+    "id": 44856288,
+    "by": "Y_Y",
+    "timeISO": "2025-08-10T16:30:33.000Z",
+    "textPlain": "> C uses a needlessly confusing spiral ruleLibellous! The \"spiral rule\" for C is an abomination and not part of the language. I happen to find C's type syntax a bit too clever for beginners, but it's marvellously consistent and straightforward. I can read types fine without that spiral nonsense, even if a couple of judicious typedefs are generally a good idea for any fancy function types.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
     "id": 44856721,
     "by": "IshKebab",
     "timeISO": "2025-08-10T17:25:34.000Z",
@@ -168,10 +152,34 @@
     "depth": 1
   },
   {
+    "id": 44856590,
+    "by": "lvl155",
+    "timeISO": "2025-08-10T17:10:55.000Z",
+    "textPlain": "Zig is just fun to write. And to me, it’s actually what I wish Rust was like. Rust is a great language, and no one’s going to argue that point but writing Zig for the first time was so refreshing. That said, Rust is now basically default for systems and Zig came too late.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44857874,
+    "by": "MrBuddyCasino",
+    "timeISO": "2025-08-10T20:04:53.000Z",
+    "textPlain": ">  I think Kotlin nails it: val, var, fun.Been saying this, and I find it strange how few agree.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
     "id": 44856777,
     "by": "yegle",
     "timeISO": "2025-08-10T17:31:37.000Z",
     "textPlain": "> As Zig has only line-comments, this means that \\n is always whitespace.Do I read this correctly that it replaces `\\n` at the end of the line with a whitespace? CJK users probably won't be happy with the additional whitespaces.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856583,
+    "by": "WalterBright",
+    "timeISO": "2025-08-10T17:09:47.000Z",
+    "textPlain": "const x: i32 = 92;\n\nD has less syntax:    const int x = 92;\n\nJust for fun, read each declaration out loud.",
     "parent": 44855881,
     "depth": 1
   },
@@ -208,19 +216,19 @@
     "depth": 1
   },
   {
+    "id": 44857795,
+    "by": "scuff3d",
+    "timeISO": "2025-08-10T19:55:57.000Z",
+    "textPlain": "My only complaint about the article is that it doesn't mention error handling. LolZigs use of try/catch is incredible, and by far my favorite error handling of any language. I feel like it would have fit into this article.",
+    "parent": 44857003,
+    "depth": 2
+  },
+  {
     "id": 44857133,
     "by": "Twey",
     "timeISO": "2025-08-10T18:19:59.000Z",
     "textPlain": "> it's not the kind of surface level \"aesthetically beautiful\" readability that tickles the mind of an abstract thinkerRather, the sort of beauty it's going for here is exactly the type of beauty that requires a bit of abstraction to appreciate: it's not that the concrete syntax is visually beautiful per se so much as that it's elegantly exposing the abstract syntax, which is inherently more regular and unambiguous than the concrete syntax. It's the same reason S-exprs won over M-exprs: consistently good often wins over special-case great because the latter imposes the mental burden of trying to fit into the special case, while the former allows you to forget that the problem ever existed. To see a language do the opposite of this, look at C++: the syntax has been designed with many, many special cases that make specific constructs nicer to write, but the cost of that is that now you have to remember all of them (and account for all of them, if templating — hence the ‘new’ uniform initialization syntax[1]).[1]: https://xkcd.com/927/This trade-off happens all the time in language design: you're looking for language that makes all the special cases nice _as a consequence of_ the general case, because _just_ being simple and consistent leads you to the Turing tarpit: you simplify the language by pushing all the complexity onto the programmer.",
     "parent": 44857003,
-    "depth": 2
-  },
-  {
-    "id": 44857460,
-    "by": "MoltenMan",
-    "timeISO": "2025-08-10T19:11:01.000Z",
-    "textPlain": "I much prefer Pascal typing because it1. Allows type inference without a hacky 'auto' workaround like c++ and\n2. Is less ambiguous parsing wise. I.e. when you read 'MyClass x', MyClass could be a variable (in which case this is an error) or a type; it's impossible to know without context!",
-    "parent": 44856243,
     "depth": 2
   },
   {
@@ -236,6 +244,14 @@
     "by": "reactordev",
     "timeISO": "2025-08-10T16:52:36.000Z",
     "textPlain": "I’m in the same boat. It’s faster mentally to grok the type of something when it comes first. The name of the thing is less important (but still important!) than the type of the thing and so I prefer types to come before names.From a parser perspective, it’s easier to go name first so you can add it to the AST and pass it off to the type determiner to finish the declaration. So I get it. In typescript I believe it’s this way so parsers can just drop types all together to make it compatible with JavaScript (it’s still trivial to strip typing, though why would you?) without transpiling.In go, well, you have even more crazier conventions. Uppercase vs lowercase public vs private, no inheritance, a gc that shuns away performance minded devs.In the end, I just want a working std library that’s easy to use so I can build applications. I don’t care for:    type Add<A extends number, B extends number> = [\n      …Array<A>,\n      …Array<B>,\n    ][“length”]\n\nThis is the kind of abuse of the type system that drives me bonkers. You don’t have to be clever, just export a function. I don’t need a type to represent every state, I need intent.",
+    "parent": 44856243,
+    "depth": 2
+  },
+  {
+    "id": 44857460,
+    "by": "MoltenMan",
+    "timeISO": "2025-08-10T19:11:01.000Z",
+    "textPlain": "I much prefer Pascal typing because it1. Allows type inference without a hacky 'auto' workaround like c++ and\n2. Is less ambiguous parsing wise. I.e. when you read 'MyClass x', MyClass could be a variable (in which case this is an error) or a type; it's impossible to know without context!",
     "parent": 44856243,
     "depth": 2
   },
@@ -264,6 +280,14 @@
     "depth": 2
   },
   {
+    "id": 44857130,
+    "by": "Metasyntactic",
+    "timeISO": "2025-08-10T18:19:46.000Z",
+    "textPlain": "Just a minor correction (as I'm the author of c#'s raw string literal feature).The indentation of the final `       \"\"\"` line is what is removed from all other lines. Not the indentation of the first line. This allows the first line to be indented as well.Cheers, and I'm glad you like it. I thought we did a really good job with that feature :-)",
+    "parent": 44856731,
+    "depth": 2
+  },
+  {
     "id": 44856748,
     "by": "IshKebab",
     "timeISO": "2025-08-10T17:28:16.000Z",
@@ -280,10 +304,10 @@
     "depth": 2
   },
   {
-    "id": 44857435,
-    "by": "rybosome",
-    "timeISO": "2025-08-10T19:07:23.000Z",
-    "textPlain": "Visually I dislike the \\\\, but I see this solves the problem of multiline literals and indentation in a handy, unambiguous way. I’m not actually aware of any other language which solves this problem without a function.",
+    "id": 44857623,
+    "by": "whitehexagon",
+    "timeISO": "2025-08-10T19:35:24.000Z",
+    "textPlain": "I think Kotlin solves it quite nicely with the trimIndent.  I seem to recall Golang was my fav, and Java my least, although I think Java also finally added support for a clean text block.Makes cut 'n' paste embedded shader code, assembly, javascript so much easier to add, and more readable imo.  For something like a regular expressions I really liked Golang's back tick 'raw string' syntax.In Zig I find myself doing an @embedFile to avoid the '\\\\' pollution.",
     "parent": 44856660,
     "depth": 2
   },
@@ -292,6 +316,14 @@
     "by": "hardwaregeek",
     "timeISO": "2025-08-10T17:44:13.000Z",
     "textPlain": "My immediate thought was hmm, that's weird but pretty nice. The indentation problem indeed sucks and with a halfway decent syntax highlighter you can probably de-emphasize the `//` and make it less visually cluttered.",
+    "parent": 44856660,
+    "depth": 2
+  },
+  {
+    "id": 44857435,
+    "by": "rybosome",
+    "timeISO": "2025-08-10T19:07:23.000Z",
+    "textPlain": "Visually I dislike the \\\\, but I see this solves the problem of multiline literals and indentation in a handy, unambiguous way. I’m not actually aware of any other language which solves this problem without a function.",
     "parent": 44856660,
     "depth": 2
   },
@@ -320,18 +352,18 @@
     "depth": 2
   },
   {
-    "id": 44857042,
-    "by": "klas_segeljakt",
-    "timeISO": "2025-08-10T18:07:09.000Z",
-    "textPlain": "When I first read it I thought it was line comments.",
-    "parent": 44856660,
-    "depth": 2
-  },
-  {
     "id": 44856707,
     "by": "fcoury",
     "timeISO": "2025-08-10T17:24:07.000Z",
     "textPlain": "I really like zig but that syntax is indeed insane.",
+    "parent": 44856660,
+    "depth": 2
+  },
+  {
+    "id": 44857042,
+    "by": "klas_segeljakt",
+    "timeISO": "2025-08-10T18:07:09.000Z",
+    "textPlain": "When I first read it I thought it was line comments.",
     "parent": 44856660,
     "depth": 2
   },
@@ -344,42 +376,10 @@
     "depth": 2
   },
   {
-    "id": 44857130,
-    "by": "Metasyntactic",
-    "timeISO": "2025-08-10T18:19:46.000Z",
-    "textPlain": "Just a minor correction (as I'm the author of c#'s raw string literal feature).The indentation of the final `       \"\"\"` line is what is removed from all other lines. Not the indentation of the first line. This allows the first line to be indented as well.Cheers, and I'm glad you like it. I thought we did a really good job with that feature :-)",
-    "parent": 44856731,
-    "depth": 2
-  },
-  {
-    "id": 44856459,
-    "by": "nine_k",
-    "timeISO": "2025-08-10T16:54:30.000Z",
-    "textPlain": "I personally find Go's bare syntax harder to parse when reading, and I spend more time reading code than typing it (even while writing).An excessively terse syntax becomes very unforgiving, when a typo is not noticed by the compiler / language server, but results in another syntactically correct but unexpected program, or registers as a cryptic error much farther downstream. Cases in point: CoffeeScript, J.",
-    "parent": 44856377,
-    "depth": 2
-  },
-  {
-    "id": 44856766,
-    "by": "IshKebab",
-    "timeISO": "2025-08-10T17:30:30.000Z",
-    "textPlain": "Removing stuff doesn't necessarily make the syntax better, otherwise we'd all use Lisp and the space bar wouldn't exist: https://en.wikipedia.org/wiki/Scriptio_continua",
-    "parent": 44856377,
-    "depth": 2
-  },
-  {
     "id": 44856457,
     "by": "tapirl",
     "timeISO": "2025-08-10T16:54:23.000Z",
     "textPlain": "Normal function declarations.This is indeed a point which makes Zig inflexible.",
-    "parent": 44856197,
-    "depth": 2
-  },
-  {
-    "id": 44856706,
-    "by": "jmull",
-    "timeISO": "2025-08-10T17:23:57.000Z",
-    "textPlain": "You can declare an anonymous struct that has a function and reference that function inline (if you want).There's a little more syntax than a dedicated language feature, but not a lot more.What's \"missing\" in zig that lambda implementations normally have is capturing. In zig that's typically accomplished with a context parameter, again typically a struct.",
     "parent": 44856197,
     "depth": 2
   },
@@ -392,11 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44856407,
-    "by": "flohofwoe",
-    "timeISO": "2025-08-10T16:48:16.000Z",
-    "textPlain": "You don't need operator overloading for vector and matrix math, see pretty much all GPU languages. What Zig is missing is a complete mapping of the Clang Extended Vector and Matrix extensions (instead of the quite limited `@Vector` type):https://clang.llvm.org/docs/LanguageExtensions.html#vectors-...https://clang.llvm.org/docs/LanguageExtensions.html#matrix-t...",
-    "parent": 44856311,
+    "id": 44856706,
+    "by": "jmull",
+    "timeISO": "2025-08-10T17:23:57.000Z",
+    "textPlain": "You can declare an anonymous struct that has a function and reference that function inline (if you want).There's a little more syntax than a dedicated language feature, but not a lot more.What's \"missing\" in zig that lambda implementations normally have is capturing. In zig that's typically accomplished with a context parameter, again typically a struct.",
+    "parent": 44856197,
     "depth": 2
   }
 ]

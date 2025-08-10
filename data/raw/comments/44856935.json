@@ -1,5 +1,21 @@
 [
   {
+    "id": 44857985,
+    "by": "haberman",
+    "timeISO": "2025-08-10T20:19:51.000Z",
+    "textPlain": "I love the concept -- I've often wished that lean languages like Lua had more support for static typing, especially given the potential performance benefits.I also love the focus on performance.  I'm curious if you've considered using a tail call design for the interpreter.  I've found this to be the best way to get good code out of the compiler: https://blog.reverberate.org/2021/04/21/musttail-efficient-i...  Unfortunately it's not portable to MSVC.In that article I show that this technique was able to match Mike Pall's hand-coded assembly for one example he gave of LuaJIT's interpreter.  Mike later linked to the article as a new take for how to optimize interpreters: https://github.com/LuaJIT/LuaJIT/issues/716#issuecomment-854...Python 3.14 also added support for this style of interpreter dispatch and got a modest performance win from it: https://blog.reverberate.org/2025/02/10/tail-call-updates.ht...",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44857819,
+    "by": "cookiengineer",
+    "timeISO": "2025-08-10T19:59:05.000Z",
+    "textPlain": "If functions don't have a return signature, does that mean everything must be satisfied in the compilation step?What about memory management/ownership? This would imply that everything must be copy by value in each function callsite, right? How to use references/pointers? Are they supported?I like the matchers which look similar to Rust, but I dislike the error handling because it is neither implicit, and neither explicit, and therefore will be painful to debug in larger codebases I'd imagine.Do you know about Koka? I don't like its syntax choices much but I think that an effect based error type system might integrate nicely with your design choices, especially with matchers as consumers.[1] https://koka-lang.github.io/koka/doc/index.html",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
     "id": 44857304,
     "by": "MobiusHorizons",
     "timeISO": "2025-08-10T18:48:35.000Z",
@@ -8,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44857233,
-    "by": "grodriguez100",
-    "timeISO": "2025-08-10T18:36:24.000Z",
-    "textPlain": "Sounds very good, and I can see many use cases in embedded systems. But that probably requires 32-bit arm support. Is that planned ?",
+    "id": 44857984,
+    "by": "kiririn",
+    "timeISO": "2025-08-10T20:19:22.000Z",
+    "textPlain": "Nice, gives me Pawn vibes(https://www.compuphase.com/pawn/pawn.htm)",
     "parent": 44856935,
     "depth": 1
   },
@@ -24,10 +40,18 @@
     "depth": 1
   },
   {
-    "id": 44857448,
-    "by": "eulgro",
-    "timeISO": "2025-08-10T19:09:42.000Z",
-    "textPlain": "The question I ask myself when I see this kind of project is: how long are you willing to maintain it for?My main concern about a new language is not performance, syntax, or features, but long term support and community.",
+    "id": 44857827,
+    "by": "Vandash",
+    "timeISO": "2025-08-10T19:59:56.000Z",
+    "textPlain": "game dev for 15+ years here, love the first example on Github\nthis is compiled right? cannot replace lua?",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44857233,
+    "by": "grodriguez100",
+    "timeISO": "2025-08-10T18:36:24.000Z",
+    "textPlain": "Sounds very good, and I can see many use cases in embedded systems. But that probably requires 32-bit arm support. Is that planned ?",
     "parent": 44856935,
     "depth": 1
   },
@@ -40,12 +64,28 @@
     "depth": 1
   },
   {
+    "id": 44857448,
+    "by": "eulgro",
+    "timeISO": "2025-08-10T19:09:42.000Z",
+    "textPlain": "The question I ask myself when I see this kind of project is: how long are you willing to maintain it for?My main concern about a new language is not performance, syntax, or features, but long term support and community.",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
     "id": 44857326,
     "by": "thrance",
     "timeISO": "2025-08-10T18:52:14.000Z",
     "textPlain": "Function return type inference is funny but I don't think it's that great of a feature. It makes it harder for a library's consumer to know how to properly use a function, and it also makes it harder for the maintainer to not break backwards compatibility inadvertently. Anyway, I'm all for experimenting.",
     "parent": 44856935,
     "depth": 1
+  },
+  {
+    "id": 44858028,
+    "by": "beariish",
+    "timeISO": "2025-08-10T20:25:05.000Z",
+    "textPlain": "I did experiment with a few different dispatch methods before settling on the one in Bolt now, though not with tailcalls specifically. The approach I landed on was largely chosen cause it in my testing competes with computed goto solutions while also compiling on msvc, but I'm absolutely open to try other things out.",
+    "parent": 44857985,
+    "depth": 2
   },
   {
     "id": 44857347,
@@ -56,11 +96,35 @@
     "depth": 2
   },
   {
+    "id": 44857885,
+    "by": "IshKebab",
+    "timeISO": "2025-08-10T20:06:24.000Z",
+    "textPlain": "It's compiled in the same way that Lua is compiled. So yes, it can replace Lua.",
+    "parent": 44857827,
+    "depth": 2
+  },
+  {
+    "id": 44857873,
+    "by": "beariish",
+    "timeISO": "2025-08-10T20:04:41.000Z",
+    "textPlain": "Bolt is not compiled ahead of time, it's bytecode interpreted just like Lua",
+    "parent": 44857827,
+    "depth": 2
+  },
+  {
     "id": 44857249,
     "by": "beariish",
     "timeISO": "2025-08-10T18:39:09.000Z",
     "textPlain": "As of right now no - my primary target when developing this was realtime and games in particular since that's what I know best, but if there's a real target in embedded that's certainly something that could be explored.",
     "parent": 44857233,
+    "depth": 2
+  },
+  {
+    "id": 44857851,
+    "by": "brabel",
+    "timeISO": "2025-08-10T20:02:17.000Z",
+    "textPlain": "The only way to have any idea of how long a language might be still around is to look at how long it's been already around. From this perspective , you can only use older languages. The benchmarks show that Lua (and the Luau and Lua+JIT variants) is actually very competitive, so I'd stick with one of those.",
+    "parent": 44857448,
     "depth": 2
   },
   {
