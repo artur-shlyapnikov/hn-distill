@@ -1,5 +1,13 @@
 [
   {
+    "id": 44855283,
+    "by": "mikewarot",
+    "timeISO": "2025-08-10T14:07:21.000Z",
+    "textPlain": "The cool thing about OS/2 2.1 was that you could easily boot off of a single 1.44 Mb floppy disk, and run multitasking operations, without the need for the GUI.I had (and likely have lost forever) a Boot disk with OS/2, and my Forth/2 system on it that could do directory listings while playing Toccata and Fugue in D minor in a different thread.I wrote Forth/2 out of pure spite, because somehow I heard that it just wasn't possible to write OS/2 applications in assembler. Thanks to a copy of the OS/2 development kit from Ward Christensen (who worked at IBM), and a few months of spare time, Forth/2 was born, written in pure assembler, compiling to directly threaded native code.  Brian Matthewson from Case Western wrote the manual for it. Those were fun times.",
+    "parent": 44854989,
+    "depth": 1
+  },
+  {
     "id": 44855214,
     "by": "kevindamm",
     "timeISO": "2025-08-10T13:53:45.000Z",
@@ -8,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44855283,
-    "by": "mikewarot",
-    "timeISO": "2025-08-10T14:07:21.000Z",
-    "textPlain": "The cool thing about OS/2 2.1 was that you could easily boot off of a single 1.44 Mb floppy disk, and run multitasking operations, without the need for the GUI.I had (and likely have lost forever) a Boot disk with OS/2, and my Forth/2 system on it that could do directory listings while playing Toccata and Fugue in D minor in a different thread.I wrote Forth/2 out of pure spite, because somehow I heard that it just wasn't possible to write OS/2 applications in assembler. Thanks to a copy of the OS/2 development kit from Ward Christensen (who worked at IBM), and a few months of spare time, Forth/2 was born, written in pure assembler, compiling to directly threaded native code.  Brian Matthewson from Case Western wrote the manual for it. Those were fun times.",
+    "id": 44855437,
+    "by": "pjmlp",
+    "timeISO": "2025-08-10T14:29:53.000Z",
+    "textPlain": "After all these years COM is still now as cool as SOM used to be.With meta-classes, implementation inheritance across multiple languages, and much better tooling in the OS tier 1 languages.",
     "parent": 44854989,
     "depth": 1
   },
@@ -27,7 +35,7 @@
     "id": 44855343,
     "by": "mananaysiempre",
     "timeISO": "2025-08-10T14:16:26.000Z",
-    "textPlain": "16-bit Windows used the Pascal calling convention, with the documentation in the Windows 1.0 SDK only listing Pascal function declarations. (Most C programs for 16-bit Windows use FAR PASCAL in their declarations—the WINAPI macro was introduced with Win32 as a porting tool.) Before that, the original development environment for the Macintosh was a Lisa prototype running UCSD Pascal, and even the original edition of Inside Macintosh listed Pascal declarations only. (I don’t know how true it is that Windows originated as a porting layer for moving Excel away from the Mac, but it feels at least a bit true.) If you look at the call/return instructions, the x86 is clearly a Pascal machine (take the time to read the full semantics of the 80186’s ENTER instruction at some point). Hell, the C standard wouldn’t be out for two more years, and function prototypes (borrowed early from the still-in-development C++) weren’t a sure thing. C was not yet the default choice.>> Also, the stack is-restored by the called procedure rather than the caller.> What could possibly go wrong?This is still the case for non-vararg __stdcall functions used by Win32. (The argument order was reversed compared to Win16’s __far __pascal.) On the other hand, the __syscall convention used by 32-bit OS/2 switched to caller clean-up (and passed some arguments in registers).",
+    "textPlain": "16-bit Windows used the Pascal calling convention, with the documentation in the Windows 1.0 SDK only listing Pascal function declarations. (Most C programs for 16-bit Windows use FAR PASCAL in their declarations—the WINAPI macro was introduced with Win32 as a porting tool.) The original development environment for the Macintosh was a Lisa prototype running UCSD Pascal, and even the first edition of Inside Macintosh included Pascal declarations only. (I don’t know how true it is that Windows originated as a porting layer for moving (still-in-development) Excel away from (still-in-development) Mac, but it feels at least a bit true.) If you look at the call/return instructions, the x86 is clearly a Pascal machine (take the time to read the full semantics of the 80186’s ENTER instruction at some point). Hell, the C standard wouldn’t be out for two more years, and function prototypes (borrowed early from the still-in-development C++, thus the unhinged syntax) weren’t a sure thing. C was not yet the default choice.>> Also, the stack is restored by the called procedure rather than the caller.> What could possibly go wrong?This is still the case for non-vararg __stdcall functions used by Win32 and COM. (The argument order was reversed compared to Win16’s __far __pascal.) By contrast, the __syscall convention that 32-bit OS/2 switched to uses caller cleanup (and passed some arguments in registers).",
     "parent": 44855214,
     "depth": 2
   },
@@ -40,6 +48,14 @@
     "depth": 2
   },
   {
+    "id": 44855424,
+    "by": "flohofwoe",
+    "timeISO": "2025-08-10T14:27:25.000Z",
+    "textPlain": "> Did this choice of a small speed boost over compatibility ever haunt the decision makers,...in the end it's just another calling convention which you annotate your system header functions with. AmigaOS had a vastly different (very assembly friendly) calling convention for OS functions which exclusively(?) used CPU registers to pass arguments. C compilers simply had to deal with it.> What could possibly go wrong?...totally makes sense though when the caller passes arguments on the stack?E.g. you probably have something like this in the caller:    push arg3      => place arg 3 on stack\n    push arg2      => place arg 2 on stack\n    push arg1      => place arg 1 on stack\n    call function  => places return address on stack\n\n...if the called function would clean up the stack it would also delete the return address needed by the return instruction (which pops the return address from the top of the stack and jumps to it).(ok, x86 has the special `ret imm16` instruction which adjusts the stack pointer after popping the return address, but I guess not all CPUs could do that back then)",
+    "parent": 44855214,
+    "depth": 2
+  },
+  {
     "id": 44855349,
     "by": "rep_lodsb",
     "timeISO": "2025-08-10T14:16:41.000Z",
@@ -48,10 +64,26 @@
     "depth": 2
   },
   {
+    "id": 44855651,
+    "by": "mananaysiempre",
+    "timeISO": "2025-08-10T15:01:36.000Z",
+    "textPlain": "Cool, yes. Useful or a good idea, I dunno. Reading through the (non-reference) documentation on SOM, I’m struck by how they never could give a convincing example for the utility of metaclasses. (Saying this as someone who does love metaclasses in Python, which are of course an inferior interpretation of the same academic sources.) The SOM documentation is also surprisingly shallow given its size: with a copy of Brockschmidt, Box, the COM spec, and the Platform SDK manual, you could reimplement essentially all of COM (not ActiveX though), whereas the IBM’s documentation is more like “here’s how you use our IDL compiler and here are the functions you can call”. (This is in contrast with the Presentation Manager documentation, which is much tighter and more detailed than the one for USER/GDI ever has been.) From what I can infer of the underlying principles, I feel SOM is much more specific about its object model, which, given the goal is a cross-language ABI, is not necessarily a good thing. (I’d say that about WinRT too.)And of course COM does do implementation inheritance: despite all the admonitions to the contrary, that’s what aggregation is! If you want a more conventional model and even some surprisingly fancy stuff like the base methods governing the derived ones and not vice versa, BETA-style, then WinRT inheritance[1] is a very thin layer on top of aggregation that accomplishes that. Now if only anybody at Microsoft bothered to document it. As in, at all.(I don’t mean to say COM is my ideal object model/ABI. That would probably move a bit more towards Objective-C: see the Maru[2]/Cola/Idst[3] object model and cobj[4,5] for the general direction.)[1] https://www.interact-sw.co.uk/iangblog/2011/09/25/native-win...[2] https://web.archive.org/web/20250507145031/https://piumarta....[3] https://web.archive.org/web/20250525213528/https://www.piuma...[4] https://dotat.at/@/2007-04-16-awash-in-a-c-of-objects.html[5] https://dotat.at/writing/cobj.html",
+    "parent": 44855437,
+    "depth": 2
+  },
+  {
     "id": 44855136,
     "by": "mananaysiempre",
     "timeISO": "2025-08-10T13:41:23.000Z",
-    "textPlain": "The article is from December 1987, when nobody yet knew that it would end up that way. The Compaq Deskpro 386 had just been released in 1986 (thus unmooring the “IBM PC clones” from IBM), the September 1987 release of Windows/386 2.01 was only a couple of months ago (less if you account for print turnaround), and development of what would initially be called NT OS/2 would only start in 1988, with the first documents in the NT Design Workbook being dated 1989. Even OS/2 1.1, the first GUI version, would only come out in October 1988 (on one hand, really late; on the other, how the hell did they release things so fast then?..).",
+    "textPlain": "The article is from December 1987, when nobody yet knew that it would end up that way. The Compaq Deskpro 386 had just been released in 1986 (thus unmooring the “IBM PC clones” from IBM), the September 1987 release of Windows/386 2.01 was only a couple of months ago (less if you account for print turnaround), and development of what would initially be called NT OS/2 would only start in 1988, with the first documents in the NT Design Workbook dated 1989. Even OS/2 1.1, the first GUI version, would only come out in October 1988 (on one hand, really late; on the other, how the hell did they release things so fast then?..).",
+    "parent": 44855069,
+    "depth": 2
+  },
+  {
+    "id": 44855555,
+    "by": "p_l",
+    "timeISO": "2025-08-10T14:45:56.000Z",
+    "textPlain": "While NT OS/2 effort started earlier, Windows 3.0 was apparently an unsanctioned originally rogue effort started by one developer, initially masquerading as update to \"Windows-as-Embedded-Runtime\" that multiple graphical products were shipping with, not just Microsoft'sEven when marketing people etc. got enthused enough that the project got official support and release, it was not expected to be such a hit of a release early on and expectation was that OS/2 effort would continue, if perhaps with a different kernel.",
     "parent": 44855069,
     "depth": 2
   },

@@ -1,17 +1,17 @@
 [
   {
-    "id": 44853635,
-    "by": "Too",
-    "timeISO": "2025-08-10T08:12:52.000Z",
-    "textPlain": "Not surprising at all. The configuration and docs for Oauth2 on Entra is an absolute cluster-f. Evidently, it’s so confusing that not even Microsoft themselves can get it right.Their solution to this will be to add even more documentation, as if anyone had the stomach to read through the spaghetti that exist today.",
-    "parent": 44850681,
-    "depth": 1
-  },
-  {
     "id": 44851519,
     "by": "medhir",
     "timeISO": "2025-08-10T00:00:53.000Z",
     "textPlain": "ohhhh the gifts multi-tenant app authorization keeps giving!(laid off) Microsoft PM here that worked on the patch described as a result of the research from Wiz.One correction I’d like to suggest to the article: the guidance given is to check either the “iss” or “tid” claim when authorizing multi-tenant apps.The actual recommended guidance we provided is slightly more involved. There is a chance that when only validating the tenant, any service principal could be granted authorized access.You should always validate the subject in addition to validating the tenant for the token being authorized. One method for this would be to validate the token using a combined key (for example, tid+oid) or perform checks on both the tenant and subject before authorizing access. More info can be found here:https://learn.microsoft.com/en-us/entra/identity-platform/cl...",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
+    "id": 44853635,
+    "by": "Too",
+    "timeISO": "2025-08-10T08:12:52.000Z",
+    "textPlain": "Not surprising at all. The configuration and docs for Oauth2 on Entra is an absolute cluster-f. Evidently, it’s so confusing that not even Microsoft themselves can get it right.Their solution to this will be to add even more documentation, as if anyone had the stomach to read through the spaghetti that exist today.",
     "parent": 44850681,
     "depth": 1
   },
@@ -48,6 +48,14 @@
     "depth": 1
   },
   {
+    "id": 44854565,
+    "by": "Keyframe",
+    "timeISO": "2025-08-10T11:49:40.000Z",
+    "textPlain": "It's Microsoft. I'm sure there are wonderful people there, but haven't we witnessed recently their master key leak, their engineers begging GPT in PRs to do stuff, their CEO boasting 'backend' engineers are going away.. I wouldn't rely on that company for anything, but I acknowledge a ton of people are not in that position. If they do stay however, it's malpractice.",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
     "id": 44852939,
     "by": "moi2388",
     "timeISO": "2025-08-10T05:19:01.000Z",
@@ -60,14 +68,6 @@
     "by": "yyyk",
     "timeISO": "2025-08-10T06:27:05.000Z",
     "textPlain": "It's all very simple: Entra* (Azure AD or however you'd call it) should not be used for AuthZ. Entra AuthN is okayish, but forget about Entra AuthZ, do it all yourself. It's all very simple to avoid once you do AuthZ.* No idea why the rename happened. Does some manager in Microsoft have the plaque: \"Renomino, ergo sum.\"?",
-    "parent": 44850681,
-    "depth": 1
-  },
-  {
-    "id": 44854565,
-    "by": "Keyframe",
-    "timeISO": "2025-08-10T11:49:40.000Z",
-    "textPlain": "It's Microsoft. I'm sure there are wonderful people there, but haven't we witnessed recently their master key leak, their engineers begging GPT in PRs to do stuff, their CEO boasting 'backend' engineers are going away.. I wouldn't rely on that company for anything, but I acknowledge a ton of people are not in that position. If they do stay however, it's malpractice.",
     "parent": 44850681,
     "depth": 1
   },
@@ -128,14 +128,6 @@
     "depth": 1
   },
   {
-    "id": 44853804,
-    "by": "trallnag",
-    "timeISO": "2025-08-10T08:51:50.000Z",
-    "textPlain": "Ran into this just a few weeks ago. According to the documentation it should be impossible to perform the authorization code flow with a scope that targets multiple resource servers. But if I request \"openid $clientid/.default\" it works. Kinda. At the end of the flow I get back an ID token and and access token. The ID token indicates that Azure has acknowledged the OIDC scope. But when I check the access token I can see that the scope has been adjusted to not include \"openid\". And indeed I'm unable to call Microsoft Graph which serves as the UserInfo endpoint. I was unable to find any good explanation for this behavior.",
-    "parent": 44853635,
-    "depth": 2
-  },
-  {
     "id": 44851623,
     "by": "reactordev",
     "timeISO": "2025-08-10T00:17:52.000Z",
@@ -149,6 +141,14 @@
     "timeISO": "2025-08-10T02:43:15.000Z",
     "textPlain": "You are 100% correct but really these engineers should go read the guidance - it’s pretty clear what is required: https://learn.microsoft.com/en-us/entra/identity-platform/cl...",
     "parent": 44851519,
+    "depth": 2
+  },
+  {
+    "id": 44853804,
+    "by": "trallnag",
+    "timeISO": "2025-08-10T08:51:50.000Z",
+    "textPlain": "Ran into this just a few weeks ago. According to the documentation it should be impossible to perform the authorization code flow with a scope that targets multiple resource servers. But if I request \"openid $clientid/.default\" it works. Kinda. At the end of the flow I get back an ID token and and access token. The ID token indicates that Azure has acknowledged the OIDC scope. But when I check the access token I can see that the scope has been adjusted to not include \"openid\". And indeed I'm unable to call Microsoft Graph which serves as the UserInfo endpoint. I was unable to find any good explanation for this behavior.",
+    "parent": 44853635,
     "depth": 2
   },
   {
@@ -200,6 +200,14 @@
     "depth": 2
   },
   {
+    "id": 44855246,
+    "by": "moulick",
+    "timeISO": "2025-08-10T14:00:32.000Z",
+    "textPlain": "> engineers begging GPT in PRs to do stuffThis about donet/runtime?",
+    "parent": 44854565,
+    "depth": 2
+  },
+  {
     "id": 44854921,
     "by": "ExoticPearTree",
     "timeISO": "2025-08-10T13:04:44.000Z",
@@ -213,14 +221,6 @@
     "timeISO": "2025-08-10T10:15:24.000Z",
     "textPlain": "IMO “Azure AD” implies it is literally just AD hosted in Azure, when it’s become much more than that",
     "parent": 44853189,
-    "depth": 2
-  },
-  {
-    "id": 44855246,
-    "by": "moulick",
-    "timeISO": "2025-08-10T14:00:32.000Z",
-    "textPlain": "> engineers begging GPT in PRs to do stuffThis about donet/runtime?",
-    "parent": 44854565,
     "depth": 2
   },
   {

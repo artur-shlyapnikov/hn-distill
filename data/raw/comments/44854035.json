@@ -24,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44854992,
-    "by": "sebtron",
-    "timeISO": "2025-08-10T13:16:06.000Z",
-    "textPlain": "Basic completion in ksh is as easy as defining an array. From https://man.openbsd.org/ksh :Custom completions may be configured by creating an array named ‘complete_command’, optionally suffixed with an argument number to complete only for a single argument. So defining an array named ‘complete_kill’ provides possible completions for any argument to the kill(1) command, but ‘complete_kill_1’ only completes the first argument. For example, the following command makes ksh offer a selection of signal names for the first argument to kill(1):    set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM",
-    "parent": 44854035,
-    "depth": 1
-  },
-  {
     "id": 44854775,
     "by": "medv",
     "timeISO": "2025-08-10T12:36:01.000Z",
     "textPlain": "JSON fields autocomplete right in bash/zsh: https://fx.wtf/install#autocomplete",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44854992,
+    "by": "sebtron",
+    "timeISO": "2025-08-10T13:16:06.000Z",
+    "textPlain": "Basic completion in ksh is as easy as defining an array. From https://man.openbsd.org/ksh :Custom completions may be configured by creating an array named ‘complete_command’, optionally suffixed with an argument number to complete only for a single argument. So defining an array named ‘complete_kill’ provides possible completions for any argument to the kill(1) command, but ‘complete_kill_1’ only completes the first argument. For example, the following command makes ksh offer a selection of signal names for the first argument to kill(1):    set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM",
     "parent": 44854035,
     "depth": 1
   },
@@ -48,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44854971,
-    "by": "harimurti",
-    "timeISO": "2025-08-10T13:12:06.000Z",
-    "textPlain": "I’m not familiar with `_gnu_generic`, but it sounds like a handy shortcut for basic completions without writing a full script. Does it work with commands that only have `--help` but no man pages?",
+    "id": 44854218,
+    "by": "vcdimension",
+    "timeISO": "2025-08-10T10:31:54.000Z",
+    "textPlain": "Here's another tutorial for creating zsh completers using the built-in functions: https://github.com/vapniks/zsh-completions/blob/master/zsh-c...",
     "parent": 44854035,
     "depth": 1
   },
@@ -64,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44854218,
-    "by": "vcdimension",
-    "timeISO": "2025-08-10T10:31:54.000Z",
-    "textPlain": "Here's another tutorial for creating zsh completers using the built-in functions: https://github.com/vapniks/zsh-completions/blob/master/zsh-c...",
+    "id": 44854971,
+    "by": "harimurti",
+    "timeISO": "2025-08-10T13:12:06.000Z",
+    "textPlain": "I’m not familiar with `_gnu_generic`, but it sounds like a handy shortcut for basic completions without writing a full script. Does it work with commands that only have `--help` but no man pages?",
     "parent": 44854035,
     "depth": 1
   },
@@ -112,10 +112,10 @@
     "depth": 2
   },
   {
-    "id": 44855281,
-    "by": "IgorPartola",
-    "timeISO": "2025-08-10T14:07:04.000Z",
-    "textPlain": "man pages are so underrated. I mean every project nowadays has README.md so I don’t see why we can’t just auto generate them with or without an LLM helping. Also I wish programs would use standardized generic arguments for help, config file, version, background the task, PID file, log file, and log level.",
+    "id": 44854453,
+    "by": "kekebo",
+    "timeISO": "2025-08-10T11:22:15.000Z",
+    "textPlain": "Thank you for the comment.  \nhttps://github.com/umlx5h/zsh-manpage-completion-generator appears to adapt this to ZSH. Have yet to try through",
     "parent": 44854235,
     "depth": 2
   },
@@ -128,18 +128,18 @@
     "depth": 2
   },
   {
-    "id": 44854808,
-    "by": "cb321",
-    "timeISO": "2025-08-10T12:43:08.000Z",
-    "textPlain": "For those programs that have betrayed shipping man pages, instead say relying only on a --help system, do you happen to know if the fish shell has an analogue to Zsh `_gnu_generic` and Bash `complete -F _longopt`?  If not, do you have any insight into why not/what it would take to make that happen?",
+    "id": 44855281,
+    "by": "IgorPartola",
+    "timeISO": "2025-08-10T14:07:04.000Z",
+    "textPlain": "man pages are so underrated. I mean every project nowadays has README.md so I don’t see why we can’t just auto generate them with or without an LLM helping. Also I wish programs would use standardized generic arguments for help, config file, version, background the task, PID file, log file, and log level.",
     "parent": 44854235,
     "depth": 2
   },
   {
-    "id": 44854453,
-    "by": "kekebo",
-    "timeISO": "2025-08-10T11:22:15.000Z",
-    "textPlain": "Thank you for the comment.  \nhttps://github.com/umlx5h/zsh-manpage-completion-generator appears to adapt this to ZSH. Have yet to try through",
+    "id": 44854808,
+    "by": "cb321",
+    "timeISO": "2025-08-10T12:43:08.000Z",
+    "textPlain": "For those programs that have betrayed shipping man pages, instead say relying only on a --help system, do you happen to know if the fish shell has an analogue to Zsh `_gnu_generic` and Bash `complete -F _longopt`?  If not, do you have any insight into why not/what it would take to make that happen?",
     "parent": 44854235,
     "depth": 2
   },
@@ -156,6 +156,14 @@
     "by": "loeg",
     "timeISO": "2025-08-10T13:41:46.000Z",
     "textPlain": "There is one particular command I occasionally use that has totally broken completion for files, so I've taken to just using 'ls X Y Z' to get the right completion behavior and then changing 'ls' to the right command as the last step.",
+    "parent": 44854384,
+    "depth": 2
+  },
+  {
+    "id": 44855551,
+    "by": "JNRowe",
+    "timeISO": "2025-08-10T14:45:22.000Z",
+    "textPlain": "There is the complete-filename function that only completes filenames in bash, bound to M-/ by default.  You can use that in any place you want a filename where \"complete\"(the function normally bound to tab) would do something you don't desire.There are a collection of other non-context aware completion functions that are bound by default too, useful for example when you when you wish to complete hostnames in a for-loop.zle has what is largely a significant superset of this, the documentation is spread about between the zshzle and zshcomp* manpages.",
     "parent": 44854384,
     "depth": 2
   },
@@ -213,6 +221,14 @@
     "timeISO": "2025-08-10T12:41:31.000Z",
     "textPlain": "Thanks for linking this! This is a lightweight solution, compared to ijq (interactive jq), but it still may come in handy.https://github.com/gpanders/ijq",
     "parent": 44854775,
+    "depth": 2
+  },
+  {
+    "id": 44855703,
+    "by": "duckerude",
+    "timeISO": "2025-08-10T15:08:13.000Z",
+    "textPlain": "Rust has the clap_complete package for its most popular arg parsing library: https://crates.io/crates/clap_completeripgrep exposes its (bespoke) shell completion and man page generation through a --generate option: rg --generate=man, rg --generate=complete-bash, etcetera. In xh (clap-based) we provide the same but AFAIK we're the only one to copy that interface.Symfony (for PHP) provides some kind of runtime completion generation but I don't know the details.",
+    "parent": 44854174,
     "depth": 2
   },
   {

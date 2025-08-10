@@ -24,14 +24,6 @@
     "depth": 1
   },
   {
-    "id": 44854714,
-    "by": "jjgreen",
-    "timeISO": "2025-08-10T12:21:33.000Z",
-    "textPlain": "I've been on Debian forever and love it to bits.  But in an act which can only be described as batshit insanity, they have chosen to patch Python's pip3 in a manner which breaks the --prefix option.  On Debian  pip3 install <whatever> --prefix=/usr/local\n\nwill install into /usr/local/local, so one has to use the prefix /usr.  The same command on, say, OpenSuSE will install into /usr and break your system.  Barking mad.https://sources.debian.org/src/python3.7/3.7.3-2+deb10u3/deb...",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849340,
     "by": "accrual",
     "timeISO": "2025-08-09T19:25:31.000Z",
@@ -48,6 +40,14 @@
     "depth": 1
   },
   {
+    "id": 44854714,
+    "by": "jjgreen",
+    "timeISO": "2025-08-10T12:21:33.000Z",
+    "textPlain": "I've been on Debian forever and love it to bits.  But in an act which can only be described as batshit insanity, they have chosen to patch Python's pip3 in a manner which breaks the --prefix option.  On Debian  pip3 install <whatever> --prefix=/usr/local\n\nwill install into /usr/local/local, so one has to use the prefix /usr.  The same command on, say, OpenSuSE will install into /usr and break your system.  Barking mad.https://sources.debian.org/src/python3.7/3.7.3-2+deb10u3/deb...",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44849292,
     "by": "bbarnett",
     "timeISO": "2025-08-09T19:20:41.000Z",
@@ -60,6 +60,22 @@
     "by": "pss314",
     "timeISO": "2025-08-09T21:44:42.000Z",
     "textPlain": "A new APT sources format \"debian.sources\" is announced with trixie. The now older \"sources.list\" format is still supported, but is likely to be deprecated in a future Debian release.See below:  APT is moving to a different format for configuring where it downloads packages from. The files /etc/apt/sources.list and *.list files in /etc/apt/sources.list.d/ are replaced by files still in that directory but with names ending in .sources, using the new, more readable (deb822 style) format. For details see sources.list(5). Examples of APT configurations in these notes will be given in the new deb822 format.\n\n  If your system is using multiple sources files then you will need to ensure they stay consistent.\n\n- https://wiki.debian.org/SourcesList#APT_sources_format- https://www.debian.org/releases/trixie/release-notes/upgradi...\"apt modernize-sources\" command can be used to simulate and replace \".list\" files with the new \".sources\" format.  Modernizing will replace .list files with the new .sources format, add Signed-By values where they can be determined automatically, and save the old files into .list.bak files.\n\n  This command supports the 'signed-by' and 'trusted' options. If you have specified other options inside [] brackets, please transfer them manually to the output files; see sources.list(5) for a mapping.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44855585,
+    "by": "Aldipower",
+    "timeISO": "2025-08-10T14:49:57.000Z",
+    "textPlain": "Looking forward to 13! Debian 12 in combination with Pipewire is my go to daily use professional audio workstation for 2 years. Coming from Windows, there are no more forced updates anymore preventing me from doing my job. This is a releave. It works so good! Linux for professional audio is really an option now! Most high-end converters are connected via MADI or ADAT anyway, so there is no driver problem existent. Drivers are a consumer grade discussion..",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44855626,
+    "by": "teleforce",
+    "timeISO": "2025-08-10T14:56:47.000Z",
+    "textPlain": "> The overall disk usage for trixie is 403,854,660 kB (403 GB), and is made up of 1,463,291,186 lines of code.This makes Debian Trixie about 32 times larger than Windows XP with approximately 45 millions lines of code, arguably the best Windows OS ever.Debian Trixie is released about 24 years after Windows XP.",
     "parent": 44848782,
     "depth": 1
   },
@@ -96,18 +112,18 @@
     "depth": 1
   },
   {
-    "id": 44849654,
-    "by": "bbarnett",
-    "timeISO": "2025-08-09T20:04:33.000Z",
-    "textPlain": "For those worrying about the NIC change with systemd, this comes from the release doc:https://www.debian.org/releases/trixie/release-notes/issues....  # example:\n  udevadm test-builtin net_setup_link /sys/class/net/eno4 2>/dev/null\n  ID_NET_LINK_FILE=/usr/lib/systemd/network/99-default.link\n  ID_NET_LINK_FILE_DROPINS=\n  ID_NET_NAME=eno4  <-- note the NIC name that will happen after reboot\n\nHere's a one-liner, excluding a bond interface and lo.  Gives a nice list of pre and post change.  for x in $(cat /etc/network/interfaces | grep auto | cut -d ' ' -f 2 | grep -Ev 'lo|bond0'); do echo -n $x:; udevadm test-builtin net_setup_link /sys/class/net/$x 2>/dev/null | grep NET_NAME| cut -d = -f 2; done\n\nThe doc's logic is that after you've upgraded to trixie, and before reboot, you're running enough of systemd to see what it will name interfaces after reboot.So far I have not had an interface change due to upgrade, so I cannot say that the above does detect it.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849610,
     "by": "imoverclocked",
     "timeISO": "2025-08-09T19:59:21.000Z",
     "textPlain": "I have used Debian starting sometime around slink. I still type \"apt-get ...\" and it still works reasonably well. There have definitely been hiccups in upgrades over the last 25+ years but the amount of time/effort dealing with those is almost nothing in comparison to other linux and non-OSS systems I've dealt with over the same span of time. My only regret is not contributing more to the community.The thing I like most about Debian is that you need to know at least a little about what is going on to use it. For me, it does a good job of following \"as simple as possible and no simpler.\"",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849654,
+    "by": "bbarnett",
+    "timeISO": "2025-08-09T20:04:33.000Z",
+    "textPlain": "For those worrying about the NIC change with systemd, this comes from the release doc:https://www.debian.org/releases/trixie/release-notes/issues....  # example:\n  udevadm test-builtin net_setup_link /sys/class/net/eno4 2>/dev/null\n  ID_NET_LINK_FILE=/usr/lib/systemd/network/99-default.link\n  ID_NET_LINK_FILE_DROPINS=\n  ID_NET_NAME=eno4  <-- note the NIC name that will happen after reboot\n\nHere's a one-liner, excluding a bond interface and lo.  Gives a nice list of pre and post change.  for x in $(cat /etc/network/interfaces | grep auto | cut -d ' ' -f 2 | grep -Ev 'lo|bond0'); do echo -n $x:; udevadm test-builtin net_setup_link /sys/class/net/$x 2>/dev/null | grep NET_NAME| cut -d = -f 2; done\n\nThe doc's logic is that after you've upgraded to trixie, and before reboot, you're running enough of systemd to see what it will name interfaces after reboot.So far I have not had an interface change due to upgrade, so I cannot say that the above does detect it.",
     "parent": 44848782,
     "depth": 1
   },
@@ -124,6 +140,14 @@
     "by": "juujian",
     "timeISO": "2025-08-09T20:00:21.000Z",
     "textPlain": "I have been using Debian Trixie for a few months in testing now, I can attest that its a great, stable operating system. Definitely better than Ubuntu in terms of user experience.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44851123,
+    "by": "natebc",
+    "timeISO": "2025-08-09T22:53:44.000Z",
+    "textPlain": "Lots of debian love in this thread and it's great to see. If you're so inclined I encourage you to donate to Debian. We're all better off the more support goes to an ecosystem and operation like Debian.https://www.debian.org/donationsNot affiliated, just a happy user for a long, long time.",
     "parent": 44848782,
     "depth": 1
   },
@@ -148,14 +172,6 @@
     "by": "aborsy",
     "timeISO": "2025-08-09T20:49:00.000Z",
     "textPlain": "The difference between Debian and Ubuntu is decreasing with each release recently. I was pleasantly surprised that Debian recognized all hardware components in my laptop released one year ago \nout of the box.Hardware support is good and UI is great! It feels snappier than Ubuntu, may be due to lack of snap and fewer services and applications installed by default.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44851123,
-    "by": "natebc",
-    "timeISO": "2025-08-09T22:53:44.000Z",
-    "textPlain": "Lots of debian love in this thread and it's great to see. If you're so inclined I encourage you to donate to Debian. We're all better off the more support goes to an ecosystem and operation like Debian.https://www.debian.org/donationsNot affiliated, just a happy user for a long, long time.",
     "parent": 44848782,
     "depth": 1
   },
@@ -200,18 +216,18 @@
     "depth": 1
   },
   {
-    "id": 44854459,
-    "by": "andersa",
-    "timeISO": "2025-08-10T11:23:25.000Z",
-    "textPlain": "I've been using the Debian trixie branch for about a year now on my local server, never once had a real issue with anything. Very impressive.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44853159,
     "by": "starkparker",
     "timeISO": "2025-08-10T06:20:06.000Z",
     "textPlain": "Maybe a niche concern, but SDL2 is still in Trixie. The sdl2-compat layer (translating SDL2 APIs to SDL3) is in testing, where SDL2 also exists side-by-side with it and is intended to be used to test and verify that SDL2 apps that use it are actually compatible.Night-and-day decision-making process compared to Fedora and Arch, which both replaced SDL2 with sdl2-compat, broke a bunch of SDL2 apps because sdl2-compat isn't actually SDL2-compatible yet, and sent everyone to yell at the SDL team about it.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44854459,
+    "by": "andersa",
+    "timeISO": "2025-08-10T11:23:25.000Z",
+    "textPlain": "I've been using the Debian trixie branch for about a year now on my local server, never once had a real issue with anything. Very impressive.",
     "parent": 44848782,
     "depth": 1
   },
@@ -300,22 +316,6 @@
     "by": "josteink",
     "timeISO": "2025-08-09T19:20:08.000Z",
     "textPlain": "I've upgraded all my servers and laptops to Debian 13.Lucky 13 and all... And not a single issue so far. Very happy!Thanks to the Debian team for putting out yet another high quality, reliable release :)",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44851879,
-    "by": "theandrewbailey",
-    "timeISO": "2025-08-10T00:58:23.000Z",
-    "textPlain": "> The overall disk usage for trixie is 403,854,660 kB (403 GB)That's too big. I'm going to need a smaller distro.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44850211,
-    "by": "perdomon",
-    "timeISO": "2025-08-09T21:05:18.000Z",
-    "textPlain": "How soon can I update my raspberry pi 5 from\nBookworm to Trixie? Does PiOS have to initiate that first?",
     "parent": 44848782,
     "depth": 1
   }
