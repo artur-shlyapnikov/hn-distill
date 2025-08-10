@@ -1,5 +1,13 @@
 [
   {
+    "id": 44857473,
+    "by": "paradox460",
+    "timeISO": "2025-08-10T19:14:03.000Z",
+    "textPlain": "I've started using jdx's usage[1] for my clis. It integrates neatly into clap, and can be used stand alone in scripts. It can generate completions, argparse, manpages, and moreI'm still on the fence if replacing the argparse blocks in my fish scripts is worth the hassle, but against things like old school optparse, it's far better[1]: https://usage.jdx.dev/",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
     "id": 44854235,
     "by": "homebrewer",
     "timeISO": "2025-08-10T10:34:36.000Z",
@@ -60,6 +68,14 @@
     "by": "vbezhenar",
     "timeISO": "2025-08-10T11:51:29.000Z",
     "textPlain": "Here's zsh snippet I've came up with for my own simple functions. I'm using it as a base for other completions. In this example, function `set-java-home zulu-21` sets JAVA_HOME to `~/apps/java/zulu-21`. Here's `_set-java-home`:    #compdef set-java-home\n    \n    local -a versions=(~/apps/java/*(:t))\n    _describe 'version' versions\n\nSo basically almost a one-liner (but couldn't do it really one-liner, unfortunately).",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44857274,
+    "by": "gosub100",
+    "timeISO": "2025-08-10T18:43:02.000Z",
+    "textPlain": "I did something similar to this for tab-completing server names for use with ssh. I went a step further and allowed pattern matching based on the server being qa/prod and on locale. so for instance you could type `ssh co prod <tab>` and it would tab-complete / suggest any servers that were production and located in the Denver datacenter (co is the state abbrev for Colorado, for non-US readers).Unfortunately my work doesn't allow me to share code, but essentially I remapped ssh to a bash script that maintains an environment variable containing the args (you must do this because each <tab> press is an independent invocation of the script. Then you run into persistence problems, so I added a call to compute elapsed seconds so that it flushes the state variable after a 10s timeout).The bash script then forwards the args to a python script that reads a JSON file and figures out which params (such as 'co' or 'qa') map to which hostnames. It also matches against partial hostnames, so when you see this after tabqa-server-co1\nqa-server-co2\npr-server-co3you only need to add '3' to the list of args to narrow it down to 1 match, then hit <enter> to ssh to that host.",
     "parent": 44854035,
     "depth": 1
   },
