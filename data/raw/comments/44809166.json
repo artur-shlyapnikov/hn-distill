@@ -1,5 +1,13 @@
 [
   {
+    "id": 44850881,
+    "by": "abdusco",
+    "timeISO": "2025-08-09T22:23:27.000Z",
+    "textPlain": "I tried using `tailscale funnel` against a dummy server `python -m http.server`, and within 10 seconds the bots started to check for vulnerabilities.Tailscale warns you about how enabling it will issue an HTTPS certificate which will be in a public ledger. But I wasn't expecting it to be this quick.    127.0.0.1 - - [10/Aug/2025 00:11:34] \"GET /@vite/env HTTP/1.1\" 404 -\n    127.0.0.1 - - [10/Aug/2025 00:11:34] code 404, message File not found\n    127.0.0.1 - - [10/Aug/2025 00:11:34] \"GET /actuator/env HTTP/1.1\" 404 -\n    127.0.0.1 - - [10/Aug/2025 00:11:34] code 404, message File not found\n    127.0.0.1 - - [10/Aug/2025 00:11:34] \"GET /server HTTP/1.1\" 404 -\n    127.0.0.1 - - [10/Aug/2025 00:11:35] code 404, message File not found\n    127.0.0.1 - - [10/Aug/2025 00:11:35] \"GET /.vscode/sftp.json HTTP/1.1\" 404 -\n    127.0.0.1 - - [10/Aug/2025 00:11:35] code 404, message File not found\n    127.0.0.1 - - [10/Aug/2025 00:11:39] \"GET /s/7333e2433323e20343e2538313/_/;/META-INF/maven/com.atlassian.jira/jira-webapp-dist/pom.properties HTTP/1.1\" 404 -",
+    "parent": 44809166,
+    "depth": 1
+  },
+  {
     "id": 44854176,
     "by": "m11a",
     "timeISO": "2025-08-10T10:22:28.000Z",
@@ -8,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44850881,
-    "by": "abdusco",
-    "timeISO": "2025-08-09T22:23:27.000Z",
-    "textPlain": "I tried using `tailscale funnel` against a dummy server `python -m http.server`, and within 10 seconds the bots started to check for vulnerabilities.Tailscale warns you about how enabling it will issue an HTTPS certificate which will be in a public ledger. But I wasn't expecting it to be this quick.    127.0.0.1 - - [10/Aug/2025 00:11:34] \"GET /@vite/env HTTP/1.1\" 404 -\n    127.0.0.1 - - [10/Aug/2025 00:11:34] code 404, message File not found\n    127.0.0.1 - - [10/Aug/2025 00:11:34] \"GET /actuator/env HTTP/1.1\" 404 -\n    127.0.0.1 - - [10/Aug/2025 00:11:34] code 404, message File not found\n    127.0.0.1 - - [10/Aug/2025 00:11:34] \"GET /server HTTP/1.1\" 404 -\n    127.0.0.1 - - [10/Aug/2025 00:11:35] code 404, message File not found\n    127.0.0.1 - - [10/Aug/2025 00:11:35] \"GET /.vscode/sftp.json HTTP/1.1\" 404 -\n    127.0.0.1 - - [10/Aug/2025 00:11:35] code 404, message File not found\n    127.0.0.1 - - [10/Aug/2025 00:11:39] \"GET /s/7333e2433323e20343e2538313/_/;/META-INF/maven/com.atlassian.jira/jira-webapp-dist/pom.properties HTTP/1.1\" 404 -",
+    "id": 44854193,
+    "by": "raesene9",
+    "timeISO": "2025-08-10T10:26:37.000Z",
+    "textPlain": "One useful additional aspect to Tailscale that I've not seen mentioned so far, is the integration with Mullvad.Using that you can get the benefit of their network servers, appearing just as standard Tailscale exit nodes, which is handy if you need to geo-shift traffic at all.",
     "parent": 44809166,
     "depth": 1
   },
@@ -32,18 +40,18 @@
     "depth": 1
   },
   {
-    "id": 44835323,
-    "by": "redat00",
-    "timeISO": "2025-08-08T10:09:41.000Z",
-    "textPlain": "Neat way to use Tailscale !I have a similar set-up, without authentication however, relying on Nebula! https://github.com/slackhq/nebula",
-    "parent": 44809166,
-    "depth": 1
-  },
-  {
     "id": 44817950,
     "by": "sixothree",
     "timeISO": "2025-08-06T21:15:11.000Z",
     "textPlain": "I love me some tailscale. But it kills the battery on my phone and it kills resolve.conf every time I boot wsl. I wish I had better luck.",
+    "parent": 44809166,
+    "depth": 1
+  },
+  {
+    "id": 44835323,
+    "by": "redat00",
+    "timeISO": "2025-08-08T10:09:41.000Z",
+    "textPlain": "Neat way to use Tailscale !I have a similar set-up, without authentication however, relying on Nebula! https://github.com/slackhq/nebula",
     "parent": 44809166,
     "depth": 1
   },
@@ -80,18 +88,18 @@
     "depth": 2
   },
   {
-    "id": 44851004,
-    "by": "mh-",
-    "timeISO": "2025-08-09T22:38:33.000Z",
-    "textPlain": "Yeah, I have mixed feelings about CT (certificate transparency) for this reason. Folks are just consuming the firehose and scanning.And in this case, if the thing you're funnel'ing is on your residential connection, it basically amounts to you summoning a DDoS.One (obvious?) tip I'd offer is to put your stuff on high non-standard ports if you can. It'll reduce the amount of connections you get dramatically.",
-    "parent": 44850881,
-    "depth": 2
-  },
-  {
     "id": 44853632,
     "by": "exac",
     "timeISO": "2025-08-10T08:11:36.000Z",
     "textPlain": "All the dev servers I've used over the past 10 years come with warnings that they're not security hardened, so I'd be wary of using `tailscale funnel` even though it is awesome to share like that so easily.",
+    "parent": 44850881,
+    "depth": 2
+  },
+  {
+    "id": 44851004,
+    "by": "mh-",
+    "timeISO": "2025-08-09T22:38:33.000Z",
+    "textPlain": "Yeah, I have mixed feelings about CT (certificate transparency) for this reason. Folks are just consuming the firehose and scanning.And in this case, if the thing you're funnel'ing is on your residential connection, it basically amounts to you summoning a DDoS.One (obvious?) tip I'd offer is to put your stuff on high non-standard ports if you can. It'll reduce the amount of connections you get dramatically.",
     "parent": 44850881,
     "depth": 2
   },
@@ -112,11 +120,11 @@
     "depth": 2
   },
   {
-    "id": 44853153,
-    "by": "jen729w",
-    "timeISO": "2025-08-10T06:18:30.000Z",
-    "textPlain": "See their blog post about this from last week.https://tailscale.com/blog/tailscale-privacy-anonymity# What Tailscale isn't: an anonymity serviceTailscale is a secure connectivity tool that puts the highest value on the privacy of your packets. But we made an intentional choice from day one that we weren't going to try to be an anonymity tool. Quite the opposite in fact! We're an identity-centric network.Anonymity tools, like Tor, need to be architected very differently. They trade away speed to reduce traceability. They are hard to inspect and diagnose and debug, as a feature. They make enemies, both political and corporate. They are inherently hard to audit and control, by design. In short, they are the exact opposite of what you want your corporate (or even homelab) network to be.We believe anonymity tools are essential to safe network infrastructure and a free society. But, those tools are made by other people.…But if you’re looking for complete anonymity online, Tailscale is not the tool for you. Y'all, we're an identity-centric network with a centralized control plane. You should assume law enforcement can easily find out that you use Tailscale. Tailscale packets are pretty easy to detect, so you can assume they could know, through ISP logs, the shape and size of data you send between different nodes in different places (albeit without knowing the decrypted packet contents). You should assume they can correlate that flow metadata with your login identity.",
-    "parent": 44851348,
+    "id": 44854394,
+    "by": "oulipo",
+    "timeISO": "2025-08-10T11:10:02.000Z",
+    "textPlain": "Can you give more details for the un-initiated? What is Mullvad? How and why would you use this feature?Is it to use it as a kind of VPN to make traffic \"appear\" from any country, and, eg, watch Netflix?",
+    "parent": 44854193,
     "depth": 2
   },
   {
@@ -124,6 +132,14 @@
     "by": "xyzzy_plugh",
     "timeISO": "2025-08-10T01:53:32.000Z",
     "textPlain": "That section of the policy simply describes how the system works. It's very valuable information for enterprise customers who are effectively their entire market revenue-wise. Think access logs, intrusion detection, and so on. I do not interpret their policies such that they are processing the information you added emphasis to beyond what is necessary to serve the customer. What evidence do you have to the contrary?The irony of your post, which brings up Fear Uncertainty and Doubt, is certainly not lost on me. I'm also sure you could just ask apenwarr directly for clarification.",
+    "parent": 44851348,
+    "depth": 2
+  },
+  {
+    "id": 44853153,
+    "by": "jen729w",
+    "timeISO": "2025-08-10T06:18:30.000Z",
+    "textPlain": "See their blog post about this from last week.https://tailscale.com/blog/tailscale-privacy-anonymity# What Tailscale isn't: an anonymity serviceTailscale is a secure connectivity tool that puts the highest value on the privacy of your packets. But we made an intentional choice from day one that we weren't going to try to be an anonymity tool. Quite the opposite in fact! We're an identity-centric network.Anonymity tools, like Tor, need to be architected very differently. They trade away speed to reduce traceability. They are hard to inspect and diagnose and debug, as a feature. They make enemies, both political and corporate. They are inherently hard to audit and control, by design. In short, they are the exact opposite of what you want your corporate (or even homelab) network to be.We believe anonymity tools are essential to safe network infrastructure and a free society. But, those tools are made by other people.…But if you’re looking for complete anonymity online, Tailscale is not the tool for you. Y'all, we're an identity-centric network with a centralized control plane. You should assume law enforcement can easily find out that you use Tailscale. Tailscale packets are pretty easy to detect, so you can assume they could know, through ISP logs, the shape and size of data you send between different nodes in different places (albeit without knowing the decrypted packet contents). You should assume they can correlate that flow metadata with your login identity.",
     "parent": 44851348,
     "depth": 2
   },
@@ -168,18 +184,18 @@
     "depth": 2
   },
   {
-    "id": 44853842,
-    "by": "jaxxstorm",
-    "timeISO": "2025-08-10T09:00:35.000Z",
-    "textPlain": "I wrote a POC for using Tailscale serve and funnel similarly to ngrok here:https://github.com/jaxxstorm/tgate",
-    "parent": 44818657,
-    "depth": 2
-  },
-  {
     "id": 44819309,
     "by": "oliyoung",
     "timeISO": "2025-08-07T00:12:09.000Z",
     "textPlain": "> Sounds a bit like a fancier ngrok.Well, yes and no.You can use it like ngrok, and I'm sure you could configure wireguard and ngrok to give you something similar to what Tailscale does, but Tailscale does it out of the box, with polished and well built client and server apps.I'm no infra guy, I'm just a former front-end eng, but it gives me the confidence to expose media centres and file servers etc to \"the wild\" without it being public.Using Jellyfin to watch content from my home server on my iPad while I'm away from home is as \"easy\" as Disney or Netflix with Tailscale, just installed the clients and servers and .. voila?",
+    "parent": 44818657,
+    "depth": 2
+  },
+  {
+    "id": 44853842,
+    "by": "jaxxstorm",
+    "timeISO": "2025-08-10T09:00:35.000Z",
+    "textPlain": "I wrote a POC for using Tailscale serve and funnel similarly to ngrok here:https://github.com/jaxxstorm/tgate",
     "parent": 44818657,
     "depth": 2
   },

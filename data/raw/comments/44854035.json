@@ -1,9 +1,17 @@
 [
   {
-    "id": 44854174,
-    "by": "oezi",
-    "timeISO": "2025-08-10T10:22:26.000Z",
-    "textPlain": "Isn't there a standard flag which programs can implement to avoid writing this bash script?Ideally this could all be part of a library such as argparse for typical cases, right?",
+    "id": 44854235,
+    "by": "homebrewer",
+    "timeISO": "2025-08-10T10:34:36.000Z",
+    "textPlain": "With fish, if the program you're interested in hasn't betrayed the decades-old tradition of shipping man pages, it's often as simple as running `fish_update_completions`.It parses all man pages on your system and generates completion files for you. By default, they go into ~/.cache/fish/generated_completions/*If the man page was written poorly/is missing, you can always write your own completion (and hopefully send it upstream). fish uses such a simple format that I don't think there's any need for tutorials save the official doc:https://fishshell.com/docs/current/completions.htmlFor example, here's an excerpt from curl  complete --command curl --short-option 'L' --long-option 'location' --description 'Follow redirects' \n  complete --command curl --short-option 'O' --long-option 'remote-name' --description 'Write output to file named as remote file'",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44854384,
+    "by": "derriz",
+    "timeISO": "2025-08-10T11:06:55.000Z",
+    "textPlain": "I feel that the ergonomics of bash completion took a hit as the configurations got “smarter” and “helpfully” started blocking file or directory name completion if it thinks it wouldn’t be appropriate to have a file name at the current cursor position.  Instead of blocking, the default should always be to fall back to filename completion.Sometimes I’m close to disabling/uninstalling all completion scripts out of irritation as decades of muscle memory are frustrated by this behavior.It’s like that bad/annoying UX with text fields where the UI is constantly fighting against you in order prevent you from producing “illegal” intermediate input - e.g. let me paste the clipboard here goddammit - I know what I’m doing - I’ll correct it.",
     "parent": 44854035,
     "depth": 1
   },
@@ -16,11 +24,107 @@
     "depth": 1
   },
   {
+    "id": 44854174,
+    "by": "oezi",
+    "timeISO": "2025-08-10T10:22:26.000Z",
+    "textPlain": "Isn't there a standard flag which programs can implement to avoid writing this bash script?Ideally this could all be part of a library such as argparse for typical cases, right?",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44854218,
+    "by": "vcdimension",
+    "timeISO": "2025-08-10T10:31:54.000Z",
+    "textPlain": "Here's another tutorial for creating zsh completers using the built-in functions: https://github.com/vapniks/zsh-completions/blob/master/zsh-c...",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44854197,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-10T10:26:57.000Z",
+    "textPlain": "Do many people do bash on osx or zsh on Linux, and would this make much of a difference?",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44854228,
+    "by": "wiseowise",
+    "timeISO": "2025-08-10T10:33:45.000Z",
+    "textPlain": "Shell syntax is the exact reason why we've needed LLMs in the first place.",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44854278,
+    "by": "camdroidw",
+    "timeISO": "2025-08-10T10:43:46.000Z",
+    "textPlain": "Why doesn't someone (not me) just build a basic DSL and a transpiler that does this?",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44854299,
+    "by": "btreecat",
+    "timeISO": "2025-08-10T10:47:56.000Z",
+    "textPlain": "When I screen share, people don't realize I'm not using zsh and dozen plugins. It's just fish and it's beautiful out of the box.",
+    "parent": 44854235,
+    "depth": 2
+  },
+  {
+    "id": 44854399,
+    "by": "cryptoz",
+    "timeISO": "2025-08-10T11:13:19.000Z",
+    "textPlain": "I have come to absolutely despise web form inputs with front end email validators that are broken. Input field hints to type your email, so you start typing. As soon as you type the first letter it goes red and says “error!!! Invalid email!”Unbelievably frustrating.",
+    "parent": 44854384,
+    "depth": 2
+  },
+  {
+    "id": 44854302,
+    "by": "tetha",
+    "timeISO": "2025-08-10T10:49:14.000Z",
+    "textPlain": "It's a good first dive into zsh completion. The whole thing is quite the large system to wrap ones head around it and I'm still somewhat struggling.But at work, I've been slowly adding auto completion to our ansible wrapper scripts, like explanations which playbooks to use when, smart `-l` completion based off a possibly selected playbook (so, if the playbook is postgres.yml, it doesn't suggest mariadb groups), tag autocompletion (with a few, admittedly, hardcoded explanations how these tags should be used) and such.It's somewhat of a friday-afternoon struggle project, but it's making the big ansible project pretty approachable to use.",
+    "parent": 44854164,
+    "depth": 2
+  },
+  {
     "id": 44854179,
     "by": "oezi",
     "timeISO": "2025-08-10T10:23:00.000Z",
     "textPlain": "Thanks, for the interesting read.",
     "parent": 44854164,
+    "depth": 2
+  },
+  {
+    "id": 44854206,
+    "by": "vcdimension",
+    "timeISO": "2025-08-10T10:28:55.000Z",
+    "textPlain": "In zsh you can use the _gnu_generic function for simple completion of commands with a --help flag. \nJust put a line like this somewhere in your startup file: compdef _gnu_generic <CMD>",
+    "parent": 44854174,
+    "depth": 2
+  },
+  {
+    "id": 44854251,
+    "by": "homebrewer",
+    "timeISO": "2025-08-10T10:38:02.000Z",
+    "textPlain": "I don't know about \"use\" — luckily, there's no opt-out telemetry — but enough of \"enthusiast distribution\" users who have also opted in (very biased sample) have explicitly installed zsh (not necessarily run it)https://pkgstats.archlinux.de/compare/packages#packages=bash...OTOH, it's only 4-7% on Debian (also opt-in):https://qa.debian.org/popcon.php?package=zsh",
+    "parent": 44854197,
+    "depth": 2
+  },
+  {
+    "id": 44854270,
+    "by": "camdroidw",
+    "timeISO": "2025-08-10T10:42:13.000Z",
+    "textPlain": "You mean Unix shell syntax. Powershell has got this absolutely right ,and only this (which is probably still a 50% of what a shell is)",
+    "parent": 44854228,
+    "depth": 2
+  },
+  {
+    "id": 44854385,
+    "by": "cb321",
+    "timeISO": "2025-08-10T11:07:14.000Z",
+    "textPlain": "The answer to your question is that command-lines have a much larger diversity of syntax (even to get help!) than most people realize.  Folks have their 30..60 commands they run frequently and don't run into many or conveniently forget/neglect older ones like gcc or tar.  Many people (not saying you specifically) do not even realize that double-dash long options are a GNU extension never standardized or that Python toolkits typically allow --my-opt for --my-option abbreviations, just to name a couple of the dozen variations (space or '=', or ':' or '/' or any of the above or etc., etc.).  There are probably hundreds if not thousands of syntax possibilities, but people often act like there is only one.As an example of diversity estimation that you can try at home, a couple of times I have run every single command in my command search PATH with --help </dev/null >/tmp/help.$c 2>&1 .  Caution - be careful if you do this!  Have backups/checksums of everything important and run as an unprivileged user.  I always have to kill off several processes that just hang doing something or otherwise manually intervene.  Anyway, this alone suggests data collection of help text is not a trivial problem.Beyond data collection, many commands did not/do not use CLI toolkits at all.  Their commands may have even less regular syntax.  Freeform help makes it harder to produce a regular help syntax to convert into the interpreter needed by a completion system.  That said, as elsethread commented for some toolkits the Zsh _gnu_generic works great!Any CLI toolkit itself does have the data, by necessity.  So, if the CLI framework supports the 2 or 3 common shells there is no need for a translator exactly.  You just need a code generator.  There is a stab at an auto-generation framework from said data for the Nim CLI toolkit, cligen, over at:https://github.com/c-blake/cligen/blob/master/util/complgen....but it only works for Zsh right now.  Anyway, I don't think perfect should be the enemy of ",
+    "parent": 44854278,
     "depth": 2
   }
 ]

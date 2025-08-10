@@ -1,5 +1,13 @@
 [
   {
+    "id": 44854349,
+    "by": "logicprog",
+    "timeISO": "2025-08-10T10:58:51.000Z",
+    "textPlain": "I've been using this to try to make audiobooks out of various philosophy books I've been wanting to read, for accessibility reasons, and I ran into a critical problem: if the input text fed to Kokoro is too long, it'll start skipping words at the end or in the middle, or fade out at the end; and abogen chunks the text it feeds to Kokoro by sentence, so sentences of arbitrary length are fed to Kokoro without any guarding. This produces unusable audiobooks for me. I'm working on \"vibe coding\" my own Kokoro based tkinter personal gui app for the same purpise that uses nltk and some regex magic for better splitting.",
+    "parent": 44853064,
+    "depth": 1
+  },
+  {
     "id": 44853631,
     "by": "dsign",
     "timeISO": "2025-08-10T08:11:24.000Z",
@@ -8,18 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44854160,
-    "by": "poulpy123",
-    "timeISO": "2025-08-10T10:20:32.000Z",
-    "textPlain": "perfect, I was looking for something like that ! is it gui only, or is there an api available ? I would like to be able to share a link or a text from my phone and get back the audio",
-    "parent": 44853064,
-    "depth": 1
-  },
-  {
-    "id": 44853904,
-    "by": "amaccuish",
-    "timeISO": "2025-08-10T09:19:22.000Z",
-    "textPlain": "Amazing, but I'm personally waiting for the one that generates a well formated ePub from a PDF.",
+    "id": 44854356,
+    "by": "frumiousirc",
+    "timeISO": "2025-08-10T10:59:59.000Z",
+    "textPlain": "This needs to be run from an environment where `pip` is available as that tool is used during the running of the abogen app.  Using `uv tool run abogen` gets you started but then the app hangs at model install time.  `uv venv && uv pip install pip && source .venv/bin/activate && abogen` lets it run properly.Otherwise, it's a nicely packaged GUI. Well done!I tried a PDF and the UI to select pages or sections is good and generation is fast on my laptop's GTX 1650.The result is an .ogg audio and .ass subtitle file.  Played with mpv allows listening and reading along in the terminal.  Only issue I have with the result is that visual line breaks from the PDF are preserved resulting in long pauses \"randomly\" in the middle of sentences.  This greatly interrupts understanding of the audio.Edit: enabling the skipping of single newlines helps!",
     "parent": 44853064,
     "depth": 1
   },
@@ -40,10 +40,26 @@
     "depth": 1
   },
   {
+    "id": 44853904,
+    "by": "amaccuish",
+    "timeISO": "2025-08-10T09:19:22.000Z",
+    "textPlain": "Amazing, but I'm personally waiting for the one that generates a well formated ePub from a PDF.",
+    "parent": 44853064,
+    "depth": 1
+  },
+  {
     "id": 44853345,
     "by": "8s2ngy",
     "timeISO": "2025-08-10T07:08:11.000Z",
     "textPlain": "I've been using Kokoro TTS with the CLI app, audiblez, mentioned in the \"Similar Projects\" section of the README. The model is fast and delivers impressive quality for its small size. Some issues I have faced, however, are:\na) It doesn't distinguish periods at the end of sentences from the dots in abbreviations such as \"Mr.\" or \"Mrs.\" The result is an awkward pause between \"Mr.\" and the name.\nb) It doesn't handle ellipses well.\nc) Words are pronounced the same way regardless of context.",
+    "parent": 44853064,
+    "depth": 1
+  },
+  {
+    "id": 44854160,
+    "by": "poulpy123",
+    "timeISO": "2025-08-10T10:20:32.000Z",
+    "textPlain": "perfect, I was looking for something like that ! is it gui only, or is there an api available ? I would like to be able to share a link or a text from my phone and get back the audio",
     "parent": 44853064,
     "depth": 1
   },
@@ -56,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44853783,
-    "by": "leke",
-    "timeISO": "2025-08-10T08:44:01.000Z",
-    "textPlain": "How big is this app?",
-    "parent": 44853064,
-    "depth": 1
-  },
-  {
     "id": 44853306,
     "by": "nikolayasdf123",
     "timeISO": "2025-08-10T06:58:21.000Z",
     "textPlain": "can I choose any voice? would love to read software engineering books in voice of Morgan Freeman, or maybe even better, Scarlett Johansson",
+    "parent": 44853064,
+    "depth": 1
+  },
+  {
+    "id": 44853783,
+    "by": "leke",
+    "timeISO": "2025-08-10T08:44:01.000Z",
+    "textPlain": "How big is this app?",
     "parent": 44853064,
     "depth": 1
   },
@@ -78,6 +94,14 @@
     "textPlain": "I think the quality of the voice is super important for audiobooks and I think we are just closing in on the required quality with TTS.I played a bit with Eleven labs voices and while they aren't bad when I tried make them read fragment of a text that I wrote, it sounded chaotic, boring, quite terrible, for anything longer than a sentence or two. But when I tried their v3 voices which they are currently in the process of rolling out, the same text sounded consistent, emotional, engaging, simply amazing. I think we are just crossing vocal uncanny valley.",
     "parent": 44853064,
     "depth": 1
+  },
+  {
+    "id": 44854397,
+    "by": "gavinray",
+    "timeISO": "2025-08-10T11:12:32.000Z",
+    "textPlain": "I use \"kokoro-tts\" CLI, which has better chunking/splitting.https://github.com/nazdridoy/kokoro-ttsIt generates a directory of audio files, along with a metadata file for ebook chaptersYou have to use m4b-tool to stitch the audio files together into an audiobook and include the chapter metadata, but it works great:https://github.com/sandreas/m4b-toolI've been meaning to write a post on this workflow because it's incredibly useful",
+    "parent": 44854349,
+    "depth": 2
   },
   {
     "id": 44853763,
@@ -124,6 +148,14 @@
     "by": "noisem4ker",
     "timeISO": "2025-08-10T08:34:11.000Z",
     "textPlain": "It's probably due to the unusual sound format, 24kHz mono PCM, and the fact that it was somehow forced into a WebM container, which only supports Vorbis and Opus officially.It looks like the author created it using the \"higher quality\" ffmpeg command line, except for the \"webm\" final extension, producing the opposite of what's described as \"an MP4 file that's compatible with more devices\".https://github.com/denizsafak/abogen/tree/main/demo#for-high...",
+    "parent": 44853344,
+    "depth": 2
+  },
+  {
+    "id": 44854254,
+    "by": "frumiousirc",
+    "timeISO": "2025-08-10T10:38:07.000Z",
+    "textPlain": "Thanks for this.  I thought I had some local issue with waterfox.  Pasting the (long) video URL to the terminal let's mpv play it with audio.",
     "parent": 44853344,
     "depth": 2
   },
