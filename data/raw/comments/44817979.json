@@ -6,5 +6,13 @@
     "textPlain": "The time bounds here are confused and then compared in confusing ways - you have to click through to the sketchy ideas link to see them.For example, it assumes that hash function calculation is O(1) for keys of varying lengths, but it's basically never that.Hash tables are not O(1) lookup in the size of the key, the are O(1) lookup in the number of elements.They then compare this element-count time bound to a kind of trie whose time bound is expressed in terms of size of key.But  ~all hash functions take O(k) time where k is the size of the key, because they look at all the bits of the key.Example:\n\"Exact-match lookups are normal O(1) hash map lookups. Predecessor / successor searches use binary chop on the length of the key. Where a qp-trie search is O(k), where k is the length of the key, a p-fast trie search is O(log k).\"The O(1) in the first sentence is about number of elements, and cannot be compared to the other time bounds, which are about length of key.\nThe exact match lookups are O(k), and thus at best as fast as the qp-trie, unless you use a hash function that is guaranteed to look at less than a constant factor of all of the bits of the key.  They don't say this, or give an example of one that they want you to use.\nIn order to be faster than the qp trie, they would have to, at minimum, use a hash function that is log(k)[1]Additionally, if you look at the idea for search:\"\nTo search, start by splitting the query string at its end into prefix + final chunk of bits. Look up the prefix in the hash map and check the chunk’s bit in the bitmap. If it’s set, you can return the corresponding leaf object because it’s either an exact match or the nearest predecessor.\"Unless i'm missing something (maybe i am, it's hard to tell without even pseudocode), this is also O(k) already.Maybe this is a good idea, maybe it's a bad one, but it's really hard to tell what it's supposed to be fast at or not, and to better analyze the timebounds, without pseudocode of some sort.[1]",
     "parent": 44817979,
     "depth": 1
+  },
+  {
+    "id": 44854644,
+    "by": "voidmain",
+    "timeISO": "2025-08-10T12:06:19.000Z",
+    "textPlain": "I think you are right that the asymptotic claims are wrong, but it also seems plausible that hashing a k-byte string (in some way that gives you k prefix hashes) may sometimes be drastically cheaper than k cache misses in a large data structure. My charitable guess is that the author is implicitly using a cost model where only access to unbounded memory has a cost.",
+    "parent": 44854520,
+    "depth": 2
   }
 ]

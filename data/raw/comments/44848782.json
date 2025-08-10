@@ -40,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44849292,
-    "by": "bbarnett",
-    "timeISO": "2025-08-09T19:20:41.000Z",
-    "textPlain": "You can still use sysvinit, I've already tested servers and desktop builds.From my build box:  chroot $MOUNTPOINT/ /bin/bash -c \"http_proxy=$aptproxy apt-get -y --purge --allow remove-essential install sysvinit-core sysvinit-utils systemd-sysv- systemd-\"\n\nThere is a weird depends you cannot get around without simultaneously removing and installing in parallel.  A Debian bug highlighted the above, with a \"-\" for systemd-sysv- systemd- as a fix, along with allow remove essential.After this fix, sysvinit builds with debootstrap were almost identical as to bookworm.  This includes for desktops.As per with bookworm through buster, you'll still need something like this too:  $ cat /etc/apt/preferences.d/systemd\n\n  # this is the only systemd package that is required, so we up its priority first...\n  Package: libsystemd0\n  Pin: release trixie\n  Pin-Priority: 700\n\n  # exclude the rest\n  Package: systemd\n  Pin: release *\n  Pin-Priority: -1\n\n  Package: *systemd*\n  Pin: release *\n  Pin-Priority: -1\n\n  Package: systemd:i386\n  Pin: release *\n  Pin-Priority: -1\n\n  Package: systemd:amd64\n  Pin: release *\n  Pin-Priority: -1",
+    "id": 44854714,
+    "by": "jjgreen",
+    "timeISO": "2025-08-10T12:21:33.000Z",
+    "textPlain": "I've been on Debian forever and love it to bits.  But in an act which can only be described as batshit insanity, they have chosen to patch Python's pip3 in a manner which breaks the --prefix option.  On Debian  pip3 install <whatever> --prefix=/usr/local\n\nwill install into /usr/local/local, so one has to use the prefix /usr.  The same command on, say, OpenSuSE will install into /usr and break your system.  Barking mad.https://sources.debian.org/src/python3.7/3.7.3-2+deb10u3/deb...",
     "parent": 44848782,
     "depth": 1
   },
@@ -52,6 +52,14 @@
     "by": "int_19h",
     "timeISO": "2025-08-10T04:12:55.000Z",
     "textPlain": "I see that systemd is still doing this thing where they are trying to strong-arm all Linux distros into arbitrary stuff that someone decided is the only right way to do something:> 5.2.2. systemd message: System is tainted: unmerged-bin\nsystemd upstream, since version 256, considers systems having separate /usr/bin and /usr/sbin directories noteworthy. At startup systemd emits a message to record this fact: System is tainted: unmerged-bin. It is recommended to ignore this message. Merging these directories manually is unsupported and will break future upgrades. Further details can be found in bug #1085370.No option to disable this either, per discussion in https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1085370",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849292,
+    "by": "bbarnett",
+    "timeISO": "2025-08-09T19:20:41.000Z",
+    "textPlain": "You can still use sysvinit, I've already tested servers and desktop builds.From my build box:  chroot $MOUNTPOINT/ /bin/bash -c \"http_proxy=$aptproxy apt-get -y --purge --allow remove-essential install sysvinit-core sysvinit-utils systemd-sysv- systemd-\"\n\nThere is a weird depends you cannot get around without simultaneously removing and installing in parallel.  A Debian bug highlighted the above, with a \"-\" for systemd-sysv- systemd- as a fix, along with allow remove essential.After this fix, sysvinit builds with debootstrap were almost identical as to bookworm.  This includes for desktops.As per with bookworm through buster, you'll still need something like this too:  $ cat /etc/apt/preferences.d/systemd\n\n  # this is the only systemd package that is required, so we up its priority first...\n  Package: libsystemd0\n  Pin: release trixie\n  Pin-Priority: 700\n\n  # exclude the rest\n  Package: systemd\n  Pin: release *\n  Pin-Priority: -1\n\n  Package: *systemd*\n  Pin: release *\n  Pin-Priority: -1\n\n  Package: systemd:i386\n  Pin: release *\n  Pin-Priority: -1\n\n  Package: systemd:amd64\n  Pin: release *\n  Pin-Priority: -1",
     "parent": 44848782,
     "depth": 1
   },
@@ -112,14 +120,6 @@
     "depth": 1
   },
   {
-    "id": 44854459,
-    "by": "andersa",
-    "timeISO": "2025-08-10T11:23:25.000Z",
-    "textPlain": "I've been using the Debian trixie branch for about a year now on my local server, never once had a real issue with anything. Very impressive.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849625,
     "by": "juujian",
     "timeISO": "2025-08-09T20:00:21.000Z",
@@ -128,18 +128,18 @@
     "depth": 1
   },
   {
-    "id": 44850070,
-    "by": "aborsy",
-    "timeISO": "2025-08-09T20:49:00.000Z",
-    "textPlain": "The difference between Debian and Ubuntu is decreasing with each release recently. I was pleasantly surprised that Debian recognized all hardware components in my laptop released one year ago \nout of the box.Hardware support is good and UI is great! It feels snappier than Ubuntu, may be due to lack of snap and fewer services and applications installed by default.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849823,
     "by": "Narishma",
     "timeISO": "2025-08-09T20:21:24.000Z",
     "textPlain": "> Users running i386 systems should not upgrade to trixie. Instead, Debian recommends either reinstalling them as amd64, where possible, or retiring the hardware.What I did is switch to NetBSD.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44850070,
+    "by": "aborsy",
+    "timeISO": "2025-08-09T20:49:00.000Z",
+    "textPlain": "The difference between Debian and Ubuntu is decreasing with each release recently. I was pleasantly surprised that Debian recognized all hardware components in my laptop released one year ago \nout of the box.Hardware support is good and UI is great! It feels snappier than Ubuntu, may be due to lack of snap and fewer services and applications installed by default.",
     "parent": 44848782,
     "depth": 1
   },
@@ -160,10 +160,26 @@
     "depth": 1
   },
   {
+    "id": 44850740,
+    "by": "lucb1e",
+    "timeISO": "2025-08-09T22:05:29.000Z",
+    "textPlain": "> \"trixie\" includes numerous updated software packages (over 63% of all packages from the previous release)Wow, I'm amazed a third of packages haven't seen an update in, ehm checks> After 2 years, 1 month, and 30 days of development, the Debian project is proud to present its new stable versionI'm a fan of old software myself, in the sense that I find it cool to see F-Droid having a (usually tiny) package that is over 10 years old but it does exactly what I want with no bugs and it works perfectly on Android 10. I wonder if those 30% more commonly fall in the \"it's fine as it is\" category or in the \"no maintainers available\" category",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44849362,
     "by": "potato-peeler",
     "timeISO": "2025-08-09T19:27:31.000Z",
     "textPlain": "> The overall disk usage for trixie is 403,854,660 kB (403 GB)What does this mean? If all 69k+ packages are installed, it will take up this much space?",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44854459,
+    "by": "andersa",
+    "timeISO": "2025-08-10T11:23:25.000Z",
+    "textPlain": "I've been using the Debian trixie branch for about a year now on my local server, never once had a real issue with anything. Very impressive.",
     "parent": 44848782,
     "depth": 1
   },
@@ -184,18 +200,18 @@
     "depth": 1
   },
   {
-    "id": 44850740,
-    "by": "lucb1e",
-    "timeISO": "2025-08-09T22:05:29.000Z",
-    "textPlain": "> \"trixie\" includes numerous updated software packages (over 63% of all packages from the previous release)Wow, I'm amazed a third of packages haven't seen an update in, ehm checks> After 2 years, 1 month, and 30 days of development, the Debian project is proud to present its new stable versionI'm a fan of old software myself, in the sense that I find it cool to see F-Droid having a (usually tiny) package that is over 10 years old but it does exactly what I want with no bugs and it works perfectly on Android 10. I wonder if those 30% more commonly fall in the \"it's fine as it is\" category or in the \"no maintainers available\" category",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44853309,
     "by": "endorphine",
     "timeISO": "2025-08-10T06:59:45.000Z",
     "textPlain": "If you're upgrading, see https://www.debian.org/releases/trixie/release-notes/upgradi....",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44853159,
+    "by": "starkparker",
+    "timeISO": "2025-08-10T06:20:06.000Z",
+    "textPlain": "Maybe a niche concern, but SDL2 is still in Trixie. The sdl2-compat layer (translating SDL2 APIs to SDL3) is in testing, where SDL2 also exists side-by-side with it and is intended to be used to test and verify that SDL2 apps that use it are actually compatible.Night-and-day decision-making process compared to Fedora and Arch, which both replaced SDL2 with sdl2-compat, broke a bunch of SDL2 apps because sdl2-compat isn't actually SDL2-compatible yet, and sent everyone to yell at the SDL team about it.",
     "parent": 44848782,
     "depth": 1
   },
@@ -232,18 +248,18 @@
     "depth": 1
   },
   {
-    "id": 44853159,
-    "by": "starkparker",
-    "timeISO": "2025-08-10T06:20:06.000Z",
-    "textPlain": "Maybe a niche concern, but SDL2 is still in Trixie. The sdl2-compat layer (translating SDL2 APIs to SDL3) is in testing, where SDL2 also exists side-by-side with it and is intended to be used to test and verify that SDL2 apps that use it are actually compatible.Night-and-day decision-making process compared to Fedora and Arch, which both replaced SDL2 with sdl2-compat, broke a bunch of SDL2 apps because sdl2-compat isn't actually SDL2-compatible yet, and sent everyone to yell at the SDL team about it.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849196,
     "by": "3eb7988a1663",
     "timeISO": "2025-08-09T19:08:41.000Z",
     "textPlain": "Maybe title should note that it has now been released? There has been many updates about Trixie in the past few months in preparation for today.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44851611,
+    "by": "fhdnfjf",
+    "timeISO": "2025-08-10T00:15:20.000Z",
+    "textPlain": "I'm too impatient to use a non-rolling release distro like Debian as my main OS, that, by my standards, already starts a new distro version with some outdated packages. I admire Debian though and it is my favorite server OS.",
     "parent": 44848782,
     "depth": 1
   },
@@ -280,14 +296,6 @@
     "depth": 1
   },
   {
-    "id": 44851879,
-    "by": "theandrewbailey",
-    "timeISO": "2025-08-10T00:58:23.000Z",
-    "textPlain": "> The overall disk usage for trixie is 403,854,660 kB (403 GB)That's too big. I'm going to need a smaller distro.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849287,
     "by": "josteink",
     "timeISO": "2025-08-09T19:20:08.000Z",
@@ -296,10 +304,10 @@
     "depth": 1
   },
   {
-    "id": 44851611,
-    "by": "fhdnfjf",
-    "timeISO": "2025-08-10T00:15:20.000Z",
-    "textPlain": "I'm too impatient to use a non-rolling release distro like Debian as my main OS, that, by my standards, already starts a new distro version with some outdated packages. I admire Debian though and it is my favorite server OS.",
+    "id": 44851879,
+    "by": "theandrewbailey",
+    "timeISO": "2025-08-10T00:58:23.000Z",
+    "textPlain": "> The overall disk usage for trixie is 403,854,660 kB (403 GB)That's too big. I'm going to need a smaller distro.",
     "parent": 44848782,
     "depth": 1
   },
@@ -308,14 +316,6 @@
     "by": "perdomon",
     "timeISO": "2025-08-09T21:05:18.000Z",
     "textPlain": "How soon can I update my raspberry pi 5 from\nBookworm to Trixie? Does PiOS have to initiate that first?",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44852754,
-    "by": "vwwvwvwv",
-    "timeISO": "2025-08-10T04:28:15.000Z",
-    "textPlain": "https://www.dropbox.com/scl/fi/ntqc4lod82qxnajuubvu3/ww.jpg?...",
     "parent": 44848782,
     "depth": 1
   }

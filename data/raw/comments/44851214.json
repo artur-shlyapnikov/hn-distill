@@ -8,10 +8,26 @@
     "depth": 1
   },
   {
+    "id": 44854790,
+    "by": "dweekly",
+    "timeISO": "2025-08-10T12:39:09.000Z",
+    "textPlain": "> \"anything beyond writing a simple function always leads to useless junk.\"A strong statement like this was a reasonable take six months ago, perhaps. But with Claude Opus 4.1, o3-codex/gpt5, and Gemini Pro 2.5 this statement is pretty simply disproven with half an hour with them.Just last week I spent an afternoon rewriting an old Android app that was done in butterknife and got something functional and tested in a few hours. It involved an 8,000 line diff. The work had been quoted to me by a contractor as likely to take 3-4 months and cost tens of thousands of dollars.I designed a new website for my wife's band with a custom player widget, carousel photos, fully adaptive to large and small screens, good accessibility features, built from easy to edit JSON, SEO-optimized with microformats, and fast-loading. The first version I got running in 15 minutes. The final polished version took a few more days of ducking onto my laptop a few minutes here and there during an event. Without AI this would have taken me weeks to pull off and wouldn't have looked nearly as nice.IMO part of the key to the flow here is to avoid a temptation to one shot. First establish ground rules for working together in your AGENTS.md/CLAUDE.md that lays out your software engineering best principles (use git semantics, write out your plans, add lint and tests to commit hooks...). Then have it read through existing code and architecture. Then carefully put together an architecture and set of constraints into your README/PRD. Then build a high level engineering plan divided up into sequences tasks and write it down (vs just keeping in context). Only then do you allow any code to start to get written. And yes, you still need to supervise it (and iterate on your AGENTS/CLAUDE to avoid repeating yourself). But yeah, it's about 10-100x faster than me now with a flow like that. (Context on me: been programming 40 years, Stanford CS, ACM international programming competition finalist.)This new flow is ex",
+    "parent": 44851214,
+    "depth": 1
+  },
+  {
     "id": 44852041,
     "by": "martinald",
     "timeISO": "2025-08-10T01:30:51.000Z",
     "textPlain": "I'm completely equally lost the other way.I've went through multiple phases of LLM usage for development.GPT3.5 era: wow this is amazing, oh. everything is hallucinated. not actually as useful as I first thoughtGPT4 era: very helpful as stackoverflow on steroids.Claude 3.5 Sonnet: have it open pretty much all the time, constantly asking questions and getting it to generate simple code (in the web UI) when it goes down actually feels very old school googling stuff. Tried a lot of in IDE AI \"chat\" stuff but hugely underwhelmed.Now: rarely open IDE as I can do (nearly) absolutely everything in Claude Code. I do have to refactor stuff every so often \"manually\", but this is more for my sanity and understanding of the codebase..To give an example of a task I got Claude code to do today in a few minutes which would take me hours. Had a janky looking old admin panel in bootstrap styles that I wanted to make look nice. Told Claude code to fetch the marketing site for the project. Got it to pull CSS, logos, fonts from there using curl and apply similar styling to the admin panel project. Within 10 mins it was looking far, far better than I would have ever got it looking (at least without a designers help). Then got it to go through the entire project (dozens of screens) and update \"explanation\" copy - most of which was TODO placeholders to explain what everything did properly. I then got it to add an e2e test suite to the core flows.This took less than an hour while I was watching TV. I would have almost certainly _never_ got around to this before. I'd been meaning to do all this and I always sigh when I go into this panel at how clunky it all is and hard to explain to people.",
+    "parent": 44851214,
+    "depth": 1
+  },
+  {
+    "id": 44853482,
+    "by": "tiddles",
+    "timeISO": "2025-08-10T07:38:10.000Z",
+    "textPlain": "Code is a liability. When I let a LLM take the wheel, I end up with thousands of lines of crappy abstractions and needless comments and strange patterns that take way more brain power to understand than if I did it myself.My current workflow has reverted to primitive copy paste into web chat (via Kagi Assistant). The friction is enough to make me put a lot of thought into each prompt and how much code context I give it (gathered via files-to-prompt from simonw).I have little experience with frontend and web apps, so I am trying out a supervised vibe coding flow. I give most of the code base per prompt, ask for a single feature, then read the code output fully and iterate on it a few times to reduce aforementioned bad patterns. Normally I will then type it out myself, or at most copy a few snippets of tens of lines.What doesn’t work I found is asking for the full file with changes applied already. Not only does it take a long time and waste tokens, it normally breaks/truncates/rewords unrelated code.So far I’m happy with how this project is going. I am familiar with all the code as I have audited and typed it out nearly entirely myself. I am actually retaining some knowledge and learning new concepts (reactive state with VanJS) and have confidence I can maintain this project even without an LLM in future, which includes handing it over to colleagues :)",
     "parent": 44851214,
     "depth": 1
   },
@@ -28,14 +44,6 @@
     "by": "PaulHoule",
     "timeISO": "2025-08-10T00:17:05.000Z",
     "textPlain": "I think what people are missing is that they work sometimes and sometimes they don't work.People think \"Oh,  it works better when somebody else does it\" or \"There must be some model that does better than the one I am using\" or \"If I knew how to prompt better I'd get better results\" or \"There must be some other agentic IDE which is better than the one I am using.\"All those things might be true but they just change the odds,  they don't change the fact that it works sometimes and fails other times.For instance I asked an agent to write me a screen to display some well-typed data.  It came up with something great right away that was missing some fields and had some inconsistent formatting but it fixed all those problems when I mentioned them -- all speaking the language of product managers and end users.  The code quality was just great,  as good as if I wrote it,  maybe better.Plenty of times it doesn't work out like that.I was working on some code where I didn't really understand the typescript types and fed it the crazy error messages I was getting and it made a try to understand them and didn't really,  I used it as a \"rubber duck\" over the course of a day or two and working with it I eventually came to understand what was wrong and how to fix and I got into a place that I like and when there is an error I can understand it and it can understand it too.Sometimes it writes something that doesn't typecheck and I tell it to run tsc and fix the errors and sometimes it does a job I am proud of and other times it adds lame typeguards like   if (x && typeof x === \"object\") x.someMethod()\n\nGive it essentially the same problem,  say writing tests in Java,  and it might take very different approaches.  One time it will use the same dependency injection framework used in other tests to inject mocks into private fields,  other times it will write some a helper method to inject the mocks into private fields with introspection directly.You might be able to somewhat tame this ran",
-    "parent": 44851214,
-    "depth": 1
-  },
-  {
-    "id": 44853482,
-    "by": "tiddles",
-    "timeISO": "2025-08-10T07:38:10.000Z",
-    "textPlain": "Code is a liability. When I let a LLM take the wheel, I end up with thousands of lines of crappy abstractions and needless comments and strange patterns that take way more brain power to understand than if I did it myself.My current workflow has reverted to primitive copy paste into web chat (via Kagi Assistant). The friction is enough to make me put a lot of thought into each prompt and how much code context I give it (gathered via files-to-prompt from simonw).I have little experience with frontend and web apps, so I am trying out a supervised vibe coding flow. I give most of the code base per prompt, ask for a single feature, then read the code output fully and iterate on it a few times to reduce aforementioned bad patterns. Normally I will then type it out myself, or at most copy a few snippets of tens of lines.What doesn’t work I found is asking for the full file with changes applied already. Not only does it take a long time and waste tokens, it normally breaks/truncates/rewords unrelated code.So far I’m happy with how this project is going. I am familiar with all the code as I have audited and typed it out nearly entirely myself. I am actually retaining some knowledge and learning new concepts (reactive state with VanJS) and have confidence I can maintain this project even without an LLM in future, which includes handing it over to colleagues :)",
     "parent": 44851214,
     "depth": 1
   },
@@ -192,10 +200,10 @@
     "depth": 1
   },
   {
-    "id": 44851990,
-    "by": "Workaccount2",
-    "timeISO": "2025-08-10T01:21:19.000Z",
-    "textPlain": "At what point does clinging to driving a manual transmission round the track go from a sign of practical skill to a sign of stubborn arrogance?",
+    "id": 44852622,
+    "by": "3vidence",
+    "timeISO": "2025-08-10T03:49:35.000Z",
+    "textPlain": "In a non-smug kind of way sometimes I just wonder if they types of problems I work on are just harder (at least for an LLM) than a lot of people.Currently working at a FAANG on some very new tech, have access to all the latest and greatest but LLMs / agents really do not seem adequate working on absolutely massive codebases on entirely new platforms.Maybe I will have to wait a few years for the stuff I'm working on to enter the mass market so the LLMs can be retrained on it.I do find them very very useful as advanced search / stack overflow assistants.",
     "parent": 44851214,
     "depth": 1
   },
@@ -216,10 +224,18 @@
     "depth": 1
   },
   {
-    "id": 44852622,
-    "by": "3vidence",
-    "timeISO": "2025-08-10T03:49:35.000Z",
-    "textPlain": "In a non-smug kind of way sometimes I just wonder if they types of problems I work on are just harder (at least for an LLM) than a lot of people.Currently working at a FAANG on some very new tech, have access to all the latest and greatest but LLMs / agents really do not seem adequate working on absolutely massive codebases on entirely new platforms.Maybe I will have to wait a few years for the stuff I'm working on to enter the mass market so the LLMs can be retrained on it.I do find them very very useful as advanced search / stack overflow assistants.",
+    "id": 44851990,
+    "by": "Workaccount2",
+    "timeISO": "2025-08-10T01:21:19.000Z",
+    "textPlain": "At what point does clinging to driving a manual transmission round the track go from a sign of practical skill to a sign of stubborn arrogance?",
+    "parent": 44851214,
+    "depth": 1
+  },
+  {
+    "id": 44853723,
+    "by": "globular-toast",
+    "timeISO": "2025-08-10T08:30:28.000Z",
+    "textPlain": "I'm going to properly write up my experiences with LLMs at some point, but some observations so far:0. It's undeniable that LLMs are both amazing and fun. So is a clown at a children's birthday party, but you wouldn't try to ride the balloon horse,1. If you are producing code in a language you are not familiar with, you need to be aware of the Gell-Mann amnesia effect[0],2. It excels at language translation. This is what LLMs were originally designed for. So if you can clearly describe an algorithm in English, it will probably be able to translate that to Python, for example. But at that point you have to question why you didn't just write it in Python in the first place,3. It gamifies things and causes you to work longer and harder. I'm not convinced it's really more efficient, but I am convinced I simply wouldn't have bothered to put in the effort to do certain things before because the perceived effort of writing code from scratch is higher than spinning a roulette wheel that might shit out the answer first time,4. It stops you thinking for yourself. Ever worked with an incredibly knowledgable colleague who is always eager to help? Or got the feeling you've solved something before so spent time grepping through old codebases and bash history to find what you did last time instead of spending the exact same time doing it again? It's kinda like that except it knows everything and it's always there. I fear that ability will atrophy with extended use,5. I don't feel like I really own the code it outputs. It feels more like working in a large existing codebase written by a team. When I have to get into things and understand the code it's like I'm reading it for the first time, even though I did check all the diffs etc. It's like having a manic junior run rampant then coming to you when something really needs to be understood. Again, it's the question of is this really saving me any time in the long run?[0] https://en.wikipedia.org/wiki/Gell-Mann_amnesia_effect",
     "parent": 44851214,
     "depth": 1
   },
@@ -248,14 +264,6 @@
     "depth": 1
   },
   {
-    "id": 44853723,
-    "by": "globular-toast",
-    "timeISO": "2025-08-10T08:30:28.000Z",
-    "textPlain": "I'm going to properly write up my experiences with LLMs at some point, but some observations so far:0. It's undeniable that LLMs are both amazing and fun. So is a clown at a children's birthday party, but you wouldn't try to ride the balloon horse,1. If you are producing code in a language you are not familiar with, you need to be aware of the Gell-Mann amnesia effect[0],2. It excels at language translation. This is what LLMs were originally designed for. So if you can clearly describe an algorithm in English, it will probably be able to translate that to Python, for example. But at that point you have to question why you didn't just write it in Python in the first place,3. It gamifies things and causes you to work longer and harder. I'm not convinced it's really more efficient, but I am convinced I simply wouldn't have bothered to put in the effort to do certain things before because the perceived effort of writing code from scratch is higher than spinning a roulette wheel that might shit out the answer first time,4. It stops you thinking for yourself. Ever worked with an incredibly knowledgable colleague who is always eager to help? Or got the feeling you've solved something before so spent time grepping through old codebases and bash history to find what you did last time instead of spending the exact same time doing it again? It's kinda like that except it knows everything and it's always there. I fear that ability will atrophy with extended use,5. I don't feel like I really own the code it outputs. It feels more like working in a large existing codebase written by a team. When I have to get into things and understand the code it's like I'm reading it for the first time, even though I did check all the diffs etc. It's like having a manic junior run rampant then coming to you when something really needs to be understood. Again, it's the question of is this really saving me any time in the long run?[0] https://en.wikipedia.org/wiki/Gell-Mann_amnesia_effect",
-    "parent": 44851214,
-    "depth": 1
-  },
-  {
     "id": 44852183,
     "by": "Barrin92",
     "timeISO": "2025-08-10T01:59:28.000Z",
@@ -280,6 +288,14 @@
     "depth": 1
   },
   {
+    "id": 44854819,
+    "by": "makeitdouble",
+    "timeISO": "2025-08-10T12:45:25.000Z",
+    "textPlain": "> found it incredibly helpful at saving time implementing all the bullshit involved in starting a new code base - setting up a build system, looking up libraries and APIs, implementing a framework for configuration and I/O, etc.Thanks for the very eloquent explaination.I feel that's where most people get the best value from GPTs. And that's also why ruby on rails like platforms are so popular in the first place.Avoiding the boilerplate from the start and focusing on what matters doesn't need to go through AI, same way we didn't need to stick to Java's generators and code factories. I kinda fear we lose some of these advancements as people move away from these more elegant stacks, but also hope the pendulum balances back when the hype fades away.",
+    "parent": 44851920,
+    "depth": 2
+  },
+  {
     "id": 44851962,
     "by": "dnh44",
     "timeISO": "2025-08-10T01:18:13.000Z",
@@ -300,22 +316,6 @@
     "by": "8organicbits",
     "timeISO": "2025-08-10T02:09:32.000Z",
     "textPlain": "> all the bullshit involved in starting a new code baseHave you looked at cookiecutter or other template repos? That's my go to for small projects and it works pretty well. I'd worry the LLM would add bugs that a template repo wouldn't, as the latter is usually heavily reviewed human written code.",
-    "parent": 44851920,
-    "depth": 2
-  },
-  {
-    "id": 44852537,
-    "by": "mitthrowaway2",
-    "timeISO": "2025-08-10T03:25:07.000Z",
-    "textPlain": "For a hobby project that seems fine, but for commercially valuable work how do you handle privacy concerns?",
-    "parent": 44851920,
-    "depth": 2
-  },
-  {
-    "id": 44853150,
-    "by": "sublinear",
-    "timeISO": "2025-08-10T06:18:13.000Z",
-    "textPlain": "I think you're describing what was easily fixed in the past by better docs with examples.",
     "parent": 44851920,
     "depth": 2
   }
