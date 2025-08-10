@@ -1,5 +1,13 @@
 [
   {
+    "id": 44857043,
+    "by": "Contortion",
+    "timeISO": "2025-08-10T18:07:17.000Z",
+    "textPlain": "Microsoft documentation is a nightmare, it doesn't surprise me there are vulnerabilities.I recently built an SSO login using Entra ID (which was thankfully single-tenant) and I basically had to keep randomly stabbing in the dark until I got it to work with the correct scopes and extra fields returned with the access token.Trying to search for any kind of Getting started guide just took me to child pages several levels deep full of incomprehensible Microsoft jargon and hyperlinks to helpful-sounding but ultimately similarly useless articles.",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
     "id": 44853635,
     "by": "Too",
     "timeISO": "2025-08-10T08:12:52.000Z",
@@ -28,6 +36,14 @@
     "by": "muststopmyths",
     "timeISO": "2025-08-09T23:39:26.000Z",
     "textPlain": "Move to the cloud they said. It will be more secure then your intranet they said. Only fools pay for their own Ops team they said.I’m so old and dumb that I don’t even understand why an app for internal Microsoft use is even accesible from outside its network.",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
+    "id": 44857153,
+    "by": "denysvitali",
+    "timeISO": "2025-08-10T18:23:36.000Z",
+    "textPlain": "0$ for all this? Microsoft security is a joke.",
     "parent": 44850681,
     "depth": 1
   },
@@ -144,18 +160,18 @@
     "depth": 2
   },
   {
-    "id": 44855970,
-    "by": "sidewndr46",
-    "timeISO": "2025-08-10T15:47:06.000Z",
-    "textPlain": "How is their \"guidance\" on what to check? Shouldn't it be a yes / no type thing? I've never worked on a system that had some checkbox for permissions that was labelled something like \"maybe users in this group should be able to read everyone's personal notes\".",
-    "parent": 44851519,
-    "depth": 2
-  },
-  {
     "id": 44852382,
     "by": "JB_Dev",
     "timeISO": "2025-08-10T02:43:15.000Z",
     "textPlain": "You are 100% correct but really these engineers should go read the guidance - it’s pretty clear what is required: https://learn.microsoft.com/en-us/entra/identity-platform/cl...",
+    "parent": 44851519,
+    "depth": 2
+  },
+  {
+    "id": 44855970,
+    "by": "sidewndr46",
+    "timeISO": "2025-08-10T15:47:06.000Z",
+    "textPlain": "How is their \"guidance\" on what to check? Shouldn't it be a yes / no type thing? I've never worked on a system that had some checkbox for permissions that was labelled something like \"maybe users in this group should be able to read everyone's personal notes\".",
     "parent": 44851519,
     "depth": 2
   },
@@ -168,18 +184,18 @@
     "depth": 2
   },
   {
-    "id": 44856425,
-    "by": "securesaml",
-    "timeISO": "2025-08-10T16:50:33.000Z",
-    "textPlain": "For me, I don't think that the application is public exposed is really the problem (i.e. not in intranet).I think the real problem is that these applications (Entra ID) are multi-tenant, rather than a dedicated single-tenant instance.Here, we have critical identity information that is being stored and shared in the same database with other tenants (malicious attackers). This makes multi-tenancy violations common.\nEven if Entra ID had a robust mechanism to perform tenancy checks i.e. object belongs to some tenant, there are still vulnerabilities.\nFor example, as you saw in the blog post, multi-tenant requests (requests that span >= 2 tenants), are fundamentally difficult to authorize. A single mistake, can lead to complete compromise.Compare this to a single tenant app. First, the attacker would need to be authenticated as an user within your tenant. This makes pre-auth attacks more difficult.",
-    "parent": 44851391,
-    "depth": 2
-  },
-  {
     "id": 44851408,
     "by": "jameskilton",
     "timeISO": "2025-08-09T23:42:09.000Z",
     "textPlain": "The last decade has seen an increase push in what Google started calling \"Zero Trust\"[0] and dropping VPNs entirely. The issue being that once someone got into a VPN it was much, much harder to prevent them from accessing important data.So everything \"internal\" is now also external and required to have its own layer of permissions and the like, making it much harder for, e.g. the article, to use one exploit to access another service.[0] https://cloud.google.com/learn/what-is-zero-trust",
+    "parent": 44851391,
+    "depth": 2
+  },
+  {
+    "id": 44856425,
+    "by": "securesaml",
+    "timeISO": "2025-08-10T16:50:33.000Z",
+    "textPlain": "For me, I don't think that the application is public exposed is really the problem (i.e. not in intranet).I think the real problem is that these applications (Entra ID) are multi-tenant, rather than a dedicated single-tenant instance.Here, we have critical identity information that is being stored and shared in the same database with other tenants (malicious attackers). This makes multi-tenancy violations common.\nEven if Entra ID had a robust mechanism to perform tenancy checks i.e. object belongs to some tenant, there are still vulnerabilities.\nFor example, as you saw in the blog post, multi-tenant requests (requests that span >= 2 tenants), are fundamentally difficult to authorize. A single mistake, can lead to complete compromise.Compare this to a single tenant app. First, the attacker would need to be authenticated as an user within your tenant. This makes pre-auth attacks more difficult.",
     "parent": 44851391,
     "depth": 2
   },

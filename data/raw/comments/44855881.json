@@ -1,17 +1,9 @@
 [
   {
-    "id": 44856660,
-    "by": "z_open",
-    "timeISO": "2025-08-10T17:18:41.000Z",
-    "textPlain": "const still_raw =\n    \\\\const raw =\n    \\\\    \\\\Roses are red\n    \\\\    \\\\  Violets are blue,\n    \\\\    \\\\Sugar is sweet\n    \\\\    \\\\  And so are you.\n    \\\\    \\\\\n    \\\\;\n    \\\\\n;This syntax seems fairly insane to me.",
-    "parent": 44855881,
-    "depth": 1
-  },
-  {
-    "id": 44856596,
-    "by": "Twey",
-    "timeISO": "2025-08-10T17:11:29.000Z",
-    "textPlain": "> I think Kotlin nails it: val, var, fun. Note all three are monosyllable, unlike const and fn!At least in my pronunciation, all five of those are monosyllabic! (/kQnst/, /f@n/).(Nice to see someone agree with me on minimizing syllable count, though — I definitely find it easier to chunk[1] fewer syllables.)[1]: https://en.m.wikipedia.org/wiki/Chunking_(psychology)The use of Ruby block parameters for loops in a language without first-class blocks/lambdas is a bit weird to me. I might have preferred a syntax that looks more like normal variable binding.",
+    "id": 44857003,
+    "by": "n42",
+    "timeISO": "2025-08-10T18:02:13.000Z",
+    "textPlain": "this is a really, really good article with a lot of nuance and a deep understanding of the tradeoffs in syntax design. unfortunately, it is evoking a lot of knee-jerk reactions from the title and emotional responses to surface level syntax aesthetics.the thing that stands out to me about Zig's syntax that makes it \"lovely\" (and I think matklad is getting at here), is there is both minimalism and consistency to the design, while ruthlessly prioritizing readability. and it's not the kind of surface level \"aesthetically beautiful\" readability that tickles the mind of an abstract thinker; it is brutalist in a way that leaves no room for surprise in an industrial application. it's really, really hard to balance syntax design like this, and Zig has done a lovely and respectable job at doing so.",
     "parent": 44855881,
     "depth": 1
   },
@@ -24,18 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44856611,
-    "by": "losvedir",
-    "timeISO": "2025-08-10T17:13:27.000Z",
-    "textPlain": "> Note all three are monosyllable, unlike const and fn!I'm not sure if I'm parsing this right, but is the implication that \"const\" is not monosyllabic? It certainly is for me. How else do people say it? I get \"fn\" because people might say \"eff enn\" but I don't see what the equivalent for const would be.",
-    "parent": 44855881,
-    "depth": 1
-  },
-  {
-    "id": 44856197,
-    "by": "pton_xd",
-    "timeISO": "2025-08-10T16:18:18.000Z",
-    "textPlain": "\"Zig doesn’t have lambdas\"This surprises me (as a C++ guy). I use lambdas everywhere. What's the standard way of say defining a comparator when sorting an array in Zig?",
+    "id": 44856660,
+    "by": "z_open",
+    "timeISO": "2025-08-10T17:18:41.000Z",
+    "textPlain": "> Raw or multiline strings are spelled like this:    const still_raw =\n        \\\\const raw =\n        \\\\    \\\\Roses are red\n        \\\\    \\\\  Violets are blue,\n        \\\\    \\\\Sugar is sweet\n        \\\\    \\\\  And so are you.\n        \\\\    \\\\\n        \\\\;\n        \\\\\n    ;\n\nThis syntax seems fairly insane to me.",
     "parent": 44855881,
     "depth": 1
   },
@@ -48,6 +32,22 @@
     "depth": 1
   },
   {
+    "id": 44856731,
+    "by": "kcartlidge",
+    "timeISO": "2025-08-10T17:26:36.000Z",
+    "textPlain": "I much prefer C# 11's raw string literals.  It takes the indentation of the first line and assumes the subsequent ones have the same indentation.  string json = $\"\"\"\n      <h1>{title}</h1>\n      <article>\n          Welcome to {sitename}.\n      </article>\n      \"\"\";\n\nAnd it even allows for using embedded curly braces as real characters:  string json = $$\"\"\"\n      <h1>{{title}}</h1>\n      <article>\n          Welcome to {{sitename}}, which uses the <code>{sitename}</code> syntax.\n      </article>\n      \"\"\";\n\nThe $ (meaning to interpolate curly braces) appears twice, which switches interpolation to two curly braces, leaving the single ones untouched.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44857140,
+    "by": "melodyogonna",
+    "timeISO": "2025-08-10T18:21:17.000Z",
+    "textPlain": "Very interesting, Zig seems really nice. There was a severe lack of resources when I tried to get into it few years ago, it is nice to see that situation improving in real time.The part about integer literal  is similar to Mojo, with a comp-time type that has to be materialized to another type at runtime. In Mojo though this can be done implicitly so you don't need explicit casting.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
     "id": 44856377,
     "by": "nromiun",
     "timeISO": "2025-08-10T16:43:17.000Z",
@@ -56,10 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44856590,
-    "by": "lvl155",
-    "timeISO": "2025-08-10T17:10:55.000Z",
-    "textPlain": "Zig is just fun to write. And to me, it’s actually what I wish Rust was like. Rust is a great language, and no one’s going to argue that point but writing Zig for the first time was so refreshing. That said, Rust is now basically default for systems and Zig came too late.",
+    "id": 44856197,
+    "by": "pton_xd",
+    "timeISO": "2025-08-10T16:18:18.000Z",
+    "textPlain": "\"Zig doesn’t have lambdas\"This surprises me (as a C++ guy). I use lambdas everywhere. What's the standard way of say defining a comparator when sorting an array in Zig?",
     "parent": 44855881,
     "depth": 1
   },
@@ -72,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44856583,
-    "by": "WalterBright",
-    "timeISO": "2025-08-10T17:09:47.000Z",
-    "textPlain": "const x: i32 = 92;\n\nD has less syntax:    const int x = 92;\n\nJust for fun, read each declaration out loud.",
+    "id": 44856596,
+    "by": "Twey",
+    "timeISO": "2025-08-10T17:11:29.000Z",
+    "textPlain": "> I think Kotlin nails it: val, var, fun. Note all three are monosyllable, unlike const and fn!At least in my pronunciation, all five of those are monosyllabic! (/kQnst/, /f@n/).(Nice to see someone agree with me on minimizing syllable count, though — I definitely find it easier to chunk[1] fewer syllables.)[1]: https://en.m.wikipedia.org/wiki/Chunking_(psychology)The use of Ruby block parameters for loops in a language without first-class blocks/lambdas is a bit weird to me. I might have preferred a syntax that looks more like normal variable binding.",
     "parent": 44855881,
     "depth": 1
   },
   {
-    "id": 44856155,
-    "by": "MrResearcher",
-    "timeISO": "2025-08-10T16:13:32.000Z",
-    "textPlain": "It's still not clear to me how you can make two comptime closures with different contents and pass those as a functor into the same function. It needs to have a sort of VTable to invoke the function, and yet since the contents are different, the objects are different, and their deallocation will be different too.\nDefining VTable in zig seems to be a pretty laborious endeavor, with each piece sewn manually.",
+    "id": 44856941,
+    "by": "ww520",
+    "timeISO": "2025-08-10T17:53:42.000Z",
+    "textPlain": "Zig is great. I have fun writing in it. But there’re a few things bug me.- Difficult to return a value from a block. Rust treats the value of the last expression of a block as the return value of the block. Have to jump through hoops in Zig to do it with label.- Unable to chain optional checks, e.g. a?.b?.c.  Support for monadic types would be great so general chaining operations are supported.- Lack of lambda support. Function blocks are already supported in a number of places, i.e. the for-loop block and the catch block.",
     "parent": 44855881,
     "depth": 1
   },
@@ -96,10 +96,50 @@
     "depth": 1
   },
   {
+    "id": 44856611,
+    "by": "losvedir",
+    "timeISO": "2025-08-10T17:13:27.000Z",
+    "textPlain": "> Note all three are monosyllable, unlike const and fn!I'm not sure if I'm parsing this right, but is the implication that \"const\" is not monosyllabic? It certainly is for me. How else do people say it? I get \"fn\" because people might say \"eff enn\" but I don't see what the equivalent for const would be.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
     "id": 44856309,
     "by": "pjmlp",
     "timeISO": "2025-08-10T16:33:27.000Z",
     "textPlain": "Having @ and .{ } all over the place is hardly lovely, as is having modules like JavaScript's CJS.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856155,
+    "by": "MrResearcher",
+    "timeISO": "2025-08-10T16:13:32.000Z",
+    "textPlain": "It's still not clear to me how you can make two comptime closures with different contents and pass those as a functor into the same function. It needs to have a sort of VTable to invoke the function, and yet since the contents are different, the objects are different, and their deallocation will be different too.\nDefining VTable in zig seems to be a pretty laborious endeavor, with each piece sewn manually.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856151,
+    "by": "zabzonk",
+    "timeISO": "2025-08-10T16:12:43.000Z",
+    "textPlain": "In my experience, everyone finds the syntax of their favourite language lovely - I love (mostly) C++.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856583,
+    "by": "WalterBright",
+    "timeISO": "2025-08-10T17:09:47.000Z",
+    "textPlain": "const x: i32 = 92;\n\nD has less syntax:    const int x = 92;\n\nJust for fun, read each declaration out loud.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856590,
+    "by": "lvl155",
+    "timeISO": "2025-08-10T17:10:55.000Z",
+    "textPlain": "Zig is just fun to write. And to me, it’s actually what I wish Rust was like. Rust is a great language, and no one’s going to argue that point but writing Zig for the first time was so refreshing. That said, Rust is now basically default for systems and Zig came too late.",
     "parent": 44855881,
     "depth": 1
   },
@@ -112,10 +152,26 @@
     "depth": 1
   },
   {
-    "id": 44856151,
-    "by": "zabzonk",
-    "timeISO": "2025-08-10T16:12:43.000Z",
-    "textPlain": "In my experience, everyone finds the syntax of their favourite language lovely - I love (mostly) C++.",
+    "id": 44856721,
+    "by": "IshKebab",
+    "timeISO": "2025-08-10T17:25:34.000Z",
+    "textPlain": "> As Zig has only line-commentsSuch a good decision. There's no reason to use block comments in 2025.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856777,
+    "by": "yegle",
+    "timeISO": "2025-08-10T17:31:37.000Z",
+    "textPlain": "> As Zig has only line-comments, this means that \\n is always whitespace.Do I read this correctly that it replaces `\\n` at the end of the line with a whitespace? CJK users probably won't be happy with the additional whitespaces.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856684,
+    "by": "qcnguy",
+    "timeISO": "2025-08-10T17:21:16.000Z",
+    "textPlain": "Weird the author finds it lovely and compares to Kotlin, but doesn't find Kotlin superior. Kotlin invested heavily in a really nice curly brace syntax. It is actually the nicest out there. In every point the author makes, it feels like Kotlin did it the same or better. For example:1. Integer literals. \"var a = 1\" doesn't work, seems absurd. In Kotlin literals do have strong types, but coercion is allowed when defining variables so \"var a = 1\" works, and \"var a: Long = 1\" works even though you can write a literal long as 1L. This means you can write numbers to function parameters naturally.2. Multi-line string literals. OK this is a neat idea, but what about copy/paste? In Kotlin you can just write \"\"\" .. \"\"\".trimIndent() and then copy paste some arbitrary text into the string, the indent will be removed for you. The IDE will also help with this by adding | characters which looks more natural than \\\\ and can be removed using .trimMargin(), only downside is the trimming is done at runtime but that could easily be fixed without changing the language.3. Record literals. This syntax is called lovely because it's designed for grep, a properly funded language like Kotlin just uses named kwargs to constructors which is more natural. There's no need to design the syntax for grep because Kotlin is intended to be used with a good IDE that can answer this query instantly and precisely.4. Function syntax. \"fn foo(a: i32) i32 {}\" seems weird. If the thing that has a type and the type are normally separated by a : then why not here? Kotlin does \"fun foo(a: Int): Int {}\" which is more consistent.5. Locals. Agree with author that Kotlin nails it.6. Not using && or ||, ok this one Zig wins, the Zig way is more consistent and reads better. Kotlin does have `and` and `or` as infix operator functions, but they are for the bitwise operations :(7. Explicit returns. Kotlin supports blocks that return values and also doesn't need semicolons, so not quite sure what the tradeoff here is suppo",
     "parent": 44855881,
     "depth": 1
   },
@@ -144,6 +200,14 @@
     "depth": 1
   },
   {
+    "id": 44857133,
+    "by": "Twey",
+    "timeISO": "2025-08-10T18:19:59.000Z",
+    "textPlain": "> it's not the kind of surface level \"aesthetically beautiful\" readability that tickles the mind of an abstract thinkerRather, the sort of beauty it's going for here is exactly the type of beauty that requires a bit of abstraction to appreciate: it's not that the concrete syntax is visually beautiful per se so much as that it's elegantly exposing the abstract syntax, which is inherently more regular and unambiguous than the concrete syntax. It's the same reason S-exprs won over M-exprs: consistently good often wins over special-case great because the latter imposes the mental burden of trying to fit into the special case, while the former allows you to forget that the problem ever existed. To see a language do the opposite of this, look at C++: the syntax has been designed with many, many special cases that make specific constructs nicer to write, but the cost of that is that now you have to remember all of them (and account for all of them, if templating — hence the ‘new’ uniform initialization syntax[1]).[1]: https://xkcd.com/927/This trade-off happens all the time in language design: you're looking for language that makes all the special cases nice _as a consequence of_ the general case, because _just_ being simple and consistent leads you to the Turing tarpit: you simplify the language by pushing all the complexity onto the programmer.",
+    "parent": 44857003,
+    "depth": 2
+  },
+  {
     "id": 44856442,
     "by": "reactordev",
     "timeISO": "2025-08-10T16:52:36.000Z",
@@ -168,19 +232,83 @@
     "depth": 2
   },
   {
-    "id": 44856457,
-    "by": "tapirl",
-    "timeISO": "2025-08-10T16:54:23.000Z",
-    "textPlain": "Normal function declarations.This is indeed a point which makes Zig inflexible.",
-    "parent": 44856197,
+    "id": 44856810,
+    "by": "AnimalMuppet",
+    "timeISO": "2025-08-10T17:36:09.000Z",
+    "textPlain": "I, too, go back up the code to find the type of a variable.  But I see the opposite problem:  if the type is first, then it becomes harder to find the line that declares the variable I'm interested in, because the variable name isn't first.  It's after the type, and the type could be \"int\" or it could be \"struct Frobnosticator\".  That is, the variable name is after a variable-length type, so I have to keep bouncing left to right to find the start of the variable name.",
+    "parent": 44856243,
     "depth": 2
   },
   {
-    "id": 44856325,
-    "by": "tux1968",
-    "timeISO": "2025-08-10T16:36:16.000Z",
-    "textPlain": "Same as C, define a named function, and pass a pointer to the sorting function.",
-    "parent": 44856197,
+    "id": 44856686,
+    "by": "Quekid5",
+    "timeISO": "2025-08-10T17:21:19.000Z",
+    "textPlain": "> I find that the most common reason I go back to check a variable declaration is to determine the type of the variable,Hover the mouse cursor over it. Any reasonable editor will show the type.> In Rust, in particular, this leads to some awkward syntactic verbosity, because mutable variables are declared with `let mut`, meaning that `let` is used in every declaration.Rust is very verbose for strange implementation reasons... namely to avoid parse ambiguities.> In C or C++ the type would take the place of that unnecessary `let`.OTOH, that means you can't reliably grep for declarations of a variable/function called \"foo\". Also consider why some people like using    auto foo(int blah) -> bool\n\nstyle. This was introduced because of template nonsense (how to declare a return type before the type parameters were known), but it makes a lot of sense and makes code more greppable. Generic type parameters make putting the return type at the front very weird -- reading order wise.Anyhoo...",
+    "parent": 44856243,
+    "depth": 2
+  },
+  {
+    "id": 44856748,
+    "by": "IshKebab",
+    "timeISO": "2025-08-10T17:28:16.000Z",
+    "textPlain": "Maybe if you've never tried formatting a traditional multiline string (e.g. in Python, C++ or Rust) before.If it isn't obvious, the problem is that you can't indent them properly because the indentation becomes part of the string itself.Some languages have magical \"removed the indent\" modes for strings (e.g. YAML) but they generally suck and just add confusion. This syntax is quite clear (at least with respect to indentation; not sure about the trailing newline - where does the string end exactly?).",
+    "parent": 44856660,
+    "depth": 2
+  },
+  {
+    "id": 44856911,
+    "by": "n42",
+    "timeISO": "2025-08-10T17:49:23.000Z",
+    "textPlain": "Zig does not really try to appeal to window shoppers. this is one of those controversial decisions that, once you become comfortable with the language by using it, you learn to appreciate.spoken as someone who found the syntax offensive when I first learned it.",
+    "parent": 44856660,
+    "depth": 2
+  },
+  {
+    "id": 44857028,
+    "by": "conorbergin",
+    "timeISO": "2025-08-10T18:04:58.000Z",
+    "textPlain": "I think everyone has this reaction until they start using it, then it makes perfect sense, especially when using editors that have multiple cursors and can operate on selections.",
+    "parent": 44856660,
+    "depth": 2
+  },
+  {
+    "id": 44856952,
+    "by": "throw10920",
+    "timeISO": "2025-08-10T17:55:10.000Z",
+    "textPlain": "It seems very reasonable and comes with several technical  and cognitive advantages. I think you're just having a knee-jerk emotional reaction because it's different than what you're used to, not because it's actually bad.",
+    "parent": 44856660,
+    "depth": 2
+  },
+  {
+    "id": 44856866,
+    "by": "hardwaregeek",
+    "timeISO": "2025-08-10T17:44:13.000Z",
+    "textPlain": "My immediate thought was hmm, that's weird but pretty nice. The indentation problem indeed sucks and with a halfway decent syntax highlighter you can probably de-emphasize the `//` and make it less visually cluttered.",
+    "parent": 44856660,
+    "depth": 2
+  },
+  {
+    "id": 44856957,
+    "by": "steveklabnik",
+    "timeISO": "2025-08-10T17:55:57.000Z",
+    "textPlain": "I had the exact opposite reaction.",
+    "parent": 44856660,
+    "depth": 2
+  },
+  {
+    "id": 44857042,
+    "by": "klas_segeljakt",
+    "timeISO": "2025-08-10T18:07:09.000Z",
+    "textPlain": "When I first read it I thought it was line comments.",
+    "parent": 44856660,
+    "depth": 2
+  },
+  {
+    "id": 44856707,
+    "by": "fcoury",
+    "timeISO": "2025-08-10T17:24:07.000Z",
+    "textPlain": "I really like zig but that syntax is indeed insane.",
+    "parent": 44856660,
     "depth": 2
   },
   {
@@ -189,126 +317,6 @@
     "timeISO": "2025-08-10T16:20:01.000Z",
     "textPlain": "The dot is just a placeholder for an inferred type, and IMHO that makes a lot of sense. E.g. you can either write this:    const p = Point{ .x = 123, .y = 234 };\n\n...or this:    const p: Point = .{ .x = 123, .y = 234 };\n\nWhen calling a function which expects a Point you can omit the verbose type:    takePoint(.{ .x = 123, .y = 234 });\n\nIn Rust I need to explicitly write the type:    takePoint(Point{ x: 123, y: 234);\n\n...and in nested struct initializations the inferred form is very handy, e.g. Rust requires you to write this (not sure if I got the syntax right):    const x = Rect{\n        top_left: Point{ x: 123, y: 234 },\n        bottom_right: Point{ x: 456, y: 456 },\n    };\n\n...but the compiler already knows that Rect consists of two nested Points, so what's the point of requiring the user to type that out? So in Zig it's just:    const x = Rect{\n        .top_left = .{ .x = 123, .y = 234 },\n        .bottom_right = .{ .x = 456, .y = 456 },\n    };\n\nRequiring the explicit type on everything can get noisy really fast in Rust.Of course the question is whether the leading dot in '.{' could be omitted, and personally I would be in favour of that. Apparently it simplifies the parser, but such implementation details should get in the way of convenience IMHO.And then there's `.x = 123` vs `x: 123`. The Zig form is copied from C99, the Rust form from Javascript. Since I write both a lot of C99 and Typescript I don't either form (and both Zig and Rust are not even close to the flexibility and convenience of the C99 designated initialization syntax unfortunately).Edit: fixed the Rust struct init syntax.",
     "parent": 44856126,
-    "depth": 2
-  },
-  {
-    "id": 44856459,
-    "by": "nine_k",
-    "timeISO": "2025-08-10T16:54:30.000Z",
-    "textPlain": "I personally find Go's bare syntax harder to parse when reading, and I spend more time reading code than typing it (even while writing).An excessively terse syntax becomes very unforgiving, when a typo is not noticed by the compiler / language server, but results in another syntactically correct but unexpected program, or registers as a cryptic error much farther downstream. Cases in point: CoffeeScript, J.",
-    "parent": 44856377,
-    "depth": 2
-  },
-  {
-    "id": 44856407,
-    "by": "flohofwoe",
-    "timeISO": "2025-08-10T16:48:16.000Z",
-    "textPlain": "You don't need operator overloading for vector and matrix math, see pretty much all GPU languages. What Zig is missing is a complete mapping of the Clang Extended Vector and Matrix extensions (instead of the quite limited `@Vector` type):https://clang.llvm.org/docs/LanguageExtensions.html#vectors-...https://clang.llvm.org/docs/LanguageExtensions.html#matrix-t...",
-    "parent": 44856311,
-    "depth": 2
-  },
-  {
-    "id": 44856640,
-    "by": "WalterBright",
-    "timeISO": "2025-08-10T17:16:44.000Z",
-    "textPlain": "Zig:    fn ArrayListType(comptime T: type) type {\n\nD:    T ArrayListType(T)() {",
-    "parent": 44856583,
-    "depth": 2
-  },
-  {
-    "id": 44856618,
-    "by": "WalterBright",
-    "timeISO": "2025-08-10T17:14:06.000Z",
-    "textPlain": "Zig:    const std = @import(\"std\");\n\nD:    import std;",
-    "parent": 44856583,
-    "depth": 2
-  },
-  {
-    "id": 44856577,
-    "by": "nromiun",
-    "timeISO": "2025-08-10T17:09:07.000Z",
-    "textPlain": "That saying never made any sense to me either. After all syntax is your main interface to a language. Anything you do has to go through the syntax.Some people say the syntax just kind of disappears for them after some time. That never seems to happen with me. When I am reading any code the syntax gets even more highlighted.",
-    "parent": 44856219,
-    "depth": 2
-  },
-  {
-    "id": 44856315,
-    "by": "Akronymus",
-    "timeISO": "2025-08-10T16:35:18.000Z",
-    "textPlain": "It's especially bad on a qwertz keyboard as well.",
-    "parent": 44856309,
-    "depth": 2
-  },
-  {
-    "id": 44856546,
-    "by": "Twey",
-    "timeISO": "2025-08-10T17:05:18.000Z",
-    "textPlain": "> fancy function typesIf the syntax were straightforward, plain old function types wouldn't be ‘fancy’ :)",
-    "parent": 44856288,
-    "depth": 2
-  },
-  {
-    "id": 44856303,
-    "by": "throwawaymaths",
-    "timeISO": "2025-08-10T16:31:31.000Z",
-    "textPlain": "It's not context free though.",
-    "parent": 44856288,
-    "depth": 2
-  },
-  {
-    "id": 44856652,
-    "by": "guidopallemans",
-    "timeISO": "2025-08-10T17:17:50.000Z",
-    "textPlain": "I don't like how Python does lambdas, its indentation-based blocks, how there's both ' and \", I could go on.",
-    "parent": 44856151,
-    "depth": 2
-  },
-  {
-    "id": 44856405,
-    "by": "aeonik",
-    "timeISO": "2025-08-10T16:48:14.000Z",
-    "textPlain": "Not me!I don't like the syntax of Lisps, with the leading parenthesis to begin every expression.I use it anyway because it's so useful and powerful. And I don't have any better ideas.",
-    "parent": 44856151,
-    "depth": 2
-  },
-  {
-    "id": 44856238,
-    "by": "ben-schaaf",
-    "timeISO": "2025-08-10T16:24:14.000Z",
-    "textPlain": "As someone who works almost exclusively in C++, the whole \"most vexing parse\" makes the syntax indefensible.",
-    "parent": 44856151,
-    "depth": 2
-  },
-  {
-    "id": 44856184,
-    "by": "jeltz",
-    "timeISO": "2025-08-10T16:17:14.000Z",
-    "textPlain": "I am an exception then. Rust may be my favourite language but the syntax is pretty awful and one of its biggest weaknesses. I also love Ruby but I am pretty meh about its syntax.",
-    "parent": 44856151,
-    "depth": 2
-  },
-  {
-    "id": 44856473,
-    "by": "darthrupert",
-    "timeISO": "2025-08-10T16:56:10.000Z",
-    "textPlain": "Absolutely. Kinda of the best of many worlds, because it has what looks like an indentation-based syntax but actually blocks are delimited by start and end keywords. This makes it possible (unlike, say, python) to programmatically derive correct code formatting more reliably.And no pointless semicolons.",
-    "parent": 44856429,
-    "depth": 2
-  },
-  {
-    "id": 44856569,
-    "by": "nateglims",
-    "timeISO": "2025-08-10T17:08:24.000Z",
-    "textPlain": "The error when you accidentally pass a variable directly instead of in a .{} is also really unclear.",
-    "parent": 44856112,
-    "depth": 2
-  },
-  {
-    "id": 44856130,
-    "by": "hmry",
-    "timeISO": "2025-08-10T16:09:39.000Z",
-    "textPlain": "\"Read the file, or else!\" The threatening postfix operator",
-    "parent": 44856112,
     "depth": 2
   }
 ]

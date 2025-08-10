@@ -32,6 +32,14 @@
     "depth": 1
   },
   {
+    "id": 44855965,
+    "by": "pjmlp",
+    "timeISO": "2025-08-10T15:46:09.000Z",
+    "textPlain": "Everyone keeps rediscovering OS IPC extensions via RPC.Not only that, apparently we finally got Jini and Agent Tcl back!https://www.usenix.org/conference/fourth-annual-usenix-tcltk...https://www.eetimes.com/jini-basics-interrelating-with-java/",
+    "parent": 44854860,
+    "depth": 1
+  },
+  {
     "id": 44856522,
     "by": "Alex_L_Wood",
     "timeISO": "2025-08-10T17:02:09.000Z",
@@ -40,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44855965,
-    "by": "pjmlp",
-    "timeISO": "2025-08-10T15:46:09.000Z",
-    "textPlain": "Everyone keeps rediscovering OS IPC extensions via RPC.Not only that, apparently we finally got Jini and Agent Tcl back!https://www.usenix.org/conference/fourth-annual-usenix-tcltk...https://www.eetimes.com/jini-basics-interrelating-with-java/",
+    "id": 44856982,
+    "by": "ricardobeat",
+    "timeISO": "2025-08-10T18:00:08.000Z",
+    "textPlain": "Made a similar comment [1] a while back. Universal, open APIs might be one of the best things to come out of this AI wave.[1] https://news.ycombinator.com/item?id=44405187",
     "parent": 44854860,
     "depth": 1
   },
@@ -64,10 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44856191,
-    "by": "sexyman48",
-    "timeISO": "2025-08-10T16:17:46.000Z",
-    "textPlain": "I'm a well-designed hole. Put something here.You asked for it.",
+    "id": 44856792,
+    "by": "theusus",
+    "timeISO": "2025-08-10T17:33:23.000Z",
+    "textPlain": "MCP has barely given me satisfactory results. LLMs just keep fighting with it and fill up a lot of their context.",
+    "parent": 44854860,
+    "depth": 1
+  },
+  {
+    "id": 44855649,
+    "by": "827a",
+    "timeISO": "2025-08-10T15:01:03.000Z",
+    "textPlain": "> MCP thinks it's for giving context to AI models. But really? It's just a really good protocol for making things talk to other things.MCP has very little utility outside of LLMs. The article begins by saying \"but what if we remove the AI\", then goes back on that thesis by saying \"but if there was an AI between these things, then it becomes a universal plugin system\". Which is true, but its missing the critical bit: The AI itself is the universal plugin system, not MCP. And, beyond that, its not even the AI: Its natural language. Language is the universal plugin system.Its not unbelievable that there exists an alternate reality where the Anthropic researchers that invented MCP instead simply leveraged a slightly extended form of OpenAPI specs. The only functional difference is that MCP was a stdin/stdout format first, and added HTTPS later, but sister problems in this domain like LSP just skipped stdin/stdout and went straight to locally-hosted HTTPS anyway. What matters isn't MCP, OpenAPI, or anything like that; what matters is the LLM itself, its tool calling capability, and the tool calling harness. The catalogue of available tools can be in any format; and, truly, the LLM does not care what format its in.",
     "parent": 44854860,
     "depth": 1
   },
@@ -96,10 +112,18 @@
     "depth": 1
   },
   {
-    "id": 44855649,
-    "by": "827a",
-    "timeISO": "2025-08-10T15:01:03.000Z",
-    "textPlain": "> MCP thinks it's for giving context to AI models. But really? It's just a really good protocol for making things talk to other things.MCP has very little utility outside of LLMs. The article begins by saying \"but what if we remove the AI\", then goes back on that thesis by saying \"but if there was an AI between these things, then it becomes a universal plugin system\". Which is true, but its missing the critical bit: The AI itself is the universal plugin system, not MCP. And, beyond that, its not even the AI: Its natural language. Language is the universal plugin system.Its not unbelievable that there exists an alternate reality where the Anthropic researchers that invented MCP instead simply leveraged a slightly extended form of OpenAPI specs. The only functional difference is that MCP was a stdin/stdout format first, and added HTTPS later, but sister problems in this domain like LSP just skipped stdin/stdout and went straight to locally-hosted HTTPS anyway. What matters isn't MCP, OpenAPI, or anything like that; what matters is the LLM itself, its tool calling capability, and the tool calling harness. The catalogue of available tools can be in any format; and, truly, the LLM does not care what format its in.",
+    "id": 44856733,
+    "by": "belter",
+    "timeISO": "2025-08-10T17:26:55.000Z",
+    "textPlain": "MCP \"universal plugin system\" claims are oversold. It is really just a  standardized tool calling for AI agents. If you are not building agents that need to dynamically discover and choose tools, traditional APIs are simpler and better.The \"system integration\" benefits only matter when you have an LLM in the loop making decisions about which tools to use.",
+    "parent": 44854860,
+    "depth": 1
+  },
+  {
+    "id": 44856191,
+    "by": "sexyman48",
+    "timeISO": "2025-08-10T16:17:46.000Z",
+    "textPlain": "I'm a well-designed hole. Put something here.You asked for it.",
     "parent": 44854860,
     "depth": 1
   },
@@ -136,10 +160,34 @@
     "depth": 1
   },
   {
+    "id": 44857020,
+    "by": "tonetheman",
+    "timeISO": "2025-08-10T18:04:05.000Z",
+    "textPlain": "[dead]",
+    "parent": 44854860,
+    "depth": 1
+  },
+  {
+    "id": 44856671,
+    "by": "jameshart",
+    "timeISO": "2025-08-10T17:19:44.000Z",
+    "textPlain": "There’s very little actual engineering going in to designing MCP interfaces to actually efficiently work with the way LLM workflows actually operate. Many MCPs offer tools that allow an LLM to retrieve a list of ‘things that exist’ with the expectation the LLM will then pick something out of that list for further action with a different tool. There’s very little evidence that LLMs are actually good at using tools that work like that, and massive lists of ‘things that exist’ eat tokens and context.Many businesses are rushing to put out something that fits the MCP standard but not taking the time to produce something that lets an LLM achieve things with their tool.",
+    "parent": 44856403,
+    "depth": 2
+  },
+  {
     "id": 44856605,
     "by": "markerz",
     "timeISO": "2025-08-10T17:12:47.000Z",
     "textPlain": "MCPs are the most basic solution possible.  Shoving the tool definitions into a vector store and having a subagent search for relevant tools, then another subagent to run the tools would greatly reduce impact on context.  I think it’d work in theory, but it’s so annoying to have to do something like this.  We’re still in a world where we have some building blocks rather than full fledged toolboxes.",
+    "parent": 44856403,
+    "depth": 2
+  },
+  {
+    "id": 44856669,
+    "by": "dragonwriter",
+    "timeISO": "2025-08-10T17:19:40.000Z",
+    "textPlain": "Most UIs currently are unsophisticated and let you turn on or off the tools on server-by-server basis. For some large servers (especially if they act as aggrgeators) this approach isn't going to be desirable and you are going to want to select individual tools to activate, not servers. But that's a UI issue more than a protocol issue.",
     "parent": 44856403,
     "depth": 2
   },
@@ -176,10 +224,18 @@
     "depth": 2
   },
   {
+    "id": 44856772,
+    "by": "dragonwriter",
+    "timeISO": "2025-08-10T17:31:21.000Z",
+    "textPlain": "Some remote MCPs will get locked down to know client endpoints, same as any other HTTP service, so if companies are really concerned about them being AI-use-only and don't mind cutting off some AI use to preserve that exclusivity, they’ll lock it down to the big known hosted AI frontends (assuming those end up supporting MCP; the only one I know of that does currently is ChatGPT Deep Research, and only for very limited shapes of servers.)OTOH, that only effects those services, it won't stop people from leveraging MCP as, say, a generic local plugin model for non-AI apps.",
+    "parent": 44855311,
+    "depth": 2
+  },
+  {
     "id": 44856145,
     "by": "cube00",
     "timeISO": "2025-08-10T16:12:04.000Z",
-    "textPlain": "I wouldn't call it cynicism.Web services started as the same open utopia. Once everyone was in they jacked up the prices so high it killed the initial consumer apps (eg. Google Maps and Reddit)Nobody is giving access to their walled garden for the good of open-anything. It's what the VCs and stockholders demand and they're putting up the cash to keep this AI hype funded in spite of it running at a loss.Given they haven't put security into MCP yet, I guess they'll need to do that first before they move on reinventing API keys so they can charge for access and hailing that as a success for the stock price.",
+    "textPlain": "I wouldn't call it cynicism.Web services started as the same open utopia. Once everyone was in they jacked up the prices so high it killed the initial consumer apps (eg. Google Maps and Reddit)Nobody is giving access to their walled garden for the good of open-anything. It's what the VCs and stockholders demand and they're the ones putting up the cash to keep this AI hype funded in spite of it running at a loss.Given they haven't put security into MCP yet, I guess they'll need to do that first before they move on reinventing API keys so they can charge for access and hailing that as the next reason the line will go up.",
     "parent": 44855311,
     "depth": 2
   },
@@ -192,11 +248,27 @@
     "depth": 2
   },
   {
-    "id": 44856171,
-    "by": "cube00",
-    "timeISO": "2025-08-10T16:15:29.000Z",
-    "textPlain": "> It feels like everyone now has to write a mandatory MCP article...Like this one you can bet every blogspam article is also trying to push something...> The Part Where I Tell You I'm Building Something",
-    "parent": 44855566,
+    "id": 44856986,
+    "by": "dragonwriter",
+    "timeISO": "2025-08-10T18:00:27.000Z",
+    "textPlain": "> MCP has barely given me satisfactory results.It's done a good job for me with the tools I've written and connected to LM Studio. I suspect the issue with whether you get satisfactory results is less about MCP qua MCP and more about particular servers and tools.",
+    "parent": 44856792,
+    "depth": 2
+  },
+  {
+    "id": 44856754,
+    "by": "moduspol",
+    "timeISO": "2025-08-10T17:29:03.000Z",
+    "textPlain": "And even then: the key value of MCP is that it's \"simplified.\" Few servers are implementing anything you couldn't already do for years with their REST APIs.And why? Because it dumbs it down to the point that the LLM can understand it (often, in part, by removing security concerns). But these are LLMs! They're supposed to be smart! Isn't it a supposedly temporary failure that I can't just point the LLM at an OpenAPI spec (or use HATEOAS) and be good to go?Will this be doable in the next few months with better models? If so, why bother with MCP? If this won't be doable in the next few months / years, then how smart do we really expect these LLMs to be?",
+    "parent": 44855649,
+    "depth": 2
+  },
+  {
+    "id": 44857085,
+    "by": "dragonwriter",
+    "timeISO": "2025-08-10T18:12:43.000Z",
+    "textPlain": "> then goes back on that thesis by saying \"but if there was an AI between these things, then it becomes a universal plugin system\".This is neither an accurate quote of the article, nor an accurate paraphrase of something the article says, nor an accurate description of something subtly implied by the article without directly being said.The article, in fact, gives an example without AI in the middle.",
+    "parent": 44855649,
     "depth": 2
   },
   {
@@ -213,6 +285,30 @@
     "timeISO": "2025-08-10T15:33:19.000Z",
     "textPlain": "MCP's key innovation isn't the format but its unidirectional, stateless design pattern that makes it fundamentally easier to implement than bidirectional protocols like OpenAPI, which is why it's gaining traction as a universal connector beyond just LLM contexts.",
     "parent": 44855649,
+    "depth": 2
+  },
+  {
+    "id": 44856171,
+    "by": "cube00",
+    "timeISO": "2025-08-10T16:15:29.000Z",
+    "textPlain": "> It feels like everyone now has to write a mandatory MCP article...Like this one you can bet every blogspam article is also trying to push something...> The Part Where I Tell You I'm Building Something",
+    "parent": 44855566,
+    "depth": 2
+  },
+  {
+    "id": 44856976,
+    "by": "arrowsmith",
+    "timeISO": "2025-08-10T17:58:36.000Z",
+    "textPlain": "People don't read the article, they just comment based on the title. In that respect HN is no different from Reddit.",
+    "parent": 44856083,
+    "depth": 2
+  },
+  {
+    "id": 44856951,
+    "by": "th0ma5",
+    "timeISO": "2025-08-10T17:55:08.000Z",
+    "textPlain": "This community has no ability to separate researched information from conjecture, and especially on this topic since neural nets are a black box where we can never know if any behavior is fully intentional or not.",
+    "parent": 44856083,
     "depth": 2
   },
   {

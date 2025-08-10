@@ -1,9 +1,9 @@
 [
   {
-    "id": 44856661,
-    "by": "roscas",
-    "timeISO": "2025-08-10T17:18:46.000Z",
-    "textPlain": "From my experience, qwen3-coder is way better. I only have gpt-oss:20b installed to make a few more tests but I give it a program to make a summary of what it does and qwen3 just works in a few seconds, while gpt-oss was cancelled after 5 minuts... doing nothing.So I just use qwen3. Fast and great ouput. If for some reason I don't get what I need, I might use search engines or Perplexity.I have a 10GB 3080 and Ryzen 3600x with 32gb of RAM.Qwen3-coder is amazing. Best I used so far.",
+    "id": 44857190,
+    "by": "mark_l_watson",
+    "timeISO": "2025-08-10T18:28:59.000Z",
+    "textPlain": "Wow, Sebastian Raschk's blog articles are jewels - much appreciated.I use the get-oss and qwen3 models a lot (smaller models locally using Ollama and LM Studio) and commercial APIs for the full size models.For local model use, I get very good results with get-oss when I \"over prompt,\" that is, I specify a larger amount of context information than I usually do. Qwen3 is simply awesome.Until about three years ago, I have always understood neural network models (starting in the 1980s), GAN, Recurrent, LSTM, etc. well enough to write implementations. I really miss the feeling that I could develop at least simpler LLMs on my own. I am slowly working through Sebastian Raschk's excellent book https://www.manning.com/books/build-a-large-language-model-f... but I will probably never finish it (to be honest).",
     "parent": 44855690,
     "depth": 1
   },
@@ -12,6 +12,30 @@
     "by": "7moritz7",
     "timeISO": "2025-08-10T16:09:01.000Z",
     "textPlain": "Qwen3 is substantially better in my local testing. As in, adheres to the prompt better (pretty much exactly for the 32B parameter variant, very impressive) and is more organic sounding.In simplebench gpt-oss (120 bn) flopped hard so it doesn't appear particularly good at logical puzzles either.So presumably, this comes down to...- training technique or data- dimension- lower number of large experts vs higher number of small experts",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
+    "id": 44856661,
+    "by": "roscas",
+    "timeISO": "2025-08-10T17:18:46.000Z",
+    "textPlain": "From my experience, qwen3-coder is way better. I only have gpt-oss:20b installed to make a few more tests but I give it a program to make a summary of what it does and qwen3 just works in a few seconds, while gpt-oss was cancelled after 5 minuts... doing nothing.So I just use qwen3. Fast and great ouput. If for some reason I don't get what I need, I might use search engines or Perplexity.I have a 10GB 3080 and Ryzen 3600x with 32gb of RAM.Qwen3-coder is amazing. Best I used so far.",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
+    "id": 44857029,
+    "by": "Scene_Cast2",
+    "timeISO": "2025-08-10T18:05:00.000Z",
+    "textPlain": "I find it interesting that the architectures of modern open weight LLMs are so similar, and that most innovation seems to be happening on the training (data, RL) front.This is contrary to what I've seen in a large ML shop, where architectural tuning was king.",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
+    "id": 44857044,
+    "by": "storus",
+    "timeISO": "2025-08-10T18:07:18.000Z",
+    "textPlain": "In my tests, GPT-OSS was close to DeepSeek R1 in solving graduate-level math but much faster with way fewer thinking tokens.",
     "parent": 44855690,
     "depth": 1
   },
@@ -29,6 +53,22 @@
     "timeISO": "2025-08-10T16:11:25.000Z",
     "textPlain": "If I had to make a guess, I'd say this has much, much less to do with the architecture and far more to do with the data and training pipeline. Many have speculated that gpt-oss has adopted a Phi-like synthetic-only dataset and focused mostly on gaming metrics, and I've found the evidence so far to be sufficiently compelling.",
     "parent": 44856128,
+    "depth": 2
+  },
+  {
+    "id": 44856889,
+    "by": "mhitza",
+    "timeISO": "2025-08-10T17:47:00.000Z",
+    "textPlain": "I've been using lightly gpt-oss-20b but what I've found is that for smaller (single sentence) prompts it was easy enough to have it loop infinitely. Since I'm running it with llama.cpp I've set a small repetition penalty and haven't encountered those issues since (I'm using it a couple of times a day to analyze diffs, so I might have just gotten lucky since)",
+    "parent": 44856661,
+    "depth": 2
+  },
+  {
+    "id": 44856701,
+    "by": "smokel",
+    "timeISO": "2025-08-10T17:23:08.000Z",
+    "textPlain": "The 20B version doesn't fit in 10GB.  That might explain some issues?",
+    "parent": 44856661,
     "depth": 2
   }
 ]

@@ -40,18 +40,18 @@
     "depth": 1
   },
   {
-    "id": 44850563,
-    "by": "pss314",
-    "timeISO": "2025-08-09T21:44:42.000Z",
-    "textPlain": "A new APT sources format \"debian.sources\" is announced with trixie. The now older \"sources.list\" format is still supported, but is likely to be deprecated in a future Debian release.See below:  APT is moving to a different format for configuring where it downloads packages from. The files /etc/apt/sources.list and *.list files in /etc/apt/sources.list.d/ are replaced by files still in that directory but with names ending in .sources, using the new, more readable (deb822 style) format. For details see sources.list(5). Examples of APT configurations in these notes will be given in the new deb822 format.\n\n  If your system is using multiple sources files then you will need to ensure they stay consistent.\n\n- https://wiki.debian.org/SourcesList#APT_sources_format- https://www.debian.org/releases/trixie/release-notes/upgradi...\"apt modernize-sources\" command can be used to simulate and replace \".list\" files with the new \".sources\" format.  Modernizing will replace .list files with the new .sources format, add Signed-By values where they can be determined automatically, and save the old files into .list.bak files.\n\n  This command supports the 'signed-by' and 'trusted' options. If you have specified other options inside [] brackets, please transfer them manually to the output files; see sources.list(5) for a mapping.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849292,
     "by": "bbarnett",
     "timeISO": "2025-08-09T19:20:41.000Z",
     "textPlain": "You can still use sysvinit, I've already tested servers and desktop builds.From my build box:  chroot $MOUNTPOINT/ /bin/bash -c \"http_proxy=$aptproxy apt-get -y --purge --allow remove-essential install sysvinit-core sysvinit-utils systemd-sysv- systemd-\"\n\nThere is a weird depends you cannot get around without simultaneously removing and installing in parallel.  A Debian bug highlighted the above, with a \"-\" for systemd-sysv- systemd- as a fix, along with allow remove essential.After this fix, sysvinit builds with debootstrap were almost identical as to bookworm.  This includes for desktops.As per with bookworm through buster, you'll still need something like this too:  $ cat /etc/apt/preferences.d/systemd\n\n  # this is the only systemd package that is required, so we up its priority first...\n  Package: libsystemd0\n  Pin: release trixie\n  Pin-Priority: 700\n\n  # exclude the rest\n  Package: systemd\n  Pin: release *\n  Pin-Priority: -1\n\n  Package: *systemd*\n  Pin: release *\n  Pin-Priority: -1\n\n  Package: systemd:i386\n  Pin: release *\n  Pin-Priority: -1\n\n  Package: systemd:amd64\n  Pin: release *\n  Pin-Priority: -1",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44850563,
+    "by": "pss314",
+    "timeISO": "2025-08-09T21:44:42.000Z",
+    "textPlain": "A new APT sources format \"debian.sources\" is announced with trixie. The now older \"sources.list\" format is still supported, but is likely to be deprecated in a future Debian release.See below:  APT is moving to a different format for configuring where it downloads packages from. The files /etc/apt/sources.list and *.list files in /etc/apt/sources.list.d/ are replaced by files still in that directory but with names ending in .sources, using the new, more readable (deb822 style) format. For details see sources.list(5). Examples of APT configurations in these notes will be given in the new deb822 format.\n\n  If your system is using multiple sources files then you will need to ensure they stay consistent.\n\n- https://wiki.debian.org/SourcesList#APT_sources_format- https://www.debian.org/releases/trixie/release-notes/upgradi...\"apt modernize-sources\" command can be used to simulate and replace \".list\" files with the new \".sources\" format.  Modernizing will replace .list files with the new .sources format, add Signed-By values where they can be determined automatically, and save the old files into .list.bak files.\n\n  This command supports the 'signed-by' and 'trusted' options. If you have specified other options inside [] brackets, please transfer them manually to the output files; see sources.list(5) for a mapping.",
     "parent": 44848782,
     "depth": 1
   },
@@ -96,14 +96,6 @@
     "depth": 1
   },
   {
-    "id": 44855585,
-    "by": "Aldipower",
-    "timeISO": "2025-08-10T14:49:57.000Z",
-    "textPlain": "Looking forward to 13! Debian 12 in combination with Pipewire is my go to daily use professional audio workstation for 2 years. Coming from Windows, there are no more forced updates anymore preventing me from doing my job. This is a releave. It works so good! Linux for professional audio is really an option now! Most high-end converters are connected via MADI or ADAT anyway, so there is no driver problem existent. Drivers are a consumer grade discussion..",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849857,
     "by": "krylon",
     "timeISO": "2025-08-09T20:24:25.000Z",
@@ -124,6 +116,14 @@
     "by": "bayindirh",
     "timeISO": "2025-08-09T20:09:54.000Z",
     "textPlain": "Debian's signature feature (upgrade from stable to stable under 15 minutes) shines here too.My first system migrated in less than 10 minutes, incl. package downloads and reboot. It's not a beast either. N100 mini PC connected to a ~50mbps network.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44855585,
+    "by": "Aldipower",
+    "timeISO": "2025-08-10T14:49:57.000Z",
+    "textPlain": "Looking forward to 13! Debian 12 in combination with Pipewire is my go to daily use professional audio workstation for 2 years. Coming from Windows, there are no more forced updates anymore preventing me from doing my job. This is a releave. It works so good! Linux for professional audio is really an option now! Most high-end converters are connected via MADI or ADAT anyway, so there is no driver problem existent. Drivers are a consumer grade discussion..",
     "parent": 44848782,
     "depth": 1
   },
@@ -184,10 +184,10 @@
     "depth": 1
   },
   {
-    "id": 44849514,
-    "by": "master_crab",
-    "timeISO": "2025-08-09T19:47:41.000Z",
-    "textPlain": "Debian 13 trixie includes numerous updated software packages (over 63% of all packages from the previous release)I’m not familiar with the metric definition they use, but I’d be worried if close to 100% of the packages they included in bookworm hadn’t been updated in the roughly 2 years between releases.I use Debian for most of my servers, so I’m sure there is a valid explanation of that phrase.",
+    "id": 44853335,
+    "by": "LoveMortuus",
+    "timeISO": "2025-08-10T07:04:57.000Z",
+    "textPlain": "I'm very sad to see them drop support for 32-bit, since that is the computer on which I have been using Debian for the past 10 years...Does anyone have any suggestions for a 32-bit distro that's still being updated?",
     "parent": 44848782,
     "depth": 1
   },
@@ -200,6 +200,14 @@
     "depth": 1
   },
   {
+    "id": 44853159,
+    "by": "starkparker",
+    "timeISO": "2025-08-10T06:20:06.000Z",
+    "textPlain": "Maybe a niche concern, but SDL2 is still in Trixie. The sdl2-compat layer (translating SDL2 APIs to SDL3) is in testing, where SDL2 also exists side-by-side with it and is intended to be used to test and verify that SDL2 apps that use it are actually compatible.Night-and-day decision-making process compared to Fedora and Arch, which both replaced SDL2 with sdl2-compat, broke a bunch of SDL2 apps because sdl2-compat isn't actually SDL2-compatible yet, and sent everyone to yell at the SDL team about it.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44855626,
     "by": "teleforce",
     "timeISO": "2025-08-10T14:56:47.000Z",
@@ -208,18 +216,10 @@
     "depth": 1
   },
   {
-    "id": 44853335,
-    "by": "LoveMortuus",
-    "timeISO": "2025-08-10T07:04:57.000Z",
-    "textPlain": "I'm very sad to see them drop support for 32-bit, since that is the computer on which I have been using Debian for the past 10 years...Does anyone have any suggestions for a 32-bit distro that's still being updated?",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44853159,
-    "by": "starkparker",
-    "timeISO": "2025-08-10T06:20:06.000Z",
-    "textPlain": "Maybe a niche concern, but SDL2 is still in Trixie. The sdl2-compat layer (translating SDL2 APIs to SDL3) is in testing, where SDL2 also exists side-by-side with it and is intended to be used to test and verify that SDL2 apps that use it are actually compatible.Night-and-day decision-making process compared to Fedora and Arch, which both replaced SDL2 with sdl2-compat, broke a bunch of SDL2 apps because sdl2-compat isn't actually SDL2-compatible yet, and sent everyone to yell at the SDL team about it.",
+    "id": 44849514,
+    "by": "master_crab",
+    "timeISO": "2025-08-09T19:47:41.000Z",
+    "textPlain": "Debian 13 trixie includes numerous updated software packages (over 63% of all packages from the previous release)I’m not familiar with the metric definition they use, but I’d be worried if close to 100% of the packages they included in bookworm hadn’t been updated in the roughly 2 years between releases.I use Debian for most of my servers, so I’m sure there is a valid explanation of that phrase.",
     "parent": 44848782,
     "depth": 1
   },
