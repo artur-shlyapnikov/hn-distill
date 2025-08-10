@@ -88,18 +88,18 @@
     "depth": 1
   },
   {
-    "id": 44857274,
-    "by": "gosub100",
-    "timeISO": "2025-08-10T18:43:02.000Z",
-    "textPlain": "I did something similar to this for tab-completing server names for use with ssh. I went a step further and allowed pattern matching based on the server being qa/prod and on locale. so for instance you could type `ssh co prod <tab>` and it would tab-complete / suggest any servers that were production and located in the Denver datacenter (co is the state abbrev for Colorado, for non-US readers).Unfortunately my work doesn't allow me to share code, but essentially I remapped ssh to a bash script that maintains an environment variable containing the args (you must do this because each <tab> press is an independent invocation of the script. Then you run into persistence problems, so I added a call to compute elapsed seconds so that it flushes the state variable after a 10s timeout).The bash script then forwards the args to a python script that reads a JSON file and figures out which params (such as 'co' or 'qa') map to which hostnames. It also matches against partial hostnames, so when you see this after tabqa-server-co1\nqa-server-co2\npr-server-co3you only need to add '3' to the list of args to narrow it down to 1 match, then hit <enter> to ssh to that host.",
-    "parent": 44854035,
-    "depth": 1
-  },
-  {
     "id": 44854278,
     "by": "camdroidw",
     "timeISO": "2025-08-10T10:43:46.000Z",
     "textPlain": "Why doesn't someone (not me) just build a basic DSL and a transpiler that does this?",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44857274,
+    "by": "gosub100",
+    "timeISO": "2025-08-10T18:43:02.000Z",
+    "textPlain": "I did something similar to this for tab-completing server names for use with ssh. I went a step further and allowed pattern matching based on the server being qa/prod and on locale. so for instance you could type `ssh co prod <tab>` and it would tab-complete / suggest any servers that were production and located in the Denver datacenter (co is the state abbrev for Colorado, for non-US readers).Unfortunately my work doesn't allow me to share code, but essentially I remapped ssh to a bash script that maintains an environment variable containing the args (you must do this because each <tab> press is an independent invocation of the script. Then you run into persistence problems, so I added a call to compute elapsed seconds so that it flushes the state variable after a 10s timeout).The bash script then forwards the args to a python script that reads a JSON file and figures out which params (such as 'co' or 'qa') map to which hostnames. It also matches against partial hostnames, so when you see this after tabqa-server-co1\nqa-server-co2\npr-server-co3you only need to add '3' to the list of args to narrow it down to 1 match, then hit <enter> to ssh to that host.",
     "parent": 44854035,
     "depth": 1
   },

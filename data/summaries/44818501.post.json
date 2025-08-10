@@ -1,0 +1,8 @@
+{
+  "id": 44818501,
+  "lang": "ru",
+  "summary": "**ECScape: границы IAM-прав в Amazon ECS**\n\nAmazon ECS часто использует Task Role и Execution Role.  \n- **Task Role** — права самого контейнера.  \n- **Execution Role** — права ECS-агента для запуска задачи (ECR, Secrets Manager, VPC, CloudWatch).  \n\n**Проблема**: Execution Role может получить доступ к Task Role через `sts:AssumeRole`, если политика Task Role разрешает `ecs-tasks.amazonaws.com`. Это позволяет злоумышленнику, скомпрометировавшему ECS-агент, эскалировать привилегии.\n\n**Эксплуатация**  \n1. Подготовить задачу с Execution Role, которая может вызвать `AssumeRole` на Task Role.  \n2. Внутри задачи получить временные ключи Task Role и выполнять действия от её имени.  \n\n**Митигируйте**  \n- Разрешайте `AssumeRole` только конкретным Execution Role ARN, а не всему сервису `ecs-tasks.amazonaws.com`.  \n- Используйте IAM Condition `StringEquals` с `sts:ExternalId`, чтобы ограничить возможность подмены.  \n- Следите за тем, чтобы Task Role не содержала избыточных прав.",
+  "inputHash": "78e8a3d14658c05c548e263512d8ab3a9b978c6ba255c7244d4bee78601676c1",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-10T22:23:38.317Z"
+}
