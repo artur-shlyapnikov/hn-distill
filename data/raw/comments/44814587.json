@@ -1,17 +1,17 @@
 [
   {
-    "id": 44852592,
-    "by": "rvcdbn",
-    "timeISO": "2025-08-10T03:41:40.000Z",
-    "textPlain": "I'm sure there's a reason but I would expect a system like this to use leader leases for local reads",
-    "parent": 44814587,
-    "depth": 1
-  },
-  {
     "id": 44851851,
     "by": "nchmy",
     "timeISO": "2025-08-10T00:54:30.000Z",
     "textPlain": "I wonder if there could be something between None and Weak...Don't check if it's the leader, but rather check (ideally locally, via some sort of flag that is updated on writes - when it's going to be communicating with the cluster anyway) if it's still part of the cluster/quorum. If so, then read locally. If not... reject the request since it might be stale?The idea is that it is stronger than None, but weaker than doing reads (or any communication at all at read-time) from the Leader.",
+    "parent": 44814587,
+    "depth": 1
+  },
+  {
+    "id": 44852592,
+    "by": "rvcdbn",
+    "timeISO": "2025-08-10T03:41:40.000Z",
+    "textPlain": "I'm sure there's a reason but I would expect a system like this to use leader leases for local reads",
     "parent": 44814587,
     "depth": 1
   }

@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44852917,
+    "by": "krawczstef",
+    "timeISO": "2025-08-10T05:12:32.000Z",
+    "textPlain": "I agree with this post.Otherwise the larger picture is that MCP is a land grab for building an eco-system around integrations to get access to data. Your LLM agent is not valuable if it can't access things for you... and from a market perspective enterprise pays a lot for this stuff already, and yes MCP is not thought out at all for Enterprise really... At least thankfully they added stateless connections to the spec...",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
     "id": 44849159,
     "by": "GeneralMayhem",
     "timeISO": "2025-08-09T19:04:03.000Z",
@@ -48,10 +56,34 @@
     "depth": 1
   },
   {
+    "id": 44852773,
+    "by": "tarun_anand",
+    "timeISO": "2025-08-10T04:32:59.000Z",
+    "textPlain": "Very interesting... I have been contributing with the exact same interoperability issues to the MCP Community (Anthropic Google etc)https://github.com/modelcontextprotocol/modelcontextprotocol...The Python Bindings PR is here\nmodelcontextprotocol/rust-sdk#172The Typescript Bindings PR is here\nmodelcontextprotocol/rust-sdk#183MCP Bench at https://github.com/unimcp/mcpbench",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
     "id": 44848323,
     "by": "mockingloris",
     "timeISO": "2025-08-09T17:20:14.000Z",
     "textPlain": "I read this thrice: ...When OpenAI bills $50,000 for last month’s API usage, can you tell which department’s MCP tools drove that cost? Which specific tool calls? Which individual users or use cases?...It seems to be a game of catch up for most things AI. That said, my school of thought is that certain technologies are just too big for them to be figured out early on - web frameworks, blockchain, ...- the gap starts to shrink eventually. With AI, we'll just have to keep sharing ideas and caution like you have here.\nSuch very interesting times we live in.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44850871,
+    "by": "holografix",
+    "timeISO": "2025-08-09T22:21:52.000Z",
+    "textPlain": "Author disregards why none of these technologies are relevant in the modern web.Sure, they might still find themselves in highly regulated industries where risk avoidance trumps innovation everyday, all day.MCP is for _the web_ , it started with stdio only because Anthropic was learning lessons from building Claude Code.Author also seems to expect that the result from MCP tool usage will feed directly to an LLM. This is preposterous and a recipe for disaster. Obviously you’d validade structured response against a schema, check for harmful content, etc etc.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44852397,
+    "by": "0xbadcafebee",
+    "timeISO": "2025-08-10T02:46:22.000Z",
+    "textPlain": "Am I the only person who thinks it's a bad idea for a hallucinating AI to have anything to do with financial services, healthcare, or manufacturing? Doesn't really matter what the RPC protocol looks like if the meat and potatoes of the tech will confidently make shit up. You can't hand-wave this away by saying \"oh it's a reasoning AI\". Albert Einstein may be real smart, but it's still a bad idea to take financial advice from him when he drops acid.",
     "parent": 44846871,
     "depth": 1
   },
@@ -68,22 +100,6 @@
     "by": "ramoz",
     "timeISO": "2025-08-09T20:37:48.000Z",
     "textPlain": "Many great points. I think we are thinking about MCP the wrong way.The greater problem is industry misunderstanding and misalignment with what agents are and where they are headed.Web platforms of the world believe agents will be embedded in networked distributed infrastructure. So we should ship an MCP platform in our service mesh for all of the agents running in containers to connect to.I think this is wrong, and continues to be butchered as the web pushes a hard narrative that we need to enable web-native agents & their sdks/frameworks that deploy agents as conventional server applications. These are not agents nor the early evolutionary form of them.Frontier labs will be the only providers of the actual agentic harnesses. And we are rapidly moving to computer use agents - MCP servers were intended to serve as single instance deployments for single harnesses. ie. a single mcp server on my desktop for my Claude Desktop.",
-    "parent": 44846871,
-    "depth": 1
-  },
-  {
-    "id": 44852397,
-    "by": "0xbadcafebee",
-    "timeISO": "2025-08-10T02:46:22.000Z",
-    "textPlain": "Am I the only person who thinks it's a bad idea for a hallucinating AI to have anything to do with financial services, healthcare, or manufacturing? Doesn't really matter what the RPC protocol looks like if the meat and potatoes of the tech will confidently make shit up. You can't hand-wave this away by saying \"oh it's a reasoning AI\". Albert Einstein may be real smart, but it's still a bad idea to take financial advice from him when he drops acid.",
-    "parent": 44846871,
-    "depth": 1
-  },
-  {
-    "id": 44850871,
-    "by": "holografix",
-    "timeISO": "2025-08-09T22:21:52.000Z",
-    "textPlain": "Author disregards why none of these technologies are relevant in the modern web.Sure, they might still find themselves in highly regulated industries where risk avoidance trumps innovation everyday, all day.MCP is for _the web_ , it started with stdio only because Anthropic was learning lessons from building Claude Code.Author also seems to expect that the result from MCP tool usage will feed directly to an LLM. This is preposterous and a recipe for disaster. Obviously you’d validade structured response against a schema, check for harmful content, etc etc.",
     "parent": 44846871,
     "depth": 1
   },
@@ -232,18 +248,18 @@
     "depth": 2
   },
   {
-    "id": 44849707,
-    "by": "hinkley",
-    "timeISO": "2025-08-09T20:09:36.000Z",
-    "textPlain": "> In healthcare, patient data types get coerced incorrectly, potentially leading to wrong medication dosing recommendations.May have changed, but unlikely. I worked with medical telemetry as a young man and it was impressed upon me thoroughly how important parsing timestamps correctly was. I have a faint memory, possibly false, of this being the first time I wrote unit tests (and without the benefit of a test framework).We even accounted for lack of NTP by recalculating times off of the timestamps I. Their message headers.And the reasons I was given were incident review as well as malpractice cases. A drug administered three seconds before a heart attack starts is a very different situation than one administered eight seconds after the patient crashed. We saw recently with the British postal service how lives can be ruined by bad data, and in medical data a minute is a world of difference.",
-    "parent": 44849009,
-    "depth": 2
-  },
-  {
     "id": 44849676,
     "by": "avereveard",
     "timeISO": "2025-08-09T20:06:40.000Z",
     "textPlain": "MCP focuses on transport and managing context and doesn't absolve the user for sensibly implementing the interface (i.e. defining a schema and doing schema validation)this is like saying \"HTTP doesn't do json validation\", which, well, yeah.",
+    "parent": 44849009,
+    "depth": 2
+  },
+  {
+    "id": 44849707,
+    "by": "hinkley",
+    "timeISO": "2025-08-09T20:09:36.000Z",
+    "textPlain": "> In healthcare, patient data types get coerced incorrectly, potentially leading to wrong medication dosing recommendations.May have changed, but unlikely. I worked with medical telemetry as a young man and it was impressed upon me thoroughly how important parsing timestamps correctly was. I have a faint memory, possibly false, of this being the first time I wrote unit tests (and without the benefit of a test framework).We even accounted for lack of NTP by recalculating times off of the timestamps I. Their message headers.And the reasons I was given were incident review as well as malpractice cases. A drug administered three seconds before a heart attack starts is a very different situation than one administered eight seconds after the patient crashed. We saw recently with the British postal service how lives can be ruined by bad data, and in medical data a minute is a world of difference.",
     "parent": 44849009,
     "depth": 2
   },
@@ -300,22 +316,6 @@
     "by": "jchw",
     "timeISO": "2025-08-09T19:29:02.000Z",
     "textPlain": "Agreed. In practice, SOAP was a train wreck. It's amazing how overly complicated they managed to make concepts that should've been simple, all the way down to just XML somehow being radically more complex than it looks to the wacky world of ill-defined standards for things like WSDLs and weird usage of multi-part HTTP and, to top it all off, it was all for nothing, because you couldn't guarantee that a SOAP server written in one language would be interoperable with clients in other languages. (I don't remember exactly what went wrong, but I hit issues trying to use a SOAP API powered by .NET from a Java client. I feel like that should be a pretty good case!)It doesn't take very long for people to start romanticizing things as soon as they're not in vogue. Even when the painfulness is still fresh in memory, people lament over how stupid new stuff is. Well I'm not a fan of schemaless JSON APIs (I'm one of those weird people that likes protobufs and capnp much more) but I will take 50 years of schemaless JSON API work over a month of dealing with SOAP again.",
-    "parent": 44848594,
-    "depth": 2
-  },
-  {
-    "id": 44849062,
-    "by": "pjmlp",
-    "timeISO": "2025-08-09T18:50:29.000Z",
-    "textPlain": "I have plenty of good stuff to say, especially since REST (really JSON-RPC in practice), and GraphQL, seem to always being catching up to features the whole SOAP and SOA ecosystems already had.Unfortunately as usual when a new technology cycle comes, everything gets thrown away, including the good parts.",
-    "parent": 44848594,
-    "depth": 2
-  },
-  {
-    "id": 44848671,
-    "by": "SoftTalker",
-    "timeISO": "2025-08-09T18:06:53.000Z",
-    "textPlain": "I have found that any protocol whose name includes the word \"Simple\" is anything but. So waiting for SMCP to appear....",
     "parent": 44848594,
     "depth": 2
   }

@@ -1,9 +1,25 @@
 [
   {
-    "id": 44852663,
-    "by": "refactor_master",
-    "timeISO": "2025-08-10T04:01:11.000Z",
-    "textPlain": "Question as a complete outsider: If I run idempotent Python applications in Kubernetes containers and they crash, Kubernetes will eventually restart them. Of course, knowing what to do on IO errors is nicer than destroying and restarting everything with a really bigger hammer (as the article also mentions, you can serve a better error message for whoever has to “deal” with the problem), but eventually they should end up in the same workable state.Is this conceptually similar, but perhaps at code-level instead?",
+    "id": 44852961,
+    "by": "monkeyelite",
+    "timeISO": "2025-08-10T05:26:12.000Z",
+    "textPlain": "This seems specific to BEAM as crashing a fast-cgi process is fine and response will be handled correctly with Apache or nginx.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44852934,
+    "by": "valenterry",
+    "timeISO": "2025-08-10T05:17:39.000Z",
+    "textPlain": "There are a few stages, and each improves on the previous ones:1. Detect crashes at runtime and by default stop/crash to prevent continuing with invalid program state2. Detect crashes at runtime and handle them according to the business context (e.g. crash or retry or fallback-to or ...) to prevent bad UX through crashes.3. Detect potential crashes at compile-time to prevent the dev from forgetting to handle them according to the business context4. Don't just detect the possibility of crashes but also the specific type and context to prevent the dev from making a logical mistake and causing a potential runtime error during error handling according to the business contextAn example for stage 4 would be that the compiler checks that a fall-back option will actually always resolve the errors and not potentially introduce a new error / error type. Such as falling back to another URL does not actually always resolve the problem, there still needs to be handling for when the request to the alternative URL fails.The philosophy described in the article is basically just stage 1 and a (partial) default restart instead of a default crash, which is maybe a slight improvement but not really sufficient, at least not by my personal standards.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44852737,
+    "by": "HexDecOctBin",
+    "timeISO": "2025-08-10T04:23:07.000Z",
+    "textPlain": "How does restarting the process fix the crash? If the process crashed because a file was missing, it will still be missing when the process is restarted. Is an infinite crash-loop considered success in Erlang?",
     "parent": 44810890,
     "depth": 1
   },
@@ -11,7 +27,7 @@
     "id": 44852658,
     "by": "goosejuice",
     "timeISO": "2025-08-10T03:59:21.000Z",
-    "textPlain": "https://erlang.org/pipermail/erlang-questions/2003-March/007...The origin, as far as I know it. I think it still holdsis insightful , as a general case. Let it heal seems pretty close to what Joe was getting at.",
+    "textPlain": "https://erlang.org/pipermail/erlang-questions/2003-March/007...The origin, as far as I know it. I think it still holds, is insightful, as a general case. Let it heal seems pretty close to what Joe was getting at.",
     "parent": 44810890,
     "depth": 1
   },
@@ -24,12 +40,68 @@
     "depth": 1
   },
   {
+    "id": 44852663,
+    "by": "refactor_master",
+    "timeISO": "2025-08-10T04:01:11.000Z",
+    "textPlain": "Question as a complete outsider: If I run idempotent Python applications in Kubernetes containers and they crash, Kubernetes will eventually restart them. Of course, knowing what to do on IO errors is nicer than destroying and restarting everything with a really bigger hammer (as the article also mentions, you can serve a better error message for whoever has to “deal” with the problem), but eventually they should end up in the same workable state.Is this conceptually similar, but perhaps at code-level instead?",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44852820,
+    "by": "BobbyTables2",
+    "timeISO": "2025-08-10T04:48:50.000Z",
+    "textPlain": "Hackers also love auto-restarting services.Exploitation of vulnerabilities isn’t always 100% reliable.  Heap grooming might be limited or otherwise inadequate.A quick automatic restart keeps them in business without any other human interaction involved.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44852730,
+    "by": "adastra22",
+    "timeISO": "2025-08-10T04:21:29.000Z",
+    "textPlain": "“Reset on error” might be a better phrasing.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
     "id": 44852476,
     "by": "bitwize",
     "timeISO": "2025-08-10T03:04:52.000Z",
     "textPlain": "I don't code in Erlang or Elixir, aside from messing about. But I've found that letting an entire application crash is something that I can do under certain circumstances, especially when \"you have a very big problem and will not go to space today\". For example, if there's an error reading some piece of data that's in the application bundle and is needed to legitimately start up in the first place (assets for my game for instance). Then upon error it just \"screams and dies\" (spits out a stack trace and terminates).",
     "parent": 44810890,
     "depth": 1
+  },
+  {
+    "id": 44852805,
+    "by": "ramchip",
+    "timeISO": "2025-08-10T04:42:54.000Z",
+    "textPlain": "I recommend https://ferd.ca/the-zen-of-erlang.html starting from \"if my configuration file is corrupted, restarting won't fix anything\". The tl;dr is it helps with transient bugs.",
+    "parent": 44852737,
+    "depth": 2
+  },
+  {
+    "id": 44852777,
+    "by": "lawn",
+    "timeISO": "2025-08-10T04:34:57.000Z",
+    "textPlain": "Typically you then let the error bubble up in the supervisor tree if restarting multiple times doesn't fix it.Of course there are still errors that can't be recovered from, in which case the whole program may finally crash.",
+    "parent": 44852737,
+    "depth": 2
+  },
+  {
+    "id": 44852679,
+    "by": "goosejuice",
+    "timeISO": "2025-08-10T04:07:09.000Z",
+    "textPlain": "Somewhat, yes but it's much less powerful. In the BEAM these are trees of supervisors and monitors/links that choose how to restart and receive the stacktrace/error reason of the failure respectively. This gives a lot of freedom on how to handle the failure. In k8s, it's often just a dumb monitor/controller that knows little about how to remediate the issue on boot. Nevermind the boot time penalty.https://hexdocs.pm/elixir/1.18.4/Supervisor.htmlBEAM apps run great on k8s.",
+    "parent": 44852663,
+    "depth": 2
+  },
+  {
+    "id": 44852743,
+    "by": "adastra22",
+    "timeISO": "2025-08-10T04:24:32.000Z",
+    "textPlain": "Conceptually similar, different implementation. The perhaps most visible difference is that supervisors aren’t polling application state but are rather notified about errors (crashes), and restarting is extremely low latency.  Erlang/BEAM was invented for telephony, and it is possible for this to happen on the middle of a protocol and the user not even notice.",
+    "parent": 44852663,
+    "depth": 2
   },
   {
     "id": 44852512,

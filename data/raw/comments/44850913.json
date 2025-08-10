@@ -24,10 +24,42 @@
     "depth": 1
   },
   {
+    "id": 44852839,
+    "by": "yichuan",
+    "timeISO": "2025-08-10T04:53:01.000Z",
+    "textPlain": "I think there’s huge potential for a fully local “Cursor-like” stack — no cloud, no API keys, just everything running on your machine.The setup could be:\n • Cursor CLI for agentic/dev stuff (example:https://x.com/cursor_ai/status/1953559384531050724)\n • A local memory layer compatible with the CLI — something like LEANN (97% smaller index, zero cloud cost, full privacy, https://github.com/yichuan-w/LEANN) or Milvus (though Milvus often ends up cloud/token-based)\n • Your inference engine, e.g. Ollama, which is great for running OSS GPT models locallyWith this, you’d have an offline, private, and blazing-fast personal dev+AI environment. LEANN in particular is built exactly for this kind of setup — tiny footprint, semantic search over your entire local world, and Claude Code/ Cursor –compatible out of the box, the ollama for generation. I guess this solution is not only free but also does not need any API.But I do agree that this need some effort to set up, but maybe someone can make these easy and fully open-source",
+    "parent": 44850913,
+    "depth": 1
+  },
+  {
     "id": 44851704,
     "by": "chromaton",
     "timeISO": "2025-08-10T00:31:53.000Z",
     "textPlain": "If you're looking for free API access, Google offers access to Gemini for free, including for gemini-2.5-pro with thinking turned on. The limit is... quite high, as I'm running some benchmarking and haven't hit the limit yet.Open weight models like DeepSeek R1 and GPT-OSS are also made available with free API access from various inference providers and hardware manufacturers.",
+    "parent": 44850913,
+    "depth": 1
+  },
+  {
+    "id": 44852913,
+    "by": "qustrolabe",
+    "timeISO": "2025-08-10T05:10:52.000Z",
+    "textPlain": "I bet it's crazy to some people that others okay with giving up so much of their data for free tiers. Like yeah it's better to selfhost but it takes so much resources to run good enough LLM at home that I'd rather give up my code for some free usage, anyway that code eventually will end up open source",
+    "parent": 44850913,
+    "depth": 1
+  },
+  {
+    "id": 44852927,
+    "by": "tonyhart7",
+    "timeISO": "2025-08-10T05:16:22.000Z",
+    "textPlain": "I replicate SDD from kiro code, it works wonder for multi switching model because I can just re fetch from specs folder",
+    "parent": 44850913,
+    "depth": 1
+  },
+  {
+    "id": 44851655,
+    "by": "reactordev",
+    "timeISO": "2025-08-10T00:24:32.000Z",
+    "textPlain": "To the OP: I highly recommend you look into Continue.dev and ollama/lmstudio and running models on your own. Some of them are really good at autocomplete-style suggestions while others (like gpt-oss) can reason and use tools.It's my goto copilot.",
     "parent": 44850913,
     "depth": 1
   },
@@ -40,10 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44851655,
-    "by": "reactordev",
-    "timeISO": "2025-08-10T00:24:32.000Z",
-    "textPlain": "To the OP: I highly recommend you look into Continue.dev and ollama/lmstudio and running models on your own. Some of them are really good at autocomplete-style suggestions while others (like gpt-oss) can reason and use tools.It's my goto copilot.",
+    "id": 44852798,
+    "by": "hgarg",
+    "timeISO": "2025-08-10T04:41:21.000Z",
+    "textPlain": "Just use Rovodev CLI. Gives you 20 million tokens for free per 24 hours and you can switch between sonnet 4 / gpt-5.",
+    "parent": 44850913,
+    "depth": 1
+  },
+  {
+    "id": 44852806,
+    "by": "xvv",
+    "timeISO": "2025-08-10T04:42:59.000Z",
+    "textPlain": "As of today, what is the best local model that can be run on a system with 32gb of ram and 24gb of vram?",
     "parent": 44850913,
     "depth": 1
   },
@@ -104,6 +144,14 @@
     "depth": 1
   },
   {
+    "id": 44852803,
+    "by": "hgarg",
+    "timeISO": "2025-08-10T04:42:41.000Z",
+    "textPlain": "Qwen is totally useless any serious dev work.",
+    "parent": 44851896,
+    "depth": 2
+  },
+  {
     "id": 44851937,
     "by": "indigodaddy",
     "timeISO": "2025-08-10T01:12:02.000Z",
@@ -128,6 +176,14 @@
     "depth": 2
   },
   {
+    "id": 44852895,
+    "by": "airtonix",
+    "timeISO": "2025-08-10T05:06:59.000Z",
+    "textPlain": "[dead]",
+    "parent": 44852839,
+    "depth": 2
+  },
+  {
     "id": 44851737,
     "by": "gooosle",
     "timeISO": "2025-08-10T00:36:54.000Z",
@@ -144,11 +200,11 @@
     "depth": 2
   },
   {
-    "id": 44852619,
-    "by": "SV_BubbleTime",
-    "timeISO": "2025-08-10T03:48:30.000Z",
-    "textPlain": "100% opposite experience.Whether agentic, not… it’s all about context.Either agentic with access to your whole project, “lives” in GitHub, a fine tune, or RAG, or whatever… having access to all of the context drastically reduces hallucinations.There is a big difference between “write x” and “write x for me in my style, with all y dependencies, and considering all z code that exists around it”.I’m honestly not understand a defense of copy and paste AI coding… this is why agents are so massively popular right now.",
-    "parent": 44852497,
+    "id": 44852943,
+    "by": "jama211",
+    "timeISO": "2025-08-10T05:19:51.000Z",
+    "textPlain": "And as far as I’m concerned if my work is happy for me to use models to assist with code, then it’s not my problem",
+    "parent": 44852913,
     "depth": 2
   },
   {
@@ -165,6 +221,22 @@
     "timeISO": "2025-08-10T02:13:15.000Z",
     "textPlain": "I've found Zed to be a step up from continue.dev - you can use your own models there also",
     "parent": 44851655,
+    "depth": 2
+  },
+  {
+    "id": 44852619,
+    "by": "SV_BubbleTime",
+    "timeISO": "2025-08-10T03:48:30.000Z",
+    "textPlain": "100% opposite experience.Whether agentic, not… it’s all about context.Either agentic with access to your whole project, “lives” in GitHub, a fine tune, or RAG, or whatever… having access to all of the context drastically reduces hallucinations.There is a big difference between “write x” and “write x for me in my style, with all y dependencies, and considering all z code that exists around it”.I’m honestly not understand a defense of copy and paste AI coding… this is why agents are so massively popular right now.",
+    "parent": 44852497,
+    "depth": 2
+  },
+  {
+    "id": 44852738,
+    "by": "b2m9",
+    "timeISO": "2025-08-10T04:23:17.000Z",
+    "textPlain": "You mean SWE-1? I used it like a dozen times and I gave up because the responses were so bad. Not even sure whether it’s good enough for autocomplete because it’s the slowest model I’ve tested in a while.",
+    "parent": 44852012,
     "depth": 2
   },
   {
@@ -204,6 +276,14 @@
     "by": "sergiotapia",
     "timeISO": "2025-08-10T03:11:20.000Z",
     "textPlain": "who cares. we can build more. energymaxx or the us will become like germany.",
+    "parent": 44851573,
+    "depth": 2
+  },
+  {
+    "id": 44852941,
+    "by": "nimmi003",
+    "timeISO": "2025-08-10T05:19:28.000Z",
+    "textPlain": "[dead]",
     "parent": 44851573,
     "depth": 2
   },

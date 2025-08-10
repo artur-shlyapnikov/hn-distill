@@ -16,10 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44852267,
-    "by": "Ericson2314",
-    "timeISO": "2025-08-10T02:16:27.000Z",
-    "textPlain": "Oh wow, TIL there is finally a simple way to actually view OpenStreetMap! Gosh, that's overdue. Glad it's done though!",
+    "id": 44848383,
+    "by": "andai",
+    "timeISO": "2025-08-09T17:29:17.000Z",
+    "textPlain": "From the screenshot I wanted to say, couldn't this be done on a single VPS? Seemed over engineered to me. Then I realized the silly pixels are on top of a map of the entire earth. Dang!I'm curious what the peak req/s is like. I think it might be just barely within the range supported by benchmark-friendly web servers.Unless there's some kind of order of magnitude slowdowns due to the nature of the application.Edit: Looks like about 64 pixels per km (4096 per km^2). At full color uncompressed that's about 8TB to cover the entire earth (thinking long-term!). 10TB box is €20/month from Hetzner. You'd definitely want some caching though ;)Edit 2: wplace uses 1000x1000 px pngs for the drawing layer. The drawings load instantly, while the map itself is currently very laggy, and some chunks permanently missing.",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44852809,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-10T04:44:48.000Z",
+    "textPlain": "429 is your friend... but well done for handling the load!",
     "parent": 44846318,
     "depth": 1
   },
@@ -32,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44848383,
-    "by": "andai",
-    "timeISO": "2025-08-09T17:29:17.000Z",
-    "textPlain": "From the screenshot I wanted to say, couldn't this be done on a single VPS? Seemed over engineered to me. Then I realized the silly pixels are on top of a map of the entire earth. Dang!I'm curious what the peak req/s is like. I think it might be just barely within the range supported by benchmark-friendly web servers.Unless there's some kind of order of magnitude slowdowns due to the nature of the application.Edit: Looks like about 64 pixels per km (4096 per km^2). At full color uncompressed that's about 8TB to cover the entire earth (thinking long-term!). 10TB box is €20/month from Hetzner. You'd definitely want some caching though ;)Edit 2: wplace uses 1000x1000 px pngs for the drawing layer. The drawings load instantly, while the map itself is currently very laggy, and some chunks permanently missing.",
+    "id": 44852267,
+    "by": "Ericson2314",
+    "timeISO": "2025-08-10T02:16:27.000Z",
+    "textPlain": "Oh wow, TIL there is finally a simple way to actually view OpenStreetMap! Gosh, that's overdue. Glad it's done though!",
     "parent": 44846318,
     "depth": 1
   },
@@ -104,18 +112,18 @@
     "depth": 1
   },
   {
-    "id": 44848262,
-    "by": "perching_aix",
-    "timeISO": "2025-08-09T17:13:35.000Z",
-    "textPlain": "Haven't worked with Cloudflare yet first hand, and I'm not familiar with web map tech. But if the site really is pretty much just serving lots of static files, why is Hetzner in the loop? Wouldn't fully migrating to Cloudflare Pages be possible?",
-    "parent": 44846318,
-    "depth": 1
-  },
-  {
     "id": 44846923,
     "by": "fnord77",
     "timeISO": "2025-08-09T14:47:42.000Z",
     "textPlain": "sounds like they survived 1,000 reqs/sec and the cloudflare CDN survived 99,000 reqs/sec",
+    "parent": 44846318,
+    "depth": 1
+  },
+  {
+    "id": 44848262,
+    "by": "perching_aix",
+    "timeISO": "2025-08-09T17:13:35.000Z",
+    "textPlain": "Haven't worked with Cloudflare yet first hand, and I'm not familiar with web map tech. But if the site really is pretty much just serving lots of static files, why is Hetzner in the loop? Wouldn't fully migrating to Cloudflare Pages be possible?",
     "parent": 44846318,
     "depth": 1
   },
@@ -152,6 +160,14 @@
     "depth": 2
   },
   {
+    "id": 44849954,
+    "by": "TylerE",
+    "timeISO": "2025-08-09T20:36:54.000Z",
+    "textPlain": "\"€20/month from Hetzner\" is great until you actually need it to be up and working when you need it.",
+    "parent": 44848383,
+    "depth": 2
+  },
+  {
     "id": 44847968,
     "by": "hyperknot",
     "timeISO": "2025-08-09T16:43:49.000Z",
@@ -160,11 +176,11 @@
     "depth": 2
   },
   {
-    "id": 44849954,
-    "by": "TylerE",
-    "timeISO": "2025-08-09T20:36:54.000Z",
-    "textPlain": "\"€20/month from Hetzner\" is great until you actually need it to be up and working when you need it.",
-    "parent": 44848383,
+    "id": 44852799,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-10T04:41:25.000Z",
+    "textPlain": "... And then it became 1M rps!",
+    "parent": 44852267,
     "depth": 2
   },
   {
@@ -240,18 +256,18 @@
     "depth": 2
   },
   {
-    "id": 44847196,
-    "by": "010101010101",
-    "timeISO": "2025-08-09T15:17:37.000Z",
-    "textPlain": "Do you expect him just to let the service remain broken or to scale up to infinite cost to himself on this volunteer project? He worked with the project author to find a solution that works for both and does not degrade service for every other user, under literally no obligation to do anything at all.\n This isn’t Anthropic deciding to throttle users paying hundreds of dollars a month for a subscription. Constructive criticism is one thing, but entitlement to something run by an individual volunteer for free is absurd.",
-    "parent": 44846966,
-    "depth": 2
-  },
-  {
     "id": 44847125,
     "by": "columb",
     "timeISO": "2025-08-09T15:10:07.000Z",
     "textPlain": "You are so entitled... Because of you most nice things have \"no limits but...\". Not cool stress testing someone's infrastructure. Not cool. \nThe author of this post  is more than understanding, tried to fix it and offered a solution even after blocking them. On a free service.Show us what you have done.",
+    "parent": 44846966,
+    "depth": 2
+  },
+  {
+    "id": 44847196,
+    "by": "010101010101",
+    "timeISO": "2025-08-09T15:17:37.000Z",
+    "textPlain": "Do you expect him just to let the service remain broken or to scale up to infinite cost to himself on this volunteer project? He worked with the project author to find a solution that works for both and does not degrade service for every other user, under literally no obligation to do anything at all.\n This isn’t Anthropic deciding to throttle users paying hundreds of dollars a month for a subscription. Constructive criticism is one thing, but entitlement to something run by an individual volunteer for free is absurd.",
     "parent": 44846966,
     "depth": 2
   },
@@ -296,26 +312,10 @@
     "depth": 2
   },
   {
-    "id": 44848302,
-    "by": "internetter",
-    "timeISO": "2025-08-09T17:17:54.000Z",
-    "textPlain": "The tiles need to be rendered. Yes frequent tiles can be cached but you already have a cache… it’s Cloudflare. Theoretically you could port the tileserver to Cloudflare pages but then you’d need to… port it… and it probably wouldn’t be cheaper",
-    "parent": 44848262,
-    "depth": 2
-  },
-  {
     "id": 44847712,
     "by": "ndriscoll",
     "timeISO": "2025-08-09T16:14:31.000Z",
     "textPlain": "If I were a consumer of a free service from someone who will not take your money to offer support or an SLA (i.e. is not trying to run a business), I would assume there's little to no monitoring at all.",
-    "parent": 44847652,
-    "depth": 2
-  },
-  {
-    "id": 44847791,
-    "by": "timmg",
-    "timeISO": "2025-08-09T16:23:54.000Z",
-    "textPlain": "96% during a unique event. I think you would typically consider long term in a stat like that.Assuming it was close to 100% the rest of the year, that works out to 99.97% over 12 months.",
     "parent": 44847652,
     "depth": 2
   }

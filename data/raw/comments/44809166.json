@@ -64,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44852294,
-    "by": "0xCMP",
-    "timeISO": "2025-08-10T02:21:42.000Z",
-    "textPlain": "I don't see why people don't just run their own CAs more for private stuff.If exposed for others I think the wildcard cert is also what I did, but most tutorials have you issuing certs via ACME for internal or local-only things which doesn't even need to happen.I personally run my own CA and even setup an ACME server and internal DNS. Nobody knows what I am doing there.",
+    "id": 44851521,
+    "by": "Jnr",
+    "timeISO": "2025-08-10T00:01:07.000Z",
+    "textPlain": "I use Headscale, an open source implementation of Tailscale control server. And it doesn't have funnel functionality implemented out of the box, but I use a custom Traefik proxy manager Web UI in which I can expose ports on different Tailnet nodes.In order to avoid exposing something unnecessarily in the certificate transparency logs, I use a single wildcard certificate, so all the subdomains are not listed anywhere automatically.I use the same approach for services hosted in the internal subdomain, because I don't want everyone to know what exactly I'm running in my homelab.",
     "parent": 44850881,
     "depth": 2
   },
@@ -80,18 +80,18 @@
     "depth": 2
   },
   {
-    "id": 44851521,
-    "by": "Jnr",
-    "timeISO": "2025-08-10T00:01:07.000Z",
-    "textPlain": "I use Headscale, an open source implementation of Tailscale control server. And it doesn't have funnel functionality implemented out of the box, but I use a custom Traefik proxy manager Web UI in which I can expose ports on different Tailnet nodes.In order to avoid exposing something unnecessarily in the certificate transparency logs, I use a single wildcard certificate, so all the subdomains are not listed anywhere automatically.I use the same approach for services hosted in the internal subdomain, because I don't want everyone to know what exactly I'm running in my homelab.",
-    "parent": 44850881,
-    "depth": 2
-  },
-  {
     "id": 44851033,
     "by": "gitgud",
     "timeISO": "2025-08-09T22:42:41.000Z",
     "textPlain": "Wait, so bots watch for new records added to this HTTPS cert public ledger, then immediately start attacking?To me that sounds like enabling HTTPS is actually a risk here…",
+    "parent": 44850881,
+    "depth": 2
+  },
+  {
+    "id": 44852294,
+    "by": "0xCMP",
+    "timeISO": "2025-08-10T02:21:42.000Z",
+    "textPlain": "I don't see why people don't just run their own CAs more for private stuff.If exposed for others I think the wildcard cert is also what I did, but most tutorials have you issuing certs via ACME for internal or local-only things which doesn't even need to happen.I personally run my own CA and even setup an ACME server and internal DNS. Nobody knows what I am doing there.",
     "parent": 44850881,
     "depth": 2
   },
