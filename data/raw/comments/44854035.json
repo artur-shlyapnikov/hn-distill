@@ -16,14 +16,6 @@
     "depth": 1
   },
   {
-    "id": 44854992,
-    "by": "sebtron",
-    "timeISO": "2025-08-10T13:16:06.000Z",
-    "textPlain": "Basic completion in ksh is as easy as defining an array. From https://man.openbsd.org/ksh :Custom completions may be configured by creating an array named ‘complete_command’, optionally suffixed with an argument number to complete only for a single argument. So defining an array named ‘complete_kill’ provides possible completions for any argument to the kill(1) command, but ‘complete_kill_1’ only completes the first argument. For example, the following command makes ksh offer a selection of signal names for the first argument to kill(1):    set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM",
-    "parent": 44854035,
-    "depth": 1
-  },
-  {
     "id": 44854164,
     "by": "lihaoyi",
     "timeISO": "2025-08-10T10:21:14.000Z",
@@ -32,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44854971,
-    "by": "harimurti",
-    "timeISO": "2025-08-10T13:12:06.000Z",
-    "textPlain": "I’m not familiar with `_gnu_generic`, but it sounds like a handy shortcut for basic completions without writing a full script. Does it work with commands that only have `--help` but no man pages?",
+    "id": 44854992,
+    "by": "sebtron",
+    "timeISO": "2025-08-10T13:16:06.000Z",
+    "textPlain": "Basic completion in ksh is as easy as defining an array. From https://man.openbsd.org/ksh :Custom completions may be configured by creating an array named ‘complete_command’, optionally suffixed with an argument number to complete only for a single argument. So defining an array named ‘complete_kill’ provides possible completions for any argument to the kill(1) command, but ‘complete_kill_1’ only completes the first argument. For example, the following command makes ksh offer a selection of signal names for the first argument to kill(1):    set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM",
     "parent": 44854035,
     "depth": 1
   },
@@ -48,18 +40,26 @@
     "depth": 1
   },
   {
-    "id": 44854574,
-    "by": "vbezhenar",
-    "timeISO": "2025-08-10T11:51:29.000Z",
-    "textPlain": "Here's zsh snippet I've came up with for my own simple functions. I'm using it as a base for other completions. In this example, function `set-java-home zulu-21` sets JAVA_HOME to `~/apps/java/zulu-21`. Here's `_set-java-home`:    #compdef set-java-home\n    \n    local -a versions=(~/apps/java/*(:t))\n    _describe 'version' versions\n\nSo basically almost a one-liner (but couldn't do it really one-liner, unfortunately).",
-    "parent": 44854035,
-    "depth": 1
-  },
-  {
     "id": 44854174,
     "by": "oezi",
     "timeISO": "2025-08-10T10:22:26.000Z",
     "textPlain": "Isn't there a standard flag which programs can implement to avoid writing this bash script?Ideally this could all be part of a library such as argparse for typical cases, right?",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44854971,
+    "by": "harimurti",
+    "timeISO": "2025-08-10T13:12:06.000Z",
+    "textPlain": "I’m not familiar with `_gnu_generic`, but it sounds like a handy shortcut for basic completions without writing a full script. Does it work with commands that only have `--help` but no man pages?",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44854574,
+    "by": "vbezhenar",
+    "timeISO": "2025-08-10T11:51:29.000Z",
+    "textPlain": "Here's zsh snippet I've came up with for my own simple functions. I'm using it as a base for other completions. In this example, function `set-java-home zulu-21` sets JAVA_HOME to `~/apps/java/zulu-21`. Here's `_set-java-home`:    #compdef set-java-home\n    \n    local -a versions=(~/apps/java/*(:t))\n    _describe 'version' versions\n\nSo basically almost a one-liner (but couldn't do it really one-liner, unfortunately).",
     "parent": 44854035,
     "depth": 1
   },
@@ -112,10 +112,34 @@
     "depth": 2
   },
   {
+    "id": 44855281,
+    "by": "IgorPartola",
+    "timeISO": "2025-08-10T14:07:04.000Z",
+    "textPlain": "man pages are so underrated. I mean every project nowadays has README.md so I don’t see why we can’t just auto generate them with or without an LLM helping. Also I wish programs would use standardized generic arguments for help, config file, version, background the task, PID file, log file, and log level.",
+    "parent": 44854235,
+    "depth": 2
+  },
+  {
+    "id": 44855114,
+    "by": "sanewombat",
+    "timeISO": "2025-08-10T13:37:56.000Z",
+    "textPlain": "It's surprising that on OpenSUSE `zypper search fish-completion` returns more than 200 packages. Something is fishy here.",
+    "parent": 44854235,
+    "depth": 2
+  },
+  {
     "id": 44854808,
     "by": "cb321",
     "timeISO": "2025-08-10T12:43:08.000Z",
     "textPlain": "For those programs that have betrayed shipping man pages, instead say relying only on a --help system, do you happen to know if the fish shell has an analogue to Zsh `_gnu_generic` and Bash `complete -F _longopt`?  If not, do you have any insight into why not/what it would take to make that happen?",
+    "parent": 44854235,
+    "depth": 2
+  },
+  {
+    "id": 44854453,
+    "by": "kekebo",
+    "timeISO": "2025-08-10T11:22:15.000Z",
+    "textPlain": "Thank you for the comment.  \nhttps://github.com/umlx5h/zsh-manpage-completion-generator appears to adapt this to ZSH. Have yet to try through",
     "parent": 44854235,
     "depth": 2
   },
@@ -128,11 +152,11 @@
     "depth": 2
   },
   {
-    "id": 44854453,
-    "by": "kekebo",
-    "timeISO": "2025-08-10T11:22:15.000Z",
-    "textPlain": "Thank you for the comment.  \nhttps://github.com/umlx5h/zsh-manpage-completion-generator appears to adapt this to ZSH. Have yet to try through",
-    "parent": 44854235,
+    "id": 44855140,
+    "by": "loeg",
+    "timeISO": "2025-08-10T13:41:46.000Z",
+    "textPlain": "There is one particular command I occasionally use that has totally broken completion for files, so I've taken to just using 'ls X Y Z' to get the right completion behavior and then changing 'ls' to the right command as the last step.",
+    "parent": 44854384,
     "depth": 2
   },
   {
@@ -157,6 +181,14 @@
     "timeISO": "2025-08-10T11:13:19.000Z",
     "textPlain": "I have come to absolutely despise web form inputs with front end email validators that are broken. Input field hints to type your email, so you start typing. As soon as you type the first letter it goes red and says “error!!! Invalid email!”Unbelievably frustrating.",
     "parent": 44854384,
+    "depth": 2
+  },
+  {
+    "id": 44855289,
+    "by": "bbkane",
+    "timeISO": "2025-08-10T14:07:45.000Z",
+    "textPlain": "Thanks for sharing! I hope to incorporate your bash completion ideas into my CLIs (I've already got zsh completions).Instead of sourcing the zsh completion script on every startup, you can install it into somewhere on $fpath and zsh will \"compile\" and cache the completions. This can really speed up shell startup time, but of course is harder to set up. Users have to understand $fpath to put the completions there.I distribute my CLIs via Homebrew which can install completions automatically.",
+    "parent": 44854164,
     "depth": 2
   },
   {
@@ -205,6 +237,14 @@
     "timeISO": "2025-08-10T10:38:02.000Z",
     "textPlain": "I don't know about \"use\" — luckily, there's no opt-out telemetry — but enough of \"enthusiast distribution\" users who have also opted in (very biased sample) have explicitly installed zsh (not necessarily run it)https://pkgstats.archlinux.de/compare/packages#packages=bash...OTOH, it's only 4-7% on Debian (also opt-in):https://qa.debian.org/popcon.php?package=zsh",
     "parent": 44854197,
+    "depth": 2
+  },
+  {
+    "id": 44855363,
+    "by": "bbkane",
+    "timeISO": "2025-08-10T14:18:31.000Z",
+    "textPlain": "People do!See: https://pixi.carapace.sh/ or https://github.com/withfig/autocompleteIt's still a hard problem as lots of tools format --help differently. One of the things I'm jealous in Poweshell is their standardized completions",
+    "parent": 44854278,
     "depth": 2
   },
   {

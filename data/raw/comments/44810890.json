@@ -1,13 +1,5 @@
 [
   {
-    "id": 44852934,
-    "by": "valenterry",
-    "timeISO": "2025-08-10T05:17:39.000Z",
-    "textPlain": "There are a few stages, and each improves on the previous ones:1. Detect crashes at runtime and by default stop/crash to prevent continuing with invalid program state2. Detect crashes at runtime and handle them according to the business context (e.g. crash or retry or fallback-to or ...) to prevent bad UX through crashes.3. Detect potential crashes at compile-time to prevent the dev from forgetting to handle them according to the business context4. Don't just detect the possibility of crashes but also the specific type and context to prevent the dev from making a logical mistake and causing a potential runtime error during error handling according to the business contextAn example for stage 4 would be that the compiler checks that a fall-back option will actually always resolve the errors and not potentially introduce a new error / error type. Such as falling back to another URL does not actually always resolve the problem, there still needs to be handling for when the request to the alternative URL fails.The philosophy described in the article is basically just stage 1 and a (partial) default restart instead of a default crash, which is maybe a slight improvement but not really sufficient, at least not by my personal standards.",
-    "parent": 44810890,
-    "depth": 1
-  },
-  {
     "id": 44853819,
     "by": "hesus_ruiz",
     "timeISO": "2025-08-10T08:56:20.000Z",
@@ -16,10 +8,10 @@
     "depth": 1
   },
   {
-    "id": 44854620,
-    "by": "stcg",
-    "timeISO": "2025-08-10T12:01:39.000Z",
-    "textPlain": "\"Let it crash\" is a sentence that gets attention. It makes a person want to know more about it, as it sounds controversial and different. \"Let it heal\" doesn't have that.",
+    "id": 44852934,
+    "by": "valenterry",
+    "timeISO": "2025-08-10T05:17:39.000Z",
+    "textPlain": "There are a few stages, and each improves on the previous ones:1. Detect crashes at runtime and by default stop/crash to prevent continuing with invalid program state2. Detect crashes at runtime and handle them according to the business context (e.g. crash or retry or fallback-to or ...) to prevent bad UX through crashes.3. Detect potential crashes at compile-time to prevent the dev from forgetting to handle them according to the business context4. Don't just detect the possibility of crashes but also the specific type and context to prevent the dev from making a logical mistake and causing a potential runtime error during error handling according to the business contextAn example for stage 4 would be that the compiler checks that a fall-back option will actually always resolve the errors and not potentially introduce a new error / error type. Such as falling back to another URL does not actually always resolve the problem, there still needs to be handling for when the request to the alternative URL fails.The philosophy described in the article is basically just stage 1 and a (partial) default restart instead of a default crash, which is maybe a slight improvement but not really sufficient, at least not by my personal standards.",
     "parent": 44810890,
     "depth": 1
   },
@@ -28,6 +20,14 @@
     "by": "goosejuice",
     "timeISO": "2025-08-10T03:59:21.000Z",
     "textPlain": "https://erlang.org/pipermail/erlang-questions/2003-March/007...The origin, as far as I know it. I think it still holds, is insightful, as a general case. Let it heal seems pretty close to what Joe was getting at.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44854620,
+    "by": "stcg",
+    "timeISO": "2025-08-10T12:01:39.000Z",
+    "textPlain": "\"Let it crash\" is a sentence that gets attention. It makes a person want to know more about it, as it sounds controversial and different. \"Let it heal\" doesn't have that.",
     "parent": 44810890,
     "depth": 1
   },
@@ -60,6 +60,14 @@
     "by": "bgdkbtv",
     "timeISO": "2025-08-10T03:01:11.000Z",
     "textPlain": "This is great, thanks for sharing! I've been thinking about improving error handling in my liveview app and this might be a nice way to start.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44855148,
+    "by": "juped",
+    "timeISO": "2025-08-10T13:43:11.000Z",
+    "textPlain": "There's really not more that's useful to say than the relevant section (4.4) of Joe Armstrong's thesis says:>How does our philosophy of handling errors fit in with coding practices? What kind of code must the programmer write when they find an error? The philosophy is let some other process fix the error, but what does this mean for their code? The answer is let it crash. By this I mean that in the event of an error, then the program should just crash. But what is an error? For programming purpose we can say that:>• exceptions occur when the run-time system does not know what to do.>• errors occur when the programmer doesn’t know what to do.>If an exception is generated by the run-time system, but the programmer had foreseen this and knows what to do to correct the condition that caused the exception, then this is not an error. For example, opening a file which does not exist might cause an exception, but the programmer might decide that this is not an error. They therefore write code which traps this exception and takes the necessary corrective action.>Errors occur when the programmer does not know what to do. Programmers are supposed to follow specifications, but often the specification does not say what to do and therefore the programmer does not know what to do.>[...]>The defensive code detracts from the pure case and confuses the reader—the diagnostic is often no better than the diagnostic which the compiler supplies automatically.Note that this \"program\" is a process. For a process doing work, encountering something it can't handle is an error per the above definitions, and the process should just die, since there's nothing better for it to do; for a supervisor process supervising such processes-doing-work, \"my child process exited\" is an exception at worst, and usually not even an exception since the standard library supervisor code already handles that.",
     "parent": 44810890,
     "depth": 1
   },
@@ -104,14 +112,6 @@
     "depth": 1
   },
   {
-    "id": 44853844,
-    "by": "PicassoCTs",
-    "timeISO": "2025-08-10T09:02:02.000Z",
-    "textPlain": "https://fsharpforfunandprofit.com/rop/Railway orientated programming to the rescue?",
-    "parent": 44810890,
-    "depth": 1
-  },
-  {
     "id": 44852820,
     "by": "BobbyTables2",
     "timeISO": "2025-08-10T04:48:50.000Z",
@@ -124,6 +124,14 @@
     "by": "anthk",
     "timeISO": "2025-08-10T08:29:33.000Z",
     "textPlain": "Unix/BSD -> Crash, fix, restart.GNU/MIT/Lisp -> Detect, offer a fix, continue.",
+    "parent": 44810890,
+    "depth": 1
+  },
+  {
+    "id": 44853844,
+    "by": "PicassoCTs",
+    "timeISO": "2025-08-10T09:02:02.000Z",
+    "textPlain": "https://fsharpforfunandprofit.com/rop/Railway orientated programming to the rescue?",
     "parent": 44810890,
     "depth": 1
   },
@@ -160,6 +168,14 @@
     "depth": 2
   },
   {
+    "id": 44855290,
+    "by": "jonhohle",
+    "timeISO": "2025-08-10T14:07:47.000Z",
+    "textPlain": "It also has a deeper philosophical meaning of unexpected software bugs should be noisy and obvious instead of causing silently corruption or misleading user experience. If monitoring doesn’t catch the failure, customers will and it can be fixed right away (whether it’s the software, a hardware error, dependency issue, etc.).A web service returning a 500 error code is a lot more obvious than a 200 with an invalid payload. A crashed app with a stack trace is easier to debug and will cause more user feedback than an app than hangs in a retry loop.When I had to deal with these things in the Java world, it meant not blindly handling or swallowing exceptions that business code had no business caring about. Does your account management code really think it knows how to properly handle an InterruptedException? Unless your answer is rollback and reset the interrupted flag it’s probably wrong. Can’t write a test for a particular failure scenario? That better blow up loudly with enough context that makes it possible to understand the error condition (and then write a test for it).",
+    "parent": 44854620,
+    "depth": 2
+  },
+  {
     "id": 44854293,
     "by": "borromakot",
     "timeISO": "2025-08-10T10:46:36.000Z",
@@ -192,18 +208,18 @@
     "depth": 2
   },
   {
-    "id": 44853829,
-    "by": "conradfr",
-    "timeISO": "2025-08-10T08:57:53.000Z",
-    "textPlain": "If the rest of the program is still running while you fix it, yes?Also, restarting endlessly is just one strategy between multiple others.",
-    "parent": 44852737,
-    "depth": 2
-  },
-  {
     "id": 44852805,
     "by": "ramchip",
     "timeISO": "2025-08-10T04:42:54.000Z",
     "textPlain": "I recommend https://ferd.ca/the-zen-of-erlang.html starting from \"if my configuration file is corrupted, restarting won't fix anything\". The tl;dr is it helps with transient bugs.",
+    "parent": 44852737,
+    "depth": 2
+  },
+  {
+    "id": 44853829,
+    "by": "conradfr",
+    "timeISO": "2025-08-10T08:57:53.000Z",
+    "textPlain": "If the rest of the program is still running while you fix it, yes?Also, restarting endlessly is just one strategy between multiple others.",
     "parent": 44852737,
     "depth": 2
   },
@@ -248,18 +264,18 @@
     "depth": 2
   },
   {
-    "id": 44854575,
-    "by": "sarchertech",
-    "timeISO": "2025-08-10T11:51:38.000Z",
-    "textPlain": "> If you \"just crash\" it turns this request from one that only triggers a http 500 response to one that crashes the process.In phoenix each request has its own process and crashing that process will result in a 500 being sent to the client.",
-    "parent": 44853160,
-    "depth": 2
-  },
-  {
     "id": 44853248,
     "by": "josevalim",
     "timeISO": "2025-08-10T06:42:57.000Z",
     "textPlain": "Processes can be marked as temporary, which means they are not restarted, and that’s what is used when managing http connections, as you can’t really restart a request on the server without the client.  So the scenario above wouldn’t happen.You still want those processes to crash though, as it allows it to automatically clean up any concurrent work. For example, if during a request you start three processes to do concurrent work, like fetching APIs, then the request process crashes, the concurrent processes are automatically cleaned up.",
+    "parent": 44853160,
+    "depth": 2
+  },
+  {
+    "id": 44854575,
+    "by": "sarchertech",
+    "timeISO": "2025-08-10T11:51:38.000Z",
+    "textPlain": "> If you \"just crash\" it turns this request from one that only triggers a http 500 response to one that crashes the process.In phoenix each request has its own process and crashing that process will result in a 500 being sent to the client.",
     "parent": 44853160,
     "depth": 2
   },
@@ -301,22 +317,6 @@
     "timeISO": "2025-08-10T04:24:32.000Z",
     "textPlain": "Conceptually similar, different implementation. The perhaps most visible difference is that supervisors aren’t polling application state but are rather notified about errors (crashes), and restarting is extremely low latency.  Erlang/BEAM was invented for telephony, and it is possible for this to happen on the middle of a protocol and the user not even notice.",
     "parent": 44852663,
-    "depth": 2
-  },
-  {
-    "id": 44853779,
-    "by": "valenterry",
-    "timeISO": "2025-08-10T08:42:52.000Z",
-    "textPlain": "In general, if you can move any kind of logic to a lower level, that's better.For example, testing that kubernetes restarts work correctly is tricky and requires a complicated setup. Testing that an erlang process/actor behaves as expected is basically a unit test.",
-    "parent": 44852663,
-    "depth": 2
-  },
-  {
-    "id": 44852512,
-    "by": "borromakot",
-    "timeISO": "2025-08-10T03:14:13.000Z",
-    "textPlain": "Errors during initialization of a BEAM language application will crash the entire program, and you can decide to exit/crash a program if you get into some unrecoverable state. The important thing is the design of individual crashable/recoverable units.",
-    "parent": 44852476,
     "depth": 2
   }
 ]

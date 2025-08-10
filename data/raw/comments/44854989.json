@@ -1,10 +1,82 @@
 [
   {
+    "id": 44855214,
+    "by": "kevindamm",
+    "timeISO": "2025-08-10T13:53:45.000Z",
+    "textPlain": "Preemptive multithreading is better than cooperative multithreading (which windows 3 used) but then it's de-fanged by allowing the threads and process to adjust their own priority and set arbitrary lower bounds on how much time gets allotted to a thread per thunk.Then there's this:   > All of the OS/2 API routines use the Pascal extended keyword for their calling convention so that arguments are pushed on the stack in the opposite order of C. The Pascal keyword does not allow a system routine to receive a variable number of arguments, but the code generated using the Pascal convention is smaller and faster than the standard C convention.\n\nDid this choice of a small speed boost over compatibility ever haunt the decision makers, I wonder?  At the time, the speed boost probably was significant at the ~Mhz clock speeds these machines were running at, and Moore's Law had only just gotten started.  Maybe I tend to lean in the direction of compatibility but this seemed like a weird choice to me.  Then, in that same paragraph:   > Also, the stack is-restored by the called procedure rather than the caller.\n\nWhat could possibly go wrong?",
+    "parent": 44854989,
+    "depth": 1
+  },
+  {
+    "id": 44855283,
+    "by": "mikewarot",
+    "timeISO": "2025-08-10T14:07:21.000Z",
+    "textPlain": "The cool thing about OS/2 2.1 was that you could easily boot off of a single 1.44 Mb floppy disk, and run multitasking operations, without the need for the GUI.I had (and likely have lost forever) a Boot disk with OS/2, and my Forth/2 system on it that could do directory listings while playing Toccata and Fugue in D minor in a different thread.I wrote Forth/2 out of pure spite, because somehow I heard that it just wasn't possible to write OS/2 applications in assembler. Thanks to a copy of the OS/2 development kit from Ward Christensen (who worked at IBM), and a few months of spare time, Forth/2 was born, written in pure assembler, compiling to directly threaded native code.  Brian Matthewson from Case Western wrote the manual for it. Those were fun times.",
+    "parent": 44854989,
+    "depth": 1
+  },
+  {
     "id": 44855069,
     "by": "wkjagt",
     "timeISO": "2025-08-10T13:30:52.000Z",
     "textPlain": "> OS/2, Microsoft’s latest addition to its operating system lineWasn't it mostly an IBM product, with Microsoft being involved only in the beginning?",
     "parent": 44854989,
     "depth": 1
+  },
+  {
+    "id": 44855343,
+    "by": "mananaysiempre",
+    "timeISO": "2025-08-10T14:16:26.000Z",
+    "textPlain": "16-bit Windows used the Pascal calling convention, with the documentation in the Windows 1.0 SDK only listing Pascal function declarations. (Most C programs for 16-bit Windows use FAR PASCAL in their declarations—the WINAPI macro was introduced with Win32 as a porting tool.) Before that, the original development environment for the Macintosh was a Lisa prototype running UCSD Pascal, and even the original edition of Inside Macintosh listed Pascal declarations only. (I don’t know how true it is that Windows originated as a porting layer for moving Excel away from the Mac, but it feels at least a bit true.) If you look at the call/return instructions, the x86 is clearly a Pascal machine (take the time to read the full semantics of the 80186’s ENTER instruction at some point). Hell, the C standard wouldn’t be out for two more years, and function prototypes (borrowed early from the still-in-development C++) weren’t a sure thing. C was not yet the default choice.>> Also, the stack is-restored by the called procedure rather than the caller.> What could possibly go wrong?This is still the case for non-vararg __stdcall functions used by Win32. (The argument order was reversed compared to Win16’s __far __pascal.) On the other hand, the __syscall convention used by 32-bit OS/2 switched to caller clean-up (and passed some arguments in registers).",
+    "parent": 44855214,
+    "depth": 2
+  },
+  {
+    "id": 44855307,
+    "by": "maximilianburke",
+    "timeISO": "2025-08-10T14:10:57.000Z",
+    "textPlain": "Callee clean-up was (is? is.) standard for the 32-bit Win32 API; it's been pretty stable now for coming up on 40 years now.",
+    "parent": 44855214,
+    "depth": 2
+  },
+  {
+    "id": 44855349,
+    "by": "rep_lodsb",
+    "timeISO": "2025-08-10T14:16:41.000Z",
+    "textPlain": "On x86, the RET instruction can add a constant to the stack pointer after popping the return address. Compared to the caller cleaning up the stack, this saves 3 bytes (and about the same number of clock cycles) for every call.There is nothing wrong with using this calling convention, except for those specific functions that need to have a variable number of arguments - and why not handle those few ones differently instead, unless you're using a braindead compiler / language that doesn't keep track of how functions are declared?",
+    "parent": 44855214,
+    "depth": 2
+  },
+  {
+    "id": 44855136,
+    "by": "mananaysiempre",
+    "timeISO": "2025-08-10T13:41:23.000Z",
+    "textPlain": "The article is from December 1987, when nobody yet knew that it would end up that way. The Compaq Deskpro 386 had just been released in 1986 (thus unmooring the “IBM PC clones” from IBM), the September 1987 release of Windows/386 2.01 was only a couple of months ago (less if you account for print turnaround), and development of what would initially be called NT OS/2 would only start in 1988, with the first documents in the NT Design Workbook being dated 1989. Even OS/2 1.1, the first GUI version, would only come out in October 1988 (on one hand, really late; on the other, how the hell did they release things so fast then?..).",
+    "parent": 44855069,
+    "depth": 2
+  },
+  {
+    "id": 44855269,
+    "by": "zabzonk",
+    "timeISO": "2025-08-10T14:04:47.000Z",
+    "textPlain": "Microsoft unwrote a lot of the code that IBM needlessly wrote.I worked as a trainer at a commercial training company that used the Glockenspiel  C++ compiler that required OS/2. It made me sad. NT made me happy.",
+    "parent": 44855069,
+    "depth": 2
+  },
+  {
+    "id": 44855132,
+    "by": "fredoralive",
+    "timeISO": "2025-08-10T13:40:43.000Z",
+    "textPlain": "This is from 1987, the IBM / Microsoft joint development agreement for OS/2 didn't fall apart until around 1990, and there was a lot of Microsoft work in early OS/2 (and conversely, non-multitasking MS-DOS 4.0 was largely IBM work).",
+    "parent": 44855069,
+    "depth": 2
+  },
+  {
+    "id": 44855087,
+    "by": "rbanffy",
+    "timeISO": "2025-08-10T13:33:26.000Z",
+    "textPlain": "If you count the beginning as the time between OS/2 1.0 up until MS released Windows 3, then it makes sense. IBM understood Microsoft would continue to collaborate on OS/2 more or less forever.",
+    "parent": 44855069,
+    "depth": 2
   }
 ]

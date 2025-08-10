@@ -24,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44853772,
-    "by": "morserer",
-    "timeISO": "2025-08-10T08:40:43.000Z",
-    "textPlain": "They only mentioned it briefly, and not by number, but this release includes 95%+ bit-for-bit reproducibility on AMD64, ARM64, and RISC-V across more than 30,000 packages (92% mean across all architectures).Congratulations to the team--phenomenal work!https://reproduce.debian.net/",
+    "id": 44854714,
+    "by": "jjgreen",
+    "timeISO": "2025-08-10T12:21:33.000Z",
+    "textPlain": "I've been on Debian forever and love it to bits.  But in an act which can only be described as batshit insanity, they have chosen to patch Python's pip3 in a manner which breaks the --prefix option.  On Debian  pip3 install <whatever> --prefix=/usr/local\n\nwill install into /usr/local/local, so one has to use the prefix /usr.  The same command on, say, OpenSuSE will install into /usr and break your system.  Barking mad.https://sources.debian.org/src/python3.7/3.7.3-2+deb10u3/deb...",
     "parent": 44848782,
     "depth": 1
   },
@@ -40,6 +40,14 @@
     "depth": 1
   },
   {
+    "id": 44853772,
+    "by": "morserer",
+    "timeISO": "2025-08-10T08:40:43.000Z",
+    "textPlain": "They only mentioned it briefly, and not by number, but this release includes 95%+ bit-for-bit reproducibility on AMD64, ARM64, and RISC-V across more than 30,000 packages (92% mean across all architectures).Congratulations to the team--phenomenal work!https://reproduce.debian.net/",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44849292,
     "by": "bbarnett",
     "timeISO": "2025-08-09T19:20:41.000Z",
@@ -48,26 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44852700,
-    "by": "int_19h",
-    "timeISO": "2025-08-10T04:12:55.000Z",
-    "textPlain": "I see that systemd is still doing this thing where they are trying to strong-arm all Linux distros into arbitrary stuff that someone decided is the only right way to do something:> 5.2.2. systemd message: System is tainted: unmerged-bin\nsystemd upstream, since version 256, considers systems having separate /usr/bin and /usr/sbin directories noteworthy. At startup systemd emits a message to record this fact: System is tainted: unmerged-bin. It is recommended to ignore this message. Merging these directories manually is unsupported and will break future upgrades. Further details can be found in bug #1085370.No option to disable this either, per discussion in https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1085370",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44854714,
-    "by": "jjgreen",
-    "timeISO": "2025-08-10T12:21:33.000Z",
-    "textPlain": "I've been on Debian forever and love it to bits.  But in an act which can only be described as batshit insanity, they have chosen to patch Python's pip3 in a manner which breaks the --prefix option.  On Debian  pip3 install <whatever> --prefix=/usr/local\n\nwill install into /usr/local/local, so one has to use the prefix /usr.  The same command on, say, OpenSuSE will install into /usr and break your system.  Barking mad.https://sources.debian.org/src/python3.7/3.7.3-2+deb10u3/deb...",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44850563,
     "by": "pss314",
     "timeISO": "2025-08-09T21:44:42.000Z",
     "textPlain": "A new APT sources format \"debian.sources\" is announced with trixie. The now older \"sources.list\" format is still supported, but is likely to be deprecated in a future Debian release.See below:  APT is moving to a different format for configuring where it downloads packages from. The files /etc/apt/sources.list and *.list files in /etc/apt/sources.list.d/ are replaced by files still in that directory but with names ending in .sources, using the new, more readable (deb822 style) format. For details see sources.list(5). Examples of APT configurations in these notes will be given in the new deb822 format.\n\n  If your system is using multiple sources files then you will need to ensure they stay consistent.\n\n- https://wiki.debian.org/SourcesList#APT_sources_format- https://www.debian.org/releases/trixie/release-notes/upgradi...\"apt modernize-sources\" command can be used to simulate and replace \".list\" files with the new \".sources\" format.  Modernizing will replace .list files with the new .sources format, add Signed-By values where they can be determined automatically, and save the old files into .list.bak files.\n\n  This command supports the 'signed-by' and 'trusted' options. If you have specified other options inside [] brackets, please transfer them manually to the output files; see sources.list(5) for a mapping.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44852700,
+    "by": "int_19h",
+    "timeISO": "2025-08-10T04:12:55.000Z",
+    "textPlain": "I see that systemd is still doing this thing where they are trying to strong-arm all Linux distros into arbitrary stuff that someone decided is the only right way to do something:> 5.2.2. systemd message: System is tainted: unmerged-bin\nsystemd upstream, since version 256, considers systems having separate /usr/bin and /usr/sbin directories noteworthy. At startup systemd emits a message to record this fact: System is tainted: unmerged-bin. It is recommended to ignore this message. Merging these directories manually is unsupported and will break future upgrades. Further details can be found in bug #1085370.No option to disable this either, per discussion in https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1085370",
     "parent": 44848782,
     "depth": 1
   },
@@ -176,10 +176,10 @@
     "depth": 1
   },
   {
-    "id": 44854459,
-    "by": "andersa",
-    "timeISO": "2025-08-10T11:23:25.000Z",
-    "textPlain": "I've been using the Debian trixie branch for about a year now on my local server, never once had a real issue with anything. Very impressive.",
+    "id": 44849514,
+    "by": "master_crab",
+    "timeISO": "2025-08-09T19:47:41.000Z",
+    "textPlain": "Debian 13 trixie includes numerous updated software packages (over 63% of all packages from the previous release)I’m not familiar with the metric definition they use, but I’d be worried if close to 100% of the packages they included in bookworm hadn’t been updated in the roughly 2 years between releases.I use Debian for most of my servers, so I’m sure there is a valid explanation of that phrase.",
     "parent": 44848782,
     "depth": 1
   },
@@ -192,18 +192,18 @@
     "depth": 1
   },
   {
-    "id": 44849514,
-    "by": "master_crab",
-    "timeISO": "2025-08-09T19:47:41.000Z",
-    "textPlain": "Debian 13 trixie includes numerous updated software packages (over 63% of all packages from the previous release)I’m not familiar with the metric definition they use, but I’d be worried if close to 100% of the packages they included in bookworm hadn’t been updated in the roughly 2 years between releases.I use Debian for most of my servers, so I’m sure there is a valid explanation of that phrase.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44853335,
     "by": "LoveMortuus",
     "timeISO": "2025-08-10T07:04:57.000Z",
     "textPlain": "I'm very sad to see them drop support for 32-bit, since that is the computer on which I have been using Debian for the past 10 years...Does anyone have any suggestions for a 32-bit distro that's still being updated?",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44854459,
+    "by": "andersa",
+    "timeISO": "2025-08-10T11:23:25.000Z",
+    "textPlain": "I've been using the Debian trixie branch for about a year now on my local server, never once had a real issue with anything. Very impressive.",
     "parent": 44848782,
     "depth": 1
   },
@@ -232,18 +232,18 @@
     "depth": 1
   },
   {
-    "id": 44852827,
-    "by": "ilvez",
-    "timeISO": "2025-08-10T04:49:43.000Z",
-    "textPlain": "Nice, more chaos to unstable again. Sincerely happy because of the release and new stable, but also selfishly happy because now unstable starts moving again.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849191,
     "by": "superkuh",
     "timeISO": "2025-08-09T19:08:05.000Z",
     "textPlain": "Biggest change for me is /tmp behavior. In Debian 13 /tmp become RAM-disk by default (instead of files on the file system) and uses up to 50% of available ram. But as expected of Debian the release notes included an easy fix to restore normal /tmp behavior for people and applications that place many small or large files there.https://www.debian.org/releases/trixie/release-notes/issues....>\"You can return to /tmp being a regular directory by running systemctl mask tmp.mount as root and rebooting.\"I kind of wish the distros had decided on a new /tmpfs (or /tmp/tmpfs, etc) directory for applications to opt-in to using ram-disk rather than replacing /tmp and having to opt-out.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44852827,
+    "by": "ilvez",
+    "timeISO": "2025-08-10T04:49:43.000Z",
+    "textPlain": "Nice, more chaos to unstable again. Sincerely happy because of the release and new stable, but also selfishly happy because now unstable starts moving again.",
     "parent": 44848782,
     "depth": 1
   },
@@ -264,14 +264,6 @@
     "depth": 1
   },
   {
-    "id": 44852524,
-    "by": "nodesocket",
-    "timeISO": "2025-08-10T03:18:59.000Z",
-    "textPlain": "I just upgraded a mini pc with no real issues. Main steps were:  1.) sudo apt-get update && sudo apt-get --yes upgrade && sudo apt-get --yes autoremove --purge\n  2.) Update all entries of bookworm to trixie in /etc/apt/sources.list.\n  3.) sudo apt full-upgrade\n  4.) sudo reboot\n  5.) sudo apt modernize-sources",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849564,
     "by": "sheerun",
     "timeISO": "2025-08-09T19:53:46.000Z",
@@ -284,6 +276,14 @@
     "by": "gcarvalho",
     "timeISO": "2025-08-09T19:53:55.000Z",
     "textPlain": "Looking forward to upgrade over the weekend.Have had my RPi on Debian since Debian 9, with smooth upgrades every time.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44852524,
+    "by": "nodesocket",
+    "timeISO": "2025-08-10T03:18:59.000Z",
+    "textPlain": "I just upgraded a mini pc with no real issues. Main steps were:  1.) sudo apt-get update && sudo apt-get --yes upgrade && sudo apt-get --yes autoremove --purge\n  2.) Update all entries of bookworm to trixie in /etc/apt/sources.list.\n  3.) sudo apt full-upgrade\n  4.) sudo reboot\n  5.) sudo apt modernize-sources",
     "parent": 44848782,
     "depth": 1
   },

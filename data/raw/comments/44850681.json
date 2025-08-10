@@ -40,18 +40,18 @@
     "depth": 1
   },
   {
-    "id": 44852939,
-    "by": "moi2388",
-    "timeISO": "2025-08-10T05:19:01.000Z",
-    "textPlain": "That’s what you get. Entra ID doesn’t allow you to blacklist or whitelist specific tenants for multi tenant apps, which causes problems like this.Add the fact that MSAL doesn’t work for stuff like browser extensions, so people have to implement their own security solutions to interact with Entra ID and it’s not surprising there are so many issues.",
+    "id": 44855105,
+    "by": "victor106",
+    "timeISO": "2025-08-10T13:36:21.000Z",
+    "textPlain": "Azure is a true cluster F.Okta (the other elephant in the room) has its own issues but at least it has decent documentation and even though it’s more expensive I think it’s worth paying that price just to keep security in a separate domain than co-mingle it with other Azure services.",
     "parent": 44850681,
     "depth": 1
   },
   {
-    "id": 44854565,
-    "by": "Keyframe",
-    "timeISO": "2025-08-10T11:49:40.000Z",
-    "textPlain": "It's Microsoft. I'm sure there are wonderful people there, but haven't we witnessed recently their master key leak, their engineers begging GPT in PRs to do stuff, their CEO boasting 'backend' engineers are going away.. I wouldn't rely on that company for anything, but I acknowledge a ton of people are not in that position. If they do stay however, it's malpractice.",
+    "id": 44852939,
+    "by": "moi2388",
+    "timeISO": "2025-08-10T05:19:01.000Z",
+    "textPlain": "That’s what you get. Entra ID doesn’t allow you to blacklist or whitelist specific tenants for multi tenant apps, which causes problems like this.Add the fact that MSAL doesn’t work for stuff like browser extensions, so people have to implement their own security solutions to interact with Entra ID and it’s not surprising there are so many issues.",
     "parent": 44850681,
     "depth": 1
   },
@@ -64,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44854351,
-    "by": "firesteelrain",
-    "timeISO": "2025-08-10T10:58:57.000Z",
-    "textPlain": "This dumb stuff is why even Microsoft should use a common, secured and vetted pipeline for service principals so this does not happen.",
+    "id": 44854565,
+    "by": "Keyframe",
+    "timeISO": "2025-08-10T11:49:40.000Z",
+    "textPlain": "It's Microsoft. I'm sure there are wonderful people there, but haven't we witnessed recently their master key leak, their engineers begging GPT in PRs to do stuff, their CEO boasting 'backend' engineers are going away.. I wouldn't rely on that company for anything, but I acknowledge a ton of people are not in that position. If they do stay however, it's malpractice.",
     "parent": 44850681,
     "depth": 1
   },
@@ -76,6 +76,14 @@
     "by": "9cb14c1ec0",
     "timeISO": "2025-08-10T01:26:53.000Z",
     "textPlain": "OAuth is frequently marketed as \"more secure\".  But implementations often confuse authentication with authorization, resulting in problems like this.",
+    "parent": 44850681,
+    "depth": 1
+  },
+  {
+    "id": 44854351,
+    "by": "firesteelrain",
+    "timeISO": "2025-08-10T10:58:57.000Z",
+    "textPlain": "This dumb stuff is why even Microsoft should use a common, secured and vetted pipeline for service principals so this does not happen.",
     "parent": 44850681,
     "depth": 1
   },
@@ -144,10 +152,26 @@
     "depth": 2
   },
   {
+    "id": 44855327,
+    "by": "xtajv",
+    "timeISO": "2025-08-10T14:14:16.000Z",
+    "textPlain": "> Network security is such an afterthought but it’s the best layer of defense you can have!I mean, it's an additional layer.Defense-in-depth is about having multiple.",
+    "parent": 44852564,
+    "depth": 2
+  },
+  {
     "id": 44851408,
     "by": "jameskilton",
     "timeISO": "2025-08-09T23:42:09.000Z",
     "textPlain": "The last decade has seen an increase push in what Google started calling \"Zero Trust\"[0] and dropping VPNs entirely. The issue being that once someone got into a VPN it was much, much harder to prevent them from accessing important data.So everything \"internal\" is now also external and required to have its own layer of permissions and the like, making it much harder for, e.g. the article, to use one exploit to access another service.[0] https://cloud.google.com/learn/what-is-zero-trust",
+    "parent": 44851391,
+    "depth": 2
+  },
+  {
+    "id": 44855284,
+    "by": "xtajv",
+    "timeISO": "2025-08-10T14:07:26.000Z",
+    "textPlain": "I guess the term \"defense in depth\" has fallen out of fashion?",
     "parent": 44851391,
     "depth": 2
   },
@@ -168,6 +192,14 @@
     "depth": 2
   },
   {
+    "id": 44855199,
+    "by": "netruk44",
+    "timeISO": "2025-08-10T13:50:52.000Z",
+    "textPlain": "I was a windows build engineer at Microsoft. I am unfamiliar with this specific UI for managing build tools (I think it may have been added after I left), however I would be surprised if it was actually RCE-capable.I notice that it requires the tool to be pulled from NuGet. While it looks like you could enter any package and NuGet source, I would be very surprised if there wasn’t a locked down whitelist of allowed sources (limited to internal Microsoft NuGet feeds).Locking down NuGet packages was one of the primary things we (the Windows Engineering System team) were heavily focusing on when I left years ago. We were explicitly prevented from using public NuGet packages at all. We had to repackage them and upload them to the internal source to be used.",
+    "parent": 44853363,
+    "depth": 2
+  },
+  {
     "id": 44854921,
     "by": "ExoticPearTree",
     "timeISO": "2025-08-10T13:04:44.000Z",
@@ -181,6 +213,14 @@
     "timeISO": "2025-08-10T10:15:24.000Z",
     "textPlain": "IMO “Azure AD” implies it is literally just AD hosted in Azure, when it’s become much more than that",
     "parent": 44853189,
+    "depth": 2
+  },
+  {
+    "id": 44855246,
+    "by": "moulick",
+    "timeISO": "2025-08-10T14:00:32.000Z",
+    "textPlain": "> engineers begging GPT in PRs to do stuffThis about donet/runtime?",
+    "parent": 44854565,
     "depth": 2
   },
   {
