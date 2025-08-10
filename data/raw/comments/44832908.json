@@ -1,17 +1,17 @@
 [
   {
-    "id": 44851291,
-    "by": "visarga",
-    "timeISO": "2025-08-09T23:21:13.000Z",
-    "textPlain": "Let's change this game a bit. Spell \"understanding\" in your head in reverse order without spending twice more time than forward mode. Can you? I can't. Does that mean we don't really understand?",
+    "id": 44851356,
+    "by": "richard_cory",
+    "timeISO": "2025-08-09T23:34:45.000Z",
+    "textPlain": "This is consistently reproducible in completions API with `gpt-5-chat-latest` model:```\ncurl 'https://api.openai.com/v1/chat/completions' \\\n--header 'Content-Type: application/json' \\\n--header 'Authorization: Bearer <your-api-key>' \\\n--data '{\n    \"model\": \"gpt-5-chat-latest\",\n    \"messages\": [\n        {\n            \"role\": \"user\",\n            \"content\": [\n                {\n                    \"type\": \"text\",\n                    \"text\": \"How many times does the letter b appear in blueberry\"\n                }\n            ]\n        }\n    ],\n    \"temperature\": 0,\n    \"max_completion_tokens\": 2048,\n    \"top_p\": 1,\n    \"frequency_penalty\": 0,\n    \"presence_penalty\": 0\n}'\n```",
     "parent": 44832908,
     "depth": 1
   },
   {
-    "id": 44850939,
-    "by": "nipponese",
-    "timeISO": "2025-08-09T22:30:45.000Z",
-    "textPlain": "I just tried it and sure enough, 3 Bs. But which the model to \"ChatGPT 5 Thinking\" and it gets the answer right.Is that where we're going with this? The user has to choose between fast and dumb or slow and right?",
+    "id": 44851392,
+    "by": "mikehearn",
+    "timeISO": "2025-08-09T23:39:38.000Z",
+    "textPlain": "This is a well known blindspot for LLMs. It's the machine version of showing a human an optical illusion and then judging their intelligence when they fail to perceive the reality of the image (the gray box example at the top of https://en.wikipedia.org/wiki/Optical_illusion is a good example). The failure is a result of their/our fundamental architecture.",
     "parent": 44832908,
     "depth": 1
   },
@@ -24,42 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44851238,
-    "by": "jcims",
-    "timeISO": "2025-08-09T23:12:06.000Z",
-    "textPlain": "Just asked ChatGPT5 \"Are you told to 'think' when someone asks you how many of a certain letter are in a word?\">Yes — when you ask something like “How many r’s are in blueberry?” I’m basically told to slow down, not just blurt out the first number that pops into my “mind.”Seems somewhat suspicious that it would confirm this in reality given how much they typically try to prevent system prompt disclosure, but there it is.",
-    "parent": 44832908,
-    "depth": 1
-  },
-  {
-    "id": 44851250,
-    "by": "patrickhogan1",
-    "timeISO": "2025-08-09T23:14:22.000Z",
-    "textPlain": "That because you don’t say“Think hard about this” and the OpenAI router layer routed you to the cheaper model.GPT5 seems to violate Rich Sutton’s bitter lesson. As GPT5 makes a lot of human knowledge assumptions about whether to send your prompt to the cheap model or to the smarter more expensive model.",
-    "parent": 44832908,
-    "depth": 1
-  },
-  {
-    "id": 44835945,
-    "by": "andai",
-    "timeISO": "2025-08-08T11:52:01.000Z",
-    "textPlain": "My phone still has gpt-4o which gets it right: https://files.catbox.moe/0yg6cu.jpgBut my browser has gpt-5 which says 3: https://files.catbox.moe/63qkce.jpgClaude spells it out letter by letter: https://files.catbox.moe/f1irfx.jpgSo I thought GPT-5 Thinking might get it right, and it does: https://files.catbox.moe/xlchnr.jpgIt refuses to show the thinking process for this question though, so its unclear if it even used the reasoning model or fell back on a non reasoning one.> While GPT‑5 in ChatGPT is a system of reasoning, non-reasoning, and router models, GPT‑5 in the API platform is the reasoning model that powers maximum performance in ChatGPT. Notably, GPT‑5 with minimal reasoning is a different model than the non-reasoning model in ChatGPT, and is better tuned for developers. The non-reasoning model used in ChatGPT is available as gpt-5-chat-latest.https://openai.com/index/introducing-gpt-5-for-developers/",
-    "parent": 44832908,
-    "depth": 1
-  },
-  {
-    "id": 44851273,
-    "by": "tiberius_p",
-    "timeISO": "2025-08-09T23:18:00.000Z",
-    "textPlain": "How can you count on someone who can't count?",
-    "parent": 44832908,
-    "depth": 1
-  },
-  {
-    "id": 44833468,
-    "by": "schoen",
-    "timeISO": "2025-08-08T04:39:38.000Z",
-    "textPlain": "These are always amazing when juxtaposed with apparently impressive LLM reasoning, knowledge, and creativity. You can trivially get them to make the most basic mistakes about words and numbers, and double down on those mistakes, repeatedly explaining that they're totally correct.Have any systems tried prompting LLMs with a warning like \"You don't intuitively or automatically know many facts about words, spelling, or the structure or context of text, when considered as text; for example, you don't intuitively or automatically know how words or other texts are spelled, how many letters they contain, or what the result of applying some code, mechanical transformation, or substitution to a word or text is. Your natural guesses about these subjects are likely to be wrong as a result of how your training doesn't necessarily let you infer correct answers about them. If the content or structure of a word or text, or the result of using a transformation, code, or the like on a text, is a subject of conversation, or you are going to make a claim about it, always use a tool to confirm your intuitions.\"?",
+    "id": 44851354,
+    "by": "mdp2021",
+    "timeISO": "2025-08-09T23:33:59.000Z",
+    "textPlain": "I have done this test extensively days ago, on a dozen models: no one could count - all of them got results wrong, all of them suggested they can't check and will just guess.Until they will be able of procedural thinking they will be radically, structurally unreliable. Structurally delirious.And it is also a good thing that we can check in this easy way - if the producers patched the local fault only, then the absence of procedural thinking would not be clear, and we would need more sophisticated ways to check.",
     "parent": 44832908,
     "depth": 1
   },
@@ -72,18 +40,42 @@
     "depth": 1
   },
   {
-    "id": 44850949,
-    "by": "ShakataGaNai",
-    "timeISO": "2025-08-09T22:31:40.000Z",
-    "textPlain": "I tried and was unable to replicate.Me: How many R's in strawberry\nChatGPT said: 3Me: How many B's in blueberry?\nChatGPT said: 2Me: How many C's in coconut?\nChatGPT said: 2Me: How many D's in Diamond?\nChatGPT said: 2Me: How many A's in Banana?\nChatGPT said: 3https://chatgpt.com/share/6897cc40-6650-8006-aae3-ea2b8278d5...",
+    "id": 44835945,
+    "by": "andai",
+    "timeISO": "2025-08-08T11:52:01.000Z",
+    "textPlain": "My phone still has gpt-4o which gets it right: https://files.catbox.moe/0yg6cu.jpgBut my browser has gpt-5 which says 3: https://files.catbox.moe/63qkce.jpgClaude spells it out letter by letter: https://files.catbox.moe/f1irfx.jpgSo I thought GPT-5 Thinking might get it right, and it does: https://files.catbox.moe/xlchnr.jpgIt refuses to show the thinking process for this question though, so its unclear if it even used the reasoning model or fell back on a non reasoning one.> While GPT‑5 in ChatGPT is a system of reasoning, non-reasoning, and router models, GPT‑5 in the API platform is the reasoning model that powers maximum performance in ChatGPT. Notably, GPT‑5 with minimal reasoning is a different model than the non-reasoning model in ChatGPT, and is better tuned for developers. The non-reasoning model used in ChatGPT is available as gpt-5-chat-latest.https://openai.com/index/introducing-gpt-5-for-developers/",
     "parent": 44832908,
     "depth": 1
   },
   {
-    "id": 44851223,
-    "by": "aclissold",
-    "timeISO": "2025-08-09T23:09:05.000Z",
-    "textPlain": "Petition to respell the word as “bluebberry.”That the prediction engine so strongly suggests there should be two b’s in the middle implies that we instead may, in fact, be spelling it wrong.",
+    "id": 44850939,
+    "by": "nipponese",
+    "timeISO": "2025-08-09T22:30:45.000Z",
+    "textPlain": "I just tried it and sure enough, 3 Bs. But which the model to \"ChatGPT 5 Thinking\" and it gets the answer right.Is that where we're going with this? The user has to choose between fast and dumb or slow and right?",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44833468,
+    "by": "schoen",
+    "timeISO": "2025-08-08T04:39:38.000Z",
+    "textPlain": "These are always amazing when juxtaposed with apparently impressive LLM reasoning, knowledge, and creativity. You can trivially get them to make the most basic mistakes about words and numbers, and double down on those mistakes, repeatedly explaining that they're totally correct.Have any systems tried prompting LLMs with a warning like \"You don't intuitively or automatically know many facts about words, spelling, or the structure or context of text, when considered as text; for example, you don't intuitively or automatically know how words or other texts are spelled, how many letters they contain, or what the result of applying some code, mechanical transformation, or substitution to a word or text is. Your natural guesses about these subjects are likely to be wrong as a result of how your training doesn't necessarily let you infer correct answers about them. If the content or structure of a word or text, or the result of using a transformation, code, or the like on a text, is a subject of conversation, or you are going to make a claim about it, always use a tool to confirm your intuitions.\"?",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851326,
+    "by": "mikewarot",
+    "timeISO": "2025-08-09T23:28:59.000Z",
+    "textPlain": "Why don't people here on HN understand that LLMs never see ASCII or other raw characters as input?Expecting spelling, rhyming, arithmetic or other character oriented responses will always yield disappointing results.",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851615,
+    "by": "storus",
+    "timeISO": "2025-08-10T00:16:12.000Z",
+    "textPlain": "This is a tokenizer issue. Just ask it to first spell out the word letter by letter and then ask the same question. Not sure why people use it as a proof of LLMs being stupid. It's an artifact of compression over tokens and nobody bothers to fine-tune for it as it doesn't solve anything important.",
     "parent": 44832908,
     "depth": 1
   },
@@ -96,10 +88,10 @@
     "depth": 1
   },
   {
-    "id": 44851145,
-    "by": "smsm42",
-    "timeISO": "2025-08-09T22:57:22.000Z",
-    "textPlain": "What is fascinating here is the power of ironclad conviction. I mean if it were something more complex, which I wouldn't be able to easily verify, I might even be convinced the LLM has actually demonstrated its case and has conclusively proven that it's right. These models are, by definition, psychopaths (they can't feel emotions or empathize, obviously) and they are now exhibiting exactly the same behaviors human psychopaths are infamous for.",
+    "id": 44852032,
+    "by": "flufluflufluffy",
+    "timeISO": "2025-08-10T01:29:42.000Z",
+    "textPlain": "This is a funny little thing here. Good example of how we are still a long way from AGI. I don’t know why it’s making everybody so angry though.",
     "parent": 44832908,
     "depth": 1
   },
@@ -112,14 +104,6 @@
     "depth": 1
   },
   {
-    "id": 44850733,
-    "by": "dcre",
-    "timeISO": "2025-08-09T22:04:39.000Z",
-    "textPlain": "I think the concrete issue this points to is the thing that dynamically decides when to use reasoning failed to choose it in this instance. Sam Altman said it was broken on release day.",
-    "parent": 44832908,
-    "depth": 1
-  },
-  {
     "id": 44833800,
     "by": "Erem",
     "timeISO": "2025-08-08T05:38:53.000Z",
@@ -128,10 +112,74 @@
     "depth": 1
   },
   {
-    "id": 44833063,
-    "by": "HsuWL",
-    "timeISO": "2025-08-08T03:24:07.000Z",
-    "textPlain": "I love this test. Demonstrates the \"understanding\" process of the language model.",
+    "id": 44851487,
+    "by": "kgeist",
+    "timeISO": "2025-08-09T23:55:45.000Z",
+    "textPlain": "Qwen3 32b with reasoning (which I run locally) gives the correct answer. A pretty good model for its size.Pretty sure GPT5 with reasoning should be able to solve it, too. I guess the real problem here is that GPT5's router doesn't understand that it's a problem which requires reasoning.",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851238,
+    "by": "jcims",
+    "timeISO": "2025-08-09T23:12:06.000Z",
+    "textPlain": "Just asked ChatGPT5 \"Are you told to 'think' when someone asks you how many of a certain letter are in a word?\">Yes — when you ask something like “How many r’s are in blueberry?” I’m basically told to slow down, not just blurt out the first number that pops into my “mind.”Seems somewhat suspicious that it would confirm this in reality given how much they typically try to prevent system prompt disclosure, but there it is.",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851792,
+    "by": "razster",
+    "timeISO": "2025-08-10T00:43:48.000Z",
+    "textPlain": "I asked it very simply and it was right. I tried multiple ways and each time it was right. Maybe it had a hiccup and has resolved itself?",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851682,
+    "by": "userbinator",
+    "timeISO": "2025-08-10T00:29:25.000Z",
+    "textPlain": "Good to see this can still be used as a \"skill-testing\" question for anti-bot defenses, which doesn't require bending over to Big Tech and Big Browser.",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851620,
+    "by": "taormina",
+    "timeISO": "2025-08-10T00:17:25.000Z",
+    "textPlain": "Opus 4.1 does it too:How many b's in the word blueberry?There are 3 b's in the word \"blueberry\".\nThe word is spelled: b-l-u-e-b-e-r-r-y\nThe b's appear in positions 1, 5, and 6.",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44850949,
+    "by": "ShakataGaNai",
+    "timeISO": "2025-08-09T22:31:40.000Z",
+    "textPlain": "I tried and was unable to replicate.Me: How many R's in strawberry\nChatGPT said: 3Me: How many B's in blueberry?\nChatGPT said: 2Me: How many C's in coconut?\nChatGPT said: 2Me: How many D's in Diamond?\nChatGPT said: 2Me: How many A's in Banana?\nChatGPT said: 3https://chatgpt.com/share/6897cc40-6650-8006-aae3-ea2b8278d5...",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851301,
+    "by": "joks",
+    "timeISO": "2025-08-09T23:23:54.000Z",
+    "textPlain": "Is scrolling down the page on this website extremely laggy for anyone else? It's bizarre",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851250,
+    "by": "patrickhogan1",
+    "timeISO": "2025-08-09T23:14:22.000Z",
+    "textPlain": "That because you don’t say“Think hard about this” and the OpenAI router layer routed you to the cheaper model.GPT5 seems to violate Rich Sutton’s bitter lesson. As GPT5 makes a lot of human knowledge assumptions about whether to send your prompt to the cheap model or to the smarter more expensive model.",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851335,
+    "by": "mgh2",
+    "timeISO": "2025-08-09T23:30:29.000Z",
+    "textPlain": "I tried it twice, it gets it right: https://chatgpt.com/share/6897da1e-f988-8004-8453-8e7f7e3490...",
     "parent": 44832908,
     "depth": 1
   },
@@ -144,26 +192,66 @@
     "depth": 1
   },
   {
-    "id": 44851191,
-    "by": "badgersnake",
-    "timeISO": "2025-08-09T23:04:09.000Z",
-    "textPlain": "I’m surprised it gets as close as 3.",
+    "id": 44833063,
+    "by": "HsuWL",
+    "timeISO": "2025-08-08T03:24:07.000Z",
+    "textPlain": "I love this test. Demonstrates the \"understanding\" process of the language model.",
     "parent": 44832908,
     "depth": 1
   },
   {
-    "id": 44850686,
-    "by": "ck2",
-    "timeISO": "2025-08-09T22:00:24.000Z",
-    "textPlain": "The technical explanations to why this happens with strawberry, blueberry and similaris a great way to teach people how LLM works (and not work)https://techcrunch.com/2024/08/27/why-ai-cant-spell-strawber...https://arbisoft.com/blogs/why-ll-ms-can-t-count-the-r-s-in-...https://www.runpod.io/blog/llm-tokenization-limitations",
+    "id": 44851554,
+    "by": "dom96",
+    "timeISO": "2025-08-10T00:06:29.000Z",
+    "textPlain": "Here I thought that CAPTCHAs were done for, it sounds like we simply need to ask how many letters exist in particular words.",
     "parent": 44832908,
     "depth": 1
   },
   {
-    "id": 44851198,
-    "by": "wg0",
-    "timeISO": "2025-08-09T23:05:45.000Z",
-    "textPlain": "This thing isn't 500 billion dollars for sure. The blast radius of this bubble would be significant.",
+    "id": 44851358,
+    "by": "StarterPro",
+    "timeISO": "2025-08-09T23:34:52.000Z",
+    "textPlain": "I don't know, for a nearly trillion dollar venture, for it to get that answer wrong MULTIPLE times?How useful can generative AI be past acting as a bank for Sam Altman",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851145,
+    "by": "smsm42",
+    "timeISO": "2025-08-09T22:57:22.000Z",
+    "textPlain": "What is fascinating here is the power of ironclad conviction. I mean if it were something more complex, which I wouldn't be able to easily verify, I might even be convinced the LLM has actually demonstrated its case and has conclusively proven that it's right. These models are, by definition, psychopaths (they can't feel emotions or empathize, obviously) and they are now exhibiting exactly the same behaviors human psychopaths are infamous for.",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851223,
+    "by": "aclissold",
+    "timeISO": "2025-08-09T23:09:05.000Z",
+    "textPlain": "Petition to respell the word as “bluebberry.”That the prediction engine so strongly suggests there should be two b’s in the middle implies that we instead may, in fact, be spelling it wrong.",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851273,
+    "by": "tiberius_p",
+    "timeISO": "2025-08-09T23:18:00.000Z",
+    "textPlain": "How can you count on someone who can't count?",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44850733,
+    "by": "dcre",
+    "timeISO": "2025-08-09T22:04:39.000Z",
+    "textPlain": "I think the concrete issue this points to is the thing that dynamically decides when to use reasoning failed to choose it in this instance. Sam Altman said it was broken on release day.",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851625,
+    "by": "IAmGraydon",
+    "timeISO": "2025-08-10T00:18:08.000Z",
+    "textPlain": "The defensive stance of some of the people in this thread is telling. The absolute meltdown that’s going to occur when humanity full internalizes the fact that LLMs are not and will never be intelligent is going to be of epic proportions.",
     "parent": 44832908,
     "depth": 1
   },
@@ -176,10 +264,26 @@
     "depth": 1
   },
   {
-    "id": 44850647,
-    "by": "wslh",
-    "timeISO": "2025-08-09T21:55:02.000Z",
-    "textPlain": "Seems like they just fixed it: [1]. A \"thinking longer for a better answer\" message appeared before giving the answer.[1] https://chatgpt.com/share/6897c38b-12b8-800d-9cc2-571adb13bc...",
+    "id": 44851198,
+    "by": "wg0",
+    "timeISO": "2025-08-09T23:05:45.000Z",
+    "textPlain": "This thing isn't 500 billion dollars for sure. The blast radius of this bubble would be significant.",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44850686,
+    "by": "ck2",
+    "timeISO": "2025-08-09T22:00:24.000Z",
+    "textPlain": "The technical explanations to why this happens with strawberry, blueberry and similaris a great way to teach people how LLM works (and not work)https://techcrunch.com/2024/08/27/why-ai-cant-spell-strawber...https://arbisoft.com/blogs/why-ll-ms-can-t-count-the-r-s-in-...https://www.runpod.io/blog/llm-tokenization-limitations",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851546,
+    "by": "russellbeattie",
+    "timeISO": "2025-08-10T00:05:10.000Z",
+    "textPlain": "Just tried it a few times on Gemini 2.5 Flash, as well as the letter r in strawberry, e in housekeeper, h in hitchhiker, and i in supercalifragilisticexpialidocious.They were all correct.Not sure what exactly this proves or doesn't prove, but I figured I'd add it for posterity.",
     "parent": 44832908,
     "depth": 1
   },
@@ -192,131 +296,27 @@
     "depth": 1
   },
   {
+    "id": 44850647,
+    "by": "wslh",
+    "timeISO": "2025-08-09T21:55:02.000Z",
+    "textPlain": "Seems like they just fixed it: [1]. A \"thinking longer for a better answer\" message appeared before giving the answer.[1] https://chatgpt.com/share/6897c38b-12b8-800d-9cc2-571adb13bc...",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
+    "id": 44851572,
+    "by": "djoldman",
+    "timeISO": "2025-08-10T00:10:04.000Z",
+    "textPlain": "> \"Blueberry\" only has two bs.> Nope - blueberry really does have three b's.> Here it is spaced out:> bluebberryI love LLMs. And this is just too funny.",
+    "parent": 44832908,
+    "depth": 1
+  },
+  {
     "id": 44835416,
     "by": "jokoon",
     "timeISO": "2025-08-08T10:29:04.000Z",
     "textPlain": "Maybe it's joking",
     "parent": 44832908,
     "depth": 1
-  },
-  {
-    "id": 44850763,
-    "by": "exasperaited",
-    "timeISO": "2025-08-09T22:08:06.000Z",
-    "textPlain": "The extraordinary, beautiful, perfect thing about this is the way it poetically underscores several things about the LLM world:1) these people think so little of everyone else's areas of expertise they are willing to claim their technology has PhD-level expertise in them, apparently unironically.2) actually in LLM world, PhDs are what you have if you're too stupid not to take the FAANG money in your second year when the quick wins are done, you've done a couple of posters and now you realise you're papering over the cracks with them: worthless.  So why would anyone else want a PhD when PhDs are so worthless based on their bubble experience? We can just replace them with GPT-5.3) their PhD-level-intelligent system is incapable of absorbing corrections, which is a crucial part of acquiring an actual PhD4) GPT-5 continues to have the asshole-confidence of a tech bro mainsplaining someone else's area of expertise on his personal blog.We're now at the point where marketing is celebrating software that has had so much effort spent on crushing hallucination that in fact it has become delusionally confident.I love everything about this.ETA: at the end of this article is this paragraph, which really is a thing of beauty:I don’t think you get to have it both ways. That is, you don’t get to, as it were, borrow charisma from all the hype and then disavow every failure to live up to it as someone else’s naive mistake for believing the hype.Bravo.",
-    "parent": 44832908,
-    "depth": 1
-  },
-  {
-    "id": 44850572,
-    "by": "dang",
-    "timeISO": "2025-08-09T21:46:09.000Z",
-    "textPlain": "Url changed from https://bsky.app/profile/kjhealy.co/post/3lvtxbtexg226, which points to this.",
-    "parent": 44832908,
-    "depth": 1
-  },
-  {
-    "id": 44851103,
-    "by": "throwaway984393",
-    "timeISO": "2025-08-09T22:50:58.000Z",
-    "textPlain": "[dead]",
-    "parent": 44832908,
-    "depth": 1
-  },
-  {
-    "id": 44833756,
-    "by": "rbrbr",
-    "timeISO": "2025-08-08T05:29:28.000Z",
-    "textPlain": "[dead]",
-    "parent": 44832908,
-    "depth": 1
-  },
-  {
-    "id": 44850694,
-    "by": "gok",
-    "timeISO": "2025-08-09T22:01:13.000Z",
-    "textPlain": "This is like asking a human how many pixels appears in the word \"blueberry\".",
-    "parent": 44832908,
-    "depth": 1
-  },
-  {
-    "id": 44850837,
-    "by": "jonnycomputer",
-    "timeISO": "2025-08-09T22:18:05.000Z",
-    "textPlain": "For what it's worth, it got it right when I tried it.>simple question should be easy for a genius like you. have many letter b's in the word blueberry?\nChatGPT said:>There are 2 letter b's in blueberry — one at the start and one in the middle.",
-    "parent": 44832908,
-    "depth": 1
-  },
-  {
-    "id": 44850747,
-    "by": "shadowjones",
-    "timeISO": "2025-08-09T22:06:04.000Z",
-    "textPlain": "I think a lot of those trick questions outputting stupid stuff can be explained by simple economics.It's just not sustainable for OpenAI to run GPT at the best of its abilities on every request. Their new router is not trying to give you the most accurate answer, but a balance of speed/accuracy/sustainable cost on their side.(kind of) a similar thing happened when 4o came out, they often tinkered with it and the results were sometimes suddenly a lot worse, it's not that the model is bad, they're just doing all kind of optimizations/tricks because they can barely afford to run it for everyone.When sama says he believe it to have a PhD level, I almost believe him, because he have full access and can use it at 100% of its power all the time.Even OSS 20b gets it right the first time, I think the author was just mistakenly routed to the dumbest model because it seemed like an easy unimportant question.",
-    "parent": 44832908,
-    "depth": 1
-  },
-  {
-    "id": 44851222,
-    "by": "teamonkey",
-    "timeISO": "2025-08-09T23:08:55.000Z",
-    "textPlain": "Fast: when wrong is good enough.",
-    "parent": 44850939,
-    "depth": 2
-  },
-  {
-    "id": 44851163,
-    "by": "srveale",
-    "timeISO": "2025-08-09T23:00:37.000Z",
-    "textPlain": "Isn't that usually the choice for most things?",
-    "parent": 44850939,
-    "depth": 2
-  },
-  {
-    "id": 44833731,
-    "by": "mikestorrent",
-    "timeISO": "2025-08-08T05:23:36.000Z",
-    "textPlain": "This is a great idea. Like, if someone asked me to count the number of B's in your paragraph, I'd yeet it through `grep -o 'B' file.txt | wc -l` or similar, why would I sit there counting it by hand?As a human, if you give me a number on screen like 100000000, I can't be totally sure if that's 100 Million or 1 Billion without getting close and counting carefully. Should ought have my glasses. Mouse pointer helps some as an ersatz thousands-separator, but still.Since we're giving them tools, especially for math, it makes way more sense to start giving them access to some of the finest tools ever. Make an MCP into Mathematica or Matlab and let the LLM write some math and have classical solvers actually deal with the results. Let the LLM write little bits of bash or python as its primary approach for dealing with these kinds of analytical questions.It's like giving a kid a calculator...",
-    "parent": 44833468,
-    "depth": 2
-  },
-  {
-    "id": 44834836,
-    "by": "philipwhiuk",
-    "timeISO": "2025-08-08T08:38:17.000Z",
-    "textPlain": "You can’t just prompt your way out of a systemic flaw",
-    "parent": 44833468,
-    "depth": 2
-  },
-  {
-    "id": 44833947,
-    "by": "ehnto",
-    "timeISO": "2025-08-08T06:03:07.000Z",
-    "textPlain": "I often tell LLMs to ask questions if required, and that it is a skilled developer who is working along side me. That seems to help them be more collaborative rather than prescriptive.",
-    "parent": 44833468,
-    "depth": 2
-  },
-  {
-    "id": 44851261,
-    "by": "hansvm",
-    "timeISO": "2025-08-09T23:16:03.000Z",
-    "textPlain": "Common misconception. That just means the algorithm for counting letters can't be as simple as adding 1 for every token. The number of distinct tokens is tiny compared to the parameter space, and it's not infeasible to store a mapping from token type to character count in those weights.If you're fine appealing to less concrete ideas, transformers are arbitrary function approximators, tokenization doesn't change that, and there are proofs of those facts.For any finite-length function (like counting letters in a bounded domain), it's just a matter of having a big enough network and figuring out how to train it correctly. They just haven't bothered.",
-    "parent": 44840134,
-    "depth": 2
-  },
-  {
-    "id": 44850737,
-    "by": "wongarsu",
-    "timeISO": "2025-08-09T22:05:13.000Z",
-    "textPlain": "It can spell the word (writing each letter in uppercase followed by a whitespace, which should turn each letter with its whitespace into a separate token). It also has reasoning tokens to use as scratch space, and previous models have demonstrated knowledge of the fact that spelling words is a useful step to counting letters.Tokenization makes the problem difficult, but not solving it is still a reasoning/intelligence issue",
-    "parent": 44840134,
-    "depth": 2
-  },
-  {
-    "id": 44850624,
-    "by": "falcor84",
-    "timeISO": "2025-08-09T21:52:54.000Z",
-    "textPlain": "Where in the tokenization does the 3rd b come from?",
-    "parent": 44840134,
-    "depth": 2
   }
 ]

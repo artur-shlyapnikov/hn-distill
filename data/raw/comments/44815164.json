@@ -24,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44848966,
-    "by": "Catbert59",
-    "timeISO": "2025-08-09T18:38:34.000Z",
-    "textPlain": "I worked with BLE Meshing in industry products. With a lot of hops and a bit of traffic it becomes very unreliable quickly.Introducing something like TCP o top most likely will kill it because of the network load over a very thin and unreliable connections just causes more mess.Addendum: this \"experience\" is a few years old. Maybe newer BLE revisions improved this.",
+    "id": 44851678,
+    "by": "kawfey",
+    "timeISO": "2025-08-10T00:28:52.000Z",
+    "textPlain": "Bluetooth and wifi messengers have been awful over the years, but pretty much every hardware messanger (Gotenna, beartooth, and now meshtastic/meshcore/TTN/lora etc) have been very effective.Also FRS radios are still a thing.Though it still would be nice for cell phones to be telecommunicators instead of *cell* communicators.",
     "parent": 44815164,
     "depth": 1
   },
   {
-    "id": 44849203,
-    "by": "mistyvales",
-    "timeISO": "2025-08-09T19:09:18.000Z",
-    "textPlain": "RussFest is back baby!",
+    "id": 44848966,
+    "by": "Catbert59",
+    "timeISO": "2025-08-09T18:38:34.000Z",
+    "textPlain": "I worked with BLE Meshing in industry products. With a lot of hops and a bit of traffic it becomes very unreliable quickly.Introducing something like TCP o top most likely will kill it because of the network load over a very thin and unreliable connections just causes more mess.Addendum: this \"experience\" is a few years old. Maybe newer BLE revisions improved this.",
     "parent": 44815164,
     "depth": 1
   },
@@ -48,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44850967,
-    "by": "yobid20",
-    "timeISO": "2025-08-09T22:34:10.000Z",
-    "textPlain": "You'd have better luck using smoke signals than trying to do anything using bluetooth.",
+    "id": 44849203,
+    "by": "mistyvales",
+    "timeISO": "2025-08-09T19:09:18.000Z",
+    "textPlain": "RussFest is back baby!",
     "parent": 44815164,
     "depth": 1
   },
@@ -60,6 +60,22 @@
     "by": "egypturnash",
     "timeISO": "2025-08-09T17:03:29.000Z",
     "textPlain": "so is itBit ChatorBitch At?And is it somehow connected to bitcoin? This post mentions buying beer in exchange for \"sats\" so perhaps it is.The entirely-in-lowercase page of the actual project does not clarify any of these questions. Not that they're more than idle curiosity given that the conclusion of this review is \"it didn't work\".",
+    "parent": 44815164,
+    "depth": 1
+  },
+  {
+    "id": 44851371,
+    "by": "nullc",
+    "timeISO": "2025-08-09T23:36:11.000Z",
+    "textPlain": "If anyone here is interested in creating more reliable mesh messaging, you might want to consider store&forward with efficient reconciliation as a primitive.I helped create a library for reconciliation which might be useful: https://github.com/bitcoin-core/minisketchOne notion would be to divide time in to periods small enough to keep messages relevant, but big enough that all devices can be in sync well beyond that-- say an hour.  Then constantly try to get every device it total sync over the last N periods.   This kind of model can benefit from mobile devices... e.g. magnet a hub onto a trash collection cart and someone is magically ferrying messages from one side of the event to the other even if there are radio holes in the middle.Use of efficient reconciliation keeps the traffic closer to O(devices + messages) rather than O(devices * messages) created by 'everyone repeats' messaging.Unfortunately it hasn't really been an option open to the sort of devices that meshtastic runs on because they're extremely limited in memory.",
+    "parent": 44815164,
+    "depth": 1
+  },
+  {
+    "id": 44850967,
+    "by": "yobid20",
+    "timeISO": "2025-08-09T22:34:10.000Z",
+    "textPlain": "You'd have better luck using smoke signals than trying to do anything using bluetooth.",
     "parent": 44815164,
     "depth": 1
   },
@@ -109,6 +125,14 @@
     "timeISO": "2025-08-09T19:29:10.000Z",
     "textPlain": "I am interested to hear if you also try bitchat at the burn.",
     "parent": 44849080,
+    "depth": 2
+  },
+  {
+    "id": 44851746,
+    "by": "stavros",
+    "timeISO": "2025-08-10T00:37:43.000Z",
+    "textPlain": "This is the second comment that mentions Find My. Find My just sends data from BT beacons to Apple, it's not a mesh network at all.",
+    "parent": 44848842,
     "depth": 2
   },
   {

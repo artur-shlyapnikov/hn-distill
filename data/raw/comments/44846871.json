@@ -24,14 +24,6 @@
     "depth": 1
   },
   {
-    "id": 44848433,
-    "by": "zorked",
-    "timeISO": "2025-08-09T17:35:57.000Z",
-    "textPlain": "CORBA emerged in 1991 with another crucial insight: in heterogeneous environments, you can’t just “implement the protocol” in each language and hope for the best. The OMG IDL generated consistent bindings across C++, Java, Python, and more, ensuring that a C++ exception thrown by a server was properly caught and handled by a Java client. The generated bindings guaranteed that all languages saw identical interfaces, preventing subtle serialization differences.\n\nYes, CORBA was such a success.",
-    "parent": 44846871,
-    "depth": 1
-  },
-  {
     "id": 44849332,
     "by": "mac-mc",
     "timeISO": "2025-08-09T19:24:47.000Z",
@@ -40,10 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44849965,
-    "by": "ramoz",
-    "timeISO": "2025-08-09T20:37:48.000Z",
-    "textPlain": "Many great points. I think we are thinking about MCP the wrong way.The greater problem is industry misunderstanding and misalignment with what agents are and where they are headed.Web platforms of the world believe agents will be embedded in networked distributed infrastructure. So we should ship an MCP platform in our service mesh for all of the agents running in containers to connect to.I think this is wrong, and continues to be butchered as the web pushes a hard narrative that we need to enable web-native agents & their sdks/frameworks that deploy agents as conventional server applications. These are not agents nor the early evolutionary form of them.Frontier labs will be the only providers of the actual agentic harnesses. And we are rapidly moving to computer use agents - MCP servers were intended to serve as single instance deployments for single harnesses. ie. a single mcp server on my desktop for my Claude Desktop.",
+    "id": 44848433,
+    "by": "zorked",
+    "timeISO": "2025-08-09T17:35:57.000Z",
+    "textPlain": "CORBA emerged in 1991 with another crucial insight: in heterogeneous environments, you can’t just “implement the protocol” in each language and hope for the best. The OMG IDL generated consistent bindings across C++, Java, Python, and more, ensuring that a C++ exception thrown by a server was properly caught and handled by a Java client. The generated bindings guaranteed that all languages saw identical interfaces, preventing subtle serialization differences.\n\nYes, CORBA was such a success.",
     "parent": 44846871,
     "depth": 1
   },
@@ -52,6 +44,14 @@
     "by": "SillyUsername",
     "timeISO": "2025-08-09T20:24:21.000Z",
     "textPlain": "MCP is flawed but it learnt one thing correctly from years of RPC - complexity is the biggest time sink and holds back adoption in deference to simpler competing standards (cf XML vs JSON)- SOAP - interop needs support of DOC or RPC based between systems, or a combination, XML and schemas are also horribly verbose.- CORBA - libraries and framework were complex, modern languages at the time avoided them in deference to simpler standards (e.g. Java's Jini)- GPRC - designed for speed, not readability, requires mappings.It's telling that these days REST and JSON (via req/resp, webhooks, or even streaming) are the modern backbone of RPC. The above standards either are shoved aside or for GPRC only used where extreme throughput is needed.Since REST and JSON are the plat du jour, MCP probably aligns with that design paradigm rather than the dated legacy protocols.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44849965,
+    "by": "ramoz",
+    "timeISO": "2025-08-09T20:37:48.000Z",
+    "textPlain": "Many great points. I think we are thinking about MCP the wrong way.The greater problem is industry misunderstanding and misalignment with what agents are and where they are headed.Web platforms of the world believe agents will be embedded in networked distributed infrastructure. So we should ship an MCP platform in our service mesh for all of the agents running in containers to connect to.I think this is wrong, and continues to be butchered as the web pushes a hard narrative that we need to enable web-native agents & their sdks/frameworks that deploy agents as conventional server applications. These are not agents nor the early evolutionary form of them.Frontier labs will be the only providers of the actual agentic harnesses. And we are rapidly moving to computer use agents - MCP servers were intended to serve as single instance deployments for single harnesses. ie. a single mcp server on my desktop for my Claude Desktop.",
     "parent": 44846871,
     "depth": 1
   },
@@ -72,6 +72,14 @@
     "depth": 1
   },
   {
+    "id": 44849284,
+    "by": "ipython",
+    "timeISO": "2025-08-09T19:19:53.000Z",
+    "textPlain": "I am torn. I see this argument and intellectually agree with it (that interfaces need to be more explicit). However it seems that every time there is a choice between “better” design and “good enough”, the “good enough” wins handily.Multics vs Unix, xml based soap vs json based rest apis, xhtml’s failure, javascript itself, … I could keep going on.So I’ve resigned myself to admitting that we are doomed to reimplement the “good enough” every time, and continue to apply bandaid after bandaid to gradually fix problems after we rediscover them, slowly.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
     "id": 44850871,
     "by": "holografix",
     "timeISO": "2025-08-09T22:21:52.000Z",
@@ -80,10 +88,10 @@
     "depth": 1
   },
   {
-    "id": 44849284,
-    "by": "ipython",
-    "timeISO": "2025-08-09T19:19:53.000Z",
-    "textPlain": "I am torn. I see this argument and intellectually agree with it (that interfaces need to be more explicit). However it seems that every time there is a choice between “better” design and “good enough”, the “good enough” wins handily.Multics vs Unix, xml based soap vs json based rest apis, xhtml’s failure, javascript itself, … I could keep going on.So I’ve resigned myself to admitting that we are doomed to reimplement the “good enough” every time, and continue to apply bandaid after bandaid to gradually fix problems after we rediscover them, slowly.",
+    "id": 44849085,
+    "by": "BLanen",
+    "timeISO": "2025-08-09T18:54:13.000Z",
+    "textPlain": "As I've been saying.MCP is not a protocol. It doesn't protocolize anything of use. It's just \"here's some symbols, do with them whatever you want.\", leaving it there but then advertising that as a feature of its universality. It provides almost just as much of a protocol as TCP, but rebuild on 5 OSI layers, again.It's not a security issue, it's a ontological issue.",
     "parent": 44846871,
     "depth": 1
   },
@@ -100,14 +108,6 @@
     "by": "zwaps",
     "timeISO": "2025-08-09T18:43:44.000Z",
     "textPlain": "The author seems to fundamentally misunderstand how MCPs are going to be used and deployed.This is really obvious when they talk about tracing and monitoring, which seem to be the main points of criticism anyway.They bemoan that they cant trace across MCP calls, assuming somehow there would be a person administering all the MCPs.\nOf course each system has tracing in whatever fashion fits its system. \nThey are just not the same system, nor owned by the same people let alone companies.Same as monitoring cost. Oh, you can’t know who racked up the LLM costs? Well of course you can, these systems are already in place and there are a million of ways to do this. It has nothing to do with MCP.Reading this, I think its rather a blessing to start fresh and without the learnings of 40 years of failed protocols or whatever",
-    "parent": 44846871,
-    "depth": 1
-  },
-  {
-    "id": 44849085,
-    "by": "BLanen",
-    "timeISO": "2025-08-09T18:54:13.000Z",
-    "textPlain": "As I've been saying.MCP is not a protocol. It doesn't protocolize anything of use. It's just \"here's some symbols, do with them whatever you want.\", leaving it there but then advertising that as a feature of its universality. It provides almost just as much of a protocol as TCP, but rebuild on 5 OSI layers, again.It's not a security issue, it's a ontological issue.",
     "parent": 44846871,
     "depth": 1
   },
@@ -136,18 +136,18 @@
     "depth": 1
   },
   {
-    "id": 44849891,
-    "by": "cnst",
-    "timeISO": "2025-08-09T20:28:36.000Z",
-    "textPlain": "I think this article is missing the point that MCP is simply using the mainstream building blocks that have already regressed from what we've had previously, namely, JSON in place of proper RCP.The ISO8601 v Unix epoch example seems very weak to me.  I'd certainly expect any model to be capable of distinguishing between these things, so, it doesn't seem like a big deal that either one would be allowed in a JSON.Honestly, my view that nothing of value ever gets published on medium, is strongly reinforced here.",
-    "parent": 44846871,
-    "depth": 1
-  },
-  {
     "id": 44848517,
     "by": "self_awareness",
     "timeISO": "2025-08-09T17:46:46.000Z",
     "textPlain": "What's new?- Electron disregards 40 years of best deployment practices,- Web disregards 40 years of best GUI practices,- Fast CPUs and lots of RAM disregards 40 years of best software optimization techniques,there are probably many more examples.",
+    "parent": 44846871,
+    "depth": 1
+  },
+  {
+    "id": 44849891,
+    "by": "cnst",
+    "timeISO": "2025-08-09T20:28:36.000Z",
+    "textPlain": "I think this article is missing the point that MCP is simply using the mainstream building blocks that have already regressed from what we've had previously, namely, JSON in place of proper RCP.The ISO8601 v Unix epoch example seems very weak to me.  I'd certainly expect any model to be capable of distinguishing between these things, so, it doesn't seem like a big deal that either one would be allowed in a JSON.Honestly, my view that nothing of value ever gets published on medium, is strongly reinforced here.",
     "parent": 44846871,
     "depth": 1
   },
@@ -216,14 +216,6 @@
     "depth": 2
   },
   {
-    "id": 44849707,
-    "by": "hinkley",
-    "timeISO": "2025-08-09T20:09:36.000Z",
-    "textPlain": "> In healthcare, patient data types get coerced incorrectly, potentially leading to wrong medication dosing recommendations.May have changed, but unlikely. I worked with medical telemetry as a young man and it was impressed upon me thoroughly how important parsing timestamps correctly was. I have a faint memory, possibly false, of this being the first time I wrote unit tests (and without the benefit of a test framework).We even accounted for lack of NTP by recalculating times off of the timestamps I. Their message headers.And the reasons I was given were incident review as well as malpractice cases. A drug administered three seconds before a heart attack starts is a very different situation than one administered eight seconds after the patient crashed. We saw recently with the British postal service how lives can be ruined by bad data, and in medical data a minute is a world of difference.",
-    "parent": 44849009,
-    "depth": 2
-  },
-  {
     "id": 44849224,
     "by": "tomrod",
     "timeISO": "2025-08-09T19:12:23.000Z",
@@ -232,18 +224,18 @@
     "depth": 2
   },
   {
-    "id": 44849676,
-    "by": "avereveard",
-    "timeISO": "2025-08-09T20:06:40.000Z",
-    "textPlain": "MCP focuses on transport and managing context and doesn't absolve the user for sensibly implementing the interface (i.e. defining a schema and doing schema validation)this is like saying \"HTTP doesn't do json validation\", which, well, yeah.",
+    "id": 44849707,
+    "by": "hinkley",
+    "timeISO": "2025-08-09T20:09:36.000Z",
+    "textPlain": "> In healthcare, patient data types get coerced incorrectly, potentially leading to wrong medication dosing recommendations.May have changed, but unlikely. I worked with medical telemetry as a young man and it was impressed upon me thoroughly how important parsing timestamps correctly was. I have a faint memory, possibly false, of this being the first time I wrote unit tests (and without the benefit of a test framework).We even accounted for lack of NTP by recalculating times off of the timestamps I. Their message headers.And the reasons I was given were incident review as well as malpractice cases. A drug administered three seconds before a heart attack starts is a very different situation than one administered eight seconds after the patient crashed. We saw recently with the British postal service how lives can be ruined by bad data, and in medical data a minute is a world of difference.",
     "parent": 44849009,
     "depth": 2
   },
   {
-    "id": 44850237,
-    "by": "jongjong",
-    "timeISO": "2025-08-09T21:08:23.000Z",
-    "textPlain": "To me, the article was just rambling about all sorts of made up issues which only exist in the minds of people who never spent any time outside of corporate environments... A lot of 'preventative' ideas which make sense in some contexts but are mis-applied in different contexts.The stuff about type validation is incorrect. You don't need client-side validation. You shouldn't be using APIs you don't trust as tools and you can always add instructions about the LLM's output format to convert to different formats.MCP is not the issue. The issue is that people are using the wrong tools or their prompts are bad.If you don't like the format of an MCP tool and don't want to give formatting instructions the LLMs, you can always create your own MCP service which outputs data in the correct format. You don't need the coercion to happen on the client side.",
+    "id": 44849676,
+    "by": "avereveard",
+    "timeISO": "2025-08-09T20:06:40.000Z",
+    "textPlain": "MCP focuses on transport and managing context and doesn't absolve the user for sensibly implementing the interface (i.e. defining a schema and doing schema validation)this is like saying \"HTTP doesn't do json validation\", which, well, yeah.",
     "parent": 44849009,
     "depth": 2
   },
@@ -260,6 +252,14 @@
     "by": "oblio",
     "timeISO": "2025-08-09T20:10:04.000Z",
     "textPlain": "We keep repeating this.When desktop OSes came out, hardware resources were scarce so all the desktop OSes (DOS, Windows, MacOS) forgot all the lessons from Unix: multi user, cooperative multitasking, etc. 10 years later PC hardware was faster than workstations from the 90s yet we're still stuck with OSes riddled with limitations that stopped making sense in the 80s.When smartphones came out there was this gold rush and hardware resources were scarce so OSes (iOS, Android) again forgot all the lessons. 10 years later mobile hardware was faster than desktop hardware from the 00s. We're still stuck with mistakes from the 00s.AI basically does the same thing. It's all lead by very bright 20 and 30 year olds that weren't even born when Windows was first released.Our field is doomed under a Cascade of Attention-Deficit Teenagers: https://www.jwz.org/doc/cadt.html (copy paste the link).It's all gold rushes and nobody does Dutch urban infrastructure design over decades. Which makes sense as this is all driven by the US, where long term plan I is anathema.",
+    "parent": 44849009,
+    "depth": 2
+  },
+  {
+    "id": 44850237,
+    "by": "jongjong",
+    "timeISO": "2025-08-09T21:08:23.000Z",
+    "textPlain": "To me, the article was just rambling about all sorts of made up issues which only exist in the minds of people who never spent any time outside of corporate environments... A lot of 'preventative' ideas which make sense in some contexts but are mis-applied in different contexts.The stuff about type validation is incorrect. You don't need client-side validation. You shouldn't be using APIs you don't trust as tools and you can always add instructions about the LLM's output format to convert to different formats.MCP is not the issue. The issue is that people are using the wrong tools or their prompts are bad.If you don't like the format of an MCP tool and don't want to give formatting instructions the LLMs, you can always create your own MCP service which outputs data in the correct format. You don't need the coercion to happen on the client side.",
     "parent": 44849009,
     "depth": 2
   },

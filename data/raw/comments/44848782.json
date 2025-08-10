@@ -48,22 +48,6 @@
     "depth": 1
   },
   {
-    "id": 44849723,
-    "by": "yonatan8070",
-    "timeISO": "2025-08-09T20:11:25.000Z",
-    "textPlain": "A total of seven architectures are officially supported for \"trixie\":     \"trixie\"\n     64-bit PC (amd64),\n     64-bit ARM (arm64),\n     ARM EABI (armel),\n     ARMv7 (EABI hard-float ABI, armhf),\n     64-bit little-endian PowerPC (ppc64el),\n     64-bit little-endian RISC-V (riscv64),\n     IBM System z (s390x)\n\nIt's good to see RISC-V becoming a first-class citizen, despite the general lack of hardware using it at the moment.I do wonder, where are PowerPC and IBM System z being used these days? Are there modern Linux systems being deployed with something other than amd64, arm64, and (soon?) riscv64?",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44849654,
-    "by": "bbarnett",
-    "timeISO": "2025-08-09T20:04:33.000Z",
-    "textPlain": "For those worrying about the NIC change with systemd, this comes from the release doc:https://www.debian.org/releases/trixie/release-notes/issues....  # example:\n  udevadm test-builtin net_setup_link /sys/class/net/eno4 2>/dev/null\n  ID_NET_LINK_FILE=/usr/lib/systemd/network/99-default.link\n  ID_NET_LINK_FILE_DROPINS=\n  ID_NET_NAME=eno4  <-- note the NIC name that will happen after reboot\n\nHere's a one-liner, excluding a bond interface and lo.  Gives a nice list of pre and post change.  for x in $(cat /etc/network/interfaces | grep auto | cut -d ' ' -f 2 | grep -Ev 'lo|bond0'); do echo -n $x:; udevadm test-builtin net_setup_link /sys/class/net/$x 2>/dev/null | grep NET_NAME| cut -d = -f 2; done\n\nThe doc's logic is that after you've upgraded to trixie, and before reboot, you're running enough of systemd to see what it will name interfaces after reboot.So far I have not had an interface change due to upgrade, so I cannot say that the above does detect it.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44850563,
     "by": "pss314",
     "timeISO": "2025-08-09T21:44:42.000Z",
@@ -72,10 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44849610,
-    "by": "imoverclocked",
-    "timeISO": "2025-08-09T19:59:21.000Z",
-    "textPlain": "I have used Debian starting sometime around slink. I still type \"apt-get ...\" and it still works reasonably well. There have definitely been hiccups in upgrades over the last 25+ years but the amount of time/effort dealing with those is almost nothing in comparison to other linux and non-OSS systems I've dealt with over the same span of time. My only regret is not contributing more to the community.The thing I like most about Debian is that you need to know at least a little about what is going on to use it. For me, it does a good job of following \"as simple as possible and no simpler.\"",
+    "id": 44849723,
+    "by": "yonatan8070",
+    "timeISO": "2025-08-09T20:11:25.000Z",
+    "textPlain": "A total of seven architectures are officially supported for \"trixie\":     \"trixie\"\n     64-bit PC (amd64),\n     64-bit ARM (arm64),\n     ARM EABI (armel),\n     ARMv7 (EABI hard-float ABI, armhf),\n     64-bit little-endian PowerPC (ppc64el),\n     64-bit little-endian RISC-V (riscv64),\n     IBM System z (s390x)\n\nIt's good to see RISC-V becoming a first-class citizen, despite the general lack of hardware using it at the moment.I do wonder, where are PowerPC and IBM System z being used these days? Are there modern Linux systems being deployed with something other than amd64, arm64, and (soon?) riscv64?",
     "parent": 44848782,
     "depth": 1
   },
@@ -88,34 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44850070,
-    "by": "aborsy",
-    "timeISO": "2025-08-09T20:49:00.000Z",
-    "textPlain": "The difference between Debian and Ubuntu is decreasing with each release recently. I was pleasantly surprised that Debian recognized all hardware components in my laptop released one year ago \nout of the box.Hardware support is good and UI is great! It feels snappier than Ubuntu, may be due to lack of snap and fewer services and applications installed by default.",
+    "id": 44849654,
+    "by": "bbarnett",
+    "timeISO": "2025-08-09T20:04:33.000Z",
+    "textPlain": "For those worrying about the NIC change with systemd, this comes from the release doc:https://www.debian.org/releases/trixie/release-notes/issues....  # example:\n  udevadm test-builtin net_setup_link /sys/class/net/eno4 2>/dev/null\n  ID_NET_LINK_FILE=/usr/lib/systemd/network/99-default.link\n  ID_NET_LINK_FILE_DROPINS=\n  ID_NET_NAME=eno4  <-- note the NIC name that will happen after reboot\n\nHere's a one-liner, excluding a bond interface and lo.  Gives a nice list of pre and post change.  for x in $(cat /etc/network/interfaces | grep auto | cut -d ' ' -f 2 | grep -Ev 'lo|bond0'); do echo -n $x:; udevadm test-builtin net_setup_link /sys/class/net/$x 2>/dev/null | grep NET_NAME| cut -d = -f 2; done\n\nThe doc's logic is that after you've upgraded to trixie, and before reboot, you're running enough of systemd to see what it will name interfaces after reboot.So far I have not had an interface change due to upgrade, so I cannot say that the above does detect it.",
     "parent": 44848782,
     "depth": 1
   },
   {
-    "id": 44851123,
-    "by": "natebc",
-    "timeISO": "2025-08-09T22:53:44.000Z",
-    "textPlain": "Lots of debian love in this thread and it's great to see. If you're so inclined I encourage you to donate to Debian. We're all better off the more support goes to an ecosystem and operation like Debian.https://www.debian.org/donationsNot affiliated, just a happy user for a long, long time.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44849823,
-    "by": "Narishma",
-    "timeISO": "2025-08-09T20:21:24.000Z",
-    "textPlain": "> Users running i386 systems should not upgrade to trixie. Instead, Debian recommends either reinstalling them as amd64, where possible, or retiring the hardware.What I did is switch to NetBSD.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44849625,
-    "by": "juujian",
-    "timeISO": "2025-08-09T20:00:21.000Z",
-    "textPlain": "I have been using Debian Trixie for a few months in testing now, I can attest that its a great, stable operating system. Definitely better than Ubuntu in terms of user experience.",
+    "id": 44849610,
+    "by": "imoverclocked",
+    "timeISO": "2025-08-09T19:59:21.000Z",
+    "textPlain": "I have used Debian starting sometime around slink. I still type \"apt-get ...\" and it still works reasonably well. There have definitely been hiccups in upgrades over the last 25+ years but the amount of time/effort dealing with those is almost nothing in comparison to other linux and non-OSS systems I've dealt with over the same span of time. My only regret is not contributing more to the community.The thing I like most about Debian is that you need to know at least a little about what is going on to use it. For me, it does a good job of following \"as simple as possible and no simpler.\"",
     "parent": 44848782,
     "depth": 1
   },
@@ -128,18 +96,18 @@
     "depth": 1
   },
   {
-    "id": 44850740,
-    "by": "lucb1e",
-    "timeISO": "2025-08-09T22:05:29.000Z",
-    "textPlain": "> \"trixie\" includes numerous updated software packages (over 63% of all packages from the previous release)Wow, I'm amazed a third of packages haven't seen an update in, ehm checks> After 2 years, 1 month, and 30 days of development, the Debian project is proud to present its new stable versionI'm a fan of old software myself, in the sense that I find it cool to see F-Droid having a (usually tiny) package that is over 10 years old but it does exactly what I want with no bugs and it works perfectly on Android 10. I wonder if those 30% more commonly fall in the \"it's fine as it is\" category or in the \"no maintainers available\" category",
+    "id": 44851123,
+    "by": "natebc",
+    "timeISO": "2025-08-09T22:53:44.000Z",
+    "textPlain": "Lots of debian love in this thread and it's great to see. If you're so inclined I encourage you to donate to Debian. We're all better off the more support goes to an ecosystem and operation like Debian.https://www.debian.org/donationsNot affiliated, just a happy user for a long, long time.",
     "parent": 44848782,
     "depth": 1
   },
   {
-    "id": 44849514,
-    "by": "master_crab",
-    "timeISO": "2025-08-09T19:47:41.000Z",
-    "textPlain": "Debian 13 trixie includes numerous updated software packages (over 63% of all packages from the previous release)I’m not familiar with the metric definition they use, but I’d be worried if close to 100% of the packages they included in bookworm hadn’t been updated in the roughly 2 years between releases.I use Debian for most of my servers, so I’m sure there is a valid explanation of that phrase.",
+    "id": 44849625,
+    "by": "juujian",
+    "timeISO": "2025-08-09T20:00:21.000Z",
+    "textPlain": "I have been using Debian Trixie for a few months in testing now, I can attest that its a great, stable operating system. Definitely better than Ubuntu in terms of user experience.",
     "parent": 44848782,
     "depth": 1
   },
@@ -152,10 +120,18 @@
     "depth": 1
   },
   {
-    "id": 44850765,
-    "by": "luismedel",
-    "timeISO": "2025-08-09T22:08:13.000Z",
-    "textPlain": "Kudos to the team.My first contact with Linux was with Debian 2.1. Exactly with this distro CDs https://archive.org/details/linux-actual-06-2/LinuxActual_01...To be honest, it was a miserable experience to install it on your main computer without anything else available to look for help in case of problems. It was also hard to really try it due to lack of drivers for current (at that moment) ADSL modems.But here I am a crapload of years later, still loving it :-)",
+    "id": 44850070,
+    "by": "aborsy",
+    "timeISO": "2025-08-09T20:49:00.000Z",
+    "textPlain": "The difference between Debian and Ubuntu is decreasing with each release recently. I was pleasantly surprised that Debian recognized all hardware components in my laptop released one year ago \nout of the box.Hardware support is good and UI is great! It feels snappier than Ubuntu, may be due to lack of snap and fewer services and applications installed by default.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849823,
+    "by": "Narishma",
+    "timeISO": "2025-08-09T20:21:24.000Z",
+    "textPlain": "> Users running i386 systems should not upgrade to trixie. Instead, Debian recommends either reinstalling them as amd64, where possible, or retiring the hardware.What I did is switch to NetBSD.",
     "parent": 44848782,
     "depth": 1
   },
@@ -168,10 +144,66 @@
     "depth": 1
   },
   {
+    "id": 44849514,
+    "by": "master_crab",
+    "timeISO": "2025-08-09T19:47:41.000Z",
+    "textPlain": "Debian 13 trixie includes numerous updated software packages (over 63% of all packages from the previous release)I’m not familiar with the metric definition they use, but I’d be worried if close to 100% of the packages they included in bookworm hadn’t been updated in the roughly 2 years between releases.I use Debian for most of my servers, so I’m sure there is a valid explanation of that phrase.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44850740,
+    "by": "lucb1e",
+    "timeISO": "2025-08-09T22:05:29.000Z",
+    "textPlain": "> \"trixie\" includes numerous updated software packages (over 63% of all packages from the previous release)Wow, I'm amazed a third of packages haven't seen an update in, ehm checks> After 2 years, 1 month, and 30 days of development, the Debian project is proud to present its new stable versionI'm a fan of old software myself, in the sense that I find it cool to see F-Droid having a (usually tiny) package that is over 10 years old but it does exactly what I want with no bugs and it works perfectly on Android 10. I wonder if those 30% more commonly fall in the \"it's fine as it is\" category or in the \"no maintainers available\" category",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44850765,
+    "by": "luismedel",
+    "timeISO": "2025-08-09T22:08:13.000Z",
+    "textPlain": "Kudos to the team.My first contact with Linux was with Debian 2.1. Exactly with this distro CDs https://archive.org/details/linux-actual-06-2/LinuxActual_01...To be honest, it was a miserable experience to install it on your main computer without anything else available to look for help in case of problems. It was also hard to really try it due to lack of drivers for current (at that moment) ADSL modems.But here I am a crapload of years later, still loving it :-)",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44852150,
+    "by": "keernan",
+    "timeISO": "2025-08-10T01:53:24.000Z",
+    "textPlain": "Apparently Trixie needs a larger boot petition than prior versions and therefore I have to do new installs on three of my homelab machines - and probably my proxmox machine too. What a headache.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44851611,
+    "by": "fhdnfjf",
+    "timeISO": "2025-08-10T00:15:20.000Z",
+    "textPlain": "I'm too impatient to use a non-rolling release distro like Debian as my main OS, that, by my standards, already starts a new distro version with some outdated packages. I admire Debian though and it is my favorite server OS.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44849860,
     "by": "kachapopopow",
     "timeISO": "2025-08-09T20:24:59.000Z",
     "textPlain": "Plasma 6.3 - I can finally ditch kde neon.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849196,
+    "by": "3eb7988a1663",
+    "timeISO": "2025-08-09T19:08:41.000Z",
+    "textPlain": "Maybe title should note that it has now been released? There has been many updates about Trixie in the past few months in preparation for today.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44851879,
+    "by": "theandrewbailey",
+    "timeISO": "2025-08-10T00:58:23.000Z",
+    "textPlain": "> The overall disk usage for trixie is 403,854,660 kB (403 GB)That's too big. I'm going to need a smaller distro.",
     "parent": 44848782,
     "depth": 1
   },
@@ -200,30 +232,6 @@
     "depth": 1
   },
   {
-    "id": 44850211,
-    "by": "perdomon",
-    "timeISO": "2025-08-09T21:05:18.000Z",
-    "textPlain": "How soon can I update my raspberry pi 5 from\nBookworm to Trixie? Does PiOS have to initiate that first?",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44849164,
-    "by": "Paianni",
-    "timeISO": "2025-08-09T19:04:40.000Z",
-    "textPlain": "The Devuan version may end up being the last that GNOME will run on...",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
-    "id": 44849196,
-    "by": "3eb7988a1663",
-    "timeISO": "2025-08-09T19:08:41.000Z",
-    "textPlain": "Maybe title should note that it has now been released? There has been many updates about Trixie in the past few months in preparation for today.",
-    "parent": 44848782,
-    "depth": 1
-  },
-  {
     "id": 44849191,
     "by": "superkuh",
     "timeISO": "2025-08-09T19:08:05.000Z",
@@ -232,10 +240,10 @@
     "depth": 1
   },
   {
-    "id": 44850904,
-    "by": "dismalaf",
-    "timeISO": "2025-08-09T22:26:16.000Z",
-    "textPlain": "I've kind of been using Debian 13 for awhile now (I'm on Unstable) and for me what's impressive is how polished a default Debian installation is these days.  With Gnome, you literally can run it as is, no config needed.  It just works.That being said, I like Flatpak, so I installed it (was super easy and Flathub provides instructions), and I added a few Gnome Shell extensions (a Dock so my wife can find apps when she occasionally uses my laptop).Debian gives you a feeling of ownership of your computer in a way the corporate distros don't, but is still pretty user friendly (unlike Arch).I'd definitely install Debian Stable on a grandparents' computer.",
+    "id": 44850211,
+    "by": "perdomon",
+    "timeISO": "2025-08-09T21:05:18.000Z",
+    "textPlain": "How soon can I update my raspberry pi 5 from\nBookworm to Trixie? Does PiOS have to initiate that first?",
     "parent": 44848782,
     "depth": 1
   },
@@ -256,10 +264,18 @@
     "depth": 1
   },
   {
-    "id": 44850049,
-    "by": "charcircuit",
-    "timeISO": "2025-08-09T20:47:05.000Z",
-    "textPlain": "So what is the actual difference. These release notes are not very clear. They just give version bumps. How can people get excited when you give them nothing to get excited about?",
+    "id": 44850904,
+    "by": "dismalaf",
+    "timeISO": "2025-08-09T22:26:16.000Z",
+    "textPlain": "I've kind of been using Debian 13 for awhile now (I'm on Unstable) and for me what's impressive is how polished a default Debian installation is these days.  With Gnome, you literally can run it as is, no config needed.  It just works.That being said, I like Flatpak, so I installed it (was super easy and Flathub provides instructions), and I added a few Gnome Shell extensions (a Dock so my wife can find apps when she occasionally uses my laptop).Debian gives you a feeling of ownership of your computer in a way the corporate distros don't, but is still pretty user friendly (unlike Arch).I'd definitely install Debian Stable on a grandparents' computer.",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
+    "id": 44849164,
+    "by": "Paianni",
+    "timeISO": "2025-08-09T19:04:40.000Z",
+    "textPlain": "The Devuan version may end up being the last that GNOME will run on...",
     "parent": 44848782,
     "depth": 1
   },
@@ -280,6 +296,14 @@
     "depth": 1
   },
   {
+    "id": 44850049,
+    "by": "charcircuit",
+    "timeISO": "2025-08-09T20:47:05.000Z",
+    "textPlain": "So what is the actual difference. These release notes are not very clear. They just give version bumps. How can people get excited when you give them nothing to get excited about?",
+    "parent": 44848782,
+    "depth": 1
+  },
+  {
     "id": 44849250,
     "by": "hiprob",
     "timeISO": "2025-08-09T19:15:23.000Z",
@@ -292,30 +316,6 @@
     "by": "madars",
     "timeISO": "2025-08-09T20:40:31.000Z",
     "textPlain": ">I've never had a Debian system break without it being my fault in some way.Debian is great but I can't say this is a shared experience. In particular, I've been bitten by Debian's heavy patching of kernel in Debian stable (specifically, backport regressions in the fast-moving DRM subsystem leading to hard-to-debug crashes), despite Debian releases technically having the \"same\" kernel for a duration of a release. In contrast, Ubuntu just uses newer kernels and -hwe avoids a lot of patch friction. So I still use Debian VMs but Ubuntu on bare metal. I haven't tried kernel from debian-backports repos though.",
-    "parent": 44849402,
-    "depth": 2
-  },
-  {
-    "id": 44850156,
-    "by": "djfobbz",
-    "timeISO": "2025-08-09T20:59:10.000Z",
-    "textPlain": "Yeah, I ditched Ubuntu Server after too many upgrade headaches. I manage 75+ VPS instances for app hosting, and it's nerve-wracking doing maintenance updates knowing there's a chance one won't boot after. That's easily an extra 1-2 hours per VPS just to get it back. Switched to Debian back in the 8.x days in 2015 and it's been smooth sailing. Never had it break unless I was the one who messed it up.",
-    "parent": 44849402,
-    "depth": 2
-  },
-  {
-    "id": 44849621,
-    "by": "zvmaz",
-    "timeISO": "2025-08-09T20:00:01.000Z",
-    "textPlain": "> after Ubuntu went way downhill and haven't had cause to regret it.In what way Ubuntu went downhill?",
-    "parent": 44849402,
-    "depth": 2
-  },
-  {
-    "id": 44850751,
-    "by": "foresto",
-    "timeISO": "2025-08-09T22:06:47.000Z",
-    "textPlain": "> I like dpkg, I like the Debian documentation even if Arch remains the best on that front.That's curious, because when I was learning to make Debian packages, I found the official documentation to be far better than I had seen from any other distro. The Policy Manual in particular is very detailed, continually improving, and even documents incremental changes from each version to the next. (That last bit makes it easy for package maintainers to keep up with current best practices.)Does Arch have something better in this department?Are you perhaps comparing the Arch wiki to Debian's wiki? On that front I would agree with you.",
     "parent": 44849402,
     "depth": 2
   }

@@ -40,6 +40,22 @@
     "depth": 2
   },
   {
+    "id": 44852223,
+    "by": "baby_souffle",
+    "timeISO": "2025-08-10T02:07:07.000Z",
+    "textPlain": "> (pretty sure it's a problem with my hand-assembled hardware, in fairness)Certainly could be the case. I've spent more time than I want to admit chasing down what was ultimately a loose wire.For what it's worth, you can get a cheap ESP32 module and basic IR sensor modules for a few bucks on amazon [0]. As long as you have a basic USB <-> TLL/Serial adapter, you should be able to install ESPHome on that. The module that's on that particular board does not have a ton of room so keep the ESPHome config simple and to the point.It's a few dozen lines of yaml total to get a basic IR signal decode/dump tool: [1][0]: https://www.amazon.com/HiLetgo-Infrared-Transmitter-Receiver...[1]: https://esphome.io/guides/setting_up_rmt_devices#remote-sett...",
+    "parent": 44848934,
+    "depth": 2
+  },
+  {
+    "id": 44851334,
+    "by": "jasongill",
+    "timeISO": "2025-08-09T23:30:15.000Z",
+    "textPlain": "I recently converted all of my (5 in 3 buildings) mini splits on my property to be controlled by Home Assistant. It took some research but all I ultimately needed was:https://cloudfree.shop/product/ductless-hvac-wi-fi-module/this USB ESP32 module which works out of the box on Midea-produced units (Carrier, Electrolux, Pioneer). I have a few units that are other generic brands which apparently are rebranded \"Aux\" brand units, so I re-flashed the ESP32 board above to work with Aux units by doing `brew install esphome` and then `esphome run auxminisplit.yaml --device /dev/tty.usbserial-210` where auxminisplit.yaml is https://gist.github.com/jasongill/35a13e458b6d109ca2bbefeab4...That worked perfectly for me and should cover like 90% of all minisplits (Midea and Aux make a ton of brands units), let me know if that works for you.",
+    "parent": 44848934,
+    "depth": 2
+  },
+  {
     "id": 44849328,
     "by": "lostlogin",
     "timeISO": "2025-08-09T19:24:06.000Z",

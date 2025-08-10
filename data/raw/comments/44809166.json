@@ -8,10 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44851112,
-    "by": "mlhpdx",
-    "timeISO": "2025-08-09T22:52:00.000Z",
-    "textPlain": "I’ve been experimenting with different ways of using WireGuard but hadn’t heard of the header based authentication Tailscale does. Interesting stuff.",
+    "id": 44822140,
+    "by": "thrown-0825",
+    "timeISO": "2025-08-07T08:45:31.000Z",
+    "textPlain": "I use a similar setup, but for anyone following this guide i would not recommend hosting your custom oidc server behind the same tailnet it authorizes.Any configuration issues will lock you out entirely and you will need to have tailscale support re-enable an oauth provider and its not reversible.I use an oauth provider to log in to tailscale and keycloak internally as an oidc provider for service to service auth.",
+    "parent": 44809166,
+    "depth": 1
+  },
+  {
+    "id": 44851348,
+    "by": "Lammy",
+    "timeISO": "2025-08-09T23:33:15.000Z",
+    "textPlain": "> It’s a subscription product, but it has an insanely generous free tier that covers basically anything you’d ever want to do as an individual.Tailscale do have a very nice product, but privacy-conscious users should be aware that you must disable Tailscale's real-time remote collection of your behavior on your “private” network. See KB1011: https://tailscale.com/kb/1011/log-mesh-traffic“Each Tailscale agent in your distributed network streams its logs to a central log server (at log.tailscale.io). This includes real-time events for open and close events for every inter-machine connection (TCP or UDP) on your network.”It's possible to opt out of this spying on Unix/Windows/Mac clients by starting Tailscale with `--no-logs-no-support` or `TS_NO_LOGS_NO_SUPPORT=true` environment variable (see https://tailscale.com/kb/1011/log-mesh-traffic#opting-out-of...), but it is not currently possible to opt out in the Android/iOS clients: https://github.com/tailscale/tailscale/issues/13174For an example of how invasive this is for the average user, this person discovered Tailscale trying to collect ~18000 data points per week about their network usage based on the number of blocked DNS requests for `log.tailscale.com`: https://github.com/tailscale/tailscale/issues/15326Also see their privacy policy: https://tailscale.com/privacy-policy#information-we-collect-...“When you use the Tailscale Solution, we collect limited metadata regarding your device used to access the Tailscale Solution, such as: the device name; relevant operating system type; host name; IP address; cryptographic public key; user agent (where applicable); language settings; date and time of access to the Tailscale Solution; logs describing connections and containing statistics about data sent to and from other devices (“Inter-Node Traffic Logs”); and version of the Tailscale Solution installed.” (emphasis mine)Anyway, the reason I quoted that part of your post is because Tailscale are using some Fear, Uncertainty",
     "parent": 44809166,
     "depth": 1
   },
@@ -24,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44822140,
-    "by": "thrown-0825",
-    "timeISO": "2025-08-07T08:45:31.000Z",
-    "textPlain": "I use a similar setup, but for anyone following this guide i would not recommend hosting your custom oidc server behind the same tailnet it authorizes.Any configuration issues will lock you out entirely and you will need to have tailscale support re-enable an oauth provider and its not reversible.I use an oauth provider to log in to tailscale and keycloak internally as an oidc provider for service to service auth.",
-    "parent": 44809166,
-    "depth": 1
-  },
-  {
     "id": 44817950,
     "by": "sixothree",
     "timeISO": "2025-08-06T21:15:11.000Z",
     "textPlain": "I love me some tailscale. But it kills the battery on my phone and it kills resolve.conf every time I boot wsl. I wish I had better luck.",
+    "parent": 44809166,
+    "depth": 1
+  },
+  {
+    "id": 44851112,
+    "by": "mlhpdx",
+    "timeISO": "2025-08-09T22:52:00.000Z",
+    "textPlain": "I’ve been experimenting with different ways of using WireGuard but hadn’t heard of the header based authentication Tailscale does. Interesting stuff.",
     "parent": 44809166,
     "depth": 1
   },
@@ -46,6 +54,14 @@
     "textPlain": "Sounds a bit like a fancier ngrok.Accidentally wiring everything to everything else sounds kind of scary.There's 1 or 2 things I wouldn't mind securely exposing to the internet (like Plex) but nothing I need so desperately while I'm out and about that I'd even want to take that risk.Sounds like this is just for self-hosting?",
     "parent": 44809166,
     "depth": 1
+  },
+  {
+    "id": 44851521,
+    "by": "Jnr",
+    "timeISO": "2025-08-10T00:01:07.000Z",
+    "textPlain": "I use Headscale, an open source implementation of Tailscale control server. And it doesn't have funnel functionality implemented out of the box, but I use a custom Traefik proxy manager Web UI in which I can expose ports on different Tailnet nodes.In order to avoid exposing something unnecessarily in the certificate transparency logs, I use a single wildcard certificate, so all the subdomains are not listed anywhere automatically.I use the same approach for services hosted in the internal subdomain, because I don't want everyone to know what exactly I'm running in my homelab.",
+    "parent": 44850881,
+    "depth": 2
   },
   {
     "id": 44851004,
@@ -64,11 +80,19 @@
     "depth": 2
   },
   {
-    "id": 44850923,
-    "by": "th0ma5",
-    "timeISO": "2025-08-09T22:29:06.000Z",
-    "textPlain": "Straight WireGuard to a single point is completely not noticeable.",
-    "parent": 44817950,
+    "id": 44852152,
+    "by": "xyzzy_plugh",
+    "timeISO": "2025-08-10T01:53:32.000Z",
+    "textPlain": "That section of the policy simply describes how the system works. It's very valuable information for enterprise customers who are effectively their entire market revenue-wise. Think access logs, intrusion detection, and so on. I do not interpret their policies such that they are processing the information you added emphasis to beyond what is necessary to serve the customer. What evidence do you have to the contrary?The irony of your post, which brings up Fear Uncertainty and Doubt, is certainly not lost on me. I'm also sure you could just ask apenwarr directly for clarification.",
+    "parent": 44851348,
+    "depth": 2
+  },
+  {
+    "id": 44851864,
+    "by": "mcsniff",
+    "timeISO": "2025-08-10T00:56:20.000Z",
+    "textPlain": "This comment should really be much higher.",
+    "parent": 44851348,
     "depth": 2
   },
   {
@@ -76,6 +100,14 @@
     "by": "em-bee",
     "timeISO": "2025-08-07T12:31:57.000Z",
     "textPlain": "i use zerotier without problems on the phone. yes, they are no longer open source, but source is accessible and it's not worth the effort to switch.",
+    "parent": 44817950,
+    "depth": 2
+  },
+  {
+    "id": 44850923,
+    "by": "th0ma5",
+    "timeISO": "2025-08-09T22:29:06.000Z",
+    "textPlain": "Straight WireGuard to a single point is completely not noticeable.",
     "parent": 44817950,
     "depth": 2
   },
