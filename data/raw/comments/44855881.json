@@ -1,0 +1,90 @@
+[
+  {
+    "id": 44856243,
+    "by": "bscphil",
+    "timeISO": "2025-08-10T16:24:53.000Z",
+    "textPlain": "> Like Rust, Zig uses 'name' (':' Type)? syntax for ascribing types, which is better than Type 'name'I'm definitely an outlier on this given the direction all syntactically C-like new languages have taken, but I have the opposite preference. I find that the most common reason I go back to check a variable declaration is to determine the type of the variable, and the harder it is to visually find that, the more annoyed I'm going to be. In particular, with statically typed languages, my mental model tends to be \"this is an int\" rather than \"this is a variable that happens to have the type 'int'\".In Rust, in particular, this leads to some awkward syntactic verbosity, because mutable variables are declared with `let mut`, meaning that `let` is used in every declaration. In C or C++ the type would take the place of that unnecessary `let`. And even C (as of C23) will do type inference with the `auto` keyword. My tendency is to use optional type inference in places where needing to know the type isn't important to understand the code, and to specify the type when it would serve as helpful commentary when reading it back.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856219,
+    "by": "hardwaregeek",
+    "timeISO": "2025-08-10T16:21:39.000Z",
+    "textPlain": "Everyone agrees that \"syntax doesn't matter\", but implicit in that is \"syntax doesn't matter, so let's do what I prefer\". So really, syntax does matter. Personally I prefer the Rust/Zig/Go syntax of vaguely C inspired with some nice fixes, as detailed in the post. Judging by the general success of that style, I do wonder if more functional languages should consider an alternative syntax in that style. The Haskell/OCaml concatenative currying style with whitespace is elegant, but sufficiently unfamiliar that I do think it hurts adoption.After all, Rust's big success is hiding the spinach of functional programming in  the brownie of a systems programming language. Why not imitate that?",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856197,
+    "by": "pton_xd",
+    "timeISO": "2025-08-10T16:18:18.000Z",
+    "textPlain": "\"Zig doesn’t have lambdas\"This surprises me (as a C++ guy). I use lambdas everywhere. What's the standard way of say defining a comparator when sorting an array in Zig?",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856126,
+    "by": "phplovesong",
+    "timeISO": "2025-08-10T16:08:49.000Z",
+    "textPlain": "I find Zig syntax noicy. I dont like the @TypeOf (at symbol) and pals, and the weird .{.x} syntax feels off.Zig has some nice things going on but somehow code is really hard to read, admitting its a skill issue as im not that versed in zig.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856155,
+    "by": "MrResearcher",
+    "timeISO": "2025-08-10T16:13:32.000Z",
+    "textPlain": "It's still not clear to me how you can make two comptime closures with different contents and pass those as a functor into the same function. It needs to have a sort of VTable to invoke the function, and yet since the contents are different, the objects are different, and their deallocation will be different too.\nDefining VTable in zig seems to be a pretty laborious endeavor, with each piece sewn manually.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856151,
+    "by": "zabzonk",
+    "timeISO": "2025-08-10T16:12:43.000Z",
+    "textPlain": "In my experience, everyone finds the syntax of their favourite language lovely - I love (mostly) C++.",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856112,
+    "by": "do_not_redeem",
+    "timeISO": "2025-08-10T16:06:10.000Z",
+    "textPlain": "Since we're talking syntax... it's mildly infuriating that the zig parser is not smart enough to understand expressions like `const x=a()orelse b();`. You have to manually add a space before `orelse` -- but isn't that what `zig fmt` is for? I have RSI and it's maddening having to mash the arrow keys and add/remove whitespace until the parser is happy.I've heard the argument that people might confuse binary operators for prefix/postfix operators, but I don't buy it. Who would think an operator named `orelse` is anything but binary?",
+    "parent": 44855881,
+    "depth": 1
+  },
+  {
+    "id": 44856203,
+    "by": "flohofwoe",
+    "timeISO": "2025-08-10T16:20:01.000Z",
+    "textPlain": "The dot is just a placeholder for an inferred type, and IMHO that makes a lot of sense. E.g. you can either write this:    const p = Point{ .x = 123, .y = 234 };\n\n...or this:    const p: Point = .{ .x = 123, .y = 234 };\n\nWhen calling a function which expects a Point you can omit the verbose type:    takePoint(.{ .x = 123, .y = 234 });\n\nIn Rust I need to explicitly write the type:    takePoint(Point{ x: 123, y: 234);\n\n...and in nested struct initializations the inferred form is very handy, e.g. Rust requires you to write this (not sure if I got the syntax right):    const x = Rect{\n        Point{ x: 123, y: 234 },\n        Point{ x: 456, y: 456 },\n    };\n\nIn Zig it's just:    const x = Rect{\n        .{ .x = 123, .y = 234 },\n        .{ .x = 456, .y = 456 },\n    };\n\n...but the compiler already knows that Rect consists of two nested Points, so what's the point of requiring the user to type that out?Requiring the explicit type on everything can get noisy really fast in Rust.Of course the question is whether the leading dot in '.{' could be omitted, and personally I would be in favour of that. Apparently it simplifies the parser, but such implementation details should get in the way of convenience IMHO.And then there's `.x = 123` vs `x: 123`. The Zig form is copied from C99, the Rust form from Javascript. Since I write both a lot of C99 and Typescript I don't either form.Edit: fixed the Rust struct init syntax.",
+    "parent": 44856126,
+    "depth": 2
+  },
+  {
+    "id": 44856238,
+    "by": "ben-schaaf",
+    "timeISO": "2025-08-10T16:24:14.000Z",
+    "textPlain": "As someone who works almost exclusively in C++, the whole \"most vexing parse\" makes the syntax indefensible.",
+    "parent": 44856151,
+    "depth": 2
+  },
+  {
+    "id": 44856184,
+    "by": "jeltz",
+    "timeISO": "2025-08-10T16:17:14.000Z",
+    "textPlain": "I am an exception then. Rust may be my favourite language but the syntax is pretty awful and one of its biggest weaknesses. I also love Ruby but I am pretty meh about its syntax.",
+    "parent": 44856151,
+    "depth": 2
+  },
+  {
+    "id": 44856130,
+    "by": "hmry",
+    "timeISO": "2025-08-10T16:09:39.000Z",
+    "textPlain": "\"Read the file, or else!\" The threatening postfix operator",
+    "parent": 44856112,
+    "depth": 2
+  }
+]

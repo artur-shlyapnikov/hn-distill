@@ -32,10 +32,34 @@
     "depth": 1
   },
   {
+    "id": 44856222,
+    "by": "cmiller1",
+    "timeISO": "2025-08-10T16:22:08.000Z",
+    "textPlain": "> I wrote Forth/2 out of pure spite, because somehow I heard that it just wasn't possible to write OS/2 applications in assemblerI was thinking about this recently and considering writing a blog post about it, nothing feels more motivational than being told \"that's impossible.\"  I implemented a pure CSS draggable a while back when I was told it's impossible.",
+    "parent": 44855283,
+    "depth": 2
+  },
+  {
+    "id": 44855904,
+    "by": "jeberle",
+    "timeISO": "2025-08-10T15:36:15.000Z",
+    "textPlain": "That is very cool. I had a similar boot disk w/ DOS 3.x and TurboPascal. It made any PC I could walk up to a complete developer box.Just to be clear, when you say \"without the need for the GUI\", more accurately that's \"without a GUI\" (w/o Presentation Manager). So you're using OS/2 in an 80x25 console screen, what would appear to be a very good DOS box.",
+    "parent": 44855283,
+    "depth": 2
+  },
+  {
     "id": 44855343,
     "by": "mananaysiempre",
     "timeISO": "2025-08-10T14:16:26.000Z",
     "textPlain": "16-bit Windows used the Pascal calling convention, with the documentation in the Windows 1.0 SDK only listing Pascal function declarations. (Most C programs for 16-bit Windows use FAR PASCAL in their declarations—the WINAPI macro was introduced with Win32 as a porting tool.) The original development environment for the Macintosh was a Lisa prototype running UCSD Pascal, and even the first edition of Inside Macintosh included Pascal declarations only. (I don’t know how true it is that Windows originated as a porting layer for moving (still-in-development) Excel away from (still-in-development) Mac, but it feels at least a bit true.) If you look at the call/return instructions, the x86 is clearly a Pascal machine (take the time to read the full semantics of the 80186’s ENTER instruction at some point). Hell, the C standard wouldn’t be out for two more years, and function prototypes (borrowed early from the still-in-development C++, thus the unhinged syntax) weren’t a sure thing. C was not yet the default choice.>> Also, the stack is restored by the called procedure rather than the caller.> What could possibly go wrong?This is still the case for non-vararg __stdcall functions used by Win32 and COM. (The argument order was reversed compared to Win16’s __far __pascal.) By contrast, the __syscall convention that 32-bit OS/2 switched to uses caller cleanup (and passed some arguments in registers).",
+    "parent": 44855214,
+    "depth": 2
+  },
+  {
+    "id": 44855946,
+    "by": "dnh44",
+    "timeISO": "2025-08-10T15:43:05.000Z",
+    "textPlain": "I loved OS/2 but I also remember the dreaded single input queue... but it didn't stop me using it until about 2000 when I realised it was time to move on.",
     "parent": 44855214,
     "depth": 2
   },
@@ -67,7 +91,7 @@
     "id": 44855651,
     "by": "mananaysiempre",
     "timeISO": "2025-08-10T15:01:36.000Z",
-    "textPlain": "Cool, yes. Useful or a good idea, I dunno. Reading through the (non-reference) documentation on SOM, I’m struck by how they never could give a convincing example for the utility of metaclasses. (Saying this as someone who does love metaclasses in Python, which are of course an inferior interpretation of the same academic sources.) The SOM documentation is also surprisingly shallow given its size: with a copy of Brockschmidt, Box, the COM spec, and the Platform SDK manual, you could reimplement essentially all of COM (not ActiveX though), whereas the IBM’s documentation is more like “here’s how you use our IDL compiler and here are the functions you can call”. (This is in contrast with the Presentation Manager documentation, which is much tighter and more detailed than the one for USER/GDI ever has been.) From what I can infer of the underlying principles, I feel SOM is much more specific about its object model, which, given the goal is a cross-language ABI, is not necessarily a good thing. (I’d say that about WinRT too.)And of course COM does do implementation inheritance: despite all the admonitions to the contrary, that’s what aggregation is! If you want a more conventional model and even some surprisingly fancy stuff like the base methods governing the derived ones and not vice versa, BETA-style, then WinRT inheritance[1] is a very thin layer on top of aggregation that accomplishes that. Now if only anybody at Microsoft bothered to document it. As in, at all.(I don’t mean to say COM is my ideal object model/ABI. That would probably move a bit more towards Objective-C: see the Maru[2]/Cola/Idst[3] object model and cobj[4,5] for the general direction.)[1] https://www.interact-sw.co.uk/iangblog/2011/09/25/native-win...[2] https://web.archive.org/web/20250507145031/https://piumarta....[3] https://web.archive.org/web/20250525213528/https://www.piuma...[4] https://dotat.at/@/2007-04-16-awash-in-a-c-of-objects.html[5] https://dotat.at/writing/cobj.html",
+    "textPlain": "Cool, yes. Useful or a good idea, I dunno. Reading through the (non-reference) documentation on SOM, I’m struck by how they never could give a convincing example for the utility of metaclasses. (Saying this as someone who does love metaclasses in Python, which are of course an inferior interpretation of the same academic sources.) The SOM documentation is also surprisingly shallow given its size: with a copy of Brockschmidt, Box, the COM spec, and the Platform SDK manual, you could reimplement essentially all of COM (not ActiveX though), whereas the IBM’s documentation is more like “here’s how you use our IDL compiler and here are the functions you can call”. (This is in contrast with the Presentation Manager documentation, which is much tighter and more detailed than the one for USER/GDI ever has been.) From what I can infer of the underlying principles, I feel SOM is much more specific about its object model, which, given the goal is a cross-language ABI, is not necessarily a good thing. (I’d say that about WinRT too.)And of course COM does do implementation inheritance: despite all the admonitions to the contrary, that’s what aggregation is! If you want a more conventional model and even some surprisingly fancy stuff like the base methods governing the derived ones and not vice versa, BETA-style, then WinRT inheritance[1] is a very thin layer on top of aggregation that accomplishes that. Now if only anybody at Microsoft bothered to document it. As in, at all.(I don’t mean to say COM is my ideal object model/ABI. That would probably a bit closer to Objective-C: see the Maru[2]/Cola/Idst[3] object model and cobj[4,5] for the general direction.)[1] https://www.interact-sw.co.uk/iangblog/2011/09/25/native-win...[2] https://web.archive.org/web/20250507145031/https://piumarta....[3] https://web.archive.org/web/20250525213528/https://www.piuma...[4] https://dotat.at/@/2007-04-16-awash-in-a-c-of-objects.html[5] https://dotat.at/writing/cobj.html",
     "parent": 44855437,
     "depth": 2
   },
@@ -76,14 +100,6 @@
     "by": "mananaysiempre",
     "timeISO": "2025-08-10T13:41:23.000Z",
     "textPlain": "The article is from December 1987, when nobody yet knew that it would end up that way. The Compaq Deskpro 386 had just been released in 1986 (thus unmooring the “IBM PC clones” from IBM), the September 1987 release of Windows/386 2.01 was only a couple of months ago (less if you account for print turnaround), and development of what would initially be called NT OS/2 would only start in 1988, with the first documents in the NT Design Workbook dated 1989. Even OS/2 1.1, the first GUI version, would only come out in October 1988 (on one hand, really late; on the other, how the hell did they release things so fast then?..).",
-    "parent": 44855069,
-    "depth": 2
-  },
-  {
-    "id": 44855555,
-    "by": "p_l",
-    "timeISO": "2025-08-10T14:45:56.000Z",
-    "textPlain": "While NT OS/2 effort started earlier, Windows 3.0 was apparently an unsanctioned originally rogue effort started by one developer, initially masquerading as update to \"Windows-as-Embedded-Runtime\" that multiple graphical products were shipping with, not just Microsoft'sEven when marketing people etc. got enthused enough that the project got official support and release, it was not expected to be such a hit of a release early on and expectation was that OS/2 effort would continue, if perhaps with a different kernel.",
     "parent": 44855069,
     "depth": 2
   },
@@ -100,6 +116,22 @@
     "by": "fredoralive",
     "timeISO": "2025-08-10T13:40:43.000Z",
     "textPlain": "This is from 1987, the IBM / Microsoft joint development agreement for OS/2 didn't fall apart until around 1990, and there was a lot of Microsoft work in early OS/2 (and conversely, non-multitasking MS-DOS 4.0 was largely IBM work).",
+    "parent": 44855069,
+    "depth": 2
+  },
+  {
+    "id": 44855555,
+    "by": "p_l",
+    "timeISO": "2025-08-10T14:45:56.000Z",
+    "textPlain": "While NT OS/2 effort started earlier, Windows 3.0 was apparently an unsanctioned originally rogue effort started by one developer, initially masquerading as update to \"Windows-as-Embedded-Runtime\" that multiple graphical products were shipping with, not just Microsoft'sEven when marketing people etc. got enthused enough that the project got official support and release, it was not expected to be such a hit of a release early on and expectation was that OS/2 effort would continue, if perhaps with a different kernel.",
+    "parent": 44855069,
+    "depth": 2
+  },
+  {
+    "id": 44855910,
+    "by": "chasil",
+    "timeISO": "2025-08-10T15:36:46.000Z",
+    "textPlain": "Windows NT originally shipped with an OS/2 compatibility layer, along with POSIX and Win32.I'm assuming that all of it was written mainly, if not solely, by Microsoft.",
     "parent": 44855069,
     "depth": 2
   },

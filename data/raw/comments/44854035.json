@@ -80,18 +80,18 @@
     "depth": 1
   },
   {
-    "id": 44854959,
-    "by": "xenophonf",
-    "timeISO": "2025-08-10T13:09:40.000Z",
-    "textPlain": "I wish tcsh would get more love.",
-    "parent": 44854035,
-    "depth": 1
-  },
-  {
     "id": 44854278,
     "by": "camdroidw",
     "timeISO": "2025-08-10T10:43:46.000Z",
     "textPlain": "Why doesn't someone (not me) just build a basic DSL and a transpiler that does this?",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44854959,
+    "by": "xenophonf",
+    "timeISO": "2025-08-10T13:09:40.000Z",
+    "textPlain": "I wish tcsh would get more love.",
     "parent": 44854035,
     "depth": 1
   },
@@ -102,6 +102,14 @@
     "textPlain": "Shell syntax is the exact reason why we've needed LLMs in the first place.",
     "parent": 44854035,
     "depth": 1
+  },
+  {
+    "id": 44856093,
+    "by": "yencabulator",
+    "timeISO": "2025-08-10T16:02:54.000Z",
+    "textPlain": "I'll switch to fish after it stops expanding `car TAB` to `blkdiscard` when I don't have `cargo` in path. Non-prefix completion for commands is plain evil.",
+    "parent": 44854235,
+    "depth": 2
   },
   {
     "id": 44854299,
@@ -128,18 +136,18 @@
     "depth": 2
   },
   {
-    "id": 44855281,
-    "by": "IgorPartola",
-    "timeISO": "2025-08-10T14:07:04.000Z",
-    "textPlain": "man pages are so underrated. I mean every project nowadays has README.md so I don’t see why we can’t just auto generate them with or without an LLM helping. Also I wish programs would use standardized generic arguments for help, config file, version, background the task, PID file, log file, and log level.",
-    "parent": 44854235,
-    "depth": 2
-  },
-  {
     "id": 44854808,
     "by": "cb321",
     "timeISO": "2025-08-10T12:43:08.000Z",
     "textPlain": "For those programs that have betrayed shipping man pages, instead say relying only on a --help system, do you happen to know if the fish shell has an analogue to Zsh `_gnu_generic` and Bash `complete -F _longopt`?  If not, do you have any insight into why not/what it would take to make that happen?",
+    "parent": 44854235,
+    "depth": 2
+  },
+  {
+    "id": 44855281,
+    "by": "IgorPartola",
+    "timeISO": "2025-08-10T14:07:04.000Z",
+    "textPlain": "man pages are so underrated. I mean every project nowadays has README.md so I don’t see why we can’t just auto generate them with or without an LLM helping. Also I wish programs would use standardized generic arguments for help, config file, version, background the task, PID file, log file, and log level.",
     "parent": 44854235,
     "depth": 2
   },
@@ -224,6 +232,14 @@
     "depth": 2
   },
   {
+    "id": 44855957,
+    "by": "chasil",
+    "timeISO": "2025-08-10T15:44:52.000Z",
+    "textPlain": "Is this in the Korn & Bolsy ksh88 book?Or is this ksh93 syntax that oksh back ported?",
+    "parent": 44854992,
+    "depth": 2
+  },
+  {
     "id": 44855703,
     "by": "duckerude",
     "timeISO": "2025-08-10T15:08:13.000Z",
@@ -269,6 +285,22 @@
     "timeISO": "2025-08-10T11:07:14.000Z",
     "textPlain": "The answer to your question is that command-lines have a much larger diversity of syntax (even to get help!) than most people realize.  Folks have their 30..60 commands they run frequently and don't run into many or conveniently forget/neglect older ones like `gcc` or `tar` or `dd`.  Many people (not saying you specifically) do not even realize that double-dash long options are a GNU extension never standardized or that Python toolkits typically allow --my-opt for --my-option abbreviations, just to name a couple of the dozen variations (space or '=', or ':' or '/' or any of the above or etc., etc.).  There are probably hundreds if not thousands of syntax possibilities, but people often act like there is only one.As an example of diversity estimation that you can try at home, a couple of times I have run every single command in my command search PATH with --help </dev/null >/tmp/help.$c 2>&1 .  Caution - be careful if you do this!  Have backups/checksums of everything important and run as an unprivileged user.  I always have to kill off several processes that just hang doing something or otherwise manually intervene.  Anyway, this alone suggests data collection of help text is not a trivial problem.Beyond data collection, many commands did not/do not use CLI toolkits at all.  Their commands may have even less regular syntax.  Freeform help makes it harder to produce a regular help syntax to convert into the interpreter needed by a completion system.  That said, as elsethread commented for some toolkits the Zsh _gnu_generic works great!  It essentially IS the \"automagic\" system you might want, just for a highly restricted circumstance.Any CLI toolkit itself does have the data, by necessity.  So, if the CLI framework supports the 2 or 3 common shells there is no need for a translator exactly.  You just need a code generator.  There is a stab at an auto-generation framework from said data for the Nim CLI toolkit, cligen, over at:https://github.com/c-blake/cligen/blob/ma",
     "parent": 44854278,
+    "depth": 2
+  },
+  {
+    "id": 44856004,
+    "by": "chasil",
+    "timeISO": "2025-08-10T15:51:21.000Z",
+    "textPlain": "There is a famous paper on the perils of scripting in the csh. It is unfortunate that Bill Joy was not able to write a formal grammar or parser for his language. It was certainly a missed opportunity, and tcsh cannot fix the design.That being said, csh advocates definitely influenced everything in the Bourne/POSIX family.",
+    "parent": 44854959,
+    "depth": 2
+  },
+  {
+    "id": 44855832,
+    "by": "esafak",
+    "timeISO": "2025-08-10T15:23:43.000Z",
+    "textPlain": "Why, it's a dinosaur? Have you tried nushell, murex, oil shell or xonsh?",
+    "parent": 44854959,
     "depth": 2
   },
   {

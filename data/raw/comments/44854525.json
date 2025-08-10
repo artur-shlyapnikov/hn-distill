@@ -1,10 +1,42 @@
 [
   {
+    "id": 44855985,
+    "by": "lifeisstillgood",
+    "timeISO": "2025-08-10T15:49:16.000Z",
+    "textPlain": "So this is something like a 5000 USD machine \n(https://www.jeffgeerling.com/blog/2024/ampereone-cores-are-n...)\nAnd is designed as a cloud provider or telco edge machine (hence the erlang consultancy)But if you are looking at a hosted erlang VM for a capex of one dollar then these folks are onto somethingCores really are the only way to escape the broken moores law - and this does look like a real step in the important direction.  Less LLMs more tiny cores",
+    "parent": 44854525,
+    "depth": 1
+  },
+  {
     "id": 44855598,
     "by": "elteto",
     "timeISO": "2025-08-10T14:51:54.000Z",
     "textPlain": "“ Underjord is an artisanal consultancy …”\n\nIf they don’t weave Erlang threads by hand I’m going to be mildly disappointed.",
     "parent": 44854525,
     "depth": 1
+  },
+  {
+    "id": 44856204,
+    "by": "sargun",
+    "timeISO": "2025-08-10T16:20:08.000Z",
+    "textPlain": "I really like the manycores approach, but we haven’t seen it come to fruition — at least not on general purpose machines. I think a machine that exposes each subset of cores as a NUMA node and doesn’t try to flatten memory across the entire set of cores might be a much more workable approach. Otherwise the interconnect becomes the scaling limit quickly (all cores being able to access all memory at speed).Erlang, at least the programming model, lends itself well to this, where each process has a local heap. If that can stay resident to a subsection of the CPU, that might lend itself better to a reasonably priced many core architecture.",
+    "parent": 44855985,
+    "depth": 2
+  },
+  {
+    "id": 44856104,
+    "by": "temp0826",
+    "timeISO": "2025-08-10T16:04:29.000Z",
+    "textPlain": "Single origin, farm-to-bytecode processes with our signature rustic garbage collection and heirloom fault tolerance...",
+    "parent": 44855598,
+    "depth": 2
+  },
+  {
+    "id": 44856055,
+    "by": "bevr1337",
+    "timeISO": "2025-08-10T15:56:45.000Z",
+    "textPlain": "All process messages written in beautiful calligraphy.",
+    "parent": 44855598,
+    "depth": 2
   }
 ]

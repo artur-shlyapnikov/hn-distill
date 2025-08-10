@@ -8,6 +8,30 @@
     "depth": 1
   },
   {
+    "id": 44856123,
+    "by": "bsimpson",
+    "timeISO": "2025-08-10T16:08:07.000Z",
+    "textPlain": "I'm shocked this attack works. I thought the last 15 years of browser dev were largely isolating domains from each other to prevent cross-site attacks, and introducing consent flows for little used and/or dangerous platform features.Running JS inside an image format sounds like a thing they could add permissions for (or a click-to-play overlay), especially if it can talk to other sites.",
+    "parent": 44854545,
+    "depth": 1
+  },
+  {
+    "id": 44856167,
+    "by": "bapak",
+    "timeISO": "2025-08-10T16:15:03.000Z",
+    "textPlain": "I want to make something clear: <img src=file.svg> will not execute any scripts nor load foreignObject.For this to work, the SVG has to be loaded in an iframe or in a new tab. Or it could be inlined in the HTML.Nothing special about SVG really as long as you (Facebook) treat SVG files as images and don't inline it.The SVG part only really comes in as a way to hide script tags from anyone looking at the network requests, but even then it seems that the specific SVG was crafted to download further scripts.So what's the issue here exactly? It seems that Facebook is still somehow affected by XSS? Neat.",
+    "parent": 44854545,
+    "depth": 1
+  },
+  {
+    "id": 44856217,
+    "by": "neilv",
+    "timeISO": "2025-08-10T16:21:37.000Z",
+    "textPlain": "> it causes browsers to surreptitiously register a like for Facebook posts promoting the site.Wouldn't that be discovered pretty quickly, when Bob's family and friends see porn promoted to them because John apparently liked it on Facebook.  Eventually, one of them would mention it to him.\"Y'know, Bob, you probably don't want to be liking that on your main Facebook account...  Are you feeling OK?\"",
+    "parent": 44854545,
+    "depth": 1
+  },
+  {
     "id": 44854870,
     "by": "michaelt",
     "timeISO": "2025-08-10T12:55:42.000Z",
@@ -32,18 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44854897,
-    "by": "cheschire",
-    "timeISO": "2025-08-10T12:59:59.000Z",
-    "textPlain": "Finally, a reason why porn in incognito mode is actually a safety mechanism.",
-    "parent": 44854545,
-    "depth": 1
-  },
-  {
-    "id": 44855693,
-    "by": "shazbotter",
-    "timeISO": "2025-08-10T15:06:38.000Z",
-    "textPlain": "People still have Facebook accounts? I genuinely don't know why anyone does at this point.If you are a woman, did you know Facebook has been stealing menstruation data from apps and using it to target ads to you?If you take photos with your smartphone, you know meta has been using them to train their ai? Even if you haven't published them on Facebook?To say nothing of Facebook's complicity in dividing cultures and fomenting violence and hate...",
+    "id": 44855890,
+    "by": "zahlman",
+    "timeISO": "2025-08-10T15:34:58.000Z",
+    "textPlain": "> Security firm Malwarebytes on Friday said it recently discovered that porn sites have been seeding boobytrapped .svg files to select visitors. When one of these people clicks on the image, it causes browsers to surreptitiously register a like for Facebook posts promoting the site.I think I'm missing something; if you can embed arbitrary JavaScript in the SVG, why is a click necessary to make that JavaScript run? And if JavaScript on your page can exploit CSRF on Facebook, why is embedding it in an SVG necessary?",
     "parent": 44854545,
     "depth": 1
   },
@@ -56,34 +72,18 @@
     "depth": 1
   },
   {
+    "id": 44854897,
+    "by": "cheschire",
+    "timeISO": "2025-08-10T12:59:59.000Z",
+    "textPlain": "Finally, a reason why porn in incognito mode is actually a safety mechanism.",
+    "parent": 44854545,
+    "depth": 1
+  },
+  {
     "id": 44854907,
     "by": "QAkICoU7IDNkpFu",
     "timeISO": "2025-08-10T13:02:20.000Z",
     "textPlain": "“The user will have to be logged in on Facebook for this to work, but we know many people keep Facebook open for easy access.”Well there's your problem right there.",
-    "parent": 44854545,
-    "depth": 1
-  },
-  {
-    "id": 44855109,
-    "by": "ykonstant",
-    "timeISO": "2025-08-10T13:36:43.000Z",
-    "textPlain": "I remember opening one svg that totally wrecked my computer, I had to cold reboot; nothing worked, the system hanged down to the kernel.  It was impressive.  Never happened again with any other kind of file.",
-    "parent": 44854545,
-    "depth": 1
-  },
-  {
-    "id": 44855057,
-    "by": "ajross",
-    "timeISO": "2025-08-10T13:28:53.000Z",
-    "textPlain": "SVG really is just an awful format.  What the market wanted was a clean, easily parseable specification for vector image data based on a solid rendering specification.  What it got was an extensible HTML-like scripting language where all the vector stuff was ad hoc and poorly implemented, and where (this is the bit that absolutely drives me up the wall) the actual image data is not stored in the metadata format they chose.  You have to parse this entirely different string format if you want to extract the points on your curve or whatever!",
-    "parent": 44854545,
-    "depth": 1
-  },
-  {
-    "id": 44854849,
-    "by": "saagarjha",
-    "timeISO": "2025-08-10T12:51:00.000Z",
-    "textPlain": "I'm curious how you can click the like button using JavaScript…",
     "parent": 44854545,
     "depth": 1
   },
@@ -96,12 +96,60 @@
     "depth": 1
   },
   {
+    "id": 44854849,
+    "by": "saagarjha",
+    "timeISO": "2025-08-10T12:51:00.000Z",
+    "textPlain": "I'm curious how you can click the like button using JavaScript…",
+    "parent": 44854545,
+    "depth": 1
+  },
+  {
+    "id": 44855057,
+    "by": "ajross",
+    "timeISO": "2025-08-10T13:28:53.000Z",
+    "textPlain": "SVG really is just an awful format.  What the market wanted was a clean, easily parseable specification for vector image data based on a solid rendering specification.  What it got was an extensible HTML-like scripting language where all the vector stuff was ad hoc and poorly implemented, and where (this is the bit that absolutely drives me up the wall) the actual image data is not stored in the metadata format they chose.  You have to parse this entirely different string format if you want to extract the points on your curve or whatever!",
+    "parent": 44854545,
+    "depth": 1
+  },
+  {
     "id": 44855487,
     "by": "johnisgood",
     "timeISO": "2025-08-10T14:36:20.000Z",
     "textPlain": "Where is the SVG only?",
     "parent": 44854545,
     "depth": 1
+  },
+  {
+    "id": 44855693,
+    "by": "shazbotter",
+    "timeISO": "2025-08-10T15:06:38.000Z",
+    "textPlain": "People still have Facebook accounts? I genuinely don't know why anyone does at this point.If you are a woman, did you know Facebook has been stealing menstruation data from apps and using it to target ads to you?If you take photos with your smartphone, you know meta has been using them to train their ai? Even if you haven't published them on Facebook?To say nothing of Facebook's complicity in dividing cultures and fomenting violence and hate...",
+    "parent": 44854545,
+    "depth": 1
+  },
+  {
+    "id": 44855955,
+    "by": "varelse",
+    "timeISO": "2025-08-10T15:44:27.000Z",
+    "textPlain": "[dead]",
+    "parent": 44854545,
+    "depth": 1
+  },
+  {
+    "id": 44856089,
+    "by": "bsimpson",
+    "timeISO": "2025-08-10T16:02:10.000Z",
+    "textPlain": "As I recall, SVG was Adobe attempting to supplant Flash by publishing an open standard. It didn't work at the time, so they just bought Macromedia.",
+    "parent": 44854920,
+    "depth": 2
+  },
+  {
+    "id": 44855892,
+    "by": "mouse_",
+    "timeISO": "2025-08-10T15:35:04.000Z",
+    "textPlain": "I still miss Flash",
+    "parent": 44854920,
+    "depth": 2
   },
   {
     "id": 44854983,
@@ -128,10 +176,18 @@
     "depth": 2
   },
   {
+    "id": 44855942,
+    "by": "grishka",
+    "timeISO": "2025-08-10T15:42:24.000Z",
+    "textPlain": "Disabling third-party cookies also gets rid of lots of potential abuse vectors with negligible impact on useful functionality.",
+    "parent": 44855241,
+    "depth": 2
+  },
+  {
     "id": 44855394,
     "by": "mindslight",
     "timeISO": "2025-08-10T14:24:24.000Z",
-    "textPlain": "Investing in NoScript can actually make pages faster, even if you end up enabling a bunch of javascript for functionality. For example, I remember having to whitelist only about half the resources used by homedepot.com. The rest was just shameless surveillance bloat, continually backhauling gobs of data as you were merely viewing the page. The site loaded and ran quicker without it.",
+    "textPlain": "Investing in NoScript can actually make pages faster, even if you end up enabling a bunch of javascript for functionality. For example, I remember having to whitelist only about half the resources used by homedepot.com. The rest was just shameless surveillance bloat, continually backhauling gobs of data as you were merely viewing the page. The site loaded and scrolled much quicker without it.",
     "parent": 44855241,
     "depth": 2
   },
@@ -144,19 +200,19 @@
     "depth": 2
   },
   {
-    "id": 44855028,
-    "by": "ta1243",
-    "timeISO": "2025-08-10T13:23:59.000Z",
-    "textPlain": "Running facebook in incognito mode, or at least in a separate container, is also an essential safety mechanism.",
-    "parent": 44854897,
+    "id": 44855991,
+    "by": "bawolff",
+    "timeISO": "2025-08-10T15:50:07.000Z",
+    "textPlain": "Its not a CSRF vulnerability if its the intended behaviour.In a world where same-site cookies are the default you have to actively opt-in to this sort of thing.",
+    "parent": 44854917,
     "depth": 2
   },
   {
-    "id": 44855735,
-    "by": "Havoc",
-    "timeISO": "2025-08-10T15:13:13.000Z",
-    "textPlain": "A ton of friends still use Facebook messenger as their primary way to reach them",
-    "parent": 44855693,
+    "id": 44855907,
+    "by": "mathgeek",
+    "timeISO": "2025-08-10T15:36:35.000Z",
+    "textPlain": "> I think I'm missing something; if you can embed arbitrary JavaScript in the SVG, why is a click necessary to make that JavaScript run? And if JavaScript on your page can exploit CSRF on Facebook, why is embedding it in an SVG necessary?A human clicking something on the site tends to get around bot detection and similar systems put in place to prevent automation. This is a basic “get the user to take an action they don’t know the outcome of” attack.",
+    "parent": 44855890,
     "depth": 2
   },
   {
@@ -168,11 +224,27 @@
     "depth": 2
   },
   {
+    "id": 44855028,
+    "by": "ta1243",
+    "timeISO": "2025-08-10T13:23:59.000Z",
+    "textPlain": "Running facebook in incognito mode, or at least in a separate container, is also an essential safety mechanism.",
+    "parent": 44854897,
+    "depth": 2
+  },
+  {
     "id": 44855694,
     "by": "mananaysiempre",
     "timeISO": "2025-08-10T15:07:03.000Z",
     "textPlain": "Bog-standard CSRF is what that is. It’s essentially the second thing you guard against, right after sanitizing inputs to prevent XSS and SQL injection.",
     "parent": 44854907,
+    "depth": 2
+  },
+  {
+    "id": 44855295,
+    "by": "zb3",
+    "timeISO": "2025-08-10T14:09:14.000Z",
+    "textPlain": "Yeah, at first I thought this was about a browser 0day.. but no, so where is the vulnerability? Is Facebook vulnerable?",
+    "parent": 44855210,
     "depth": 2
   },
   {
@@ -184,11 +256,27 @@
     "depth": 2
   },
   {
-    "id": 44855295,
-    "by": "zb3",
-    "timeISO": "2025-08-10T14:09:14.000Z",
-    "textPlain": "Yeah, at first I thought this was about a browser 0day.. but no, so where is the vulnerability? Is Facebook vulnerable?",
-    "parent": 44855210,
+    "id": 44856198,
+    "by": "esprehn",
+    "timeISO": "2025-08-10T16:18:19.000Z",
+    "textPlain": "To be fair the format was invented in an era before gzip compression. The very compact format and silly attribute names like d are from optimizing for that.",
+    "parent": 44855057,
+    "depth": 2
+  },
+  {
+    "id": 44855934,
+    "by": "WarOnPrivacy",
+    "timeISO": "2025-08-10T15:41:06.000Z",
+    "textPlain": "> People still have Facebook accounts?Facebook Marketplace supplanted a number of earlier sites - like Hotpads for rentals and Craigslist for cars.In mid 2021 there were hundreds of applicants per rental listing - even on Marketplace. No one had a luxury of listing preference.",
+    "parent": 44855693,
+    "depth": 2
+  },
+  {
+    "id": 44855735,
+    "by": "Havoc",
+    "timeISO": "2025-08-10T15:13:13.000Z",
+    "textPlain": "A ton of friends still use Facebook messenger as their primary way to reach them",
+    "parent": 44855693,
     "depth": 2
   }
 ]
