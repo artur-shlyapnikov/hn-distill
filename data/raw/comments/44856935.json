@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44857304,
-    "by": "MobiusHorizons",
-    "timeISO": "2025-08-10T18:48:35.000Z",
-    "textPlain": "FYI \"the embedded scene\" is likely to be interpreted as \"embedded systems\" rather than \"embedded interpreters\" even by people who know about embedded interpreters, especially since all the languages you give as an example have been attempted for use on those targets (micropython, lua, and even typescript)",
-    "parent": 44856935,
-    "depth": 1
-  },
-  {
     "id": 44858071,
     "by": "perlgeek",
     "timeISO": "2025-08-10T20:31:43.000Z",
     "textPlain": "I like 99% of this, and the thing I don't like is in the very first line of the example:> import abs, epsilon from mathIMHO it's wrong to put the imported symbols first, because the same symbol could come from two different libraries and mean different things. So the library name is pretty important, and putting it last (and burying it after a potentially long list of imported symbols) just feels wrong.I get that it has a more natural-language vibe this way, but put there's a really good reason that most of the languages I know that put the package/module name first:    import packageName.member; // java\n    from package import symbol; # python\n    use Module 'symbol'; # perl\n    \nWith Typescript being the notable exception:    import { pi as π } from \"./maths.js\";t",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44857304,
+    "by": "MobiusHorizons",
+    "timeISO": "2025-08-10T18:48:35.000Z",
+    "textPlain": "FYI \"the embedded scene\" is likely to be interpreted as \"embedded systems\" rather than \"embedded interpreters\" even by people who know about embedded interpreters, especially since all the languages you give as an example have been attempted for use on those targets (micropython, lua, and even typescript)",
     "parent": 44856935,
     "depth": 1
   },
@@ -32,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44861128,
-    "by": "megapoliss",
-    "timeISO": "2025-08-11T06:00:53.000Z",
-    "textPlain": "Run some examples, and it looks like this \"High-performance, real-time optimized, super-fast\" language is  ~ 10 times slower than luajit\n  ~ 3 times slower than lua 5.4",
-    "parent": 44856935,
-    "depth": 1
-  },
-  {
     "id": 44857819,
     "by": "cookiengineer",
     "timeISO": "2025-08-10T19:59:05.000Z",
     "textPlain": "If functions don't have a return signature, does that mean everything must be satisfied in the compilation step?What about memory management/ownership? This would imply that everything must be copy by value in each function callsite, right? How to use references/pointers? Are they supported?I like the matchers which look similar to Rust, but I dislike the error handling because it is neither implicit, and neither explicit, and therefore will be painful to debug in larger codebases I'd imagine.Do you know about Koka? I don't like its syntax choices much but I think that an effect based error type system might integrate nicely with your design choices, especially with matchers as consumers.[1] https://koka-lang.github.io/koka/doc/index.html",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44861128,
+    "by": "megapoliss",
+    "timeISO": "2025-08-11T06:00:53.000Z",
+    "textPlain": "Run some examples, and it looks like this \"High-performance, real-time optimized, super-fast\" language is  ~ 10 times slower than luajit\n  ~ 3 times slower than lua 5.4",
     "parent": 44856935,
     "depth": 1
   },
@@ -136,18 +136,18 @@
     "depth": 1
   },
   {
-    "id": 44860202,
-    "by": "capyba",
-    "timeISO": "2025-08-11T02:11:56.000Z",
-    "textPlain": "In terms of performance, how does it compare to compiled languages like the C it’s written in?",
-    "parent": 44856935,
-    "depth": 1
-  },
-  {
     "id": 44859220,
     "by": "merksoftworks",
     "timeISO": "2025-08-10T23:11:45.000Z",
     "textPlain": "This is really cool but it's not portable to MacOs or aarm64 yet, and that kind of portability unfortunately is what appeals to me about an embeddable scripting language.",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44860202,
+    "by": "capyba",
+    "timeISO": "2025-08-11T02:11:56.000Z",
+    "textPlain": "In terms of performance, how does it compare to compiled languages like the C it’s written in?",
     "parent": 44856935,
     "depth": 1
   },
@@ -240,22 +240,6 @@
     "depth": 2
   },
   {
-    "id": 44860409,
-    "by": "RossBencina",
-    "timeISO": "2025-08-11T02:55:10.000Z",
-    "textPlain": "True. I misread it as being for embedded, especially with the term \"real-time\" in the mix. Then later when there was no ARM or RISC-V support I became very confused.",
-    "parent": 44857304,
-    "depth": 2
-  },
-  {
-    "id": 44857347,
-    "by": "beariish",
-    "timeISO": "2025-08-10T18:56:01.000Z",
-    "textPlain": "That's a good point, thank you. I've made a small edit to clarify.",
-    "parent": 44857304,
-    "depth": 2
-  },
-  {
     "id": 44858495,
     "by": "jasonjmcghee",
     "timeISO": "2025-08-10T21:34:05.000Z",
@@ -296,6 +280,22 @@
     "depth": 2
   },
   {
+    "id": 44860409,
+    "by": "RossBencina",
+    "timeISO": "2025-08-11T02:55:10.000Z",
+    "textPlain": "True. I misread it as being for embedded, especially with the term \"real-time\" in the mix. Then later when there was no ARM or RISC-V support I became very confused.",
+    "parent": 44857304,
+    "depth": 2
+  },
+  {
+    "id": 44857347,
+    "by": "beariish",
+    "timeISO": "2025-08-10T18:56:01.000Z",
+    "textPlain": "That's a good point, thank you. I've made a small edit to clarify.",
+    "parent": 44857304,
+    "depth": 2
+  },
+  {
     "id": 44860241,
     "by": "devmor",
     "timeISO": "2025-08-11T02:21:32.000Z",
@@ -317,6 +317,14 @@
     "timeISO": "2025-08-10T21:22:02.000Z",
     "textPlain": "Oh, not OP, but I love Koka. I should play around with it again thanks for reminding me!",
     "parent": 44857819,
+    "depth": 2
+  },
+  {
+    "id": 44861895,
+    "by": "jeroenhd",
+    "timeISO": "2025-08-11T08:24:41.000Z",
+    "textPlain": "Not bad for version 0.1.0. lua(jit) is no slowpoke and has had decades of performance improvements.",
+    "parent": 44861128,
     "depth": 2
   },
   {
@@ -389,14 +397,6 @@
     "timeISO": "2025-08-10T18:39:09.000Z",
     "textPlain": "As of right now no - my primary target when developing this was realtime and games in particular since that's what I know best, but if there's a real target in embedded that's certainly something that could be explored.",
     "parent": 44857233,
-    "depth": 2
-  },
-  {
-    "id": 44857885,
-    "by": "IshKebab",
-    "timeISO": "2025-08-10T20:06:24.000Z",
-    "textPlain": "It's compiled in the same way that Lua is compiled. So yes, it can replace Lua.",
-    "parent": 44857827,
     "depth": 2
   }
 ]

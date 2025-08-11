@@ -32,10 +32,26 @@
     "depth": 1
   },
   {
+    "id": 44860925,
+    "by": "brucehoult",
+    "timeISO": "2025-08-11T05:17:41.000Z",
+    "textPlain": "ConclusionStick to `std::memcpy`. It delivers great performance while also adapting to the hardware architecture, and makes no assumptions about the memory alignment.----So that's five minutes I'll never get back.I'd make an exception for RISC-V machines with \"RVV\" vectors, where vectorised `memcpy` hasn't yet made it into the standard library and a simple ...    0000000000000000 <memcpy>:\n       0:   86aa mv      a3,a0\n    \n    0000000000000002 <.L1^B1>:\n       2:   00267757 vsetvli a4,a2,e8,m4,tu,mu\n       6:   02058007 vle8.v  v0,(a1)\n       a:   95ba add     a1,a1,a4\n       c:   8e19 sub     a2,a2,a4\n       e:   02068027 vse8.v  v0,(a3)\n      12:   96ba add     a3,a3,a4\n      14:   f67d bnez    a2,2 <.L1^B1>\n      16:   8082 ret\n\n... often beats `memcpy` by a factor of 2 or 3 on copies that fit into L1 cache.https://hoult.org/d1_memcpy.txt",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
     "id": 44860882,
     "by": "waschl",
     "timeISO": "2025-08-11T05:08:20.000Z",
     "textPlain": "Thought about zero-copy IPC recently. In order to avoid memcopy for the complete chain, I guess it would be best if the sender allocates its payload directly on the shared memory when it’s created. Is this a standard thing in such optimized IPC and which libraries offer this?",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44861180,
+    "by": "adwn",
+    "timeISO": "2025-08-11T06:13:19.000Z",
+    "textPlain": "> The operation of copying data is super easy to parallelize across multiple threads. […] This will make the copy super-fast especially if the CPU has a large core count.I seriously doubt that. Unless you have a NUMA system, a single core in a desktop CPU can easily saturate the bandwidth of the system RAM controller. If you can avoid going through main memory – e.g., when copying between the L2 caches of different cores – multi-threading can speed things up. But then you need precise knowledge of your program's memory access behavior, and this is outside the scope of a general-purpose memcpy.",
     "parent": 44860847,
     "depth": 1
   },
@@ -48,26 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44860925,
-    "by": "brucehoult",
-    "timeISO": "2025-08-11T05:17:41.000Z",
-    "textPlain": "ConclusionStick to `std::memcpy`. It delivers great performance while also adapting to the hardware architecture, and makes no assumptions about the memory alignment.----So that's five minutes I'll never get back.I'd make an exception for RISC-V machines with \"RVV\" vectors, where vectorised `memcpy` hasn't yet made it into the standard library and a simple ...    0000000000000000 <memcpy>:\n       0:   86aa mv      a3,a0\n    \n    0000000000000002 <.L1^B1>:\n       2:   00267757 vsetvli a4,a2,e8,m4,tu,mu\n       6:   02058007 vle8.v  v0,(a1)\n       a:   95ba add     a1,a1,a4\n       c:   8e19 sub     a2,a2,a4\n       e:   02068027 vse8.v  v0,(a3)\n      12:   96ba add     a3,a3,a4\n      14:   f67d bnez    a2,2 <.L1^B1>\n      16:   8082 ret\n\n... often beats `memcpy` by a factor of 2 or 3 on copies that fit into L1 cache.https://hoult.org/d1_memcpy.txt",
-    "parent": 44860847,
-    "depth": 1
-  },
-  {
     "id": 44861212,
     "by": "Orangeair",
     "timeISO": "2025-08-11T06:18:10.000Z",
     "textPlain": "[2020]",
-    "parent": 44860847,
-    "depth": 1
-  },
-  {
-    "id": 44861180,
-    "by": "adwn",
-    "timeISO": "2025-08-11T06:13:19.000Z",
-    "textPlain": "> The operation of copying data is super easy to parallelize across multiple threads. […] This will make the copy super-fast especially if the CPU has a large core count.I seriously doubt that. Unless you have a NUMA system, a single core in a desktop CPU can easily saturate the bandwidth of the system RAM controller. If you can avoid going through main memory – e.g., when copying between the L2 caches of different cores – multi-threading can speed things up. But then you need precise knowledge of your program's memory access behavior, and this is outside the scope of a general-purpose memcpy.",
     "parent": 44860847,
     "depth": 1
   },
@@ -96,10 +96,26 @@
     "depth": 2
   },
   {
+    "id": 44861167,
+    "by": "viraptor",
+    "timeISO": "2025-08-11T06:10:32.000Z",
+    "textPlain": "> So that's five minutes I'll never get back.Confirming null hypothesis, with good supporting data is still interesting. Could save you from doing this yourself.",
+    "parent": 44860925,
+    "depth": 2
+  },
+  {
     "id": 44861173,
     "by": "comex",
     "timeISO": "2025-08-11T06:11:30.000Z",
     "textPlain": "IPC libraries often specifically avoid zero-copy for security reasons.  If a malicious message sender can modify the message while the receiver is in the middle of parsing it, you have to be very careful not to enable time-of-check-time-of-use attacks.  (To be fair, not all use cases need to be robust against a malicious sender.)",
+    "parent": 44860882,
+    "depth": 2
+  },
+  {
+    "id": 44861676,
+    "by": "a_t48",
+    "timeISO": "2025-08-11T07:43:38.000Z",
+    "textPlain": "I've looked into this a bit - the big blocker isn't on the transport/IPC library, but the serializer itself, assuming you _also_ want to support serializing messages to disk or over network. It's a bit of a pickle - at least in C++, tying an allocator to a structure and its children is an ugly mess. And what happens if you do something like resize a string? Does it mean a whole new allocation? I've (partially) solved it before for single process IPC by having a concept of a sharable structure and its serialization type, you could do the same for shared memory. One could also use a serializer that offers promises around allocations, FlatBuffer might fit the bill. There's also https://github.com/Verdant-Robotics/cbuf but I'm not sure how well maintained it is right now, publicly.As for allocation - it looks like Zenoh might offer the allocation pattern necessary. https://zenoh-cpp.readthedocs.io/en/1.0.0.5/shm.html TBH most of the big wins come from not copying big blocks of memory around from sensor data and the like. A thin header and reference to a block of shared memory containing an image or point cloud coming in over UDS is likely more than performant enough for most use cases. Again, big wins from not having to serialize/deserialize the sensor data.Another pattern which I haven't really seen anywhere is handling multiple transports - at one point I had the concept of setting up one transport as an allocator (to put into shared memory or the like) - serialize once to shared memory, hand that serialized buffer to your network transport(s) or your disk writer. It's not quite zero copy but in practice most zero copy is actually at least one copy on each end.(Sorry, this post is a little scatterbrained, hopefully some of my points come across)",
     "parent": 44860882,
     "depth": 2
   },
@@ -120,14 +136,6 @@
     "depth": 2
   },
   {
-    "id": 44861138,
-    "by": "yokaze",
-    "timeISO": "2025-08-11T06:02:59.000Z",
-    "textPlain": "Boost.Interprocess:https://www.boost.org/doc/libs/1_46_0/doc/html/interprocess/...",
-    "parent": 44860882,
-    "depth": 2
-  },
-  {
     "id": 44860899,
     "by": "throwaway81523",
     "timeISO": "2025-08-11T05:11:44.000Z",
@@ -136,11 +144,11 @@
     "depth": 2
   },
   {
-    "id": 44861167,
-    "by": "viraptor",
-    "timeISO": "2025-08-11T06:10:32.000Z",
-    "textPlain": "> So that's five minutes I'll never get back.Confirming null hypothesis, with good supporting data is still interesting. Could save you from doing this yourself.",
-    "parent": 44860925,
+    "id": 44861138,
+    "by": "yokaze",
+    "timeISO": "2025-08-11T06:02:59.000Z",
+    "textPlain": "Boost.Interprocess:https://www.boost.org/doc/libs/1_46_0/doc/html/interprocess/...",
+    "parent": 44860882,
     "depth": 2
   },
   {

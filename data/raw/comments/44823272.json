@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44861359,
-    "by": "noelwelsh",
-    "timeISO": "2025-08-11T06:45:59.000Z",
-    "textPlain": "The introduction to me reads as very confused:One of the most sought-after features for PHP is Generics: The ability to have a type that takes another type as a parameter. It's a feature found in most compiled languages by now, but implementing generics in an interpreted language like PHP, where all the type checking would have to be done at runtime, has always proven Really Really Hard(tm), Really Really Slow(tm), or both.* The topic of the article is implementing generics at compile time, but this claims that PHP is not compiled.* Type checking is orthogonal to compilation vs interpreter.* Types are not checked at runtime. It is kinda the point of types that they are checked before code runs. Runtime checks are on values. You can reify types at runtime but this breaks a useful property of generics (parametricity) and it prevents the very useful feature of types without a runtime representation (often known as newtypes).* If you want to use types in the colloquial \"dynamic type\" meaning as tags on values, and you also want to talk about generics (a feature that only makes sense for types-as-compile-time-properties) you need to be really careful in your terminology or confusion will abound!",
+    "id": 44861863,
+    "by": "rob74",
+    "timeISO": "2025-08-11T08:17:51.000Z",
+    "textPlain": "So, PHP started off as a loosely typed language, then got types... and now they want to implement generics to have more loosely typed code? But as I understand it, types are still optional, so you can still use untyped variables for \"generic\" code? I'm probably missing something here, is it because of performance concerns? Or the edge case of absolutely wanting strongly typed PHP throughout (except for the part where they want generics)?",
     "parent": 44823272,
     "depth": 1
   },
   {
-    "id": 44861481,
-    "by": "johnisgood",
-    "timeISO": "2025-08-11T07:08:32.000Z",
-    "textPlain": "Nay, enough of complexity as it is, for now.",
+    "id": 44861359,
+    "by": "noelwelsh",
+    "timeISO": "2025-08-11T06:45:59.000Z",
+    "textPlain": "The introduction to me reads as very confused:One of the most sought-after features for PHP is Generics: The ability to have a type that takes another type as a parameter. It's a feature found in most compiled languages by now, but implementing generics in an interpreted language like PHP, where all the type checking would have to be done at runtime, has always proven Really Really Hard(tm), Really Really Slow(tm), or both.* The topic of the article is implementing generics at compile time, but this claims that PHP is not compiled.* Type checking is orthogonal to compilation vs interpreter.* Types are not checked at runtime. It is kinda the point of types that they are checked before code runs. Runtime checks are on values. You can reify types at runtime but this breaks a useful property of generics (parametricity) and it prevents the very useful feature of types without a runtime representation (often known as newtypes).* If you want to use types in the colloquial \"dynamic type\" meaning as tags on values, and you also want to talk about generics (a feature that only makes sense for types-as-compile-time-properties) you need to be really careful in your terminology or confusion will abound!",
     "parent": 44823272,
     "depth": 1
   },
@@ -36,6 +36,14 @@
     "by": "twiss",
     "timeISO": "2025-08-10T23:33:29.000Z",
     "textPlain": "I may be missing something about how the PHP compiler/interpreter works, but I don't quite understand why this is apparently feasible to implement:    class BlogPostRepository extends BaseRepository<BlogPost> { ... }\n    $repo = new BlogPostRepository();\n\nbut the following would be very hard:    $repo = new Repository<BlogPost>();\n\nThey write that the latter would need runtime support, instead of only compile time support. But why couldn't the latter be (compile time) syntactic sugar for the former, so to speak?(As long as you don't allow the generic parameter to be dynamic / unknown at compile time, of course.)",
+    "parent": 44823272,
+    "depth": 1
+  },
+  {
+    "id": 44861481,
+    "by": "johnisgood",
+    "timeISO": "2025-08-11T07:08:32.000Z",
+    "textPlain": "Nay, enough of complexity as it is, for now.",
     "parent": 44823272,
     "depth": 1
   },
@@ -69,6 +77,14 @@
     "timeISO": "2025-08-11T05:14:42.000Z",
     "textPlain": "I thought Hack is dead or not intended for public use anymore.But after some quick checking, I learned that Hack is still actively maintained, surprisingly.",
     "parent": 44860379,
+    "depth": 2
+  },
+  {
+    "id": 44861899,
+    "by": "oaiey",
+    "timeISO": "2025-08-11T08:25:21.000Z",
+    "textPlain": "PHP afair compiles the textual PHP into some intermediate which is then run. So there is a compilation stage.",
+    "parent": 44861359,
     "depth": 2
   },
   {
