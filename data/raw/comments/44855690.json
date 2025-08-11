@@ -1,5 +1,13 @@
 [
   {
+    "id": 44860707,
+    "by": "starchild3001",
+    "timeISO": "2025-08-11T04:11:46.000Z",
+    "textPlain": "What stood out to me is how much of gpt-oss’s “newness” isn’t about radical architectural departures, but about a careful layering of well-understood optimizations—RoPE, SwiGLU, GQA, MoE—with some slightly unusual choices (tiny sliding-window sizes, few large experts instead of many small ones, per-head attention sinks).The MXFP4 quantization detail might be the sleeper feature here. Getting 20B running on a 16 GB consumer card, or 120B on a single H100/MI300X without multi-GPU orchestration headaches, could be a bigger enabler for indie devs and researchers than raw benchmark deltas. A lot of experimentation never happens simply because the friction of getting the model loaded is too high.One open question I’m curious about: given gpt-oss’s design bias toward reasoning (and away from encyclopedic recall), will we start seeing a formal split in open-weight model development—specialized “reasoners” that rely on tool use for facts, and “knowledge bases” tuned for retrieval-heavy work? That separation could change how we architect systems that wrap these models.",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
     "id": 44856128,
     "by": "7moritz7",
     "timeISO": "2025-08-10T16:09:01.000Z",
@@ -48,10 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44858940,
-    "by": "ahmedfromtunis",
-    "timeISO": "2025-08-10T22:42:15.000Z",
-    "textPlain": "When I visit the site I get the error \"Your connection is not private\". Also: \"You cannot visit magazine.sebastianraschka.com right now because the website uses HSTS.\"Chrome latest on Ubuntu.",
+    "id": 44858227,
+    "by": "poorman",
+    "timeISO": "2025-08-10T20:59:49.000Z",
+    "textPlain": "This article really goes into a lot of detail which is nice. gpt-oss is just not good for agentic use in my observation.tldr; I'll save you a lot of time trying things out for yourself. If you are on a >=32 GB Mac download LMStudio and then the `qwen3-coder-30b-a3b-instruct-mlx@5bit` model. It uses ~20 GB of RAM so a 32GB machine is plenty. Set it up with opencode [1] and you're off to the races! It has great tool calling ability. The tool calling ability of gpt-oss doesn't even come close in my observations.[1] https://opencode.ai/",
     "parent": 44855690,
     "depth": 1
   },
@@ -60,6 +68,14 @@
     "by": "chaos_emergent",
     "timeISO": "2025-08-10T20:56:01.000Z",
     "textPlain": "> This is likely because LLMs are typically trained for only a single epoch over massive datasets, which is in contrast to the multi-hundred-epoch training regimes for which dropout was first introduced.Wait, is this true? That seems like a wild statement to make, relatively unsubstantiated?",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
+    "id": 44858940,
+    "by": "ahmedfromtunis",
+    "timeISO": "2025-08-10T22:42:15.000Z",
+    "textPlain": "When I visit the site I get the error \"Your connection is not private\". Also: \"You cannot visit magazine.sebastianraschka.com right now because the website uses HSTS.\"Chrome latest on Ubuntu.",
     "parent": 44855690,
     "depth": 1
   },
@@ -84,14 +100,6 @@
     "by": "pryelluw",
     "timeISO": "2025-08-10T18:56:08.000Z",
     "textPlain": "The Qwen3 4B has been very good to use local. I barely use the online models. Web searches are now more targeted thanks to it. Don’t quite fully trust the output but it’s generally good. Mods like these will revolutionize local knowledge and automation",
-    "parent": 44855690,
-    "depth": 1
-  },
-  {
-    "id": 44858227,
-    "by": "poorman",
-    "timeISO": "2025-08-10T20:59:49.000Z",
-    "textPlain": "This article really goes into a lot of detail which is nice. gpt-oss is just not good for agentic use in my observation.tldr; I'll save you a lot of time trying things out for yourself. If you are on a >=32 GB Mac download LMStudio and then the `qwen3-coder-30b-a3b-instruct-mlx@5bit` model. It uses ~20 GB of RAM so a 32GB machine is plenty. Set it up with opencode [1] and you're off to the races! It has great tool calling ability. The tool calling ability of gpt-oss doesn't even come close in my observations.[1] https://opencode.ai/",
     "parent": 44855690,
     "depth": 1
   },
@@ -208,11 +216,27 @@
     "depth": 2
   },
   {
+    "id": 44858617,
+    "by": "ModelForge",
+    "timeISO": "2025-08-10T21:50:47.000Z",
+    "textPlain": "The ollama one uses even less (around 13 GB), which is nice. Apparently the gpt-oss team also shared the mxfp4 optimizations for metal",
+    "parent": 44858227,
+    "depth": 2
+  },
+  {
     "id": 44858210,
     "by": "typon",
     "timeISO": "2025-08-10T20:57:47.000Z",
     "textPlain": "No this is well known. Look for Table 2.2 in GPT3 paper.",
     "parent": 44858198,
+    "depth": 2
+  },
+  {
+    "id": 44860867,
+    "by": "vintermann",
+    "timeISO": "2025-08-11T05:04:24.000Z",
+    "textPlain": "First suspicion is that HSTS is doing what it's supposed to, and that you're connecting from somewhere they try to insert themselves in the middle of all https traffic. Https snooping is sadly not uncommon, some businesses think they're entitled to do it for you using their network.",
+    "parent": 44858940,
     "depth": 2
   },
   {
@@ -245,14 +269,6 @@
     "timeISO": "2025-08-10T19:05:21.000Z",
     "textPlain": "Qwen is telling you better search parameters to then search the web with, or qwen is actually doing web searches for you?",
     "parent": 44857348,
-    "depth": 2
-  },
-  {
-    "id": 44858617,
-    "by": "ModelForge",
-    "timeISO": "2025-08-10T21:50:47.000Z",
-    "textPlain": "The ollama one uses even less (around 13 GB), which is nice. Apparently the gpt-oss team also shared the mxfp4 optimizations for metal",
-    "parent": 44858227,
     "depth": 2
   }
 ]

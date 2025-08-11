@@ -24,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44860928,
+    "by": "deterministic",
+    "timeISO": "2025-08-11T05:18:22.000Z",
+    "textPlain": "You can think of any software (or hardware) as a state that transitions to a new state when an event happens.State0 -event0-> State1 -event1-> State2 etc.In other words, it's all a state machine.",
+    "parent": 44858009,
+    "depth": 1
+  },
+  {
     "id": 44858526,
     "by": "h4ch1",
     "timeISO": "2025-08-10T21:37:00.000Z",
@@ -48,18 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44860562,
-    "by": "RossBencina",
-    "timeISO": "2025-08-11T03:31:08.000Z",
-    "textPlain": "A phrase that I was expecting to see is \"state transition.\" You want to be able to specify and execute actions on particular state transitions. In your case, you want to be able to emit events from these actions.",
-    "parent": 44858248,
-    "depth": 2
-  },
-  {
     "id": 44859515,
     "by": "fleabitdev",
     "timeISO": "2025-08-10T23:50:45.000Z",
     "textPlain": "Reactivity works by replaying code when its inputs have changed. Events can make this very expensive and impractical, because to properly replay event-driven code, you'd need to replay every event it's ever received.When we replace an event stream with an observable variable, it's like a performance optimisation: \"you can ignore all of the events which came before; here's an accumulated value which summarises the entire event stream\". For example, a mouse movement event listener can often be reduced to an \"is hovered\" flag.Serialising program state to plain data isn't always easy or convenient, but it's flexible enough. Reducing all events to state almost solves the problem of impure inputs to reactive functions.Unfortunately, reactive functions usually have impure outputs, not just impure inputs. UI components might need to play a sound, write to a file, start an animation, perform an HTTP request, or notify a parent component that the \"close\" button has been clicked. It's really difficult to produce instantaneous side effects if you don't have instantaneous inputs to build on.I can't see an obvious solution, but until we come up with one, reactive UI toolkits will continue to be ill-formed. For example, a React component <ClickCounter mouseButton> would be broken by default: clicks are delivered by events, so they're invisible to React, so the component will display an incorrect click count when the mouseButton prop changes.",
+    "parent": 44858248,
+    "depth": 2
+  },
+  {
+    "id": 44860562,
+    "by": "RossBencina",
+    "timeISO": "2025-08-11T03:31:08.000Z",
+    "textPlain": "A phrase that I was expecting to see is \"state transition.\" You want to be able to specify and execute actions on particular state transitions. In your case, you want to be able to emit events from these actions.",
     "parent": 44858248,
     "depth": 2
   },

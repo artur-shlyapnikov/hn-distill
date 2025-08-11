@@ -1,0 +1,8 @@
+{
+  "id": 44860847,
+  "lang": "ru",
+  "summary": "**Как обогнать `memcpy`**\n\nПрофилируя **Shadesmar**, увидел: при больших (>512 КБ) сообщениях 97 % времени уходит на `memcpy` между процессной и разделяемой памятью. Решил ускорить копирование.\n\n---\n\n### Разбор `memcpy`\n\n`perf` показал:  \n`__memmove_avx_unaligned_erms` — это `memcpy` через `memmove`, AVX, 32 байта за раз, поддержка не выровненных блоков и ERMS (железный цикл `REP MOVSB`).\n\n- `memmove` выбран, т.к. допускает перекрытие.  \n- Для <4 КБ используется SSE2, иначе — `REP MOVSB` + AVX.  \n- Не-временные (`NT`) инструкции и `prefetcht0` уменьшают кэш-промахи.\n\n---\n\n### Способ 1: простой `REP MOVSB`\n\n```c\nvoid _rep_movsb(void *d, const void *s, size_t n) {\n  asm volatile(\"rep movsb\"\n               : \"=D\"(d), \"=S\"(s), \"=c\"(n)\n               : \"0\"(d), \"1\"(s), \"2\"(n)\n               : \"memory\");\n}\n```\n\nТот же цикл, что и в `glibc`, но без лишней логики.",
+  "inputHash": "619f067d2e93aed2d0c16fda2061c017fca2adfa3110a1f244de055ad9a3c364",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-11T05:31:25.624Z"
+}

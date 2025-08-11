@@ -40,6 +40,22 @@
     "depth": 1
   },
   {
+    "id": 44860733,
+    "by": "somat",
+    "timeISO": "2025-08-11T04:21:05.000Z",
+    "textPlain": "I am not much of a programmer so I was trying to figure out what generics are. And I am sure they are great, but my inner gremlin goes in sarcastic tone \"we want these elaborate type systems, but we also want typeless because that is far more convenient to use, so we invented generics, a method to untype your type system\"But really while I was reading up on what generics are I went, isn't that just python, strongly typed but your functions don't have built in type checks.",
+    "parent": 44823272,
+    "depth": 1
+  },
+  {
+    "id": 44860910,
+    "by": "maxloh",
+    "timeISO": "2025-08-11T05:14:42.000Z",
+    "textPlain": "I thought Hack is dead or not intended for public use anymore.But after some quick checking, I learned that Hack is still actively maintained, surprisingly.",
+    "parent": 44860379,
+    "depth": 2
+  },
+  {
     "id": 44859047,
     "by": "gloryjulio",
     "timeISO": "2025-08-10T22:54:23.000Z",
@@ -64,11 +80,27 @@
     "depth": 2
   },
   {
+    "id": 44860741,
+    "by": "baobun",
+    "timeISO": "2025-08-11T04:24:40.000Z",
+    "textPlain": "Usually you are right. I assume the inability to sugar would be that \"because PHP\", the value/type of BlogPost can not be derived at compile-time?",
+    "parent": 44859395,
+    "depth": 2
+  },
+  {
     "id": 44860086,
     "by": "wesammikhail",
     "timeISO": "2025-08-11T01:47:21.000Z",
     "textPlain": "Nailed it.This is the core problem with PHP for me.I love PHP and use it every day. Part of that is the strength and versatility of the arrays implementation (i.e. hashmap). However, the problem is always the fact that an array cant be typed.IF they could just introduce that, it would solve 80% of user-land issues over night.",
     "parent": 44859845,
+    "depth": 2
+  },
+  {
+    "id": 44860814,
+    "by": "tibbar",
+    "timeISO": "2025-08-11T04:49:26.000Z",
+    "textPlain": "As you say, generics really only apply to typed languages, and they help solve very legitimate annoyance in most of those languages -- you often have some library helper or algorithm that can apply to a wide range of things, but those things differ in some way that's irrelevant to the algorithm.For example, a mergesort algorithm works on any kind of array, as long as you can compare the elements in the array to each other. There's no point in re-implementing the algorithm for each kind of array. Yet, without generics, you'd need to do just that. At the same time, the generated code for sorting each different kind of array might need to be a little different - comparing strings and floats isn't the same assembly, for instance. So the programming language and compiler work together: you specify the algorithm once in a certain way, and the compiler can generate the right version of algorithm for each way that you need to use it.There are many, many good reasons why you might want to work in a typed language, even though specifying the types is a bit of extra book-keeping; generics are one way to keep the pointless work down. Of course, if you can get away with a python script, there's no need to bother with all this typing business just yet, either.",
+    "parent": 44860733,
     "depth": 2
   }
 ]

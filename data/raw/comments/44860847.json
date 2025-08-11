@@ -1,0 +1,58 @@
+[
+  {
+    "id": 44860890,
+    "by": "userbinator",
+    "timeISO": "2025-08-11T05:10:03.000Z",
+    "textPlain": "It's not clear from a skim of this article, but a common problem I've seen in the past with memory copying benchmarks is to not serialise and access the copied data in its destination to ensure that it was actually completed before concluding the timing. A simple REP MOVS should be at or near the top, especially on CPUs with ERMSB.",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44860957,
+    "by": "dataflow",
+    "timeISO": "2025-08-11T05:23:13.000Z",
+    "textPlain": "I thought this was going to be about https://github.com/Blosc/c-blosc",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44860882,
+    "by": "waschl",
+    "timeISO": "2025-08-11T05:08:20.000Z",
+    "textPlain": "Thought about zero-copy IPC recently. In order to avoid memcopy for the complete chain, I guess it would be best if the sender allocates its payload directly on the shared memory when it’s created. Is this a standard thing in such optimized IPC and which libraries offer this?",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44860925,
+    "by": "brucehoult",
+    "timeISO": "2025-08-11T05:17:41.000Z",
+    "textPlain": "ConclusionStick to `std::memcpy`. It delivers great performance while also adapting to the hardware architecture, and makes no assumptions about the memory alignment.----So that's five minutes I'll never get back.I'd make an exception for RISC-V machines with \"RVV\" vectors, where vectorised `memcpy` hasn't yet made it into the standard library and a simple ...    0000000000000000 <memcpy>:\n       0:   86aa mv      a3,a0\n    \n    0000000000000002 <.L1^B1>:\n       2:   00267757 vsetvli a4,a2,e8,m4,tu,mu\n       6:   02058007 vle8.v  v0,(a1)\n       a:   95ba add     a1,a1,a4\n       c:   8e19 sub     a2,a2,a4\n       e:   02068027 vse8.v  v0,(a3)\n      12:   96ba add     a3,a3,a4\n      14:   f67d bnez    a2,2 <.L1^B1>\n      16:   8082 ret\n\n... often beats `memcpy` by a factor of 2 or 3 on copies that fit into L1 cache.https://hoult.org/d1_memcpy.txt",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44860914,
+    "by": "kachapopopow",
+    "timeISO": "2025-08-11T05:15:18.000Z",
+    "textPlain": "Yah, these benchmarks are irrelevant since the CPU executes instructions out of order. Majority of the time the cpu will continue executing assembly while a copy operation is ongoing.",
+    "parent": 44860890,
+    "depth": 2
+  },
+  {
+    "id": 44860945,
+    "by": "dataflow",
+    "timeISO": "2025-08-11T05:20:29.000Z",
+    "textPlain": "> I guess it would be best if the sender allocates its payload directly on the shared memory when it’s created.On an SMP system yes. On a NUMA system it depends on your access patterns etc.",
+    "parent": 44860882,
+    "depth": 2
+  },
+  {
+    "id": 44860899,
+    "by": "throwaway81523",
+    "timeISO": "2025-08-11T05:11:44.000Z",
+    "textPlain": "This is one of mmap's designed-for use cases.  Look at DPDK maybe.",
+    "parent": 44860882,
+    "depth": 2
+  }
+]
