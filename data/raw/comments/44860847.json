@@ -1,13 +1,5 @@
 [
   {
-    "id": 44863898,
-    "by": "mojo-ponderer",
-    "timeISO": "2025-08-11T13:34:19.000Z",
-    "textPlain": "The graph at the end seems pretty dubious. For example, for the AvxUnrollCopier, why does data transfer speed jump to >120gb/s for 4kb, then down to ~50gb/s for 32kb, then down to <20gb/s for 16mb? It just doesn't make sense.",
-    "parent": 44860847,
-    "depth": 1
-  },
-  {
     "id": 44861292,
     "by": "Sesse__",
     "timeISO": "2025-08-11T06:33:37.000Z",
@@ -24,10 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44863675,
-    "by": "PaulHoule",
-    "timeISO": "2025-08-11T13:09:05.000Z",
-    "textPlain": "If I understand that chart at the end it looks like the better performance is only for small buffer sizes which fit in the cache (4k) but if you are looking at big buffers the stdlib copy performs about the same as the optimized copy that he writes.",
+    "id": 44863898,
+    "by": "mojo-ponderer",
+    "timeISO": "2025-08-11T13:34:19.000Z",
+    "textPlain": "The graph at the end seems pretty dubious. For example, for the AvxUnrollCopier, why does data transfer speed jump to >120gb/s for 4kb, then down to ~50gb/s for 32kb, then down to <20gb/s for 16mb? It just doesn't make sense.",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44864394,
+    "by": "EGreg",
+    "timeISO": "2025-08-11T14:19:42.000Z",
+    "textPlain": "Wait, I thought memcpy would have launched some sort of built-in mechanism (parallelized or whatever) to copy in RAM.Just indicate the start and length. Why would the CPU need to keep issuing copy instructions?",
     "parent": 44860847,
     "depth": 1
   },
@@ -40,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44863630,
-    "by": "coxley",
-    "timeISO": "2025-08-11T13:01:48.000Z",
-    "textPlain": "Ha, I love the project name \"Shadesmar\". Journey before destination, friend. :crossed-wrists:",
+    "id": 44863675,
+    "by": "PaulHoule",
+    "timeISO": "2025-08-11T13:09:05.000Z",
+    "textPlain": "If I understand that chart at the end it looks like the better performance is only for small buffer sizes which fit in the cache (4k) but if you are looking at big buffers the stdlib copy performs about the same as the optimized copy that he writes.",
     "parent": 44860847,
     "depth": 1
   },
@@ -72,6 +72,14 @@
     "depth": 1
   },
   {
+    "id": 44860957,
+    "by": "dataflow",
+    "timeISO": "2025-08-11T05:23:13.000Z",
+    "textPlain": "I thought this was going to be about https://github.com/Blosc/c-blosc",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
     "id": 44862597,
     "by": "kvemkon",
     "timeISO": "2025-08-11T10:12:23.000Z",
@@ -80,18 +88,18 @@
     "depth": 1
   },
   {
-    "id": 44860882,
-    "by": "waschl",
-    "timeISO": "2025-08-11T05:08:20.000Z",
-    "textPlain": "Thought about zero-copy IPC recently. In order to avoid memcopy for the complete chain, I guess it would be best if the sender allocates its payload directly on the shared memory when it’s created. Is this a standard thing in such optimized IPC and which libraries offer this?",
+    "id": 44863630,
+    "by": "coxley",
+    "timeISO": "2025-08-11T13:01:48.000Z",
+    "textPlain": "Ha, I love the project name \"Shadesmar\". Journey before destination, friend. :crossed-wrists:",
     "parent": 44860847,
     "depth": 1
   },
   {
-    "id": 44860957,
-    "by": "dataflow",
-    "timeISO": "2025-08-11T05:23:13.000Z",
-    "textPlain": "I thought this was going to be about https://github.com/Blosc/c-blosc",
+    "id": 44860882,
+    "by": "waschl",
+    "timeISO": "2025-08-11T05:08:20.000Z",
+    "textPlain": "Thought about zero-copy IPC recently. In order to avoid memcopy for the complete chain, I guess it would be best if the sender allocates its payload directly on the shared memory when it’s created. Is this a standard thing in such optimized IPC and which libraries offer this?",
     "parent": 44860847,
     "depth": 1
   },
@@ -149,6 +157,14 @@
     "timeISO": "2025-08-11T05:15:18.000Z",
     "textPlain": "Yah, these benchmarks are irrelevant since the CPU executes instructions out of order. Majority of the time the cpu will continue executing assembly while a copy operation is ongoing.",
     "parent": 44860890,
+    "depth": 2
+  },
+  {
+    "id": 44864359,
+    "by": "Sesse__",
+    "timeISO": "2025-08-11T14:17:33.000Z",
+    "textPlain": "The L1 cache is faster than the L3 cache. Does it need to be anything more complicated than that?",
+    "parent": 44863898,
     "depth": 2
   },
   {

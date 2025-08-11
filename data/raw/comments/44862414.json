@@ -16,14 +16,6 @@
     "depth": 1
   },
   {
-    "id": 44863878,
-    "by": "garganzol",
-    "timeISO": "2025-08-11T13:32:17.000Z",
-    "textPlain": "Every language tries to implement the best in class memory set/search primitives. Maybe we should move them to something called libos, where they will be implemented by every host OS? Then, OS manufacturers can supply libos.so/libos.dll/libos.dylib as part of the official OS distributions.If the wheels get reinvented again and again, it means that they should be readily available.",
-    "parent": 44862414,
-    "depth": 1
-  },
-  {
     "id": 44863318,
     "by": "lukaslalinsky",
     "timeISO": "2025-08-11T12:13:41.000Z",
@@ -48,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44862947,
-    "by": "jiehong",
-    "timeISO": "2025-08-11T11:18:42.000Z",
-    "textPlain": "Nice!But, does that work with non-ascii characters? (aka Unicode).",
+    "id": 44863878,
+    "by": "garganzol",
+    "timeISO": "2025-08-11T13:32:17.000Z",
+    "textPlain": "Every language tries to implement the best in class memory set/search primitives. Maybe we should move them to something called libos, where they will be implemented by every host OS? Then, OS manufacturers can supply libos.so/libos.dll/libos.dylib as part of the official OS distributions.If the wheels get reinvented again and again, it means that they should be readily available.",
     "parent": 44862414,
     "depth": 1
   },
@@ -64,6 +56,22 @@
     "depth": 1
   },
   {
+    "id": 44862947,
+    "by": "jiehong",
+    "timeISO": "2025-08-11T11:18:42.000Z",
+    "textPlain": "Nice!But, does that work with non-ascii characters? (aka Unicode).",
+    "parent": 44862414,
+    "depth": 1
+  },
+  {
+    "id": 44864052,
+    "by": "aarol",
+    "timeISO": "2025-08-11T13:50:44.000Z",
+    "textPlain": "I'm the author of the post, thanks for your feedback! I was inspired by your comment on HN a while back and started learning about this stuff, reading the source code of `memchr` was especially great.You're totally right about the first part there was a serious consideration to add this to zig's standard library, there would definitely need to be a fallback to avoid the `O(m*n)` situation.I'll admit that there are a lot of false assumptions at the end, you could totally specialize it for u8 and also get the block size according to CPU features at compile time with `std.simd.suggestVectorSize()`",
+    "parent": 44863604,
+    "depth": 2
+  },
+  {
     "id": 44863904,
     "by": "ozgrakkurt",
     "timeISO": "2025-08-11T13:35:16.000Z",
@@ -72,11 +80,19 @@
     "depth": 2
   },
   {
-    "id": 44863916,
-    "by": "ozgrakkurt",
-    "timeISO": "2025-08-11T13:36:15.000Z",
-    "textPlain": "Isn’t this what libc is? Like musl-libc or glibc",
-    "parent": 44863878,
+    "id": 44864044,
+    "by": "moregrist",
+    "timeISO": "2025-08-11T13:49:53.000Z",
+    "textPlain": "I’m not as familiar with the NEON side, but AVX512 support is pretty variable on new processors. Alder Lake omits it entirely. So we’re still in a world where AVX2 is the lowest common denominator for a system library that wants wide support.",
+    "parent": 44863111,
+    "depth": 2
+  },
+  {
+    "id": 44864225,
+    "by": "MattPalmer1086",
+    "timeISO": "2025-08-11T14:07:09.000Z",
+    "textPlain": "Worst case for these types of search is O(mn), m length of needle, n length of haystack.  It is not linear in n.The absolute worst case is when both the needle and haystack are both composed of the same byte repeated (e.g. all zero).",
+    "parent": 44862721,
     "depth": 2
   },
   {
@@ -93,6 +109,14 @@
     "timeISO": "2025-08-11T11:12:52.000Z",
     "textPlain": "Knowing little about zig, std.mem.eql very likely already uses SIMD.This is about using SIMD to avoid even calling std.mem.eql for 99% of the possible attempts.",
     "parent": 44862880,
+    "depth": 2
+  },
+  {
+    "id": 44863916,
+    "by": "ozgrakkurt",
+    "timeISO": "2025-08-11T13:36:15.000Z",
+    "textPlain": "Isn’t this what libc is? Like musl-libc or glibc",
+    "parent": 44863878,
     "depth": 2
   },
   {

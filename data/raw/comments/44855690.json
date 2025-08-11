@@ -24,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44863558,
-    "by": "mike_hearn",
-    "timeISO": "2025-08-11T12:48:46.000Z",
-    "textPlain": "I'm really not a PyTorch expert so this is most likely a newbie error, but could someone explain to me the code in Figure 7?The code circled as \"4 x emb_dim\" doesn't seem to apply a 4x multiplier anywhere. Actually, the layer definitions of fc1 and fc2 in the SwiGLU variant appear to be identical to the code in the regular feed forward block. What is making the two layers in the second code snippet different sizes to fc1 in the first?",
-    "parent": 44855690,
-    "depth": 1
-  },
-  {
     "id": 44856661,
     "by": "roscas",
     "timeISO": "2025-08-10T17:18:46.000Z",
     "textPlain": "From my experience, qwen3-coder is way better. I only have gpt-oss:20b installed to make a few more tests but I give it a program to make a summary of what it does and qwen3 just works in a few seconds, while gpt-oss was cancelled after 5 minuts... doing nothing.So I just use qwen3. Fast and great ouput. If for some reason I don't get what I need, I might use search engines or Perplexity.I have a 10GB 3080 and Ryzen 3600x with 32gb of RAM.Qwen3-coder is amazing. Best I used so far.",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
+    "id": 44863558,
+    "by": "mike_hearn",
+    "timeISO": "2025-08-11T12:48:46.000Z",
+    "textPlain": "I'm really not a PyTorch expert so this is most likely a newbie error, but could someone explain to me the code in Figure 7?The code circled as \"4 x emb_dim\" doesn't seem to apply a 4x multiplier anywhere. Actually, the layer definitions of fc1 and fc2 in the SwiGLU variant appear to be identical to the code in the regular feed forward block. What is making the two layers in the second code snippet different sizes to fc1 in the first?",
     "parent": 44855690,
     "depth": 1
   },
@@ -224,14 +224,6 @@
     "depth": 2
   },
   {
-    "id": 44863622,
-    "by": "fdalvi",
-    "timeISO": "2025-08-11T13:00:20.000Z",
-    "textPlain": "It is indeed not something clarified by the code snippets; In normal feedforward layers, it is common to choose the \"hidden_dim = 4 x emb_dim\", while in GLU feedforward layer, the convention is to use \"hidden_dim = 2/3 * regular_ffn_hidden_dim\" (to keep the overall number of parameters roughly the same). In the case of gpt-oss, they chose to go a bit more extreme and set \"hidden_dim = emb_dim\", thus reducing the overall number of parameters!",
-    "parent": 44863558,
-    "depth": 2
-  },
-  {
     "id": 44857846,
     "by": "lvl155",
     "timeISO": "2025-08-10T20:01:57.000Z",
@@ -269,6 +261,14 @@
     "timeISO": "2025-08-10T20:08:07.000Z",
     "textPlain": "Are you using this in an agentic way or in a copy and paste and “code this” single input single output way?I’d like to know how far the frontier models are from the local for agentic coding.",
     "parent": 44856661,
+    "depth": 2
+  },
+  {
+    "id": 44863622,
+    "by": "fdalvi",
+    "timeISO": "2025-08-11T13:00:20.000Z",
+    "textPlain": "It is indeed not something clarified by the code snippets; In normal feedforward layers, it is common to choose the \"hidden_dim = 4 x emb_dim\", while in GLU feedforward layer, the convention is to use \"hidden_dim = 2/3 * regular_ffn_hidden_dim\" (to keep the overall number of parameters roughly the same). In the case of gpt-oss, they chose to go a bit more extreme and set \"hidden_dim = emb_dim\", thus reducing the overall number of parameters!",
+    "parent": 44863558,
     "depth": 2
   },
   {

@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44863956,
-    "by": "rrr_oh_man",
-    "timeISO": "2025-08-11T13:40:20.000Z",
-    "textPlain": "That's great.I was thinking about whether to move the Terminal-based microblogging / chat app I'm building into this direction.(Especially after watching several interviews with Paul Durov and listening to what he went through...)",
-    "parent": 44863242,
-    "depth": 1
-  },
-  {
     "id": 44863450,
     "by": "pilif",
     "timeISO": "2025-08-11T12:32:32.000Z",
@@ -24,10 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44863682,
-    "by": "stoltzmann",
-    "timeISO": "2025-08-11T13:10:53.000Z",
-    "textPlain": "So which one is better? sntrup761x25519-sha512 or mlkem768x25519-sha256?",
+    "id": 44864401,
+    "by": "Bender",
+    "timeISO": "2025-08-11T14:20:28.000Z",
+    "textPlain": "ssh-audit [1] should be updated to test for this theoretical algo.  I still get an \"A\" despite fixating on a specific algo and not including the quantum.  I'm doing the cha-cha.[1] - https://www.ssh-audit.com/",
+    "parent": 44863242,
+    "depth": 1
+  },
+  {
+    "id": 44863956,
+    "by": "rrr_oh_man",
+    "timeISO": "2025-08-11T13:40:20.000Z",
+    "textPlain": "That's great.I was thinking about whether to move the Terminal-based microblogging / chat app I'm building into this direction.(Especially after watching several interviews with Paul Durov and listening to what he went through...)",
     "parent": 44863242,
     "depth": 1
   },
@@ -36,6 +36,14 @@
     "by": "Havoc",
     "timeISO": "2025-08-11T12:43:16.000Z",
     "textPlain": "Makes sense to get ahead of this. Especially when it’s a pretty trivial key swop.Which of the two options given is stronger? Presumably the 512 one?",
+    "parent": 44863242,
+    "depth": 1
+  },
+  {
+    "id": 44863682,
+    "by": "stoltzmann",
+    "timeISO": "2025-08-11T13:10:53.000Z",
+    "textPlain": "So which one is better? sntrup761x25519-sha512 or mlkem768x25519-sha256?",
     "parent": 44863242,
     "depth": 1
   },
@@ -56,6 +64,14 @@
     "depth": 1
   },
   {
+    "id": 44864064,
+    "by": "colmmacc",
+    "timeISO": "2025-08-11T13:52:16.000Z",
+    "textPlain": "Hybrid schemes give you improved security against algorithmic flaws. If either algorithm being used is broken, the other gives you resilience. But hybrid schemes also double (or more) your exposure to ordinary implementation bugs and side-channels.Since Quantum Computers at scale aren't real yet, and those kinds of issues very much are, you'd think that'd be quite a trade-off. But so much work has gone into security research and formal verification over the last 10 years that the trade-off really does make sense.",
+    "parent": 44863764,
+    "depth": 2
+  },
+  {
     "id": 44863549,
     "by": "fxwin",
     "timeISO": "2025-08-11T12:47:59.000Z",
@@ -67,7 +83,7 @@
     "id": 44863915,
     "by": "Strilanc",
     "timeISO": "2025-08-11T13:36:15.000Z",
-    "textPlain": "That paper is hilarious, and is correct that there's plenty of shit to make fun of... but there's also progress. I recommend watching Sam Jacques' talk from PQCrypto 2025 [0]. It would be silly to delay PQC adoption because of focusing on the irrelevant bad papers.In the past ten years, on the theory side, the expected cost of cryptographically relevant quantum factoring has dropped by 1000x [1][2]. On the hardware side, fault tolerance demonstrations have gone from repetition code error rates of 1% error per round [3] to 0.00000001% error per round [4], with full quantum codes being demonstrated with an error rate of 0.2% [4] via a 2x reduction in error each time distance is increased by 2.If you want to track progress in quantum computing, follow the gradual spinup of fault tolerance. Noise is the main thing blocking factoring of larger and larger numbers. Once the quality problem is turned into a quantity problem, then those benchmarks can start moving.[0]: https://www.youtube.com/watch?v=nJxENYdsB6c[1]: https://arxiv.org/abs/1208.0928[2]: https://arxiv.org/abs/2505.15917[3]: https://arxiv.org/abs/1411.7403[4]: https://arxiv.org/abs/2408.13687",
+    "textPlain": "That paper is hilarious, and is correct that there's plenty of shit to make fun of... but there's also progress. I recommend watching Sam Jacques' talk from PQCrypto 2025 [0]. It would be silly to delay PQC adoption because of focusing on the irrelevant bad papers.In the past ten years, on the theory side, the expected cost of cryptographically relevant quantum factoring has dropped by 1000x [1][2]. On the hardware side, fault tolerance demonstrations have gone from repetition code error rates of 1% error per round [3] to 0.00000001% error per round [fig3a of 4], with full quantum codes being demonstrated with an error rate of 0.2% [fig1d of 4] via a 2x reduction in error each time distance is increased by 2.If you want to track progress in quantum computing, follow the gradual spinup of fault tolerance. Noise is the main thing blocking factoring of larger and larger numbers. Once the quality problem is turned into a quantity problem, then those benchmarks can start moving.[0]: https://www.youtube.com/watch?v=nJxENYdsB6c[1]: https://arxiv.org/abs/1208.0928[2]: https://arxiv.org/abs/2505.15917[3]: https://arxiv.org/abs/1411.7403[4]: https://arxiv.org/abs/2408.13687",
     "parent": 44863450,
     "depth": 2
   },
@@ -88,18 +104,18 @@
     "depth": 2
   },
   {
-    "id": 44863503,
-    "by": "tptacek",
-    "timeISO": "2025-08-11T12:40:35.000Z",
-    "textPlain": "I don't think many cryptography engineers take Gutmann's paper seriously.",
-    "parent": 44863450,
-    "depth": 2
-  },
-  {
     "id": 44863603,
     "by": "Rebelgecko",
     "timeISO": "2025-08-11T12:58:06.000Z",
     "textPlain": "I imagine the key exchange is just once per connection, right? So the overhead seems not too bad.Especially since I think a pretty large number of computers/hostnames that are ssh'able today will probably have the same root password if they're still connected to the internet 10-20 years from now",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44863503,
+    "by": "tptacek",
+    "timeISO": "2025-08-11T12:40:35.000Z",
+    "textPlain": "I don't think many cryptography engineers take Gutmann's paper seriously.",
     "parent": 44863450,
     "depth": 2
   },
@@ -128,11 +144,11 @@
     "depth": 2
   },
   {
-    "id": 44863695,
-    "by": "ethan_smith",
-    "timeISO": "2025-08-11T13:12:06.000Z",
-    "textPlain": "MLKEM768 offers better performance and smaller keys, while SNTRUP761 has stronger security assumptions and better resilience against potential cryptanalysis.",
-    "parent": 44863682,
+    "id": 44864368,
+    "by": "taminka",
+    "timeISO": "2025-08-11T14:18:19.000Z",
+    "textPlain": "what did he go through? also why would a blog website need ssh?",
+    "parent": 44863956,
     "depth": 2
   },
   {
@@ -147,8 +163,32 @@
     "id": 44863623,
     "by": "daneel_w",
     "timeISO": "2025-08-11T13:00:26.000Z",
-    "textPlain": "We're nowhere near the point where there's any general concern specifically regarding the sizes of 256 bits or 512 bits for hashes, block sizes, key sizes etc. Currently we don't need to consider the problem as a question of what time is required, because we don't have the electrical energy required to explore even a fraction of a 128 bit space. We don't have computers that can ingest such power either. \"Relax, guy.\"",
+    "textPlain": "We're nowhere near the point where there's any general concern regarding the sizes of 256 bits or 512 bits for hashes, block sizes, key sizes etc. Currently we don't need to consider the problem as a question of what time is required, because we don't have the electrical energy required to explore even a fraction of an unfathomably smaller 128 bit space. We don't have computers that can ingest such power either. \"Relax, guy.\"",
     "parent": 44863522,
+    "depth": 2
+  },
+  {
+    "id": 44864115,
+    "by": "tptacek",
+    "timeISO": "2025-08-11T13:57:06.000Z",
+    "textPlain": "mlkem is a sane default, since it's the construction the rest of the industry is standardizing on.",
+    "parent": 44863522,
+    "depth": 2
+  },
+  {
+    "id": 44864102,
+    "by": "tptacek",
+    "timeISO": "2025-08-11T13:56:15.000Z",
+    "textPlain": "NTRU Prime (sntrup) is there mostly as a quirk of history (mlkem wasn't available when SSH went down the road of doing PQ). You can use either, but my guess is using sntrup is going to be a little like how GPG used to default to CAST as its cipher.",
+    "parent": 44863682,
+    "depth": 2
+  },
+  {
+    "id": 44863695,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-11T13:12:06.000Z",
+    "textPlain": "MLKEM768 offers better performance and smaller keys, while SNTRUP761 has stronger security assumptions and better resilience against potential cryptanalysis.",
+    "parent": 44863682,
     "depth": 2
   },
   {
@@ -157,6 +197,14 @@
     "timeISO": "2025-08-11T13:06:14.000Z",
     "textPlain": "If you need to access a server across a network you don't 100% control, you have to assume your traffic is captured and post-quantum will mean it can be decrypted. Whether that's a concern or not is another matter",
     "parent": 44863644,
+    "depth": 2
+  },
+  {
+    "id": 44864120,
+    "by": "tptacek",
+    "timeISO": "2025-08-11T13:57:27.000Z",
+    "textPlain": "This is discussed on the page.",
+    "parent": 44863602,
     "depth": 2
   }
 ]
