@@ -16,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44862219,
-    "by": "davrosthedalek",
-    "timeISO": "2025-08-11T09:14:12.000Z",
-    "textPlain": "> Since the loop copies data pointer by pointer, it can handle the case of overlapping data.I don't think this loop does the right thing if destination points somewhere into source. It will start overwriting the non-copied parts of source.",
+    "id": 44862597,
+    "by": "kvemkon",
+    "timeISO": "2025-08-11T10:12:23.000Z",
+    "textPlain": "BTW, if we copy data between some device and RAM efficiently using DMA without spending CPU cycles, why we can't use DMA to copy RAM-to-RAM?",
     "parent": 44860847,
     "depth": 1
   },
@@ -28,6 +28,14 @@
     "by": "Arech",
     "timeISO": "2025-08-11T05:37:42.000Z",
     "textPlain": "It's not clear how the author controlled for HW caching. Without this, the results are, unfortunately, meaningless, even though some good work has been gone",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44862219,
+    "by": "davrosthedalek",
+    "timeISO": "2025-08-11T09:14:12.000Z",
+    "textPlain": "> Since the loop copies data pointer by pointer, it can handle the case of overlapping data.I don't think this loop does the right thing if destination points somewhere into source. It will start overwriting the non-copied parts of source.",
     "parent": 44860847,
     "depth": 1
   },
@@ -48,14 +56,6 @@
     "depth": 1
   },
   {
-    "id": 44861180,
-    "by": "adwn",
-    "timeISO": "2025-08-11T06:13:19.000Z",
-    "textPlain": "> The operation of copying data is super easy to parallelize across multiple threads. […] This will make the copy super-fast especially if the CPU has a large core count.I seriously doubt that. Unless you have a NUMA system, a single core in a desktop CPU can easily saturate the bandwidth of the system RAM controller. If you can avoid going through main memory – e.g., when copying between the L2 caches of different cores – multi-threading can speed things up. But then you need precise knowledge of your program's memory access behavior, and this is outside the scope of a general-purpose memcpy.",
-    "parent": 44860847,
-    "depth": 1
-  },
-  {
     "id": 44860882,
     "by": "waschl",
     "timeISO": "2025-08-11T05:08:20.000Z",
@@ -68,6 +68,14 @@
     "by": "dataflow",
     "timeISO": "2025-08-11T05:23:13.000Z",
     "textPlain": "I thought this was going to be about https://github.com/Blosc/c-blosc",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44861180,
+    "by": "adwn",
+    "timeISO": "2025-08-11T06:13:19.000Z",
+    "textPlain": "> The operation of copying data is super easy to parallelize across multiple threads. […] This will make the copy super-fast especially if the CPU has a large core count.I seriously doubt that. Unless you have a NUMA system, a single core in a desktop CPU can easily saturate the bandwidth of the system RAM controller. If you can avoid going through main memory – e.g., when copying between the L2 caches of different cores – multi-threading can speed things up. But then you need precise knowledge of your program's memory access behavior, and this is outside the scope of a general-purpose memcpy.",
     "parent": 44860847,
     "depth": 1
   },
@@ -120,6 +128,14 @@
     "depth": 2
   },
   {
+    "id": 44862692,
+    "by": "shakna",
+    "timeISO": "2025-08-11T10:27:26.000Z",
+    "textPlain": "[delayed]",
+    "parent": 44862597,
+    "depth": 2
+  },
+  {
     "id": 44861167,
     "by": "viraptor",
     "timeISO": "2025-08-11T06:10:32.000Z",
@@ -128,19 +144,11 @@
     "depth": 2
   },
   {
-    "id": 44862042,
-    "by": "bob1029",
-    "timeISO": "2025-08-11T08:47:24.000Z",
-    "textPlain": "> a single core in a desktop CPU can easily saturate the bandwidth of the system RAM controller.Modern x86 machines offer far more memory bandwidth than what a single core can consume. The entire architecture is designed on purpose to ensure this.The interesting thing to note is that this has not always been the case. The 2010s is when the transition occurred.",
-    "parent": 44861180,
-    "depth": 2
-  },
-  {
-    "id": 44861233,
-    "by": "hugh-avherald",
-    "timeISO": "2025-08-11T06:22:23.000Z",
-    "textPlain": "I've experienced modest but significant improvements in speed using very basic pragma omp section style parallelizing of this sort of thing.",
-    "parent": 44861180,
+    "id": 44862551,
+    "by": "makach",
+    "timeISO": "2025-08-11T10:04:24.000Z",
+    "textPlain": "You pre-stole my comment, I was about to make the exact same post :-DAlthough the blog post is about going faster and him showing alternative algorithms, conclusion remains for safety which makes perfect sense. However, he did show us a few strategies which is useful. The five minutes I spent, will never be returned to me but at least I learned something interesting...",
+    "parent": 44860925,
     "depth": 2
   },
   {
@@ -189,6 +197,22 @@
     "timeISO": "2025-08-11T06:02:59.000Z",
     "textPlain": "Boost.Interprocess:https://www.boost.org/doc/libs/1_46_0/doc/html/interprocess/...",
     "parent": 44860882,
+    "depth": 2
+  },
+  {
+    "id": 44862042,
+    "by": "bob1029",
+    "timeISO": "2025-08-11T08:47:24.000Z",
+    "textPlain": "> a single core in a desktop CPU can easily saturate the bandwidth of the system RAM controller.Modern x86 machines offer far more memory bandwidth than what a single core can consume. The entire architecture is designed on purpose to ensure this.The interesting thing to note is that this has not always been the case. The 2010s is when the transition occurred.",
+    "parent": 44861180,
+    "depth": 2
+  },
+  {
+    "id": 44861233,
+    "by": "hugh-avherald",
+    "timeISO": "2025-08-11T06:22:23.000Z",
+    "textPlain": "I've experienced modest but significant improvements in speed using very basic pragma omp section style parallelizing of this sort of thing.",
+    "parent": 44861180,
     "depth": 2
   },
   {

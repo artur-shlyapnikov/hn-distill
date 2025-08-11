@@ -1,0 +1,8 @@
+{
+  "id": 44862414,
+  "lang": "ru",
+  "summary": "**SIMD-поиск подстроки в Zig**\n\nАвтор реализовал алгоритм, который на 60 % быстрее `std.mem.indexOf`.  \nИдея: сравниваем 32-байтовые блоки текста с первым и последним символом искомого слова, используя AVX2.\n\n1. Берём первый и последний байт `needle` (`first`, `last`).  \n2. Загружаем 32 байта `haystack` в вектор `Block = @Vector(32, u8)`.  \n3. Создаём маски совпадений:  \n   ```zig\n   const eq_first = first == block;\n   const eq_last  = last  == block_shifted;\n   const mask = @bitCast(eq_first & eq_last);\n   ```  \n4. Для каждого установленного бита проверяем полное совпадение подстроки.  \n5. Хвост обрабатываем обычным `indexOf`.\n\n**Код (сокращённо):**\n```zig\nconst Block = @Vector(32, u8);\nconst first = @splat(needle[0]);\nconst last  = @splat(needle[k-1]);\n\nwhile (i + k + 32 <= n) : (i += 32) {\n    const f = haystack[i..][0..32].*;\n    const l = haystack[i+k-1..][0..32].*;\n    var mask: u32 = @bitCast((first == f) & (last == l));\n    while (mask != 0) {\n        const bit = @ctz(mask);\n        if (mem.eql(u8, haystack[i+bit+1..][0..k-1], needle[1..]))\n            return i + bit;\n        mask &= mask - 1;\n    }\n}\nreturn mem.indexOf(u8, haystack[i..], needle) orelse null;\n```\n\n**Тест:** поиск слова «newsletter» во всём «Моби Дике» (~1.2 МБ).  \nСборка: `zig build -Doptimize=ReleaseFast`.",
+  "inputHash": "1683900cec178729fdea953a4d891b4e7be20fa586527825160204aeaf7c6649",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-11T10:28:19.942Z"
+}

@@ -32,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44861999,
-    "by": "dzogchen",
-    "timeISO": "2025-08-11T08:41:35.000Z",
-    "textPlain": "Say it with me: freely downloadable model weights does not mean a model is open source. https://opensource.org/ai/open-source-ai-definition",
-    "parent": 44855690,
-    "depth": 1
-  },
-  {
     "id": 44858834,
     "by": "eurekin",
     "timeISO": "2025-08-10T22:25:24.000Z",
     "textPlain": "I'm still in awe that a local 3090 gpu was able to run the qwen3 coder instruct 30b-a3b exl3 q6 and...Was able to create a sample page, tried starting a server, recognising a leftover server was running, killing it (and forced a prompt for my permission), retrying and finding out it's ip for me to open in the browser.This isn't a demo anymore. That's actually very useful help for interns/juniors already.",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
+    "id": 44861999,
+    "by": "dzogchen",
+    "timeISO": "2025-08-11T08:41:35.000Z",
+    "textPlain": "Say it with me: freely downloadable model weights does not mean a model is open source. https://opensource.org/ai/open-source-ai-definition",
     "parent": 44855690,
     "depth": 1
   },
@@ -128,14 +128,6 @@
     "depth": 2
   },
   {
-    "id": 44862116,
-    "by": "ethan_smith",
-    "timeISO": "2025-08-11T09:00:18.000Z",
-    "textPlain": "MXFP4's mixed precision approach (4-bit for weights, higher precision for KV cache) actually offers better accuracy/size tradeoffs than competing quantization methods like GPTQ or AWQ, which is why it enables these impressive resource profiles without the typical 4-bit degradation.",
-    "parent": 44860707,
-    "depth": 2
-  },
-  {
     "id": 44861346,
     "by": "codelion",
     "timeISO": "2025-08-11T06:43:07.000Z",
@@ -148,6 +140,14 @@
     "by": "asabla",
     "timeISO": "2025-08-11T06:17:28.000Z",
     "textPlain": "> that rely on tool use for facts, and “knowledge bases” tuned for retrieval-heavy workI would say this isn't exclusive to the smaller OSS models. But rather a trait of Openai's models all together now.This becomes especially apparent with the introduction of GPT-5 in ChatGPT. Their focus on routing your request to different modes and searching the web automatically (relying on an Agentic workflows in the background) is probably key to the overall quality of the output.So far, it's quite easy to get their OSS models to follow instructions reliably. Qwen models has been pretty decent at this too for some time now.I think if we give it another generation or two, we're at the point of having compotent enough models to start running more advanced agentic workflows. On modest hardware. We're almost there now, but not quite yet",
+    "parent": 44860707,
+    "depth": 2
+  },
+  {
+    "id": 44862116,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-11T09:00:18.000Z",
+    "textPlain": "MXFP4's mixed precision approach (4-bit for weights, higher precision for KV cache) actually offers better accuracy/size tradeoffs than competing quantization methods like GPTQ or AWQ, which is why it enables these impressive resource profiles without the typical 4-bit degradation.",
     "parent": 44860707,
     "depth": 2
   },
@@ -248,19 +248,19 @@
     "depth": 2
   },
   {
-    "id": 44862098,
-    "by": "victorbjorklund",
-    "timeISO": "2025-08-11T08:56:44.000Z",
-    "textPlain": "Yeah but isn't it even doubtful if you can call a model a program or is it rather like a data set that can be used by a program.",
-    "parent": 44861999,
-    "depth": 2
-  },
-  {
     "id": 44860426,
     "by": "mrheosuper",
     "timeISO": "2025-08-11T02:59:11.000Z",
     "textPlain": "How did you do your setup ?, right now the only way i know how to run LLM is through LM studio.",
     "parent": 44858834,
+    "depth": 2
+  },
+  {
+    "id": 44862098,
+    "by": "victorbjorklund",
+    "timeISO": "2025-08-11T08:56:44.000Z",
+    "textPlain": "Yeah but isn't it even doubtful if you can call a model a program or is it rather like a data set that can be used by a program.",
+    "parent": 44861999,
     "depth": 2
   },
   {
@@ -293,6 +293,14 @@
     "timeISO": "2025-08-11T05:04:24.000Z",
     "textPlain": "First suspicion is that HSTS is doing what it's supposed to, and that you're connecting from somewhere they try to insert themselves in the middle of all https traffic. Https snooping is sadly not uncommon, some businesses think they're entitled to do it for you using their network.",
     "parent": 44858940,
+    "depth": 2
+  },
+  {
+    "id": 44862533,
+    "by": "LarMachinarum",
+    "timeISO": "2025-08-11T10:00:39.000Z",
+    "textPlain": "Much as I understand how a 5 bit quantization might be a sweet spot in the tradeoff between precision and making it possible to cram more weight parameters into limited ram, and thus in that respect better than e.g. 4 bit or 8 bit,……I struggle to comprehend how an odd quantization like 5 bit, that doesn't align well with 8 bit boundaries, would not slow things down for inference: given that on one hand the hardware doing the multiplications doesn't support vectors of 5 bit values but needs repacking to 8 bit before multiplication, and on the other hand the weights can't be bulk-repacked to 8 bit once and for all in advance (otherwise it wouldn't fit inside the RAM, besides in that case one would use a 8 bit quantization anyways)it would require quite a lot of instructions per multiplication (way more than for 4 bit quantization where the alignment match simplifies things) to ad-hoc repack the 5 bit values to vectors of 8 bit. So i kinda wonder how much (percentage-wise) that would impact inference performance",
+    "parent": 44858227,
     "depth": 2
   },
   {

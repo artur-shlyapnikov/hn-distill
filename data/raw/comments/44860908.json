@@ -1,11 +1,51 @@
 [
   {
+    "id": 44862441,
+    "by": "nextaccountic",
+    "timeISO": "2025-08-11T09:45:28.000Z",
+    "textPlain": ">  Here, instead of handling the error condition, I create an lvalue that points nowhere in case of an error because it then corresponds to (({ (void)0; })), relying on the null sanitizer to transform it into a run-time trap for safety.Isn't this undefined behavior?",
+    "parent": 44860908,
+    "depth": 1
+  },
+  {
     "id": 44861689,
     "by": "nly",
     "timeISO": "2025-08-11T07:45:52.000Z",
     "textPlain": "GCC generates essentially the same assembly for C++'s std::optional<int> with the exception that the result can't be returned in a register (a problem which will go away if the function is inlined)https://gcc.godbolt.org/z/vfzK9Toz4",
     "parent": 44860908,
     "depth": 1
+  },
+  {
+    "id": 44862546,
+    "by": "rowanG077",
+    "timeISO": "2025-08-11T10:03:08.000Z",
+    "textPlain": "At this point I always wonder why people who write stuff like this don't just move to a different language. You are introducing insane amounts of hidden complexity(see also the other posts on that blog). For something that just exists in other languages. Or maybe this is just a fun puzzle for the author, in which case it's totally fine.",
+    "parent": 44860908,
+    "depth": 1
+  },
+  {
+    "id": 44862462,
+    "by": "lmm",
+    "timeISO": "2025-08-11T09:49:25.000Z",
+    "textPlain": "In standard C yes. But any decent C compiler will offer stronger guarantees than the minimum that the standard requires, and presumably the \"null sanitizer\" they're referring to is one of them.",
+    "parent": 44862441,
+    "depth": 2
+  },
+  {
+    "id": 44862516,
+    "by": "shakna",
+    "timeISO": "2025-08-11T09:58:30.000Z",
+    "textPlain": "Maybe, but it is defined for GCC:> You can store a null pointer in any lvalue whose data type is a pointer type. [0]Though, I would expect a complaint from clang, and clang-tidy.[0] https://www.gnu.org/software/c-intro-and-ref/manual/html_nod...",
+    "parent": 44862441,
+    "depth": 2
+  },
+  {
+    "id": 44862681,
+    "by": "pjmlp",
+    "timeISO": "2025-08-11T10:25:46.000Z",
+    "textPlain": "Proving the point that better type system and abstractions don't necessarly produce bad Assembly, and if constexpr is used, there won't be anything on the final executable other than the actual value.https://gcc.godbolt.org/z/31o75W5xxhttps://gcc.godbolt.org/z/av6a43WeY",
+    "parent": 44861689,
+    "depth": 2
   },
   {
     "id": 44862019,
@@ -21,6 +61,14 @@
     "timeISO": "2025-08-11T09:11:13.000Z",
     "textPlain": "Is this because std::optional isn't trivially constructible?",
     "parent": 44861689,
+    "depth": 2
+  },
+  {
+    "id": 44862571,
+    "by": "throw-qqqqq",
+    "timeISO": "2025-08-11T10:09:04.000Z",
+    "textPlain": "You don’t always get to choose your language. Especially in the embedded/firmware area of software development, C is the most widely available option, if not the only option besides ASM shrugs",
+    "parent": 44862546,
     "depth": 2
   }
 ]
