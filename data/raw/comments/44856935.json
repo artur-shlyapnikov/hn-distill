@@ -24,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44861128,
-    "by": "megapoliss",
-    "timeISO": "2025-08-11T06:00:53.000Z",
-    "textPlain": "Run some examples, and it looks like this \"High-performance, real-time optimized, super-fast\" language is  ~ 10 times slower than luajit\n  ~ 3 times slower than lua 5.4",
-    "parent": 44856935,
-    "depth": 1
-  },
-  {
     "id": 44862989,
     "by": "eqvinox",
     "timeISO": "2025-08-11T11:25:14.000Z",
     "textPlain": "Why repeat JavaScript's mistake of having all numbers be floats, with no integer type? I thought that one's well known by now :(",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44861128,
+    "by": "megapoliss",
+    "timeISO": "2025-08-11T06:00:53.000Z",
+    "textPlain": "Run some examples, and it looks like this \"High-performance, real-time optimized, super-fast\" language is  ~ 10 times slower than luajit\n  ~ 3 times slower than lua 5.4",
     "parent": 44856935,
     "depth": 1
   },
@@ -64,14 +64,6 @@
     "depth": 1
   },
   {
-    "id": 44863105,
-    "by": "sureglymop",
-    "timeISO": "2025-08-11T11:41:31.000Z",
-    "textPlain": "Super cool! Just now I am building something where I am trying to use mlua to make it scriptable with Lua. But the biggest pain point right now is trying to generate type annotations for LuaLS based on my rust structs. I will look into whether bolt could be interesting for the project.",
-    "parent": 44856935,
-    "depth": 1
-  },
-  {
     "id": 44859571,
     "by": "JonChesterfield",
     "timeISO": "2025-08-11T00:00:31.000Z",
@@ -80,10 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44862125,
-    "by": "tekkk",
-    "timeISO": "2025-08-11T09:01:11.000Z",
-    "textPlain": "Really impressive, great job! I was interested to see how you had solved Result type and that seems quite developer-friendly—no wrappers just value & error union. I should try it out to see how it's to write if I can run it on ARM64. I wish Godot Script looked like this.",
+    "id": 44863105,
+    "by": "sureglymop",
+    "timeISO": "2025-08-11T11:41:31.000Z",
+    "textPlain": "Super cool! Just now I am building something where I am trying to use mlua to make it scriptable with Lua. But the biggest pain point right now is trying to generate type annotations for LuaLS based on my rust structs. I will look into whether bolt could be interesting for the project.",
     "parent": 44856935,
     "depth": 1
   },
@@ -92,6 +84,14 @@
     "by": "cookiengineer",
     "timeISO": "2025-08-10T19:59:05.000Z",
     "textPlain": "If functions don't have a return signature, does that mean everything must be satisfied in the compilation step?What about memory management/ownership? This would imply that everything must be copy by value in each function callsite, right? How to use references/pointers? Are they supported?I like the matchers which look similar to Rust, but I dislike the error handling because it is neither implicit, and neither explicit, and therefore will be painful to debug in larger codebases I'd imagine.Do you know about Koka? I don't like its syntax choices much but I think that an effect based error type system might integrate nicely with your design choices, especially with matchers as consumers.[1] https://koka-lang.github.io/koka/doc/index.html",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44862125,
+    "by": "tekkk",
+    "timeISO": "2025-08-11T09:01:11.000Z",
+    "textPlain": "Really impressive, great job! I was interested to see how you had solved Result type and that seems quite developer-friendly—no wrappers just value & error union. I should try it out to see how it's to write if I can run it on ARM64. I wish Godot Script looked like this.",
     "parent": 44856935,
     "depth": 1
   },
@@ -228,6 +228,14 @@
     "by": "Vandash",
     "timeISO": "2025-08-10T19:59:56.000Z",
     "textPlain": "game dev for 15+ years here, love the first example on Github\nthis is compiled right? cannot replace lua?",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44863639,
+    "by": "boffinAudio",
+    "timeISO": "2025-08-11T13:02:56.000Z",
+    "textPlain": "Very cute language ..     match x {\n        is table {\n            print(indent_this + \"{\")\n            for pair in pairs(x) {\n                write(indent + \"   \" + to_string(pair.key) + \": \") \n                pretty_print_internal(pair.value, indent + \"   \", false)\n            }\n            print(indent + \"}\")\n        }\n\n.. okay, you got my attention (long-time Lua fan) .. will have to give this some workbench time and learn it ..",
     "parent": 44856935,
     "depth": 1
   },
@@ -376,27 +384,19 @@
     "depth": 2
   },
   {
+    "id": 44863593,
+    "by": "nativeit",
+    "timeISO": "2025-08-11T12:56:39.000Z",
+    "textPlain": "Two potential suggestions:1. Ask - the author is very much available, right here in this comment section they made specifically for such a prospect. \n2. Contribute - Code the change you wish to see in the world. Follow the OP’s example, and do something about it.",
+    "parent": 44862995,
+    "depth": 2
+  },
+  {
     "id": 44859894,
     "by": "phire",
     "timeISO": "2025-08-11T01:15:53.000Z",
     "textPlain": "The class is \"embeddable interpreted scripting language\", which is not quite the same thing as just an interpreter.Embedded interpreters are that designed to be embedded into a c/c++ program (often a game) as a scripting language. They typically have as few dependencies as possible, try to be lightweight and focus on making it really easy to interopt between contexts.The comparison hits many of the major languages for this usecase. Though it probably should have included mono's interpreter mode, even if nobody really uses it since mono got AoT",
     "parent": 44859571,
-    "depth": 2
-  },
-  {
-    "id": 44858725,
-    "by": "driggs",
-    "timeISO": "2025-08-10T22:08:02.000Z",
-    "textPlain": "> If functions don't have a return signature, does that mean everything must be satisfied in the compilation step?Functions do have a return signature.It looks like the author chose to show off the feature of return type inference in the short example README code, rather than the explicit case.https://github.com/Beariish/bolt/blob/main/doc/Bolt%20Progra...",
-    "parent": 44857819,
-    "depth": 2
-  },
-  {
-    "id": 44858415,
-    "by": "zygentoma",
-    "timeISO": "2025-08-10T21:22:02.000Z",
-    "textPlain": "Oh, not OP, but I love Koka. I should play around with it again thanks for reminding me!",
-    "parent": 44857819,
     "depth": 2
   }
 ]

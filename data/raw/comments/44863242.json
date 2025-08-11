@@ -1,9 +1,33 @@
 [
   {
+    "id": 44863764,
+    "by": "kibwen",
+    "timeISO": "2025-08-11T13:19:32.000Z",
+    "textPlain": "The most important point is buried at the bottom of the page:> all the post-quantum algorithms implemented by OpenSSH are \"hybrids\" that combine a post-quantum algorithm with a classical algorithm. For example mlkem768x25519-sha256 combines ML-KEM, a post-quantum key agreement scheme, with ECDH/x25519, a classical key agreement algorithm that was formerly OpenSSH's preferred default. This ensures that the combined, hybrid algorithm is no worse than the previous best classical algorithm, even if the post-quantum algorithm turns out to be completely broken by future cryptanalysis.Using a hybrid scheme ensures that you're not actually losing any security compared to the pre-quantum implementation.",
+    "parent": 44863242,
+    "depth": 1
+  },
+  {
+    "id": 44863956,
+    "by": "rrr_oh_man",
+    "timeISO": "2025-08-11T13:40:20.000Z",
+    "textPlain": "That's great.I was thinking about whether to move the Terminal-based microblogging / chat app I'm building into this direction.(Especially after watching several interviews with Paul Durov and listening to what he went through...)",
+    "parent": 44863242,
+    "depth": 1
+  },
+  {
     "id": 44863450,
     "by": "pilif",
     "timeISO": "2025-08-11T12:32:32.000Z",
     "textPlain": "In light of the recent hilarious paper around the current state of quantum cryptography[1], how big is the need for the current pace of post quantum crypto adoption?As far as I understand, the key material for any post quantum algorithm is much, much larger compared to non-quantum algorithms which leads to huge overheads in network traffic and of course CPU time.[1]: https://eprint.iacr.org/2025/1237",
+    "parent": 44863242,
+    "depth": 1
+  },
+  {
+    "id": 44863682,
+    "by": "stoltzmann",
+    "timeISO": "2025-08-11T13:10:53.000Z",
+    "textPlain": "So which one is better? sntrup761x25519-sha512 or mlkem768x25519-sha256?",
     "parent": 44863242,
     "depth": 1
   },
@@ -16,10 +40,50 @@
     "depth": 1
   },
   {
+    "id": 44863644,
+    "by": "rsatoran",
+    "timeISO": "2025-08-11T13:04:08.000Z",
+    "textPlain": "I’m happy to see they’re thinking ahead. There no value in disparaging efforts like this as long as the alternatives that provide better security in the future don’t make things worse.",
+    "parent": 44863242,
+    "depth": 1
+  },
+  {
+    "id": 44863602,
+    "by": "deknos",
+    "timeISO": "2025-08-11T12:57:59.000Z",
+    "textPlain": "I am still asking myself when we get pq keys for host and authentication",
+    "parent": 44863242,
+    "depth": 1
+  },
+  {
     "id": 44863549,
     "by": "fxwin",
     "timeISO": "2025-08-11T12:47:59.000Z",
     "textPlain": "The page only talks about adopting PQC for key agreement for SSH connections, not encryption in general so the overhead would be rather minimal here. Also from the FAQ:\"Quantum computers don't exist yet, why go to all this trouble?\"Because of the \"store now, decrypt later\" attack mentioned above. Traffic sent today is at risk of decryption unless post-quantum key agreement is used.\"I don't believe we'll ever get quantum computers. This is a waste of time\"Some people consider the task of scaling existing quantum computers up to the point where they can tackle cryptographic problems to be practically insurmountable. This is a possibilty. However, it appears that most of the barriers to a cryptographically-relevant quantum computer are engineering challenges rather than underlying physics.\nIf we're right about quantum computers being practical, then we will have protected vast quantities of user data. If we're wrong about it, then all we'll have done is moved to cryptographic algorithms with stronger mathematical underpinnings.Not sure if I'd take the cited paper (while fun to read) too seriously to inform my opinion the risks of using quantum-insecure encryption rather than as a cynical take on hype and window dressing in QC research.",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44863915,
+    "by": "Strilanc",
+    "timeISO": "2025-08-11T13:36:15.000Z",
+    "textPlain": "That paper is hilarious, and is correct that there's plenty of shit to make fun of... but there's also progress. I recommend watching Sam Jacques' talk from PQCrypto 2025 [0]. It would be silly to delay PQC adoption because of focusing on the irrelevant bad papers.In the past ten years, on the theory side, the expected cost of cryptographically relevant quantum factoring has dropped by 1000x [1][2]. On the hardware side, fault tolerance demonstrations have gone from repetition code error rates of 1% error per round [3] to 0.00000001% error per round [4], with full quantum codes being demonstrated with an error rate of 0.2% [4] via a 2x reduction in error each time distance is increased by 2.If you want to track progress in quantum computing, follow the gradual spinup of fault tolerance. Noise is the main thing blocking factoring of larger and larger numbers. Once the quality problem is turned into a quantity problem, then those benchmarks can start moving.[0]: https://www.youtube.com/watch?v=nJxENYdsB6c[1]: https://arxiv.org/abs/1208.0928[2]: https://arxiv.org/abs/2505.15917[3]: https://arxiv.org/abs/1411.7403[4]: https://arxiv.org/abs/2408.13687",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44863740,
+    "by": "hannob",
+    "timeISO": "2025-08-11T13:17:33.000Z",
+    "textPlain": "> As far as I understand, the key material for any post quantum algorithm is much, much larger compared to non-quantum algorithmsThis is somewhat correct, but needs some nuance.First, the problem is bigger with signatures, which is why nobody is happy with the current post quantum signature schemes and people are working on better pq signature schemes for the future. But signatures aren't an urgent issue, as there is no \"decrypt later\" scenario for signatures.For encryption, the overhead exists, but it isn't too bad. We are already deploying pqcrypto, and nobody seems to have an issue with it. Use a current OpenSSH and you use mlkem. Use a current browser with a server using modern libraries and you also use mlkem. I haven't heard anyone complaining that the Internet got so much slower in recent years due to pqcrypto key exchanges.Compared to the overall traffic we use commonly these days, the few extra kb during the handshake (everything else is not affected) doesn't matter much.",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44863712,
+    "by": "ekr____",
+    "timeISO": "2025-08-11T13:14:48.000Z",
+    "textPlain": "As a number of people have observed, what's happening now is mostly about key establishment, which tends to happen relatively infrequently, and so the overhead is mostly not excessive. With that said, a little more detail:- Current PQ algorithms, for both signature and key establishment, have much larger key sizes than traditional algorithms. In terms of compute, they are comparably fast if not faster.- Most protocols (e.g., TLS, SSH, etc.) do key establishment relatively infrequently (e.g., at the start of the connection) and so the key establishment size isn't a big deal, modulo some interoperability issues because the keys are big enough to push you over the TCP MTU, so you end up with the keys spanning two packets. One important exception here is double ratchet protocols like Signal or MLS which do very frequent key changes. What you sometimes see here is to rekey with PQ only occasionally (https://security.apple.com/blog/imessage-pq3/).- In the particular case of TLS, message size for signatures is a much bigger deal, to a great extent because your typical TLS handshake involves a lot of signatures in the certificate chain. For this reason, there is a lot more concern about the viability of PQ signatures in TLS (https://dadrian.io/blog/posts/pqc-signatures-2024/). Possibly in other protocols too but I don't know them as well",
     "parent": 44863450,
     "depth": 2
   },
@@ -32,11 +96,67 @@
     "depth": 2
   },
   {
+    "id": 44863603,
+    "by": "Rebelgecko",
+    "timeISO": "2025-08-11T12:58:06.000Z",
+    "textPlain": "I imagine the key exchange is just once per connection, right? So the overhead seems not too bad.Especially since I think a pretty large number of computers/hostnames that are ssh'able today will probably have the same root password if they're still connected to the internet 10-20 years from now",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44863584,
+    "by": "daneel_w",
+    "timeISO": "2025-08-11T12:55:19.000Z",
+    "textPlain": ">... which leads to huge overheads in network traffic and of course CPU time.This is just the key exchange. You're exchanging keys for the symmetric cipher you'll be using for traffic in the session. There's really no overhead to talk about.",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44863607,
+    "by": "EthanHeilman",
+    "timeISO": "2025-08-11T12:58:14.000Z",
+    "textPlain": "That's just a fun joke paper deflating some of the more aggressive hype around QC. You shouldn't use it for making security and algorithm adoption decisions.",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44863618,
+    "by": "xoa",
+    "timeISO": "2025-08-11T13:00:05.000Z",
+    "textPlain": ">As far as I understand, the key material for any post quantum algorithm is much, much larger compared to non-quantum algorithms which leads to huge overheads in network traffic and of course CPU time.Eh? Public-key (asymmetric) cryptography is already very expensive compared to symmetric even under classical, that's normal, what it's used for is the vital but limited operation of key-exchange for AES or whatever fast symmetric algorithm afterwards. My understanding (and serious people in the field please correct me if I'm wrong!) is that the potential cryptographically relevant quantum computer issue threats almost 100% to key exchange, not symmetric encryption. The best theoretical search algorithm vs symmetric is Grover's which offers a square-root speed up, and thus trivially countered if necessary by doubling the key size (ie, 256-bits vs Grovers would offer 128-bits classical equivalent and 512-bits would offer 256-bits, which is already more than enough). The vast super majority of a given SSH session's traffic isn't typically handshakes unless something is quite odd, and you're likely going to have a pretty miserable experience in that case regardless. So even if the initial handshake gets made significantly more expensive it should be pretty irrelevant to network overhead, it still only happens during the initiation of a given session right?",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44863695,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-11T13:12:06.000Z",
+    "textPlain": "MLKEM768 offers better performance and smaller keys, while SNTRUP761 has stronger security assumptions and better resilience against potential cryptanalysis.",
+    "parent": 44863682,
+    "depth": 2
+  },
+  {
     "id": 44863562,
     "by": "cnst",
     "timeISO": "2025-08-11T12:50:11.000Z",
     "textPlain": "They're not the same, they're completely different:> Additionally, all the post-quantum algorithms implemented by OpenSSH are \"hybrids\" that combine a post-quantum algorithm with a classical algorithm. For example mlkem768x25519-sha256 combines ML-KEM, a post-quantum key agreement scheme, with ECDH/x25519, a classical key agreement algorithm that was formerly OpenSSH's preferred default. This ensures that the combined, hybrid algorithm is no worse than the previous best classical algorithm, even if the post-quantum algorithm turns out to be completely broken by future cryptanalysis.The 256 one is actually newer than the 512 one, too:> OpenSSH versions 9.0 and greater support sntrup761x25519-sha512 and versions 9.9 and greater support mlkem768x25519-sha256.",
     "parent": 44863522,
+    "depth": 2
+  },
+  {
+    "id": 44863623,
+    "by": "daneel_w",
+    "timeISO": "2025-08-11T13:00:26.000Z",
+    "textPlain": "We're nowhere near the point where there's any general concern specifically regarding the sizes of 256 bits or 512 bits for hashes, block sizes, key sizes etc. Currently we don't need to consider the problem as a question of what time is required, because we don't have the electrical energy required to explore even a fraction of a 128 bit space. We don't have computers that can ingest such power either. \"Relax, guy.\"",
+    "parent": 44863522,
+    "depth": 2
+  },
+  {
+    "id": 44863652,
+    "by": "ta1243",
+    "timeISO": "2025-08-11T13:06:14.000Z",
+    "textPlain": "If you need to access a server across a network you don't 100% control, you have to assume your traffic is captured and post-quantum will mean it can be decrypted. Whether that's a concern or not is another matter",
+    "parent": 44863644,
     "depth": 2
   }
 ]

@@ -1,9 +1,25 @@
 [
   {
+    "id": 44863604,
+    "by": "burntsushi",
+    "timeISO": "2025-08-11T12:58:09.000Z",
+    "textPlain": "Good write-up. This is a very popular approach to substring search! It is still worst case `O(m*n)` though. Do you have a fallback implementation like the `memchr` crate has to guarantee `O(m+n)`?I'll also push back on some bits in the end:    > But if it’s so much better, then why haven’t I made a pull request to\n    > change std.mem.indexOf to use SIMD? Well, the reason is that\n    >\n    > std.mem.indexOf is generic over element size, and having a size\n    > larger than u8 makes the algorithm much slower\n    >\n    > The algorithm used in stdmem.indexOf is cross-platform, while the\n    > SIMD code wouldn’t be. (not all platforms have SIMD registers at all,\n    > Arm has only 128-bit)\n\nDoes Zig not have a way to specialize this for sequences of unsigned 8-bit integers? If not, and you're thereforce force to used a more generic algorithm, that seems pretty unfortunate.    > Substring searching is rarely the bottleneck in programs,\n    > especially ones written in a fast language like Zig. That’s why\n    > I don’t personally think it would be worth it to add it to the\n    > standard library.\n\nOh I'm not sure I buy this at all! Substring search is a primitive operation and easily can be a bottleneck. There's a reason why widely used substring search implementations tend to be highly optimized.",
+    "parent": 44862414,
+    "depth": 1
+  },
+  {
     "id": 44863111,
     "by": "ashvardanian",
     "timeISO": "2025-08-11T11:42:06.000Z",
     "textPlain": "I like that more people are getting involved with SIMD, and there have been several posts lately on both memmem-like and memcpy-like operations implemented in SIMD in different programming languages.In most cases, though, these still focus on AVX/NEON instructions from over 10 years ago, rather than newer and more powerful AVX-512 variations, SVE & SVE2, or RVV.These newer ISAs can noticeably change how one would implement a state-of-the-art substring search or copy/move operation. In my projects, such as StringZilla, I often use mask K registers (https://github.com/ashvardanian/StringZilla/blob/2f4b1386ca2...) and an input-dependent mix of temporal and non-temporal loads and stores (https://github.com/ashvardanian/StringZilla/blob/2f4b1386ca2...).In typical cases, the difference between the suggested SIMD kernels and the state-of-the-art can be as significant as 50% in throughput. As SIMD becomes more widespread, it would be beneficial to focus more on delivering software and bundling binaries, rather than just the kernels.",
+    "parent": 44862414,
+    "depth": 1
+  },
+  {
+    "id": 44863878,
+    "by": "garganzol",
+    "timeISO": "2025-08-11T13:32:17.000Z",
+    "textPlain": "Every language tries to implement the best in class memory set/search primitives. Maybe we should move them to something called libos, where they will be implemented by every host OS? Then, OS manufacturers can supply libos.so/libos.dll/libos.dylib as part of the official OS distributions.If the wheels get reinvented again and again, it means that they should be readily available.",
     "parent": 44862414,
     "depth": 1
   },
@@ -46,6 +62,30 @@
     "textPlain": ">The difference between 4μs vs 1μs is extremely small, but it’s slightly faster nonetheless.Put that in a loop and its an enormous speed-up.",
     "parent": 44862414,
     "depth": 1
+  },
+  {
+    "id": 44863904,
+    "by": "ozgrakkurt",
+    "timeISO": "2025-08-11T13:35:16.000Z",
+    "textPlain": "It is very easy to specialise a function in zig, you just put if(T == u8) or something like that inside the function and do w/e in there",
+    "parent": 44863604,
+    "depth": 2
+  },
+  {
+    "id": 44863916,
+    "by": "ozgrakkurt",
+    "timeISO": "2025-08-11T13:36:15.000Z",
+    "textPlain": "Isn’t this what libc is? Like musl-libc or glibc",
+    "parent": 44863878,
+    "depth": 2
+  },
+  {
+    "id": 44863617,
+    "by": "expenses3",
+    "timeISO": "2025-08-11T12:59:59.000Z",
+    "textPlain": "How is it quadratic? You do 1000 checks every character in the haystack but that's still O(n)",
+    "parent": 44862721,
+    "depth": 2
   },
   {
     "id": 44862909,
