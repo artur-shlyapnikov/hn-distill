@@ -16,11 +16,99 @@
     "depth": 1
   },
   {
+    "id": 44869916,
+    "by": "munchler",
+    "timeISO": "2025-08-11T21:56:51.000Z",
+    "textPlain": "Every developer should know how to write a tail-recursive function and understand why it is equivalent to a loop. That said, tail recursion is rarely needed in modern functional programming. For example, why write out a recursive function when a call to `fold` or `map` will do the same thing?",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44870039,
+    "by": "fellowniusmonk",
+    "timeISO": "2025-08-11T22:11:22.000Z",
+    "textPlain": "There are a lot of misunderstandings where people think an idea equals a \"real\" thing.Abstractions can be coherent without being physically realizable or \"real\". An abstraction can become more broadly/deeply coherent once it becomes structurally physicalized in the external world.Your imagination is physically real (thanks Shannon). Most modern tech started from a physically real imagination and then people figure out how to map that to external reality over time. Or you could say people manipulated the external physical world to cohere with their brains physical simulations/imagination.Mistaking the map for the terrain is way deeper than most people understand.It always blows my mind that people don't realize that recursion isn't \"physically real\" when TCO recursion was introduced it was very clear that it is syntactic sugar/structural improvement for GOTO.It's interesting to see when coders start dealing with physical world problems and sensor systems and don't realize they are relying on constructivity to do anything at all. I've mostly only met other devs who have also worked in the CRDT or federated sensor space that grok intuitionistic reasoning. Abstractions like LEM don't always serve, thinking in classical terms works until you come up on real world scenario that doesn't map and will get people killed.Ideas serve people. People who serve ideas are getting the cart the wrong way around. Sabbath for man not man for sabbath and all that if you want a historic reference.Humans are the only complex semantic meaning generators of the universe we have observed. There is no nothing. There is no meaningless. There are only things and meaning primitives arranged in RNG, disorganized, or complex structures (by DNA and Human's so far)People like to hate on mereological nihilism and weak emergence but once you understand its implications you see that people are very very special. We can't predict ex ante what person will be part of the casual chain that prevents an aste",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44870124,
+    "by": "aryonoco",
+    "timeISO": "2025-08-11T22:20:45.000Z",
+    "textPlain": "For what it’s worth, in F#, tail recursive functions are  turned into the loops by the .NET CLR.I actually like the compromise. I get to write safe functional code while getting all the benefits of a highly optimised iterative operation.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
     "id": 44869505,
     "by": "tombert",
     "timeISO": "2025-08-11T21:10:03.000Z",
     "textPlain": "In my mind, the biggest advantage to using tail recursion over vanilla loops is the ability to keep using persistent data structures without any (apparent) mutation.At least in theory, a tail recursive call will be converted into a dumb jump, so there shouldn't be a performance penalty, but since from your code's perspective you're passing in the stuff for the next iteration, you can keep using the pretty and easy-to-reason-about structures without creating any kind of mutable reference.I'm not 100% sold on tail recursion in a broader sense, but at least with Clojure's loop/recur stuff it is kind of cool to be able to keep using persistent data structures across iterations of loops.",
     "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44870082,
+    "by": "bjoli",
+    "timeISO": "2025-08-11T22:15:52.000Z",
+    "textPlain": "I am in the other camp. I prefer tail recursion and recursion over loops. However: For the simple cases it can and should probably be abstracted away like the racket for loops or my own goof-loop [1].I just feel that a recursive calls makes state much more clear, but then again I am no fan of mutation in general. In my old python days I think a good 60% of my bugs were due to me being bad at managing state.[1] https://rikspucko.koketteriet.se/bjoli/goof-loop",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44869756,
+    "by": "javcasas",
+    "timeISO": "2025-08-11T21:37:07.000Z",
+    "textPlain": "Recursion deals with recursive data structures, and iteration deals with \"plain old\" data structures.When you use one to process the other, you get into trouble. For example, you need to manage a stack to do iteration on your binary tree. Or you need to construct slices to recurse on your arrays.It's all about ergonomics.",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44869605,
+    "by": "CalChris",
+    "timeISO": "2025-08-11T21:21:41.000Z",
+    "textPlain": "I must have missed this class. How does one convert a recursive descent parser into an iterative one?",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44869980,
+    "by": "Spivak",
+    "timeISO": "2025-08-11T22:04:17.000Z",
+    "textPlain": "I'm in your camp, recursive code is hard for the next reader, which might be you, to understand. It's a bit too magic looking for my taste. If you're looping it should look like a loop, if you're pushing  onto a stack you should get to see the stack. It's also safe against modifications which might silently break the tail-call nature of it until you blow out the stack later. It also gives you much saner and more debuggable stack traces because all the state is in the current frame.",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44869917,
+    "by": "dreamcompiler",
+    "timeISO": "2025-08-11T21:57:01.000Z",
+    "textPlain": "Clojure does it this way because the JVM stupidly doesn't support tail call optimization.It is true that TCO messes up your stack traces. It is also true that loops mess up your stack traces, because they don't even create a stack trace. In many languages that support TCO, TCO can be turned off for debugging and enabled for production, so Guido's characterization of the issue is ridiculous.",
+    "parent": 44869480,
+    "depth": 2
+  },
+  {
+    "id": 44870050,
+    "by": "kmicinski",
+    "timeISO": "2025-08-11T22:12:49.000Z",
+    "textPlain": "I agree with you--that's a topic I will definitely cover in my blog, too. You make a good point: I know some folks who worked at big financial orgs, writing hundreds of thousands of lines of code, and never wrote general-recursive functions (only used simple recursors like foldl).",
+    "parent": 44869916,
+    "depth": 2
+  },
+  {
+    "id": 44870033,
+    "by": "Eji1700",
+    "timeISO": "2025-08-11T22:10:18.000Z",
+    "textPlain": "> For example, why write out a recursive function when a call to `fold` or `map` will do the same thing?Yeah this was a big help when I started F#.  Basically \"if you're using the rec keyword, you're probably missing something\" and hell that even goes for a lot of uses of fold, from the beginners perspective.",
+    "parent": 44869916,
+    "depth": 2
+  },
+  {
+    "id": 44869999,
+    "by": "xdavidliu",
+    "timeISO": "2025-08-11T22:06:05.000Z",
+    "textPlain": "it's not entirely true that it does the same thing: even if it gives the same result. For many programming languages, fold and map can only act on non-lazy data structures, so require O(N) memory for the data that needs to be folded over, while tail-recursive functions usually only use O(1) memory, even stack memory.Notable exceptions to the above are python3 with generators, which I believe truly use O(1) memory with map and fold. Haskell has lists that are lazy by default, but if you fold or map over them, it still \"forces the thunk\" for each element and thus you still end up using O(N) memory.",
+    "parent": 44869916,
     "depth": 2
   }
 ]

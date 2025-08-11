@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44869432,
-    "by": "llmthrowaway",
-    "timeISO": "2025-08-11T21:02:06.000Z",
-    "textPlain": "Confusing title - thought this was about Ollama finally supporting sharded GGUF (ie. the Huggingface default for large gguf over 48gb).https://github.com/ollama/ollama/issues/5245Sadly it is not and the issue still remains open after over a year meaning ollama cannot run the latest SOTA open source models unless they covert them to their proprietary format which they do not consistently do.No surprise I guess given they've taken VC money, refuse to properly attribute the use things like llama.cpp and ggml, have their own model format for.. reasons? and have over 1800 open issues...Llama-server, ramallama or whatever model switcher ggerganov is working on (he showed previews recently) feel like the way forward.",
-    "parent": 44867238,
-    "depth": 1
-  },
-  {
     "id": 44867259,
     "by": "indigodaddy",
     "timeISO": "2025-08-11T17:55:20.000Z",
     "textPlain": "ggerganov explains the issue:\nhttps://github.com/ollama/ollama/issues/11714#issuecomment-3...",
+    "parent": 44867238,
+    "depth": 1
+  },
+  {
+    "id": 44869432,
+    "by": "llmthrowaway",
+    "timeISO": "2025-08-11T21:02:06.000Z",
+    "textPlain": "Confusing title - thought this was about Ollama finally supporting sharded GGUF (ie. the Huggingface default for large gguf over 48gb).https://github.com/ollama/ollama/issues/5245Sadly it is not and the issue still remains open after over a year meaning ollama cannot run the latest SOTA open source models unless they covert them to their proprietary format which they do not consistently do.No surprise I guess given they've taken VC money, refuse to properly attribute the use things like llama.cpp and ggml, have their own model format for.. reasons? and have over 1800 open issues...Llama-server, ramallama or whatever model switcher ggerganov is working on (he showed previews recently) feel like the way forward.",
     "parent": 44867238,
     "depth": 1
   },
@@ -30,6 +30,54 @@
     "textPlain": "I think the title buries the lede? Its specific to GPT-OSS and exposes the shady stuff Ollama is doing to acquiesce/curry favor/partner with/get paid by corporate interests",
     "parent": 44867238,
     "depth": 1
+  },
+  {
+    "id": 44869785,
+    "by": "12345hn6789",
+    "timeISO": "2025-08-11T21:40:15.000Z",
+    "textPlain": "Just days ago ollama devs claimed[0] that ollama no longer relies on ggml / llama.cpp. here is their pull request(+165,966 −47,980) to reimplement (copy) llama.cpp code in their repository.https://github.com/ollama/ollama/pull/11823[0] https://news.ycombinator.com/item?id=44802414#44805396",
+    "parent": 44867238,
+    "depth": 1
+  },
+  {
+    "id": 44870134,
+    "by": "cdoern",
+    "timeISO": "2025-08-11T22:21:46.000Z",
+    "textPlain": ">  Ollama could make its life much easier by spawning llama-server as a subprocess listening on a unix socket, and forward requests to itI'd recommend taking a look at https://github.com/containers/ramalama its more similar to what you're describing in the way it uses llama-server, also it is container native by default which is nice for portability.",
+    "parent": 44869466,
+    "depth": 2
+  },
+  {
+    "id": 44869863,
+    "by": "hodgehog11",
+    "timeISO": "2025-08-11T21:49:52.000Z",
+    "textPlain": "I got to speak with some of the leads at Ollama and asked more or less this same question. The reason they abandoned llama.cpp is because it does not align with their goals.llama.cpp is designed to rapidly adopt research-level optimisations and features, but the downside is that reported speeds change all the time (sometimes faster, sometimes slower) and things break really often. You can't hope to establish contracts with simultaneous releases if there is no guarantee the model will even function.By reimplementing this layer, Ollama gets to enjoy a kind of LTS status that their partners rely on. It won't be as feature-rich, and definitely won't be as fast, but that's not their goal.",
+    "parent": 44869466,
+    "depth": 2
+  },
+  {
+    "id": 44870091,
+    "by": "wubrr",
+    "timeISO": "2025-08-11T22:17:03.000Z",
+    "textPlain": "> Does ollama support strict structured output or strict tool calls adhering to a json schema?As far as I understand this is generally not possible at the model level. Best you can do is wrap the call in a (non-llm) json schema validator, and emit an error json in case the llm output does not match the schema, which is what some APIs do for you, but not very complicated to do yourself.Someone correct me if I'm wrong",
+    "parent": 44869466,
+    "depth": 2
+  },
+  {
+    "id": 44869849,
+    "by": "arcanemachiner",
+    "timeISO": "2025-08-11T21:47:47.000Z",
+    "textPlain": "> I recently discovered that ollama no longer uses llama.cpp as a library, and instead they link to the low level library (ggml) which requires them to reinvent a lot of wheel for absolutely no benefit (if there's some benefit I'm missing, please let me know).Here is some relevant drama on the subject:https://github.com/ollama/ollama/issues/11714#issuecomment-3...",
+    "parent": 44869466,
+    "depth": 2
+  },
+  {
+    "id": 44869985,
+    "by": "halyconWays",
+    "timeISO": "2025-08-11T22:04:51.000Z",
+    "textPlain": ">(if there's some benefit I'm missing, please let me know).Makes their VCs think they're doing more, and have more ownership, rather than being a do-nothing wrapper with some analytics and S3 buckets that rehost models from HF.",
+    "parent": 44869466,
+    "depth": 2
   },
   {
     "id": 44869580,
@@ -61,6 +109,14 @@
     "timeISO": "2025-08-11T20:24:07.000Z",
     "textPlain": "I think \"shady\" is a little too harsh - sounds like they forked an important upstream project, made incompatible changes that they didn't push upstream or even communicate with upstream about, and now have to deal with the consequences of that.  If that's \"shady\" (despite being all out in the open) then nearly every company I've worked for has been \"shady.\"",
     "parent": 44868084,
+    "depth": 2
+  },
+  {
+    "id": 44869882,
+    "by": "flakiness",
+    "timeISO": "2025-08-11T21:52:43.000Z",
+    "textPlain": "not against overall sentiment here, but quote the counterpoint from the linked HN comment to be fair:> Ollama does not use llama.cpp anymore; we do still keep it and occasionally update it to remain compatible for older models for when we used it.The linked PR is doing \"occasionally update it\" I guess? Note that \"vendored\" in the PR title often means to take a snapshot to pin a specific version.",
+    "parent": 44869785,
     "depth": 2
   }
 ]
