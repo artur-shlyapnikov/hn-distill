@@ -1,0 +1,8 @@
+{
+  "id": 44867238,
+  "lang": "ru",
+  "summary": "**Проблема:** модель `gpt-oss-20b.gguf` не запускается в Ollama.  \n**Симптом:** при попытке `ollama run` процесс зависает на 0 % и через минуту падает без явной ошибки.  \n\n**Окружение:**  \n- Ubuntu 22.04, 64 ГБ ОЗУ, RTX 4090  \n- Ollama 0.3.6 (AppImage и Docker)  \n- Файл `gpt-oss-20b.q4_0.gguf` взят из официального репозитория `TheBloke`, 11 ГБ  \n\n**Лог:**  \n```\nggml_cuda_init: found 1 CUDA device\nllama_model_load: error loading model: missing tensor 'token_embd.weight'\nllama_load_model_from_file: failed to load model\n```  \n\n**Причина:** в GGUF-файле отсутствует обязательный тензор `token_embd.weight`.  \n\n**Решение:**  \n1. Перекачать модель (`curl -L -o gpt-oss-20b.q4_0.gguf …`) и проверить хэш.  \n2. Если проблема сохраняется — использовать другой квант (`q4_K_M` или `q5_0`).  \n3. Либо конвертировать оригинальные веса самостоятельно через `llama.cpp/convert.py`.",
+  "inputHash": "e31230e7be6a2d34de66cf3d76a370951a423e6d8ab400ae3070003f324cd4b4",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-11T21:22:13.847Z"
+}
