@@ -1,0 +1,74 @@
+[
+  {
+    "id": 44867500,
+    "by": "jenders",
+    "timeISO": "2025-08-11T18:14:08.000Z",
+    "textPlain": "Edit: Thought this was a private blog but it’s actually an ad for “magecdn” as far as I can tell. Original comment regardless:> With a traditional CDN, if you set cache-control header, you can be sure that your files will be cached on the edge according to the header.I’ve got a decade and a half of experience with Fastly, Akamai, and CloudFlare serving 100s of gigabits/sec of traffic. I can assure you this is not true at all. Cache-Hit ratio and Cache-Hit/Miss access time are highly situational and cache-control is best effort for every provider. No CDN will guarantee these values.> With a traditional CDN, you can pick a hostname (Origin) and the file will be fetched from there. So, you can run a CDN directly over, say, a S3 Cloud bucket. Cloudflare works at your website domain level, and doing this is something like that is not possible.“Cloudflare works at your website domain level.” This is poorly written, confusing, and fortunately, not at all true. You can CNAME i.example.com to an S3 bucket hostname and use i.example.com links on example.com. This also comes with some http/1.1 pipelining advantages and is a preferable way to architect.",
+    "parent": 44866970,
+    "depth": 1
+  },
+  {
+    "id": 44867629,
+    "by": "otterley",
+    "timeISO": "2025-08-11T18:25:36.000Z",
+    "textPlain": "\"CloudFlare is not a CDN\"<begins describing all the things that make it a CDN>The fact that certain features are not available on the free tier, that infrequently-accessed content is evicted from the cache sooner than one would like, and having other minor nits doesn't make it not a CDN.",
+    "parent": 44866970,
+    "depth": 1
+  },
+  {
+    "id": 44867457,
+    "by": "dist1ll",
+    "timeISO": "2025-08-11T18:11:00.000Z",
+    "textPlain": "> While latency from a conventional CDN is usually < 80ms, with Cloudflare, I have frequently seen it to be in 150-300msSo since magecdn is built on top of Cloudflare, how do they guarantee low latency?",
+    "parent": 44866970,
+    "depth": 1
+  },
+  {
+    "id": 44867433,
+    "by": "hoppp",
+    "timeISO": "2025-08-11T18:08:48.000Z",
+    "textPlain": "Cloudflare is a man-in-the-middle company.It has benefits to use them, but yes they are not a CDN in a traditional sense, they do much more.",
+    "parent": 44866970,
+    "depth": 1
+  },
+  {
+    "id": 44867428,
+    "by": "jimaek",
+    "timeISO": "2025-08-11T18:08:25.000Z",
+    "textPlain": "Note that while the above is mostly true for free plans, it can also behave like a normal CDN on more expensive plans. The more expensive the more reliable and consistent it is.",
+    "parent": 44866970,
+    "depth": 1
+  },
+  {
+    "id": 44867407,
+    "by": "tantalor",
+    "timeISO": "2025-08-11T18:07:00.000Z",
+    "textPlain": "> Most CDNs allow you to access request logs which can be super helpful to extract insights from Traffic. Cloudflare offers this, but only on their Business/Enterprise plans.Netlify is also like this. You have to be in their \"Enterprise\" tier which they do not advertise a price for (Custom pricing).https://docs.netlify.com/manage/monitoring/log-drains",
+    "parent": 44866970,
+    "depth": 1
+  },
+  {
+    "id": 44867297,
+    "by": "gfs",
+    "timeISO": "2025-08-11T17:58:37.000Z",
+    "textPlain": "> ...and it still results in cache-miss, even when the request comes from the same location and edge.I'm sure they have multiple data centers in each location. Especially if it's a high traffic interconnect.",
+    "parent": 44866970,
+    "depth": 1
+  },
+  {
+    "id": 44867495,
+    "by": "nine_k",
+    "timeISO": "2025-08-11T18:13:56.000Z",
+    "textPlain": "If you're big enough to extract insights from traffic logs, why do you think they would let you extract some value from these logs and abstain from extracting some value from you?Commercial companies have free service tiers not out of charity, but because they drive in more profit in longer term.",
+    "parent": 44867407,
+    "depth": 2
+  },
+  {
+    "id": 44867454,
+    "by": "advisedwang",
+    "timeISO": "2025-08-11T18:10:53.000Z",
+    "textPlain": "I think the point they are making is that Cloudflare makes no guarantees that it will cache your content (vs Akamai that you can purchase a specified storage and expect that it will get used).",
+    "parent": 44867297,
+    "depth": 2
+  }
+]

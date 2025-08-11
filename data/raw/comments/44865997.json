@@ -1,5 +1,21 @@
 [
   {
+    "id": 44867344,
+    "by": "angelmm",
+    "timeISO": "2025-08-11T18:01:49.000Z",
+    "textPlain": "Custom elements are really great for editors and developers. You can provide a rich set of primitives that editors can use to display certain content. In the past, I used MDX [1] extensively so non-technical writers can create a rich UI for a documentation site.- [1] https://mdxjs.com/",
+    "parent": 44865997,
+    "depth": 1
+  },
+  {
+    "id": 44867025,
+    "by": "xfeeefeee",
+    "timeISO": "2025-08-11T17:36:58.000Z",
+    "textPlain": "I recently discovered a static site generator called Astro, which supports many syntaxes but the .astro is a nice mix of TypeScript and JSX-like syntax. Content can use MDX which is like Markdown but with {JSX} style markup for variables and etc. The static components are used very similar to React, with familiar import statements and <ComponentName props=etc> patterns. It is extremely easy to pick up. Best of all, it has plugins to support all sorts of other interactivity, so you can create interactive 'islands' of content using React or Preact or SolidJS or Vue etc. That way you have most of your content statically generated, and then the dynamic parts can be done from the client side.Best of all, if you use simple unchanged files for other dynamic stuff like JSON etc, you can just generate those on build and serve those files in the host directly as the 'response' to a simple REST request, which is sometimes overlooked despite being the most fundamental form of a REST API.https://astro.build/I came across this after researching various options for a website that had, mostly for my own entertainment, restrictions on wanting to be mostly statically generated but customizable easily without learning a lot of new syntax / etc, something JSX-like with Markdown support etc, and MDX was an immediate find - and astro was the easiest SSG I found for it after trying with 11ty and several others. Actually felt like a delight playing with it.",
+    "parent": 44865997,
+    "depth": 1
+  },
+  {
     "id": 44866598,
     "by": "p_l",
     "timeISO": "2025-08-11T17:01:23.000Z",
@@ -8,11 +24,51 @@
     "depth": 1
   },
   {
+    "id": 44867311,
+    "by": "tolerance",
+    "timeISO": "2025-08-11T17:59:31.000Z",
+    "textPlain": "Nice to see pro-Markdown literature that extends its application, but not to the extent that (that I’ve found) its detractors use against it.There are a lot of nooks in crannies in this article.",
+    "parent": 44865997,
+    "depth": 1
+  },
+  {
     "id": 44866577,
     "by": "superkuh",
     "timeISO": "2025-08-11T16:59:15.000Z",
-    "textPlain": ">In the end, your document is now fully an HTML document, not a Markdown document that becomes an HTML document. It’s a minor perspective shift, but might have some cascading effects on things I’ve written above.But this style of custom-elements requires successful javascript program execution to achieve that \"HTML\" document. Just like markdown requires some parser/etc to turn it in to HTML. It's not really fully an HTML document.It's a good idea. It just would be a better one to write the custom-elements as wrappers for actual HTML elements. Like how https://blog.jim-nielsen.com/2023/html-web-components-an-exa... shows instead of trying to do it SPA style and requiring perfect JS execution for anything to show properly.HTML mark-up really isn't that heavy. The avoidance of it seems mostly to be because it's considered \"old\" and \"old\" is bad, or at least not useful on a resume. But it's old because it's so good it's stuck around for a long time. Only machine generated HTML is bulky. Hand written can be just as neat and readable as any Markdown. And when it's all actual HTML everything in the workflow stays very, very simple.",
+    "textPlain": ">In the end, your document is now fully an HTML document, not a Markdown document that becomes an HTML document. It’s a minor perspective shift, but might have some cascading effects on things I’ve written above.But this style of custom-elements requires successful javascript program execution to achieve that \"HTML\" document. Just like markdown requires some parser program to turn it in to HTML. It's not really fully an HTML document.It's a good idea. It just would be a better one to write the custom-elements as wrappers for actual HTML elements. Like how https://blog.jim-nielsen.com/2023/html-web-components-an-exa... shows instead of trying to do it SPA style and requiring perfect JS execution for anything to show properly.HTML mark-up really isn't that heavy. The avoidance of it seems mostly to be because it's considered \"old\" and \"old\" is bad, or at least not useful on a resume. But it's old because it's so good it's stuck around for a long time. Only machine generated HTML is bulky. Hand written can be just as neat and readable as any Markdown.",
     "parent": 44865997,
     "depth": 1
+  },
+  {
+    "id": 44866945,
+    "by": "righthand",
+    "timeISO": "2025-08-11T17:29:11.000Z",
+    "textPlain": "Always curious why no one has made Markdown + pugjs-style[0] html parsing system.[0] https://pugjs.org/api/getting-started.html",
+    "parent": 44865997,
+    "depth": 1
+  },
+  {
+    "id": 44867395,
+    "by": "thangalin",
+    "timeISO": "2025-08-11T18:05:34.000Z",
+    "textPlain": "> It just would be a better one to write the custom-elements as wrappers for actual HTML elements.pandoc has an extension for this:https://pandoc.org/demo/example33/8.18-divs-and-spans.htmlKeenWrite, my (R) Markdown editor, supports pandoc annotations:https://youtu.be/7icc4oZB2I4?list=PLB-WIt1cZYLm1MMx2FBG9KWzP...> Just like markdown requires some parser program to turn it in to HTML.Or XHTML, which is XML, which can then be transformed into TeX macros, and then typeset into a PDF file with a theme (much like CSS stylizes HTML).https://youtu.be/3QpX70O5S30?list=PLB-WIt1cZYLm1MMx2FBG9KWzP...This allows separating content from presentation, allowing them to vary independently.",
+    "parent": 44866577,
+    "depth": 2
+  },
+  {
+    "id": 44867118,
+    "by": "spankalee",
+    "timeISO": "2025-08-11T17:44:26.000Z",
+    "textPlain": "JavaScript is one of the three core file types of the web. You can rely on it as much as HTML and CSS. I don't get the unique derision of JS compared to the other files types.",
+    "parent": 44866577,
+    "depth": 2
+  },
+  {
+    "id": 44867587,
+    "by": "Terretta",
+    "timeISO": "2025-08-11T18:21:41.000Z",
+    "textPlain": "We did this a decade or two ago when Markdown was Markdown and pug was Jade.  It was great.",
+    "parent": 44866945,
+    "depth": 2
   }
 ]
