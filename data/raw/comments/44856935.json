@@ -1,17 +1,17 @@
 [
   {
-    "id": 44859665,
-    "by": "conaclos",
-    "timeISO": "2025-08-11T00:21:14.000Z",
-    "textPlain": "I was quite excited by the description and then I noted that Bolt heavily relies on double floating point numbers. I am quite disappointed because this doesn't allow me to use Bolt in my context: embedded systems where floating point numbers are rarely supported... So I realized that I misinterpreted `embedded`.",
-    "parent": 44856935,
-    "depth": 1
-  },
-  {
     "id": 44857985,
     "by": "haberman",
     "timeISO": "2025-08-10T20:19:51.000Z",
     "textPlain": "I love the concept -- I've often wished that lean languages like Lua had more support for static typing, especially given the potential performance benefits.I also love the focus on performance.  I'm curious if you've considered using a tail call design for the interpreter.  I've found this to be the best way to get good code out of the compiler: https://blog.reverberate.org/2021/04/21/musttail-efficient-i...  Unfortunately it's not portable to MSVC.In that article I show that this technique was able to match Mike Pall's hand-coded assembly for one example he gave of LuaJIT's interpreter.  Mike later linked to the article as a new take for how to optimize interpreters: https://github.com/LuaJIT/LuaJIT/issues/716#issuecomment-854...Python 3.14 also added support for this style of interpreter dispatch and got a modest performance win from it: https://blog.reverberate.org/2025/02/10/tail-call-updates.ht...",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44859665,
+    "by": "conaclos",
+    "timeISO": "2025-08-11T00:21:14.000Z",
+    "textPlain": "I was quite excited by the description and then I noted that Bolt heavily relies on double floating point numbers. I am quite disappointed because this doesn't allow me to use Bolt in my context: embedded systems where floating point numbers are rarely supported... So I realized that I misinterpreted `embedded`.",
     "parent": 44856935,
     "depth": 1
   },
@@ -40,6 +40,14 @@
     "depth": 1
   },
   {
+    "id": 44860277,
+    "by": "slmjkdbtl",
+    "timeISO": "2025-08-11T02:29:22.000Z",
+    "textPlain": "Wow a fast scripting language with normal syntax and type checking.. Really hope this can take off and be a valid Lua alternative.",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
     "id": 44859571,
     "by": "JonChesterfield",
     "timeISO": "2025-08-11T00:00:31.000Z",
@@ -52,6 +60,14 @@
     "by": "themonsu",
     "timeISO": "2025-08-10T18:31:32.000Z",
     "textPlain": "Looks cool, but please can we stop naming things ”bolt”",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44860225,
+    "by": "je42",
+    "timeISO": "2025-08-11T02:17:20.000Z",
+    "textPlain": "Nice language! I am wondering how error handling / exceptions works in bolt?Quickly scanned the programming guide - but wasn't able to find it. Did i miss a section?",
     "parent": 44856935,
     "depth": 1
   },
@@ -72,18 +88,18 @@
     "depth": 1
   },
   {
-    "id": 44858159,
-    "by": "Fraterkes",
-    "timeISO": "2025-08-10T20:49:47.000Z",
-    "textPlain": "Really cool! Roughly how much memory does it take to include it in an engine? Also I'm really interested in the process of creating these really fast scripting languages, have you written anything about how you wrote Bolt?",
+    "id": 44860202,
+    "by": "capyba",
+    "timeISO": "2025-08-11T02:11:56.000Z",
+    "textPlain": "In terms of performance, how does it compare to compiled languages like the C it’s written in?",
     "parent": 44856935,
     "depth": 1
   },
   {
-    "id": 44859220,
-    "by": "merksoftworks",
-    "timeISO": "2025-08-10T23:11:45.000Z",
-    "textPlain": "This is really cool but it's not portable to MacOs or aarm64 yet, and that kind of portability unfortunately is what appeals to me about an embeddable scripting language.",
+    "id": 44858159,
+    "by": "Fraterkes",
+    "timeISO": "2025-08-10T20:49:47.000Z",
+    "textPlain": "Really cool! Roughly how much memory does it take to include it in an engine? Also I'm really interested in the process of creating these really fast scripting languages, have you written anything about how you wrote Bolt?",
     "parent": 44856935,
     "depth": 1
   },
@@ -100,6 +116,14 @@
     "by": "astatine",
     "timeISO": "2025-08-10T22:30:14.000Z",
     "textPlain": "This looks awesome. Would you have any data on the performance of large number of invocations of small scripts? I am wondering at startup overhead for every script run. which the 500kloc/s may not capture well.",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44859220,
+    "by": "merksoftworks",
+    "timeISO": "2025-08-10T23:11:45.000Z",
+    "textPlain": "This is really cool but it's not portable to MacOs or aarm64 yet, and that kind of portability unfortunately is what appeals to me about an embeddable scripting language.",
     "parent": 44856935,
     "depth": 1
   },
@@ -192,10 +216,26 @@
     "depth": 2
   },
   {
+    "id": 44860241,
+    "by": "devmor",
+    "timeISO": "2025-08-11T02:21:32.000Z",
+    "textPlain": "Same here! It's very cool but my ideal use case would be on a limited ISA architecture like ESP32.",
+    "parent": 44859665,
+    "depth": 2
+  },
+  {
     "id": 44858495,
     "by": "jasonjmcghee",
     "timeISO": "2025-08-10T21:34:05.000Z",
     "textPlain": "Also autocomplete.Though I almost never manually type out imports manually anymore.",
+    "parent": 44858071,
+    "depth": 2
+  },
+  {
+    "id": 44860622,
+    "by": "Tokumei-no-hito",
+    "timeISO": "2025-08-11T03:51:38.000Z",
+    "textPlain": "can't the compiler process it in reverse?",
     "parent": 44858071,
     "depth": 2
   },
@@ -221,6 +261,14 @@
     "timeISO": "2025-08-10T22:54:32.000Z",
     "textPlain": "According to the Programming Guide, it supports aliases for imports\"In case of conflict or convenience, you can give modules an alias as well.\"",
     "parent": 44858071,
+    "depth": 2
+  },
+  {
+    "id": 44860409,
+    "by": "RossBencina",
+    "timeISO": "2025-08-11T02:55:10.000Z",
+    "textPlain": "True. I misread it as being for embedded, especially with the term \"real-time\" in the mix. Then later when there was no ARM or RISC-V support I became very confused.",
+    "parent": 44857304,
     "depth": 2
   },
   {
@@ -261,6 +309,14 @@
     "timeISO": "2025-08-10T22:17:59.000Z",
     "textPlain": "Yeah this is the third programming language named Bolt that I'm aware of",
     "parent": 44857208,
+    "depth": 2
+  },
+  {
+    "id": 44860419,
+    "by": "mdaniel",
+    "timeISO": "2025-08-11T02:58:12.000Z",
+    "textPlain": "Seems to be the worst of both worlds: mutable by default, and one must add a \"const\" keyword to the \"let\", disincentivizing const behavior by making it super verbose (e.g. the \"final\" problem from Java)https://github.com/Beariish/bolt/blob/0.1.0/doc/Bolt%20Progr...",
+    "parent": 44859122,
     "depth": 2
   },
   {

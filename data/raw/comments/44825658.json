@@ -1,10 +1,34 @@
 [
   {
+    "id": 44860284,
+    "by": "tylerhou",
+    "timeISO": "2025-08-11T02:30:40.000Z",
+    "textPlain": "If you are willing to return std::optional, clang-tidy has a (static) control flow sensitive check that enforces you check to see the value is valid before unwrapping. https://clang.llvm.org/extra/clang-tidy/checks/bugprone/unch...This would prevent the last bug (!ua()) as the control flow sensitive analysis can reason about both branches: that it is invalid to deref ua within the block. The dynamic check misses the bug because the branch is never taken for the given inputs.I am fairly confident that the clang-tidy pass is simpler and more precise in most cases than the hand-rolled implementation. (That said the static check may not be able to reason about mutation well.)If you need to pass an error in the failure case, you can use std::expected (available in C++23). clang-tidy has an open bug about supporting a similar check for std::expected: https://github.com/llvm/llvm-project/issues/135045",
+    "parent": 44825658,
+    "depth": 1
+  },
+  {
     "id": 44860106,
     "by": "mananaysiempre",
     "timeISO": "2025-08-11T01:51:05.000Z",
     "textPlain": "Funny if only marginally related fact: even though neither the C++11 syntax  if (int x = foo(); x) { ... }\n\nnor the C++98 syntax  if (int x = foo()) { ... }\n\nis supported in C99, it still introduces the rule that the entire if statement is a scope (which it wasn’t in C89). So as a party trick, here’s a way to check for C99 without using the preprocessor:  int c99() {\n      enum { C99 = 1 };\n      {\n          if (sizeof(enum { C99 = 0 })) { }\n          return C99;\n      }\n  }\n\nI make no promises about the behaviour of this code on insufficiently anal compilers like TCC.",
     "parent": 44825658,
     "depth": 1
+  },
+  {
+    "id": 44860270,
+    "by": "yjftsjthsd-h",
+    "timeISO": "2025-08-11T02:27:55.000Z",
+    "textPlain": "> I make no promises about the behaviour of this code on insufficiently anal compilers like TCC.But tcc isn't a C++ compiler at all?",
+    "parent": 44860106,
+    "depth": 2
+  },
+  {
+    "id": 44860333,
+    "by": "aslatter",
+    "timeISO": "2025-08-11T02:39:04.000Z",
+    "textPlain": "tcc version 0.9.28rc returns \"1\", whatever that means.",
+    "parent": 44860106,
+    "depth": 2
   }
 ]

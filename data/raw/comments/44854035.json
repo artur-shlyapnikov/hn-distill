@@ -48,18 +48,18 @@
     "depth": 1
   },
   {
-    "id": 44854992,
-    "by": "sebtron",
-    "timeISO": "2025-08-10T13:16:06.000Z",
-    "textPlain": "Basic completion in ksh is as easy as defining an array. From https://man.openbsd.org/ksh :Custom completions may be configured by creating an array named ‘complete_command’, optionally suffixed with an argument number to complete only for a single argument. So defining an array named ‘complete_kill’ provides possible completions for any argument to the kill(1) command, but ‘complete_kill_1’ only completes the first argument. For example, the following command makes ksh offer a selection of signal names for the first argument to kill(1):    set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM",
-    "parent": 44854035,
-    "depth": 1
-  },
-  {
     "id": 44854218,
     "by": "vcdimension",
     "timeISO": "2025-08-10T10:31:54.000Z",
     "textPlain": "Here's another tutorial for creating zsh completers using the built-in functions: https://github.com/vapniks/zsh-completions/blob/master/zsh-c...",
+    "parent": 44854035,
+    "depth": 1
+  },
+  {
+    "id": 44854992,
+    "by": "sebtron",
+    "timeISO": "2025-08-10T13:16:06.000Z",
+    "textPlain": "Basic completion in ksh is as easy as defining an array. From https://man.openbsd.org/ksh :Custom completions may be configured by creating an array named ‘complete_command’, optionally suffixed with an argument number to complete only for a single argument. So defining an array named ‘complete_kill’ provides possible completions for any argument to the kill(1) command, but ‘complete_kill_1’ only completes the first argument. For example, the following command makes ksh offer a selection of signal names for the first argument to kill(1):    set -A complete_kill_1 -- -9 -HUP -INFO -KILL -TERM",
     "parent": 44854035,
     "depth": 1
   },
@@ -118,6 +118,14 @@
     "textPlain": "Shell syntax is the exact reason why we've needed LLMs in the first place.",
     "parent": 44854035,
     "depth": 1
+  },
+  {
+    "id": 44860411,
+    "by": "fishywang",
+    "timeISO": "2025-08-11T02:55:31.000Z",
+    "textPlain": "I tried to use fish on some of my debian servers that i only rarely update packages/kernel, so I don't have to carry my bashrc there, but found their completion for apt is pretty naive. for example after updated kernel i would want to clean up the old ones, but `apt purge linux-image-<TAB>` would list all available kernel versions, not just the ones currently installed.in the end i switched back to bash.",
+    "parent": 44854235,
+    "depth": 2
   },
   {
     "id": 44856093,
