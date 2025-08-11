@@ -48,14 +48,6 @@
     "depth": 1
   },
   {
-    "id": 44865563,
-    "by": "tantalor",
-    "timeISO": "2025-08-11T15:48:06.000Z",
-    "textPlain": "I'm highly skeptical this level of bug bounty would be sustainable by whatever company ends up buying Chrome after DOJ forces it to be divested.",
-    "parent": 44861106,
-    "depth": 1
-  },
-  {
     "id": 44861421,
     "by": "high_na_euv",
     "timeISO": "2025-08-11T06:56:52.000Z",
@@ -76,6 +68,14 @@
     "by": "mkagenius",
     "timeISO": "2025-08-11T08:43:09.000Z",
     "textPlain": "Impressive speed on rewarding as well. Around 4 weeks.Lot of companies will sit for months just to acknowledge your submission.",
+    "parent": 44861106,
+    "depth": 1
+  },
+  {
+    "id": 44865563,
+    "by": "tantalor",
+    "timeISO": "2025-08-11T15:48:06.000Z",
+    "textPlain": "I'm highly skeptical this level of bug bounty would be sustainable by whatever company ends up buying Chrome after DOJ forces it to be divested.",
     "parent": 44861106,
     "depth": 1
   },
@@ -180,6 +180,14 @@
     "by": "mike_hearn",
     "timeISO": "2025-08-11T08:32:21.000Z",
     "textPlain": "Selling something to the black market doesn't magically make it tax free. It's almost the opposite. The money is going to show up in your auditable accounts sooner or later, so it's best to pay tax on it, but you'll also have to come up with a fake but auditable story of where it came from, meaning you'll have to engage the services of professional money launderers. They will also take a cut. So, it's like paying tax twice.Getting paid in cryptocurrency isn't necessarily a dodge either because even if you claim you mined it or something, the authorities have got wise to this a while ago IIUC and will expect to see evidence to back that claim up too.",
+    "parent": 44861556,
+    "depth": 2
+  },
+  {
+    "id": 44868047,
+    "by": "omoikane",
+    "timeISO": "2025-08-11T18:57:51.000Z",
+    "textPlain": "> pretty sure it he could have gotten more tax free on the black market.Not necessarily.  On slide 72 of this presentation, it says sandbox escape or bypass for Chrome is worth up to $200000:https://nocomplexity.com/wp-content/uploads/2024/06/bluehat2...(I originally found this presentation on github[1], but github seems down right now[2].)[1] https://github.com/mdowd79/presentations/blob/main/bluehat20...[2] https://www.reddit.com/r/github/comments/1mnlgc5/is_github_d...",
     "parent": 44861556,
     "depth": 2
   },
@@ -344,22 +352,6 @@
     "depth": 2
   },
   {
-    "id": 44861628,
-    "by": "georgemcbay",
-    "timeISO": "2025-08-11T07:34:02.000Z",
-    "textPlain": "Finding issues in large complex projects is generally easier than smaller projects.  More code, more bugs.  But its still difficult to find serious issues on the level of a sandbox escape in Chromium just because Google's long-running reward system means lots of people have spent lots of time looking into it, both manually and using automated fuzzer tools.Back in ye olden days of 2014 I randomly stumbled upon a Chrome issue (wasn't trying to find bugs, was just writing some JavaScript code and noticed a problem) and reported it to Google and they paid me $1,500.  Not bad for like half an hour's work to report the issue.https://issues.chromium.org/issues/40078754",
-    "parent": 44861415,
-    "depth": 2
-  },
-  {
-    "id": 44861657,
-    "by": "ch33zer",
-    "timeISO": "2025-08-11T07:39:24.000Z",
-    "textPlain": "I feel like it's the opposite. In a huge project there's bound to be many weird interactions between components, and it's about picking the important/security relevant ones and finding edge cases. In this case the focus was on the interaction between the renderer process and the broker. That forms a security boundary so it makes sense to focus your efforts there - google will pay for such exploits since they can in theory, when combined with other exploits in the renderer process, lead directly to exploits that can be triggered just by opening a web page. So, yes, chrome is a huge project but the list of security-relevant locations to probe actually isn't actually all that long. That's not to diminish the researchers work, it still takes an insane amount of skill to find these issues.",
-    "parent": 44861415,
-    "depth": 2
-  },
-  {
     "id": 44861545,
     "by": "WalterBright",
     "timeISO": "2025-08-11T07:19:41.000Z",
@@ -392,11 +384,19 @@
     "depth": 2
   },
   {
-    "id": 44864415,
+    "id": 44863006,
+    "by": "saagarjha",
+    "timeISO": "2025-08-11T11:28:28.000Z",
+    "textPlain": "https://pwn.college/",
+    "parent": 44861404,
+    "depth": 2
+  },
+  {
+    "id": 44864444,
     "by": "tptacek",
-    "timeISO": "2025-08-11T14:21:50.000Z",
-    "textPlain": "To add to the sibling comment, there are also many different ways of making a living doing this stuff:* You can find killer clientside bugs where the bounty will cover a year's worth of compensation (bear in mind you'll get maybe 1.5 of these payouts a year on your own if you're good but replacement-level)* You can find these kinds of bugs and work with brokers to sell them to grey-market buyers along with enablement/implants --- more development work, a little more market risk.* You can find smaller, easier bugs (serverside, web bugs) that get nothing resembling these kinds of payouts but are much easier to find, and make good money on volume. This is a much more common way of making a living on bounty payments.",
-    "parent": 44863925,
+    "timeISO": "2025-08-11T14:24:03.000Z",
+    "textPlain": "Grey market, not black. It's been several months since I've talked to anyone in the space but full-chain reliable quiet Chrome exploit packages were high six figures, with discussions starting about bugs reaching 7 figures imminently, and the people I talked to might have been talking that down (or talking it up).Again, remember that grey market payouts are tranched, so you could get 3x more than Google would pay, or you could get 0.5x, and for much more work.",
+    "parent": 44862545,
     "depth": 2
   }
 ]

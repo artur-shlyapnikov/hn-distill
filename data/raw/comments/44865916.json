@@ -1,9 +1,9 @@
 [
   {
-    "id": 44867710,
-    "by": "cco",
-    "timeISO": "2025-08-11T18:31:33.000Z",
-    "textPlain": "We recently released isagent.dev [1] exactly for this reason!Internally at Stytch three sets of folks had been working on similar paths here, e.g. device auth for agents, serving a different documentation experience to agents vs human developers etc and we realized it all comes down to a brand new class of users on your properties: agents.IsAgent was born because we wanted a quick and easy way to identify whether a user agent on your website was an agent (user permissioned agent, not a \"bot\" or crawler) or a human, and then give you a super clean <IsAgent /> and <IsHuman /> component to use.Super early days on it, happy to hear others are thinking about the same problem/opportunity.[1] GitHub here: http://github.com/stytchauth/is-agent",
+    "id": 44867207,
+    "by": "showerst",
+    "timeISO": "2025-08-11T17:51:30.000Z",
+    "textPlain": "I really vehemently disagree with the 'feedforward, tolerance, feedback' pattern.Protocols and standards like HTML built around \"be liberal with what you accept\" have turned out to be a real nightmare. Best-guessing the intent of your caller is a path to subtle bugs and behavior that's difficult to reason about.If the LLM isn't doing a good job calling your api, then make the LLM get smarter or rebuild the api, don't make the API looser.",
     "parent": 44865916,
     "depth": 1
   },
@@ -16,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44867207,
-    "by": "showerst",
-    "timeISO": "2025-08-11T17:51:30.000Z",
-    "textPlain": "I really vehemently disagree with the 'feedforward, tolerance, feedback' pattern.Protocols and standards like HTML built around \"be liberal with what you accept\" have turned out to be a real nightmare. Best-guessing the intent of your caller is a path to subtle bugs and behavior that's difficult to reason about.If the LLM isn't doing a good job calling your api, then make the LLM get smarter or rebuild the api, don't make the API looser.",
+    "id": 44867710,
+    "by": "cco",
+    "timeISO": "2025-08-11T18:31:33.000Z",
+    "textPlain": "We recently released isagent.dev [1] exactly for this reason!Internally at Stytch three sets of folks had been working on similar paths here, e.g. device auth for agents, serving a different documentation experience to agents vs human developers etc and we realized it all comes down to a brand new class of users on your properties: agents.IsAgent was born because we wanted a quick and easy way to identify whether a user agent on your website was an agent (user permissioned agent, not a \"bot\" or crawler) or a human, and then give you a super clean <IsAgent /> and <IsHuman /> component to use.Super early days on it, happy to hear others are thinking about the same problem/opportunity.[1] GitHub here: http://github.com/stytchauth/is-agent",
     "parent": 44865916,
     "depth": 1
   },
@@ -54,6 +54,14 @@
     "textPlain": "if you want your app to be automated wouldn't you just publish your api and make that readily available?  I understand the need for agentic UI navigation but obviously an api is still easier and less intensive right.  The problem is that it isn't always available, and there ui agents can circumvent that. But you want to embrace the automation of your app so.. just work on your API?  You can put an invisible node in your UI to tell agents to stop wasting compute and use the api.",
     "parent": 44865916,
     "depth": 1
+  },
+  {
+    "id": 44868144,
+    "by": "mort96",
+    "timeISO": "2025-08-11T19:05:22.000Z",
+    "textPlain": "I'm not sure it's possible to have a technology that's user-facing with multiple competing implementations, and not also, in some way, \"liberal in what it accepts\".Back when XHTML was somewhat hype and there were sites which actually used it, I recall being met with a big fat \"XML parse error\" page on occasion. If XHTML really took off (as in a significant majority of web pages were XHTML), those XML parse error pages would become way more common, simply because developers sometimes write bugs and many websites are server-generated with dynamic content. I'm 100% convinced that some browser would decide to implement special rules in their XML parser to try to recover from errors. And then, that browser would have a significant advantage in the market; users would start to notice, \"sites which give me an XML Parse Error in Firefox work well in Chrome, so I'll switch to Chrome\". And there you have the exact same problem as HTML, even though the standard itself is strict.The magical thing of HTML is that they managed to make a standard, HTML 5, which incorporates most of the special case rules as implemented by browsers. As such, all browsers would be lenient, but they'd all be lenient in the same way. A strict standard which mandates e.g \"the document MUST be valid XML\" results in implementations which are lenient, but they're lenient in different ways.HTML should arguably have been specified to be lenient from the start. Making a lenient standard from scratch is probably easier than trying to standardize commonalities between many differently-lenient implementations of a strict standard like what HTML had to do.",
+    "parent": 44867207,
+    "depth": 2
   },
   {
     "id": 44867479,
