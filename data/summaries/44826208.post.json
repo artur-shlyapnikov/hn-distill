@@ -1,0 +1,8 @@
+{
+  "id": 44826208,
+  "lang": "ru",
+  "summary": "Ускорил `dumac` на 28 %, перейдя с Tokio на Rayon.  \nПервая версия порождала задачу на каждую папку и `spawn_blocking` для `getattrlistbulk`; это лишняя работа планировщика и куча лишних потоков.  \n\nRayon с work-stealing переиспользует потоки из пула и рекурсивно распараллеливает `calculate_size`:\n\n```rust\nlet subdir_size = dir_info\n    .subdirs\n    .into_par_iter()\n    .map(|subdir| calculate_size(subdir_path))\n    .sum();\n```\n\nhyperfine показал:\n\n- до: 910 мс ± 10  \n- после: 712 мс ± 10  \n\nСистемных вызовов стало вдвое меньше, потоков — фиксированное число.",
+  "inputHash": "a8265df56a78a5dacaf88cbfba558d52877bc3b11ed40fc9b89a76fd523eda6f",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-11T16:35:22.849Z"
+}

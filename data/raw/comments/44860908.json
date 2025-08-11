@@ -1,5 +1,13 @@
 [
   {
+    "id": 44865251,
+    "by": "teo_zero",
+    "timeISO": "2025-08-11T15:28:46.000Z",
+    "textPlain": "Clever, but it misses the very goal of option/maybe types: forcing the user to check the result. In this implementation nothing stops the user from omitting the \"if (p.ok)\" part and directly using \"p.value\".It could work if \"maybe(T)\" is completely opaque to the user; both checking and accessing its payload must happen through helper macros; the checking macro ticks an invisible flag if ok; the accessing macro returns the payload only if the invisible flag is ticked, otherwise it triggers a runtime error/exception.Not impossible. However, you would need to replace all \"p.ok\" with \"maybe_check(p)\", which is not unreasonable, and all \"p.value\" with \"maybe_value(p)\", which might be too much for the final user...",
+    "parent": 44860908,
+    "depth": 1
+  },
+  {
     "id": 44861689,
     "by": "nly",
     "timeISO": "2025-08-11T07:45:52.000Z",
@@ -120,18 +128,18 @@
     "depth": 2
   },
   {
-    "id": 44862997,
-    "by": "amiga386",
-    "timeISO": "2025-08-11T11:25:54.000Z",
-    "textPlain": "Quite. There's standard POSIX behaviour for this. Divide by zero and execution continues, safely, in your SIGFPE exception handler.",
-    "parent": 44862546,
-    "depth": 2
-  },
-  {
     "id": 44862571,
     "by": "throw-qqqqq",
     "timeISO": "2025-08-11T10:09:04.000Z",
     "textPlain": "You don’t always get to choose your language. Especially in the embedded/firmware area of software development, C is the most widely available option, if not the only option besides ASM shrugs",
+    "parent": 44862546,
+    "depth": 2
+  },
+  {
+    "id": 44862997,
+    "by": "amiga386",
+    "timeISO": "2025-08-11T11:25:54.000Z",
+    "textPlain": "Quite. There's standard POSIX behaviour for this. Divide by zero and execution continues, safely, in your SIGFPE exception handler.",
     "parent": 44862546,
     "depth": 2
   },

@@ -32,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44863675,
-    "by": "PaulHoule",
-    "timeISO": "2025-08-11T13:09:05.000Z",
-    "textPlain": "If I understand that chart at the end it looks like the better performance is only for small buffer sizes which fit in the cache (4k) but if you are looking at big buffers the stdlib copy performs about the same as the optimized copy that he writes.",
-    "parent": 44860847,
-    "depth": 1
-  },
-  {
     "id": 44860882,
     "by": "waschl",
     "timeISO": "2025-08-11T05:08:20.000Z",
     "textPlain": "Thought about zero-copy IPC recently. In order to avoid memcopy for the complete chain, I guess it would be best if the sender allocates its payload directly on the shared memory when it’s created. Is this a standard thing in such optimized IPC and which libraries offer this?",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44863675,
+    "by": "PaulHoule",
+    "timeISO": "2025-08-11T13:09:05.000Z",
+    "textPlain": "If I understand that chart at the end it looks like the better performance is only for small buffer sizes which fit in the cache (4k) but if you are looking at big buffers the stdlib copy performs about the same as the optimized copy that he writes.",
     "parent": 44860847,
     "depth": 1
   },
@@ -64,26 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44863630,
-    "by": "coxley",
-    "timeISO": "2025-08-11T13:01:48.000Z",
-    "textPlain": "Ha, I love the project name \"Shadesmar\". Journey before destination, friend. :crossed-wrists:",
-    "parent": 44860847,
-    "depth": 1
-  },
-  {
-    "id": 44864394,
-    "by": "EGreg",
-    "timeISO": "2025-08-11T14:19:42.000Z",
-    "textPlain": "Wait, I thought memcpy would have launched some sort of built-in mechanism (parallelized or whatever) to copy in RAM.Just indicate the start and length. Why would the CPU need to keep issuing copy instructions?",
-    "parent": 44860847,
-    "depth": 1
-  },
-  {
     "id": 44860925,
     "by": "brucehoult",
     "timeISO": "2025-08-11T05:17:41.000Z",
     "textPlain": "ConclusionStick to `std::memcpy`. It delivers great performance while also adapting to the hardware architecture, and makes no assumptions about the memory alignment.----So that's five minutes I'll never get back.I'd make an exception for RISC-V machines with \"RVV\" vectors, where vectorised `memcpy` hasn't yet made it into the standard library and a simple ...    0000000000000000 <memcpy>:\n       0:   86aa mv      a3,a0\n    \n    0000000000000002 <.L1^B1>:\n       2:   00267757 vsetvli a4,a2,e8,m4,tu,mu\n       6:   02058007 vle8.v  v0,(a1)\n       a:   95ba add     a1,a1,a4\n       c:   8e19 sub     a2,a2,a4\n       e:   02068027 vse8.v  v0,(a3)\n      12:   96ba add     a3,a3,a4\n      14:   f67d bnez    a2,2 <.L1^B1>\n      16:   8082 ret\n\n... often beats `memcpy` by a factor of 2 or 3 on copies that fit into L1 cache.https://hoult.org/d1_memcpy.txt",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44863630,
+    "by": "coxley",
+    "timeISO": "2025-08-11T13:01:48.000Z",
+    "textPlain": "Ha, I love the project name \"Shadesmar\". Journey before destination, friend. :crossed-wrists:",
     "parent": 44860847,
     "depth": 1
   },
@@ -100,6 +92,14 @@
     "by": "kvemkon",
     "timeISO": "2025-08-11T10:12:23.000Z",
     "textPlain": "BTW, if we copy data between some device and RAM efficiently using DMA without spending CPU cycles, why we can't use DMA to copy RAM-to-RAM?",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44864394,
+    "by": "EGreg",
+    "timeISO": "2025-08-11T14:19:42.000Z",
+    "textPlain": "Wait, I thought memcpy would have launched some sort of built-in mechanism (parallelized or whatever) to copy in RAM.Just indicate the start and length. Why would the CPU need to keep issuing copy instructions?",
     "parent": 44860847,
     "depth": 1
   },
@@ -176,18 +176,18 @@
     "depth": 2
   },
   {
-    "id": 44861676,
-    "by": "a_t48",
-    "timeISO": "2025-08-11T07:43:38.000Z",
-    "textPlain": "I've looked into this a bit - the big blocker isn't on the transport/IPC library, but the serializer itself, assuming you _also_ want to support serializing messages to disk or over network. It's a bit of a pickle - at least in C++, tying an allocator to a structure and its children is an ugly mess. And what happens if you do something like resize a string? Does it mean a whole new allocation? I've (partially) solved it before for single process IPC by having a concept of a sharable structure and its serialization type, you could do the same for shared memory. One could also use a serializer that offers promises around allocations, FlatBuffer might fit the bill. There's also https://github.com/Verdant-Robotics/cbuf but I'm not sure how well maintained it is right now, publicly.As for allocation - it looks like Zenoh might offer the allocation pattern necessary. https://zenoh-cpp.readthedocs.io/en/1.0.0.5/shm.html TBH most of the big wins come from not copying big blocks of memory around from sensor data and the like. A thin header and reference to a block of shared memory containing an image or point cloud coming in over UDS is likely more than performant enough for most use cases. Again, big wins from not having to serialize/deserialize the sensor data.Another pattern which I haven't really seen anywhere is handling multiple transports - at one point I had the concept of setting up one transport as an allocator (to put into shared memory or the like) - serialize once to shared memory, hand that serialized buffer to your network transport(s) or your disk writer. It's not quite zero copy but in practice most zero copy is actually at least one copy on each end.(Sorry, this post is a little scatterbrained, hopefully some of my points come across)",
-    "parent": 44860882,
-    "depth": 2
-  },
-  {
     "id": 44860945,
     "by": "dataflow",
     "timeISO": "2025-08-11T05:20:29.000Z",
     "textPlain": "> I guess it would be best if the sender allocates its payload directly on the shared memory when it’s created.On an SMP system yes. On a NUMA system it depends on your access patterns etc.",
+    "parent": 44860882,
+    "depth": 2
+  },
+  {
+    "id": 44861676,
+    "by": "a_t48",
+    "timeISO": "2025-08-11T07:43:38.000Z",
+    "textPlain": "I've looked into this a bit - the big blocker isn't on the transport/IPC library, but the serializer itself, assuming you _also_ want to support serializing messages to disk or over network. It's a bit of a pickle - at least in C++, tying an allocator to a structure and its children is an ugly mess. And what happens if you do something like resize a string? Does it mean a whole new allocation? I've (partially) solved it before for single process IPC by having a concept of a sharable structure and its serialization type, you could do the same for shared memory. One could also use a serializer that offers promises around allocations, FlatBuffer might fit the bill. There's also https://github.com/Verdant-Robotics/cbuf but I'm not sure how well maintained it is right now, publicly.As for allocation - it looks like Zenoh might offer the allocation pattern necessary. https://zenoh-cpp.readthedocs.io/en/1.0.0.5/shm.html TBH most of the big wins come from not copying big blocks of memory around from sensor data and the like. A thin header and reference to a block of shared memory containing an image or point cloud coming in over UDS is likely more than performant enough for most use cases. Again, big wins from not having to serialize/deserialize the sensor data.Another pattern which I haven't really seen anywhere is handling multiple transports - at one point I had the concept of setting up one transport as an allocator (to put into shared memory or the like) - serialize once to shared memory, hand that serialized buffer to your network transport(s) or your disk writer. It's not quite zero copy but in practice most zero copy is actually at least one copy on each end.(Sorry, this post is a little scatterbrained, hopefully some of my points come across)",
     "parent": 44860882,
     "depth": 2
   },
@@ -216,6 +216,46 @@
     "depth": 2
   },
   {
+    "id": 44861167,
+    "by": "viraptor",
+    "timeISO": "2025-08-11T06:10:32.000Z",
+    "textPlain": "> So that's five minutes I'll never get back.Confirming null hypothesis, with good supporting data is still interesting. Could save you from doing this yourself.",
+    "parent": 44860925,
+    "depth": 2
+  },
+  {
+    "id": 44864839,
+    "by": "snihalani",
+    "timeISO": "2025-08-11T14:54:09.000Z",
+    "textPlain": "You could read the article and end up disagreeing with it. The value is in grokking over the details and not whether the insight changes your decisions. It can just make your decisions more grounded in data",
+    "parent": 44860925,
+    "depth": 2
+  },
+  {
+    "id": 44862551,
+    "by": "makach",
+    "timeISO": "2025-08-11T10:04:24.000Z",
+    "textPlain": "You pre-stole my comment, I was about to make the exact same post :-DAlthough the blog post is about going faster and him showing alternative algorithms, conclusion remains for safety which makes perfect sense. However, he did show us a few strategies which is useful. The five minutes I spent, will never be returned to me but at least I learned something interesting...",
+    "parent": 44860925,
+    "depth": 2
+  },
+  {
+    "id": 44866040,
+    "by": "toast0",
+    "timeISO": "2025-08-11T16:19:57.000Z",
+    "textPlain": "DMA works for devices, because the device does the memory access. RAM to RAM DMA would need something to do the accesses.The other reason DMA works for devices is because it is asynchronous. You give a device a command and some memory to do it with, it does the thing and lets you know. Most devices can't complete commands instantaneously, so we know we have to queue things and then go do something else. Often when doing memcpy, we want to use the copied memory immediately... if it were a DMA, you'd need to submit the request and wait for it to complete before you continued... If your general purpose DMA engine is a typical device, you're probably doing a syscall to the kernel, which would submit the command (possibly through a queue), suspend your process, schedule something else and there may be delay before getting scheduled again when the DMA is complete.If async memcpy was what was wanted, it could make sense, but that feels pretty hard to use.",
+    "parent": 44862597,
+    "depth": 2
+  },
+  {
+    "id": 44862692,
+    "by": "shakna",
+    "timeISO": "2025-08-11T10:27:26.000Z",
+    "textPlain": "You can copy that way.It's faster of you use the CPU, but you absolutely can just use DMA - and some embedded systems do.",
+    "parent": 44862597,
+    "depth": 2
+  },
+  {
     "id": 44864865,
     "by": "ack_complete",
     "timeISO": "2025-08-11T14:56:42.000Z",
@@ -229,38 +269,6 @@
     "timeISO": "2025-08-11T14:38:46.000Z",
     "textPlain": "The poster has a Zen 2, where this is only optimal for large copies. For newer Intel, glibc might indeed choose to use REP MOVSB more often.",
     "parent": 44864394,
-    "depth": 2
-  },
-  {
-    "id": 44864839,
-    "by": "snihalani",
-    "timeISO": "2025-08-11T14:54:09.000Z",
-    "textPlain": "You could read the article and end up disagreeing with it. The value is in grokking over the details and not whether the insight changes your decisions. It can just make your decisions more grounded in data",
-    "parent": 44860925,
-    "depth": 2
-  },
-  {
-    "id": 44861167,
-    "by": "viraptor",
-    "timeISO": "2025-08-11T06:10:32.000Z",
-    "textPlain": "> So that's five minutes I'll never get back.Confirming null hypothesis, with good supporting data is still interesting. Could save you from doing this yourself.",
-    "parent": 44860925,
-    "depth": 2
-  },
-  {
-    "id": 44862551,
-    "by": "makach",
-    "timeISO": "2025-08-11T10:04:24.000Z",
-    "textPlain": "You pre-stole my comment, I was about to make the exact same post :-DAlthough the blog post is about going faster and him showing alternative algorithms, conclusion remains for safety which makes perfect sense. However, he did show us a few strategies which is useful. The five minutes I spent, will never be returned to me but at least I learned something interesting...",
-    "parent": 44860925,
-    "depth": 2
-  },
-  {
-    "id": 44862692,
-    "by": "shakna",
-    "timeISO": "2025-08-11T10:27:26.000Z",
-    "textPlain": "You can copy that way.It's faster of you use the CPU, but you absolutely can just use DMA - and some embedded systems do.",
-    "parent": 44862597,
     "depth": 2
   },
   {
