@@ -4,10 +4,13 @@
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "strict": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
     "types": ["node"],
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "skipLibCheck": false,
+    "skipLibCheck": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "noImplicitOverride": true,
@@ -23,6 +26,8 @@
     "allowUnreachableCode": false,
     "useUnknownInCatchVariables": true,
     "baseUrl": ".",
+    "incremental": true,
+    "tsBuildInfoFile": "node_modules/.cache/tsconfig.tsbuildinfo",
     "paths": {
       "types/*": ["types/*"],
       "@utils/*": ["utils/*"],
@@ -30,5 +35,6 @@
       "@scripts/*": ["scripts/*"]
     }
   },
-  "include": ["scripts", "src", "types", "utils", "config"]
+  "include": ["scripts", "src", "types", "utils", "config"],
+  "exclude": ["node_modules", ".astro"]
 }

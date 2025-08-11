@@ -94,22 +94,24 @@ type CacheShape = Record<
   }
 >;
 
-async function migrateCache(raw: any): Promise<CacheShape> {
+async function migrateCache(raw: unknown): Promise<CacheShape> {
   const migrated: CacheShape = {};
-  for (const key in raw) {
+  if (typeof raw !== "object" || raw === null) return migrated;
+  for (const key of Object.keys(raw as Record<string, unknown>)) {
     const storyId = Number(key);
     if (isNaN(storyId)) continue;
-    const entry = raw[key];
-    const seenTopLevel = entry.seenTopLevel ?? entry.seenKids ?? [];
-    const seenByDepth = entry.seenByDepth ?? {};
-    const updatedISO = entry.updatedISO ?? new Date(0).toISOString();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const entry: any = (raw as Record<string, unknown>)[key];
+    const seenTopLevel: number[] = entry?.seenTopLevel ?? entry?.seenKids ?? [];
+    const seenByDepth: Record<string, number[]> = entry?.seenByDepth ?? {};
+    const updatedISO: string = typeof entry?.updatedISO === "string" ? entry.updatedISO : new Date(0).toISOString();
     migrated[storyId] = { seenTopLevel, seenByDepth, updatedISO };
   }
   return migrated;
 }
 
 async function readCache(): Promise<CacheShape> {
-  const rawCache = await readJsonSafeOr<any>(PATHS.cache, z.any(), {});
+  const rawCache = await readJsonSafeOr<unknown>(PATHS.cache, z.any(), {});
   return migrateCache(rawCache);
 }
 

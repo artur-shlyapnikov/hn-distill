@@ -97,9 +97,15 @@ export function fallbackFromRaw(
   return { postSummary: undefined, commentsSummary };
 }
 
+function parseIsoSafe(iso?: string): number {
+  if (typeof iso !== "string") return NaN;
+  const ts = Date.parse(iso);
+  return Number.isFinite(ts) ? ts : NaN;
+}
+
 function sortItemsDesc(a: AggregatedItem, b: AggregatedItem): number {
-  const ta = Date.parse((a as any).timeISO ?? "");
-  const tb = Date.parse((b as any).timeISO ?? "");
+  const ta = parseIsoSafe(a.timeISO);
+  const tb = parseIsoSafe(b.timeISO);
   const aHas = Number.isFinite(ta);
   const bHas = Number.isFinite(tb);
   if (aHas && bHas) return tb - ta;
