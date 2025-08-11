@@ -8,6 +8,30 @@
     "depth": 1
   },
   {
+    "id": 44859395,
+    "by": "twiss",
+    "timeISO": "2025-08-10T23:33:29.000Z",
+    "textPlain": "I may be missing something about how the PHP compiler/interpreter works, but I don't quite understand why this is apparently feasible to implement:    class BlogPostRepository extends BaseRepository<BlogPost> { ... }\n    $repo = new BlogPostRepository();\n\nbut the following would be very hard:    $repo = new Repository<BlogPost>();\n\nThey write that the latter would need runtime support, instead of only compile time support. But why couldn't the latter be (compile time) syntactic sugar for the former, so to speak?(As long as you don't allow the generic parameter to be dynamic / unknown at compile time, of course.)",
+    "parent": 44823272,
+    "depth": 1
+  },
+  {
+    "id": 44859717,
+    "by": "SoftTalker",
+    "timeISO": "2025-08-11T00:34:54.000Z",
+    "textPlain": "In the sense of an affirmative vote, the proper word is \"yea.\"",
+    "parent": 44823272,
+    "depth": 1
+  },
+  {
+    "id": 44859845,
+    "by": "calvinmorrison",
+    "timeISO": "2025-08-11T01:05:37.000Z",
+    "textPlain": "write PHP a lot. every day.I wish we had typed arrays. Totally not gonna happen, theres been RFCs but I have enough boilerplate classes that are likeClass Option\nClass Options implements Iterator, countable, etc.Options[0], Options[1], Options[2]or Options->getOption('some.option.something');A lot of wrapper stuff like that is semi tedious, the implementation can vary wildly.Also because a lot of times in php you start with a generic array and decide you need structure around it so you implement a class, then you need an array of class,Not to mention a bunch of WSDLs that autogenerate ArrayOfString classes...",
+    "parent": 44823272,
+    "depth": 1
+  },
+  {
     "id": 44859047,
     "by": "gloryjulio",
     "timeISO": "2025-08-10T22:54:23.000Z",
@@ -21,6 +45,22 @@
     "timeISO": "2025-08-10T22:57:33.000Z",
     "textPlain": "I'm not smarter than you but.I believe the terms reified generics and erased generics is the type sweaty donkey ball terminology you get for professional CS academics.Sticking my neck out further.Reified generics means the type is available at run time. In C# you can write if(obj.GetType() == typeof(typename))Erased generics the type information is not available at run time. That's the way Java does it and it kinda sucks.",
     "parent": 44858958,
+    "depth": 2
+  },
+  {
+    "id": 44859653,
+    "by": "jasone",
+    "timeISO": "2025-08-11T00:19:13.000Z",
+    "textPlain": "The former merely exposes a `BlogPostRepository` class. The latter requires some mechanism for creating a generic object of concrete type, which is a lot bigger change to the implementation. Does each parametrized generic type have its own implementation? Or does each object have sufficient RTTI to dynamically dispatch? And what are the implications for module API data structures? Etc. In other words, this limitation avoids tremendously disruptive implementation impacts. Not pretty, but we're talking PHP here anyway. ;-)",
+    "parent": 44859395,
+    "depth": 2
+  },
+  {
+    "id": 44860086,
+    "by": "wesammikhail",
+    "timeISO": "2025-08-11T01:47:21.000Z",
+    "textPlain": "Nailed it.This is the core problem with PHP for me.I love PHP and use it every day. Part of that is the strength and versatility of the arrays implementation (i.e. hashmap). However, the problem is always the fact that an array cant be typed.IF they could just introduce that, it would solve 80% of user-land issues over night.",
+    "parent": 44859845,
     "depth": 2
   }
 ]

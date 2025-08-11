@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "id": 44859393,
+    "by": "Jtsummers",
+    "timeISO": "2025-08-10T23:33:11.000Z",
+    "textPlain": "If you like Ghuloum's paper, there are three fairly recent compiler books that are inspired by it:https://nostarch.com/writing-c-compiler - Writing a C Compiler by Nora Sandler, language agnostic for the implementation.https://mitpress.mit.edu/9780262047760/essentials-of-compila... - Essentials of Compilation (using Racket) by Jeremy Siekhttps://mitpress.mit.edu/9780262048248/essentials-of-compila... - Essentials of Compilation (using Python) by Jeremy SiekThose last two both have open access versions.",
+    "parent": 44858892,
+    "depth": 1
+  },
+  {
+    "id": 44859422,
+    "by": "WantonQuantum",
+    "timeISO": "2025-08-10T23:36:42.000Z",
+    "textPlain": "The \"lambda lifting\" seems to be referring to section 3.11 \"Complex Constants\" in the linked Ghuloum PDF:Scheme’s constants are not limited to the immediate objects. Using the quote form, lists, vectors, and strings can be turned into constants as well. The formal semantics of Scheme require that quoted\nconstants always evaluate to the same object. The following example must always evaluate to true:    (let ((f (lambda () (quote (1 . \"H\")))))\n      (eq? (f) (f)))\n\nSo, in general, we cannot transform a quoted constant into an unquoted series of constructions as the following incorrect transformation demonstrates:    (let ((f (lambda () (cons 1 (string #\\H)))))\n      (eq? (f) (f)))\n\nOne way of implementing complex constants is by lifting their construction to the top of the program. The example program can be transformed to an equivalent program containing no complex constants as follows:    (let ((tmp0 (cons 1 (string #\\H))))\n      (let ((f (lambda () tmp0)))\n        (eq? (f) (f))))\n\nPerforming this transformation before closure conversion makes the introduced temporaries occur as free variables in the enclosing lambdas. This increases the size of many closures, increasing heap\nconsumption and slowing down the compiled programs. Another approach for implementing complex constants is by introducing global memory locations to hold the values of these constants. Every complex constant is assigned a label, denoting its location. All the complex constants are initialized at the start of the program. Our running example would be transformed to:    (labels ((f0 (code () () (constant-ref t1)))\n             (t1 (datum)))\n      (constant-init t1 (cons 1 (string #\\H)))\n      (let ((f (closure f0)))\n        (eq? (f) (f))))\n\nThe code generator should now be modified to handle the data labels as well as the two internal forms constant-ref and constant-init.",
+    "parent": 44858892,
+    "depth": 1
+  },
+  {
+    "id": 44859787,
+    "by": "dang",
+    "timeISO": "2025-08-11T00:51:42.000Z",
+    "textPlain": "The paper itself has been discussed a few times:An Incremental Approach to Compiler Construction (2006) [pdf] - https://news.ycombinator.com/item?id=29123715 - Nov 2021 (10 comments)An Incremental Approach to Compiler Construction (2006) [pdf] - https://news.ycombinator.com/item?id=20577660 - July 2019 (5 comments)An Incremental Approach to Compiler Construction (2006) [pdf] - https://news.ycombinator.com/item?id=13207441 - Dec 2016 (19 comments)An Incremental Approach to Compiler Construction (2006) [pdf] - https://news.ycombinator.com/item?id=10785164 - Dec 2015 (13 comments)Writing a Compiler in 24 Small Steps [pdf] - https://news.ycombinator.com/item?id=1652623 - Sept 2010 (16 comments)An Incremental Approach to Compiler Construction - https://news.ycombinator.com/item?id=1408241 - June 2010 (18 comments)(and also in comments: https://hn.algolia.com/?dateRange=all&page=0&prefix=true&que...)",
+    "parent": 44859393,
+    "depth": 2
+  },
+  {
+    "id": 44859533,
+    "by": "JonChesterfield",
+    "timeISO": "2025-08-10T23:54:51.000Z",
+    "textPlain": "The idea is to move variables from the body of the function to the argument list and rewrite the call sites to match.That decreases the size of the closure (and increases the size of the code, and of however you're passing arguments).Do it repeatedly though and you end up with no free variables, i.e. no closure to allocate. Hence the name, the lambda (closure) has been lifted (through the call tree) to the top level, where it is now a function (and not a lambda, if following the usual conflating of anonymous function with allocated closure).Doesn't work in the general case because you can't find all the call sites.",
+    "parent": 44859422,
+    "depth": 2
+  }
+]

@@ -1,9 +1,9 @@
 [
   {
-    "id": 44858071,
-    "by": "perlgeek",
-    "timeISO": "2025-08-10T20:31:43.000Z",
-    "textPlain": "I like 99% of this, and the thing I don't like is in the very first line of the example:> import abs, epsilon from mathIMHO it's wrong to put the imported symbols first, because the same symbol could come from two different libraries and mean different things. So the library name is pretty important, and putting it last (and burying it after a potentially long list of imported symbols) just feels wrong.I get that it has a more natural-language vibe this way, but put there's a really good reason that most of the languages I know that put the package/module name first:    import packageName.member; // java\n    from package import symbol; # python\n    use Module 'symbol'; # perl\n    \nWith Typescript being the notable exception:    import { pi as π } from \"./maths.js\";t",
+    "id": 44859665,
+    "by": "conaclos",
+    "timeISO": "2025-08-11T00:21:14.000Z",
+    "textPlain": "I was quite excited by the description and then I noted that Bolt heavily relies on double floating point numbers. I am quite disappointed because this doesn't allow me to use Bolt in my context: embedded systems where floating point numbers are rarely supported... So I realized that I misinterpreted `embedded`.",
     "parent": 44856935,
     "depth": 1
   },
@@ -16,18 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44859220,
-    "by": "merksoftworks",
-    "timeISO": "2025-08-10T23:11:45.000Z",
-    "textPlain": "This is really cool but it's not portable to MacOs or aarm64 yet, and that kind of portability unfortunately is what appeals to me about an embeddable scripting language.",
-    "parent": 44856935,
-    "depth": 1
-  },
-  {
-    "id": 44857819,
-    "by": "cookiengineer",
-    "timeISO": "2025-08-10T19:59:05.000Z",
-    "textPlain": "If functions don't have a return signature, does that mean everything must be satisfied in the compilation step?What about memory management/ownership? This would imply that everything must be copy by value in each function callsite, right? How to use references/pointers? Are they supported?I like the matchers which look similar to Rust, but I dislike the error handling because it is neither implicit, and neither explicit, and therefore will be painful to debug in larger codebases I'd imagine.Do you know about Koka? I don't like its syntax choices much but I think that an effect based error type system might integrate nicely with your design choices, especially with matchers as consumers.[1] https://koka-lang.github.io/koka/doc/index.html",
+    "id": 44858071,
+    "by": "perlgeek",
+    "timeISO": "2025-08-10T20:31:43.000Z",
+    "textPlain": "I like 99% of this, and the thing I don't like is in the very first line of the example:> import abs, epsilon from mathIMHO it's wrong to put the imported symbols first, because the same symbol could come from two different libraries and mean different things. So the library name is pretty important, and putting it last (and burying it after a potentially long list of imported symbols) just feels wrong.I get that it has a more natural-language vibe this way, but put there's a really good reason that most of the languages I know that put the package/module name first:    import packageName.member; // java\n    from package import symbol; # python\n    use Module 'symbol'; # perl\n    \nWith Typescript being the notable exception:    import { pi as π } from \"./maths.js\";t",
     "parent": 44856935,
     "depth": 1
   },
@@ -40,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44859122,
-    "by": "tayistay",
-    "timeISO": "2025-08-10T23:01:37.000Z",
-    "textPlain": "Congrats! I think this could be quite useful for me.I noticed that `let`-declared variables seem to be mutable. I'd strongly recommend against that. Add a `var` keyword.",
+    "id": 44857819,
+    "by": "cookiengineer",
+    "timeISO": "2025-08-10T19:59:05.000Z",
+    "textPlain": "If functions don't have a return signature, does that mean everything must be satisfied in the compilation step?What about memory management/ownership? This would imply that everything must be copy by value in each function callsite, right? How to use references/pointers? Are they supported?I like the matchers which look similar to Rust, but I dislike the error handling because it is neither implicit, and neither explicit, and therefore will be painful to debug in larger codebases I'd imagine.Do you know about Koka? I don't like its syntax choices much but I think that an effect based error type system might integrate nicely with your design choices, especially with matchers as consumers.[1] https://koka-lang.github.io/koka/doc/index.html",
     "parent": 44856935,
     "depth": 1
   },
   {
-    "id": 44858932,
-    "by": "memophysic",
-    "timeISO": "2025-08-10T22:40:52.000Z",
-    "textPlain": "Looks great, I'm especially a fan of the more C and Python syntax. Lua works, but its syntax has always been bugging me.On the feature side, is there any support for breakpoints or a debugging server, and if not is it planned?",
+    "id": 44859571,
+    "by": "JonChesterfield",
+    "timeISO": "2025-08-11T00:00:31.000Z",
+    "textPlain": "Outperforming languages in its class is doing some heavy lifting here. Missing comparison to wasm interpreter, any of the java or dot net interpreters, the MLs, any lisps etc.Compile to register bytecode is legitimate as a strategy but its not the fast one, as the author knows, so probably shouldn't be branding the language as fast at this point.It might be a fast language. Hard to tell from a superficial look, depends on how the type system, alias analysis and concurrency models interact. It's not a fast implementation at this point.> This means functions do not need to dynamically capture their imports, avoiding closure invocations, and are able to linearly address them in the import array instead of making some kind of environment lookup.That is suspect, could be burning function identifiers into the bytecode directly, not emitting lookups in a table.Likewise the switch on the end of each instruction is probably the wrong thing, take a look at a function per op, forced tailcalls, with the interpreter state in the argument registers of the machine function call. There's some good notes on that from some wasm interpreters, and some context on why from luajit if you go looking.",
     "parent": 44856935,
     "depth": 1
   },
@@ -64,10 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44858854,
-    "by": "astatine",
-    "timeISO": "2025-08-10T22:30:14.000Z",
-    "textPlain": "This looks awesome. Would you have any data on the performance of large number of invocations of small scripts? I am wondering at startup overhead for every script run. which the 500kloc/s may not capture well.",
+    "id": 44858260,
+    "by": "freeopinion",
+    "timeISO": "2025-08-10T21:04:32.000Z",
+    "textPlain": "I see your benchmarks compare against other interpreted languages \"in its class\".We read here a couple days ago about Q which is compiled. Bolt claims to \"plow through code at over 500kloc/thread/second\". Q claims to compile in milliseconds--so fast that you can treat it like a script.Bolt and Q are both newborns. Perhaps you could include each other in your benchmarks to give each other a little publicity.",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44859122,
+    "by": "tayistay",
+    "timeISO": "2025-08-10T23:01:37.000Z",
+    "textPlain": "Congrats! I think this could be quite useful for me.I noticed that `let`-declared variables seem to be mutable. I'd strongly recommend against that. Add a `var` keyword.",
     "parent": 44856935,
     "depth": 1
   },
@@ -80,18 +80,26 @@
     "depth": 1
   },
   {
-    "id": 44858260,
-    "by": "freeopinion",
-    "timeISO": "2025-08-10T21:04:32.000Z",
-    "textPlain": "I see your benchmarks compare against other interpreted languages \"in its class\".We read here a couple days ago about Q which is compiled. Bolt claims to \"plow through code at over 500kloc/thread/second\". Q claims to compile in milliseconds--so fast that you can treat it like a script.Bolt and Q are both newborns. Perhaps you could include each other in your benchmarks to give each other a little publicity.",
+    "id": 44859220,
+    "by": "merksoftworks",
+    "timeISO": "2025-08-10T23:11:45.000Z",
+    "textPlain": "This is really cool but it's not portable to MacOs or aarm64 yet, and that kind of portability unfortunately is what appeals to me about an embeddable scripting language.",
     "parent": 44856935,
     "depth": 1
   },
   {
-    "id": 44858184,
-    "by": "Forgret",
-    "timeISO": "2025-08-10T20:53:45.000Z",
-    "textPlain": "It looks cool, I wish you luck in developing the language. I liked your language and I hope it becomes popular someday.",
+    "id": 44858932,
+    "by": "memophysic",
+    "timeISO": "2025-08-10T22:40:52.000Z",
+    "textPlain": "Looks great, I'm especially a fan of the more C and Python syntax. Lua works, but its syntax has always been bugging me.On the feature side, is there any support for breakpoints or a debugging server, and if not is it planned?",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44858854,
+    "by": "astatine",
+    "timeISO": "2025-08-10T22:30:14.000Z",
+    "textPlain": "This looks awesome. Would you have any data on the performance of large number of invocations of small scripts? I am wondering at startup overhead for every script run. which the 500kloc/s may not capture well.",
     "parent": 44856935,
     "depth": 1
   },
@@ -104,18 +112,10 @@
     "depth": 1
   },
   {
-    "id": 44857233,
-    "by": "grodriguez100",
-    "timeISO": "2025-08-10T18:36:24.000Z",
-    "textPlain": "Sounds very good, and I can see many use cases in embedded systems. But that probably requires 32-bit arm support. Is that planned ?",
-    "parent": 44856935,
-    "depth": 1
-  },
-  {
-    "id": 44858568,
-    "by": "k__",
-    "timeISO": "2025-08-10T21:43:03.000Z",
-    "textPlain": "Awesome.Is it deterministic like Lua?",
+    "id": 44858184,
+    "by": "Forgret",
+    "timeISO": "2025-08-10T20:53:45.000Z",
+    "textPlain": "It looks cool, I wish you luck in developing the language. I liked your language and I hope it becomes popular someday.",
     "parent": 44856935,
     "depth": 1
   },
@@ -128,10 +128,10 @@
     "depth": 1
   },
   {
-    "id": 44857827,
-    "by": "Vandash",
-    "timeISO": "2025-08-10T19:59:56.000Z",
-    "textPlain": "game dev for 15+ years here, love the first example on Github\nthis is compiled right? cannot replace lua?",
+    "id": 44857233,
+    "by": "grodriguez100",
+    "timeISO": "2025-08-10T18:36:24.000Z",
+    "textPlain": "Sounds very good, and I can see many use cases in embedded systems. But that probably requires 32-bit arm support. Is that planned ?",
     "parent": 44856935,
     "depth": 1
   },
@@ -144,6 +144,22 @@
     "depth": 1
   },
   {
+    "id": 44857827,
+    "by": "Vandash",
+    "timeISO": "2025-08-10T19:59:56.000Z",
+    "textPlain": "game dev for 15+ years here, love the first example on Github\nthis is compiled right? cannot replace lua?",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
+    "id": 44858568,
+    "by": "k__",
+    "timeISO": "2025-08-10T21:43:03.000Z",
+    "textPlain": "Awesome.Is it deterministic like Lua?",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
     "id": 44857326,
     "by": "thrance",
     "timeISO": "2025-08-10T18:52:14.000Z",
@@ -152,18 +168,34 @@
     "depth": 1
   },
   {
+    "id": 44858761,
+    "by": "debugnik",
+    "timeISO": "2025-08-10T22:14:03.000Z",
+    "textPlain": "You may be interested in Luau, which is the gradually-typed dialect of Lua maintained by Roblox. The game Alan Wake 2 also used it for level scripting.",
+    "parent": 44857985,
+    "depth": 2
+  },
+  {
+    "id": 44858028,
+    "by": "beariish",
+    "timeISO": "2025-08-10T20:25:05.000Z",
+    "textPlain": "I did experiment with a few different dispatch methods before settling on the one in Bolt now, though not with tailcalls specifically. The approach I landed on was largely chosen cause it in my testing competes with computed goto solutions while also compiling on msvc, but I'm absolutely open to try other things out.",
+    "parent": 44857985,
+    "depth": 2
+  },
+  {
+    "id": 44858121,
+    "by": "summerwant",
+    "timeISO": "2025-08-10T20:42:32.000Z",
+    "textPlain": "I see lua, do you know terralang?",
+    "parent": 44857985,
+    "depth": 2
+  },
+  {
     "id": 44858495,
     "by": "jasonjmcghee",
     "timeISO": "2025-08-10T21:34:05.000Z",
     "textPlain": "Also autocomplete.Though I almost never manually type out imports manually anymore.",
-    "parent": 44858071,
-    "depth": 2
-  },
-  {
-    "id": 44859048,
-    "by": "vhodges",
-    "timeISO": "2025-08-10T22:54:32.000Z",
-    "textPlain": "According to the Programming Guide, it supports aliases for imports\"In case of conflict or convenience, you can give modules an alias as well.\"",
     "parent": 44858071,
     "depth": 2
   },
@@ -184,27 +216,19 @@
     "depth": 2
   },
   {
-    "id": 44858028,
+    "id": 44859048,
+    "by": "vhodges",
+    "timeISO": "2025-08-10T22:54:32.000Z",
+    "textPlain": "According to the Programming Guide, it supports aliases for imports\"In case of conflict or convenience, you can give modules an alias as well.\"",
+    "parent": 44858071,
+    "depth": 2
+  },
+  {
+    "id": 44857347,
     "by": "beariish",
-    "timeISO": "2025-08-10T20:25:05.000Z",
-    "textPlain": "I did experiment with a few different dispatch methods before settling on the one in Bolt now, though not with tailcalls specifically. The approach I landed on was largely chosen cause it in my testing competes with computed goto solutions while also compiling on msvc, but I'm absolutely open to try other things out.",
-    "parent": 44857985,
-    "depth": 2
-  },
-  {
-    "id": 44858761,
-    "by": "debugnik",
-    "timeISO": "2025-08-10T22:14:03.000Z",
-    "textPlain": "You may be interested in Luau, which is the gradually-typed dialect of Lua maintained by Roblox. The game Alan Wake 2 also used it for level scripting.",
-    "parent": 44857985,
-    "depth": 2
-  },
-  {
-    "id": 44858121,
-    "by": "summerwant",
-    "timeISO": "2025-08-10T20:42:32.000Z",
-    "textPlain": "I see lua, do you know terralang?",
-    "parent": 44857985,
+    "timeISO": "2025-08-10T18:56:01.000Z",
+    "textPlain": "That's a good point, thank you. I've made a small edit to clarify.",
+    "parent": 44857304,
     "depth": 2
   },
   {
@@ -224,19 +248,11 @@
     "depth": 2
   },
   {
-    "id": 44857347,
-    "by": "beariish",
-    "timeISO": "2025-08-10T18:56:01.000Z",
-    "textPlain": "That's a good point, thank you. I've made a small edit to clarify.",
-    "parent": 44857304,
-    "depth": 2
-  },
-  {
-    "id": 44859174,
-    "by": "beariish",
-    "timeISO": "2025-08-10T23:06:55.000Z",
-    "textPlain": "There's nothing like that right now, but it's absolutely something I want to explore in the future.",
-    "parent": 44858932,
+    "id": 44859894,
+    "by": "phire",
+    "timeISO": "2025-08-11T01:15:53.000Z",
+    "textPlain": "The class is \"embeddable interpreted scripting language\", which is not quite the same thing as just an interpreter.Embedded interpreters are that designed to be embedded into a c/c++ program (often a game) as a scripting language. They typically have as few dependencies as possible, try to be lightweight and focus on making it really easy to interopt between contexts.The comparison hits many of the major languages for this usecase. Though it probably should have included mono's interpreter mode, even if nobody really uses it since mono got AoT",
+    "parent": 44859571,
     "depth": 2
   },
   {
@@ -248,14 +264,6 @@
     "depth": 2
   },
   {
-    "id": 44859189,
-    "by": "beariish",
-    "timeISO": "2025-08-10T23:08:43.000Z",
-    "textPlain": "It depends on your exact usecase, I'm not 100% sure what you're asking. There is some overhead for invoking the compiler on a per-script basis. If you're parsing once but running a script many times, Bolt provides some tools (like reusing a preallocated thread object) to ammortize that cost",
-    "parent": 44858854,
-    "depth": 2
-  },
-  {
     "id": 44858174,
     "by": "beariish",
     "timeISO": "2025-08-10T20:51:58.000Z",
@@ -264,11 +272,19 @@
     "depth": 2
   },
   {
-    "id": 44857249,
+    "id": 44859174,
     "by": "beariish",
-    "timeISO": "2025-08-10T18:39:09.000Z",
-    "textPlain": "As of right now no - my primary target when developing this was realtime and games in particular since that's what I know best, but if there's a real target in embedded that's certainly something that could be explored.",
-    "parent": 44857233,
+    "timeISO": "2025-08-10T23:06:55.000Z",
+    "textPlain": "There's nothing like that right now, but it's absolutely something I want to explore in the future.",
+    "parent": 44858932,
+    "depth": 2
+  },
+  {
+    "id": 44859189,
+    "by": "beariish",
+    "timeISO": "2025-08-10T23:08:43.000Z",
+    "textPlain": "It depends on your exact usecase, I'm not 100% sure what you're asking. There is some overhead for invoking the compiler on a per-script basis. If you're parsing once but running a script many times, Bolt provides some tools (like reusing a preallocated thread object) to ammortize that cost",
+    "parent": 44858854,
     "depth": 2
   },
   {
@@ -285,6 +301,14 @@
     "timeISO": "2025-08-10T19:15:33.000Z",
     "textPlain": "In the end, weight is a kind of strength, and popularity is a kind of quality. It looks promising but you can't expect long-term support until there's more contributors and usersAt this point it is too early to know. Even JavaScript took like 20 years to catch on",
     "parent": 44857448,
+    "depth": 2
+  },
+  {
+    "id": 44857249,
+    "by": "beariish",
+    "timeISO": "2025-08-10T18:39:09.000Z",
+    "textPlain": "As of right now no - my primary target when developing this was realtime and games in particular since that's what I know best, but if there's a real target in embedded that's certainly something that could be explored.",
+    "parent": 44857233,
     "depth": 2
   },
   {

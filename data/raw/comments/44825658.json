@@ -1,0 +1,10 @@
+[
+  {
+    "id": 44860106,
+    "by": "mananaysiempre",
+    "timeISO": "2025-08-11T01:51:05.000Z",
+    "textPlain": "Funny if only marginally related fact: even though neither the C++11 syntax  if (int x = foo(); x) { ... }\n\nnor the C++98 syntax  if (int x = foo()) { ... }\n\nis supported in C99, it still introduces the rule that the entire if statement is a scope (which it wasn’t in C89). So as a party trick, here’s a way to check for C99 without using the preprocessor:  int c99() {\n      enum { C99 = 1 };\n      {\n          if (sizeof(enum { C99 = 0 })) { }\n          return C99;\n      }\n  }\n\nI make no promises about the behaviour of this code on insufficiently anal compilers like TCC.",
+    "parent": 44825658,
+    "depth": 1
+  }
+]

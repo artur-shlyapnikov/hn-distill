@@ -1,9 +1,33 @@
 [
   {
+    "id": 44859574,
+    "by": "jfagnani",
+    "timeISO": "2025-08-11T00:00:55.000Z",
+    "textPlain": "I think events are a bit unsung and underutilized in a lot of web projects. Events are really powerful and you can build systems with them that can replace proprietary framework features with interoperable protocols.Context: Components that need a context value can fire an event to request it. Any other element or listener higher in the tree can handle the event and provide a value via the event object. Event are synchronous, so you can get values synchronously. The Web Components Community Group maintains an interoperable context community protocol: https://github.com/webcomponents-cg/community-protocols/blob...Suspense: Components that have some pending some work, like awaiting data to render, can fire an event to signal that they have pending work. The event can carry a promise, and then a suspense-boundary-like component can handle the event and display a spinner until all the pending work in the tree below it is finished. Another protocol: https://github.com/webcomponents-cg/community-protocols/blob...Error boundaries: A component can fire an ErrorEvent if it fails to render, and an error boundary component can display the error or some other user affordance.Child-parent registration: A child component can fire an event to tell some parent that it's available. This is useful for using components as plugins. A <code-mirror> element could have children that provide language support, syntax highlight themes, etc.Actions: Redux-like actions can be done with events instead. You can build a nice data-down, events-up system this way with very little code and very loose coupling.Event buses: components can listen for events on a top-level node like document, and they'll receive every event of that type from every other dispatcher.",
+    "parent": 44858009,
+    "depth": 1
+  },
+  {
     "id": 44858248,
     "by": "Waterluvian",
     "timeISO": "2025-08-10T21:03:20.000Z",
     "textPlain": "I often imagine state and events as the two impulses that drive an application. I like React a lot, but a common pitfall is that it is 95% focused on state, and so you get odd cases where you end up trying to encode events as state.You’ll see this anywhere you see a usePrevious-like hook that you then use to determine if something changed and act on it (eg. I hold state that a robot is offline, but I want to do something special when a robot goes offline). This is inferring an event from state.I’ve had luck adding an event bus as a core driver of a complex react application for events I don’t want to track as state. But it always feels that it’s a bit in conflict with the state-driven nature of the application.",
+    "parent": 44858009,
+    "depth": 1
+  },
+  {
+    "id": 44859855,
+    "by": "JSR_FDED",
+    "timeISO": "2025-08-11T01:08:05.000Z",
+    "textPlain": "Why is this so weirdly prescriptive about inline event handlers?> Even in a single file, inline event handlers are not a good idea. One button is OK, but what if you had 100 buttons? You'd have to add 100 attributes to the file; it would quickly turn into a maintenance nightmare.> You should never use the HTML event handler attributes — those are outdated, and using them is bad practice.It’s a really good explanatory text, and then get surprisingly opinionated.Similarly, why is an online event handler considered a security risk? I just don’t see the difference between that and using a named function?",
+    "parent": 44858009,
+    "depth": 1
+  },
+  {
+    "id": 44860044,
+    "by": "Sephr",
+    "timeISO": "2025-08-11T01:38:07.000Z",
+    "textPlain": "Protip: Make your web SDK APIs EventTargets instead of creating custom event subscription models wherever practical.",
     "parent": 44858009,
     "depth": 1
   },
@@ -24,6 +48,22 @@
     "depth": 1
   },
   {
+    "id": 44859515,
+    "by": "fleabitdev",
+    "timeISO": "2025-08-10T23:50:45.000Z",
+    "textPlain": "Reactivity works by replaying code when its inputs have changed. Events can make this very expensive and impractical, because to properly replay event-driven code, you'd need to replay every event it's ever received.When we replace an event stream with an observable variable, it's like a performance optimisation: \"you can ignore all of the events which came before; here's an accumulated value which summarises the entire event stream\". For example, a mouse movement event listener can often be reduced to an \"is hovered\" flag.Serialising program state to plain data isn't always easy or convenient, but it's flexible enough. Reducing all events to state almost solves the problem of impure inputs to reactive functions.Unfortunately, reactive functions usually have impure outputs, not just impure inputs. UI components might need to play a sound, write to a file, start an animation, perform an HTTP request, or notify a parent component that the \"close\" button has been clicked. It's really difficult to produce instantaneous side effects if you don't have instantaneous inputs to build on.I can't see an obvious solution, but until we come up with one, reactive UI toolkits will continue to be ill-formed. For example, a React component <ClickCounter mouseButton> would be broken by default: clicks are delivered by events, so they're invisible to React, so the component will display an incorrect click count when the mouseButton prop changes.",
+    "parent": 44858248,
+    "depth": 2
+  },
+  {
+    "id": 44859542,
+    "by": "johnfn",
+    "timeISO": "2025-08-10T23:55:55.000Z",
+    "textPlain": "I tend to be sus of usePrevious. Not saying it doesn't have a place, but often times it's cleaner to just write the diffing code you want directly in the handler. For instance, say you have a text field, and if the value changes you want to autosave. I would just put that right in the onBlur - `if (e.currentTarget.value != text) { autosave(e.currentTarget.value) }`. If you want to debounce, I would debounce the method, not the value.I tend to agree with your overall assessment - your React code is not doing well if you're encoding events into state. That's why I try to avoid it! But I may be oversimplifying.",
+    "parent": 44858248,
+    "depth": 2
+  },
+  {
     "id": 44859241,
     "by": "c-hendricks",
     "timeISO": "2025-08-10T23:14:16.000Z",
@@ -37,6 +77,14 @@
     "timeISO": "2025-08-10T23:08:55.000Z",
     "textPlain": "this is what reducers are for. Though reducers tend to make you end up needing to do a bunch of stuff on async event handling which can feel _pretty_ tedious. And if you don't do the tedious way, you often end up intro'ing really hard to debug issues.",
     "parent": 44858248,
+    "depth": 2
+  },
+  {
+    "id": 44859947,
+    "by": "ctidd",
+    "timeISO": "2025-08-11T01:22:44.000Z",
+    "textPlain": "> Similarly, why is an online event handler considered a security risk? I just don’t see the difference between that and using a named function?It is a vector for script injection, and should be disallowed with a strong CSP (no “unsafe-inline”).",
+    "parent": 44859855,
     "depth": 2
   },
   {

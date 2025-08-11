@@ -1,9 +1,41 @@
 [
   {
+    "id": 44860149,
+    "by": "adastra22",
+    "timeISO": "2025-08-11T01:58:03.000Z",
+    "textPlain": "Serious question: why would I want to do this? In order to prevent my battery from degrading and maybe having 80% its max charge level after some years of use... I'll proactively never operate at more than 80% charge? How does that make sense?",
+    "parent": 44825801,
+    "depth": 1
+  },
+  {
+    "id": 44859734,
+    "by": "LeoPanthera",
+    "timeISO": "2025-08-11T00:38:30.000Z",
+    "textPlain": "A huge advantage of AlDente over this is the \"sailing\" feature. I have mine configured to stop charging at 80%, but then only start charging again when it drops to 50%. It's ideal for preventing lots of very short charging sessions. (This is also an ideal pattern for charging EVs.)It also has a \"calibrate\" feature which goes through a 100 -> 10 -> 100 cycle which teaches the battery firmware what the actual capacity is now. Useful to run every month or two.My Air battery is three years old and has 99% health because of using these features.",
+    "parent": 44825801,
+    "depth": 1
+  },
+  {
     "id": 44859151,
     "by": "js2",
     "timeISO": "2025-08-10T23:04:42.000Z",
     "textPlain": "The FAQ answers why this exists when macOS has a similar built-in feature:> Optimized Charging, a feature that is built into MacOS, aims to ensure the longevity and health of your battery. It does so by \"delaying charging the battery past 80% when it predicts that you’ll be plugged in for an extended period of time, and aims to charge the battery before you unplug,\" as explained in Apple's user guide.> Additionally, Optimized Charging uses machine learning to decide when the battery should be held at 80%, and when it should become fully charged. If your Mac is not plugged in on a regular schedule, optimized charging will not work as intended.> This app is a similar alternative to Optimized Charging, giving the user control over when it is activated, what percentage the battery should be held at, and more.",
+    "parent": 44825801,
+    "depth": 1
+  },
+  {
+    "id": 44859365,
+    "by": "CjHuber",
+    "timeISO": "2025-08-10T23:29:40.000Z",
+    "textPlain": "I'd rather have a tool that degrades my battery to below 80% max capacity so that I can get a free new one from apple care+",
+    "parent": 44825801,
+    "depth": 1
+  },
+  {
+    "id": 44859441,
+    "by": "varenc",
+    "timeISO": "2025-08-10T23:39:19.000Z",
+    "textPlain": "I use this project which does the same thing: https://github.com/charlie0129/battand they recently added a basic GUI as well.",
     "parent": 44825801,
     "depth": 1
   },
@@ -16,10 +48,34 @@
     "depth": 1
   },
   {
+    "id": 44859694,
+    "by": "crazygringo",
+    "timeISO": "2025-08-11T00:28:05.000Z",
+    "textPlain": "I'm baffled as to why new iPhones and iPads have a settings toggle to only ever charge to max 80%, but Apple hasn't brought the same setting to new Macs, so you still need a third party tool like this. Especially after unifying the Settings app!Also this tool (or Al Dente) still isn't perfect -- if you shut your Mac off for any reason while keeping it plugged in, it will immediately charge back up to 100%. The third party charge limit only limits charging when the Mac is on or sleeping, not off entirely. (Granted, not many people turn their Macs entirely off these days.) So while I love the third party solutions, a native Apple solution would be even more reliable (plus the built-in Apple solution on iOS automatically charges to 100% occasionally just to keep the battery level accurate -- it's pretty smart).",
+    "parent": 44825801,
+    "depth": 1
+  },
+  {
     "id": 44857667,
     "by": "pulvinar",
     "timeISO": "2025-08-10T19:39:51.000Z",
     "textPlain": "I could swear my MacBook Air M3 was limiting at 80% charge before, but now it's at 100%. I suspect that the latest OS update, 15.6, disabled or removed whatever was limiting it, but I don't remember what that was.It doesn't look like I had installed this \"battery\" command. It might have been AlDente, but I don't find that anywhere either.A puzzler.",
+    "parent": 44825801,
+    "depth": 1
+  },
+  {
+    "id": 44860123,
+    "by": "frumplestlatz",
+    "timeISO": "2025-08-11T01:53:39.000Z",
+    "textPlain": "A bit odd to implement the GUI for a background battery health widget in Electron, of all things.",
+    "parent": 44825801,
+    "depth": 1
+  },
+  {
+    "id": 44860031,
+    "by": "neves",
+    "timeISO": "2025-08-11T01:35:37.000Z",
+    "textPlain": "I really hate this feature in my Microsoft Surface. It try to guess when it does not need to full charge to preserve the battery.But then I can't tell it: now charge to 100% because I'll travel and need a full charge.Stupid.",
     "parent": 44825801,
     "depth": 1
   },
@@ -30,6 +86,86 @@
     "textPlain": "Perfect, just was I've been looking for. Thanks!",
     "parent": 44825801,
     "depth": 1
+  },
+  {
+    "id": 44860172,
+    "by": "userbinator",
+    "timeISO": "2025-08-11T02:05:49.000Z",
+    "textPlain": "The degradation-to-charge-percentage curve is highly nonlinear for lion cells. This is why in applications such as aerospace and EVs, they are derated from their original capacity and last much longer.",
+    "parent": 44860149,
+    "depth": 2
+  },
+  {
+    "id": 44860164,
+    "by": "achierius",
+    "timeISO": "2025-08-11T02:03:22.000Z",
+    "textPlain": "\"and maybe having 80% its max charge level\"It's much worse than this. One year can be enough for a 20% drop like that, and it's not impossible to go even lower. Think 50% or worse after 'some years' of aggressive use.",
+    "parent": 44860149,
+    "depth": 2
+  },
+  {
+    "id": 44859751,
+    "by": "latchkey",
+    "timeISO": "2025-08-11T00:43:18.000Z",
+    "textPlain": "The cli docs say this:  battery calibrate\n    calibrate the battery by discharging it to 15%, then recharging it to 100%, and keeping it there for 1 hour",
+    "parent": 44859734,
+    "depth": 2
+  },
+  {
+    "id": 44859368,
+    "by": "bearjaws",
+    "timeISO": "2025-08-10T23:29:55.000Z",
+    "textPlain": "Yeah I have found my MBP at 100% far too often, every now and again I peak and it says \"holding charge\".I don't leave my laptop plugged in 100% of the time, however it is plugged in ~70% of the time and I never discharge it that much when it is unplugged. So this little app is perfect for me.Seems Apple still has work to do on their algorithm, it could easily keep it at 80% and I would never get below 20%.",
+    "parent": 44859151,
+    "depth": 2
+  },
+  {
+    "id": 44859619,
+    "by": "p1necone",
+    "timeISO": "2025-08-11T00:12:11.000Z",
+    "textPlain": "Sounds annoying, I would much rather just have it be configurable.",
+    "parent": 44859151,
+    "depth": 2
+  },
+  {
+    "id": 44859731,
+    "by": "cnst",
+    "timeISO": "2025-08-11T00:38:01.000Z",
+    "textPlain": "We've literally had configurable charge levels on ThinkPads since the time they were still owned by IBM over 20 years ago, yet Apple still can't figure out to provide such an option 20 years later?Their whole ML thing is super annoying.  Basically, it means you can never disconnect your Mac from your USB-C monitor, lest it immediately charge to 100% upon a reconnect, and discharge back to 80% only a few days after keeping it at 100%.",
+    "parent": 44859151,
+    "depth": 2
+  },
+  {
+    "id": 44859444,
+    "by": "sigmoid10",
+    "timeISO": "2025-08-10T23:39:47.000Z",
+    "textPlain": "I'd rather have that new EU rule that mandates laptops and smartphones to have easily user-replaceable batteries by 2027.",
+    "parent": 44859365,
+    "depth": 2
+  },
+  {
+    "id": 44859598,
+    "by": "unfocused",
+    "timeISO": "2025-08-11T00:05:23.000Z",
+    "textPlain": "Agreed! I have a 2020 Macbook Air (Apple Silicon) and it's been at 81% for about a year. Heck, it's now at 82% according to System Information, but Coconut Battery says 77.4%. Not sure which is correct any more, and if Apple is doing some funny business. Battery cycle count is at 845, with a manufacture date of 2020-10-05. So 1,770 days old.",
+    "parent": 44859365,
+    "depth": 2
+  },
+  {
+    "id": 44860035,
+    "by": "duskwuff",
+    "timeISO": "2025-08-11T01:36:12.000Z",
+    "textPlain": "> although I’m not sure how big of an impact sail mode makesAnecdotally: I've used sailing mode for the last year or so, and almost always use my laptop on AC power. Before I started using sailing mode, my cycle count was 120; now, a year later, it's 123.",
+    "parent": 44859203,
+    "depth": 2
+  },
+  {
+    "id": 44859724,
+    "by": "leptons",
+    "timeISO": "2025-08-11T00:36:43.000Z",
+    "textPlain": ">I'm baffled as to why new iPhones and iPads have a settings toggle to only ever charge to max 80%, but Apple hasn't brought the same setting to new MacsBecause that would affect their battery life ratings, making them close to most other laptops.",
+    "parent": 44859694,
+    "depth": 2
   },
   {
     "id": 44859234,
