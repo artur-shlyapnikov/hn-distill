@@ -80,6 +80,14 @@
     "depth": 2
   },
   {
+    "id": 44870331,
+    "by": "dathinab",
+    "timeISO": "2025-08-11T22:47:39.000Z",
+    "textPlain": "oh yes so true, but I would generalize it to  \"to flexible\"- content type sniffing spawned a whole class of attacks, and should have been unnecessary- a ton of historic security issues where related to html parsing being too flexible, or some JS parts being to flexible (e.g. Array prototype override)- or login flows being too flexible creating a easy to overlook way to bypass (part of) login checks- or look at the mess OAuth2/OIDC had been for years because they insisted to over-enginer it and how especially it being liberal about quite many parts lead to more then one or two big security incidents- (more then strictly needed) cipher flexibility is by now widely accepted to have been an anti pattern- or how so much theoretically okay but \"old\" security tech is such a pain to use because it was made to be supper tolerant to everything, like every use case imaginable, every combination of parameters, every kind of partial uninterpretable parts (I'm looking at you ASN.1, X509 certs and many old CA software, theoretically really not bad designed, practically such a pain).And sure you also can be too strict, high cipher flexibility being an anti-pattern was incorporated into TLS 1.3. But TLS still needs some cipher flexibility, so they fund a compromise of (oversimplified) you can choose 1 of 5 cipher suites but can't change any parameter of that suites.Just today I read an article (at work, I don't have the link at hand) about some so hypothetical but practically probably doable (with a bunch of more work) scenarios to trick very flexible multi step agents into leaking your secrets. The core approach was that they found a way to have a relative small snippet of text which if it end up in the context has a high chance to basically override the whole context with just your instruction (quite a bit oversimplified). In turn if you can sneak it into someones queries (e.g. you GTP model is allowed to read you mails and it's in a mail send to you) you can then trick the multi ",
+    "parent": 44867207,
+    "depth": 2
+  },
+  {
     "id": 44869862,
     "by": "wvenable",
     "timeISO": "2025-08-11T21:49:50.000Z",

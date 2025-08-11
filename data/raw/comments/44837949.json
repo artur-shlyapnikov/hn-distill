@@ -1,5 +1,13 @@
 [
   {
+    "id": 44870562,
+    "by": "LegionMammal978",
+    "timeISO": "2025-08-11T23:20:02.000Z",
+    "textPlain": "Several people in this thread are saying that tail recursion is superior to imperative iteration in that it explicitly specifies which variables may change in each iteration (assuming a broadly immutable language).To the contrary, I'd argue that immutability isn't the only alternative to universal mutability: many newer imperative languages (such as Rust) have various forms of controlled mutability, where one must explicitly declare which variables may be modified by imperative assignments.IME, controlled mutability captures just about all the benefit of immutable languages, without requiring any special data structures or sufficiently-smart compiler analyses to ensure good performance. I've never really understood the desire for tail-recursive versions of iterative algorithms, except if one is already committed to functional programming.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
     "id": 44869452,
     "by": "hinkley",
     "timeISO": "2025-08-11T21:03:55.000Z",
@@ -16,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44870387,
+    "by": "mehulashah",
+    "timeISO": "2025-08-11T22:54:22.000Z",
+    "textPlain": "Tail recursion is beautifully deep and simple. It (and as a corollary CPS) makes clear what state matters to your loop (and function) and avoids extraneous variables in loops as well as implicit unneeded state in functions. It also makes it easier to show the correctness of your loops. Sure, there are other functional language constructs like fold and map, if your problem is amenable to them. Tail recursion is more general and simpler.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
     "id": 44869916,
     "by": "munchler",
     "timeISO": "2025-08-11T21:56:51.000Z",
@@ -24,10 +40,26 @@
     "depth": 1
   },
   {
-    "id": 44870039,
-    "by": "fellowniusmonk",
-    "timeISO": "2025-08-11T22:11:22.000Z",
-    "textPlain": "There are a lot of misunderstandings where people think an idea equals a \"real\" thing.Abstractions can be coherent without being physically realizable or \"real\". An abstraction can become more broadly/deeply coherent once it becomes structurally physicalized in the external world.Your imagination is physically real (thanks Shannon). Most modern tech started from a physically real imagination and then people figure out how to map that to external reality over time. Or you could say people manipulated the external physical world to cohere with their brains physical simulations/imagination.Mistaking the map for the terrain is way deeper than most people understand.It always blows my mind that people don't realize that recursion isn't \"physically real\" when TCO recursion was introduced it was very clear that it is syntactic sugar/structural improvement for GOTO.It's interesting to see when coders start dealing with physical world problems and sensor systems and don't realize they are relying on constructivity to do anything at all. I've mostly only met other devs who have also worked in the CRDT or federated sensor space that grok intuitionistic reasoning. Abstractions like LEM don't always serve, thinking in classical terms works until you come up on real world scenario that doesn't map and will get people killed.Ideas serve people. People who serve ideas are getting the cart the wrong way around. Sabbath for man not man for sabbath and all that if you want a historic reference.Humans are the only complex semantic meaning generators of the universe we have observed. There is no nothing. There is no meaningless. There are only things and meaning primitives arranged in RNG, disorganized, or complex structures (by DNA and Human's so far)People like to hate on mereological nihilism and weak emergence but once you understand its implications you see that people are very very special. We can't predict ex ante what person will be part of the casual chain that prevents an aste",
+    "id": 44870385,
+    "by": "wagwang",
+    "timeISO": "2025-08-11T22:54:10.000Z",
+    "textPlain": "Normal recursion is just a loop and a stack, turns out, if you can optimize recursion without a stack, it just becomes a loop.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44870159,
+    "by": "username3",
+    "timeISO": "2025-08-11T22:23:39.000Z",
+    "textPlain": "> I wrote up a detailed blog post about tail call optimization in Elixir/Erlang and its performance. The TLDR; sort of is that none tail call optimized recursive functions (body-recursive) can be faster and more memory efficient than TCO functions. This is something that I never thought before, that TCO is always faster seems to be a common misconception. My example is also not contrived - it’s an implementation of map.https://pragtob.wordpress.com/2016/06/16/tail-call-optimizat...",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44870415,
+    "by": "tylerhou",
+    "timeISO": "2025-08-11T22:58:58.000Z",
+    "textPlain": "I disagree with the title; loops are tail-recursive functions, but tail-recursive functions are not loops (in the sense that squares are rectangles, but rectangles are not squares).It is true that every tail recursive function can be converted into a semantically equivalent loop via a transformation like CPS (which the author mentions). However, for mutually tail-recursive functions, this conversion loses control flow information. This is because after the CPS transformation, calls to the other function become calls to a continuation; this call usually must be implemented as an indirect jump. On the other hand, mutually tail-recursive functions can call each other with direct/statically-known jumps.This loss of information might appear trivial, but in practice it has some important consequences. Classic examples are interpreter loops. It is well-known that computed gotos can result in modest to large speedups for interpreters [1]. The reason why is that computed gotos create an indirect jump per opcode, so a branch predictor can take advantage of correlations between opcodes. For example, looking at Python disassembly, the header of a standard range for loop compiles down to three opcodes: GET_ITER, FOR_ITER, STORE_FAST in sequence [2]. A branch predictor can recognize that the target of the \"FOR_ITER\" indirect jump will likely be the \"STORE_FAST\" instruction pointer; it cannot predict this in the naive implementation where jumps for all instructions are \"merged\" into a single indirect jump / switch at the top of the loop body. In this case, computed goto is effectively equivalent to a CPS transformation whose closures require no storage on the heap.Suppose, however, we know even more information about the instruction sequence; for example, we know ahead of time that every FOR_ITER opcode will be followed by a STORE_FAST opcode. We could completely replace the indirect jump with a direct jump to the instruction pointer for the STORE_FAST opcode. Because modern branc",
     "parent": 44837949,
     "depth": 1
   },
@@ -35,9 +67,17 @@
     "id": 44870124,
     "by": "aryonoco",
     "timeISO": "2025-08-11T22:20:45.000Z",
-    "textPlain": "For what it’s worth, in F#, tail recursive functions are  turned into the loops by the .NET CLR.I actually like the compromise. I get to write safe functional code while getting all the benefits of a highly optimised iterative operation.",
+    "textPlain": "For what it’s worth, in F#, tail recursive functions are  turned into equivalent loops by the .NET CLR.I actually like the compromise. I get to write safe functional code while getting all the benefits of a highly optimised iterative operation.",
     "parent": 44837949,
     "depth": 1
+  },
+  {
+    "id": 44870539,
+    "by": "odyssey7",
+    "timeISO": "2025-08-11T23:16:28.000Z",
+    "textPlain": "Another foot-gun is to try to know your code is correct without mathematical induction. With loops, we implicitly reason in terms of loop-invariant properties of mutating variables, and using function calls instead makes those invariances explicit.Not every loop should be a recursive call, but labeling universally bad a foundational technique for rigorously thoughtful programming isn’t a good idea, either.You could view this in terms of levels of abstraction. Yes, you can translate tail recursion to a “jump,” just like you can translate C++ to assembly, but that doesn’t mean C++ is therefore a foot-gun to be avoided in favor of writing assembly.If you’re working with business logic, loops are pretty okay most of the time. If you’re working with complex algorithms, in many cases you’ll have a much easier time proving an implementation mathematically correct if you define it recursively.",
+    "parent": 44869452,
+    "depth": 2
   },
   {
     "id": 44869505,
