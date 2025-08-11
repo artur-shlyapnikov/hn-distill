@@ -1,5 +1,13 @@
 [
   {
+    "id": 44866691,
+    "by": "commandlinefan",
+    "timeISO": "2025-08-11T17:08:09.000Z",
+    "textPlain": "I've gotten a lot of gains in this area in the past by just - not memcpy'ing.  A good percentage of the time, somebody assumes that they need to copy something somewhere when in fact, the original never gets referenced.  I can often get away with reading a buffer off the wire, inserting null terminators to turn bits of the buffer into proper C-style strings and just using them in-place.",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
     "id": 44861292,
     "by": "Sesse__",
     "timeISO": "2025-08-11T06:33:37.000Z",
@@ -28,6 +36,14 @@
     "by": "Arech",
     "timeISO": "2025-08-11T05:37:42.000Z",
     "textPlain": "It's not clear how the author controlled for HW caching. Without this, the results are, unfortunately, meaningless, even though some good work has been gone",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44863630,
+    "by": "coxley",
+    "timeISO": "2025-08-11T13:01:48.000Z",
+    "textPlain": "Ha, I love the project name \"Shadesmar\". Journey before destination, friend. :crossed-wrists:",
     "parent": 44860847,
     "depth": 1
   },
@@ -72,14 +88,6 @@
     "depth": 1
   },
   {
-    "id": 44863630,
-    "by": "coxley",
-    "timeISO": "2025-08-11T13:01:48.000Z",
-    "textPlain": "Ha, I love the project name \"Shadesmar\". Journey before destination, friend. :crossed-wrists:",
-    "parent": 44860847,
-    "depth": 1
-  },
-  {
     "id": 44860957,
     "by": "dataflow",
     "timeISO": "2025-08-11T05:23:13.000Z",
@@ -92,14 +100,6 @@
     "by": "kvemkon",
     "timeISO": "2025-08-11T10:12:23.000Z",
     "textPlain": "BTW, if we copy data between some device and RAM efficiently using DMA without spending CPU cycles, why we can't use DMA to copy RAM-to-RAM?",
-    "parent": 44860847,
-    "depth": 1
-  },
-  {
-    "id": 44864394,
-    "by": "EGreg",
-    "timeISO": "2025-08-11T14:19:42.000Z",
-    "textPlain": "Wait, I thought memcpy would have launched some sort of built-in mechanism (parallelized or whatever) to copy in RAM.Just indicate the start and length. Why would the CPU need to keep issuing copy instructions?",
     "parent": 44860847,
     "depth": 1
   },
@@ -120,6 +120,14 @@
     "depth": 1
   },
   {
+    "id": 44864394,
+    "by": "EGreg",
+    "timeISO": "2025-08-11T14:19:42.000Z",
+    "textPlain": "Wait, I thought memcpy would have launched some sort of built-in mechanism (parallelized or whatever) to copy in RAM.Just indicate the start and length. Why would the CPU need to keep issuing copy instructions?",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
     "id": 44861033,
     "by": "wolfi1",
     "timeISO": "2025-08-11T05:39:31.000Z",
@@ -134,6 +142,14 @@
     "textPlain": "soo... time to send a patch to glibc?",
     "parent": 44860847,
     "depth": 1
+  },
+  {
+    "id": 44866821,
+    "by": "t00",
+    "timeISO": "2025-08-11T17:20:09.000Z",
+    "textPlain": "That is a really good advice, copying data everywhere makes only sense if the data will be mutated. I only wonder why, why C-style strings were invented with 0 termination instead of varint prefix, this would have saved so much copying and so many bugs knowing the string length upfront.",
+    "parent": 44866691,
+    "depth": 2
   },
   {
     "id": 44862134,
@@ -256,6 +272,22 @@
     "depth": 2
   },
   {
+    "id": 44862042,
+    "by": "bob1029",
+    "timeISO": "2025-08-11T08:47:24.000Z",
+    "textPlain": "> a single core in a desktop CPU can easily saturate the bandwidth of the system RAM controller.Modern x86 machines offer far more memory bandwidth than what a single core can consume. The entire architecture is designed on purpose to ensure this.The interesting thing to note is that this has not always been the case. The 2010s is when the transition occurred.",
+    "parent": 44861180,
+    "depth": 2
+  },
+  {
+    "id": 44861233,
+    "by": "hugh-avherald",
+    "timeISO": "2025-08-11T06:22:23.000Z",
+    "textPlain": "I've experienced modest but significant improvements in speed using very basic pragma omp section style parallelizing of this sort of thing.",
+    "parent": 44861180,
+    "depth": 2
+  },
+  {
     "id": 44864865,
     "by": "ack_complete",
     "timeISO": "2025-08-11T14:56:42.000Z",
@@ -272,19 +304,11 @@
     "depth": 2
   },
   {
-    "id": 44862042,
-    "by": "bob1029",
-    "timeISO": "2025-08-11T08:47:24.000Z",
-    "textPlain": "> a single core in a desktop CPU can easily saturate the bandwidth of the system RAM controller.Modern x86 machines offer far more memory bandwidth than what a single core can consume. The entire architecture is designed on purpose to ensure this.The interesting thing to note is that this has not always been the case. The 2010s is when the transition occurred.",
-    "parent": 44861180,
-    "depth": 2
-  },
-  {
-    "id": 44861233,
-    "by": "hugh-avherald",
-    "timeISO": "2025-08-11T06:22:23.000Z",
-    "textPlain": "I've experienced modest but significant improvements in speed using very basic pragma omp section style parallelizing of this sort of thing.",
-    "parent": 44861180,
+    "id": 44866241,
+    "by": "CyberDildonics",
+    "timeISO": "2025-08-11T16:35:36.000Z",
+    "textPlain": "I thought memcpy would have launched some sort of built-in mechanismWhere did you get this impression?",
+    "parent": 44864394,
     "depth": 2
   },
   {

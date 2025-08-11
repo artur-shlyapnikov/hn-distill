@@ -1,13 +1,5 @@
 [
   {
-    "id": 44866108,
-    "by": "ww520",
-    "timeISO": "2025-08-11T16:26:30.000Z",
-    "textPlain": "Excellent write up. I really appreciate the clear and detailed explanation of the algorithm.The nice thing about Zig’s SIMD operation is the register size support is transparent. You can just declare a 64-byte vector as the Block, and Zig would use an AVX256 or two AVX2 (32-byte) registers behind the scene. All other SIMD operations on the type are transparently done with regard to the registers when compiled to the targeted platform.Even using two AVX2 registers for 64 bytes of data is a win due to instruction pipelining. Most CPU have multiple SIMD registers and the two 32-byte data chunks are independent. CPU can run them in parallel.The next optimization is to line the data up at 64 byte alignment, to match the L1/L2 cache line size. Memory access is slow in general.",
-    "parent": 44862414,
-    "depth": 1
-  },
-  {
     "id": 44863604,
     "by": "burntsushi",
     "timeISO": "2025-08-11T12:58:09.000Z",
@@ -28,6 +20,14 @@
     "by": "lukaslalinsky",
     "timeISO": "2025-08-11T12:13:41.000Z",
     "textPlain": "I really wish Zig decided to add SIMD intrisics. There are many SIMD algorithms that can be done, but you have to switch back to C for those, because they depend on operations outside of what LLVM provides for vectors.",
+    "parent": 44862414,
+    "depth": 1
+  },
+  {
+    "id": 44866108,
+    "by": "ww520",
+    "timeISO": "2025-08-11T16:26:30.000Z",
+    "textPlain": "Excellent write up. I really appreciate the clear and detailed explanation of the algorithm.The nice thing about Zig’s SIMD operation is the register size support is transparent. You can just declare a 64-byte vector as the Block, and Zig would use an AVX256 or two AVX2 (32-byte) registers behind the scene. All other SIMD operations on the type are transparently done with regard to the registers when compiled to the targeted platform.Even using two AVX2 registers for 64 bytes of data is a win due to instruction pipelining. Most CPU have multiple SIMD registers and the two 32-byte data chunks are independent. CPU can run them in parallel.The next optimization is to line the data up at 64 byte alignment, to match the L1/L2 cache line size. Memory access is slow in general.",
     "parent": 44862414,
     "depth": 1
   },
@@ -96,11 +96,35 @@
     "depth": 2
   },
   {
+    "id": 44866222,
+    "by": "ashvardanian",
+    "timeISO": "2025-08-11T16:34:19.000Z",
+    "textPlain": "PS: Finding CPUs that support AVX-512 and SVE is relatively trivial - practically every cloud has them by now. It's harder to find Arm CPUs with wide physical registers, but that's another story.",
+    "parent": 44863111,
+    "depth": 2
+  },
+  {
     "id": 44865859,
     "by": "nromiun",
     "timeISO": "2025-08-11T16:07:32.000Z",
     "textPlain": "Because it is very hard to find new hardware to test it, let alone expect your users to take advantage of it on their machines.AVX512 is such a mess that Intel just removed it after a generation or two. And on ARM SVE side it is even worse. There is already SVE2, but good luck finding even a SVE enabled machine.Apple does not support it on their Apple Silicon™ (only SME), Snapdragon does not support it even on their latest 8 Elite. 8 Elite Gen 2 is supposed to come with it.Only Mediatek and Neoverse chips support them. So finding one machine to develop and test such code can be a little difficult.",
     "parent": 44863111,
+    "depth": 2
+  },
+  {
+    "id": 44866754,
+    "by": "steeve",
+    "timeISO": "2025-08-11T17:14:30.000Z",
+    "textPlain": "Like what?You can also directly call LLVM intrinsics in case this doesn’t work",
+    "parent": 44863318,
+    "depth": 2
+  },
+  {
+    "id": 44866578,
+    "by": "burntsushi",
+    "timeISO": "2025-08-11T16:59:18.000Z",
+    "textPlain": "Another challenge may be as a result of using a portable SIMD API instead of specific ISA instructions. I'm specifically thinking about computing the mask, which on x86-64 is I assume implemented via movemask. But aarch64 lacks such an instruction, so you need to do other shenanigans for the best codegen: https://github.com/BurntSushi/memchr/blob/ceef3c921b5685847e...",
+    "parent": 44866108,
     "depth": 2
   },
   {
