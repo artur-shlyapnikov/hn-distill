@@ -1,17 +1,17 @@
 [
   {
-    "id": 44862880,
-    "by": "codethief",
-    "timeISO": "2025-08-11T11:05:25.000Z",
-    "textPlain": "Nice article!Also, this might be a stupid question (I'm a Zig newbie) but… instead of calling std.mem.eql() in the while loop to look at each potential match individually, couldn't you repeat the same trick as before? That is, use SIMD to search for the second and second-to-last character of the needle, then third and third-to-last, and so on, and finally take a bitwise AND of all the resulting bit masks?Even if that doesn't work for some reason and you still need to loop over all potential matches individually, couldn't you use SIMD inside the while loop to replace std.mem.eql and thereby speed up string comparison? My understanding was that std.mem.eql loops over bytes one by one and compares them?",
+    "id": 44863111,
+    "by": "ashvardanian",
+    "timeISO": "2025-08-11T11:42:06.000Z",
+    "textPlain": "I like that more people are getting involved with SIMD, and there have been several posts lately on both memmem-like and memcpy-like operations implemented in SIMD in different programming languages.In most cases, though, these still focus on AVX/NEON instructions from over 10 years ago, rather than newer and more powerful AVX-512 variations, SVE & SVE2, or RVV.These newer ISAs can noticeably change how one would implement a state-of-the-art substring search or copy/move operation. In my projects, such as StringZilla, I often use mask K registers (https://github.com/ashvardanian/StringZilla/blob/2f4b1386ca2...) and an input-dependent mix of temporal and non-temporal loads and stores (https://github.com/ashvardanian/StringZilla/blob/2f4b1386ca2...).In typical cases, the difference between the suggested SIMD kernels and the state-of-the-art can be as significant as 50% in throughput. As SIMD becomes more widespread, it would be beneficial to focus more on delivering software and bundling binaries, rather than just the kernels.",
     "parent": 44862414,
     "depth": 1
   },
   {
-    "id": 44862947,
-    "by": "jiehong",
-    "timeISO": "2025-08-11T11:18:42.000Z",
-    "textPlain": "Nice!But, does that work with non-ascii characters? (aka Unicode).",
+    "id": 44863318,
+    "by": "lukaslalinsky",
+    "timeISO": "2025-08-11T12:13:41.000Z",
+    "textPlain": "I really wish Zig decided to add SIMD intrisics. There are many SIMD algorithms that can be done, but you have to switch back to C for those, because they depend on operations outside of what LLVM provides for vectors.",
     "parent": 44862414,
     "depth": 1
   },
@@ -20,6 +20,22 @@
     "by": "lokeg",
     "timeISO": "2025-08-11T10:33:06.000Z",
     "textPlain": "What about the worst case? I.e. something like searching for 1000 'a's in a long string of 'a's interspersed with 'b's every 500-1000 steps? Seems accidentally quadradic unfortunately in the absence of some KMP-like fallback",
+    "parent": 44862414,
+    "depth": 1
+  },
+  {
+    "id": 44862880,
+    "by": "codethief",
+    "timeISO": "2025-08-11T11:05:25.000Z",
+    "textPlain": "Nice article!Also, this might be a stupid question (I'm a Zig newbie) but… instead of calling std.mem.eql() in the while loop to look at each potential match individually, couldn't you repeat the same trick as before? That is, use SIMD to search for the second and second-to-last character of the needle, then third and third-to-last, and so on, and finally take a bitwise AND of all the resulting bit masks? This way, one would avoid looking at each potential match one by one, and instead look at all of them at the same time.Even if that doesn't work for some reason and you still need to loop over all potential matches individually, couldn't you use SIMD inside the while loop to replace std.mem.eql and thereby speed up string comparison? My understanding was that std.mem.eql loops over bytes one by one and compares them?",
+    "parent": 44862414,
+    "depth": 1
+  },
+  {
+    "id": 44862947,
+    "by": "jiehong",
+    "timeISO": "2025-08-11T11:18:42.000Z",
+    "textPlain": "Nice!But, does that work with non-ascii characters? (aka Unicode).",
     "parent": 44862414,
     "depth": 1
   },
@@ -37,6 +53,22 @@
     "timeISO": "2025-08-11T11:12:52.000Z",
     "textPlain": "Knowing little about zig, std.mem.eql very likely already uses SIMD.This is about using SIMD to avoid even calling std.mem.eql for 99% of the possible attempts.",
     "parent": 44862880,
+    "depth": 2
+  },
+  {
+    "id": 44863272,
+    "by": "llimllib",
+    "timeISO": "2025-08-11T12:07:03.000Z",
+    "textPlain": "Kind of! This script is assuming that you're dealing with a byte slice, which means you've already encoded your unicode data.If you just encoded your string to bytes naïvely, it will probably-mostly still work, but it will get some combining characters wrong if they're represented differently in the two sources you're comparing. (eg, e-with-an-accent-character vs. accent-combining-character+e)If you want to be correct-er you'll normalize your UTF string[1], but note that there are four different defined ways to do this, so you'll need to choose the one that is the best tradeoff for your particular application and data sources.[1]: https://en.wikipedia.org/wiki/Unicode_equivalence#Normalizat...",
+    "parent": 44862947,
+    "depth": 2
+  },
+  {
+    "id": 44863310,
+    "by": "codethief",
+    "timeISO": "2025-08-11T12:12:57.000Z",
+    "textPlain": "I suppose generalizing the approach to UTF-32 should be straightforward, but variable-length encodings like UTF-8 and UTF-16 might be more involved(?) Either way, I'm sure BurntSushi found a solution and built it into ripgrep.",
+    "parent": 44862947,
     "depth": 2
   }
 ]

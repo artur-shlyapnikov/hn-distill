@@ -1,0 +1,42 @@
+[
+  {
+    "id": 44863543,
+    "by": "dataflow",
+    "timeISO": "2025-08-11T12:46:59.000Z",
+    "textPlain": "> I look forward to comments telling me how wrong I am.Okay, I'll try to explain.The job of a parser is to perform the opposite of stringification as precisely as possible. That string source is not always a human typing on a keyboard.If your stringifier doesn't output scientific notation, then you reject scientific notation because it's invalid data, plain and simple. Just like how you reject someone's height if they put -5. It's completely irrelevant that to a human it still looks like it could be some number. It's like picking up the wrong baby at the hospital. It might be lovely and all, but it wasn't what you were supposed to get, and that matters. It's a sign that someone screwed up, potentially badly, and your job is to hunt down where the bug was and how to address it, not just roll with whatever came your way and win some competition on how long you can ignore problems.If you want to parse natural language then sure, it makes sense. That's what flags and different functions are good for.",
+    "parent": 44826001,
+    "depth": 1
+  },
+  {
+    "id": 44863555,
+    "by": "bombcar",
+    "timeISO": "2025-08-11T12:48:24.000Z",
+    "textPlain": "This is the kind of thing Services on MacOS used to be for - type 1e9 into a text box, hit command option control alt meta escape shift B and it converts it to 1000000000.",
+    "parent": 44826001,
+    "depth": 1
+  },
+  {
+    "id": 44863316,
+    "by": "sedatk",
+    "timeISO": "2025-08-11T12:13:33.000Z",
+    "textPlain": "“E” is also a plausible typo for numbers though because it’s next to the number row on the keyboard.",
+    "parent": 44826001,
+    "depth": 1
+  },
+  {
+    "id": 44826143,
+    "by": "pwg",
+    "timeISO": "2025-08-07T15:54:41.000Z",
+    "textPlain": "Why limit to a single digit integer for the mantissa?  I might just as well want to input 243E9 to get 243 billion.",
+    "parent": 44826001,
+    "depth": 1
+  },
+  {
+    "id": 44826326,
+    "by": "billpg",
+    "timeISO": "2025-08-07T16:06:06.000Z",
+    "textPlain": "Keeping it simple. Once you've got the mantissa and exponent out, you can check your number is in range by a simple check that the exponent is within range.For a 32 bit signed integer the limit is 2E9. This means that the exponent is fine 0-8, or if the exponent is 9, then only if the mantissa is 1 or 2. This only works with a single digit mantissa.For adding more digits to the mantissa, while a robust range check can be done, it gets more complicated. String-to-Integer functions are very conservatively written pieces of code designed to be quick.",
+    "parent": 44826143,
+    "depth": 2
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 44863450,
+    "by": "pilif",
+    "timeISO": "2025-08-11T12:32:32.000Z",
+    "textPlain": "In light of the recent hilarious paper around the current state of quantum cryptography[1], how big is the need for the current pace of post quantum crypto adoption?As far as I understand, the key material for any post quantum algorithm is much, much larger compared to non-quantum algorithms which leads to huge overheads in network traffic and of course CPU time.[1]: https://eprint.iacr.org/2025/1237",
+    "parent": 44863242,
+    "depth": 1
+  },
+  {
+    "id": 44863522,
+    "by": "Havoc",
+    "timeISO": "2025-08-11T12:43:16.000Z",
+    "textPlain": "Makes sense to get ahead of this. Especially when it’s a pretty trivial key swop.Which of the two options given is stronger? Presumably the 512 one?",
+    "parent": 44863242,
+    "depth": 1
+  },
+  {
+    "id": 44863549,
+    "by": "fxwin",
+    "timeISO": "2025-08-11T12:47:59.000Z",
+    "textPlain": "The page only talks about adopting PQC for key agreement for SSH connections, not encryption in general so the overhead would be rather minimal here. Also from the FAQ:\"Quantum computers don't exist yet, why go to all this trouble?\"Because of the \"store now, decrypt later\" attack mentioned above. Traffic sent today is at risk of decryption unless post-quantum key agreement is used.\"I don't believe we'll ever get quantum computers. This is a waste of time\"Some people consider the task of scaling existing quantum computers up to the point where they can tackle cryptographic problems to be practically insurmountable. This is a possibilty. However, it appears that most of the barriers to a cryptographically-relevant quantum computer are engineering challenges rather than underlying physics.\nIf we're right about quantum computers being practical, then we will have protected vast quantities of user data. If we're wrong about it, then all we'll have done is moved to cryptographic algorithms with stronger mathematical underpinnings.Not sure if I'd take the cited paper (while fun to read) too seriously to inform my opinion the risks of using quantum-insecure encryption rather than as a cynical take on hype and window dressing in QC research.",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44863503,
+    "by": "tptacek",
+    "timeISO": "2025-08-11T12:40:35.000Z",
+    "textPlain": "I don't think many cryptography engineers take Gutmann's paper seriously.",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44863562,
+    "by": "cnst",
+    "timeISO": "2025-08-11T12:50:11.000Z",
+    "textPlain": "They're not the same, they're completely different:> Additionally, all the post-quantum algorithms implemented by OpenSSH are \"hybrids\" that combine a post-quantum algorithm with a classical algorithm. For example mlkem768x25519-sha256 combines ML-KEM, a post-quantum key agreement scheme, with ECDH/x25519, a classical key agreement algorithm that was formerly OpenSSH's preferred default. This ensures that the combined, hybrid algorithm is no worse than the previous best classical algorithm, even if the post-quantum algorithm turns out to be completely broken by future cryptanalysis.The 256 one is actually newer than the 512 one, too:> OpenSSH versions 9.0 and greater support sntrup761x25519-sha512 and versions 9.9 and greater support mlkem768x25519-sha256.",
+    "parent": 44863522,
+    "depth": 2
+  }
+]

@@ -16,6 +16,22 @@
     "depth": 1
   },
   {
+    "id": 44863074,
+    "by": "yobbo",
+    "timeISO": "2025-08-11T11:37:54.000Z",
+    "textPlain": "It might be more useful with a signature like maybe_divide -> maybe(int) -> maybe(int) -> maybe(int) ... and then a set of operations over maybe, and functions/macros for and_then(), or_else(), etc. It would be interesting to see how ergonomic it could get.",
+    "parent": 44860908,
+    "depth": 1
+  },
+  {
+    "id": 44863221,
+    "by": "BiraIgnacio",
+    "timeISO": "2025-08-11T11:58:26.000Z",
+    "textPlain": "I love seeing the creative ways people implement these types of, if I can say, high level abstractions in C.\nThanks for sharing",
+    "parent": 44860908,
+    "depth": 1
+  },
+  {
     "id": 44862546,
     "by": "rowanG077",
     "timeISO": "2025-08-11T10:03:08.000Z",
@@ -28,6 +44,14 @@
     "by": "pjmlp",
     "timeISO": "2025-08-11T10:25:46.000Z",
     "textPlain": "Proving the point that better type system and abstractions don't necessarly produce bad Assembly, and if constexpr is used, there won't be anything on the final executable other than the actual value.https://gcc.godbolt.org/z/31o75W5xxhttps://gcc.godbolt.org/z/av6a43WeY",
+    "parent": 44861689,
+    "depth": 2
+  },
+  {
+    "id": 44863067,
+    "by": "account42",
+    "timeISO": "2025-08-11T11:36:52.000Z",
+    "textPlain": "> with the exception that the result can't be returned in a register (a problem which will go away if the function is inlined)It's still a damned shame. Same for not being able to pass optional/unique_ptr/etc in a register.We really need a trivially_relocatable attribute.",
     "parent": 44861689,
     "depth": 2
   },
@@ -48,6 +72,14 @@
     "depth": 2
   },
   {
+    "id": 44863550,
+    "by": "uecker",
+    "timeISO": "2025-08-11T12:48:01.000Z",
+    "textPlain": "It is only undefined behavior if it is dereferenced, in which case the null sanitizer can be used to define it to trap, so safely terminate the program. But the example then also shows how you can make sure that this case is not even possible in the final program.",
+    "parent": 44862441,
+    "depth": 2
+  },
+  {
     "id": 44862462,
     "by": "lmm",
     "timeISO": "2025-08-11T09:49:25.000Z",
@@ -61,6 +93,30 @@
     "timeISO": "2025-08-11T09:58:30.000Z",
     "textPlain": "Maybe, but it is defined for GCC:> You can store a null pointer in any lvalue whose data type is a pointer type. [0]Though, I would expect a complaint from clang, and clang-tidy.[0] https://www.gnu.org/software/c-intro-and-ref/manual/html_nod...",
     "parent": 44862441,
+    "depth": 2
+  },
+  {
+    "id": 44863483,
+    "by": "munchler",
+    "timeISO": "2025-08-11T12:37:49.000Z",
+    "textPlain": "I await the first “Monads in C” tutorial with mixed feelings.",
+    "parent": 44863074,
+    "depth": 2
+  },
+  {
+    "id": 44863097,
+    "by": "uecker",
+    "timeISO": "2025-08-11T11:40:39.000Z",
+    "textPlain": "Because the different languages suck much more.",
+    "parent": 44862546,
+    "depth": 2
+  },
+  {
+    "id": 44862997,
+    "by": "amiga386",
+    "timeISO": "2025-08-11T11:25:54.000Z",
+    "textPlain": "Quite. There's standard POSIX behaviour for this. Divide by zero and execution continues, safely, in your SIGFPE exception handler.",
+    "parent": 44862546,
     "depth": 2
   },
   {

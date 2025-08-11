@@ -24,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44862597,
-    "by": "kvemkon",
-    "timeISO": "2025-08-11T10:12:23.000Z",
-    "textPlain": "BTW, if we copy data between some device and RAM efficiently using DMA without spending CPU cycles, why we can't use DMA to copy RAM-to-RAM?",
-    "parent": 44860847,
-    "depth": 1
-  },
-  {
     "id": 44861026,
     "by": "jesse__",
     "timeISO": "2025-08-11T05:37:49.000Z",
     "textPlain": "Would have loved to see performance comparisons along the way, instead of just the small squashed graph at the end.  Nice article otherwise :)",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44860925,
+    "by": "brucehoult",
+    "timeISO": "2025-08-11T05:17:41.000Z",
+    "textPlain": "ConclusionStick to `std::memcpy`. It delivers great performance while also adapting to the hardware architecture, and makes no assumptions about the memory alignment.----So that's five minutes I'll never get back.I'd make an exception for RISC-V machines with \"RVV\" vectors, where vectorised `memcpy` hasn't yet made it into the standard library and a simple ...    0000000000000000 <memcpy>:\n       0:   86aa mv      a3,a0\n    \n    0000000000000002 <.L1^B1>:\n       2:   00267757 vsetvli a4,a2,e8,m4,tu,mu\n       6:   02058007 vle8.v  v0,(a1)\n       a:   95ba add     a1,a1,a4\n       c:   8e19 sub     a2,a2,a4\n       e:   02068027 vse8.v  v0,(a3)\n      12:   96ba add     a3,a3,a4\n      14:   f67d bnez    a2,2 <.L1^B1>\n      16:   8082 ret\n\n... often beats `memcpy` by a factor of 2 or 3 on copies that fit into L1 cache.https://hoult.org/d1_memcpy.txt",
     "parent": 44860847,
     "depth": 1
   },
@@ -48,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44860925,
-    "by": "brucehoult",
-    "timeISO": "2025-08-11T05:17:41.000Z",
-    "textPlain": "ConclusionStick to `std::memcpy`. It delivers great performance while also adapting to the hardware architecture, and makes no assumptions about the memory alignment.----So that's five minutes I'll never get back.I'd make an exception for RISC-V machines with \"RVV\" vectors, where vectorised `memcpy` hasn't yet made it into the standard library and a simple ...    0000000000000000 <memcpy>:\n       0:   86aa mv      a3,a0\n    \n    0000000000000002 <.L1^B1>:\n       2:   00267757 vsetvli a4,a2,e8,m4,tu,mu\n       6:   02058007 vle8.v  v0,(a1)\n       a:   95ba add     a1,a1,a4\n       c:   8e19 sub     a2,a2,a4\n       e:   02068027 vse8.v  v0,(a3)\n      12:   96ba add     a3,a3,a4\n      14:   f67d bnez    a2,2 <.L1^B1>\n      16:   8082 ret\n\n... often beats `memcpy` by a factor of 2 or 3 on copies that fit into L1 cache.https://hoult.org/d1_memcpy.txt",
+    "id": 44862597,
+    "by": "kvemkon",
+    "timeISO": "2025-08-11T10:12:23.000Z",
+    "textPlain": "BTW, if we copy data between some device and RAM efficiently using DMA without spending CPU cycles, why we can't use DMA to copy RAM-to-RAM?",
     "parent": 44860847,
     "depth": 1
   },
@@ -128,14 +128,6 @@
     "depth": 2
   },
   {
-    "id": 44862692,
-    "by": "shakna",
-    "timeISO": "2025-08-11T10:27:26.000Z",
-    "textPlain": "You can copy that way.It's faster of you use the CPU, but you absolutely can just use DMA - and some embedded systems do.",
-    "parent": 44862597,
-    "depth": 2
-  },
-  {
     "id": 44861167,
     "by": "viraptor",
     "timeISO": "2025-08-11T06:10:32.000Z",
@@ -149,6 +141,14 @@
     "timeISO": "2025-08-11T10:04:24.000Z",
     "textPlain": "You pre-stole my comment, I was about to make the exact same post :-DAlthough the blog post is about going faster and him showing alternative algorithms, conclusion remains for safety which makes perfect sense. However, he did show us a few strategies which is useful. The five minutes I spent, will never be returned to me but at least I learned something interesting...",
     "parent": 44860925,
+    "depth": 2
+  },
+  {
+    "id": 44862692,
+    "by": "shakna",
+    "timeISO": "2025-08-11T10:27:26.000Z",
+    "textPlain": "You can copy that way.It's faster of you use the CPU, but you absolutely can just use DMA - and some embedded systems do.",
+    "parent": 44862597,
     "depth": 2
   },
   {
