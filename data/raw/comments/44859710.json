@@ -1,1 +1,34 @@
-[]
+[
+  {
+    "id": 44861186,
+    "by": "millipede",
+    "timeISO": "2025-08-11T06:14:39.000Z",
+    "textPlain": "Intuitively it doesn't sound like it would work.   The program doesn't call listen() or accept() on the socket.",
+    "parent": 44859710,
+    "depth": 1
+  },
+  {
+    "id": 44861109,
+    "by": "Retr0id",
+    "timeISO": "2025-08-11T05:57:26.000Z",
+    "textPlain": "Can confirm that it still works in 2025, and also via netcat.I wonder if it's also theoretically possible for a pair of clients to connect to each other like this?",
+    "parent": 44859710,
+    "depth": 1
+  },
+  {
+    "id": 44861183,
+    "by": "LeoPanthera",
+    "timeISO": "2025-08-11T06:14:08.000Z",
+    "textPlain": "The tailscale client does this trick to force its way through NAT-to-NAT connections.\"How NAT traversal works\" - https://tailscale.com/blog/how-nat-traversal-works > \"The benefits of birthdays\"",
+    "parent": 44861109,
+    "depth": 2
+  },
+  {
+    "id": 44861178,
+    "by": "bmenrigh",
+    "timeISO": "2025-08-11T06:12:50.000Z",
+    "textPlain": "Yeah a pair of clients can via “tcp simultaneous open” but you’ll need to arrange for each client to know about the source port of the other. So bypass the usual ephemeral port choice made by the OS. And it’s still highly sensitive to timing.",
+    "parent": 44861109,
+    "depth": 2
+  }
+]

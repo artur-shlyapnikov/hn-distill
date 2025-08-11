@@ -1,0 +1,8 @@
+{
+  "id": 44860908,
+  "lang": "ru",
+  "summary": "Показываю, как в C сделать обобщённый контейнер `maybe`, который безопасно возвращает результат, если он есть, и сообщает об ошибке, если её нет.  \n\n```c\n#define maybe(T) struct { bool ok; T value; }\n#define maybe_just(T,x)  { .value = (x), .ok = true }\n#define maybe_nothing(T) { .value = (T){}, .ok = false }\n\nstatic maybe(int) divide(int a, int b) {\n    return (b != 0) ? maybe_just(int, a / b) : maybe_nothing(int);\n}\n```\n\nВызов:\n\n```c\nmaybe(int) p = divide(6, d);\nif (p.ok) printf(\"%d\\n\", p.value);\nelse       puts(\"division by zero\");\n```\n\nЧтобы не забыть проверку, добавляем макрос `maybe_value`, который при ошибке возвращает нулевой указатель, ловим его санитайзером:\n\n```c\n#define maybe_value(x) \\\n    (*({ auto _p = &(x); _p->ok ? &_p->value : (void*)0; }))\n```\n\nНо деление на ноль — не единственная проблема. При делении `INT_MIN / -1` возникает переполнение. Исправляем:\n\n```c\nmaybe(int) safe_divide(int a, int b) {\n    if (b == 0 || (b == -1 && a == INT_MIN))\n        return maybe_nothing(int);\n    return maybe_just(int, a / b);\n}\n```\n\nКомпилируем с `-fsanitize=signed-integer-overflow,integer-divide-by-zero -fsanitize-trap=undefined -O2`. В ассемблере не остаётся пути к `ud2`, то есть оптимизатор доказал: переполнения и деления на ноль нет.  \n\nЭто не делает весь C «безопасным» (жизненный цикл указателей и арифметика не покрыты), но для ограниченных задач подход работает.",
+  "inputHash": "5bda7ab43d84a687eba502516adc80239dafd251458bea336a89ec261217a2bb",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-11T06:40:13.981Z"
+}
