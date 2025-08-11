@@ -8,6 +8,22 @@
     "depth": 1
   },
   {
+    "id": 44861359,
+    "by": "noelwelsh",
+    "timeISO": "2025-08-11T06:45:59.000Z",
+    "textPlain": "The introduction to me reads as very confused:One of the most sought-after features for PHP is Generics: The ability to have a type that takes another type as a parameter. It's a feature found in most compiled languages by now, but implementing generics in an interpreted language like PHP, where all the type checking would have to be done at runtime, has always proven Really Really Hard(tm), Really Really Slow(tm), or both.* The topic of the article is implementing generics at compile time, but this claims that PHP is not compiled.* Type checking is orthogonal to compilation vs interpreter.* Types are not checked at runtime. It is kinda the point of types that they are checked before code runs. Runtime checks are on values. You can reify types at runtime but this breaks a useful property of generics (parametricity) and it prevents the very useful feature of types without a runtime representation (often known as newtypes).* If you want to use types in the colloquial \"dynamic type\" meaning as tags on values, and you also want to talk about generics (a feature that only makes sense for types-as-compile-time-properties) you need to be really careful in your terminology or confusion will abound!",
+    "parent": 44823272,
+    "depth": 1
+  },
+  {
+    "id": 44861481,
+    "by": "johnisgood",
+    "timeISO": "2025-08-11T07:08:32.000Z",
+    "textPlain": "Nay, enough of complexity as it is, for now.",
+    "parent": 44823272,
+    "depth": 1
+  },
+  {
     "id": 44858958,
     "by": "tobinfekkes",
     "timeISO": "2025-08-10T22:43:45.000Z",
@@ -96,18 +112,18 @@
     "depth": 2
   },
   {
-    "id": 44861290,
-    "by": "masklinn",
-    "timeISO": "2025-08-11T06:32:59.000Z",
-    "textPlain": "> \"we want these elaborate type systems, but we also want typeless because that is far more convenient to use, so we invented generics, a method to untype your type system\"It's rather the exact opposite. Parametric types are a way to properly type \"deeply\" instead of just the topmost layer. Just like inference, type parameters don't remove types.> isn't that just python, strongly typed but your functions don't have built in type checks.That doesn't really make any sense? Static types mean you don't have runtime type checks, since the types are known statically.",
-    "parent": 44860733,
-    "depth": 2
-  },
-  {
     "id": 44860814,
     "by": "tibbar",
     "timeISO": "2025-08-11T04:49:26.000Z",
     "textPlain": "As you say, generics really only apply to typed languages, and they help solve very legitimate annoyance in most of those languages -- you often have some library helper or algorithm that can apply to a wide range of things, but those things differ in some way that's irrelevant to the algorithm.For example, a mergesort algorithm works on any kind of array, as long as you can compare the elements in the array to each other. There's no point in re-implementing the algorithm for each kind of array. Yet, without generics, you'd need to do just that. At the same time, the generated code for sorting each different kind of array might need to be a little different - comparing strings and floats isn't the same assembly, for instance. So the programming language and compiler work together: you specify the algorithm once in a certain way, and the compiler can generate the right version of algorithm for each way that you need to use it.There are many, many good reasons why you might want to work in a typed language, even though specifying the types is a bit of extra book-keeping; generics are one way to keep the pointless work down. Of course, if you can get away with a python script, there's no need to bother with all this typing business just yet, either.",
+    "parent": 44860733,
+    "depth": 2
+  },
+  {
+    "id": 44861290,
+    "by": "masklinn",
+    "timeISO": "2025-08-11T06:32:59.000Z",
+    "textPlain": "> \"we want these elaborate type systems, but we also want typeless because that is far more convenient to use, so we invented generics, a method to untype your type system\"It's rather the exact opposite. Parametric types are a way to properly type \"deeply\" instead of just the topmost layer. Just like inference, type parameters don't remove types.> isn't that just python, strongly typed but your functions don't have built in type checks.That doesn't really make any sense? Static types mean you don't have runtime type checks, since the types are known statically.",
     "parent": 44860733,
     "depth": 2
   }
