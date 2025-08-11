@@ -16,14 +16,6 @@
     "depth": 1
   },
   {
-    "id": 44862597,
-    "by": "kvemkon",
-    "timeISO": "2025-08-11T10:12:23.000Z",
-    "textPlain": "BTW, if we copy data between some device and RAM efficiently using DMA without spending CPU cycles, why we can't use DMA to copy RAM-to-RAM?",
-    "parent": 44860847,
-    "depth": 1
-  },
-  {
     "id": 44861024,
     "by": "Arech",
     "timeISO": "2025-08-11T05:37:42.000Z",
@@ -32,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44862219,
-    "by": "davrosthedalek",
-    "timeISO": "2025-08-11T09:14:12.000Z",
-    "textPlain": "> Since the loop copies data pointer by pointer, it can handle the case of overlapping data.I don't think this loop does the right thing if destination points somewhere into source. It will start overwriting the non-copied parts of source.",
+    "id": 44862597,
+    "by": "kvemkon",
+    "timeISO": "2025-08-11T10:12:23.000Z",
+    "textPlain": "BTW, if we copy data between some device and RAM efficiently using DMA without spending CPU cycles, why we can't use DMA to copy RAM-to-RAM?",
     "parent": 44860847,
     "depth": 1
   },
@@ -44,6 +36,14 @@
     "by": "jesse__",
     "timeISO": "2025-08-11T05:37:49.000Z",
     "textPlain": "Would have loved to see performance comparisons along the way, instead of just the small squashed graph at the end.  Nice article otherwise :)",
+    "parent": 44860847,
+    "depth": 1
+  },
+  {
+    "id": 44862219,
+    "by": "davrosthedalek",
+    "timeISO": "2025-08-11T09:14:12.000Z",
+    "textPlain": "> Since the loop copies data pointer by pointer, it can handle the case of overlapping data.I don't think this loop does the right thing if destination points somewhere into source. It will start overwriting the non-copied parts of source.",
     "parent": 44860847,
     "depth": 1
   },
@@ -131,7 +131,7 @@
     "id": 44862692,
     "by": "shakna",
     "timeISO": "2025-08-11T10:27:26.000Z",
-    "textPlain": "[delayed]",
+    "textPlain": "You can copy that way.It's faster of you use the CPU, but you absolutely can just use DMA - and some embedded systems do.",
     "parent": 44862597,
     "depth": 2
   },

@@ -40,6 +40,14 @@
     "depth": 1
   },
   {
+    "id": 44860758,
+    "by": "banginghead",
+    "timeISO": "2025-08-11T04:28:19.000Z",
+    "textPlain": "This looks so familiar that it got me thinking: who is collating all of the languages that are being invented? I must see two dozen a year on HN. I'm not dissing OP, but I've seen so many languages I'm not sure if I'm having deja vu, or vuja de.",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
     "id": 44859571,
     "by": "JonChesterfield",
     "timeISO": "2025-08-11T00:00:31.000Z",
@@ -52,14 +60,6 @@
     "by": "tekkk",
     "timeISO": "2025-08-11T09:01:11.000Z",
     "textPlain": "Really impressive, great job! I was interested to see how you had solved Result type and that seems quite developer-friendly—no wrappers just value & error union. I should try it out to see how it's to write if I can run it on ARM64. I wish Godot Script looked like this.",
-    "parent": 44856935,
-    "depth": 1
-  },
-  {
-    "id": 44860758,
-    "by": "banginghead",
-    "timeISO": "2025-08-11T04:28:19.000Z",
-    "textPlain": "This looks so familiar that it got me thinking: who is collating all of the languages that are being invented? I must see two dozen a year on HN. I'm not dissing OP, but I've seen so many languages I'm not sure if I'm having deja vu, or vuja de.",
     "parent": 44856935,
     "depth": 1
   },
@@ -80,10 +80,10 @@
     "depth": 1
   },
   {
-    "id": 44862007,
-    "by": "Warwolt",
-    "timeISO": "2025-08-11T08:42:31.000Z",
-    "textPlain": "Looks nice! Is there any plans on a language server and formatting tooling?Usually I feel like that's bare minimum before I'd like to try and play around with a language",
+    "id": 44857208,
+    "by": "themonsu",
+    "timeISO": "2025-08-10T18:31:32.000Z",
+    "textPlain": "Looks cool, but please can we stop naming things ”bolt”",
     "parent": 44856935,
     "depth": 1
   },
@@ -96,10 +96,10 @@
     "depth": 1
   },
   {
-    "id": 44857208,
-    "by": "themonsu",
-    "timeISO": "2025-08-10T18:31:32.000Z",
-    "textPlain": "Looks cool, but please can we stop naming things ”bolt”",
+    "id": 44862007,
+    "by": "Warwolt",
+    "timeISO": "2025-08-11T08:42:31.000Z",
+    "textPlain": "Looks nice! Is there any plans on a language server and formatting tooling?Usually I feel like that's bare minimum before I'd like to try and play around with a language",
     "parent": 44856935,
     "depth": 1
   },
@@ -232,6 +232,14 @@
     "depth": 1
   },
   {
+    "id": 44862745,
+    "by": "amai",
+    "timeISO": "2025-08-11T10:38:02.000Z",
+    "textPlain": "Why is it not written in Rust?",
+    "parent": 44856935,
+    "depth": 1
+  },
+  {
     "id": 44858761,
     "by": "debugnik",
     "timeISO": "2025-08-10T22:14:03.000Z",
@@ -320,6 +328,22 @@
     "depth": 2
   },
   {
+    "id": 44862796,
+    "by": "johnisgood",
+    "timeISO": "2025-08-11T10:47:29.000Z",
+    "textPlain": "With this and https://github.com/Beariish/bolt/blob/main/doc/Bolt%20Perfor..., it is indeed confusing without testing it out myself.That said, somehow I do not believe it is faster than LuaJIT. We will see.",
+    "parent": 44861128,
+    "depth": 2
+  },
+  {
+    "id": 44862793,
+    "by": "amai",
+    "timeISO": "2025-08-11T10:47:16.000Z",
+    "textPlain": "Where do you get these numbers from? Looking at https://github.com/Beariish/bolt/blob/main/doc/Bolt%20Perfor... doesn’t seem to support these numbers.",
+    "parent": 44861128,
+    "depth": 2
+  },
+  {
     "id": 44861895,
     "by": "jeroenhd",
     "timeISO": "2025-08-11T08:24:41.000Z",
@@ -373,30 +397,6 @@
     "timeISO": "2025-08-10T20:51:58.000Z",
     "textPlain": "Bolt's memory usage in most cases hovers right around Lua 5.4/Luau in my own testing, but maybe I should include a few memory benchmarks to highlight that more. It does notably have a higher memory overhead during compilation than other languages in this class though.As for writeups, I'm working on putting out some material about the creation of Bolt and my learnings now that it's out there.",
     "parent": 44858159,
-    "depth": 2
-  },
-  {
-    "id": 44860419,
-    "by": "mdaniel",
-    "timeISO": "2025-08-11T02:58:12.000Z",
-    "textPlain": "Seems to be the worst of both worlds: mutable by default, and one must add a \"const\" keyword to the \"let\", disincentivizing const behavior by making it super verbose (e.g. the \"final\" problem from Java)https://github.com/Beariish/bolt/blob/0.1.0/doc/Bolt%20Progr...",
-    "parent": 44859122,
-    "depth": 2
-  },
-  {
-    "id": 44862596,
-    "by": "progx",
-    "timeISO": "2025-08-11T10:12:21.000Z",
-    "textPlain": "As far as i can see it is simple, everything can return an Error, so you have to check the return value if it is an error.https://github.com/Beariish/bolt/blob/main/examples/error_ha...",
-    "parent": 44860225,
-    "depth": 2
-  },
-  {
-    "id": 44859189,
-    "by": "beariish",
-    "timeISO": "2025-08-10T23:08:43.000Z",
-    "textPlain": "It depends on your exact usecase, I'm not 100% sure what you're asking. There is some overhead for invoking the compiler on a per-script basis. If you're parsing once but running a script many times, Bolt provides some tools (like reusing a preallocated thread object) to ammortize that cost",
-    "parent": 44858854,
     "depth": 2
   }
 ]

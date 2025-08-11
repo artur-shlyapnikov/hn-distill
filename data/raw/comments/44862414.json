@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "id": 44862880,
+    "by": "codethief",
+    "timeISO": "2025-08-11T11:05:25.000Z",
+    "textPlain": "Nice article!Also, this might be a stupid question (I'm a Zig newbie) but… instead of calling std.mem.eql() in the while loop to look at each potential match individually, couldn't you repeat the same trick as before? That is, use SIMD to search for the second and second-to-last character of the needle, then third and third-to-last, and so on, and finally take a bitwise AND of all the resulting bit masks?Even if that doesn't work for some reason and you still need to loop over all potential matches individually, couldn't you use SIMD inside the while loop to replace std.mem.eql and thereby speed up string comparison? My understanding was that std.mem.eql loops over bytes one by one and compares them?",
+    "parent": 44862414,
+    "depth": 1
+  },
+  {
+    "id": 44862947,
+    "by": "jiehong",
+    "timeISO": "2025-08-11T11:18:42.000Z",
+    "textPlain": "Nice!But, does that work with non-ascii characters? (aka Unicode).",
+    "parent": 44862414,
+    "depth": 1
+  },
+  {
+    "id": 44862721,
+    "by": "lokeg",
+    "timeISO": "2025-08-11T10:33:06.000Z",
+    "textPlain": "What about the worst case? I.e. something like searching for 1000 'a's in a long string of 'a's interspersed with 'b's every 500-1000 steps? Seems accidentally quadradic unfortunately in the absence of some KMP-like fallback",
+    "parent": 44862414,
+    "depth": 1
+  },
+  {
+    "id": 44862877,
+    "by": "suddenlybananas",
+    "timeISO": "2025-08-11T11:05:07.000Z",
+    "textPlain": ">The difference between 4μs vs 1μs is extremely small, but it’s slightly faster nonetheless.Put that in a loop and its an enormous speed-up.",
+    "parent": 44862414,
+    "depth": 1
+  },
+  {
+    "id": 44862909,
+    "by": "ncruces",
+    "timeISO": "2025-08-11T11:12:52.000Z",
+    "textPlain": "Knowing little about zig, std.mem.eql very likely already uses SIMD.This is about using SIMD to avoid even calling std.mem.eql for 99% of the possible attempts.",
+    "parent": 44862880,
+    "depth": 2
+  }
+]
