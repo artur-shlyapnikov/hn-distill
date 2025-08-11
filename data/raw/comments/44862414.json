@@ -24,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44866108,
-    "by": "ww520",
-    "timeISO": "2025-08-11T16:26:30.000Z",
-    "textPlain": "Excellent write up. I really appreciate the clear and detailed explanation of the algorithm.The nice thing about Zig’s SIMD operation is the register size support is transparent. You can just declare a 64-byte vector as the Block, and Zig would use an AVX256 or two AVX2 (32-byte) registers behind the scene. All other SIMD operations on the type are transparently done with regard to the registers when compiled to the targeted platform.Even using two AVX2 registers for 64 bytes of data is a win due to instruction pipelining. Most CPU have multiple SIMD registers and the two 32-byte data chunks are independent. CPU can run them in parallel.The next optimization is to line the data up at 64 byte alignment, to match the L1/L2 cache line size. Memory access is slow in general.",
-    "parent": 44862414,
-    "depth": 1
-  },
-  {
     "id": 44862721,
     "by": "lokeg",
     "timeISO": "2025-08-11T10:33:06.000Z",
     "textPlain": "What about the worst case? I.e. something like searching for 1000 'a's in a long string of 'a's interspersed with 'b's every 500-1000 steps? Seems accidentally quadradic unfortunately in the absence of some KMP-like fallback",
+    "parent": 44862414,
+    "depth": 1
+  },
+  {
+    "id": 44866108,
+    "by": "ww520",
+    "timeISO": "2025-08-11T16:26:30.000Z",
+    "textPlain": "Excellent write up. I really appreciate the clear and detailed explanation of the algorithm.The nice thing about Zig’s SIMD operation is the register size support is transparent. You can just declare a 64-byte vector as the Block, and Zig would use an AVX256 or two AVX2 (32-byte) registers behind the scene. All other SIMD operations on the type are transparently done with regard to the registers when compiled to the targeted platform.Even using two AVX2 registers for 64 bytes of data is a win due to instruction pipelining. Most CPU have multiple SIMD registers and the two 32-byte data chunks are independent. CPU can run them in parallel.The next optimization is to line the data up at 64 byte alignment, to match the L1/L2 cache line size. Memory access is slow in general.",
     "parent": 44862414,
     "depth": 1
   },
@@ -88,6 +88,14 @@
     "depth": 2
   },
   {
+    "id": 44868927,
+    "by": "ack_complete",
+    "timeISO": "2025-08-11T20:15:08.000Z",
+    "textPlain": "Sure, but I have to support a range of target CPUs in the consumer desktop market, and the older CPUs are the ones that need optimizations the most. That means NEON on ARM64 and AVX2 or SSE2-4 on x64. Time spent on higher vector instruction sets benefits a smaller fraction of the user base that already has better performance, and that's especially problematic if the algorithm has to be reworked to take best advantage of the higher extensions.AVX-512 is also in bad shape market-wise, despite its amazing feature set and how long it's been since initial release. The Steam Hardware Survey, which skews toward the higher end of the market, only shows 18% of the user base having AVX-512 support. And even that is despite Intel's best efforts to reverse progress by shipping all new consumer CPUs with AVX-512 support disabled.",
+    "parent": 44863111,
+    "depth": 2
+  },
+  {
     "id": 44864044,
     "by": "moregrist",
     "timeISO": "2025-08-11T13:49:53.000Z",
@@ -128,14 +136,6 @@
     "depth": 2
   },
   {
-    "id": 44866578,
-    "by": "burntsushi",
-    "timeISO": "2025-08-11T16:59:18.000Z",
-    "textPlain": "Another challenge may be as a result of using a portable SIMD API instead of specific ISA instructions. I'm specifically thinking about computing the mask, which on x86-64 is I assume implemented via movemask. But aarch64 lacks such an instruction, so you need to do other shenanigans for the best codegen: https://github.com/BurntSushi/memchr/blob/ceef3c921b5685847e...",
-    "parent": 44866108,
-    "depth": 2
-  },
-  {
     "id": 44864225,
     "by": "MattPalmer1086",
     "timeISO": "2025-08-11T14:07:09.000Z",
@@ -149,6 +149,14 @@
     "timeISO": "2025-08-11T12:59:59.000Z",
     "textPlain": "How is it quadratic? You do 1000 checks every character in the haystack but that's still O(n)",
     "parent": 44862721,
+    "depth": 2
+  },
+  {
+    "id": 44866578,
+    "by": "burntsushi",
+    "timeISO": "2025-08-11T16:59:18.000Z",
+    "textPlain": "Another challenge may be as a result of using a portable SIMD API instead of specific ISA instructions. I'm specifically thinking about computing the mask, which on x86-64 is I assume implemented via movemask. But aarch64 lacks such an instruction, so you need to do other shenanigans for the best codegen: https://github.com/BurntSushi/memchr/blob/ceef3c921b5685847e...",
+    "parent": 44866108,
     "depth": 2
   },
   {

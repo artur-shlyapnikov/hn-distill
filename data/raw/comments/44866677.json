@@ -1,9 +1,17 @@
 [
   {
-    "id": 44868029,
-    "by": "ahmetburhan",
-    "timeISO": "2025-08-11T18:56:40.000Z",
-    "textPlain": "Cool to see Iceberg getting these kinds of upgrades. Deletion vectors and default column values sound like real quality-of-life improvements, especially for big, messy datasets. Curious to hear if anyone’s tried V3 in production yet and what the performance looks like.",
+    "id": 44868398,
+    "by": "amluto",
+    "timeISO": "2025-08-11T19:25:08.000Z",
+    "textPlain": "> ALTER TABLE events ADD COLUMN version INT DEFAULT 1;I’ve always disliked this approach.  It conflates two things: the value to put in preexisting rows and the default going forward. I often want to add a column, backfill it, and not have a default.Fortunately, the Iceberg spec at least got this right under the hood. There’s “initial-default”, which is the value implicitly inserted in rows that predate the addition of the column, and there’s “write-default”, which is the default for new rows.",
+    "parent": 44866677,
+    "depth": 1
+  },
+  {
+    "id": 44868525,
+    "by": "drivenextfunc",
+    "timeISO": "2025-08-11T19:37:20.000Z",
+    "textPlain": "Many companies seem to be using Apache Iceberg, but the ecosystem feels immature outside of Java. For instance, iceberg-rust doesn't even support HDFS. (Though admittedly, Iceberg's tendency to create many small files makes it a poor fit for HDFS anyway.)",
     "parent": 44866677,
     "depth": 1
   },
@@ -16,11 +24,35 @@
     "depth": 1
   },
   {
+    "id": 44868029,
+    "by": "ahmetburhan",
+    "timeISO": "2025-08-11T18:56:40.000Z",
+    "textPlain": "Cool to see Iceberg getting these kinds of upgrades. Deletion vectors and default column values sound like real quality-of-life improvements, especially for big, messy datasets. Curious to hear if anyone’s tried V3 in production yet and what the performance looks like.",
+    "parent": 44866677,
+    "depth": 1
+  },
+  {
     "id": 44867132,
     "by": "talatuyarer",
     "timeISO": "2025-08-11T17:45:48.000Z",
     "textPlain": "This new version has some great new features, including deletion vectors for more efficient transactions and default column values to make schema evolution a breeze. The full article has all the details.",
     "parent": 44866677,
     "depth": 1
+  },
+  {
+    "id": 44868790,
+    "by": "hodgesrm",
+    "timeISO": "2025-08-11T20:02:22.000Z",
+    "textPlain": "Seems like this is going to be a permanent issue, no? Library level storage APIs are complex and often quite leaky. That's based on looking at the innards of MySQL and ClickHouse for a while.It seems quite possible that there will be maybe three libraries that can write to Iceberg (Java, Python, Rust, maybe Golang), while the rest at best will offer read access only. And those language choices will condition and be conditioned by the languages that developers use to write applications that manage Iceberg data.",
+    "parent": 44868525,
+    "depth": 2
+  },
+  {
+    "id": 44868547,
+    "by": "twoodfin",
+    "timeISO": "2025-08-11T19:39:14.000Z",
+    "textPlain": "The Iceberg spec is a model of clarity and simplicity compared to the (constantly in flux via Databricks commits…) Delta protocol spec:https://github.com/delta-io/delta/blob/master/PROTOCOL.md",
+    "parent": 44867302,
+    "depth": 2
   }
 ]

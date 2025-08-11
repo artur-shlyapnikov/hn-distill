@@ -24,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44867824,
-    "by": "caryquinn",
-    "timeISO": "2025-08-11T18:40:55.000Z",
-    "textPlain": "This is an extremely import topic and one I'm glad is being brought up. \nI come from the physical ID and anti-counterfeiting space (think passports, banknotes, etc..) there is A LOT of buzz around this and how it relates to one's digital footprint and identity. We need to think differently about how to approach encryption... math-based cryptography is becoming very vulnerable.We're building something that even the smartest ai or the fastest quantum computer can't bypass and we need some BADASS hackers...to help us finish it and to pressure test it.Any takers?? Reach out: cryptiqapp.com (sorry for link but this is legit collaborative and not promotional)",
+    "id": 44864401,
+    "by": "Bender",
+    "timeISO": "2025-08-11T14:20:28.000Z",
+    "textPlain": "ssh-audit [1] should be updated to test for this theoretical algo.  I still get an \"A\" despite fixating on a specific algo and not including the quantus.  I'm doing the cha-cha.[1] - https://www.ssh-audit.com/",
     "parent": 44863242,
     "depth": 1
   },
@@ -40,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44864401,
-    "by": "Bender",
-    "timeISO": "2025-08-11T14:20:28.000Z",
-    "textPlain": "ssh-audit [1] should be updated to test for this theoretical algo.  I still get an \"A\" despite fixating on a specific algo and not including the quantus.  I'm doing the cha-cha.[1] - https://www.ssh-audit.com/",
+    "id": 44867824,
+    "by": "caryquinn",
+    "timeISO": "2025-08-11T18:40:55.000Z",
+    "textPlain": "This is an extremely import topic and one I'm glad is being brought up. \nI come from the physical ID and anti-counterfeiting space (think passports, banknotes, etc..) there is A LOT of buzz around this and how it relates to one's digital footprint and identity. We need to think differently about how to approach encryption... math-based cryptography is becoming very vulnerable.We're building something that even the smartest ai or the fastest quantum computer can't bypass and we need some BADASS hackers...to help us finish it and to pressure test it.Any takers?? Reach out: cryptiqapp.com (sorry for link but this is legit collaborative and not promotional)",
     "parent": 44863242,
     "depth": 1
   },
@@ -88,6 +88,14 @@
     "depth": 1
   },
   {
+    "id": 44868894,
+    "by": "ls65536",
+    "timeISO": "2025-08-11T20:11:49.000Z",
+    "textPlain": "The industry definitely seems to be going in this hybrid PQC-classical direction for the most part. At least until we know there's a real quantum computer somewhere that renders the likes of RSA, ECC, and DH no longer useful, it seems this conservative approach of using two different types of locks in parallel might be the safest bet for now.However, what's notable is that the published CNSA 2.0 algorithms in this context are exclusively of the post-quantum variety, and even though there is no explicit disallowing of the use of hybrid constructions, NSA publicly deems them as unnecessary (from their FAQ [0]):> NSA has confidence in CNSA 2.0 algorithms and will not require NSS developers to use hybrid certified products for security purposes.[0] https://www.nsa.gov/Press-Room/News-Highlights/Article/Artic...",
+    "parent": 44863764,
+    "depth": 2
+  },
+  {
     "id": 44864064,
     "by": "colmmacc",
     "timeISO": "2025-08-11T13:52:16.000Z",
@@ -120,18 +128,18 @@
     "depth": 2
   },
   {
-    "id": 44864877,
-    "by": "lucb1e",
-    "timeISO": "2025-08-11T14:58:02.000Z",
-    "textPlain": "Besides what's public knowledge, I tend to put a bit of stock in our intelligence agency calling for PQ adoption for systems that need to remain confidential for 20 years or moreedit: adding in some sources2014: \"between 2030 and 2040\" according to https://www.aivd.nl/publicaties/publicaties/2014/11/20/infor... (404) via https://tweakers.net/reviews/5885/de-dreiging-van-quantumcom... (Dutch)2021: \"small chance it arrives by 2030\" https://www.aivd.nl/documenten/publicaties/2021/09/23/bereid... (Dutch)2025: \"protect against ‘store now, decrypt later’ attacks by 2030\", joint paper from 18 countries https://www.aivd.nl/binaries/aivd_nl/documenten/brochures/20... (English)",
-    "parent": 44863450,
-    "depth": 2
-  },
-  {
     "id": 44863503,
     "by": "tptacek",
     "timeISO": "2025-08-11T12:40:35.000Z",
     "textPlain": "I don't think many cryptography engineers take Gutmann's paper seriously.",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44864877,
+    "by": "lucb1e",
+    "timeISO": "2025-08-11T14:58:02.000Z",
+    "textPlain": "Besides what's public knowledge, I tend to put a bit of stock in our intelligence agency calling for PQ adoption for systems that need to remain confidential for 20 years or moreedit: adding in some sources2014: \"between 2030 and 2040\" according to https://www.aivd.nl/publicaties/publicaties/2014/11/20/infor... (404) via https://tweakers.net/reviews/5885/de-dreiging-van-quantumcom... (Dutch)2021: \"small chance it arrives by 2030\" https://www.aivd.nl/documenten/publicaties/2021/09/23/bereid... (Dutch)2025: \"protect against ‘store now, decrypt later’ attacks by 2030\", joint paper from 18 countries https://www.aivd.nl/binaries/aivd_nl/documenten/brochures/20... (English)",
     "parent": 44863450,
     "depth": 2
   },
@@ -173,6 +181,14 @@
     "timeISO": "2025-08-11T13:00:05.000Z",
     "textPlain": ">As far as I understand, the key material for any post quantum algorithm is much, much larger compared to non-quantum algorithms which leads to huge overheads in network traffic and of course CPU time.Eh? Public-key (asymmetric) cryptography is already very expensive compared to symmetric even under classical, that's normal, what it's used for is the vital but limited operation of key-exchange for AES or whatever fast symmetric algorithm afterwards. My understanding (and serious people in the field please correct me if I'm wrong!) is that the potential cryptographically relevant quantum computer issue threats almost 100% to key exchange, not symmetric encryption. The best theoretical search algorithm vs symmetric is Grover's which offers a square-root speed up, and thus trivially countered if necessary by doubling the key size (ie, 256-bits vs Grovers would offer 128-bits classical equivalent and 512-bits would offer 256-bits, which is already more than enough). The vast super majority of a given SSH session's traffic isn't typically handshakes unless something is quite odd, and you're likely going to have a pretty miserable experience in that case regardless. So even if the initial handshake gets made significantly more expensive it should be pretty irrelevant to network overhead, it still only happens during the initiation of a given session right?",
     "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44868809,
+    "by": "droopyEyelids",
+    "timeISO": "2025-08-11T20:04:13.000Z",
+    "textPlain": ">math-based cryptography is becoming very vulnerableCan you explain this a bit more?",
+    "parent": 44867824,
     "depth": 2
   },
   {
