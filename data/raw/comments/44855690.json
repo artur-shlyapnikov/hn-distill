@@ -32,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44863558,
-    "by": "mike_hearn",
-    "timeISO": "2025-08-11T12:48:46.000Z",
-    "textPlain": "I'm really not a PyTorch expert so this is most likely a newbie error, but could someone explain to me the code in Figure 7?The code circled as \"4 x emb_dim\" doesn't seem to apply a 4x multiplier anywhere. Actually, the layer definitions of fc1 and fc2 in the SwiGLU variant appear to be identical to the code in the regular feed forward block. What is making the two layers in the second code snippet different sizes to fc1 in the first?",
-    "parent": 44855690,
-    "depth": 1
-  },
-  {
     "id": 44858834,
     "by": "eurekin",
     "timeISO": "2025-08-10T22:25:24.000Z",
     "textPlain": "I'm still in awe that a local 3090 gpu was able to run the qwen3 coder instruct 30b-a3b exl3 q6 and...Was able to create a sample page, tried starting a server, recognising a leftover server was running, killing it (and forced a prompt for my permission), retrying and finding out it's ip for me to open in the browser.This isn't a demo anymore. That's actually very useful help for interns/juniors already.",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
+    "id": 44863558,
+    "by": "mike_hearn",
+    "timeISO": "2025-08-11T12:48:46.000Z",
+    "textPlain": "I'm really not a PyTorch expert so this is most likely a newbie error, but could someone explain to me the code in Figure 7?The code circled as \"4 x emb_dim\" doesn't seem to apply a 4x multiplier anywhere. Actually, the layer definitions of fc1 and fc2 in the SwiGLU variant appear to be identical to the code in the regular feed forward block. What is making the two layers in the second code snippet different sizes to fc1 in the first?",
     "parent": 44855690,
     "depth": 1
   },
@@ -88,18 +88,18 @@
     "depth": 1
   },
   {
-    "id": 44858940,
-    "by": "ahmedfromtunis",
-    "timeISO": "2025-08-10T22:42:15.000Z",
-    "textPlain": "When I visit the site I get the error \"Your connection is not private\". Also: \"You cannot visit magazine.sebastianraschka.com right now because the website uses HSTS.\"Chrome latest on Ubuntu.",
-    "parent": 44855690,
-    "depth": 1
-  },
-  {
     "id": 44858227,
     "by": "poorman",
     "timeISO": "2025-08-10T20:59:49.000Z",
     "textPlain": "This article really goes into a lot of detail which is nice. gpt-oss is just not good for agentic use in my observation.tldr; I'll save you a lot of time trying things out for yourself. If you are on a >=32 GB Mac download LMStudio and then the `qwen3-coder-30b-a3b-instruct-mlx@5bit` model. It uses ~20 GB of RAM so a 32GB machine is plenty. Set it up with opencode [1] and you're off to the races! It has great tool calling ability. The tool calling ability of gpt-oss doesn't even come close in my observations.[1] https://opencode.ai/",
+    "parent": 44855690,
+    "depth": 1
+  },
+  {
+    "id": 44858940,
+    "by": "ahmedfromtunis",
+    "timeISO": "2025-08-10T22:42:15.000Z",
+    "textPlain": "When I visit the site I get the error \"Your connection is not private\". Also: \"You cannot visit magazine.sebastianraschka.com right now because the website uses HSTS.\"Chrome latest on Ubuntu.",
     "parent": 44855690,
     "depth": 1
   },
@@ -264,19 +264,19 @@
     "depth": 2
   },
   {
-    "id": 44863622,
-    "by": "fdalvi",
-    "timeISO": "2025-08-11T13:00:20.000Z",
-    "textPlain": "It is indeed not something clarified by the code snippets; In normal feedforward layers, it is common to choose the \"hidden_dim = 4 x emb_dim\", while in GLU feedforward layer, the convention is to use \"hidden_dim = 2/3 * regular_ffn_hidden_dim\" (to keep the overall number of parameters roughly the same). In the case of gpt-oss, they chose to go a bit more extreme and set \"hidden_dim = emb_dim\", thus reducing the overall number of parameters!",
-    "parent": 44863558,
-    "depth": 2
-  },
-  {
     "id": 44860426,
     "by": "mrheosuper",
     "timeISO": "2025-08-11T02:59:11.000Z",
     "textPlain": "How did you do your setup ?, right now the only way i know how to run LLM is through LM studio.",
     "parent": 44858834,
+    "depth": 2
+  },
+  {
+    "id": 44863622,
+    "by": "fdalvi",
+    "timeISO": "2025-08-11T13:00:20.000Z",
+    "textPlain": "It is indeed not something clarified by the code snippets; In normal feedforward layers, it is common to choose the \"hidden_dim = 4 x emb_dim\", while in GLU feedforward layer, the convention is to use \"hidden_dim = 2/3 * regular_ffn_hidden_dim\" (to keep the overall number of parameters roughly the same). In the case of gpt-oss, they chose to go a bit more extreme and set \"hidden_dim = emb_dim\", thus reducing the overall number of parameters!",
+    "parent": 44863558,
     "depth": 2
   },
   {
@@ -328,14 +328,6 @@
     "depth": 2
   },
   {
-    "id": 44860867,
-    "by": "vintermann",
-    "timeISO": "2025-08-11T05:04:24.000Z",
-    "textPlain": "First suspicion is that HSTS is doing what it's supposed to, and that you're connecting from somewhere they try to insert themselves in the middle of all https traffic. Https snooping is sadly not uncommon, some businesses think they're entitled to do it for you using their network.",
-    "parent": 44858940,
-    "depth": 2
-  },
-  {
     "id": 44862533,
     "by": "LarMachinarum",
     "timeISO": "2025-08-11T10:00:39.000Z",
@@ -349,6 +341,14 @@
     "timeISO": "2025-08-10T21:50:47.000Z",
     "textPlain": "The ollama one uses even less (around 13 GB), which is nice. Apparently the gpt-oss team also shared the mxfp4 optimizations for metal",
     "parent": 44858227,
+    "depth": 2
+  },
+  {
+    "id": 44860867,
+    "by": "vintermann",
+    "timeISO": "2025-08-11T05:04:24.000Z",
+    "textPlain": "First suspicion is that HSTS is doing what it's supposed to, and that you're connecting from somewhere they try to insert themselves in the middle of all https traffic. Https snooping is sadly not uncommon, some businesses think they're entitled to do it for you using their network.",
+    "parent": 44858940,
     "depth": 2
   },
   {

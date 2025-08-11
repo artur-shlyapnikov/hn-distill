@@ -19,7 +19,7 @@
     "id": 44864401,
     "by": "Bender",
     "timeISO": "2025-08-11T14:20:28.000Z",
-    "textPlain": "ssh-audit [1] should be updated to test for this theoretical algo.  I still get an \"A\" despite fixating on a specific algo and not including the quantum.  I'm doing the cha-cha.[1] - https://www.ssh-audit.com/",
+    "textPlain": "ssh-audit [1] should be updated to test for this theoretical algo.  I still get an \"A\" despite fixating on a specific algo and not including the quantus.  I'm doing the cha-cha.[1] - https://www.ssh-audit.com/",
     "parent": 44863242,
     "depth": 1
   },
@@ -88,10 +88,10 @@
     "depth": 2
   },
   {
-    "id": 44863740,
-    "by": "hannob",
-    "timeISO": "2025-08-11T13:17:33.000Z",
-    "textPlain": "> As far as I understand, the key material for any post quantum algorithm is much, much larger compared to non-quantum algorithmsThis is somewhat correct, but needs some nuance.First, the problem is bigger with signatures, which is why nobody is happy with the current post quantum signature schemes and people are working on better pq signature schemes for the future. But signatures aren't an urgent issue, as there is no \"decrypt later\" scenario for signatures.For encryption, the overhead exists, but it isn't too bad. We are already deploying pqcrypto, and nobody seems to have an issue with it. Use a current OpenSSH and you use mlkem. Use a current browser with a server using modern libraries and you also use mlkem. I haven't heard anyone complaining that the Internet got so much slower in recent years due to pqcrypto key exchanges.Compared to the overall traffic we use commonly these days, the few extra kb during the handshake (everything else is not affected) doesn't matter much.",
+    "id": 44864877,
+    "by": "lucb1e",
+    "timeISO": "2025-08-11T14:58:02.000Z",
+    "textPlain": "Besides what's public knowledge, I tend to put a bit of stock in our intelligence agency calling for PQ adoption for systems that need to remain confidential for 20 years or moreedit: adding in some sources2014: \"between 2030 and 2040\" according to https://www.aivd.nl/publicaties/publicaties/2014/11/20/infor... (404) via https://tweakers.net/reviews/5885/de-dreiging-van-quantumcom... (Dutch)2021: \"small chance it arrives by 2030\" https://www.aivd.nl/documenten/publicaties/2021/09/23/bereid... (Dutch)2025: \"protect against ‘store now, decrypt later’ attacks by 2030\", joint paper from 18 countries https://www.aivd.nl/binaries/aivd_nl/documenten/brochures/20... (English)",
     "parent": 44863450,
     "depth": 2
   },
@@ -104,14 +104,6 @@
     "depth": 2
   },
   {
-    "id": 44863603,
-    "by": "Rebelgecko",
-    "timeISO": "2025-08-11T12:58:06.000Z",
-    "textPlain": "I imagine the key exchange is just once per connection, right? So the overhead seems not too bad.Especially since I think a pretty large number of computers/hostnames that are ssh'able today will probably have the same root password if they're still connected to the internet 10-20 years from now",
-    "parent": 44863450,
-    "depth": 2
-  },
-  {
     "id": 44863503,
     "by": "tptacek",
     "timeISO": "2025-08-11T12:40:35.000Z",
@@ -120,10 +112,18 @@
     "depth": 2
   },
   {
-    "id": 44863584,
-    "by": "daneel_w",
-    "timeISO": "2025-08-11T12:55:19.000Z",
-    "textPlain": ">... which leads to huge overheads in network traffic and of course CPU time.This is just the key exchange. You're exchanging keys for the symmetric cipher you'll be using for traffic in the session. There's really no overhead to talk about.",
+    "id": 44863740,
+    "by": "hannob",
+    "timeISO": "2025-08-11T13:17:33.000Z",
+    "textPlain": "> As far as I understand, the key material for any post quantum algorithm is much, much larger compared to non-quantum algorithmsThis is somewhat correct, but needs some nuance.First, the problem is bigger with signatures, which is why nobody is happy with the current post quantum signature schemes and people are working on better pq signature schemes for the future. But signatures aren't an urgent issue, as there is no \"decrypt later\" scenario for signatures.For encryption, the overhead exists, but it isn't too bad. We are already deploying pqcrypto, and nobody seems to have an issue with it. Use a current OpenSSH and you use mlkem. Use a current browser with a server using modern libraries and you also use mlkem. I haven't heard anyone complaining that the Internet got so much slower in recent years due to pqcrypto key exchanges.Compared to the overall traffic we use commonly these days, the few extra kb during the handshake (everything else is not affected) doesn't matter much.",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44863603,
+    "by": "Rebelgecko",
+    "timeISO": "2025-08-11T12:58:06.000Z",
+    "textPlain": "I imagine the key exchange is just once per connection, right? So the overhead seems not too bad.Especially since I think a pretty large number of computers/hostnames that are ssh'able today will probably have the same root password if they're still connected to the internet 10-20 years from now",
     "parent": 44863450,
     "depth": 2
   },
@@ -132,6 +132,14 @@
     "by": "EthanHeilman",
     "timeISO": "2025-08-11T12:58:14.000Z",
     "textPlain": "That's just a fun joke paper deflating some of the more aggressive hype around QC. You shouldn't use it for making security and algorithm adoption decisions.",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44863584,
+    "by": "daneel_w",
+    "timeISO": "2025-08-11T12:55:19.000Z",
+    "textPlain": ">... which leads to huge overheads in network traffic and of course CPU time.This is just the key exchange. You're exchanging keys for the symmetric cipher you'll be using for traffic in the session. There's really no overhead to talk about.",
     "parent": 44863450,
     "depth": 2
   },

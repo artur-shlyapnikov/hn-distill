@@ -1,0 +1,138 @@
+[
+  {
+    "id": 44864716,
+    "by": "stanmancan",
+    "timeISO": "2025-08-11T14:45:16.000Z",
+    "textPlain": "Not 100% sure what I'm looking at here? Am I missing something or is it just table of data with an \"infinite scroll\" that loads 200 records at a time?It looks like the parent height is set to 25000025px so that it looks like all of the data is loaded at once but it's fetching batches of 200 records at a time on demand.",
+    "parent": 44863323,
+    "depth": 1
+  },
+  {
+    "id": 44865072,
+    "by": "zoba",
+    "timeISO": "2025-08-11T15:13:55.000Z",
+    "textPlain": "Is this... a database? A set of react components? An app? Should be much more immediately understandable.",
+    "parent": 44863323,
+    "depth": 1
+  },
+  {
+    "id": 44864923,
+    "by": "turblety",
+    "timeISO": "2025-08-11T15:01:11.000Z",
+    "textPlain": "Nice one!Coincidentally I worked on a large table renderer too this weekend:\nhttps://github.com/markwylde/react-massive-tableI noticed you didn't quite get to a million rows. For me, it cut off at 671088.Same thing happened when I built my one.I came across the same thing. In the end I just manual made the rows appear at their absolute position. Seemed to work well.",
+    "parent": 44863323,
+    "depth": 1
+  },
+  {
+    "id": 44865141,
+    "by": "bram2w",
+    "timeISO": "2025-08-11T15:20:24.000Z",
+    "textPlain": "When I started working on Baserow (this seems similar based on the roadmap), a couple of years ago, I thought it would be a big challenge to quickly render a million rows in the browser. Introducing a system that fetches a page of rows based on the scroll offset, and with a small debounce did the trick. We only had a couple of field types, and it was all incredibly fastThe thing that make performance complicated for a no-code database is when you have 30 interconnected tables, some tables with 200 fields, containing many formulas or other computed fields like lookups or rollups. Updating a single cell, can result in thousands of other rows that must be updated across different tables. If there are 30 users making constant changes, locking PostgreSQL rows under the hood while the formulas are recalculated, and then a couple of n8n workflows making a many API requests to those tables, that's when things get interesting. Especially in combination with features like webhooks, real-time updates, 100+ filters, grouping, 26 field types, date dependencies, aggregations, importing/exporting whole databases.When implementing a new feature, I've heard users say that's not complicated because it's just adding a checkbox. Making to run it at scale and keeping things performant is what's making it complicated.",
+    "parent": 44863323,
+    "depth": 1
+  },
+  {
+    "id": 44865014,
+    "by": "wwdx",
+    "timeISO": "2025-08-11T15:08:38.000Z",
+    "textPlain": "Good idea but it flashes/blinks when I scroll which doesns't feel very smooth.",
+    "parent": 44863323,
+    "depth": 1
+  },
+  {
+    "id": 44865020,
+    "by": "spicybright",
+    "timeISO": "2025-08-11T15:09:19.000Z",
+    "textPlain": "What is it though? Management tool is so vague.",
+    "parent": 44863323,
+    "depth": 1
+  },
+  {
+    "id": 44864578,
+    "by": "captn3m0",
+    "timeISO": "2025-08-11T14:34:30.000Z",
+    "textPlain": "Firefox/iOS - attempting to scroll the demo after zooming in a bit, just refreshes the page.",
+    "parent": 44863323,
+    "depth": 1
+  },
+  {
+    "id": 44864857,
+    "by": "notachatbot123",
+    "timeISO": "2025-08-11T14:56:15.000Z",
+    "textPlain": "Congrats on your vibe-coded website!",
+    "parent": 44863323,
+    "depth": 1
+  },
+  {
+    "id": 44865033,
+    "by": "whalesalad",
+    "timeISO": "2025-08-11T15:09:59.000Z",
+    "textPlain": "I really wish 1M rows was impressive.",
+    "parent": 44863323,
+    "depth": 1
+  },
+  {
+    "id": 44864669,
+    "by": "forshaper",
+    "timeISO": "2025-08-11T14:41:17.000Z",
+    "textPlain": "what can I do with these really big tables?",
+    "parent": 44863323,
+    "depth": 1
+  },
+  {
+    "id": 44864641,
+    "by": "xnx",
+    "timeISO": "2025-08-11T14:39:25.000Z",
+    "textPlain": "\"lightening fast\"? Probably meant \"lightning fast\".",
+    "parent": 44863323,
+    "depth": 1
+  },
+  {
+    "id": 44864763,
+    "by": "myflash13",
+    "timeISO": "2025-08-11T14:48:27.000Z",
+    "textPlain": "oh dear, another Airtable clone. Also see Baserow.",
+    "parent": 44863323,
+    "depth": 1
+  },
+  {
+    "id": 44865204,
+    "by": "burkaman",
+    "timeISO": "2025-08-11T15:24:47.000Z",
+    "textPlain": "In Phase 3 there will be AI Features though.",
+    "parent": 44864716,
+    "depth": 2
+  },
+  {
+    "id": 44865048,
+    "by": "ankitchhatbar",
+    "timeISO": "2025-08-11T15:11:33.000Z",
+    "textPlain": "Loading more than a few thousand rows on a web page will make unusably slow. Especially when you add a lot more features to it.This is such that only what's seen or about to be seen is put on the page. The rest is kept ready on the server on local memory depending on what the user is doing.This allows for a scalable solution that allows you to view thousands of records and interact with them",
+    "parent": 44864716,
+    "depth": 2
+  },
+  {
+    "id": 44864833,
+    "by": "vlan121",
+    "timeISO": "2025-08-11T14:53:47.000Z",
+    "textPlain": "Looks like this, like someone is rebranding pagination.",
+    "parent": 44864716,
+    "depth": 2
+  },
+  {
+    "id": 44864935,
+    "by": "leftnode",
+    "timeISO": "2025-08-11T15:02:28.000Z",
+    "textPlain": "The company names look like Amazon merchants.",
+    "parent": 44864716,
+    "depth": 2
+  },
+  {
+    "id": 44864990,
+    "by": "ankitchhatbar",
+    "timeISO": "2025-08-11T15:06:29.000Z",
+    "textPlain": "What browser are you using?\nSome browsers cut off early due to scroll limitations. I could get Firefox to about 300,000",
+    "parent": 44864923,
+    "depth": 2
+  }
+]

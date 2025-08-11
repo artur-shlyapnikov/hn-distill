@@ -16,10 +16,26 @@
     "depth": 1
   },
   {
+    "id": 44865087,
+    "by": "comonoid",
+    "timeISO": "2025-08-11T15:15:10.000Z",
+    "textPlain": "Do you even lift?",
+    "parent": 44858892,
+    "depth": 1
+  },
+  {
     "id": 44860653,
     "by": "kazinator",
     "timeISO": "2025-08-11T03:58:55.000Z",
     "textPlain": "In the TXR Lisp compiler, I did lambda lifiting simply: lambda expressions that don't capture variables can move to the top via a code transformation that inserts them into a load-time form (very similar to ANSI Common Lisp's load-time-value).E.g.  (let ((fun (lambda (x) (+ x x))))\n    ...)\n\nThat can just be turned into:  (let ((fun (load-time (lambda (x) (+ x x)))))\n    ...)\n\nThen the compilation strategy for load-time takes care of it. I had load-time working and debugged at the time I started thinking about optimizing lambdas in this way, so it was obvious.load-time creates a kind of pseudo-constant. The compiler arranges for the enclosed expression to be evaluated just once. The object is captured and it becomes a de-facto constant after that; each time the expression is evaluated it just refers to that object.At the VM level, constants are represented by D registers. The only reason D registers are writable is to support load-time: load time will store a value into a D register, where it becomes indistinguishable from a constant. If I were so inclined, I could put in a vm feature that will write-protect the D register file after the static time has done executing.If we compile the following expression, the d0 register is initially nil. The d1 register holds 3, which comes from the (+ 3 x ) expression:  1> (compile-toplevel '(lambda () (lambda (x) (+ 3 x))))\n  #<sys:vm-desc: a32a150>\n  2> (disassemble *1)\n  data:\n      0: nil\n      1: 3\n  syms:\n      0: sys:b+\n  code:\n      0: 8C000009 close d0 0 4 9 1 1 nil t2\n      1: 00000400\n      2: 00010001\n      3: 00000004\n      4: 00000002\n      5: 20020003 gcall t3 0 d1 t2\n      6: 04010000\n      7: 00000002\n      8: 10000003 end t3\n      9: 8C00000E close t2 0 2 14 0 0 nil\n     10: 00000002\n     11: 00000000\n     12: 00000002\n     13: 10000400 end d0\n     14: 10000002 end t2\n  instruction count:\n      6\n  #<sys:vm-desc: a32a150>\n\nThe close instruction has d0 as its destination register \"close d0 ...\". The 9 argument i",
+    "parent": 44858892,
+    "depth": 1
+  },
+  {
+    "id": 44864526,
+    "by": "FrustratedMonky",
+    "timeISO": "2025-08-11T14:30:51.000Z",
+    "textPlain": "Off topic,  but anybody have a quick take why LISP isn't the primary language of all of these AI models, and why everybody defaulted to using Python.I just remember 30 years ago everyone thought LISP would be the language of AI.Was it just that some nice easy Python Libraries came out, and that was enough to win the mindshare market.?  More people can use Python Glue?",
     "parent": 44858892,
     "depth": 1
   },
@@ -53,6 +69,14 @@
     "timeISO": "2025-08-11T02:49:04.000Z",
     "textPlain": "> Using the quote form, lists, vectors, and strings can be turned into constants as well.So all of these forms will transformed to bss?",
     "parent": 44859422,
+    "depth": 2
+  },
+  {
+    "id": 44864997,
+    "by": "Jtsummers",
+    "timeISO": "2025-08-11T15:07:00.000Z",
+    "textPlain": "Lisp's market share was declining 30 years ago and only continued to decline. Python's has consistently risen in that same time. Also, Lisp offers little benefit, if any, when all the ANN implementations rely on C++ and CUDA code. You can write fast numerical code in Lisp, but it's not as straightforward and it's certainly not an idiomatic or common way to use Lisp. That could have let it compete with the C++ libraries, but wouldn't help with the GPU programming part. Lisp could have been the glue language like Python, but again, Python's popularity was on the rise and Lisp's on the decline.",
+    "parent": 44864526,
     "depth": 2
   }
 ]
