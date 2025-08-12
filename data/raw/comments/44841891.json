@@ -24,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44873417,
+    "by": "fattah25",
+    "timeISO": "2025-08-12T07:32:22.000Z",
+    "textPlain": "Rust here rust there. We are just talking about C not rust. Why we have to using rust. If you talking memory safety why there is no one recommends Ada language instead of rust.We have zig, Hare, Odin, V too.",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
     "id": 44873816,
     "by": "laauraa",
     "timeISO": "2025-08-12T08:32:54.000Z",
@@ -48,14 +56,6 @@
     "depth": 1
   },
   {
-    "id": 44873417,
-    "by": "fattah25",
-    "timeISO": "2025-08-12T07:32:22.000Z",
-    "textPlain": "Rust here rust there. We are just talking about C not rust. Why we have to using rust. If you talking memory safety why there is no one recommends Ada language instead of rust.We have zig, Hare, Odin, V too.",
-    "parent": 44841891,
-    "depth": 1
-  },
-  {
     "id": 44874971,
     "by": "IshKebab",
     "timeISO": "2025-08-12T11:38:17.000Z",
@@ -64,18 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44874612,
-    "by": "roman_soldier",
-    "timeISO": "2025-08-12T10:46:23.000Z",
-    "textPlain": "Just use Zig, it fixes all this",
-    "parent": 44841891,
-    "depth": 1
-  },
-  {
     "id": 44874015,
     "by": "pizlonator",
     "timeISO": "2025-08-12T09:05:57.000Z",
     "textPlain": "I don’t buy the “it’s because of optimization argument”.And I especially don’t buy that UB is there for register allocation.First of all, that argument only explains UB of OOB memory accesses at best.Second, you could define the meaning of OOB by just saying “pointers are integers” and then further state that nonescaping locals don’t get addresses. Many ways you could specify that, if you cared badly enough. My favorite way to do it involves saying that pointers to locals are lazy thunks that create addresses on demand.",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
+    "id": 44874612,
+    "by": "roman_soldier",
+    "timeISO": "2025-08-12T10:46:23.000Z",
+    "textPlain": "Just use Zig, it fixes all this",
     "parent": 44841891,
     "depth": 1
   },
@@ -133,6 +133,38 @@
     "timeISO": "2025-08-12T11:13:15.000Z",
     "textPlain": "> Including a header that is not in the program, and not in ISO C, is undefined behavior.What is this supposed to mean? I can't think of any interpretation that makes sense.I think ISO C defines the executable program to be something like the compiled translation units linked together. But header files do not have to have any particular correspondence to translation units. For example, a header might declare functions whose definitions are spread across multiple translation units, or define things that don't need any definitions in particular translation units (e.g. enum or struct definitions). It could even play macro tricks which means it declares or defines different things each time you include it.Maybe you mean it's undefined behaviour to include a header file that declares functions that are not defined in any translation unit. I'm not sure even that is true, so long as you don't use those functions. It's definitely not true in C++, where it's only a problem (not sure if it's undefined exactly) if you ODR-rule use a function that has been declared but not defined anywhere. (Examples of ODR-rule use are calling or taking the address of the function, but not, for example, using sizeof on an expression that includes it.)",
     "parent": 44873848,
+    "depth": 2
+  },
+  {
+    "id": 44875755,
+    "by": "the__alchemist",
+    "timeISO": "2025-08-12T13:05:04.000Z",
+    "textPlain": "Even within the rust OSS community it's irritating. They will try to cancel people for writing libs using `unsafe`, and makes APIs difficult to use by wrapping things in multiple layers of traits, then claim using other patters are unsafe/unsound/UB. They make claims that things like DMA are \"advanced topics\", and \"We haven't figured it out yet/found a good solution yet\". Love rust/hate the Satefy Inquisition. Or say things like \"Why use rust if you don't use all the safety-features and traits\"... which belittles rust as a one-trick lang!",
+    "parent": 44873417,
+    "depth": 2
+  },
+  {
+    "id": 44873466,
+    "by": "ViewTrick1002",
+    "timeISO": "2025-08-12T07:40:55.000Z",
+    "textPlain": "> Ada language instead of rustBecause it never achieved mainstream success?And Zig for example is very much not memory safe. Which a cursory search for ”segfault” in the Bun repo quickly tells you.https://github.com/oven-sh/bun/issues?q=is%3Aissue%20state%3...",
+    "parent": 44873417,
+    "depth": 2
+  },
+  {
+    "id": 44874163,
+    "by": "pjmlp",
+    "timeISO": "2025-08-12T09:27:38.000Z",
+    "textPlain": "None of them solve use after free, for example.Ada would rather be a nice choice, but most hackers love their curly brackets.",
+    "parent": 44873417,
+    "depth": 2
+  },
+  {
+    "id": 44876023,
+    "by": "account42",
+    "timeISO": "2025-08-12T13:35:44.000Z",
+    "textPlain": "That's unfortunate.",
+    "parent": 44873816,
     "depth": 2
   },
   {
@@ -200,18 +232,18 @@
     "depth": 2
   },
   {
-    "id": 44874529,
-    "by": "m-schuetz",
-    "timeISO": "2025-08-12T10:31:22.000Z",
-    "textPlain": "Prototyping in any domain. It's nice to do some quick&dirty way to rapidly evaluate ideas and solutions.",
-    "parent": 44841999,
-    "depth": 2
-  },
-  {
     "id": 44842977,
     "by": "imadr",
     "timeISO": "2025-08-09T00:13:51.000Z",
     "textPlain": "I haven't used Rust extensively so I can't make any criticism besides that I find compilation times to be slower than C",
+    "parent": 44841999,
+    "depth": 2
+  },
+  {
+    "id": 44874529,
+    "by": "m-schuetz",
+    "timeISO": "2025-08-12T10:31:22.000Z",
+    "textPlain": "Prototyping in any domain. It's nice to do some quick&dirty way to rapidly evaluate ideas and solutions.",
     "parent": 44841999,
     "depth": 2
   },
@@ -224,27 +256,19 @@
     "depth": 2
   },
   {
-    "id": 44873466,
-    "by": "ViewTrick1002",
-    "timeISO": "2025-08-12T07:40:55.000Z",
-    "textPlain": "> Ada language instead of rustBecause it never achieved mainstream success?And Zig for example is very much not memory safe. Which a cursory search for ”segfault” in the Bun repo quickly tells you.https://github.com/oven-sh/bun/issues?q=is%3Aissue%20state%3...",
-    "parent": 44873417,
-    "depth": 2
-  },
-  {
-    "id": 44874163,
-    "by": "pjmlp",
-    "timeISO": "2025-08-12T09:27:38.000Z",
-    "textPlain": "None of them solve use after free, for example.Ada would rather be a nice choice, but most hackers love their curly brackets.",
-    "parent": 44873417,
-    "depth": 2
-  },
-  {
     "id": 44875034,
     "by": "flohofwoe",
     "timeISO": "2025-08-12T11:46:39.000Z",
     "textPlain": "I'd say the original intent of UB was not the sort of \"optimizer exploits\" we see today, but to allow wiggle room for supporting vastly different CPUs without having to compromise runtime performance or increasing compiler complexity to balance performance versus correctness. Basically an escape hatch for compilers. The difference to IB also has always been quite fuzzy.Also the C spec has always been a pragmatic afterthought, created and maintained to establish at least a minimal common feature set expected of C compilers.The really interesting stuff still only exists outside the spec in vendor language extensions.",
     "parent": 44874971,
+    "depth": 2
+  },
+  {
+    "id": 44875912,
+    "by": "OskarS",
+    "timeISO": "2025-08-12T13:24:14.000Z",
+    "textPlain": "No, it's absolutely because of optimization. For instance, C++20 defined signed integer representation as having two's complement, but signed integer overflow is still undefined behaviour. The reason is that if you compile with flags that make it defined, you lose a few percentage points of performance (primarily from preventing loop unrolling and auto-vectorization).Same thing with e.g. strict aliasing or the various UB that exists in the standard library. For instance, it's UB to pass a null pointer to strlen. Of course, you can make that perfectly defined by adding an `if` to strlen that just returns 0. But then you're adding a branch to every strlen, and C is simply not willing to do that for performance reasons, so they say \"this is UB\" instead.Pretty much instance of UB in standard C or C++ is because making it defined would either hamper the optimizer, or it would make standard library functions slower. They don't just make things UB for fun.",
+    "parent": 44874015,
     "depth": 2
   },
   {

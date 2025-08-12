@@ -1,10 +1,58 @@
 [
   {
+    "id": 44875635,
+    "by": "pityJuke",
+    "timeISO": "2025-08-12T12:55:02.000Z",
+    "textPlain": "> The exploit abused that feature to trigger a previously unknown path traversal flaw that caused WinRAR to plant malicious executables in attacker-chosen file paths %TEMP% and %LOCALAPPDATA%, which Windows normally makes off-limits because of their ability to execute code.This seems... wrong? Isn't %LOCALAPPDATA% commonly used to store executables for programs that want to install for a single user and not the whole computer? An example of which includes Google Chrome?",
+    "parent": 44875311,
+    "depth": 1
+  },
+  {
     "id": 44875525,
     "by": "smokel",
     "timeISO": "2025-08-12T12:43:59.000Z",
     "textPlain": "> WinRAR, a utility for compressing files, and has an installed base of about 500 million.Yeah, right.Edit: this figure is possibly taken from the WinRAR website [1].  It is more likely that there have been that many cumulative downloads, and even that seems to be a high number.  Given that Windows has .zip file support built-in for quite some time, and the fact that nearly nobody downloads .zip files anymore, makes me very suspicious of this kind of statistic.[1] https://www.win-rar.com/",
     "parent": 44875311,
     "depth": 1
+  },
+  {
+    "id": 44875761,
+    "by": "jeroenhd",
+    "timeISO": "2025-08-12T13:05:47.000Z",
+    "textPlain": "ESET's story seems to make more sense: https://www.welivesecurity.com/en/eset-research/update-winra...The exploit abuses ADSes with ..\\ in the name to drop files on the system that aren't visible in the WinRAR file browser. It drops malware in the temp directory and then a .lnk in the Startup directory to activate an attack against COM, influencing the DLL that's being loaded by legitimate applications.",
+    "parent": 44875635,
+    "depth": 2
+  },
+  {
+    "id": 44875954,
+    "by": "nerdjon",
+    "timeISO": "2025-08-12T13:29:12.000Z",
+    "textPlain": "I don't doubt the numbers.Until very recently Windows could not natively unarchive .rar files and you needed to download WinRAR to be able to do this. I still find it not terribly uncommon to run into a random .rar file that previously would have meant I needed to install it, even if I only used it once.> and the fact that nearly nobody downloads .zip files anymoreCitation needed? Why would people not be downloading .zip files anymore?",
+    "parent": 44875525,
+    "depth": 2
+  },
+  {
+    "id": 44875592,
+    "by": "sidewndr46",
+    "timeISO": "2025-08-12T12:51:34.000Z",
+    "textPlain": "While I know that WinRAR has some die-hard user bases, I have never been sure who their paying user base is. Are there some companies that are completely dependent on WinRAR for some internal processes?",
+    "parent": 44875525,
+    "depth": 2
+  },
+  {
+    "id": 44875687,
+    "by": "jeroenhd",
+    "timeISO": "2025-08-12T12:59:34.000Z",
+    "textPlain": "WinRAR is still very popular in my experience. I don't know why, but it definitely is. People still send me .rar files.",
+    "parent": 44875525,
+    "depth": 2
+  },
+  {
+    "id": 44875654,
+    "by": "close04",
+    "timeISO": "2025-08-12T12:56:29.000Z",
+    "textPlain": "WinRAR's strong point is support for RAR archives, not ZIP which has been natively supported in Windows for years (since XP?).I think Windows 11 got native RAR and 7Z support recently but I'm not sure what libraries are used for this.",
+    "parent": 44875525,
+    "depth": 2
   }
 ]
