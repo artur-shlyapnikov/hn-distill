@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44874570,
+    "by": "zerof1l",
+    "timeISO": "2025-08-12T10:39:20.000Z",
+    "textPlain": "> ... that these \"reasoning\" models can often produce incoherent, logically unsound answers when questions include irrelevant clauses or deviate even slightly from common templates found in their training data.I have encountered this problem numerous times, now. It really makes me believe that the models do not really understand the topic, even the basics but just try to predict the text.One recent example was me asking the model to fix my docker-compose file. In it, there's the `network: host` for the `build` part. The model kept assuming that the container would be running with the host network and kept asking me to remove it as a way to fix my issue, even though it wouldn't do anything for the container that is running. Because container runs on `custom_net` network only. The model was obsessed with it and kept telling me to remove it until I explicitly told that it is not, and cannot be the issue.```\nservices:  app:\n\n    build:\n\n      network: host\n\n    networks:\n\n      custom_net:\n\n    ...\n\n```",
+    "parent": 44872850,
+    "depth": 1
+  },
+  {
     "id": 44873405,
     "by": "syllogism",
     "timeISO": "2025-08-12T07:29:11.000Z",
@@ -16,10 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44874208,
-    "by": "moi2388",
-    "timeISO": "2025-08-12T09:35:31.000Z",
-    "textPlain": "“ the researchers created a carefully controlled LLM environment in an attempt to measure just how well chain-of-thought reasoning works when presented with \"out of domain\" logical problems that don't match the specific logical patterns found in their training data.”Why? If it’s out of domain we know it’ll fail.",
+    "id": 44874508,
+    "by": "afro88",
+    "timeISO": "2025-08-12T10:28:22.000Z",
+    "textPlain": "I have a real world problem I gave o1 when it came out and it got it quite wrong. It's a scheduling problem with 4 different constraints that vary each day, and success\n criteria that need to be fulfilled over the whole week.GPT-5 Thinking (Think Longer)  and Opus 4.1 Extended Thinking both get it right.Maybe this unique problem is somehow a part of synthetic training data? Or maybe it's not and the paper is wrong? Either way, we have models that are much more capable at solving unique problems today.",
+    "parent": 44872850,
+    "depth": 1
+  },
+  {
+    "id": 44873130,
+    "by": "Frieren",
+    "timeISO": "2025-08-12T06:43:32.000Z",
+    "textPlain": "This assessment fits with my anecdotal evidence. LLMs just cannot reason in any basic way.LLMs have a large knowledge base that can be spit out at a moment notice. But they have zero insight on its contents, even when the information has just been asked a few lines before.Most of the \"intelligence\" that LLMs show is just the ability to ask in the correct way the correct questions mirrored back to the user. That is why there is so many advice on how to do \"proper prompting\".That and the fact that most questions have already been asked before as anyone that spend some time in StackOverflow back in the day realized. And memory and not reasoning is what is needed to answer them.",
     "parent": 44872850,
     "depth": 1
   },
@@ -32,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44873130,
-    "by": "Frieren",
-    "timeISO": "2025-08-12T06:43:32.000Z",
-    "textPlain": "This assessment fits with my anecdotal evidence. LLMs just cannot reason in any basic way.LLMs have a large knowledge base that can be spit out at a moment notice. But they have zero insight on its contents, even when the information has just been asked a few lines before.Most of the \"intelligence\" that LLMs show is just the ability to ask in the correct way the correct questions mirrored back to the user. That is why there is so many advice on how to do \"proper prompting\".That and the fact that most questions have already been asked before as anyone that spend some time in StackOverflow back in the day realized. And memory and not reasoning is what is needed to answer them.",
+    "id": 44874208,
+    "by": "moi2388",
+    "timeISO": "2025-08-12T09:35:31.000Z",
+    "textPlain": "“ the researchers created a carefully controlled LLM environment in an attempt to measure just how well chain-of-thought reasoning works when presented with \"out of domain\" logical problems that don't match the specific logical patterns found in their training data.”Why? If it’s out of domain we know it’ll fail.",
     "parent": 44872850,
     "depth": 1
   },
@@ -80,14 +96,6 @@
     "depth": 1
   },
   {
-    "id": 44873291,
-    "by": "willvarfar",
-    "timeISO": "2025-08-12T07:10:56.000Z",
-    "textPlain": "Doing analysis on small models or small data is perfectly valid if the results extrapolate to large models.  Which is why right now we're looking at new research papers that are still listing the same small datasets and comparing to the same small models that papers five years ago did.",
-    "parent": 44873038,
-    "depth": 2
-  },
-  {
     "id": 44873722,
     "by": "OtherShrezzing",
     "timeISO": "2025-08-12T08:18:26.000Z",
@@ -96,10 +104,10 @@
     "depth": 2
   },
   {
-    "id": 44873651,
-    "by": "kazinator",
-    "timeISO": "2025-08-12T08:07:52.000Z",
-    "textPlain": "> conclusions gathered from toy models and implying this generalises to production LLMs is uselessYou are just trotting out the tired argument that model size magically fixes the issues, rather than just improves the mirage, and so nothing can be known about models with M parameters by studying models with N < M parameters.Given enough parameters, a miraculous threshold is reached whereby LLMs switch from interpolating to extrapolating.Sure!",
+    "id": 44873291,
+    "by": "willvarfar",
+    "timeISO": "2025-08-12T07:10:56.000Z",
+    "textPlain": "Doing analysis on small models or small data is perfectly valid if the results extrapolate to large models.  Which is why right now we're looking at new research papers that are still listing the same small datasets and comparing to the same small models that papers five years ago did.",
     "parent": 44873038,
     "depth": 2
   },
@@ -112,10 +120,26 @@
     "depth": 2
   },
   {
+    "id": 44873651,
+    "by": "kazinator",
+    "timeISO": "2025-08-12T08:07:52.000Z",
+    "textPlain": "> conclusions gathered from toy models and implying this generalises to production LLMs is uselessYou are just trotting out the tired argument that model size magically fixes the issues, rather than just improves the mirage, and so nothing can be known about models with M parameters by studying models with N < M parameters.Given enough parameters, a miraculous threshold is reached whereby LLMs switch from interpolating to extrapolating.Sure!",
+    "parent": 44873038,
+    "depth": 2
+  },
+  {
     "id": 44874454,
     "by": "wzdd",
     "timeISO": "2025-08-12T10:20:46.000Z",
     "textPlain": "> The mechanism that the model uses to transition towards the answer is to generate intermediate text.Yes, which makes sense, because if there's a landscape of states that the model is traversing, and there are probablistically likely pathways between an initial state and the desired output, but there isn't a direct pathway, then training the the model to generate intermediate text in order to move across that landscape so it can reach the desired output state is a good idea.Presumably LLM companies are aware that there is (in general) no relationship between the generated intermediate text and the output, and the point of the article is that by calling it a \"chain of thought\" rather than \"essentially-meaningless intermediate text which increases the number of potential states the model can reach\" users are misled into thinking that the model is reasoning, and may then make unwarranted assumptions, such as that the model could in general apply the same reasoning to similar problems, which is in general not true.",
+    "parent": 44873405,
+    "depth": 2
+  },
+  {
+    "id": 44874731,
+    "by": "skywhopper",
+    "timeISO": "2025-08-12T11:04:57.000Z",
+    "textPlain": "So, you agree with the point that they’re making and you’re mad about it? It’s important to state that the models aren’t doing real reasoning because they are being marketed and sold as if they are.As for your question: ‘So what does \"sophisticated simulators of reasoning-like text\" even mean here?’It means CoT interstitial “reasoning” steps produce text that looks like reasoning, but is just a rough approximation, given that the reasoning often doesn’t line up with the conclusion, or the priors, or reality.",
     "parent": 44873405,
     "depth": 2
   },
@@ -128,11 +152,11 @@
     "depth": 2
   },
   {
-    "id": 44874400,
-    "by": "Octoth0rpe",
-    "timeISO": "2025-08-12T10:10:15.000Z",
-    "textPlain": "I don't think we know that it'll fail, or at least that is not universally accepted as true. Rather, there are claims that given a large enough model / context window, such capabilities emerge. I think skepticism of that claim is warranted. This research validates that skepticism, at least for a certain parameters (model family/size, context size, etc).",
-    "parent": 44874208,
+    "id": 44873409,
+    "by": "PeterStuer",
+    "timeISO": "2025-08-12T07:29:54.000Z",
+    "textPlain": "Please don't tell me you were one of those marking every SO question as duplicate, more often than not missing the entire nuance in the question that made it not a duplicate at all, and the answers to the so called previously asked question utterly unusable?This was one of those infuriating things that drove so many away from SO and jump ship the second there was an alternative.",
+    "parent": 44873130,
     "depth": 2
   },
   {
@@ -144,11 +168,19 @@
     "depth": 2
   },
   {
-    "id": 44873409,
-    "by": "PeterStuer",
-    "timeISO": "2025-08-12T07:29:54.000Z",
-    "textPlain": "Please don't tell me you were one of those marking every SO question as duplicate, more often than not missing the entire nuance in the question that made it not a duplicate at all, and the answers to the so called previously asked question utterly unusable?This was one of those infuriating things that drove so many away from SO and jump ship the second there was an alternative.",
-    "parent": 44873130,
+    "id": 44874811,
+    "by": "podgorniy",
+    "timeISO": "2025-08-12T11:15:41.000Z",
+    "textPlain": "> Why? If it’s out of domain we know it’ll fail.To see if LLMs adhere to logic or observed \"logical\" responses are rather reproduction of patterns.I personally enjoy this idea of isolation \"logic\" from \"pattern\" and seeing if \"logic\" will manifest in LLM \"thinking\" about in \"non-patternized\" domain.--Also it's never bad give proves to public that \"thinking\" (like \"intelligence\") in AI context isn't the same thing we think about intuitively.--> If it’s out of domain we know it’ll fail.Below goes question which is out of domain. Yet LLMs handle the replies in what appearing as logical way.```\nKookers are blight. And shmakers are sin. If peker is blight and sin who is he?\n```It is out of domain and it does not fail (I've put it through thinking gemini 2.5). Now back to article. Is observed logic intristic to LLMs or it's an elaborate form of a pattern? Acoording to article it's a pattern.",
+    "parent": 44874208,
+    "depth": 2
+  },
+  {
+    "id": 44874400,
+    "by": "Octoth0rpe",
+    "timeISO": "2025-08-12T10:10:15.000Z",
+    "textPlain": "I don't think we know that it'll fail, or at least that is not universally accepted as true. Rather, there are claims that given a large enough model / context window, such capabilities emerge. I think skepticism of that claim is warranted. This research validates that skepticism, at least for a certain parameters (model family/size, context size, etc).",
+    "parent": 44874208,
     "depth": 2
   },
   {

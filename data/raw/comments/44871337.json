@@ -1,5 +1,21 @@
 [
   {
+    "id": 44874657,
+    "by": "throwdbaaway",
+    "timeISO": "2025-08-12T10:53:42.000Z",
+    "textPlain": "So GLM-4.5 series omits the embedding layer and the output layer when counting both the total parameters and the active parameters:> When counting parameters, for GLM-4.5 and GLM-4.5-Air, we include the parameters of MTP layers but not word embeddings and the output layer.This matches with the calculation I did for GLM-4.5 (355B A32B):    In [14]: 356732107008 - (775946240 * 2) # token_embd / output are 775946240 each. assume omitted\n    Out[14]: 355180214528\n\n    In [15]: 356732107008 - 339738624000 - (775946240 * 2) # parameters that are always active\n    Out[15]: 15441590528\n\n    In [16]: 339738624000 * 8 / 160 # parameters from activated experts\n    Out[16]: 16986931200.0\n\nMeanwhile, GPT OSS series includes both the embedding layer and the output layer when counting the total parameters, but only includes the output layer when counting the active parameters:> We refer to the models as “120b” and “20b” for simplicity, though they technically have 116.8B and 20.9B parameters, respectively. Unembedding parameters are counted towards active, but not embeddings.And Qwen3 series includes both the embedding layer and the output layer when counting both the total parameters and the active parameters.Why there is no standard in counting? Which approach is more accurate?",
+    "parent": 44871337,
+    "depth": 1
+  },
+  {
+    "id": 44874852,
+    "by": "matijsvzuijlen",
+    "timeISO": "2025-08-12T11:20:15.000Z",
+    "textPlain": "For people who, like me, prefer to read the abstract first: https://www.arxiv.org/abs/2508.06471",
+    "parent": 44871337,
+    "depth": 1
+  },
+  {
     "id": 44871980,
     "by": "starchild3001",
     "timeISO": "2025-08-12T03:15:27.000Z",
@@ -40,18 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44874350,
-    "by": "khalic",
-    "timeISO": "2025-08-12T10:00:15.000Z",
-    "textPlain": "Impressive work! Can’t wait to spin it up on HF",
-    "parent": 44871337,
-    "depth": 1
-  },
-  {
     "id": 44871786,
     "by": "Reubend",
     "timeISO": "2025-08-12T02:47:31.000Z",
     "textPlain": "Fantastic release, and it's under the Apache license too. I'm so happy that we've got open source models pushing the envelope.",
+    "parent": 44871337,
+    "depth": 1
+  },
+  {
+    "id": 44874350,
+    "by": "khalic",
+    "timeISO": "2025-08-12T10:00:15.000Z",
+    "textPlain": "Impressive work! Can’t wait to spin it up on HF",
     "parent": 44871337,
     "depth": 1
   },
@@ -64,18 +80,18 @@
     "depth": 1
   },
   {
-    "id": 44872784,
-    "by": "chvid",
-    "timeISO": "2025-08-12T05:39:28.000Z",
-    "textPlain": "This is a great model for software development - probably the best of the freely available ones.",
-    "parent": 44871337,
-    "depth": 1
-  },
-  {
     "id": 44871650,
     "by": "lumost",
     "timeISO": "2025-08-12T02:25:18.000Z",
     "textPlain": "Why was qwen3 omitted from the coding benchmark but not other benchmarks?",
+    "parent": 44871337,
+    "depth": 1
+  },
+  {
+    "id": 44872784,
+    "by": "chvid",
+    "timeISO": "2025-08-12T05:39:28.000Z",
+    "textPlain": "This is a great model for software development - probably the best of the freely available ones.",
     "parent": 44871337,
     "depth": 1
   },
@@ -88,10 +104,10 @@
     "depth": 1
   },
   {
-    "id": 44873814,
-    "by": "almaight",
-    "timeISO": "2025-08-12T08:32:25.000Z",
-    "textPlain": "so sarcastic when it first came out, but now you are so polite.",
+    "id": 44874604,
+    "by": "sriku",
+    "timeISO": "2025-08-12T10:45:01.000Z",
+    "textPlain": "Ok so I asked \"how many bs in bluberry\" and it \"thought\" the following ------  First, the question is: \"How many bs in bluberry?\" That seems like a typo. I   think it's meant to be \"blueberry,\" but it's spelled \"bluberry\" with one 'e' missing. Also, \"bs\" probably refers to the letter 'b'.\n  So, rephrasing the question: How many times does the letter 'b' appear in the word \"blueberry\"?\n  But the word given is \"bluberry,\" which might be a misspelling of \"blueberry.\" Let me confirm the correct spelling. The standard spelling is \"blueberry,\" which has two 'e's: b-l-u-e-b-e-r-r-y.\n  The question says \"bluberry,\" which is missing the second 'e', so it's spelled b-l-u-b-e-r-r-y. That might be intentional or a mistake. I should answer based on the word as given.\n  The question is: \"How many bs in bluberry?\" So, I need to count the 'b's in \"bluberry.\"\n  Let me write it out: B-L-U-B-E-R-R-Y.\n  Now, I'll go through each letter:\n  Position 1: B (that's one b)\n  Position 2: L (not b)\n  Position 3: U (not b)\n  Position 4: B (that's the second b)\n  Position 5: E (not b)\n  Position 6: R (not b)\n  Position 7: R (not b)\n  Position 8: Y (not b)\n  So, there are two 'b's in \"bluberry.\"\n  But is \"bluberry\" the correct word? It's probably a misspelling of \"blueberry.\" In \"blueberry,\" it's B-L-U-E-B-E-R-R-Y.\n  Position 1: B (one)\n  Position 2: L\n  Position 3: U\n  Position 4: E\n  Position 5: B (two)\n  Position 6: E\n  Position 7: R\n  Position 8: R\n  Position 9: Y\n  \"Blueberry\" has nine letters, and there are two 'b's: one at the start and one after the 'e'.\n  In \"bluberry,\" as given, it's eight letters: B-L-U-B-E-R-R-Y, with two 'b's.\n  Perhaps the question is tricking me with the misspelling. But I should answer based on what's written.\n  Another thought: \"bs\" might be plural for 'b', meaning how many 'b's, or it could be something else. But in context, it's likely about the letter.\n  Maybe it's a riddle. \"Bluberry\" sounds like \"blueberry,\" but spelled differently.\n  Perhaps \"bs\" refers to ",
     "parent": 44871337,
     "depth": 1
   },
@@ -100,6 +116,14 @@
     "by": "buyucu",
     "timeISO": "2025-08-12T06:02:41.000Z",
     "textPlain": "Huge respect to the open-source culture in China.  The Chinese are really leading the world in democratizing AI.",
+    "parent": 44871337,
+    "depth": 1
+  },
+  {
+    "id": 44873814,
+    "by": "almaight",
+    "timeISO": "2025-08-12T08:32:25.000Z",
+    "textPlain": "so sarcastic when it first came out, but now you are so polite.",
     "parent": 44871337,
     "depth": 1
   },
@@ -128,18 +152,18 @@
     "depth": 2
   },
   {
-    "id": 44874150,
-    "by": "mrklol",
-    "timeISO": "2025-08-12T09:26:28.000Z",
-    "textPlain": "About your first point, I also feel like Claude is better if there’s more in the context where 4.5 is getting \"worse\".",
-    "parent": 44871910,
-    "depth": 2
-  },
-  {
     "id": 44873170,
     "by": "faangguyindia",
     "timeISO": "2025-08-12T06:50:42.000Z",
     "textPlain": "I've been using architect mode in aiderDeepseek R1 (does high level planning) combined with Qwen3 480B (does low level coding) or whatever is available from qwen code apis.It's working great.It solves 99.99% problem on tis own.The seperation isn't very good in aider so i later plan to make my own tool to achieve better workflow.",
+    "parent": 44871910,
+    "depth": 2
+  },
+  {
+    "id": 44874150,
+    "by": "mrklol",
+    "timeISO": "2025-08-12T09:26:28.000Z",
+    "textPlain": "About your first point, I also feel like Claude is better if there’s more in the context where 4.5 is getting \"worse\".",
     "parent": 44871910,
     "depth": 2
   },
@@ -160,14 +184,6 @@
     "depth": 2
   },
   {
-    "id": 44873911,
-    "by": "natrys",
-    "timeISO": "2025-08-12T08:48:19.000Z",
-    "textPlain": "Yep I think it's the best, period. Qwen3-coder perhaps took the limelight but the GLM models perform and behave better in agentic loops. I cannot believe they had gone from a 32B frontend focused GLM-4 to these beasts that can challenge Claude, in a matter of months.",
-    "parent": 44872784,
-    "depth": 2
-  },
-  {
     "id": 44872011,
     "by": "coder543",
     "timeISO": "2025-08-12T03:20:24.000Z",
@@ -181,6 +197,22 @@
     "timeISO": "2025-08-12T09:38:02.000Z",
     "textPlain": "Qwen is still naive for large codebase understanding.",
     "parent": 44871650,
+    "depth": 2
+  },
+  {
+    "id": 44873911,
+    "by": "natrys",
+    "timeISO": "2025-08-12T08:48:19.000Z",
+    "textPlain": "Yep I think it's the best, period. Qwen3-coder perhaps took the limelight but the GLM models perform and behave better in agentic loops. I cannot believe they had gone from a 32B frontend focused GLM-4 to these beasts that can challenge Claude, in a matter of months.",
+    "parent": 44872784,
+    "depth": 2
+  },
+  {
+    "id": 44874697,
+    "by": "quantumHazer",
+    "timeISO": "2025-08-12T11:00:31.000Z",
+    "textPlain": "It's open-weight, not open source though",
+    "parent": 44872918,
     "depth": 2
   }
 ]
