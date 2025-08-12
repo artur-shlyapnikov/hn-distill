@@ -1,5 +1,13 @@
 [
   {
+    "id": 44872050,
+    "by": "dehrmann",
+    "timeISO": "2025-08-12T03:25:07.000Z",
+    "textPlain": "The high-level pitch of P cores and E cores seems so elegant, but when it actually comes to scheduling, it gets messy fast. Even in a laptop running off a battery, you can't simply switch to E cores because some short-lived work might be latency-sensitive. You also can't assume long-running work should be on an E core because maybe you're anxious to get that video encoded. Even for lots of small work, different core can have different performance characteristics, and a P core might be more efficient for certain workloads.",
+    "parent": 44833869,
+    "depth": 1
+  },
+  {
     "id": 44871654,
     "by": "themafia",
     "timeISO": "2025-08-12T02:25:44.000Z",
@@ -8,10 +16,26 @@
     "depth": 1
   },
   {
-    "id": 44871965,
-    "by": "dehrmann",
-    "timeISO": "2025-08-12T03:13:32.000Z",
-    "textPlain": "There are also Xeons, but it limits an OS to use in data centers.",
+    "id": 44872254,
+    "by": "nine_k",
+    "timeISO": "2025-08-12T03:57:35.000Z",
+    "textPlain": "Funny enough, Unix already has user-settable priorities, aka \"nice level\". ACPI gives us an idea how plentiful the power is.So, when powered by AC power, schedule everything on P cores when possible, schedule processes that eat a lot of CPU on P cores, same for any process with a negative nice value.When powered by a battery, schedule anything with non-negative nice value on E cores, keep one P core up for real-time tasks, and for nice-below-zero tasks.These are two extremes, but I suppose that the idea is understandable.",
+    "parent": 44872050,
+    "depth": 2
+  },
+  {
+    "id": 44872093,
+    "by": "jcelerier",
+    "timeISO": "2025-08-12T03:31:42.000Z",
+    "textPlain": "As a user with a laptop, the last thing I want is the OS to decide for me. I want to tell it myself \"this is sensitive, put all your energy into it because I'm five minutes away from pushing that important work and I have seven minutes of battery left\" or \"this won't work at all if run at less than 2 GHz\" vs \"I must drag what I'm doing along for as long as I can, save every bit of battery possible. The computer can't know about these cases.",
+    "parent": 44872050,
+    "depth": 2
+  },
+  {
+    "id": 44872413,
+    "by": "wtallis",
+    "timeISO": "2025-08-12T04:27:20.000Z",
+    "textPlain": "> Apart from some models of Alder LakeThat bit actually still applies. Intel may have branded the 14100F as Raptor Lake, but it is almost certainly Alder Lake silicon, just a higher speed bin of the 12100F.See https://www.intel.com/content/www/us/en/products/compare.htm... and note how none of them get the higher DRAM frequency support or larger L2 caches characteristic of Raptor Lake silicon.",
     "parent": 44871654,
     "depth": 2
   },
@@ -20,6 +44,14 @@
     "by": "pixl97",
     "timeISO": "2025-08-12T02:44:34.000Z",
     "textPlain": "How about change that to \"Anything with more than 6 cores\". Anything with 4 cores only has one speed of core. At 6 cores it more of a mixed bag, some have all the same cores, some have a split of performance and efficient cores. Anything over an i5 will have E cores.",
+    "parent": 44871654,
+    "depth": 2
+  },
+  {
+    "id": 44871965,
+    "by": "dehrmann",
+    "timeISO": "2025-08-12T03:13:32.000Z",
+    "textPlain": "There are also Xeons, but it limits an OS to use in data centers.",
     "parent": 44871654,
     "depth": 2
   }
