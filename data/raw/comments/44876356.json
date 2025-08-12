@@ -6,5 +6,61 @@
     "textPlain": "I don't see what nix is doing for you? There's vim, absolutely, coreutils (though I don't immediately see anything GNU-specific), and a tiny wrapper script that happens to be written in flake.nix but could trivially be factored out. I don't see anything that I wouldn't expect to run on, say, OpenBSD if you installed vim.(That said, yes, it's a nice journaling system)",
     "parent": 44876356,
     "depth": 1
+  },
+  {
+    "id": 44882311,
+    "by": "sigmonsays",
+    "timeISO": "2025-08-12T22:03:50.000Z",
+    "textPlain": "here I am tangenting into wtf tangled.sh is, maybe that's the entire point of this submission.",
+    "parent": 44876356,
+    "depth": 1
+  },
+  {
+    "id": 44881958,
+    "by": "petepete",
+    "timeISO": "2025-08-12T21:22:27.000Z",
+    "textPlain": "I wish all my todo items had 2-3 words. This looks fine with the examples but I bet it’s not so clean with realistic data.",
+    "parent": 44876356,
+    "depth": 1
+  },
+  {
+    "id": 44882023,
+    "by": "semiinfinitely",
+    "timeISO": "2025-08-12T21:31:08.000Z",
+    "textPlain": "what is this nix religion I keep hearing about",
+    "parent": 44876356,
+    "depth": 1
+  },
+  {
+    "id": 44882217,
+    "by": "0xCMP",
+    "timeISO": "2025-08-12T21:52:58.000Z",
+    "textPlain": "Yea I don't see Nix doing much here particularly, but for me I typically would do something like this to make the system as consistent as possible over a long period of time without being actively maintained.I guess this does ensure the key `journal` command works exactly the same because the dateutils binary will stay locked to the version in the `flake.lock`.I would have assumed that nvim would also be locked because that's where I would expect more possible breaking changes with the existing special config.With little tools/projects like these I could easily see months-years before it would get any active attention from me again (or simply I wouldn't be using it; so it doesn't matter).",
+    "parent": 44881908,
+    "depth": 2
+  },
+  {
+    "id": 44882124,
+    "by": "bspammer",
+    "timeISO": "2025-08-12T21:43:16.000Z",
+    "textPlain": "This is a pretty poor example for a few reasons, but the idea is that anyone get can a shell with the tool fully installed along with all its dependencies, with a single command:nix shell 'git+https://tangled.sh/@oppi.li/journal'It's massive overkill for a shell alias, but for a more complex project it can be very nice.",
+    "parent": 44881908,
+    "depth": 2
+  },
+  {
+    "id": 44882195,
+    "by": "rikafurude21",
+    "timeISO": "2025-08-12T21:49:59.000Z",
+    "textPlain": "author seems to be the type to follow tech trends and use them to signal \"coolness\" - people like that use these absurd stacks because its niche, not for any actual benefit",
+    "parent": 44881908,
+    "depth": 2
+  },
+  {
+    "id": 44882175,
+    "by": "atrus",
+    "timeISO": "2025-08-12T21:47:50.000Z",
+    "textPlain": "Nix is a form of computing that's simultaneously 20 years in the past and 20 years in the future. I love it.Honest answer though, it's a deterministic way of building up a computer/environment. Think pip/uv/packages.lock but for everything.",
+    "parent": 44882023,
+    "depth": 2
   }
 ]

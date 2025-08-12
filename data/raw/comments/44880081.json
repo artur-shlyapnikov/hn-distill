@@ -40,6 +40,14 @@
     "depth": 1
   },
   {
+    "id": 44882358,
+    "by": "slt2021",
+    "timeISO": "2025-08-12T22:08:52.000Z",
+    "textPlain": "this use case of postgres + CDC + iceberg feel like the wrong architecture.postgres is for relational data, okCDC is meant to capture changes and process the changes only (in isolation from all previous changes), not to recover the snapshot of the original table by reimplementing the logic inside postgres of merge-on-readiceberg is columnar storage for large historical data for analytics, its not meant for relational data, and certainly not for realtimeit looks like they need to use time-series oriented db, like timescale, influxdb, etc",
+    "parent": 44880081,
+    "depth": 1
+  },
+  {
     "id": 44881709,
     "by": "ajd555",
     "timeISO": "2025-08-12T20:55:05.000Z",
