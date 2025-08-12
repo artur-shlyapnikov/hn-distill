@@ -1,13 +1,5 @@
 [
   {
-    "id": 44873808,
-    "by": "ChrisMarshallNY",
-    "timeISO": "2025-08-12T08:31:24.000Z",
-    "textPlain": "In Swift, we use guard clauses a lot. I think that guard can compile well. This posting helps me to understand why.",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
     "id": 44869452,
     "by": "hinkley",
     "timeISO": "2025-08-11T21:03:55.000Z",
@@ -44,6 +36,14 @@
     "by": "munchler",
     "timeISO": "2025-08-11T21:56:51.000Z",
     "textPlain": "Every developer should know how to write a tail-recursive function and understand why it is equivalent to a loop. That said, tail recursion is rarely needed in modern functional programming. For example, why write out a recursive function when a call to `fold` or `map` will do the same thing?",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44873808,
+    "by": "ChrisMarshallNY",
+    "timeISO": "2025-08-12T08:31:24.000Z",
+    "textPlain": "In Swift, we use guard clauses a lot. I think that guard can compile well (not just in recursion). This posting helps me to understand why.",
     "parent": 44837949,
     "depth": 1
   },
@@ -112,18 +112,18 @@
     "depth": 1
   },
   {
-    "id": 44870159,
-    "by": "username3",
-    "timeISO": "2025-08-11T22:23:39.000Z",
-    "textPlain": "> I wrote up a detailed blog post about tail call optimization in Elixir/Erlang and its performance. The TLDR; sort of is that none tail call optimized recursive functions (body-recursive) can be faster and more memory efficient than TCO functions. This is something that I never thought before, that TCO is always faster seems to be a common misconception. My example is also not contrived - it’s an implementation of map.https://pragtob.wordpress.com/2016/06/16/tail-call-optimizat...",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
     "id": 44870415,
     "by": "tylerhou",
     "timeISO": "2025-08-11T22:58:58.000Z",
     "textPlain": "I disagree with the title; loops are tail-recursive functions, but tail-recursive functions are not loops (in the sense that squares are rectangles, but rectangles are not squares).It is true that every tail recursive function can be converted into a semantically equivalent loop via a transformation like CPS (which the author mentions). However, for mutually tail-recursive functions, this conversion loses control flow information. This is because after the CPS transformation, calls to the other function become calls to a continuation; this call usually must be implemented as an indirect jump. On the other hand, mutually tail-recursive functions can call each other with direct/statically-known jumps.This loss of information might appear trivial, but in practice it has some important consequences. Classic examples are interpreter loops. It is well-known that computed gotos can result in modest to large speedups for interpreters [1]. The reason why is that computed gotos create an indirect jump per opcode, so a branch predictor can take advantage of correlations between opcodes. For example, looking at Python disassembly, the header of a standard range for loop compiles down to three opcodes: GET_ITER, FOR_ITER, STORE_FAST in sequence [2]. A branch predictor can recognize that the target of the \"FOR_ITER\" indirect jump will likely be the \"STORE_FAST\" instruction pointer; it cannot predict this in the naive implementation where jumps for all instructions are \"merged\" into a single indirect jump / switch at the top of the loop body. In this case, computed goto is effectively equivalent to a CPS transformation whose closures require no storage on the heap.Suppose, however, we know even more information about the instruction sequence; for example, we know ahead of time that every FOR_ITER opcode will be followed by a STORE_FAST opcode. We could completely replace the indirect jump with a direct jump to the instruction pointer for the STORE_FAST opcode. Because modern branc",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44870159,
+    "by": "username3",
+    "timeISO": "2025-08-11T22:23:39.000Z",
+    "textPlain": "> I wrote up a detailed blog post about tail call optimization in Elixir/Erlang and its performance. The TLDR; sort of is that none tail call optimized recursive functions (body-recursive) can be faster and more memory efficient than TCO functions. This is something that I never thought before, that TCO is always faster seems to be a common misconception. My example is also not contrived - it’s an implementation of map.https://pragtob.wordpress.com/2016/06/16/tail-call-optimizat...",
     "parent": 44837949,
     "depth": 1
   },
@@ -168,18 +168,18 @@
     "depth": 2
   },
   {
-    "id": 44869605,
-    "by": "CalChris",
-    "timeISO": "2025-08-11T21:21:41.000Z",
-    "textPlain": "I must have missed this class. How does one convert a recursive descent parser into an iterative one?",
-    "parent": 44869452,
-    "depth": 2
-  },
-  {
     "id": 44870935,
     "by": "zelphirkalt",
     "timeISO": "2025-08-12T00:15:12.000Z",
     "textPlain": "I have my doubts about any CS class/lecture, that teaches, that the \"iterative version is easier to scan\". Might just be the bias or inexperience of the lecturer. By not I find recursive to be often easier to read than some for loop with its loop header and counter that I need to think about and update in my mind. And then the loop usually in many languages does not even have a return value, because it is not an expression, but a statement. Meeehhh, very meehhh in many languages. Not all, but many.I think maybe in languages like Ruby or Smalltalk a loop can be more readable, because of how they structure it as messages to objects, rather than special keywords in the language.",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44869605,
+    "by": "CalChris",
+    "timeISO": "2025-08-11T21:21:41.000Z",
+    "textPlain": "I must have missed this class. How does one convert a recursive descent parser into an iterative one?",
     "parent": 44869452,
     "depth": 2
   },

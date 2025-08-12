@@ -16,14 +16,6 @@
     "depth": 1
   },
   {
-    "id": 44872693,
-    "by": "CGamesPlay",
-    "timeISO": "2025-08-12T05:21:28.000Z",
-    "textPlain": "It's really difficult to not assume malice with something like this. From the maintainer:> The stardict has \"Scan\" function, when user enable this function,\nafter user select some text, it will trigger stardict do translate for this selected text... Why the user selects some confidential data to query dictionary?",
-    "parent": 44872313,
-    "depth": 1
-  },
-  {
     "id": 44872752,
     "by": "Elucalidavah",
     "timeISO": "2025-08-12T05:34:34.000Z",
@@ -32,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44873701,
-    "by": "hiAndrewQuinn",
-    "timeISO": "2025-08-12T08:15:52.000Z",
-    "textPlain": ">This would normally not be much cause for concern; of course a dictionary program will include code to talk to dictionary-providing web sites.Hey, an area I finally know something about. It depends on what you're trying to do.The slimmed down version of a Finnish dictionary I provide in `tsk` [1] weighs in at around 30 MB, for about 250,000 Finnish words. It's small enough that I embed the whole dictionary directly into the binary and reconstruct the prefix search on the fly every time the user starts the app.However, the much larger database which contains things like lemmatization and etymology information easily balloons up to many, many gigabytes in size. My problem domain is providing Truly Instant Lookup, keystroke by keystroke, so I can't really get around this level of memoization. The work to figure all this out was sufficient that I decided to make future versions a paid product instead [2].Most other use cases would just call out to a server, because it's silly to think most people are going to download a giant database for that use case alone. A hybrid approach could also make a lot of sense, eg cache the most common 10,000 words locally and call out for the next 1.5 million, which are statistically extremely rare.[1]: https://github.com/hiandrewquinn/tsk[2]: https://taskusanakirja.com/ (offline for now until I get Digicert to certify my downloads wholesome for Windows resale)",
+    "id": 44872693,
+    "by": "CGamesPlay",
+    "timeISO": "2025-08-12T05:21:28.000Z",
+    "textPlain": "It's really difficult to not assume malice with something like this. From the maintainer:> The stardict has \"Scan\" function, when user enable this function,\nafter user select some text, it will trigger stardict do translate for this selected text... Why the user selects some confidential data to query dictionary?",
     "parent": 44872313,
     "depth": 1
   },
@@ -56,10 +48,42 @@
     "depth": 1
   },
   {
+    "id": 44873701,
+    "by": "hiAndrewQuinn",
+    "timeISO": "2025-08-12T08:15:52.000Z",
+    "textPlain": ">This would normally not be much cause for concern; of course a dictionary program will include code to talk to dictionary-providing web sites.Hey, an area I finally know something about. It depends on what you're trying to do.The slimmed down version of a Finnish dictionary I provide in `tsk` [1] weighs in at around 30 MB, for about 250,000 Finnish words. It's small enough that I embed the whole dictionary directly into the binary and reconstruct the prefix search on the fly every time the user starts the app.However, the much larger database which contains things like lemmatization and etymology information easily balloons up to many, many gigabytes in size. My problem domain is providing Truly Instant Lookup, keystroke by keystroke, so I can't really get around this level of memoization. The work to figure all this out was sufficient that I decided to make future versions a paid product instead [2].Most other use cases would just call out to a server, because it's silly to think most people are going to download a giant database for that use case alone. A hybrid approach could also make a lot of sense, eg cache the most common 10,000 words locally and call out for the next 1.5 million, which are statistically extremely rare.[1]: https://github.com/hiandrewquinn/tsk[2]: https://taskusanakirja.com/ (offline for now until I get Digicert to certify my downloads wholesome for Windows resale)",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
+    "id": 44874070,
+    "by": "blackhaz",
+    "timeISO": "2025-08-12T09:14:06.000Z",
+    "textPlain": "If I would be deciding, I would kick-ban StarDict immediately from the distribution, and scrutinize i) the maintainer for all the packages he has ever touched, ii) StarDict authors for allowing such a default behavior in their system.",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
+    "id": 44873561,
+    "by": "qwertox",
+    "timeISO": "2025-08-12T07:54:37.000Z",
+    "textPlain": "> StarDict on Wayland doesn't have this problem, because Wayland prevents applications from being able to capture text from other applications by default.StarDict on Wayland has a different issue, it causes a segfault.Sat, 02 Aug 2025: Bug#1003710: stardict crash in gnome with message Segmentation faulthttps://www.mail-archive.com/debian-bugs-dist@lists.debian.o...",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
     "id": 44872481,
     "by": "pabs3",
     "timeISO": "2025-08-12T04:43:07.000Z",
     "textPlain": "There are numerous privacy issues in distros, some known, most probably unknown, some examples from Debian:https://wiki.debian.org/PrivacyIssuesLuckily there are things like opensnitch that can block some of these issues:https://github.com/evilsocket/opensnitch",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
+    "id": 44873820,
+    "by": "Inityx",
+    "timeISO": "2025-08-12T08:33:20.000Z",
+    "textPlain": "> But the plugin actually reaches out to its backend servers — dict.youdao.com and dict.cn — over unsecured HTTP.What year is it?",
     "parent": 44872313,
     "depth": 1
   },
@@ -80,22 +104,6 @@
     "depth": 1
   },
   {
-    "id": 44873561,
-    "by": "qwertox",
-    "timeISO": "2025-08-12T07:54:37.000Z",
-    "textPlain": "> StarDict on Wayland doesn't have this problem, because Wayland prevents applications from being able to capture text from other applications by default.StarDict on Wayland has a different issue, it causes a segfault.Sat, 02 Aug 2025: Bug#1003710: stardict crash in gnome with message Segmentation faulthttps://www.mail-archive.com/debian-bugs-dist@lists.debian.o...",
-    "parent": 44872313,
-    "depth": 1
-  },
-  {
-    "id": 44873505,
-    "by": "sugarpimpdorsey",
-    "timeISO": "2025-08-12T07:46:25.000Z",
-    "textPlain": "How would you like to be the guy that reported this 10 years ago and had the bug closed on some technicality:https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=806960Given enough eyeballs, all bugs are closed as WONTFIX.",
-    "parent": 44872313,
-    "depth": 1
-  },
-  {
     "id": 44873444,
     "by": "est",
     "timeISO": "2025-08-12T07:37:46.000Z",
@@ -112,18 +120,18 @@
     "depth": 1
   },
   {
-    "id": 44873137,
-    "by": "themafia",
-    "timeISO": "2025-08-12T06:44:45.000Z",
-    "textPlain": "> Part of the justification for moving to Wayland over X11 is to make security vulnerabilities relating to one application spying on another more difficult to introduce.Yea,  because,  how else am I going to run shady poorly maintained dictionary software that ignores system settings from a hostile country?  What kind of world are we living in with X11?!The software could just as well hook into your downloads folder and transparently \"translate\" any downloaded text or PDF file for you.  In which case the method by which pixels arrive on your screen would not  be relevant.How is this an X11 vs Wayland issue and not a distribution hygiene issue?  Why is this package even a part of the distribution?  In the desire to force one desktop system to stop existing,  for whatever reason,  I think they've missed the broader point.",
+    "id": 44873505,
+    "by": "sugarpimpdorsey",
+    "timeISO": "2025-08-12T07:46:25.000Z",
+    "textPlain": "How would you like to be the guy that reported this 10 years ago and had the bug closed on some technicality:https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=806960Given enough eyeballs, all bugs are closed as WONTFIX.",
     "parent": 44872313,
     "depth": 1
   },
   {
-    "id": 44872810,
-    "by": "charcircuit",
-    "timeISO": "2025-08-12T05:45:45.000Z",
-    "textPlain": "Meanwhile on Android:- The clipboard can not be read by backgrounded applications- Apps by default are unable to use HTTP",
+    "id": 44873137,
+    "by": "themafia",
+    "timeISO": "2025-08-12T06:44:45.000Z",
+    "textPlain": "> Part of the justification for moving to Wayland over X11 is to make security vulnerabilities relating to one application spying on another more difficult to introduce.Yea,  because,  how else am I going to run shady poorly maintained dictionary software that ignores system settings from a hostile country?  What kind of world are we living in with X11?!The software could just as well hook into your downloads folder and transparently \"translate\" any downloaded text or PDF file for you.  In which case the method by which pixels arrive on your screen would not  be relevant.How is this an X11 vs Wayland issue and not a distribution hygiene issue?  Why is this package even a part of the distribution?  In the desire to force one desktop system to stop existing,  for whatever reason,  I think they've missed the broader point.",
     "parent": 44872313,
     "depth": 1
   },
@@ -136,6 +144,14 @@
     "depth": 1
   },
   {
+    "id": 44872810,
+    "by": "charcircuit",
+    "timeISO": "2025-08-12T05:45:45.000Z",
+    "textPlain": "Meanwhile on Android:- The clipboard can not be read by backgrounded applications- Apps by default are unable to use HTTP",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
     "id": 44872680,
     "by": "userbinator",
     "timeISO": "2025-08-12T05:20:03.000Z",
@@ -144,10 +160,34 @@
     "depth": 1
   },
   {
+    "id": 44873825,
+    "by": "jraph",
+    "timeISO": "2025-08-12T08:34:11.000Z",
+    "textPlain": "“the plans and the demolition orders have been on display at the local planning office on Alpha Centauri for fifty of your Earth years. If you can't be bothered to take an interest in local affairs...”https://www.youtube.com/watch?v=Z1Ba4BbH0oY",
+    "parent": 44873373,
+    "depth": 2
+  },
+  {
+    "id": 44874131,
+    "by": "fodmap",
+    "timeISO": "2025-08-12T09:24:04.000Z",
+    "textPlain": "I do agree with your point, specially when it is not the first time a package maintained by that guy does non-expected behavior like https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1010165 (Inappropriate package, modifies other package's (conf) files, should be removed from archive).",
+    "parent": 44873373,
+    "depth": 2
+  },
+  {
     "id": 44873388,
     "by": "jacquesm",
     "timeISO": "2025-08-12T07:26:25.000Z",
     "textPlain": "Such responses to me are proof of malicious intent.",
+    "parent": 44873373,
+    "depth": 2
+  },
+  {
+    "id": 44874041,
+    "by": "wat10000",
+    "timeISO": "2025-08-12T09:09:07.000Z",
+    "textPlain": "That doesn’t even address the problem! The package description does mention the scan feature, but not the automatically-send-it-to-a-server-in-plain-text feature.Sure, if you read the description and the list of plugins and correctly guess how this plugin is implemented, then you can deduce some of it.",
     "parent": 44873373,
     "depth": 2
   },
@@ -176,10 +216,10 @@
     "depth": 2
   },
   {
-    "id": 44873752,
-    "by": "waterhouse",
-    "timeISO": "2025-08-12T08:23:01.000Z",
-    "textPlain": "~> wc -cl /usr/share/dict/words\n  235976 2493885 /usr/share/dict/words\n\nOne might even expect a program to use a common Unix preinstalled dictionary.",
+    "id": 44874097,
+    "by": "pantalaimon",
+    "timeISO": "2025-08-12T09:18:58.000Z",
+    "textPlain": "The venerable ding does well with a local dictionary - and it's packaged in Debian toohttps://www-user.tu-chemnitz.de/~fri/ding/",
     "parent": 44872886,
     "depth": 2
   },
@@ -200,6 +240,14 @@
     "depth": 2
   },
   {
+    "id": 44873752,
+    "by": "waterhouse",
+    "timeISO": "2025-08-12T08:23:01.000Z",
+    "textPlain": "~> wc -cl /usr/share/dict/words\n  235976 2493885 /usr/share/dict/words\n\nOne might even expect a program to use a common Unix preinstalled dictionary.",
+    "parent": 44872886,
+    "depth": 2
+  },
+  {
     "id": 44873616,
     "by": "mayama",
     "timeISO": "2025-08-12T08:03:05.000Z",
@@ -216,19 +264,27 @@
     "depth": 2
   },
   {
-    "id": 44873614,
-    "by": "netsharc",
-    "timeISO": "2025-08-12T08:02:51.000Z",
-    "textPlain": "Would be funny if they couldn't tell that the text in a foreign language is confidential... maybe it's stamped \"秘密\".\"Sir, we have intel, the enemy is having translation server errors.\"",
-    "parent": 44872693,
+    "id": 44873994,
+    "by": "wat10000",
+    "timeISO": "2025-08-12T09:02:05.000Z",
+    "textPlain": "This sort of crap makes me sure I’ll be employable forever.I may not be on top of the latest trends, but at least I understand how computers work and what they can actually do.",
+    "parent": 44872886,
     "depth": 2
   },
   {
     "id": 44873247,
     "by": "CorrectHorseBat",
     "timeISO": "2025-08-12T07:04:54.000Z",
-    "textPlain": "I don't think it's malicious. It's a Chinese program, they have a different notion of privacy.Sogou, a keyboard for Windows, iOS and Android used by most Chinese users just sends everything (badly) encrypted to the cloud and nobody minds [1]. So I'm not very surprised the developer of stardict enabled this feature by default.https://citizenlab.ca/2023/08/vulnerabilities-in-sogou-keybo...",
+    "textPlain": "[flagged]",
     "parent": 44872752,
+    "depth": 2
+  },
+  {
+    "id": 44873614,
+    "by": "netsharc",
+    "timeISO": "2025-08-12T08:02:51.000Z",
+    "textPlain": "Would be funny if they couldn't tell that the text in a foreign language is confidential... maybe it's stamped \"秘密\".\"Sir, we have intel, the enemy is having translation server errors.\"",
+    "parent": 44872693,
     "depth": 2
   },
   {
@@ -256,6 +312,22 @@
     "depth": 2
   },
   {
+    "id": 44874030,
+    "by": "pcdoodle",
+    "timeISO": "2025-08-12T09:07:35.000Z",
+    "textPlain": "You're not alone. He/She needs a pi in the face bill gates style.",
+    "parent": 44873045,
+    "depth": 2
+  },
+  {
+    "id": 44873582,
+    "by": "account42",
+    "timeISO": "2025-08-12T07:57:49.000Z",
+    "textPlain": "Besides, capturing text from other applications is very much required for various utilities. It's as much of a security feature in Wayland as turning off your computer and never turning it back on is.",
+    "parent": 44873561,
+    "depth": 2
+  },
+  {
     "id": 44873764,
     "by": "account42",
     "timeISO": "2025-08-12T08:24:43.000Z",
@@ -272,11 +344,11 @@
     "depth": 2
   },
   {
-    "id": 44873582,
-    "by": "account42",
-    "timeISO": "2025-08-12T07:57:49.000Z",
-    "textPlain": "Besides, capturing text from other applications is very much required for various utilities. It's as much of a security feature in Wayland as turning off your computer and never turning it back on is.",
-    "parent": 44873561,
+    "id": 44873695,
+    "by": "jeroenhd",
+    "timeISO": "2025-08-12T08:14:57.000Z",
+    "textPlain": "Translation isn't the problem, sending data over the network by default is. Data is leaked to Chinese dictionary servers even if you're translating between European languages using a local language according to https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=806960.With the GDI hijacking programs you usually download them for specific languages with the knowledge they're internet connected.",
+    "parent": 44873444,
     "depth": 2
   },
   {
@@ -288,11 +360,11 @@
     "depth": 2
   },
   {
-    "id": 44873695,
-    "by": "jeroenhd",
-    "timeISO": "2025-08-12T08:14:57.000Z",
-    "textPlain": "Translation isn't the problem, sending data over the network by default is. Data is leaked to Chinese dictionary servers even if you're translating between European languages using a local language according to https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=806960.With the GDI hijacking programs you usually download them for specific languages with the knowledge they're internet connected.",
-    "parent": 44873444,
+    "id": 44873840,
+    "by": "account42",
+    "timeISO": "2025-08-12T08:36:05.000Z",
+    "textPlain": "It's not a technicality, the package was removed from Debian so there was no reason to keep the bug report open. And it was reopened by a debian developer when the package was reintroduced a year later.That's not an excuse for why it wasn't dealt with until now but what you are suggesting didn't happen.",
+    "parent": 44873505,
     "depth": 2
   },
   {
@@ -312,22 +384,6 @@
     "depth": 2
   },
   {
-    "id": 44872968,
-    "by": "cdmckay",
-    "timeISO": "2025-08-12T06:10:22.000Z",
-    "textPlain": "Meanwhile on Wayland:\n> StarDict on Wayland doesn't have this problem, because Wayland prevents applications from being able to capture text from other applications by default.",
-    "parent": 44872810,
-    "depth": 2
-  },
-  {
-    "id": 44873094,
-    "by": "gkbrk",
-    "timeISO": "2025-08-12T06:34:35.000Z",
-    "textPlain": "Which Android versions ask for permission before an app can make HTTP requests? I know it's something the app has to declare in the manifest, but other than obscure ROMs every normal version of Android just allows network usage without asking the user.",
-    "parent": 44872810,
-    "depth": 2
-  },
-  {
     "id": 44873492,
     "by": "qwertox",
     "timeISO": "2025-08-12T07:44:55.000Z",
@@ -336,19 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44872800,
-    "by": "01HNNWZ0MV43FF",
-    "timeISO": "2025-08-12T05:43:57.000Z",
-    "textPlain": "> a password is worth something only to those who know what the password is forI also copy-paste my username from KeePass, so you'd pretty quickly get everything",
-    "parent": 44872680,
-    "depth": 2
-  },
-  {
-    "id": 44872700,
-    "by": "therein",
-    "timeISO": "2025-08-12T05:22:29.000Z",
-    "textPlain": "I have seen people paste their seed phrase into the URL bar in Chrome, which will send it to Google for auto-complete. Even the access log itself is going to contain compromising information in that case, since that is sent a part of the query string.",
-    "parent": 44872680,
+    "id": 44872968,
+    "by": "cdmckay",
+    "timeISO": "2025-08-12T06:10:22.000Z",
+    "textPlain": "Meanwhile on Wayland:\n> StarDict on Wayland doesn't have this problem, because Wayland prevents applications from being able to capture text from other applications by default.",
+    "parent": 44872810,
     "depth": 2
   }
 ]

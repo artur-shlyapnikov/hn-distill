@@ -32,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44867014,
-    "by": "thayne",
-    "timeISO": "2025-08-11T17:35:42.000Z",
-    "textPlain": "Is there a PQC hybrid algorithm available for OpenSSH that is compliant with FIPS 140-3?",
-    "parent": 44863242,
-    "depth": 1
-  },
-  {
     "id": 44863522,
     "by": "Havoc",
     "timeISO": "2025-08-11T12:43:16.000Z",
     "textPlain": "Makes sense to get ahead of this. Especially when it’s a pretty trivial key swop.Which of the two options given is stronger? Presumably the 512 one?",
+    "parent": 44863242,
+    "depth": 1
+  },
+  {
+    "id": 44867014,
+    "by": "thayne",
+    "timeISO": "2025-08-11T17:35:42.000Z",
+    "textPlain": "Is there a PQC hybrid algorithm available for OpenSSH that is compliant with FIPS 140-3?",
     "parent": 44863242,
     "depth": 1
   },
@@ -208,14 +208,6 @@
     "depth": 2
   },
   {
-    "id": 44871052,
-    "by": "djmdjm",
-    "timeISO": "2025-08-12T00:35:26.000Z",
-    "textPlain": "FIPS certification is given to an entire \"cryptographic module\" that includes hardware and software. \"FIPS compliant OpenSSH\" is therefore a misnomer, you have to certify OpenSSH running on a particular OS on particular hardware.FIPS compliance does require use of specific algorithms. ML-KEM is NIST approved and AFAIK NIST is on record saying that hybrid KEMs are fine. My understanding is therefore that it would be possible for mlkem768x25519-sha256 (supported by OpenSSH) to be certified.caveat: IANAFA (I am not a FIPS auditor)",
-    "parent": 44867014,
-    "depth": 2
-  },
-  {
     "id": 44863562,
     "by": "cnst",
     "timeISO": "2025-08-11T12:50:11.000Z",
@@ -237,6 +229,14 @@
     "timeISO": "2025-08-11T13:57:06.000Z",
     "textPlain": "mlkem is a sane default, since it's the construction the rest of the industry is standardizing on.",
     "parent": 44863522,
+    "depth": 2
+  },
+  {
+    "id": 44871052,
+    "by": "djmdjm",
+    "timeISO": "2025-08-12T00:35:26.000Z",
+    "textPlain": "FIPS certification is given to an entire \"cryptographic module\" that includes hardware and software. \"FIPS compliant OpenSSH\" is therefore a misnomer, you have to certify OpenSSH running on a particular OS on particular hardware.FIPS compliance does require use of specific algorithms. ML-KEM is NIST approved and AFAIK NIST is on record saying that hybrid KEMs are fine. My understanding is therefore that it would be possible for mlkem768x25519-sha256 (supported by OpenSSH) to be certified.caveat: IANAFA (I am not a FIPS auditor)",
+    "parent": 44867014,
     "depth": 2
   },
   {

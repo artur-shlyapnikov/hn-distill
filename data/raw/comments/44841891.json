@@ -1,9 +1,9 @@
 [
   {
-    "id": 44873773,
-    "by": "kazinator",
-    "timeISO": "2025-08-12T08:26:24.000Z",
-    "textPlain": "[delayed]",
+    "id": 44874034,
+    "by": "safercplusplus",
+    "timeISO": "2025-08-12T09:08:01.000Z",
+    "textPlain": "A couple of solutions in development (but already usable) that more effectively address UB:i) \"Fil-C is a fanatically compatible memory-safe implementation of C and C++. Lots of software compiles and runs with Fil-C with zero or minimal changes. All memory safety errors are caught as Fil-C panics.\"\n\"Fil-C only works on Linux/X86_64.\"ii) \"scpptool is a command line tool to help enforce a memory and data race safe subset of C++. It's designed to work with the SaferCPlusPlus library. It analyzes the specified C++ file(s) and reports places in the code that it cannot verify to be safe. By design, the tool and the library should be able to fully ensure \"lifetime\", bounds and data race safety.\"\n\"This tool also has some ability to convert C source files to the memory safe subset of C++ it enforces\"",
     "parent": 44841891,
     "depth": 1
   },
@@ -16,10 +16,42 @@
     "depth": 1
   },
   {
+    "id": 44873848,
+    "by": "kazinator",
+    "timeISO": "2025-08-12T08:37:57.000Z",
+    "textPlain": "Undefined behavior only means that ISO C doesn't give requirements, not that nobody gives requirements. Many useful extensions are instances where undefined behavior is documented by an implementation.Including a header that is not in the program, and not in ISO C, is undefined behavior. So is calling a function that is not in ISO C and not in the program. (If the function is not anywhere, the program won't link. But if it is somewhere, then ISO C has nothing to say about its behavior.)Correct, portable POSIX C programs have undefined behavior in ISO C; only if we interpret them via IEEE 1003 are they defined by that document.If you invent a new platform with a C compiler, you can have it such that #include <windows.h> reformats all the attached storage devices. ISO C allows this because it doesn't specify what happens if #include <windows.h> successfully resolves to a file and includes its contents. Those contents could be anything, including some compile-time instruction to do harm.Even if a compiler's documentationd doesn't grant that a certain instance of undefined behavior is a documented extension, the existence of a de facto extension can be inferred empirically through numerous experiments: compiling test code and reverse engineering the object code.Moreover, the source code for a compiler may be available; the behavior of something can be inferred from studying the code. The code could change in the next version. But so could the documentation; documentation can take away a documented extension the same way as a compiler code change can take away a de facto extension.Speaking of object code: if you follow a programming paradigm of verifying the object code, then undefined behavior becomes moot, to an extent. You don't trust the compiler anyway. If the machine code has the behavior which implements the requirements that your project expects of the source code, then the necessary thing has been somehow obtained.",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
+    "id": 44873816,
+    "by": "laauraa",
+    "timeISO": "2025-08-12T08:32:54.000Z",
+    "textPlain": ">Uninitialized dataThey at least fixed this in c++26.\nNo longer UB, but \"erroneous behavior\".\nStill some random garbage value (so an uninitialized pointer will likely lead to disastrous results still), but the compiler isn't allowed to fuck up your code, it has to generate code as if it had some value.",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
     "id": 44841999,
     "by": "VivaTechnics",
     "timeISO": "2025-08-08T21:43:59.000Z",
     "textPlain": "We switched to Rust.\nGenerally, are there specific domains or applications where C/C++ remain preferable? Many exist—but are there tasks Rust fundamentally cannot handle or is a weak choice?",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
+    "id": 44873773,
+    "by": "kazinator",
+    "timeISO": "2025-08-12T08:26:24.000Z",
+    "textPlain": "In C, using uninitialized data is undefined behavior only if:- it is an automatic variable whose address has not been taken; or- the uninitialized object' bits are such that it takes on a non-value representation.",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
+    "id": 44874015,
+    "by": "pizlonator",
+    "timeISO": "2025-08-12T09:05:57.000Z",
+    "textPlain": "I don’t buy the “it’s because of optimization argument”.And I especially don’t buy that UB is there for register allocation.First of all, that argument only explains UB of OOB memory accesses at best.Second, you could define the meaning of OOB by just saying “pointers are integers” and then further state that nonescaping locals don’t get addresses. Many ways you could specify that, if you cared badly enough. My favorite way to do it involves saying that pointers to locals are lazy thunks that create addresses on demand.",
     "parent": 44841891,
     "depth": 1
   },
@@ -32,18 +64,50 @@
     "depth": 1
   },
   {
-    "id": 44873789,
-    "by": "bluetomcat",
-    "timeISO": "2025-08-12T08:28:32.000Z",
-    "textPlain": "Rust encourages a rather different \"high-level\" programming style that doesn't suit the domains where C excels. Pattern matching, traits, annotations, generics and functional idioms make the language verbose and semantically-complex. C is a different kind of animal that encourages terseness and economy of expression. When you know what you are doing with C pointers, the compiler just doesn't get in the way.",
+    "id": 44873975,
+    "by": "ncruces",
+    "timeISO": "2025-08-12T08:57:40.000Z",
+    "textPlain": "And yet, I see P1434R0 seemingly trying to introduce new undefined behavior, around integer-to-pointer conversions, where previously you had reasonably sensible implementation defined behavior (the conversions “are intended to be consistent with the addressing structure of the execution environment\").https://www.open-std.org/jtc1/sc22/wg21/docs/papers/2019/p14...",
+    "parent": 44873493,
+    "depth": 2
+  },
+  {
+    "id": 44874122,
+    "by": "pjmlp",
+    "timeISO": "2025-08-12T09:22:40.000Z",
+    "textPlain": "Unfortunely it also means that when the programmer fails to understand what undefined behaviour is exposed on their code, the compiler is free to take advantage of that to do the ultimate performance optimizations as means to beat compiler benchmarks.The code change might come in something as innocent as a bug fix to the compiler.",
+    "parent": 44873848,
+    "depth": 2
+  },
+  {
+    "id": 44873859,
+    "by": "kazinator",
+    "timeISO": "2025-08-12T08:40:06.000Z",
+    "textPlain": "C also fixed it in its way.Access to an uninitialized object defined in automatic storage, whose address is not taken, is UB.Access to any uninitialized object whose bit pattern is a non-value, likewise.Otherwise, it's good: the value implied by the bit pattern is obtained and computation goes on its merry way.",
+    "parent": 44873816,
+    "depth": 2
+  },
+  {
+    "id": 44874147,
+    "by": "pjmlp",
+    "timeISO": "2025-08-12T09:25:46.000Z",
+    "textPlain": "Yes, all the industries where C and C++ are the industry standards like Khronos APIs, POSIX, CUDA, DirectX, Metal, console devkits, LLVM and GCC implementation,....Not only you are faced with creating your own wrappers, if no one else has done it already.The tooling, for IDEs and graphical debuggers, assumes either C or C++, so it won't be there for Rust.Ideally the day will come where those ecosystems might also embrace Rust, but that is still decades away maybe.",
     "parent": 44841999,
     "depth": 2
   },
   {
-    "id": 44873523,
-    "by": "uecker",
-    "timeISO": "2025-08-12T07:48:55.000Z",
-    "textPlain": "Advantages of C are short compilation time, portability, long-term stability, widely available expertise and training materials, less complexity.IMHO you can today deal with UB just fine in C if you want to by following best practices, and the reasons given when those are not followed would also rule out use of most other safer languages.",
+    "id": 44874020,
+    "by": "mgaunard",
+    "timeISO": "2025-08-12T09:06:29.000Z",
+    "textPlain": "Rust forces you to code in the Rust way, while C or C++ let you do whatever you want.",
+    "parent": 44841999,
+    "depth": 2
+  },
+  {
+    "id": 44873789,
+    "by": "bluetomcat",
+    "timeISO": "2025-08-12T08:28:32.000Z",
+    "textPlain": "Rust encourages a rather different \"high-level\" programming style that doesn't suit the domains where C excels. Pattern matching, traits, annotations, generics and functional idioms make the language verbose and semantically-complex. When you follow their best practices, the code ends up more complex than it really needs to be.C is a different kind of animal that encourages terseness and economy of expression. When you know what you are doing with C pointers, the compiler just doesn't get in the way.",
     "parent": 44841999,
     "depth": 2
   },
@@ -56,10 +120,10 @@
     "depth": 2
   },
   {
-    "id": 44873704,
-    "by": "mrheosuper",
-    "timeISO": "2025-08-12T08:16:15.000Z",
-    "textPlain": "Rust can do inline ASM, so finding a task Rust \"fundamentally cannot handle\" is almost impossible.",
+    "id": 44873523,
+    "by": "uecker",
+    "timeISO": "2025-08-12T07:48:55.000Z",
+    "textPlain": "Advantages of C are short compilation time, portability, long-term stability, widely available expertise and training materials, less complexity.IMHO you can today deal with UB just fine in C if you want to by following best practices, and the reasons given when those are not followed would also rule out use of most other safer languages.",
     "parent": 44841999,
     "depth": 2
   },
@@ -68,6 +132,14 @@
     "by": "imadr",
     "timeISO": "2025-08-09T00:13:51.000Z",
     "textPlain": "I haven't used Rust extensively so I can't make any criticism besides that I find compilation times to be slower than C",
+    "parent": 44841999,
+    "depth": 2
+  },
+  {
+    "id": 44873704,
+    "by": "mrheosuper",
+    "timeISO": "2025-08-12T08:16:15.000Z",
+    "textPlain": "Rust can do inline ASM, so finding a task Rust \"fundamentally cannot handle\" is almost impossible.",
     "parent": 44841999,
     "depth": 2
   },
