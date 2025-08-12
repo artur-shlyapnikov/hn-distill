@@ -1,17 +1,17 @@
 [
   {
-    "id": 44874089,
-    "by": "clarionbell",
-    "timeISO": "2025-08-12T09:17:26.000Z",
-    "textPlain": "Why is anyone still using this? You can spin up llama.cpp server and have more optimized runtime. And if you insist on containers you can go for ramallama https://ramalama.ai/",
-    "parent": 44867238,
-    "depth": 1
-  },
-  {
     "id": 44869466,
     "by": "tarruda",
     "timeISO": "2025-08-11T21:05:20.000Z",
     "textPlain": "I recently discovered that ollama no longer uses llama.cpp as a library, and instead they link to the low level library (ggml) which requires them to reinvent a lot of wheel for absolutely no benefit (if there's some benefit I'm missing, please let me know).Even using llama.cpp as a library seems like an overkill for most use cases. Ollama could make its life much easier by spawning llama-server as a subprocess listening on a unix socket, and forward requests to it.One thing I'm curious about: Does ollama support strict structured output or strict tool calls adhering to a json schema? Because it would be insane to rely on a server for agentic use unless your server can guarantee the model will only produce valid json. AFAIK this feature is implemented by llama.cpp, which they no longer use.",
+    "parent": 44867238,
+    "depth": 1
+  },
+  {
+    "id": 44874089,
+    "by": "clarionbell",
+    "timeISO": "2025-08-12T09:17:26.000Z",
+    "textPlain": "Why is anyone still using this? You can spin up llama.cpp server and have more optimized runtime. And if you insist on containers you can go for ramallama https://ramalama.ai/",
     "parent": 44867238,
     "depth": 1
   },
@@ -56,18 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44872931,
-    "by": "buyucu",
-    "timeISO": "2025-08-12T06:05:15.000Z",
-    "textPlain": "ollama is a lost cause.  they are going through a very aggressive phase of enshittification right now.",
-    "parent": 44867238,
-    "depth": 1
-  },
-  {
     "id": 44869785,
     "by": "12345hn6789",
     "timeISO": "2025-08-11T21:40:15.000Z",
     "textPlain": "Just days ago ollama devs claimed[0] that ollama no longer relies on ggml / llama.cpp. here is their pull request(+165,966 −47,980) to reimplement (copy) llama.cpp code in their repository.https://github.com/ollama/ollama/pull/11823[0] https://news.ycombinator.com/item?id=44802414#44805396",
+    "parent": 44867238,
+    "depth": 1
+  },
+  {
+    "id": 44872931,
+    "by": "buyucu",
+    "timeISO": "2025-08-12T06:05:15.000Z",
+    "textPlain": "ollama is a lost cause.  they are going through a very aggressive phase of enshittification right now.",
     "parent": 44867238,
     "depth": 1
   },
@@ -144,6 +144,14 @@
     "depth": 2
   },
   {
+    "id": 44874186,
+    "by": "buyucu",
+    "timeISO": "2025-08-12T09:31:46.000Z",
+    "textPlain": "I think people just don't know any better.  I also used Ollama way longer than I should have.  I didn't know that Ollama was just llama.cpp with a thin wrapper.  My quality of life improved a lot after I discovered llama.cpp.",
+    "parent": 44874089,
+    "depth": 2
+  },
+  {
     "id": 44869409,
     "by": "polotics",
     "timeISO": "2025-08-11T21:00:20.000Z",
@@ -216,14 +224,6 @@
     "depth": 2
   },
   {
-    "id": 44873274,
-    "by": "elaus",
-    "timeISO": "2025-08-12T07:08:40.000Z",
-    "textPlain": "What is the currently favored alternative for simply running 1-2 models locally, exposed via an API? One big advantage of Ollama seems to be that they provide fully configured models, so I don't have to fiddle with stop words, etc.",
-    "parent": 44872931,
-    "depth": 2
-  },
-  {
     "id": 44871691,
     "by": "gcr",
     "timeISO": "2025-08-12T02:29:15.000Z",
@@ -237,6 +237,14 @@
     "timeISO": "2025-08-11T21:52:43.000Z",
     "textPlain": "not against overall sentiment here, but quote the counterpoint from the linked HN comment to be fair:> Ollama does not use llama.cpp anymore; we do still keep it and occasionally update it to remain compatible for older models for when we used it.The linked PR is doing \"occasionally update it\" I guess? Note that \"vendored\" in the PR title often means to take a snapshot to pin a specific version.",
     "parent": 44869785,
+    "depth": 2
+  },
+  {
+    "id": 44873274,
+    "by": "elaus",
+    "timeISO": "2025-08-12T07:08:40.000Z",
+    "textPlain": "What is the currently favored alternative for simply running 1-2 models locally, exposed via an API? One big advantage of Ollama seems to be that they provide fully configured models, so I don't have to fiddle with stop words, etc.",
+    "parent": 44872931,
     "depth": 2
   }
 ]

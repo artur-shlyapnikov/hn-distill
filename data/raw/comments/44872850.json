@@ -8,10 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44873130,
-    "by": "Frieren",
-    "timeISO": "2025-08-12T06:43:32.000Z",
-    "textPlain": "This assessment fits with my anecdotal evidence. LLMs just cannot reason in any basic way.LLMs have a large knowledge base that can be spit out at a moment notice. But they have zero insight on its contents, even when the information has just been asked a few lines before.Most of the \"intelligence\" that LLMs show is just the ability to ask in the correct way the correct questions mirrored back to the user. That is why there is so many advice on how to do \"proper prompting\".That and the fact that most questions have already been asked before as anyone that spend some time in StackOverflow back in the day realized. And memory and not reasoning is what is needed to answer them.",
+    "id": 44873405,
+    "by": "syllogism",
+    "timeISO": "2025-08-12T07:29:11.000Z",
+    "textPlain": "It's interesting that there's still such a market for this sort of take.> In a recent pre-print paper, researchers from the University of Arizona summarize this existing work as \"suggest[ing] that LLMs are not principled reasoners but rather sophisticated simulators of reasoning-like text.\"What does this even mean? Let's veto the word \"reasoning\" here and reflect.The LLM produces a series of outputs. Each output changes the likelihood of the next output. So it's transitioning in a very large state space.Assume there exists some states that the activations could be in that would cause the correct output to be generated. Assume also that there is some possible path of text connecting the original input to such a success state.The reinforcement learning objective reinforces pathways that were successful during training. If there's some intermediate calculation to do or 'inference' that could be drawn, writing out a new text that makes that explicit might be a useful step. The reinforcement learning objective is supposed to encourage the model to learn such patterns.So what does \"sophisticated simulators of reasoning-like text\" even mean here? The mechanism that the model uses to transition towards the answer is to generate intermediate text. What's the complaint here?It makes the same sort of sense to talk about the model \"reasoning\" as it does to talk about AlphaZero \"valuing material\" or \"fighting for the center\". These are shorthands for describing patterns of behaviour, but of course the model doesn't \"value\" anything in a strictly human way. The chess engine usually doesn't see a full line to victory, but in the games it's played, paths which transition through states with material advantage are often good -- although it depends on other factors.So of course the chain-of-thought transition process is brittle, and it's brittle in ways that don't match human mistakes. What does it prove that there are counter-examples with irrelevant text interposed that cause the m",
+    "parent": 44872850,
+    "depth": 1
+  },
+  {
+    "id": 44874208,
+    "by": "moi2388",
+    "timeISO": "2025-08-12T09:35:31.000Z",
+    "textPlain": "“ the researchers created a carefully controlled LLM environment in an attempt to measure just how well chain-of-thought reasoning works when presented with \"out of domain\" logical problems that don't match the specific logical patterns found in their training data.”Why? If it’s out of domain we know it’ll fail.",
     "parent": 44872850,
     "depth": 1
   },
@@ -24,10 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44873405,
-    "by": "syllogism",
-    "timeISO": "2025-08-12T07:29:11.000Z",
-    "textPlain": "It's interesting that there's still such a market for this sort of take.> In a recent pre-print paper, researchers from the University of Arizona summarize this existing work as \"suggest[ing] that LLMs are not principled reasoners but rather sophisticated simulators of reasoning-like text.\"What does this even mean? Let's veto the word \"reasoning\" here and reflect.The LLM produces a series of outputs. Each output changes the likelihood of the next output. So it's transitioning in a very large state space.Assume there exists some states that the activations could be in that would cause the correct output to be generated. Assume also that there is some possible path of text connecting the original input to such a success state.The reinforcement learning objective reinforces pathways that were successful during training. If there's some intermediate calculation to do or 'inference' that could be drawn, writing out a new text that makes that explicit might be a useful step. The reinforcement learning objective is supposed to encourage the model to learn such patterns.So what does \"sophisticated simulators of reasoning-like text\" even mean here? The mechanism that the model uses to transition towards the answer is to generate intermediate text. What's the complaint here?It makes the same sort of sense to talk about the model \"reasoning\" as it does to talk about AlphaZero \"valuing material\" or \"fighting for the center\". These are shorthands for describing patterns of behaviour, but of course the model doesn't \"value\" anything in a strictly human way. The chess engine usually doesn't see a full line to victory, but in the games it's played, paths which transition through states with material advantage are often good -- although it depends on other factors.So of course the chain-of-thought transition process is brittle, and it's brittle in ways that don't match human mistakes. What does it prove that there are counter-examples with irrelevant text interposed that cause the m",
+    "id": 44873130,
+    "by": "Frieren",
+    "timeISO": "2025-08-12T06:43:32.000Z",
+    "textPlain": "This assessment fits with my anecdotal evidence. LLMs just cannot reason in any basic way.LLMs have a large knowledge base that can be spit out at a moment notice. But they have zero insight on its contents, even when the information has just been asked a few lines before.Most of the \"intelligence\" that LLMs show is just the ability to ask in the correct way the correct questions mirrored back to the user. That is why there is so many advice on how to do \"proper prompting\".That and the fact that most questions have already been asked before as anyone that spend some time in StackOverflow back in the day realized. And memory and not reasoning is what is needed to answer them.",
     "parent": 44872850,
     "depth": 1
   },
@@ -88,14 +96,6 @@
     "depth": 2
   },
   {
-    "id": 44873186,
-    "by": "suddenlybananas",
-    "timeISO": "2025-08-12T06:53:48.000Z",
-    "textPlain": ">Training on LLM outputs leads to catastrophic collapse. Every outlet led with this. But no-one red the fine-print, they were testing on small toy models, and were using everything that came out to re-train. Of course it's gonna fail. L3 / phi / gpt-oss models showed that you can absolutely train on synthetic datasets and have great resultsYou're conflating two very different things. Training on synthetic data one time is very different than cyclically training models on their own data. It has nothing to do with model size.",
-    "parent": 44873038,
-    "depth": 2
-  },
-  {
     "id": 44873651,
     "by": "kazinator",
     "timeISO": "2025-08-12T08:07:52.000Z",
@@ -104,11 +104,35 @@
     "depth": 2
   },
   {
-    "id": 44873409,
-    "by": "PeterStuer",
-    "timeISO": "2025-08-12T07:29:54.000Z",
-    "textPlain": "Please don't tell me you were one of those marking every SO question as duplicate, more often than not missing the entire nuance in the question that made it not a duplicate at all, and the answers to the so called previously asked question utterly unusable?This was one of those infuriating things that drove so many away from SO and jump ship the second there was an alternative.",
-    "parent": 44873130,
+    "id": 44873186,
+    "by": "suddenlybananas",
+    "timeISO": "2025-08-12T06:53:48.000Z",
+    "textPlain": ">Training on LLM outputs leads to catastrophic collapse. Every outlet led with this. But no-one red the fine-print, they were testing on small toy models, and were using everything that came out to re-train. Of course it's gonna fail. L3 / phi / gpt-oss models showed that you can absolutely train on synthetic datasets and have great resultsYou're conflating two very different things. Training on synthetic data one time is very different than cyclically training models on their own data. It has nothing to do with model size.",
+    "parent": 44873038,
+    "depth": 2
+  },
+  {
+    "id": 44874454,
+    "by": "wzdd",
+    "timeISO": "2025-08-12T10:20:46.000Z",
+    "textPlain": "> The mechanism that the model uses to transition towards the answer is to generate intermediate text.Yes, which makes sense, because if there's a landscape of states that the model is traversing, and there are probablistically likely pathways between an initial state and the desired output, but there isn't a direct pathway, then training the the model to generate intermediate text in order to move across that landscape so it can reach the desired output state is a good idea.Presumably LLM companies are aware that there is (in general) no relationship between the generated intermediate text and the output, and the point of the article is that by calling it a \"chain of thought\" rather than \"essentially-meaningless intermediate text which increases the number of potential states the model can reach\" users are misled into thinking that the model is reasoning, and may then make unwarranted assumptions, such as that the model could in general apply the same reasoning to similar problems, which is in general not true.",
+    "parent": 44873405,
+    "depth": 2
+  },
+  {
+    "id": 44873767,
+    "by": "bubblyworld",
+    "timeISO": "2025-08-12T08:25:36.000Z",
+    "textPlain": "Not sure why everyone is downvoting you as I think you raise a good point - these anthropomorphic words like \"reasoning\" are useful as shorthands for describing patterns of behaviour, and are generally not meant to be direct comparisons to human cognition. But it goes both ways. You can still criticise the model on the grounds that what we call \"reasoning\" in the context of LLMs doesn't match the patterns we associate with human \"reasoning\" very well (such as ability to generalise to novel situations), which is what I think the authors are doing.",
+    "parent": 44873405,
+    "depth": 2
+  },
+  {
+    "id": 44874400,
+    "by": "Octoth0rpe",
+    "timeISO": "2025-08-12T10:10:15.000Z",
+    "textPlain": "I don't think we know that it'll fail, or at least that is not universally accepted as true. Rather, there are claims that given a large enough model / context window, such capabilities emerge. I think skepticism of that claim is warranted. This research validates that skepticism, at least for a certain parameters (model family/size, context size, etc).",
+    "parent": 44874208,
     "depth": 2
   },
   {
@@ -120,11 +144,11 @@
     "depth": 2
   },
   {
-    "id": 44873767,
-    "by": "bubblyworld",
-    "timeISO": "2025-08-12T08:25:36.000Z",
-    "textPlain": "Not sure why everyone is downvoting you as I think you raise a good point - these anthropomorphic words like \"reasoning\" are useful as shorthands for describing patterns of behaviour, and are generally not meant to be direct comparisons to human cognition. But it goes both ways. You can still criticise the model on the grounds that what we call \"reasoning\" in the context of LLMs doesn't match the patterns we associate with human \"reasoning\" very well (such as ability to generalise to novel situations), which is what I think the authors are doing.",
-    "parent": 44873405,
+    "id": 44873409,
+    "by": "PeterStuer",
+    "timeISO": "2025-08-12T07:29:54.000Z",
+    "textPlain": "Please don't tell me you were one of those marking every SO question as duplicate, more often than not missing the entire nuance in the question that made it not a duplicate at all, and the answers to the so called previously asked question utterly unusable?This was one of those infuriating things that drove so many away from SO and jump ship the second there was an alternative.",
+    "parent": 44873130,
     "depth": 2
   },
   {

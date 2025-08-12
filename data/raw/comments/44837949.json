@@ -40,18 +40,18 @@
     "depth": 1
   },
   {
-    "id": 44873808,
-    "by": "ChrisMarshallNY",
-    "timeISO": "2025-08-12T08:31:24.000Z",
-    "textPlain": "In Swift, we use guard clauses a lot. I think that guard can compile well (not just in recursion). This posting helps me to understand why.",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
     "id": 44871352,
     "by": "kazinator",
     "timeISO": "2025-08-12T01:29:38.000Z",
     "textPlain": "Tail recursive functions are loops when tail calls are jumps.Tail calls being jumps is the key insight.Not all tail calls are recursion!Students are confused by recursion. Some may be confused by tail calls.Don't mix two confusing things together when teaching.(Tail calls get mixed up with recursion because recognizing and treating/optimizing recursive tail calls to create loops an important highlighted category. In a compiler that doesn't optimize tail calls, optimizing self tail calls is an important priority (if that is easier to do than a general treatment). Many common algorithms are expressible in just one function that calls itself, and there are cases in which some or all of those calls can be tail calls; e.g. binary tree traversal.)The order should probably be: teach recursion first. Then when students have firmly wrapped their heads around it, introduce tail calls. Students will gain the skill of knowing what is a tail call and why it is important, and recognize which calls tail calls.  Secondly, the harder skill of taking recursion that uses non-tail calls and restructuring it to make tail calls instead.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44873808,
+    "by": "ChrisMarshallNY",
+    "timeISO": "2025-08-12T08:31:24.000Z",
+    "textPlain": "In Swift, we use guard clauses a lot. I think that guard can compile well (not just in recursion). This posting helps me to understand why.",
     "parent": 44837949,
     "depth": 1
   },
@@ -104,18 +104,18 @@
     "depth": 1
   },
   {
-    "id": 44870385,
-    "by": "wagwang",
-    "timeISO": "2025-08-11T22:54:10.000Z",
-    "textPlain": "Normal recursion is just a loop and a stack, turns out, if you can optimize recursion without a stack, it just becomes a loop.",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
     "id": 44870415,
     "by": "tylerhou",
     "timeISO": "2025-08-11T22:58:58.000Z",
     "textPlain": "I disagree with the title; loops are tail-recursive functions, but tail-recursive functions are not loops (in the sense that squares are rectangles, but rectangles are not squares).It is true that every tail recursive function can be converted into a semantically equivalent loop via a transformation like CPS (which the author mentions). However, for mutually tail-recursive functions, this conversion loses control flow information. This is because after the CPS transformation, calls to the other function become calls to a continuation; this call usually must be implemented as an indirect jump. On the other hand, mutually tail-recursive functions can call each other with direct/statically-known jumps.This loss of information might appear trivial, but in practice it has some important consequences. Classic examples are interpreter loops. It is well-known that computed gotos can result in modest to large speedups for interpreters [1]. The reason why is that computed gotos create an indirect jump per opcode, so a branch predictor can take advantage of correlations between opcodes. For example, looking at Python disassembly, the header of a standard range for loop compiles down to three opcodes: GET_ITER, FOR_ITER, STORE_FAST in sequence [2]. A branch predictor can recognize that the target of the \"FOR_ITER\" indirect jump will likely be the \"STORE_FAST\" instruction pointer; it cannot predict this in the naive implementation where jumps for all instructions are \"merged\" into a single indirect jump / switch at the top of the loop body. In this case, computed goto is effectively equivalent to a CPS transformation whose closures require no storage on the heap.Suppose, however, we know even more information about the instruction sequence; for example, we know ahead of time that every FOR_ITER opcode will be followed by a STORE_FAST opcode. We could completely replace the indirect jump with a direct jump to the instruction pointer for the STORE_FAST opcode. Because modern branc",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44870385,
+    "by": "wagwang",
+    "timeISO": "2025-08-11T22:54:10.000Z",
+    "textPlain": "Normal recursion is just a loop and a stack, turns out, if you can optimize recursion without a stack, it just becomes a loop.",
     "parent": 44837949,
     "depth": 1
   },
@@ -304,14 +304,6 @@
     "depth": 2
   },
   {
-    "id": 44872598,
-    "by": "Mikhail_Edoshin",
-    "timeISO": "2025-08-12T05:06:39.000Z",
-    "textPlain": "It is still the same stack, but it reuses the existing stack frame.",
-    "parent": 44870385,
-    "depth": 2
-  },
-  {
     "id": 44873070,
     "by": "ethan_smith",
     "timeISO": "2025-08-12T06:30:08.000Z",
@@ -325,6 +317,14 @@
     "timeISO": "2025-08-12T03:15:52.000Z",
     "textPlain": "I appreciate your thoughtful criticism of the post, to my eyes everything you are saying is correct.",
     "parent": 44870415,
+    "depth": 2
+  },
+  {
+    "id": 44872598,
+    "by": "Mikhail_Edoshin",
+    "timeISO": "2025-08-12T05:06:39.000Z",
+    "textPlain": "It is still the same stack, but it reuses the existing stack frame.",
+    "parent": 44870385,
     "depth": 2
   }
 ]

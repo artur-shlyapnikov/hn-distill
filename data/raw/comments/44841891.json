@@ -1,17 +1,17 @@
 [
   {
-    "id": 44874034,
-    "by": "safercplusplus",
-    "timeISO": "2025-08-12T09:08:01.000Z",
-    "textPlain": "A couple of solutions in development (but already usable) that more effectively address UB:i) \"Fil-C is a fanatically compatible memory-safe implementation of C and C++. Lots of software compiles and runs with Fil-C with zero or minimal changes. All memory safety errors are caught as Fil-C panics.\"\n\"Fil-C only works on Linux/X86_64.\"ii) \"scpptool is a command line tool to help enforce a memory and data race safe subset of C++. It's designed to work with the SaferCPlusPlus library. It analyzes the specified C++ file(s) and reports places in the code that it cannot verify to be safe. By design, the tool and the library should be able to fully ensure \"lifetime\", bounds and data race safety.\"\n\"This tool also has some ability to convert C source files to the memory safe subset of C++ it enforces\"",
-    "parent": 44841891,
-    "depth": 1
-  },
-  {
     "id": 44873493,
     "by": "uecker",
     "timeISO": "2025-08-12T07:45:01.000Z",
     "textPlain": "One has to add that from the 218 UB in the ISO C23,  87 are in the core language. From those we already removed 26 and are in progress of removing many others. You can find my latest update here (since then there was also some progress):  https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3529.pdf",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
+    "id": 44874034,
+    "by": "safercplusplus",
+    "timeISO": "2025-08-12T09:08:01.000Z",
+    "textPlain": "A couple of solutions in development (but already usable) that more effectively address UB:i) \"Fil-C is a fanatically compatible memory-safe implementation of C and C++. Lots of software compiles and runs with Fil-C with zero or minimal changes. All memory safety errors are caught as Fil-C panics.\"\n\"Fil-C only works on Linux/X86_64.\"ii) \"scpptool is a command line tool to help enforce a memory and data race safe subset of C++. It's designed to work with the SaferCPlusPlus library. It analyzes the specified C++ file(s) and reports places in the code that it cannot verify to be safe. By design, the tool and the library should be able to fully ensure \"lifetime\", bounds and data race safety.\"\n\"This tool also has some ability to convert C source files to the memory safe subset of C++ it enforces\"",
     "parent": 44841891,
     "depth": 1
   },
@@ -64,6 +64,14 @@
     "depth": 1
   },
   {
+    "id": 44874182,
+    "by": "tialaramex",
+    "timeISO": "2025-08-12T09:31:02.000Z",
+    "textPlain": "A lot of that work is basically fixing documentation bugs, labelled \"ghosts\" in your text. Places where the ISO document is so bad as a description of C that you would think there's Undefined Behaviour but it's actually just poorly written.Fixing the document is worthwhile, and certainly a reminder that WG21's equivalent effort needs to make the list before it can even begin that process on its even longer document, but practical C programmers don't read the document and since this UB was a \"ghost\" they weren't tripped by it. Removing items from the list this way does not translate to the meaningful safety improvement you might imagine.There's not a whole lot of movement there towards actually fixing the problem. Maybe it will come later?",
+    "parent": 44873493,
+    "depth": 2
+  },
+  {
     "id": 44873975,
     "by": "ncruces",
     "timeISO": "2025-08-12T08:57:40.000Z",
@@ -72,11 +80,35 @@
     "depth": 2
   },
   {
+    "id": 44874253,
+    "by": "tialaramex",
+    "timeISO": "2025-08-12T09:41:49.000Z",
+    "textPlain": "Fil-C is interesting because as you'd expect it takes a significant performance penalty to deliver this property, if it's broadly adopted that would suggest that - at least in this regard - C programmers genuinely do prioritise their simpler language over mundane ideas like platform support or performance.The resulting language doesn't make sense for commercial purposes but there's no reason it couldn't be popular with hobbyists.",
+    "parent": 44874034,
+    "depth": 2
+  },
+  {
     "id": 44874122,
     "by": "pjmlp",
     "timeISO": "2025-08-12T09:22:40.000Z",
     "textPlain": "Unfortunely it also means that when the programmer fails to understand what undefined behaviour is exposed on their code, the compiler is free to take advantage of that to do the ultimate performance optimizations as means to beat compiler benchmarks.The code change might come in something as innocent as a bug fix to the compiler.",
     "parent": 44873848,
+    "depth": 2
+  },
+  {
+    "id": 44874224,
+    "by": "throw-qqqqq",
+    "timeISO": "2025-08-12T09:38:21.000Z",
+    "textPlain": "> Undefined behavior only means that ISO C doesn't give requirements, not that nobody gives requirements. Many useful extensions are instances where undefined behavior is documented by an implementation.True, most compilers have sane defaults in many cases for things that are technically undefined (like take sizeof(void) or do pointer arithmetic on something other than a char). But not all of these cases can be saved by sane defaults.Undefined behavior means the compiler can replace the code with whatever. So if you e.g. compile optimizing for size, the compiler will rip out the offending code, as replacing it with nothing yields the greatest size optimization.See also John Regehr's collection of UB-Canaries: https://github.com/regehr/ub-canariesSnippets of software exhibiting undefined behavior, executing e.g. both the true and the false branch of an if-statement or none etc. UB should not be taken lightly IMO...",
+    "parent": 44873848,
+    "depth": 2
+  },
+  {
+    "id": 44874290,
+    "by": "tialaramex",
+    "timeISO": "2025-08-12T09:50:54.000Z",
+    "textPlain": "It won't be a \"random garbage value\" but is instead a value the compiler chose.In effect if you don't opt out your value will always be initialized but not to a useful value you chose. You can think of this as similar to the (current, defanged and deprecated as well as unsafe) Rust std::mem::uninitialized()There were earlier attempts to make this value zero, or rather, as many 0x00 bytes as needed, because on most platforms that's markedly cheaper to do, but unfortunately some C++ would actually have worse bugs if the \"forgot to initialize\" case was reliably zero instead.",
+    "parent": 44873816,
     "depth": 2
   },
   {
@@ -96,14 +128,6 @@
     "depth": 2
   },
   {
-    "id": 44874020,
-    "by": "mgaunard",
-    "timeISO": "2025-08-12T09:06:29.000Z",
-    "textPlain": "Rust forces you to code in the Rust way, while C or C++ let you do whatever you want.",
-    "parent": 44841999,
-    "depth": 2
-  },
-  {
     "id": 44873789,
     "by": "bluetomcat",
     "timeISO": "2025-08-12T08:28:32.000Z",
@@ -112,10 +136,10 @@
     "depth": 2
   },
   {
-    "id": 44873736,
-    "by": "pizza234",
-    "timeISO": "2025-08-12T08:20:27.000Z",
-    "textPlain": "Yes, based on a few attempts chronicled in articles from different sources, Rust is a weak choice for game development, because it's too time-consuming to refactor.",
+    "id": 44874020,
+    "by": "mgaunard",
+    "timeISO": "2025-08-12T09:06:29.000Z",
+    "textPlain": "Rust forces you to code in the Rust way, while C or C++ let you do whatever you want.",
     "parent": 44841999,
     "depth": 2
   },
@@ -128,10 +152,10 @@
     "depth": 2
   },
   {
-    "id": 44842977,
-    "by": "imadr",
-    "timeISO": "2025-08-09T00:13:51.000Z",
-    "textPlain": "I haven't used Rust extensively so I can't make any criticism besides that I find compilation times to be slower than C",
+    "id": 44873736,
+    "by": "pizza234",
+    "timeISO": "2025-08-12T08:20:27.000Z",
+    "textPlain": "Yes, based on a few attempts chronicled in articles from different sources, Rust is a weak choice for game development, because it's too time-consuming to refactor.",
     "parent": 44841999,
     "depth": 2
   },
@@ -144,10 +168,26 @@
     "depth": 2
   },
   {
+    "id": 44842977,
+    "by": "imadr",
+    "timeISO": "2025-08-09T00:13:51.000Z",
+    "textPlain": "I haven't used Rust extensively so I can't make any criticism besides that I find compilation times to be slower than C",
+    "parent": 44841999,
+    "depth": 2
+  },
+  {
     "id": 44873466,
     "by": "ViewTrick1002",
     "timeISO": "2025-08-12T07:40:55.000Z",
     "textPlain": "> Ada language instead of rustBecause it never achieved mainstream success?And Zig for example is very much not memory safe. Which a cursory search for ”segfault” in the Bun repo quickly tells you.https://github.com/oven-sh/bun/issues?q=is%3Aissue%20state%3...",
+    "parent": 44873417,
+    "depth": 2
+  },
+  {
+    "id": 44874163,
+    "by": "pjmlp",
+    "timeISO": "2025-08-12T09:27:38.000Z",
+    "textPlain": "None of them solve use after free, for example.Ada would rather be a nice choice, but most hackers love their curly brackets.",
     "parent": 44873417,
     "depth": 2
   }
