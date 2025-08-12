@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44882629,
+    "by": "lpa22",
+    "timeISO": "2025-08-12T22:42:33.000Z",
+    "textPlain": "One of the most helpful usages of CC so far is when I simply ask:\"Are there any bugs in the current diff\"It analyzes the changes very thoroughly, often finds very subtle bugs that would cost hours of time/deployments down the line, and points out a bunch of things to think through for correctness.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
     "id": 44879053,
     "by": "gdudeman",
     "timeISO": "2025-08-12T17:03:54.000Z",
@@ -28,14 +36,6 @@
     "by": "tankenmate",
     "timeISO": "2025-08-12T16:21:54.000Z",
     "textPlain": "This is definitely good to have this as an option but at the same time having more context reduces the quality of the output because it's easier for the LLM to get \"distracted\". So, I wonder what will happen to the quality of code produced by tools like Claude Code if users don't properly understand the trade off being made (if they leave it in auto mode of coding right up to the auto compact).",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
-    "id": 44882149,
-    "by": "meander_water",
-    "timeISO": "2025-08-12T21:45:21.000Z",
-    "textPlain": "I like to spend a lot of time in \"Ask\" mode in Cursor. I guess the equivalent in Claude code is \"plan\" mode.Where I have minimal knowledge about the framework or language, I ask a lot of questions about how the implementation would work, what the tradeoffs are etc. This is to minimize any misunderstanding between me and the tool. Then I ask it to write the implementation plan, and execute it one by one.Cursor lets you have multiple tabs open so I'll have a Ask mode and Agent mode running in parallel.This is a lot slower, and if it was a language/framework I'm familiar with I'm more likely to execute the plan myself.",
     "parent": 44878147,
     "depth": 1
   },
@@ -64,10 +64,34 @@
     "depth": 1
   },
   {
+    "id": 44882149,
+    "by": "meander_water",
+    "timeISO": "2025-08-12T21:45:21.000Z",
+    "textPlain": "I like to spend a lot of time in \"Ask\" mode in Cursor. I guess the equivalent in Claude code is \"plan\" mode.Where I have minimal knowledge about the framework or language, I ask a lot of questions about how the implementation would work, what the tradeoffs are etc. This is to minimize any misunderstanding between me and the tool. Then I ask it to write the implementation plan, and execute it one by one.Cursor lets you have multiple tabs open so I'll have a Ask mode and Agent mode running in parallel.This is a lot slower, and if it was a language/framework I'm familiar with I'm more likely to execute the plan myself.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
     "id": 44878804,
     "by": "isoprophlex",
     "timeISO": "2025-08-12T16:45:51.000Z",
     "textPlain": "1M of input... at $6/1M input tokens. Better hope it can one-shot your answer.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44882591,
+    "by": "itissid",
+    "timeISO": "2025-08-12T22:38:29.000Z",
+    "textPlain": "My experience with Claude code beyond building anything bigger than a webpage, a small API, a tutorial on CSS etc has been pretty bad. I think context length is a manageable problem, but not the main one. I used it to write a 50K LoC python code base with 300 unit tests and it went ok for the first few weeks and then it failed. This is after there is a CLAUDE.md file for every single module that needs it as well as detailed agents for testing, design, coding and review.I won't going into a case by case list of its failures, The core of the issue is misaligned incentives, which I want to get into:1. The incentives for coding agent, in general and claude, are writing LOTS of code. None of them — O —  are good at the planning and verification.2. The involvement of the human, ironically, in a haphazard way in the agent's process. And this has to do with how the problem of coding for these agents is defined. Human developers are like snow flakes when it comes to opinions on software design, there is no way to apply each's preference(except paper machet and superglue SO, Reddit threads and books) to the design of the system in any meaningful way and that makes a simple system way too complex or it makes a complex problem simplistic.  - There is no way to evolve the plan to accept new preferences except text in CLAUDE.md file in git that you will have to read through and edit.\n\n  - There is no way to know the near term effect of code choices now on 1 week from now. \n\n  - So much code is written that asking a person to review it in case you are at the envelope and pushing the limit feels morally wrong and an insane ask. How many of your Code reviews are instead replaced by 15-30 min design meetings to instead solicit feedback on design of the PR — because it so complex — and just push the PR into dev? WTF am I even doing I wonder.\n\n  - It does not know how far to explore for better rewards and does not know it better from local rewards, Resulting in commented out tests and ",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44879826,
+    "by": "dang",
+    "timeISO": "2025-08-12T18:06:56.000Z",
+    "textPlain": "Related ongoing thread:Claude vs. Gemini: Testing on 1M Tokens of Context - https://news.ycombinator.com/item?id=44878999 - Aug 2025 (9 comments)",
     "parent": 44878147,
     "depth": 1
   },
@@ -88,10 +112,10 @@
     "depth": 1
   },
   {
-    "id": 44879826,
-    "by": "dang",
-    "timeISO": "2025-08-12T18:06:56.000Z",
-    "textPlain": "Related ongoing thread:Claude vs. Gemini: Testing on 1M Tokens of Context - https://news.ycombinator.com/item?id=44878999 - Aug 2025 (9 comments)",
+    "id": 44879563,
+    "by": "simianwords",
+    "timeISO": "2025-08-12T17:42:53.000Z",
+    "textPlain": "How does \"supporting 1M tokens\" really work in practice? Is it a new model? Or did they just remove some hard coded constraint?",
     "parent": 44878147,
     "depth": 1
   },
@@ -100,14 +124,6 @@
     "by": "qwertox",
     "timeISO": "2025-08-12T19:15:32.000Z",
     "textPlain": "> desperately need LLMs to maintain extremely effective contextLast time I used Gemini it did something very surprising: instead of providing readable code, it started to generate pseudo-minified code.Like on CSS class would become one long line of CSS, and one JS function became one long line of JS, with most of the variable names minified, while some remained readable, but short. It did away with all unnecessary spaces.I was asking myself what is happening here, and my only explanation was that maybe Google started training Gemini on minified code, on making Gemini understand and generate it, in order to maximize the value of every token.",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
-    "id": 44879563,
-    "by": "simianwords",
-    "timeISO": "2025-08-12T17:42:53.000Z",
-    "textPlain": "How does \"supporting 1M tokens\" really work in practice? Is it a new model? Or did they just remove some hard coded constraint?",
     "parent": 44878147,
     "depth": 1
   },
@@ -136,26 +152,18 @@
     "depth": 1
   },
   {
-    "id": 44880177,
-    "by": "joduplessis",
-    "timeISO": "2025-08-12T18:38:00.000Z",
-    "textPlain": "As far as coding goes Claude seems to be the most competent right now, I like it. GPT5 is abysmal - I'm not sure if they're bugs, or what, but the new release takes a good few steps back. Gemini still a hit and miss - and Grok seems to be a poor man's Claude (where code is kind of okay, a bit buggy and somehow similar to Claude).",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
-    "id": 44880348,
-    "by": "brokegrammer",
-    "timeISO": "2025-08-12T18:52:08.000Z",
-    "textPlain": "Many people are confused about the usefulness of 1M tokens because LLMs often start to get confused after about 100k. But this is big for Claude 4 because it uses automatic RAG when the context becomes large. With optimized retrieval thanks to RAG, we'll be able to make good use of those 1M tokens.",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
     "id": 44878701,
     "by": "greenfish6",
     "timeISO": "2025-08-12T16:37:25.000Z",
     "textPlain": "Yes, but if you look in the rate limit notes, the rate limit is 500k tokens / minite for tier 4, which we are on. Given how stingy anthropic has been with rate limit increases, this is for very few people right now",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44880177,
+    "by": "joduplessis",
+    "timeISO": "2025-08-12T18:38:00.000Z",
+    "textPlain": "As far as coding goes Claude seems to be the most competent right now, I like it. GPT5 is abysmal - I'm not sure if they're bugs, or what, but the new release takes a good few steps back. Gemini still a hit and miss - and Grok seems to be a poor man's Claude (where code is kind of okay, a bit buggy and somehow similar to Claude).",
     "parent": 44878147,
     "depth": 1
   },
@@ -168,26 +176,18 @@
     "depth": 1
   },
   {
+    "id": 44880348,
+    "by": "brokegrammer",
+    "timeISO": "2025-08-12T18:52:08.000Z",
+    "textPlain": "Many people are confused about the usefulness of 1M tokens because LLMs often start to get confused after about 100k. But this is big for Claude 4 because it uses automatic RAG when the context becomes large. With optimized retrieval thanks to RAG, we'll be able to make good use of those 1M tokens.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
     "id": 44878872,
     "by": "lherron",
     "timeISO": "2025-08-12T16:50:43.000Z",
     "textPlain": "Wow, I thought they would feel some pricing pressure from GPT5 API costs, but they are doubling down on their API being more expensive than everyone else.",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
-    "id": 44880683,
-    "by": "ericol",
-    "timeISO": "2025-08-12T19:19:40.000Z",
-    "textPlain": "\"...in API\"That's a VERY relevant clarification. this DOESN'T apply to web or app users.Basically, if you want a 1M context window you have to specifically pay for it.",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
-    "id": 44881571,
-    "by": "cadamsdotcom",
-    "timeISO": "2025-08-12T20:40:50.000Z",
-    "textPlain": "I’m glad to see the only company chasing margins - which they get by having a great product and a meticulous brand - finding even more ways to get margin. That’s good business.",
     "parent": 44878147,
     "depth": 1
   },
@@ -200,10 +200,18 @@
     "depth": 1
   },
   {
-    "id": 44879819,
-    "by": "ffitch",
-    "timeISO": "2025-08-12T18:06:13.000Z",
-    "textPlain": "I wonder how modern models fair on NovelQA and FLenQA (benchmarks that test ability to understand long context beyond needle in a haystack retrieval). The only such test on a reasoning model that I found was done on o3-mini-high (https://arxiv.org/abs/2504.21318), it suggests that reasoning noticeably improves FLenQA performance, but this test only explored context up to 3,000 tokens.",
+    "id": 44880683,
+    "by": "ericol",
+    "timeISO": "2025-08-12T19:19:40.000Z",
+    "textPlain": "\"...in API\"That's a VERY relevant clarification. this DOESN'T apply to web or app users.Basically, if you want a 1M context window you have to specifically pay for it.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878570,
+    "by": "mettamage",
+    "timeISO": "2025-08-12T16:28:29.000Z",
+    "textPlain": "Shame it's only the API. Would've loved to see it via the web interface on claude.ai itself.",
     "parent": 44878147,
     "depth": 1
   },
@@ -216,10 +224,18 @@
     "depth": 1
   },
   {
-    "id": 44878570,
-    "by": "mettamage",
-    "timeISO": "2025-08-12T16:28:29.000Z",
-    "textPlain": "Shame it's only the API. Would've loved to see it via the web interface on claude.ai itself.",
+    "id": 44879819,
+    "by": "ffitch",
+    "timeISO": "2025-08-12T18:06:13.000Z",
+    "textPlain": "I wonder how modern models fair on NovelQA and FLenQA (benchmarks that test ability to understand long context beyond needle in a haystack retrieval). The only such test on a reasoning model that I found was done on o3-mini-high (https://arxiv.org/abs/2504.21318), it suggests that reasoning noticeably improves FLenQA performance, but this test only explored context up to 3,000 tokens.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44881571,
+    "by": "cadamsdotcom",
+    "timeISO": "2025-08-12T20:40:50.000Z",
+    "textPlain": "I’m glad to see the only company chasing margins - which they get by having a great product and a meticulous brand - finding even more ways to get margin. That’s good business.",
     "parent": 44878147,
     "depth": 1
   },
@@ -240,10 +256,10 @@
     "depth": 1
   },
   {
-    "id": 44881549,
-    "by": "fpauser",
-    "timeISO": "2025-08-12T20:38:01.000Z",
-    "textPlain": "O observed that claude produces a lot of bloat. Wonder how such llm generated projects age.",
+    "id": 44878677,
+    "by": "pupppet",
+    "timeISO": "2025-08-12T16:35:18.000Z",
+    "textPlain": "How does anyone send these models that much context without it tripping over itself?  I can't get anywhere near that much before it starts losing track of instruction.",
     "parent": 44878147,
     "depth": 1
   },
@@ -256,14 +272,6 @@
     "depth": 1
   },
   {
-    "id": 44878677,
-    "by": "pupppet",
-    "timeISO": "2025-08-12T16:35:18.000Z",
-    "textPlain": "How does anyone send these models that much context without it tripping over itself?  I can't get anywhere near that much before it starts losing track of instruction.",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
     "id": 44879173,
     "by": "thimabi",
     "timeISO": "2025-08-12T17:10:41.000Z",
@@ -272,10 +280,18 @@
     "depth": 1
   },
   {
-    "id": 44881766,
-    "by": "_joel",
-    "timeISO": "2025-08-12T21:00:34.000Z",
-    "textPlain": "Fantastic, use up your quota even more quickly. :)",
+    "id": 44881549,
+    "by": "fpauser",
+    "timeISO": "2025-08-12T20:38:01.000Z",
+    "textPlain": "O observed that claude produces a lot of bloat. Wonder how such llm generated projects age.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44879732,
+    "by": "DiabloD3",
+    "timeISO": "2025-08-12T17:57:26.000Z",
+    "textPlain": "Neat. I do 1M tokens context locally, and do it entirely with a single GPU and FOSS software, and have access to a wide range of models of equivalent or better quality.Explain to me, again, how Anthropic's flawed business model works?",
     "parent": 44878147,
     "depth": 1
   },
@@ -288,10 +304,10 @@
     "depth": 1
   },
   {
-    "id": 44879732,
-    "by": "DiabloD3",
-    "timeISO": "2025-08-12T17:57:26.000Z",
-    "textPlain": "Neat. I do 1M tokens context locally, and do it entirely with a single GPU and FOSS software, and have access to a wide range of models of equivalent or better quality.Explain to me, again, how Anthropic's flawed business model works?",
+    "id": 44879596,
+    "by": "alienbaby",
+    "timeISO": "2025-08-12T17:45:56.000Z",
+    "textPlain": "The fracturing of all the models offered across providers is annoying. The number of different models and the fact a given model will have different capabilities from different providers is ridiculous.",
     "parent": 44878147,
     "depth": 1
   },
@@ -312,10 +328,10 @@
     "depth": 1
   },
   {
-    "id": 44879596,
-    "by": "alienbaby",
-    "timeISO": "2025-08-12T17:45:56.000Z",
-    "textPlain": "The fracturing of all the models offered across providers is annoying. The number of different models and the fact a given model will have different capabilities from different providers is ridiculous.",
+    "id": 44881766,
+    "by": "_joel",
+    "timeISO": "2025-08-12T21:00:34.000Z",
+    "textPlain": "Fantastic, use up your quota even more quickly. :)",
     "parent": 44878147,
     "depth": 1
   },
@@ -344,26 +360,10 @@
     "depth": 1
   },
   {
-    "id": 44881665,
-    "by": "reverseblade2",
-    "timeISO": "2025-08-12T20:49:29.000Z",
-    "textPlain": "Does this cover subscription?",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
     "id": 44879140,
     "by": "ZeroCool2u",
     "timeISO": "2025-08-12T17:09:09.000Z",
     "textPlain": "It's great they've finally caught up, but unfortunate it's on their mid-tier model only and it's laughably expensive.",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
-    "id": 44880164,
-    "by": "siva7",
-    "timeISO": "2025-08-12T18:36:12.000Z",
-    "textPlain": "Ah, so claude code on subscription will become a crippled down version",
     "parent": 44878147,
     "depth": 1
   },
@@ -376,26 +376,26 @@
     "depth": 1
   },
   {
+    "id": 44881665,
+    "by": "reverseblade2",
+    "timeISO": "2025-08-12T20:49:29.000Z",
+    "textPlain": "Does this cover subscription?",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44880164,
+    "by": "siva7",
+    "timeISO": "2025-08-12T18:36:12.000Z",
+    "textPlain": "Ah, so claude code on subscription will become a crippled down version",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
     "id": 44879195,
     "by": "kotaKat",
     "timeISO": "2025-08-12T17:11:40.000Z",
     "textPlain": "A million tokens? Damn, I’m gonna need a lot of quarters to play this game at Chuck-E-Cheese.",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
-    "id": 44878929,
-    "by": "lvl155",
-    "timeISO": "2025-08-12T16:54:43.000Z",
-    "textPlain": "Only time this is useful is to do init on a sizable code base or dump a “big” csv.",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
-    "id": 44878668,
-    "by": "rootnod3",
-    "timeISO": "2025-08-12T16:34:54.000Z",
-    "textPlain": "So, more tokens means better but at the same time more tokens means it distracts itself too much along the way. So at the same time it is an improvement but also potentially detrimental. How are those things beneficial in any capacity? What was said last week? Embrace AI or leave?All I see so far is: don't embrace and stay.",
     "parent": 44878147,
     "depth": 1
   }

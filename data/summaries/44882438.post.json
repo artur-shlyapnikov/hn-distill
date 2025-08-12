@@ -1,0 +1,8 @@
+{
+  "id": 44882438,
+  "lang": "ru",
+  "summary": "**Краткое руководство по anchor-positioning**\n\nAnchor-positioning позволяет размещать элемент относительно другого без JavaScript. Пример: выпадающее меню под аватаром.\n\n1. **Связываем элементы**  \n   - Даём якорю имя:  \n   ```css\n   .profile-button { anchor-name: --profile-button; }\n   ```  \n   - Указываем цели, к чему привязаться:  \n   ```css\n   .profile-menu {\n     position-anchor: --profile-button;\n     position: absolute;\n   }\n   ```\n\n2. **Выбираем позицию**  \n   Свойство `position-area` размещает элемент на 9-клеточной сетке относительно якоря.  \n   Примеры:  \n   - `position-area: bottom left;` — снизу по левому краю.  \n   - `position-area: right center;` — справа по центру.\n\n3. **Тонкая настройка**  \n   Вместо `position-area` можно использовать `top`, `left`, `right`, `bottom` с ключевыми словами `anchor`.  \n   ```css\n   top: anchor(bottom);\n   left: anchor(left);\n   ```\n\n4. **Попытки размещения**  \n   Если заданное положение не помещается, браузер автоматически ищет свободное место внутри контейнера. Поведение регулируется `position-try-options`.\n\n5. **Поддержка**  \n   Работает в Safari Technology Preview 202 и Chrome 125+.",
+  "inputHash": "98ce06397361ed14047d5291d7c698e46378f82ab514ab413037ab253c71ab0f",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-12T23:23:08.001Z"
+}
