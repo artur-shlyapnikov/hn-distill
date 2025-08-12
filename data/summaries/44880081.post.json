@@ -1,0 +1,8 @@
+{
+  "id": 44880081,
+  "lang": "ru",
+  "summary": "**Apache Iceberg: проблема equality-delete**\n\nIceberg стал ключевым форматом аналитики, но реальное потоковое CDC из Postgres в Iceberg не поддерживается Snowflake, Databricks и Redshift. Причина — специфика удалений.\n\nIceberg хранит изменения двумя файлами:  \n- **data file** — вставки/обновления  \n- **delete file** — удаления двух типов  \n\n**position-delete** — удаляет строку по позиции в файле (быстро, но требует знать местоположение).  \n**equality-delete** — удаляет по значению ключа (гибко, но дорого).\n\nCDC-системы (Debezium) генерируют события `INSERT/UPDATE/DELETE`, содержащие только ключи. Поэтому приходится использовать equality-delete, что приводит к:\n\n- чтению всего файла при каждом merge  \n- росту delete-файлов  \n- взрыву I/O и времени компакции\n\n**Решение RisingWave**  \n1. **position-delete через микробатчи**  \n   - собирает 100–1000 событий  \n   - определяет позиции строк в Iceberg-файлах  \n   - пишет compact-батчи position-delete  \n\n2. **stateful merge**  \n   - хранит маппинг «ключ → позиция» в RocksDB  \n   - позволяет стримом превращать equality-delete в position-delete  \n\n3. **оптимистичная компакция**  \n   - запускает merge в фоне, пока не накопится >N% delete-файлов  \n\nТакой подход снижает latency до секунд и уменьшает I/O на порядок, делая реальное потоковое CDC в Iceberg возможным.",
+  "inputHash": "296f65532c2a7ff729c7dab613a99eca396dda2d13a9347ded821023087b7c67",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-12T19:21:19.210Z"
+}

@@ -24,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44878127,
+    "by": "andix",
+    "timeISO": "2025-08-12T16:01:14.000Z",
+    "textPlain": "The very limited software support would probably stop me from buying one.Even if there are builds or container images for riscv64, they are probably often not tested at all. Sometimes different architectures have weird quirks (unexpected performance issues for some code, unexpected crashes). I guess only very few maintainers will investigate and fix those.It took quite some time until all software worked perfectly on arm/arm64. When the first Raspberry Pi was released, this was quite a different experience.",
+    "parent": 44842114,
+    "depth": 1
+  },
+  {
     "id": 44879183,
     "by": "pinewurst",
     "timeISO": "2025-08-12T17:11:08.000Z",
@@ -48,14 +56,6 @@
     "depth": 1
   },
   {
-    "id": 44878127,
-    "by": "andix",
-    "timeISO": "2025-08-12T16:01:14.000Z",
-    "textPlain": "The very limited software support would probably stop me from buying one.Even if there are builds or container images for riscv64, they are probably often not tested at all. Sometimes different architectures have weird quirks (unexpected performance issues for some code, unexpected crashes). I guess only very few maintainers will investigate and fix those.It took quite some time until all software worked perfectly on arm/arm64. When the first Raspberry Pi was released, this was quite a different experience.",
-    "parent": 44842114,
-    "depth": 1
-  },
-  {
     "id": 44842660,
     "by": "deivid",
     "timeISO": "2025-08-08T23:15:27.000Z",
@@ -72,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44878924,
-    "by": "sneak",
-    "timeISO": "2025-08-12T16:54:23.000Z",
-    "textPlain": "Does it have any onboard flash?  Embedded SBCs that have no wireless and no onboard state (like the RPi3 without wifi) are quite useful for security applications like offline cold signing/CAs.The RPi4/5 have a flashable bootrom now so they don’t qualify any longer.  The 1/2/3 load their second stage bootloader from the micro-SD, their first stage is burned at the factory and cannot be modified.  If you remove the SD and physically destroy it, they can not persist state or exfiltrate data.",
-    "parent": 44842114,
-    "depth": 1
-  },
-  {
     "id": 44877664,
     "by": "nottorp",
     "timeISO": "2025-08-12T15:34:42.000Z",
     "textPlain": "What's with that cookie dialog on some german sites? I thought I don't understand it because it's in german, but this one seems to be translated and I still can't figure it out.Had to close the site without reading the article, anyone has alternate links?",
+    "parent": 44842114,
+    "depth": 1
+  },
+  {
+    "id": 44878924,
+    "by": "sneak",
+    "timeISO": "2025-08-12T16:54:23.000Z",
+    "textPlain": "Does it have any onboard flash?  Embedded SBCs that have no wireless and no onboard state (like the RPi3 without wifi) are quite useful for security applications like offline cold signing/CAs.The RPi4/5 have a flashable bootrom now so they don’t qualify any longer.  The 1/2/3 load their second stage bootloader from the micro-SD, their first stage is burned at the factory and cannot be modified.  If you remove the SD and physically destroy it, they can not persist state or exfiltrate data.",
     "parent": 44842114,
     "depth": 1
   },
@@ -160,10 +160,26 @@
     "depth": 2
   },
   {
+    "id": 44878432,
+    "by": "rwmj",
+    "timeISO": "2025-08-12T16:20:28.000Z",
+    "textPlain": "Basically everything works, Linux-wise.  Is there particular software?",
+    "parent": 44878127,
+    "depth": 2
+  },
+  {
     "id": 44879392,
     "by": "Someone",
     "timeISO": "2025-08-12T17:27:55.000Z",
     "textPlain": "I don’t think designing a fast CPU gets significantly easier with RISC-V. Yes, you don’t have to design an instruction set, but you still have to pick a good set of RISC-V of extensions, find the right mix of cache size, branch predictor memory size, number of integer and float ALUs, number of rename registers, vector size, etc, glue the parts together so that it all works and build something without hitting patents that others hold.‘Cheaper’ only  at come into view if you’re selling millions of devices, and even then there have been other designs that are similarly open for which you can’t buy really competitive cores.",
+    "parent": 44879183,
+    "depth": 2
+  },
+  {
+    "id": 44880158,
+    "by": "saati",
+    "timeISO": "2025-08-12T18:35:49.000Z",
+    "textPlain": "Because the very bottom is the only segment where it's worth to not just pay Arm for a core, with much better ecosystem support and ISA.",
     "parent": 44879183,
     "depth": 2
   },
@@ -181,14 +197,6 @@
     "timeISO": "2025-08-12T16:58:38.000Z",
     "textPlain": "i will bet there are binary blobs you must load in kernel to make this run.or maybe not. who knows? would be nice if that was front and center on any review, but it's never. which leads me to believe it's choke full of binary garbage.",
     "parent": 44878799,
-    "depth": 2
-  },
-  {
-    "id": 44878432,
-    "by": "rwmj",
-    "timeISO": "2025-08-12T16:20:28.000Z",
-    "textPlain": "Basically everything works, Linux-wise.  Is there particular software?",
-    "parent": 44878127,
     "depth": 2
   },
   {

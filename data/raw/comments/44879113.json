@@ -1,9 +1,17 @@
 [
   {
-    "id": 44880140,
-    "by": "delta_p_delta_x",
-    "timeISO": "2025-08-12T18:33:25.000Z",
-    "textPlain": "[delayed]",
+    "id": 44880329,
+    "by": "throwaway31131",
+    "timeISO": "2025-08-12T18:50:56.000Z",
+    "textPlain": "\"You don't think about memories when you design hardware\"I found that comment interesting because memory is mostly what I think about when I design hardware. Memory access is by far the slowest thing, so managing memory bandwidth is absolutely critical, and it uses a significant portion of the die area.Also, a significant portion of the microarchitecture of a modern CPU is all about managing memory accesses.If there were a hypothetical high-level CPU language that somehow encoded all the information the microarchitecture needs to measure to manage memory access, then it would likely tie in performance, assuming the CPU team did a good job measuring memory. Still, it wouldn't need all the extra stuff that did the measurement. So I see that as a win.The main problem is, I have absolutely no idea how to do that, and unfortunately, I haven't met anyone else who knows either. Hence, tons of bookkeeping logic in CPUs persists.",
+    "parent": 44879113,
+    "depth": 1
+  },
+  {
+    "id": 44880280,
+    "by": "jonathaneunice",
+    "timeISO": "2025-08-12T18:46:28.000Z",
+    "textPlain": "\"High-level CPUs\" are a tarpit. Beautiful idea in theory, but history shows they're a Bad Idea.Xerox, LMI, Symbolics, Intel iAPX 432, UCSD p-System, Jazelle and PicoJava—just dozens of fancy designs for Lisp, Smalltalk, Ada, Pascal, Java—yet none of them ever lasted more than a product iteration or three. They were routinely outstripped by MOT 68K, x86, and RISC CPUs. Whether your metric of choice is shipment volumes, price/performance, or even raw performance, they have routinely underwhelmed. A trail of tears for 40+ years.",
     "parent": 44879113,
     "depth": 1
   },
@@ -16,10 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44880150,
-    "by": "moomin",
-    "timeISO": "2025-08-12T18:34:13.000Z",
-    "textPlain": "I mean, I don’t have an answer to this, but I’ll bet Simon Peyton-Jones has some ideas…",
+    "id": 44880140,
+    "by": "delta_p_delta_x",
+    "timeISO": "2025-08-12T18:33:25.000Z",
+    "textPlain": "As James Mickens says in The Night Watch[1],  “Why would someone write code in a grotesque language that exposes raw memory addresses? Why not use a modern language with garbage collection and functional programming and free massages after lunch?” Here’s the answer: Pointers are real. They’re what the hardware understands. Somebody has to deal with them. You can’t just place a LISP book on top of an x86 chip and hope that the hardware learns about lambda calculus by osmosis.\n\nBut I feel there's a middle ground between LISP and raw assembly and mangling pointers. For instance, modern C++ and Rust (and all the C++ 'successors', like Carbon, Circle, Safe C++, etc) have a very novel and clear set of ownership and view semantics that make more declarative, functional, side-effect-free programming possible, easy, and high-performance, without unnecessarily throwing copies around.A few days ago a friend was asking me for a HPC problem; he'd written a bog-standard nested for loop with indices, and was observing poor performance, and asked me if using C++23 std::ranges::views would help. It did, but I also fundamentally reworked his data layout. I saw something like a 5x performance improvement, even though I was writing at a higher level of abstraction than he was.[1]: https://www.usenix.org/system/files/1311_05-08_mickens.pdf",
+    "parent": 44879113,
+    "depth": 1
+  },
+  {
+    "id": 44880361,
+    "by": "gwbas1c",
+    "timeISO": "2025-08-12T18:53:09.000Z",
+    "textPlain": "I get that today's CPUs are orders of magnitude faster than the CPUs of the past. I also think it's important to admit that today's computers aren't orders of magnitude faster than yesterday's computers.There's many reasons for that, but mostly it's because it's not worth it to optimize most use cases. It's clear that, for the author's use case (image recognition,) it's \"worth it\" to optimize to the level they discuss.Otherwise, we shouldn't assume that doubling a CPU's speed will magically double an application's speed. The author alludes to bottlenecks inside the computer that appear \"CPU bound\" to many programmers. These bottlenecks are still there, even when tomorrow's CPU is \"twice as fast\" as today's CPUs.",
     "parent": 44879113,
     "depth": 1
   },
@@ -46,6 +62,46 @@
     "textPlain": "(2008)",
     "parent": 44879113,
     "depth": 1
+  },
+  {
+    "id": 44880150,
+    "by": "moomin",
+    "timeISO": "2025-08-12T18:34:13.000Z",
+    "textPlain": "I mean, I don’t have an answer to this, but I’ll bet Simon Peyton-Jones has some ideas…",
+    "parent": 44879113,
+    "depth": 1
+  },
+  {
+    "id": 44880649,
+    "by": "eigenform",
+    "timeISO": "2025-08-12T19:16:29.000Z",
+    "textPlain": "Also weird because pipelining is very literally \"insert memories to cut some bigger process into parts that can occur in parallel with one another\"",
+    "parent": 44880329,
+    "depth": 2
+  },
+  {
+    "id": 44880364,
+    "by": "irq-1",
+    "timeISO": "2025-08-12T18:53:36.000Z",
+    "textPlain": "That's true, but isn't it an issue of price and volume? Specialized network cards are OK (in the market.)",
+    "parent": 44880280,
+    "depth": 2
+  },
+  {
+    "id": 44880198,
+    "by": "elchananHaas",
+    "timeISO": "2025-08-12T18:39:50.000Z",
+    "textPlain": "For sure. The issue is that many AI workloads require terabytes per second of memory bandwidth and are on the cutting edge of memory technologies. As long as you can get away with little memory usage you can have massive savings, see Bitcoin ASICs.The great thing with the Von Neumann architecture is it is flexible enough to have all sorts of operations added to it; Including specialized matrix multiplication operations and async memory transfer. So I think its here to stay.",
+    "parent": 44879861,
+    "depth": 2
+  },
+  {
+    "id": 44880202,
+    "by": "librasteve",
+    "timeISO": "2025-08-12T18:40:18.000Z",
+    "textPlain": "occam (MIMD) is an improvement over CUDA (SIMD)with latest (eg TSMC) processes, someone could build a regular array of 32-bit FP transputers (T800 equivalent):  -  8000 CPUs in same die area as an Apple M2 (16 TIPS) (ie. 36x faster than an M2)\n  - 40000 CPUs in single reticle (80 TIPS)\n  - 4.5M CPUs per 300mm wafer (10 PIPS)\n\nthe transputer async link (and C001 switch) allows for decoupled clocking, CPU level redundancy and agricultural interconnectheat would be the biggest issue ... but >>50% of each CPU is low power (local) memory",
+    "parent": 44879861,
+    "depth": 2
   },
   {
     "id": 44879696,
