@@ -1,13 +1,5 @@
 [
   {
-    "id": 44874835,
-    "by": "grougnax",
-    "timeISO": "2025-08-12T11:18:35.000Z",
-    "textPlain": "Worse languages ever.",
-    "parent": 44841891,
-    "depth": 1
-  },
-  {
     "id": 44873493,
     "by": "uecker",
     "timeISO": "2025-08-12T07:45:01.000Z",
@@ -32,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44841999,
-    "by": "VivaTechnics",
-    "timeISO": "2025-08-08T21:43:59.000Z",
-    "textPlain": "We switched to Rust.\nGenerally, are there specific domains or applications where C/C++ remain preferable? Many exist—but are there tasks Rust fundamentally cannot handle or is a weak choice?",
-    "parent": 44841891,
-    "depth": 1
-  },
-  {
     "id": 44873816,
     "by": "laauraa",
     "timeISO": "2025-08-12T08:32:54.000Z",
     "textPlain": ">Uninitialized dataThey at least fixed this in c++26.\nNo longer UB, but \"erroneous behavior\".\nStill some random garbage value (so an uninitialized pointer will likely lead to disastrous results still), but the compiler isn't allowed to fuck up your code, it has to generate code as if it had some value.",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
+    "id": 44841999,
+    "by": "VivaTechnics",
+    "timeISO": "2025-08-08T21:43:59.000Z",
+    "textPlain": "We switched to Rust.\nGenerally, are there specific domains or applications where C/C++ remain preferable? Many exist—but are there tasks Rust fundamentally cannot handle or is a weak choice?",
     "parent": 44841891,
     "depth": 1
   },
@@ -64,6 +56,14 @@
     "depth": 1
   },
   {
+    "id": 44874971,
+    "by": "IshKebab",
+    "timeISO": "2025-08-12T11:38:17.000Z",
+    "textPlain": "This asserts that UB was deliberately created for optimisation purposes; not to handle implementation differences. It doesn't provide any evidence though and that seems unlikely to me.The spec even says:> behavior, upon use of a nonportable or erroneous program construct or of erroneous data, for which this International Standard imposes no requirementsNo motivation is given that I could find, so the actual difference between undefined and implementation defined behaviour seems to be based on whether the behaviour needs to be documented.",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
     "id": 44874612,
     "by": "roman_soldier",
     "timeISO": "2025-08-12T10:46:23.000Z",
@@ -76,6 +76,14 @@
     "by": "pizlonator",
     "timeISO": "2025-08-12T09:05:57.000Z",
     "textPlain": "I don’t buy the “it’s because of optimization argument”.And I especially don’t buy that UB is there for register allocation.First of all, that argument only explains UB of OOB memory accesses at best.Second, you could define the meaning of OOB by just saying “pointers are integers” and then further state that nonescaping locals don’t get addresses. Many ways you could specify that, if you cared badly enough. My favorite way to do it involves saying that pointers to locals are lazy thunks that create addresses on demand.",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
+    "id": 44874835,
+    "by": "grougnax",
+    "timeISO": "2025-08-12T11:18:35.000Z",
+    "textPlain": "Worse languages ever.",
     "parent": 44841891,
     "depth": 1
   },
@@ -104,10 +112,10 @@
     "depth": 2
   },
   {
-    "id": 44874794,
-    "by": "quietbritishjim",
-    "timeISO": "2025-08-12T11:13:15.000Z",
-    "textPlain": "> Including a header that is not in the program, and not in ISO C, is undefined behavior.What is this supposed to mean? I can't think of any interpretation that makes sense.I think ISO C defines the executable program to be something like the compiled translation units linked together. But header files do not have to have any particular correspondence to translation units. For example, a header might declare functions whose definitions are spread across multiple translation units, or define things that don't need any definitions in particular translation units (e.g. enum or struct definitions). It could even play macro tricks which means it declares or defines different things each time you include it.Maybe you mean it's undefined behaviour to include a header file that declares functions that are not defined in any translation unit. I'm not sure even that is true, so long as you don't use those functions. It's definitely not true in C++, where it's only a problem (not sure if it's undefined exactly) if you ODR-rule use a function that has been declared but not defined anywhere. (Examples of ODR-rule use are calling or taking the address of the function, but not, for example, using sizeof on it, or some templating tricks.)",
+    "id": 44874224,
+    "by": "throw-qqqqq",
+    "timeISO": "2025-08-12T09:38:21.000Z",
+    "textPlain": "> Undefined behavior only means that ISO C doesn't give requirements, not that nobody gives requirements. Many useful extensions are instances where undefined behavior is documented by an implementation.True, most compilers have sane defaults in many cases for things that are technically undefined (like take sizeof(void) or do pointer arithmetic on something other than a char). But not all of these cases can be saved by sane defaults.Undefined behavior means the compiler can replace the code with whatever. So if you e.g. compile optimizing for size, the compiler will rip out the offending code, as replacing it with nothing yields the greatest size optimization.See also John Regehr's collection of UB-Canaries: https://github.com/regehr/ub-canariesSnippets of software exhibiting undefined behavior, executing e.g. both the true and the false branch of an if-statement or none etc. UB should not be taken lightly IMO...",
     "parent": 44873848,
     "depth": 2
   },
@@ -120,11 +128,27 @@
     "depth": 2
   },
   {
-    "id": 44874224,
-    "by": "throw-qqqqq",
-    "timeISO": "2025-08-12T09:38:21.000Z",
-    "textPlain": "> Undefined behavior only means that ISO C doesn't give requirements, not that nobody gives requirements. Many useful extensions are instances where undefined behavior is documented by an implementation.True, most compilers have sane defaults in many cases for things that are technically undefined (like take sizeof(void) or do pointer arithmetic on something other than a char). But not all of these cases can be saved by sane defaults.Undefined behavior means the compiler can replace the code with whatever. So if you e.g. compile optimizing for size, the compiler will rip out the offending code, as replacing it with nothing yields the greatest size optimization.See also John Regehr's collection of UB-Canaries: https://github.com/regehr/ub-canariesSnippets of software exhibiting undefined behavior, executing e.g. both the true and the false branch of an if-statement or none etc. UB should not be taken lightly IMO...",
+    "id": 44874794,
+    "by": "quietbritishjim",
+    "timeISO": "2025-08-12T11:13:15.000Z",
+    "textPlain": "> Including a header that is not in the program, and not in ISO C, is undefined behavior.What is this supposed to mean? I can't think of any interpretation that makes sense.I think ISO C defines the executable program to be something like the compiled translation units linked together. But header files do not have to have any particular correspondence to translation units. For example, a header might declare functions whose definitions are spread across multiple translation units, or define things that don't need any definitions in particular translation units (e.g. enum or struct definitions). It could even play macro tricks which means it declares or defines different things each time you include it.Maybe you mean it's undefined behaviour to include a header file that declares functions that are not defined in any translation unit. I'm not sure even that is true, so long as you don't use those functions. It's definitely not true in C++, where it's only a problem (not sure if it's undefined exactly) if you ODR-rule use a function that has been declared but not defined anywhere. (Examples of ODR-rule use are calling or taking the address of the function, but not, for example, using sizeof on an expression that includes it.)",
     "parent": 44873848,
+    "depth": 2
+  },
+  {
+    "id": 44874290,
+    "by": "tialaramex",
+    "timeISO": "2025-08-12T09:50:54.000Z",
+    "textPlain": "It won't be a \"random garbage value\" but is instead a value the compiler chose.In effect if you don't opt out your value will always be initialized but not to a useful value you chose. You can think of this as similar to the (current, defanged and deprecated as well as unsafe) Rust std::mem::uninitialized()There were earlier attempts to make this value zero, or rather, as many 0x00 bytes as needed, because on most platforms that's markedly cheaper to do, but unfortunately some C++ would actually have worse bugs if the \"forgot to initialize\" case was reliably zero instead.",
+    "parent": 44873816,
+    "depth": 2
+  },
+  {
+    "id": 44873859,
+    "by": "kazinator",
+    "timeISO": "2025-08-12T08:40:06.000Z",
+    "textPlain": "C also fixed it in its way.Access to an uninitialized object defined in automatic storage, whose address is not taken, is UB.Access to any uninitialized object whose bit pattern is a non-value, likewise.Otherwise, it's good: the value implied by the bit pattern is obtained and computation goes on its merry way.",
+    "parent": 44873816,
     "depth": 2
   },
   {
@@ -144,22 +168,6 @@
     "depth": 2
   },
   {
-    "id": 44874640,
-    "by": "eru",
-    "timeISO": "2025-08-12T10:51:29.000Z",
-    "textPlain": "> Generally, are there specific domains or applications where C/C++ remain preferable?Well, anything were your people have more experience in the other language or the libraries are a lot better.",
-    "parent": 44841999,
-    "depth": 2
-  },
-  {
-    "id": 44874020,
-    "by": "mgaunard",
-    "timeISO": "2025-08-12T09:06:29.000Z",
-    "textPlain": "Rust forces you to code in the Rust way, while C or C++ let you do whatever you want.",
-    "parent": 44841999,
-    "depth": 2
-  },
-  {
     "id": 44873523,
     "by": "uecker",
     "timeISO": "2025-08-12T07:48:55.000Z",
@@ -172,6 +180,22 @@
     "by": "pizza234",
     "timeISO": "2025-08-12T08:20:27.000Z",
     "textPlain": "Yes, based on a few attempts chronicled in articles from different sources, Rust is a weak choice for game development, because it's too time-consuming to refactor.",
+    "parent": 44841999,
+    "depth": 2
+  },
+  {
+    "id": 44874020,
+    "by": "mgaunard",
+    "timeISO": "2025-08-12T09:06:29.000Z",
+    "textPlain": "Rust forces you to code in the Rust way, while C or C++ let you do whatever you want.",
+    "parent": 44841999,
+    "depth": 2
+  },
+  {
+    "id": 44874640,
+    "by": "eru",
+    "timeISO": "2025-08-12T10:51:29.000Z",
+    "textPlain": "> Generally, are there specific domains or applications where C/C++ remain preferable?Well, anything were your people have more experience in the other language or the libraries are a lot better.",
     "parent": 44841999,
     "depth": 2
   },
@@ -200,22 +224,6 @@
     "depth": 2
   },
   {
-    "id": 44874290,
-    "by": "tialaramex",
-    "timeISO": "2025-08-12T09:50:54.000Z",
-    "textPlain": "It won't be a \"random garbage value\" but is instead a value the compiler chose.In effect if you don't opt out your value will always be initialized but not to a useful value you chose. You can think of this as similar to the (current, defanged and deprecated as well as unsafe) Rust std::mem::uninitialized()There were earlier attempts to make this value zero, or rather, as many 0x00 bytes as needed, because on most platforms that's markedly cheaper to do, but unfortunately some C++ would actually have worse bugs if the \"forgot to initialize\" case was reliably zero instead.",
-    "parent": 44873816,
-    "depth": 2
-  },
-  {
-    "id": 44873859,
-    "by": "kazinator",
-    "timeISO": "2025-08-12T08:40:06.000Z",
-    "textPlain": "C also fixed it in its way.Access to an uninitialized object defined in automatic storage, whose address is not taken, is UB.Access to any uninitialized object whose bit pattern is a non-value, likewise.Otherwise, it's good: the value implied by the bit pattern is obtained and computation goes on its merry way.",
-    "parent": 44873816,
-    "depth": 2
-  },
-  {
     "id": 44873466,
     "by": "ViewTrick1002",
     "timeISO": "2025-08-12T07:40:55.000Z",
@@ -232,11 +240,11 @@
     "depth": 2
   },
   {
-    "id": 44874827,
-    "by": "gpderetta",
-    "timeISO": "2025-08-12T11:17:15.000Z",
-    "textPlain": "> nonescaping locals don’t get addressesinlining, interprocedural optimizations.For example, something as an trivial accessor member function would be hard to optimize.",
-    "parent": 44874015,
+    "id": 44875034,
+    "by": "flohofwoe",
+    "timeISO": "2025-08-12T11:46:39.000Z",
+    "textPlain": "I'd say the original intent of UB was not the sort of \"optimizer exploits\" we see today, but to allow wiggle room for supporting vastly different CPUs without having to compromise runtime performance or increasing compiler complexity to balance performance versus correctness. Basically an escape hatch for compilers. The difference to IB also has always been quite fuzzy.Also the C spec has always been a pragmatic afterthought, created and maintained to establish at least a minimal common feature set expected of C compilers.The really interesting stuff still only exists outside the spec in vendor language extensions.",
+    "parent": 44874971,
     "depth": 2
   },
   {
@@ -248,11 +256,35 @@
     "depth": 2
   },
   {
+    "id": 44874827,
+    "by": "gpderetta",
+    "timeISO": "2025-08-12T11:17:15.000Z",
+    "textPlain": "> nonescaping locals don’t get addressesinlining, interprocedural optimizations.For example, something as an trivial accessor member function would be hard to optimize.",
+    "parent": 44874015,
+    "depth": 2
+  },
+  {
     "id": 44874679,
     "by": "tialaramex",
     "timeISO": "2025-08-12T10:57:40.000Z",
     "textPlain": "> Second, you could define the meaning of OOB by just saying “pointers are integers\"This means losing a lot of optimisations, so in fact when you say you \"don't buy\" this argument you only mean that you don't care about optimisation. Which is fine, but this does mean the \"improved\" C isn't very useful in a lot of applications, might as well choose Java.",
     "parent": 44874015,
+    "depth": 2
+  },
+  {
+    "id": 44875119,
+    "by": "compiler-guy",
+    "timeISO": "2025-08-12T11:57:49.000Z",
+    "textPlain": "Jack Sparrow: “… but you have heard of them.”The dustbin of programming languages is jam packed with elegant, technically terrific, languages that never went anywhere.",
+    "parent": 44874835,
+    "depth": 2
+  },
+  {
+    "id": 44874909,
+    "by": "OskarS",
+    "timeISO": "2025-08-12T11:29:01.000Z",
+    "textPlain": "C and C++ are languages that brought us UNIX, the Linux kernel, macOS and Windows, the interpreters of virtually every other language in the world, powering virtually all software in the world as well as the vast majority of embedded devices.Chill the fuck out.",
+    "parent": 44874835,
     "depth": 2
   }
 ]

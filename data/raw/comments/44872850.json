@@ -24,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44874508,
-    "by": "afro88",
-    "timeISO": "2025-08-12T10:28:22.000Z",
-    "textPlain": "I have a real world problem I gave o1 when it came out and it got it quite wrong. It's a scheduling problem with 4 different constraints that vary each day, and success\n criteria that need to be fulfilled over the whole week.GPT-5 Thinking (Think Longer)  and Opus 4.1 Extended Thinking both get it right.Maybe this unique problem is somehow a part of synthetic training data? Or maybe it's not and the paper is wrong? Either way, we have models that are much more capable at solving unique problems today.",
+    "id": 44875304,
+    "by": "pama",
+    "timeISO": "2025-08-12T12:19:05.000Z",
+    "textPlain": "The math in the original paper is questionable. By leaving free the choice of divergence in Eq 3, Eq 4 has no practical value except when said divergence is zero exactly.",
     "parent": 44872850,
     "depth": 1
   },
@@ -52,6 +52,14 @@
     "by": "moi2388",
     "timeISO": "2025-08-12T09:35:31.000Z",
     "textPlain": "“ the researchers created a carefully controlled LLM environment in an attempt to measure just how well chain-of-thought reasoning works when presented with \"out of domain\" logical problems that don't match the specific logical patterns found in their training data.”Why? If it’s out of domain we know it’ll fail.",
+    "parent": 44872850,
+    "depth": 1
+  },
+  {
+    "id": 44874508,
+    "by": "afro88",
+    "timeISO": "2025-08-12T10:28:22.000Z",
+    "textPlain": "I have a real world problem I gave o1 when it came out and it got it quite wrong. It's a scheduling problem with 4 different constraints that vary each day, and success\n criteria that need to be fulfilled over the whole week.GPT-5 Thinking (Think Longer)  and Opus 4.1 Extended Thinking both get it right.Maybe this unique problem is somehow a part of synthetic training data? Or maybe it's not and the paper is wrong? Either way, we have models that are much more capable at solving unique problems today.",
     "parent": 44872850,
     "depth": 1
   },
@@ -96,14 +104,6 @@
     "depth": 1
   },
   {
-    "id": 44873722,
-    "by": "OtherShrezzing",
-    "timeISO": "2025-08-12T08:18:26.000Z",
-    "textPlain": "I think it is worth writing about simply because it might get the (cost constrained) researcher’s work in front of someone who has the near-unlimited research budgets at one of the big AI companies.",
-    "parent": 44873038,
-    "depth": 2
-  },
-  {
     "id": 44873291,
     "by": "willvarfar",
     "timeISO": "2025-08-12T07:10:56.000Z",
@@ -112,10 +112,18 @@
     "depth": 2
   },
   {
-    "id": 44873186,
-    "by": "suddenlybananas",
-    "timeISO": "2025-08-12T06:53:48.000Z",
-    "textPlain": ">Training on LLM outputs leads to catastrophic collapse. Every outlet led with this. But no-one red the fine-print, they were testing on small toy models, and were using everything that came out to re-train. Of course it's gonna fail. L3 / phi / gpt-oss models showed that you can absolutely train on synthetic datasets and have great resultsYou're conflating two very different things. Training on synthetic data one time is very different than cyclically training models on their own data. It has nothing to do with model size.",
+    "id": 44873722,
+    "by": "OtherShrezzing",
+    "timeISO": "2025-08-12T08:18:26.000Z",
+    "textPlain": "I think it is worth writing about simply because it might get the (cost constrained) researcher’s work in front of someone who has the near-unlimited research budgets at one of the big AI companies.",
+    "parent": 44873038,
+    "depth": 2
+  },
+  {
+    "id": 44875341,
+    "by": "pxc",
+    "timeISO": "2025-08-12T12:22:33.000Z",
+    "textPlain": "Well now they could use GPT-OSS, but it wasn't out when they began the study.I've recently been taking a look at another paper, from 2023, and subsequent research. It has a morally similar finding, though not focused on \"reasoning traces\", but it's based on GPT-4:https://proceedings.neurips.cc/paper_files/paper/2023/hash/d...",
     "parent": 44873038,
     "depth": 2
   },
@@ -128,10 +136,42 @@
     "depth": 2
   },
   {
+    "id": 44875357,
+    "by": "kevingadd",
+    "timeISO": "2025-08-12T12:24:50.000Z",
+    "textPlain": "Almost every mention I've seen of gpt-oss was a complaint that the training on synthetic datasets produced a model that's mostly good at benchmarks. Are benchmarks the great results you're referring to or are there a lot of satisfied users out there that just don't post here on HN? Genuinely curious.I can see how performing well on benchmarks at the expense of everything else counts as great results if that's the point of the model.",
+    "parent": 44873038,
+    "depth": 2
+  },
+  {
+    "id": 44873186,
+    "by": "suddenlybananas",
+    "timeISO": "2025-08-12T06:53:48.000Z",
+    "textPlain": ">Training on LLM outputs leads to catastrophic collapse. Every outlet led with this. But no-one red the fine-print, they were testing on small toy models, and were using everything that came out to re-train. Of course it's gonna fail. L3 / phi / gpt-oss models showed that you can absolutely train on synthetic datasets and have great resultsYou're conflating two very different things. Training on synthetic data one time is very different than cyclically training models on their own data. It has nothing to do with model size.",
+    "parent": 44873038,
+    "depth": 2
+  },
+  {
+    "id": 44875097,
+    "by": "imp0cat",
+    "timeISO": "2025-08-12T11:55:07.000Z",
+    "textPlain": "https://www.experimental-history.com/p/bag-of-words-have-mer... Here is an explanation.",
+    "parent": 44874570,
+    "depth": 2
+  },
+  {
     "id": 44874454,
     "by": "wzdd",
     "timeISO": "2025-08-12T10:20:46.000Z",
     "textPlain": "> The mechanism that the model uses to transition towards the answer is to generate intermediate text.Yes, which makes sense, because if there's a landscape of states that the model is traversing, and there are probablistically likely pathways between an initial state and the desired output, but there isn't a direct pathway, then training the the model to generate intermediate text in order to move across that landscape so it can reach the desired output state is a good idea.Presumably LLM companies are aware that there is (in general) no relationship between the generated intermediate text and the output, and the point of the article is that by calling it a \"chain of thought\" rather than \"essentially-meaningless intermediate text which increases the number of potential states the model can reach\" users are misled into thinking that the model is reasoning, and may then make unwarranted assumptions, such as that the model could in general apply the same reasoning to similar problems, which is in general not true.",
+    "parent": 44873405,
+    "depth": 2
+  },
+  {
+    "id": 44875185,
+    "by": "heresie-dabord",
+    "timeISO": "2025-08-12T12:05:24.000Z",
+    "textPlain": "> It's interesting that there's still such a market for this sort of take.What do you think the explanation might be for there being \"such a market\"?",
     "parent": 44873405,
     "depth": 2
   },

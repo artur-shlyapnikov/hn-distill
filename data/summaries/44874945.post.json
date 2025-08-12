@@ -1,0 +1,8 @@
+{
+  "id": 44874945,
+  "lang": "ru",
+  "summary": "**Radicle 1.3.0**  \n*12 августа 2025*  \n\n**Кратко:** 48 коммитов, 7 авторов, новые правила канонических ссылок, первые шаги к Windows, улучшения CLI и логов.\n\n---\n\n### Установка\n```bash\ncurl -sSf https://radicle.xyz/install | sh -s -- --no-modify-path --version=1.3.0\n```\n\n---\n\n### Канонические ссылки  \nПравила описываются в `xyz.radicle.crefs`. Пример для тегов `refs/tags/releases/*`:\n\n```json\n\"xyz.radicle.crefs\": {\n  \"rules\": {\n    \"refs/tags/releases/*\": {\n      \"allow\": [\"did:key:...\"],\n      \"threshold\": 2\n    }\n  }\n}\n```\n\nПравило для `defaultBranch` формируется автоматически из `delegates` и `threshold`.\n\n---\n\n### Новое\n- **radicle-protocol** – новый crate, sans-I/O реализация протокола.  \n- **Windows** – `rad` CLI уже работает без WSL; `radicle-node` и `git-remote-rad` пока нет.  \n- **Логи** – ротация `node.log.1, .2…`, симлинк `node.log`.  \n- **Вывод** – полные Node ID там, где нужно копировать.  \n- **Пины** – порядок сохраняется как задал пользователь.  \n- **git-remote-rad** – разрешены bare-репозитории и любые Git-ревизии.  \n- **rad node connect** – ошибки возвращаются сразу, без таймаутов.  \n- **rad init** – ветка по умолчанию берётся из текущей или `init.defaultBranch`.\n\n---\n\n### Подробности и полный список изменений – в [чейнджлоге](/2025/08/12/canonical-references.html).",
+  "inputHash": "fa4f080677635ed4d3e362a928ca0a7f6e7fefd7feb2fcaca05b58d817588d1d",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-12T12:53:00.471Z"
+}
