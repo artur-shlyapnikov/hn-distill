@@ -24,14 +24,6 @@
     "depth": 1
   },
   {
-    "id": 44873417,
-    "by": "fattah25",
-    "timeISO": "2025-08-12T07:32:22.000Z",
-    "textPlain": "Rust here rust there. We are just talking about C not rust. Why we have to using rust. If you talking memory safety why there is no one recommends Ada language instead of rust.We have zig, Hare, Odin, V too.",
-    "parent": 44841891,
-    "depth": 1
-  },
-  {
     "id": 44873816,
     "by": "laauraa",
     "timeISO": "2025-08-12T08:32:54.000Z",
@@ -44,6 +36,14 @@
     "by": "VivaTechnics",
     "timeISO": "2025-08-08T21:43:59.000Z",
     "textPlain": "We switched to Rust.\nGenerally, are there specific domains or applications where C/C++ remain preferable? Many exist—but are there tasks Rust fundamentally cannot handle or is a weak choice?",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
+    "id": 44873417,
+    "by": "fattah25",
+    "timeISO": "2025-08-12T07:32:22.000Z",
+    "textPlain": "Rust here rust there. We are just talking about C not rust. Why we have to using rust. If you talking memory safety why there is no one recommends Ada language instead of rust.We have zig, Hare, Odin, V too.",
     "parent": 44841891,
     "depth": 1
   },
@@ -72,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44874612,
-    "by": "roman_soldier",
-    "timeISO": "2025-08-12T10:46:23.000Z",
-    "textPlain": "Just use Zig, it fixes all this",
-    "parent": 44841891,
-    "depth": 1
-  },
-  {
     "id": 44874835,
     "by": "grougnax",
     "timeISO": "2025-08-12T11:18:35.000Z",
     "textPlain": "Worse languages ever.",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
+    "id": 44874612,
+    "by": "roman_soldier",
+    "timeISO": "2025-08-12T10:46:23.000Z",
+    "textPlain": "Just use Zig, it fixes all this",
     "parent": 44841891,
     "depth": 1
   },
@@ -136,35 +136,11 @@
     "depth": 2
   },
   {
-    "id": 44875755,
-    "by": "the__alchemist",
-    "timeISO": "2025-08-12T13:05:04.000Z",
-    "textPlain": "Even within the rust OSS community it's irritating. They will try to cancel people for writing libs using `unsafe`, and makes APIs difficult to use by wrapping things in multiple layers of traits, then claim using other patters are unsafe/unsound/UB. They make claims that things like DMA are \"advanced topics\", and \"We haven't figured it out yet/found a good solution yet\". Love rust/hate the Satefy Inquisition. Or say things like \"Why use rust if you don't use all the safety-features and traits\"... which belittles rust as a one-trick lang!",
-    "parent": 44873417,
-    "depth": 2
-  },
-  {
-    "id": 44873466,
-    "by": "ViewTrick1002",
-    "timeISO": "2025-08-12T07:40:55.000Z",
-    "textPlain": "> Ada language instead of rustBecause it never achieved mainstream success?And Zig for example is very much not memory safe. Which a cursory search for ”segfault” in the Bun repo quickly tells you.https://github.com/oven-sh/bun/issues?q=is%3Aissue%20state%3...",
-    "parent": 44873417,
-    "depth": 2
-  },
-  {
-    "id": 44874163,
-    "by": "pjmlp",
-    "timeISO": "2025-08-12T09:27:38.000Z",
-    "textPlain": "None of them solve use after free, for example.Ada would rather be a nice choice, but most hackers love their curly brackets.",
-    "parent": 44873417,
-    "depth": 2
-  },
-  {
-    "id": 44876023,
-    "by": "account42",
-    "timeISO": "2025-08-12T13:35:44.000Z",
-    "textPlain": "That's unfortunate.",
-    "parent": 44873816,
+    "id": 44876242,
+    "by": "gpderetta",
+    "timeISO": "2025-08-12T13:56:09.000Z",
+    "textPlain": "You are basically trying to explain the difference between a conforming program and a strictly conforming one.",
+    "parent": 44873848,
     "depth": 2
   },
   {
@@ -172,6 +148,14 @@
     "by": "tialaramex",
     "timeISO": "2025-08-12T09:50:54.000Z",
     "textPlain": "It won't be a \"random garbage value\" but is instead a value the compiler chose.In effect if you don't opt out your value will always be initialized but not to a useful value you chose. You can think of this as similar to the (current, defanged and deprecated as well as unsafe) Rust std::mem::uninitialized()There were earlier attempts to make this value zero, or rather, as many 0x00 bytes as needed, because on most platforms that's markedly cheaper to do, but unfortunately some C++ would actually have worse bugs if the \"forgot to initialize\" case was reliably zero instead.",
+    "parent": 44873816,
+    "depth": 2
+  },
+  {
+    "id": 44876023,
+    "by": "account42",
+    "timeISO": "2025-08-12T13:35:44.000Z",
+    "textPlain": "That's unfortunate.",
     "parent": 44873816,
     "depth": 2
   },
@@ -192,6 +176,14 @@
     "depth": 2
   },
   {
+    "id": 44876450,
+    "by": "teunispeters",
+    "timeISO": "2025-08-12T14:12:42.000Z",
+    "textPlain": "embedded hardware, any processor Rust doesn't support (there are many), and any place where code size is critical.   Rust has a BIG base size for an application, uselessly so at this time.   I'd also love to see if it offered anything that could be any use in those spaces - especially where no memory allocation takes place at all.  C (and to a lesser extent C++) are both very good in those spaces.",
+    "parent": 44841999,
+    "depth": 2
+  },
+  {
     "id": 44873789,
     "by": "bluetomcat",
     "timeISO": "2025-08-12T08:28:32.000Z",
@@ -208,6 +200,14 @@
     "depth": 2
   },
   {
+    "id": 44874020,
+    "by": "mgaunard",
+    "timeISO": "2025-08-12T09:06:29.000Z",
+    "textPlain": "Rust forces you to code in the Rust way, while C or C++ let you do whatever you want.",
+    "parent": 44841999,
+    "depth": 2
+  },
+  {
     "id": 44873736,
     "by": "pizza234",
     "timeISO": "2025-08-12T08:20:27.000Z",
@@ -216,10 +216,10 @@
     "depth": 2
   },
   {
-    "id": 44874020,
-    "by": "mgaunard",
-    "timeISO": "2025-08-12T09:06:29.000Z",
-    "textPlain": "Rust forces you to code in the Rust way, while C or C++ let you do whatever you want.",
+    "id": 44874529,
+    "by": "m-schuetz",
+    "timeISO": "2025-08-12T10:31:22.000Z",
+    "textPlain": "Prototyping in any domain. It's nice to do some quick&dirty way to rapidly evaluate ideas and solutions.",
     "parent": 44841999,
     "depth": 2
   },
@@ -240,19 +240,35 @@
     "depth": 2
   },
   {
-    "id": 44874529,
-    "by": "m-schuetz",
-    "timeISO": "2025-08-12T10:31:22.000Z",
-    "textPlain": "Prototyping in any domain. It's nice to do some quick&dirty way to rapidly evaluate ideas and solutions.",
-    "parent": 44841999,
-    "depth": 2
-  },
-  {
     "id": 44873704,
     "by": "mrheosuper",
     "timeISO": "2025-08-12T08:16:15.000Z",
     "textPlain": "Rust can do inline ASM, so finding a task Rust \"fundamentally cannot handle\" is almost impossible.",
     "parent": 44841999,
+    "depth": 2
+  },
+  {
+    "id": 44873466,
+    "by": "ViewTrick1002",
+    "timeISO": "2025-08-12T07:40:55.000Z",
+    "textPlain": "> Ada language instead of rustBecause it never achieved mainstream success?And Zig for example is very much not memory safe. Which a cursory search for ”segfault” in the Bun repo quickly tells you.https://github.com/oven-sh/bun/issues?q=is%3Aissue%20state%3...",
+    "parent": 44873417,
+    "depth": 2
+  },
+  {
+    "id": 44875755,
+    "by": "the__alchemist",
+    "timeISO": "2025-08-12T13:05:04.000Z",
+    "textPlain": "Even within the rust OSS community it's irritating. They will try to cancel people for writing libs using `unsafe`, and makes APIs difficult to use by wrapping things in multiple layers of traits, then claim using other patters are unsafe/unsound/UB. They make claims that things like DMA are \"advanced topics\", and \"We haven't figured it out yet/found a good solution yet\". Love rust/hate the Satefy Inquisition. Or say things like \"Why use rust if you don't use all the safety-features and traits\"... which belittles rust as a one-trick lang!",
+    "parent": 44873417,
+    "depth": 2
+  },
+  {
+    "id": 44874163,
+    "by": "pjmlp",
+    "timeISO": "2025-08-12T09:27:38.000Z",
+    "textPlain": "None of them solve use after free, for example.Ada would rather be a nice choice, but most hackers love their curly brackets.",
+    "parent": 44873417,
     "depth": 2
   },
   {
@@ -300,6 +316,14 @@
     "by": "compiler-guy",
     "timeISO": "2025-08-12T11:57:49.000Z",
     "textPlain": "Jack Sparrow: “… but you have heard of them.”The dustbin of programming languages is jam packed with elegant, technically terrific, languages that never went anywhere.",
+    "parent": 44874835,
+    "depth": 2
+  },
+  {
+    "id": 44876226,
+    "by": "account42",
+    "timeISO": "2025-08-12T13:54:49.000Z",
+    "textPlain": "Except for all the others.",
     "parent": 44874835,
     "depth": 2
   },

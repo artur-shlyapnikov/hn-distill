@@ -1,0 +1,282 @@
+[
+  {
+    "id": 44876377,
+    "by": "ndriscoll",
+    "timeISO": "2025-08-12T14:06:11.000Z",
+    "textPlain": "Beyond the fact that almost all web \"apps\" are actually honest documents, let's not forget that operating systems 20 years ago were more \"highly interactive, component-based, state-driven, design-system-heavy applications\" and still globally (across all applications at once) themeable. So it seems to me that the problem is that modern UI in fact has lost the concept of modular components. e.g. every time someone comes out with light/dark mode as a feature, I can't help but feel like it's an insider joke that's been running so long that the new kids think it's serious. Every single application used to have a more powerful version of that by default. There was a GUI for users to use that was simple enough to find and use that my 90 year old grandma had customized the colors on her windows 98 machine.",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876339,
+    "by": "montroser",
+    "timeISO": "2025-08-12T14:02:40.000Z",
+    "textPlain": "The solution is already here, and it's totally fine: Use utility classes just for layout (margin, padding, etc); use scoped styles for your components; use a small set of globally available classes for styling native elements (buttons, etc) -- and you're good!Vue and others have had scoped styles for a long time. Now @scope is spec'd with improving browser support. All this pain in TFA is from people flailing with all of the many bad options that pervade the React ecosystem.",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876261,
+    "by": "donatj",
+    "timeISO": "2025-08-12T13:57:30.000Z",
+    "textPlain": "> Fast-forward a couple of decades and we’re building highly interactive, component-based, state-driven, design-system-heavy applicationsAre we actually, in fact, if we're being honest?I haven't seen anything like that. 99.9% of applications I interact with are just a series of simple CRUD operations. Sometimes they add unnecessary complexity and flashiness and of course there are some games and such, but when it comes to actual business apps they all just boil down to updating text records in a database at a human pace.I am genuinely interested to hear examples of these \"highly interactive\" web apps others are building I keep hearing about but never seeing.",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876481,
+    "by": "theletterf",
+    "timeISO": "2025-08-12T14:15:51.000Z",
+    "textPlain": "Ah dangit. I was expecting a deeper conclusion. Then I checked on GPTZero and turns out the article is very likely to be AI-made. The header, too (you can tell). I'm not sure I should be taking advice from an LLM...",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876201,
+    "by": "spacebanana7",
+    "timeISO": "2025-08-12T13:52:19.000Z",
+    "textPlain": "I wonder how different things would be today if the web browser was originally designed for applications rather than documents.",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876263,
+    "by": "marcosdumay",
+    "timeISO": "2025-08-12T13:57:40.000Z",
+    "textPlain": "Oh, man. The article doesn't even give just writing the CSS isn't as an option...What a world we live on.",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876296,
+    "by": "setnone",
+    "timeISO": "2025-08-12T13:59:55.000Z",
+    "textPlain": "I embrace the mess of tailwind-cluttered markup to eliminate context switching and save up some cognitive load.",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876524,
+    "by": "bradley13",
+    "timeISO": "2025-08-12T14:18:52.000Z",
+    "textPlain": "CSS is kudzu, growing wild and untameable. The complexity has long since reached the point that implementing a new browser engine would be nearly impossible. The fact that the maintainers don't even any sort of releases, shows just how out of control it is.",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876441,
+    "by": "amadeuspagel",
+    "timeISO": "2025-08-12T14:11:19.000Z",
+    "textPlain": "> React, Vue, Svelte. They all put components at the core. Scoped logic. Scoped templates. Scoped state. Then we hand them a stylesheet that’s global, cascading, and inherited by default.I don't know about react and vue, but svelte has a style tag that's scoped to the component.",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876354,
+    "by": "zx8080",
+    "timeISO": "2025-08-12T14:04:32.000Z",
+    "textPlain": "It's a vendor-lock problem that's being solved (by google) by all that complexity. Effectively, it's too expensive to maintain core browser (approx. $1B/year for chromium) engine because of all that css and other standards published (and adopted by some developers) every month.",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876252,
+    "by": "skipchris",
+    "timeISO": "2025-08-12T13:56:53.000Z",
+    "textPlain": "\"Cascade Layers […] give you more control, if your team is ready to learn them\"in fairness to css, I think my team would struggle with most technologies they weren’t ready to learn.",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876240,
+    "by": "mmastrac",
+    "timeISO": "2025-08-12T13:55:58.000Z",
+    "textPlain": "EDIT: the nested selector popped up without me noticing; removing my comment because I was working from faulty information (and clearly was missing from the blog post)",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876345,
+    "by": "quotemstr",
+    "timeISO": "2025-08-12T14:03:43.000Z",
+    "textPlain": "Here we go. Let's spin the wheel of front-end framework fortune once again. The article correctly identifies that CSS isn't the problem, but just giving up on elegance is premature.IME, CSS is actually _just fine_ and would do as well as anything else at the job. The real problems arise from:- People just not being aware of the affordances of modern CSS (like nested selectors, variables, fancy grid layout stuff, etc.). Of course CSS is going is suck if you insist on living with CSS3 like it's 1998.- Inherent domain contradictions. \"I want isolated styling!\" \"I want consistent theming!\" and like the dog in the \"no take, only throw!\" meme, \"I don't want interfaces. I want my styling to be isolated except when I don't want it to be!\"CSS is actually pretty elegant. We should be using declarative, composable configuration (e.g. CUE) in other domains too.",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876366,
+    "by": "scoopdewoop",
+    "timeISO": "2025-08-12T14:05:11.000Z",
+    "textPlain": "[flagged]",
+    "parent": 44876075,
+    "depth": 1
+  },
+  {
+    "id": 44876480,
+    "by": "N_Lens",
+    "timeISO": "2025-08-12T14:15:48.000Z",
+    "textPlain": "Your comment kind of reminds me of old school Winamp and its skins.",
+    "parent": 44876377,
+    "depth": 2
+  },
+  {
+    "id": 44876496,
+    "by": "eadmund",
+    "timeISO": "2025-08-12T14:17:10.000Z",
+    "textPlain": "> 99.9% of applications I interact with are just a series of simple CRUD operations.The vast majority of web apps out there could be implemented as REST systems (in the real, Fielding, HATEOAS sense, not the JSON-over-HTTP sense).There are a few out there which need to be web apps, but those are relatively rare.",
+    "parent": 44876261,
+    "depth": 2
+  },
+  {
+    "id": 44876390,
+    "by": "_fat_santa",
+    "timeISO": "2025-08-12T14:07:15.000Z",
+    "textPlain": "Easy. It's just about any react/angular/vue based site written these days. Take GMail, Jira, your health insurance portal, TurboTax, and a littany of other sites.Practically every one of these uses components, internal state, and design systems to make the site highly interactive, just about every \"web app\" falls into this category.",
+    "parent": 44876261,
+    "depth": 2
+  },
+  {
+    "id": 44876371,
+    "by": "burnte",
+    "timeISO": "2025-08-12T14:05:32.000Z",
+    "textPlain": "I totally agree, maybe 1 in 100 web pages actually NEED any of the code they run. Mostly it's reinventing the wheel. Where a flat site with fixed HTML and pretty CSS would be fine, they add a splash page so they can show a logo, they'll break navigation and reimplement the browser inside the page with JS so you can't use the back button, they'll style everything on the fly when nothing is dynamic, etc. Nonsense.",
+    "parent": 44876261,
+    "depth": 2
+  },
+  {
+    "id": 44876404,
+    "by": "pyrale",
+    "timeISO": "2025-08-12T14:08:42.000Z",
+    "textPlain": "It really depends on what you call CRUD, but for instance, in the past, I've had frontends hiding the crud behind more \"friendly\" gestures. For instance, a write such as rescheduling a sale could be done with drag&drop, reads would feed a local store of events/sales that could be browsed either as a workweek panel of which sales are happening, or as a monthly calendar aggregating sales and showing which day is a \"hot\" day and which day is quiet and needs more blockbusters to drive sales. Add in search features, graphs of forecasted sales and a news feed on the sales a specific user was managing.It's not that complex or fancy compared to what can be found in b2c, but it's not just a crud where users are directly tasked to update values in fields either. And yes, it could have been a crud, but I believe our users would have been worse off.",
+    "parent": 44876261,
+    "depth": 2
+  },
+  {
+    "id": 44876468,
+    "by": "motorest",
+    "timeISO": "2025-08-12T14:14:40.000Z",
+    "textPlain": "> Are we, in fact, if we're being honest?Obviously, yes.> I haven't seen anything like that. 99.9% of applications I interact with are just simple CRUD apps.Irrelevant. Being CRUD is completely orthogonal to whether the WebApps are interactive or not.Look at Gmail. You can hand wave over it and claim it's a CRUD app. However, no one in their right mind would try to deny the app is a \"highly interactive, component-based, state-driven, design-system-heavy applications\".Also, it's silly to pretend that SPA-type apps are only justified if you check each box in the buzzword bingo card. One of the primary selling points of designing SPA or non-static lage, SPA-like WebApps is performance. Meaning, you are able to put together a highly performant web page if you do not require full page reloads each time anyone clicks on something, if you can easily implement optimistic logic in components, and if you can update only a subset of components when you receive a response from a request.I recommend discovering the concept of perceived performance and afterwards you read through common patterns and strategies to optimize perceived performance. After you do that, go through a though experiment where you start off with an old timey dynamic HTML/server-side rendered WebApp and consider the challenge of achieving the same type of improvements in user experience, or even doing the same tricks. You'll quickly arrive at the same conclusions at the whole world around you already arrived at.",
+    "parent": 44876261,
+    "depth": 2
+  },
+  {
+    "id": 44876460,
+    "by": "oneeyedpigeon",
+    "timeISO": "2025-08-12T14:13:43.000Z",
+    "textPlain": "I feel exactly the same way as you, and I get flashbacks to every time someone talks about the new framework on the block that serves to fix a problem that 0.1% have, while making things worse for the other 99.9%.",
+    "parent": 44876261,
+    "depth": 2
+  },
+  {
+    "id": 44876319,
+    "by": "timw4mail",
+    "timeISO": "2025-08-12T14:01:21.000Z",
+    "textPlain": "It's all the buzzwords to justify the overcomplexity of web frontends.",
+    "parent": 44876261,
+    "depth": 2
+  },
+  {
+    "id": 44876538,
+    "by": "vehemenz",
+    "timeISO": "2025-08-12T14:19:54.000Z",
+    "textPlain": "Or, imagine if they just froze the CSS spec at some point and allowed tools and methodologies to catch up.",
+    "parent": 44876201,
+    "depth": 2
+  },
+  {
+    "id": 44876455,
+    "by": "cbhl",
+    "timeISO": "2025-08-12T14:13:03.000Z",
+    "textPlain": "There _was_ an outlet for this during the era of Windows hegemony: the object and embed tags. You had your choice of ActiveX, Java, or Shockwave/Flash in the 90s to write applications that you could then embed in the web browser.We stopped using these for a variety of reasons: they were difficult to make secure or cross-platform, GMail made building apps in JavaScript fashionable, and the iPhone (which explicitly would not support ActiveX/Java/Flash).",
+    "parent": 44876201,
+    "depth": 2
+  },
+  {
+    "id": 44876343,
+    "by": "marcosdumay",
+    "timeISO": "2025-08-12T14:03:21.000Z",
+    "textPlain": "I'm really not sure. People tend to follow that comment with a list of requests for stuff that CSS does, exactly on the way that CSS does.Like separating the text and widgets rendering engines, and placement engines with \"stick\" orientations.",
+    "parent": 44876201,
+    "depth": 2
+  },
+  {
+    "id": 44876349,
+    "by": "brookst",
+    "timeISO": "2025-08-12T14:03:59.000Z",
+    "textPlain": "That’s what Flash was, and it was terrible.I think some things work better when they’ve evolved from simplicity to complexity, and application hosts seem to be one of them.",
+    "parent": 44876201,
+    "depth": 2
+  },
+  {
+    "id": 44876497,
+    "by": "quotemstr",
+    "timeISO": "2025-08-12T14:17:10.000Z",
+    "textPlain": "We had a web for applications. It was called telnet. AOL, Prodigy, and others all had actually-pretty-sophisticated remote application deployment systems with vector graphics and fancy input processing. In the early days of the web, it was also common to write line-of-business apps using tools like Visual Basic, Hypercard, and even Excel (some things never change). The web won over all of them because, as history tells us, there are fitness advantages (e.g. platform agnosticism) to evolving application capabilities into a widget toolkit that you just don't get if you try to make the optimal widget toolkit up front.If Tim Berners-Lee had made the web for apps and not documents, history would have been no different. Somebody besides Tim would have made a remote document system and we'd all be using that instead of something called the web.",
+    "parent": 44876201,
+    "depth": 2
+  },
+  {
+    "id": 44876234,
+    "by": "gjsman-1000",
+    "timeISO": "2025-08-12T13:55:26.000Z",
+    "textPlain": "One day, someone just needs to build an accessibility system for WASM; and maybe (additionally) an overlay system telling the browser that pixels X1, Y1 to X2, Y2 are selectable text.The moment we do that; we can theoretically implement any GUI framework we like, rendering to a <canvas> tag, without the current (serious) downsides. I’m looking forward towards more exploration of that direction. Then, we can mostly be free of HTML, CSS, and JavaScript defining how apps can be built. Those three tools that have long outlived their original intentions and have gone into complete duct-tape territory.AI however, might actually solve this sooner than we realize. Apple already uses AI to copy-paste text from images. I’m sure there’s plenty of R&D going on right now on using AI to describe what is on screen. In theory, maybe we can legitimately AI our way out of needing accessibility concessions, and off we go. Build your website in Flutter; or in MAUI; or in some DIY port of SwiftUI; whatever you want.",
+    "parent": 44876201,
+    "depth": 2
+  },
+  {
+    "id": 44876347,
+    "by": "hasanhaja",
+    "timeISO": "2025-08-12T14:03:54.000Z",
+    "textPlain": "How's your experience maintaining styles written in this manner?My experience has been increased cognitive load when I come back to tailwind styles after a long time, when compared to dealing with handwritten CSS selectors and classes",
+    "parent": 44876296,
+    "depth": 2
+  },
+  {
+    "id": 44876300,
+    "by": "marcosdumay",
+    "timeISO": "2025-08-12T14:00:08.000Z",
+    "textPlain": "We have had nested style rules in native CSS for a couple of years already.https://developer.mozilla.org/en-US/docs/Web/CSS/Nesting_sel...",
+    "parent": 44876240,
+    "depth": 2
+  },
+  {
+    "id": 44876322,
+    "by": "lemonberry",
+    "timeISO": "2025-08-12T14:01:38.000Z",
+    "textPlain": "Sorry if you know about this, I can't tell from your post. But nesting CSS has been added. Here's the MDN article: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nestingBrowser support is here: https://caniuse.com/?search=nesting",
+    "parent": 44876240,
+    "depth": 2
+  },
+  {
+    "id": 44876328,
+    "by": "nvch",
+    "timeISO": "2025-08-12T14:01:59.000Z",
+    "textPlain": "Didn't they do it?\nhttps://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting...",
+    "parent": 44876240,
+    "depth": 2
+  },
+  {
+    "id": 44876360,
+    "by": "ale",
+    "timeISO": "2025-08-12T14:04:50.000Z",
+    "textPlain": "BEM is a naming convention and SCSS is a preprocessor, they're completely different things.",
+    "parent": 44876240,
+    "depth": 2
+  },
+  {
+    "id": 44876453,
+    "by": "abound",
+    "timeISO": "2025-08-12T14:12:53.000Z",
+    "textPlain": "Someone had some thoughts and chose to share them with the internet. I think that's cool. If anything about the internet sucks, it's the inevitable unconstructive criticism from anonymous strangers.",
+    "parent": 44876366,
+    "depth": 2
+  },
+  {
+    "id": 44876437,
+    "by": "quotemstr",
+    "timeISO": "2025-08-12T14:11:14.000Z",
+    "textPlain": "The article is neither vapid nor pointless. You're just reading it as a technical proposal when the author didn't mean it to be one. Articles like this are meant to be nucleating points for vibe shifts, usually in the form of a preference cascade.Remember how the similarly vapid and pointless Agile Manifesto mysteriously got everyone talking about writing software more flexibly? You're not looking at technical engineering. You're looking at social engineering.In this instance, if the vibe shift attempt is successful (most are not) we'll stop whining about how much CSS sucks and blaming it for our failures and start talking about how to fill CSS's functionality gaps and make it do what practitioners actually need.",
+    "parent": 44876366,
+    "depth": 2
+  }
+]
