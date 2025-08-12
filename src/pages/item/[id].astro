@@ -43,6 +43,8 @@ const commentsHtml = commentsMd ? mdToHtml(commentsMd) : "";
 const datePretty = formatDateHuman(item.timeISO);
 const hnUrl = item.hnUrl ?? `https://news.ycombinator.com/item?id=${item.id}`;
 
+const description = (postMd || commentsMd || `Hacker News discussion for: ${item.title}`).slice(0, 300);
+
 const i18n = {
   ru: {
     comments: "Комментарии",
@@ -59,8 +61,14 @@ const commentsLabel = typeof item.commentsCount === "number" ? ` (${item.comment
   <head>
     <meta charset="utf-8" />
     <title>{item.title}</title>
+    <meta name="description" content={description} />
     <meta name="robots" content="index,follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content={item.title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:site_name" content="Hacker News Digest" />
+    <meta property="og:type" content="article" />
     <link rel="canonical" href={hnUrl} />
   </head>
   <body>

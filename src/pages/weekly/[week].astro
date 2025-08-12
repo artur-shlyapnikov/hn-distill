@@ -75,13 +75,21 @@ const t = {
   title: 'По неделям',
   noData: 'Нет данных для выбранной недели.',
 };
+const pageTitle = `${t.title}: ${displayWeek} — Hacker News Digest`;
+const description = `Weekly Hacker News Digest for ${displayWeek}. ${weekItems.length} posts.`;
 ---
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
-    <title>{t.title} — Hacker News Digest</title>
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
     <meta name="robots" content="index,follow" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:site_name" content="Hacker News Digest" />
+    <meta property="og:type" content="website" />
   </head>
   <body>
     <header>
