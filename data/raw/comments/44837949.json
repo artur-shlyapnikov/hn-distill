@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44871352,
-    "by": "kazinator",
-    "timeISO": "2025-08-12T01:29:38.000Z",
-    "textPlain": "Tail recursive functions are loops when tail calls are jumps.Tail calls being jumps is the key insight.Not all tail calls are recursion!Students are confused by recursion. Some may be confused by tail calls.Don't mix two confusing things together when teaching.(Tail calls get mixed up with recursion because recognizing and treating/optimizing recursive tail calls to create loops an important highlighted category. In a compiler that doesn't optimize tail calls, optimizing self tail calls is an important priority (if that is easier to do than a general treatment). Many common algorithms are expressible in just one function that calls itself, and there are cases in which some or all of those calls can be tail calls; e.g. binary tree traversal.)The order should probably be: teach recursion first. Then when students have firmly wrapped their heads around it, introduce tail calls. Students will gain the skill of knowing what is a tail call and why it is important, and recognize which calls tail calls.  Secondly, the harder skill of taking recursion that uses non-tail calls and restructuring it to make tail calls instead.",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
     "id": 44870562,
     "by": "LegionMammal978",
     "timeISO": "2025-08-11T23:20:02.000Z",
@@ -28,6 +20,22 @@
     "by": "tombert",
     "timeISO": "2025-08-11T21:06:54.000Z",
     "textPlain": "I'm a pretty big functional programming nerd and I want to like tail recursion, but I honestly kind of feel like I agree with Guido on it, which is that it kind of breaks the typical stack-trace patterns.I have kind of grown to prefer Clojure's loop/recur construct, since it gives you something more or less akin to tail recursion but it doesn't pretend to be actually recursive.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44871352,
+    "by": "kazinator",
+    "timeISO": "2025-08-12T01:29:38.000Z",
+    "textPlain": "Tail recursive functions are loops when tail calls are jumps.Tail calls being jumps is the key insight.Not all tail calls are recursion!Students are confused by recursion. Some may be confused by tail calls.Don't mix two confusing things together when teaching.(Tail calls get mixed up with recursion because recognizing and treating/optimizing recursive tail calls to create loops an important highlighted category. In a compiler that doesn't optimize tail calls, optimizing self tail calls is an important priority (if that is easier to do than a general treatment). Many common algorithms are expressible in just one function that calls itself, and there are cases in which some or all of those calls can be tail calls; e.g. binary tree traversal.)The order should probably be: teach recursion first. Then when students have firmly wrapped their heads around it, introduce tail calls. Students will gain the skill of knowing what is a tail call and why it is important, and recognize which calls tail calls.  Secondly, the harder skill of taking recursion that uses non-tail calls and restructuring it to make tail calls instead.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44871628,
+    "by": "eru",
+    "timeISO": "2025-08-12T02:21:25.000Z",
+    "textPlain": "Loops are a special case of tail recursion which is a special case of recursion [0] which is a special case of calling functions.However, loops aren't the only use for tail recursion.  Another classic example are state machines as described in the 'Lambda: the ultimate goto' paper.  See eg https://en.wikisource.org/wiki/Lambda:_The_Ultimate_GOTO[0] Well, recursion on functions.  You can also have eg recursive data types or recursion in mathematics in general.  But let's focus on functions.",
     "parent": 44837949,
     "depth": 1
   },
@@ -48,6 +56,14 @@
     "depth": 1
   },
   {
+    "id": 44870663,
+    "by": "odyssey7",
+    "timeISO": "2025-08-11T23:31:16.000Z",
+    "textPlain": "High-profile places where this is sadly not implemented include:- V8 JavaScript Engine- Python",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
     "id": 44870385,
     "by": "wagwang",
     "timeISO": "2025-08-11T22:54:10.000Z",
@@ -60,14 +76,6 @@
     "by": "aryonoco",
     "timeISO": "2025-08-11T22:20:45.000Z",
     "textPlain": "For what it’s worth, in F#, tail recursive functions are  turned into equivalent loops by the .NET CLR.I actually like the compromise. I get to write safe functional code while getting all the benefits of a highly optimised iterative operation.",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
-    "id": 44870663,
-    "by": "odyssey7",
-    "timeISO": "2025-08-11T23:31:16.000Z",
-    "textPlain": "High-profile places where this is sadly not implemented include:- V8 JavaScript Engine- Python",
     "parent": 44837949,
     "depth": 1
   },
@@ -88,10 +96,34 @@
     "depth": 1
   },
   {
+    "id": 44871592,
+    "by": "pdpi",
+    "timeISO": "2025-08-12T02:14:26.000Z",
+    "textPlain": "> Tail recursion IME is a bigger foot gunThis is true for some languages, but not all.E.g. scala has @tailrec annotations, which make it a compile error for the annotated function to not be tail recursive. Clojure doesn't have tail call elimination, but has the `recur` special form for explicit recursion that is guaranteed to not consume any stack space.Rust has reserved the `become` keyword  that will eventually guarantee tail call elimination (So pretty similar to Clojure's recur, but I think Rust's version will allow mutual recursion)Zig goes the whole hog, and has `@call(modifier, fn, args)`, where `modifier` can be  things like compile_time, always_tail, always_inline, never_tail, never_inline, and a bunch other desirable guarantees you might want.",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44871671,
+    "by": "eru",
+    "timeISO": "2025-08-12T02:27:36.000Z",
+    "textPlain": "> Practically the day after I learned about tail recursion in CS class, I learned that almost all recursive calls can be translated to iteration, that in many cases the iterative version is easier to scan, is as fast if not faster, and that they can usually handle much much larger inputs than recursion due to avoiding stack overflow.What do you mean by easier to scan?  I find (most) loops [0] hard to read, because they typically involve mutable state.When properly implemented, tail calls are as fast as gotos and loops, and don't blow up any stack.  (Not all languages are implemented with a stack in any case.)However you have one point:Most of the time, we don't use recursion directly in our programs even in a language like Haskell or Scheme.  Instead we define a 'combinator' that encapsulates the specific, limited recursion scheme that we want, and then use that one.  This is very similar to how people generally don't use goto directly in their programs.You might be familiar with the combinators 'map', 'filter' and perhaps 'reduce'/'foldr'.  You could re-interpret the various common loop types as such recursion combinators that weaker languages have to bake into their language, because they are not strong enough to express them as a user-defined library.  And indeed, Haskell has Control.Monad.Loops (https://hackage.haskell.org/package/monad-loops-0.4.3/docs/C...) which gives you exactly the common loop types as a library.Some examples of less common combinators are eg 'unfold' or various combinators to traverse trees or graphs.[0] The foreach-loop over some sequence is less headache inducing than eg a while-loop.",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
     "id": 44869505,
     "by": "tombert",
     "timeISO": "2025-08-11T21:10:03.000Z",
     "textPlain": "In my mind, the biggest advantage to using tail recursion over vanilla loops is the ability to keep using persistent data structures without any (apparent) mutation.At least in theory, a tail recursive call will be converted into a dumb jump, so there shouldn't be a performance penalty, but since from your code's perspective you're passing in the stuff for the next iteration, you can keep using the pretty and easy-to-reason-about structures without creating any kind of mutable reference.I'm not 100% sold on tail recursion in a broader sense, but at least with Clojure's loop/recur stuff it is kind of cool to be able to keep using persistent data structures across iterations of loops.",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44871724,
+    "by": "akdor1154",
+    "timeISO": "2025-08-12T02:36:22.000Z",
+    "textPlain": "There are cases where iteration is clearer, and there are cases where recursion is clearer.It's well worth being familiar with both - if you learn how to shoehorn both approaches where they aren't ideal, your judgement on avoiding such practices will improve. :)",
     "parent": 44869452,
     "depth": 2
   },
@@ -104,10 +136,10 @@
     "depth": 2
   },
   {
-    "id": 44869756,
-    "by": "javcasas",
-    "timeISO": "2025-08-11T21:37:07.000Z",
-    "textPlain": "Recursion deals with recursive data structures, and iteration deals with \"plain old\" data structures.When you use one to process the other, you get into trouble. For example, you need to manage a stack to do iteration on your binary tree. Or you need to construct slices to recurse on your arrays.It's all about ergonomics.",
+    "id": 44871935,
+    "by": "rr808",
+    "timeISO": "2025-08-12T03:09:12.000Z",
+    "textPlain": "> IME is a bigger foot gun thanPretty much true for any functional feature. Great in the classroom, less practical in the real world.",
     "parent": 44869452,
     "depth": 2
   },
@@ -128,11 +160,27 @@
     "depth": 2
   },
   {
+    "id": 44869756,
+    "by": "javcasas",
+    "timeISO": "2025-08-11T21:37:07.000Z",
+    "textPlain": "Recursion deals with recursive data structures, and iteration deals with \"plain old\" data structures.When you use one to process the other, you get into trouble. For example, you need to manage a stack to do iteration on your binary tree. Or you need to construct slices to recurse on your arrays.It's all about ergonomics.",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
     "id": 44869980,
     "by": "Spivak",
     "timeISO": "2025-08-11T22:04:17.000Z",
     "textPlain": "I'm in your camp, recursive code is hard for the next reader, which might be you, to understand. It's a bit too magic looking for my taste. If you're looping it should look like a loop, if you're pushing  onto a stack you should get to see the stack. It's also safe against modifications which might silently break the tail-call nature of it until you blow out the stack later. It also gives you much saner and more debuggable stack traces because all the state is in the current frame.",
     "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44871913,
+    "by": "eru",
+    "timeISO": "2025-08-12T03:06:55.000Z",
+    "textPlain": "Loops and gootos are just a special case of function calls, that needed to be invented because back in the olden days we had no clue how to design language and write compilers.I don't understand why someone would want to hold on nostalgically to restrictions we no longer face.Controlled mutability is a step up, yes.  Btw, even languages like Haskell give you plenty of mutability to play with, if you want to.  (Eg MVars and TVars are a thing.)You are right that replacing a loop one for one with a tail recursive version doesn't give you much benefit either way.  (Though it does make my life easier, because you don't have to contort my brain around keeping track of mutation.)However that's a bit of a straw man and misses the broader picture.What you'd want to do is define combinators that encapsulate the specific pattern of computation you want to implement.  The most commonly known combinators are things like 'map' and 'filter'.  But there are plenty more useful ones you can define, like various tree traversals or whatever makes sense for use cases and data structures.Whether those combinators are implemented with tail calls or with loops or gotos or whatever is an implementation detail that their users don't need to worry about.I know of one major use case where you'd want to use tail recursion directly: state machines and interpreters.  See https://news.ycombinator.com/item?id=43076088 for an example of the latter.  See https://en.wikisource.org/wiki/Lambda:_The_Ultimate_GOTO for an example of the former.",
+    "parent": 44870562,
     "depth": 2
   },
   {
@@ -160,18 +208,18 @@
     "depth": 2
   },
   {
-    "id": 44869999,
-    "by": "xdavidliu",
-    "timeISO": "2025-08-11T22:06:05.000Z",
-    "textPlain": "it's not entirely true that it does the same thing: even if it gives the same result. For many programming languages, fold and map can only act on non-lazy data structures, so require O(N) memory for the data that needs to be folded over, while tail-recursive functions usually only use O(1) memory, even stack memory.Notable exceptions to the above are python3 with generators, which I believe truly use O(1) memory with map and fold. Haskell has lists that are lazy by default, but if you fold or map over them, it still \"forces the thunk\" for each element and thus you still end up using O(N) memory.",
-    "parent": 44869916,
-    "depth": 2
-  },
-  {
     "id": 44870982,
     "by": "zelphirkalt",
     "timeISO": "2025-08-12T00:23:30.000Z",
     "textPlain": "I wouldn't say \"rarely\", unless you have a whole host of other higher order functions at your disposal for more special cases than map and fold. There are many cases, where you don't want to fold or map over the whole data structure and want to exit early with a result already. Writing tail recursive functions is still very common.",
+    "parent": 44869916,
+    "depth": 2
+  },
+  {
+    "id": 44869999,
+    "by": "xdavidliu",
+    "timeISO": "2025-08-11T22:06:05.000Z",
+    "textPlain": "it's not entirely true that it does the same thing: even if it gives the same result. For many programming languages, fold and map can only act on non-lazy data structures, so require O(N) memory for the data that needs to be folded over, while tail-recursive functions usually only use O(1) memory, even stack memory.Notable exceptions to the above are python3 with generators, which I believe truly use O(1) memory with map and fold. Haskell has lists that are lazy by default, but if you fold or map over them, it still \"forces the thunk\" for each element and thus you still end up using O(N) memory.",
     "parent": 44869916,
     "depth": 2
   },
@@ -181,6 +229,22 @@
     "timeISO": "2025-08-11T22:10:18.000Z",
     "textPlain": "> For example, why write out a recursive function when a call to `fold` or `map` will do the same thing?Yeah this was a big help when I started F#.  Basically \"if you're using the rec keyword, you're probably missing something\" and hell that even goes for a lot of uses of fold, from the beginners perspective.",
     "parent": 44869916,
+    "depth": 2
+  },
+  {
+    "id": 44871978,
+    "by": "eru",
+    "timeISO": "2025-08-12T03:15:16.000Z",
+    "textPlain": "I have almost the opposite view: tail calls are great.But most of the time you will want to express your program in terms of more restricted combinators, because restriction makes the readers job easier.  Easier to understand, and easier to convince yourself that no weird things are happening.Basically, you might already agree that restricting mutation is good.  This is the same principle.So when you see a 'fold' you know even without looking at the callback, that your program will run through the whole list and not exit early.  When you see a 'map' you also know that no early exit will happen, but even more you know exactly how the return value will be constructed (whereas for fold that's arbitrary).However you are right that 'fold' and 'filter' and 'map', just like 'for' and 'while', are not good as universal building blocks.That's why you should define new combinators when you need them.  Typically, that's when you define new data structures, eg when you define a tree you will also want to define a 'map' for it, and also various tree traversals and perhaps searches.  Less typically, you also want new combinators for new algorithmic ideas, even on old data structures.Eg matrix multiplication is an interesting combinator.  You provide the meaning of 'addition' and 'multiplication' as call-backs, and depending on your choice you get an algorithm for finding shortest paths or for matching regular expressions etc (in addition to the obvious matrix-multiplication on real numbers, of course).  See https://news.ycombinator.com/item?id=9751987It's relatively seldom that you want to use 'naked' recursion.  The main example I can think of is when implementing state machine or interpreters.  See eg https://news.ycombinator.com/item?id=43076088 for the latter, and https://news.ycombinator.com/item?id=43076088 for the former.",
+    "parent": 44870387,
+    "depth": 2
+  },
+  {
+    "id": 44871982,
+    "by": "kmicinski",
+    "timeISO": "2025-08-12T03:15:52.000Z",
+    "textPlain": "I appreciate your thoughtful criticism of the post, to my eyes everything you are saying is correct.",
+    "parent": 44870415,
     "depth": 2
   }
 ]

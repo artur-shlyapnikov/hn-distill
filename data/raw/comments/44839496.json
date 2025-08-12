@@ -72,6 +72,22 @@
     "depth": 2
   },
   {
+    "id": 44871528,
+    "by": "hansvm",
+    "timeISO": "2025-08-12T01:59:37.000Z",
+    "textPlain": "Sure:- There are how many computer architectures? A compile-once-run-anywhere binary looks closer to shipping a fancy interpreter with your code than shipping a compiled project. Runtime bytecode generation is one technique for making that fast.- More generally, anything you don't know till runtime generates a huge amount of bloat if you handle it at compile-time. Imagine, e.g., a UI for dragging and dropping ML components to create an architecture. For as much compute as you're about to pour into training, even for very simple problems, it's worth something that looks like a compilation pass to appropriately fuse everything together. You could probably get away with literally shipping a compiler, but bytecode generation is a reasonable solution too.- Some things are literally impossible at compile-time without boxing and other overhead. E.g., once upon a time I made a zero-cost-abstraction library allowing you to specify an ML computational graph using the type system (most useful for problems where you're not just doing giant matmuls all day). It was in a language where mutually recursive generics are lazily generated, so you're able to express arbitrary nth derivatives still in the type system, still with zero overhead. What you can't do though is create a runtime program capable of creating arbitrary derivatives; there must be an upper bound for any finite-sized binary (for sufficiently complex starting functions) -- you could cap it at 2nd derivatives or 10th or whatever, but there would have to be a cap. If you move that to runtime though then you can have your cake and eat it too, less the cost of compiling (i.e., bytecode generation) at runtime.Etc. It's a tradeoff between binary size (which might have to be infinite in the compiled case) and runtime overhead (having to \"compile\" for each new kind of input you find).",
+    "parent": 44868675,
+    "depth": 2
+  },
+  {
+    "id": 44871706,
+    "by": "exabrial",
+    "timeISO": "2025-08-12T02:32:09.000Z",
+    "textPlain": "I think that's noteworthy, but just not necessary. Still really cool if memory usage and startup times are your constraints.",
+    "parent": 44868675,
+    "depth": 2
+  },
+  {
     "id": 44870422,
     "by": "AdieuToLogic",
     "timeISO": "2025-08-11T23:00:24.000Z",

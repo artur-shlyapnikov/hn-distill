@@ -1,0 +1,50 @@
+[
+  {
+    "id": 44871980,
+    "by": "starchild3001",
+    "timeISO": "2025-08-12T03:15:27.000Z",
+    "textPlain": "Really appreciate the depth of this paper; it's a welcome change from the usual model announcement blog posts. The Zhipu/Tsinghua team laid out not just the 'what' but the 'how,' which is where the most interesting details are for anyone trying to build with or on top of these models.The post-training methodology (Sec 3) is what really stands out to me. The idea of creating specialized 'expert models' for reasoning, agents, and chat, and then distilling their capabilities into a final unified model is a fascinating approach. It feels like a more structured way to solve the \"jack of all trades, master of none\" problem that can plague generalist models. Instead of just mixing all the data, they're essentially having a generalist learn from a committee of specialists.A couple of the findings from their RL experiments are pure gold for anyone working in this space. The counter-intuitive result that a single-stage RL process at the full 64K context length outperforms a progressive, multi-stage approach (Fig 6) is a fantastic lesson. I've seen teams assume the opposite would be true. Also, the pragmatic choice to use an XML-like template for function calls to avoid JSON escaping hell (Fig 4) may be a small but brilliant engineering decision that makes a huge difference in practice. Wrangling escaped code inside JSON turns out to be a mess.The performance on SWE-bench is impressive, putting it in the same league as much larger or proprietary models. What I’d love to see, and maybe others here have thoughts, is whether this hybrid training recipe holds up outside ARC-style evals. For example, do the agentic improvements transfer to messier, real-world workflows where APIs are undocumented, partial failures are common, and user input is full of ambiguity?",
+    "parent": 44871337,
+    "depth": 1
+  },
+  {
+    "id": 44871910,
+    "by": "reissbaker",
+    "timeISO": "2025-08-12T03:06:15.000Z",
+    "textPlain": "I've been playing around with GLM-4.5 as a coding model for a while now and it's really, really good. In the coding agent I've been working on, Octofriend [1], I've sometimes had it on and confused it for Claude 4. Subjectively, my experience has been:1. Claude is somewhat better at whole-codebase tasks, where you need to reason over a bunch of context and consider system interactions.2. GLM-4.5 is somewhat better at being \"honest\" — i.e. I rarely see it doing the things Claude does like making broken tests pass by changing the test instead of fixing the bug.Both are quite good though, and GLM-4.5 has found bugs that both Claude 4 Sonnet and 4.1 Opus have failed to catch. In general I think Claude wins a little more frequently on debugging tasks than GLM-4.5, but it's close.Compared to GPT-5, both Claude and GLM feel like they're more consistent, although GPT-5 sometimes has long brilliant runs where it nails everything with subjectively higher code quality than either of the latter. However, once GPT-5 goes off the rails, it's hard to get it back on track, so it can be a bit frustrating to work with in comparison.1: https://github.com/synthetic-lab/octofriend",
+    "parent": 44871337,
+    "depth": 1
+  },
+  {
+    "id": 44871638,
+    "by": "ttul",
+    "timeISO": "2025-08-12T02:23:07.000Z",
+    "textPlain": "This feels like the first open model that doesn’t require significant caveats when comparing to frontier proprietary models. The parameter efficiency alone suggests some genuine innovations in training methodology.                 I am keen to see some independent verification of the results and to see how if does on Aider’s LLM Leaderboard.",
+    "parent": 44871337,
+    "depth": 1
+  },
+  {
+    "id": 44871786,
+    "by": "Reubend",
+    "timeISO": "2025-08-12T02:47:31.000Z",
+    "textPlain": "Fantastic release, and it's under the Apache license too. I'm so happy that we've got open source models pushing the envelope.",
+    "parent": 44871337,
+    "depth": 1
+  },
+  {
+    "id": 44871650,
+    "by": "lumost",
+    "timeISO": "2025-08-12T02:25:18.000Z",
+    "textPlain": "Why was qwen3 omitted from the coding benchmark but not other benchmarks?",
+    "parent": 44871337,
+    "depth": 1
+  },
+  {
+    "id": 44871832,
+    "by": "darknoon",
+    "timeISO": "2025-08-12T02:55:07.000Z",
+    "textPlain": "It's ok, somewhere between a qwen 2.5 VL and the frontier models (o3 / opus 4) on visual reasoning",
+    "parent": 44871337,
+    "depth": 1
+  }
+]
