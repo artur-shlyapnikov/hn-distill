@@ -1,17 +1,25 @@
 [
   {
-    "id": 44872402,
-    "by": "Animats",
-    "timeISO": "2025-08-12T04:23:37.000Z",
-    "textPlain": "Did Python ever get tail recursion? There was a big controversy years ago. Guido didn't like it. But apparently something went in.Enthusiasm for tail recursion comes mostly from LISP and LISP-adjacent people - those who learned to program from SICP.[1] This is neither good nor bad. Even MIT doesn't use SICP any more, though.(The classic 20th century \"programming should be hard and programmers should suffer\" books:- Structure and Interpretation of Computer Programs, Abelson and Sussman.- Fundamental Algorithms and Semi-Numerical Algorithms, Knuth.- Algorithms + Data Structures = Programs, Wirth.- A discipline of programming, Dijkstra.These are mostly of historical interest now, but at one time, knowing those defined a real computer scientist. Today, it's more important that your LLM has been trained on them.)\"Love the lambda.\" - footer of original article.[1] https://archive.org/details/Sicp.2nd",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
     "id": 44869452,
     "by": "hinkley",
     "timeISO": "2025-08-11T21:03:55.000Z",
     "textPlain": "Practically the day after I learned about tail recursion in CS class, I learned that almost all recursive calls can be translated to iteration, that in many cases the iterative version is easier to scan, is as fast if not faster, and that they can usually handle much much larger inputs than recursion due to avoiding stack overflow.Tail recursion is meant to fix the latter. But what we mean to happen and what actually happens ain't ever exactly similar.Tail recursion IME is a bigger foot gun than relying on someone to add a new conditional branch at the end of a block in an iterative algorithm without fucking it up in the process. And iteration responds generally better to Extract Function. And while I can think of counter cases easily enough, in the large iteration is less work and less vigilance. And you cannot scale a project up without the vigilance requirement amortizing basically to 0 per line of code.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44872498,
+    "by": "kqr",
+    "timeISO": "2025-08-12T04:47:49.000Z",
+    "textPlain": "More exciting in my mind than the equivalence between tail recursion and while loops is the equivalence between left folds and for loops. A for loop in its most general shape is something like    <whatever state the application is in here serves as the starting state>\n    foreach (i in range(n)) {\n        <the state of the application is updated with each iteration>\n    }\n    <the desired state of the application has been applied when the loop is done>\n\nAn equivalent left fold is invoked like    <desired state> = foldl (\n        <state updating procedure>, \n        <starting state>,\n        range(n)\n    )\n\nThe difference is that the starting state is given explicitly to the loop, and the desired state is returned as a composite value. This makes it easier to troubleshoot than the implicit state transitions, but it's essentially the same still.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44872402,
+    "by": "Animats",
+    "timeISO": "2025-08-12T04:23:37.000Z",
+    "textPlain": "Did Python ever get tail recursion? There was a big controversy years ago. Guido didn't like it. But apparently something went in.Enthusiasm for tail recursion comes mostly from LISP and LISP-adjacent people - those who learned to program from SICP.[1] This is neither good nor bad. Even MIT doesn't use SICP any more, though.(The classic 20th century \"programming should be hard and programmers should suffer\" books:- Structure and Interpretation of Computer Programs, Abelson and Sussman.- Fundamental Algorithms and Semi-Numerical Algorithms, Knuth.- Algorithms + Data Structures = Programs, Wirth.- A discipline of programming, Dijkstra.These are mostly of historical interest now, but at one time, knowing those defined a real computer scientist. Today, it's more important that your LLM has been trained on them.)\"Love the lambda.\" - footer of original article.[1] https://archive.org/details/Sicp.2nd",
     "parent": 44837949,
     "depth": 1
   },
@@ -40,18 +48,18 @@
     "depth": 1
   },
   {
-    "id": 44872177,
-    "by": "Mikhail_Edoshin",
-    "timeISO": "2025-08-12T03:45:30.000Z",
-    "textPlain": "Everybody knows that \"goto is harmful\" but who has noticed that the very same paper says that loops are technically unnecessary?Loops are merely a special case of recursion. The reason languages have loops is that reifying these cases to language constructs simplifies code generation. The downside is that it muddles the logic of computation.",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
     "id": 44869916,
     "by": "munchler",
     "timeISO": "2025-08-11T21:56:51.000Z",
     "textPlain": "Every developer should know how to write a tail-recursive function and understand why it is equivalent to a loop. That said, tail recursion is rarely needed in modern functional programming. For example, why write out a recursive function when a call to `fold` or `map` will do the same thing?",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44872177,
+    "by": "Mikhail_Edoshin",
+    "timeISO": "2025-08-12T03:45:30.000Z",
+    "textPlain": "Everybody knows that \"goto is harmful\" but who has noticed that the very same paper says that loops are technically unnecessary?Loops are merely a special case of recursion. The reason languages have loops is that reifying these cases to language constructs simplifies code generation. The downside is that it muddles the logic of computation.",
     "parent": 44837949,
     "depth": 1
   },
@@ -136,18 +144,18 @@
     "depth": 2
   },
   {
-    "id": 44871724,
-    "by": "akdor1154",
-    "timeISO": "2025-08-12T02:36:22.000Z",
-    "textPlain": "There are cases where iteration is clearer, and there are cases where recursion is clearer.It's well worth being familiar with both - if you learn how to shoehorn both approaches where they aren't ideal, your judgement on avoiding such practices will improve. :)",
-    "parent": 44869452,
-    "depth": 2
-  },
-  {
     "id": 44870082,
     "by": "bjoli",
     "timeISO": "2025-08-11T22:15:52.000Z",
     "textPlain": "I am in the other camp. I prefer tail recursion and recursion over loops. However: For the simple cases it can and should probably be abstracted away like the racket for loops or my own goof-loop [1].I just feel that a recursive calls makes state much more clear, but then again I am no fan of mutation in general. In my old python days I think a good 60% of my bugs were due to me being bad at managing state.[1] https://rikspucko.koketteriet.se/bjoli/goof-loop",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44871724,
+    "by": "akdor1154",
+    "timeISO": "2025-08-12T02:36:22.000Z",
+    "textPlain": "There are cases where iteration is clearer, and there are cases where recursion is clearer.It's well worth being familiar with both - if you learn how to shoehorn both approaches where they aren't ideal, your judgement on avoiding such practices will improve. :)",
     "parent": 44869452,
     "depth": 2
   },
@@ -168,18 +176,18 @@
     "depth": 2
   },
   {
-    "id": 44870935,
-    "by": "zelphirkalt",
-    "timeISO": "2025-08-12T00:15:12.000Z",
-    "textPlain": "I have my doubts about any CS class/lecture, that teaches, that the \"iterative version is easier to scan\". Might just be the bias or inexperience of the lecturer. By not I find recursive to be often easier to read than some for loop with its loop header and counter that I need to think about and update in my mind. And then the loop usually in many languages does not even have a return value, because it is not an expression, but a statement. Meeehhh, very meehhh in many languages. Not all, but many.I think maybe in languages like Ruby or Smalltalk a loop can be more readable, because of how they structure it as messages to objects, rather than special keywords in the language.",
-    "parent": 44869452,
-    "depth": 2
-  },
-  {
     "id": 44869756,
     "by": "javcasas",
     "timeISO": "2025-08-11T21:37:07.000Z",
     "textPlain": "Recursion deals with recursive data structures, and iteration deals with \"plain old\" data structures.When you use one to process the other, you get into trouble. For example, you need to manage a stack to do iteration on your binary tree. Or you need to construct slices to recurse on your arrays.It's all about ergonomics.",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44870935,
+    "by": "zelphirkalt",
+    "timeISO": "2025-08-12T00:15:12.000Z",
+    "textPlain": "I have my doubts about any CS class/lecture, that teaches, that the \"iterative version is easier to scan\". Might just be the bias or inexperience of the lecturer. By not I find recursive to be often easier to read than some for loop with its loop header and counter that I need to think about and update in my mind. And then the loop usually in many languages does not even have a return value, because it is not an expression, but a statement. Meeehhh, very meehhh in many languages. Not all, but many.I think maybe in languages like Ruby or Smalltalk a loop can be more readable, because of how they structure it as messages to objects, rather than special keywords in the language.",
     "parent": 44869452,
     "depth": 2
   },
@@ -189,6 +197,30 @@
     "timeISO": "2025-08-11T22:04:17.000Z",
     "textPlain": "I'm in your camp, recursive code is hard for the next reader, which might be you, to understand. It's a bit too magic looking for my taste. If you're looping it should look like a loop, if you're pushing  onto a stack you should get to see the stack. It's also safe against modifications which might silently break the tail-call nature of it until you blow out the stack later. It also gives you much saner and more debuggable stack traces because all the state is in the current frame.",
     "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44872457,
+    "by": "qsort",
+    "timeISO": "2025-08-12T04:37:08.000Z",
+    "textPlain": "Python still doesn't have tail recursion, and uses a small stack by default.I'll note that in modern imperative languages is harder than it looks to figure out if calls are really in tail position, things like exception handling, destructors etc. interfere with this, so even as a SICP fanboy I'll admit it's fair enough that some languages don't want to bother.",
+    "parent": 44872402,
+    "depth": 2
+  },
+  {
+    "id": 44872529,
+    "by": "masklinn",
+    "timeISO": "2025-08-12T04:54:22.000Z",
+    "textPlain": "> Did Python ever get tail recursion? There was a big controversy years ago. Guido didn't like it. But apparently something went in.No. The only thing that went in is moving Python frames off of the C stack, but since afaik the recursion limit did not change it has essentially no impact on user code unless you play with said recursion limit.",
+    "parent": 44872402,
+    "depth": 2
+  },
+  {
+    "id": 44872536,
+    "by": "toast0",
+    "timeISO": "2025-08-12T04:56:04.000Z",
+    "textPlain": "> I've never really understood the desire for tail-recursive versions of iterative algorithms, except for a prior commitment to functional programming.Tail-recursion and iteration are broadly equivalent right? So picking one over the other is a matter of style and capability.You can't use iteration if your language isn't capable of it, but no worries, you can use tail recursion.Similarly, you can't use tail recursion if your language isn't capable of it, but no worries, you can use iteration, at least for iterative tail recursion. Otoh, there are uses of tail call elimination that aren't recursion (or aren't direct recursion) ... that can get akward if your language can't manage it.",
+    "parent": 44870562,
     "depth": 2
   },
   {
@@ -261,6 +293,14 @@
     "timeISO": "2025-08-12T03:15:16.000Z",
     "textPlain": "I have almost the opposite view: tail calls are great.But most of the time you will want to express your program in terms of more restricted combinators, because restriction makes the readers job easier.  Easier to understand, and easier to convince yourself that no weird things are happening.Basically, you might already agree that restricting mutation is good.  This is the same principle.So when you see a 'fold' you know even without looking at the callback, that your program will run through the whole list and not exit early.  When you see a 'map' you also know that no early exit will happen, but even more you know exactly how the return value will be constructed (whereas for fold that's arbitrary).However you are right that 'fold' and 'filter' and 'map', just like 'for' and 'while', are not good as universal building blocks.That's why you should define new combinators when you need them.  Typically, that's when you define new data structures, eg when you define a tree you will also want to define a 'map' for it, and also various tree traversals and perhaps searches.  Less typically, you also want new combinators for new algorithmic ideas, even on old data structures.Eg matrix multiplication is an interesting combinator.  You provide the meaning of 'addition' and 'multiplication' as call-backs, and depending on your choice you get an algorithm for finding shortest paths or for matching regular expressions etc (in addition to the obvious matrix-multiplication on real numbers, of course).  See https://news.ycombinator.com/item?id=9751987It's relatively seldom that you want to use 'naked' recursion.  The main example I can think of is when implementing state machine or interpreters.  See eg https://news.ycombinator.com/item?id=43076088 for the latter, and https://news.ycombinator.com/item?id=43076088 for the former.",
     "parent": 44870387,
+    "depth": 2
+  },
+  {
+    "id": 44872598,
+    "by": "Mikhail_Edoshin",
+    "timeISO": "2025-08-12T05:06:39.000Z",
+    "textPlain": "It is still the same stack, but it reuses the existing stack frame.",
+    "parent": 44870385,
     "depth": 2
   },
   {
