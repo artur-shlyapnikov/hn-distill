@@ -40,18 +40,18 @@
     "depth": 1
   },
   {
-    "id": 44863956,
-    "by": "rrr_oh_man",
-    "timeISO": "2025-08-11T13:40:20.000Z",
-    "textPlain": "That's great.I was thinking about whether to move the Terminal-based microblogging / chat app I'm building into this direction.(Especially after watching several interviews with Paul Durov and listening to what he went through...)",
-    "parent": 44863242,
-    "depth": 1
-  },
-  {
     "id": 44863522,
     "by": "Havoc",
     "timeISO": "2025-08-11T12:43:16.000Z",
     "textPlain": "Makes sense to get ahead of this. Especially when it’s a pretty trivial key swop.Which of the two options given is stronger? Presumably the 512 one?",
+    "parent": 44863242,
+    "depth": 1
+  },
+  {
+    "id": 44863956,
+    "by": "rrr_oh_man",
+    "timeISO": "2025-08-11T13:40:20.000Z",
+    "textPlain": "That's great.I was thinking about whether to move the Terminal-based microblogging / chat app I'm building into this direction.(Especially after watching several interviews with Paul Durov and listening to what he went through...)",
     "parent": 44863242,
     "depth": 1
   },
@@ -116,6 +116,14 @@
     "by": "Strilanc",
     "timeISO": "2025-08-11T13:36:15.000Z",
     "textPlain": "That paper is hilarious, and is correct that there's plenty of shit to make fun of... but there's also progress. I recommend watching Sam Jacques' talk from PQCrypto 2025 [0]. It would be silly to delay PQC adoption because of focusing on the irrelevant bad papers.In the past ten years, on the theory side, the expected cost of cryptographically relevant quantum factoring has dropped by 1000x [1][2]. On the hardware side, fault tolerance demonstrations have gone from repetition code error rates of 1% error per round [3] to 0.00000001% error per round [fig3a of 4], with full quantum codes being demonstrated with an error rate of 0.2% [fig1d of 4] via a 2x reduction in error each time distance is increased by 2.If you want to track progress in quantum computing, follow the gradual spinup of fault tolerance. Noise is the main thing blocking factoring of larger and larger numbers. Once the quality problem is turned into a quantity problem, then those benchmarks can start moving.[0]: https://www.youtube.com/watch?v=nJxENYdsB6c[1]: https://arxiv.org/abs/1208.0928[2]: https://arxiv.org/abs/2505.15917[3]: https://arxiv.org/abs/1411.7403[4]: https://arxiv.org/abs/2408.13687",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44870962,
+    "by": "djmdjm",
+    "timeISO": "2025-08-12T00:19:16.000Z",
+    "textPlain": ">In light of the recent hilarious paper around the current state of quantum cryptographyI assumed that paper was intended as a joke. If it's supposed to be serious criticism of the concept of quantum computing then it's pretty off-base, akin to complaining that transistors couldn't calculate Pi in 1951.> how big is the need for the current pace of post quantum crypto adoption?It comes down to:1) do you believe that no cryptographically-relevant quantum computer will be realised within your lifespan2) how much you value the data that are trusting to conventional cryptographyIf you believe that no QC will arrive in a timeframe you care about or you don't care about currently-private data then you'd be justified in thinking PQC is a waste of time.OTOH if you're a maintainer of a cryptographic application, then IMO you don't have the luxury of ignoring (2) on behalf of your users, irrespective of (1).",
     "parent": 44863450,
     "depth": 2
   },
@@ -192,11 +200,11 @@
     "depth": 2
   },
   {
-    "id": 44864368,
-    "by": "taminka",
-    "timeISO": "2025-08-11T14:18:19.000Z",
-    "textPlain": "what did he go through? also why would a blog website need ssh?",
-    "parent": 44863956,
+    "id": 44871052,
+    "by": "djmdjm",
+    "timeISO": "2025-08-12T00:35:26.000Z",
+    "textPlain": "FIPS certification is given to an entire \"cryptographic module\" that includes hardware and software. \"FIPS compliant OpenSSH\" is therefore a misnomer, you have to certify OpenSSH running on a particular OS on particular hardware.FIPS compliance does require use of specific algorithms. ML-KEM is NIST approved and AFAIK NIST is on record saying that hybrid KEMs are fine. My understanding is therefore that it would be possible for mlkem768x25519-sha256 (supported by OpenSSH) to be certified.caveat: IANAFA (I am not a FIPS auditor)",
+    "parent": 44867014,
     "depth": 2
   },
   {
@@ -221,6 +229,14 @@
     "timeISO": "2025-08-11T13:57:06.000Z",
     "textPlain": "mlkem is a sane default, since it's the construction the rest of the industry is standardizing on.",
     "parent": 44863522,
+    "depth": 2
+  },
+  {
+    "id": 44864368,
+    "by": "taminka",
+    "timeISO": "2025-08-11T14:18:19.000Z",
+    "textPlain": "what did he go through? also why would a blog website need ssh?",
+    "parent": 44863956,
     "depth": 2
   },
   {

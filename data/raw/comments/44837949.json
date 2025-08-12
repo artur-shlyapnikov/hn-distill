@@ -1,17 +1,25 @@
 [
   {
-    "id": 44870562,
-    "by": "LegionMammal978",
-    "timeISO": "2025-08-11T23:20:02.000Z",
-    "textPlain": "Several people in this thread are saying that tail recursion is superior to imperative iteration in that it explicitly specifies which variables may change in each iteration (assuming a broadly immutable language).To the contrary, I'd argue that immutability isn't the only alternative to universal mutability: many newer imperative languages (such as Rust) have various forms of controlled mutability, where one must explicitly declare which variables may be modified by imperative assignments.IME, controlled mutability captures just about all the benefit of immutable languages, without requiring any special data structures or sufficiently-smart compiler analyses to ensure good performance. I've never really understood the desire for tail-recursive versions of iterative algorithms, except if one is already committed to functional programming.",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
     "id": 44869452,
     "by": "hinkley",
     "timeISO": "2025-08-11T21:03:55.000Z",
     "textPlain": "Practically the day after I learned about tail recursion in CS class, I learned that almost all recursive calls can be translated to iteration, that in many cases the iterative version is easier to scan, is as fast if not faster, and that they can usually handle much much larger inputs than recursion due to avoiding stack overflow.Tail recursion is meant to fix the latter. But what we mean to happen and what actually happens ain't ever exactly similar.Tail recursion IME is a bigger foot gun than relying on someone to add a new conditional branch at the end of a block in an iterative algorithm without fucking it up in the process. And iteration responds generally better to Extract Function. And while I can think of counter cases easily enough, in the large iteration is less work and less vigilance. And you cannot scale a project up without the vigilance requirement amortizing basically to 0 per line of code.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44871352,
+    "by": "kazinator",
+    "timeISO": "2025-08-12T01:29:38.000Z",
+    "textPlain": "Tail recursive functions are loops when tail calls are jumps.Tail calls being jumps is the key insight.Not all tail calls are recursion!Students are confused by recursion. Some may be confused by tail calls.Don't mix two confusing things together when teaching.(Tail calls get mixed up with recursion because recognizing and treating/optimizing recursive tail calls to create loops an important highlighted category. In a compiler that doesn't optimize tail calls, optimizing self tail calls is an important priority (if that is easier to do than a general treatment). Many common algorithms are expressible in just one function that calls itself, and there are cases in which some or all of those calls can be tail calls; e.g. binary tree traversal.)The order should probably be: teach recursion first. Then when students have firmly wrapped their heads around it, introduce tail calls. Students will gain the skill of knowing what is a tail call and why it is important, and recognize which calls tail calls.  Secondly, the harder skill of taking recursion that uses non-tail calls and restructuring it to make tail calls instead.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44870562,
+    "by": "LegionMammal978",
+    "timeISO": "2025-08-11T23:20:02.000Z",
+    "textPlain": "Several people in this thread are saying that tail recursion is superior to imperative iteration in that it explicitly specifies which variables may change in each iteration (assuming a broadly immutable language).To the contrary, I'd argue that immutability isn't the only alternative to universal mutability: many newer imperative languages (such as Rust) have various forms of controlled mutability, where one must explicitly declare which variables may be modified by imperative assignments.IME, controlled mutability captures just about all the benefit of immutable languages, without requiring any special data structures or sufficiently-smart compiler analyses to ensure good performance. I've never really understood the desire for tail-recursive versions of iterative algorithms, except for a prior commitment to functional programming.",
     "parent": 44837949,
     "depth": 1
   },
@@ -24,14 +32,6 @@
     "depth": 1
   },
   {
-    "id": 44870387,
-    "by": "mehulashah",
-    "timeISO": "2025-08-11T22:54:22.000Z",
-    "textPlain": "Tail recursion is beautifully deep and simple. It (and as a corollary CPS) makes clear what state matters to your loop (and function) and avoids extraneous variables in loops as well as implicit unneeded state in functions. It also makes it easier to show the correctness of your loops. Sure, there are other functional language constructs like fold and map, if your problem is amenable to them. Tail recursion is more general and simpler.",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
     "id": 44869916,
     "by": "munchler",
     "timeISO": "2025-08-11T21:56:51.000Z",
@@ -40,10 +40,34 @@
     "depth": 1
   },
   {
+    "id": 44870387,
+    "by": "mehulashah",
+    "timeISO": "2025-08-11T22:54:22.000Z",
+    "textPlain": "Tail recursion is beautifully deep and simple. It (and as a corollary CPS) makes clear what state matters to your loop (and function) and avoids extraneous variables in loops as well as implicit unneeded state in functions. It also makes it easier to show the correctness of your loops. Sure, there are other functional language constructs like fold and map, if your problem is amenable to them. Tail recursion is more general and simpler.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
     "id": 44870385,
     "by": "wagwang",
     "timeISO": "2025-08-11T22:54:10.000Z",
     "textPlain": "Normal recursion is just a loop and a stack, turns out, if you can optimize recursion without a stack, it just becomes a loop.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44870124,
+    "by": "aryonoco",
+    "timeISO": "2025-08-11T22:20:45.000Z",
+    "textPlain": "For what it’s worth, in F#, tail recursive functions are  turned into equivalent loops by the .NET CLR.I actually like the compromise. I get to write safe functional code while getting all the benefits of a highly optimised iterative operation.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44870663,
+    "by": "odyssey7",
+    "timeISO": "2025-08-11T23:31:16.000Z",
+    "textPlain": "High-profile places where this is sadly not implemented include:- V8 JavaScript Engine- Python",
     "parent": 44837949,
     "depth": 1
   },
@@ -62,22 +86,6 @@
     "textPlain": "I disagree with the title; loops are tail-recursive functions, but tail-recursive functions are not loops (in the sense that squares are rectangles, but rectangles are not squares).It is true that every tail recursive function can be converted into a semantically equivalent loop via a transformation like CPS (which the author mentions). However, for mutually tail-recursive functions, this conversion loses control flow information. This is because after the CPS transformation, calls to the other function become calls to a continuation; this call usually must be implemented as an indirect jump. On the other hand, mutually tail-recursive functions can call each other with direct/statically-known jumps.This loss of information might appear trivial, but in practice it has some important consequences. Classic examples are interpreter loops. It is well-known that computed gotos can result in modest to large speedups for interpreters [1]. The reason why is that computed gotos create an indirect jump per opcode, so a branch predictor can take advantage of correlations between opcodes. For example, looking at Python disassembly, the header of a standard range for loop compiles down to three opcodes: GET_ITER, FOR_ITER, STORE_FAST in sequence [2]. A branch predictor can recognize that the target of the \"FOR_ITER\" indirect jump will likely be the \"STORE_FAST\" instruction pointer; it cannot predict this in the naive implementation where jumps for all instructions are \"merged\" into a single indirect jump / switch at the top of the loop body. In this case, computed goto is effectively equivalent to a CPS transformation whose closures require no storage on the heap.Suppose, however, we know even more information about the instruction sequence; for example, we know ahead of time that every FOR_ITER opcode will be followed by a STORE_FAST opcode. We could completely replace the indirect jump with a direct jump to the instruction pointer for the STORE_FAST opcode. Because modern branc",
     "parent": 44837949,
     "depth": 1
-  },
-  {
-    "id": 44870124,
-    "by": "aryonoco",
-    "timeISO": "2025-08-11T22:20:45.000Z",
-    "textPlain": "For what it’s worth, in F#, tail recursive functions are  turned into equivalent loops by the .NET CLR.I actually like the compromise. I get to write safe functional code while getting all the benefits of a highly optimised iterative operation.",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
-    "id": 44870539,
-    "by": "odyssey7",
-    "timeISO": "2025-08-11T23:16:28.000Z",
-    "textPlain": "Another foot-gun is to try to know your code is correct without mathematical induction. With loops, we implicitly reason in terms of loop-invariant properties of mutating variables, and using function calls instead makes those invariances explicit.Not every loop should be a recursive call, but labeling universally bad a foundational technique for rigorously thoughtful programming isn’t a good idea, either.You could view this in terms of levels of abstraction. Yes, you can translate tail recursion to a “jump,” just like you can translate C++ to assembly, but that doesn’t mean C++ is therefore a foot-gun to be avoided in favor of writing assembly.If you’re working with business logic, loops are pretty okay most of the time. If you’re working with complex algorithms, in many cases you’ll have a much easier time proving an implementation mathematically correct if you define it recursively.",
-    "parent": 44869452,
-    "depth": 2
   },
   {
     "id": 44869505,
@@ -112,11 +120,27 @@
     "depth": 2
   },
   {
+    "id": 44870935,
+    "by": "zelphirkalt",
+    "timeISO": "2025-08-12T00:15:12.000Z",
+    "textPlain": "I have my doubts about any CS class/lecture, that teaches, that the \"iterative version is easier to scan\". Might just be the bias or inexperience of the lecturer. By not I find recursive to be often easier to read than some for loop with its loop header and counter that I need to think about and update in my mind. And then the loop usually in many languages does not even have a return value, because it is not an expression, but a statement. Meeehhh, very meehhh in many languages. Not all, but many.I think maybe in languages like Ruby or Smalltalk a loop can be more readable, because of how they structure it as messages to objects, rather than special keywords in the language.",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
     "id": 44869980,
     "by": "Spivak",
     "timeISO": "2025-08-11T22:04:17.000Z",
     "textPlain": "I'm in your camp, recursive code is hard for the next reader, which might be you, to understand. It's a bit too magic looking for my taste. If you're looping it should look like a loop, if you're pushing  onto a stack you should get to see the stack. It's also safe against modifications which might silently break the tail-call nature of it until you blow out the stack later. It also gives you much saner and more debuggable stack traces because all the state is in the current frame.",
     "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44870960,
+    "by": "zelphirkalt",
+    "timeISO": "2025-08-12T00:19:11.000Z",
+    "textPlain": "But Rust's semantics make it less ergonomic to pass values and especially once you do any mutation, that code path is no longer trivially up for parallelization/concurrency. There one will have to lean into what Rust offers to make it safe again, which brings along more syntax. When one wants to pass values, one needs to implement clone or copy or something, and then explicitly clone or copy or so.It is a tradeoff one can make, and it lends itself to high performance but it does come at a cost.",
+    "parent": 44870562,
     "depth": 2
   },
   {
@@ -136,18 +160,26 @@
     "depth": 2
   },
   {
-    "id": 44870033,
-    "by": "Eji1700",
-    "timeISO": "2025-08-11T22:10:18.000Z",
-    "textPlain": "> For example, why write out a recursive function when a call to `fold` or `map` will do the same thing?Yeah this was a big help when I started F#.  Basically \"if you're using the rec keyword, you're probably missing something\" and hell that even goes for a lot of uses of fold, from the beginners perspective.",
-    "parent": 44869916,
-    "depth": 2
-  },
-  {
     "id": 44869999,
     "by": "xdavidliu",
     "timeISO": "2025-08-11T22:06:05.000Z",
     "textPlain": "it's not entirely true that it does the same thing: even if it gives the same result. For many programming languages, fold and map can only act on non-lazy data structures, so require O(N) memory for the data that needs to be folded over, while tail-recursive functions usually only use O(1) memory, even stack memory.Notable exceptions to the above are python3 with generators, which I believe truly use O(1) memory with map and fold. Haskell has lists that are lazy by default, but if you fold or map over them, it still \"forces the thunk\" for each element and thus you still end up using O(N) memory.",
+    "parent": 44869916,
+    "depth": 2
+  },
+  {
+    "id": 44870982,
+    "by": "zelphirkalt",
+    "timeISO": "2025-08-12T00:23:30.000Z",
+    "textPlain": "I wouldn't say \"rarely\", unless you have a whole host of other higher order functions at your disposal for more special cases than map and fold. There are many cases, where you don't want to fold or map over the whole data structure and want to exit early with a result already. Writing tail recursive functions is still very common.",
+    "parent": 44869916,
+    "depth": 2
+  },
+  {
+    "id": 44870033,
+    "by": "Eji1700",
+    "timeISO": "2025-08-11T22:10:18.000Z",
+    "textPlain": "> For example, why write out a recursive function when a call to `fold` or `map` will do the same thing?Yeah this was a big help when I started F#.  Basically \"if you're using the rec keyword, you're probably missing something\" and hell that even goes for a lot of uses of fold, from the beginners perspective.",
     "parent": 44869916,
     "depth": 2
   }
