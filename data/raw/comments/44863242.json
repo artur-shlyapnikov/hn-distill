@@ -120,18 +120,18 @@
     "depth": 2
   },
   {
-    "id": 44863712,
-    "by": "ekr____",
-    "timeISO": "2025-08-11T13:14:48.000Z",
-    "textPlain": "As a number of people have observed, what's happening now is mostly about key establishment, which tends to happen relatively infrequently, and so the overhead is mostly not excessive. With that said, a little more detail:- Current PQ algorithms, for both signature and key establishment, have much larger key sizes than traditional algorithms. In terms of compute, they are comparably fast if not faster.- Most protocols (e.g., TLS, SSH, etc.) do key establishment relatively infrequently (e.g., at the start of the connection) and so the key establishment size isn't a big deal, modulo some interoperability issues because the keys are big enough to push you over the TCP MTU, so you end up with the keys spanning two packets. One important exception here is double ratchet protocols like Signal or MLS which do very frequent key changes. What you sometimes see here is to rekey with PQ only occasionally (https://security.apple.com/blog/imessage-pq3/).- In the particular case of TLS, message size for signatures is a much bigger deal, to a great extent because your typical TLS handshake involves a lot of signatures in the certificate chain. For this reason, there is a lot more concern about the viability of PQ signatures in TLS (https://dadrian.io/blog/posts/pqc-signatures-2024/). Possibly in other protocols too but I don't know them as well",
-    "parent": 44863450,
-    "depth": 2
-  },
-  {
     "id": 44870962,
     "by": "djmdjm",
     "timeISO": "2025-08-12T00:19:16.000Z",
     "textPlain": ">In light of the recent hilarious paper around the current state of quantum cryptographyI assumed that paper was intended as a joke. If it's supposed to be serious criticism of the concept of quantum computing then it's pretty off-base, akin to complaining that transistors couldn't calculate Pi in 1951.> how big is the need for the current pace of post quantum crypto adoption?It comes down to:1) do you believe that no cryptographically-relevant quantum computer will be realised within your lifespan2) how much you value the data that are trusting to conventional cryptographyIf you believe that no QC will arrive in a timeframe you care about or you don't care about currently-private data then you'd be justified in thinking PQC is a waste of time.OTOH if you're a maintainer of a cryptographic application, then IMO you don't have the luxury of ignoring (2) on behalf of your users, irrespective of (1).",
+    "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44863712,
+    "by": "ekr____",
+    "timeISO": "2025-08-11T13:14:48.000Z",
+    "textPlain": "As a number of people have observed, what's happening now is mostly about key establishment, which tends to happen relatively infrequently, and so the overhead is mostly not excessive. With that said, a little more detail:- Current PQ algorithms, for both signature and key establishment, have much larger key sizes than traditional algorithms. In terms of compute, they are comparably fast if not faster.- Most protocols (e.g., TLS, SSH, etc.) do key establishment relatively infrequently (e.g., at the start of the connection) and so the key establishment size isn't a big deal, modulo some interoperability issues because the keys are big enough to push you over the TCP MTU, so you end up with the keys spanning two packets. One important exception here is double ratchet protocols like Signal or MLS which do very frequent key changes. What you sometimes see here is to rekey with PQ only occasionally (https://security.apple.com/blog/imessage-pq3/).- In the particular case of TLS, message size for signatures is a much bigger deal, to a great extent because your typical TLS handshake involves a lot of signatures in the certificate chain. For this reason, there is a lot more concern about the viability of PQ signatures in TLS (https://dadrian.io/blog/posts/pqc-signatures-2024/). Possibly in other protocols too but I don't know them as well",
     "parent": 44863450,
     "depth": 2
   },
@@ -189,6 +189,14 @@
     "timeISO": "2025-08-11T13:00:05.000Z",
     "textPlain": ">As far as I understand, the key material for any post quantum algorithm is much, much larger compared to non-quantum algorithms which leads to huge overheads in network traffic and of course CPU time.Eh? Public-key (asymmetric) cryptography is already very expensive compared to symmetric even under classical, that's normal, what it's used for is the vital but limited operation of key-exchange for AES or whatever fast symmetric algorithm afterwards. My understanding (and serious people in the field please correct me if I'm wrong!) is that the potential cryptographically relevant quantum computer issue threats almost 100% to key exchange, not symmetric encryption. The best theoretical search algorithm vs symmetric is Grover's which offers a square-root speed up, and thus trivially countered if necessary by doubling the key size (ie, 256-bits vs Grovers would offer 128-bits classical equivalent and 512-bits would offer 256-bits, which is already more than enough). The vast super majority of a given SSH session's traffic isn't typically handshakes unless something is quite odd, and you're likely going to have a pretty miserable experience in that case regardless. So even if the initial handshake gets made significantly more expensive it should be pretty irrelevant to network overhead, it still only happens during the initiation of a given session right?",
     "parent": 44863450,
+    "depth": 2
+  },
+  {
+    "id": 44873083,
+    "by": "samhclark",
+    "timeISO": "2025-08-12T06:33:00.000Z",
+    "textPlain": "To comment on the part about what keys Secretive uses, I looked at this recently and I think it looks like the SE will be able to do ML-KEM soon.https://developer.apple.com/documentation/cryptokit/secureen...Not totally sure that I'm reading it right, since I've never done MacOS development before, but I'm a big fan of Secretive and use it whenever possible. If I've got it right, maybe Secretive can add PQ support once ML-KEM is out of beta.",
+    "parent": 44866858,
     "depth": 2
   },
   {

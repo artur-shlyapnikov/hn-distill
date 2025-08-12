@@ -8,18 +8,10 @@
     "depth": 1
   },
   {
-    "id": 44872498,
-    "by": "kqr",
-    "timeISO": "2025-08-12T04:47:49.000Z",
-    "textPlain": "More exciting in my mind than the equivalence between tail recursion and while loops is the equivalence between left folds and for loops. A for loop in its most general shape is something like    <whatever state the application is in here serves as the starting state>\n    foreach (i in range(n)) {\n        <the state of the application is updated with each iteration>\n    }\n    <the desired state of the application has been applied when the loop is done>\n\nAn equivalent left fold is invoked like    <desired state> = foldl (\n        <state updating procedure>, \n        <starting state>,\n        range(n)\n    )\n\nThe difference is that the starting state is given explicitly to the loop, and the desired state is returned as a composite value. This makes it easier to troubleshoot than the implicit state transitions, but it's essentially the same still.",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
-    "id": 44872402,
-    "by": "Animats",
-    "timeISO": "2025-08-12T04:23:37.000Z",
-    "textPlain": "Did Python ever get tail recursion? There was a big controversy years ago. Guido didn't like it. But apparently something went in.Enthusiasm for tail recursion comes mostly from LISP and LISP-adjacent people - those who learned to program from SICP.[1] This is neither good nor bad. Even MIT doesn't use SICP any more, though.(The classic 20th century \"programming should be hard and programmers should suffer\" books:- Structure and Interpretation of Computer Programs, Abelson and Sussman.- Fundamental Algorithms and Semi-Numerical Algorithms, Knuth.- Algorithms + Data Structures = Programs, Wirth.- A discipline of programming, Dijkstra.These are mostly of historical interest now, but at one time, knowing those defined a real computer scientist. Today, it's more important that your LLM has been trained on them.)\"Love the lambda.\" - footer of original article.[1] https://archive.org/details/Sicp.2nd",
+    "id": 44869480,
+    "by": "tombert",
+    "timeISO": "2025-08-11T21:06:54.000Z",
+    "textPlain": "I'm a pretty big functional programming nerd and I want to like tail recursion, but I honestly kind of feel like I agree with Guido on it, which is that it kind of breaks the typical stack-trace patterns.I have kind of grown to prefer Clojure's loop/recur construct, since it gives you something more or less akin to tail recursion but it doesn't pretend to be actually recursive.",
     "parent": 44837949,
     "depth": 1
   },
@@ -32,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44869480,
-    "by": "tombert",
-    "timeISO": "2025-08-11T21:06:54.000Z",
-    "textPlain": "I'm a pretty big functional programming nerd and I want to like tail recursion, but I honestly kind of feel like I agree with Guido on it, which is that it kind of breaks the typical stack-trace patterns.I have kind of grown to prefer Clojure's loop/recur construct, since it gives you something more or less akin to tail recursion but it doesn't pretend to be actually recursive.",
+    "id": 44872498,
+    "by": "kqr",
+    "timeISO": "2025-08-12T04:47:49.000Z",
+    "textPlain": "More exciting in my mind than the equivalence between tail recursion and while loops is the equivalence between left folds and for loops. A for loop in its most general shape is something like    <whatever state the application is in here serves as the starting state>\n    foreach (i in range(n)) {\n        <the state of the application is updated with each iteration>\n    }\n    <the desired state of the application has been applied when the loop is done>\n\nAn equivalent left fold is invoked like    <desired state> = foldl (\n        <state updating procedure>, \n        <starting state>,\n        range(n)\n    )\n\nThe difference is that the starting state is given explicitly to the loop, and the desired state is returned as a composite value. This makes it easier to troubleshoot than the implicit state transitions, but it's essentially the same still.",
     "parent": 44837949,
     "depth": 1
   },
@@ -56,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44872177,
-    "by": "Mikhail_Edoshin",
-    "timeISO": "2025-08-12T03:45:30.000Z",
-    "textPlain": "Everybody knows that \"goto is harmful\" but who has noticed that the very same paper says that loops are technically unnecessary?Loops are merely a special case of recursion. The reason languages have loops is that reifying these cases to language constructs simplifies code generation. The downside is that it muddles the logic of computation.",
+    "id": 44872402,
+    "by": "Animats",
+    "timeISO": "2025-08-12T04:23:37.000Z",
+    "textPlain": "Did Python ever get tail recursion? There was a big controversy years ago. Guido didn't like it. But apparently something went in.Enthusiasm for tail recursion comes mostly from LISP and LISP-adjacent people - those who learned to program from SICP.[1] This is neither good nor bad. Even MIT doesn't use SICP any more, though.(The classic 20th century \"programming should be hard and programmers should suffer\" books:- Structure and Interpretation of Computer Programs, Abelson and Sussman.- Fundamental Algorithms and Semi-Numerical Algorithms, Knuth.- Algorithms + Data Structures = Programs, Wirth.- A discipline of programming, Dijkstra.These are mostly of historical interest now, but at one time, knowing those defined a real computer scientist. Today, it's more important that your LLM has been trained on them.)\"Love the lambda.\" - footer of original article.[1] https://archive.org/details/Sicp.2nd",
     "parent": 44837949,
     "depth": 1
   },
@@ -68,6 +60,14 @@
     "by": "eru",
     "timeISO": "2025-08-12T02:21:25.000Z",
     "textPlain": "Loops are a special case of tail recursion which is a special case of recursion [0] which is a special case of calling functions.However, loops aren't the only use for tail recursion.  Another classic example are state machines as described in the 'Lambda: the ultimate goto' paper.  See eg https://en.wikisource.org/wiki/Lambda:_The_Ultimate_GOTO[0] Well, recursion on functions.  You can also have eg recursive data types or recursion in mathematics in general.  But let's focus on functions.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44872177,
+    "by": "Mikhail_Edoshin",
+    "timeISO": "2025-08-12T03:45:30.000Z",
+    "textPlain": "Everybody knows that \"goto is harmful\" but who has noticed that the very same paper says that loops are technically unnecessary?Loops are merely a special case of recursion. The reason languages have loops is that reifying these cases to language constructs simplifies code generation. The downside is that it muddles the logic of computation.",
     "parent": 44837949,
     "depth": 1
   },
@@ -160,18 +160,18 @@
     "depth": 2
   },
   {
-    "id": 44871935,
-    "by": "rr808",
-    "timeISO": "2025-08-12T03:09:12.000Z",
-    "textPlain": "> IME is a bigger foot gun thanPretty much true for any functional feature. Great in the classroom, less practical in the real world.",
-    "parent": 44869452,
-    "depth": 2
-  },
-  {
     "id": 44869605,
     "by": "CalChris",
     "timeISO": "2025-08-11T21:21:41.000Z",
     "textPlain": "I must have missed this class. How does one convert a recursive descent parser into an iterative one?",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
+    "id": 44871935,
+    "by": "rr808",
+    "timeISO": "2025-08-12T03:09:12.000Z",
+    "textPlain": "> IME is a bigger foot gun thanPretty much true for any functional feature. Great in the classroom, less practical in the real world.",
     "parent": 44869452,
     "depth": 2
   },
@@ -200,19 +200,11 @@
     "depth": 2
   },
   {
-    "id": 44872457,
-    "by": "qsort",
-    "timeISO": "2025-08-12T04:37:08.000Z",
-    "textPlain": "Python still doesn't have tail recursion, and uses a small stack by default.I'll note that in modern imperative languages is harder than it looks to figure out if calls are really in tail position, things like exception handling, destructors etc. interfere with this, so even as a SICP fanboy I'll admit it's fair enough that some languages don't want to bother.",
-    "parent": 44872402,
-    "depth": 2
-  },
-  {
-    "id": 44872529,
-    "by": "masklinn",
-    "timeISO": "2025-08-12T04:54:22.000Z",
-    "textPlain": "> Did Python ever get tail recursion? There was a big controversy years ago. Guido didn't like it. But apparently something went in.No. The only thing that went in is moving Python frames off of the C stack, but since afaik the recursion limit did not change it has essentially no impact on user code unless you play with said recursion limit.",
-    "parent": 44872402,
+    "id": 44869917,
+    "by": "dreamcompiler",
+    "timeISO": "2025-08-11T21:57:01.000Z",
+    "textPlain": "Clojure does it this way because the JVM stupidly doesn't support tail call optimization.It is true that TCO messes up your stack traces. It is also true that loops mess up your stack traces, because they don't even create a stack trace. In many languages that support TCO, TCO can be turned off for debugging and enabled for production, so Guido's characterization of the issue is ridiculous.",
+    "parent": 44869480,
     "depth": 2
   },
   {
@@ -240,26 +232,10 @@
     "depth": 2
   },
   {
-    "id": 44869917,
-    "by": "dreamcompiler",
-    "timeISO": "2025-08-11T21:57:01.000Z",
-    "textPlain": "Clojure does it this way because the JVM stupidly doesn't support tail call optimization.It is true that TCO messes up your stack traces. It is also true that loops mess up your stack traces, because they don't even create a stack trace. In many languages that support TCO, TCO can be turned off for debugging and enabled for production, so Guido's characterization of the issue is ridiculous.",
-    "parent": 44869480,
-    "depth": 2
-  },
-  {
     "id": 44870050,
     "by": "kmicinski",
     "timeISO": "2025-08-11T22:12:49.000Z",
     "textPlain": "I agree with you--that's a topic I will definitely cover in my blog, too. You make a good point: I know some folks who worked at big financial orgs, writing hundreds of thousands of lines of code, and never wrote general-recursive functions (only used simple recursors like foldl).",
-    "parent": 44869916,
-    "depth": 2
-  },
-  {
-    "id": 44870982,
-    "by": "zelphirkalt",
-    "timeISO": "2025-08-12T00:23:30.000Z",
-    "textPlain": "I wouldn't say \"rarely\", unless you have a whole host of other higher order functions at your disposal for more special cases than map and fold. There are many cases, where you don't want to fold or map over the whole data structure and want to exit early with a result already. Writing tail recursive functions is still very common.",
     "parent": 44869916,
     "depth": 2
   },
@@ -272,11 +248,35 @@
     "depth": 2
   },
   {
+    "id": 44870982,
+    "by": "zelphirkalt",
+    "timeISO": "2025-08-12T00:23:30.000Z",
+    "textPlain": "I wouldn't say \"rarely\", unless you have a whole host of other higher order functions at your disposal for more special cases than map and fold. There are many cases, where you don't want to fold or map over the whole data structure and want to exit early with a result already. Writing tail recursive functions is still very common.",
+    "parent": 44869916,
+    "depth": 2
+  },
+  {
     "id": 44870033,
     "by": "Eji1700",
     "timeISO": "2025-08-11T22:10:18.000Z",
     "textPlain": "> For example, why write out a recursive function when a call to `fold` or `map` will do the same thing?Yeah this was a big help when I started F#.  Basically \"if you're using the rec keyword, you're probably missing something\" and hell that even goes for a lot of uses of fold, from the beginners perspective.",
     "parent": 44869916,
+    "depth": 2
+  },
+  {
+    "id": 44872457,
+    "by": "qsort",
+    "timeISO": "2025-08-12T04:37:08.000Z",
+    "textPlain": "Python still doesn't have tail recursion, and uses a small stack by default.I'll note that in modern imperative languages is harder than it looks to figure out if calls are really in tail position, things like exception handling, destructors etc. interfere with this, so even as a SICP fanboy I'll admit it's fair enough that some languages don't want to bother.",
+    "parent": 44872402,
+    "depth": 2
+  },
+  {
+    "id": 44872529,
+    "by": "masklinn",
+    "timeISO": "2025-08-12T04:54:22.000Z",
+    "textPlain": "> Did Python ever get tail recursion? There was a big controversy years ago. Guido didn't like it. But apparently something went in.No. The only thing that went in is moving Python frames off of the C stack, but since afaik the recursion limit did not change it has essentially no impact on user code unless you play with said recursion limit.",
+    "parent": 44872402,
     "depth": 2
   },
   {
@@ -301,6 +301,14 @@
     "timeISO": "2025-08-12T05:06:39.000Z",
     "textPlain": "It is still the same stack, but it reuses the existing stack frame.",
     "parent": 44870385,
+    "depth": 2
+  },
+  {
+    "id": 44873070,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-12T06:30:08.000Z",
+    "textPlain": "The analogy is inverted - tail-recursive functions are a superset of loops (rectangles include squares), not vice versa. Loops can always be expressed as tail-recursive functions, but tail-recursive functions (particularly mutually recursive ones) can express control flow patterns that simple loops cannot without additional machinery.",
+    "parent": 44870415,
     "depth": 2
   },
   {
