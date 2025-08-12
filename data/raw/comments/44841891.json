@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44874034,
-    "by": "safercplusplus",
-    "timeISO": "2025-08-12T09:08:01.000Z",
-    "textPlain": "A couple of solutions in development (but already usable) that more effectively address UB:i) \"Fil-C is a fanatically compatible memory-safe implementation of C and C++. Lots of software compiles and runs with Fil-C with zero or minimal changes. All memory safety errors are caught as Fil-C panics.\"\n\"Fil-C only works on Linux/X86_64.\"ii) \"scpptool is a command line tool to help enforce a memory and data race safe subset of C++. It's designed to work with the SaferCPlusPlus library. It analyzes the specified C++ file(s) and reports places in the code that it cannot verify to be safe. By design, the tool and the library should be able to fully ensure \"lifetime\", bounds and data race safety.\"\n\"This tool also has some ability to convert C source files to the memory safe subset of C++ it enforces\"",
-    "parent": 44841891,
-    "depth": 1
-  },
-  {
     "id": 44873848,
     "by": "kazinator",
     "timeISO": "2025-08-12T08:37:57.000Z",
     "textPlain": "Undefined behavior only means that ISO C doesn't give requirements, not that nobody gives requirements. Many useful extensions are instances where undefined behavior is documented by an implementation.Including a header that is not in the program, and not in ISO C, is undefined behavior. So is calling a function that is not in ISO C and not in the program. (If the function is not anywhere, the program won't link. But if it is somewhere, then ISO C has nothing to say about its behavior.)Correct, portable POSIX C programs have undefined behavior in ISO C; only if we interpret them via IEEE 1003 are they defined by that document.If you invent a new platform with a C compiler, you can have it such that #include <windows.h> reformats all the attached storage devices. ISO C allows this because it doesn't specify what happens if #include <windows.h> successfully resolves to a file and includes its contents. Those contents could be anything, including some compile-time instruction to do harm.Even if a compiler's documentationd doesn't grant that a certain instance of undefined behavior is a documented extension, the existence of a de facto extension can be inferred empirically through numerous experiments: compiling test code and reverse engineering the object code.Moreover, the source code for a compiler may be available; the behavior of something can be inferred from studying the code. The code could change in the next version. But so could the documentation; documentation can take away a documented extension the same way as a compiler code change can take away a de facto extension.Speaking of object code: if you follow a programming paradigm of verifying the object code, then undefined behavior becomes moot, to an extent. You don't trust the compiler anyway. If the machine code has the behavior which implements the requirements that your project expects of the source code, then the necessary thing has been somehow obtained.",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
+    "id": 44874034,
+    "by": "safercplusplus",
+    "timeISO": "2025-08-12T09:08:01.000Z",
+    "textPlain": "A couple of solutions in development (but already usable) that more effectively address UB:i) \"Fil-C is a fanatically compatible memory-safe implementation of C and C++. Lots of software compiles and runs with Fil-C with zero or minimal changes. All memory safety errors are caught as Fil-C panics.\"\n\"Fil-C only works on Linux/X86_64.\"ii) \"scpptool is a command line tool to help enforce a memory and data race safe subset of C++. It's designed to work with the SaferCPlusPlus library. It analyzes the specified C++ file(s) and reports places in the code that it cannot verify to be safe. By design, the tool and the library should be able to fully ensure \"lifetime\", bounds and data race safety.\"\n\"This tool also has some ability to convert C source files to the memory safe subset of C++ it enforces\"",
     "parent": 44841891,
     "depth": 1
   },
@@ -32,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44841999,
-    "by": "VivaTechnics",
-    "timeISO": "2025-08-08T21:43:59.000Z",
-    "textPlain": "We switched to Rust.\nGenerally, are there specific domains or applications where C/C++ remain preferable? Many exist—but are there tasks Rust fundamentally cannot handle or is a weak choice?",
-    "parent": 44841891,
-    "depth": 1
-  },
-  {
     "id": 44873417,
     "by": "fattah25",
     "timeISO": "2025-08-12T07:32:22.000Z",
     "textPlain": "Rust here rust there. We are just talking about C not rust. Why we have to using rust. If you talking memory safety why there is no one recommends Ada language instead of rust.We have zig, Hare, Odin, V too.",
+    "parent": 44841891,
+    "depth": 1
+  },
+  {
+    "id": 44841999,
+    "by": "VivaTechnics",
+    "timeISO": "2025-08-08T21:43:59.000Z",
+    "textPlain": "We switched to Rust.\nGenerally, are there specific domains or applications where C/C++ remain preferable? Many exist—but are there tasks Rust fundamentally cannot handle or is a weak choice?",
     "parent": 44841891,
     "depth": 1
   },
@@ -104,14 +104,6 @@
     "depth": 2
   },
   {
-    "id": 44874253,
-    "by": "tialaramex",
-    "timeISO": "2025-08-12T09:41:49.000Z",
-    "textPlain": "Fil-C is interesting because as you'd expect it takes a significant performance penalty to deliver this property, if it's broadly adopted that would suggest that - at least in this regard - C programmers genuinely do prioritise their simpler language over mundane ideas like platform support or performance.The resulting language doesn't make sense for commercial purposes but there's no reason it couldn't be popular with hobbyists.",
-    "parent": 44874034,
-    "depth": 2
-  },
-  {
     "id": 44874224,
     "by": "throw-qqqqq",
     "timeISO": "2025-08-12T09:38:21.000Z",
@@ -144,18 +136,18 @@
     "depth": 2
   },
   {
+    "id": 44874253,
+    "by": "tialaramex",
+    "timeISO": "2025-08-12T09:41:49.000Z",
+    "textPlain": "Fil-C is interesting because as you'd expect it takes a significant performance penalty to deliver this property, if it's broadly adopted that would suggest that - at least in this regard - C programmers genuinely do prioritise their simpler language over mundane ideas like platform support or performance.The resulting language doesn't make sense for commercial purposes but there's no reason it couldn't be popular with hobbyists.",
+    "parent": 44874034,
+    "depth": 2
+  },
+  {
     "id": 44874290,
     "by": "tialaramex",
     "timeISO": "2025-08-12T09:50:54.000Z",
     "textPlain": "It won't be a \"random garbage value\" but is instead a value the compiler chose.In effect if you don't opt out your value will always be initialized but not to a useful value you chose. You can think of this as similar to the (current, defanged and deprecated as well as unsafe) Rust std::mem::uninitialized()There were earlier attempts to make this value zero, or rather, as many 0x00 bytes as needed, because on most platforms that's markedly cheaper to do, but unfortunately some C++ would actually have worse bugs if the \"forgot to initialize\" case was reliably zero instead.",
-    "parent": 44873816,
-    "depth": 2
-  },
-  {
-    "id": 44876023,
-    "by": "account42",
-    "timeISO": "2025-08-12T13:35:44.000Z",
-    "textPlain": "That's unfortunate.",
     "parent": 44873816,
     "depth": 2
   },
@@ -168,18 +160,42 @@
     "depth": 2
   },
   {
+    "id": 44876023,
+    "by": "account42",
+    "timeISO": "2025-08-12T13:35:44.000Z",
+    "textPlain": "That's unfortunate.",
+    "parent": 44873816,
+    "depth": 2
+  },
+  {
+    "id": 44873466,
+    "by": "ViewTrick1002",
+    "timeISO": "2025-08-12T07:40:55.000Z",
+    "textPlain": "> Ada language instead of rustBecause it never achieved mainstream success?And Zig for example is very much not memory safe. Which a cursory search for ”segfault” in the Bun repo quickly tells you.https://github.com/oven-sh/bun/issues?q=is%3Aissue%20state%3...",
+    "parent": 44873417,
+    "depth": 2
+  },
+  {
+    "id": 44874163,
+    "by": "pjmlp",
+    "timeISO": "2025-08-12T09:27:38.000Z",
+    "textPlain": "None of them solve use after free, for example.Ada would rather be a nice choice, but most hackers love their curly brackets.",
+    "parent": 44873417,
+    "depth": 2
+  },
+  {
+    "id": 44875755,
+    "by": "the__alchemist",
+    "timeISO": "2025-08-12T13:05:04.000Z",
+    "textPlain": "Even within the rust OSS community it's irritating. They will try to cancel people for writing libs using `unsafe`, and makes APIs difficult to use by wrapping things in multiple layers of traits, then claim using other patters are unsafe/unsound/UB. They make claims that things like DMA are \"advanced topics\", and \"We haven't figured it out yet/found a good solution yet\". Love rust/hate the Satefy Inquisition. Or say things like \"Why use rust if you don't use all the safety-features and traits\"... which belittles rust as a one-trick lang!",
+    "parent": 44873417,
+    "depth": 2
+  },
+  {
     "id": 44874147,
     "by": "pjmlp",
     "timeISO": "2025-08-12T09:25:46.000Z",
     "textPlain": "Yes, all the industries where C and C++ are the industry standards like Khronos APIs, POSIX, CUDA, DirectX, Metal, console devkits, LLVM and GCC implementation,....Not only you are faced with creating your own wrappers, if no one else has done it already.The tooling, for IDEs and graphical debuggers, assumes either C or C++, so it won't be there for Rust.Ideally the day will come where those ecosystems might also embrace Rust, but that is still decades away maybe.",
-    "parent": 44841999,
-    "depth": 2
-  },
-  {
-    "id": 44876450,
-    "by": "teunispeters",
-    "timeISO": "2025-08-12T14:12:42.000Z",
-    "textPlain": "embedded hardware, any processor Rust doesn't support (there are many), and any place where code size is critical.   Rust has a BIG base size for an application, uselessly so at this time.   I'd also love to see if it offered anything that could be any use in those spaces - especially where no memory allocation takes place at all.  C (and to a lesser extent C++) are both very good in those spaces.",
     "parent": 44841999,
     "depth": 2
   },
@@ -200,10 +216,10 @@
     "depth": 2
   },
   {
-    "id": 44874020,
-    "by": "mgaunard",
-    "timeISO": "2025-08-12T09:06:29.000Z",
-    "textPlain": "Rust forces you to code in the Rust way, while C or C++ let you do whatever you want.",
+    "id": 44876450,
+    "by": "teunispeters",
+    "timeISO": "2025-08-12T14:12:42.000Z",
+    "textPlain": "embedded hardware, any processor Rust doesn't support (there are many), and any place where code size is critical.   Rust has a BIG base size for an application, uselessly so at this time.   I'd also love to see if it offered anything that could be any use in those spaces - especially where no memory allocation takes place at all.  C (and to a lesser extent C++) are both very good in those spaces.",
     "parent": 44841999,
     "depth": 2
   },
@@ -212,6 +228,14 @@
     "by": "pizza234",
     "timeISO": "2025-08-12T08:20:27.000Z",
     "textPlain": "Yes, based on a few attempts chronicled in articles from different sources, Rust is a weak choice for game development, because it's too time-consuming to refactor.",
+    "parent": 44841999,
+    "depth": 2
+  },
+  {
+    "id": 44874020,
+    "by": "mgaunard",
+    "timeISO": "2025-08-12T09:06:29.000Z",
+    "textPlain": "Rust forces you to code in the Rust way, while C or C++ let you do whatever you want.",
     "parent": 44841999,
     "depth": 2
   },
@@ -245,30 +269,6 @@
     "timeISO": "2025-08-12T08:16:15.000Z",
     "textPlain": "Rust can do inline ASM, so finding a task Rust \"fundamentally cannot handle\" is almost impossible.",
     "parent": 44841999,
-    "depth": 2
-  },
-  {
-    "id": 44873466,
-    "by": "ViewTrick1002",
-    "timeISO": "2025-08-12T07:40:55.000Z",
-    "textPlain": "> Ada language instead of rustBecause it never achieved mainstream success?And Zig for example is very much not memory safe. Which a cursory search for ”segfault” in the Bun repo quickly tells you.https://github.com/oven-sh/bun/issues?q=is%3Aissue%20state%3...",
-    "parent": 44873417,
-    "depth": 2
-  },
-  {
-    "id": 44875755,
-    "by": "the__alchemist",
-    "timeISO": "2025-08-12T13:05:04.000Z",
-    "textPlain": "Even within the rust OSS community it's irritating. They will try to cancel people for writing libs using `unsafe`, and makes APIs difficult to use by wrapping things in multiple layers of traits, then claim using other patters are unsafe/unsound/UB. They make claims that things like DMA are \"advanced topics\", and \"We haven't figured it out yet/found a good solution yet\". Love rust/hate the Satefy Inquisition. Or say things like \"Why use rust if you don't use all the safety-features and traits\"... which belittles rust as a one-trick lang!",
-    "parent": 44873417,
-    "depth": 2
-  },
-  {
-    "id": 44874163,
-    "by": "pjmlp",
-    "timeISO": "2025-08-12T09:27:38.000Z",
-    "textPlain": "None of them solve use after free, for example.Ada would rather be a nice choice, but most hackers love their curly brackets.",
-    "parent": 44873417,
     "depth": 2
   },
   {
