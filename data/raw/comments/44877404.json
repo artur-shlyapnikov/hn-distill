@@ -1,9 +1,73 @@
 [
   {
+    "id": 44879004,
+    "by": "henriquegodoy",
+    "timeISO": "2025-08-12T17:00:14.000Z",
+    "textPlain": "Looking at this evaluation it's pretty fascinating how badly these models perform even on decades old games that almost certainly have walkthroughs scattered all over their training data. Like, you'd think they'd at least brute force their way through the early game mechanics by now, but honestly this kinda validates something I've been thinking about like real intelligence isn't just about having seen the answers before, it's about being good at games and specifically new situations where you can't just pattern match your way outThis is exactly why something like arc-agi-3 feels so important right now. Instead of static benchmarks that these models can basically brute force with enough training data, like designing around interactive environments where you actually need to perceive, decide, and act over multiple steps without prior instructions, that shift from \"can you reproduce known patterns\" to \"can you figure out new patterns\" seems like the real test of intelligence.What's clever about the game environment approach is that it captures something fundamental about human intelligence that static benchmarks miss entirely, like, when humans encounter a new game, we explore, form plans, remember what worked, adjust our strategy all that interactive reasoning over time that these text adventure results show llms are terrible at, we need systems that can actually understand and adapt to new situations, not just really good autocomplete engines that happen to know a lot of trivia.",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44878951,
+    "by": "SquibblesRedux",
+    "timeISO": "2025-08-12T16:56:22.000Z",
+    "textPlain": "This is another great example of how LLMs are not really any sort of AI, or even proper knowledge representation. Not saying they don't have their uses (like souped up search and permutation generators), but definitely not something that resembles intelligence.",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44878756,
+    "by": "andrewla",
+    "timeISO": "2025-08-12T16:41:56.000Z",
+    "textPlain": "The article links to a previous article discussing methodology for this. The prompting is pretty extensive.It is difficult here to separate out how much of this could be fixed or improved by better prompting. A better baseline might be to just give the LLM direct access to the text adventure, so that everything the LLM replies is given to the game directly. I suspect that the LLMs would do poorly on this task, but would undoubtedly improve over time and generations.EDIT: Just started playing 9:05 with GPT-4 with no prompting and it did quite poorly; kept trying to explain to me what was going on with the ever more complex errors it would get. Put in a one line \"You are playing a text adventure game\" and off it went -- it took a shower and got dressed and drove to work.",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44878665,
+    "by": "jameshart",
+    "timeISO": "2025-08-12T16:34:43.000Z",
+    "textPlain": "Nothing in the article mentioned how good the LLMs were at even entering valid text adventure commands into the games.If an LLM responds to “You are standing in an open field west of a white house” with “okay, I’m going to walk up to the house”, and just gets back “THAT SENTENCE ISN'T ONE I RECOGNIZE”, it’s not going to make much progress.",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44878740,
+    "by": "lottaFLOPS",
+    "timeISO": "2025-08-12T16:40:39.000Z",
+    "textPlain": "related research that was also announced this week: https://www.textquests.ai/",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
     "id": 44877430,
     "by": "throwawayoldie",
     "timeISO": "2025-08-12T15:21:30.000Z",
     "textPlain": "My takeaway is: LLMs are not great at text adventures, even when those text adventures are decades old and have multiple walkthroughs available on the Internet. Slow clap.",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44878659,
+    "by": "benlivengood",
+    "timeISO": "2025-08-12T16:34:20.000Z",
+    "textPlain": "Wouldn't playthroughs for these games be potentially in the pretraining corpus for all of these models?",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44878703,
+    "by": "fzzzy",
+    "timeISO": "2025-08-12T16:37:33.000Z",
+    "textPlain": "I tried this earlier this year. I wrote a tool that let an llm play Zork. It was pretty fun.",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44879196,
+    "by": "wiz21c",
+    "timeISO": "2025-08-12T17:11:41.000Z",
+    "textPlain": "adventure games require spatial reasoning (although text based), requires understanding  puns, requires cultural references, etc. For me they really need human-intelligence to be solved (heck, they've been designed like that).I find it funny that some AI do very good score on ARC-AI but fails at these games...",
     "parent": 44877404,
     "depth": 1
   },
@@ -24,11 +88,59 @@
     "depth": 1
   },
   {
+    "id": 44878673,
+    "by": "throwawayoldie",
+    "timeISO": "2025-08-12T16:35:12.000Z",
+    "textPlain": "\"You're absolutely right, that's not a sentence you recognize...\"",
+    "parent": 44878665,
+    "depth": 2
+  },
+  {
+    "id": 44878895,
+    "by": "1970-01-01",
+    "timeISO": "2025-08-12T16:52:27.000Z",
+    "textPlain": "Very interesting how they all clearly suck at it. Even with hints, they can't understand the task enough to complete the game.",
+    "parent": 44878740,
+    "depth": 2
+  },
+  {
+    "id": 44879024,
+    "by": "abraxas",
+    "timeISO": "2025-08-12T17:01:46.000Z",
+    "textPlain": "that's a great tracker. How often is the laderboard updated?",
+    "parent": 44878740,
+    "depth": 2
+  },
+  {
+    "id": 44879216,
+    "by": "quesera",
+    "timeISO": "2025-08-12T17:13:23.000Z",
+    "textPlain": "Reproducing specific chunks of long form text from distilled (inherently lossy) model data is not something that I would expect LLMs to be good at.And of course, there's no actual reasoning or logic going on, so they cannot compete in this context with a curious 12 year old, either.",
+    "parent": 44878659,
+    "depth": 2
+  },
+  {
+    "id": 44878778,
+    "by": "throwawayoldie",
+    "timeISO": "2025-08-12T16:43:40.000Z",
+    "textPlain": "As a longtime IF fan, I can basically guarantee there are.",
+    "parent": 44878659,
+    "depth": 2
+  },
+  {
     "id": 44877834,
     "by": "hombre_fatal",
     "timeISO": "2025-08-12T15:45:11.000Z",
     "textPlain": "Noticed it was written in org mode with custom css so I found this post on their site: https://entropicthoughts.com/new-and-improved-now-powered-by...",
     "parent": 44877542,
+    "depth": 2
+  },
+  {
+    "id": 44879092,
+    "by": "fmbb",
+    "timeISO": "2025-08-12T17:06:14.000Z",
+    "textPlain": "Of course you can automate ”having fun” and ”being entertained”. That is if you believe humanity will ever build artificial intelligence.",
+    "parent": 44877814,
     "depth": 2
   },
   {

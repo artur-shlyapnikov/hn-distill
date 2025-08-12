@@ -1,5 +1,21 @@
 [
   {
+    "id": 44878643,
+    "by": "aliljet",
+    "timeISO": "2025-08-12T16:33:13.000Z",
+    "textPlain": "This is definitely one of my CORE problem as I use these tools for \"professional software engineering.\"  I really desperately need LLMs to maintain extremely effective context and it's not actually that interesting to see a new model that's marginally better than the next one (for my day-to-day).However. Price is king. Allowing me to flood the context window with my code base is great, but given that the price has substantially increased, it makes sense to better manage the context window into the current situation. The value I'm getting here flooding their context window is great for them, but short of evals that look into how effective Sonnet stays on track, it's not clear if the value actually exists here.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44879268,
+    "by": "firasd",
+    "timeISO": "2025-08-12T17:17:24.000Z",
+    "textPlain": "A big problem with the chat apps (ChatGPT; Claude.ai) is the weird context window hijinks. Especially ChatGPT does wild stuff.. sudden truncation; summarization; reinjecting 'ghost snippets' etcI was thinking this should be up to the user (do you want to continue this conversation with context rolling out of the window or start a new chat) but now I realized that this is inevitable given the way pricing tiers and limited computation works. Like the only way to have full context is use developer tools like Google AI Studio or use a chat app that wraps the API",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
     "id": 44878453,
     "by": "tankenmate",
     "timeISO": "2025-08-12T16:21:54.000Z",
@@ -8,10 +24,50 @@
     "depth": 1
   },
   {
-    "id": 44878606,
-    "by": "penguin202",
-    "timeISO": "2025-08-12T16:30:22.000Z",
-    "textPlain": "But will it remember any of it, and stop creating new redundant files when it can't find or understand what its looking for?",
+    "id": 44879248,
+    "by": "xnx",
+    "timeISO": "2025-08-12T17:15:33.000Z",
+    "textPlain": "1M context windows are not created equal. I doubt Claude's recall is as good as Gemini's 1M context recall. https://cloud.google.com/blog/products/ai-machine-learning/t...",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44879053,
+    "by": "gdudeman",
+    "timeISO": "2025-08-12T17:03:54.000Z",
+    "textPlain": "A tip for those who both use Claude Code and are worried about token use (which you should be if you're stuffing 400k tokens into context even if you're on 20x Max):  1. Build context for the work you're doing. Put lots of your codebase into the context window.\n  2. Do work, but at each logical stopping point hit double escape to rewind to the context-filled checkpoint. You do not spend those tokens to rewind to that point.\n  3. Tell Claude your developer finished XYZ, have it read it into context and give high level and low level feedback (Claude will find more problems with your developer's work than with yours).\n\nIf you want to have multiple chats running, use /resume and pull up the same thread. Hit double escape to the point where Claude has rich context, but has not started down a specific rabbit hole.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878804,
+    "by": "isoprophlex",
+    "timeISO": "2025-08-12T16:45:51.000Z",
+    "textPlain": "1M of input... at $6/1M input tokens. Better hope it can one-shot your answer.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44879037,
+    "by": "varyherb",
+    "timeISO": "2025-08-12T17:02:48.000Z",
+    "textPlain": "I believe this can be configured in Claude Code via the following environment variable:ANTHROPIC_BETAS=\"context-1m-2025-08-07\" claude",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44879173,
+    "by": "thimabi",
+    "timeISO": "2025-08-12T17:10:41.000Z",
+    "textPlain": "Oh, well, ChatGPT is being left in the dust…When done correctly, having one million tokens of context window is amazing for all sorts of tasks: understanding large codebases, summarizing books, finding information on many documents, etc.Existing RAG solutions fill a void up to a point, but they lack the precision that large context windows offer.I’m excited for this release and hope to see it soon on the UI as well.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44879292,
+    "by": "tosh",
+    "timeISO": "2025-08-12T17:19:19.000Z",
+    "textPlain": "How did they do the 1M context window?Same technique as Qwen? As Gemini?",
     "parent": 44878147,
     "depth": 1
   },
@@ -24,10 +80,90 @@
     "depth": 1
   },
   {
+    "id": 44878872,
+    "by": "lherron",
+    "timeISO": "2025-08-12T16:50:43.000Z",
+    "textPlain": "Wow, I thought they would feel some pricing pressure from GPT5 API costs, but they are doubling down on their API being more expensive than everyone else.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878905,
+    "by": "Someone1234",
+    "timeISO": "2025-08-12T16:53:02.000Z",
+    "textPlain": "Before this they supposedly had a longer context window than ChatGPT, but I have workloads that abuse the heck out of context windows (100-120K tokens). ChatGPT genuinely seems to have a 32K context window, in the sense that is legitimately remembers/can utilize everything within that window.Claude previously had \"200K\" context windows, but during testing it wouldn't even hit a full 32K before hitting a wall/it forgetting earlier parts of the context. They also have extremely short prompt limits relative to the other services around, making it hard to utilize their supposedly larger context windows (which is suspicious).I guess my point is that with Anthropic specifically, I don't trust their claims because that has been my personal experience. It would be nice if this \"1M\" context window now allows you to actually use 200K though, but it remains to be seen if it can even do that. As I said with Anthropic you need to verify everything they claim.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44879005,
+    "by": "film42",
+    "timeISO": "2025-08-12T17:00:18.000Z",
+    "textPlain": "The 1M token context was Gemini's headlining feature. Now, the only thing I'd like Claude to work on is tokens counted towards document processing. Gemini will often bill 1/10th the tokens Anthropic does for the same document.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878889,
+    "by": "jbellis",
+    "timeISO": "2025-08-12T16:51:58.000Z",
+    "textPlain": "Just completed a new benchmark that sheds some light on whether Anthropic's premium is worth it.(Short answer: not unless your top priority is speed.)https://brokk.ai/power-rankings",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44879140,
+    "by": "ZeroCool2u",
+    "timeISO": "2025-08-12T17:09:09.000Z",
+    "textPlain": "It's great they've finally caught up, but unfortunate it's on their mid-tier model only and it's laughably expensive.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44879195,
+    "by": "kotaKat",
+    "timeISO": "2025-08-12T17:11:40.000Z",
+    "textPlain": "A million tokens? Damn, I’m gonna need a lot of quarters to play this game at Chuck-E-Cheese.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878781,
+    "by": "qsort",
+    "timeISO": "2025-08-12T16:43:55.000Z",
+    "textPlain": "I won't complain about a strict upgrade, but that's a pricy boi. Interesting to see differential pricing based on size of input, which is understandable given the O(n^2) nature of attention.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878701,
+    "by": "greenfish6",
+    "timeISO": "2025-08-12T16:37:25.000Z",
+    "textPlain": "Yes, but if you look in the rate limit notes, the rate limit is 500k tokens / minite for tier 4, which we are on. Given how stingy anthropic has been with rate limit increases, this is for very few people right now",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
     "id": 44878570,
     "by": "mettamage",
     "timeISO": "2025-08-12T16:28:29.000Z",
-    "textPlain": "Shame it's only the API. Would've loved to see it via the web interface.",
+    "textPlain": "Shame it's only the API. Would've loved to see it via the web interface on claude.ai itself.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878677,
+    "by": "pupppet",
+    "timeISO": "2025-08-12T16:35:18.000Z",
+    "textPlain": "How does anyone send these models that much context without it tripping over itself?  I can't get anywhere near that much before it starts losing track of instruction.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878880,
+    "by": "shamano",
+    "timeISO": "2025-08-12T16:51:16.000Z",
+    "textPlain": "1M tokens is impressive, but the real gains will come from how we curate context—compact summaries, per-repo indexes, and phase resets. Bigger windows help; guardrails keep models focused and costs predictable.",
     "parent": 44878147,
     "depth": 1
   },
@@ -36,6 +172,70 @@
     "by": "faangguyindia",
     "timeISO": "2025-08-12T16:26:54.000Z",
     "textPlain": "In my testing the gap between claude and gemini pro 2.5 is close.\nMy company is in asia pacific and we can't get access to claude via vertex for some stupid reason.but i tested it via other providers, the gap used to be huge but now not.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878929,
+    "by": "lvl155",
+    "timeISO": "2025-08-12T16:54:43.000Z",
+    "textPlain": "Only time this is useful is to do init on a sizable code base or dump a “big” csv.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878606,
+    "by": "penguin202",
+    "timeISO": "2025-08-12T16:30:22.000Z",
+    "textPlain": "But will it remember any of it, and stop creating new redundant files when it can't find or understand what its looking for?",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878857,
+    "by": "henriquegodoy",
+    "timeISO": "2025-08-12T16:49:38.000Z",
+    "textPlain": "Thats incredible to see how ai models are improving, i'm really happy with this news. (imo it's more impactful than the release of gpt5) now, we need more tokens per second, and then the self-improvement of the model will accelerate.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878668,
+    "by": "rootnod3",
+    "timeISO": "2025-08-12T16:34:54.000Z",
+    "textPlain": "So, more tokens means better but at the same time more tokens means it distracts itself too much along the way. So at the same time it is an improvement but also potentially detrimental. How are those things beneficial in any capacity? What was said last week? Embrace AI or leave?All I see so far is: don't embrace and stay.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878702,
+    "by": "alvis",
+    "timeISO": "2025-08-12T16:37:30.000Z",
+    "textPlain": "Context window after certain size doesn’t bring in much benefit but higher bill. If it still keeps forgetting instructions it would be just much easier to be ended up with long messages with higher context consumption and hence the billI’d rather having an option to limit the context size",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878708,
+    "by": "andrewstuart",
+    "timeISO": "2025-08-12T16:38:18.000Z",
+    "textPlain": "Oh man finally. This has been such a HUGE advantage for Gemini.Could we please have zip files too? ChatGPT and Gemini both unpack zip files via the chat window.Now how about a button to download all files?",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878846,
+    "by": "revskill",
+    "timeISO": "2025-08-12T16:48:46.000Z",
+    "textPlain": "The critical issue with LLM which never beats human: break what worked.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878825,
+    "by": "rafaelero",
+    "timeISO": "2025-08-12T16:47:10.000Z",
+    "textPlain": "god they keep raising prices",
     "parent": 44878147,
     "depth": 1
   },
@@ -56,10 +256,58 @@
     "depth": 1
   },
   {
+    "id": 44878624,
+    "by": "1xer",
+    "timeISO": "2025-08-12T16:31:47.000Z",
+    "textPlain": "moaaaaarrrr",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44878741,
+    "by": "benterix",
+    "timeISO": "2025-08-12T16:40:40.000Z",
+    "textPlain": "> it's not clear if the value actually exists here.Having spent a couple of weeks on Claude Code recently, I arrived to the conclusion that the net value for me from agentic AI is actually negative.I will give it another run in 6-8 months though.",
+    "parent": 44878643,
+    "depth": 2
+  },
+  {
+    "id": 44878683,
+    "by": "rootnod3",
+    "timeISO": "2025-08-12T16:35:56.000Z",
+    "textPlain": "Flooding the context also means increasing the likelihood of the LLM confusing itself. Mainly because of the longer context. It derails along the way without a reset.",
+    "parent": 44878643,
+    "depth": 2
+  },
+  {
+    "id": 44878779,
+    "by": "alexchamberlain",
+    "timeISO": "2025-08-12T16:43:44.000Z",
+    "textPlain": "I'm not sure how, and maybe some of the coding agents are doing this, but we need to teach the AI to use abstractions, rather than the whole code base for context. We as humans don't hold the whole codebase in our hear, and we shouldn't expect the AI to either.",
+    "parent": 44878643,
+    "depth": 2
+  },
+  {
+    "id": 44878820,
+    "by": "sdesol",
+    "timeISO": "2025-08-12T16:46:52.000Z",
+    "textPlain": "> I really desperately need LLMs to maintain extremely effective contextI actually built this. I'm still not ready to say \"use the tool yet\" but you can learn more about it at https://github.com/gitsense/chat.The demo link is not up yet as I need to finalize an admin tool but you should be able to follow the npm instructions to play around with.The basic idea is, you should be able to load your entire repo or repos and use the context builder to help you refine it.  Or you can can create custom analyzers that you can do 'AI Assisted' searches with like execute `!ask find all frontend code that does [this]` and the because the analyzer knows how to extract the correct metadata to support that query, you'll be able to easily build the context using it.",
+    "parent": 44878643,
+    "depth": 2
+  },
+  {
+    "id": 44878944,
+    "by": "bachittle",
+    "timeISO": "2025-08-12T16:56:04.000Z",
+    "textPlain": "As of now it's not integrated into Claude Code. \"We’re also exploring how to bring long context to other Claude products\". I'm sure they already know about this issue and are trying to think of solutions before letting users incur more costs on their monthly plans.",
+    "parent": 44878453,
+    "depth": 2
+  },
+  {
     "id": 44878567,
     "by": "tehlike",
     "timeISO": "2025-08-12T16:28:24.000Z",
-    "textPlain": "Some reference:\nhttps://simonwillison.net/2025/Jun/29/how-to-fix-your-contex...\nhttps://www.dbreunig.com/2025/06/22/how-contexts-fail-and-ho...",
+    "textPlain": "Some reference:https://simonwillison.net/2025/Jun/29/how-to-fix-your-contex...https://www.dbreunig.com/2025/06/22/how-contexts-fail-and-ho...",
     "parent": 44878453,
     "depth": 2
   },
@@ -69,6 +317,30 @@
     "timeISO": "2025-08-12T16:24:57.000Z",
     "textPlain": "What do you recommend doing instead? I've been using Claude Code a lot but am still pretty novice at the best practices around this.",
     "parent": 44878453,
+    "depth": 2
+  },
+  {
+    "id": 44879081,
+    "by": "rvnx",
+    "timeISO": "2025-08-12T17:05:46.000Z",
+    "textPlain": "Thank you for the tips, do you know how to rollback latest changes ? Trying very hard to do it, but seems like Git is the only way ?",
+    "parent": 44879053,
+    "depth": 2
+  },
+  {
+    "id": 44879204,
+    "by": "OutOfHere",
+    "timeISO": "2025-08-12T17:12:32.000Z",
+    "textPlain": "Fwiw, OpenAI does have a decent active API model family of GPT-4.1 with a 1M context. But yes, the context of the GPT-5 models is terrible in comparison, and it's altogether atrocious for the GPT-5-Chat model.",
+    "parent": 44879173,
+    "depth": 2
+  },
+  {
+    "id": 44878770,
+    "by": "CharlesW",
+    "timeISO": "2025-08-12T16:43:02.000Z",
+    "textPlain": "From a co-marketing POV, it's considered best practice to not discuss home-grown offerings in the same or similar category as products from the partners you're featuring.It's likely they'll announce this week, albeit possibly just within the \"what's new\" notes that you see when Claude Code is updated.",
+    "parent": 44878514,
     "depth": 2
   },
   {
@@ -85,6 +357,46 @@
     "timeISO": "2025-08-12T16:29:36.000Z",
     "textPlain": "Yeah same, I'm curious about this. I would guess it's by default enabled with Claude Code.",
     "parent": 44878514,
+    "depth": 2
+  },
+  {
+    "id": 44879302,
+    "by": "sebzim4500",
+    "timeISO": "2025-08-12T17:19:48.000Z",
+    "textPlain": "I think it's the right approach, the cost of running these things as coding assistants is negligable compared to the benefit of even a slight model improvement.",
+    "parent": 44878872,
+    "depth": 2
+  },
+  {
+    "id": 44879091,
+    "by": "Etheryte",
+    "timeISO": "2025-08-12T17:06:11.000Z",
+    "textPlain": "Strong agree, Claude is very quick to forget things like \"don't do this\", \"never do this\" or things it tried that were wrong. It will happily keep looping even in very short conversations, completely defeating the purpose of using it. It's easy to game the numbers, but it falls apart in the real world.",
+    "parent": 44878905,
+    "depth": 2
+  },
+  {
+    "id": 44879121,
+    "by": "24xpossible",
+    "timeISO": "2025-08-12T17:08:06.000Z",
+    "textPlain": "Why no Grok 4?",
+    "parent": 44878889,
+    "depth": 2
+  },
+  {
+    "id": 44878945,
+    "by": "fblp",
+    "timeISO": "2025-08-12T16:56:09.000Z",
+    "textPlain": "I assume this will mean that long chats continue to get the \"prompt is too long\" error?",
+    "parent": 44878570,
+    "depth": 2
+  },
+  {
+    "id": 44878644,
+    "by": "minimaxir",
+    "timeISO": "2025-08-12T16:33:18.000Z",
+    "textPlain": "Can you even fit 200+k tokens worth of context in the web interface? IMO Claude's API workbench is the worst of the three major providers.",
+    "parent": 44878570,
     "depth": 2
   }
 ]

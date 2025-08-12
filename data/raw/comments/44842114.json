@@ -8,10 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44878127,
-    "by": "andix",
-    "timeISO": "2025-08-12T16:01:14.000Z",
-    "textPlain": "The very limited software support would probably stop me from buying one.Even if there are builds or container images for riscv64, they are probably often not tested at all. Sometimes different architectures have weird quirks (unexpected performance issues for some code, unexpected crashes). I guess only very few maintainers will investigate and fix those.It took quite some time until all software worked perfectly on arm/arm64. When the first Raspberry Pi was released, this was quite a different experience.",
+    "id": 44879183,
+    "by": "pinewurst",
+    "timeISO": "2025-08-12T17:11:08.000Z",
+    "textPlain": "I still don't understand why there are not really competitive RISC-V cores in any segment, other than possibly the very race to the bottom.",
+    "parent": 44842114,
+    "depth": 1
+  },
+  {
+    "id": 44878799,
+    "by": "sunshine-o",
+    "timeISO": "2025-08-12T16:45:02.000Z",
+    "textPlain": "I am curious: from a security point of view, what are the security tradeoffs and potential advantages of using this type of board today?",
     "parent": 44842114,
     "depth": 1
   },
@@ -20,6 +28,22 @@
     "by": "rwmj",
     "timeISO": "2025-08-12T14:17:32.000Z",
     "textPlain": "The VF2 (original) is a stolid workhorse, as long as you only use it for simple CLI-based stuff.  The hardware is very well supported by Linux.  The performance isn't great, but I used it to fix hundreds of Fedora packages to add RISC-V support, so you can't really beat its effectiveness.  You do want to get the version with the max amount of RAM, and you'll also need to add an M.2 for storage (one PCIe lane!)",
+    "parent": 44842114,
+    "depth": 1
+  },
+  {
+    "id": 44878127,
+    "by": "andix",
+    "timeISO": "2025-08-12T16:01:14.000Z",
+    "textPlain": "The very limited software support would probably stop me from buying one.Even if there are builds or container images for riscv64, they are probably often not tested at all. Sometimes different architectures have weird quirks (unexpected performance issues for some code, unexpected crashes). I guess only very few maintainers will investigate and fix those.It took quite some time until all software worked perfectly on arm/arm64. When the first Raspberry Pi was released, this was quite a different experience.",
+    "parent": 44842114,
+    "depth": 1
+  },
+  {
+    "id": 44878924,
+    "by": "sneak",
+    "timeISO": "2025-08-12T16:54:23.000Z",
+    "textPlain": "Does it have any onboard flash?  Embedded SBCs that have no wireless and no onboard state (like the RPi3 without wifi) are quite useful for security applications like offline cold signing/CAs.The RPi4/5 have a flashable bootrom now so they don’t qualify any longer.  The 1/2/3 load their second stage bootloader from the micro-SD, their first stage is burned at the factory and cannot be modified.  If you remove the SD and physically destroy it, they can not persist state or exfiltrate data.",
     "parent": 44842114,
     "depth": 1
   },
@@ -40,18 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44878355,
-    "by": "ekianjo",
-    "timeISO": "2025-08-12T16:16:14.000Z",
-    "textPlain": "You probably want to consider the OrangePi RV2 board instead (I wrote about it here: https://boilingsteam.com/orange-pi-rv2-new-risc-v-board-revi...). I own the original VF2 as well, and the RV2 from OrangePi is much faster, and software support is miles better too.",
-    "parent": 44842114,
-    "depth": 1
-  },
-  {
     "id": 44842660,
     "by": "deivid",
     "timeISO": "2025-08-08T23:15:27.000Z",
     "textPlain": "Can't beat that price, just be warned that it's slower than a Pi 3, probably similar to a Pi 2.",
+    "parent": 44842114,
+    "depth": 1
+  },
+  {
+    "id": 44878355,
+    "by": "ekianjo",
+    "timeISO": "2025-08-12T16:16:14.000Z",
+    "textPlain": "You probably want to consider the OrangePi RV2 board instead (I wrote about it here: https://boilingsteam.com/orange-pi-rv2-new-risc-v-board-revi...). I own the original VF2 as well, and the RV2 from OrangePi is much faster, and software support is miles better too.",
     "parent": 44842114,
     "depth": 1
   },
@@ -88,6 +112,22 @@
     "depth": 2
   },
   {
+    "id": 44879284,
+    "by": "pjc50",
+    "timeISO": "2025-08-12T17:18:36.000Z",
+    "textPlain": "It's \"batteries not included\": you've got to do your own integration work rather than just license from ARM. And chip companies are pretty risk averse.People generally don't buy instruction sets, they buy solutions.",
+    "parent": 44879183,
+    "depth": 2
+  },
+  {
+    "id": 44878983,
+    "by": "1oooqooq",
+    "timeISO": "2025-08-12T16:58:38.000Z",
+    "textPlain": "i will bet there are binary blobs you must load in kernel to make this run.or maybe not. who knows? would be nice if that was front and center on any review, but it's never. which leads me to believe it's choke full of binary garbage.",
+    "parent": 44878799,
+    "depth": 2
+  },
+  {
     "id": 44878432,
     "by": "rwmj",
     "timeISO": "2025-08-12T16:20:28.000Z",
@@ -109,6 +149,14 @@
     "timeISO": "2025-08-12T16:18:55.000Z",
     "textPlain": "Yep. I looked at that too: https://taoofmac.com/space/reviews/2025/05/12/2230My only gripe is that the OpenWRT image (still) doesn't have Wi-Fi support for some reason.",
     "parent": 44878355,
+    "depth": 2
+  },
+  {
+    "id": 44879209,
+    "by": "neilv",
+    "timeISO": "2025-08-12T17:12:53.000Z",
+    "textPlain": "It's a relatively annoying example of obviously bad faith 'consent' UI.I've decided to treat these as signs that the organization running them is either dishonest or incompetent.",
+    "parent": 44877664,
     "depth": 2
   },
   {
