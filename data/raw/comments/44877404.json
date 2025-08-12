@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44879366,
+    "by": "andai",
+    "timeISO": "2025-08-12T17:25:21.000Z",
+    "textPlain": "The GPT-5 used here is the Chat version, presumably gpt‑5‑chat‑latest, which from what I can tell is the same version used in ChatGPT, which is not actually a model but a \"system\" -- a router that semi-randomly forwards your request to various different models (in a way designed to massively reduce costs for OpenAI, based on people reporting inconsistent output and often worse results than 4o).So from this it seems that not only would many of these requests not touch a reasoning model (or as it works now, have reasoning set to \"minimal\"?), but they're probably being routed to a mini or nano model?It would make more sense, I think, to test on gpt-5 itself (and ideally the -mini and -nano as well), and perhaps with different reasoning effort, because that makes a big difference in many evals.EDIT: Yeah the Chat router is busted big time. It fails to apply thinking even for problems that obviously call for it (analyzing financial reports). You have to add \"Think hard.\" to the end of the prompt, or explicitly switch to the Thinking model in the UI.",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
     "id": 44878951,
     "by": "SquibblesRedux",
     "timeISO": "2025-08-12T16:56:22.000Z",
@@ -72,14 +80,6 @@
     "depth": 1
   },
   {
-    "id": 44877542,
-    "by": "ForHackernews",
-    "timeISO": "2025-08-12T15:26:32.000Z",
-    "textPlain": "What blogging software is this with the sidenotes?",
-    "parent": 44877404,
-    "depth": 1
-  },
-  {
     "id": 44877814,
     "by": "the_af",
     "timeISO": "2025-08-12T15:44:21.000Z",
@@ -88,11 +88,67 @@
     "depth": 1
   },
   {
+    "id": 44877542,
+    "by": "ForHackernews",
+    "timeISO": "2025-08-12T15:26:32.000Z",
+    "textPlain": "What blogging software is this with the sidenotes?",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44879607,
+    "by": "da_chicken",
+    "timeISO": "2025-08-12T17:46:46.000Z",
+    "textPlain": "I saw it somewhere else recently, but the idea is that LLMs are language models, not world models. This seems like a perfect example of that. You need a world model to navigate a text game.Otherwise, how can you determine that \"North\" is a context change, but not always a context change.",
+    "parent": 44879004,
+    "depth": 2
+  },
+  {
+    "id": 44879591,
+    "by": "msgodel",
+    "timeISO": "2025-08-12T17:45:51.000Z",
+    "textPlain": "I've been experimenting with this as well with the goal of using it for robotics. I don't think this will be as hard to train for as people think though.It's interesting he wrote a separate program to wrap the z-machine interpreter. I integrated my wrapper directly into my pytorch training program.",
+    "parent": 44879004,
+    "depth": 2
+  },
+  {
+    "id": 44879755,
+    "by": "kqr",
+    "timeISO": "2025-08-12T17:59:06.000Z",
+    "textPlain": "This is correct, and was the reason I made sure to always append \"Chat\" to the end of \"GPT-5\". I should perhaps have been more clear about this. The reason I settled for the lesser router is I don't have access to the full GPT-5, which would have been a much better baseline, I agree.",
+    "parent": 44879366,
+    "depth": 2
+  },
+  {
+    "id": 44879356,
+    "by": "nonethewiser",
+    "timeISO": "2025-08-12T17:24:30.000Z",
+    "textPlain": "While I agree, it's still shocking how far next token prediction gets us to looking like intelligence. It's amazing we need examples such as this to demonstrate it.",
+    "parent": 44878951,
+    "depth": 2
+  },
+  {
+    "id": 44879775,
+    "by": "kqr",
+    "timeISO": "2025-08-12T18:01:39.000Z",
+    "textPlain": "The previous article (linked in this one) gives an idea of that.",
+    "parent": 44878665,
+    "depth": 2
+  },
+  {
     "id": 44878673,
     "by": "throwawayoldie",
     "timeISO": "2025-08-12T16:35:12.000Z",
     "textPlain": "\"You're absolutely right, that's not a sentence you recognize...\"",
     "parent": 44878665,
+    "depth": 2
+  },
+  {
+    "id": 44879803,
+    "by": "kqr",
+    "timeISO": "2025-08-12T18:04:50.000Z",
+    "textPlain": "They seem to be going for a much simpler route of just giving the LLM a full transcript of the game with its own reasoning interspersed. I didn't have much luck with that, and I'm worried it might not be effective once we're into the hundreds of turns because of inadvertent context poisoning. It seems like this might indeed be what happens, given the slowing of progress indicated in the paper.",
+    "parent": 44878740,
     "depth": 2
   },
   {
@@ -128,11 +184,19 @@
     "depth": 2
   },
   {
-    "id": 44877834,
-    "by": "hombre_fatal",
-    "timeISO": "2025-08-12T15:45:11.000Z",
-    "textPlain": "Noticed it was written in org mode with custom css so I found this post on their site: https://entropicthoughts.com/new-and-improved-now-powered-by...",
-    "parent": 44877542,
+    "id": 44879504,
+    "by": "bongodongobob",
+    "timeISO": "2025-08-12T17:38:14.000Z",
+    "textPlain": "Did you do anything special? I tried this with just copy and paste with GPT-4o and it was absolutely terrible at it. It usually ended up spamming help in a loop and trying commands that didn't exist.",
+    "parent": 44878703,
+    "depth": 2
+  },
+  {
+    "id": 44880001,
+    "by": "Terr_",
+    "timeISO": "2025-08-12T18:22:02.000Z",
+    "textPlain": "That's like saying it's wrong to test a robot's ability to navigate and traverse a mountain... because the mountain has no win-condition and is really a context for human emotional experiences.",
+    "parent": 44877814,
     "depth": 2
   },
   {
@@ -149,6 +213,14 @@
     "timeISO": "2025-08-12T16:15:51.000Z",
     "textPlain": "I disagree. Lockout, Dreamhold, Lost Pig, and So Far are new games but in the old style. Plundered Hearts is literally one of the old games (though ahead of its time).I'll grant you that 9:05 and For a Change are somewhat more modern: the former has easy puzzles, the latter very abstract puzzles.I disagree new text adventures are not about puzzles and winning. They come in all kinds of flavours these days. Even games like 9:05 pace their narrative with traditional puzzles, meaning we can measure forward progress just the same. And to be fair, LLMs are so bad at these games that in these articles, I'm merely trying to get them to navigate the world at all.If anything, I'd argue Adventure is a bad example of the genre you refer to. It was (by design) more of a caving simulator/sandbox with optinal loot than a game with progress toward a goal.",
     "parent": 44877814,
+    "depth": 2
+  },
+  {
+    "id": 44877834,
+    "by": "hombre_fatal",
+    "timeISO": "2025-08-12T15:45:11.000Z",
+    "textPlain": "Noticed it was written in org mode with custom css so I found this post on their site: https://entropicthoughts.com/new-and-improved-now-powered-by...",
+    "parent": 44877542,
     "depth": 2
   }
 ]

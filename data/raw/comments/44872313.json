@@ -24,26 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44879238,
-    "by": "utbabya",
-    "timeISO": "2025-08-12T17:14:37.000Z",
-    "textPlain": "Whatever is making plain HTTP requests in 2025 should be a cause of concern. Wouldn't it be nice to have a low resource daemon watching for common pitfalls alerting users so we eliminate or minimise classes of problems like this?I think lots of windows antivirus come with features like this? Perhaps with vast crystalized kno eledge nowadays we can afford to create OSS system level package that offers some level of protection.I might actually do it, any down side?",
-    "parent": 44872313,
-    "depth": 1
-  },
-  {
     "id": 44874621,
     "by": "eadmund",
     "timeISO": "2025-08-12T10:47:39.000Z",
     "textPlain": "The Wayland framing at the end strikes me as misleading.  This gets it exactly right:> Or maybe StarDict would have started asking for special permissions to let it work on Wayland, and users would have accepted those defaults the same way they currently do.Yes, that’s what it would do.  Its installer might even configure that special permission automatically, without user intervention.Malware’s gonna mal.  Wayland might help defend against some things, but it’s not going to defend against packages installed as part of the distro.",
-    "parent": 44872313,
-    "depth": 1
-  },
-  {
-    "id": 44879246,
-    "by": "kingforaday",
-    "timeISO": "2025-08-12T17:15:18.000Z",
-    "textPlain": "Anyone else see the old UA string in strace out:  User-Agent: Mozilla/4.0(compatible;MSIE 5.00;Windows 98)\n\nAlso the \\r\\n in the output is irregular too.",
     "parent": 44872313,
     "depth": 1
   },
@@ -56,18 +40,18 @@
     "depth": 1
   },
   {
-    "id": 44872693,
-    "by": "CGamesPlay",
-    "timeISO": "2025-08-12T05:21:28.000Z",
-    "textPlain": "It's really difficult to not assume malice with something like this. From the maintainer:> The stardict has \"Scan\" function, when user enable this function,\nafter user select some text, it will trigger stardict do translate for this selected text... Why the user selects some confidential data to query dictionary?",
-    "parent": 44872313,
-    "depth": 1
-  },
-  {
     "id": 44873701,
     "by": "hiAndrewQuinn",
     "timeISO": "2025-08-12T08:15:52.000Z",
     "textPlain": ">This would normally not be much cause for concern; of course a dictionary program will include code to talk to dictionary-providing web sites.Hey, an area I finally know something about. It depends on what you're trying to do.The slimmed down version of a Finnish dictionary I provide in `tsk` [1] weighs in at around 30 MB, for about 250,000 Finnish words. It's small enough that I embed the whole dictionary directly into the binary and reconstruct the prefix search on the fly every time the user starts the app.However, the much larger database which contains things like lemmatization and etymology information easily balloons up to many, many gigabytes in size. My problem domain is providing Truly Instant Lookup, keystroke by keystroke, so I can't really get around this level of memoization. The work to figure all this out was sufficient that I decided to make future versions a paid product instead [2].Most other use cases would just call out to a server, because it's silly to think most people are going to download a giant database for that use case alone. A hybrid approach could also make a lot of sense, eg cache the most common 10,000 words locally and call out for the next 1.5 million, which are statistically extremely rare.[1]: https://github.com/hiandrewquinn/tsk[2]: https://taskusanakirja.com/ (offline for now until I get Digicert to certify my downloads wholesome for Windows resale)",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
+    "id": 44872693,
+    "by": "CGamesPlay",
+    "timeISO": "2025-08-12T05:21:28.000Z",
+    "textPlain": "It's really difficult to not assume malice with something like this. From the maintainer:> The stardict has \"Scan\" function, when user enable this function,\nafter user select some text, it will trigger stardict do translate for this selected text... Why the user selects some confidential data to query dictionary?",
     "parent": 44872313,
     "depth": 1
   },
@@ -120,10 +104,34 @@
     "depth": 1
   },
   {
+    "id": 44879238,
+    "by": "utbabya",
+    "timeISO": "2025-08-12T17:14:37.000Z",
+    "textPlain": "Whatever is making plain HTTP requests in 2025 should be a cause of concern. Wouldn't it be nice to have a low resource daemon watching for common pitfalls alerting users so we eliminate or minimise classes of problems like this?I think lots of windows antivirus come with features like this? Perhaps with vast crystalized kno eledge nowadays we can afford to create OSS system level package that offers some level of protection.I might actually do it, any down side?",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
+    "id": 44879246,
+    "by": "kingforaday",
+    "timeISO": "2025-08-12T17:15:18.000Z",
+    "textPlain": "Anyone else see the old UA string in strace out:  User-Agent: Mozilla/4.0(compatible;MSIE 5.00;Windows 98)\n\nAlso the \\r\\n in the output is irregular too.",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
     "id": 44873625,
     "by": "cik",
     "timeISO": "2025-08-12T08:03:42.000Z",
     "textPlain": "My personal security tolerance means that I have multiple levels of firewalls and blockers: network, dns, device, and browser. It's also why I find myself scanning my DNS traffic (pihole), and running OpenSnitch.Whether malicious or not, to me isn't the point. The point is that I, as an individual deserve the illusion of control over my data and communication. I have neither the time, nor inclination to read all release notes. Furthermore, as someone who has spent enough time writing code - I recognize that humans make mistakes and don't always update them with salient details. All the automation in the world, and AI (yes, I've tried AI for release notes) just doesn't help.",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
+    "id": 44879458,
+    "by": "asveikau",
+    "timeISO": "2025-08-12T17:34:49.000Z",
+    "textPlain": "I honestly don't think x11 is the primary problem. The package maintainer not thinking it's a big deal to send this data over http by default wouldn't be a good situation on Wayland either. They wouldn't get the clipboard but they're still not responsible. I presume this program also has full access to the filesystem.",
     "parent": 44872313,
     "depth": 1
   },
@@ -136,18 +144,10 @@
     "depth": 1
   },
   {
-    "id": 44877453,
-    "by": "737min",
-    "timeISO": "2025-08-12T15:22:27.000Z",
-    "textPlain": "Should some open source contributors & maintainers be considered an APT group and tracked thecsame way?",
-    "parent": 44872313,
-    "depth": 1
-  },
-  {
-    "id": 44874190,
-    "by": "sbinnee",
-    "timeISO": "2025-08-12T09:32:44.000Z",
-    "textPlain": "This post caught my eyes immediately because I have been sort of benefiting from StarDict project. Although I do not use it directly. I have been using sdcv, a CLI tool that reads StarDict dictionary. It’s minimal and serves me well.",
+    "id": 44878833,
+    "by": "sneak",
+    "timeISO": "2025-08-12T16:48:02.000Z",
+    "textPlain": "Apple did something similar in 2015:CVE-2015-3774https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3774https://lists.apple.com/archives/security-announce/2015/Aug/...You had to three-finger press to trigger it, though.  Similarly, it used unencrypted HTTP.  I reported it and it was fixed to use TLS.The dev defending this unencrypted behavior is really wild, though.",
     "parent": 44872313,
     "depth": 1
   },
@@ -160,18 +160,26 @@
     "depth": 1
   },
   {
-    "id": 44876120,
-    "by": "st3fan",
-    "timeISO": "2025-08-12T13:44:54.000Z",
-    "textPlain": "> of course a dictionary program will include code to talk to dictionary-providing web sites.It is funny to read this considering all the rage when say Siri does this.",
+    "id": 44874190,
+    "by": "sbinnee",
+    "timeISO": "2025-08-12T09:32:44.000Z",
+    "textPlain": "This post caught my eyes immediately because I have been sort of benefiting from StarDict project. Although I do not use it directly. I have been using sdcv, a CLI tool that reads StarDict dictionary. It’s minimal and serves me well.",
     "parent": 44872313,
     "depth": 1
   },
   {
-    "id": 44878833,
-    "by": "sneak",
-    "timeISO": "2025-08-12T16:48:02.000Z",
-    "textPlain": "Apple did something similar in 2015:CVE-2015-3774https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2015-3774https://lists.apple.com/archives/security-announce/2015/Aug/...You had to three-finger press to trigger it, though.  Similarly, it used unencrypted HTTP.  I reported it and it was fixed to use TLS.The dev defending this unencrypted behavior is really wild, though.",
+    "id": 44876338,
+    "by": "computator",
+    "timeISO": "2025-08-12T14:02:38.000Z",
+    "textPlain": "Can someone recommend a completely local English-language dictionary for Debian?",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
+    "id": 44877453,
+    "by": "737min",
+    "timeISO": "2025-08-12T15:22:27.000Z",
+    "textPlain": "Should some open source contributors & maintainers be considered an APT group and tracked thecsame way?",
     "parent": 44872313,
     "depth": 1
   },
@@ -184,26 +192,18 @@
     "depth": 1
   },
   {
+    "id": 44876120,
+    "by": "st3fan",
+    "timeISO": "2025-08-12T13:44:54.000Z",
+    "textPlain": "> of course a dictionary program will include code to talk to dictionary-providing web sites.It is funny to read this considering all the rage when say Siri does this.",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
     "id": 44875328,
     "by": "M95D",
     "timeISO": "2025-08-12T12:21:25.000Z",
     "textPlain": "In my Windows, it wouldn't be a problem. The firewall I use would pop up for any new program that tries to connect somewhere.But Linux doesn't have a per-program firewall.... and even if it did, there's no way to do popups/questions from the kernel,... and even if there was, most programs would just run curl or wget or openssl. That would mean a popup for each and every connection attempt through those programs.",
-    "parent": 44872313,
-    "depth": 1
-  },
-  {
-    "id": 44877174,
-    "by": "hoppp",
-    "timeISO": "2025-08-12T15:04:02.000Z",
-    "textPlain": "Its a key stealing malware? Damn good I dont use it",
-    "parent": 44872313,
-    "depth": 1
-  },
-  {
-    "id": 44876338,
-    "by": "computator",
-    "timeISO": "2025-08-12T14:02:38.000Z",
-    "textPlain": "Can someone recommend a completely local English-language dictionary for Debian?",
     "parent": 44872313,
     "depth": 1
   },
@@ -224,18 +224,18 @@
     "depth": 1
   },
   {
-    "id": 44872733,
-    "by": "porridgeraisin",
-    "timeISO": "2025-08-12T05:30:43.000Z",
-    "textPlain": "The easiest solution seems to be to patch it to use offline dictionaries. merriamwebster.txt is 24MB, not a big deal.stardict --install en_US hi_IN ta_INFor a trilingual person, just 100MB of storage. Problem solved no?Edit: it's a full dictionary with all sorts of information. Example entry:ABANDONED\nA*ban\"doned, a.1. Forsaken, deserted. \"Your abandoned streams.\" Thomson.2. Self-abandoned, or given up to vice; extremely wicked, or sinning\nwithout restraint; irreclaimably wicked ; as, an abandoned villain.Syn.\n -- Profligate; dissolute; corrupt; vicious; depraved; reprobate;\nwicked; unprincipled; graceless; vile.\n -- Abandoned, Profligate, Reprobate. These adjectives agree in\nexpressing the idea of great personal depravity. Profligate has\nreference to open and shameless immoralities, either in private life\nor political conduct; as, a profligate court, a profligate ministry.\nAbandoned is stronger, and has reference to the searing of conscience\nand hardening of heart produced by a man's giving himself wholly up\nto iniquity; as, a man of abandoned character. Reprobate describes\nthe condition of one who has become insensible to reproof, and who is\nmorally abandoned and lost beyond hope of recovery.\nGod gave them over to a reprobate mind. Rom. i. 28.",
+    "id": 44877174,
+    "by": "hoppp",
+    "timeISO": "2025-08-12T15:04:02.000Z",
+    "textPlain": "Its a key stealing malware? Damn good I dont use it",
     "parent": 44872313,
     "depth": 1
   },
   {
-    "id": 44873444,
-    "by": "est",
-    "timeISO": "2025-08-12T07:37:46.000Z",
-    "textPlain": "it looks like a serious \"privacy violation\" for English-only users. But for many ESL or non-English users out there, the \"translation\" is a must.On Windoes, I remember some translation programs go extreme, they hijack all GDI calls and scan for all strings on GUIs trying to translate and replace them inline. Local dictionary were pretty limited so many of them use online services. What happens when user input something \"sensitive\" on the GUI?Well they goes straight to the translation service.",
+    "id": 44872733,
+    "by": "porridgeraisin",
+    "timeISO": "2025-08-12T05:30:43.000Z",
+    "textPlain": "The easiest solution seems to be to patch it to use offline dictionaries. merriamwebster.txt is 24MB, not a big deal.stardict --install en_US hi_IN ta_INFor a trilingual person, just 100MB of storage. Problem solved no?Edit: it's a full dictionary with all sorts of information. Example entry:ABANDONED\nA*ban\"doned, a.1. Forsaken, deserted. \"Your abandoned streams.\" Thomson.2. Self-abandoned, or given up to vice; extremely wicked, or sinning\nwithout restraint; irreclaimably wicked ; as, an abandoned villain.Syn.\n -- Profligate; dissolute; corrupt; vicious; depraved; reprobate;\nwicked; unprincipled; graceless; vile.\n -- Abandoned, Profligate, Reprobate. These adjectives agree in\nexpressing the idea of great personal depravity. Profligate has\nreference to open and shameless immoralities, either in private life\nor political conduct; as, a profligate court, a profligate ministry.\nAbandoned is stronger, and has reference to the searing of conscience\nand hardening of heart produced by a man's giving himself wholly up\nto iniquity; as, a man of abandoned character. Reprobate describes\nthe condition of one who has become insensible to reproof, and who is\nmorally abandoned and lost beyond hope of recovery.\nGod gave them over to a reprobate mind. Rom. i. 28.",
     "parent": 44872313,
     "depth": 1
   },
@@ -280,6 +280,14 @@
     "depth": 1
   },
   {
+    "id": 44873444,
+    "by": "est",
+    "timeISO": "2025-08-12T07:37:46.000Z",
+    "textPlain": "it looks like a serious \"privacy violation\" for English-only users. But for many ESL or non-English users out there, the \"translation\" is a must.On Windoes, I remember some translation programs go extreme, they hijack all GDI calls and scan for all strings on GUIs trying to translate and replace them inline. Local dictionary were pretty limited so many of them use online services. What happens when user input something \"sensitive\" on the GUI?Well they goes straight to the translation service.",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
     "id": 44877086,
     "by": "johnklos",
     "timeISO": "2025-08-12T14:57:39.000Z",
@@ -320,18 +328,18 @@
     "depth": 2
   },
   {
-    "id": 44876606,
-    "by": "cesarb",
-    "timeISO": "2025-08-12T14:25:06.000Z",
-    "textPlain": "> If someone started reading all the package descriptions and READMEs we're meant to be thoroughly familiar with when Trixie was released a few days ago, they'd still be reading them.That used to be viable back in the late 1990s and early 2000s when I first used Debian. It would take an afternoon of going through all the packages in dselect (does anyone here still remember dselect?) and marking the ones you wanted to install, and around the same amount of time going through every option on the kernel's menuconfig to precisely tailor the kernel to your specific hardware configuration (things were much less dynamic back then).Nowadays, there are simply too many packages and kernel configuration options to go through (also, does anyone still use dselect?).",
-    "parent": 44873373,
-    "depth": 2
-  },
-  {
     "id": 44874802,
     "by": "chainingsolid",
     "timeISO": "2025-08-12T11:14:30.000Z",
     "textPlain": "I install stuff from Debian's repos for 2 reasons. Convience & trust. And while people do complain when maintainers modify packages behavior, I think people would rather have the send my clipboard contents to someone else to be opt-in. Instead of violating their trust!",
+    "parent": 44873373,
+    "depth": 2
+  },
+  {
+    "id": 44876606,
+    "by": "cesarb",
+    "timeISO": "2025-08-12T14:25:06.000Z",
+    "textPlain": "> If someone started reading all the package descriptions and READMEs we're meant to be thoroughly familiar with when Trixie was released a few days ago, they'd still be reading them.That used to be viable back in the late 1990s and early 2000s when I first used Debian. It would take an afternoon of going through all the packages in dselect (does anyone here still remember dselect?) and marking the ones you wanted to install, and around the same amount of time going through every option on the kernel's menuconfig to precisely tailor the kernel to your specific hardware configuration (things were much less dynamic back then).Nowadays, there are simply too many packages and kernel configuration options to go through (also, does anyone still use dselect?).",
     "parent": 44873373,
     "depth": 2
   },
@@ -388,14 +396,6 @@
     "by": "hdjrudni",
     "timeISO": "2025-08-12T06:12:25.000Z",
     "textPlain": "Even if it's \"legit\", it shouldn't be using unencrypted HTTP.",
-    "parent": 44872886,
-    "depth": 2
-  },
-  {
-    "id": 44874097,
-    "by": "pantalaimon",
-    "timeISO": "2025-08-12T09:18:58.000Z",
-    "textPlain": "The venerable ding does well with a local dictionary - and it's packaged in Debian toohttps://www-user.tu-chemnitz.de/~fri/ding/",
     "parent": 44872886,
     "depth": 2
   }

@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44879288,
-    "by": "neuroelectron",
-    "timeISO": "2025-08-12T17:18:56.000Z",
-    "textPlain": "I used a document editor in DOS with spellcheck. It was quite fast too. I don't remember what it was called but it featured formatting characters such as character returns and paragraphs. It had good printer support. I think it was called Easy Print and it was only a couple of dollars.",
-    "parent": 44843223,
-    "depth": 1
-  },
-  {
     "id": 44878004,
     "by": "yndoendo",
     "timeISO": "2025-08-12T15:53:38.000Z",
@@ -32,10 +24,26 @@
     "depth": 1
   },
   {
+    "id": 44879744,
+    "by": "efitz",
+    "timeISO": "2025-08-12T17:58:22.000Z",
+    "textPlain": "Having a dictionary is a prerequisite but is only a small part of the spell check problem. Plus, plain text word lists are slow to parse in the 80s; better going with a Trie or some other exotic tree structure that is naturally compressed but O(log(n)) instead of O(n) to traverse.The computer has to figure out whether the word is in the dictionary, but it also has to figure out a suggestion for what to change it to.And even after just that, we already have a bug- homonym mistakes- homonyms are in the dictionary but they’re misspelled (that was intentional btw).How misspelled is another problem.  We’ve had Levenshtein et al algorithms for a long time, but how different can you get?  A really badly misspelled word might not have any good replacement candidates within your edit distance limit.There are also optimizations like frequently mistyped words (acn-> can), acronyms, etc.It was never just about size.",
+    "parent": 44843223,
+    "depth": 1
+  },
+  {
     "id": 44843303,
     "by": "gnabgib",
     "timeISO": "2025-08-09T01:26:45.000Z",
     "textPlain": "(2008) Popular in:2023 (314 points, 180 comments) https://news.ycombinator.com/item?id=349719242020 (363 points, 143 comments) https://news.ycombinator.com/item?id=252969002012 (94+156 points, 70+61 comments) https://news.ycombinator.com/item?id=4640658 https://news.ycombinator.com/item?id=3466388",
+    "parent": 44843223,
+    "depth": 1
+  },
+  {
+    "id": 44879422,
+    "by": "hilbert42",
+    "timeISO": "2025-08-12T17:31:28.000Z",
+    "textPlain": "\"A Spellchecker Used to Be a Major Feat of Software Engineering\"It still is. The spell checker on my Android phone is a PIA. It's too dumb to correct many typos, there's no way of highlighting wrongly used but correct words such a 'fro' and 'for', etc. There's no automatic or user defined substitution such as correcting 'rhe' with 'the' and yet keep the words highlighted until a final revision.Wordpossessor spellers have no way of tagging certain words that one may or may not wish to use depending on context. A classic example that's caught me out past the draft and found its way into the final document without me noticing it is 'pubic' for 'public'. Why doesn't my speller highlight such words in red and ask whether I actually meant to use this word?Moreover, spellers are not all of the same level of accuracy, for example Microsoft Word's speller is much better than LibrOffice's much to my annoyance as LibreOffice is my main (preferred) WP.Nor is there a method of collecting misspelled words or typos and tagging them as spelling errors or typos for the purpose of helping one's spelling or typing. It'd be nice to have a list of my misspelled words together with their correct spelling, that way I could become a better speller. Also, spellers could be integrated with full dictionaries—highlight the word and press F1 for its meaning, etc.There are no dictionary formats that are both universal and smart, that is that would allow for easy amalgamation between dictionaries and yet could contain user defined words and other user metadata which would be distinguished from the general corpus of words when crossed or amalgamated. For example, a smart dictionary format could contain metadata that would allow a dictionary and thesaurus to coexist in the same word list, similarly so different dictionaries, technical, medical etc.All up, spellercheckers are still a damn mess. They need urgent attention.",
     "parent": 44843223,
     "depth": 1
   },
@@ -48,34 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44878953,
-    "by": "zkmon",
-    "timeISO": "2025-08-12T16:56:27.000Z",
-    "textPlain": "I have used WordStar in 1993. But I don't remember anyone really using the spell checker or feeling a need for it those days. Work was slow and we had enough eyes and time to catch the spelling mistakes. When we were upgraded to MS Word on Windows 3.1, we were astonished to see that it has a feature to preview the document before printing. But somehow WordSatr still looked more fluid and faster than GUI-based word processors.",
-    "parent": 44843223,
-    "depth": 1
-  },
-  {
     "id": 44877546,
     "by": "knicholes",
     "timeISO": "2025-08-12T15:26:51.000Z",
     "textPlain": "I loved what Peter Norvig did with this.  It's not just a spell checker, but a spelling corrector. https://norvig.com/spell-correct.html",
-    "parent": 44843223,
-    "depth": 1
-  },
-  {
-    "id": 44879085,
-    "by": "rkagerer",
-    "timeISO": "2025-08-12T17:05:54.000Z",
-    "textPlain": "This article ends too soon!  Show me the techniques and solutions those clever programmers of old came up with.  Did I miss a link somewhere to subsequent posts?",
-    "parent": 44843223,
-    "depth": 1
-  },
-  {
-    "id": 44878892,
-    "by": "YesThatTom2",
-    "timeISO": "2025-08-12T16:52:10.000Z",
-    "textPlain": "My Commodore 64 had a spellchecker.  It was a separate program.  I had to save my file, exit my word processor program, switch floppies to the spell checker program, wait for it to load, and all I got was a list of misspelled words… no suggested corrections.Thinking back, how the heck did they do spell checking algorithms on a 6502?   That’s a bit of code I’d like to see reverse engineered!",
     "parent": 44843223,
     "depth": 1
   },
@@ -88,10 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44878782,
-    "by": "numpad0",
-    "timeISO": "2025-08-12T16:43:55.000Z",
-    "textPlain": "It's also a key enabler to CJK typing on computers. CJK scripts never map to keyboards well, so instead of actually typing, approximate representations are typed in and regularized into written forms using similar technologies as spell checkers. It's a neat thing if you speak one of the languages, sort of interesting that a similar tool haven't been integrated into English keyboards.",
+    "id": 44879085,
+    "by": "rkagerer",
+    "timeISO": "2025-08-12T17:05:54.000Z",
+    "textPlain": "This article ends too soon!  Show me the techniques and solutions those clever programmers of old came up with.  Did I miss a link somewhere to subsequent posts?",
     "parent": 44843223,
     "depth": 1
   },
@@ -100,6 +84,38 @@
     "by": "AlphaAndOmega0",
     "timeISO": "2025-08-12T15:18:29.000Z",
     "textPlain": "I'd have liked more explanation of the actual solutions that programmers used at the time.",
+    "parent": 44843223,
+    "depth": 1
+  },
+  {
+    "id": 44878953,
+    "by": "zkmon",
+    "timeISO": "2025-08-12T16:56:27.000Z",
+    "textPlain": "I have used WordStar in 1993. But I don't remember anyone really using the spell checker or feeling a need for it those days. Work was slow and we had enough eyes and time to catch the spelling mistakes. When we were upgraded to MS Word on Windows 3.1, we were astonished to see that it has a feature to preview the document before printing. But somehow WordSatr still looked more fluid and faster than GUI-based word processors.",
+    "parent": 44843223,
+    "depth": 1
+  },
+  {
+    "id": 44879288,
+    "by": "neuroelectron",
+    "timeISO": "2025-08-12T17:18:56.000Z",
+    "textPlain": "I used a document editor in DOS with spellcheck. It was quite fast too. I don't remember what it was called but it featured formatting characters such as character returns and paragraphs. It had good printer support. I think it was called Easy Print and it was only a couple of dollars.",
+    "parent": 44843223,
+    "depth": 1
+  },
+  {
+    "id": 44878892,
+    "by": "YesThatTom2",
+    "timeISO": "2025-08-12T16:52:10.000Z",
+    "textPlain": "My Commodore 64 had a spellchecker.  It was a separate program.  I had to save my file, exit my word processor program, switch floppies to the spell checker program, wait for it to load, and all I got was a list of misspelled words… no suggested corrections.Thinking back, how the heck did they do spell checking algorithms on a 6502?   That’s a bit of code I’d like to see reverse engineered!",
+    "parent": 44843223,
+    "depth": 1
+  },
+  {
+    "id": 44878782,
+    "by": "numpad0",
+    "timeISO": "2025-08-12T16:43:55.000Z",
+    "textPlain": "It's also a key enabler to CJK typing on computers. CJK scripts never map to keyboards well, so instead of actually typing, approximate representations are typed in and regularized into written forms using similar technologies as spell checkers. It's a neat thing if you speak one of the languages, sort of interesting that a similar tool haven't been integrated into English keyboards.",
     "parent": 44843223,
     "depth": 1
   },
@@ -120,18 +136,18 @@
     "depth": 1
   },
   {
-    "id": 44878732,
-    "by": "sampton",
-    "timeISO": "2025-08-12T16:40:05.000Z",
-    "textPlain": "Once upon a time being able to bold text was considered to be a premium feature. WordStar used to charge money for it.",
-    "parent": 44843223,
-    "depth": 1
-  },
-  {
     "id": 44877708,
     "by": "catwhatcat",
     "timeISO": "2025-08-12T15:37:37.000Z",
     "textPlain": "A recent article from PCGamer adding some more details: https://www.pcgamer.com/software/implementing-a-spellchecker...",
+    "parent": 44843223,
+    "depth": 1
+  },
+  {
+    "id": 44879416,
+    "by": "IAmNotACellist",
+    "timeISO": "2025-08-12T17:31:02.000Z",
+    "textPlain": "Pff, now Microsoft Word probably sends your document to an AI every second and asks it to send back a PNG that highlights every misspelled word, and it overlays that underneath your text.",
     "parent": 44843223,
     "depth": 1
   },
@@ -224,6 +240,14 @@
     "depth": 2
   },
   {
+    "id": 44880017,
+    "by": "porridgeraisin",
+    "timeISO": "2025-08-12T18:23:23.000Z",
+    "textPlain": "Meanwhile, vim's spell checker is one of the best I have used. I recommend reading [:h spell](https://vimhelp.org/spell.txt.html#spell).Here are some nice examples (excluding obvious edit distance based ones which it does right)\"snowbalfight\" --> \"snowball fight\"\"unrelevant\" --> \"irrelevant\"\"fone\" --> \"phone\"\"the the\" --> \"The\"And all of this with auto capitalization if it notices you're at the start of a sentence, and stuff like handling proper nouns, punctuations, etc,.What I find really interesting is swipe-type spell checking (its basically word prediction) on phones. That is a really cool problem to solve well. Sometimes it works like a dream and other times it's annoying. I wonder how they write those.",
+    "parent": 44878038,
+    "depth": 2
+  },
+  {
     "id": 44878068,
     "by": "dlivingston",
     "timeISO": "2025-08-12T15:57:22.000Z",
@@ -244,6 +268,14 @@
     "by": "torium",
     "timeISO": "2025-08-12T16:21:14.000Z",
     "textPlain": "Since you're old enough, here's a question for you. Do you remember if at the time the first spellcheckers were invented, people were negative on spellcheckers, because that would mean that soon people would stop learning how to spell and just general dumbing down?It seems that anything that helps people gets this reaction these days. On the one hand, the argument 100% resonates with me. On the other hand, spelling isn't really the end, is it? It's just a means to an end, so what's wrong with making the mean easier? Did people worry that you'd stop knowing how to plant potatoes when trading was invented? EDIT: The example doesn't make sense because agriculture is newer than trading, but you got the idea.",
+    "parent": 44877798,
+    "depth": 2
+  },
+  {
+    "id": 44879437,
+    "by": "NitpickLawyer",
+    "timeISO": "2025-08-12T17:33:09.000Z",
+    "textPlain": "I had the same thing when the Encarta CDs started to include pronunciation tests. You'd get a word, speak it in the microphone, and get a \"score\" on how well you pronounced that word. Knowing what I know now, it was probably pretty inaccurate and hand wavy, but in the early 90s that was an absolutely amazing experience for an ESL person.",
     "parent": 44877798,
     "depth": 2
   },
@@ -312,14 +344,6 @@
     "depth": 2
   },
   {
-    "id": 44879316,
-    "by": "grishka",
-    "timeISO": "2025-08-12T17:20:43.000Z",
-    "textPlain": "Doesn't Chinese input usually work by typing Latin codes for characters? Korean characters represent syllables made up of shapes representing individual sounds, those fit on a keyboard just fine. And I'm not sure about Japanese, there they may use something like spell checkers to map kana to kanji.Another interesting challenge with CJK languages was just displaying them. You need higher-resolution graphics and a much bigger character ROM to even consider that.",
-    "parent": 44878782,
-    "depth": 2
-  },
-  {
     "id": 44878053,
     "by": "tgv",
     "timeISO": "2025-08-12T15:56:21.000Z",
@@ -333,6 +357,14 @@
     "timeISO": "2025-08-12T15:39:03.000Z",
     "textPlain": "For the basic word list, possibly tries (https://en.wikipedia.org/wiki/Trie), DAGs (https://en.wikipedia.org/wiki/Directed_acyclic_graph#Data_co...), or Bloom filter (https://en.wikipedia.org/wiki/Bloom_filter)",
     "parent": 44877387,
+    "depth": 2
+  },
+  {
+    "id": 44879316,
+    "by": "grishka",
+    "timeISO": "2025-08-12T17:20:43.000Z",
+    "textPlain": "Doesn't Chinese input usually work by typing Latin codes for characters? Korean characters represent syllables made up of shapes representing individual sounds, those fit on a keyboard just fine. And I'm not sure about Japanese, there they may use something like spell checkers to map kana to kanji.Another interesting challenge with CJK languages was just displaying them. You need higher-resolution graphics and a much bigger character ROM to even consider that.",
+    "parent": 44878782,
     "depth": 2
   },
   {
