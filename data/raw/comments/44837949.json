@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44872498,
+    "by": "kqr",
+    "timeISO": "2025-08-12T04:47:49.000Z",
+    "textPlain": "More exciting in my mind than the equivalence between tail recursion and while loops is the equivalence between left folds and for loops. A for loop in its most general shape is something like    <whatever state the application is in here serves as the starting state>\n    foreach (i in range(n)) {\n        <the state of the application is updated with each iteration>\n    }\n    <the desired state of the application has been applied when the loop is done>\n\nAn equivalent left fold is invoked like    <desired state> = foldl (\n        <state updating procedure>, \n        <starting state>,\n        range(n)\n    )\n\nThe difference is that the starting state is given explicitly to the loop, and the desired state is returned as a composite value. This makes it easier to troubleshoot than the implicit state transitions, but it's essentially the same still.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
     "id": 44869480,
     "by": "tombert",
     "timeISO": "2025-08-11T21:06:54.000Z",
@@ -24,10 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44872498,
-    "by": "kqr",
-    "timeISO": "2025-08-12T04:47:49.000Z",
-    "textPlain": "More exciting in my mind than the equivalence between tail recursion and while loops is the equivalence between left folds and for loops. A for loop in its most general shape is something like    <whatever state the application is in here serves as the starting state>\n    foreach (i in range(n)) {\n        <the state of the application is updated with each iteration>\n    }\n    <the desired state of the application has been applied when the loop is done>\n\nAn equivalent left fold is invoked like    <desired state> = foldl (\n        <state updating procedure>, \n        <starting state>,\n        range(n)\n    )\n\nThe difference is that the starting state is given explicitly to the loop, and the desired state is returned as a composite value. This makes it easier to troubleshoot than the implicit state transitions, but it's essentially the same still.",
+    "id": 44869916,
+    "by": "munchler",
+    "timeISO": "2025-08-11T21:56:51.000Z",
+    "textPlain": "Every developer should know how to write a tail-recursive function and understand why it is equivalent to a loop. That said, tail recursion is rarely needed in modern functional programming. For example, why write out a recursive function when a call to `fold` or `map` will do the same thing?",
     "parent": 44837949,
     "depth": 1
   },
@@ -40,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44869916,
-    "by": "munchler",
-    "timeISO": "2025-08-11T21:56:51.000Z",
-    "textPlain": "Every developer should know how to write a tail-recursive function and understand why it is equivalent to a loop. That said, tail recursion is rarely needed in modern functional programming. For example, why write out a recursive function when a call to `fold` or `map` will do the same thing?",
+    "id": 44872177,
+    "by": "Mikhail_Edoshin",
+    "timeISO": "2025-08-12T03:45:30.000Z",
+    "textPlain": "Everybody knows that \"goto is harmful\" but who has noticed that the very same paper says that loops are technically unnecessary?Loops are merely a special case of recursion. The reason languages have loops is that reifying these cases to language constructs simplifies code generation. The downside is that it muddles the logic of computation.",
     "parent": 44837949,
     "depth": 1
   },
@@ -64,10 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44872177,
-    "by": "Mikhail_Edoshin",
-    "timeISO": "2025-08-12T03:45:30.000Z",
-    "textPlain": "Everybody knows that \"goto is harmful\" but who has noticed that the very same paper says that loops are technically unnecessary?Loops are merely a special case of recursion. The reason languages have loops is that reifying these cases to language constructs simplifies code generation. The downside is that it muddles the logic of computation.",
+    "id": 44870663,
+    "by": "odyssey7",
+    "timeISO": "2025-08-11T23:31:16.000Z",
+    "textPlain": "High-profile places where this is sadly not implemented include:- V8 JavaScript Engine- Python",
     "parent": 44837949,
     "depth": 1
   },
@@ -80,10 +88,10 @@
     "depth": 1
   },
   {
-    "id": 44870663,
-    "by": "odyssey7",
-    "timeISO": "2025-08-11T23:31:16.000Z",
-    "textPlain": "High-profile places where this is sadly not implemented include:- V8 JavaScript Engine- Python",
+    "id": 44870124,
+    "by": "aryonoco",
+    "timeISO": "2025-08-11T22:20:45.000Z",
+    "textPlain": "For what it’s worth, in F#, tail recursive functions are  turned into equivalent loops by the .NET CLR.I actually like the compromise. I get to write safe functional code while getting all the benefits of a highly optimised iterative operation.",
     "parent": 44837949,
     "depth": 1
   },
@@ -92,14 +100,6 @@
     "by": "wagwang",
     "timeISO": "2025-08-11T22:54:10.000Z",
     "textPlain": "Normal recursion is just a loop and a stack, turns out, if you can optimize recursion without a stack, it just becomes a loop.",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
-    "id": 44870124,
-    "by": "aryonoco",
-    "timeISO": "2025-08-11T22:20:45.000Z",
-    "textPlain": "For what it’s worth, in F#, tail recursive functions are  turned into equivalent loops by the .NET CLR.I actually like the compromise. I get to write safe functional code while getting all the benefits of a highly optimised iterative operation.",
     "parent": 44837949,
     "depth": 1
   },
@@ -168,6 +168,14 @@
     "depth": 2
   },
   {
+    "id": 44870935,
+    "by": "zelphirkalt",
+    "timeISO": "2025-08-12T00:15:12.000Z",
+    "textPlain": "I have my doubts about any CS class/lecture, that teaches, that the \"iterative version is easier to scan\". Might just be the bias or inexperience of the lecturer. By not I find recursive to be often easier to read than some for loop with its loop header and counter that I need to think about and update in my mind. And then the loop usually in many languages does not even have a return value, because it is not an expression, but a statement. Meeehhh, very meehhh in many languages. Not all, but many.I think maybe in languages like Ruby or Smalltalk a loop can be more readable, because of how they structure it as messages to objects, rather than special keywords in the language.",
+    "parent": 44869452,
+    "depth": 2
+  },
+  {
     "id": 44871935,
     "by": "rr808",
     "timeISO": "2025-08-12T03:09:12.000Z",
@@ -180,14 +188,6 @@
     "by": "javcasas",
     "timeISO": "2025-08-11T21:37:07.000Z",
     "textPlain": "Recursion deals with recursive data structures, and iteration deals with \"plain old\" data structures.When you use one to process the other, you get into trouble. For example, you need to manage a stack to do iteration on your binary tree. Or you need to construct slices to recurse on your arrays.It's all about ergonomics.",
-    "parent": 44869452,
-    "depth": 2
-  },
-  {
-    "id": 44870935,
-    "by": "zelphirkalt",
-    "timeISO": "2025-08-12T00:15:12.000Z",
-    "textPlain": "I have my doubts about any CS class/lecture, that teaches, that the \"iterative version is easier to scan\". Might just be the bias or inexperience of the lecturer. By not I find recursive to be often easier to read than some for loop with its loop header and counter that I need to think about and update in my mind. And then the loop usually in many languages does not even have a return value, because it is not an expression, but a statement. Meeehhh, very meehhh in many languages. Not all, but many.I think maybe in languages like Ruby or Smalltalk a loop can be more readable, because of how they structure it as messages to objects, rather than special keywords in the language.",
     "parent": 44869452,
     "depth": 2
   },

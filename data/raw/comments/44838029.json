@@ -1,9 +1,57 @@
 [
   {
+    "id": 44873119,
+    "by": "chao-",
+    "timeISO": "2025-08-12T06:41:49.000Z",
+    "textPlain": "I forget where I first heard it, but \"Dates are not real. Only times with zones are real.\"When you need to be precise, you specify a time and a zone.When your application has users in different geographies, you need to be precise.Displaying the date attached to a time is a presentational convenience. Only the time is real.",
+    "parent": 44838029,
+    "depth": 1
+  },
+  {
+    "id": 44873259,
+    "by": "Humphrey",
+    "timeISO": "2025-08-12T07:07:03.000Z",
+    "textPlain": "I've been working as a software dev for over 20 yrs and not really ever got caught in the precise moment issue that the author is talking about.  You just need to pick the correct datatype for the kind of thing that you want. EgEg, in Pythonyear = intmonth = str (yyyy-mm)day = naive dateexact moment = timezone aware datetime",
+    "parent": 44838029,
+    "depth": 1
+  },
+  {
     "id": 44873093,
     "by": "croisillon",
     "timeISO": "2025-08-12T06:34:27.000Z",
-    "textPlain": "it's an interesting feature, shame there is no immediate link to the product ; i've recently managed the relaunch of one product at work and some of the best user-friendly advances come from proper time understanding",
+    "textPlain": "it's an interesting feature, shame there is no immediate link to the product (and shame the article has been produced by AI) ; i've recently managed the relaunch of one product at work and some of the best user-friendly advances come from proper time understanding",
+    "parent": 44838029,
+    "depth": 1
+  },
+  {
+    "id": 44873153,
+    "by": "jillesvangurp",
+    "timeISO": "2025-08-12T06:47:47.000Z",
+    "textPlain": "Where this stuff gets hard is time zones and localization. Add some daylight savings to the mix and you are going to get lots of subtle issues. These range checks only make sense in the context of localized dates. For example 2025 started almost a day earlier in Sydney then it did in LA.And then there are cultural differences. Do weeks start on a Sunday or a Monday? People wielding different calendars (Chinese new year is not on the 1st of January). So what is the beginning of the year is dependent on where you are as well.If you are not localizing your dates before doing the checks that the author is proposing, it's probably wrong. This stuff is complicated for good reasons.Anyway, store UTC times. Deal with making it look pretty and culturally & geographically appropriate in your UI. You shouldn't have to update your database just because the user took a plane to the other side of the planet.Anyway, intervals and range checks are pretty easy to do with decent libraries. I like Kotlin and Java's way of using Durations for arbitrary time intervals. Kotlin's version of that supports operators. And has useful extension functions. And a thing called LocalDate which is a date without the time part, exactly like the author proposes. There's also LocalDateRange, which you can use to represent intervals. There's no LocalDateTimeRange equivalent for that. But that's where you'd switch to instants and durations probably.Relative date and time expressions are surprisingly hard. A little known feature in Elasticsearch is that somebody at some point hacked in a date math thing that allows you to specify \"now-2d\" and \"now+7d\" as a valid input for range queries on dates. Surprisingly hard to do more complicated expressions and parse them correctly. I had a go at that problem at some point. Cron parsers are tricky for the same reason. And there are a few dialects of that to add some features that people needed.There's a rich history of people having tried a whole bunch of things w",
+    "parent": 44838029,
+    "depth": 1
+  },
+  {
+    "id": 44873241,
+    "by": "torium",
+    "timeISO": "2025-08-12T07:03:59.000Z",
+    "textPlain": "Meh. People know dates are intervals. You just have to use it properly. All libs make assumptions.For example, this lib makes the assumption that years and months have a fixed length, e.g. date(2024Q2) - date(2024Q1) = 3 months",
+    "parent": 44838029,
+    "depth": 1
+  },
+  {
+    "id": 44873145,
+    "by": "JimDabell",
+    "timeISO": "2025-08-12T06:46:00.000Z",
+    "textPlain": "> This isn’t just “nicer syntax” — it’s a fundamental shift in how your software thinks.I’m sorry, I just can’t get past this awful hyperbolic AI drivel.",
+    "parent": 44838029,
+    "depth": 1
+  },
+  {
+    "id": 44873144,
+    "by": "01HNNWZ0MV43FF",
+    "timeISO": "2025-08-12T06:45:54.000Z",
+    "textPlain": "> midnight to 23:59:59 that day.What day is it at 23:59:59.500 then?You're wrong about intervals! </jk only serious>",
     "parent": 44838029,
     "depth": 1
   },
@@ -14,5 +62,21 @@
     "textPlain": "Why your mental model of dates is broken, how programming languages gaslight us about time, and how Decipad’s interval-based approach fixes it.",
     "parent": 44838029,
     "depth": 1
+  },
+  {
+    "id": 44873268,
+    "by": "bryanrasmussen",
+    "timeISO": "2025-08-12T07:08:13.000Z",
+    "textPlain": ">When your application has users in different geographies, you need to be precise.depends how important it is. app for tracking celebrity hairstyles forego precision for easy understanding, stock markets precision needed.",
+    "parent": 44873119,
+    "depth": 2
+  },
+  {
+    "id": 44873194,
+    "by": "ksenzee",
+    "timeISO": "2025-08-12T06:55:25.000Z",
+    "textPlain": "I don’t think this is related to AI at all. (Unless you’re suggesting it’s AI-generated?) It’s “thinking” as a metaphor for the abstraction being used.",
+    "parent": 44873145,
+    "depth": 2
   }
 ]

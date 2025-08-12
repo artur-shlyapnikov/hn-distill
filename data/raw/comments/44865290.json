@@ -16,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44872099,
-    "by": "BobbyJo",
-    "timeISO": "2025-08-12T03:33:14.000Z",
-    "textPlain": "Had this exact idea recently, applied to various software tooling. I think agents of all types are going to follow a similar path to self-driving cars: first 80% comes in a big boom, and the last 20% comes over a decade of training and simulations.I think each agent use case is going to need a simulation for its reward to eek out the last 20%.Edit: Realized I forgot to say Great Work! Looks Cool!",
-    "parent": 44865290,
-    "depth": 1
-  },
-  {
     "id": 44870496,
     "by": "davecyen",
     "timeISO": "2025-08-11T23:11:13.000Z",
     "textPlain": "Very cool - is it possible to simulate this on a live production site (i.e. instead of Halluminate Flights, just test the agent live on Expedia)? Even though you don't have access to the backend json, presumably you could verify the right values were entered in the frontend/UI?",
+    "parent": 44865290,
+    "depth": 1
+  },
+  {
+    "id": 44872099,
+    "by": "BobbyJo",
+    "timeISO": "2025-08-12T03:33:14.000Z",
+    "textPlain": "Had this exact idea recently, applied to various software tooling. I think agents of all types are going to follow a similar path to self-driving cars: first 80% comes in a big boom, and the last 20% comes over a decade of training and simulations.I think each agent use case is going to need a simulation for its reward to eek out the last 20%.Edit: Realized I forgot to say Great Work! Looks Cool!",
     "parent": 44865290,
     "depth": 1
   },
@@ -112,19 +112,19 @@
     "depth": 2
   },
   {
-    "id": 44872382,
-    "by": "wujerry2000",
-    "timeISO": "2025-08-12T04:20:39.000Z",
-    "textPlain": "Self driving cars are a really good place to derive intuitions. Robotics as well!Both those spaces are still optimizing on the last mile performance gains that get exponentially harder.The good thing about computer use is building software environments are faster and also more repeatable, so hopefully we see quicker improvements here. :)",
-    "parent": 44872099,
-    "depth": 2
-  },
-  {
     "id": 44870581,
     "by": "wm2",
     "timeISO": "2025-08-11T23:21:58.000Z",
     "textPlain": "yup, though without access to the code it's much harder to pull the state of the components - becomes more like a web scraping problem, it's a brittle and much hackier than just intentionally exposing component state like we can do in the sim.more importantly though are use cases that depend on the data. the data on real google flights/expedia is constantly changing, so it's impossible to build datasets based ground truth, e.g. the answer for a task like \"Find the cheapest round-trip flight option from Bologna (BLQ) to Dushanbe (DYU) if I leave on 2026-05-05 and come back on 2026-05-15. Return the total price and the flight numbers for all flights.\" isn't stable. on our site, we control the data, so that answer is stable (deterministically random). so controlling the whole clone rather than running on the prod site unlocks richer and more repeatable tasks/testing.lastly, our site runs the exact same locally as deployed, it has zero internet dependencies. so it can be run offline directly on the cluster with no issue for network latency/failures",
     "parent": 44870496,
+    "depth": 2
+  },
+  {
+    "id": 44872382,
+    "by": "wujerry2000",
+    "timeISO": "2025-08-12T04:20:39.000Z",
+    "textPlain": "Self driving cars are a really good place to derive intuitions. Robotics as well!Both those spaces are still optimizing on the last mile performance gains that get exponentially harder.The good thing about computer use is building software environments are faster and also more repeatable, so hopefully we see quicker improvements here. :)",
+    "parent": 44872099,
     "depth": 2
   },
   {
