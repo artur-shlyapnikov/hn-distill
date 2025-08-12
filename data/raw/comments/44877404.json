@@ -1,25 +1,9 @@
 [
   {
-    "id": 44881406,
-    "by": "standardly",
-    "timeISO": "2025-08-12T20:26:12.000Z",
-    "textPlain": "LLMs work really well for open-ended role-playing sessions, but not so much games with strict rules.They just can't seem to grasp what would make a choice a \"wrong\" choice in a text-based adventure game, so they end up having no ending. You have to hard-code failure events, or you just never get anything like \"you chose to attack the wizard, but he's level 99, dummy, so you died - game over!\". It just accepts whatever choice you make, ad infinitum.My best session was one in which I had the AI give me 4 dialogue options to choose from. I never \"beat\" the game, and we never solved the mystery - it just kept going further down the rabbit hole.. But it was surprisingly enjoyable, and  repayable! A larger framework just needs written for it to keep the tires between the lines and to hard-code certain game rules - what's under the hood is already quite good for narratives imo.",
-    "parent": 44877404,
-    "depth": 1
-  },
-  {
     "id": 44879004,
     "by": "henriquegodoy",
     "timeISO": "2025-08-12T17:00:14.000Z",
     "textPlain": "Looking at this evaluation it's pretty fascinating how badly these models perform even on decades old games that almost certainly have walkthroughs scattered all over their training data. Like, you'd think they'd at least brute force their way through the early game mechanics by now, but honestly this kinda validates something I've been thinking about like real intelligence isn't just about having seen the answers before, it's about being good at games and specifically new situations where you can't just pattern match your way outThis is exactly why something like arc-agi-3 feels so important right now. Instead of static benchmarks that these models can basically brute force with enough training data, like designing around interactive environments where you actually need to perceive, decide, and act over multiple steps without prior instructions, that shift from \"can you reproduce known patterns\" to \"can you figure out new patterns\" seems like the real test of intelligence.What's clever about the game environment approach is that it captures something fundamental about human intelligence that static benchmarks miss entirely, like, when humans encounter a new game, we explore, form plans, remember what worked, adjust our strategy all that interactive reasoning over time that these text adventure results show llms are terrible at, we need systems that can actually understand and adapt to new situations, not just really good autocomplete engines that happen to know a lot of trivia.",
-    "parent": 44877404,
-    "depth": 1
-  },
-  {
-    "id": 44878951,
-    "by": "SquibblesRedux",
-    "timeISO": "2025-08-12T16:56:22.000Z",
-    "textPlain": "This is another great example of how LLMs are not really any sort of AI, or even proper knowledge representation. Not saying they don't have their uses (like souped up search and permutation generators), but definitely not something that resembles intelligence.",
     "parent": 44877404,
     "depth": 1
   },
@@ -32,10 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44878756,
-    "by": "andrewla",
-    "timeISO": "2025-08-12T16:41:56.000Z",
-    "textPlain": "The article links to a previous article discussing methodology for this. The prompting is pretty extensive.It is difficult here to separate out how much of this could be fixed or improved by better prompting. A better baseline might be to just give the LLM direct access to the text adventure, so that everything the LLM replies is given to the game directly. I suspect that the LLMs would do poorly on this task, but would undoubtedly improve over time and generations.EDIT: Just started playing 9:05 with GPT-4 with no prompting and it did quite poorly; kept trying to explain to me what was going on with the ever more complex errors it would get. Put in a one line \"You are playing a text adventure game\" and off it went -- it took a shower and got dressed and drove to work.",
+    "id": 44878951,
+    "by": "SquibblesRedux",
+    "timeISO": "2025-08-12T16:56:22.000Z",
+    "textPlain": "This is another great example of how LLMs are not really any sort of AI, or even proper knowledge representation. Not saying they don't have their uses (like souped up search and permutation generators), but definitely not something that resembles intelligence.",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44881406,
+    "by": "standardly",
+    "timeISO": "2025-08-12T20:26:12.000Z",
+    "textPlain": "LLMs work really well for open-ended role-playing sessions, but not so much games with strict rules.They just can't seem to grasp what would make a choice a \"wrong\" choice in a text-based adventure game, so they end up having no ending. You have to hard-code failure events, or you just never get anything like \"you chose to attack the wizard, but he's level 99, dummy, so you died - game over!\". It just accepts whatever choice you make, ad infinitum.My best session was one in which I had the AI give me 4 dialogue options to choose from. I never \"beat\" the game, and we never solved the mystery - it just kept going further down the rabbit hole.. But it was surprisingly enjoyable, and  repayable! A larger framework just needs written for it to keep the tires between the lines and to hard-code certain game rules - what's under the hood is already quite good for narratives imo.",
     "parent": 44877404,
     "depth": 1
   },
@@ -52,6 +44,14 @@
     "by": "jameshart",
     "timeISO": "2025-08-12T16:34:43.000Z",
     "textPlain": "Nothing in the article mentioned how good the LLMs were at even entering valid text adventure commands into the games.If an LLM responds to “You are standing in an open field west of a white house” with “okay, I’m going to walk up to the house”, and just gets back “THAT SENTENCE ISN'T ONE I RECOGNIZE”, it’s not going to make much progress.",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44878756,
+    "by": "andrewla",
+    "timeISO": "2025-08-12T16:41:56.000Z",
+    "textPlain": "The article links to a previous article discussing methodology for this. The prompting is pretty extensive.It is difficult here to separate out how much of this could be fixed or improved by better prompting. A better baseline might be to just give the LLM direct access to the text adventure, so that everything the LLM replies is given to the game directly. I suspect that the LLMs would do poorly on this task, but would undoubtedly improve over time and generations.EDIT: Just started playing 9:05 with GPT-4 with no prompting and it did quite poorly; kept trying to explain to me what was going on with the ever more complex errors it would get. Put in a one line \"You are playing a text adventure game\" and off it went -- it took a shower and got dressed and drove to work.",
     "parent": 44877404,
     "depth": 1
   },
@@ -144,11 +144,11 @@
     "depth": 2
   },
   {
-    "id": 44879356,
-    "by": "nonethewiser",
-    "timeISO": "2025-08-12T17:24:30.000Z",
-    "textPlain": "While I agree, it's still shocking how far next token prediction gets us to looking like intelligence. It's amazing we need examples such as this to demonstrate it.",
-    "parent": 44878951,
+    "id": 44881822,
+    "by": "varenc",
+    "timeISO": "2025-08-12T21:08:03.000Z",
+    "textPlain": "> Yeah the Chat router is busted big time... You have to add \"Think hard.\" to the end of the prompt, or explicitly switch to the Thinking model in the UI.I don't really get this gripe? It seems no different than before, except now it will sometimes opt into thinking harder by itself. If you know you want CoT reasoning you just select gpt5-thinking, no different than choosing o4-mini/o3 like before.",
+    "parent": 44879366,
     "depth": 2
   },
   {
@@ -157,6 +157,14 @@
     "timeISO": "2025-08-12T17:59:06.000Z",
     "textPlain": "This is correct, and was the reason I made sure to always append \"Chat\" to the end of \"GPT-5\". I should perhaps have been more clear about this. The reason I settled for the lesser router is I don't have access to the full GPT-5, which would have been a much better baseline, I agree.",
     "parent": 44879366,
+    "depth": 2
+  },
+  {
+    "id": 44879356,
+    "by": "nonethewiser",
+    "timeISO": "2025-08-12T17:24:30.000Z",
+    "textPlain": "While I agree, it's still shocking how far next token prediction gets us to looking like intelligence. It's amazing we need examples such as this to demonstrate it.",
+    "parent": 44878951,
     "depth": 2
   },
   {
@@ -197,6 +205,14 @@
     "timeISO": "2025-08-12T17:01:46.000Z",
     "textPlain": "that's a great tracker. How often is the laderboard updated?",
     "parent": 44878740,
+    "depth": 2
+  },
+  {
+    "id": 44881587,
+    "by": "dr-detroit",
+    "timeISO": "2025-08-12T20:42:17.000Z",
+    "textPlain": "[dead]",
+    "parent": 44877430,
     "depth": 2
   },
   {

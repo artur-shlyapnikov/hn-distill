@@ -1,9 +1,9 @@
 [
   {
-    "id": 44881390,
-    "by": "kwillets",
-    "timeISO": "2025-08-12T20:24:31.000Z",
-    "textPlain": "Another chapter of the slowly-reimplementing-Vertica saga.It's becoming clear that merge trees and compaction need to be addressed next, after delete vectors brought them onstage.Vertica will actually look up the equality keys in a relevant projection if it exists, and then use the column values in the matching rows to equality-delete from the other projections; it's fairly good at avoiding table scans.",
+    "id": 44881715,
+    "by": "amluto",
+    "timeISO": "2025-08-12T20:55:26.000Z",
+    "textPlain": "I don't really get it.  If I'm understanding correctly, the goal of these CDC-to-Iceberg systems is to mirror, in near real-time, a Postgres table into an Iceberg database.  The article states, repeatedly:> In streaming CDC scenarios, however, you’d need to query Iceberg for the location on every delete: introducing random reads, latency, and drastically lowering throughput under high concurrency. On large tables, real-time performance is essentially impossible.Let's consider the actual situation.  There's a Postgres table that fits on whatever Postgres server is in use.  It gets mirrored to Iceberg.  Postgres is a full-fledged relational database and has indexes and such.  Iceberg is not, although it can be scanned much faster than Postgres and queried by fancy Big Data tools (which, I agree, are really cool!).  And, notably, there is no index mapping Postgres rows to Iceberg row positions.But why isn't there?  CDC is inherently stateful -- unless someone is going to build Merkle trees or similar to allow efficiently diffing table states (which would be awesome), the CDC process need to keep enough state to know where it is.  Maybe this is O(1) in current implementations.  But why not keep the entire mapping from Postgres rows to Iceberg positions?  The Postgres database table is about N rows times however wide a row is, and it fits on a Postgres server.  The mapping needed would be about the size of a single index on the table.  Why not store it somewhere?  Updates to it will be faster than updates to the source Postgres table, so it will keep up.  Is the problem that this is awkward to do in a \"serverless\" manner?For extra fun, someone could rig up Postgres (via an extension or just some clever tables) so that the mapping is stored in Postgres itself.  It would be, roughly, one small table with CDC state and one moderate size table per mirrored table storing the row position mapping.  It could be on the same server instance or a different one.",
     "parent": 44880081,
     "depth": 1
   },
@@ -16,11 +16,35 @@
     "depth": 1
   },
   {
+    "id": 44881390,
+    "by": "kwillets",
+    "timeISO": "2025-08-12T20:24:31.000Z",
+    "textPlain": "Another chapter of the slowly-reimplementing-Vertica saga.It's becoming clear that merge trees and compaction need to be addressed next, after delete vectors brought them onstage.Vertica will actually look up the equality keys in a relevant projection if it exists, and then use the column values in the matching rows to equality-delete from the other projections; it's fairly good at avoiding table scans.",
+    "parent": 44880081,
+    "depth": 1
+  },
+  {
     "id": 44881024,
     "by": "datadrivenangel",
     "timeISO": "2025-08-12T19:45:07.000Z",
     "textPlain": "Change Data Capture is hard if you fall off the happy path, and data lakes won't save you.",
     "parent": 44880081,
     "depth": 1
+  },
+  {
+    "id": 44881685,
+    "by": "ajd555",
+    "timeISO": "2025-08-12T20:51:34.000Z",
+    "textPlain": "> Postgres and Apache Iceberg are both mature systemsApache Iceberg as mature? I mean, there's a lot of activity around it, but I remember a year ago the rust library didn't even have write capabilities. And it's not like the library is a client and there's an iceberg server - the library literally is the whole product, interacting with the files in s3",
+    "parent": 44880081,
+    "depth": 1
+  },
+  {
+    "id": 44881709,
+    "by": "ajd555",
+    "timeISO": "2025-08-12T20:55:05.000Z",
+    "textPlain": "I suppose, in fairness, the Java library has been around for much longer",
+    "parent": 44881685,
+    "depth": 2
   }
 ]
