@@ -1,25 +1,17 @@
 [
   {
+    "id": 44881406,
+    "by": "standardly",
+    "timeISO": "2025-08-12T20:26:12.000Z",
+    "textPlain": "LLMs work really well for open-ended role-playing sessions, but not so much games with strict rules.They just can't seem to grasp what would make a choice a \"wrong\" choice in a text-based adventure game, so they end up having no ending. You have to hard-code failure events, or you just never get anything like \"you chose to attack the wizard, but he's level 99, dummy, so you died - game over!\". It just accepts whatever choice you make, ad infinitum.My best session was one in which I had the AI give me 4 dialogue options to choose from. I never \"beat\" the game, and we never solved the mystery - it just kept going further down the rabbit hole.. But it was surprisingly enjoyable, and  repayable! A larger framework just needs written for it to keep the tires between the lines and to hard-code certain game rules - what's under the hood is already quite good for narratives imo.",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
     "id": 44879004,
     "by": "henriquegodoy",
     "timeISO": "2025-08-12T17:00:14.000Z",
     "textPlain": "Looking at this evaluation it's pretty fascinating how badly these models perform even on decades old games that almost certainly have walkthroughs scattered all over their training data. Like, you'd think they'd at least brute force their way through the early game mechanics by now, but honestly this kinda validates something I've been thinking about like real intelligence isn't just about having seen the answers before, it's about being good at games and specifically new situations where you can't just pattern match your way outThis is exactly why something like arc-agi-3 feels so important right now. Instead of static benchmarks that these models can basically brute force with enough training data, like designing around interactive environments where you actually need to perceive, decide, and act over multiple steps without prior instructions, that shift from \"can you reproduce known patterns\" to \"can you figure out new patterns\" seems like the real test of intelligence.What's clever about the game environment approach is that it captures something fundamental about human intelligence that static benchmarks miss entirely, like, when humans encounter a new game, we explore, form plans, remember what worked, adjust our strategy all that interactive reasoning over time that these text adventure results show llms are terrible at, we need systems that can actually understand and adapt to new situations, not just really good autocomplete engines that happen to know a lot of trivia.",
-    "parent": 44877404,
-    "depth": 1
-  },
-  {
-    "id": 44879366,
-    "by": "andai",
-    "timeISO": "2025-08-12T17:25:21.000Z",
-    "textPlain": "The GPT-5 used here is the Chat version, presumably gpt‑5‑chat‑latest, which from what I can tell is the same version used in ChatGPT, which is not actually a model but a \"system\" -- a router that semi-randomly forwards your request to various different models (in a way designed to massively reduce costs for OpenAI, based on people reporting inconsistent output and often worse results than 4o).So from this it seems that not only would many of these requests not touch a reasoning model (or as it works now, have reasoning set to \"minimal\"?), but they're probably being routed to a mini or nano model?It would make more sense, I think, to test on gpt-5 itself (and ideally the -mini and -nano as well), and perhaps with different reasoning effort, because that makes a big difference in many evals.EDIT: Yeah the Chat router is busted big time. It fails to apply thinking even for problems that obviously call for it (analyzing financial reports). You have to add \"Think hard.\" to the end of the prompt, or explicitly switch to the Thinking model in the UI.",
-    "parent": 44877404,
-    "depth": 1
-  },
-  {
-    "id": 44880212,
-    "by": "seanwilson",
-    "timeISO": "2025-08-12T18:41:27.000Z",
-    "textPlain": "I won't be surprised when LLMs get good at puzzle-heavy text adventures if there was more attention turned to this.I've found for text adventures based on item manipulation, variations of the same puzzles appear again and again because there's a limit to how many obscure but not too obscure item puzzles you can come up with, so training would be good for exact matches of the same puzzle, and variations, like different ways of opening locked doors.Puzzles like key + door, crowbar + panel, dog + food, coin + vending machine, vampire + garlic etc. You can obscure or layer puzzles, like changing the garlic into garlic bread which would still work on the vampire, so there's a logical connections to make but often nothing too crazy.A lot of the difficulty in these games comes from not noticing or forgetting about clues/hints and potential puzzles because there's so much going on, which is less likely to trip up a computer.You can already ask LLMs \"in a game: 20 ways to open a door if I don't have the key\", \"how to get past an angry guard dog\" or \"I'm carrying X, Y, and Z, how do I open a door\", and it'll list lots of ways that are seen in games, so it's going to be good at matching that with the current list of objects you're carrying, items in the world, and so on.Another comment mentions about how the AI needs a world model that's transforming as actions are performed, but you need something similar to reason about maths proofs and code, where you have to keep track of the current state/context. And most adventure games don't require you to plan many steps in advance anyway. They're often about figuring out which item to combine/use with which other item, and navigating to the room that contains the latter item first.So it feels like most of the parts are already there to me, and it's more about getting the right prompts and presenting the world in the right format e.g. maintaining a table of items, clues, and open puzzles, to look for connections and matches.Getting LL",
     "parent": 44877404,
     "depth": 1
   },
@@ -32,10 +24,26 @@
     "depth": 1
   },
   {
+    "id": 44879366,
+    "by": "andai",
+    "timeISO": "2025-08-12T17:25:21.000Z",
+    "textPlain": "The GPT-5 used here is the Chat version, presumably gpt‑5‑chat‑latest, which from what I can tell is the same version used in ChatGPT, which is not actually a model but a \"system\" -- a router that semi-randomly forwards your request to various different models (in a way designed to massively reduce costs for OpenAI, based on people reporting inconsistent output and often worse results than 4o).So from this it seems that not only would many of these requests not touch a reasoning model (or as it works now, have reasoning set to \"minimal\"?), but they're probably being routed to a mini or nano model?It would make more sense, I think, to test on gpt-5 itself (and ideally the -mini and -nano as well), and perhaps with different reasoning effort, because that makes a big difference in many evals.EDIT: Yeah the Chat router is busted big time. It fails to apply thinking even for problems that obviously call for it (analyzing financial reports). You have to add \"Think hard.\" to the end of the prompt, or explicitly switch to the Thinking model in the UI.",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
     "id": 44878756,
     "by": "andrewla",
     "timeISO": "2025-08-12T16:41:56.000Z",
     "textPlain": "The article links to a previous article discussing methodology for this. The prompting is pretty extensive.It is difficult here to separate out how much of this could be fixed or improved by better prompting. A better baseline might be to just give the LLM direct access to the text adventure, so that everything the LLM replies is given to the game directly. I suspect that the LLMs would do poorly on this task, but would undoubtedly improve over time and generations.EDIT: Just started playing 9:05 with GPT-4 with no prompting and it did quite poorly; kept trying to explain to me what was going on with the ever more complex errors it would get. Put in a one line \"You are playing a text adventure game\" and off it went -- it took a shower and got dressed and drove to work.",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44880212,
+    "by": "seanwilson",
+    "timeISO": "2025-08-12T18:41:27.000Z",
+    "textPlain": "I won't be surprised when LLMs get good at puzzle-heavy text adventures if there was more attention turned to this.I've found for text adventures based on item manipulation, variations of the same puzzles appear again and again because there's a limit to how many obscure but not too obscure item puzzles you can come up with, so training would be good for exact matches of the same puzzle, and variations, like different ways of opening locked doors.Puzzles like key + door, crowbar + panel, dog + food, coin + vending machine, vampire + garlic etc. You can obscure or layer puzzles, like changing the garlic into garlic bread which would still work on the vampire, so there's a logical connections to make but often nothing too crazy.A lot of the difficulty in these games comes from not noticing or forgetting about clues/hints and potential puzzles because there's so much going on, which is less likely to trip up a computer.You can already ask LLMs \"in a game: 20 ways to open a door if I don't have the key\", \"how to get past an angry guard dog\" or \"I'm carrying X, Y, and Z, how do I open a door\", and it'll list lots of ways that are seen in games, so it's going to be good at matching that with the current list of objects you're carrying, items in the world, and so on.Another comment mentions about how the AI needs a world model that's transforming as actions are performed, but you need something similar to reason about maths proofs and code, where you have to keep track of the current state/context. And most adventure games don't require you to plan many steps in advance anyway. They're often about figuring out which item to combine/use with which other item next (where only one combination works), and navigating to the room that contains the latter item first.So it feels like most of the parts are already there to me, and it's more about getting the right prompts and presenting the world in the right format e.g. maintaining a table of items, clues, and open puzzles, to loo",
     "parent": 44877404,
     "depth": 1
   },
@@ -104,6 +112,14 @@
     "depth": 1
   },
   {
+    "id": 44879607,
+    "by": "da_chicken",
+    "timeISO": "2025-08-12T17:46:46.000Z",
+    "textPlain": "I saw it somewhere else recently, but the idea is that LLMs are language models, not world models. This seems like a perfect example of that. You need a world model to navigate a text game.Otherwise, how can you determine that \"North\" is a context change, but not always a context change.",
+    "parent": 44879004,
+    "depth": 2
+  },
+  {
     "id": 44880549,
     "by": "godelski",
     "timeISO": "2025-08-12T19:07:44.000Z",
@@ -112,10 +128,10 @@
     "depth": 2
   },
   {
-    "id": 44879607,
-    "by": "da_chicken",
-    "timeISO": "2025-08-12T17:46:46.000Z",
-    "textPlain": "I saw it somewhere else recently, but the idea is that LLMs are language models, not world models. This seems like a perfect example of that. You need a world model to navigate a text game.Otherwise, how can you determine that \"North\" is a context change, but not always a context change.",
+    "id": 44881182,
+    "by": "rkagerer",
+    "timeISO": "2025-08-12T20:02:21.000Z",
+    "textPlain": "Hi, GPT-x here. Let's delve into my construction together.  My \"intelligence\" comes from patterns learned from vast amounts of text. I'm trained to...  oh look it's a butterfly.  Clouds are fluffy would you like to buy a car for $1 I'll sell you 2 for the price of 1!",
     "parent": 44879004,
     "depth": 2
   },
@@ -128,14 +144,6 @@
     "depth": 2
   },
   {
-    "id": 44879755,
-    "by": "kqr",
-    "timeISO": "2025-08-12T17:59:06.000Z",
-    "textPlain": "This is correct, and was the reason I made sure to always append \"Chat\" to the end of \"GPT-5\". I should perhaps have been more clear about this. The reason I settled for the lesser router is I don't have access to the full GPT-5, which would have been a much better baseline, I agree.",
-    "parent": 44879366,
-    "depth": 2
-  },
-  {
     "id": 44879356,
     "by": "nonethewiser",
     "timeISO": "2025-08-12T17:24:30.000Z",
@@ -144,11 +152,11 @@
     "depth": 2
   },
   {
-    "id": 44879775,
+    "id": 44879755,
     "by": "kqr",
-    "timeISO": "2025-08-12T18:01:39.000Z",
-    "textPlain": "The previous article (linked in this one) gives an idea of that.",
-    "parent": 44878665,
+    "timeISO": "2025-08-12T17:59:06.000Z",
+    "textPlain": "This is correct, and was the reason I made sure to always append \"Chat\" to the end of \"GPT-5\". I should perhaps have been more clear about this. The reason I settled for the lesser router is I don't have access to the full GPT-5, which would have been a much better baseline, I agree.",
+    "parent": 44879366,
     "depth": 2
   },
   {
@@ -156,6 +164,14 @@
     "by": "throwawayoldie",
     "timeISO": "2025-08-12T16:35:12.000Z",
     "textPlain": "\"You're absolutely right, that's not a sentence you recognize...\"",
+    "parent": 44878665,
+    "depth": 2
+  },
+  {
+    "id": 44879775,
+    "by": "kqr",
+    "timeISO": "2025-08-12T18:01:39.000Z",
+    "textPlain": "The previous article (linked in this one) gives an idea of that.",
     "parent": 44878665,
     "depth": 2
   },
@@ -208,18 +224,18 @@
     "depth": 2
   },
   {
-    "id": 44880001,
-    "by": "Terr_",
-    "timeISO": "2025-08-12T18:22:02.000Z",
-    "textPlain": "That's like saying it's wrong to test a robot's ability to navigate and traverse a mountain... because the mountain has no win-condition and is really a context for human emotional experiences.The purpose of the test is whatever the tester decides it is. If that means finding X% of the ambiguously-good game endings within a budget of Y commands, then so be it.",
-    "parent": 44877814,
-    "depth": 2
-  },
-  {
     "id": 44879092,
     "by": "fmbb",
     "timeISO": "2025-08-12T17:06:14.000Z",
     "textPlain": "Of course you can automate ”having fun” and ”being entertained”. That is if you believe humanity will ever build artificial intelligence.",
+    "parent": 44877814,
+    "depth": 2
+  },
+  {
+    "id": 44880001,
+    "by": "Terr_",
+    "timeISO": "2025-08-12T18:22:02.000Z",
+    "textPlain": "That's like saying it's wrong to test a robot's ability to navigate and traverse a mountain... because the mountain has no win-condition and is really a context for human emotional experiences.The purpose of the test is whatever the tester decides it is. If that means finding X% of the ambiguously-good game endings within a budget of Y commands, then so be it.",
     "parent": 44877814,
     "depth": 2
   },

@@ -1,9 +1,41 @@
 [
   {
+    "id": 44880870,
+    "by": "tombert",
+    "timeISO": "2025-08-12T19:32:35.000Z",
+    "textPlain": "I still haven't used Hurd, and at this point with the ridiculous diversity in hardware for desktop and laptops I don't think I could realistically use it for anything outside of playing with it in a virtual machine or something.Still, a part of me wishes we lived in the alternative universe where Hurd had taken over the world instead of Linux. I don't know much about kernel design so I'm speaking out of my ass here, but I've always thought that the microkernel design was more elegant than the monolithic thing we ended up with. I don't know that the alternate universe would be \"better\", and maybe realistically a design like Hurd would never be able to take over the world like Linux, but it always seemed cooler to me.I honestly didn't really realize that they were still working on Hurd.  Does anyone here use it for anything?",
+    "parent": 44851181,
+    "depth": 1
+  },
+  {
+    "id": 44881163,
+    "by": "JdeBP",
+    "timeISO": "2025-08-12T19:59:50.000Z",
+    "textPlain": "There are \"they\"s coming up repeatedly in this discussion.I think that it's important to remember that Debian Hurd is not some massive project with thousands of anonymous people behind it.  Like Tribblix and Peter Tribble, Debian Hurd's driving force is someone whom you can name: Samuel Thibault.And although there are a few others that appear on the debian-hurd mailing list from time to time, it is amply clear that this is one of those (many) projects with a core group of very few dedicated people, with very limited resources for development and testing.  There is no many hands making light work, here.This isn't Debian as you may know it for other kernels.  (-:* https://lists.debian.org/debian-hurd/2025/07/maillist.htmlSo, in some ways, if microkernels interest you, Debian Hurd is a place to contribute where the ground has yet to be completely trodden.",
+    "parent": 44851181,
+    "depth": 1
+  },
+  {
     "id": 44880226,
     "by": "alhazrod",
     "timeISO": "2025-08-12T18:42:38.000Z",
     "textPlain": "I tried to get a copy of GNU Hurd via git a few weeks ago and it didn’t work. Can someone post a working repository link?",
+    "parent": 44851181,
+    "depth": 1
+  },
+  {
+    "id": 44880906,
+    "by": "riffic",
+    "timeISO": "2025-08-12T19:34:58.000Z",
+    "textPlain": "I think of Plan 9 practically every day but I'm only reminded approximately once every few years to the existence of Hurd.",
+    "parent": 44851181,
+    "depth": 1
+  },
+  {
+    "id": 44881081,
+    "by": "a3w",
+    "timeISO": "2025-08-12T19:50:30.000Z",
+    "textPlain": "Relevant XKCD: https://xkcd.com/1508/",
     "parent": 44851181,
     "depth": 1
   },
@@ -16,10 +48,74 @@
     "depth": 1
   },
   {
+    "id": 44880795,
+    "by": "cultofmetatron",
+    "timeISO": "2025-08-12T19:27:06.000Z",
+    "textPlain": "To think Linus wrote linux to be a \"good enough\" solution until hurd was ready.The entire hurd  system is a literal metaphor for how waiting till you're perfect means you'll never be good enough.At the risk of getting downvoted, I think hurd is cooked at this point. It certainly has some solid ideas that could live on in a modern system. They should retry rewriting it in rust (or zig) and at least have the opportunity to catch mindshare with new engineers just dabbling in systems engineering.",
+    "parent": 44851181,
+    "depth": 1
+  },
+  {
+    "id": 44881065,
+    "by": "ants_everywhere",
+    "timeISO": "2025-08-12T19:49:02.000Z",
+    "textPlain": "It would be cool to have a Hurd project with a verified microkernel like seL4.AI is getting good enough to help with the verification process and having a hardened kernel would guard a bit better than the current strategy of using containers everywhere.",
+    "parent": 44851181,
+    "depth": 1
+  },
+  {
+    "id": 44881295,
+    "by": "bombcar",
+    "timeISO": "2025-08-12T20:16:35.000Z",
+    "textPlain": "The \"gnu\" in the famous email is GNU Hurd; we're still waiting:>I'm doing a (free) operating system (just a hobby, won't be big and professional like gnu) for 386(486) AT clones.",
+    "parent": 44880870,
+    "depth": 2
+  },
+  {
+    "id": 44880984,
+    "by": "asveikau",
+    "timeISO": "2025-08-12T19:41:45.000Z",
+    "textPlain": "I seem to recall the Hurd people talking about cool scenarios like filesystem drivers written entirely in user mode that don't require root.  Something like that.I booted it on real hardware sometime in the early 2000s, and it worked but was very anticlimactic.I do know that the Mach microkernel they based it on (also the basis for Apple's XNU kernel) is considered dated.  Later microkernels are supposed to have better performance.",
+    "parent": 44880870,
+    "depth": 2
+  },
+  {
+    "id": 44881032,
+    "by": "bawolff",
+    "timeISO": "2025-08-12T19:46:17.000Z",
+    "textPlain": "> but I've always thought that the microkernel design was more elegant than the monolithic thing we ended up with.The thing with elegant systems is they usually don't succeed if the alternative is something pragmatic that has been battle tested.",
+    "parent": 44880870,
+    "depth": 2
+  },
+  {
+    "id": 44881320,
+    "by": "gjsman-1000",
+    "timeISO": "2025-08-12T20:18:31.000Z",
+    "textPlain": "Curiously, in what no academic could have predicted, millions of people interact with a microkernel every day, and it was written by freaking Nintendo of all possible companies. (The Switch is a custom microkernel called Horizon; not FreeBSD, not Linux, not Android.) Almost every other consumer device is monolithic or hybrid.While the Switch was broken early, this was due to NVIDIA's buggy boot code. The operating system itself... you could literally pwn WebKit and get absolutely nowhere.",
+    "parent": 44880870,
+    "depth": 2
+  },
+  {
+    "id": 44880990,
+    "by": "tombert",
+    "timeISO": "2025-08-12T19:42:03.000Z",
+    "textPlain": "Genuine question, as someone who has only ever played with Inferno and Plan 9 in virtual machines and only for brief periods of time in the process: what does Plan 9 actually buy you?Like, I've read about how you can mount lots of things like filesystems and that sounds kind of neat but that also seemed like it might obscure latency and make things ridiculously slow, though it's entirely likely that I am misunderstanding how things work.",
+    "parent": 44880906,
+    "depth": 2
+  },
+  {
     "id": 44880088,
     "by": "numpad0",
     "timeISO": "2025-08-12T18:28:39.000Z",
     "textPlain": "lists.gnu.org. 1800 IN A 209.51.188.17  \n  17.0-24.188.51.209.in-addr.arpa. 1800 IN PTR lists.gnu.org.\n  64 bytes from 209.51.188.17: icmp_seq=1 ttl=42 time=219 ms\n  curl: (7) Failed to connect to 209.51.188.17 port 443 after 208 ms: Couldn't connect to server\n  curl: (7) Failed to connect to 209.51.188.17 port 80 after 212 ms: Couldn't connect to server\n\n  ssh hey__your_http_is_down@209.51.188.17\n  The authenticity of host '209.51.188.17 (209.51.188.17)' can't be established.\n  ED25519 key fingerprint is SHA256:fKT2Sr7vshZxNytNKcnQgXhqtDYptpayjVTa1upy46w.",
+    "parent": 44879886,
+    "depth": 2
+  },
+  {
+    "id": 44881209,
+    "by": "JdeBP",
+    "timeISO": "2025-08-12T20:05:39.000Z",
+    "textPlain": "You can read the announcement on the WWW archive of the debian-hurd mailing list, instead.* https://lists.debian.org/debian-hurd/2025/08/msg00038.html",
     "parent": 44879886,
     "depth": 2
   },
@@ -29,6 +125,30 @@
     "timeISO": "2025-08-12T18:24:16.000Z",
     "textPlain": "http://web.archive.org/web/20250810064049/https://lists.gnu....",
     "parent": 44879886,
+    "depth": 2
+  },
+  {
+    "id": 44880987,
+    "by": "freedomben",
+    "timeISO": "2025-08-12T19:41:56.000Z",
+    "textPlain": "I had a friend who got involved with Hurd many years back, and I asked him why he thought Hurd wasn't going to be a thing for non-hobbyists.  He shared this (re-shared with permission but anonymously as he's still somewhat involved in GNU projects), which is just one guy's perspective of course.  Would love to hear from others if this echoes their experiences.> GNU is full of brilliant people who can write great code, but there are a few issues that I don't see fixing:  Rampant disagreement and individuals who like to work solo.  This can be good sometimes, but for a project with that scope it just isn't possible.  The group is also aging and isn't getting new blood.  This can be good because people have more free time, but it also traps us in old familiar/comfortable patterns that make onboarding younger contributors even more difficult than it already is.  The philosophy is also quite rigid.  For good reasons I think as more \"permissive\" licenses have been used to abuse users extensively, but the limitations do come up quite a bit, mainly with adoption.  I think too many people are just scarred still from an earlier world where proprietary was often the only real alternative, and change is hard.",
+    "parent": 44880795,
+    "depth": 2
+  },
+  {
+    "id": 44880853,
+    "by": "raverbashing",
+    "timeISO": "2025-08-12T19:31:57.000Z",
+    "textPlain": "GNU mentality in a nutshellAlso I can't remember any more recent GNU projects that were successful",
+    "parent": 44880795,
+    "depth": 2
+  },
+  {
+    "id": 44880936,
+    "by": "ants_everywhere",
+    "timeISO": "2025-08-12T19:37:03.000Z",
+    "textPlain": "> They should retry rewriting it in rust (or zig)It's an antipattern to chase whatever language is being hyped the most at the moment. And it's probably bad from a community POV to deliberately attract developers who are chasing hype.",
+    "parent": 44880795,
     "depth": 2
   }
 ]
