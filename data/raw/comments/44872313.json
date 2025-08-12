@@ -3,7 +3,7 @@
     "id": 44873373,
     "by": "sugarpimpdorsey",
     "timeISO": "2025-08-12T07:23:30.000Z",
-    "textPlain": "> In response, Xiao pointed out that the package description can be read by any user who chooses to install the software, and it does mention the scan feature.Wouldn't be the first (or last) time a Debian maintainer has pulled the \"you should read the descriptions of all (hundreds) of your packages (most installed as dependencies)\" card.",
+    "textPlain": "> In response, Xiao pointed out that the package description can be read by any user who chooses to install the software, and it does mention the scan feature.Wouldn't be the first (or last) time a Debian maintainer has pulled the \"you should read the descriptions of all (hundreds) of your packages (most installed as dependencies)\" card in response to a bug report.If someone started reading all the package descriptions and READMEs we're meant to be thoroughly familiar with when Trixie was released a few days ago, they'd still be reading them.",
     "parent": 44872313,
     "depth": 1
   },
@@ -12,14 +12,6 @@
     "by": "CamouflagedKiwi",
     "timeISO": "2025-08-12T05:57:40.000Z",
     "textPlain": "> of course a dictionary program will include code to talk to dictionary-providing web sites.I wouldn't say that is just a given, if I've apt-get installed a dictionary I might expect that is the whole thing on my machine. It's not like we haven't had dictionaries in physical books for centuries... \nIt seems like stardict is very much an online thing, which I suppose could be legit, but the whole thing does seem like a trap.",
-    "parent": 44872313,
-    "depth": 1
-  },
-  {
-    "id": 44873255,
-    "by": "avhception",
-    "timeISO": "2025-08-12T07:06:41.000Z",
-    "textPlain": "While I have a lot of respect for the effort that goes into Debian, I always disliked this kind of \"maximalism\" from the package manager. Oh, the user wants \"foo\"? Let's install every software that might be even remotely useful somehow in combination with foo! Oh there is a network daemon in there? Fantastic, let's start it immediately!I know that there is a flag to disable the installation for \"recommended\" packages. I just think the default is a disservice here.",
     "parent": 44872313,
     "depth": 1
   },
@@ -40,6 +32,22 @@
     "depth": 1
   },
   {
+    "id": 44873701,
+    "by": "hiAndrewQuinn",
+    "timeISO": "2025-08-12T08:15:52.000Z",
+    "textPlain": ">This would normally not be much cause for concern; of course a dictionary program will include code to talk to dictionary-providing web sites.Hey, an area I finally know something about. It depends on what you're trying to do.The slimmed down version of a Finnish dictionary I provide in `tsk` [1] weighs in at around 30 MB, for about 250,000 Finnish words. It's small enough that I embed the whole dictionary directly into the binary and reconstruct the prefix search on the fly every time the user starts the app.However, the much larger database which contains things like lemmatization and etymology information easily balloons up to many, many gigabytes in size. My problem domain is providing Truly Instant Lookup, keystroke by keystroke, so I can't really get around this level of memoization. The work to figure all this out was sufficient that I decided to make future versions a paid product instead [2].Most other use cases would just call out to a server, because it's silly to think most people are going to download a giant database for that use case alone. A hybrid approach could also make a lot of sense, eg cache the most common 10,000 words locally and call out for the next 1.5 million, which are statistically extremely rare.[1]: https://github.com/hiandrewquinn/tsk[2]: https://taskusanakirja.com/ (offline for now until I get Digicert to certify my downloads wholesome for Windows resale)",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
+    "id": 44873255,
+    "by": "avhception",
+    "timeISO": "2025-08-12T07:06:41.000Z",
+    "textPlain": "While I have a lot of respect for the effort that goes into Debian, I always disliked this kind of \"maximalism\" from the package manager. Oh, the user wants \"foo\"? Let's install every software that might be even remotely useful somehow in combination with foo! Oh there is a network daemon in there? Fantastic, let's start it immediately!I know that there is a flag to disable the installation for \"recommended\" packages. I just think the default is a disservice here.",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
     "id": 44873045,
     "by": "bmacho",
     "timeISO": "2025-08-12T06:25:50.000Z",
@@ -56,10 +64,42 @@
     "depth": 1
   },
   {
-    "id": 44873137,
-    "by": "themafia",
-    "timeISO": "2025-08-12T06:44:45.000Z",
-    "textPlain": "> Part of the justification for moving to Wayland over X11 is to make security vulnerabilities relating to one application spying on another more difficult to introduce.Yea,  because,  how else am I going to run shady poorly maintained dictionary software that ignores system settings from a hostile country?  What kind of world are we living in with X11?!The software could just as well hook into your downloads folder and transparently \"translate\" any downloaded text or PDF file for you.  In which case the method by which pixels arrive on your screen would not  be relevant.How is this an X11 vs Wayland issue and not a distribution hygiene issue?  Why is this package even a part of the distribution?  In the desire to force one desktop system to stop existing,  for whatever reason,  I think they've missed the broader point.",
+    "id": 44873625,
+    "by": "cik",
+    "timeISO": "2025-08-12T08:03:42.000Z",
+    "textPlain": "My personal security tolerance means that I have multiple levels of firewalls and blockers: network, dns, device, and browser. It's also why I find myself scanning my DNS traffic (pihole), and running OpenSnitch.Whether malicious or not, to me isn't the point. The point is that I, as an individual deserve the illusion of control over my data and communication. I have neither the time, nor inclination to read all release notes. Furthermore, as someone who has spent enough time writing code - I recognize that humans make mistakes and don't always update them with salient details. All the automation in the world, and AI (yes, I've tried AI for release notes) just doesn't help.",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
+    "id": 44873426,
+    "by": "qwertox",
+    "timeISO": "2025-08-12T07:34:08.000Z",
+    "textPlain": "\"If user don't like one of these plugin, he can disable it by himself.\" f.u.",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
+    "id": 44873561,
+    "by": "qwertox",
+    "timeISO": "2025-08-12T07:54:37.000Z",
+    "textPlain": "> StarDict on Wayland doesn't have this problem, because Wayland prevents applications from being able to capture text from other applications by default.StarDict on Wayland has a different issue, it causes a segfault.Sat, 02 Aug 2025: Bug#1003710: stardict crash in gnome with message Segmentation faulthttps://www.mail-archive.com/debian-bugs-dist@lists.debian.o...",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
+    "id": 44873505,
+    "by": "sugarpimpdorsey",
+    "timeISO": "2025-08-12T07:46:25.000Z",
+    "textPlain": "How would you like to be the guy that reported this 10 years ago and had the bug closed on some technicality:https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=806960Given enough eyeballs, all bugs are closed as WONTFIX.",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
+    "id": 44873444,
+    "by": "est",
+    "timeISO": "2025-08-12T07:37:46.000Z",
+    "textPlain": "it looks like a serious \"privacy violation\" for English-only users. But for many ESL or non-English users out there, the \"translation\" is a must.On Windoes, I remember some translation programs go extreme, they hijack all GDI calls and scan for all strings on GUIs trying to translate and replace them inline. Local dictionary were pretty limited so many of them use online services. What happens when user input something \"sensitive\" on the GUI?Well they goes straight to the translation service.",
     "parent": 44872313,
     "depth": 1
   },
@@ -72,10 +112,10 @@
     "depth": 1
   },
   {
-    "id": 44872852,
-    "by": "hulitu",
-    "timeISO": "2025-08-12T05:53:04.000Z",
-    "textPlain": "> StarDict sends X11 clipboard to remote serversJust like any modern web browser. /s",
+    "id": 44873137,
+    "by": "themafia",
+    "timeISO": "2025-08-12T06:44:45.000Z",
+    "textPlain": "> Part of the justification for moving to Wayland over X11 is to make security vulnerabilities relating to one application spying on another more difficult to introduce.Yea,  because,  how else am I going to run shady poorly maintained dictionary software that ignores system settings from a hostile country?  What kind of world are we living in with X11?!The software could just as well hook into your downloads folder and transparently \"translate\" any downloaded text or PDF file for you.  In which case the method by which pixels arrive on your screen would not  be relevant.How is this an X11 vs Wayland issue and not a distribution hygiene issue?  Why is this package even a part of the distribution?  In the desire to force one desktop system to stop existing,  for whatever reason,  I think they've missed the broader point.",
     "parent": 44872313,
     "depth": 1
   },
@@ -88,6 +128,14 @@
     "depth": 1
   },
   {
+    "id": 44872852,
+    "by": "hulitu",
+    "timeISO": "2025-08-12T05:53:04.000Z",
+    "textPlain": "> StarDict sends X11 clipboard to remote serversJust like any modern web browser. /s",
+    "parent": 44872313,
+    "depth": 1
+  },
+  {
     "id": 44872680,
     "by": "userbinator",
     "timeISO": "2025-08-12T05:20:03.000Z",
@@ -96,10 +144,66 @@
     "depth": 1
   },
   {
+    "id": 44873388,
+    "by": "jacquesm",
+    "timeISO": "2025-08-12T07:26:25.000Z",
+    "textPlain": "Such responses to me are proof of malicious intent.",
+    "parent": 44873373,
+    "depth": 2
+  },
+  {
+    "id": 44873465,
+    "by": "bayindirh",
+    "timeISO": "2025-08-12T07:40:28.000Z",
+    "textPlain": "\"RTFM!\" comments comes in flavors and bears nuances. In this case, as another commenter has pointed out, the answer smells fishy.I have been told to \"RTFM!\" countless times in many places. Some of them were legitimately the correct answer in that context, in hindsight. Some were knee-jerk reactions like this.Debian's discussion culture might be a little edgy sometimes, but this has nothing to do with Debian.",
+    "parent": 44873373,
+    "depth": 2
+  },
+  {
+    "id": 44873543,
+    "by": "teiferer",
+    "timeISO": "2025-08-12T07:51:48.000Z",
+    "textPlain": "Nowadays you could use an LLM to provide a summary.",
+    "parent": 44873373,
+    "depth": 2
+  },
+  {
+    "id": 44873374,
+    "by": "kazinator",
+    "timeISO": "2025-08-12T07:23:37.000Z",
+    "textPlain": "I's a generational thing. I would guess that someone who expects applications to phone home, on the off chance that they are actually otherwise local, is likely someone pretty young who hasn't lived in a world of locally installed software that doesn't talk to anything.If we search for the author's bio, that seems to check out. They are a well-credentialed CS person; obviously they know that dictionary programs such as translation pop ups can have offline dictionaries, and mentions that. But they are a person of their time with an according set of \"of courses\".Today, an application being locally installed and works with offline data is like a a statement of quaint chivalry, promulgated by a few remaining Don Quixotes of computing. (It saddens me to say. So much that this analogy brings me insufficient amusement.)",
+    "parent": 44872886,
+    "depth": 2
+  },
+  {
+    "id": 44873752,
+    "by": "waterhouse",
+    "timeISO": "2025-08-12T08:23:01.000Z",
+    "textPlain": "~> wc -cl /usr/share/dict/words\n  235976 2493885 /usr/share/dict/words\n\nOne might even expect a program to use a common Unix preinstalled dictionary.",
+    "parent": 44872886,
+    "depth": 2
+  },
+  {
     "id": 44872982,
     "by": "hdjrudni",
     "timeISO": "2025-08-12T06:12:25.000Z",
     "textPlain": "Even if it's \"legit\", it shouldn't be using unencrypted HTTP.",
+    "parent": 44872886,
+    "depth": 2
+  },
+  {
+    "id": 44873626,
+    "by": "account42",
+    "timeISO": "2025-08-12T08:04:11.000Z",
+    "textPlain": "That stood out to me as well. It's a sad world when people expect even simple functionality to be a live service.",
+    "parent": 44872886,
+    "depth": 2
+  },
+  {
+    "id": 44873616,
+    "by": "mayama",
+    "timeISO": "2025-08-12T08:03:05.000Z",
+    "textPlain": "At some point I started running gui apps without network access, first with firejail and then bubblewrap. This was before flatpak became a thing. I still use collection of bash scripts that built up over time to run applications in sandbox.",
     "parent": 44872886,
     "depth": 2
   },
@@ -112,11 +216,11 @@
     "depth": 2
   },
   {
-    "id": 44873302,
-    "by": "rfoo",
-    "timeISO": "2025-08-12T07:13:30.000Z",
-    "textPlain": "For me it's my most used super long command line flag.For a brief moment `--break-system-packages` surpassed it, then I discovered `pip` accepts abbrev flags so `--br` is enough, and sounds like bruh.",
-    "parent": 44873255,
+    "id": 44873614,
+    "by": "netsharc",
+    "timeISO": "2025-08-12T08:02:51.000Z",
+    "textPlain": "Would be funny if they couldn't tell that the text in a foreign language is confidential... maybe it's stamped \"秘密\".\"Sir, we have intel, the enemy is having translation server errors.\"",
+    "parent": 44872693,
     "depth": 2
   },
   {
@@ -128,11 +232,83 @@
     "depth": 2
   },
   {
+    "id": 44873428,
+    "by": "bayindirh",
+    "timeISO": "2025-08-12T07:34:32.000Z",
+    "textPlain": "I'll politely disagree.First of all, \"Recommends\" is reserved for packages which enhance the functionality of the package you're installing. Without these the package will not break, but some very useful functionality might be disabled.The package-class you're talking about is \"suggests\", IOW, \"these packages might also be useful for you, wanna look?\" section. These are not installed by default already.On the other hand, apt and aptitude provides previews before doing something. You don't have to accept them. In aptitude's case, you can fine tune before the final commit, even.There's a tension. Minimalism vs. user utility. Somebody told in Debian 13 release comments that \"Debian will never be a end-user friendly distro\". Now, you're saying that packages shouldn't install recommends by default.What should Debian be? \"An IKEAesque DIY distro\", or \"A more user friendly, yet very stable and vanilla distro\". I vote for the latter, personally. Plus, as I told before, advanced users are free to use what they want to change.If you want to change the default, the configuration files are at /etc/apt/conf.d/. If you want to disable feature for once, it's --no-install-recommends.",
+    "parent": 44873255,
+    "depth": 2
+  },
+  {
+    "id": 44873702,
+    "by": "account42",
+    "timeISO": "2025-08-12T08:16:11.000Z",
+    "textPlain": "The other extreme where you are missing expected functionality because it's optional isn't any better. The problem is not that recommended dependencies are installed by default, it's that package recommendations should perhaps be more conservative. Note that Debian already differentiates between recommended dependencies (which most users should want) and suggested dependencies (related functionality or enhancements that are not relevant for every user).",
+    "parent": 44873255,
+    "depth": 2
+  },
+  {
+    "id": 44873302,
+    "by": "rfoo",
+    "timeISO": "2025-08-12T07:13:30.000Z",
+    "textPlain": "For me it's my most used super long command line flag.For a brief moment `--break-system-packages` surpassed it, then I discovered `pip` accepts abbrev flags so `--br` is enough, and sounds like bruh.",
+    "parent": 44873255,
+    "depth": 2
+  },
+  {
+    "id": 44873764,
+    "by": "account42",
+    "timeISO": "2025-08-12T08:24:43.000Z",
+    "textPlain": "Your link is about privacy issues in upstream software that Debian hasn't sufficiently worked around yet. The main advantage of the Distro model (as opposed to developer-maintained package ecosystems) is exactly that there is someone protecting you from questionable software \"features\".",
+    "parent": 44872481,
+    "depth": 2
+  },
+  {
     "id": 44873289,
     "by": "fsflover",
     "timeISO": "2025-08-12T07:10:49.000Z",
     "textPlain": "Are you saying it's an ordinary behavior? There's nothing coming close in your links, especially in Debian.",
     "parent": 44872481,
+    "depth": 2
+  },
+  {
+    "id": 44873582,
+    "by": "account42",
+    "timeISO": "2025-08-12T07:57:49.000Z",
+    "textPlain": "Besides, capturing text from other applications is very much required for various utilities. It's as much of a security feature in Wayland as turning off your computer and never turning it back on is.",
+    "parent": 44873561,
+    "depth": 2
+  },
+  {
+    "id": 44873791,
+    "by": "account42",
+    "timeISO": "2025-08-12T08:28:52.000Z",
+    "textPlain": "> But for many ESL or non-English users out there, the \"translation\" is a must.As an ESL user, I vehemently disagree. You're only going to need translations as long as you keep relying on translations. Like it or not but English is the lingua franca of the computing age and you're doing yourself a disservice if you don't learn it.",
+    "parent": 44873444,
+    "depth": 2
+  },
+  {
+    "id": 44873695,
+    "by": "jeroenhd",
+    "timeISO": "2025-08-12T08:14:57.000Z",
+    "textPlain": "Translation isn't the problem, sending data over the network by default is. Data is leaked to Chinese dictionary servers even if you're translating between European languages using a local language according to https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=806960.With the GDI hijacking programs you usually download them for specific languages with the knowledge they're internet connected.",
+    "parent": 44873444,
+    "depth": 2
+  },
+  {
+    "id": 44873718,
+    "by": "akimbostrawman",
+    "timeISO": "2025-08-12T08:18:12.000Z",
+    "textPlain": ">The software could just as well hook into your downloads foldercorrect which is why wayland is only one piece in improving security, you still need proper sandboxing",
+    "parent": 44873137,
+    "depth": 2
+  },
+  {
+    "id": 44873686,
+    "by": "guappa",
+    "timeISO": "2025-08-12T08:12:29.000Z",
+    "textPlain": "You basically need to call a vote or ask the tech committee to rule otherwise if the maintainer says it's fine.It's not really a bug if it's an advertised feature you don't like, so security team cannot do much in theory.",
+    "parent": 44873137,
     "depth": 2
   },
   {
@@ -149,6 +325,14 @@
     "timeISO": "2025-08-12T06:34:35.000Z",
     "textPlain": "Which Android versions ask for permission before an app can make HTTP requests? I know it's something the app has to declare in the manifest, but other than obscure ROMs every normal version of Android just allows network usage without asking the user.",
     "parent": 44872810,
+    "depth": 2
+  },
+  {
+    "id": 44873492,
+    "by": "qwertox",
+    "timeISO": "2025-08-12T07:44:55.000Z",
+    "textPlain": "When you copy a password from a text editor, or some text from a webpage, does Chrome or Firefox send this to their servers?Not even /s makes sense here.",
+    "parent": 44872852,
     "depth": 2
   },
   {

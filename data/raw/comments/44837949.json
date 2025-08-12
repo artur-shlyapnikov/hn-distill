@@ -1,5 +1,13 @@
 [
   {
+    "id": 44873808,
+    "by": "ChrisMarshallNY",
+    "timeISO": "2025-08-12T08:31:24.000Z",
+    "textPlain": "In Swift, we use guard clauses a lot. I think that guard can compile well. This posting helps me to understand why.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
     "id": 44869452,
     "by": "hinkley",
     "timeISO": "2025-08-11T21:03:55.000Z",
@@ -8,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44872498,
-    "by": "kqr",
-    "timeISO": "2025-08-12T04:47:49.000Z",
-    "textPlain": "More exciting in my mind than the equivalence between tail recursion and while loops is the equivalence between left folds and for loops. A for loop in its most general shape is something like    <whatever state the application is in here serves as the starting state>\n    foreach (i in range(n)) {\n        <the state of the application is updated with each iteration>\n    }\n    <the desired state of the application has been applied when the loop is done>\n\nAn equivalent left fold is invoked like    <desired state> = foldl (\n        <state updating procedure>, \n        <starting state>,\n        range(n)\n    )\n\nThe difference is that the starting state is given explicitly to the loop, and the desired state is returned as a composite value. This makes it easier to troubleshoot than the implicit state transitions, but it's essentially the same still.",
+    "id": 44870562,
+    "by": "LegionMammal978",
+    "timeISO": "2025-08-11T23:20:02.000Z",
+    "textPlain": "Several people in this thread are saying that tail recursion is superior to imperative iteration in that it explicitly specifies which variables may change in each iteration (assuming a broadly immutable language).To the contrary, I'd argue that immutability isn't the only alternative to universal mutability: many newer imperative languages (such as Rust) have various forms of controlled mutability, where one must explicitly declare which variables may be modified by imperative assignments.IME, controlled mutability captures just about all the benefit of immutable languages, without requiring any special data structures or sufficiently-smart compiler analyses to ensure good performance. I've never really understood the desire for tail-recursive versions of iterative algorithms, except for a prior commitment to functional programming.",
     "parent": 44837949,
     "depth": 1
   },
@@ -24,10 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44870562,
-    "by": "LegionMammal978",
-    "timeISO": "2025-08-11T23:20:02.000Z",
-    "textPlain": "Several people in this thread are saying that tail recursion is superior to imperative iteration in that it explicitly specifies which variables may change in each iteration (assuming a broadly immutable language).To the contrary, I'd argue that immutability isn't the only alternative to universal mutability: many newer imperative languages (such as Rust) have various forms of controlled mutability, where one must explicitly declare which variables may be modified by imperative assignments.IME, controlled mutability captures just about all the benefit of immutable languages, without requiring any special data structures or sufficiently-smart compiler analyses to ensure good performance. I've never really understood the desire for tail-recursive versions of iterative algorithms, except for a prior commitment to functional programming.",
+    "id": 44872498,
+    "by": "kqr",
+    "timeISO": "2025-08-12T04:47:49.000Z",
+    "textPlain": "More exciting in my mind than the equivalence between tail recursion and while loops is the equivalence between left folds and for loops. A for loop in its most general shape is something like    <whatever state the application is in here serves as the starting state>\n    foreach (i in range(n)) {\n        <the state of the application is updated with each iteration>\n    }\n    <the desired state of the application has been applied when the loop is done>\n\nAn equivalent left fold is invoked like    <desired state> = foldl (\n        <state updating procedure>, \n        <starting state>,\n        range(n)\n    )\n\nThe difference is that the starting state is given explicitly to the loop, and the desired state is returned as a composite value. This makes it easier to troubleshoot than the implicit state transitions, but it's essentially the same still.",
     "parent": 44837949,
     "depth": 1
   },
@@ -56,18 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44872402,
-    "by": "Animats",
-    "timeISO": "2025-08-12T04:23:37.000Z",
-    "textPlain": "Did Python ever get tail recursion? There was a big controversy years ago. Guido didn't like it. But apparently something went in.Enthusiasm for tail recursion comes mostly from LISP and LISP-adjacent people - those who learned to program from SICP.[1] This is neither good nor bad. Even MIT doesn't use SICP any more, though.(The classic 20th century \"programming should be hard and programmers should suffer\" books:- Structure and Interpretation of Computer Programs, Abelson and Sussman.- Fundamental Algorithms and Semi-Numerical Algorithms, Knuth.- Algorithms + Data Structures = Programs, Wirth.- A discipline of programming, Dijkstra.These are mostly of historical interest now, but at one time, knowing those defined a real computer scientist. Today, it's more important that your LLM has been trained on them.)\"Love the lambda.\" - footer of original article.[1] https://archive.org/details/Sicp.2nd",
-    "parent": 44837949,
-    "depth": 1
-  },
-  {
     "id": 44871628,
     "by": "eru",
     "timeISO": "2025-08-12T02:21:25.000Z",
     "textPlain": "Loops are a special case of tail recursion which is a special case of recursion [0] which is a special case of calling functions.However, loops aren't the only use for tail recursion.  Another classic example are state machines as described in the 'Lambda: the ultimate goto' paper.  See eg https://en.wikisource.org/wiki/Lambda:_The_Ultimate_GOTO[0] Well, recursion on functions.  You can also have eg recursive data types or recursion in mathematics in general.  But let's focus on functions.",
+    "parent": 44837949,
+    "depth": 1
+  },
+  {
+    "id": 44872402,
+    "by": "Animats",
+    "timeISO": "2025-08-12T04:23:37.000Z",
+    "textPlain": "Did Python ever get tail recursion? There was a big controversy years ago. Guido didn't like it. But apparently something went in.Enthusiasm for tail recursion comes mostly from LISP and LISP-adjacent people - those who learned to program from SICP.[1] This is neither good nor bad. Even MIT doesn't use SICP any more, though.(The classic 20th century \"programming should be hard and programmers should suffer\" books:- Structure and Interpretation of Computer Programs, Abelson and Sussman.- Fundamental Algorithms and Semi-Numerical Algorithms, Knuth.- Algorithms + Data Structures = Programs, Wirth.- A discipline of programming, Dijkstra.These are mostly of historical interest now, but at one time, knowing those defined a real computer scientist. Today, it's more important that your LLM has been trained on them.)\"Love the lambda.\" - footer of original article.[1] https://archive.org/details/Sicp.2nd",
     "parent": 44837949,
     "depth": 1
   },
@@ -176,14 +184,6 @@
     "depth": 2
   },
   {
-    "id": 44871935,
-    "by": "rr808",
-    "timeISO": "2025-08-12T03:09:12.000Z",
-    "textPlain": "> IME is a bigger foot gun thanPretty much true for any functional feature. Great in the classroom, less practical in the real world.",
-    "parent": 44869452,
-    "depth": 2
-  },
-  {
     "id": 44869756,
     "by": "javcasas",
     "timeISO": "2025-08-11T21:37:07.000Z",
@@ -200,11 +200,11 @@
     "depth": 2
   },
   {
-    "id": 44869917,
-    "by": "dreamcompiler",
-    "timeISO": "2025-08-11T21:57:01.000Z",
-    "textPlain": "Clojure does it this way because the JVM stupidly doesn't support tail call optimization.It is true that TCO messes up your stack traces. It is also true that loops mess up your stack traces, because they don't even create a stack trace. In many languages that support TCO, TCO can be turned off for debugging and enabled for production, so Guido's characterization of the issue is ridiculous.",
-    "parent": 44869480,
+    "id": 44871935,
+    "by": "rr808",
+    "timeISO": "2025-08-12T03:09:12.000Z",
+    "textPlain": "> IME is a bigger foot gun thanPretty much true for any functional feature. Great in the classroom, less practical in the real world.",
+    "parent": 44869452,
     "depth": 2
   },
   {
@@ -229,6 +229,14 @@
     "timeISO": "2025-08-12T03:06:55.000Z",
     "textPlain": "Loops and gootos are just a special case of function calls, that needed to be invented because back in the olden days we had no clue how to design language and write compilers.I don't understand why someone would want to hold on nostalgically to restrictions we no longer face.Controlled mutability is a step up, yes.  Btw, even languages like Haskell give you plenty of mutability to play with, if you want to.  (Eg MVars and TVars are a thing.)You are right that replacing a loop one for one with a tail recursive version doesn't give you much benefit either way.  (Though it does make my life easier, because you don't have to contort my brain around keeping track of mutation.)However that's a bit of a straw man and misses the broader picture.What you'd want to do is define combinators that encapsulate the specific pattern of computation you want to implement.  The most commonly known combinators are things like 'map' and 'filter'.  But there are plenty more useful ones you can define, like various tree traversals or whatever makes sense for use cases and data structures.Whether those combinators are implemented with tail calls or with loops or gotos or whatever is an implementation detail that their users don't need to worry about.I know of one major use case where you'd want to use tail recursion directly: state machines and interpreters.  See https://news.ycombinator.com/item?id=43076088 for an example of the latter.  See https://en.wikisource.org/wiki/Lambda:_The_Ultimate_GOTO for an example of the former.",
     "parent": 44870562,
+    "depth": 2
+  },
+  {
+    "id": 44869917,
+    "by": "dreamcompiler",
+    "timeISO": "2025-08-11T21:57:01.000Z",
+    "textPlain": "Clojure does it this way because the JVM stupidly doesn't support tail call optimization.It is true that TCO messes up your stack traces. It is also true that loops mess up your stack traces, because they don't even create a stack trace. In many languages that support TCO, TCO can be turned off for debugging and enabled for production, so Guido's characterization of the issue is ridiculous.",
+    "parent": 44869480,
     "depth": 2
   },
   {
@@ -264,6 +272,14 @@
     "depth": 2
   },
   {
+    "id": 44872378,
+    "by": "Kranar",
+    "timeISO": "2025-08-12T04:20:21.000Z",
+    "textPlain": "I think it's the other way around. Tail recursion is a special case of loops. All tail recursive functions can be rewritten as a loop but there exist loops that can not be rewritten as a tail recursive function.",
+    "parent": 44871628,
+    "depth": 2
+  },
+  {
     "id": 44872457,
     "by": "qsort",
     "timeISO": "2025-08-12T04:37:08.000Z",
@@ -277,14 +293,6 @@
     "timeISO": "2025-08-12T04:54:22.000Z",
     "textPlain": "> Did Python ever get tail recursion? There was a big controversy years ago. Guido didn't like it. But apparently something went in.No. The only thing that went in is moving Python frames off of the C stack, but since afaik the recursion limit did not change it has essentially no impact on user code unless you play with said recursion limit.",
     "parent": 44872402,
-    "depth": 2
-  },
-  {
-    "id": 44872378,
-    "by": "Kranar",
-    "timeISO": "2025-08-12T04:20:21.000Z",
-    "textPlain": "I think it's the other way around. Tail recursion is a special case of loops. All tail recursive functions can be rewritten as a loop but there exist loops that can not be rewritten as a tail recursive function.",
-    "parent": 44871628,
     "depth": 2
   },
   {

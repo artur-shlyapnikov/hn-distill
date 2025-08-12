@@ -24,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44873308,
-    "by": "quantummagic",
-    "timeISO": "2025-08-12T07:14:07.000Z",
-    "textPlain": "LLMs have many shortcomings.  That really isn't deniable, but isn't the entire story either.  We've been reliably informed by the media that half the US voting population (presumably human) are complete morons who lack critical thinking skills, and are easily duped.  So, the only fair question to ask when trying to debunk LLM abilities, is if they're smarter than a Trump voter or not.",
+    "id": 44873405,
+    "by": "syllogism",
+    "timeISO": "2025-08-12T07:29:11.000Z",
+    "textPlain": "It's interesting that there's still such a market for this sort of take.> In a recent pre-print paper, researchers from the University of Arizona summarize this existing work as \"suggest[ing] that LLMs are not principled reasoners but rather sophisticated simulators of reasoning-like text.\"What does this even mean? Let's veto the word \"reasoning\" here and reflect.The LLM produces a series of outputs. Each output changes the likelihood of the next output. So it's transitioning in a very large state space.Assume there exists some states that the activations could be in that would cause the correct output to be generated. Assume also that there is some possible path of text connecting the original input to such a success state.The reinforcement learning objective reinforces pathways that were successful during training. If there's some intermediate calculation to do or 'inference' that could be drawn, writing out a new text that makes that explicit might be a useful step. The reinforcement learning objective is supposed to encourage the model to learn such patterns.So what does \"sophisticated simulators of reasoning-like text\" even mean here? The mechanism that the model uses to transition towards the answer is to generate intermediate text. What's the complaint here?It makes the same sort of sense to talk about the model \"reasoning\" as it does to talk about AlphaZero \"valuing material\" or \"fighting for the center\". These are shorthands for describing patterns of behaviour, but of course the model doesn't \"value\" anything in a strictly human way. The chess engine usually doesn't see a full line to victory, but in the games it's played, paths which transition through states with material advantage are often good -- although it depends on other factors.So of course the chain-of-thought transition process is brittle, and it's brittle in ways that don't match human mistakes. What does it prove that there are counter-examples with irrelevant text interposed that cause the m",
     "parent": 44872850,
     "depth": 1
   },
@@ -56,6 +56,22 @@
     "depth": 1
   },
   {
+    "id": 44873722,
+    "by": "OtherShrezzing",
+    "timeISO": "2025-08-12T08:18:26.000Z",
+    "textPlain": "I think it is worth writing about simply because it might get the (cost constrained) researcher’s work in front of someone who has the near-unlimited research budgets at one of the big AI companies.",
+    "parent": 44873038,
+    "depth": 2
+  },
+  {
+    "id": 44873651,
+    "by": "kazinator",
+    "timeISO": "2025-08-12T08:07:52.000Z",
+    "textPlain": "> conclusions gathered from toy models and implying this generalises to production LLMs is uselessYou are just trotting out the tired argument that model size magically fixes the issues, rather than just improves the mirage, and so nothing can be known about models with M parameters by studying models with N < M parameters.Given enough parameters, a miraculous threshold is reached whereby LLMs switch from interpolating to extrapolating.Sure!",
+    "parent": 44873038,
+    "depth": 2
+  },
+  {
     "id": 44873291,
     "by": "willvarfar",
     "timeISO": "2025-08-12T07:10:56.000Z",
@@ -69,6 +85,30 @@
     "timeISO": "2025-08-12T06:53:48.000Z",
     "textPlain": ">Training on LLM outputs leads to catastrophic collapse. Every outlet led with this. But no-one red the fine-print, they were testing on small toy models, and were using everything that came out to re-train. Of course it's gonna fail. L3 / phi / gpt-oss models showed that you can absolutely train on synthetic datasets and have great resultsYou're conflating two very different things. Training on synthetic data one time is very different than cyclically training models on their own data. It has nothing to do with model size.",
     "parent": 44873038,
+    "depth": 2
+  },
+  {
+    "id": 44873409,
+    "by": "PeterStuer",
+    "timeISO": "2025-08-12T07:29:54.000Z",
+    "textPlain": "Please don't tell me you were one of those marking every SO question as duplicate, more often than not missing the entire nuance in the question that made it not a duplicate at all, and the answers to the so called previously asked question utterly unusable?This was one of those infuriating things that drove so many away from SO and jump ship the second there was an alternative.",
+    "parent": 44873130,
+    "depth": 2
+  },
+  {
+    "id": 44873413,
+    "by": "Terr_",
+    "timeISO": "2025-08-12T07:31:02.000Z",
+    "textPlain": "I think that's the point, really: It's a reliable and reproducible weakness, but also one where the model can be trained to elicit impressive-looking \"reasoning\" about what the problem is and how it \"plans\" to overcome it.Then when it fails to apply the \"reasoning\", that's evidence the artificial expertise we humans perceived or inferred is actually some kind of illusion.Kind of like a a Chinese Room scenario: If the other end appears to talk about algebra perfectly well, but just can't do it, that's evidence you might be talking to a language-lookup machine instead of one that can reason.",
+    "parent": 44873095,
+    "depth": 2
+  },
+  {
+    "id": 44873767,
+    "by": "bubblyworld",
+    "timeISO": "2025-08-12T08:25:36.000Z",
+    "textPlain": "Not sure why everyone is downvoting you as I think you raise a good point - these anthropomorphic words like \"reasoning\" are useful as shorthands for describing patterns of behaviour, and are generally not meant to be direct comparisons to human cognition. But it goes both ways. You can still criticise the model on the grounds that what we call \"reasoning\" in the context of LLMs doesn't match the patterns we associate with human \"reasoning\" very well (such as ability to generalise to novel situations), which is what I think the authors are doing.",
+    "parent": 44873405,
     "depth": 2
   },
   {
