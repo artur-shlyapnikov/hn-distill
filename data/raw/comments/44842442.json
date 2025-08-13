@@ -1,9 +1,9 @@
 [
   {
-    "id": 44882761,
-    "by": "pastureofplenty",
-    "timeISO": "2025-08-12T23:02:09.000Z",
-    "textPlain": "This reminded me of how in the early 2000s I was taught to enclose the content of SCRIPT tags in HTML comments, e.g.  <script language=\"JavaScript\"><!--\n  \n  // script contents\n\n  -->\n\n  </script>",
+    "id": 44882982,
+    "by": "maxbond",
+    "timeISO": "2025-08-12T23:29:35.000Z",
+    "textPlain": "I would say avoid trying to understand arcane nuances better than the adversary. Assume they've simultaneously got more time on their hands and sat on the relevant standards committees. Adopt a strategy that's robust to having missed a small nuance in the standard or in the particular implementation by this or that browser. (That doesn't mean there isn't value in a blog post enumerating the edge cases, of course.)Kaminsky described a very simple and nearly-universal technique to deal with escaping/injection issues. Encode the embedded data as base64 and decode it on the client side. This projects arbitrary data into a fixed, known domain (generally `[a-zA-Z0-9+/]*`) which you can ensure is free from control characters. (You may need to use a particular variant to achieve this, eg for URLs the last characters used are generally `-_` because both + and / are significant in that context.)After decoding, you can pass it to JSON.parse().",
     "parent": 44842442,
     "depth": 1
   },
@@ -12,6 +12,22 @@
     "by": "comex",
     "timeISO": "2025-08-09T02:36:22.000Z",
     "textPlain": "If you're evaluating JSON as JavaScript, you also need to make sure none of the objects have a key named \"__proto__\", or else you can end up with some strange results.(This is related to the 'prototype pollution' attack, although searching that phrase will mostly give you information about the more-dangerous variant where two objects are being merged together with some JS library.  If __proto__ is just part of a literal, the behavior is not as dangerous, but still surprising.)",
+    "parent": 44842442,
+    "depth": 1
+  },
+  {
+    "id": 44882761,
+    "by": "pastureofplenty",
+    "timeISO": "2025-08-12T23:02:09.000Z",
+    "textPlain": "This reminded me of how in the early 2000s I was taught to enclose the content of SCRIPT tags in HTML comments, e.g.  <script language=\"JavaScript\"><!--\n  \n  // script contents\n\n  -->\n\n  </script>",
+    "parent": 44842442,
+    "depth": 1
+  },
+  {
+    "id": 44842443,
+    "by": "dmsnell",
+    "timeISO": "2025-08-08T22:42:42.000Z",
+    "textPlain": "Discussing why parsing HTML SCRIPT elements is so complicated, the history of why it became the way it is, and how to safely and securely embed JSON content inside of a SCRIPT element today.",
     "parent": 44842442,
     "depth": 1
   },
@@ -32,12 +48,20 @@
     "depth": 1
   },
   {
-    "id": 44842443,
-    "by": "dmsnell",
-    "timeISO": "2025-08-08T22:42:42.000Z",
-    "textPlain": "Discussing why parsing HTML SCRIPT elements is so complicated, the history of why it became the way it is, and how to safely and securely embed JSON content inside of a SCRIPT element today.",
+    "id": 44883332,
+    "by": "wdiamond",
+    "timeISO": "2025-08-13T00:24:44.000Z",
+    "textPlain": "\"<\"+\"/script>\",  its a matter of parsing not value",
     "parent": 44842442,
     "depth": 1
+  },
+  {
+    "id": 44883378,
+    "by": "Dylan16807",
+    "timeISO": "2025-08-13T00:33:15.000Z",
+    "textPlain": "To me, escaping < for web stuff is just as non-arcane and non-nuanced as base64.And yeah use URL-safe base64 when you do use it.  -_ with no padding.",
+    "parent": 44882982,
+    "depth": 2
   },
   {
     "id": 44843945,
@@ -45,6 +69,14 @@
     "timeISO": "2025-08-09T04:03:59.000Z",
     "textPlain": "But note that there's also `<script type=\"application/json\">` these days (usually only useful with `id=`) ... and `importmap` I guess.",
     "parent": 44843624,
+    "depth": 2
+  },
+  {
+    "id": 44844154,
+    "by": "dmsnell",
+    "timeISO": "2025-08-09T05:05:41.000Z",
+    "textPlain": "This was my first submission, and the above comment was what I added to the text box. It wasn’t clear to me what the purpose was, but it seemed like it would want an excerpt. I only discovered after submitting that it created this comment.I guess people just generally don’t add those?Still, to help me out, could someone clarify why this was down-voted? I don’t want to mess up again if I did, but I don't understand what that was.",
+    "parent": 44842443,
     "depth": 2
   },
   {
@@ -69,14 +101,6 @@
     "timeISO": "2025-08-09T07:26:27.000Z",
     "textPlain": "What's wrong with CDATA? Do you have concrete examples when that would not work?",
     "parent": 44844290,
-    "depth": 2
-  },
-  {
-    "id": 44844154,
-    "by": "dmsnell",
-    "timeISO": "2025-08-09T05:05:41.000Z",
-    "textPlain": "This was my first submission, and the above comment was what I added to the text box. It wasn’t clear to me what the purpose was, but it seemed like it would want an excerpt. I only discovered after submitting that it created this comment.I guess people just generally don’t add those?Still, to help me out, could someone clarify why this was down-voted? I don’t want to mess up again if I did, but I don't understand what that was.",
-    "parent": 44842443,
     "depth": 2
   }
 ]

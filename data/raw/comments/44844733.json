@@ -24,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44883531,
+    "by": "sherburt3",
+    "timeISO": "2025-08-13T00:58:24.000Z",
+    "textPlain": "Having vlans in a home feels insane to me. What's the point?",
+    "parent": 44844733,
+    "depth": 1
+  },
+  {
     "id": 44881436,
     "by": "rossant",
     "timeISO": "2025-08-12T20:28:54.000Z",
@@ -40,11 +48,27 @@
     "depth": 1
   },
   {
+    "id": 44882958,
+    "by": "MrVitaliy",
+    "timeISO": "2025-08-12T23:25:16.000Z",
+    "textPlain": "There are a ton of features that fall under 'managed' umbrella, but for most home usecases you don't really need to manage the switches often. Once you setup WiFi SSIDs with VLAN tags, you almost never have to touch the switch. I like to separate networks with VLANs.If your WiFi doesn't have client isolation, IoT devices can still scan your network. WiFi client isolation will prevent that, having them on separate VLAN also makes sense.Another usecase is a Guest network, when friends come over. You might not want to isolate clients there and allow devices to talk to each other, but also don't interfere with your home network.If you work from home, depending on what you do, you might want to have 'office' VLAN. Or a 'Kids' VLAN, where internet turns off every night at 8pm.At this point, it may be easier to QoS and give only 10% of your internet bandwidth to Guest network, and 5% to IoT device network, etc.",
+    "parent": 44882824,
+    "depth": 2
+  },
+  {
     "id": 44882779,
     "by": "bombcar",
     "timeISO": "2025-08-12T23:03:48.000Z",
     "textPlain": "I’m still not certain what the advantage of a managed switch is.I’m sure there is one because they’re more expensive.The only thing I was able to discover is that they detect a network loop.",
     "parent": 44882631,
+    "depth": 2
+  },
+  {
+    "id": 44883611,
+    "by": "redundantly",
+    "timeISO": "2025-08-13T01:10:08.000Z",
+    "textPlain": "I segregate using VLANs based on usage.- IoT- Personal- Work- Kids/guests- LabThe first four have their own WiFi SSID.I don't want various cameras/sensors/lightbulbs that rarely get updates to have access to my personal network.I don't want to mix personal use with work use (I work from home).In a similar vein, I trust my kids about as much as I trust random IoT devices.The lab network is just random stuff, like an archive team warrior vm that I have running.I could do everything on one single network, but if a single host or device is compromised everything is, and I'm too paranoid to run like that.",
+    "parent": 44883531,
     "depth": 2
   },
   {

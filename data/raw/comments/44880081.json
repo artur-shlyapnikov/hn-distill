@@ -24,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44881024,
-    "by": "datadrivenangel",
-    "timeISO": "2025-08-12T19:45:07.000Z",
-    "textPlain": "Change Data Capture is hard if you fall off the happy path, and data lakes won't save you.",
-    "parent": 44880081,
-    "depth": 1
-  },
-  {
     "id": 44881685,
     "by": "ajd555",
     "timeISO": "2025-08-12T20:51:34.000Z",
     "textPlain": "> Postgres and Apache Iceberg are both mature systemsApache Iceberg as mature? I mean, there's a lot of activity around it, but I remember a year ago the rust library didn't even have write capabilities. And it's not like the library is a client and there's an iceberg server - the library literally is the whole product, interacting with the files in s3",
+    "parent": 44880081,
+    "depth": 1
+  },
+  {
+    "id": 44881024,
+    "by": "datadrivenangel",
+    "timeISO": "2025-08-12T19:45:07.000Z",
+    "textPlain": "Change Data Capture is hard if you fall off the happy path, and data lakes won't save you.",
     "parent": 44880081,
     "depth": 1
   },
@@ -48,11 +48,43 @@
     "depth": 1
   },
   {
+    "id": 44883209,
+    "by": "datadrivenangel",
+    "timeISO": "2025-08-13T00:02:26.000Z",
+    "textPlain": "Data processing tools had a pricing problem. The Big Data Revolution was google and other companies realizing that commodity hardware had gotten so good that you could throw 100x as much compute at a processing job and it would still be cheaper than Oracle, Vertica, Teradata, and SQL Server.As an industry, we keep forgetting these things and reinventing the wheel because there is more money to be made squeezing enterprises than providing widely available sustainable software for a fair price and than losing mindshare to the next generation of tool and eventually getting sold for parts. It's a sad dynamic",
+    "parent": 44881390,
+    "depth": 2
+  },
+  {
     "id": 44881709,
     "by": "ajd555",
     "timeISO": "2025-08-12T20:55:05.000Z",
     "textPlain": "I suppose, in fairness, the Java library has been around for much longer",
     "parent": 44881685,
+    "depth": 2
+  },
+  {
+    "id": 44883044,
+    "by": "nxm",
+    "timeISO": "2025-08-12T23:39:34.000Z",
+    "textPlain": "Most tools the data ecosystem support Iceberg as first class citizen, including major analytical query engines. Lots of development in this space has happened over the past year in particular.",
+    "parent": 44881685,
+    "depth": 2
+  },
+  {
+    "id": 44883212,
+    "by": "UltraSane",
+    "timeISO": "2025-08-13T00:02:46.000Z",
+    "textPlain": "Could you explain what this means in more detail?",
+    "parent": 44881024,
+    "depth": 2
+  },
+  {
+    "id": 44883249,
+    "by": "datadrivenangel",
+    "timeISO": "2025-08-13T00:08:07.000Z",
+    "textPlain": "A table file format format like Iceberg is a relational tabular format.With a query engine that supports federation, we can write SELECT * FROM PG_Table or SELECT * FROM Iceberg_File just the same.",
+    "parent": 44882358,
     "depth": 2
   },
   {

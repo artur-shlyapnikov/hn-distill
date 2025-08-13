@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44883266,
+    "by": "zx8080",
+    "timeISO": "2025-08-13T00:11:04.000Z",
+    "textPlain": "> Welcome to heise online. We and our up to 185 partners use cookies and tracking technologies.Advertisers consent for the profiling purposes is required to read this page. 185 advertising companies.WTF.",
+    "parent": 44842114,
+    "depth": 1
+  },
+  {
     "id": 44876502,
     "by": "rwmj",
     "timeISO": "2025-08-12T14:17:32.000Z",
@@ -48,14 +56,6 @@
     "depth": 1
   },
   {
-    "id": 44881666,
-    "by": "asimovDev",
-    "timeISO": "2025-08-12T20:49:32.000Z",
-    "textPlain": "Can something like this be powered by PoE? Aparently PoE hats for RPi are compatible with vf2 but results vary",
-    "parent": 44842114,
-    "depth": 1
-  },
-  {
     "id": 44879183,
     "by": "pinewurst",
     "timeISO": "2025-08-12T17:11:08.000Z",
@@ -80,6 +80,22 @@
     "depth": 1
   },
   {
+    "id": 44881666,
+    "by": "asimovDev",
+    "timeISO": "2025-08-12T20:49:32.000Z",
+    "textPlain": "Can something like this be powered by PoE? Aparently PoE hats for RPi are compatible with vf2 but results vary",
+    "parent": 44842114,
+    "depth": 1
+  },
+  {
+    "id": 44877664,
+    "by": "nottorp",
+    "timeISO": "2025-08-12T15:34:42.000Z",
+    "textPlain": "What's with that cookie dialog on some german sites? I thought I don't understand it because it's in german, but this one seems to be translated and I still can't figure it out.Had to close the site without reading the article, anyone has alternate links?",
+    "parent": 44842114,
+    "depth": 1
+  },
+  {
     "id": 44878924,
     "by": "sneak",
     "timeISO": "2025-08-12T16:54:23.000Z",
@@ -92,14 +108,6 @@
     "by": "ekianjo",
     "timeISO": "2025-08-12T16:16:14.000Z",
     "textPlain": "You probably want to consider the OrangePi RV2 board instead (I wrote about it here: https://boilingsteam.com/orange-pi-rv2-new-risc-v-board-revi...). I own the original VF2 as well, and the RV2 from OrangePi is much faster, and software support is miles better too.",
-    "parent": 44842114,
-    "depth": 1
-  },
-  {
-    "id": 44877664,
-    "by": "nottorp",
-    "timeISO": "2025-08-12T15:34:42.000Z",
-    "textPlain": "What's with that cookie dialog on some german sites? I thought I don't understand it because it's in german, but this one seems to be translated and I still can't figure it out.Had to close the site without reading the article, anyone has alternate links?",
     "parent": 44842114,
     "depth": 1
   },
@@ -136,6 +144,14 @@
     "depth": 2
   },
   {
+    "id": 44883619,
+    "by": "charcircuit",
+    "timeISO": "2025-08-13T01:11:45.000Z",
+    "textPlain": "How do you expect ad auctions to work? Every bidder needs to know what they are bidding on.",
+    "parent": 44883266,
+    "depth": 2
+  },
+  {
     "id": 44882279,
     "by": "brucehoult",
     "timeISO": "2025-08-12T22:00:39.000Z",
@@ -156,6 +172,14 @@
     "by": "LeifCarrotson",
     "timeISO": "2025-08-12T18:10:12.000Z",
     "textPlain": "I think there are two reasons:First, SBC processors are just a step up from microcontrollers, they're designed to talk to GPIO devices and servos and UARTs and sensors, not GPUs and network cards. The JH7110 only has a two lanes of PCIe 2.0, one of which is used for USB 3.0 and the other mostly (I assume) to provide an M.2 interface. However, it also has 6 UARTs (Universal Asynchronous Receiver-Transmitter, think RS232 serial), 7 channels of SPI (not counting the QSPI Flash controller directly integrated), 8 channels of PWM, 7 channels of I2C, 64 channels of general-purpose IO, I2S, SPDIF, two channels of CANbus, a directly integrated Ethernet MAC, USB 2.0 host, a MIPI-CSI camera interface and a MIPI-DSI video display block with either HDMI output or for directly driving a 24-channel parallel LCD.Embedded system designers don't want to add a PCIe-to-RS232 card to their industrial robot, NAS, or video camera, heck, they don't want to add an external GPU. They don't even want to add a separate northbridge/southbridge or PCH, they want a single-chip SOM. Going up and down those layers between PCIe and SATA or USB or Ethernet is expensive in terms of chip count and power.Second, I don't think they want to deal with the drivers.  If you want to plug in your choice of PCIe device - be it a GPU, RAID card, sound card, who knows what - that's a level of compatibility and modularity that SBCs are bad at.",
+    "parent": 44879470,
+    "depth": 2
+  },
+  {
+    "id": 44883704,
+    "by": "tremon",
+    "timeISO": "2025-08-13T01:26:31.000Z",
+    "textPlain": "Yes. Basic PCI requires at least 64 different data signals (plus Vcc and Gnd) across 124 connector pins. This is expensive in terms of board surface, routing placement and I/O pins.PCI Express x1 requires only 11 data signals plus Vcc and Gnd across 18 pins, but even the v1 spec from 2003 requires a data rate of 2.5GT/s (as opposed to PCI's data rate of only 33 MT/s). This is a much higher rate than most other data signals usually found on these boards, and rates this high have their own challenges in terms of signal routing.",
     "parent": 44879470,
     "depth": 2
   },
@@ -189,14 +213,6 @@
     "timeISO": "2025-08-12T22:16:59.000Z",
     "textPlain": "It is not! That is super misleading.For normal program code it is closer to a Pi 4 than to a Pi 3, similar to the all the very popular A55s board that have come out more recently than the Pi 4.The only way it is slower than a Pi 3 is if the Pi 3 program is using SIMD (Neon), which the VisionFive 2 lacks.The worst part of this Pi 3 comparison is that the Pi 3 has only 512MB or 1GB of RAM, which is extremely limiting in the modern world. This RISC-V board comes with a *minimum* of 2GB and is available with 8GB for $37.The RAM difference alone makes many things possible that are impossible on a Pi 3, and many other things much faster, regardless of the raw CPU speed.And then you have the M.2 NVMe SSD, something that neither the Pi 3 nor Pi 4 support, which again makes a whole raft of things much faster, even if the single lane means it can \"only\" do something near 400 MB/s (vs SD cards at 40 or 80 MB/s)",
     "parent": 44842660,
-    "depth": 2
-  },
-  {
-    "id": 44882332,
-    "by": "geerlingguy",
-    "timeISO": "2025-08-12T22:06:28.000Z",
-    "textPlain": "The easiest way would be to buy a PoE adapter that takes in PoE and splits to Ethernet + USB-C power plug. I use those with many boards (even Pis from time to time, if a HAT won't fit), and they work as long as you only need a few watts.",
-    "parent": 44881666,
     "depth": 2
   },
   {
@@ -248,11 +264,11 @@
     "depth": 2
   },
   {
-    "id": 44878400,
-    "by": "rcarmo",
-    "timeISO": "2025-08-12T16:18:55.000Z",
-    "textPlain": "Yep. I looked at that too: https://taoofmac.com/space/reviews/2025/05/12/2230My only gripe is that the OpenWRT image (still) doesn't have Wi-Fi support for some reason.",
-    "parent": 44878355,
+    "id": 44882332,
+    "by": "geerlingguy",
+    "timeISO": "2025-08-12T22:06:28.000Z",
+    "textPlain": "The easiest way would be to buy a PoE adapter that takes in PoE and splits to Ethernet + USB-C power plug. I use those with many boards (even Pis from time to time, if a HAT won't fit), and they work as long as you only need a few watts.",
+    "parent": 44881666,
     "depth": 2
   },
   {
@@ -260,6 +276,14 @@
     "by": "amatecha",
     "timeISO": "2025-08-12T17:57:29.000Z",
     "textPlain": "Yeah, that was the most annoying cookie banner I've seen in a while.Better alternative posts that don't coerce you into agreeing to tracking/etc.:https://liliputing.com/starfive-visionfive-2-lite-is-a-cheap...https://www.cnx-software.com/2025/08/07/visionfive-2-lite-lo...",
+    "parent": 44877664,
+    "depth": 2
+  },
+  {
+    "id": 44879209,
+    "by": "neilv",
+    "timeISO": "2025-08-12T17:12:53.000Z",
+    "textPlain": "It's a relatively annoying example of obviously bad faith 'consent' UI.I've decided to treat these as signs that the organization running them is either dishonest or incompetent.",
     "parent": 44877664,
     "depth": 2
   },
@@ -280,11 +304,11 @@
     "depth": 2
   },
   {
-    "id": 44879209,
-    "by": "neilv",
-    "timeISO": "2025-08-12T17:12:53.000Z",
-    "textPlain": "It's a relatively annoying example of obviously bad faith 'consent' UI.I've decided to treat these as signs that the organization running them is either dishonest or incompetent.",
-    "parent": 44877664,
+    "id": 44878400,
+    "by": "rcarmo",
+    "timeISO": "2025-08-12T16:18:55.000Z",
+    "textPlain": "Yep. I looked at that too: https://taoofmac.com/space/reviews/2025/05/12/2230My only gripe is that the OpenWRT image (still) doesn't have Wi-Fi support for some reason.",
+    "parent": 44878355,
     "depth": 2
   },
   {
