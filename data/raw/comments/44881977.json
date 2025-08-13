@@ -1,17 +1,17 @@
 [
   {
-    "id": 44883758,
-    "by": "nulld3v",
-    "timeISO": "2025-08-13T01:32:33.000Z",
-    "textPlain": "New `encoding/json/v2` package (hidden behind `GOEXPERIMENT=jsonv2` flag)! It brings perf improvements and finally allows devs to implement custom marshalers for external types:> Alternatively, users can implement functions that match MarshalFunc, MarshalToFunc, UnmarshalFunc, or UnmarshalFromFunc to specify the JSON representation for arbitrary types. This provides callers of JSON functionality with control over how any arbitrary type is serialized as JSON.Awesome stuff.",
+    "id": 44884651,
+    "by": "dotwaffle",
+    "timeISO": "2025-08-13T04:30:44.000Z",
+    "textPlain": "Just watch as most libraries now update their go.mod to say 1.25, despite using no 1.25 features, meaning those who want to continue on 1.24 (which will still have patch releases for six months...) are forced to remain on older versions or jump through lots of hoops.It's a \"minimum\" version, not a dependency lock!",
     "parent": 44881977,
     "depth": 1
   },
   {
-    "id": 44884317,
-    "by": "kristianp",
-    "timeISO": "2025-08-13T03:13:09.000Z",
-    "textPlain": "Includes [1], which fixes the bug which was blogged about in \"How we tracked down a Go 1.24 memory regression\" [2,3].[1] https://github.com/golang/go/issues/72991[2] https://www.datadoghq.com/blog/engineering/go-memory-regress...[3] https://news.ycombinator.com/item?id=44597550 (24 days ago)",
+    "id": 44883758,
+    "by": "nulld3v",
+    "timeISO": "2025-08-13T01:32:33.000Z",
+    "textPlain": "New `encoding/json/v2` package (hidden behind `GOEXPERIMENT=jsonv2` flag)! It brings perf improvements and finally allows devs to implement custom marshalers for external types:> Alternatively, users can implement functions that match MarshalFunc, MarshalToFunc, UnmarshalFunc, or UnmarshalFromFunc to specify the JSON representation for arbitrary types. This provides callers of JSON functionality with control over how any arbitrary type is serialized as JSON.Awesome stuff.",
     "parent": 44881977,
     "depth": 1
   },
@@ -24,10 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44882370,
-    "by": "Gobd",
-    "timeISO": "2025-08-12T22:11:02.000Z",
-    "textPlain": "Yay new version! Not the most exciting (as Go releases tend to be which is good), but hopefully jsonv2 and greentea can get some testing and be standard in 1.26",
+    "id": 44884500,
+    "by": "abtinf",
+    "timeISO": "2025-08-13T03:51:45.000Z",
+    "textPlain": "WaitGroup.Go looks great. Going to be able to delete a lot of code, replacing boilerplate with calls to it.",
+    "parent": 44881977,
+    "depth": 1
+  },
+  {
+    "id": 44884406,
+    "by": "tonymet",
+    "timeISO": "2025-08-13T03:29:18.000Z",
+    "textPlain": "i love how complete golang tooling is.  go/analyzer framework is quite advanced and I don't know of other languages that offer accessible AST support .",
     "parent": 44881977,
     "depth": 1
   },
@@ -36,6 +44,22 @@
     "by": "nunez",
     "timeISO": "2025-08-13T00:53:28.000Z",
     "textPlain": "> LookupMX and Resolver.LookupMX now return DNS names that look like valid IP address, as well as valid domain names. Previously if a name server returned an IP address as a DNS name, LookupMX would discard it, as required by the RFCs. However, name servers in practice do sometimes return IP addresses.This one is interesting; which servers return an IP address as a record? Why would they want to do this?",
+    "parent": 44881977,
+    "depth": 1
+  },
+  {
+    "id": 44884317,
+    "by": "kristianp",
+    "timeISO": "2025-08-13T03:13:09.000Z",
+    "textPlain": "Includes [1], which fixes the bug which was blogged about in \"How we tracked down a Go 1.24 memory regression\" [2,3].[1] https://github.com/golang/go/issues/72991[2] https://www.datadoghq.com/blog/engineering/go-memory-regress...[3] https://news.ycombinator.com/item?id=44597550 (24 days ago)",
+    "parent": 44881977,
+    "depth": 1
+  },
+  {
+    "id": 44882370,
+    "by": "Gobd",
+    "timeISO": "2025-08-12T22:11:02.000Z",
+    "textPlain": "Yay new version! Not the most exciting (as Go releases tend to be which is good), but hopefully jsonv2 and greentea can get some testing and be standard in 1.26",
     "parent": 44881977,
     "depth": 1
   },
@@ -72,11 +96,35 @@
     "depth": 2
   },
   {
+    "id": 44884389,
+    "by": "djfobbz",
+    "timeISO": "2025-08-13T03:26:00.000Z",
+    "textPlain": "Any language that helps me put food on my family table is a good language. For me, that has been the case with both Ruby and Go.",
+    "parent": 44882558,
+    "depth": 2
+  },
+  {
     "id": 44882748,
     "by": "devmor",
     "timeISO": "2025-08-12T23:00:10.000Z",
     "textPlain": "I did not like it at first but it has grown on me. I still have my gripes, which are mostly things that come from its overall architecture and will never be resolved, but it is pretty enjoyable to use for the limited domain I use it in at work.",
     "parent": 44882558,
+    "depth": 2
+  },
+  {
+    "id": 44884454,
+    "by": "whartung",
+    "timeISO": "2025-08-13T03:40:14.000Z",
+    "textPlain": "JDK, I believe, has first class support for accessing the Java AST.",
+    "parent": 44884406,
+    "depth": 2
+  },
+  {
+    "id": 44884515,
+    "by": "foresto",
+    "timeISO": "2025-08-13T03:53:38.000Z",
+    "textPlain": "Does this count?https://docs.python.org/3/library/ast.html",
+    "parent": 44884406,
     "depth": 2
   },
   {

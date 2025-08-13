@@ -32,10 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44884138,
-    "by": "8f2ab37a-ed6c",
-    "timeISO": "2025-08-13T02:36:53.000Z",
-    "textPlain": "Are we anywhere near someone being able to play a D&D or WoD type of game session with an LLM somewhere in the mix, perhaps generating a new and interesting adventure every time? Or is this still science fiction for now?",
+    "id": 44884637,
+    "by": "daxfohl",
+    "timeISO": "2025-08-13T04:27:25.000Z",
+    "textPlain": "An even simpler thing I tried was turning a standard maze into a first-person perspective where you go one step at a time, and seeing if a model could solve it without backtracking unnecessarily. They all failed.Setup: a maze generator generates a square maze and puts the start and end on opposite corners. It tells the LLM which directions had walls (relative direction: front, back, left, right). The LLM then chooses between move forward, turn left, turn right. That's pretty much it.First attempt: Just maintain all the above in a chat, step by step. It'd get lost pretty quickly and start re-exploring already-explored area quite readily. Not very surprising, as we all know they can get lost in long chat threads. The chat model seemed to just go forward or turn right forever (which can work in some mazes), whereas the thinking model did seem to avoid backtracking until it got to T-junctions of a wrong way, where it always seemed to go back and forth forever.Second attempt: After each step, tell the LLM to \"externalize\" everything it knew about the maze, and then feed that to a brand new LLM context. The idea was to avoid long chat context problems and see if the LLM could adequately represent its internal state and knowledge such that a \"new\" LLM could take over. This really didn't end up working any better. The biggest problem was that sometimes it would think that \"turn left\" would also change the position, and sometimes not. There were other issues too, so I didn't go much further with this approach.Third attempt: Tell the LLM the premise of the game, and tell it to create a python state machine that stores all the state information it would need to represent its progress through the maze, and then to emit specific keywords when it needed to interact with it (and I added some code that served as a proxy). This also didn't work great. The state machine was close, but one thing it always forgot to do was relate index with direction. So if it's \"in cell (5, 5) and fac",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44884566,
+    "by": "cod3rboy",
+    "timeISO": "2025-08-13T04:08:50.000Z",
+    "textPlain": "https://cod3rboy.com/blog/playing-text-based-adventure-game-...",
     "parent": 44877404,
     "depth": 1
   },
@@ -68,6 +76,14 @@
     "by": "throwawayoldie",
     "timeISO": "2025-08-12T15:21:30.000Z",
     "textPlain": "My takeaway is: LLMs are not great at text adventures, even when those text adventures are decades old and have multiple walkthroughs available on the Internet. Slow clap.",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44884138,
+    "by": "8f2ab37a-ed6c",
+    "timeISO": "2025-08-13T02:36:53.000Z",
+    "textPlain": "Are we anywhere near someone being able to play a D&D or WoD type of game session with an LLM somewhere in the mix, perhaps generating a new and interesting adventure every time? Or is this still science fiction for now?",
     "parent": 44877404,
     "depth": 1
   },

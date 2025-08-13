@@ -1,5 +1,13 @@
 [
   {
+    "id": 44884607,
+    "by": "hodgesrm",
+    "timeISO": "2025-08-13T04:19:08.000Z",
+    "textPlain": "I don't really understand what problem replication of mutable transaction data to Iceberg or any data lake for that matter solves for most PostgreSQL users.Iceberg is optimized for fact data in very large tables with relatively rare changes and likewise rare change to schema. It does that well and will continue to do so for the foreseeable future.PostgreSQL databases typically don't generate huge amounts of data; that data can also be highly mutable in many cases. Not only that, the schema can change substantially. Both types of changes are hard to manage in replication, especially if the target is a system, like Iceberg, that does not handle change very well in the first place.So that leaves the case where you have an lot of data in PostgreSQL that's creating bad economics. In that case, why not just skip PostgreSQL and put it in an analytic database to begin with?p.s., I'm pretty familiar with trading systems that do archive transaction data to data lakes using Parquet for long-term compliance. That is a different problem. The data is for all intents and purposes immutable.",
+    "parent": 44880081,
+    "depth": 1
+  },
+  {
     "id": 44881715,
     "by": "amluto",
     "timeISO": "2025-08-12T20:55:26.000Z",
@@ -16,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44881024,
-    "by": "datadrivenangel",
-    "timeISO": "2025-08-12T19:45:07.000Z",
-    "textPlain": "Change Data Capture is hard if you fall off the happy path, and data lakes won't save you.",
+    "id": 44884567,
+    "by": "rubenvanwyk",
+    "timeISO": "2025-08-13T04:08:56.000Z",
+    "textPlain": "Reads a bit like a puff piece but can’t deny the facts: RisingWave is an amazing product. I wonder when the industry is going to realise in event-driven architectures, you can actually skip having Postgres entirely and just have RisingWave / Feldera + columnar data on object storage.",
     "parent": 44880081,
     "depth": 1
   },
@@ -28,6 +36,14 @@
     "by": "ajd555",
     "timeISO": "2025-08-12T20:51:34.000Z",
     "textPlain": "> Postgres and Apache Iceberg are both mature systemsApache Iceberg as mature? I mean, there's a lot of activity around it, but I remember a year ago the rust library didn't even have write capabilities. And it's not like the library is a client and there's an iceberg server - the library literally is the whole product, interacting with the files in s3",
+    "parent": 44880081,
+    "depth": 1
+  },
+  {
+    "id": 44881024,
+    "by": "datadrivenangel",
+    "timeISO": "2025-08-12T19:45:07.000Z",
+    "textPlain": "Change Data Capture is hard if you fall off the happy path, and data lakes won't save you.",
     "parent": 44880081,
     "depth": 1
   },
@@ -48,14 +64,6 @@
     "depth": 1
   },
   {
-    "id": 44883212,
-    "by": "UltraSane",
-    "timeISO": "2025-08-13T00:02:46.000Z",
-    "textPlain": "Could you explain what this means in more detail?",
-    "parent": 44881024,
-    "depth": 2
-  },
-  {
     "id": 44881709,
     "by": "ajd555",
     "timeISO": "2025-08-12T20:55:05.000Z",
@@ -69,6 +77,14 @@
     "timeISO": "2025-08-12T23:39:34.000Z",
     "textPlain": "Most tools the data ecosystem support Iceberg as first class citizen, including major analytical query engines. Lots of development in this space has happened over the past year in particular.",
     "parent": 44881685,
+    "depth": 2
+  },
+  {
+    "id": 44883212,
+    "by": "UltraSane",
+    "timeISO": "2025-08-13T00:02:46.000Z",
+    "textPlain": "Could you explain what this means in more detail?",
+    "parent": 44881024,
     "depth": 2
   },
   {

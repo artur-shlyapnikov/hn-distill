@@ -1,17 +1,25 @@
 [
   {
-    "id": 44884374,
-    "by": "BobbyTables2",
-    "timeISO": "2025-08-13T03:23:00.000Z",
-    "textPlain": "I wish cheap serial-port managed switches were a thing.The reasonably cheap managed switches often expose the management interface on all ports, even all  VLANs (with no way turn it off).It’s frustrating that this is just a software limitation - the hardware is damn capable of much more.Hell, I’d love to have a switch where the management interface was an I2C port that I could plug into just for reprogramming.Really just want dumb VLANs, no fancy RSTP or such.",
-    "parent": 44844733,
-    "depth": 1
-  },
-  {
     "id": 44882824,
     "by": "exmadscientist",
     "timeISO": "2025-08-12T23:08:45.000Z",
     "textPlain": "I have always been resolute in avoiding managed switches for home use. I figure I don't need the headaches of worrying about configuring another device in my free time when I can pay less to have simple boxes that just send packets around without complaint.I even managed to find an unmanaged 16-port 2.5GbE PoE switch so now I have 2.5Gbps and PoE at every wall jack in my house. (PoE is amazing. Get PoE if you're upgrading anything.) It's a no-name Chinese brand, but who cares? It's not like anything in this house is even trying to saturate 1GbE, much less 2.5GbE. So QoS or whatever on an internal network doesn't seem particularly useful.I guess I could try to segregate the Internet of Shit devices I have (they're already on their own WiFi SSID which is most of the battle) but I mostly fight that fight by owning as few IoS things as I can.What am I missing? Why bother with managed switches at home?",
+    "parent": 44844733,
+    "depth": 1
+  },
+  {
+    "id": 44884472,
+    "by": "m463",
+    "timeISO": "2025-08-13T03:44:37.000Z",
+    "textPlain": "People who are enchanted by this sort of thing should check out openwrt:https://www.openwrt.orgMany common off-the-shelf routers can run openwrt, and it is very nice to not only own your router, but your network as well.People who do the sort of hacking like the author of this article get newer unsupported routers up and running on openwrt and share the results.",
+    "parent": 44844733,
+    "depth": 1
+  },
+  {
+    "id": 44884374,
+    "by": "BobbyTables2",
+    "timeISO": "2025-08-13T03:23:00.000Z",
+    "textPlain": "I wish cheap serial-port managed switches were a thing.The reasonably cheap managed switches often expose the management interface on all ports, even all  VLANs (with no way turn it off).It’s frustrating that this is just a software limitation - the hardware is damn capable of much more.Hell, I’d love to have a switch where the management interface was an I2C port that I could plug into just for reprogramming.Really just want dumb VLANs, no fancy RSTP or such.",
     "parent": 44844733,
     "depth": 1
   },
@@ -56,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44884339,
-    "by": "seany",
-    "timeISO": "2025-08-13T03:15:17.000Z",
-    "textPlain": "Vlans. I don't think I'll ever buy a switch that doesn't support them. That rule goes back to me having a 3com super stack in my garage.",
+    "id": 44884529,
+    "by": "toast0",
+    "timeISO": "2025-08-13T03:57:46.000Z",
+    "textPlain": "> What am I missing? Why bother with managed switches at home?I have managed switches now. Can be useful for link aggregation. I also use vlans, so I can have redundant nat gateways in different locations, without having to wire up a separate 'public net' lan... I could just put them in the same location, but I get a tiny amount of disaster resiliance this way. Vlans are also handy so I can do private and public on the same port and not need more nics; but maybe my setup doesn't need to be so esoteric that I want a separate port for host networking and for the nat gateway running in a jail (or maybe I could get srv-io to work somehow)It's also handy to be able to check link status without having to go to where the switch is.",
     "parent": 44882824,
     "depth": 2
   },
@@ -72,11 +80,27 @@
     "depth": 2
   },
   {
+    "id": 44884339,
+    "by": "seany",
+    "timeISO": "2025-08-13T03:15:17.000Z",
+    "textPlain": "Vlans. I don't think I'll ever buy a switch that doesn't support them. That rule goes back to me having a 3com super stack in my garage.",
+    "parent": 44882824,
+    "depth": 2
+  },
+  {
     "id": 44882779,
     "by": "bombcar",
     "timeISO": "2025-08-12T23:03:48.000Z",
     "textPlain": "I’m still not certain what the advantage of a managed switch is.I’m sure there is one because they’re more expensive.The only thing I was able to discover is that they detect a network loop.",
     "parent": 44882631,
+    "depth": 2
+  },
+  {
+    "id": 44884451,
+    "by": "m463",
+    "timeISO": "2025-08-13T03:38:57.000Z",
+    "textPlain": "oh my.My quality of life changed SO MUCH when I put in vlans.machines go onto the appropriate vlan.the winner was the \"jail\" vlan.  Any machine on it can't get out.  Maybe for updates through a filtering proxy like privoxy.Every house should have vlans like this.the status quo of \"every machine can talk to the internet\" or \"buy our cloud-based router\" is just uncomfortably common.",
+    "parent": 44883531,
     "depth": 2
   },
   {
