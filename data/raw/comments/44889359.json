@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44892229,
-    "by": "manoDev",
-    "timeISO": "2025-08-13T18:44:50.000Z",
-    "textPlain": "OP: You might want to check, a bunch of examples after \"maybe monad\" are broken.",
-    "parent": 44889359,
-    "depth": 1
-  },
-  {
     "id": 44890850,
     "by": "anentropic",
     "timeISO": "2025-08-13T16:52:41.000Z",
@@ -28,6 +20,14 @@
     "by": "CraigJPerry",
     "timeISO": "2025-08-13T16:40:17.000Z",
     "textPlain": "Is Coalton not more about performance, removing the dynamicism - lisp (at least SBCL) is already type-safe. Or it behaves that way in my limited experience - e.g. i get feedback when i screw up.I'm completely clueless about Coalton, (and almost completely an idiot when it comes to CL more generally - been playing for a couple of years at this point but even so, every day is still a school day...)",
+    "parent": 44889359,
+    "depth": 1
+  },
+  {
+    "id": 44892229,
+    "by": "manoDev",
+    "timeISO": "2025-08-13T18:44:50.000Z",
+    "textPlain": "OP: You might want to check, a bunch of examples after \"maybe monad\" are broken.",
     "parent": 44889359,
     "depth": 1
   },
@@ -64,14 +64,6 @@
     "depth": 2
   },
   {
-    "id": 44890841,
-    "by": "tmtvl",
-    "timeISO": "2025-08-13T16:52:20.000Z",
-    "textPlain": "In CL you can't declare, for example, a proper-list-of type, which is to say a type which accepts a second type and represents a proper list containing only members of that second type.  (deftype Proper-List-Of (subtype)\n    `(or Null\n         (Cons ,subtype\n               (Proper-List-Of ,subtype))))\n\nDoesn't work (for example). There kind of are ways to work around it to some extent with satisfies and ad-hoc predicate generation, but Coalton is a true value add in that aspect.",
-    "parent": 44890701,
-    "depth": 2
-  },
-  {
     "id": 44891834,
     "by": "reikonomusha",
     "timeISO": "2025-08-13T18:10:37.000Z",
@@ -80,10 +72,10 @@
     "depth": 2
   },
   {
-    "id": 44891774,
-    "by": "tgbugs",
-    "timeISO": "2025-08-13T18:06:27.000Z",
-    "textPlain": "I highly recommend watching [0] for an introduction to Coalton in the context of CL. Specifically it provides an excellent example of how the type system makes the language more expressive (by making it more composable) while also improving performance (e.g. because it can prove that certain optimizations are safe and thus can automatically generate the type annotations).0. https://www.youtube.com/watch?v=of92m4XNgrM",
+    "id": 44890841,
+    "by": "tmtvl",
+    "timeISO": "2025-08-13T16:52:20.000Z",
+    "textPlain": "In CL you can't declare, for example, a proper-list-of type, which is to say a type which accepts a second type and represents a proper list containing only members of that second type.  (deftype Proper-List-Of (subtype)\n    `(or Null\n         (Cons ,subtype\n               (Proper-List-Of ,subtype))))\n\nDoesn't work (for example). There kind of are ways to work around it to some extent with satisfies and ad-hoc predicate generation, but Coalton is a true value add in that aspect.",
     "parent": 44890701,
     "depth": 2
   },
@@ -92,6 +84,14 @@
     "by": "wild_egg",
     "timeISO": "2025-08-13T16:52:09.000Z",
     "textPlain": "CL is strongly typed but not statically typed. The compiler generally doesn't complain ahead of time that your function is going to do math on a string because it was called incorrectly. Typically a runtime condition will be signalled when it hits that point and you can sort it out from there.Coalton moves that to the compilation step so you get an error back the instant you send the form to the REPL.",
+    "parent": 44890701,
+    "depth": 2
+  },
+  {
+    "id": 44891774,
+    "by": "tgbugs",
+    "timeISO": "2025-08-13T18:06:27.000Z",
+    "textPlain": "I highly recommend watching [0] for an introduction to Coalton in the context of CL. Specifically it provides an excellent example of how the type system makes the language more expressive (by making it more composable) while also improving performance (e.g. because it can prove that certain optimizations are safe and thus can automatically generate the type annotations).0. https://www.youtube.com/watch?v=of92m4XNgrM",
     "parent": 44890701,
     "depth": 2
   },

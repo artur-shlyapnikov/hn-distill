@@ -1,0 +1,186 @@
+[
+  {
+    "id": 44893241,
+    "by": "positisop",
+    "timeISO": "2025-08-13T20:10:28.000Z",
+    "textPlain": "Please do not make decisions based on this article. It is a poorly written blog with typos and a lack of technical depth. The blog puts Goofys in the same bucket as JuiceFS and Alluxio.. A local NVMe populated via a high-throughput Object Store will give you the best performance. This blog does not go into the system architecture involved that prohibits static models from being pre-populated or the variations in the \"FUSE\" choices. I can see why AI startups need large amounts of money when the depth of engineering is this shallow.",
+    "parent": 44892580,
+    "depth": 1
+  },
+  {
+    "id": 44893198,
+    "by": "SahAssar",
+    "timeISO": "2025-08-13T20:07:32.000Z",
+    "textPlain": "(Posting while the title is \"Fuse is 95% cheaper and 10x faster than NFS\", I'm guessing that will get changed based on the HN rules)This is not at all about NFS vs FUSE, this is about specific NFS providers vs specific FUSE with some specific object store backends.FUSE us just a way to have a filesystem not implemented in the kernel. I can have a FUSE driver that implements storage based on rat trained to push a button in reaction to lights turning on, or basically anything else.NFS is a specific networked filesystem.",
+    "parent": 44892580,
+    "depth": 1
+  },
+  {
+    "id": 44893281,
+    "by": "looperhacks",
+    "timeISO": "2025-08-13T20:14:07.000Z",
+    "textPlain": "This article is a random collection of claims without sources or even explanations how the author came to the conclusions.- NFS has the \"pro\" of being POSIX compliant, but I can't see how a FUSE device is different in this regard\n- FUSE allegedly supports local caching and lazy loading, but why can't I cache or lazy load with a NFS share? \n- NFS apparently has a high infrastructure costs - but FUSE comes for free? Then, the author compares cloud offerings, which should make the infrastructure concerns moot?\n- the cost calculations don't even mention which provider is used (though you can guess which one) and seemingly doesn't include transfer costsThere's even more I can't be bothered to mention. Stay away from this post",
+    "parent": 44892580,
+    "depth": 1
+  },
+  {
+    "id": 44893267,
+    "by": "tomasGiden",
+    "timeISO": "2025-08-13T20:13:03.000Z",
+    "textPlain": "I did some benchmarking on BlobFuse2 vs NFS vs azcopy on Azure for a CT imaging reconstruction a year back or so. As I remember it, it was not clear if Fuse (copy on demand) or azcopy (copy all necessary data before starting the workload) was the winner. The use case and specific application access pattern really mattered A LOT:\n* Reading full files favored azcopy (even if reading parts just when they were needed).\n* If the application closed and opened each file multiple times it favored azcopy.\n* If only a small part of many files were read, it favored fuseAlso, the 3rd party library we were calling to do the reconstruction had a limit in the number of threads reading in parallell when preloading projection image data (optimized for what was reasonable on local storage) so that favored azcopy.Don’t remember that NFS ever came out ahead.So, benchmark, benchmark, benchmark and see what possibilities you have in adapting the preloading behavior before choosing.",
+    "parent": 44892580,
+    "depth": 1
+  },
+  {
+    "id": 44893386,
+    "by": "ChocolateGod",
+    "timeISO": "2025-08-13T20:22:42.000Z",
+    "textPlain": "[delayed]",
+    "parent": 44892580,
+    "depth": 1
+  },
+  {
+    "id": 44893162,
+    "by": "dmoy",
+    "timeISO": "2025-08-13T20:04:28.000Z",
+    "textPlain": "Would be interested to see a comparison with other not-NFS things (Lustre, daos, etc).User space filesystem is not the first thing that comes to my mind when trying to get faster performance than NFS",
+    "parent": 44892580,
+    "depth": 1
+  },
+  {
+    "id": 44893363,
+    "by": "dekhn",
+    "timeISO": "2025-08-13T20:20:51.000Z",
+    "textPlain": "This article is garbage on so many levels it's actually impressive.",
+    "parent": 44892580,
+    "depth": 1
+  },
+  {
+    "id": 44893250,
+    "by": "Mave83",
+    "timeISO": "2025-08-13T20:11:38.000Z",
+    "textPlain": "For AI, you want DAOS storage. It runs in userspace, you can use FUSE and it's the fastest storage on the planet when it comes to bandwidth (see io500).\nThere are good companies supporting it like croit, and with their software it's easy to manage as well.",
+    "parent": 44892580,
+    "depth": 1
+  },
+  {
+    "id": 44893248,
+    "by": "c0l0",
+    "timeISO": "2025-08-13T20:11:33.000Z",
+    "textPlain": "I've been in this business for a while now, and I continue to be surprised by the extent of how cloud customers are being milked by cloud platform providers. And, of course, their seemingly limitless tolerance for it.",
+    "parent": 44892580,
+    "depth": 1
+  },
+  {
+    "id": 44893133,
+    "by": "krupan",
+    "timeISO": "2025-08-13T20:02:36.000Z",
+    "textPlain": "I'm confused, is this FUSE as in Filesystem in User space?",
+    "parent": 44892580,
+    "depth": 1
+  },
+  {
+    "id": 44893227,
+    "by": "Spivak",
+    "timeISO": "2025-08-13T20:09:26.000Z",
+    "textPlain": "I'm no NFS stan but lordy the comparison table is a hit piece. NFS isn't that bad to administer, there are managed NFS services on every major cloud provider, and for on-prem every RHCE ought to know how to set up and deploy a many-reader  multi-writer replicated cluster.",
+    "parent": 44892580,
+    "depth": 1
+  },
+  {
+    "id": 44893176,
+    "by": "pstuart",
+    "timeISO": "2025-08-13T20:05:22.000Z",
+    "textPlain": "Is there really a need for a filesystem? Just pull from a bucket and it's done. Push updates to the bucket and...it's done.I see the need for \"sharing\" in giving access to the data, but not to have it represented on the filesystem (other than giving the illusion of local dev)",
+    "parent": 44892580,
+    "depth": 1
+  },
+  {
+    "id": 44893335,
+    "by": "eklitzke",
+    "timeISO": "2025-08-13T20:19:05.000Z",
+    "textPlain": "NFS can be super fast, in a past life I had to work a lot with a large distributed system of NetApp Filers (hundreds of filers located around the globe) and they have a lot of fancy logic for doing doing locale-aware caching and clustering.That said, all of the open source NFS implementations are either missing this stuff or you'd have to implement it yourself which would be a lot of work. NetApp Filers are crazy expensive and really annoying to administer. I'm not really surprised that the cloud NFS solutions are all expensive and slow because truly *needing* NFS is a very niche thing (like do you really need `flock(2)` to work in a distributed way).",
+    "parent": 44893198,
+    "depth": 2
+  },
+  {
+    "id": 44893385,
+    "by": "nickaggarwal",
+    "timeISO": "2025-08-13T20:22:40.000Z",
+    "textPlain": "With Fuse you can make it transparent for the Application, it just exposes the mount with all the files. When your application reads them, it's pulled from Object storage, while az-copy is a utility to copy it to your disk",
+    "parent": 44893267,
+    "depth": 2
+  },
+  {
+    "id": 44893240,
+    "by": "fh973",
+    "timeISO": "2025-08-13T20:10:24.000Z",
+    "textPlain": "At Quobyte (https://www.quobyte.com) we use FUSE for the client for parallel file system access.You can get dozens of GB/s out of FUSE nowadays. This will even improve in the near future as FUSE is adding io_uring support for communication with the kernel (instead of a pipe).",
+    "parent": 44893162,
+    "depth": 2
+  },
+  {
+    "id": 44893255,
+    "by": "nickaggarwal",
+    "timeISO": "2025-08-13T20:11:50.000Z",
+    "textPlain": "Yes there is AWS FSx with lustre in the blog..that might be worth checking out",
+    "parent": 44893162,
+    "depth": 2
+  },
+  {
+    "id": 44893166,
+    "by": "agcat",
+    "timeISO": "2025-08-13T20:04:54.000Z",
+    "textPlain": "This is a great idea",
+    "parent": 44893162,
+    "depth": 2
+  },
+  {
+    "id": 44893313,
+    "by": "Spooky23",
+    "timeISO": "2025-08-13T20:17:11.000Z",
+    "textPlain": "It is amazing. I just left a discussion where the protagonist is moving a legacy workload to a hyperscaler to avoid some software licensing costs. Re-implemented with cloud in mind, it would probably run $10-15k/year to run. As it stands as a lift and shift, likely something like $250k. The total value of the software licensing is <$30k.Math isn't mathing, but the salesperson implanted the idea. lol",
+    "parent": 44893248,
+    "depth": 2
+  },
+  {
+    "id": 44893252,
+    "by": "sudobash1",
+    "timeISO": "2025-08-13T20:11:44.000Z",
+    "textPlain": "The title is confusing since FUSE is not a network filesystem. It can be used as a \"frontend\" for multiple different network filesystems (as used in sshfs and smbfuse). There is even a fuse-nfs project to allow you to run a NFS client using fuse.But if you scroll down, the article lists a few specific network filesystems using FUSE that were tested (JuiceFS, goofys, etc...).I don't follow all of the reasoning, but I am not surprised at the conclusion. The newer FUSE-based network filesystems are build for modern cloud purposes, so they are more specific for the task.",
+    "parent": 44893133,
+    "depth": 2
+  },
+  {
+    "id": 44893145,
+    "by": "agcat",
+    "timeISO": "2025-08-13T20:02:59.000Z",
+    "textPlain": "Yes",
+    "parent": 44893133,
+    "depth": 2
+  },
+  {
+    "id": 44893244,
+    "by": "bayindirh",
+    "timeISO": "2025-08-13T20:11:07.000Z",
+    "textPlain": "When you want to feed your GPUs with what they need (model, weights, data), that kind of hoops slow you down exponentially. You need to be able to stream data to pinned memory, or to the GPU directly (hence GPUDirect) to keep your cards saturated.This is why systems like Weka exist, and why Lustre is still being developed and polished. These systems reach tremendous speeds. This is not an exaggeration when you connect terabits of bandwidth to these storage systems.",
+    "parent": 44893176,
+    "depth": 2
+  },
+  {
+    "id": 44893242,
+    "by": "jacobsenscott",
+    "timeISO": "2025-08-13T20:10:42.000Z",
+    "textPlain": "What if all your code is already written to use a filesystem, and you want to change the backing store from nfs to object store? Or what if you want to abstract away the specific blob store?",
+    "parent": 44893176,
+    "depth": 2
+  },
+  {
+    "id": 44893208,
+    "by": "nickaggarwal",
+    "timeISO": "2025-08-13T20:08:06.000Z",
+    "textPlain": "If you want de couple model loading and distribution, If you do it in application when you need application pulling from bucket can be slow",
+    "parent": 44893176,
+    "depth": 2
+  }
+]

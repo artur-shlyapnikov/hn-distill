@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44893042,
+    "by": "idoubtit",
+    "timeISO": "2025-08-13T19:55:12.000Z",
+    "textPlain": "A little mistake with this release: they packaged the ngx_http_acme_module for many Linux distributions, but \"forgot\" Debian stable. Oldstable and oldoldstable are listed in https://nginx.org/en/linux_packages.html (packages built today) but Debian 13 Trixie (released 4 days ago) is not there.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
     "id": 44890497,
     "by": "dizhn",
     "timeISO": "2025-08-13T16:23:35.000Z",
@@ -24,6 +32,14 @@
     "depth": 1
   },
   {
+    "id": 44891203,
+    "by": "josegonzalez",
+    "timeISO": "2025-08-13T17:22:48.000Z",
+    "textPlain": "This is great. Dokku (of which I am the maintainer) has a hokey solution for this with our letsencrypt plugin, but thats caused a slew of random issues for users. Nginx sometimes gets \"stuck\" reloading and then can't find the endpoint for some reason. The fewer moving knobs, the better.That said, its going to take quite some time for this to land in stable repositories for Ubuntu and Debian, and it doesn't (yet?) have DNS challenge support - meaning no wildcards - so I don't think it'll be useful for Dokku in the short-term at least.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
     "id": 44891078,
     "by": "stego-tech",
     "timeISO": "2025-08-13T17:10:19.000Z",
@@ -32,10 +48,34 @@
     "depth": 1
   },
   {
-    "id": 44891203,
-    "by": "josegonzalez",
-    "timeISO": "2025-08-13T17:22:48.000Z",
-    "textPlain": "This is great. Dokku (of which I am the maintainer) has a hokey solution for this with our letsencrypt plugin, but thats caused a slew of random issues for users. Nginx sometimes gets \"stuck\" reloading and then can't find the endpoint for some reason. The fewer moving knobs, the better.That said, its going to take quite some time for this to land in stable repositories for Ubuntu and Debian, and it doesn't (yet?) have DNS challenge support - meaning no wildcards - so I don't think it'll be useful for Dokku in the short-term at least.",
+    "id": 44893231,
+    "by": "breadwinner",
+    "timeISO": "2025-08-13T20:09:46.000Z",
+    "textPlain": "But can it generate self-signed certificate for intranet use? Often on the intranet you want to encrypt traffic, to prevent casual snooping using Wireshark.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44892841,
+    "by": "ilaksh",
+    "timeISO": "2025-08-13T19:38:09.000Z",
+    "textPlain": "Just to check, this means we can use some extra lines in the nginx configuration as an alternative to installing and running certbot, right?Also does it make it easier for there to be alternatives to Let's Encrypt?",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44892711,
+    "by": "ugh123",
+    "timeISO": "2025-08-13T19:27:09.000Z",
+    "textPlain": "How does something like this work for a fleet of edge services, load balancing in distinct areas, but all share a certificate.  Does each nginx instance go through the same protocol/setup steps?",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891335,
+    "by": "RagnarD",
+    "timeISO": "2025-08-13T17:34:06.000Z",
+    "textPlain": "After discovering Caddy, I don't use Nginx any longer. Just a much better development experience.",
     "parent": 44889941,
     "depth": 1
   },
@@ -48,18 +88,10 @@
     "depth": 1
   },
   {
-    "id": 44892439,
-    "by": "aoe6721",
-    "timeISO": "2025-08-13T19:02:57.000Z",
-    "textPlain": "It was introduced long time ago in Angie fork with much better support.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44891745,
-    "by": "tialaramex",
-    "timeISO": "2025-08-13T18:03:57.000Z",
-    "textPlain": "It's good to see this, it surprised me that this didn't happen to basically everything, basically immediately.I figured either somehow Let's Encrypt doesn't work out, or, everybody bakes in ACME within 2-3 years. The idea that you can buy software in 2025 which has TLS encryption but expects you to go sort out the certificate. It's like if cars had to be refuelled periodically by taking them to a weird dedicated building which is not useful to anything else rather than just charging while you're asleep like a phone and... yeah you know what I get it now. You people are weird.",
+    "id": 44892873,
+    "by": "ExoticPearTree",
+    "timeISO": "2025-08-13T19:40:20.000Z",
+    "textPlain": "It is a start. Maybe this will serve as a proof of concept that it can be done and then other protocols could be implemented.Probably like many others here, I would very much like to see Cloudflare DNS support.",
     "parent": 44889941,
     "depth": 1
   },
@@ -72,10 +104,10 @@
     "depth": 1
   },
   {
-    "id": 44891335,
-    "by": "RagnarD",
-    "timeISO": "2025-08-13T17:34:06.000Z",
-    "textPlain": "After discovering Caddy, I don't use Nginx any longer. Just a much better development experience.",
+    "id": 44891745,
+    "by": "tialaramex",
+    "timeISO": "2025-08-13T18:03:57.000Z",
+    "textPlain": "It's good to see this, it surprised me that this didn't happen to basically everything, basically immediately.I figured either somehow Let's Encrypt doesn't work out, or, everybody bakes in ACME within 2-3 years. The idea that you can buy software in 2025 which has TLS encryption but expects you to go sort out the certificate. It's like if cars had to be refuelled periodically by taking them to a weird dedicated building which is not useful to anything else rather than just charging while you're asleep like a phone and... yeah you know what I get it now. You people are weird.",
     "parent": 44889941,
     "depth": 1
   },
@@ -96,10 +128,10 @@
     "depth": 1
   },
   {
-    "id": 44891796,
-    "by": "zaik",
-    "timeISO": "2025-08-13T18:08:06.000Z",
-    "textPlain": "Is there a way to notify other services, if renewal has succeed? My XMPP server also needs to use the certificate.",
+    "id": 44892439,
+    "by": "aoe6721",
+    "timeISO": "2025-08-13T19:02:57.000Z",
+    "textPlain": "It was introduced long time ago in Angie fork with much better support.",
     "parent": 44889941,
     "depth": 1
   },
@@ -108,6 +140,14 @@
     "by": "adontz",
     "timeISO": "2025-08-13T16:31:21.000Z",
     "textPlain": "certbot has an plugin for nginx, so I'm not sure why people think is was hard to use LetsEncrypt with nginx.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891796,
+    "by": "zaik",
+    "timeISO": "2025-08-13T18:08:06.000Z",
+    "textPlain": "Is there a way to notify other services, if renewal has succeed? My XMPP server also needs to use the certificate.",
     "parent": 44889941,
     "depth": 1
   },
@@ -128,10 +168,10 @@
     "depth": 1
   },
   {
-    "id": 44892089,
-    "by": "thway15269037",
-    "timeISO": "2025-08-13T18:31:54.000Z",
-    "textPlain": "Does nginx still lock prometheus metrics and active probing behind $$$$$ (literal hundreds of thousands)? Forgot third most important thing. I think is was re-resolving upstreams.Anyway, good luck staying competitive lol. Almost everyone I knew either jumped to something more saner or in process of migrating away.",
+    "id": 44892722,
+    "by": "burnt-resistor",
+    "timeISO": "2025-08-13T19:28:36.000Z",
+    "textPlain": "Yeah, I don't want my webserver to turn into systemd and changing certificates. This is excessive functionality for something that should be handled elsewhere and drive the coordination of rolling certs.",
     "parent": 44889941,
     "depth": 1
   },
@@ -140,6 +180,14 @@
     "by": "do_not_redeem",
     "timeISO": "2025-08-13T16:32:39.000Z",
     "textPlain": "It looks like this isn't included by default with the base nginx, but requires you to install it as a separate module. Or am I wrong?https://github.com/nginx/nginx-acme",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44892089,
+    "by": "thway15269037",
+    "timeISO": "2025-08-13T18:31:54.000Z",
+    "textPlain": "Does nginx still lock prometheus metrics and active probing behind $$$$$ (literal hundreds of thousands)? Forgot third most important thing. I think is was re-resolving upstreams.Anyway, good luck staying competitive lol. Almost everyone I knew either jumped to something more saner or in process of migrating away.",
     "parent": 44889941,
     "depth": 1
   },
@@ -168,10 +216,10 @@
     "depth": 2
   },
   {
-    "id": 44891135,
-    "by": "samgranieri",
-    "timeISO": "2025-08-13T17:15:20.000Z",
-    "textPlain": "I use dns01 in my homelab with step-ca with caddy. It's a joy to use",
+    "id": 44892428,
+    "by": "uncleJoe",
+    "timeISO": "2025-08-13T19:02:02.000Z",
+    "textPlain": "no need to wait: https://en.angie.software/angie/docs/configuration/modules/h...(angie is the nginx fork lead by original nginx developers that left f5)",
     "parent": 44890666,
     "depth": 2
   },
@@ -184,10 +232,10 @@
     "depth": 2
   },
   {
-    "id": 44892428,
-    "by": "uncleJoe",
-    "timeISO": "2025-08-13T19:02:02.000Z",
-    "textPlain": "no need to wait: https://en.angie.software/angie/docs/configuration/modules/h...(angie is the nginx fork lead by original nginx developers that left f5)",
+    "id": 44891135,
+    "by": "samgranieri",
+    "timeISO": "2025-08-13T17:15:20.000Z",
+    "textPlain": "I use dns01 in my homelab with step-ca with caddy. It's a joy to use",
     "parent": 44890666,
     "depth": 2
   },
@@ -240,6 +288,14 @@
     "depth": 2
   },
   {
+    "id": 44893120,
+    "by": "triknomeister",
+    "timeISO": "2025-08-13T20:01:29.000Z",
+    "textPlain": "That's Debian's fault I guess",
+    "parent": 44893042,
+    "depth": 2
+  },
+  {
     "id": 44890654,
     "by": "elashri",
     "timeISO": "2025-08-13T16:36:52.000Z",
@@ -272,6 +328,14 @@
     "depth": 2
   },
   {
+    "id": 44891461,
+    "by": "ctxc",
+    "timeISO": "2025-08-13T17:43:13.000Z",
+    "textPlain": "Hey! Great to see you here.I tried dokku (and still am!) and it is so hard getting started.For reference,   \n- I've used Coolify successfully where it required me to create a Github app to deploy my apps on pushes to master  \n- I've written GH actions to build and deploy containers to big cloudThis page is what I get if I want to achieve the same, and it's completely a reference book approach - I feel like I'm reading an encyclopedia.   \nhttps://dokku.com/docs/deployment/methods/git/#initializing-...Contrast it with this, which is INSTANTLY useful and helps me deploy apps hot off the page:   \nhttps://coolify.io/docs/knowledge-base/git/github/integratio...What I would love to see for Dokku is tutorials for popular OSS apps and set-objective/get-it-done style getting started articles.  \nI'd LOVE an article that takes me from baremetal to a reverse proxy+a few popular apps. Because the value isn't in using Dokku, it's in using Dokku to get to that state.I'm trying to use dokku for my homeserver.Ideally I want a painless, quick way to go from \"hey here's a repo I like\" to \"deployed on my machine\" with Dokku. And then once that works, peek under the hood.",
+    "parent": 44891203,
+    "depth": 2
+  },
+  {
     "id": 44891258,
     "by": "0xbadcafebee",
     "timeISO": "2025-08-13T17:26:56.000Z",
@@ -280,11 +344,19 @@
     "depth": 2
   },
   {
-    "id": 44891461,
-    "by": "ctxc",
-    "timeISO": "2025-08-13T17:43:13.000Z",
-    "textPlain": "Hey! Great to see you here.I tried dokku (and still am!) and it is so hard getting started.For reference,   \n- I've used Coolify successfully where it required me to create a Github app to deploy my apps on pushes to master  \n- I've written GH actions to build and deploy containers to big cloudThis page is what I get if I want to achieve the same, and it's completely a reference book approach - I feel like I'm reading an encyclopedia.   \nhttps://dokku.com/docs/deployment/methods/git/#initializing-...Contrast it with this, which is INSTANTLY useful and helps me deploy apps hot off the page:   \nhttps://coolify.io/docs/knowledge-base/git/github/integratio...What I would love to see for Dokku is tutorials for popular OSS apps and set-objective/get-it-done style getting started articles.  \nI'd LOVE an article that takes me from baremetal to a reverse proxy+a few popular apps. Because the value isn't in using Dokku, it's in using Dokku to get to that state.I'm trying to use dokku for my homeserver.Ideally I want a painless, quick way to go from \"hey here's a repo I like\" to \"deployed on my machine\" with Dokku. And then once that works, peek under the hood.",
-    "parent": 44891203,
+    "id": 44892750,
+    "by": "philsnow",
+    "timeISO": "2025-08-13T19:30:56.000Z",
+    "textPlain": "You'd get rate limited pretty hard by Let's Encrypt, but if you're rolling your own acme servers you could do it this way.If you wanted to use LE though, you could use a more \"traditional\" cert renewal process somewhere out-of-band, and then provision the resulting keys/certs through whatever coordination thing you contrive (and HUP the nginxs)",
+    "parent": 44892711,
+    "depth": 2
+  },
+  {
+    "id": 44892752,
+    "by": "placatedmayhem",
+    "timeISO": "2025-08-13T19:31:02.000Z",
+    "textPlain": "They don't need to share a single cert. Multiple certificates can be, and possibly should, issued for the same address (or set of addresses). This means that one front door server that gets popped doesn't expose all connections to the larger service.Downside is obviously certificate maintenance increases, but ACME automated the vast majority of that work away.",
+    "parent": 44892711,
     "depth": 2
   },
   {
@@ -325,70 +397,6 @@
     "timeISO": "2025-08-13T16:55:23.000Z",
     "textPlain": "From the seeming consensus I was dreading setting let's encrypt up on nginx, until I did it and it was and has been... Completely straightforward and painless.Maybe if you step off the happy path it gets hairy, but I found the default certbot flow to be easy.",
     "parent": 44890604,
-    "depth": 2
-  },
-  {
-    "id": 44891085,
-    "by": "9dev",
-    "timeISO": "2025-08-13T17:10:50.000Z",
-    "textPlain": "Certbot is a utility that can only be installed via snap. That crap won’t make it to our servers, and many other people view it the same way I do.So this change is most welcome.",
-    "parent": 44890604,
-    "depth": 2
-  },
-  {
-    "id": 44890764,
-    "by": "orblivion",
-    "timeISO": "2025-08-13T16:45:21.000Z",
-    "textPlain": "From a quick look it seems like a command you use to reconfigure nginx? And that's separate from auto-renewing the cert, right?Maybe not hard, but Caddy seems like even less to think about.",
-    "parent": 44890604,
-    "depth": 2
-  },
-  {
-    "id": 44891609,
-    "by": "ankit84",
-    "timeISO": "2025-08-13T17:54:04.000Z",
-    "textPlain": "We have been using Caddy for many years now. Picked just because it has automatic cert provisioning. Caddy is really an easier alternative, secure out of the box.",
-    "parent": 44891119,
-    "depth": 2
-  },
-  {
-    "id": 44890907,
-    "by": "bhaney",
-    "timeISO": "2025-08-13T16:56:59.000Z",
-    "textPlain": "Nginx itself is mostly just a collection of modules, and it's up to the one building/packaging the nginx distribution to decide what goes in it. By default, nginx doesn't even build the ssl or gzip modules (though thankfully it does build the http module by default). Historically it only had static modules, which needed to be enabled or disabled at compile time, but now it has dynamic modules that can be compiled separately and loaded at runtime. Some older static modules now have the option of being built as dynamic modules, and new modules that can be written as dynamic modules generally are. A distro can choose to package a new dynamic module in their base nginx package, as a separate package, or not at all.In a typical distro, you would normally expect one or more virtual packages representing a profile (minimal, standard, full, etc) that depends on a package providing an nginx binary with every reasonable static-only module enabled, plus a number of separately packaged dynamic modules.",
-    "parent": 44890618,
-    "depth": 2
-  },
-  {
-    "id": 44891001,
-    "by": "timw4mail",
-    "timeISO": "2025-08-13T17:03:39.000Z",
-    "textPlain": "Yes, that is correct.",
-    "parent": 44890618,
-    "depth": 2
-  },
-  {
-    "id": 44891374,
-    "by": "bityard",
-    "timeISO": "2025-08-13T17:36:35.000Z",
-    "textPlain": "I grew up on Apache and eventually became a wizard with its configuration and myriad options and failures modes. Later on, I got semi-comfortable with nginx which was a little simpler because it did less than Apache but you could still get a fairly complex configuration going if you're running weird legacy PHP apps for example.When I tried using Caddy with something serious for the first time, I thought I was missing something. I thought, these docs must be incomplete, there has to be more to it, how does it know to do X based on Y, this is never going to work...But it DID work. There IS almost nothing to it. You set literally the bare minimum of configuration you could possibly need, and Caddy figures out the rest and uses sane defaults. The docs are VERY good, there is a nice community around it.If I had any complaint at all, it would be that the plugin system is slightly goofy.",
-    "parent": 44890493,
-    "depth": 2
-  },
-  {
-    "id": 44890619,
-    "by": "roywashere",
-    "timeISO": "2025-08-13T16:32:42.000Z",
-    "textPlain": "I like it!!! I am using Apache mod_md on Debian for personal project. That is working fine but when setting up a new site it somehow required two Apache restarts which is not super smooth",
-    "parent": 44890493,
-    "depth": 2
-  },
-  {
-    "id": 44891038,
-    "by": "orphea",
-    "timeISO": "2025-08-13T17:06:42.000Z",
-    "textPlain": "Caddy has been great for me. I don't think you should switch if your current setup works but give it a try in a new project.",
-    "parent": 44890493,
     "depth": 2
   }
 ]

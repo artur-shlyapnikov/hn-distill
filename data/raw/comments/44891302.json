@@ -1,17 +1,17 @@
 [
   {
-    "id": 44892566,
-    "by": "akersten",
-    "timeISO": "2025-08-13T19:13:31.000Z",
-    "textPlain": "I'm not really grokking the explanation in the article of why the SameSite cookie attribute doesn't fix CSRF. I thought that was the whole design intent of SameSite=Secure on an HTTPS cookie, was to fix CSRF. Can someone boil it down?The article seemingly says \"these cookies won't be sent with an unsafe request. But that doesn't fix it!\" And doesn't elaborate?",
-    "parent": 44891302,
-    "depth": 1
-  },
-  {
     "id": 44892547,
     "by": "MajesticHobo2",
     "timeISO": "2025-08-13T19:12:02.000Z",
     "textPlain": "Not sure I agree with this part:> Allow all GET, HEAD, or OPTIONS requests.> These are safe methods, and are assumed not to change state at various layers of the stack already.Plenty of apps violate this assumption and do allow GET requests to alter state.",
+    "parent": 44891302,
+    "depth": 1
+  },
+  {
+    "id": 44892566,
+    "by": "akersten",
+    "timeISO": "2025-08-13T19:13:31.000Z",
+    "textPlain": "I'm not really grokking the explanation in the article of why the SameSite cookie attribute doesn't fix CSRF. I thought that was the whole design intent of SameSite=Secure on an HTTPS cookie, was to fix CSRF. Can someone boil it down?The article seemingly says \"these cookies won't be sent with an unsafe request. But that doesn't fix it!\" And doesn't elaborate?",
     "parent": 44891302,
     "depth": 1
   },
@@ -24,10 +24,26 @@
     "depth": 1
   },
   {
+    "id": 44892748,
+    "by": "dizlexic",
+    "timeISO": "2025-08-13T19:30:41.000Z",
+    "textPlain": "none of this matters when you can just lie...",
+    "parent": 44891302,
+    "depth": 1
+  },
+  {
+    "id": 44893038,
+    "by": "chrisfosterelli",
+    "timeISO": "2025-08-13T19:54:51.000Z",
+    "textPlain": "IMO apps that do this have a bug, and possibly a security one. This causes issues with prefetching, bot traffic, caching, CSRF, and just plain violates HTTP standards.",
+    "parent": 44892547,
+    "depth": 2
+  },
+  {
     "id": 44892619,
     "by": "MajesticHobo2",
     "timeISO": "2025-08-13T19:18:34.000Z",
-    "textPlain": "The problem boils down to the lack of equivalence between a site and an origin. The article explains how https://app.example.com and https://marketing.example.com are the same site but not the same origin. You don't want marketing.example.com to be able to make requests to app.example.com with your authentication cookies, but SameSite wouldn't prevent that.",
+    "textPlain": "The problem boils down to the lack of equivalence between a site and an origin. The article explains how https://app.example.com and https://marketing.example.com may sit at very different trust levels, but are considered the same site by the browser. You don't want https://marketing.example.com to be able to make requests to https://app.example.com with your authentication cookies, but SameSite wouldn't prevent that.",
     "parent": 44892566,
     "depth": 2
   },

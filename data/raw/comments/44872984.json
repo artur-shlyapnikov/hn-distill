@@ -1,0 +1,18 @@
+[
+  {
+    "id": 44893046,
+    "by": "skerit",
+    "timeISO": "2025-08-13T19:55:30.000Z",
+    "textPlain": "I read the introductory post but I still don't quite understand",
+    "parent": 44872984,
+    "depth": 1
+  },
+  {
+    "id": 44893319,
+    "by": "daemonologist",
+    "timeISO": "2025-08-13T20:17:34.000Z",
+    "textPlain": "A re-ranker takes a query and a chunk of text and assigns them a relevance score according to how well the text answers the query.  (Generally - in theory you could have some other metric of relevance.)They're called \"re\"rankers specifically because they're usually downstream of a faster but less accurate relevance algorithm (some kind of full text search and/or vector similarity) in a search pipeline.  Rerankers have to run from scratch on every query-document pair and are relatively computationally expensive, and so are practical to run only on a small number of documents.An \"instruction following\" reranker basically just has a third input which is intended to be used kind of like a system prompt for an LLM - to provide additional context to all comparisons.",
+    "parent": 44893046,
+    "depth": 2
+  }
+]
