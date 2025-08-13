@@ -16,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44881390,
-    "by": "kwillets",
-    "timeISO": "2025-08-12T20:24:31.000Z",
-    "textPlain": "Another chapter of the slowly-reimplementing-Vertica saga.It's becoming clear that merge trees and compaction need to be addressed next, after delete vectors brought them onstage.Vertica will actually look up the equality keys in a relevant projection if it exists, and then use the column values in the matching rows to equality-delete from the other projections; it's fairly good at avoiding table scans.",
+    "id": 44881024,
+    "by": "datadrivenangel",
+    "timeISO": "2025-08-12T19:45:07.000Z",
+    "textPlain": "Change Data Capture is hard if you fall off the happy path, and data lakes won't save you.",
     "parent": 44880081,
     "depth": 1
   },
@@ -32,10 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44881024,
-    "by": "datadrivenangel",
-    "timeISO": "2025-08-12T19:45:07.000Z",
-    "textPlain": "Change Data Capture is hard if you fall off the happy path, and data lakes won't save you.",
+    "id": 44881390,
+    "by": "kwillets",
+    "timeISO": "2025-08-12T20:24:31.000Z",
+    "textPlain": "Another chapter of the slowly-reimplementing-Vertica saga.It's becoming clear that merge trees and compaction need to be addressed next, after delete vectors brought them onstage.Vertica will actually look up the equality keys in a relevant projection if it exists, and then use the column values in the matching rows to equality-delete from the other projections; it's fairly good at avoiding table scans.",
     "parent": 44880081,
     "depth": 1
   },
@@ -48,11 +48,11 @@
     "depth": 1
   },
   {
-    "id": 44883209,
-    "by": "datadrivenangel",
-    "timeISO": "2025-08-13T00:02:26.000Z",
-    "textPlain": "Data processing tools had a pricing problem. The Big Data Revolution was google and other companies realizing that commodity hardware had gotten so good that you could throw 100x as much compute at a processing job and it would still be cheaper than Oracle, Vertica, Teradata, and SQL Server.As an industry, we keep forgetting these things and reinventing the wheel because there is more money to be made squeezing enterprises than providing widely available sustainable software for a fair price and than losing mindshare to the next generation of tool and eventually getting sold for parts. It's a sad dynamic",
-    "parent": 44881390,
+    "id": 44883212,
+    "by": "UltraSane",
+    "timeISO": "2025-08-13T00:02:46.000Z",
+    "textPlain": "Could you explain what this means in more detail?",
+    "parent": 44881024,
     "depth": 2
   },
   {
@@ -72,11 +72,19 @@
     "depth": 2
   },
   {
-    "id": 44883212,
-    "by": "UltraSane",
-    "timeISO": "2025-08-13T00:02:46.000Z",
-    "textPlain": "Could you explain what this means in more detail?",
-    "parent": 44881024,
+    "id": 44883209,
+    "by": "datadrivenangel",
+    "timeISO": "2025-08-13T00:02:26.000Z",
+    "textPlain": "Data processing tools had a pricing problem. The Big Data Revolution was google and other companies realizing that commodity hardware had gotten so good that you could throw 100x as much compute at a processing job and it would still be cheaper than Oracle, Vertica, Teradata, and SQL Server.As an industry, we keep forgetting these things and reinventing the wheel because there is more money to be made squeezing enterprises than providing widely available sustainable software for a fair price and than losing mindshare to the next generation of tool and eventually getting sold for parts. It's a sad dynamic",
+    "parent": 44881390,
+    "depth": 2
+  },
+  {
+    "id": 44884324,
+    "by": "salmonellaeater",
+    "timeISO": "2025-08-13T03:13:34.000Z",
+    "textPlain": "It's the wrong architecture from a dependency management perspective. Directly importing a table into Iceberg allows analytics consumers to take dependencies on it. This means the Postgres database schema can't be changed without breaking those consumers. This is effectively a multi-tenant database with extra steps.This is not to say that this architecture isn't salvageable - if the only consumer of the Iceberg table copy is a e.g. view that downstream consumers must use, then it's easier to change the Postgres schema, as only the view must be adjusted. My experience with copying tables directly to a data warehouse using CDC, though, suggests it's hard to prevent erosion of the architecture as high-urgency projects start taking direct dependencies to save time.",
+    "parent": 44882358,
     "depth": 2
   },
   {

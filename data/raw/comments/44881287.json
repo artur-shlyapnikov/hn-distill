@@ -16,26 +16,18 @@
     "depth": 1
   },
   {
+    "id": 44884282,
+    "by": "themafia",
+    "timeISO": "2025-08-13T03:06:31.000Z",
+    "textPlain": "I'm not in love with \"delay\" as a property name.  I think \"expected\" might be more appropriate.  I also don't think it should be a integer meant to be number of seconds.  You might be better off with ISO8601 datetimes and intervals which would give you greater flexibility in the meaning of this field.I also think \"when\" is a bad property name.  I think \"modified\" might be more appropriate.  That allows for the event to be updated more than once if necessary as well as allowing events to signal that they expect to trigger more than once.Anyways..  neat idea.",
+    "parent": 44881287,
+    "depth": 1
+  },
+  {
     "id": 44882904,
     "by": "arendtio",
     "timeISO": "2025-08-12T23:19:27.000Z",
     "textPlain": "The big question here is who defines the events. I mean, the protocol suggests that the sender should describe the event and offer a simple button for it.But in reality, the receiver knows a lot more about what he is interested in. Some people might want to get an update for the next blog post, while others may be interested in updates for the next blog post that completes a particular series, and so on.When the sender defines the events, you can use a new protocol; however, if the receiver determines the events, all you need is a client with a rules engine (e.g., IFTTT).",
-    "parent": 44881287,
-    "depth": 1
-  },
-  {
-    "id": 44883616,
-    "by": "tbeseda",
-    "timeISO": "2025-08-13T01:11:13.000Z",
-    "textPlain": "You could probably consider a broader interpretation of ActivityPub for something like this; or the underlying ActivityStreams format.It was conceived for social networking, but social networking doesn't have to be just 140 characters in a timeline.https://www.w3.org/TR/activitypub/",
-    "parent": 44881287,
-    "depth": 1
-  },
-  {
-    "id": 44883229,
-    "by": "m82labs",
-    "timeISO": "2025-08-13T00:05:04.000Z",
-    "textPlain": "I guess my first thought here is that I would just implement this on my blog platform as a series specific RSS feed. Generating an RSS feed per series and even per tag would be trivial to implement and make for a decent user experience. IMO.",
     "parent": 44881287,
     "depth": 1
   },
@@ -48,10 +40,26 @@
     "depth": 1
   },
   {
+    "id": 44883229,
+    "by": "m82labs",
+    "timeISO": "2025-08-13T00:05:04.000Z",
+    "textPlain": "I guess my first thought here is that I would just implement this on my blog platform as a series specific RSS feed. Generating an RSS feed per series and even per tag would be trivial to implement and make for a decent user experience. IMO.",
+    "parent": 44881287,
+    "depth": 1
+  },
+  {
     "id": 44882006,
     "by": "maxwellg",
     "timeISO": "2025-08-12T21:28:44.000Z",
     "textPlain": "This is conceptually extremely similar to the Web Push API: https://web.dev/articles/push-notifications-web-push-protoco...You'd need something at the browser/UA level to unsubscribe or to make the subscription exist for only a single message. Bad content publishers have taught us to never allow Web Push notifications since they always get inundated with marketing and other nonsense - being able to bake protections against that into the spec could be interesting.",
+    "parent": 44881287,
+    "depth": 1
+  },
+  {
+    "id": 44883616,
+    "by": "tbeseda",
+    "timeISO": "2025-08-13T01:11:13.000Z",
+    "textPlain": "You could probably consider a broader interpretation of ActivityPub for something like this; or the underlying ActivityStreams format.It was conceived for social networking, but social networking doesn't have to be just 140 characters in a timeline.https://www.w3.org/TR/activitypub/",
     "parent": 44881287,
     "depth": 1
   },
@@ -88,6 +96,14 @@
     "depth": 1
   },
   {
+    "id": 44882147,
+    "by": "0xCMP",
+    "timeISO": "2025-08-12T21:45:03.000Z",
+    "textPlain": "I want this to exist, but so few would adopt it that would make it mainstream/normal to use because a lot of those places rely on getting your email to tell you about other things.This would be fairly limited to blogs which have no intention of writing a newsletter or consistently enough to merit subscribing via RSS.Although I'd love for everything I just said to turn out to be false.",
+    "parent": 44881287,
+    "depth": 1
+  },
+  {
     "id": 44883110,
     "by": "samantha-wiki",
     "timeISO": "2025-08-12T23:47:58.000Z",
@@ -104,18 +120,18 @@
     "depth": 1
   },
   {
-    "id": 44882147,
-    "by": "0xCMP",
-    "timeISO": "2025-08-12T21:45:03.000Z",
-    "textPlain": "I want this to exist, but so few would adopt it that would make it mainstream/normal to use because a lot of those places rely on getting your email to tell you about other things.This would be fairly limited to blogs which have no intention of writing a newsletter or consistently enough to merit subscribing via RSS.Although I'd love for everything I just said to turn out to be false.",
-    "parent": 44881287,
-    "depth": 1
-  },
-  {
     "id": 44881909,
     "by": "SethMLarson",
     "timeISO": "2025-08-12T21:17:59.000Z",
     "textPlain": "Filtered RSS with some automation (ie: to delete the subscription) will do this for you.",
+    "parent": 44881287,
+    "depth": 1
+  },
+  {
+    "id": 44883014,
+    "by": "cigarette66",
+    "timeISO": "2025-08-12T23:34:47.000Z",
+    "textPlain": "Apart from the technical implementation I'm surprised the writeup didn't catch the flaws in such a setup.The notifyer has no obligation to actually notify correctly. They can spam some advertising site or malicious site.The notifee (?) has no way of checking that the notifyer has fulfilled their promise.For example I could say 'let me know' when an update on the new cheese factory happens. Then the wait is too long so the notifyer does a 'semi fulfillment' of the promise. The notifee clicks, is disappointed and has nothing more to vote with since they never had something like a subscription in the first place.",
     "parent": 44881287,
     "depth": 1
   },
@@ -136,14 +152,6 @@
     "depth": 1
   },
   {
-    "id": 44883014,
-    "by": "cigarette66",
-    "timeISO": "2025-08-12T23:34:47.000Z",
-    "textPlain": "Apart from the technical implementation I'm surprised the writeup didn't catch the flaws in such a setup.The notifyer has no obligation to actually notify correctly. They can spam some advertising site or malicious site.The notifee (?) has no way of checking that the notifyer has fulfilled their promise.For example I could say 'let me know' when an update on the new cheese factory happens. Then the wait is too long so the notifyer does a 'semi fulfillment' of the promise. The notifee clicks, is disappointed and has nothing more to vote with since they never had something like a subscription in the first place.",
-    "parent": 44881287,
-    "depth": 1
-  },
-  {
     "id": 44881934,
     "by": "octagons",
     "timeISO": "2025-08-12T21:20:32.000Z",
@@ -160,18 +168,18 @@
     "depth": 1
   },
   {
-    "id": 44881895,
-    "by": "rambambram",
-    "timeISO": "2025-08-12T21:16:48.000Z",
-    "textPlain": "I would prefer to do something like the author described with RSS, but nice thinking and interesting concept.Also a nice blog in general, I subscribed with RSS. ;)",
+    "id": 44881866,
+    "by": "stormbeard",
+    "timeISO": "2025-08-12T21:14:18.000Z",
+    "textPlain": "Isn't this just RSS?",
     "parent": 44881287,
     "depth": 1
   },
   {
-    "id": 44882333,
-    "by": "Martin_Silenus",
-    "timeISO": "2025-08-12T22:06:29.000Z",
-    "textPlain": "RSS for lazy people who can’t bother filtering their RSS reader is probably a very promising concept.",
+    "id": 44881895,
+    "by": "rambambram",
+    "timeISO": "2025-08-12T21:16:48.000Z",
+    "textPlain": "I would prefer to do something like the author described with RSS, but nice thinking and interesting concept.Also a nice blog in general, I subscribed with RSS. ;)",
     "parent": 44881287,
     "depth": 1
   },
@@ -184,10 +192,10 @@
     "depth": 1
   },
   {
-    "id": 44881866,
-    "by": "stormbeard",
-    "timeISO": "2025-08-12T21:14:18.000Z",
-    "textPlain": "Isn't this just RSS?",
+    "id": 44882333,
+    "by": "Martin_Silenus",
+    "timeISO": "2025-08-12T22:06:29.000Z",
+    "textPlain": "RSS for lazy people who can’t bother filtering their RSS reader is probably a very promising concept.",
     "parent": 44881287,
     "depth": 1
   },
@@ -198,6 +206,14 @@
     "textPlain": "Isn’t this exactly handled with IFTTT?I know I’ve used IFTTT for precisely that because it’s the simplest and often free (when no major hardware installation is needed) off the shelf way to do itOr is the author asking that a service host user defined notifications?If the latter that’s a different design patternThe http protocols already allow for this, if that’s the case then the op just seems like he wants other people to instrument their systems for his desired interface type (user defined notifications)",
     "parent": 44881287,
     "depth": 1
+  },
+  {
+    "id": 44884258,
+    "by": "themafia",
+    "timeISO": "2025-08-13T03:02:33.000Z",
+    "textPlain": "What if you want to change the URL between the time you choose the name and the time you decide to actually publish it?  How do you resynchronize those clients?  Or are you forced to now serve a redirect as well?",
+    "parent": 44881728,
+    "depth": 2
   },
   {
     "id": 44881846,
@@ -248,14 +264,6 @@
     "depth": 2
   },
   {
-    "id": 44883587,
-    "by": "hoistbypetard",
-    "timeISO": "2025-08-13T01:06:42.000Z",
-    "textPlain": "The protocol is not being specified. Requirements for such a protocol are being proposed. Though my assumption from reading these requirements would be that the user-agent would be performing an HTTP GET request.Whether proposing requirements for a protocol without proposing a specification is ragebait or not has more to do with the individual reading the proposal than the proposal itself; I did not find it the least bit enraging.",
-    "parent": 44883287,
-    "depth": 2
-  },
-  {
     "id": 44883026,
     "by": "p1necone",
     "timeISO": "2025-08-12T23:37:08.000Z",
@@ -264,19 +272,19 @@
     "depth": 2
   },
   {
+    "id": 44883587,
+    "by": "hoistbypetard",
+    "timeISO": "2025-08-13T01:06:42.000Z",
+    "textPlain": "The protocol is not being specified. Requirements for such a protocol are being proposed. Though my assumption from reading these requirements would be that the user-agent would be performing an HTTP GET request.Whether proposing requirements for a protocol without proposing a specification is ragebait or not has more to do with the individual reading the proposal than the proposal itself; I did not find it the least bit enraging.",
+    "parent": 44883287,
+    "depth": 2
+  },
+  {
     "id": 44881989,
     "by": "IshKebab",
     "timeISO": "2025-08-12T21:26:20.000Z",
     "textPlain": "Webhooks are not relevant to this use case.",
     "parent": 44881896,
-    "depth": 2
-  },
-  {
-    "id": 44882808,
-    "by": "wpm",
-    "timeISO": "2025-08-12T23:07:03.000Z",
-    "textPlain": "Well, yeah, who wants to sit and dick around with filters? I just want to know when \"Part 3\" is posted or whatever. I don't want to \"subscribe\" I don't need a feed of every thing they've ever written being filtered, just go fetch \"is part 3 up yet\".I could sign up for e-mails too and just use mailbox filters. I bet something for \"lazy\" people who have better things to do than sit and dick around with their mailbox filters is a promising concept.\"wow part 2 was good, can't wait for part 3!\" clicks Let Me Know.vs\"Wow part 2 was good, let me subscribe to the RSS feed and go somewhere else and figure out a filter for part 3\"If I gotta go somewhere else, switch apps, whatever, I'm not interested, and it's not gonna happen. My brain has already moved on.",
-    "parent": 44882333,
     "depth": 2
   },
   {
@@ -293,6 +301,14 @@
     "timeISO": "2025-08-12T21:26:54.000Z",
     "textPlain": "No.",
     "parent": 44881866,
+    "depth": 2
+  },
+  {
+    "id": 44882808,
+    "by": "wpm",
+    "timeISO": "2025-08-12T23:07:03.000Z",
+    "textPlain": "Well, yeah, who wants to sit and dick around with filters? I just want to know when \"Part 3\" is posted or whatever. I don't want to \"subscribe\" I don't need a feed of every thing they've ever written being filtered, just go fetch \"is part 3 up yet\".I could sign up for e-mails too and just use mailbox filters. I bet something for \"lazy\" people who have better things to do than sit and dick around with their mailbox filters is a promising concept.\"wow part 2 was good, can't wait for part 3!\" clicks Let Me Know.vs\"Wow part 2 was good, let me subscribe to the RSS feed and go somewhere else and figure out a filter for part 3\"If I gotta go somewhere else, switch apps, whatever, I'm not interested, and it's not gonna happen. My brain has already moved on.",
+    "parent": 44882333,
     "depth": 2
   }
 ]
