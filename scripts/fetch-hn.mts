@@ -86,7 +86,7 @@ export function normalizeStory(raw: HnItemRaw): NormalizedStory {
   return {
     id: raw.id,
     title,
-    url: normalizeUrl(raw.url),
+    url: normalizeUrl(raw.url) ?? null,
     by,
     timeISO: new Date(timeMs).toISOString(),
     commentIds: raw.kids ?? [],
@@ -168,7 +168,7 @@ async function processCommentItem(
 
   const textPlainRaw = htmlToPlain(item.text ?? "");
   if (!textPlainRaw) {
-    return { normalized: undefined, kids, depthCurrent: depth, skip: true };
+    return { kids, depthCurrent: depth, skip: true };
   }
   const textPlain = clamp(textPlainRaw, env.MAX_BODY_CHARS);
   const normalized: NormalizedComment = {

@@ -55,7 +55,7 @@ export async function readAggregates(storyIds: number[]): Promise<AggregatedItem
 
     const postSummary = await readJsonSafeOr(pathFor.postSummary(id), PostSummarySchema.nullable());
     const commentsSummary = await readJsonSafeOr(pathFor.commentsSummary(id), CommentsSummarySchema.nullable());
-    const fb = fallbackFromRaw(story, comments);
+    const fb = fallbackFromRaw(story, comments ?? []);
 
     let domain: string | undefined;
     if (story.url) {
@@ -75,7 +75,7 @@ export async function readAggregates(storyIds: number[]): Promise<AggregatedItem
       postSummary: postSummary?.summary ?? undefined,
       commentsSummary: commentsSummary?.summary ?? fb.commentsSummary,
       score: story.score,
-      commentsCount: story.descendants ?? comments.length,
+      commentsCount: story.descendants ?? (comments?.length ?? 0),
       hnUrl: HN.itemUrl(story.id),
       domain,
     };

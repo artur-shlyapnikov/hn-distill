@@ -14,7 +14,7 @@ function makeMockHttp(items: Record<number, unknown>): Services & { calls: numbe
         if (!m) {
           return null;
         }
-        const id = Number(m.groups?.id);
+        const id = Number(m.groups?.["id"]);
         return (items[id] as T) ?? null;
       },
     } as unknown as HttpClient,

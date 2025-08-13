@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { clamp, htmlToPlain, seemsEnglish } from "../utils/text.ts";
+import { clamp, htmlToPlain } from "../utils/text.ts";
 
 describe("utils/text", () => {
   test("htmlToPlain strips tags, decodes entities, normalizes breaks", () => {
@@ -23,12 +23,5 @@ describe("utils/text", () => {
   test("clamp respects length", () => {
     expect(clamp("abc", 2)).toBe("ab");
     expect(clamp("abc", 3)).toBe("abc");
-  });
-
-  test("seemsEnglish detects English vs Cyrillic and handles mixed", () => {
-    expect(seemsEnglish("This is English.")).toBeTrue();
-    expect(seemsEnglish("Это русский текст")).toBeFalse();
-    expect(seemsEnglish("")).toBeFalse();
-    expect(seemsEnglish("Hello мир")).toBeFalse();
   });
 });

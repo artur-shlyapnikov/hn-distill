@@ -131,7 +131,7 @@ export function preserveMarkdownWhitespace(content: string): string {
   const lines = normalized.split("\n").map((line) => {
     // Find trailing whitespace by looking from the end
     let endIndex = line.length;
-    while (endIndex > 0 && /\s/u.test(line[endIndex - 1])) {
+    while (endIndex > 0 && line[endIndex - 1] && /\s/u.test(line[endIndex - 1]!)) {
       endIndex--;
     }
 

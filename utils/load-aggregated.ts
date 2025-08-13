@@ -23,7 +23,7 @@ export function loadAggregated(pathname: string): AggregatedData {
     function getItems(u: unknown): AggregatedItem[] {
       if (typeof u === "object" && u !== null && "items" in u) {
         const object = u as Record<string, unknown>;
-        const maybeItems = object.items;
+        const maybeItems = object["items"];
         if (Array.isArray(maybeItems)) {
           return maybeItems as AggregatedItem[];
         }
@@ -34,7 +34,7 @@ export function loadAggregated(pathname: string): AggregatedData {
     function getUpdatedISO(u: unknown): string {
       if (typeof u === "object" && u !== null && "updatedISO" in u) {
         const object = u as Record<string, unknown>;
-        return typeof object.updatedISO === "string" ? object.updatedISO : "—";
+        return typeof object["updatedISO"] === "string" ? object["updatedISO"] : "—";
       }
       return "—";
     }

@@ -13,7 +13,7 @@ describe("scripts/summarize prompt builders", () => {
       timeISO: new Date().toISOString(),
       commentIds: [],
     };
-    const promptEmpty = await buildPostPrompt(story, null);
+    const promptEmpty = await buildPostPrompt(story, undefined);
     expect(promptEmpty).toBe(""); // no article -> no prompt
 
     const md = "# Hello\nThis is article body.";

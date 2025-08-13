@@ -76,8 +76,8 @@ export function htmlToPlain(input: string, options?: { paragraphBreak?: string }
     let replaced = false;
     lines[index] = line.replace(/(?<before>\w)\s+(?<after>\w)/u, (_m, ...args) => {
       const groups = args.at(-1) as Record<string, string>;
-      const a = groups.before;
-      const b = groups.after;
+      const a = groups["before"];
+      const b = groups["after"];
       if (replaced) {
         return `${a} ${b}`;
       }
@@ -99,15 +99,4 @@ export function htmlToPlain(input: string, options?: { paragraphBreak?: string }
 
 export function clamp(s: string, n: number): string {
   return s.length > n ? s.slice(0, n) : s;
-}
-
-export function seemsEnglish(s: string): boolean {
-  // eslint-disable-next-line regexp/unicode-escape, unicorn/escape-case
-  const letters = s.match(/[A-Za-z\u{401}\u{410}-\u044f\u0451]/gu) ?? [];
-  if (letters.length === 0) {
-    return false;
-  }
-  const latin = letters.filter((ch) => /[A-Za-z]/u.test(ch)).length;
-  const cyr = letters.length - latin;
-  return cyr === 0 && latin / letters.length > 0.8;
 }
