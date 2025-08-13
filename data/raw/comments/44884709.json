@@ -1,13 +1,5 @@
 [
   {
-    "id": 44885539,
-    "by": "42lux",
-    "timeISO": "2025-08-13T07:21:50.000Z",
-    "textPlain": ">> This has led to multiple “maintenance” versions in a short time, confusing users and wasting developer time, just to work around infrastructure issues outside the developer’s control.What an entitled conclusion.",
-    "parent": 44884709,
-    "depth": 1
-  },
-  {
     "id": 44885476,
     "by": "karteum",
     "timeISO": "2025-08-13T07:11:24.000Z",
@@ -20,6 +12,14 @@
     "by": "jchw",
     "timeISO": "2025-08-13T05:45:06.000Z",
     "textPlain": "Apparently it was fixed upstream by Google?https://gitlab.com/fdroid/admin/-/issues/593#note_2681207153Not sure how long it will take to get resolved but that thread seems reassuring even if there isn't a direct source that it was fixed.",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44884781,
+    "by": "nativeforks",
+    "timeISO": "2025-08-13T05:01:18.000Z",
+    "textPlain": "References:F-Droid admin issue: https://gitlab.com/fdroid/admin/-/issues/593Catima example: https://github.com/CatimaLoyalty/Android/issues/2608MBCompass case: https://github.com/CompassMB/MBCompass/issues/88",
     "parent": 44884709,
     "depth": 1
   },
@@ -40,50 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44884781,
-    "by": "nativeforks",
-    "timeISO": "2025-08-13T05:01:18.000Z",
-    "textPlain": "References:F-Droid admin issue: https://gitlab.com/fdroid/admin/-/issues/593Catima example: https://github.com/CatimaLoyalty/Android/issues/2608MBCompass case: https://github.com/CompassMB/MBCompass/issues/88",
-    "parent": 44884709,
-    "depth": 1
-  },
-  {
-    "id": 44885181,
-    "by": "micw",
-    "timeISO": "2025-08-13T06:19:36.000Z",
-    "textPlain": "As far as I can see, sse4.1 has been introduced in CPUs in 2011. That's more than 10 years ago. I wonder why such old servers are still in use. I'd assume that a modern CPU would do the same amount of work with a fraction of energy so that it does not even make economical sense to run such outdated hardware.Does anyone know the numbers of build servers and the specs?",
-    "parent": 44884709,
-    "depth": 1
-  },
-  {
     "id": 44885138,
     "by": "yjftsjthsd-h",
     "timeISO": "2025-08-13T06:13:50.000Z",
     "textPlain": "> Google’s new aapt2 binary in AGP 8.12.0Given F-Droid's emphasis on isolating and protecting their build environment, I'm kind of surprised that they're just using upstream binaries and not building from source.",
-    "parent": 44884709,
-    "depth": 1
-  },
-  {
-    "id": 44885018,
-    "by": "roywashere",
-    "timeISO": "2025-08-13T05:47:37.000Z",
-    "textPlain": "This is sort of like a bug I hit last year when the mysql docker container suddenly started requiring x86-64-v2 after a patch level upgrade and failed to start: https://github.com/docker-library/mysql/issues/1055",
-    "parent": 44884709,
-    "depth": 1
-  },
-  {
-    "id": 44884889,
-    "by": "wtallis",
-    "timeISO": "2025-08-13T05:22:22.000Z",
-    "textPlain": "It seems quite implausible that F-Droid is actually running on hardware that predates those instruction set extensions. They're seeing wider adoption by default these days precisely because hardware which doesn't support them is getting very rare, especially in servers still in production use. Are you sure this isn't simply a matter of F-Droid using VMs that are configured to not expose those instructions as supported?",
-    "parent": 44884709,
-    "depth": 1
-  },
-  {
-    "id": 44884926,
-    "by": "o11c",
-    "timeISO": "2025-08-13T05:29:49.000Z",
-    "textPlain": "Note: the underlying blame here fundamentally belongs to whoever built AGP / Gradle with non-universal flags, then distributed it.It's fine to ship binaries with hard-coded cpu flag requirements if you control the universe, but otherwise not, especially if you are in an ecosystem where you make it hard for users to rebuild everything from source.",
     "parent": 44884709,
     "depth": 1
   },
@@ -96,10 +56,42 @@
     "depth": 1
   },
   {
+    "id": 44884889,
+    "by": "wtallis",
+    "timeISO": "2025-08-13T05:22:22.000Z",
+    "textPlain": "It seems quite implausible that F-Droid is actually running on hardware that predates those instruction set extensions. They're seeing wider adoption by default these days precisely because hardware which doesn't support them is getting very rare, especially in servers still in production use. Are you sure this isn't simply a matter of F-Droid using VMs that are configured to not expose those instructions as supported?",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44885018,
+    "by": "roywashere",
+    "timeISO": "2025-08-13T05:47:37.000Z",
+    "textPlain": "This is sort of like a bug I hit last year when the mysql docker container suddenly started requiring x86-64-v2 after a patch level upgrade and failed to start: https://github.com/docker-library/mysql/issues/1055",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44884926,
+    "by": "o11c",
+    "timeISO": "2025-08-13T05:29:49.000Z",
+    "textPlain": "Note: the underlying blame here fundamentally belongs to whoever built AGP / Gradle with non-universal flags, then distributed it.It's fine to ship binaries with hard-coded cpu flag requirements if you control the universe, but otherwise not, especially if you are in an ecosystem where you make it hard for users to rebuild everything from source.",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
     "id": 44884847,
     "by": "trenchpilgrim",
     "timeISO": "2025-08-13T05:17:05.000Z",
     "textPlain": "I thought SSE 4.1 dates back to 2008 or so?",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44885181,
+    "by": "micw",
+    "timeISO": "2025-08-13T06:19:36.000Z",
+    "textPlain": "As far as I can see, sse4.1 has been introduced in CPUs in 2011. That's more than 10 years ago. I wonder why such old servers are still in use. I'd assume that a modern CPU would do the same amount of work with a fraction of energy so that it does not even make economical sense to run such outdated hardware.Does anyone know the numbers of build servers and the specs?",
     "parent": 44884709,
     "depth": 1
   },
@@ -124,6 +116,14 @@
     "by": "nicman23",
     "timeISO": "2025-08-13T05:37:04.000Z",
     "textPlain": "wtf they cannot be still running opterons. it was to be that they are using qemu with g3 as a cpu profile.. right?",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44885539,
+    "by": "42lux",
+    "timeISO": "2025-08-13T07:21:50.000Z",
+    "textPlain": ">> This has led to multiple “maintenance” versions in a short time, confusing users and wasting developer time, just to work around infrastructure issues outside the developer’s control.What an entitled conclusion.",
     "parent": 44884709,
     "depth": 1
   },
@@ -165,6 +165,14 @@
     "timeISO": "2025-08-13T05:47:06.000Z",
     "textPlain": "Still haven't. Currently, most of the devs aren't aware of this underlying issue!",
     "parent": 44885007,
+    "depth": 2
+  },
+  {
+    "id": 44884851,
+    "by": "benrutter",
+    "timeISO": "2025-08-13T05:17:35.000Z",
+    "textPlain": "The Catima thread makes FDroid sound like a really difficult commmunity to work with. Although I'm basing this on one person's comment and other people agreeing, not on any knowledge or experience.> But this is like everything with F-Droid: everything always falls on a deaf man's ears. So I would rather not waste more time talking to a brick wall. If I had the feeling it was possible to improve F-Droid by raising issues and trying to discuss how to solve them I wouldn't have left the project out of frustration after years of putting so much time and energy into it.",
+    "parent": 44884781,
     "depth": 2
   },
   {
@@ -216,43 +224,19 @@
     "depth": 2
   },
   {
-    "id": 44884851,
-    "by": "benrutter",
-    "timeISO": "2025-08-13T05:17:35.000Z",
-    "textPlain": "The Catima thread makes FDroid sound like a really difficult commmunity to work with. Although I'm basing this on one person's comment and other people agreeing, not on any knowledge or experience.> But this is like everything with F-Droid: everything always falls on a deaf man's ears. So I would rather not waste more time talking to a brick wall. If I had the feeling it was possible to improve F-Droid by raising issues and trying to discuss how to solve them I wouldn't have left the project out of frustration after years of putting so much time and energy into it.",
-    "parent": 44884781,
+    "id": 44885083,
+    "by": "maxloh",
+    "timeISO": "2025-08-13T06:02:59.000Z",
+    "textPlain": "There is no point for Google to push planned obsolescence on the PC or server space. They don't have a market there.",
+    "parent": 44885022,
     "depth": 2
   },
   {
-    "id": 44885536,
-    "by": "adrian_b",
-    "timeISO": "2025-08-13T07:21:09.000Z",
-    "textPlain": "It has been introduced in Intel Penryn, in November 2007.However the AMD CPUs did not implement it until Bulldozer, in mid 2011.While they lacked the many additional instructions provided by Bulldozer, also including AVX and FMA, for many applications the older Opteron CPUs were significantly faster than the Bulldozer-based CPUs, so there were few incentives for upgrading them, before the launch of AMD Epyc in mid 2017.",
-    "parent": 44885181,
-    "depth": 2
-  },
-  {
-    "id": 44885380,
-    "by": "cjaackie",
-    "timeISO": "2025-08-13T06:57:15.000Z",
-    "textPlain": "I haven’t seen the real answer that I suspect here - the build servers are that one dual socket AMD board which runs open firmware and has no ME/PSP .",
-    "parent": 44885181,
-    "depth": 2
-  },
-  {
-    "id": 44885308,
-    "by": "LukeShu",
-    "timeISO": "2025-08-13T06:42:53.000Z",
-    "textPlain": "I was going to say that I assume that the reason for such old CPUs is the ability to use Canoeboot/GNU Boot.  But you absolutely can put an SSE4.2 CPU in a KGPE-D16 motherboard.  So IDK.",
-    "parent": 44885181,
-    "depth": 2
-  },
-  {
-    "id": 44885282,
-    "by": "heavyset_go",
-    "timeISO": "2025-08-13T06:38:26.000Z",
-    "textPlain": "Hardware after the first couple of generations of x86_64 muliticore processors are perfectly capable machines to use as servers, even for tasks you want to put off to a build farm.",
-    "parent": 44885181,
+    "id": 44885304,
+    "by": "tonyhart7",
+    "timeISO": "2025-08-13T06:42:33.000Z",
+    "textPlain": "\"If I had the time, I'd try to compile a binary of it that will run on Win95 just to give my fuckings to the planned obsolescence crowd\"The idea that not supporting a 20+ year old system is \"planned obsolescence\" is a bit shallow",
+    "parent": 44885022,
     "depth": 2
   },
   {
@@ -272,22 +256,6 @@
     "depth": 2
   },
   {
-    "id": 44885304,
-    "by": "tonyhart7",
-    "timeISO": "2025-08-13T06:42:33.000Z",
-    "textPlain": "\"If I had the time, I'd try to compile a binary of it that will run on Win95 just to give my fuckings to the planned obsolescence crowd\"The idea that not supporting a 20+ year old system is \"planned obsolescence\" is a bit shallow",
-    "parent": 44885022,
-    "depth": 2
-  },
-  {
-    "id": 44885083,
-    "by": "maxloh",
-    "timeISO": "2025-08-13T06:02:59.000Z",
-    "textPlain": "There is no point for Google to push planned obsolescence on the PC or server space. They don't have a market there.",
-    "parent": 44885022,
-    "depth": 2
-  },
-  {
     "id": 44884911,
     "by": "starkparker",
     "timeISO": "2025-08-13T05:26:05.000Z",
@@ -301,6 +269,38 @@
     "timeISO": "2025-08-13T05:24:08.000Z",
     "textPlain": "Yes, SSE4.1 and SSSE3 have been introduced in ~2006. The F-Droid build server still uses that to build modern and some of the most popular FOSS apps.",
     "parent": 44884847,
+    "depth": 2
+  },
+  {
+    "id": 44885380,
+    "by": "cjaackie",
+    "timeISO": "2025-08-13T06:57:15.000Z",
+    "textPlain": "I haven’t seen the real answer that I suspect here - the build servers are that one dual socket AMD board which runs open firmware and has no ME/PSP .",
+    "parent": 44885181,
+    "depth": 2
+  },
+  {
+    "id": 44885536,
+    "by": "adrian_b",
+    "timeISO": "2025-08-13T07:21:09.000Z",
+    "textPlain": "It has been introduced in Intel Penryn, in November 2007.However the AMD CPUs did not implement it until Bulldozer, in mid 2011.While they lacked the many additional instructions provided by Bulldozer, also including AVX and FMA, for many applications the older Opteron CPUs were significantly faster than the Bulldozer-based CPUs, so there were few incentives for upgrading them, before the launch of AMD Epyc in mid 2017.SSE 4.1 is a cut point in supporting old CPUs for many software packages, because older CPUs have a very high overhead for divergent computations (e.g. with if ... else ...) inside loops that are parallelized with SIMD instructions.",
+    "parent": 44885181,
+    "depth": 2
+  },
+  {
+    "id": 44885308,
+    "by": "LukeShu",
+    "timeISO": "2025-08-13T06:42:53.000Z",
+    "textPlain": "I was going to say that I assume that the reason for such old CPUs is the ability to use Canoeboot/GNU Boot.  But you absolutely can put an SSE4.2 CPU in a KGPE-D16 motherboard.  So IDK.",
+    "parent": 44885181,
+    "depth": 2
+  },
+  {
+    "id": 44885282,
+    "by": "heavyset_go",
+    "timeISO": "2025-08-13T06:38:26.000Z",
+    "textPlain": "Hardware after the first couple of generations of x86_64 muliticore processors are perfectly capable machines to use as servers, even for tasks you want to put off to a build farm.",
+    "parent": 44885181,
     "depth": 2
   },
   {
@@ -333,6 +333,14 @@
     "timeISO": "2025-08-13T05:58:36.000Z",
     "textPlain": "It's not the target that is now requiring new instructions, but one of the components in the build tools.",
     "parent": 44884973,
+    "depth": 2
+  },
+  {
+    "id": 44885627,
+    "by": "vardump",
+    "timeISO": "2025-08-13T07:39:35.000Z",
+    "textPlain": "There are very few 17+ years old build servers at this point. Or laptops and desktops for that matter.",
+    "parent": 44885430,
     "depth": 2
   },
   {
