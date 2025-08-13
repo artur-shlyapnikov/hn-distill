@@ -24,14 +24,6 @@
     "depth": 1
   },
   {
-    "id": 44886785,
-    "by": "voxadam",
-    "timeISO": "2025-08-13T10:40:59.000Z",
-    "textPlain": "Am I correct in understanding that Whisper is a speech recognition AI model originally created by OpenAI?https://en.wikipedia.org/wiki/Whisper_(speech_recognition_sy...",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
     "id": 44887793,
     "by": "JohnKemeny",
     "timeISO": "2025-08-13T12:47:11.000Z",
@@ -40,10 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44887984,
-    "by": "MaxikCZ",
-    "timeISO": "2025-08-13T13:08:41.000Z",
-    "textPlain": "I tried to use whisper to generate non-english subs from english audio, but wasnt able to figure out. I know it can do english subs from non-english audio, and that earlier (less precise) versions could do any language audio -> any language subs, but latest whisper only to english subs.Anyone found a way?",
+    "id": 44886785,
+    "by": "voxadam",
+    "timeISO": "2025-08-13T10:40:59.000Z",
+    "textPlain": "Am I correct in understanding that Whisper is a speech recognition AI model originally created by OpenAI?https://en.wikipedia.org/wiki/Whisper_(speech_recognition_sy...",
     "parent": 44886647,
     "depth": 1
   },
@@ -72,10 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44887801,
-    "by": "webinar",
-    "timeISO": "2025-08-13T12:47:42.000Z",
-    "textPlain": "I've been using FFmpeg and Whisper to record and transcribe live police scanner audio for my city, and update it in real-time to a live website.  It works great, with the expected transcription errors and hallucinations.",
+    "id": 44888471,
+    "by": "realxrobau",
+    "timeISO": "2025-08-13T13:52:23.000Z",
+    "textPlain": "Annoyingly, something is broken with their anti not stuff, as it keeps refusing to let me see the page.",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44887984,
+    "by": "MaxikCZ",
+    "timeISO": "2025-08-13T13:08:41.000Z",
+    "textPlain": "I tried to use whisper to generate non-english subs from english audio, but wasnt able to figure out. I know it can do english subs from non-english audio, and that earlier (less precise) versions could do any language audio -> any language subs, but latest whisper only to english subs.Anyone found a way?",
     "parent": 44886647,
     "depth": 1
   },
@@ -88,6 +88,14 @@
     "depth": 1
   },
   {
+    "id": 44887801,
+    "by": "webinar",
+    "timeISO": "2025-08-13T12:47:42.000Z",
+    "textPlain": "I've been using FFmpeg and Whisper to record and transcribe live police scanner audio for my city, and update it in real-time to a live website.  It works great, with the expected transcription errors and hallucinations.",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
     "id": 44886854,
     "by": "re",
     "timeISO": "2025-08-13T10:51:14.000Z",
@@ -96,26 +104,18 @@
     "depth": 1
   },
   {
+    "id": 44886776,
+    "by": "boutell",
+    "timeISO": "2025-08-13T10:40:03.000Z",
+    "textPlain": "Shut off the broken bot filter so we can read it please",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
     "id": 44887932,
     "by": "porridgeraisin",
     "timeISO": "2025-08-13T13:03:11.000Z",
-    "textPlain": "I had a small bash pipeline for doing this until now.  ffmpeg -f pulse -i \"$(pactl get-default-source)\" -t 5 -f wav -ar 16000 -ac 1 -c:a pcm_s16le - \\\n  | ./main - \\\n  | head -2 \\\n  | tail -1 \\\n  | cut -d] -f2 \\\n  | awk '{$1=$1};1'\n\nThe reading from mic part (-f pulse, pactl...) is linux-specific rest of it should be cross platform. The `main` executable is the whisper.cpp executable (see whisper.cpp github readme, it's just the output of `make base.en` from that)Oh and add 2>/dev/null to silence the debug output. I copied this from a pipe that further sends it into an LLM that  then looks at the meaning and turns it into a variety of structured data (reminders, todo items, etc) which I then....",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
-    "id": 44887816,
-    "by": "thedangler",
-    "timeISO": "2025-08-13T12:50:10.000Z",
-    "textPlain": "Does this whisper also do text-to-speech?",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
-    "id": 44887203,
-    "by": "mockingloris",
-    "timeISO": "2025-08-13T11:36:10.000Z",
-    "textPlain": "How could one in theory, use this to train on a new language?\nSay for a hubby project; I have recordings of some old folks stories in my local dialect.│└── Dey well; Be well",
+    "textPlain": "I had a small bash pipeline for doing this until now.  ffmpeg -f pulse -i \"$(pactl get-default-source)\" -t 5 -f wav -ar 16000 -ac 1 -c:a pcm_s16le - \\\n  | ./main - \\\n  | head -2 \\\n  | tail -1 \\\n  | cut -d] -f2 \\\n  | awk '{$1=$1};1'\n\nThe reading from mic part (-f pulse, pactl...) is linux-specific rest of it should be cross platform. The `main` executable is the whisper.cpp executable (see whisper.cpp github readme, it's just the output of `make base.en` from that).Edit: -t 5 controls recording duration.Oh and add 2>/dev/null to silence the debug output. I copied this from a pipe that further sends it into an LLM that  then looks at the meaning and turns it into a variety of structured data (reminders, todo items, etc) which I then....",
     "parent": 44886647,
     "depth": 1
   },
@@ -124,6 +124,14 @@
     "by": "lawik",
     "timeISO": "2025-08-13T10:40:54.000Z",
     "textPlain": "I wonder if they'll be satisfied there or add a chunk of others now that they've started. Parakeet is supposed to be good?Should they add Voice Activity Detection? Are these separate filters or just making the whisper filter more fancy?",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44887203,
+    "by": "mockingloris",
+    "timeISO": "2025-08-13T11:36:10.000Z",
+    "textPlain": "How could one in theory, use this to train on a new language?\nSay for a hubby project; I have recordings of some old folks stories in my local dialect.│└── Dey well; Be well",
     "parent": 44886647,
     "depth": 1
   },
@@ -152,10 +160,26 @@
     "depth": 1
   },
   {
-    "id": 44887542,
-    "by": "dncornholio",
-    "timeISO": "2025-08-13T12:20:19.000Z",
-    "textPlain": "I was expecting a lot more comments on if this is a necessary feature or if this even belongs in a library like ffmpeg. I think this is bloat, especially when the feature doesn't work flawless, whisper is very limited.",
+    "id": 44887816,
+    "by": "thedangler",
+    "timeISO": "2025-08-13T12:50:10.000Z",
+    "textPlain": "Does this whisper also do text-to-speech?",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44888575,
+    "by": "pmarreck",
+    "timeISO": "2025-08-13T14:01:38.000Z",
+    "textPlain": "Now if it only did separate speaker identification (diarization)",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44888574,
+    "by": "correa_brian",
+    "timeISO": "2025-08-13T14:01:30.000Z",
+    "textPlain": "hell yeah",
     "parent": 44886647,
     "depth": 1
   },
@@ -168,10 +192,18 @@
     "depth": 1
   },
   {
-    "id": 44886776,
-    "by": "boutell",
-    "timeISO": "2025-08-13T10:40:03.000Z",
-    "textPlain": "Shut off the broken bot filter so we can read it please",
+    "id": 44887542,
+    "by": "dncornholio",
+    "timeISO": "2025-08-13T12:20:19.000Z",
+    "textPlain": "I was expecting a lot more comments on if this is a necessary feature or if this even belongs in a library like ffmpeg. I think this is bloat, especially when the feature doesn't work flawless, whisper is very limited.",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44888479,
+    "by": "hacker_88",
+    "timeISO": "2025-08-13T13:53:14.000Z",
+    "textPlain": "[dead]",
     "parent": 44886647,
     "depth": 1
   },
@@ -184,10 +216,34 @@
     "depth": 1
   },
   {
+    "id": 44888807,
+    "by": "taminka",
+    "timeISO": "2025-08-13T14:20:24.000Z",
+    "textPlain": "whisper is great, i wonder why youtube's auto generated subs are still so bad? even the smallest whisper is way better than google's solution? is it licensing issue? harder to deploy at scale?",
+    "parent": 44887584,
+    "depth": 2
+  },
+  {
+    "id": 44888591,
+    "by": "notatallshaw",
+    "timeISO": "2025-08-13T14:02:58.000Z",
+    "textPlain": ">     uv pip install --system torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118uv has a feature to get the correct version of torch based on your available cuda (and some non-cuda) drivers (though I suggest using a venv not the system Python):> uv pip install torch torchvision torchaudio --torch-backend=autoMore details: https://docs.astral.sh/uv/guides/integration/pytorch/#automa...This also means you can safely mix torch requirements with non-torch requirements as it will only pull the torch related things from the torch index and everything else from PyPI.",
+    "parent": 44887584,
+    "depth": 2
+  },
+  {
     "id": 44887799,
     "by": "tossit444",
     "timeISO": "2025-08-13T12:47:39.000Z",
     "textPlain": "Aegisub is still actively developed (forked), and imo, both software can't really be compared to one another. They can complement each other, but SE is much better for actual transcription. Aegisub still does the heavy lifting for typesetting and the like.",
+    "parent": 44887584,
+    "depth": 2
+  },
+  {
+    "id": 44888298,
+    "by": "pawelduda",
+    "timeISO": "2025-08-13T13:38:54.000Z",
+    "textPlain": "Can you give an example why it made your life that much better?",
     "parent": 44887584,
     "depth": 2
   },
@@ -339,64 +395,8 @@
     "id": 44888072,
     "by": "abdusco",
     "timeISO": "2025-08-13T13:18:12.000Z",
-    "textPlain": "I solved it by generating English subtitles, then passing those to an LLM in chunks that are ~20 entries in size. Replace the timestamps with simple integers and include preceding and following subtitles as context for better translation. Make sure to replace the timestamps with simple integer ids, because LLMs like to mangle those, no matter how hard you prompt.I could share a python script that is working pretty reliably for me.",
+    "textPlain": "I solved it by generating English subtitles, then passing those to an LLM in chunks that are ~20 entries in size. Include preceding and following subtitles as context for better translation. Make sure to replace the timestamps with simple integer ids, because LLMs like to mangle those, no matter how hard you prompt.I could share a python script that is working pretty reliably for me.",
     "parent": 44887984,
-    "depth": 2
-  },
-  {
-    "id": 44887008,
-    "by": "ks2048",
-    "timeISO": "2025-08-13T11:10:57.000Z",
-    "textPlain": "If they want to support it out-of-the box, they'll still have to embed a model file (roughly 500 MB - 3GB, varying size and quality)",
-    "parent": 44886951,
-    "depth": 2
-  },
-  {
-    "id": 44887840,
-    "by": "ethan_smith",
-    "timeISO": "2025-08-13T12:53:03.000Z",
-    "textPlain": "Whisper can indeed transcribe Japanese and translate it to English, though quality varies by dialect and audio clarity. You'll need the \"large-v3\" model for best results, and you can use ffmpeg's new integration with a command like `ffmpeg -i movie.mp4 -af whisper=model=large-v3:task=translate output.srt`.",
-    "parent": 44887159,
-    "depth": 2
-  },
-  {
-    "id": 44887359,
-    "by": "prmoustache",
-    "timeISO": "2025-08-13T11:57:02.000Z",
-    "textPlain": "My personnal experience trying to transcribe (not translate) was a complete failure. The thing would invent stuff. It would also be completely lost when more than one language is used.It also doesn't understand contexts so does a lot of errors you see in automatic translations from videos in youtube for example.",
-    "parent": 44887159,
-    "depth": 2
-  },
-  {
-    "id": 44887336,
-    "by": "trenchpilgrim",
-    "timeISO": "2025-08-13T11:53:14.000Z",
-    "textPlain": "Whisper has quite bad issues with hallucination. It will inject sentences that were never said in the audio.It's decent for classification but poor at transcription.",
-    "parent": 44887159,
-    "depth": 2
-  },
-  {
-    "id": 44887270,
-    "by": "_def",
-    "timeISO": "2025-08-13T11:43:36.000Z",
-    "textPlain": "May I ask which movies? I'm just curious",
-    "parent": 44887159,
-    "depth": 2
-  },
-  {
-    "id": 44887063,
-    "by": "majewsky",
-    "timeISO": "2025-08-13T11:17:35.000Z",
-    "textPlain": "It looks like the model file needs to be supplied at invocation time, so the binary blob would not be required for packaging.",
-    "parent": 44887044,
-    "depth": 2
-  },
-  {
-    "id": 44887809,
-    "by": "Xunjin",
-    "timeISO": "2025-08-13T12:48:55.000Z",
-    "textPlain": "Is this website open? Would love to see your work :P",
-    "parent": 44887801,
     "depth": 2
   }
 ]

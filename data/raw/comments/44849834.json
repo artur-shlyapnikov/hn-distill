@@ -1,1 +1,82 @@
-[]
+[
+  {
+    "id": 44888836,
+    "by": "quietbritishjim",
+    "timeISO": "2025-08-13T14:22:54.000Z",
+    "textPlain": "When writing code, it's useful to follow simpler rules than strictly needed to make it easier to read for other coders (including you in the future). For example, you might add some unnecessary brackets to expressions to avoid remembering all the operator precedence rules.The article is right that sometimes you can can use simple equality on floating point values. But if you have a (almost) blanket rule to use fuzzy comparison, or (even better) just avoid any dirt if equality-like comparison altogether, then your code might be simpler to understand and you might be less likely to make a mistake about when you really can safely do that. It's still nice to nice know that it's possible though.",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
+    "id": 44888561,
+    "by": "exDM69",
+    "timeISO": "2025-08-13T14:00:55.000Z",
+    "textPlain": "My favorite thing about floating point numbers: you can divide by zero. The result of x/0.0 is +/- inf (or NaN if x is zero). There's a helpful table in \"weird floats\" [0] that covers all the cases for division and a bunch of other arithmetic instructions.This is especially useful when writing branchless or SIMD code. Adding a branch for checking against zero can have bad performance implications and it isn't even necessary in many cases.Especially in graphics code I often see a zero check before a division and a fallback for the zero case. This often practically means \"wait until numerical precision artifacts arise and then do something else\". Often you could just choose the better of the two options you have instead of checking for zero.Case in point: choosing the axes of your shadow map projection matrix. You have two options (world x axis or z axis), choose the better one (larger angle with viewing direction). Don't wait until the division goes to inf and then fall back to the other.[0] https://www.cs.uaf.edu/2011/fall/cs301/lecture/11_09_weird_f...",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
+    "id": 44888692,
+    "by": "BlackFly",
+    "timeISO": "2025-08-13T14:11:22.000Z",
+    "textPlain": "You can exploit the exactness of (specific) floating point operations in test data by using sums of powers of 2. Polynomials with such coefficients produce exact results so long as the overall powers are within ~53 powers of 2 (don't quote me exactly on that, I generally don't push the range very high!). You can find exact polynomial solutions to linear PDEs with such powers using high enough order finite difference methods for example.However, the story about non-determinism is no myth. The intel processors have a separate math coprocessor that supports 80bit floats (https://en.wikipedia.org/wiki/Extended_precision#x86_extende...). Moving a float from a register in this coprocessor to memory truncates the float. Repeated math can be done inside this coprocessor to achieve higher precision so hot loops generally don't move floats outside of these registers. Non-determinism occurs in programs running on intel with floats when threads are interrupted and the math coprocessor flushed. The non-determinism isn't intrinsic to the floating point arithmetic but to the non-determinism of when this truncation may occur. This is more relevant for fields where chaotic dynamics occur. So the same program with the same inputs can produce different results.NaN is an error. If you take the square root of a negative number you get a NaN. This is just a type error, use complex numbers to overcome this one. But then you get 0. / 0. and that's a NaN or Inf - Inf and a whole slew of other things that produce out of bounds results. Whether it is expected or not is another story, but it does mean that you are unable to represent the value with a float and that is a type error.",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
+    "id": 44888522,
+    "by": "bee_rider",
+    "timeISO": "2025-08-13T13:57:47.000Z",
+    "textPlain": "I like these. They are push back against the sort of… first correction that people make when encountering floating point weirdness. That is, the first mistake we make is to treat floats as reals, and then we observe some odd rounding behavior. The second mistake we make is to treat the rounding events as random. A nice thing about IEEE floats is that the rounding behavior is well defined.Often it doesn't matter, like you ask for a gemm and you get whatever order of operations blas, AVX-whatever, and OpenMP conspire to give you, so it is more-or-less random.But if it does matter, the ability to define it is there.",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
+    "id": 44888448,
+    "by": "BugsJustFindMe",
+    "timeISO": "2025-08-13T13:50:48.000Z",
+    "textPlain": "I've never heard anyone say any of these supposed myths, except for the first one, sort of, but nobody means what the first one pretends it means, so this whole post feels like a big strawman to me.",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
+    "id": 44888459,
+    "by": "rollcat",
+    "timeISO": "2025-08-13T13:51:36.000Z",
+    "textPlain": "Related: What Every Computer Scientist Should Know About Floating-Point Arithmetic <https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.h...>",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
+    "id": 44888838,
+    "by": "AshamedCaptain",
+    "timeISO": "2025-08-13T14:22:59.000Z",
+    "textPlain": "> Non-determinism occurs in programs running on intel with floats when threads are interrupted and the math coprocessor flushedThat's ridiculous. No OS in his right mind would flush FPU regs to 64 bits only, because that would break many things, most obviously \"real\" 80 bit FP which is still a thing and the only reason x87 instructions still work (for double FP most compilers prefer SSE rather than z87 instructions these days). It would even break plain equality comparisons making all FP useless.",
+    "parent": 44888692,
+    "depth": 2
+  },
+  {
+    "id": 44888587,
+    "by": "Cieric",
+    "timeISO": "2025-08-13T14:02:32.000Z",
+    "textPlain": "Just to add some context Adam works at AMD as a dev tech, so he is constantly working with game studios developers directly. While I can't say I've heard the same things since I'm somewhere else, I have seen some of the assumptions made in some shader code and they do line up with the kind of things he's saying.",
+    "parent": 44888448,
+    "depth": 2
+  },
+  {
+    "id": 44888698,
+    "by": "jbjbjbjb",
+    "timeISO": "2025-08-13T14:12:12.000Z",
+    "textPlain": "I was putting together some technical interview questions for our candidates and I wanted to see what ChatGPT would put for an answer. It told me floating point numbers were non-deterministic and wouldn’t back down from that answer so it’s getting it from somewhere.",
+    "parent": 44888448,
+    "depth": 2
+  },
+  {
+    "id": 44888550,
+    "by": "rollcat",
+    "timeISO": "2025-08-13T13:59:35.000Z",
+    "textPlain": "People do say a lot of nonsense about floats, my younger self trying to bash JavaScript included. They e.g. do fine as integers - up to 2*53; this could be optimised by a JIT to use actual integer math.",
+    "parent": 44888448,
+    "depth": 2
+  }
+]

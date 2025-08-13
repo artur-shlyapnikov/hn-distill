@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44888217,
-    "by": "graphviz",
-    "timeISO": "2025-08-13T13:32:12.000Z",
-    "textPlain": "Any ideas how these primitives could be used to implement an edge router for drawing natural-looking curves around obstacles in diagrams, as an improvement on the 25-year-old solver in graphviz https://dpd.cs.princeton.edu/Papers/DGKN97.pdf?",
-    "parent": 44846781,
-    "depth": 1
-  },
-  {
     "id": 44886800,
     "by": "Fraterkes",
     "timeISO": "2025-08-13T10:43:39.000Z",
@@ -24,10 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44887852,
-    "by": "childintime",
-    "timeISO": "2025-08-13T12:54:38.000Z",
-    "textPlain": "Bezier curves in painting software never gave me the results I wanted. And I mean never. I sincerely wonder who succeeds at using them?From these graphs I see that I always wanted the simple Quadratic version, and would use 2 of them in sequence to approximate a Cubic version. That would be so much easier. But if the software could allow me to adjust the midpoint, and maintain a smooth transition, that would be perfect. I think.So I basically wish for a different interface, one that has more thought put into it. Now it's a \"give access to the parameters, and be done with it\" kind. As if novices don't have the need for a nice smooth curve between known points.",
+    "id": 44888465,
+    "by": "phkahler",
+    "timeISO": "2025-08-13T13:52:07.000Z",
+    "textPlain": "If they could extend it to rational Beziers it might be useful for CAD applications. We have a subset of these in C++ as the core of Solvespace. This is one of my favorite source files:https://github.com/solvespace/solvespace/blob/master/src/srf...",
+    "parent": 44846781,
+    "depth": 1
+  },
+  {
+    "id": 44888217,
+    "by": "graphviz",
+    "timeISO": "2025-08-13T13:32:12.000Z",
+    "textPlain": "Any ideas how these primitives could be used to implement an edge router for drawing natural-looking curves around obstacles in diagrams, as an improvement on the 25-year-old solver in graphviz https://dpd.cs.princeton.edu/Papers/DGKN97.pdf?",
     "parent": 44846781,
     "depth": 1
   },
@@ -40,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44884695,
-    "by": "continuational",
-    "timeISO": "2025-08-13T04:40:28.000Z",
-    "textPlain": "Very neat. I'm not sure if I missed it, but is there any way to get n equidistant points on the curve?E.g. for moving an object at constant speed along the curve.",
+    "id": 44887852,
+    "by": "childintime",
+    "timeISO": "2025-08-13T12:54:38.000Z",
+    "textPlain": "Bezier curves in painting software never gave me the results I wanted. And I mean never. I sincerely wonder who succeeds at using them?From these graphs I see that I always wanted the simple Quadratic version, and would use 2 of them in sequence to approximate a Cubic version. That would be so much easier. But if the software could allow me to adjust the midpoint, and maintain a smooth transition, that would be perfect. I think.So I basically wish for a different interface, one that has more thought put into it. Now it's a \"give access to the parameters, and be done with it\" kind. As if novices don't have the need for a nice smooth curve between known points.",
     "parent": 44846781,
     "depth": 1
   },
@@ -52,6 +52,14 @@
     "by": "Syzygies",
     "timeISO": "2025-08-13T03:29:45.000Z",
     "textPlain": "I'm hoping to code Bezier animation in OCaml/F# in four dimensional space time, with a moving vantage point. Offload rendering each time slice frame to worker threads.I'm surprised Bezier-rs is all about curves. Sure, fonts, but I can't be alone here in seeing curves as a special case.It's easy as a pure mathematician to write off Bezier theory as \"specialized\" but it's simply the right way to work with polynomials on a simplex.",
+    "parent": 44846781,
+    "depth": 1
+  },
+  {
+    "id": 44884695,
+    "by": "continuational",
+    "timeISO": "2025-08-13T04:40:28.000Z",
+    "textPlain": "Very neat. I'm not sure if I missed it, but is there any way to get n equidistant points on the curve?E.g. for moving an object at constant speed along the curve.",
     "parent": 44846781,
     "depth": 1
   },
@@ -80,19 +88,19 @@
     "depth": 2
   },
   {
-    "id": 44888231,
-    "by": "WillAdams",
-    "timeISO": "2025-08-13T13:33:32.000Z",
-    "textPlain": "A markedly different UI is that of FutureWave SmartSketch which has been reimplemented inhttps://www.wickeditor.com/For Beziér curves remember the basics:- put nodes at extrema and points of inflection- rule of 30 --- off curve nodes should be ~30% away from the matching on curve node",
+    "id": 44888366,
+    "by": "phkahler",
+    "timeISO": "2025-08-13T13:43:36.000Z",
+    "textPlain": "You might like the spline tool in Solvespace:https://solvespace.com/If you just do a start/end point it will create a cubic with 2 endpoints and 2 control points. But if you drop a whole series of points (up to 12 I think) it will create a curve that passes though all of them. This is done by internally creating a bunch of cubic splines where the control points are automatically positioned and not shown. You still get 2 control points for the derivatives at the ends, unless you create a closed loop.",
     "parent": 44887852,
     "depth": 2
   },
   {
-    "id": 44884728,
-    "by": "jamwaffles",
-    "timeISO": "2025-08-13T04:49:13.000Z",
-    "textPlain": "There is indeed: Bezier::compute_lookup_table[1]. You'll want to use a `TValueType` of `Euclidean` to get equidistant points.[1]: https://docs.rs/bezier-rs/latest/bezier_rs/struct.Bezier.htm...",
-    "parent": 44884695,
+    "id": 44888231,
+    "by": "WillAdams",
+    "timeISO": "2025-08-13T13:33:32.000Z",
+    "textPlain": "A markedly different UI is that of FutureWave SmartSketch which has been reimplemented inhttps://www.wickeditor.com/For Beziér curves remember the basics:- put nodes at extrema and points of inflection (extreme left/right, top/bottom, middle of _S_ curve)- rule of 30 --- off curve nodes should be ~30% away from the matching on curve node for smoothest appearance unless the shape one is trying to achieve dictates a different placement",
+    "parent": 44887852,
     "depth": 2
   },
   {
@@ -101,6 +109,14 @@
     "timeISO": "2025-08-13T12:47:30.000Z",
     "textPlain": "If you're not restricted to Bezier for graphics (it's a very common choice as the path primitive for vector graphics), there are other classes of curves that you may find are a better fit. In particular, I think animations typically feel better if they move at constant speed - which is nontrivial with Bezier curves because they do not have an exact closed-form arc length parameterization. Something like pythagorean hodographs could be a better fit for your application.I am not a mathematician though, so if you have other insight I'd be glad to hear it.",
     "parent": 44884409,
+    "depth": 2
+  },
+  {
+    "id": 44884728,
+    "by": "jamwaffles",
+    "timeISO": "2025-08-13T04:49:13.000Z",
+    "textPlain": "There is indeed: Bezier::compute_lookup_table[1]. You'll want to use a `TValueType` of `Euclidean` to get equidistant points.[1]: https://docs.rs/bezier-rs/latest/bezier_rs/struct.Bezier.htm...",
+    "parent": 44884695,
     "depth": 2
   },
   {
