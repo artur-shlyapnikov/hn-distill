@@ -131,7 +131,7 @@ export function preserveMarkdownWhitespace(content: string): string {
   const lines = normalized.split("\n").map((line) => {
     // Find trailing whitespace by looking from the end
     let endIndex = line.length;
-    while (endIndex > 0 && line[endIndex - 1] && /\s/u.test(line[endIndex - 1]!)) {
+    while (endIndex > 0 && line[endIndex - 1] && /\s/u.test(line.charAt(endIndex - 1))) {
       endIndex--;
     }
 
@@ -313,8 +313,7 @@ async function processCommentsSummary(
 async function processSingleStory(services: Services, id: number): Promise<void> {
   const story = await readJsonSafeOr<NormalizedStory>(
     pathFor.rawItem(id),
-    NormalizedStorySchema as unknown as z.ZodType<NormalizedStory>,
-    undefined as unknown as NormalizedStory
+    NormalizedStorySchema as unknown as z.ZodType<NormalizedStory>
   );
   if (!story) {
     log.warn("summarize", "Missing normalized story file; skipping", { id });

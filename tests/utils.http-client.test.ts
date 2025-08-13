@@ -1,17 +1,18 @@
 import { afterAll, describe, expect, test } from "bun:test";
 import { HttpClient, HttpError } from "../utils/http-client.ts";
 
-const originalFetch: typeof globalThis.fetch | undefined = (globalThis as Record<string, unknown>)
-  .fetch as typeof globalThis.fetch;
+const originalFetch: typeof globalThis.fetch | undefined = (globalThis as Record<string, unknown>)[
+  "fetch"
+] as typeof globalThis.fetch;
 
 afterAll(() => {
-  (globalThis as Record<string, unknown>).fetch = originalFetch;
+  (globalThis as Record<string, unknown>)["fetch"] = originalFetch;
 });
 
 describe("utils/http-client", () => {
   test("json retries on retriable status and eventually succeeds", async () => {
     let calls = 0;
-    (globalThis as Record<string, unknown>).fetch = async (): Promise<Response> => {
+    (globalThis as Record<string, unknown>)["fetch"] = async (): Promise<Response> => {
       calls++;
       if (calls < 2) {
         return new Response("err", { status: 503 });
@@ -32,7 +33,7 @@ describe("utils/http-client", () => {
   });
 
   test("json times out and wraps errors as HttpError", async () => {
-    (globalThis as Record<string, unknown>).fetch = async (): Promise<Response> =>
+    (globalThis as Record<string, unknown>)["fetch"] = async (): Promise<Response> =>
       new Promise(() => {
         // Empty promise for test
       });
@@ -50,7 +51,8 @@ describe("utils/http-client", () => {
   }, 200);
 
   test("json non-OK final response throws HttpError with status", async () => {
-    (globalThis as Record<string, unknown>).fetch = async (): Promise<Response> => new Response("bad", { status: 400 });
+    (globalThis as Record<string, unknown>)["fetch"] = async (): Promise<Response> =>
+      new Response("bad", { status: 400 });
     const client = new HttpClient(
       { retries: 0, baseBackoffMs: 1, timeoutMs: 50, retryOnStatuses: [] },
       { headers: {} }

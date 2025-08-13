@@ -28,12 +28,17 @@ describe("summarize.getOrFetchArticleMarkdown", () => {
         return sampleHtml;
       },
     };
-    const services: Parameters<typeof getOrFetchArticleMarkdown>[0] = {
-      fetchArticleMarkdown: async (url: string) => {
+    // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+    const services = {
+      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+      http: {} as HttpClient,
+      // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
+      openrouter: {} as Parameters<typeof getOrFetchArticleMarkdown>[0]["openrouter"],
+      fetchArticleMarkdown: async (url: string): Promise<string> => {
         const html = await http.text(url);
         return htmlToMd(html);
       },
-    };
+    } as Parameters<typeof getOrFetchArticleMarkdown>[0];
 
     const md1 = await getOrFetchArticleMarkdown(services, story as Parameters<typeof getOrFetchArticleMarkdown>[1]);
     expect(md1).toContain("# Hello");

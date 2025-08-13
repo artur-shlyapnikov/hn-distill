@@ -1,7 +1,7 @@
-import { describe, test, expect } from "bun:test";
-import { buildPostPrompt, buildCommentsPrompt } from "../scripts/summarize.mts";
-import type { NormalizedStory, NormalizedComment } from "../config/schemas.ts";
+import { describe, expect, test } from "bun:test";
 import { env as environment } from "../config/env.ts";
+import type { NormalizedComment, NormalizedStory } from "../config/schemas.ts";
+import { buildCommentsPrompt, buildPostPrompt } from "../scripts/summarize.mts";
 
 describe("scripts/summarize prompt builders", () => {
   test("buildPostPrompt returns only article content slice when present", async () => {
@@ -13,33 +13,26 @@ describe("scripts/summarize prompt builders", () => {
       timeISO: new Date().toISOString(),
       commentIds: [],
     };
-    const promptEmpty = await buildPostPrompt(story, undefined);
+    const promptEmpty = await buildPostPrompt(story);
     expect(promptEmpty).toBe(""); // no article -> no prompt
 
     const md = "# Hello\nThis is article body.";
     const prompt = await buildPostPrompt(story, md);
     // Should contain the markdown body, but no metadata or instruction header
     expect(prompt).toContain("Hello");
-    expect(prompt).not.toMatch(
-      /Make it two times shorter|Сделай текст в два раза короче/u,
-    );
-    expect(prompt).not.toMatch(
-      /Title|Заголовок|Author|Автор|URL|Posted|Опубликовано|Контекст|Context/u,
-    );
+    expect(prompt).not.toMatch(/Make it two times shorter|Сделай текст в два раза короче/u);
+    expect(prompt).not.toMatch(/Title|Заголовок|Author|Автор|URL|Posted|Опубликовано|Контекст|Context/u);
   });
 
   test("buildCommentsPrompt respects budget and returns sampleIds", async () => {
-    const comments: NormalizedComment[] = Array.from(
-      { length: 20 },
-      (_, index) => ({
-        id: index + 1,
-        by: "u",
-        timeISO: new Date().toISOString(),
-        textPlain: "x".repeat(500),
-        parent: 1,
-        depth: 1,
-      }),
-    );
+    const comments: NormalizedComment[] = Array.from({ length: 20 }, (_, index) => ({
+      id: index + 1,
+      by: "u",
+      timeISO: new Date().toISOString(),
+      textPlain: "x".repeat(500),
+      parent: 1,
+      depth: 1,
+    }));
     const { prompt, sampleIds } = await buildCommentsPrompt(comments);
     expect(sampleIds.length).toBe(5);
     expect(prompt.length).toBeGreaterThan(0);
@@ -49,7 +42,7 @@ describe("scripts/summarize prompt builders", () => {
       expect(line.length).toBeLessThanOrEqual(430); // account for prefix
     }
   });
-  
+
   test("header reflects env.SUMMARY_LANG and excludes empty comments", async () => {
     const comments: NormalizedComment[] = [
       {

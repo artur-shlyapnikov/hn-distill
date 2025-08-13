@@ -1,17 +1,18 @@
 import { afterAll, describe, expect, test } from "bun:test";
 import { HttpClient } from "../utils/http-client.ts";
 
-const originalFetch: typeof globalThis.fetch | undefined = (globalThis as Record<string, unknown>)
-  .fetch as typeof globalThis.fetch;
+const originalFetch: typeof globalThis.fetch | undefined = (globalThis as Record<string, unknown>)[
+  "fetch"
+] as typeof globalThis.fetch;
 
 afterAll(() => {
-  (globalThis as Record<string, unknown>).fetch = originalFetch;
+  (globalThis as Record<string, unknown>)["fetch"] = originalFetch;
 });
 
 describe("utils/http-client headers", () => {
   test("json sets Accept header and merges user-agent from opts", async () => {
     let receivedHeaders: Record<string, string> = {};
-    (globalThis as Record<string, unknown>).fetch = async (_url: string, init?: RequestInit): Promise<Response> => {
+    (globalThis as Record<string, unknown>)["fetch"] = async (_url: string, init?: RequestInit): Promise<Response> => {
       const h = (init?.headers ?? {}) as Record<string, string>;
       // Normalize header names to lowercase for assertions
       const lower: Record<string, string> = {};

@@ -21,9 +21,11 @@ export async function readJsonSafe<T>(path: string, schema: z.ZodType<T>): Promi
   }
 }
 
+/* eslint-disable no-redeclare */
 export async function readJsonSafeOr<T>(path: string, schema: z.ZodType<T>): Promise<T | undefined>;
 export async function readJsonSafeOr<T>(path: string, schema: z.ZodType<T>, fallback: T): Promise<T>;
 export async function readJsonSafeOr<T>(path: string, schema: z.ZodType<T>, fallback?: T): Promise<T | undefined> {
+  /* eslint-enable no-redeclare */
   try {
     return await readJsonSafe<T>(path, schema);
   } catch {

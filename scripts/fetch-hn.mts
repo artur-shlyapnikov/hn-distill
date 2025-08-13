@@ -86,7 +86,7 @@ export function normalizeStory(raw: HnItemRaw): NormalizedStory {
   return {
     id: raw.id,
     title,
-    url: normalizeUrl(raw.url) ?? null,
+    url: normalizeUrl(raw.url) ?? null, // eslint-disable-line unicorn/no-null
     by,
     timeISO: new Date(timeMs).toISOString(),
     commentIds: raw.kids ?? [],
