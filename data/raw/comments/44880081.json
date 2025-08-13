@@ -24,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44884567,
-    "by": "rubenvanwyk",
-    "timeISO": "2025-08-13T04:08:56.000Z",
-    "textPlain": "Reads a bit like a puff piece but can’t deny the facts: RisingWave is an amazing product. I wonder when the industry is going to realise in event-driven architectures, you can actually skip having Postgres entirely and just have RisingWave / Feldera + columnar data on object storage.",
-    "parent": 44880081,
-    "depth": 1
-  },
-  {
     "id": 44881685,
     "by": "ajd555",
     "timeISO": "2025-08-12T20:51:34.000Z",
     "textPlain": "> Postgres and Apache Iceberg are both mature systemsApache Iceberg as mature? I mean, there's a lot of activity around it, but I remember a year ago the rust library didn't even have write capabilities. And it's not like the library is a client and there's an iceberg server - the library literally is the whole product, interacting with the files in s3",
+    "parent": 44880081,
+    "depth": 1
+  },
+  {
+    "id": 44884567,
+    "by": "rubenvanwyk",
+    "timeISO": "2025-08-13T04:08:56.000Z",
+    "textPlain": "Reads a bit like a puff piece but can’t deny the facts: RisingWave is an amazing product. I wonder when the industry is going to realise in event-driven architectures, you can actually skip having Postgres entirely and just have RisingWave / Feldera + columnar data on object storage.",
     "parent": 44880081,
     "depth": 1
   },
@@ -62,6 +62,14 @@
     "textPlain": "this use case of postgres + CDC + iceberg feel like the wrong architecture.postgres is for relational data, okCDC is meant to capture changes and process the changes only (in isolation from all previous changes), not to recover the snapshot of the original table by reimplementing the logic inside postgres of merge-on-readiceberg is columnar storage for large historical data for analytics, its not meant for relational data, and certainly not for realtimeit looks like they need to use time-series oriented db, like timescale, influxdb, etc",
     "parent": 44880081,
     "depth": 1
+  },
+  {
+    "id": 44885191,
+    "by": "gunnarmorling",
+    "timeISO": "2025-08-13T06:21:44.000Z",
+    "textPlain": "> PostgreSQL databases typically don't generate huge amounts of dataThe live data set may not be huge, but the entire trail of all changes of all current and all previously existing data may easily exceed the volume of data you can reasonably process with Postgres.In addition, its row based storage format doesn't make it an ideal fit for typical analytical queries on large amounts of data.Replicating the data from Postgres to Iceberg addresses these issues. But, of course, it's not without its own challenges, as demonstrated by the article.",
+    "parent": 44884607,
+    "depth": 2
   },
   {
     "id": 44881709,
