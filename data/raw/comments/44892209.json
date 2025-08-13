@@ -1,9 +1,9 @@
 [
   {
-    "id": 44893239,
-    "by": "m_kos",
-    "timeISO": "2025-08-13T20:10:22.000Z",
-    "textPlain": "> Why is it so hard to install PyTorch, or CUDA, or libraries like FlashAttention or DeepSpeed that build against PyTorch and CUDA?This is so true! On Windows (and WSL) it is also exacerbated by some packages requiring the use of compilers bundled with outdated Visual Studio versions, some of which are only available by manually crafting download paths. I can't wait for a better dev experience.",
+    "id": 44894063,
+    "by": "runningmike",
+    "timeISO": "2025-08-13T21:27:04.000Z",
+    "textPlain": "All python packaging challenges are solved. Lesson learned is that there is not a single solution for all problems. getting more strings attached with VC funded companies and leaning on their infrastructure is a high risk for any FOSS community.",
     "parent": 44892209,
     "depth": 1
   },
@@ -12,6 +12,22 @@
     "by": "notatallshaw",
     "timeISO": "2025-08-13T18:52:01.000Z",
     "textPlain": "Probably the more useful blog post: https://astral.sh/blog/introducing-pyx",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44894580,
+    "by": "NeutralForest",
+    "timeISO": "2025-08-13T22:22:08.000Z",
+    "textPlain": "Cool idea! I think I could benefit from this at my job if they're able to eat Anaconda's lunch and provide secure, self-hosted artifacts.",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44893239,
+    "by": "m_kos",
+    "timeISO": "2025-08-13T20:10:22.000Z",
+    "textPlain": "> Why is it so hard to install PyTorch, or CUDA, or libraries like FlashAttention or DeepSpeed that build against PyTorch and CUDA?This is so true! On Windows (and WSL) it is also exacerbated by some packages requiring the use of compilers bundled with outdated Visual Studio versions, some of which are only available by manually crafting download paths. I can't wait for a better dev experience.",
     "parent": 44892209,
     "depth": 1
   },
@@ -32,34 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44893646,
-    "by": "JackYoustra",
-    "timeISO": "2025-08-13T20:46:45.000Z",
-    "textPlain": "The real thing that I hope someone is able to solve is downloading such huge amounts of unnecessary code. As I understand, the bulk of the torch binary is just a huge nvfatbin compiled for every SM under the sun when you usually just want it to run on whatever accelerators you have on hand. Even just making narrow builds of like `pytorch-sm120a` (with stuff like cuBLAS thin binaries paired with it too) as part of a handy uv extra or something like that would make it much quicker and easier.",
-    "parent": 44892209,
-    "depth": 1
-  },
-  {
     "id": 44892881,
     "by": "_verandaguy",
     "timeISO": "2025-08-13T19:41:35.000Z",
     "textPlain": "Soon: there are 14 competing Python packaging standards.This is a joke, obviously. We've had more than 14 for years.",
-    "parent": 44892209,
-    "depth": 1
-  },
-  {
-    "id": 44892454,
-    "by": "ctoth",
-    "timeISO": "2025-08-13T19:03:56.000Z",
-    "textPlain": "As I said a couple weeks ago, they're gonna have to cash out at some point. The move won't be around Uv -- it'll be a protected private PyPi or something.https://news.ycombinator.com/item?id=44712558Now what do we have here?",
-    "parent": 44892209,
-    "depth": 1
-  },
-  {
-    "id": 44893962,
-    "by": "nilslindemann",
-    "timeISO": "2025-08-13T21:17:32.000Z",
-    "textPlain": "[delayed]",
     "parent": 44892209,
     "depth": 1
   },
@@ -72,6 +64,46 @@
     "depth": 1
   },
   {
+    "id": 44892454,
+    "by": "ctoth",
+    "timeISO": "2025-08-13T19:03:56.000Z",
+    "textPlain": "As I said a couple weeks ago, they're gonna have to cash out at some point. The move won't be around Uv -- it'll be a protected private PyPi or something.https://news.ycombinator.com/item?id=44712558Now what do we have here?",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44894458,
+    "by": "no_wizard",
+    "timeISO": "2025-08-13T22:09:19.000Z",
+    "textPlain": "Good on you guys!I wanted to start a business exactly like this years ago, when I actually worked in Python. I ended up not doing so, because at the time (circa 2014-2015) I was told it would never take off, no way to get funding.I'm glad you're able to do what ultimately I was not!",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44893646,
+    "by": "JackYoustra",
+    "timeISO": "2025-08-13T20:46:45.000Z",
+    "textPlain": "The real thing that I hope someone is able to solve is downloading such huge amounts of unnecessary code. As I understand, the bulk of the torch binary is just a huge nvfatbin compiled for every SM under the sun when you usually just want it to run on whatever accelerators you have on hand. Even just making narrow builds of like `pytorch-sm120a` (with stuff like cuBLAS thin binaries paired with it too) as part of a handy uv extra or something like that would make it much quicker and easier.",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44894321,
+    "by": "hommes-r",
+    "timeISO": "2025-08-13T21:55:08.000Z",
+    "textPlain": "Only thing that is unclear to me is to which extend this setup depends on the package publisher. PyPi might be terrible at least it just works when you want to publish that it leads to more complexity for the ones that are looking to use this piece of free software is not for the maintainer.Maybe they are only targeting dev tooling companies as a way to simplify how they distribute. Especially in the accelerated compute era.",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44894287,
+    "by": "jacques_chester",
+    "timeISO": "2025-08-13T21:52:17.000Z",
+    "textPlain": "Interesting watching this part of the landscape heating up. For repos you've got stalwarts like Artifactory and Nexus, with upstart Cloudsmith. For libraries you've got the OG ActiveState, Chainguard Libraries and, until someone is distracted by a shiny next week, Google Assured Open Source.Sounds like Pyx is trying to do a bit of both.Disclosure: I have interacted a bunch with folks from all of these things. Never worked for or been paid by, though.",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
     "id": 44893498,
     "by": "rob",
     "timeISO": "2025-08-13T20:31:39.000Z",
@@ -80,10 +112,18 @@
     "depth": 1
   },
   {
-    "id": 44893202,
-    "by": "dakiol",
-    "timeISO": "2025-08-13T20:07:46.000Z",
-    "textPlain": "I'm brushing up with Python for a new job, and boy what a ride. Not because of the language itself but the tooling around packages. I'm coming from Go and TS/JS and while these two ecosystems have their own pros and cons, at least they are more or less straightforward to get onboarded (there are 1 or 2 tools you need to know about). In Python there are dozens of tools/concepts related to packaging: pip, easy_install, setuptools, setup.py, pypy, poetry, uv, venv, virtualenv, pipenv, wheels, ...\nThere's even an entire website dedicated to this topic: https://packaging.python.orgDon't understand how a private company like Astral is leading here. Why is that hard for the Python community to come up with a single tool to rule them all? (I know https://xkcd.com/927/). Like, you could even copy what Go or Node are doing, and make it Python-aware; no shame on that. Instead we have these who-knows-how-long-they-will-last tools every now and then.They should remove the \"There should be one-- and preferably only one --obvious way to do it.\" from the Python Zen.",
+    "id": 44894194,
+    "by": "rtpg",
+    "timeISO": "2025-08-13T21:41:10.000Z",
+    "textPlain": "I really want to pay someone money to run package repo mirrors for me, but my problems have been more with npm than with Pypi. Astral, if you're listening.... maybe tackle JS packaging too?",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44894231,
+    "by": "kristoff_it",
+    "timeISO": "2025-08-13T21:44:46.000Z",
+    "textPlain": "Is this going to solve the combinatorial explosion of pre-building native dependencies for every possible target?Python should get rid of its training wheels :^)https://kristoff.it/blog/python-training-wheels/",
     "parent": 44892209,
     "depth": 1
   },
@@ -104,10 +144,42 @@
     "depth": 1
   },
   {
-    "id": 44893950,
-    "by": "lardbgard",
-    "timeISO": "2025-08-13T21:16:32.000Z",
-    "textPlain": "you should use bluedwarf.top its better than python.",
+    "id": 44894322,
+    "by": "lvl155",
+    "timeISO": "2025-08-13T21:55:15.000Z",
+    "textPlain": "I don’t know how I feel about one company dominating this space. I love what they do but what happens 5 years down the road?",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44893202,
+    "by": "dakiol",
+    "timeISO": "2025-08-13T20:07:46.000Z",
+    "textPlain": "I'm brushing up with Python for a new job, and boy what a ride. Not because of the language itself but the tooling around packages. I'm coming from Go and TS/JS and while these two ecosystems have their own pros and cons, at least they are more or less straightforward to get onboarded (there are 1 or 2 tools you need to know about). In Python there are dozens of tools/concepts related to packaging: pip, easy_install, setuptools, setup.py, pypy, poetry, uv, venv, virtualenv, pipenv, wheels, ...\nThere's even an entire website dedicated to this topic: https://packaging.python.orgDon't understand how a private company like Astral is leading here. Why is that hard for the Python community to come up with a single tool to rule them all? (I know https://xkcd.com/927/). Like, you could even copy what Go or Node are doing, and make it Python-aware; no shame on that. Instead we have these who-knows-how-long-they-will-last tools every now and then.They should remove the \"There should be one-- and preferably only one --obvious way to do it.\" from the Python Zen.",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44894264,
+    "by": "pshirshov",
+    "timeISO": "2025-08-13T21:49:39.000Z",
+    "textPlain": "Again! ezsetup, setuptools, conda, poetry, uv, now this.",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44893962,
+    "by": "nilslindemann",
+    "timeISO": "2025-08-13T21:17:32.000Z",
+    "textPlain": "I do not trust Astral.Much ad language.They do not explain what an installation of their software does to my system.They use the word \"platform\".",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44894042,
+    "by": "FergusArgyll",
+    "timeISO": "2025-08-13T21:24:32.000Z",
+    "textPlain": "Astral is the coolest startup",
     "parent": 44892209,
     "depth": 1
   },
@@ -120,18 +192,18 @@
     "depth": 1
   },
   {
-    "id": 44892884,
-    "by": "cpeterso",
-    "timeISO": "2025-08-13T19:42:05.000Z",
-    "textPlain": "How do you pronounce \"pyx\"? Pikes, picks, pie-ex?",
+    "id": 44894501,
+    "by": "Aeolun",
+    "timeISO": "2025-08-13T22:13:37.000Z",
+    "textPlain": "Yay, _another_, probably incompattible, python package manager has arrived.",
     "parent": 44892209,
     "depth": 1
   },
   {
-    "id": 44893816,
-    "by": "ossusermivami",
-    "timeISO": "2025-08-13T21:04:08.000Z",
-    "textPlain": "i wonder if nix has been considered",
+    "id": 44892884,
+    "by": "cpeterso",
+    "timeISO": "2025-08-13T19:42:05.000Z",
+    "textPlain": "How do you pronounce \"pyx\"? Pikes, picks, pie-ex?",
     "parent": 44892209,
     "depth": 1
   },
@@ -160,6 +232,14 @@
     "depth": 1
   },
   {
+    "id": 44893816,
+    "by": "ossusermivami",
+    "timeISO": "2025-08-13T21:04:08.000Z",
+    "textPlain": "i wonder if nix has been considered",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
     "id": 44892776,
     "by": "metalliqaz",
     "timeISO": "2025-08-13T19:32:48.000Z",
@@ -184,10 +264,58 @@
     "depth": 1
   },
   {
+    "id": 44893950,
+    "by": "lardbgard",
+    "timeISO": "2025-08-13T21:16:32.000Z",
+    "textPlain": "you should use bluedwarf.top its better than python.",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44894044,
+    "by": "tomwphillips",
+    "timeISO": "2025-08-13T21:24:39.000Z",
+    "textPlain": ">ModernI'll pass. I'd rather have the battle-tested old thing, thanks.",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44894051,
+    "by": "Animats",
+    "timeISO": "2025-08-13T21:26:02.000Z",
+    "textPlain": "Groan. Another one.The compiled languages now have better \"packaging\" than the interpreted ones. \"go build\" and \"cargo build\" (for Rust), which do real work, are easier to use than the packaging systems for Python and Javascript.We've come a long way in the compiled world since \"make depend; make\".",
+    "parent": 44892209,
+    "depth": 1
+  },
+  {
+    "id": 44894347,
+    "by": "6thbit",
+    "timeISO": "2025-08-13T21:57:57.000Z",
+    "textPlain": "Thanks that’s bit less cryptic than the linked page.Still don’t get how they are solving what they claim to solve.",
+    "parent": 44892314,
+    "depth": 2
+  },
+  {
     "id": 44893301,
     "by": "giancarlostoro",
     "timeISO": "2025-08-13T20:16:15.000Z",
     "textPlain": "Stuff like that led me fully away from Ruby (due to Rails), which is a shame, I see videos of people chugging along with Ruby and loving it, and it looks like a fun language, but when the only way I can get a dev environment setup for Rails is using DigitalOcean droplets, I've lost all interest. It would always fail at compiling something for Rails. I would have loved to partake in the Rails hype back in 2012, but over the years the install / setup process was always a nightmare.I went with Python because I never had this issue. Now with any AI / CUDA stuff its a bit of a nightmare to the point where you use someone's setup shell script instead of trying to use pip at all.",
+    "parent": 44893239,
+    "depth": 2
+  },
+  {
+    "id": 44894029,
+    "by": "bytehumi",
+    "timeISO": "2025-08-13T21:23:48.000Z",
+    "textPlain": "This is the right direction for Python packaging, especially for GPU-heavy workflows. Two concrete things I'm excited about: 1) curated, compatibility-tested indices per accelerator (CUDA/ROCm/CPU) so teams stop bikeshedding over torch/cu* matrixes, and 2) making metadata queryable so clients can resolve up front and install in parallel. If pyx can reduce the 'pip trial-and-error' loop for ML by shipping narrower, hardware-targeted artifacts (e.g., SM/arch-specific builds) and predictable hashes, that alone saves hours per environment. Also +1 to keeping tools OSS and monetizing the hosted service—clear separation builds trust. Curious: will pyx expose dependency graph and reverse-dependency endpoints (e.g., \"what breaks if X→Y?\") and SBOM/signing attestation for supply-chain checks?",
+    "parent": 44893239,
+    "depth": 2
+  },
+  {
+    "id": 44894460,
+    "by": "miohtama",
+    "timeISO": "2025-08-13T22:09:29.000Z",
+    "textPlain": "In the past, part of the definition of an operating system was that it ships with a compiler.",
     "parent": 44893239,
     "depth": 2
   },
@@ -208,6 +336,14 @@
     "depth": 2
   },
   {
+    "id": 44894524,
+    "by": "mnazzaro",
+    "timeISO": "2025-08-13T22:16:12.000Z",
+    "textPlain": "This is a valid concern, but astral just has an amazing track record.I was surprised to see the community here on HN responding so cautiously. Been developing in python for about a decade now- whenever astral does something I get excited!",
+    "parent": 44892499,
+    "depth": 2
+  },
+  {
     "id": 44893541,
     "by": "ActorNightly",
     "timeISO": "2025-08-13T20:36:06.000Z",
@@ -216,19 +352,19 @@
     "depth": 2
   },
   {
-    "id": 44893844,
-    "by": "mikepurvis",
-    "timeISO": "2025-08-13T21:06:55.000Z",
-    "textPlain": "Another piece is that PyPI has no index— it's just a giant list of URLs [1] where any required metadata (eg, the OS, python version, etc) is encoded in the filename. That makes it trivial to throw behind a CDN since it's all super static, but it has some important limitations:- there's no way to do an installation dry run without pre-downloading all the packages (to get their dep info)- there's no way to get hashes of the archives- there's no way to do things like reverse-search (show me everything that depends on x)I'm assuming that a big part of pyx is introducing a dynamically served (or maybe even queryable) endpoint that can return package metadata and let uv plan ahead better, identify problems and conflicts before they happen, install packages in parallel, etc.Astral has an excellent track record on the engineering and design side, so I expect that whatever they do in this space will basically make sense, it will eventually be codified in a PEP, and PyPI will implement the same endpoint so that other tools like pip and poetry can adopt it.[1]: Top-level: https://pypi.org/simple/ Individual package: https://pypi.org/simple/pyyaml/",
-    "parent": 44893646,
-    "depth": 2
-  },
-  {
     "id": 44892948,
     "by": "woodruffw",
     "timeISO": "2025-08-13T19:47:45.000Z",
     "textPlain": "Python packaging has a lot of standards, but I would say most of them (especially in the last decade) don't really compete with each other. They lean more towards the \"slow accretion of generally considered useful features\" style.This itself is IMO a product of Python having a relatively healthy consensus-driven standardization process for packaging, rather than an authoritative one. If Python had more of an authoritative approach, I don't think the language would have done as well as it has.(Source: I've written at least 5 PEPs.)",
     "parent": 44892881,
+    "depth": 2
+  },
+  {
+    "id": 44893492,
+    "by": "charliermarsh",
+    "timeISO": "2025-08-13T20:31:22.000Z",
+    "textPlain": "> Will `uv` inspect my local GPU spec and decide what the best set of packages would be to pull from Pyx?We actually support this basic idea today, even without pyx. You can run (e.g.) `uv pip install --torch-backend=auto torch` to automatically install a version of PyTorch based on your machine's GPU from the PyTorch index.pyx takes that idea and pushes it further. Instead of \"just\" supporting PyTorch, the registry has a curated index for each supported hardware accelerator, and we populate that index with pre-built artifacts across a wide range of packages, versions, Python versions, PyTorch versions, etc., all with consistent and coherent metadata.So there are two parts to it: (1) when you point to pyx, it becomes much easier to get the right, pre-built, mutually compatible versions of these things (and faster to install them); and (2) the uv client can point you to the \"right\" pyx index automatically (that part works regardless of whether you're using pyx, it's just more limited).> Since this is a private, paid-for registry aimed at corporate clients, will there be an option to expose those registries externally as a public instance, but paid for by the company? That is, can I as a vendor pay for a Pyx registry for my own set of packages, and then provide that registry as an entrypoint for my customers?We don't support this yet but it's come up a few times with users. If you're interested in it concretely feel free to email me (charlie@).",
+    "parent": 44893113,
     "depth": 2
   },
   {
@@ -256,147 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44893492,
-    "by": "charliermarsh",
-    "timeISO": "2025-08-13T20:31:22.000Z",
-    "textPlain": "> Will `uv` inspect my local GPU spec and decide what the best set of packages would be to pull from Pyx?We actually support this basic idea today, even without pyx. You can run (e.g.) `uv pip install --torch-backend=auto torch` to automatically install a version of PyTorch based on your machine's GPU from the PyTorch index.pyx takes that idea and pushes it further. Instead of \"just\" supporting PyTorch, the registry has a curated index for each supported hardware accelerator, and we populate that index with pre-built artifacts across a wide range of packages, versions, Python versions, PyTorch versions, etc., all with consistent and coherent metadata.So there are two parts to it: (1) when you point to pyx, it becomes much easier to get the right, pre-built, mutually compatible versions of these things (and faster to install them); and (2) the uv client can point you to the \"right\" pyx index automatically (that part works regardless of whether you're using pyx, it's just more limited).> Since this is a private, paid-for registry aimed at corporate clients, will there be an option to expose those registries externally as a public instance, but paid for by the company? That is, can I as a vendor pay for a Pyx registry for my own set of packages, and then provide that registry as an entrypoint for my customers?We don't support this yet but it's come up a few times with users. If you're interested in it concretely feel free to email me (charlie@).",
-    "parent": 44893113,
-    "depth": 2
-  },
-  {
-    "id": 44893678,
-    "by": "eldenring",
-    "timeISO": "2025-08-13T20:50:37.000Z",
-    "textPlain": "Its interesting because the value is definitely there. Every single python developer you meet (many of who are highly paid) has a story about wasting a bunch of time on these things. The question is how much of this value can Astral capture.I think based on the quality of their work, there's also an important component which is trust. I'd trust and pay for a product from them much more readily than an open source solution with flaky maintainers.",
-    "parent": 44893498,
-    "depth": 2
-  },
-  {
-    "id": 44893771,
-    "by": "beshrkayali",
-    "timeISO": "2025-08-13T20:59:23.000Z",
-    "textPlain": "It's not an easy task, and when there's already lots of established practices, habits, and opinions, it becomes even more difficult to get around the various pain points. There's been many attempts: pip (the standard) is slow, lacks dependency resolution, and struggles with reproducible builds. Conda is heavy, slow to solve environments, and mixes Python with non-Python dependencies, which makes understanding some setups very complicated. Poetry improves dependency management but is sluggish and adds unnecessary complexity for simple scripts/projects. Pipenv makes things simpler, but also has the same issue of slow resolution and inconsistent lock files. Those are the ones I've used over the years at least.uv addressed these flaws with speed, solid dependency resolution, and a simple interface that builds on what people are already used to. It unifies virtual environment and package management, supports reproducible builds, and integrates easily with modern workflows.",
-    "parent": 44893202,
-    "depth": 2
-  },
-  {
-    "id": 44893814,
-    "by": "devjab",
-    "timeISO": "2025-08-13T21:04:05.000Z",
-    "textPlain": "I work with Python, Node and Go and I don't think any of them have great package systems. Go has an amazing module isolation system and boy do I wish hiding functions within a module/package was as easy in Python as it is in Go. What saves Go is the standard library which makes it possible to write almost everything without needing external dependencies. You've worked with JavaScript and I really don't see how Python is different. I'd argue that Deno and JSR is the only \"sane\" approach to packages and security, but it's hardly leading and NPM is owned by Microsoft so it's not like you have a great \"open source\" platform there either. On top of that you have the \"fun\" parts of ESM vs CommonJS.Anyway, if you're familiar with Node then I think you can view pip and venv as the npm of Python. Things like Poetry are Yarn, made as replacements because pip sort of sucks. UV on the other hand is a drop-in replacement for pip and venv (and other things) similar to how pnpm is basically npm. I can't answer your question on why there isn't a \"good\" tool to rule them all, but the single tool has been pip since 2014, and since UV is a drop-in, it's very easy to use UV in development and pip in production.I think it's reasonable to worry about what happens when Astral needs to make money for their investors, but that's the beauty of UV compared to a lot of other Python tools. It's extremely easy to replace because it's essentially just smarter pip. I do hope Astral succeeds with their pyx, private registries and so on by the way.",
-    "parent": 44893202,
-    "depth": 2
-  },
-  {
-    "id": 44893935,
-    "by": "AlphaSite",
-    "timeISO": "2025-08-13T21:15:16.000Z",
-    "textPlain": "I appreciate everything they’ve done but the group which maintains Pip and the package index is categorically incapable of shipping anything at a good velocity.It’s entirely volunteer based so I don’t blame them, but the reality is that it’s holding back the ecosystem.I suspect it’s also a misalignment of interests. No one there really invests in improving UX.",
-    "parent": 44893202,
-    "depth": 2
-  },
-  {
-    "id": 44893345,
-    "by": "notatallshaw",
-    "timeISO": "2025-08-13T20:19:54.000Z",
-    "textPlain": "> easy_installI don't know what guides you're reading but I haven't touched easy_install in at least a decade. It's successor, pip, had effectively replaced all use cases for it by around 2010.",
-    "parent": 44893202,
-    "depth": 2
-  },
-  {
-    "id": 44893977,
-    "by": "mixmastamyk",
-    "timeISO": "2025-08-13T21:18:16.000Z",
-    "textPlain": "You don't need to know most of those things.  Until last year I used setup.py and pip exclusively for twenty years, with a venv for each job at work.  Wheels are simply prebuilt .zips.  That's about an hour of learning more or less.Now we have pyproject.toml and uv to learn.  This is another hour or so of learning, but well worth it.Astral is stepping up because no one else did.  Guido never cared about packaging and that's why it has been the wild west until now.",
-    "parent": 44893202,
-    "depth": 2
-  },
-  {
-    "id": 44893438,
-    "by": "lenerdenator",
-    "timeISO": "2025-08-13T20:27:03.000Z",
-    "textPlain": "> In Python there are dozens of tools/concepts related to packaging: pip, easy_install, setuptools, setup.py, pypy, poetry, uv, venv, virtualenv, pipenv, wheels,Some of those are package tools, some are dependency managers, some are runtime environments, some are package formats...Some are obsolete at this point, and others by necessity cover different portions of programming language technologies.I guess what I'm saying is, for the average software engineer, there's not too many more choices in Python for programming facilities than in Javascript.",
-    "parent": 44893202,
-    "depth": 2
-  },
-  {
-    "id": 44893526,
-    "by": "WesolyKubeczek",
-    "timeISO": "2025-08-13T20:34:38.000Z",
-    "textPlain": "> Why is that hard for the Python community to come up with a single tool to rule them all?Whatever I would say at this point about PyPA would be so uncharitable that dang would descend on me with the holy hammer of banishment, but you can get my drift. I just don't trust them to come out with good tooling. The plethora they have produced so far is quite telling.That said, pip covers 99% of my needs when I need to do anything with Python. There are ecosystems that have it way worse, so I count my blessings. But apparently, since Poetry and uv exist, my 99% are not many other people's 99%.If I wanted to package my Python stuff, though, I'm getting confused. Is it now setup.py or pyproject.toml? Or maybe both? What if I need to support an older Python version as seen in some old-but-still-supported Linux distributions?> They should remove the \"There should be one-- and preferably only one --obvious way to do it.\" from the Python Zen.Granted, tooling is different from the language itself. Although PyPA could benefit from a decade having a BDFL.",
-    "parent": 44893202,
-    "depth": 2
-  },
-  {
-    "id": 44893282,
-    "by": "formerly_proven",
-    "timeISO": "2025-08-13T20:14:18.000Z",
-    "textPlain": "> Don't understand how a private company like Astral is leading here. Why is that hard for the Python community to come up with a single tool to rule them all? (I know https://xkcd.com/927/). Like, you could even copy what Go or Node are doing, and make it Python-aware; no shame on that. Instead we have these who-knows-how-long-they-will-last tools every now and then.Python packaging is (largely) solving problems that Go and Node packaging are not even trying to address.",
-    "parent": 44893202,
-    "depth": 2
-  },
-  {
-    "id": 44893779,
-    "by": "nodesocket",
-    "timeISO": "2025-08-13T21:00:05.000Z",
-    "textPlain": "Much better than the Node a handful of years back. Everybody used NPM, everybody switched to Yarn, everybody switched back to NPM.",
-    "parent": 44893508,
-    "depth": 2
-  },
-  {
-    "id": 44893891,
-    "by": "actinium226",
-    "timeISO": "2025-08-13T21:11:15.000Z",
-    "textPlain": "I feel like github solved this problem pretty well.",
-    "parent": 44892468,
-    "depth": 2
-  },
-  {
-    "id": 44892508,
-    "by": "tmvphil",
-    "timeISO": "2025-08-13T19:08:27.000Z",
-    "textPlain": "Fundamentally we still have the flat namespace of top level python imports, which is the same as the package name for ~95% of projects, so I'm not sure how they \ncould really change that.",
-    "parent": 44892468,
-    "depth": 2
-  },
-  {
-    "id": 44892777,
-    "by": "cr125rider",
-    "timeISO": "2025-08-13T19:32:50.000Z",
-    "textPlain": "Once we learn to namespace things it’s gonna be so nice. Seems we keep re-learning that lesson…",
-    "parent": 44892468,
-    "depth": 2
-  },
-  {
-    "id": 44892401,
-    "by": "notatallshaw",
-    "timeISO": "2025-08-13T18:59:49.000Z",
-    "textPlain": "Given Astral's heavy involvement in the wheelnext project I suspect this index is an early adopter of Wheel Variants which are an attempt to solve the problems of CUDA (and that entire class of problems not just CUDA specifically) in a more automated way than even conda: https://wheelnext.dev/proposals/pepxxx_wheel_variant_support...",
-    "parent": 44892340,
-    "depth": 2
-  },
-  {
-    "id": 44893747,
-    "by": "Y_Y",
-    "timeISO": "2025-08-13T20:57:46.000Z",
-    "textPlain": "I demand it be pronounced like the existing English word \"pyx\" (aka \"pyxis\"), meaning a weird religious box:https://en.wikipedia.org/wiki/Pyx",
-    "parent": 44892884,
-    "depth": 2
-  },
-  {
-    "id": 44893056,
-    "by": "woodruffw",
-    "timeISO": "2025-08-13T19:56:05.000Z",
-    "textPlain": "We've been pronouncing it pea-why-ecks, like uv (you-vee) and ty (tee-why). But I wouldn't say that's permanent yet.",
-    "parent": 44892884,
-    "depth": 2
-  },
-  {
-    "id": 44892544,
-    "by": "woodruffw",
-    "timeISO": "2025-08-13T19:11:48.000Z",
-    "textPlain": "Not exactly -- part of pyx is a registry (and that part speaks the same standards as PyPI), but the bigger picture is that pyx part of a larger effort to make Python packaging faster and more cohesive for developers.To be precise: pyx isn't intended to be a public registry or a free service; it's something Astral will be selling. It'll support private packages and corporate use cases that are (reasonably IMO) beyond PyPI's scope.(FD: I work on pyx.)",
-    "parent": 44892399,
+    "id": 44893844,
+    "by": "mikepurvis",
+    "timeISO": "2025-08-13T21:06:55.000Z",
+    "textPlain": "Another piece is that PyPI has no index— it's just a giant list of URLs [1] where any required metadata (eg, the OS, python version, etc) is encoded in the filename. That makes it trivial to throw behind a CDN since it's all super static, but it has some important limitations:- there's no way to do an installation dry run without pre-downloading all the packages (to get their dep info)- there's no way to get hashes of the archives- there's no way to do things like reverse-search (show me everything that depends on x)I'm assuming that a big part of pyx is introducing a dynamically served (or maybe even queryable) endpoint that can return package metadata and let uv plan ahead better, identify problems and conflicts before they happen, install packages in parallel, etc.Astral has an excellent track record on the engineering and design side, so I expect that whatever they do in this space will basically make sense, it will eventually be codified in a PEP, and PyPI will implement the same endpoint so that other tools like pip and poetry can adopt it.[1]: Top-level: https://pypi.org/simple/ Individual package: https://pypi.org/simple/pyyaml/",
+    "parent": 44893646,
     "depth": 2
   }
 ]

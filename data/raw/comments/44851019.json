@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44893906,
-    "by": "robotnikman",
-    "timeISO": "2025-08-13T21:12:31.000Z",
-    "textPlain": "I know very little about electronics design, so I always find it amazing that they keep managing to double PCIe throughput over and over. Its also probably the longest lived expansion bus at the moment.",
-    "parent": 44851019,
-    "depth": 1
-  },
-  {
     "id": 44892705,
     "by": "bhouston",
     "timeISO": "2025-08-13T19:26:37.000Z",
@@ -24,10 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44892563,
-    "by": "zkms",
-    "timeISO": "2025-08-13T19:13:29.000Z",
-    "textPlain": "My reaction to PCIe gen 8 is essentially \"Huh? No, retro data buses are like ISA, PCI, and AGP, right? PCIe Gen 3 and SATA are still pretty new...\".I wonder what modulation order / RF bandwidth they'll be using on the PHY for Gen8. I think Gen7 used 32GHz, which is ridiculously high.",
+    "id": 44894293,
+    "by": "pshirshov",
+    "timeISO": "2025-08-13T21:52:55.000Z",
+    "textPlain": "Yeah, such a shame I've just upgraded to a 7.0 motherboard for my socket AM7 CPU.Being less sarcastic, I would ask if 6.0 mobos are on the horizon.",
+    "parent": 44851019,
+    "depth": 1
+  },
+  {
+    "id": 44893906,
+    "by": "robotnikman",
+    "timeISO": "2025-08-13T21:12:31.000Z",
+    "textPlain": "I know very little about electronics design, so I always find it amazing that they keep managing to double PCIe throughput over and over. Its also probably the longest lived expansion bus at the moment.",
     "parent": 44851019,
     "depth": 1
   },
@@ -48,6 +48,14 @@
     "depth": 1
   },
   {
+    "id": 44892563,
+    "by": "zkms",
+    "timeISO": "2025-08-13T19:13:29.000Z",
+    "textPlain": "My reaction to PCIe gen 8 is essentially \"Huh? No, retro data buses are like ISA, PCI, and AGP, right? PCIe Gen 3 and SATA are still pretty new...\".I wonder what modulation order / RF bandwidth they'll be using on the PHY for Gen8. I think Gen7 used 32GHz, which is ridiculously high.",
+    "parent": 44851019,
+    "depth": 1
+  },
+  {
     "id": 44892724,
     "by": "richwater",
     "timeISO": "2025-08-13T19:28:42.000Z",
@@ -56,10 +64,26 @@
     "depth": 1
   },
   {
+    "id": 44894213,
+    "by": "rui9",
+    "timeISO": "2025-08-13T21:43:31.000Z",
+    "textPlain": "[dead]",
+    "parent": 44851019,
+    "depth": 1
+  },
+  {
     "id": 44893003,
     "by": "kvemkon",
     "timeISO": "2025-08-13T19:51:45.000Z",
     "textPlain": "> at what point do we just flip the architecture over so the GPU pcb is the motherboard and the cpu/memoryActually the RapsberryPi (appeared 2012) was based on a SoC with a big and powerful GPU and small weak supporting CPU. The board booted the GPU first.",
+    "parent": 44851726,
+    "depth": 2
+  },
+  {
+    "id": 44894351,
+    "by": "dylan604",
+    "timeISO": "2025-08-13T21:58:07.000Z",
+    "textPlain": "Wouldn't that mean an complete mobo replacement to upgrade the GPU? GPU upgrades seem much more rapid and substantial compared to CPU/RAM. Each upgrade would not mean taking out the CPU/RAM and other cards vs just replacing the GPU",
     "parent": 44851726,
     "depth": 2
   },
@@ -80,18 +104,18 @@
     "depth": 2
   },
   {
-    "id": 44892782,
-    "by": "Dylan16807",
-    "timeISO": "2025-08-13T19:33:09.000Z",
-    "textPlain": "And limit yourself to only one GPU?Also CPUs are able to make use of more space for memory, both horizontally and vertically.I don't really see the power delivery advantages, either way you're running a bunch of EPS12V or similar cables around.",
+    "id": 44894281,
+    "by": "pshirshov",
+    "timeISO": "2025-08-13T21:51:36.000Z",
+    "textPlain": "Can I just have a backplane? Pretty please?",
     "parent": 44851726,
     "depth": 2
   },
   {
-    "id": 44893141,
-    "by": "LeoPanthera",
-    "timeISO": "2025-08-13T20:02:48.000Z",
-    "textPlain": "Bring back the S100 bus and put literally everything on a card. Your motherboard is just a dumb bus backplane.",
+    "id": 44894050,
+    "by": "leoapagano",
+    "timeISO": "2025-08-13T21:25:54.000Z",
+    "textPlain": "One possible advantage of this approach that no one here has mentioned yet is that it would allow us to put RAM on the CPU die (allowing for us to take advantage of the greater memory bandwidth) while also allowing for upgradable RAM.",
     "parent": 44851726,
     "depth": 2
   },
@@ -104,10 +128,10 @@
     "depth": 2
   },
   {
-    "id": 44892597,
-    "by": "Razengan",
-    "timeISO": "2025-08-13T19:15:40.000Z",
-    "textPlain": "Isn't that what has kinda sorta basically happened with Apple Silicon?",
+    "id": 44892782,
+    "by": "Dylan16807",
+    "timeISO": "2025-08-13T19:33:09.000Z",
+    "textPlain": "And limit yourself to only one GPU?Also CPUs are able to make use of more space for memory, both horizontally and vertically.I don't really see the power delivery advantages, either way you're running a bunch of EPS12V or similar cables around.",
     "parent": 44851726,
     "depth": 2
   },
@@ -116,6 +140,22 @@
     "by": "burnt-resistor",
     "timeISO": "2025-08-13T19:38:48.000Z",
     "textPlain": "Figure out how much RAM, L1-3|4 cache, integer, vector, graphics, and AI horsepower is needed for a use-case ahead-of-time and cram them all into one huge socket with intensive power rails and cooling. The internal RAM bus doesn't have to be DDRn/X either. An integrated northbridge would deliver PCIe, etc.",
+    "parent": 44851726,
+    "depth": 2
+  },
+  {
+    "id": 44892597,
+    "by": "Razengan",
+    "timeISO": "2025-08-13T19:15:40.000Z",
+    "textPlain": "Isn't that what has kinda sorta basically happened with Apple Silicon?",
+    "parent": 44851726,
+    "depth": 2
+  },
+  {
+    "id": 44893141,
+    "by": "LeoPanthera",
+    "timeISO": "2025-08-13T20:02:48.000Z",
+    "textPlain": "Bring back the S100 bus and put literally everything on a card. Your motherboard is just a dumb bus backplane.",
     "parent": 44851726,
     "depth": 2
   },
@@ -136,6 +176,14 @@
     "depth": 2
   },
   {
+    "id": 44892757,
+    "by": "ThatMedicIsASpy",
+    "timeISO": "2025-08-13T19:31:36.000Z",
+    "textPlain": "Gen6 is in use look at Nvidia ConnectX-8",
+    "parent": 44892705,
+    "depth": 2
+  },
+  {
     "id": 44893738,
     "by": "Phelinofist",
     "timeISO": "2025-08-13T20:57:10.000Z",
@@ -144,11 +192,35 @@
     "depth": 2
   },
   {
-    "id": 44892757,
-    "by": "ThatMedicIsASpy",
-    "timeISO": "2025-08-13T19:31:36.000Z",
-    "textPlain": "Gen6 is in use look at Nvidia ConnectX-8",
-    "parent": 44892705,
+    "id": 44894328,
+    "by": "wmf",
+    "timeISO": "2025-08-13T21:55:38.000Z",
+    "textPlain": "I guess Venice, Diamond Rapids, and Vera will have 6.0.",
+    "parent": 44894293,
+    "depth": 2
+  },
+  {
+    "id": 44894295,
+    "by": "wmf",
+    "timeISO": "2025-08-13T21:53:01.000Z",
+    "textPlain": "It's less surprising if you realize that PCIe is behind Ethernet (per lane).",
+    "parent": 44893906,
+    "depth": 2
+  },
+  {
+    "id": 44894365,
+    "by": "rbanffy",
+    "timeISO": "2025-08-13T21:59:41.000Z",
+    "textPlain": "I’m sure you can get some VMEbus boards.",
+    "parent": 44893906,
+    "depth": 2
+  },
+  {
+    "id": 44893951,
+    "by": "pkaye",
+    "timeISO": "2025-08-13T21:16:39.000Z",
+    "textPlain": "Some of the newer ones maybe more for data centers.",
+    "parent": 44893125,
     "depth": 2
   },
   {
@@ -168,11 +240,19 @@
     "depth": 2
   },
   {
-    "id": 44893951,
-    "by": "pkaye",
-    "timeISO": "2025-08-13T21:16:39.000Z",
-    "textPlain": "Some of the newer ones maybe more for data centers.",
-    "parent": 44893125,
+    "id": 44894161,
+    "by": "weinzierl",
+    "timeISO": "2025-08-13T21:37:42.000Z",
+    "textPlain": "Don't forget VESA Local Bus.",
+    "parent": 44892563,
+    "depth": 2
+  },
+  {
+    "id": 44894338,
+    "by": "checker659",
+    "timeISO": "2025-08-13T21:56:10.000Z",
+    "textPlain": "No matter the leaps in bandwidth, the latency remains the same. Also, with PCIe switches used in AI servers, the latency (and jitter) is even pronounced.",
+    "parent": 44892724,
     "depth": 2
   },
   {

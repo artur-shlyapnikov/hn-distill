@@ -1,10 +1,34 @@
 [
   {
+    "id": 44894373,
+    "by": "mzajc",
+    "timeISO": "2025-08-13T22:00:52.000Z",
+    "textPlain": "If you can afford to add a little extra logic to your web server, you can solve this without JavaScript shenanigans (plus it doesn't leak your visitors' IPs to Google. On Nginx, for example:  location ~ /vi/(.*)/thumbnail($|\\..*) {\n      error_page 404 = @hqdefault;\n      proxy_intercept_errors on;\n      proxy_pass https://img.youtube.com/vi/$1/maxresdefault$2;\n  }\n  \n  location @hqdefault {\n      proxy_pass https://img.youtube.com/vi/$1/hqdefault$2;\n  }\n\nThen simply use /vi/<id>/thumbnail.webp as the image source or adapt the location regex as needed. This can be chained with yet more fallback URLs.",
+    "parent": 44865908,
+    "depth": 1
+  },
+  {
     "id": 44865921,
     "by": "shaneos",
     "timeISO": "2025-08-11T16:12:08.000Z",
     "textPlain": "Author here, hi all. There are a number of ways to skin this cat. This is my preferred method. What's yours?",
     "parent": 44865908,
     "depth": 1
+  },
+  {
+    "id": 44894474,
+    "by": "insin",
+    "timeISO": "2025-08-13T22:11:04.000Z",
+    "textPlain": "I made an Astro component for this [1] which does the iframe srcdoc thing [2] (example page with dozens of videos [3]). Most of the code is just TypeScript types and building a big srcdoc string, so easy to repurpose if anybody wants to.Handling the fallback image has been sitting as an issue in the repo for a while, in favour of just checking it with the Astro dev server when I'm adding new videos, so… yoink‽[1] https://github.com/insin/astro-lazy-youtube-embed#readme[2] https://css-tricks.com/lazy-load-embedded-youtube-videos/[3] https://jbscript.dev/notes/undefined/the-banterbox",
+    "parent": 44865921,
+    "depth": 2
+  },
+  {
+    "id": 44894144,
+    "by": "degamad",
+    "timeISO": "2025-08-13T21:35:44.000Z",
+    "textPlain": "I generally prefer the oEmbed approach. It's mentioned on the SO question linked in Paul Irish's write-up. I'll throw together a sample at some point.",
+    "parent": 44865921,
+    "depth": 2
   }
 ]

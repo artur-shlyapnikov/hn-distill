@@ -11,7 +11,7 @@
     "id": 44893967,
     "by": "coppsilgold",
     "timeISO": "2025-08-13T21:17:56.000Z",
-    "textPlain": "They chose Ascon which is a good family of cryptographic functions if you don't have hardware acceleration for AES or the CPU resources for chacha20 which is the intention of the standard. The security is 128-bits.<https://ascon.isec.tugraz.at/specification.html>",
+    "textPlain": "They chose Ascon which is a good set of same sponge-based cryptographic functions if you don't have hardware acceleration for AES or the CPU resources for chacha20 which is the intention of the standard. The security is 128-bits (comparable to AES-128).<https://ascon.isec.tugraz.at/specification.html>",
     "parent": 44893600,
     "depth": 1
   },
@@ -22,5 +22,61 @@
     "textPlain": "This is pretty cool. But IOT tends to fail hard on key agreement. And nothing here solves that. This seems to pretty much require a pre installed key, otherwise the overhead of securely installing a key would probably nullify the advantage of this encryption.",
     "parent": 44893600,
     "depth": 1
+  },
+  {
+    "id": 44894372,
+    "by": "Onavo",
+    "timeISO": "2025-08-13T22:00:46.000Z",
+    "textPlain": "Are these for garage doors and doorbells? Those devices could definitely use more security (it's not hard to stuff a proper TLS stack in a microcontroller but manufacturers balk at even putting something as cheap as a ESP32 in their BOM).",
+    "parent": 44893600,
+    "depth": 1
+  },
+  {
+    "id": 44894073,
+    "by": "tptacek",
+    "timeISO": "2025-08-13T21:27:57.000Z",
+    "textPlain": "I feel like you need to be read in, at least a little bit, into what's going on in cryptography research before you take statements like this at face value, because a lot of pretty serious people work on lightweight cryptography constructions and primitives.(I'm not dissing Green here; I'm saying, I don't think he meant that statement to be proxied to a generalist audience as an effective summation of lightweight cryptography).",
+    "parent": 44893936,
+    "depth": 2
+  },
+  {
+    "id": 44894034,
+    "by": "rocqua",
+    "timeISO": "2025-08-13T21:24:04.000Z",
+    "textPlain": "That feels too reductive.The point of these primitives is not to trade security for ease of computation. The point is to find alternatives that are just as strong as AES-128 but with less computation. The trade-off is in how long and hard people have tried to break it.",
+    "parent": 44893936,
+    "depth": 2
+  },
+  {
+    "id": 44894033,
+    "by": "cvwright",
+    "timeISO": "2025-08-13T21:23:54.000Z",
+    "textPlain": "Good news.  We’ve waited so long that AES is pretty damn lightweight now too.",
+    "parent": 44893936,
+    "depth": 2
+  },
+  {
+    "id": 44894016,
+    "by": "2OEH8eoCRo0",
+    "timeISO": "2025-08-13T21:21:51.000Z",
+    "textPlain": "> We encourage the use of this new lightweight cryptography standard wherever resource constraints have hindered the adoption of cryptography",
+    "parent": 44893936,
+    "depth": 2
+  },
+  {
+    "id": 44894138,
+    "by": "tptacek",
+    "timeISO": "2025-08-13T21:34:52.000Z",
+    "textPlain": "Right, it's a competition to standardize authenticated encryption constructions, not entire cryptosystems.",
+    "parent": 44893979,
+    "depth": 2
+  },
+  {
+    "id": 44894411,
+    "by": "tptacek",
+    "timeISO": "2025-08-13T22:04:26.000Z",
+    "textPlain": "Also for currently-constrained platforms for which hardware updates are infeasible, software updates aren't, and cryptographic security is currently compromised due to lack of availability of appropriate constructions.",
+    "parent": 44894372,
+    "depth": 2
   }
 ]

@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44893968,
-    "by": "XCSme",
-    "timeISO": "2025-08-13T21:17:59.000Z",
-    "textPlain": "Unrelated, but can I use Whisper in DaVinci resolve to automatically transcribe my videos and add subs?",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
     "id": 44886963,
     "by": "Lio",
     "timeISO": "2025-08-13T11:03:10.000Z",
@@ -48,14 +40,6 @@
     "depth": 1
   },
   {
-    "id": 44892872,
-    "by": "hbn",
-    "timeISO": "2025-08-13T19:40:19.000Z",
-    "textPlain": "I wonder if Apple's upcoming speech APIs can be added too. Would be cool to have it just work out of the box on Macs, without needing to source a model.https://developer.apple.com/documentation/speech/speechtrans...https://developer.apple.com/documentation/speech/speechanaly...https://www.macstories.net/stories/hands-on-how-apples-new-s...",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
     "id": 44886785,
     "by": "voxadam",
     "timeISO": "2025-08-13T10:40:59.000Z",
@@ -64,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44892004,
-    "by": "manca",
-    "timeISO": "2025-08-13T18:24:19.000Z",
-    "textPlain": "The only problem with this PR/diff is that it creates just a avfilter wrapper around whisper.cpp library and requires the user to manage the dependencies on their own. This is not helpful for novice users who will first need to:1. git clone whisper.cpp2. Make sure they have all dependencies for `that` library3. Hope the build passes4. Download the actual modelAND only then be able to use `-af \"whisper=model...` filter.If they try to use the filter without all the prereqs they'll fail and it'll create frustration.It'd be better to natively create a Whisper avfilter and only require the user to download the model -- I feel like this would streamline the whole process and actually make people use it much more.",
+    "id": 44892872,
+    "by": "hbn",
+    "timeISO": "2025-08-13T19:40:19.000Z",
+    "textPlain": "I wonder if Apple's upcoming speech APIs can be added too. Would be cool to have it just work out of the box on Macs, without needing to source a model.https://developer.apple.com/documentation/speech/speechtrans...https://developer.apple.com/documentation/speech/speechanaly...https://www.macstories.net/stories/hands-on-how-apples-new-s...",
     "parent": 44886647,
     "depth": 1
   },
@@ -80,6 +64,14 @@
     "depth": 1
   },
   {
+    "id": 44892004,
+    "by": "manca",
+    "timeISO": "2025-08-13T18:24:19.000Z",
+    "textPlain": "The only problem with this PR/diff is that it creates just a avfilter wrapper around whisper.cpp library and requires the user to manage the dependencies on their own. This is not helpful for novice users who will first need to:1. git clone whisper.cpp2. Make sure they have all dependencies for `that` library3. Hope the build passes4. Download the actual modelAND only then be able to use `-af \"whisper=model...` filter.If they try to use the filter without all the prereqs they'll fail and it'll create frustration.It'd be better to natively create a Whisper avfilter and only require the user to download the model -- I feel like this would streamline the whole process and actually make people use it much more.",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
     "id": 44887801,
     "by": "webinar",
     "timeISO": "2025-08-13T12:47:42.000Z",
@@ -88,10 +80,10 @@
     "depth": 1
   },
   {
-    "id": 44892710,
-    "by": "jd3",
-    "timeISO": "2025-08-13T19:27:09.000Z",
-    "textPlain": "took me longer than i'd care to admit to figure out how to install whisper as a user/system package on macOS w/o brew (which pulls in all of llvm@16 during install)    brew install uv\n    uv tool install openai-whisper\n    then add ~/.local/bin/ to $PATH",
+    "id": 44893968,
+    "by": "XCSme",
+    "timeISO": "2025-08-13T21:17:59.000Z",
+    "textPlain": "Unrelated, but can I use Whisper in DaVinci resolve to automatically transcribe my videos and add subs?",
     "parent": 44886647,
     "depth": 1
   },
@@ -100,6 +92,14 @@
     "by": "instagraham",
     "timeISO": "2025-08-13T11:01:29.000Z",
     "textPlain": "Does this mean that any software which uses ffmpeg can now add a transcription option? Audacity, Chrome, OBS etc",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44892710,
+    "by": "jd3",
+    "timeISO": "2025-08-13T19:27:09.000Z",
+    "textPlain": "took me longer than i'd care to admit to figure out how to install whisper as a user/system package on macOS w/o brew (which pulls in all of llvm@16 during install)    brew install uv\n    uv tool install openai-whisper\n    then add ~/.local/bin/ to $PATH",
     "parent": 44886647,
     "depth": 1
   },
@@ -136,22 +136,6 @@
     "depth": 1
   },
   {
-    "id": 44892352,
-    "by": "igorguerrero",
-    "timeISO": "2025-08-13T18:55:03.000Z",
-    "textPlain": "Aww, I literally just implemented this using whisper.cpp and ffmpeg lib, code is even similar...",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
-    "id": 44892231,
-    "by": "cheerioty",
-    "timeISO": "2025-08-13T18:45:00.000Z",
-    "textPlain": "OH: \"New changelog entries go to the bottom, @vpalmisano .. Didn't I tell you this once?\"",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
     "id": 44886878,
     "by": "bondarchuk",
     "timeISO": "2025-08-13T10:53:09.000Z",
@@ -164,6 +148,22 @@
     "by": "boutell",
     "timeISO": "2025-08-13T10:40:03.000Z",
     "textPlain": "Shut off the broken bot filter so we can read it please",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44892231,
+    "by": "cheerioty",
+    "timeISO": "2025-08-13T18:45:00.000Z",
+    "textPlain": "OH: \"New changelog entries go to the bottom, @vpalmisano .. Didn't I tell you this once?\"",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44892352,
+    "by": "igorguerrero",
+    "timeISO": "2025-08-13T18:55:03.000Z",
+    "textPlain": "Aww, I literally just implemented this using whisper.cpp and ffmpeg lib, code is even similar...",
     "parent": 44886647,
     "depth": 1
   },
@@ -200,14 +200,6 @@
     "depth": 1
   },
   {
-    "id": 44890883,
-    "by": "superkuh",
-    "timeISO": "2025-08-13T16:55:07.000Z",
-    "textPlain": "\"Making sure you're not a bot!\" with no way to get to the actual document that is supposed to be at the URL. Anubis can be configured to be accessible for people without the latest computers by using the meta-refresh proof of work but very few people take any time to configure it and just deploy the defaults. Just like with cloudflare.That said, I suppose I'm glad they're concentrating on making the ffmpeg code better rather than fixing bugs in the web interface for the development tracker. Having whisper integrated will be really useful. I'm already imagining automatic subtitle generation... imagining because I can't read the page or the code to know what it is.",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
     "id": 44886779,
     "by": "kwar13",
     "timeISO": "2025-08-13T10:40:21.000Z",
@@ -224,6 +216,14 @@
     "depth": 1
   },
   {
+    "id": 44890883,
+    "by": "superkuh",
+    "timeISO": "2025-08-13T16:55:07.000Z",
+    "textPlain": "\"Making sure you're not a bot!\" with no way to get to the actual document that is supposed to be at the URL. Anubis can be configured to be accessible for people without the latest computers by using the meta-refresh proof of work but very few people take any time to configure it and just deploy the defaults. Just like with cloudflare.That said, I suppose I'm glad they're concentrating on making the ffmpeg code better rather than fixing bugs in the web interface for the development tracker. Having whisper integrated will be really useful. I'm already imagining automatic subtitle generation... imagining because I can't read the page or the code to know what it is.",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
     "id": 44886766,
     "by": "zzsshh",
     "timeISO": "2025-08-13T10:38:43.000Z",
@@ -232,18 +232,18 @@
     "depth": 1
   },
   {
-    "id": 44889892,
-    "by": "dotancohen",
-    "timeISO": "2025-08-13T15:38:08.000Z",
-    "textPlain": "Why would one use FFmpeg with Whisper support, instead of using Whisper directly?",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
     "id": 44887932,
     "by": "porridgeraisin",
     "timeISO": "2025-08-13T13:03:11.000Z",
     "textPlain": "I had a small bash pipeline for doing this until now.  ffmpeg -f pulse -i \"$(pactl get-default-source)\" -t 5 -f wav -ar 16000 -ac 1 -c:a pcm_s16le - \\\n  | ./main - \\\n  | head -2 \\\n  | tail -1 \\\n  | cut -d] -f2 \\\n  | awk '{$1=$1};1'\n\nThe reading from mic part (-f pulse, pactl...) is linux-specific rest of it should be cross platform. The `main` executable is the whisper.cpp executable (see whisper.cpp github readme, it's just the output of `make base.en` from that).Edit: -t 5 controls recording duration.Oh and add 2>/dev/null to silence the debug output. I copied this from a pipe that further sends it into an LLM that  then looks at the meaning and turns it into a variety of structured data (reminders, todo items, etc) which I then....",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44889892,
+    "by": "dotancohen",
+    "timeISO": "2025-08-13T15:38:08.000Z",
+    "textPlain": "Why would one use FFmpeg with Whisper support, instead of using Whisper directly?",
     "parent": 44886647,
     "depth": 1
   },
@@ -368,10 +368,10 @@
     "depth": 2
   },
   {
-    "id": 44893584,
-    "by": "kanemcgrath",
-    "timeISO": "2025-08-13T20:41:45.000Z",
-    "textPlain": "Subtitle edit is great, and their subtitle library libse was exactly what I needed for a project I did.",
+    "id": 44888298,
+    "by": "pawelduda",
+    "timeISO": "2025-08-13T13:38:54.000Z",
+    "textPlain": "Can you give an example why it made your life that much better?",
     "parent": 44887584,
     "depth": 2
   },
@@ -384,18 +384,18 @@
     "depth": 2
   },
   {
-    "id": 44888298,
-    "by": "pawelduda",
-    "timeISO": "2025-08-13T13:38:54.000Z",
-    "textPlain": "Can you give an example why it made your life that much better?",
-    "parent": 44887584,
-    "depth": 2
-  },
-  {
     "id": 44888807,
     "by": "taminka",
     "timeISO": "2025-08-13T14:20:24.000Z",
     "textPlain": "whisper is great, i wonder why youtube's auto generated subs are still so bad? even the smallest whisper is way better than google's solution? is it licensing issue? harder to deploy at scale?",
+    "parent": 44887584,
+    "depth": 2
+  },
+  {
+    "id": 44893584,
+    "by": "kanemcgrath",
+    "timeISO": "2025-08-13T20:41:45.000Z",
+    "textPlain": "Subtitle edit is great, and their subtitle library libse was exactly what I needed for a project I did.",
     "parent": 44887584,
     "depth": 2
   }

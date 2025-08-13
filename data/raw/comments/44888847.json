@@ -1,17 +1,9 @@
 [
   {
-    "id": 44890311,
-    "by": "weitendorf",
-    "timeISO": "2025-08-13T16:09:39.000Z",
-    "textPlain": "We’ve been working on this problem off and on for over a year now. Many models bake knowledge of particular tools/libraries/patterns into their weights very well and others quite poorly. In my experience Claude is quite good at integrating the dog.ceo API and noticeably ignorant when it comes to Postgres features, and it knows gcloud commands enough to very confidently and consistently hallucinate arguments.We’ve baked a solution to this into our product, so if anybody is working on an API/SDK/etc feel free to contact me if your users are running into problems using LLMs to integrate them.One thing we’ve noticed is that subtle changes to library/api integration prompts’ context can be surprisingly impactful. LLMs do very well with example commands and explicit instructions to consider X, Y, and Z. If you just dump an API reference and information that implicitly suggests that X, Y, and Z might be beneficial, they won’t reliably make the logical leaps you want them to unless you let them iterate or “think” (spend more tokens) more. But you can’t as easily provide an example for everything, and the ones you do will bias the models towards them, so you may need a bit of both.",
-    "parent": 44888847,
-    "depth": 1
-  },
-  {
-    "id": 44890929,
-    "by": "prophesi",
-    "timeISO": "2025-08-13T16:58:44.000Z",
-    "textPlain": "In Elixir land, the Ash Framework created a package called usage_rules[0] as an experimental attempt to solve this problem a few months ago. The latest version of the Phoenix Framework (1.8) includes it in their `mix phx.new` generator and in their own hex packages[1]. Library owners would need to add their own usage rules, but it seems to help even for just the core packages Phoenix includes.[0] https://hexdocs.pm/usage_rules/readme.html[1] https://github.com/phoenixframework/phoenix/tree/main/usage-...",
+    "id": 44894491,
+    "by": "hoppp",
+    "timeISO": "2025-08-13T22:13:00.000Z",
+    "textPlain": "I get so much hallucination from gpt-5 about library APIs ...Please write the Apis for people so we can go see when the LLM fails.If you write it for the llm, the moment is starts lying the whole thing is broken, if its not for me I dont go digging in, I rather use something else",
     "parent": 44888847,
     "depth": 1
   },
@@ -24,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44889904,
-    "by": "rikroots",
-    "timeISO": "2025-08-13T15:38:57.000Z",
-    "textPlain": "I've done a lot of work recently to make my library more \"LLM Friendly\", but I'm not willing at this time to sign up to a service which I don't know I'd ever use again just to run a test on your behalf. If you want to run the test on my library then its GitHub can be found here: https://github.com/KaliedaRik/Scrawl-canvas",
+    "id": 44890311,
+    "by": "weitendorf",
+    "timeISO": "2025-08-13T16:09:39.000Z",
+    "textPlain": "We’ve been working on this problem off and on for over a year now. Many models bake knowledge of particular tools/libraries/patterns into their weights very well and others quite poorly. In my experience Claude is quite good at integrating the dog.ceo API and noticeably ignorant when it comes to Postgres features, and it knows gcloud commands enough to very confidently and consistently hallucinate arguments.We’ve baked a solution to this into our product, so if anybody is working on an API/SDK/etc feel free to contact me if your users are running into problems using LLMs to integrate them.One thing we’ve noticed is that subtle changes to library/api integration prompts’ context can be surprisingly impactful. LLMs do very well with example commands and explicit instructions to consider X, Y, and Z. If you just dump an API reference and information that implicitly suggests that X, Y, and Z might be beneficial, they won’t reliably make the logical leaps you want them to unless you let them iterate or “think” (spend more tokens) more. But you can’t as easily provide an example for everything, and the ones you do will bias the models towards them, so you may need a bit of both.",
     "parent": 44888847,
     "depth": 1
   },
@@ -40,6 +32,14 @@
     "depth": 1
   },
   {
+    "id": 44889904,
+    "by": "rikroots",
+    "timeISO": "2025-08-13T15:38:57.000Z",
+    "textPlain": "I've done a lot of work recently to make my library more \"LLM Friendly\", but I'm not willing at this time to sign up to a service which I don't know I'd ever use again just to run a test on your behalf. If you want to run the test on my library then its GitHub can be found here: https://github.com/KaliedaRik/Scrawl-canvas",
+    "parent": 44888847,
+    "depth": 1
+  },
+  {
     "id": 44890660,
     "by": "bcrosby95",
     "timeISO": "2025-08-13T16:37:12.000Z",
@@ -48,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44890602,
-    "by": "9rx",
-    "timeISO": "2025-08-13T16:31:16.000Z",
-    "textPlain": "What do coding agents need my library for?Don't they know how to write their own code? Isn't that a coding agent's entire purpose in life?There must be conflicting definitions out there. What does \"coding agent\" mean in this context?",
+    "id": 44890929,
+    "by": "prophesi",
+    "timeISO": "2025-08-13T16:58:44.000Z",
+    "textPlain": "In Elixir land, the Ash Framework created a package called usage_rules[0] as an experimental attempt to solve this problem a few months ago. The latest version of the Phoenix Framework (1.8) includes it in their `mix phx.new` generator and in their own hex packages[1]. Library owners would need to add their own usage rules, but it seems to help even for just the core packages Phoenix includes.[0] https://hexdocs.pm/usage_rules/readme.html[1] https://github.com/phoenixframework/phoenix/tree/main/usage-...",
     "parent": 44888847,
     "depth": 1
   },
@@ -64,12 +64,20 @@
     "depth": 1
   },
   {
-    "id": 44890415,
-    "by": "EGreg",
-    "timeISO": "2025-08-13T16:17:11.000Z",
-    "textPlain": "I made a provisional patent this year, about how exactly I would solve this problem. Imagine hiring a \"team of developers\" who can learn your library and iterate 24/7, improving things, doing support, even letting the pointy-haired boss turn his ideas into reality in a forked sandbox on the weekend.Normally I don't like software patents, but in the case of AI, I have made an exception. I have also rethought how I am going to do open source vs closed source in my AI business.(If anyone wants to work with me on this, hit me up, email is in my profile)\nhttps://grokers.ai/patent.pdf",
-    "parent": 44890311,
-    "depth": 2
+    "id": 44891970,
+    "by": "bigstrat2003",
+    "timeISO": "2025-08-13T18:21:26.000Z",
+    "textPlain": "Why on earth would we adapt libraries to the LLMs, rather than improving the LLMs to do their jobs correctly? This seems completely backwards to me.",
+    "parent": 44888847,
+    "depth": 1
+  },
+  {
+    "id": 44890602,
+    "by": "9rx",
+    "timeISO": "2025-08-13T16:31:16.000Z",
+    "textPlain": "What do coding agents need my library for?Don't they know how to write their own code? Isn't that a coding agent's entire purpose in life?There must be conflicting definitions out there. What does \"coding agent\" mean in this context?",
+    "parent": 44888847,
+    "depth": 1
   },
   {
     "id": 44889806,
@@ -88,18 +96,18 @@
     "depth": 2
   },
   {
-    "id": 44890378,
-    "by": "weitendorf",
-    "timeISO": "2025-08-13T16:14:04.000Z",
-    "textPlain": "Let’s meet and see if it might make sense for us to team up. We’re working on this from the agent/library-specific-task side, and we might be better than chatgpt at marketing your product :)",
-    "parent": 44888848,
-    "depth": 2
-  },
-  {
     "id": 44889489,
     "by": "dotancohen",
     "timeISO": "2025-08-13T15:10:21.000Z",
     "textPlain": "Note that this comment is not hijacking. The author of this comment is also the author of the post.",
+    "parent": 44888848,
+    "depth": 2
+  },
+  {
+    "id": 44890378,
+    "by": "weitendorf",
+    "timeISO": "2025-08-13T16:14:04.000Z",
+    "textPlain": "Let’s meet and see if it might make sense for us to team up. We’re working on this from the agent/library-specific-task side, and we might be better than chatgpt at marketing your product :)",
     "parent": 44888848,
     "depth": 2
   },
@@ -109,6 +117,14 @@
     "timeISO": "2025-08-13T15:46:29.000Z",
     "textPlain": "Why do we need to log in?",
     "parent": 44888848,
+    "depth": 2
+  },
+  {
+    "id": 44890415,
+    "by": "EGreg",
+    "timeISO": "2025-08-13T16:17:11.000Z",
+    "textPlain": "I made a provisional patent this year, about how exactly I would solve this problem. Imagine hiring a \"team of developers\" who can learn your library and iterate 24/7, improving things, doing support, even letting the pointy-haired boss turn his ideas into reality in a forked sandbox on the weekend.For the last 15 years I've been writing against software patents, and producing open source software that cost me about $1M to develop, but in the case of AI, I have started to make an exception. I have also rethought how I am going to do open source vs closed source in my AI business. A few weeks ago I posted on HN asking whether it's a good idea, and no one responded: https://news.ycombinator.com/item?id=44425545(If anyone wants to work with me on this, hit me up, email is in my profile)",
+    "parent": 44890311,
     "depth": 2
   },
   {
@@ -144,11 +160,11 @@
     "depth": 2
   },
   {
-    "id": 44890816,
-    "by": "weitendorf",
-    "timeISO": "2025-08-13T16:50:05.000Z",
-    "textPlain": "Why did my engineering team handle payments through Stripe instead of building a custom payment processor? Aren’t they supposed to be engineering things?",
-    "parent": 44890602,
+    "id": 44890033,
+    "by": "paularmstrong",
+    "timeISO": "2025-08-13T15:49:40.000Z",
+    "textPlain": "Needing too sign up before I can see or do anything made me close the tab immediately.",
+    "parent": 44890027,
     "depth": 2
   },
   {
@@ -160,11 +176,27 @@
     "depth": 2
   },
   {
-    "id": 44890033,
-    "by": "paularmstrong",
-    "timeISO": "2025-08-13T15:49:40.000Z",
-    "textPlain": "Needing too sign up before I can see or do anything made me close the tab immediately.",
-    "parent": 44890027,
+    "id": 44892054,
+    "by": "richardblythman",
+    "timeISO": "2025-08-13T18:28:31.000Z",
+    "textPlain": "i think you prob need a bit of both. would you add llms.txt to your docs or make it crawl like a human?",
+    "parent": 44891970,
+    "depth": 2
+  },
+  {
+    "id": 44892005,
+    "by": "richardblythman",
+    "timeISO": "2025-08-13T18:24:21.000Z",
+    "textPlain": "do we want every coding agent writing everything from scratch for every project?or would reusability/modularity across projects and teams be beneficial?",
+    "parent": 44890602,
+    "depth": 2
+  },
+  {
+    "id": 44890816,
+    "by": "weitendorf",
+    "timeISO": "2025-08-13T16:50:05.000Z",
+    "textPlain": "Why did my engineering team handle payments through Stripe instead of building a custom payment processor? Aren’t they supposed to be engineering things?",
+    "parent": 44890602,
     "depth": 2
   }
 ]
