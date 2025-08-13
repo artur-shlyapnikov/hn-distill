@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44884779,
+    "by": "kolinko",
+    "timeISO": "2025-08-13T05:01:05.000Z",
+    "textPlain": "I’m missing from the article two things:- testing prompt (were llms instructed to progress in game, as opposed to just explore — the author said smarter llms were more likely to explore)- benchmark with humans",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
     "id": 44878951,
     "by": "SquibblesRedux",
     "timeISO": "2025-08-12T16:56:22.000Z",
@@ -28,22 +36,6 @@
     "by": "seanwilson",
     "timeISO": "2025-08-12T18:41:27.000Z",
     "textPlain": "I won't be surprised when LLMs get good at puzzle-heavy text adventures if there was more attention turned to this.I've found for text adventures based on item manipulation, variations of the same puzzles appear again and again because there's a limit to how many obscure but not too obscure item puzzles you can come up with, so training would be good for exact matches of the same puzzle, and variations, like different ways of opening locked doors.Puzzles like key + door, crowbar + panel, dog + food, coin + vending machine, vampire + garlic etc. You can obscure or layer puzzles, like changing the garlic into garlic bread which would still work on the vampire, so there's a logical connections to make but often nothing too crazy.A lot of the difficulty in these games comes from not noticing or forgetting about clues/hints and potential puzzles because there's so much going on, which is less likely to trip up a computer.You can already ask LLMs \"in a game: 20 ways to open a door if I don't have the key\", \"how to get past an angry guard dog\" or \"I'm carrying X, Y, and Z, how do I open a door\", and it'll list lots of ways that are seen in games, so it's going to be good at matching that with the current list of objects you're carrying, items in the world, and so on.Another comment mentions about how the AI needs a world model that's transforming as actions are performed, but you need something similar to reason about maths proofs and code, where you have to keep track of the current state/context. And most adventure games don't require you to plan many steps in advance anyway. They're often about figuring out which item to combine/use with which other item next (where only one combination works), and navigating to the room that contains the latter item first.So it feels like most of the parts are already there to me, and it's more about getting the right prompts and presenting the world in the right format e.g. maintaining a table of items, clues, and open puzzles, to loo",
-    "parent": 44877404,
-    "depth": 1
-  },
-  {
-    "id": 44884637,
-    "by": "daxfohl",
-    "timeISO": "2025-08-13T04:27:25.000Z",
-    "textPlain": "An even simpler thing I tried was turning a standard maze into a first-person perspective where you go one step at a time, and seeing if a model could solve it without backtracking unnecessarily. They all failed.Setup: a maze generator generates a square maze and puts the start and end on opposite corners. It tells the LLM which directions had walls (relative direction: front, back, left, right). The LLM then chooses between move forward, turn left, turn right. That's pretty much it.First attempt: Just maintain all the above in a chat, step by step. It'd get lost pretty quickly and start re-exploring already-explored area quite readily. Not very surprising, as we all know they can get lost in long chat threads. The chat model seemed to just go forward or turn right forever (which can work in some mazes), whereas the thinking model did seem to avoid backtracking until it got to T-junctions of a wrong way, where it always seemed to go back and forth forever.Second attempt: After each step, tell the LLM to \"externalize\" everything it knew about the maze, and then feed that to a brand new LLM context. The idea was to avoid long chat context problems and see if the LLM could adequately represent its internal state and knowledge such that a \"new\" LLM could take over. This really didn't end up working any better. The biggest problem was that sometimes it would think that \"turn left\" would also change the position, and sometimes not. There were other issues too, so I didn't go much further with this approach.Third attempt: Tell the LLM the premise of the game, and tell it to create a python state machine that stores all the state information it would need to represent its progress through the maze, and then to emit specific keywords when it needed to interact with it (and I added some code that served as a proxy). This also didn't work great. The state machine was close, but one thing it always forgot to do was relate index with direction. So if it's \"in cell (5, 5) and fac",
-    "parent": 44877404,
-    "depth": 1
-  },
-  {
-    "id": 44884566,
-    "by": "cod3rboy",
-    "timeISO": "2025-08-13T04:08:50.000Z",
-    "textPlain": "https://cod3rboy.com/blog/playing-text-based-adventure-game-...",
     "parent": 44877404,
     "depth": 1
   },
@@ -64,14 +56,6 @@
     "depth": 1
   },
   {
-    "id": 44881406,
-    "by": "standardly",
-    "timeISO": "2025-08-12T20:26:12.000Z",
-    "textPlain": "LLMs work really well for open-ended role-playing sessions, but not so much games with strict rules.They just can't seem to grasp what would make a choice a \"wrong\" choice in a text-based adventure game, so they end up having no ending. You have to hard-code failure events, or you just never get anything like \"you chose to attack the wizard, but he's level 99, dummy, so you died - game over!\". It just accepts whatever choice you make, ad infinitum.My best session was one in which I had the AI give me 4 dialogue options to choose from. I never \"beat\" the game, and we never solved the mystery - it just kept going further down the rabbit hole.. But it was surprisingly enjoyable, and  repayable! A larger framework just needs written for it to keep the tires between the lines and to hard-code certain game rules - what's under the hood is already quite good for narratives imo.",
-    "parent": 44877404,
-    "depth": 1
-  },
-  {
     "id": 44877430,
     "by": "throwawayoldie",
     "timeISO": "2025-08-12T15:21:30.000Z",
@@ -80,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44884138,
-    "by": "8f2ab37a-ed6c",
-    "timeISO": "2025-08-13T02:36:53.000Z",
-    "textPlain": "Are we anywhere near someone being able to play a D&D or WoD type of game session with an LLM somewhere in the mix, perhaps generating a new and interesting adventure every time? Or is this still science fiction for now?",
+    "id": 44881406,
+    "by": "standardly",
+    "timeISO": "2025-08-12T20:26:12.000Z",
+    "textPlain": "LLMs work really well for open-ended role-playing sessions, but not so much games with strict rules.They just can't seem to grasp what would make a choice a \"wrong\" choice in a text-based adventure game, so they end up having no ending. You have to hard-code failure events, or you just never get anything like \"you chose to attack the wizard, but he's level 99, dummy, so you died - game over!\". It just accepts whatever choice you make, ad infinitum.My best session was one in which I had the AI give me 4 dialogue options to choose from. I never \"beat\" the game, and we never solved the mystery - it just kept going further down the rabbit hole.. But it was surprisingly enjoyable, and  repayable! A larger framework just needs written for it to keep the tires between the lines and to hard-code certain game rules - what's under the hood is already quite good for narratives imo.",
     "parent": 44877404,
     "depth": 1
   },
@@ -100,6 +84,30 @@
     "by": "lottaFLOPS",
     "timeISO": "2025-08-12T16:40:39.000Z",
     "textPlain": "related research that was also announced this week: https://www.textquests.ai/",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44884138,
+    "by": "8f2ab37a-ed6c",
+    "timeISO": "2025-08-13T02:36:53.000Z",
+    "textPlain": "Are we anywhere near someone being able to play a D&D or WoD type of game session with an LLM somewhere in the mix, perhaps generating a new and interesting adventure every time? Or is this still science fiction for now?",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44884566,
+    "by": "cod3rboy",
+    "timeISO": "2025-08-13T04:08:50.000Z",
+    "textPlain": "https://cod3rboy.com/blog/playing-text-based-adventure-game-...",
+    "parent": 44877404,
+    "depth": 1
+  },
+  {
+    "id": 44884637,
+    "by": "daxfohl",
+    "timeISO": "2025-08-13T04:27:25.000Z",
+    "textPlain": "A while ago I tried something similar but tried to boil it down to the simplest thing I could come up with. I ended up making a standard maze into a first-person perspective where it unfolds one step at a time, and seeing if a model could solve it without re-entering areas it had already fully explored. They all failed.Setup: a maze generator generates a square maze and puts the start and end on opposite corners. It doesn't show the full maze to the LLM, just has the LLM explore it one square at a time like a text adventure. It tells the LLM which directions of its current position has walls (relative direction: front, back, left, right). The LLM then chooses between move forward, turn left, turn right. That's pretty much it.First attempt: Just maintain all the above in a chat, step by step. It'd get lost pretty quickly and start re-exploring already-explored area quite readily. Not very surprising, as we all know they can get lost in long chat threads. The chat model seemed to just go forward or turn right forever (which can work in some mazes), whereas the thinking model did seem to avoid backtracking until it got to T-junctions of a wrong way, where it always seemed to go back and forth forever.Second attempt: After each step, tell the LLM to \"externalize\" everything it knew about the maze, and then feed that to a brand new LLM context. The idea was to avoid long chat context problems and see if the LLM could adequately represent its internal state and knowledge such that a \"new\" LLM could take over. This really didn't end up working any better. The biggest problem was that sometimes it would think that \"turn left\" would also change the position, and sometimes not. There were other issues too, so I didn't go much further with this approach.Third attempt: Tell the LLM the premise of the game, and tell it to create a python state machine that stores all the state information it would need to represent its progress through the maze, and then to emit specific keyword",
     "parent": 44877404,
     "depth": 1
   },
@@ -205,6 +213,14 @@
     "timeISO": "2025-08-12T17:24:30.000Z",
     "textPlain": "While I agree, it's still shocking how far next token prediction gets us to looking like intelligence. It's amazing we need examples such as this to demonstrate it.",
     "parent": 44878951,
+    "depth": 2
+  },
+  {
+    "id": 44884852,
+    "by": "jlarocco",
+    "timeISO": "2025-08-13T05:17:37.000Z",
+    "textPlain": "Doesn't it kind of defeat the purpose, though?If you have to train the AIs on every specialized new problem, and then you have to babysit them as you apply them to similar problems, why even bother?It's not really intelligent in any real sense.",
+    "parent": 44880212,
     "depth": 2
   },
   {

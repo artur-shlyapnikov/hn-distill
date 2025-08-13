@@ -1,13 +1,5 @@
 [
   {
-    "id": 44884607,
-    "by": "hodgesrm",
-    "timeISO": "2025-08-13T04:19:08.000Z",
-    "textPlain": "I don't really understand what problem replication of mutable transaction data to Iceberg or any data lake for that matter solves for most PostgreSQL users.Iceberg is optimized for fact data in very large tables with relatively rare changes and likewise rare change to schema. It does that well and will continue to do so for the foreseeable future.PostgreSQL databases typically don't generate huge amounts of data; that data can also be highly mutable in many cases. Not only that, the schema can change substantially. Both types of changes are hard to manage in replication, especially if the target is a system, like Iceberg, that does not handle change very well in the first place.So that leaves the case where you have an lot of data in PostgreSQL that's creating bad economics. In that case, why not just skip PostgreSQL and put it in an analytic database to begin with?p.s., I'm pretty familiar with trading systems that do archive transaction data to data lakes using Parquet for long-term compliance. That is a different problem. The data is for all intents and purposes immutable.",
-    "parent": 44880081,
-    "depth": 1
-  },
-  {
     "id": 44881715,
     "by": "amluto",
     "timeISO": "2025-08-12T20:55:26.000Z",
@@ -20,6 +12,14 @@
     "by": "dkdcio",
     "timeISO": "2025-08-12T20:23:05.000Z",
     "textPlain": "> Databricks recently spent $1 billion to acquire Neon, a startup building a serverless Postgres. Snowflake also spent about $250 million to acquire Crunchy Data, a veteran enterprise-grade Postgres provider.It's kinda funny to not mention that Databricks acquired Tabular, the Iceberg company, for a billion dollars: https://www.databricks.com/company/newsroom/press-releases/d...",
+    "parent": 44880081,
+    "depth": 1
+  },
+  {
+    "id": 44884607,
+    "by": "hodgesrm",
+    "timeISO": "2025-08-13T04:19:08.000Z",
+    "textPlain": "I don't really understand what problem replication of mutable transaction data to Iceberg or any data lake for that matter solves for most PostgreSQL users.Iceberg is optimized for fact data in very large tables with relatively rare changes and likewise rare change to schema. It does that well and will continue to do so for the foreseeable future.PostgreSQL databases typically don't generate huge amounts of data; that data can also be highly mutable in many cases. Not only that, the schema can change substantially. Both types of changes are hard to manage in replication, especially if the target is a system, like Iceberg, that does not handle change very well in the first place.So that leaves the case where you have an lot of data in PostgreSQL that's creating bad economics. In that case, why not just skip PostgreSQL and put it in an analytic database to begin with?p.s., I'm pretty familiar with trading systems that do archive transaction data to data lakes using Parquet for long-term analytics and compliance. That is a different problem. The data is for all intents and purposes immutable.Edit: clarity",
     "parent": 44880081,
     "depth": 1
   },
