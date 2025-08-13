@@ -32,14 +32,6 @@
     "depth": 1
   },
   {
-    "id": 44888448,
-    "by": "BugsJustFindMe",
-    "timeISO": "2025-08-13T13:50:48.000Z",
-    "textPlain": "I've never heard anyone say any of these supposed myths, except for the first one, sort of, but nobody means what the first one pretends it means, so this whole post feels like a big strawman to me.",
-    "parent": 44849834,
-    "depth": 1
-  },
-  {
     "id": 44888522,
     "by": "bee_rider",
     "timeISO": "2025-08-13T13:57:47.000Z",
@@ -56,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44892720,
-    "by": "AndriyKunitsyn",
-    "timeISO": "2025-08-13T19:28:13.000Z",
-    "textPlain": "Here's one that's not a myth: IEEE-754 floats are the only \"primitive types\" that allow \"a == a\" to not be true.I.e., two floats that are _identical_ to each other (even when it's _the same_ variable, on the same memory address) can be not _equal_ to each other, specifically if it's NaN. This is dictated by IEEE-754, and this is true for all programming languages I know, and to this day, this makes zero sense to me, but apparently this is useful for some reason.",
+    "id": 44888448,
+    "by": "BugsJustFindMe",
+    "timeISO": "2025-08-13T13:50:48.000Z",
+    "textPlain": "I've never heard anyone say any of these supposed myths, except for the first one, sort of, but nobody means what the first one pretends it means, so this whole post feels like a big strawman to me.",
     "parent": 44849834,
     "depth": 1
   },
@@ -68,6 +60,14 @@
     "by": "rollcat",
     "timeISO": "2025-08-13T13:51:36.000Z",
     "textPlain": "Related: What Every Computer Scientist Should Know About Floating-Point Arithmetic <https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.h...>",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
+    "id": 44892720,
+    "by": "AndriyKunitsyn",
+    "timeISO": "2025-08-13T19:28:13.000Z",
+    "textPlain": "Here's one that's not a myth: IEEE-754 floats are the only \"primitive types\" that allow \"a == a\" to not be true.I.e., two floats that are _identical_ to each other (even when it's _the same_ variable, on the same memory address) can be not _equal_ to each other, specifically if it's NaN. This is dictated by IEEE-754, and this is true for all programming languages I know, and to this day, this makes zero sense to me, but apparently this is useful for some reason.",
     "parent": 44849834,
     "depth": 1
   },
@@ -96,18 +96,18 @@
     "depth": 1
   },
   {
-    "id": 44891172,
-    "by": "kccqzy",
-    "timeISO": "2025-08-13T17:19:27.000Z",
-    "textPlain": "This is also my favorite thing about floating point numbers. Unfortunately languages like Python try to be smart and prevent me from doing it. Compare:    >>> 1.0/0.0\n    ZeroDivisionError\n    >>> np.float64(1)/np.float64(0)\n    inf\n\nI'm so used to writing such zero division in other languages like C/C++ that this Python quirk still trips me up.",
-    "parent": 44888561,
-    "depth": 2
-  },
-  {
     "id": 44889330,
     "by": "thwarted",
     "timeISO": "2025-08-13T14:58:52.000Z",
     "textPlain": "You still can't divide by zero, it just doesn't result in an error state that stops execution. The inf and NaN values are sentinel values that you still have to check for after the calculation to know if it went awry.",
+    "parent": 44888561,
+    "depth": 2
+  },
+  {
+    "id": 44891172,
+    "by": "kccqzy",
+    "timeISO": "2025-08-13T17:19:27.000Z",
+    "textPlain": "This is also my favorite thing about floating point numbers. Unfortunately languages like Python try to be smart and prevent me from doing it. Compare:    >>> 1.0/0.0\n    ZeroDivisionError\n    >>> np.float64(1)/np.float64(0)\n    inf\n\nI'm so used to writing such zero division in other languages like C/C++ that this Python quirk still trips me up.",
     "parent": 44888561,
     "depth": 2
   },
@@ -160,6 +160,22 @@
     "depth": 2
   },
   {
+    "id": 44889509,
+    "by": "jandrese",
+    "timeISO": "2025-08-13T15:12:16.000Z",
+    "textPlain": "> A nice thing about IEEE floats is that the rounding behavior is well defined.Until it isn't.  I used to play the CodeWeavers port of Kohan and while the game would allow you to do crossplay between Windows and Linux, differences in how the two OSes rounded floats would cause the game to desynchronize after 15-20 minutes of play or so.  Some unit's pathfinding algorithm would zig on Windows and zag on Linux, causing the state to diverge and end up kicking off one of the players.",
+    "parent": 44888522,
+    "depth": 2
+  },
+  {
+    "id": 44894833,
+    "by": "camgunz",
+    "timeISO": "2025-08-13T22:53:32.000Z",
+    "textPlain": "Definitely. People think they'll get out of knowing how rounding works by using arbitrary precision arithmetic, but arguably it's even more important there (you run out of precision/memory at some point; what do you think happens then?). You can use floats for money if you do the rounding right.",
+    "parent": 44890523,
+    "depth": 2
+  },
+  {
     "id": 44888587,
     "by": "Cieric",
     "timeISO": "2025-08-13T14:02:32.000Z",
@@ -168,10 +184,10 @@
     "depth": 2
   },
   {
-    "id": 44888698,
-    "by": "jbjbjbjb",
-    "timeISO": "2025-08-13T14:12:12.000Z",
-    "textPlain": "I was putting together some technical interview questions for our candidates and I wanted to see what ChatGPT would put for an answer. It told me floating point numbers were non-deterministic and wouldn’t back down from that answer so it’s getting it from somewhere.",
+    "id": 44894855,
+    "by": "janalsncm",
+    "timeISO": "2025-08-13T22:56:20.000Z",
+    "textPlain": "Same, but I still learned a fair amount anyways. I say no harm, no foul.",
     "parent": 44888448,
     "depth": 2
   },
@@ -180,6 +196,14 @@
     "by": "rollcat",
     "timeISO": "2025-08-13T13:59:35.000Z",
     "textPlain": "People do say a lot of nonsense about floats, my younger self trying to bash JavaScript included. They e.g. do fine as integers - up to 2**53; this could be optimised by a JIT to use actual integer math.",
+    "parent": 44888448,
+    "depth": 2
+  },
+  {
+    "id": 44888698,
+    "by": "jbjbjbjb",
+    "timeISO": "2025-08-13T14:12:12.000Z",
+    "textPlain": "I was putting together some technical interview questions for our candidates and I wanted to see what ChatGPT would put for an answer. It told me floating point numbers were non-deterministic and wouldn’t back down from that answer so it’s getting it from somewhere.",
     "parent": 44888448,
     "depth": 2
   },
@@ -197,14 +221,6 @@
     "timeISO": "2025-08-13T15:08:28.000Z",
     "textPlain": "The first rule is true, but relying on it is dangerous unless you are well versed in what floats can and can not be represented exactly.  It's best to pretend it isn't true in most cases to avoid footguns.",
     "parent": 44888448,
-    "depth": 2
-  },
-  {
-    "id": 44889509,
-    "by": "jandrese",
-    "timeISO": "2025-08-13T15:12:16.000Z",
-    "textPlain": "> A nice thing about IEEE floats is that the rounding behavior is well defined.Until it isn't.  I used to play the CodeWeavers port of Kohan and while the game would allow you to do crossplay between Windows and Linux, differences in how the two OSes rounded floats would cause the game to desynchronize after 15-20 minutes of play or so.  Some unit's pathfinding algorithm would zig on Windows and zag on Linux, causing the state to diverge and end up kicking off one of the players.",
-    "parent": 44888522,
     "depth": 2
   },
   {

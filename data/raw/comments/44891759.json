@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44894751,
+    "by": "pmahoney",
+    "timeISO": "2025-08-13T22:43:19.000Z",
+    "textPlain": "I tried to like OCaml for a few years. The things that hold me back the most are niggling things that are largely solved in more \"modern\" langs, the biggest being the inability to \"print\" arbitrary objects.There are ppx things that can automatically derive \"to string\" functions, but it's a bit of effort to set up, it's not as nice to use as what's available in Rust, and it can't handle things like Set and Map types without extra work, e.g. [1] (from 2021 so situation may have changed).Compare to golang, where you can just use \"%v\" and related format strings to print nearly anything with zero effort.[1] https://discuss.ocaml.org/t/ppx-deriving-implementation-for-...",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
     "id": 44892053,
     "by": "_mu",
     "timeISO": "2025-08-13T18:28:17.000Z",
@@ -28,6 +36,22 @@
     "by": "jasperry",
     "timeISO": "2025-08-13T20:34:36.000Z",
     "textPlain": "Question about terminology: Is it common to call higher-order function types \"exponential types\" as the article does? I know what higher-order functions are, but am having trouble grasping why the types would be called \"exponential\".",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44894915,
+    "by": "pshirshov",
+    "timeISO": "2025-08-13T23:03:55.000Z",
+    "textPlain": "Extremely dated. No HKTs, no typeclasses (modules are not a good substitute), no call-site expansion.",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44894835,
+    "by": "vram22",
+    "timeISO": "2025-08-13T22:53:38.000Z",
+    "textPlain": "Is OCaml somewhat suitable for desktop GUI app programming?I saw this in the OP:>For example, creating a binding with the Tk libraryand had also been thinking about this separately a few days ago, hence the question.",
     "parent": 44891759,
     "depth": 1
   },
@@ -72,18 +96,18 @@
     "depth": 1
   },
   {
-    "id": 44892046,
-    "by": "shortrounddev2",
-    "timeISO": "2025-08-13T18:27:50.000Z",
-    "textPlain": "OCaml is a great language without great tooling. Desperately needs a good LSP implementation to run breakpoints and other debugging tools on VSCode or other LSP-aware IDEs. I know there ARE tools available but there isn't great support for them and they don't work well",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
     "id": 44892513,
     "by": "loxs",
     "timeISO": "2025-08-13T19:08:48.000Z",
     "textPlain": "I migrated from OCaml to Rust around 2020, haven't looked back. Although Rust is quite a lot less elegant and has some unpleasant deficiencies (lambdas, closures, currying)... and I end up having to close one one eye sometimes and clone some large data-structure to make my life easier... But regardless, its huge ecosystem and great tooling allows me to build things comparatively so easily, that OCaml has no chance. As a bonus, the end result is seriously faster - I know because I rewrote one of my projects and for some time I had feature parity between the OCaml and Rust versions.Nevertheless, I have fond memories of OCaml and a great amount of respect for the language design. Haven't checked on it since, probably should. I hope part of the problems have been solved.",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44892046,
+    "by": "shortrounddev2",
+    "timeISO": "2025-08-13T18:27:50.000Z",
+    "textPlain": "OCaml is a great language without great tooling. Desperately needs a good LSP implementation to run breakpoints and other debugging tools on VSCode or other LSP-aware IDEs. I know there ARE tools available but there isn't great support for them and they don't work well",
     "parent": 44891759,
     "depth": 1
   },
@@ -104,6 +128,14 @@
     "depth": 1
   },
   {
+    "id": 44892960,
+    "by": "nine_k",
+    "timeISO": "2025-08-13T19:48:26.000Z",
+    "textPlain": "I'd say that Google strives to have a reasonably short list of languages approved for production-touching code. Rust can replace / complement C++, while OCaml cannot (it could replace Go instead... fat chance!). So I suspect that the team picked Rust because it was the only blessed language with ADTs, not because they won't like something with faster compile times.No way OCaml could have stolen the Rust's thunder: we have a number of very decent and performant GC-based languages, from Go to Haskell; we only had one bare-metal-worthy expressive language in 2010, C++, and it was pretty terrible (still is, but before C++11 and C++17 it was even more terrible).",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
     "id": 44894357,
     "by": "munificent",
     "timeISO": "2025-08-13T21:58:33.000Z",
@@ -112,10 +144,10 @@
     "depth": 2
   },
   {
-    "id": 44892960,
-    "by": "nine_k",
-    "timeISO": "2025-08-13T19:48:26.000Z",
-    "textPlain": "I'd say that Google strives to have a reasonably short list of languages approved for production-touching code. Rust can replace / complement C++, while OCaml cannot (it could replace Go instead... fat chance!). So I suspect that the team picked Rust because it was the only blessed language with ADTs, not because they won't like something with faster compile times.No way OCaml could have stolen the Rust's thunder: we have a number of very decent and performant GC-based languages, from Go to Haskell; we only had one bare-metal-worthy expressive language in 2010, C++, and it was pretty terrible (still is, but before C++11 and C++17 it was even more terrible).",
+    "id": 44894630,
+    "by": "yodsanklai",
+    "timeISO": "2025-08-13T22:28:47.000Z",
+    "textPlain": "> aesthetically the double semicolons are an abomination and irk me far more.I think they have been optional for like 20 years, except in the top-level interactive environment to force execution.That being said, I still don't get why people are so much upset with the syntax. You'll integrate it after a week writing OCaml code.",
     "parent": 44892713,
     "depth": 2
   },
@@ -224,6 +256,14 @@
     "depth": 2
   },
   {
+    "id": 44893123,
+    "by": "debugnik",
+    "timeISO": "2025-08-13T20:01:57.000Z",
+    "textPlain": "Funny, I moved to OCaml to sidestep F# tooling. At least last time I used F#: Slow compiler, increasingly C#-only ecosystem, weak and undocumented MSBuild (writing custom tasks would otherwise be nice!), Ionide crashes, Fantomas is unsound...But OCaml sadly can't replace F# for all my use cases. F# does get access to many performance-oriented features that the CLR supports and OCaml simply can't, such as value-types. Maybe OxCaml can fix that long term, but I'm currently missing a performant ML-like with a simple toolchain.",
+    "parent": 44892977,
+    "depth": 2
+  },
+  {
     "id": 44893570,
     "by": "joshmarlow",
     "timeISO": "2025-08-13T20:40:21.000Z",
@@ -232,11 +272,11 @@
     "depth": 2
   },
   {
-    "id": 44893123,
-    "by": "debugnik",
-    "timeISO": "2025-08-13T20:01:57.000Z",
-    "textPlain": "Funny, I moved to OCaml to sidestep F# tooling. At least last time I used F#: Slow compiler, increasingly C#-only ecosystem, weak and undocumented MSBuild (writing custom tasks would otherwise be nice!), Ionide crashes, Fantomas is unsound...But OCaml sadly can't replace F# for all my use cases. F# does get access to many performance-oriented features that the CLR supports and OCaml simply can't, such as value-types. Maybe OxCaml can fix that long term, but I'm currently missing a performant ML-like with a simple toolchain.",
-    "parent": 44892977,
+    "id": 44894953,
+    "by": "vram22",
+    "timeISO": "2025-08-13T23:08:24.000Z",
+    "textPlain": "I had the same doubt.Here is my uneducated guess:In math, after sum and product, comes exponent :)So they may have used that third term in an analogous manner in the example.",
+    "parent": 44893525,
     "depth": 2
   },
   {
@@ -253,6 +293,14 @@
     "timeISO": "2025-08-13T21:08:22.000Z",
     "textPlain": "A first-order function type is already exponential.A sum type has as many possible values as the sum of its cases. E.g. `A of bool | B of bool` has 2+2=4 values. Similarly for product types and exponential types. E.g. the type bool -> bool has 2^2=4 values (id, not, const true, const false) if you don't think about side effects.",
     "parent": 44893525,
+    "depth": 2
+  },
+  {
+    "id": 44895002,
+    "by": "nukifw",
+    "timeISO": "2025-08-13T23:14:31.000Z",
+    "textPlain": "- Extremely dated: we have almost one new release every six month and in recent releases, the language runtime has been changed and user-defined effects have been introduced.- No HKTs \"in your sense\" but: \n  ```ocaml\n  module type S = sig\n    type 'a t\n  end\n  ``\n  `type 'a t` is an Higher Kinded type (but in the module Level).\n- No typeclasses, yes, for the moment but the first step of https://arxiv.org/pdf/1512.01895 is under review: https://github.com/ocaml/ocaml/pull/13275\n- no call-site expansion ? https://ocaml.org/manual/5.0/attributes.html look at the attribute `inline`.",
+    "parent": 44894915,
     "depth": 2
   },
   {
@@ -336,67 +384,19 @@
     "depth": 2
   },
   {
+    "id": 44894608,
+    "by": "jallmann",
+    "timeISO": "2025-08-13T22:25:44.000Z",
+    "textPlain": "> That seems pretty hard to read at a glance, and easy to mistype as a definition.YMMV but let expressions are one of the nice things about OCaml - the syntax is very clean in a way other languages aren't. Yes, the OCaml syntax has some warts, but let bindings aren't one of them.It's also quite elegant if you consider how multi-argument let can be decomposed into repeated function application, and how that naturally leads to features like currying.> Also, you need to end the declaration with `in`?Not if it's a top level declaration.It might make more sense if you think of the `in` as a scope operator, eg `let x = v in expr` makes `x` available in `expr`.> Then, semicolons...Single semicolons are syntactic sugar for unit return values. Eg,  print_string \"abc\";\n\nis the same as  let () = print_string \"abc\" in",
+    "parent": 44893365,
+    "depth": 2
+  },
+  {
     "id": 44893953,
     "by": "javcasas",
     "timeISO": "2025-08-13T21:16:42.000Z",
     "textPlain": "It also uses double semicolon because single semicolon is already used as statement separator kinda like C. So double semicolon is top-level statement terminator.",
     "parent": 44893365,
-    "depth": 2
-  },
-  {
-    "id": 44893887,
-    "by": "javcasas",
-    "timeISO": "2025-08-13T21:10:53.000Z",
-    "textPlain": "`let` defines a value. Some values are \"plain old values\", some are functions.The syntax is `let <constantname> <parameters> = <value> in <expression>;;`\nwhere `expression` can also have `let` bindings.So you can have  let one = 1 in\n  let two = 2 in\n  let three = one + two in\n  print_endline (string_of_int three);;",
-    "parent": 44893365,
-    "depth": 2
-  },
-  {
-    "id": 44893760,
-    "by": "UncleOxidant",
-    "timeISO": "2025-08-13T20:58:34.000Z",
-    "textPlain": "I mean, I guess it depends on your background, but that code looks pretty nice compared to how it would look in a language without pattern matching and ADTs. This is why the MLs excel for things like parsers, interpreters, and compilers. Beauty is in the eye of the beholder, I guess. I suspect that if you gave it a bit of time it would start to really grow on you - that's how it was in my case. At first: \"WTF is this weird syntax?!\", a few weeks in \"oh, this makes a lot of sense, actually\", a few years \"Yeah, I'd much rather write this sort of thing in OCaml (or an ML in general)\"",
-    "parent": 44893365,
-    "depth": 2
-  },
-  {
-    "id": 44892562,
-    "by": "debugnik",
-    "timeISO": "2025-08-13T19:13:21.000Z",
-    "textPlain": "LSP isn't the protocol that interfaces with debuggers, that'd be DAP. You're right that OCaml debugging is kinda clunky at the moment.OCaml does have an okay LSP implementation though, and it's getting better; certainly more stable than F#'s in my experience, since that comparison is coming up a lot in this comment section.",
-    "parent": 44892046,
-    "depth": 2
-  },
-  {
-    "id": 44892077,
-    "by": "nukifw",
-    "timeISO": "2025-08-13T18:30:51.000Z",
-    "textPlain": "Indeed, efforts should be made in terms of DAP (https://microsoft.github.io/debug-adapter-protocol//), extending the following experimentation: https://lambdafoo.com/posts/2024-03-25-ocaml-debugging-with-.... However, I find the assertion about tooling a bit exaggerated, don't you?",
-    "parent": 44892046,
-    "depth": 2
-  },
-  {
-    "id": 44892114,
-    "by": "dismalaf",
-    "timeISO": "2025-08-13T18:34:08.000Z",
-    "textPlain": "??  OCaml has had a completion engine for as long as I can remember (definitely over a decade) and it powers their LSP these days.  I do know however that the community focuses mostly on Vim and Emacs.",
-    "parent": 44892046,
-    "depth": 2
-  },
-  {
-    "id": 44894350,
-    "by": "javcasas",
-    "timeISO": "2025-08-13T21:58:06.000Z",
-    "textPlain": "Were you using the ocamlopt compiler? By default, ocaml runs in a VM, but few people figure that out because it is not screaming its name all the time like a pokemon (looking at you JVM/CLR). But ocaml can be compiled to machine code with significant performance improvements.",
-    "parent": 44892513,
-    "depth": 2
-  },
-  {
-    "id": 44893670,
-    "by": "jasperry",
-    "timeISO": "2025-08-13T20:49:40.000Z",
-    "textPlain": "Your comment makes me think the kind of people who favor OCaml over Rust wouldn't necessarily value a huge ecosystem or the most advanced tooling. They're the kind who value the elegance aspect above almost all else, and prefer to build things from the ground up, using no more than a handful of libraries and a very basic build procedure.",
-    "parent": 44892513,
     "depth": 2
   }
 ]

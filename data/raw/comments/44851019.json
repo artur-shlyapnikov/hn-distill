@@ -32,6 +32,14 @@
     "depth": 1
   },
   {
+    "id": 44892563,
+    "by": "zkms",
+    "timeISO": "2025-08-13T19:13:29.000Z",
+    "textPlain": "My reaction to PCIe gen 8 is essentially \"Huh? No, retro data buses are like ISA, PCI, and AGP, right? PCIe Gen 3 and SATA are still pretty new...\".I wonder what modulation order / RF bandwidth they'll be using on the PHY for Gen8. I think Gen7 used 32GHz, which is ridiculously high.",
+    "parent": 44851019,
+    "depth": 1
+  },
+  {
     "id": 44893125,
     "by": "LeoPanthera",
     "timeISO": "2025-08-13T20:02:07.000Z",
@@ -44,14 +52,6 @@
     "by": "ThatMedicIsASpy",
     "timeISO": "2025-08-13T19:28:31.000Z",
     "textPlain": "I'll take it if my consumer mb chipset supports giving me 48 PCIe7 lanes if future desktops still would only come with 24 gen 8 lanes",
-    "parent": 44851019,
-    "depth": 1
-  },
-  {
-    "id": 44892563,
-    "by": "zkms",
-    "timeISO": "2025-08-13T19:13:29.000Z",
-    "textPlain": "My reaction to PCIe gen 8 is essentially \"Huh? No, retro data buses are like ISA, PCI, and AGP, right? PCIe Gen 3 and SATA are still pretty new...\".I wonder what modulation order / RF bandwidth they'll be using on the PHY for Gen8. I think Gen7 used 32GHz, which is ridiculously high.",
     "parent": 44851019,
     "depth": 1
   },
@@ -80,18 +80,18 @@
     "depth": 2
   },
   {
-    "id": 44894351,
-    "by": "dylan604",
-    "timeISO": "2025-08-13T21:58:07.000Z",
-    "textPlain": "Wouldn't that mean an complete mobo replacement to upgrade the GPU? GPU upgrades seem much more rapid and substantial compared to CPU/RAM. Each upgrade would not mean taking out the CPU/RAM and other cards vs just replacing the GPU",
-    "parent": 44851726,
-    "depth": 2
-  },
-  {
     "id": 44892262,
     "by": "verall",
     "timeISO": "2025-08-13T18:48:03.000Z",
     "textPlain": "If you look at a any of the nvidia DGX boards it's already pretty close.PCIe is a standard/commodity so that multiple vendors can compete and customers can save money. But at 8.0 speeds I'm not sure how many vendors will really be supplying, there's already only a few doing serdes this fast...",
+    "parent": 44851726,
+    "depth": 2
+  },
+  {
+    "id": 44894351,
+    "by": "dylan604",
+    "timeISO": "2025-08-13T21:58:07.000Z",
+    "textPlain": "Wouldn't that mean an complete mobo replacement to upgrade the GPU? GPU upgrades seem much more rapid and substantial compared to CPU/RAM. Each upgrade would now mean taking out the CPU/RAM and other cards vs just replacing the GPU",
     "parent": 44851726,
     "depth": 2
   },
@@ -104,22 +104,6 @@
     "depth": 2
   },
   {
-    "id": 44894281,
-    "by": "pshirshov",
-    "timeISO": "2025-08-13T21:51:36.000Z",
-    "textPlain": "Can I just have a backplane? Pretty please?",
-    "parent": 44851726,
-    "depth": 2
-  },
-  {
-    "id": 44894050,
-    "by": "leoapagano",
-    "timeISO": "2025-08-13T21:25:54.000Z",
-    "textPlain": "One possible advantage of this approach that no one here has mentioned yet is that it would allow us to put RAM on the CPU die (allowing for us to take advantage of the greater memory bandwidth) while also allowing for upgradable RAM.",
-    "parent": 44851726,
-    "depth": 2
-  },
-  {
     "id": 44892285,
     "by": "MurkyLabs",
     "timeISO": "2025-08-13T18:49:54.000Z",
@@ -128,10 +112,26 @@
     "depth": 2
   },
   {
+    "id": 44894281,
+    "by": "pshirshov",
+    "timeISO": "2025-08-13T21:51:36.000Z",
+    "textPlain": "Can I just have a backplane? Pretty please?",
+    "parent": 44851726,
+    "depth": 2
+  },
+  {
     "id": 44892782,
     "by": "Dylan16807",
     "timeISO": "2025-08-13T19:33:09.000Z",
     "textPlain": "And limit yourself to only one GPU?Also CPUs are able to make use of more space for memory, both horizontally and vertically.I don't really see the power delivery advantages, either way you're running a bunch of EPS12V or similar cables around.",
+    "parent": 44851726,
+    "depth": 2
+  },
+  {
+    "id": 44894050,
+    "by": "leoapagano",
+    "timeISO": "2025-08-13T21:25:54.000Z",
+    "textPlain": "One possible advantage of this approach that no one here has mentioned yet is that it would allow us to put RAM on the CPU die (allowing for us to take advantage of the greater memory bandwidth) while also allowing for upgradable RAM.",
     "parent": 44851726,
     "depth": 2
   },
@@ -160,10 +160,10 @@
     "depth": 2
   },
   {
-    "id": 44893098,
-    "by": "Seattle3503",
-    "timeISO": "2025-08-13T19:59:42.000Z",
-    "textPlain": "Is there an advantage of getting so far ahead of implementations? It seems like it would be more difficult to incorporate lessons.",
+    "id": 44894945,
+    "by": "zamadatix",
+    "timeISO": "2025-08-13T23:07:30.000Z",
+    "textPlain": "\"3 generations\" seems like a bit of a stretch. Millions of Blackwell systems use PCIe 6.x today, PCIe 7.x was finalized last month, and this is an announcement work on PCIe 8.0 has started for release in 3 years. I.e. it has only been one month of being one generation behind the latest PCIe revision.It'll be interesting if consumer devices bother trying to stay with the latest at all anymore. It's already extremely difficult to justify the cost of implementing PCIe 5.0 when it makes almost no difference for consumer use cases. The best consumer use case so far is enthusiasts who want really fast NVMe SSDs in x4 lanes, but 5.0 already gives >10 GB/s for a single drive, even with the limited lane count. It makes very little difference for x16 GPUs, even with the 5090. Things always creep up over time, but the rate at which the consumer space creeps is just so vastly different from what the DC space has been seeing that it seems unreasonable to expect the two to be lockstep anymore.",
     "parent": 44892705,
     "depth": 2
   },
@@ -172,6 +172,14 @@
     "by": "tails4e",
     "timeISO": "2025-08-13T19:31:59.000Z",
     "textPlain": "It takes a long time to get form standard to silicon, so I bet there are design teams working on pcie7 right now, which won't see products for 2 or more years",
+    "parent": 44892705,
+    "depth": 2
+  },
+  {
+    "id": 44893098,
+    "by": "Seattle3503",
+    "timeISO": "2025-08-13T19:59:42.000Z",
+    "textPlain": "Is there an advantage of getting so far ahead of implementations? It seems like it would be more difficult to incorporate lessons.",
     "parent": 44892705,
     "depth": 2
   },
@@ -200,14 +208,6 @@
     "depth": 2
   },
   {
-    "id": 44894295,
-    "by": "wmf",
-    "timeISO": "2025-08-13T21:53:01.000Z",
-    "textPlain": "It's less surprising if you realize that PCIe is behind Ethernet (per lane).",
-    "parent": 44893906,
-    "depth": 2
-  },
-  {
     "id": 44894365,
     "by": "rbanffy",
     "timeISO": "2025-08-13T21:59:41.000Z",
@@ -216,11 +216,11 @@
     "depth": 2
   },
   {
-    "id": 44893951,
-    "by": "pkaye",
-    "timeISO": "2025-08-13T21:16:39.000Z",
-    "textPlain": "Some of the newer ones maybe more for data centers.",
-    "parent": 44893125,
+    "id": 44894295,
+    "by": "wmf",
+    "timeISO": "2025-08-13T21:53:01.000Z",
+    "textPlain": "It's less surprising if you realize that PCIe is behind Ethernet (per lane).",
+    "parent": 44893906,
     "depth": 2
   },
   {
@@ -245,6 +245,14 @@
     "timeISO": "2025-08-13T21:37:42.000Z",
     "textPlain": "Don't forget VESA Local Bus.",
     "parent": 44892563,
+    "depth": 2
+  },
+  {
+    "id": 44893951,
+    "by": "pkaye",
+    "timeISO": "2025-08-13T21:16:39.000Z",
+    "textPlain": "Some of the newer ones maybe more for data centers.",
+    "parent": 44893125,
     "depth": 2
   },
   {

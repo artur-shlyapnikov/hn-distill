@@ -16,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44893800,
-    "by": "fabian2k",
-    "timeISO": "2025-08-13T21:02:29.000Z",
-    "textPlain": "So am I understanding it right that you don't need any CSRF tokens anymore to fully protect against CSRF attacks?And if Go is implementing this specific protection, are other ecosystems doing this as well? My specific interest would be .NET/C#, but I am wondering in general how widespread this specific solution is at the moment.",
-    "parent": 44891302,
-    "depth": 1
-  },
-  {
     "id": 44893680,
     "by": "AgentME",
     "timeISO": "2025-08-13T20:50:38.000Z",
     "textPlain": "It's very nice to have an up-to-date writeup like this. I've gotten some odd looks for telling people that classic CSRF tokens are unnecessary work since the Origin header became widely supported, and I'm glad to have a page like this to refer people to.",
+    "parent": 44891302,
+    "depth": 1
+  },
+  {
+    "id": 44893800,
+    "by": "fabian2k",
+    "timeISO": "2025-08-13T21:02:29.000Z",
+    "textPlain": "So am I understanding it right that you don't need any CSRF tokens anymore to fully protect against CSRF attacks?And if Go is implementing this specific protection, are other ecosystems doing this as well? My specific interest would be .NET/C#, but I am wondering in general how widespread this specific solution is at the moment.",
     "parent": 44891302,
     "depth": 1
   },
@@ -56,14 +56,6 @@
     "depth": 2
   },
   {
-    "id": 44894318,
-    "by": "nchmy",
-    "timeISO": "2025-08-13T21:54:59.000Z",
-    "textPlain": "The entire WordPress ecosystem says hello",
-    "parent": 44892547,
-    "depth": 2
-  },
-  {
     "id": 44893810,
     "by": "simonw",
     "timeISO": "2025-08-13T21:03:54.000Z",
@@ -72,11 +64,11 @@
     "depth": 2
   },
   {
-    "id": 44894487,
-    "by": "FiloSottile",
-    "timeISO": "2025-08-13T22:12:34.000Z",
-    "textPlain": "Same-Site cookies are, well, same-site. Not same-origin. This is already a deal-breaker for many deployments, because they don't trust blog.example.com and partner.example.com as much as admin.example.com (both in the strict sense of trust, and in the senso of not having XSS vulnerabilities the attacker can pivot off).Worse, by the original definition http://foo.example.com and https://admin.example.com are same-site, and unless the site uses HSTS with includeSubDomains, any network attacker controls the former. Chrome changed that with Schemeful Same-Site in 2020, but Firefox and Safari never deployed it.",
-    "parent": 44892566,
+    "id": 44894318,
+    "by": "nchmy",
+    "timeISO": "2025-08-13T21:54:59.000Z",
+    "textPlain": "The entire WordPress ecosystem says hello",
+    "parent": 44892547,
     "depth": 2
   },
   {
@@ -84,6 +76,14 @@
     "by": "MajesticHobo2",
     "timeISO": "2025-08-13T19:18:34.000Z",
     "textPlain": "The problem boils down to the lack of equivalence between a site and an origin. The article explains how https://app.example.com and https://marketing.example.com may sit at very different trust levels, but are considered the same site by the browser. You don't want https://marketing.example.com to be able to make requests to https://app.example.com with your authentication cookies, but SameSite wouldn't prevent that.",
+    "parent": 44892566,
+    "depth": 2
+  },
+  {
+    "id": 44894487,
+    "by": "FiloSottile",
+    "timeISO": "2025-08-13T22:12:34.000Z",
+    "textPlain": "Same-Site cookies are, well, same-site. Not same-origin. This is already a deal-breaker for many deployments, because they don't trust blog.example.com and partner.example.com as much as admin.example.com (both in the strict sense of trust, and in the senso of not having XSS vulnerabilities the attacker can pivot off).Worse, by the original definition http://foo.example.com and https://admin.example.com are same-site, and unless the site uses HSTS with includeSubDomains, any network attacker controls the former. Chrome changed that with Schemeful Same-Site in 2020, but Firefox and Safari never deployed it.",
     "parent": 44892566,
     "depth": 2
   },
