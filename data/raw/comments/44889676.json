@@ -1,17 +1,17 @@
 [
   {
-    "id": 44890844,
-    "by": "vinc",
-    "timeISO": "2025-08-13T16:52:24.000Z",
-    "textPlain": "I've been using OpenIndiana for a file server in my homelab since it came out and it's been quietly doing its job ever since without much issues. Coming from Linux it's not easy to find the equivalent commands of what I do on my other servers but it's also what I like about this project, it's another flavor of Unix to learn.",
-    "parent": 44889676,
-    "depth": 1
-  },
-  {
     "id": 44890839,
     "by": "gtirloni",
     "timeISO": "2025-08-13T16:52:11.000Z",
     "textPlain": "> illumos-closed package, containing binary blobs still necessary to build illumos-gate, was addedhttps://docs.openindiana.org/release-notes/2016.10-release-n...> There are a small handful of illumos components for which source code is not available. Over time, we have replaced most of the closed source components from the Sun era with new open source versions. This work is ongoinghttps://illumos.org/docs/developers/build/#getting-the-close...> From this, however, project founder Garrett D'Amore took the last drop of the gate and announced illumos in mid-2010.https://illumos.org/docs/about/history/",
+    "parent": 44889676,
+    "depth": 1
+  },
+  {
+    "id": 44890844,
+    "by": "vinc",
+    "timeISO": "2025-08-13T16:52:24.000Z",
+    "textPlain": "I've been using OpenIndiana for a file server in my homelab since it came out and it's been quietly doing its job ever since without much issues. Coming from Linux it's not easy to find the equivalent commands of what I do on my other servers but it's also what I like about this project, it's another flavor of Unix to learn.",
     "parent": 44889676,
     "depth": 1
   },
@@ -40,18 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44890400,
-    "by": "simne",
-    "timeISO": "2025-08-13T16:15:43.000Z",
-    "textPlain": "Look to figure out what is it:\nhttps://docs.openindiana.org/misc/openindiana/To be short, it is opensource implementation of SUN Solaris OS. I don't know if it is already developed much.",
-    "parent": 44889676,
-    "depth": 1
-  },
-  {
-    "id": 44889951,
-    "by": "jtbayly",
-    "timeISO": "2025-08-13T15:43:06.000Z",
-    "textPlain": "I can’t figure out what this is from anything on the site. I suppose I need to know what Illumos is? My best guess is that it is an OS?",
+    "id": 44891000,
+    "by": "tedivm",
+    "timeISO": "2025-08-13T17:03:33.000Z",
+    "textPlain": "I've spent two minutes look at this website and I still have no idea what this project is.",
     "parent": 44889676,
     "depth": 1
   },
@@ -64,10 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44891000,
-    "by": "tedivm",
-    "timeISO": "2025-08-13T17:03:33.000Z",
-    "textPlain": "I've spent two minutes look at this website and I still have no idea what this project is.",
+    "id": 44890400,
+    "by": "simne",
+    "timeISO": "2025-08-13T16:15:43.000Z",
+    "textPlain": "Look to figure out what is it:\nhttps://docs.openindiana.org/misc/openindiana/To be short, it is opensource implementation of SUN Solaris OS. I don't know if it is already developed much.",
     "parent": 44889676,
     "depth": 1
   },
@@ -80,18 +72,34 @@
     "depth": 1
   },
   {
-    "id": 44890049,
-    "by": "mbreese",
-    "timeISO": "2025-08-13T15:50:19.000Z",
-    "textPlain": "From: https://docs.openindiana.org/misc/openindiana/#what-is-the-o...> Why is it called OpenIndiana?> OpenIndiana obtains its name from Project Indiana, an open source effort by Sun Microsystems (now Oracle Corporation) to produce OpenSolaris, a community developed Unix-like distribution based on Sun Solaris. Project Indiana was led by Ian Murdock, founder of the Debian Linux Distribution.(I never understood the naming either)But here's an ArsTechnica article from 2007 talking more about those origins from back when Sun was still trying to win back marketshare from Linux. It had long since lost that war, but was still trying to stay relevant.https://arstechnica.com/uncategorized/2007/07/understanding-...Illumos based OS's have been kicking around a lot longer than I anticipated.",
-    "parent": 44890011,
-    "depth": 2
+    "id": 44889951,
+    "by": "jtbayly",
+    "timeISO": "2025-08-13T15:43:06.000Z",
+    "textPlain": "I can’t figure out what this is from anything on the site. I suppose I need to know what Illumos is? My best guess is that it is an OS?",
+    "parent": 44889676,
+    "depth": 1
+  },
+  {
+    "id": 44892290,
+    "by": "cnst",
+    "timeISO": "2025-08-13T18:50:13.000Z",
+    "textPlain": "Everything is converging on Linux these days, and even the majority of the people who used to promote Solaris, DTrace and ZFS, have seemingly moved on, mostly to Linux, somewhat to FreeBSD, too, per Brendan Gregg:Solaris to Linux Migration 2017 - https://news.ycombinator.com/item?id=15177118 - Sept 2017 (129 comments)In the BSD land, things aren't that much better, either.Netgate, the makers of pfSense, are now using Ubuntu for Netgate TNSR product.iXsystems, the descendants of BSDi, have moved FreeNAS / TrueNAS from FreeBSD to Linux.  They're basically d/b/a TrueNAS now, and it's all Linux now.You used to need Solaris or illimos or FreeBSD for production-ready ZFS support, but now OpenZFS is provided exclusively for Linux and FreeBSD; note that Linux already comes first in the title; it would seem like it's only a matter of time before FreeBSD support may follow Solaris and illumos.Joyent, the commercial shepherds of OpenSolaris descendants like SmartOS, were acquired by Samsung, but the entire Solaris part of the equation, including Triton DataCenter orchestration, were subsequently offloaded to mnx.io, a tiny cloud hosting provider based out of a small town in Michigan.  (Frankly, without Triton, I don't even understand what remains of Joyent at Samsung?  Just the physical servers with the third-party software?  It's basically just a name for Samsung's data centre ops and their presumably-Linux-based Private Cloud?)Apple used to use NetBSD for AirPort WiFi routers, but the whole router line has been discontinued.  (I thought Apple actually already dropped NetBSD but couldn't find a source right now.)Last not least, DJB used to run OpenBSD, then FreeBSD, but then switched to Ubuntu after possibly being annoyed that too many steps were required to make FreeBSD work as a desktop: http://cr.yp.to/unix/feedme.html (my fav is that in FreeBSD the audio doesn't work unless you recompile the kernel).  I think he initially may have abandoned OpenBSD because it was crashing",
+    "parent": 44889676,
+    "depth": 1
   },
   {
     "id": 44891493,
     "by": "MarkSweep",
     "timeISO": "2025-08-13T17:45:29.000Z",
     "textPlain": "If we are going to talk about 35 years of illumos linkage, we as well go all the way. Using you notation: Solaris <—- SVR4 [0] <—- AT&T System III [1] <—- Bell Labs Version 7 Unix [2] <—- the birth of Unix at Bell Labs in 1969 [3].Besides the direct lineage, it’s interesting to see cross pollination between different operating systems over the years. Like BSD’s socket interface spreading everywhere (including Windows), ZFS from OpenSolaris to FreeBSD & Linux, then bhyve from FreeBSD to illumos.[0]: https://en.m.wikipedia.org/wiki/UNIX_System_V#SVR4[1]: https://en.m.wikipedia.org/wiki/UNIX_System_III[2]: https://en.m.wikipedia.org/wiki/Version_7_Unix[3]: https://en.m.wikipedia.org/wiki/Unix",
+    "parent": 44890011,
+    "depth": 2
+  },
+  {
+    "id": 44890049,
+    "by": "mbreese",
+    "timeISO": "2025-08-13T15:50:19.000Z",
+    "textPlain": "From: https://docs.openindiana.org/misc/openindiana/#what-is-the-o...> Why is it called OpenIndiana?> OpenIndiana obtains its name from Project Indiana, an open source effort by Sun Microsystems (now Oracle Corporation) to produce OpenSolaris, a community developed Unix-like distribution based on Sun Solaris. Project Indiana was led by Ian Murdock, founder of the Debian Linux Distribution.(I never understood the naming either)But here's an ArsTechnica article from 2007 talking more about those origins from back when Sun was still trying to win back marketshare from Linux. It had long since lost that war, but was still trying to stay relevant.https://arstechnica.com/uncategorized/2007/07/understanding-...Illumos based OS's have been kicking around a lot longer than I anticipated.",
     "parent": 44890011,
     "depth": 2
   },
@@ -120,6 +128,14 @@
     "depth": 2
   },
   {
+    "id": 44892377,
+    "by": "johnisgood",
+    "timeISO": "2025-08-13T18:57:23.000Z",
+    "textPlain": "Oracle ruined Sun Microsystems for sure, incl. OpenSolaris.",
+    "parent": 44891305,
+    "depth": 2
+  },
+  {
     "id": 44891748,
     "by": "doublerabbit",
     "timeISO": "2025-08-13T18:04:02.000Z",
@@ -136,10 +152,10 @@
     "depth": 2
   },
   {
-    "id": 44892084,
-    "by": "JoshTriplett",
-    "timeISO": "2025-08-13T18:31:14.000Z",
-    "textPlain": "I'm really disappointed that Solaris picked a \"let's screw Linux\" license, relegating some otherwise interesting technologies to only run on Solaris, on permissive OSes like BSD, and on systems that don't care about license compliance.",
+    "id": 44890826,
+    "by": "tracker1",
+    "timeISO": "2025-08-13T16:50:43.000Z",
+    "textPlain": "I think a lot of decisions that eventually lead to the Oracle buyout were all pretty bad and Oracle itself being where good ideas go to die.  As bad as MS is at extracting value out of its windows users, Oracle seems to fleece it's enterprise customers far, far worse.  I don't think I would ever choose Oracle or IBM for anything.It would be interesting to see a little more diversity in common operating systems in the wild though.  Linux has pretty much taken over the server space, and iOS/Android have split the more common usage outside that, with what's left of desktop still mostly Windows.I still think there's opportunity for something like Flutter as a cross-platform library that actually works with multiple backing languages.",
     "parent": 44890032,
     "depth": 2
   },
@@ -160,14 +176,6 @@
     "depth": 2
   },
   {
-    "id": 44890826,
-    "by": "tracker1",
-    "timeISO": "2025-08-13T16:50:43.000Z",
-    "textPlain": "I think a lot of decisions that eventually lead to the Oracle buyout were all pretty bad and Oracle itself being where good ideas go to die.  As bad as MS is at extracting value out of its windows users, Oracle seems to fleece it's enterprise customers far, far worse.  I don't think I would ever choose Oracle or IBM for anything.It would be interesting to see a little more diversity in common operating systems in the wild though.  Linux has pretty much taken over the server space, and iOS/Android have split the more common usage outside that, with what's left of desktop still mostly Windows.I still think there's opportunity for something like Flutter as a cross-platform library that actually works with multiple backing languages.",
-    "parent": 44890032,
-    "depth": 2
-  },
-  {
     "id": 44890537,
     "by": "shrubble",
     "timeISO": "2025-08-13T16:26:32.000Z",
@@ -184,11 +192,11 @@
     "depth": 2
   },
   {
-    "id": 44889961,
-    "by": "mindcrime",
-    "timeISO": "2025-08-13T15:44:04.000Z",
-    "textPlain": "Solaris, basically. Illumos was derived from the old OpenSolaris project. I don't know how much it's diverged, as I don't really follow this much. But that's more or less what it is.",
-    "parent": 44889951,
+    "id": 44892084,
+    "by": "JoshTriplett",
+    "timeISO": "2025-08-13T18:31:14.000Z",
+    "textPlain": "I'm really disappointed that Solaris picked a \"let's screw Linux\" license, relegating some otherwise interesting technologies to only run on Solaris, on permissive OSes like BSD, and on systems that don't care about license compliance.",
+    "parent": 44890032,
     "depth": 2
   },
   {
@@ -205,6 +213,14 @@
     "timeISO": "2025-08-13T16:52:25.000Z",
     "textPlain": "OI uses IPS packaging, which is the same packaging used by Solaris 11 (some find it over engineered).  Tribblix, on the other hand, is also an illumos-based distro but is based on Solaris 10 (and prior’s) SVR4 packaging which is managed via a utility called “zap”.Both are good distributions, but I strongly encourage you to try Tribblix if OI is problematic; for whatever reason the latest OI installers do not seem to include the same amount of driver support as Tribblix, in my experience.",
     "parent": 44890215,
+    "depth": 2
+  },
+  {
+    "id": 44889961,
+    "by": "mindcrime",
+    "timeISO": "2025-08-13T15:44:04.000Z",
+    "textPlain": "Solaris, basically. Illumos was derived from the old OpenSolaris project. I don't know how much it's diverged, as I don't really follow this much. But that's more or less what it is.",
+    "parent": 44889951,
     "depth": 2
   }
 ]

@@ -8,18 +8,10 @@
     "depth": 1
   },
   {
-    "id": 44891709,
-    "by": "sorenjan",
-    "timeISO": "2025-08-13T18:00:54.000Z",
-    "textPlain": "I hope this is the start of more ML filters in ffmpeg. They added the sr (super resolution) filter years ago, but it's old and it's difficult to get the weights so you can run it, since they're not included. They have added support for multiple inference libraries like libtorch, but again, it's difficult to even get started. Hopefully they can get behind a consistent ML strategy, ideally with a \"models\" directory with ready to use models for upscaling, temporal upscaling, noise cancelling, etc. A lot of audio and video filter research use ML now, new codecs will probably also use it soon.",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
-    "id": 44892004,
-    "by": "manca",
-    "timeISO": "2025-08-13T18:24:19.000Z",
-    "textPlain": "The only problem with this PR/diff is that it creates just a avfilter wrapper around whisper.cpp library and requires the user to manage the dependencies on their own. This is not helpful for novice users who will first need to:1. git clone whisper.cpp2. Make sure they have all dependencies for `that` library3. Hope the build passes4. Download the actual modelAND only then be able to use `-af \"whisper=model...` filter.If they try to use the filter without all the prereqs they'll fail and it'll create frustration.It'd be better to natively create a Whisper avfilter and only require the user to download the model -- I feel like this would streamline the whole process and actually make people use it much more.",
+    "id": 44886963,
+    "by": "Lio",
+    "timeISO": "2025-08-13T11:03:10.000Z",
+    "textPlain": "Once local transcription is in more places hopefully we can persuade content creator not to burn bouncing sub-titles into their videos.I've seen professionally produced recordings on dry and technical subjects with good sound quality where they've decided to use distracting sub-titles with no way to disable them.It seems so unnecessary if you're not making novelty videos about cats.Also local transcription allows for automatic translation and again overlaying subtitles on top of an existing burnt in set is a really poor reading experience.",
     "parent": 44886647,
     "depth": 1
   },
@@ -32,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44886963,
-    "by": "Lio",
-    "timeISO": "2025-08-13T11:03:10.000Z",
-    "textPlain": "Once local transcription is in more places hopefully we can persuade content creator not to burn bouncing sub-titles into their videos.I've seen professionally produced recordings on dry and technical subjects with good sound quality where they've decided to use distracting sub-titles with no way to disable them.It seems so unnecessary if you're not making novelty videos about cats.Also local transcription allows for automatic translation and again overlaying subtitles on top of an existing burnt in set is a really poor reading experience.",
+    "id": 44891709,
+    "by": "sorenjan",
+    "timeISO": "2025-08-13T18:00:54.000Z",
+    "textPlain": "I hope this is the start of more ML filters in ffmpeg. They added the sr (super resolution) filter years ago, but it's old and it's difficult to get the weights so you can run it, since they're not included. They have added support for multiple inference libraries like libtorch, but again, it's difficult to even get started. Hopefully they can get behind a consistent ML strategy, ideally with a \"models\" directory with ready to use models for upscaling, temporal upscaling, noise cancelling, etc. A lot of audio and video filter research use ML now, new codecs will probably also use it soon.",
     "parent": 44886647,
     "depth": 1
   },
@@ -48,6 +40,14 @@
     "depth": 1
   },
   {
+    "id": 44892004,
+    "by": "manca",
+    "timeISO": "2025-08-13T18:24:19.000Z",
+    "textPlain": "The only problem with this PR/diff is that it creates just a avfilter wrapper around whisper.cpp library and requires the user to manage the dependencies on their own. This is not helpful for novice users who will first need to:1. git clone whisper.cpp2. Make sure they have all dependencies for `that` library3. Hope the build passes4. Download the actual modelAND only then be able to use `-af \"whisper=model...` filter.If they try to use the filter without all the prereqs they'll fail and it'll create frustration.It'd be better to natively create a Whisper avfilter and only require the user to download the model -- I feel like this would streamline the whole process and actually make people use it much more.",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
     "id": 44886785,
     "by": "voxadam",
     "timeISO": "2025-08-13T10:40:59.000Z",
@@ -56,10 +56,26 @@
     "depth": 1
   },
   {
+    "id": 44892352,
+    "by": "igorguerrero",
+    "timeISO": "2025-08-13T18:55:03.000Z",
+    "textPlain": "Aww, I literally just implemented this using whisper.cpp and ffmpeg lib, code is even similar...",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
     "id": 44887159,
     "by": "donatj",
     "timeISO": "2025-08-13T11:31:36.000Z",
     "textPlain": "I know nothing about Whisper, is this usable for automated translation?I own a couple very old and as far as I'm aware never translated Japanese movies. I don't speak Japanese but I'd love to watch them.A couple years ago I had been negotiating with a guy on Fiver to translate them. At his usual rate-per-minute of footage it would have cost thousands of dollars but I'd negotiated him down to a couple hundred before he presumably got sick of me and ghosted me.",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44892231,
+    "by": "cheerioty",
+    "timeISO": "2025-08-13T18:45:00.000Z",
+    "textPlain": "OH: \"New changelog entries go to the bottom, @vpalmisano .. Didn't I tell you this once?\"",
     "parent": 44886647,
     "depth": 1
   },
@@ -88,6 +104,14 @@
     "depth": 1
   },
   {
+    "id": 44887044,
+    "by": "zoobab",
+    "timeISO": "2025-08-13T11:15:50.000Z",
+    "textPlain": "Not sure it will be packaged in Debian, with an external binary model god knows how it was produced...",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
     "id": 44890140,
     "by": "miladyincontrol",
     "timeISO": "2025-08-13T15:56:13.000Z",
@@ -104,10 +128,10 @@
     "depth": 1
   },
   {
-    "id": 44887044,
-    "by": "zoobab",
-    "timeISO": "2025-08-13T11:15:50.000Z",
-    "textPlain": "Not sure it will be packaged in Debian, with an external binary model god knows how it was produced...",
+    "id": 44886878,
+    "by": "bondarchuk",
+    "timeISO": "2025-08-13T10:53:09.000Z",
+    "textPlain": "Can whisper do multilingual yet? Last time I tried it on some mixed dutch/english text it would spit out english translations for some of the dutch text. Strange bug/feature since from all appearances it had understood the dutch text perfectly fine.",
     "parent": 44886647,
     "depth": 1
   },
@@ -116,14 +140,6 @@
     "by": "iambvk",
     "timeISO": "2025-08-13T15:28:39.000Z",
     "textPlain": "Is anyone able to get streaming audio to text conversion working with whisper.cpp?I tried several times to get this into a reasonable shape, but all have been failures. If anyone has pointers I really appreciate it.",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
-    "id": 44886878,
-    "by": "bondarchuk",
-    "timeISO": "2025-08-13T10:53:09.000Z",
-    "textPlain": "Can whisper do multilingual yet? Last time I tried it on some mixed dutch/english text it would spit out english translations for some of the dutch text. Strange bug/feature since from all appearances it had understood the dutch text perfectly fine.",
     "parent": 44886647,
     "depth": 1
   },
@@ -168,14 +184,6 @@
     "depth": 1
   },
   {
-    "id": 44890883,
-    "by": "superkuh",
-    "timeISO": "2025-08-13T16:55:07.000Z",
-    "textPlain": "\"Making sure you're not a bot!\" with no way to get to the actual document that is supposed to be at the URL. Anubis can be configured to be accessible for people without the latest computers by using the meta-refresh proof of work but very few people take any time to configure it and just deploy the defaults. Just like with cloudflare.That said, I suppose I'm glad they're concentrating on making the ffmpeg code better rather than fixing bugs in the web interface for the development tracker. Having whisper integrated will be really useful. I'm already imagining automatic subtitle generation... imagining because I can't read the page or the code to know what it is.",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
     "id": 44886779,
     "by": "kwar13",
     "timeISO": "2025-08-13T10:40:21.000Z",
@@ -192,14 +200,6 @@
     "depth": 1
   },
   {
-    "id": 44887932,
-    "by": "porridgeraisin",
-    "timeISO": "2025-08-13T13:03:11.000Z",
-    "textPlain": "I had a small bash pipeline for doing this until now.  ffmpeg -f pulse -i \"$(pactl get-default-source)\" -t 5 -f wav -ar 16000 -ac 1 -c:a pcm_s16le - \\\n  | ./main - \\\n  | head -2 \\\n  | tail -1 \\\n  | cut -d] -f2 \\\n  | awk '{$1=$1};1'\n\nThe reading from mic part (-f pulse, pactl...) is linux-specific rest of it should be cross platform. The `main` executable is the whisper.cpp executable (see whisper.cpp github readme, it's just the output of `make base.en` from that).Edit: -t 5 controls recording duration.Oh and add 2>/dev/null to silence the debug output. I copied this from a pipe that further sends it into an LLM that  then looks at the meaning and turns it into a variety of structured data (reminders, todo items, etc) which I then....",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
     "id": 44886766,
     "by": "zzsshh",
     "timeISO": "2025-08-13T10:38:43.000Z",
@@ -208,10 +208,18 @@
     "depth": 1
   },
   {
-    "id": 44890568,
-    "by": "jhatemyjob",
-    "timeISO": "2025-08-13T16:28:21.000Z",
-    "textPlain": "I wish they worked with the mpv folks instead of shoehorning this in. Based on the docs it looks like getting live transcription for a video will involve running the demuxer/decoder on one thread, and this whisper filter on another thread, using ffmpeg's AVIO (or to a REST API [1].... shudders) to synchronize those two parallel jobs. It could have been way simpler.Other than for the \"live transcription\" usecase (that they made unnecessarily complicated), I don't see how this is any better than running Whisper.cpp directly. Other people in this thread are basically saying \"ffmpeg's interface is better understood\" [2] but LLMs make that point moot since you can just ask them to do the drudgery for you.[1] https://medium.com/@vpalmisano/run-whisper-audio-transcripti...[2] https://news.ycombinator.com/item?id=44890067",
+    "id": 44887932,
+    "by": "porridgeraisin",
+    "timeISO": "2025-08-13T13:03:11.000Z",
+    "textPlain": "I had a small bash pipeline for doing this until now.  ffmpeg -f pulse -i \"$(pactl get-default-source)\" -t 5 -f wav -ar 16000 -ac 1 -c:a pcm_s16le - \\\n  | ./main - \\\n  | head -2 \\\n  | tail -1 \\\n  | cut -d] -f2 \\\n  | awk '{$1=$1};1'\n\nThe reading from mic part (-f pulse, pactl...) is linux-specific rest of it should be cross platform. The `main` executable is the whisper.cpp executable (see whisper.cpp github readme, it's just the output of `make base.en` from that).Edit: -t 5 controls recording duration.Oh and add 2>/dev/null to silence the debug output. I copied this from a pipe that further sends it into an LLM that  then looks at the meaning and turns it into a variety of structured data (reminders, todo items, etc) which I then....",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44890883,
+    "by": "superkuh",
+    "timeISO": "2025-08-13T16:55:07.000Z",
+    "textPlain": "\"Making sure you're not a bot!\" with no way to get to the actual document that is supposed to be at the URL. Anubis can be configured to be accessible for people without the latest computers by using the meta-refresh proof of work but very few people take any time to configure it and just deploy the defaults. Just like with cloudflare.That said, I suppose I'm glad they're concentrating on making the ffmpeg code better rather than fixing bugs in the web interface for the development tracker. Having whisper integrated will be really useful. I'm already imagining automatic subtitle generation... imagining because I can't read the page or the code to know what it is.",
     "parent": 44886647,
     "depth": 1
   },
@@ -228,6 +236,14 @@
     "by": "martzoukos",
     "timeISO": "2025-08-13T11:25:36.000Z",
     "textPlain": "I guess that there is no streaming option for sending generated tokens to, say, an LLM service to process the text in real-time.",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44890568,
+    "by": "jhatemyjob",
+    "timeISO": "2025-08-13T16:28:21.000Z",
+    "textPlain": "I wish they worked with the mpv folks instead of shoehorning this in. Based on the docs it looks like getting live transcription for a video will involve running the demuxer/decoder on one thread, and this whisper filter on another thread, using ffmpeg's AVIO (or to a REST API [1].... shudders) to synchronize those two parallel jobs. It could have been way simpler.Other than for the \"live transcription\" usecase (that they made unnecessarily complicated), I don't see how this is any better than running Whisper.cpp directly. Other people in this thread are basically saying \"ffmpeg's interface is better understood\" [2] but LLMs make that point moot since you can just ask them to do the drudgery for you.[1] https://medium.com/@vpalmisano/run-whisper-audio-transcripti...[2] https://news.ycombinator.com/item?id=44890067",
     "parent": 44886647,
     "depth": 1
   },
@@ -328,18 +344,10 @@
     "depth": 2
   },
   {
-    "id": 44892020,
-    "by": "guluarte",
-    "timeISO": "2025-08-13T18:25:27.000Z",
-    "textPlain": "you can install suing winget or chocolately    winget install --id=Nikse.SubtitleEdit  -e",
-    "parent": 44887584,
-    "depth": 2
-  },
-  {
-    "id": 44889896,
-    "by": "codedokode",
-    "timeISO": "2025-08-13T15:38:34.000Z",
-    "textPlain": "Kdeenlive also supports auto-generating subtitles which need some editing, but it is faster than create them from scratch. Actually I would be happy even with a simple voice detector so that I don't have to set the timings manually.",
+    "id": 44892158,
+    "by": "Morizero",
+    "timeISO": "2025-08-13T18:37:09.000Z",
+    "textPlain": "You don't happen to know a whisper solution that combines diarization with live audio transcription, do you?",
     "parent": 44887584,
     "depth": 2
   },
@@ -352,6 +360,14 @@
     "depth": 2
   },
   {
+    "id": 44889896,
+    "by": "codedokode",
+    "timeISO": "2025-08-13T15:38:34.000Z",
+    "textPlain": "Kdeenlive also supports auto-generating subtitles which need some editing, but it is faster than create them from scratch. Actually I would be happy even with a simple voice detector so that I don't have to set the timings manually.",
+    "parent": 44887584,
+    "depth": 2
+  },
+  {
     "id": 44888807,
     "by": "taminka",
     "timeISO": "2025-08-13T14:20:24.000Z",
@@ -360,10 +376,10 @@
     "depth": 2
   },
   {
-    "id": 44890832,
-    "by": "hart_russell",
-    "timeISO": "2025-08-13T16:51:34.000Z",
-    "textPlain": "Is there a way to use it to generate a srt subtitle file given a video file?",
+    "id": 44892020,
+    "by": "guluarte",
+    "timeISO": "2025-08-13T18:25:27.000Z",
+    "textPlain": "you can install suing winget or chocolately    winget install --id=Nikse.SubtitleEdit  -e",
     "parent": 44887584,
     "depth": 2
   },
@@ -376,27 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44889068,
-    "by": "jokethrowaway",
-    "timeISO": "2025-08-13T14:39:49.000Z",
-    "textPlain": "whisper is definitely nice, but it's a bit too slow.\nHaving subtitles and transcription for everything is great - but Nemo Parakeet (pretty much whisper by nvidia) completely changed how I interact with the computer.It enables dictation that actually works and it's as fast as you can think.\nI also have a set of scripts which just wait for voice commands and do things. \nI can pipe the results to an LLM, run commands, synthesize a voice with F5-TTS back and it's like having a local Jarvis.The main limitation is being english only.",
+    "id": 44890832,
+    "by": "hart_russell",
+    "timeISO": "2025-08-13T16:51:34.000Z",
+    "textPlain": "Is there a way to use it to generate a srt subtitle file given a video file?",
     "parent": 44887584,
-    "depth": 2
-  },
-  {
-    "id": 44892104,
-    "by": "slhck",
-    "timeISO": "2025-08-13T18:33:22.000Z",
-    "textPlain": "While that would be nicer from an end-user perspective, it's something hard to maintain for FFmpeg itself. Consider the velocity of the whisper-cpp project. I'm sure that – just like with filters such as vmaf, which also require building a dependency and downloading a model – precompiled versions will become available for novice users to directly download. Especially considering whisper-cpp is MIT-licensed.",
-    "parent": 44892004,
-    "depth": 2
-  },
-  {
-    "id": 44887615,
-    "by": "yvdriess",
-    "timeISO": "2025-08-13T12:27:31.000Z",
-    "textPlain": "A good opportunity to point people to the paper with my favorite title of all time:\"How to wreck a nice beach you sing calm incense\"https://dl.acm.org/doi/10.1145/1040830.1040898",
-    "parent": 44886838,
     "depth": 2
   }
 ]

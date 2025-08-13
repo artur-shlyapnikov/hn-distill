@@ -1,10 +1,42 @@
 [
   {
+    "id": 44892566,
+    "by": "akersten",
+    "timeISO": "2025-08-13T19:13:31.000Z",
+    "textPlain": "I'm not really grokking the explanation in the article of why the SameSite cookie attribute doesn't fix CSRF. I thought that was the whole design intent of SameSite=Secure on an HTTPS cookie, was to fix CSRF. Can someone boil it down?The article seemingly says \"these cookies won't be sent with an unsafe request. But that doesn't fix it!\" And doesn't elaborate?",
+    "parent": 44891302,
+    "depth": 1
+  },
+  {
+    "id": 44892547,
+    "by": "MajesticHobo2",
+    "timeISO": "2025-08-13T19:12:02.000Z",
+    "textPlain": "Not sure I agree with this part:> Allow all GET, HEAD, or OPTIONS requests.> These are safe methods, and are assumed not to change state at various layers of the stack already.Plenty of apps violate this assumption and do allow GET requests to alter state.",
+    "parent": 44891302,
+    "depth": 1
+  },
+  {
     "id": 44892028,
     "by": "nchmy",
     "timeISO": "2025-08-13T18:26:07.000Z",
     "textPlain": "i just discovered the Sec-Fetch stuff recently, due to Go 1.25's changelog. Very excited to start using it in some applications where tokens are currently used - what a hassle to deal with those.",
     "parent": 44891302,
     "depth": 1
+  },
+  {
+    "id": 44892619,
+    "by": "MajesticHobo2",
+    "timeISO": "2025-08-13T19:18:34.000Z",
+    "textPlain": "The problem boils down to the lack of equivalence between a site and an origin. The article explains how https://app.example.com and https://marketing.example.com are the same site but not the same origin. You don't want marketing.example.com to be able to make requests to app.example.com with your authentication cookies, but SameSite wouldn't prevent that.",
+    "parent": 44892566,
+    "depth": 2
+  },
+  {
+    "id": 44892210,
+    "by": "jerf",
+    "timeISO": "2025-08-13T18:43:00.000Z",
+    "textPlain": "Cookies have been truly horrible. I check in on them every couple of years, because I don't do a lot of front-end but when I do it's often security-sensitive, and every single time I check in on them there's some new entry in \"SameSite; NoSeriouslySecureHarder; WhoopsTheLastStandardWasNotGoodEnough=BeActuallySecure; AwwShitDidWeGetItRightLastTime=false\" parade of attributes you need to send to get actually secure cookies.No shade on the people implementing this stuff, I understand the backwards compatibility concerns, but I mean, keeping up with this stuff is harder than it should be. And thanks to backwards compatibility most of it still defaults open, though browsers have pecked at that as they can.",
+    "parent": 44892028,
+    "depth": 2
   }
 ]
