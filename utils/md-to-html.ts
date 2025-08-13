@@ -49,7 +49,7 @@ const transformTags = {
     void tagName; // mark parameter as used
     const href = attribs["href"] ?? "";
     // Disallow dangerous protocols
-    const safeHref = /^\s*javascript:/i.test(href) ? "" : href;
+    const safeHref = /^\s*javascript:/iu.test(href) ? "" : href;
     return {
       tagName: "a",
       attribs: {

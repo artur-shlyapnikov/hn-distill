@@ -16,7 +16,7 @@ describe("utils/mdToHtml", () => {
   test("renders fenced code block with language class", () => {
     const md = ["```js", "console.log('hi')", "```"].join("\n");
     const html = mdToHtml(md);
-    expect(html).toMatch(/<pre><code class=\"language-js\">[\s\S]*console\.log/);
+    expect(html).toMatch(/<pre><code class="language-js">[\s\S]*console\.log/u);
   });
 
   test("sanitizes dangerous HTML and links", () => {
@@ -26,10 +26,10 @@ describe("utils/mdToHtml", () => {
     const html = mdToHtml(md);
     expect(html).not.toContain("<script>");
     // no dangerous href emitted; text may remain as-is
-    expect(html).not.toMatch(/href=\"javascript:/i);
+    expect(html).not.toMatch(/href="javascript:/iu);
     // safe link attributes added to valid links
-    expect(html).toMatch(/<a [^>]*target=\"_blank\"/);
-    expect(html).toMatch(/rel=\"noopener noreferrer nofollow\"/);
+    expect(html).toMatch(/<a [^>]*target="_blank"/u);
+    expect(html).toMatch(/rel="noopener noreferrer nofollow"/u);
   });
 
   test("auto-linkifies bare URLs", () => {

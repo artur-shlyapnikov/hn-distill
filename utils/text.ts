@@ -24,19 +24,19 @@ export function htmlToPlain(input: string, options?: { paragraphBreak?: string }
 
   const h = limitedInput
     // Normalize <br> to single newline (allow multiple forms)
-    .replaceAll(/<br\s*\/?>/gi, "\n")
+    .replaceAll(/<br\s*\/?>/giu, "\n")
     // Insert paragraph markers between consecutive paragraphs
-    .replaceAll(/<\/p>\s*<p>/gi, PARA_MARK)
+    .replaceAll(/<\/p>\s*<p>/giu, PARA_MARK)
     // Drop opening/closing p tags
-    .replaceAll(/<p>/gi, "")
-    .replaceAll(/<\/p>/gi, "")
+    .replaceAll(/<p>/giu, "")
+    .replaceAll(/<\/p>/giu, "")
     // List items as bullet lines
-    .replaceAll(/<li>/gi, "\n• ")
-    .replaceAll(/<\/li>/gi, "")
+    .replaceAll(/<li>/giu, "\n• ")
+    .replaceAll(/<\/li>/giu, "")
     // Normalize block-level list boundaries to paragraph markers to avoid merging with preceding text
-    .replaceAll(/<\/ul>\s*<ul>/gi, PARA_MARK)
-    .replaceAll(/<ul>/gi, PARA_MARK)
-    .replaceAll(/<\/ul>/gi, "");
+    .replaceAll(/<\/ul>\s*<ul>/giu, PARA_MARK)
+    .replaceAll(/<ul>/giu, PARA_MARK)
+    .replaceAll(/<\/ul>/giu, "");
 
   // Remove all other tags safely
   const stripped = sanitizeHtml(h, {
@@ -62,7 +62,7 @@ export function htmlToPlain(input: string, options?: { paragraphBreak?: string }
     }
 
     // Skip bullet lines; keep their spacing intact
-    if (/^\s*•\s/.test(line)) {
+    if (/^\s*•\s/u.test(line)) {
       continue;
     }
 
@@ -74,7 +74,10 @@ export function htmlToPlain(input: string, options?: { paragraphBreak?: string }
     // Replace the first plain space between two word characters with NBSP
     // Use a callback to replace only once.
     let replaced = false;
-    lines[index] = line.replace(/(\w)\s+(\w)/, (_m, a: string, b: string) => {
+    lines[index] = line.replace(/(?<before>\w)\s+(?<after>\w)/u, (_m, ...args) => {
+      const groups = args.at(-1) as Record<string, string>;
+      const a = groups.before;
+      const b = groups.after;
       if (replaced) {
         return `${a} ${b}`;
       }
@@ -86,10 +89,10 @@ export function htmlToPlain(input: string, options?: { paragraphBreak?: string }
   decoded = lines.join("\n");
 
   // Convert paragraph markers to the desired paragraph break
-  decoded = decoded.replaceAll(new RegExp(PARA_MARK, "g"), paragraphBreak);
+  decoded = decoded.replaceAll(new RegExp(PARA_MARK, "gu"), paragraphBreak);
 
   // Collapse excessive newlines to at most a double break, then trim
-  decoded = decoded.replaceAll(/\n{3,}/g, "\n\n").trim();
+  decoded = decoded.replaceAll(/\n{3,}/gu, "\n\n").trim();
 
   return decoded;
 }
@@ -99,11 +102,12 @@ export function clamp(s: string, n: number): string {
 }
 
 export function seemsEnglish(s: string): boolean {
-  const letters = s.match(/[A-Za-zЁА-яё]/g) ?? [];
+  // eslint-disable-next-line regexp/unicode-escape, unicorn/escape-case
+  const letters = s.match(/[A-Za-z\u{401}\u{410}-\u044f\u0451]/gu) ?? [];
   if (letters.length === 0) {
     return false;
   }
-  const latin = letters.filter((ch) => /[A-Za-z]/.test(ch)).length;
+  const latin = letters.filter((ch) => /[A-Za-z]/u.test(ch)).length;
   const cyr = letters.length - latin;
   return cyr === 0 && latin / letters.length > 0.8;
 }

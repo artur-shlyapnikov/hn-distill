@@ -1,5 +1,5 @@
-import { describe, test, expect } from "bun:test";
-import { htmlToPlain, clamp, seemsEnglish } from "../utils/text.ts";
+import { describe, expect, test } from "bun:test";
+import { clamp, htmlToPlain, seemsEnglish } from "../utils/text.ts";
 
 describe("utils/text", () => {
   test("htmlToPlain strips tags, decodes entities, normalizes breaks", () => {
@@ -7,7 +7,7 @@ describe("utils/text", () => {
     const out = htmlToPlain(input);
     expect(out).toContain("Hello world");
     expect(out).toContain("• One");
-    expect(out).not.toMatch(/<[^>]+>/);
+    expect(out).not.toMatch(/<[^>]{1,100}>/u);
     expect(out.endsWith("Two")).toBeTrue();
   });
 

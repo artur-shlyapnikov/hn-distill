@@ -21,10 +21,10 @@ describe("scripts/summarize prompt builders", () => {
     // Should contain the markdown body, but no metadata or instruction header
     expect(prompt).toContain("Hello");
     expect(prompt).not.toMatch(
-      /Make it two times shorter|Сделай текст в два раза короче/,
+      /Make it two times shorter|Сделай текст в два раза короче/u,
     );
     expect(prompt).not.toMatch(
-      /Title|Заголовок|Author|Автор|URL|Posted|Опубликовано|Контекст|Context/,
+      /Title|Заголовок|Author|Автор|URL|Posted|Опубликовано|Контекст|Context/u,
     );
   });
 

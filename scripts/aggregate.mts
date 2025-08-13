@@ -60,7 +60,7 @@ export async function readAggregates(storyIds: number[]): Promise<AggregatedItem
     let domain: string | undefined;
     if (story.url) {
       try {
-        domain = new URL(story.url).hostname.replace(/^www\./, "");
+        domain = new URL(story.url).hostname.replace(/^www\./u, "");
       } catch {
         // ignore URL parse errors
       }
@@ -94,7 +94,7 @@ export function fallbackFromRaw(
   const combined = comments
     .map((c) => c.textPlain)
     .join(" ")
-    .replaceAll(/\s+/g, " ")
+    .replaceAll(/\s+/gu, " ")
     .trim();
   const commentsSummary: string | undefined = combined ? combined.slice(0, 280) : undefined;
   return { postSummary: undefined, commentsSummary };

@@ -10,11 +10,11 @@ function makeMockHttp(items: Record<number, unknown>): Services & { calls: numbe
     http: {
       json: async <T>(url: string): Promise<T | null> => {
         calls++;
-        const m = /item\/(\d+)\.json$/.exec(url);
+        const m = /item\/(?<id>\d+)\.json$/u.exec(url);
         if (!m) {
           return null;
         }
-        const id = Number(m[1]);
+        const id = Number(m.groups?.id);
         return (items[id] as T) ?? null;
       },
     } as unknown as HttpClient,
@@ -54,7 +54,15 @@ describe("scripts/fetch-hn collectComments", () => {
     const now = Math.floor(Date.now() / 1000);
     const data: Record<number, unknown> = {};
     for (let index = 1; index <= 10; index++) {
-      data[index] = { id: index, type: "comment", by: "u", text: "x", time: now, parent: index - 1, kids: index < 10 ? [index + 1] : [] };
+      data[index] = {
+        id: index,
+        type: "comment",
+        by: "u",
+        text: "x",
+        time: now,
+        parent: index - 1,
+        kids: index < 10 ? [index + 1] : [],
+      };
     }
     const services = makeMockHttp(data);
 

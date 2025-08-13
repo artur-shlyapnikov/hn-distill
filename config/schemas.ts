@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const IsoString = z.string().regex(/^\d{4}-\d{2}-\d{2}T.*Z$/, "must be ISO string");
+const IsoString = z.string().regex(/^\d{4}-\d{2}-\d{2}T.*Z$/u, "must be ISO string");
 
 const INVALID_URL_MESSAGE = "Invalid URL";
 

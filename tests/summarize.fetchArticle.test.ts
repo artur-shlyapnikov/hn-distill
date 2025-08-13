@@ -5,6 +5,7 @@ import { getOrFetchArticleMarkdown } from "../scripts/summarize.mts";
 import htmlToMd from "../utils/html-to-md";
 import type { HttpClient } from "../utils/http-client.ts";
 
+// eslint-disable-next-line no-secrets/no-secrets
 describe("summarize.getOrFetchArticleMarkdown", () => {
   test("fetches, converts, caches and avoids refetch", async () => {
     const story = {

@@ -102,7 +102,7 @@ export async function buildCommentsPrompt(
   const lines: string[] = [];
   for (const c of comments) {
     const { textPlain, by, depth } = c;
-    const text = textPlain ? textPlain.replaceAll(/\s+/g, " ").trim() : "";
+    const text = textPlain ? textPlain.replaceAll(/\s+/gu, " ").trim() : "";
     if (!text) {
       continue;
     }
@@ -127,14 +127,17 @@ export async function buildCommentsPrompt(
 }
 
 export function preserveMarkdownWhitespace(content: string): string {
-  const normalized = content ? content.replaceAll(/\r\n?/g, "\n") : "";
+  const normalized = content ? content.replaceAll(/\r\n?/gu, "\n") : "";
   const lines = normalized.split("\n").map((line) => {
-    const match = /(.*?)(\s*)$/.exec(line);
-    if (!match) {
-      return line;
+    // Find trailing whitespace by looking from the end
+    let endIndex = line.length;
+    while (endIndex > 0 && /\s/u.test(line[endIndex - 1])) {
+      endIndex--;
     }
-    const body = match[1];
-    const trailing = match[2] ?? "";
+
+    const body = line.slice(0, endIndex);
+    const trailing = line.slice(endIndex);
+
     if (trailing.length === 2) {
       return `${body}  `;
     }
