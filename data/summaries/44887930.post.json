@@ -1,0 +1,8 @@
+{
+  "id": 44887930,
+  "lang": "ru",
+  "summary": "**Кратко о проблеме**  \nПри сборке нативного образа GraalVM для `org.apache.xml.security` возникают ошибки:  \n1. `MissingResourceException` – отсутствуют ресурс-бандлы.  \n2. `XMLSignatureException` – алгоритмы подписи не найдены из-за удалённых классов и рефлексии.\n\n**Решение**  \n1. Добавить в аргументы сборки:  \n   ```\n   -H:IncludeResourceBundles=org.apache.xml.security.resource.xmlsecurity\n   ```\n2. Создать `reflect-config.json` со всеми необходимыми классами (RSA, ECDSA, DSA, канонизаторы и XPath-функции). Пример:\n   ```json\n   [\n     {\n       \"name\": \"org.apache.xml.security.algorithms.implementations.SignatureDSA\",\n       \"allDeclaredConstructors\": true\n     },\n     {\n       \"name\": \"org.apache.xml.security.c14n.implementations.Canonicalizer20010315ExclOmitComments\",\n       \"allDeclaredConstructors\": true\n     }\n   ]\n   ```\n   Подключить его:\n   ```\n   -H:ReflectionConfigurationFiles=path/to/reflect-config.json\n   ```\n\n**Далее**  \nПолный конфиг можно внести в [GraalVM Reachability Metadata Repository](https://github.com/oracle/graalvm-reachability-metadata), чтобы другим не приходилось дублировать настройки.",
+  "inputHash": "54cf308996954c4e38e50861e4be26a075080617f98cc453938256e9240ec0af",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-13T13:38:48.278Z"
+}

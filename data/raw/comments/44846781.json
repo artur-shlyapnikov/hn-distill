@@ -1,9 +1,33 @@
 [
   {
+    "id": 44888089,
+    "by": "__jonas",
+    "timeISO": "2025-08-13T13:19:57.000Z",
+    "textPlain": "This looks really nice!I’m currently looking for a nice implementation of stroke expansion (here called outlining) that I can run in the browser, this seems like a good option besides skia (pathkit)[0] and vello/kurbo[1].Ideally I’d love to be able to expand in a non-uniform way, similar to what Metafont does for bitmap fonts, or what Inkscape allows with its power stroke effect, or even just with a non-uniform ‘nib’ as is possible with FontForge[2].This doesn’t seem to be something that these bezier libraries generally offer which is understandable, probably a rather niche goal.[0] https://skia.org/docs/user/modules/pathkit/[1] https://doc.servo.org/kurbo/stroke/index.html[2] https://fontforge.org/docs/techref/stroke.html",
+    "parent": 44846781,
+    "depth": 1
+  },
+  {
+    "id": 44888217,
+    "by": "graphviz",
+    "timeISO": "2025-08-13T13:32:12.000Z",
+    "textPlain": "Any ideas how these primitives could be used to implement an edge router for drawing natural-looking curves around obstacles in diagrams, as an improvement on the 25-year-old solver in graphviz https://dpd.cs.princeton.edu/Papers/DGKN97.pdf?",
+    "parent": 44846781,
+    "depth": 1
+  },
+  {
     "id": 44886800,
     "by": "Fraterkes",
     "timeISO": "2025-08-13T10:43:39.000Z",
     "textPlain": "Almost even more interesting is the Bezier Boolean-Operations lib they use (it’s a rewrite of Pathbool.js (https://github.com/r-flash/PathBool.js) in Rust)https://github.com/GraphiteEditor/Graphite/tree/master/libra...There’s not a ton of robust curve boolean libs out there that aren’t just part of some huge package of tools. This is the only one I know of that isn’t Js.(Edit: added a link)",
+    "parent": 44846781,
+    "depth": 1
+  },
+  {
+    "id": 44887852,
+    "by": "childintime",
+    "timeISO": "2025-08-13T12:54:38.000Z",
+    "textPlain": "Bezier curves in painting software never gave me the results I wanted. And I mean never. I sincerely wonder who succeeds at using them?From these graphs I see that I always wanted the simple Quadratic version, and would use 2 of them in sequence to approximate a Cubic version. That would be so much easier. But if the software could allow me to adjust the midpoint, and maintain a smooth transition, that would be perfect. I think.So I basically wish for a different interface, one that has more thought put into it. Now it's a \"give access to the parameters, and be done with it\" kind. As if novices don't have the need for a nice smooth curve between known points.",
     "parent": 44846781,
     "depth": 1
   },
@@ -45,6 +69,22 @@
     "timeISO": "2025-08-13T10:57:26.000Z",
     "textPlain": "Link to the code for the mentioned Rust path-bool crate:https://github.com/GraphiteEditor/Graphite/tree/master/libra...",
     "parent": 44886800,
+    "depth": 2
+  },
+  {
+    "id": 44887972,
+    "by": "panzerboiler",
+    "timeISO": "2025-08-13T13:07:38.000Z",
+    "textPlain": "A Bézier curve is not an interpolating spline. It is a parametric curve defined by a set of control points, which the curve typically does not pass through (except the first and last points). Bézier curves exhibit local control (changing a control point influences only a portion of the curve, especially in piecewise Bézier constructions). Interpolating splines may seem more user-friendly at first, since the curve passes exactly through all the given points. However, this can lead to unintuitive behavior: modifying a single point can cause global changes in the curve, including in areas far from the edited point. In some cases, these changes can be drastic, making precise control difficult or impossible. I may be biased by my 20+ years of graphic design work, but I prefer the precision and control given by Bézier curves.",
+    "parent": 44887852,
+    "depth": 2
+  },
+  {
+    "id": 44888231,
+    "by": "WillAdams",
+    "timeISO": "2025-08-13T13:33:32.000Z",
+    "textPlain": "A markedly different UI is that of FutureWave SmartSketch which has been reimplemented inhttps://www.wickeditor.com/For Beziér curves remember the basics:- put nodes at extrema and points of inflection- rule of 30 --- off curve nodes should be ~30% away from the matching on curve node",
+    "parent": 44887852,
     "depth": 2
   },
   {
