@@ -1,5 +1,13 @@
 [
   {
+    "id": 44887365,
+    "by": "csdreamer7",
+    "timeISO": "2025-08-13T11:57:45.000Z",
+    "textPlain": "This means their servers are very old ones that do not support x86-64-v2. Intel Core 2 Duo days?https://developers.redhat.com/blog/2021/01/05/building-red-h...Think of how much faster their servers would be with one of those Epyc consumer cpus.I was about to ask people to donate, but they have $80k in their coffers. I realize their budget is only $17,000 a year, but I am curious why they haven't spent $2-3k on one of those Zen4 or Zen5 matx consumer Epyc servers as they are around under $2k under budget. If they have a fleet of these old servers I imagine a Zen5 one can replace at least a few of them and consume far less power and space.https://opencollective.com/f-droid#category-BUDGETNot sure if this includes their Librapay donations either:https://liberapay.com/F-Droid-Data/donate",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
     "id": 44886143,
     "by": "ivanjermakov",
     "timeISO": "2025-08-13T08:59:33.000Z",
@@ -8,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44885476,
-    "by": "karteum",
-    "timeISO": "2025-08-13T07:11:24.000Z",
-    "textPlain": "I don't fully understand: aren't gradle and aapt2 open-source ?If you want to build buildroot or openwrt, the first thing it will do is compiling your own toolchain (rather than reusing the one from your distro) so that it can lead to predictable results. I would have the same rationale for f-droid : why not compile the whole toolchain from source rather than using a binary gradle/aapt2 that uses unsupported instructions?",
+    "id": 44887735,
+    "by": "nativeforks",
+    "timeISO": "2025-08-13T12:41:02.000Z",
+    "textPlain": "There are even some \"Unknown problem\" on IzzyOnDroid repo for app publishing, even ensuring reproducible build, izzy says >>Not necessarily \"your fault\" – baseline often has such issues: https://github.com/CompassMB/MBCompass/issues/90Seems like he is talking about the developer being responsible for that also!",
     "parent": 44884709,
     "depth": 1
   },
@@ -24,10 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44885007,
-    "by": "jchw",
-    "timeISO": "2025-08-13T05:45:06.000Z",
-    "textPlain": "Apparently it was fixed upstream by Google?https://gitlab.com/fdroid/admin/-/issues/593#note_2681207153Not sure how long it will take to get resolved but that thread seems reassuring even if there isn't a direct source that it was fixed.",
+    "id": 44885476,
+    "by": "karteum",
+    "timeISO": "2025-08-13T07:11:24.000Z",
+    "textPlain": "I don't fully understand: aren't gradle and aapt2 open-source ?If you want to build buildroot or openwrt, the first thing it will do is compiling your own toolchain (rather than reusing the one from your distro) so that it can lead to predictable results. I would have the same rationale for f-droid : why not compile the whole toolchain from source rather than using a binary gradle/aapt2 that uses unsupported instructions?",
     "parent": 44884709,
     "depth": 1
   },
@@ -40,18 +48,26 @@
     "depth": 1
   },
   {
-    "id": 44885181,
-    "by": "micw",
-    "timeISO": "2025-08-13T06:19:36.000Z",
-    "textPlain": "As far as I can see, sse4.1 has been introduced in CPUs in 2011. That's more than 10 years ago. I wonder why such old servers are still in use. I'd assume that a modern CPU would do the same amount of work with a fraction of energy so that it does not even make economical sense to run such outdated hardware.Does anyone know the numbers of build servers and the specs?",
+    "id": 44885007,
+    "by": "jchw",
+    "timeISO": "2025-08-13T05:45:06.000Z",
+    "textPlain": "Apparently it was fixed upstream by Google?https://gitlab.com/fdroid/admin/-/issues/593#note_2681207153Not sure how long it will take to get resolved but that thread seems reassuring even if there isn't a direct source that it was fixed.",
     "parent": 44884709,
     "depth": 1
   },
   {
-    "id": 44886460,
-    "by": "yyyk",
-    "timeISO": "2025-08-13T09:49:27.000Z",
-    "textPlain": "Their servers are so old, even an entirely different architecture emulating x86_64 would still see a performance increase... So there's no OSS argument here - they could even buy a Talos, have no closed firmware, and still see a performance increase with emulation. If they don't care about the firmware, there are plenty of very cheap x86 options which are still more modern.",
+    "id": 44887084,
+    "by": "tetris11",
+    "timeISO": "2025-08-13T11:21:15.000Z",
+    "textPlain": "I'm a bit lost in this thread, but I've written up what I know for other dummies like meAapt2 is an x86_64 standalone binary used to build android APKs for various CPU targetsPrevious versions of it used a simpler instruction set, but the new version requires an extra SIMD instruction SSE4. A lot of CPUs after 2008 support this, but not F-droid's current server farm?",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44885181,
+    "by": "micw",
+    "timeISO": "2025-08-13T06:19:36.000Z",
+    "textPlain": "As far as I can see, sse4.1 has been introduced in CPUs in 2011. That's more than 10 years ago. I wonder why such old servers are still in use. I'd assume that a modern CPU would do the same amount of work with a fraction of energy so that it does not even make economical sense to run such outdated hardware.Does anyone know the numbers of build servers and the specs?",
     "parent": 44884709,
     "depth": 1
   },
@@ -64,6 +80,14 @@
     "depth": 1
   },
   {
+    "id": 44886460,
+    "by": "yyyk",
+    "timeISO": "2025-08-13T09:49:27.000Z",
+    "textPlain": "Their servers are so old, even an entirely different architecture emulating x86_64 would still see a performance increase... So there's no OSS argument here - they could even buy a Talos, have no closed firmware, and still see a performance increase with emulation. If they don't care about the firmware, there are plenty of very cheap x86 options which are still more modern.",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
     "id": 44884781,
     "by": "nativeforks",
     "timeISO": "2025-08-13T05:01:18.000Z",
@@ -72,10 +96,10 @@
     "depth": 1
   },
   {
-    "id": 44884889,
-    "by": "wtallis",
-    "timeISO": "2025-08-13T05:22:22.000Z",
-    "textPlain": "It seems quite implausible that F-Droid is actually running on hardware that predates those instruction set extensions. They're seeing wider adoption by default these days precisely because hardware which doesn't support them is getting very rare, especially in servers still in production use. Are you sure this isn't simply a matter of F-Droid using VMs that are configured to not expose those instructions as supported?",
+    "id": 44887579,
+    "by": "CommenterPerson",
+    "timeISO": "2025-08-13T12:24:36.000Z",
+    "textPlain": "Non-hacker here. The title says \"modern\". I don't need modern, have a 10 year old phone, can I still get the occasional simple app from F-Droid?I upped my (small) monthly contribution. Hope more people contribute, and also work to build public support.Also, for developers .. please include old fashioned credit cards as a payment method. I'd like to contribute but don't want to sign up for yet another payment method.",
     "parent": 44884709,
     "depth": 1
   },
@@ -88,10 +112,26 @@
     "depth": 1
   },
   {
+    "id": 44884889,
+    "by": "wtallis",
+    "timeISO": "2025-08-13T05:22:22.000Z",
+    "textPlain": "It seems quite implausible that F-Droid is actually running on hardware that predates those instruction set extensions. They're seeing wider adoption by default these days precisely because hardware which doesn't support them is getting very rare, especially in servers still in production use. Are you sure this isn't simply a matter of F-Droid using VMs that are configured to not expose those instructions as supported?",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
     "id": 44885993,
     "by": "edgan",
     "timeISO": "2025-08-13T08:38:28.000Z",
     "textPlain": "That F-Droid even requires to do the build is one of the reasons I created Discoverium.https://github.com/cygnusx-1-org/Discoverium/",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44887629,
+    "by": "andix",
+    "timeISO": "2025-08-13T12:28:48.000Z",
+    "textPlain": "Do I get it correctly, that they run their build infrastructure on at least 15 year old hardware?",
     "parent": 44884709,
     "depth": 1
   },
@@ -136,18 +176,18 @@
     "depth": 1
   },
   {
-    "id": 44884959,
-    "by": "nicman23",
-    "timeISO": "2025-08-13T05:37:04.000Z",
-    "textPlain": "wtf they cannot be still running opterons. it was to be that they are using qemu with g3 as a cpu profile.. right?",
-    "parent": 44884709,
-    "depth": 1
-  },
-  {
     "id": 44884926,
     "by": "o11c",
     "timeISO": "2025-08-13T05:29:49.000Z",
     "textPlain": "Note: the underlying blame here fundamentally belongs to whoever built AGP / Gradle with non-universal flags, then distributed it.It's fine to ship binaries with hard-coded cpu flag requirements if you control the universe, but otherwise not, especially if you are in an ecosystem where you make it hard for users to rebuild everything from source.",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44884959,
+    "by": "nicman23",
+    "timeISO": "2025-08-13T05:37:04.000Z",
+    "textPlain": "wtf they cannot be still running opterons. it was to be that they are using qemu with g3 as a cpu profile.. right?",
     "parent": 44884709,
     "depth": 1
   },
@@ -160,18 +200,18 @@
     "depth": 1
   },
   {
-    "id": 44884973,
-    "by": "shmerl",
-    "timeISO": "2025-08-13T05:39:36.000Z",
-    "textPlain": "Can't cross compilation help for that? The CPU compiling doesn't need to match the target.",
-    "parent": 44884709,
-    "depth": 1
-  },
-  {
     "id": 44884939,
     "by": "kijin",
     "timeISO": "2025-08-13T05:32:34.000Z",
     "textPlain": "Requiring (supposedly) universally available CPU instructions is one thing. Starting to require it in a minor version update (8.11.1 -> 8.12.0) is a whole different thing. What the heck happened to semantic versioning? We can't even trust patch updates anymore these days. The version numbers might as well be git commit IDs.",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44884973,
+    "by": "shmerl",
+    "timeISO": "2025-08-13T05:39:36.000Z",
+    "textPlain": "Can't cross compilation help for that? The CPU compiling doesn't need to match the target.",
     "parent": 44884709,
     "depth": 1
   },
@@ -200,19 +240,19 @@
     "depth": 1
   },
   {
+    "id": 44887665,
+    "by": "FirmwareBurner",
+    "timeISO": "2025-08-13T12:33:31.000Z",
+    "textPlain": ">they have $80k in their coffers  but I am curious why they haven't spent $2-3k on one of those Zen4 or Zen5 matx consumer Epyc serversI would also like to know this.",
+    "parent": 44887365,
+    "depth": 2
+  },
+  {
     "id": 44886875,
     "by": "munchlax",
     "timeISO": "2025-08-13T10:52:43.000Z",
     "textPlain": "Have you tried building AOSP from available sources?Binaries everywhere. Tried to rebuild some of them with the available sources and noped the f out because that breaks the build so bad it's ridiculous.",
     "parent": 44886143,
-    "depth": 2
-  },
-  {
-    "id": 44886275,
-    "by": "a2128",
-    "timeISO": "2025-08-13T09:20:21.000Z",
-    "textPlain": "SDK binaries provided by Google are still used, see https://forum.f-droid.org/t/call-for-help-making-free-softwa...",
-    "parent": 44885476,
     "depth": 2
   },
   {
@@ -248,19 +288,11 @@
     "depth": 2
   },
   {
-    "id": 44886387,
-    "by": "AnssiH",
-    "timeISO": "2025-08-13T09:39:57.000Z",
-    "textPlain": "It is not fixed.In the thread you linked to people are confusing a typo correction (\"mas fixed\" => \"was fixed\") as a claim about this new issue being fixed.The one that was fixed is this similar old issue from years ago: https://issuetracker.google.com/issues/172048751",
-    "parent": 44885007,
-    "depth": 2
-  },
-  {
-    "id": 44885016,
-    "by": "nativeforks",
-    "timeISO": "2025-08-13T05:47:06.000Z",
-    "textPlain": "Still haven't. Currently, most of the devs aren't aware of this underlying issue!",
-    "parent": 44885007,
+    "id": 44886275,
+    "by": "a2128",
+    "timeISO": "2025-08-13T09:20:21.000Z",
+    "textPlain": "SDK binaries provided by Google are still used, see https://forum.f-droid.org/t/call-for-help-making-free-softwa...",
+    "parent": 44885476,
     "depth": 2
   },
   {
@@ -285,6 +317,38 @@
     "timeISO": "2025-08-13T06:05:59.000Z",
     "textPlain": "Looking at the issue their builders seem to be Opterons G3 (K10?)[0][0] https://en.wikipedia.org/wiki/AMD_10h",
     "parent": 44884904,
+    "depth": 2
+  },
+  {
+    "id": 44887475,
+    "by": "pestatije",
+    "timeISO": "2025-08-13T12:12:47.000Z",
+    "textPlain": "I'm sure theyll appreciate your old desktop donation",
+    "parent": 44884904,
+    "depth": 2
+  },
+  {
+    "id": 44886387,
+    "by": "AnssiH",
+    "timeISO": "2025-08-13T09:39:57.000Z",
+    "textPlain": "It is not fixed.In the thread you linked to people are confusing a typo correction (\"mas fixed\" => \"was fixed\") as a claim about this new issue being fixed.The one that was fixed is this similar old issue from years ago: https://issuetracker.google.com/issues/172048751",
+    "parent": 44885007,
+    "depth": 2
+  },
+  {
+    "id": 44885016,
+    "by": "nativeforks",
+    "timeISO": "2025-08-13T05:47:06.000Z",
+    "textPlain": "Still haven't. Currently, most of the devs aren't aware of this underlying issue!",
+    "parent": 44885007,
+    "depth": 2
+  },
+  {
+    "id": 44887208,
+    "by": "its-summertime",
+    "timeISO": "2025-08-13T11:37:23.000Z",
+    "textPlain": "> Our machines run older server grade CPUsSo a bit of both of older hardware, and not-matched-with-consumer-featureset hardware. I'd imagine some server hardware vendors supported SSE4 way earlier than most, and some probably supported it way later than most too.",
+    "parent": 44887084,
     "depth": 2
   },
   {
@@ -320,10 +384,10 @@
     "depth": 2
   },
   {
-    "id": 44886297,
-    "by": "whizzter",
-    "timeISO": "2025-08-13T09:24:05.000Z",
-    "textPlain": "Because setting up servers is an annoying piece of grunt-work that people avoid doing more than absolutely necessary, there's an reason the expensive options of AWS,Azure and Google cloud make money because much \"just works\" when focusing on applications rather than the infra (until you actually need to do something advanced and the obscure commands or clicking bites you in the ass).",
+    "id": 44887473,
+    "by": "Pyrodogg",
+    "timeISO": "2025-08-13T12:12:40.000Z",
+    "textPlain": "A few months ago Adobe finally updated Lightroom Classic to require these processor extensions. To squeeze all of the matrix mults it can for AI features also in CPU mode.It's amazing how long of a run top end hardware from ~2011 has had (just missed the cutoff by a few months). It's taken this long for stuff to really require these features.",
     "parent": 44885181,
     "depth": 2
   },
@@ -333,70 +397,6 @@
     "timeISO": "2025-08-13T06:42:53.000Z",
     "textPlain": "I was going to say that I assume that the reason for such old CPUs is the ability to use Canoeboot/GNU Boot.  But you absolutely can put an SSE4.2 CPU in a KGPE-D16 motherboard.  So IDK.",
     "parent": 44885181,
-    "depth": 2
-  },
-  {
-    "id": 44885282,
-    "by": "heavyset_go",
-    "timeISO": "2025-08-13T06:38:26.000Z",
-    "textPlain": "Hardware after the first couple of generations of x86_64 muliticore processors are perfectly capable machines to use as servers, even for tasks you want to put off to a build farm.",
-    "parent": 44885181,
-    "depth": 2
-  },
-  {
-    "id": 44886856,
-    "by": "DrewADesign",
-    "timeISO": "2025-08-13T10:51:16.000Z",
-    "textPlain": "> Their servers are so oldWhen I read this, pop culture has trained me to expect an insult, like: “Their servers are so old, they sat next to Ben Franklin in kindergarten.”",
-    "parent": 44886460,
-    "depth": 2
-  },
-  {
-    "id": 44886061,
-    "by": "jraph",
-    "timeISO": "2025-08-13T08:46:34.000Z",
-    "textPlain": "Relatedly, we don't really have any up to date free software build of the Android SDK AFAIK. To build Android apps, we all rely on the Google binaries, which are non-free.https://forum.f-droid.org/t/call-for-help-making-free-softwa...",
-    "parent": 44885138,
-    "depth": 2
-  },
-  {
-    "id": 44884851,
-    "by": "benrutter",
-    "timeISO": "2025-08-13T05:17:35.000Z",
-    "textPlain": "The Catima thread makes FDroid sound like a really difficult commmunity to work with. Although I'm basing this on one person's comment and other people agreeing, not on any knowledge or experience.> But this is like everything with F-Droid: everything always falls on a deaf man's ears. So I would rather not waste more time talking to a brick wall. If I had the feeling it was possible to improve F-Droid by raising issues and trying to discuss how to solve them I wouldn't have left the project out of frustration after years of putting so much time and energy into it.",
-    "parent": 44884781,
-    "depth": 2
-  },
-  {
-    "id": 44886067,
-    "by": "MYEUHD",
-    "timeISO": "2025-08-13T08:47:11.000Z",
-    "textPlain": "That F-Droid requires to do the build ensures all apps provided by F-Droid are free software (as in freedom) and proven to be buildable by someone other than the app developer",
-    "parent": 44885993,
-    "depth": 2
-  },
-  {
-    "id": 44886124,
-    "by": "devrandoom",
-    "timeISO": "2025-08-13T08:56:49.000Z",
-    "textPlain": "So I should take a binary from a random stranger because trust me bro?",
-    "parent": 44885993,
-    "depth": 2
-  },
-  {
-    "id": 44885304,
-    "by": "tonyhart7",
-    "timeISO": "2025-08-13T06:42:33.000Z",
-    "textPlain": "\"If I had the time, I'd try to compile a binary of it that will run on Win95 just to give my fuckings to the planned obsolescence crowd\"The idea that not supporting a 20+ year old system is \"planned obsolescence\" is a bit shallow",
-    "parent": 44885022,
-    "depth": 2
-  },
-  {
-    "id": 44885083,
-    "by": "maxloh",
-    "timeISO": "2025-08-13T06:02:59.000Z",
-    "textPlain": "There is no point for Google to push planned obsolescence on the PC or server space. They don't have a market there.",
-    "parent": 44885022,
     "depth": 2
   }
 ]

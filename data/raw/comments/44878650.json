@@ -24,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44886413,
-    "by": "vekker",
-    "timeISO": "2025-08-13T09:44:38.000Z",
-    "textPlain": "Cool, but I wonder... is this really a feasible workflow?The way I use LLMs is, I enter a very specific query, and then I check the output, meticulously reviewing both the visual output and the code before I proceed. Component by component, piece by piece.Otherwise, if you just \"let it rip\", I find that errors compound, and what you get isn't reliable, isn't what you intended, increases technical debt, or is just straight up dangerous.So how can you do this from a smartphone? Don't you need your editor, and a way to run your code to review it carefully, before you can provide further input to Claude Code? Basically, how can you iterate from a phone?",
-    "parent": 44878650,
-    "depth": 1
-  },
-  {
     "id": 44879855,
     "by": "smithclay",
     "timeISO": "2025-08-12T18:09:48.000Z",
     "textPlain": "For the skeptics: using Claude Code from your phone is kind of great. Think this sort of solution is excellent once you've figured out a good workflow.Open-sourced my own duct-taped way* of doing this with free/open-source stuff a few weeks ago, recommend you give this kind of Claude on the go workflow a try during your next flight delay / train ride / etc.*https://github.com/smithclay/claudetainer",
+    "parent": 44878650,
+    "depth": 1
+  },
+  {
+    "id": 44886413,
+    "by": "vekker",
+    "timeISO": "2025-08-13T09:44:38.000Z",
+    "textPlain": "Cool, but I wonder... is this really a feasible workflow?The way I use LLMs is, I enter a very specific query, and then I check the output, meticulously reviewing both the visual output and the code before I proceed. Component by component, piece by piece.Otherwise, if you just \"let it rip\", I find that errors compound, and what you get isn't reliable, isn't what you intended, increases technical debt, or is just straight up dangerous.So how can you do this from a smartphone? Don't you need your editor, and a way to run your code to review it carefully, before you can provide further input to Claude Code? Basically, how can you iterate from a phone?",
     "parent": 44878650,
     "depth": 1
   },
@@ -52,14 +52,6 @@
     "by": "herval",
     "timeISO": "2025-08-12T23:54:57.000Z",
     "textPlain": "This is neat but I gotta ask - what’s your moat against Anthropic just launching the same thing a week from now?Codex already works from your phone, I imagine Anthropic is well on its way to ship Claude Code across devices/apps too..",
-    "parent": 44878650,
-    "depth": 1
-  },
-  {
-    "id": 44886482,
-    "by": "radarsat1",
-    "timeISO": "2025-08-13T09:52:48.000Z",
-    "textPlain": "Honestly it should be easy to do this kind of thing with a CLI app like Claude Code and yet you have to get pretty involved in interpreting its complex terminal usage. I'm starting to consider the recent trend of very \"fancy\" CLI utilities that treat the terminal as a kind of GUI as an anti-pattern. I mean, how much easier would it be to write a wrapper around CC if it were just a readline prompt.Yet these fancy terminal applications have become really trendy. I've been using Crush lately and I quite like it, but it's annoying to me that I can't copy and pasted from the terminal when it's running, and scrolling the buffer doesn't work as expected either, it somehow scrolls some kind of internal \"window\" instead. Again, making copy & pasting annoyingly difficult.Is anyone making a good agent system that is just \"> Output\", \"$ input\" without trying to get crazy with ANSI escape sequences?  Some color is nice, but I think that should be the end of it.",
     "parent": 44878650,
     "depth": 1
   },
@@ -92,6 +84,14 @@
     "by": "nicewood",
     "timeISO": "2025-08-13T06:40:29.000Z",
     "textPlain": "Nice one, I thought I need this and wanted to build something like that too couple weeks ago.But the more I worked with Claude, I felt like *I am the bottleneck* and not the waiting times. Also waiting for more than (really max) 5 minutes is for my features just not happening.I think remote claude code is nice if you start a completely new app with loads of features that will take a long time OR for checking pull requests (the remote execution is more important here)",
+    "parent": 44878650,
+    "depth": 1
+  },
+  {
+    "id": 44886482,
+    "by": "radarsat1",
+    "timeISO": "2025-08-13T09:52:48.000Z",
+    "textPlain": "Honestly it should be easy to do this kind of thing with a CLI app like Claude Code and yet you have to get pretty involved in interpreting its complex terminal usage. I'm starting to consider the recent trend of very \"fancy\" CLI utilities that treat the terminal as a kind of GUI as an anti-pattern. I mean, how much easier would it be to write a wrapper around CC if it were just a readline prompt.Yet these fancy terminal applications have become really trendy. I've been using Crush lately and I quite like it, but it's annoying to me that I can't copy and pasted from the terminal when it's running, and scrolling the buffer doesn't work as expected either, it somehow scrolls some kind of internal \"window\" instead. Again, making copy & pasting annoyingly difficult.Is anyone making a good agent system that is just \"> Output\", \"$ input\" without trying to get crazy with ANSI escape sequences?  Some color is nice, but I think that should be the end of it.",
     "parent": 44878650,
     "depth": 1
   },
@@ -136,14 +136,6 @@
     "depth": 1
   },
   {
-    "id": 44882305,
-    "by": "bigwheels",
-    "timeISO": "2025-08-12T22:03:36.000Z",
-    "textPlain": "Can it control Codex, too?  The ability to switch between Claude, Qwen, Gemini, Codex, and sst/OpenCode *CLIs would be pretty incredible!* All of these are trivially installable via `npm install -g ...`",
-    "parent": 44878650,
-    "depth": 1
-  },
-  {
     "id": 44880941,
     "by": "bingdig",
     "timeISO": "2025-08-12T19:37:40.000Z",
@@ -152,10 +144,10 @@
     "depth": 1
   },
   {
-    "id": 44883239,
-    "by": "mattnewton",
-    "timeISO": "2025-08-13T00:06:21.000Z",
-    "textPlain": "Love the idea*!Currently trying it and the output from claude code output doesn't appear on my phone though? Sometimes it outputs nothing, sometimes it outputs what appears to be a bunch of xml tags for tool calls I am assuming are meant to be parsed. But the notifications are working well which is nice.(* though I have some security concerns about this as juicy target vs just rolling my own)",
+    "id": 44882305,
+    "by": "bigwheels",
+    "timeISO": "2025-08-12T22:03:36.000Z",
+    "textPlain": "Can it control Codex, too?  The ability to switch between Claude, Qwen, Gemini, Codex, and sst/OpenCode *CLIs would be pretty incredible!* All of these are trivially installable via `npm install -g ...`",
     "parent": 44878650,
     "depth": 1
   },
@@ -168,10 +160,10 @@
     "depth": 1
   },
   {
-    "id": 44883448,
-    "by": "myflash13",
-    "timeISO": "2025-08-13T00:46:22.000Z",
-    "textPlain": "This sort of thing should be run locally over something like tailscale or ngrok - direct peer to peer communication between phone and laptop. No way I'm sending my code to your central servers.For now I'll just stick with a VNC solution for my macbook.",
+    "id": 44883239,
+    "by": "mattnewton",
+    "timeISO": "2025-08-13T00:06:21.000Z",
+    "textPlain": "Love the idea*!Currently trying it and the output from claude code output doesn't appear on my phone though? Sometimes it outputs nothing, sometimes it outputs what appears to be a bunch of xml tags for tool calls I am assuming are meant to be parsed. But the notifications are working well which is nice.(* though I have some security concerns about this as juicy target vs just rolling my own)",
     "parent": 44878650,
     "depth": 1
   },
@@ -180,6 +172,14 @@
     "by": "asar",
     "timeISO": "2025-08-12T22:13:29.000Z",
     "textPlain": "I agree with the general sentiment here that this is the future of coding for a lot of tasks. But in terms of a business case for your product I'm really struggling to see how this beats Claude code action? Which integrates directly with GitHub, at no additional cost, and I can use an oauth token to use my subscription.",
+    "parent": 44878650,
+    "depth": 1
+  },
+  {
+    "id": 44883448,
+    "by": "myflash13",
+    "timeISO": "2025-08-13T00:46:22.000Z",
+    "textPlain": "This sort of thing should be run locally over something like tailscale or ngrok - direct peer to peer communication between phone and laptop. No way I'm sending my code to your central servers.For now I'll just stick with a VNC solution for my macbook.",
     "parent": 44878650,
     "depth": 1
   },
@@ -384,18 +384,18 @@
     "depth": 2
   },
   {
-    "id": 44883790,
-    "by": "myflash13",
-    "timeISO": "2025-08-13T01:38:53.000Z",
-    "textPlain": "This is exactly what I thought when picking a customer support software last month. After hiring my first support person and being unable to decide between Intercom/Front/HelpScout/Zendesk I finally just vibe coded my own helpdesk in a few days with the just the features I needed - perfectly integrated into my SaaS, and best of all, free.",
+    "id": 44887555,
+    "by": "ericb",
+    "timeISO": "2025-08-13T12:22:00.000Z",
+    "textPlain": "Not the op, but I think about that. Here's what I came to, for the moment:* LLM's are lousy at bugs\n* Apps are a bit like making a baby. Fun in the moment, but a lifetime support commitment\n* Supporting software isn't fun, even with an LLM. Burnout is common in open source.\n* At the end of the day, it is still a lot of work, even guiding an LLM\n* Anything hosted is a chore. Uptime, monitoring, patching, backing up, upgrading, security, legal, compliance, vulnerabilitiesI think we'll see github littered with buggy, unsupported, vibe coded one-offs for every conceivable purpose. Now, though, you literally have no idea what you're looking at or if it is decent.Claude made four different message passing implementations in my vibe coded app. \nI realized this once it was trying to modify the wrong one during a fix. In other words, claude was falling over trying to support what it made, and only a dev could bail it out. I am perfectly capable of coding this myself, but you have two choices at the moment--invest the labor, or get crap. But, then we come to \"maybe I should just pay for this instead of burning my time and tokens.\"",
     "parent": 44878946,
     "depth": 2
   },
   {
-    "id": 44878978,
-    "by": "zackify",
-    "timeISO": "2025-08-12T16:58:12.000Z",
-    "textPlain": "Yeah exactly.I’ve been using Tailscale ssh to a raspberry pi.With Termix on iOS.I can do all the same stuff on my own. Termix is awesome (I’m not affiliated)",
+    "id": 44883790,
+    "by": "myflash13",
+    "timeISO": "2025-08-13T01:38:53.000Z",
+    "textPlain": "This is exactly what I thought when picking a customer support software last month. After hiring my first support person and being unable to decide between Intercom/Front/HelpScout/Zendesk I finally just vibe coded my own helpdesk in a few days with the just the features I needed - perfectly integrated into my SaaS, and best of all, free.",
     "parent": 44878946,
     "depth": 2
   }

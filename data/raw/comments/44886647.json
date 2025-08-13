@@ -1,5 +1,21 @@
 [
   {
+    "id": 44887584,
+    "by": "kmfrk",
+    "timeISO": "2025-08-13T12:24:59.000Z",
+    "textPlain": "Whisper is genuinely amazing - with the right nudging. It's the one AI thing that has genuinely turned my life upside-down in an unambiguously good way.People should check out Subtitle Edit (and throw the dev some money) which is a great interface for experimenting with Whisper transcription. It's basically Aegisub 2.0, if you're old, like me.HOWTO:Drop a video or audio file to the right window, then go to Video > Audio to text (Whisper). I get the best results with Faster-Whisper-XXL. Use large-v2 if you can (v3 has some regressions), and you've got an easy transcription and translation workflow. The results aren't perfect, but Subtitle Edit is for cleaning up imperfect transcripts with features like Tools > Fix common errors.EDIT: Oh, and if you're on the current gen of Nvidia card, you might have to add \"--compute_type float32\" to make the transcription run correctly. I think the error is about an empty file, output or something like that.EDIT2: And if you get another error, possibly about whisper.exe, iirc I had to reinstall the Torch libs from a specific index like something along these lines (depending on whether you use pip or uv):    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118`\n\n    uv pip install --system torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118\n\nIf you get the errors and the above fixes work, please type your error message in a reply with what worked to help those who come after. Or at least the web crawlers for those searching for help.https://www.nikse.dk/subtitleedithttps://www.nikse.dk/donatehttps://github.com/SubtitleEdit/subtitleedit/releases",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44887793,
+    "by": "JohnKemeny",
+    "timeISO": "2025-08-13T12:47:11.000Z",
+    "textPlain": "Related, a blog article by the author of the patch:Run Whisper audio transcriptions with one FFmpeg commandhttps://medium.com/@vpalmisano/run-whisper-audio-transcripti...Posted here, with 0 comments:\nhttps://news.ycombinator.com/item?id=44869254",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
     "id": 44886838,
     "by": "londons_explore",
     "timeISO": "2025-08-13T10:48:52.000Z",
@@ -8,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44887044,
-    "by": "zoobab",
-    "timeISO": "2025-08-13T11:15:50.000Z",
-    "textPlain": "Not sure it will be packaged in Debian, with an external binary model god knows how it was produced...",
+    "id": 44887801,
+    "by": "webinar",
+    "timeISO": "2025-08-13T12:47:42.000Z",
+    "textPlain": "I've been using FFmpeg and Whisper to record and transcribe live police scanner audio for my city, and update it in real-time to a live website.  It works great, with the expected transcription errors and hallucinations.",
     "parent": 44886647,
     "depth": 1
   },
@@ -24,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44886951,
-    "by": "instagraham",
-    "timeISO": "2025-08-13T11:01:29.000Z",
-    "textPlain": "Does this mean that any software which uses ffmpeg can now add a transcription option? Audacity, Chrome, OBS etc",
+    "id": 44887816,
+    "by": "thedangler",
+    "timeISO": "2025-08-13T12:50:10.000Z",
+    "textPlain": "Does this whisper also do text-to-speech?",
     "parent": 44886647,
     "depth": 1
   },
@@ -40,18 +56,34 @@
     "depth": 1
   },
   {
-    "id": 44886878,
-    "by": "bondarchuk",
-    "timeISO": "2025-08-13T10:53:09.000Z",
-    "textPlain": "Can whisper do multilingual yet? Last time I tried it on some mixed dutch/english text it would spit out english translations for some of the dutch text. Strange bug/feature since from all appearances it had understood the dutch text perfectly fine.",
+    "id": 44887044,
+    "by": "zoobab",
+    "timeISO": "2025-08-13T11:15:50.000Z",
+    "textPlain": "Not sure it will be packaged in Debian, with an external binary model god knows how it was produced...",
     "parent": 44886647,
     "depth": 1
   },
   {
-    "id": 44886776,
-    "by": "boutell",
-    "timeISO": "2025-08-13T10:40:03.000Z",
-    "textPlain": "Shut off the broken bot filter so we can read it please",
+    "id": 44886951,
+    "by": "instagraham",
+    "timeISO": "2025-08-13T11:01:29.000Z",
+    "textPlain": "Does this mean that any software which uses ffmpeg can now add a transcription option? Audacity, Chrome, OBS etc",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44887159,
+    "by": "donatj",
+    "timeISO": "2025-08-13T11:31:36.000Z",
+    "textPlain": "I know nothing about Whisper, is this usable for automated translation?I own a couple very old and as far as I'm aware never translated Japanese movies. I don't speak Japanese but I'd love to watch them.A couple years ago I had been negotiating with a guy on Fiver to translate them. At his usual rate-per-minute of footage it would have cost thousands of dollars but I'd negotiated him down to a couple hundred before he presumably got sick of me and ghosted me.",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44886878,
+    "by": "bondarchuk",
+    "timeISO": "2025-08-13T10:53:09.000Z",
+    "textPlain": "Can whisper do multilingual yet? Last time I tried it on some mixed dutch/english text it would spit out english translations for some of the dutch text. Strange bug/feature since from all appearances it had understood the dutch text perfectly fine.",
     "parent": 44886647,
     "depth": 1
   },
@@ -64,10 +96,18 @@
     "depth": 1
   },
   {
-    "id": 44886891,
-    "by": "yewenjie",
-    "timeISO": "2025-08-13T10:54:17.000Z",
-    "textPlain": "I have recently found that parakeet from NVIDIA is way faster and pretty much as correct as Whisper, but it only works with English.",
+    "id": 44887203,
+    "by": "mockingloris",
+    "timeISO": "2025-08-13T11:36:10.000Z",
+    "textPlain": "How could one in theory, use this to train on a new language?\nSay for a hubby project; I have recordings of some old folks stories in my local dialect.│└── Dey well; Be well",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44887121,
+    "by": "martzoukos",
+    "timeISO": "2025-08-13T11:25:36.000Z",
+    "textPlain": "I guess that there is no streaming option for sending generated tokens to, say, an LLM service to process the text in real-time.",
     "parent": 44886647,
     "depth": 1
   },
@@ -80,18 +120,26 @@
     "depth": 1
   },
   {
-    "id": 44886766,
-    "by": "zzsshh",
-    "timeISO": "2025-08-13T10:38:43.000Z",
-    "textPlain": "Does this finally enable dynamically generating subtitles for movies with AI?",
+    "id": 44887542,
+    "by": "dncornholio",
+    "timeISO": "2025-08-13T12:20:19.000Z",
+    "textPlain": "I was expecting a lot more comments on if this is a necessary feature or if this even belongs in a library like ffmpeg. I think this is bloat, especially when the feature doesn't work flawless, whisper is very limited.",
     "parent": 44886647,
     "depth": 1
   },
   {
-    "id": 44886762,
-    "by": "ggap",
-    "timeISO": "2025-08-13T10:37:51.000Z",
-    "textPlain": "Very interesting to see this!",
+    "id": 44886891,
+    "by": "yewenjie",
+    "timeISO": "2025-08-13T10:54:17.000Z",
+    "textPlain": "I have recently found that parakeet from NVIDIA is way faster and pretty much as correct as Whisper, but it only works with English.",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44886766,
+    "by": "zzsshh",
+    "timeISO": "2025-08-13T10:38:43.000Z",
+    "textPlain": "Does this finally enable dynamically generating subtitles for movies with AI?",
     "parent": 44886647,
     "depth": 1
   },
@@ -104,10 +152,58 @@
     "depth": 1
   },
   {
+    "id": 44886776,
+    "by": "boutell",
+    "timeISO": "2025-08-13T10:40:03.000Z",
+    "textPlain": "Shut off the broken bot filter so we can read it please",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44886762,
+    "by": "ggap",
+    "timeISO": "2025-08-13T10:37:51.000Z",
+    "textPlain": "Very interesting to see this!",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44887799,
+    "by": "tossit444",
+    "timeISO": "2025-08-13T12:47:39.000Z",
+    "textPlain": "Aegisub is still actively developed (forked), and imo, both software can't really be compared to one another. They can complement each other, but SE is much better for actual transcription. Aegisub still does the heavy lifting for typesetting and the like.",
+    "parent": 44887584,
+    "depth": 2
+  },
+  {
+    "id": 44887817,
+    "by": "Fluorescence",
+    "timeISO": "2025-08-13T12:50:24.000Z",
+    "textPlain": "It makes me curious about how human subtitlers or even scriptwriters choose to transcribe intentionally ambiguous speech, puns and narratively important mishearings. It's like you need to subtitle what is heard not what is said because it can have more than one perspective.Do those born profoundly deaf specifically study word sounds in order to understand/create puns, rhymes and such so they don't need assistance understanding narrative mishearings?It must feel like a form of abstract mathematics without the experiential component... but then I suspect mathematicians manufacture an experiential phenomena with their abstractions with their claims of a beauty like music... hmm!",
+    "parent": 44886838,
+    "depth": 2
+  },
+  {
+    "id": 44887615,
+    "by": "yvdriess",
+    "timeISO": "2025-08-13T12:27:31.000Z",
+    "textPlain": "A good opportunity to point people to the paper with my favorite title of all time:\"How to wreck a nice beach you sing calm incense\"https://dl.acm.org/doi/10.1145/1040830.1040898",
+    "parent": 44886838,
+    "depth": 2
+  },
+  {
     "id": 44886880,
     "by": "ph4evers",
     "timeISO": "2025-08-13T10:53:20.000Z",
     "textPlain": "Whisper works on 30 second chunks. So yes it can do that and that’s also why it can hallucinate quite a bit.",
+    "parent": 44886838,
+    "depth": 2
+  },
+  {
+    "id": 44887204,
+    "by": "lgessler",
+    "timeISO": "2025-08-13T11:36:28.000Z",
+    "textPlain": "I recommend having a look at 16.3 onward here if you're curious about this: https://web.stanford.edu/~jurafsky/slp3/16.pdfI'm not familiar with Whisper in particular, but typically what happens in an ASR model is that the decoder, speaking loosely, sees \"the future\" (i.e. the audio after the chunk it's trying to decode) in a sentence like this, and also has the benefit of a language model guiding its decoding so that grammatical productions like \"I like ice cream\" are favored over \"I like I scream\".",
     "parent": 44886838,
     "depth": 2
   },
@@ -120,6 +216,14 @@
     "depth": 2
   },
   {
+    "id": 44887563,
+    "by": "didacusc",
+    "timeISO": "2025-08-13T12:22:39.000Z",
+    "textPlain": "what would it make of this? https://www.youtube.com/watch?v=zyvZUxnIC3k",
+    "parent": 44886838,
+    "depth": 2
+  },
+  {
     "id": 44887002,
     "by": "DiogenesKynikos",
     "timeISO": "2025-08-13T11:09:49.000Z",
@@ -128,11 +232,27 @@
     "depth": 2
   },
   {
-    "id": 44887063,
-    "by": "majewsky",
-    "timeISO": "2025-08-13T11:17:35.000Z",
-    "textPlain": "It looks like the model file needs to be supplied at invocation time, so the binary blob would not be required for packaging.",
-    "parent": 44887044,
+    "id": 44887809,
+    "by": "Xunjin",
+    "timeISO": "2025-08-13T12:48:55.000Z",
+    "textPlain": "Is this website open? Would love to see your work :P",
+    "parent": 44887801,
+    "depth": 2
+  },
+  {
+    "id": 44887805,
+    "by": "whywhywhywhy",
+    "timeISO": "2025-08-13T12:48:30.000Z",
+    "textPlain": "Algorithm boosts it that’s why they do it. Even if every device had real time 100% accurate subtitling built in they’d still do it if they video performs better with it.",
+    "parent": 44886963,
+    "depth": 2
+  },
+  {
+    "id": 44887425,
+    "by": "ambicapter",
+    "timeISO": "2025-08-13T12:06:51.000Z",
+    "textPlain": "They do that because it increases “engagement”, not because they care about the user’s experience with the subtitles.",
+    "parent": 44886963,
     "depth": 2
   },
   {
@@ -144,19 +264,19 @@
     "depth": 2
   },
   {
-    "id": 44887008,
-    "by": "ks2048",
-    "timeISO": "2025-08-13T11:10:57.000Z",
-    "textPlain": "If they want to support it out-of-the box, they'll still have to embed a model file (roughly 500 MB - 3GB, varying size and quality)",
-    "parent": 44886951,
+    "id": 44887123,
+    "by": "preisschild",
+    "timeISO": "2025-08-13T11:25:47.000Z",
+    "textPlain": "They could also just upload those transcriptions as normal closed-captioning srt subtitles...",
+    "parent": 44886963,
     "depth": 2
   },
   {
-    "id": 44886802,
-    "by": "johnisgood",
-    "timeISO": "2025-08-13T10:43:51.000Z",
-    "textPlain": "Yes.From the documentation:> It runs automatic speech recognition using the OpenAI's Whisper model.",
-    "parent": 44886785,
+    "id": 44887583,
+    "by": "dzhiurgis",
+    "timeISO": "2025-08-13T12:24:56.000Z",
+    "textPlain": "It's just so annyoing how someone like Netflix offers like 3-4 languages for most of its content when you can basically get it for free via browser extensions (if you watch on browser).Must be union thing.",
+    "parent": 44886963,
     "depth": 2
   },
   {
@@ -164,6 +284,14 @@
     "by": "Maxious",
     "timeISO": "2025-08-13T10:44:13.000Z",
     "textPlain": "yep, there's a c++ implementation to run it https://github.com/ggml-org/whisper.cpp",
+    "parent": 44886785,
+    "depth": 2
+  },
+  {
+    "id": 44886802,
+    "by": "johnisgood",
+    "timeISO": "2025-08-13T10:43:51.000Z",
+    "textPlain": "Yes.From the documentation:> It runs automatic speech recognition using the OpenAI's Whisper model.",
     "parent": 44886785,
     "depth": 2
   },
@@ -200,10 +328,66 @@
     "depth": 2
   },
   {
+    "id": 44887063,
+    "by": "majewsky",
+    "timeISO": "2025-08-13T11:17:35.000Z",
+    "textPlain": "It looks like the model file needs to be supplied at invocation time, so the binary blob would not be required for packaging.",
+    "parent": 44887044,
+    "depth": 2
+  },
+  {
+    "id": 44887008,
+    "by": "ks2048",
+    "timeISO": "2025-08-13T11:10:57.000Z",
+    "textPlain": "If they want to support it out-of-the box, they'll still have to embed a model file (roughly 500 MB - 3GB, varying size and quality)",
+    "parent": 44886951,
+    "depth": 2
+  },
+  {
+    "id": 44887359,
+    "by": "prmoustache",
+    "timeISO": "2025-08-13T11:57:02.000Z",
+    "textPlain": "My personnal experience trying to transcribe (not translate) was a complete failure. The thing would invent stuff. It would also be completely lost when more than one language is used.It also doesn't understand contexts so does a lot of errors you see in automatic translations from videos in youtube for example.",
+    "parent": 44887159,
+    "depth": 2
+  },
+  {
+    "id": 44887336,
+    "by": "trenchpilgrim",
+    "timeISO": "2025-08-13T11:53:14.000Z",
+    "textPlain": "Whisper has quite bad issues with hallucination. It will inject sentences that were never said in the audio.It's decent for classification but poor at transcription.",
+    "parent": 44887159,
+    "depth": 2
+  },
+  {
+    "id": 44887270,
+    "by": "_def",
+    "timeISO": "2025-08-13T11:43:36.000Z",
+    "textPlain": "May I ask which movies? I'm just curious",
+    "parent": 44887159,
+    "depth": 2
+  },
+  {
+    "id": 44887201,
+    "by": "poglet",
+    "timeISO": "2025-08-13T11:35:53.000Z",
+    "textPlain": "Yep, whisper can do that.  You can also try whisperx (https://github.com/m-bain/whisperX) for a possibly better experience with aligning of subtitles to spoken words.",
+    "parent": 44887159,
+    "depth": 2
+  },
+  {
     "id": 44887065,
     "by": "clarionbell",
     "timeISO": "2025-08-13T11:17:38.000Z",
     "textPlain": "I think the Dutch/English is probably the worst combination for this. Languages are rather close.",
+    "parent": 44886878,
+    "depth": 2
+  },
+  {
+    "id": 44887092,
+    "by": "numpad0",
+    "timeISO": "2025-08-13T11:21:58.000Z",
+    "textPlain": "Isn't that a bit much for ASR models? Humans can't handle simultaneous multilingual dictation task either, I have to stop and reinitialize ears before switching languages between English and my primary one.",
     "parent": 44886878,
     "depth": 2
   },
@@ -213,102 +397,6 @@
     "timeISO": "2025-08-13T11:12:45.000Z",
     "textPlain": "Best for English, but I've found it pretty decent for Spanish.",
     "parent": 44886878,
-    "depth": 2
-  },
-  {
-    "id": 44886910,
-    "by": "jeroenhd",
-    "timeISO": "2025-08-13T10:56:35.000Z",
-    "textPlain": "I found that it works quite well for Dutch+English as long as you use one of the larger models. But that may just be luck, I imagine mixing Italian and Swedish will have very different results.",
-    "parent": 44886878,
-    "depth": 2
-  },
-  {
-    "id": 44886889,
-    "by": "ph4evers",
-    "timeISO": "2025-08-13T10:54:05.000Z",
-    "textPlain": "Whisper-v3 works well for multi-lingual. I tried it with Dutch, German and English",
-    "parent": 44886878,
-    "depth": 2
-  },
-  {
-    "id": 44886918,
-    "by": "guilamu",
-    "timeISO": "2025-08-13T10:57:28.000Z",
-    "textPlain": "Whisper has been multilingual for 5 years at least.",
-    "parent": 44886878,
-    "depth": 2
-  },
-  {
-    "id": 44886849,
-    "by": "QuantumNomad_",
-    "timeISO": "2025-08-13T10:50:41.000Z",
-    "textPlain": "Archived snapshots of the linked page:https://web.archive.org/web/20250813104007/https://code.ffmp...https://archive.is/dmj17You can read it on one of these without having to pass that specific bot check",
-    "parent": 44886776,
-    "depth": 2
-  },
-  {
-    "id": 44886810,
-    "by": "jeroenhd",
-    "timeISO": "2025-08-13T10:44:36.000Z",
-    "textPlain": "Check out commit 13ce36fef98a3f4e6d8360c24d6b8434cbb8869b from https://git.ffmpeg.org/ffmpeg.git if your web browser doesn't support Javascript. The linked page is just a git viewer for that specific commit.",
-    "parent": 44886776,
-    "depth": 2
-  },
-  {
-    "id": 44886786,
-    "by": "diggan",
-    "timeISO": "2025-08-13T10:41:09.000Z",
-    "textPlain": "Took my iPhone 12 Mini a whole of 0.1 seconds to pass it. What hardware/OS are you using?",
-    "parent": 44886776,
-    "depth": 2
-  },
-  {
-    "id": 44886932,
-    "by": "franga2000",
-    "timeISO": "2025-08-13T10:58:47.000Z",
-    "textPlain": "Whisper is supposed to be used with voice activity detection and all production implementations that I've seen do that. The raw model is known to make up nonsense for silence because, as I understand it, it was never trained not to do that, assuming everyone will use VAD",
-    "parent": 44886854,
-    "depth": 2
-  },
-  {
-    "id": 44886882,
-    "by": "42lux",
-    "timeISO": "2025-08-13T10:53:22.000Z",
-    "textPlain": "You usually delete silence before using something like whisper.",
-    "parent": 44886854,
-    "depth": 2
-  },
-  {
-    "id": 44886883,
-    "by": "shrx",
-    "timeISO": "2025-08-13T10:53:24.000Z",
-    "textPlain": "Voice Activity Detection support is already included.",
-    "parent": 44886783,
-    "depth": 2
-  },
-  {
-    "id": 44886793,
-    "by": "jeroenhd",
-    "timeISO": "2025-08-13T10:42:56.000Z",
-    "textPlain": "Docs say:    If set, the transcription output will be sent to the specified file or URL\n    (use one of the FFmpeg AVIO protocols); otherwise, the output will be logged as info messages.\n    The output will also be set in the \"lavfi.whisper.text\" frame metadata.\n    If the destination is a file and it already exists, it will be overwritten.\n\n    @item format\n    The destination format string; it could be \"text\" (only the transcribed text will be sent to the destination), \"srt\" (subtitle format) or \"json\".\n    Default value: @code{\"text\"}\n\nI don't know if this can embed the subtitles, but it does support generating accompanying srt files.Of course, you could already do that by just manually calling whisper on files, but now you don't need to export parts or transformed media files to feed into whisper.",
-    "parent": 44886766,
-    "depth": 2
-  },
-  {
-    "id": 44886830,
-    "by": "regularfry",
-    "timeISO": "2025-08-13T10:47:13.000Z",
-    "textPlain": "If you have enough processing power.  Without a GPU it's going to lag.",
-    "parent": 44886766,
-    "depth": 2
-  },
-  {
-    "id": 44886780,
-    "by": "diggan",
-    "timeISO": "2025-08-13T10:40:27.000Z",
-    "textPlain": "Finally? I think VLC demo'd this a while ago at some conference where they had a table, if I remember correctly.",
-    "parent": 44886766,
     "depth": 2
   }
 ]
