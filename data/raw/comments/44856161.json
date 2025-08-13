@@ -1,9 +1,9 @@
 [
   {
-    "id": 44885918,
-    "by": "npinsker",
-    "timeISO": "2025-08-13T08:30:24.000Z",
-    "textPlain": "Does this have anything to do with modal logic?",
+    "id": 44885951,
+    "by": "agnishom",
+    "timeISO": "2025-08-13T08:35:18.000Z",
+    "textPlain": "This reminds me of Borel Gameshttps://gowers.wordpress.com/2013/08/23/determinacy-of-borel...",
     "parent": 44856161,
     "depth": 1
   },
@@ -24,18 +24,26 @@
     "depth": 1
   },
   {
-    "id": 44885246,
-    "by": "nemosaltat",
-    "timeISO": "2025-08-13T06:31:02.000Z",
-    "textPlain": "very interesting, once I realized that the longer sequences were wrapping on my mobile. At first, it appeared that the “top” line was player 1 in the “bottom” line was player 2",
-    "parent": 44856161,
-    "depth": 1
-  },
-  {
     "id": 44856162,
     "by": "gylterud",
     "timeISO": "2025-08-10T16:14:40.000Z",
     "textPlain": "This little game I made might be one of the most tedious little games to actually play. But I found it great fun to analyse!(For the initiated, I should mention that it is related to Thue–Morse sequences.)",
+    "parent": 44856161,
+    "depth": 1
+  },
+  {
+    "id": 44885918,
+    "by": "npinsker",
+    "timeISO": "2025-08-13T08:30:24.000Z",
+    "textPlain": "Does this have anything to do with modal logic?",
+    "parent": 44856161,
+    "depth": 1
+  },
+  {
+    "id": 44885246,
+    "by": "nemosaltat",
+    "timeISO": "2025-08-13T06:31:02.000Z",
+    "textPlain": "very interesting, once I realized that the longer sequences were wrapping on my mobile. At first, it appeared that the “top” line was player 1 in the “bottom” line was player 2",
     "parent": 44856161,
     "depth": 1
   },
@@ -64,11 +72,35 @@
     "depth": 2
   },
   {
+    "id": 44886046,
+    "by": "seanhunter",
+    "timeISO": "2025-08-13T08:45:16.000Z",
+    "textPlain": "You can think about the compressed size of some file as approximating the amount of information (in the Shannon sense[1]) there is in the file.  A perfect compression would reduce the file to exactly the size of the amount of information it contains.[1] https://arxiv.org/pdf/1612.09316",
+    "parent": 44885095,
+    "depth": 2
+  },
+  {
     "id": 44885170,
     "by": "kevinventullo",
     "timeISO": "2025-08-13T06:18:14.000Z",
     "textPlain": "In some sense, the program itself is a ~512 byte compression of an infinite stream of bytes.",
     "parent": 44885095,
+    "depth": 2
+  },
+  {
+    "id": 44886047,
+    "by": "gylterud",
+    "timeISO": "2025-08-13T08:45:19.000Z",
+    "textPlain": "Yes, but the connection is not clear from what I wrote. I keep intending to make a little post about the connection, but I want it to highlight some Haskell code I wrote, but I haven't polished it yet. I want to make an update to it, using my applicative logic library[0][1].The short version: By representing the game coalgebraically, one can use modal logic to solve it (find a winning strategy for player 1) by brute force.The old code looks like:    -- Modal operators\n    e = modal any' (Coalg possible)\n    a = modal all' (Coalg possible)\n\n    -- Test for winning strategy within a limited number of moves.\n    winning :: Integer -> Player -> State -> Bool\n    winning 0 _ _ = False\n    winning n p s = wonAlready || e (a (winning (n-1) p)) s where\n           wonAlready = (winner s == Just p)\n\nWe can translate this into more standard modal logic: Letting ◇ be \"There is a move a player could make\", and □ be any move a player makes. We define the existence of a winnning strategy for player 1 inductively:    S(0) = ⊥\n    S(n+1) = W(p₁) ∨ ◇ □ S(n)\n\nIntuitively, you have a winning strategy if you won already, or if there is a move you make, such that whatever move the opponent makes you, you still have a winning strategy.[0]: https://hakon.gylterud.net/programming/applicative-logic.htm...[1]: https://github.com/typeterrorist/applicative-logic/blob/moda... – this is a branch with the modal logic operators defined.",
+    "parent": 44885918,
+    "depth": 2
+  },
+  {
+    "id": 44886120,
+    "by": "gylterud",
+    "timeISO": "2025-08-13T08:56:20.000Z",
+    "textPlain": "Ah, I hadn't tested this on mobile. I could try find some way of preventing the line break.",
+    "parent": 44885246,
     "depth": 2
   }
 ]

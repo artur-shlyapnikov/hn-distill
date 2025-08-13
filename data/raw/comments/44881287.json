@@ -1,5 +1,13 @@
 [
   {
+    "id": 44886262,
+    "by": "paulmooreparks",
+    "timeISO": "2025-08-13T09:17:18.000Z",
+    "textPlain": "A couple of my friends created a startup called Omnibrowse in the late 1990's to do exactly this, and sold it to Microsoft shortly after. I figured this would be a commodity feature by now.",
+    "parent": 44881287,
+    "depth": 1
+  },
+  {
     "id": 44881728,
     "by": "kmoser",
     "timeISO": "2025-08-12T20:56:49.000Z",
@@ -12,22 +20,6 @@
     "by": "_QrE",
     "timeISO": "2025-08-12T21:14:37.000Z",
     "textPlain": "Maybe I'm misunderstanding something, but you can add filters to RSS feeds. What is proposed is pretty much just RSS, except for one specific item. Yes, it's more work on your side, but asking the creator to manage updates for whatever one thing any/every random person is interested in is pretty unrealistic, especially since the people asking for this are going to be explicitly not interested in everything else about the creator.> There’s no AI to this. No magic. No problems to be solved.Why would you not involve yourself in the new hotness? You _can_ put AI into this. Instead of using some expression to figure out whether a new article has links to the previous ones in the series / a matching title, you can have a local agent check your RSS feed and tell you if it's what you're looking for, or else delete the article. For certain creators this might even be a sensible choice, depending on how purple their prose is and their preferred website setup.",
-    "parent": 44881287,
-    "depth": 1
-  },
-  {
-    "id": 44885779,
-    "by": "weinzierl",
-    "timeISO": "2025-08-13T08:05:26.000Z",
-    "textPlain": "Apart from the protocol and technical sides: What would be the most practical solution today that follows the spirit if the post? What do people use for RSS nowadays? What for sites and services that don't provide RSS?",
-    "parent": 44881287,
-    "depth": 1
-  },
-  {
-    "id": 44885732,
-    "by": "weinzierl",
-    "timeISO": "2025-08-13T07:58:38.000Z",
-    "textPlain": "I think polling is not the best approach. We have PubSubHubbub as a protocol. What we lack is a public, and independent subscriber infrastructure.I think the proposed anonymity and  ephemerality could provided by that approach if there is enough interest.",
     "parent": 44881287,
     "depth": 1
   },
@@ -60,6 +52,22 @@
     "by": "m82labs",
     "timeISO": "2025-08-13T00:05:04.000Z",
     "textPlain": "I guess my first thought here is that I would just implement this on my blog platform as a series specific RSS feed. Generating an RSS feed per series and even per tag would be trivial to implement and make for a decent user experience. IMO.",
+    "parent": 44881287,
+    "depth": 1
+  },
+  {
+    "id": 44885779,
+    "by": "weinzierl",
+    "timeISO": "2025-08-13T08:05:26.000Z",
+    "textPlain": "Apart from the protocol and technical sides: What would be the most practical solution today that follows the spirit if the post? What do people use for RSS nowadays? What for sites and services that don't provide RSS?",
+    "parent": 44881287,
+    "depth": 1
+  },
+  {
+    "id": 44885732,
+    "by": "weinzierl",
+    "timeISO": "2025-08-13T07:58:38.000Z",
+    "textPlain": "I think polling is not the best approach. We have PubSubHubbub as a protocol. What we lack is a public, and independent subscriber infrastructure.I think the proposed anonymity and  ephemerality could provided by that approach if there is enough interest.",
     "parent": 44881287,
     "depth": 1
   },
@@ -104,18 +112,18 @@
     "depth": 1
   },
   {
-    "id": 44883195,
-    "by": "RiverCrochet",
-    "timeISO": "2025-08-12T23:59:32.000Z",
-    "textPlain": "An expiry time should be required and not optional, or a default one well specified (e.g. 30 days). The endpoint shouldn't have to keep reporting that \"something has happened\" to agents forever.Maybe ...- When the expiry time is passed, any queries to the endpoint are invalid and shouldn't be performed. If they're performed anyway, the endpoint may simply not respond if it's feeling rude, or it can respond with 410 Gone or something like that if it's feeling nice.Also what if the agent has registered more endpoints than the endpoint can handle. 429 Too Many Requests seems appropriate.Also the agent should be required to confirm with the user or otherwise warn if the \"happened\" URL is not in the original domain of the request.",
-    "parent": 44881287,
-    "depth": 1
-  },
-  {
     "id": 44882147,
     "by": "0xCMP",
     "timeISO": "2025-08-12T21:45:03.000Z",
     "textPlain": "I want this to exist, but so few would adopt it that would make it mainstream/normal to use because a lot of those places rely on getting your email to tell you about other things.This would be fairly limited to blogs which have no intention of writing a newsletter or consistently enough to merit subscribing via RSS.Although I'd love for everything I just said to turn out to be false.",
+    "parent": 44881287,
+    "depth": 1
+  },
+  {
+    "id": 44883195,
+    "by": "RiverCrochet",
+    "timeISO": "2025-08-12T23:59:32.000Z",
+    "textPlain": "An expiry time should be required and not optional, or a default one well specified (e.g. 30 days). The endpoint shouldn't have to keep reporting that \"something has happened\" to agents forever.Maybe ...- When the expiry time is passed, any queries to the endpoint are invalid and shouldn't be performed. If they're performed anyway, the endpoint may simply not respond if it's feeling rude, or it can respond with 410 Gone or something like that if it's feeling nice.Also what if the agent has registered more endpoints than the endpoint can handle. 429 Too Many Requests seems appropriate.Also the agent should be required to confirm with the user or otherwise warn if the \"happened\" URL is not in the original domain of the request.",
     "parent": 44881287,
     "depth": 1
   },
@@ -168,18 +176,18 @@
     "depth": 1
   },
   {
-    "id": 44883287,
-    "by": "yunwal",
-    "timeISO": "2025-08-13T00:14:10.000Z",
-    "textPlain": "Am I missing something? Is this ragebait? There is no protocol specified here. The format of the “let me know” request is not specified at all.",
-    "parent": 44881287,
-    "depth": 1
-  },
-  {
     "id": 44881896,
     "by": "neilk",
     "timeISO": "2025-08-12T21:16:48.000Z",
     "textPlain": "Seems a bit like webhooks?https://en.wikipedia.org/wiki/WebhookAlthough your model is polling rather than making the other server push something.",
+    "parent": 44881287,
+    "depth": 1
+  },
+  {
+    "id": 44883287,
+    "by": "yunwal",
+    "timeISO": "2025-08-13T00:14:10.000Z",
+    "textPlain": "Am I missing something? Is this ragebait? There is no protocol specified here. The format of the “let me know” request is not specified at all.",
     "parent": 44881287,
     "depth": 1
   },
@@ -200,14 +208,6 @@
     "depth": 1
   },
   {
-    "id": 44881858,
-    "by": "warkdarrior",
-    "timeISO": "2025-08-12T21:13:40.000Z",
-    "textPlain": "\"Would you like to receive notifications from this website?\"No, thank you.",
-    "parent": 44881287,
-    "depth": 1
-  },
-  {
     "id": 44882333,
     "by": "Martin_Silenus",
     "timeISO": "2025-08-12T22:06:29.000Z",
@@ -220,6 +220,14 @@
     "by": "AndrewKemendo",
     "timeISO": "2025-08-12T22:11:19.000Z",
     "textPlain": "Isn’t this exactly handled with IFTTT?I know I’ve used IFTTT for precisely that because it’s the simplest and often free (when no major hardware installation is needed) off the shelf way to do itOr is the author asking that a service host user defined notifications?If the latter that’s a different design patternThe http protocols already allow for this, if that’s the case then the op just seems like he wants other people to instrument their systems for his desired interface type (user defined notifications)",
+    "parent": 44881287,
+    "depth": 1
+  },
+  {
+    "id": 44881858,
+    "by": "warkdarrior",
+    "timeISO": "2025-08-12T21:13:40.000Z",
+    "textPlain": "\"Would you like to receive notifications from this website?\"No, thank you.",
     "parent": 44881287,
     "depth": 1
   },
@@ -288,19 +296,19 @@
     "depth": 2
   },
   {
-    "id": 44883587,
-    "by": "hoistbypetard",
-    "timeISO": "2025-08-13T01:06:42.000Z",
-    "textPlain": "The protocol is not being specified. Requirements for such a protocol are being proposed. Though my assumption from reading these requirements would be that the user-agent would be performing an HTTP GET request.Whether proposing requirements for a protocol without proposing a specification is ragebait or not has more to do with the individual reading the proposal than the proposal itself; I did not find it the least bit enraging.",
-    "parent": 44883287,
-    "depth": 2
-  },
-  {
     "id": 44881989,
     "by": "IshKebab",
     "timeISO": "2025-08-12T21:26:20.000Z",
     "textPlain": "Webhooks are not relevant to this use case.",
     "parent": 44881896,
+    "depth": 2
+  },
+  {
+    "id": 44883587,
+    "by": "hoistbypetard",
+    "timeISO": "2025-08-13T01:06:42.000Z",
+    "textPlain": "The protocol is not being specified. Requirements for such a protocol are being proposed. Though my assumption from reading these requirements would be that the user-agent would be performing an HTTP GET request.Whether proposing requirements for a protocol without proposing a specification is ragebait or not has more to do with the individual reading the proposal than the proposal itself; I did not find it the least bit enraging.",
+    "parent": 44883287,
     "depth": 2
   },
   {

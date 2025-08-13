@@ -1,5 +1,13 @@
 [
   {
+    "id": 44886143,
+    "by": "ivanjermakov",
+    "timeISO": "2025-08-13T08:59:33.000Z",
+    "textPlain": "Why not recompile aapt2 to correct target? It seems to be source available.https://android.googlesource.com/platform/frameworks/base/+/...",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
     "id": 44885476,
     "by": "karteum",
     "timeISO": "2025-08-13T07:11:24.000Z",
@@ -12,14 +20,6 @@
     "by": "jchw",
     "timeISO": "2025-08-13T05:45:06.000Z",
     "textPlain": "Apparently it was fixed upstream by Google?https://gitlab.com/fdroid/admin/-/issues/593#note_2681207153Not sure how long it will take to get resolved but that thread seems reassuring even if there isn't a direct source that it was fixed.",
-    "parent": 44884709,
-    "depth": 1
-  },
-  {
-    "id": 44884781,
-    "by": "nativeforks",
-    "timeISO": "2025-08-13T05:01:18.000Z",
-    "textPlain": "References:F-Droid admin issue: https://gitlab.com/fdroid/admin/-/issues/593Catima example: https://github.com/CatimaLoyalty/Android/issues/2608MBCompass case: https://github.com/CompassMB/MBCompass/issues/88",
     "parent": 44884709,
     "depth": 1
   },
@@ -40,6 +40,14 @@
     "depth": 1
   },
   {
+    "id": 44884781,
+    "by": "nativeforks",
+    "timeISO": "2025-08-13T05:01:18.000Z",
+    "textPlain": "References:F-Droid admin issue: https://gitlab.com/fdroid/admin/-/issues/593Catima example: https://github.com/CatimaLoyalty/Android/issues/2608MBCompass case: https://github.com/CompassMB/MBCompass/issues/88",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
     "id": 44885138,
     "by": "yjftsjthsd-h",
     "timeISO": "2025-08-13T06:13:50.000Z",
@@ -48,10 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44885022,
-    "by": "userbinator",
-    "timeISO": "2025-08-13T05:48:13.000Z",
-    "textPlain": "Fortunately the source code is available:https://android.googlesource.com/platform/frameworks/base/+/...If I had the time, I'd try to compile a binary of it that will run on Win95 just to give my fuckings to the planned obsolescence crowd.",
+    "id": 44885181,
+    "by": "micw",
+    "timeISO": "2025-08-13T06:19:36.000Z",
+    "textPlain": "As far as I can see, sse4.1 has been introduced in CPUs in 2011. That's more than 10 years ago. I wonder why such old servers are still in use. I'd assume that a modern CPU would do the same amount of work with a fraction of energy so that it does not even make economical sense to run such outdated hardware.Does anyone know the numbers of build servers and the specs?",
     "parent": 44884709,
     "depth": 1
   },
@@ -72,26 +80,18 @@
     "depth": 1
   },
   {
-    "id": 44884926,
-    "by": "o11c",
-    "timeISO": "2025-08-13T05:29:49.000Z",
-    "textPlain": "Note: the underlying blame here fundamentally belongs to whoever built AGP / Gradle with non-universal flags, then distributed it.It's fine to ship binaries with hard-coded cpu flag requirements if you control the universe, but otherwise not, especially if you are in an ecosystem where you make it hard for users to rebuild everything from source.",
+    "id": 44885993,
+    "by": "edgan",
+    "timeISO": "2025-08-13T08:38:28.000Z",
+    "textPlain": "That F-Droid even requires to do the build is one of the reasons I created Discoverium.https://github.com/cygnusx-1-org/Discoverium/",
     "parent": 44884709,
     "depth": 1
   },
   {
-    "id": 44884847,
-    "by": "trenchpilgrim",
-    "timeISO": "2025-08-13T05:17:05.000Z",
-    "textPlain": "I thought SSE 4.1 dates back to 2008 or so?",
-    "parent": 44884709,
-    "depth": 1
-  },
-  {
-    "id": 44885181,
-    "by": "micw",
-    "timeISO": "2025-08-13T06:19:36.000Z",
-    "textPlain": "As far as I can see, sse4.1 has been introduced in CPUs in 2011. That's more than 10 years ago. I wonder why such old servers are still in use. I'd assume that a modern CPU would do the same amount of work with a fraction of energy so that it does not even make economical sense to run such outdated hardware.Does anyone know the numbers of build servers and the specs?",
+    "id": 44886284,
+    "by": "fancythat",
+    "timeISO": "2025-08-13T09:22:22.000Z",
+    "textPlain": "I don't know how much servers are they using or server specs besides ancient Opterons, but how is this even an issue in 2025?On Hetnzer (not affiliated), at this moment, i7-8700 (AVX2 supported) with 128 GB RAM, 2x1 TB SSD and 1 Gbit uplink costs 42.48 eur per month, VAT included, in their server auction section.What are we missing here, besides that build farm was left to decay?",
     "parent": 44884709,
     "depth": 1
   },
@@ -104,10 +104,34 @@
     "depth": 1
   },
   {
+    "id": 44884847,
+    "by": "trenchpilgrim",
+    "timeISO": "2025-08-13T05:17:05.000Z",
+    "textPlain": "I thought SSE 4.1 dates back to 2008 or so?",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44885022,
+    "by": "userbinator",
+    "timeISO": "2025-08-13T05:48:13.000Z",
+    "textPlain": "Fortunately the source code is available:https://android.googlesource.com/platform/frameworks/base/+/...If I had the time, I'd try to compile a binary of it that will run on Win95 just to give my fuckings to the planned obsolescence crowd.",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
     "id": 44885070,
     "by": "wpm",
     "timeISO": "2025-08-13T05:59:19.000Z",
     "textPlain": "I’ve got an old Ivy Bridge-EP Dell workstation they can borrow goddamn SSE4.1 is nearly old enough to drink.",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44884926,
+    "by": "o11c",
+    "timeISO": "2025-08-13T05:29:49.000Z",
+    "textPlain": "Note: the underlying blame here fundamentally belongs to whoever built AGP / Gradle with non-universal flags, then distributed it.It's fine to ship binaries with hard-coded cpu flag requirements if you control the universe, but otherwise not, especially if you are in an ecosystem where you make it hard for users to rebuild everything from source.",
     "parent": 44884709,
     "depth": 1
   },
@@ -160,19 +184,19 @@
     "depth": 1
   },
   {
+    "id": 44886275,
+    "by": "a2128",
+    "timeISO": "2025-08-13T09:20:21.000Z",
+    "textPlain": "SDK binaries provided by Google are still used, see https://forum.f-droid.org/t/call-for-help-making-free-softwa...",
+    "parent": 44885476,
+    "depth": 2
+  },
+  {
     "id": 44885016,
     "by": "nativeforks",
     "timeISO": "2025-08-13T05:47:06.000Z",
     "textPlain": "Still haven't. Currently, most of the devs aren't aware of this underlying issue!",
     "parent": 44885007,
-    "depth": 2
-  },
-  {
-    "id": 44884851,
-    "by": "benrutter",
-    "timeISO": "2025-08-13T05:17:35.000Z",
-    "textPlain": "The Catima thread makes FDroid sound like a really difficult commmunity to work with. Although I'm basing this on one person's comment and other people agreeing, not on any knowledge or experience.> But this is like everything with F-Droid: everything always falls on a deaf man's ears. So I would rather not waste more time talking to a brick wall. If I had the feeling it was possible to improve F-Droid by raising issues and trying to discuss how to solve them I wouldn't have left the project out of frustration after years of putting so much time and energy into it.",
-    "parent": 44884781,
     "depth": 2
   },
   {
@@ -192,18 +216,18 @@
     "depth": 2
   },
   {
-    "id": 44884905,
-    "by": "charcircuit",
-    "timeISO": "2025-08-13T05:24:51.000Z",
-    "textPlain": ">FDroid is by far the largest non-google android store at the momentSamsung Galaxy Store is much much bigger.",
-    "parent": 44884865,
-    "depth": 2
-  },
-  {
     "id": 44884943,
     "by": "Jyaif",
     "timeISO": "2025-08-13T05:33:23.000Z",
     "textPlain": "> FDroid is by far the largest non-google android store at the momentNot even sure it's in the top 10",
+    "parent": 44884865,
+    "depth": 2
+  },
+  {
+    "id": 44884905,
+    "by": "charcircuit",
+    "timeISO": "2025-08-13T05:24:51.000Z",
+    "textPlain": ">FDroid is by far the largest non-google android store at the momentSamsung Galaxy Store is much much bigger.",
     "parent": 44884865,
     "depth": 2
   },
@@ -216,6 +240,14 @@
     "depth": 2
   },
   {
+    "id": 44886215,
+    "by": "CJefferson",
+    "timeISO": "2025-08-13T09:11:06.000Z",
+    "textPlain": "The problem with offering fallbacks is testing -- there isn't any reasonable hardware which you could use, because as you say it's all very old and slow.",
+    "parent": 44884904,
+    "depth": 2
+  },
+  {
     "id": 44885099,
     "by": "vocx2tx",
     "timeISO": "2025-08-13T06:05:59.000Z",
@@ -224,51 +256,35 @@
     "depth": 2
   },
   {
-    "id": 44885083,
-    "by": "maxloh",
-    "timeISO": "2025-08-13T06:02:59.000Z",
-    "textPlain": "There is no point for Google to push planned obsolescence on the PC or server space. They don't have a market there.",
-    "parent": 44885022,
+    "id": 44884851,
+    "by": "benrutter",
+    "timeISO": "2025-08-13T05:17:35.000Z",
+    "textPlain": "The Catima thread makes FDroid sound like a really difficult commmunity to work with. Although I'm basing this on one person's comment and other people agreeing, not on any knowledge or experience.> But this is like everything with F-Droid: everything always falls on a deaf man's ears. So I would rather not waste more time talking to a brick wall. If I had the feeling it was possible to improve F-Droid by raising issues and trying to discuss how to solve them I wouldn't have left the project out of frustration after years of putting so much time and energy into it.",
+    "parent": 44884781,
     "depth": 2
   },
   {
-    "id": 44885304,
-    "by": "tonyhart7",
-    "timeISO": "2025-08-13T06:42:33.000Z",
-    "textPlain": "\"If I had the time, I'd try to compile a binary of it that will run on Win95 just to give my fuckings to the planned obsolescence crowd\"The idea that not supporting a 20+ year old system is \"planned obsolescence\" is a bit shallow",
-    "parent": 44885022,
+    "id": 44886061,
+    "by": "jraph",
+    "timeISO": "2025-08-13T08:46:34.000Z",
+    "textPlain": "Relatedly, we don't really have any up to date free software build of the Android SDK AFAIK. To build Android apps, we all rely on the Google binaries, which are non-free.https://forum.f-droid.org/t/call-for-help-making-free-softwa...",
+    "parent": 44885138,
     "depth": 2
   },
   {
-    "id": 44884996,
-    "by": "userbinator",
-    "timeISO": "2025-08-13T05:43:46.000Z",
-    "textPlain": "control the universeGuess what the company behind Android wants to do...",
-    "parent": 44884926,
+    "id": 44886297,
+    "by": "whizzter",
+    "timeISO": "2025-08-13T09:24:05.000Z",
+    "textPlain": "Because setting up servers is an annoying piece of grunt-work that people avoid doing more than absolutely necessary, there's an reason the expensive options of AWS,Azure and Google cloud make money because much \"just works\" when focusing on applications rather than the infra (until you actually need to do something advanced and the obscure commands or clicking bites you in the ass).",
+    "parent": 44885181,
     "depth": 2
   },
   {
-    "id": 44885261,
-    "by": "IshKebab",
-    "timeISO": "2025-08-13T06:33:57.000Z",
-    "textPlain": "Exactly. Everything should be compiled to target i386./s (should be obvious but probably not for this audience)",
-    "parent": 44884926,
-    "depth": 2
-  },
-  {
-    "id": 44884911,
-    "by": "starkparker",
-    "timeISO": "2025-08-13T05:26:05.000Z",
-    "textPlain": "The build servers appear to be AMD Opteron G3s, which only support part of SSE4 (SSE4a). Full SSE4 support didn't land until Bulldozer (late 2011).",
-    "parent": 44884847,
-    "depth": 2
-  },
-  {
-    "id": 44884901,
-    "by": "nativeforks",
-    "timeISO": "2025-08-13T05:24:08.000Z",
-    "textPlain": "Yes, SSE4.1 and SSSE3 have been introduced in ~2006. The F-Droid build server still uses that to build modern and some of the most popular FOSS apps.",
-    "parent": 44884847,
+    "id": 44886189,
+    "by": "ffaser5gxlsll",
+    "timeISO": "2025-08-13T09:08:19.000Z",
+    "textPlain": "On the server side, probably not, but I'd like to point out that old hardware is not uncommon, and it's going to be more and more likely as time passes especially in the desktop space.I was hit by this scenario in the 2000s with an old desktop pc I had, also in the 10ys range, I was using just for boring stuff and random browsing, which was old, but perfectly adequate for the purpose. With time programs got rebuilt with some version of SSE it didn't support. When even firefox switched to the new instruction set, I had to essentially trash a perfectly working desktop pc as it became useless for the purpose.",
+    "parent": 44885181,
     "depth": 2
   },
   {
@@ -304,6 +320,22 @@
     "depth": 2
   },
   {
+    "id": 44886067,
+    "by": "MYEUHD",
+    "timeISO": "2025-08-13T08:47:11.000Z",
+    "textPlain": "That F-Droid requires to do the build ensures all apps provided by F-Droid are free software (as in freedom) and proven to be buildable by someone other than the app developer",
+    "parent": 44885993,
+    "depth": 2
+  },
+  {
+    "id": 44886124,
+    "by": "devrandoom",
+    "timeISO": "2025-08-13T08:56:49.000Z",
+    "textPlain": "So I should take a binary from a random stranger because trust me bro?",
+    "parent": 44885993,
+    "depth": 2
+  },
+  {
     "id": 44885175,
     "by": "pjmlp",
     "timeISO": "2025-08-13T06:18:36.000Z",
@@ -320,51 +352,51 @@
     "depth": 2
   },
   {
-    "id": 44885278,
-    "by": "rpcope1",
-    "timeISO": "2025-08-13T06:37:52.000Z",
-    "textPlain": "Yeah I was kind of shocked too. Core 2 could do both of those instruction sets. A used Dell Precision can be had for very little and probably would be grossly more efficient than whatever they're using.",
-    "parent": 44885070,
+    "id": 44884911,
+    "by": "starkparker",
+    "timeISO": "2025-08-13T05:26:05.000Z",
+    "textPlain": "The build servers appear to be AMD Opteron G3s, which only support part of SSE4 (SSE4a). Full SSE4 support didn't land until Bulldozer (late 2011).",
+    "parent": 44884847,
     "depth": 2
   },
   {
-    "id": 44885062,
-    "by": "a99c43f2d565504",
-    "timeISO": "2025-08-13T05:58:36.000Z",
-    "textPlain": "It's not the target that is now requiring new instructions, but one of the components in the build tools.",
-    "parent": 44884973,
+    "id": 44884901,
+    "by": "nativeforks",
+    "timeISO": "2025-08-13T05:24:08.000Z",
+    "textPlain": "Yes, SSE4.1 and SSSE3 have been introduced in ~2006. The F-Droid build server still uses that to build modern and some of the most popular FOSS apps.",
+    "parent": 44884847,
     "depth": 2
   },
   {
-    "id": 44885627,
-    "by": "vardump",
-    "timeISO": "2025-08-13T07:39:35.000Z",
-    "textPlain": "There are very few 17+ years old build servers at this point. Or laptops and desktops for that matter.",
-    "parent": 44885430,
+    "id": 44885083,
+    "by": "maxloh",
+    "timeISO": "2025-08-13T06:02:59.000Z",
+    "textPlain": "There is no point for Google to push planned obsolescence on the PC or server space. They don't have a market there.",
+    "parent": 44885022,
     "depth": 2
   },
   {
-    "id": 44885172,
-    "by": "yjftsjthsd-h",
-    "timeISO": "2025-08-13T06:18:25.000Z",
-    "textPlain": "Half the point is that I trust this middleman more than the app devs. When app developers turn evil (\nhttps://news.ycombinator.com/item?id=38505229\n), I explicitly want someone reviewing things and blocking software that works against my interests before it gets to me.",
-    "parent": 44884891,
+    "id": 44885304,
+    "by": "tonyhart7",
+    "timeISO": "2025-08-13T06:42:33.000Z",
+    "textPlain": "\"If I had the time, I'd try to compile a binary of it that will run on Win95 just to give my fuckings to the planned obsolescence crowd\"The idea that not supporting a 20+ year old system is \"planned obsolescence\" is a bit shallow",
+    "parent": 44885022,
     "depth": 2
   },
   {
-    "id": 44884933,
-    "by": "qart",
-    "timeISO": "2025-08-13T05:31:36.000Z",
-    "textPlain": "I have it installed. But the only thing I get updates for is Obtainium itself. There's no catalogue of apps, so I haven't installed anything via Obtainium.",
-    "parent": 44884891,
+    "id": 44884996,
+    "by": "userbinator",
+    "timeISO": "2025-08-13T05:43:46.000Z",
+    "textPlain": "control the universeGuess what the company behind Android wants to do...",
+    "parent": 44884926,
     "depth": 2
   },
   {
-    "id": 44884942,
-    "by": "oguz-ismail",
-    "timeISO": "2025-08-13T05:33:20.000Z",
-    "textPlain": "How is this not another middleman (with a political banner in its README no less)?",
-    "parent": 44884891,
+    "id": 44885261,
+    "by": "IshKebab",
+    "timeISO": "2025-08-13T06:33:57.000Z",
+    "textPlain": "Exactly. Everything should be compiled to target i386./s (should be obvious but probably not for this audience)",
+    "parent": 44884926,
     "depth": 2
   }
 ]
