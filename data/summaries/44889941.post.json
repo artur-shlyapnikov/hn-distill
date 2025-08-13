@@ -1,0 +1,8 @@
+{
+  "id": 44889941,
+  "lang": "ru",
+  "summary": "**NGINX теперь умеет ACME**  \nПоявился превью-модуль `ngx_http_acme_module`, который прямо из конфига NGINX запрашивает, устанавливает и продляет сертификаты. Модуль написан на Rust через NGINX-Rust SDK и работает как в NGINX Open Source, так и в NGINX Plus.\n\nПлюсы:  \n- меньше ручных действий и ошибок;  \n- не нужен Certbot и прочие внешние утилиты;  \n- одинаково работает на любой платформе.\n\n**Что такое ACME**  \nПротокол автоматизирует выпуск, проверку и обновление SSL/TLS-сертификатов. Разработан ISRG для Let’s Encrypt в 2015 году, нынешняя версия — ACMEv2.\n\n**4 шага настройки**\n\n1. **ACME-сервер**  \n   ```nginx\n   acme_issuer letsencrypt {\n       uri https://acme-v02.api.letsencrypt.org/directory;\n       state_path /var/cache/nginx/acme-letsencrypt;\n       accept_terms_of_service;\n   }\n   ```\n\n2. **Разделяемая память**  \n   ```nginx\n   acme_shared_zone zone=acme_shared:1M;\n   ```\n\n3. **HTTP-01 challenge**  \n   ```nginx\n   server {\n       listen 80;\n       location / { return 404; }\n   }\n   ```\n   TLS-ALPN и DNS-01 позже.\n\n4. **Выдача/обновление**  \n   ```nginx\n   server {\n       listen 443 ssl;\n       server_name .example.com;\n       acme_certificate letsencrypt;\n       ssl_certificate      $acme_certificate;\n       ssl_certificate_key  $acme_certificate_key;\n       ssl_certificate_cache max=2;\n   }\n   ```",
+  "inputHash": "856553528b02a1ec34f10792c5ae6d5527f7aefc709551fdbfb12f47ef25b9ff",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-13T16:26:44.330Z"
+}

@@ -1,5 +1,21 @@
 [
   {
+    "id": 44890311,
+    "by": "weitendorf",
+    "timeISO": "2025-08-13T16:09:39.000Z",
+    "textPlain": "We’ve been working on this problem off and on for over a year now. Many models bake knowledge of particular tools/libraries/patterns into their weights very well and others quite poorly. In my experience Claude is quite good at integrating the dog.ceo API and noticeably ignorant when it comes to Postgres features, and it knows gcloud commands enough to very confidently and consistently hallucinate arguments.We’ve baked a solution to this into our product, so if anybody is working on an API/SDK/etc feel free to contact me if your users are running into problems using LLMs to integrate them.One thing we’ve noticed is that subtle changes to library/api integration prompts’ context can be surprisingly impactful. LLMs do very well with example commands and explicit instructions to consider X, Y, and Z. If you just dump an API reference and information that implicitly suggests that X, Y, and Z might be beneficial, they won’t reliably make the logical leaps you want them to unless you let them iterate or “think” (spend more tokens) more. But you can’t as easily provide an example for everything, and the ones you do will bias the models towards them, so you may need a bit of both.",
+    "parent": 44888847,
+    "depth": 1
+  },
+  {
+    "id": 44889904,
+    "by": "rikroots",
+    "timeISO": "2025-08-13T15:38:57.000Z",
+    "textPlain": "I've done a lot of work recently to make my library more \"LLM Friendly\", but I'm not willing at this time to sign up to a service which I don't know I'd ever use again just to run a test on your behalf. If you want to run the test on my library then its GitHub can be found here: https://github.com/KaliedaRik/Scrawl-canvas",
+    "parent": 44888847,
+    "depth": 1
+  },
+  {
     "id": 44888848,
     "by": "richardblythman",
     "timeISO": "2025-08-13T14:23:56.000Z",
@@ -8,11 +24,91 @@
     "depth": 1
   },
   {
+    "id": 44889785,
+    "by": "metadat",
+    "timeISO": "2025-08-13T15:31:39.000Z",
+    "textPlain": "The skip-to-the-end answer: Context7 MCP is so good it seems like magic, even to many well-informed, highly capable hackers.  Simply wildly good for libraries and SDKs.  All it takes to start using it is to add the MCP provider to your agent config and save your arms, \"Use Context7 for this\".https://context7.com/",
+    "parent": 44888847,
+    "depth": 1
+  },
+  {
+    "id": 44890027,
+    "by": "suyash",
+    "timeISO": "2025-08-13T15:48:35.000Z",
+    "textPlain": "I'd use this if this was an open source tool.",
+    "parent": 44888847,
+    "depth": 1
+  },
+  {
+    "id": 44890415,
+    "by": "EGreg",
+    "timeISO": "2025-08-13T16:17:11.000Z",
+    "textPlain": "I made a provisional patent this year, about how exactly I would solve this problem. Imagine hiring a \"team of developers\" who can learn your library and iterate 24/7, improving things, doing support, even letting the pointy-haired boss turn his ideas into reality in a forked sandbox on the weekend.Normally I don't like software patents, but in the case of AI, I have made an exception. I have also rethought how I am going to do open source vs closed source in my AI business.(If anyone wants to work with me on this, hit me up, email is in my profile)\nhttps://grokers.ai/patent.pdf",
+    "parent": 44890311,
+    "depth": 2
+  },
+  {
+    "id": 44889956,
+    "by": "bdhcuidbebe",
+    "timeISO": "2025-08-13T15:43:29.000Z",
+    "textPlain": "> If coding agents are the new entry point to your library, how sure are you that they’re using it well?> I asked this question to about 50 library maintainers and dev tool builders, and the majority didn't really know.Why should they even bother to answer such a loaded and hypothetical question?",
+    "parent": 44888848,
+    "depth": 2
+  },
+  {
+    "id": 44889806,
+    "by": "justonceokay",
+    "timeISO": "2025-08-13T15:32:44.000Z",
+    "textPlain": "If making dev tooling is selling shovels to the miners, then this is like selling sheet metal to the shovel makers.",
+    "parent": 44888848,
+    "depth": 2
+  },
+  {
+    "id": 44890378,
+    "by": "weitendorf",
+    "timeISO": "2025-08-13T16:14:04.000Z",
+    "textPlain": "Let’s meet and see if it might make sense for us to team up. We’re working on this from the agent/library-specific-task side, and we might be better than chatgpt at marketing your product :)",
+    "parent": 44888848,
+    "depth": 2
+  },
+  {
     "id": 44889489,
     "by": "dotancohen",
     "timeISO": "2025-08-13T15:10:21.000Z",
     "textPlain": "Note that this comment is not hijacking. The author of this comment is also the author of the post.",
     "parent": 44888848,
+    "depth": 2
+  },
+  {
+    "id": 44889997,
+    "by": "spankalee",
+    "timeISO": "2025-08-13T15:46:29.000Z",
+    "textPlain": "Why do we need to log in?",
+    "parent": 44888848,
+    "depth": 2
+  },
+  {
+    "id": 44890425,
+    "by": "nogridbag",
+    "timeISO": "2025-08-13T16:18:01.000Z",
+    "textPlain": "I'm confused a bit by this. For instance, Gemini was struggling to write proper Java code for using Firebase Admin SDK. It would write Java code using methods that only exist in the JavaScript SDK. And when I would correct it, it would give other options that also were only in the JavaScript SDK or were invalid.So I thought this is where context7 would be useful, but I'm confused what I'm looking at in the detail page: https://context7.com/firebase/firebase-admin-javaI was expecting some sort of dump of all the admin methods, but it gives a single example of one library function and info on how to build javadoc.",
+    "parent": 44889785,
+    "depth": 2
+  },
+  {
+    "id": 44889935,
+    "by": "k3liutZu",
+    "timeISO": "2025-08-13T15:41:31.000Z",
+    "textPlain": "What is the best approach to have something like context7 for internal tools and libraries?",
+    "parent": 44889785,
+    "depth": 2
+  },
+  {
+    "id": 44890033,
+    "by": "paularmstrong",
+    "timeISO": "2025-08-13T15:49:40.000Z",
+    "textPlain": "Needing too sign up before I can see or do anything made me close the tab immediately.",
+    "parent": 44890027,
     "depth": 2
   }
 ]

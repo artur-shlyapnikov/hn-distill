@@ -32,10 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44888522,
-    "by": "bee_rider",
-    "timeISO": "2025-08-13T13:57:47.000Z",
-    "textPlain": "I like these. They are push back against the sort of… first correction that people make when encountering floating point weirdness. That is, the first mistake we make is to treat floats as reals, and then we observe some odd rounding behavior. The second mistake we make is to treat the rounding events as random. A nice thing about IEEE floats is that the rounding behavior is well defined.Often it doesn't matter, like you ask for a gemm and you get whatever order of operations blas, AVX-whatever, and OpenMP conspire to give you, so it is more-or-less random.But if it does matter, the ability to define it is there.",
+    "id": 44889983,
+    "by": "glkindlmann",
+    "timeISO": "2025-08-13T15:45:43.000Z",
+    "textPlain": "Note: the improved loop in the \"1. They are not exact\" can easily hang.\nIf count > 2^24, then the ulp of f is 2, and adding 1.0f leaves f unchanged.\nWhat's wild is that a few lines later he notes how above 2^24 numbers start “jumping” every 2.  Ok, but FP are always \"jumping\", by their ulp, regardless of how big or small they are.",
     "parent": 44849834,
     "depth": 1
   },
@@ -48,11 +48,27 @@
     "depth": 1
   },
   {
+    "id": 44888522,
+    "by": "bee_rider",
+    "timeISO": "2025-08-13T13:57:47.000Z",
+    "textPlain": "I like these. They are push back against the sort of… first correction that people make when encountering floating point weirdness. That is, the first mistake we make is to treat floats as reals, and then we observe some odd rounding behavior. The second mistake we make is to treat the rounding events as random. A nice thing about IEEE floats is that the rounding behavior is well defined.Often it doesn't matter, like you ask for a gemm and you get whatever order of operations blas, AVX-whatever, and OpenMP conspire to give you, so it is more-or-less random.But if it does matter, the ability to define it is there.",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
     "id": 44889330,
     "by": "thwarted",
     "timeISO": "2025-08-13T14:58:52.000Z",
     "textPlain": "You still can't divide by zero, it just doesn't result in an error state that stops execution. The inf and NaN values are sentinel values that you still have to check for after the calculation to know if it went awry.",
     "parent": 44888561,
+    "depth": 2
+  },
+  {
+    "id": 44890347,
+    "by": "jcranmer",
+    "timeISO": "2025-08-13T16:12:11.000Z",
+    "textPlain": "Wow, you're crossing a few wires in your zeal to provide information to the point that you're repeating myths.> The intel processors have a separate math coprocessor that supports 80bit floatsx86 processors have two FPU units, the x87 unit (that you're describing) and the SSE unit. Anyone compiling for x86-64 uses the SSE unit for default, and most x86-32 compilers still default to SSE anyways.> Moving a float from a register in this coprocessor to memory truncates the float.No it doesn't. The x87 unit has load and store instructions for 32-bit, 64-bit, and 80-bit floats. If you want to spill 80-bit values as 80-bit values, you can do so.> Repeated math can be done inside this coprocessor to achieve higher precision so hot loops generally don't move floats outside of these registers.Hot loops these days use the SSE stuff because they're so much faster than x87. Friends don't let friends use long double without good reason!> Non-determinism occurs in programs running on intel with floats when threads are interrupted and the math coprocessor flushed.Lol, nope. You'll spill the x87 register stack on thread context switch with FSAVE or FXSAVE or XSAVE, all of which will store the registers as 80-bit values without loss of precision.That said, there was a problem with programs that use the x87 unit, but it has absolutely nothing to do with what you're describing. The x87 unit doesn't have arithmetic for 32-bit and 64-bit values, only 80-bit values. Many compilers, though, just pretended that the x87 unit supported arithmetic on 32-bit and 64-bit values, so that FADD would simultaneously be a 32-bit addition, a 64-bit addition, and a 80-bit addition. If the compiler needed to spill a floating-point register, they would spill the value as a 32-bit value (if float) or 64-bit value (if double), and register spills are pretty unpredictable for user code. That's the nondeterminism you're referring to, and it's considered a bug in every compiler I'm aware of. (See https://www.o",
+    "parent": 44888692,
     "depth": 2
   },
   {
@@ -64,10 +80,26 @@
     "depth": 2
   },
   {
+    "id": 44889787,
+    "by": "bobmcnamara",
+    "timeISO": "2025-08-13T15:31:55.000Z",
+    "textPlain": "> Non-determinism occurs in programs running on intelFTFY. They even changed some of the more obscure handling between 8087,80287,80387. So much hoop jumping if you cared about binary reproducibility.Seems to be largely fixed with targeting SSE even for scalar code now.",
+    "parent": 44888692,
+    "depth": 2
+  },
+  {
     "id": 44888587,
     "by": "Cieric",
     "timeISO": "2025-08-13T14:02:32.000Z",
     "textPlain": "Just to add some context Adam works at AMD as a dev tech, so he is constantly working with game studios developers directly. While I can't say I've heard the same things since I'm somewhere else, I have seen some of the assumptions made in some shader code and they do line up with the kind of things he's saying.",
+    "parent": 44888448,
+    "depth": 2
+  },
+  {
+    "id": 44888550,
+    "by": "rollcat",
+    "timeISO": "2025-08-13T13:59:35.000Z",
+    "textPlain": "People do say a lot of nonsense about floats, my younger self trying to bash JavaScript included. They e.g. do fine as integers - up to 2**53; this could be optimised by a JIT to use actual integer math.",
     "parent": 44888448,
     "depth": 2
   },
@@ -88,14 +120,6 @@
     "depth": 2
   },
   {
-    "id": 44888550,
-    "by": "rollcat",
-    "timeISO": "2025-08-13T13:59:35.000Z",
-    "textPlain": "People do say a lot of nonsense about floats, my younger self trying to bash JavaScript included. They e.g. do fine as integers - up to 2*53; this could be optimised by a JIT to use actual integer math.",
-    "parent": 44888448,
-    "depth": 2
-  },
-  {
     "id": 44888698,
     "by": "jbjbjbjb",
     "timeISO": "2025-08-13T14:12:12.000Z",
@@ -104,19 +128,19 @@
     "depth": 2
   },
   {
-    "id": 44889509,
-    "by": "jandrese",
-    "timeISO": "2025-08-13T15:12:16.000Z",
-    "textPlain": "> A nice thing about IEEE floats is that the rounding behavior is well defined.Until it isn't.  I used to play the CodeWeavers port of Kohan and while the game would allow you to do crossplay between Windows and Linux, differences in how the two OSes rounded floats would cause the game to desynchronize after 15-20 minutes of play or so.  Some unit's pathfinding algorithm would zig on Windows and zag on Linux, causing the state to diverge and end up kicking off one of the players.",
-    "parent": 44888522,
-    "depth": 2
-  },
-  {
     "id": 44888870,
     "by": "hans_castorp",
     "timeISO": "2025-08-13T14:25:16.000Z",
     "textPlain": "Also related:https://floating-point-gui.de/",
     "parent": 44888459,
+    "depth": 2
+  },
+  {
+    "id": 44889509,
+    "by": "jandrese",
+    "timeISO": "2025-08-13T15:12:16.000Z",
+    "textPlain": "> A nice thing about IEEE floats is that the rounding behavior is well defined.Until it isn't.  I used to play the CodeWeavers port of Kohan and while the game would allow you to do crossplay between Windows and Linux, differences in how the two OSes rounded floats would cause the game to desynchronize after 15-20 minutes of play or so.  Some unit's pathfinding algorithm would zig on Windows and zag on Linux, causing the state to diverge and end up kicking off one of the players.",
+    "parent": 44888522,
     "depth": 2
   }
 ]
