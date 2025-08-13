@@ -1,13 +1,5 @@
 [
   {
-    "id": 44890464,
-    "by": "t43562",
-    "timeISO": "2025-08-13T16:21:04.000Z",
-    "textPlain": "I think this highlights some problems with software development in general. i.e. the code isn't enough - you need to have domain knowledge too and a lot of knowledge about how and why the company needs things done in some way or another. You might imagine that dumping the contents of your wiki and all your chat channels into some sort of context might do it but that would miss the 100s of verbal conversations between people in the company. It would also fall foul of the way everything tends to work in any way you can imagine except what the wiki says.Even if you transcribed all the voice chats and meetings and added it in, it challenges a human to work out what is going on.  No-context human developers are pretty useless too.",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
     "id": 44878643,
     "by": "aliljet",
     "timeISO": "2025-08-12T16:33:13.000Z",
@@ -20,6 +12,14 @@
     "by": "gdudeman",
     "timeISO": "2025-08-12T17:03:54.000Z",
     "textPlain": "A tip for those who both use Claude Code and are worried about token use (which you should be if you're stuffing 400k tokens into context even if you're on 20x Max):  1. Build context for the work you're doing. Put lots of your codebase into the context window.\n  2. Do work, but at each logical stopping point hit double escape to rewind to the context-filled checkpoint. You do not spend those tokens to rewind to that point.\n  3. Tell Claude your developer finished XYZ, have it read it into context and give high level and low level feedback (Claude will find more problems with your developer's work than with yours).\n\nIf you want to have multiple chats running, use /resume and pull up the same thread. Hit double escape to the point where Claude has rich context, but has not started down a specific rabbit hole.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44890464,
+    "by": "t43562",
+    "timeISO": "2025-08-13T16:21:04.000Z",
+    "textPlain": "I think this highlights some problems with software development in general. i.e. the code isn't enough - you need to have domain knowledge too and a lot of knowledge about how and why the company needs things done in some way or another. You might imagine that dumping the contents of your wiki and all your chat channels into some sort of context might do it but that would miss the 100s of verbal conversations between people in the company. It would also fall foul of the way everything tends to work in any way you can imagine except what the wiki says.Even if you transcribed all the voice chats and meetings and added it in, it challenges a human to work out what is going on.  No-context human developers are pretty useless too.",
     "parent": 44878147,
     "depth": 1
   },
@@ -176,14 +176,6 @@
     "depth": 1
   },
   {
-    "id": 44887778,
-    "by": "ndkap",
-    "timeISO": "2025-08-13T12:45:06.000Z",
-    "textPlain": "Does anybody know which technology most of these companies that support 1M tokens use? Or is it all hidden?",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
     "id": 44878781,
     "by": "qsort",
     "timeISO": "2025-08-12T16:43:55.000Z",
@@ -192,18 +184,26 @@
     "depth": 1
   },
   {
-    "id": 44884775,
-    "by": "mrcwinn",
-    "timeISO": "2025-08-13T04:59:52.000Z",
-    "textPlain": "I wish they’d fix other things faster. Still can’t upload an Excel file in the iOS app, even with analyst mode enabled. The voice mode feels like it’s 10 years behind OpenAI (no realtime, for example). And Opus 4.1 still occasionally goes absolutely mental and provides much worse analysis than o3 or GPT5-thinking.Rooting for Anthropic. Competition in this space is good.I watched an interview with Dario recently where he said he wasted a “product guy” and it really shows.",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
     "id": 44878677,
     "by": "pupppet",
     "timeISO": "2025-08-12T16:35:18.000Z",
     "textPlain": "How does anyone send these models that much context without it tripping over itself?  I can't get anywhere near that much before it starts losing track of instruction.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44887778,
+    "by": "ndkap",
+    "timeISO": "2025-08-13T12:45:06.000Z",
+    "textPlain": "Does anybody know which technology most of these companies that support 1M tokens use? Or is it all hidden?",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44884775,
+    "by": "mrcwinn",
+    "timeISO": "2025-08-13T04:59:52.000Z",
+    "textPlain": "I wish they’d fix other things faster. Still can’t upload an Excel file in the iOS app, even with analyst mode enabled. The voice mode feels like it’s 10 years behind OpenAI (no realtime, for example). And Opus 4.1 still occasionally goes absolutely mental and provides much worse analysis than o3 or GPT5-thinking.Rooting for Anthropic. Competition in this space is good.I watched an interview with Dario recently where he said he wasted a “product guy” and it really shows.",
     "parent": 44878147,
     "depth": 1
   },
@@ -240,10 +240,10 @@
     "depth": 1
   },
   {
-    "id": 44886321,
-    "by": "Roark66",
-    "timeISO": "2025-08-13T09:28:00.000Z",
-    "textPlain": "I noticed the quality of answer degrades horribly beyond few thousands of tokens. Maybe 10k. Is anyone actually successfully using these 100k+ token contexts for anything?",
+    "id": 44880348,
+    "by": "brokegrammer",
+    "timeISO": "2025-08-12T18:52:08.000Z",
+    "textPlain": "Many people are confused about the usefulness of 1M tokens because LLMs often start to get confused after about 100k. But this is big for Claude 4 because it uses automatic RAG when the context becomes large. With optimized retrieval thanks to RAG, we'll be able to make good use of those 1M tokens.",
     "parent": 44878147,
     "depth": 1
   },
@@ -252,14 +252,6 @@
     "by": "cintusshied",
     "timeISO": "2025-08-13T04:22:15.000Z",
     "textPlain": "For folks using LLMs for big coding projects, what's your go-to workflow for deciding which parts of the codebase to feed the model?",
-    "parent": 44878147,
-    "depth": 1
-  },
-  {
-    "id": 44880348,
-    "by": "brokegrammer",
-    "timeISO": "2025-08-12T18:52:08.000Z",
-    "textPlain": "Many people are confused about the usefulness of 1M tokens because LLMs often start to get confused after about 100k. But this is big for Claude 4 because it uses automatic RAG when the context becomes large. With optimized retrieval thanks to RAG, we'll be able to make good use of those 1M tokens.",
     "parent": 44878147,
     "depth": 1
   },
@@ -276,6 +268,14 @@
     "by": "as367",
     "timeISO": "2025-08-12T23:44:05.000Z",
     "textPlain": "That is an unfortunate logo.",
+    "parent": 44878147,
+    "depth": 1
+  },
+  {
+    "id": 44886321,
+    "by": "Roark66",
+    "timeISO": "2025-08-13T09:28:00.000Z",
+    "textPlain": "I noticed the quality of answer degrades horribly beyond few thousands of tokens. Maybe 10k. Is anyone actually successfully using these 100k+ token contexts for anything?",
     "parent": 44878147,
     "depth": 1
   },

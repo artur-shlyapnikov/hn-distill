@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44889983,
+    "by": "glkindlmann",
+    "timeISO": "2025-08-13T15:45:43.000Z",
+    "textPlain": "Note: the improved loop in the \"1. They are not exact\" can easily hang.\nIf count > 2^24, then the ulp of f is 2, and adding 1.0f leaves f unchanged.\nWhat's wild is that a few lines later he notes how above 2^24 numbers start “jumping” every 2.  Ok, but FP are always \"jumping\", by their ulp, regardless of how big or small they are.",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
     "id": 44888836,
     "by": "quietbritishjim",
     "timeISO": "2025-08-13T14:22:54.000Z",
@@ -28,14 +36,6 @@
     "by": "BugsJustFindMe",
     "timeISO": "2025-08-13T13:50:48.000Z",
     "textPlain": "I've never heard anyone say any of these supposed myths, except for the first one, sort of, but nobody means what the first one pretends it means, so this whole post feels like a big strawman to me.",
-    "parent": 44849834,
-    "depth": 1
-  },
-  {
-    "id": 44889983,
-    "by": "glkindlmann",
-    "timeISO": "2025-08-13T15:45:43.000Z",
-    "textPlain": "Note: the improved loop in the \"1. They are not exact\" can easily hang.\nIf count > 2^24, then the ulp of f is 2, and adding 1.0f leaves f unchanged.\nWhat's wild is that a few lines later he notes how above 2^24 numbers start “jumping” every 2.  Ok, but FP are always \"jumping\", by their ulp, regardless of how big or small they are.",
     "parent": 44849834,
     "depth": 1
   },
@@ -56,6 +56,22 @@
     "depth": 1
   },
   {
+    "id": 44890523,
+    "by": "pklausler",
+    "timeISO": "2025-08-13T16:25:39.000Z",
+    "textPlain": "People need to understand rounding better, especially the topic of when rounding can happen and when it can't for the basic operations.",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
+    "id": 44891022,
+    "by": "AtlasBarfed",
+    "timeISO": "2025-08-13T17:05:12.000Z",
+    "textPlain": "The core thing to know about floating point numbers in comp langs is they aren't floating point numbers.They are approximations of floating point numbers, and even if your current approximation of a floating point number to represent a value seems to be accurate as an integer vale...There is no guarantee if you take two of those floating point number approximations that appear completely accurate that the resulting operation between them will also be completely accurate.",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
     "id": 44889330,
     "by": "thwarted",
     "timeISO": "2025-08-13T14:58:52.000Z",
@@ -64,10 +80,10 @@
     "depth": 2
   },
   {
-    "id": 44890347,
-    "by": "jcranmer",
-    "timeISO": "2025-08-13T16:12:11.000Z",
-    "textPlain": "Wow, you're crossing a few wires in your zeal to provide information to the point that you're repeating myths.> The intel processors have a separate math coprocessor that supports 80bit floatsx86 processors have two FPU units, the x87 unit (that you're describing) and the SSE unit. Anyone compiling for x86-64 uses the SSE unit for default, and most x86-32 compilers still default to SSE anyways.> Moving a float from a register in this coprocessor to memory truncates the float.No it doesn't. The x87 unit has load and store instructions for 32-bit, 64-bit, and 80-bit floats. If you want to spill 80-bit values as 80-bit values, you can do so.> Repeated math can be done inside this coprocessor to achieve higher precision so hot loops generally don't move floats outside of these registers.Hot loops these days use the SSE stuff because they're so much faster than x87. Friends don't let friends use long double without good reason!> Non-determinism occurs in programs running on intel with floats when threads are interrupted and the math coprocessor flushed.Lol, nope. You'll spill the x87 register stack on thread context switch with FSAVE or FXSAVE or XSAVE, all of which will store the registers as 80-bit values without loss of precision.That said, there was a problem with programs that use the x87 unit, but it has absolutely nothing to do with what you're describing. The x87 unit doesn't have arithmetic for 32-bit and 64-bit values, only 80-bit values. Many compilers, though, just pretended that the x87 unit supported arithmetic on 32-bit and 64-bit values, so that FADD would simultaneously be a 32-bit addition, a 64-bit addition, and a 80-bit addition. If the compiler needed to spill a floating-point register, they would spill the value as a 32-bit value (if float) or 64-bit value (if double), and register spills are pretty unpredictable for user code. That's the nondeterminism you're referring to, and it's considered a bug in every compiler I'm aware of. (See https://www.o",
+    "id": 44890896,
+    "by": "nyeah",
+    "timeISO": "2025-08-13T16:56:22.000Z",
+    "textPlain": "NaN is not necessarily an error. It might be fine. It depends on what you're doing with it.If NaN is invalid input for the next step, then sure why not treat it as an error? But that's a design decision not an imperative that everybody must follow. (I picture Mel Brooks' 15 commandments, #11-15, that fell and broke. This is not like that.)",
     "parent": 44888692,
     "depth": 2
   },
@@ -80,11 +96,27 @@
     "depth": 2
   },
   {
+    "id": 44890347,
+    "by": "jcranmer",
+    "timeISO": "2025-08-13T16:12:11.000Z",
+    "textPlain": "Wow, you're crossing a few wires in your zeal to provide information to the point that you're repeating myths.> The intel processors have a separate math coprocessor that supports 80bit floatsx86 processors have two FPU units, the x87 unit (that you're describing) and the SSE unit. Anyone compiling for x86-64 uses the SSE unit for default, and most x86-32 compilers still default to SSE anyways.> Moving a float from a register in this coprocessor to memory truncates the float.No it doesn't. The x87 unit has load and store instructions for 32-bit, 64-bit, and 80-bit floats. If you want to spill 80-bit values as 80-bit values, you can do so.> Repeated math can be done inside this coprocessor to achieve higher precision so hot loops generally don't move floats outside of these registers.Hot loops these days use the SSE stuff because they're so much faster than x87. Friends don't let friends use long double without good reason!> Non-determinism occurs in programs running on intel with floats when threads are interrupted and the math coprocessor flushed.Lol, nope. You'll spill the x87 register stack on thread context switch with FSAVE or FXSAVE or XSAVE, all of which will store the registers as 80-bit values without loss of precision.That said, there was a problem with programs that use the x87 unit, but it has absolutely nothing to do with what you're describing. The x87 unit doesn't have arithmetic for 32-bit and 64-bit values, only 80-bit values. Many compilers, though, just pretended that the x87 unit supported arithmetic on 32-bit and 64-bit values, so that FADD would simultaneously be a 32-bit addition, a 64-bit addition, and a 80-bit addition. If the compiler needed to spill a floating-point register, they would spill the value as a 32-bit value (if float) or 64-bit value (if double), and register spills are pretty unpredictable for user code. That's the nondeterminism you're referring to, and it's considered a bug in every compiler I'm aware of. (See https://www.o",
+    "parent": 44888692,
+    "depth": 2
+  },
+  {
     "id": 44889787,
     "by": "bobmcnamara",
     "timeISO": "2025-08-13T15:31:55.000Z",
     "textPlain": "> Non-determinism occurs in programs running on intelFTFY. They even changed some of the more obscure handling between 8087,80287,80387. So much hoop jumping if you cared about binary reproducibility.Seems to be largely fixed with targeting SSE even for scalar code now.",
     "parent": 44888692,
+    "depth": 2
+  },
+  {
+    "id": 44890609,
+    "by": "zokier",
+    "timeISO": "2025-08-13T16:31:48.000Z",
+    "textPlain": "That sort of argument can be problematic though, because the code can become misleading. If I see a fuzzy comparison then I'd assume it is there because it is needed, which might make the rest of the code more difficult to understand/modify because I then have to assume that everywhere else the values might be fuzzy.",
+    "parent": 44888836,
     "depth": 2
   },
   {
@@ -104,10 +136,10 @@
     "depth": 2
   },
   {
-    "id": 44889464,
-    "by": "jandrese",
-    "timeISO": "2025-08-13T15:08:28.000Z",
-    "textPlain": "The first rule is true, but relying on it is dangerous unless you are well versed in what floats can and can not be represented exactly.  It's best to pretend it isn't true in most cases to avoid footguns.",
+    "id": 44888698,
+    "by": "jbjbjbjb",
+    "timeISO": "2025-08-13T14:12:12.000Z",
+    "textPlain": "I was putting together some technical interview questions for our candidates and I wanted to see what ChatGPT would put for an answer. It told me floating point numbers were non-deterministic and wouldn’t back down from that answer so it’s getting it from somewhere.",
     "parent": 44888448,
     "depth": 2
   },
@@ -120,10 +152,10 @@
     "depth": 2
   },
   {
-    "id": 44888698,
-    "by": "jbjbjbjb",
-    "timeISO": "2025-08-13T14:12:12.000Z",
-    "textPlain": "I was putting together some technical interview questions for our candidates and I wanted to see what ChatGPT would put for an answer. It told me floating point numbers were non-deterministic and wouldn’t back down from that answer so it’s getting it from somewhere.",
+    "id": 44889464,
+    "by": "jandrese",
+    "timeISO": "2025-08-13T15:08:28.000Z",
+    "textPlain": "The first rule is true, but relying on it is dangerous unless you are well versed in what floats can and can not be represented exactly.  It's best to pretend it isn't true in most cases to avoid footguns.",
     "parent": 44888448,
     "depth": 2
   },

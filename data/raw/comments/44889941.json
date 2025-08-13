@@ -1,9 +1,81 @@
 [
   {
+    "id": 44891105,
+    "by": "thaumaturgy",
+    "timeISO": "2025-08-13T17:13:18.000Z",
+    "textPlain": "Good to see this. For those that weren't aware, there's been a low-effort solution with https://github.com/dehydrated-io/dehydrated, combined with a pretty simple couple of lines in your vhost config:    location ^~ /.well-known/acme-challenge/ {\n        alias <path-to-your-acme-challenge-directory>;\n    }\n\nDehydrated has been around for a while and is a great low-overhead option for http-01 renewal automation.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44890666,
+    "by": "Shank",
+    "timeISO": "2025-08-13T16:37:35.000Z",
+    "textPlain": "> The current preview implementation supports HTTP-01 challenges to verify the client’s domain ownership.DNS-01 is probably the most impactful for users of nginx that isn't public facing (i.e., via Nginx Proxy Manager). I really want to see DNS-01 land! I've always felt that it's also one of the cleanest because it's just updating some records and doesn't need to be directly tethered to what you're hosting.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891078,
+    "by": "stego-tech",
+    "timeISO": "2025-08-13T17:10:19.000Z",
+    "textPlain": "The IT Roller Coaster in two reactions:> Nginx Introduces Native Support for Acme ProtocolIT: “It’s about fucking time!”> The current preview implementation supports HTTP-01 challenges to verify the client’s domain ownership.IT: “FUCK. Alright, domain registrar, mint me a new wildcard please, one of the leading web infrastructure providers still can’t do a basic LE DNS-01 pull in 2025.”Seriously. PKI in IT is a PITA and I want someone to SOLVE IT without requiring AD CAs or Yet Another Hyperspecific Appliance (YAHA). If your load balancer, proxy server, web server, or router appliance can’t mint me a basic Acme certificate via DNS-01 challenges, then you officially suck and I will throw your product out for something like Caddy the first chance I get.While we’re at it, can we also allow DNS-01 certs to be issued for intermediate authorities, allowing internally-signed certificates to be valid via said Intermediary? That’d solve like, 99% of my PKI needs in any org, ever, forever.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
     "id": 44890497,
     "by": "dizhn",
     "timeISO": "2025-08-13T16:23:35.000Z",
     "textPlain": "This is pretty big. Caddy had this forever but not everybody wants to use caddy. It'll probably eat into the user share of software like Traefik.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891119,
+    "by": "samgranieri",
+    "timeISO": "2025-08-13T17:14:35.000Z",
+    "textPlain": "This is a good first start. One less moving part.\nThey should match caddy for feature parity on this, and also add dns01 challenges as well.I'm not using nginx these days because of this.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44890726,
+    "by": "aorth",
+    "timeISO": "2025-08-13T16:42:20.000Z",
+    "textPlain": "Oh this is exciting! Caddy's support is very convenient and it does a lot of other stuff right out of the box which is great.One thing keeping me from switching to Caddy in my places is nginx's rate limiting and geo module.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44890599,
+    "by": "cobbzilla",
+    "timeISO": "2025-08-13T16:31:04.000Z",
+    "textPlain": "There’s a section on renewals but no description of how it works. Is there a background thread/process? Or is it request-driven? If request-driven, what about some hostname that’s (somehow) not seen traffic in >90 days?",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44890604,
+    "by": "adontz",
+    "timeISO": "2025-08-13T16:31:21.000Z",
+    "textPlain": "certbot has an plugin for nginx, so I'm not sure why people think is was hard to use LetsEncrypt with nginx.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891084,
+    "by": "andrewmcwatters",
+    "timeISO": "2025-08-13T17:10:34.000Z",
+    "textPlain": "It seems like if you commit your NGINX config with these updates, you can have one less process to your deployment if you're doing something like:    # https://certbot.eff.org/instructions?ws=other&os=ubuntufocal\n    sudo apt-get -y install certbot\n    # sudo certbot certonly --standalone\n    \n    ...\n    \n    # https://certbot.eff.org/docs/using.html#where-are-my-certificates\n    # sudo chmod -R 0755 /etc/letsencrypt/{live,archive}\n\nSo, unfortunately, this support still seems more involved than using certbot, but at least one less manual step is required.Example from https://github.com/andrewmcwattersandco/bootstrap-express",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44890618,
+    "by": "do_not_redeem",
+    "timeISO": "2025-08-13T16:32:39.000Z",
+    "textPlain": "It looks like this isn't included by default with the base nginx, but requires you to install it as a separate module. Or am I wrong?https://github.com/nginx/nginx-acme",
     "parent": 44889941,
     "depth": 1
   },
@@ -14,5 +86,117 @@
     "textPlain": "For now I will stick to what works, but I will give this a try. Anyone tried it?Caddy sounds interesting too, but I am afraid of switching because what I have works properly. :/",
     "parent": 44889941,
     "depth": 1
+  },
+  {
+    "id": 44891135,
+    "by": "samgranieri",
+    "timeISO": "2025-08-13T17:15:20.000Z",
+    "textPlain": "I use dns01 in my homelab with step-ca with caddy. It's a joy to use",
+    "parent": 44890666,
+    "depth": 2
+  },
+  {
+    "id": 44890818,
+    "by": "clvx",
+    "timeISO": "2025-08-13T16:50:11.000Z",
+    "textPlain": "But you have to have your dns api key loaded and many dns providers don’t allow api keys per zone.\nI do like it but a compromise could be awful.",
+    "parent": 44890666,
+    "depth": 2
+  },
+  {
+    "id": 44890872,
+    "by": "Spivak",
+    "timeISO": "2025-08-13T16:54:24.000Z",
+    "textPlain": "I don't even know why anyone wouldn't use the DNS challenge unless they had no other option. I've found it to be annoying and brittle, maybe less so now with native web server support. And you can't get wildcards.",
+    "parent": 44890666,
+    "depth": 2
+  },
+  {
+    "id": 44890982,
+    "by": "creatonez",
+    "timeISO": "2025-08-13T17:02:26.000Z",
+    "textPlain": "Why would nginx ever need support for the DNS-01 challenge type? It always has access to `.well-known` because nginx is running an HTTP server for the entire lifecycle of the process, so you'd never need to use a lower level way of doing DV. And that seems to violate the principle of least privilege, since you now need a sensitive API token on the server.",
+    "parent": 44890666,
+    "depth": 2
+  },
+  {
+    "id": 44890654,
+    "by": "elashri",
+    "timeISO": "2025-08-13T16:36:52.000Z",
+    "textPlain": "What I really like about Caddy is their better syntax. I actually use nginx (via nginx proxy manager) and Traefik but recently I did one project with Caddy and found it very nice. I might get the time to change my selfhosted setup to use Caddy in the future but probably will go with something like pangolin [1] because it provides alternative to cloudflare tunnels too.[1] https://github.com/fosrl/pangolin",
+    "parent": 44890497,
+    "depth": 2
+  },
+  {
+    "id": 44890795,
+    "by": "thrown-0825",
+    "timeISO": "2025-08-13T16:48:41.000Z",
+    "textPlain": "Definitely. I use traefik for some stuff at home and will likely swap it out now.",
+    "parent": 44890497,
+    "depth": 2
+  },
+  {
+    "id": 44891085,
+    "by": "9dev",
+    "timeISO": "2025-08-13T17:10:50.000Z",
+    "textPlain": "Certbot is a utility that can only be installed via snap. That crap won’t make it to our servers, and many other people view it the same way I do.So this change is most welcome.",
+    "parent": 44890604,
+    "depth": 2
+  },
+  {
+    "id": 44890860,
+    "by": "creshal",
+    "timeISO": "2025-08-13T16:53:44.000Z",
+    "textPlain": "Certbot is a giant swiss army chainsaw that can do everything middlingly well, if you don't mind vibecoding your encryption intrastructure. But a clean solution it usually isn't.(That said, I'm not too thrilled by this implementation. How are renewals and revocations handled, and how can the processes be debugged? I hope the docs get updated soon.)",
+    "parent": 44890604,
+    "depth": 2
+  },
+  {
+    "id": 44890886,
+    "by": "jddj",
+    "timeISO": "2025-08-13T16:55:23.000Z",
+    "textPlain": "From the seeming consensus I was dreading setting let's encrypt up on nginx, until I did it and it was and has been... Completely straightforward and painless.Maybe if you step off the happy path it gets hairy, but I found the default certbot flow to be easy.",
+    "parent": 44890604,
+    "depth": 2
+  },
+  {
+    "id": 44890764,
+    "by": "orblivion",
+    "timeISO": "2025-08-13T16:45:21.000Z",
+    "textPlain": "From a quick look it seems like a command you use to reconfigure nginx? And that's separate from auto-renewing the cert, right?Maybe not hard, but Caddy seems like even less to think about.",
+    "parent": 44890604,
+    "depth": 2
+  },
+  {
+    "id": 44890907,
+    "by": "bhaney",
+    "timeISO": "2025-08-13T16:56:59.000Z",
+    "textPlain": "Nginx itself is mostly just a collection of modules, and it's up to the one building/packaging the nginx distribution to decide what goes in it. By default, nginx doesn't even build the ssl or gzip modules (though thankfully it does build the http module by default). Historically it only had static modules, which needed to be enabled or disabled at compile time, but now it has dynamic modules that can be compiled separately and loaded at runtime. Some older static modules now have the option of being built as dynamic modules, and new modules that can be written as dynamic modules generally are. A distro can choose to package a new dynamic module in their base nginx package, as a separate package, or not at all.In a typical distro, you would normally expect one or more virtual packages representing a profile (minimal, standard, full, etc) that depends on a package providing an nginx binary with every reasonable static-only module enabled, plus a number of separately packaged dynamic modules.",
+    "parent": 44890618,
+    "depth": 2
+  },
+  {
+    "id": 44891001,
+    "by": "timw4mail",
+    "timeISO": "2025-08-13T17:03:39.000Z",
+    "textPlain": "Yes, that is correct.",
+    "parent": 44890618,
+    "depth": 2
+  },
+  {
+    "id": 44891038,
+    "by": "orphea",
+    "timeISO": "2025-08-13T17:06:42.000Z",
+    "textPlain": "Caddy has been great for me. I don't think you should switch if your current setup works but give it a try in a new project.",
+    "parent": 44890493,
+    "depth": 2
+  },
+  {
+    "id": 44890619,
+    "by": "roywashere",
+    "timeISO": "2025-08-13T16:32:42.000Z",
+    "textPlain": "I like it!!! I am using Apache mod_md on Debian for personal project. That is working fine but when setting up a new site it somehow required two Apache restarts which is not super smooth",
+    "parent": 44890493,
+    "depth": 2
   }
 ]

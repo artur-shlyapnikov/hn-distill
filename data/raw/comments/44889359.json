@@ -1,1 +1,58 @@
-[]
+[
+  {
+    "id": 44890850,
+    "by": "anentropic",
+    "timeISO": "2025-08-13T16:52:41.000Z",
+    "textPlain": "Layout is broken on non-maximised window sizes (text overflows off the right edge of the page)EDIT: I'm referring to layout of the blog post in the thread title, the https://coalton.app/ is ok",
+    "parent": 44889359,
+    "depth": 1
+  },
+  {
+    "id": 44890701,
+    "by": "CraigJPerry",
+    "timeISO": "2025-08-13T16:40:17.000Z",
+    "textPlain": "Is Coalton not more about performance, removing the dynamicism - lisp (at least SBCL) is already type-safe. Or it behaves that way in my limited experience - e.g. i get feedback when i screw up.I'm completely clueless about Coalton, (and almost completely an idiot when it comes to CL more generally - been playing for a couple of years at this point but even so, every day is still a school day...)",
+    "parent": 44889359,
+    "depth": 1
+  },
+  {
+    "id": 44890914,
+    "by": "anentropic",
+    "timeISO": "2025-08-13T16:57:31.000Z",
+    "textPlain": "FYI coalton.app \"Type Classes\" example has \"Error: unmatched close parenthesis\" when you run it\"JSON Parser\" example also has errors",
+    "parent": 44890850,
+    "depth": 2
+  },
+  {
+    "id": 44891094,
+    "by": "skulk",
+    "timeISO": "2025-08-13T17:11:48.000Z",
+    "textPlain": "FWIW, SBCL is pretty good at optimizing away dynamic type checks if\nyou help it out.Here are some examples under:    (declaim (optimize (speed 2)))\n\nFirst example is a generic multiplication. x and y could be _any_ type at all.    (defun fn (x y) (* x y))\n\nIf we disassemble this function, we get the following:    ; disassembly for FN\n    ; Size: 34 bytes. Origin: #x1001868692                        ; FN\n    ; 92:       488975F8 MOV [RBP-8], RSI\n    ; 96:       4C8945F0 MOV [RBP-16], R8\n    ; 9A:       498BD0 MOV RDX, R8\n    ; 9D:       488BFE MOV RDI, RSI\n    ; A0:       FF142540061050 CALL [#x50100640]                ; SB-VM::GENERIC-*\n    ; A7:       4C8B45F0 MOV R8, [RBP-16]\n    ; AB:       488B75F8 MOV RSI, [RBP-8]\n    ; AF:       C9 LEAVE\n    ; B0:       F8 CLC\n    ; B1:       C3 RET\n    ; B2:       CC0F INT3 15                          ; Invalid argument count trap\n\nNote that it calls `GENERIC-*` which probably checks a lot of things and has a decent overhead.Now, if we tell it that x and y are bytes, it's going to give us much simpler code.    (declaim (ftype (function ((unsigned-byte 8) (unsigned-byte 8)) (unsigned-byte 16)) fn-t))\n    (defun fn-t (x y) (* x y))\n\nThe resulting code uses the imul instruction.    ; disassembly for FN-T\n    ; Size: 15 bytes. Origin: #x1001868726                        ; FN-T\n    ; 26:       498BD0 MOV RDX, R8\n    ; 29:       48D1FA SAR RDX, 1\n    ; 2C:       480FAFD7 IMUL RDX, RDI\n    ; 30:       C9 LEAVE\n    ; 31:       F8 CLC\n    ; 32:       C3 RET\n    ; 33:       CC0F INT3 15                          ; Invalid argument count trap*",
+    "parent": 44890701,
+    "depth": 2
+  },
+  {
+    "id": 44890841,
+    "by": "tmtvl",
+    "timeISO": "2025-08-13T16:52:20.000Z",
+    "textPlain": "In CL you can't declare, for example, a proper-list-of type, which is to say a type which accepts a second type and represents a proper list containing only members of that second type.  (deftype Proper-List-Of (subtype)\n    `(or Null\n         (Cons ,subtype\n               (Proper-List-Of ,subtype))))\n\nDoesn't work (for example). There kind of are ways to work around it to some extent with satisfies and ad-hoc predicate generation, but Coalton is a true value add in that aspect.",
+    "parent": 44890701,
+    "depth": 2
+  },
+  {
+    "id": 44890838,
+    "by": "wild_egg",
+    "timeISO": "2025-08-13T16:52:09.000Z",
+    "textPlain": "CL is strongly typed but not statically typed. The compiler generally doesn't complain ahead of time that your function is going to do math on a string because it was called incorrectly. Typically a runtime condition will be signalled when it hits that point and you can sort it out from there.Coalton moves that to the compilation step so you get an error back the instant you send the form to the REPL.",
+    "parent": 44890701,
+    "depth": 2
+  },
+  {
+    "id": 44890792,
+    "by": "asplake",
+    "timeISO": "2025-08-13T16:48:20.000Z",
+    "textPlain": "I’ve looked at it rather than used it, but what it brings is ML-style polymorphism. Type safety is a given in that case, which may or may not be the case with CL (I’ll let others argue that one).",
+    "parent": 44890701,
+    "depth": 2
+  }
+]

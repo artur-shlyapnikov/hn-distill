@@ -8,10 +8,10 @@
     "depth": 1
   },
   {
-    "id": 44889904,
-    "by": "rikroots",
-    "timeISO": "2025-08-13T15:38:57.000Z",
-    "textPlain": "I've done a lot of work recently to make my library more \"LLM Friendly\", but I'm not willing at this time to sign up to a service which I don't know I'd ever use again just to run a test on your behalf. If you want to run the test on my library then its GitHub can be found here: https://github.com/KaliedaRik/Scrawl-canvas",
+    "id": 44890929,
+    "by": "prophesi",
+    "timeISO": "2025-08-13T16:58:44.000Z",
+    "textPlain": "In Elixir land, the Ash Framework created a package called usage_rules[0] as an experimental attempt to solve this problem a few months ago. The latest version of the Phoenix Framework (1.8) includes it in their `mix phx.new` generator and in their own hex packages[1]. Library owners would need to add their own usage rules, but it seems to help even for just the core packages Phoenix includes.[0] https://hexdocs.pm/usage_rules/readme.html[1] https://github.com/phoenixframework/phoenix/tree/main/usage-...",
     "parent": 44888847,
     "depth": 1
   },
@@ -24,10 +24,34 @@
     "depth": 1
   },
   {
+    "id": 44889904,
+    "by": "rikroots",
+    "timeISO": "2025-08-13T15:38:57.000Z",
+    "textPlain": "I've done a lot of work recently to make my library more \"LLM Friendly\", but I'm not willing at this time to sign up to a service which I don't know I'd ever use again just to run a test on your behalf. If you want to run the test on my library then its GitHub can be found here: https://github.com/KaliedaRik/Scrawl-canvas",
+    "parent": 44888847,
+    "depth": 1
+  },
+  {
     "id": 44889785,
     "by": "metadat",
     "timeISO": "2025-08-13T15:31:39.000Z",
     "textPlain": "The skip-to-the-end answer: Context7 MCP is so good it seems like magic, even to many well-informed, highly capable hackers.  Simply wildly good for libraries and SDKs.  All it takes to start using it is to add the MCP provider to your agent config and save your arms, \"Use Context7 for this\".https://context7.com/",
+    "parent": 44888847,
+    "depth": 1
+  },
+  {
+    "id": 44890660,
+    "by": "bcrosby95",
+    "timeISO": "2025-08-13T16:37:12.000Z",
+    "textPlain": "It's a neat idea.  But if, as we're told, LLMs will get better and better, something like this, in theory, will be increasingly unnecessary.I feel like most of the problems with AI using a library is how we mix code and implementation. C, C++ got it right (even if by accident) with separating specification from implementation.Instead of lamenting the design trend of not maintaining this split, for my own code I wrote a utility to extract specifications from my existing code.",
+    "parent": 44888847,
+    "depth": 1
+  },
+  {
+    "id": 44890602,
+    "by": "9rx",
+    "timeISO": "2025-08-13T16:31:16.000Z",
+    "textPlain": "What do coding agents need my library for?Don't they know how to write their own code? Isn't that a coding agent's entire purpose in life?There must be conflicting definitions out there. What does \"coding agent\" mean in this context?",
     "parent": 44888847,
     "depth": 1
   },
@@ -48,18 +72,18 @@
     "depth": 2
   },
   {
-    "id": 44889956,
-    "by": "bdhcuidbebe",
-    "timeISO": "2025-08-13T15:43:29.000Z",
-    "textPlain": "> If coding agents are the new entry point to your library, how sure are you that they’re using it well?> I asked this question to about 50 library maintainers and dev tool builders, and the majority didn't really know.Why should they even bother to answer such a loaded and hypothetical question?",
-    "parent": 44888848,
-    "depth": 2
-  },
-  {
     "id": 44889806,
     "by": "justonceokay",
     "timeISO": "2025-08-13T15:32:44.000Z",
     "textPlain": "If making dev tooling is selling shovels to the miners, then this is like selling sheet metal to the shovel makers.",
+    "parent": 44888848,
+    "depth": 2
+  },
+  {
+    "id": 44889956,
+    "by": "bdhcuidbebe",
+    "timeISO": "2025-08-13T15:43:29.000Z",
+    "textPlain": "> If coding agents are the new entry point to your library, how sure are you that they’re using it well?> I asked this question to about 50 library maintainers and dev tool builders, and the majority didn't really know.Why should they even bother to answer such a loaded and hypothetical question?",
     "parent": 44888848,
     "depth": 2
   },
@@ -101,6 +125,38 @@
     "timeISO": "2025-08-13T15:41:31.000Z",
     "textPlain": "What is the best approach to have something like context7 for internal tools and libraries?",
     "parent": 44889785,
+    "depth": 2
+  },
+  {
+    "id": 44890891,
+    "by": "burnte",
+    "timeISO": "2025-08-13T16:55:59.000Z",
+    "textPlain": "> It's a neat idea. But if, as we're told, LLMs will get better and better, something like this, in theory, will be increasingly unnecessary.I don't think so. I think understanding the context of a project will always produce superior results. I think instead we'll just make it a lot easier to add to the training corpus the LLM pulls from.",
+    "parent": 44890660,
+    "depth": 2
+  },
+  {
+    "id": 44890738,
+    "by": "weitendorf",
+    "timeISO": "2025-08-13T16:43:20.000Z",
+    "textPlain": "Respectfully, I disagree. It is much faster and cheaper to direct an LLM to add a call to a battle-tested library that encapsulates complex logic than it is to design and implement that logic from scratch, even if it’s capable of that.We’re betting on almost the exact opposite idea: we can make agentic software engineering cheaper and more reliable by making it easy for LLMs to write, find, and integrate libraries and other third party software.",
+    "parent": 44890660,
+    "depth": 2
+  },
+  {
+    "id": 44890816,
+    "by": "weitendorf",
+    "timeISO": "2025-08-13T16:50:05.000Z",
+    "textPlain": "Why did my engineering team handle payments through Stripe instead of building a custom payment processor? Aren’t they supposed to be engineering things?",
+    "parent": 44890602,
+    "depth": 2
+  },
+  {
+    "id": 44891118,
+    "by": "richardblythman",
+    "timeISO": "2025-08-13T17:14:34.000Z",
+    "textPlain": "good to know. i think we're likely to move towards running coding agents locally in the next iteration.",
+    "parent": 44890027,
     "depth": 2
   },
   {

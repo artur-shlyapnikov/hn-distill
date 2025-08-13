@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44890097,
-    "by": "LegionMammal978",
-    "timeISO": "2025-08-13T15:53:54.000Z",
-    "textPlain": "This library has a very interesting algorithm  for computing the curve point closest to a given point, seemingly based on a root-finder that doesn't need any complex numbers. Does anyone know of any resources about such an algorithm?",
-    "parent": 44846781,
-    "depth": 1
-  },
-  {
     "id": 44888089,
     "by": "__jonas",
     "timeISO": "2025-08-13T13:19:57.000Z",
     "textPlain": "This looks really nice!I’m currently looking for a nice implementation of stroke expansion (here called outlining) that I can run in the browser, this seems like a good option besides skia (pathkit)[0] and vello/kurbo[1].Ideally I’d love to be able to expand in a non-uniform way, similar to what Metafont does for bitmap fonts, or what Inkscape allows with its power stroke effect, or even just with a non-uniform ‘nib’ as is possible with FontForge[2].This doesn’t seem to be something that these bezier libraries generally offer which is understandable, probably a rather niche goal.[0] https://skia.org/docs/user/modules/pathkit/[1] https://doc.servo.org/kurbo/stroke/index.html[2] https://fontforge.org/docs/techref/stroke.html",
+    "parent": 44846781,
+    "depth": 1
+  },
+  {
+    "id": 44890097,
+    "by": "LegionMammal978",
+    "timeISO": "2025-08-13T15:53:54.000Z",
+    "textPlain": "This library has a very interesting algorithm  for computing the curve point closest to a given point, seemingly based on a root-finder that doesn't need any complex numbers. Does anyone know of any resources about such an algorithm?",
     "parent": 44846781,
     "depth": 1
   },
@@ -40,22 +40,6 @@
     "depth": 1
   },
   {
-    "id": 44888217,
-    "by": "graphviz",
-    "timeISO": "2025-08-13T13:32:12.000Z",
-    "textPlain": "Any ideas how these primitives could be used to implement an edge router for drawing natural-looking curves around obstacles in diagrams, as an improvement on the 25-year-old solver in graphviz https://dpd.cs.princeton.edu/Papers/DGKN97.pdf?",
-    "parent": 44846781,
-    "depth": 1
-  },
-  {
-    "id": 44890323,
-    "by": "brcmthrowaway",
-    "timeISO": "2025-08-13T16:10:24.000Z",
-    "textPlain": "If only you could make a perfect circle out of bezier curves.. then P=NP",
-    "parent": 44846781,
-    "depth": 1
-  },
-  {
     "id": 44885119,
     "by": "pjmlp",
     "timeISO": "2025-08-13T06:10:17.000Z",
@@ -64,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44884409,
-    "by": "Syzygies",
-    "timeISO": "2025-08-13T03:29:45.000Z",
-    "textPlain": "I'm hoping to code Bezier animation in OCaml/F# in four dimensional space time, with a moving vantage point. Offload rendering each time slice frame to worker threads.I'm surprised Bezier-rs is all about curves. Sure, fonts, but I can't be alone here in seeing curves as a special case.It's easy as a pure mathematician to write off Bezier theory as \"specialized\" but it's simply the right way to work with polynomials on a simplex.",
+    "id": 44888217,
+    "by": "graphviz",
+    "timeISO": "2025-08-13T13:32:12.000Z",
+    "textPlain": "Any ideas how these primitives could be used to implement an edge router for drawing natural-looking curves around obstacles in diagrams, as an improvement on the 25-year-old solver in graphviz https://dpd.cs.princeton.edu/Papers/DGKN97.pdf?",
     "parent": 44846781,
     "depth": 1
   },
@@ -80,10 +64,26 @@
     "depth": 1
   },
   {
+    "id": 44884409,
+    "by": "Syzygies",
+    "timeISO": "2025-08-13T03:29:45.000Z",
+    "textPlain": "I'm hoping to code Bezier animation in OCaml/F# in four dimensional space time, with a moving vantage point. Offload rendering each time slice frame to worker threads.I'm surprised Bezier-rs is all about curves. Sure, fonts, but I can't be alone here in seeing curves as a special case.It's easy as a pure mathematician to write off Bezier theory as \"specialized\" but it's simply the right way to work with polynomials on a simplex.",
+    "parent": 44846781,
+    "depth": 1
+  },
+  {
     "id": 44884695,
     "by": "continuational",
     "timeISO": "2025-08-13T04:40:28.000Z",
     "textPlain": "Very neat. I'm not sure if I missed it, but is there any way to get n equidistant points on the curve?E.g. for moving an object at constant speed along the curve.",
+    "parent": 44846781,
+    "depth": 1
+  },
+  {
+    "id": 44890323,
+    "by": "brcmthrowaway",
+    "timeISO": "2025-08-13T16:10:24.000Z",
+    "textPlain": "If only you could make a perfect circle out of bezier curves.. then P=NP",
     "parent": 44846781,
     "depth": 1
   },
@@ -104,6 +104,14 @@
     "depth": 1
   },
   {
+    "id": 44890646,
+    "by": "meindnoch",
+    "timeISO": "2025-08-13T16:36:20.000Z",
+    "textPlain": "\"The boolean operations are implemented using a graph-based approach. After the parsing the input, self-intersecting cubic beziers curves are simplified. Then the intersection points between all edges are calculated. These are then turned into a graph representation where every intersection becomes a new vertex. We then apply edge contractions to remove vertices with a degree of 2 to compute the graph minor. At this stage, identical edges are deduplicated. Because we are ultimately interested in the faces of the graph to decide if they should be included in the final output, we then compute the dual graph in which the faces become vertices and vertices become the new faces. That dual structure is then used to determine which faces (dual vertices) should be included in the final output.\"This would be such a pain in the ass to implement with good precision and performance.",
+    "parent": 44886800,
+    "depth": 2
+  },
+  {
     "id": 44889857,
     "by": "stuaxo",
     "timeISO": "2025-08-13T15:36:09.000Z",
@@ -117,6 +125,14 @@
     "timeISO": "2025-08-13T10:57:26.000Z",
     "textPlain": "Link to the code for the mentioned Rust path-bool crate:https://github.com/GraphiteEditor/Graphite/tree/master/libra...",
     "parent": 44886800,
+    "depth": 2
+  },
+  {
+    "id": 44891018,
+    "by": "CyLith",
+    "timeISO": "2025-08-13T17:04:40.000Z",
+    "textPlain": "The library only solves up to cubic equations, and the comments have a link to the following page:\nhttps://momentsingraphics.de/CubicRoots.htmlFor general polynomials, it matters a great deal in what basis it is represented. The typical monomial basis is usually not the best from a numerical standpoint. I am aware of some modern methods such as this: https://arxiv.org/pdf/1611.02435For polynomials expressed in e.g. a Bernstein basis, there are often much faster and stable tailored methods working solving for the eigenvalues of a companion matrix of a different form.",
+    "parent": 44890097,
     "depth": 2
   },
   {
@@ -141,6 +157,14 @@
     "timeISO": "2025-08-13T04:49:13.000Z",
     "textPlain": "There is indeed: Bezier::compute_lookup_table[1]. You'll want to use a `TValueType` of `Euclidean` to get equidistant points.[1]: https://docs.rs/bezier-rs/latest/bezier_rs/struct.Bezier.htm...",
     "parent": 44884695,
+    "depth": 2
+  },
+  {
+    "id": 44890548,
+    "by": "Sharlin",
+    "timeISO": "2025-08-13T16:27:15.000Z",
+    "textPlain": "With rational Bézier curves you can!",
+    "parent": 44890323,
     "depth": 2
   },
   {
