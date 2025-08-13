@@ -1,17 +1,25 @@
 [
   {
-    "id": 44885007,
-    "by": "jchw",
-    "timeISO": "2025-08-13T05:45:06.000Z",
-    "textPlain": "Apparently it was fixed upstream by Google?https://gitlab.com/fdroid/admin/-/issues/593#note_2681207153Not sure how long it will take to get resolved but that thread seems reassuring even if there isn't a direct source that it was fixed.",
+    "id": 44885539,
+    "by": "42lux",
+    "timeISO": "2025-08-13T07:21:50.000Z",
+    "textPlain": ">> This has led to multiple “maintenance” versions in a short time, confusing users and wasting developer time, just to work around infrastructure issues outside the developer’s control.What an entitled conclusion.",
     "parent": 44884709,
     "depth": 1
   },
   {
-    "id": 44884904,
-    "by": "mjevans",
-    "timeISO": "2025-08-13T05:24:43.000Z",
-    "textPlain": "https://en.wikipedia.org/wiki/Streaming_SIMD_Extensions#Late...Even my last, crazy long in the tooth, desktop supported this and it lived to almost 10 years old before being replaced.However at the same time, not even offering a fallback path in non-assembly?",
+    "id": 44885476,
+    "by": "karteum",
+    "timeISO": "2025-08-13T07:11:24.000Z",
+    "textPlain": "I don't fully understand: aren't gradle and aapt2 open-source ?If you want to build buildroot or openwrt, the first thing it will do is compiling your own toolchain (rather than reusing the one from your distro) so that it can lead to predictable results. I would have the same rationale for f-droid : why not compile the whole toolchain from source rather than using a binary gradle/aapt2 that uses unsupported instructions?",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44885007,
+    "by": "jchw",
+    "timeISO": "2025-08-13T05:45:06.000Z",
+    "textPlain": "Apparently it was fixed upstream by Google?https://gitlab.com/fdroid/admin/-/issues/593#note_2681207153Not sure how long it will take to get resolved but that thread seems reassuring even if there isn't a direct source that it was fixed.",
     "parent": 44884709,
     "depth": 1
   },
@@ -24,10 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44885181,
-    "by": "micw",
-    "timeISO": "2025-08-13T06:19:36.000Z",
-    "textPlain": "As far as I can see, sse4.1 has been introduced in CPUs in 2011. That's more than 10 years ago. I wonder why such old servers are still in use. I'd assume that a modern CPU would do the same amount of work with a fraction of energy so that it does not even make economical sense to run such outdated hardware.Does anyone know the numbers of build servers and the specs?",
+    "id": 44884904,
+    "by": "mjevans",
+    "timeISO": "2025-08-13T05:24:43.000Z",
+    "textPlain": "https://en.wikipedia.org/wiki/Streaming_SIMD_Extensions#Late...Even my last, crazy long in the tooth, desktop supported this and it lived to almost 10 years old before being replaced.However at the same time, not even offering a fallback path in non-assembly?",
     "parent": 44884709,
     "depth": 1
   },
@@ -40,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44885018,
-    "by": "roywashere",
-    "timeISO": "2025-08-13T05:47:37.000Z",
-    "textPlain": "This is sort of like a bug I hit last year when the mysql docker container suddenly started requiring x86-64-v2 after a patch level upgrade and failed to start: https://github.com/docker-library/mysql/issues/1055",
+    "id": 44885181,
+    "by": "micw",
+    "timeISO": "2025-08-13T06:19:36.000Z",
+    "textPlain": "As far as I can see, sse4.1 has been introduced in CPUs in 2011. That's more than 10 years ago. I wonder why such old servers are still in use. I'd assume that a modern CPU would do the same amount of work with a fraction of energy so that it does not even make economical sense to run such outdated hardware.Does anyone know the numbers of build servers and the specs?",
     "parent": 44884709,
     "depth": 1
   },
@@ -52,6 +60,14 @@
     "by": "yjftsjthsd-h",
     "timeISO": "2025-08-13T06:13:50.000Z",
     "textPlain": "> Google’s new aapt2 binary in AGP 8.12.0Given F-Droid's emphasis on isolating and protecting their build environment, I'm kind of surprised that they're just using upstream binaries and not building from source.",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44885018,
+    "by": "roywashere",
+    "timeISO": "2025-08-13T05:47:37.000Z",
+    "textPlain": "This is sort of like a bug I hit last year when the mysql docker container suddenly started requiring x86-64-v2 after a patch level upgrade and failed to start: https://github.com/docker-library/mysql/issues/1055",
     "parent": 44884709,
     "depth": 1
   },
@@ -128,6 +144,14 @@
     "depth": 1
   },
   {
+    "id": 44885430,
+    "by": "hulitu",
+    "timeISO": "2025-08-13T07:04:21.000Z",
+    "textPlain": "> The root cause: Google’s new aapt2 binary in AGP 8.12.0 started requiring CPU instructions (SSE4.1, SSSE3) that F-Droid’s build farm hardware doesn’t support.Very intelligent move from Google. Now you can't compile \"Hello World\" without SSE4.1, SSSE3. /sAre there any X86 tablets with Android ?",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
     "id": 44884891,
     "by": "do_not_redeem",
     "timeISO": "2025-08-13T05:22:37.000Z",
@@ -144,19 +168,11 @@
     "depth": 2
   },
   {
-    "id": 44884948,
-    "by": "wtallis",
-    "timeISO": "2025-08-13T05:34:19.000Z",
-    "textPlain": "> However at the same time, not even offering a fallback path in non-assembly?There's probably not any hand-written assembly at issue here, just a compiler told to target x86_64-v2. Among others, RHEL 9 and derivatives were built with such options. (RHEL 10 bumped up the minimum spec again to x86_64-v3, allowing use of AVX.)",
-    "parent": 44884904,
-    "depth": 2
-  },
-  {
-    "id": 44885099,
-    "by": "vocx2tx",
-    "timeISO": "2025-08-13T06:05:59.000Z",
-    "textPlain": "Looking at the issue their builders seem to be Opterons G3 (K10?)[0][0] https://en.wikipedia.org/wiki/AMD_10h",
-    "parent": 44884904,
+    "id": 44884902,
+    "by": "dannyw",
+    "timeISO": "2025-08-13T05:24:21.000Z",
+    "textPlain": "I agree it’s a bit concerning but please keep in mind F-Droid is a volunteer-run community project. Especially with some EU countries moving to open source software, it would be nice to see some public funding for projects like F-Droid.",
+    "parent": 44884865,
     "depth": 2
   },
   {
@@ -164,14 +180,6 @@
     "by": "happosai",
     "timeISO": "2025-08-13T05:54:02.000Z",
     "textPlain": "Maybe if f-droid is important to you, donate, so they can buy newer build server?",
-    "parent": 44884865,
-    "depth": 2
-  },
-  {
-    "id": 44884902,
-    "by": "dannyw",
-    "timeISO": "2025-08-13T05:24:21.000Z",
-    "textPlain": "I agree it’s a bit concerning but please keep in mind F-Droid is a volunteer-run community project. Especially with some EU countries moving to open source software, it would be nice to see some public funding for projects like F-Droid.",
     "parent": 44884865,
     "depth": 2
   },
@@ -192,11 +200,67 @@
     "depth": 2
   },
   {
+    "id": 44884948,
+    "by": "wtallis",
+    "timeISO": "2025-08-13T05:34:19.000Z",
+    "textPlain": "> However at the same time, not even offering a fallback path in non-assembly?There's probably not any hand-written assembly at issue here, just a compiler told to target x86_64-v2. Among others, RHEL 9 and derivatives were built with such options. (RHEL 10 bumped up the minimum spec again to x86_64-v3, allowing use of AVX.)",
+    "parent": 44884904,
+    "depth": 2
+  },
+  {
+    "id": 44885099,
+    "by": "vocx2tx",
+    "timeISO": "2025-08-13T06:05:59.000Z",
+    "textPlain": "Looking at the issue their builders seem to be Opterons G3 (K10?)[0][0] https://en.wikipedia.org/wiki/AMD_10h",
+    "parent": 44884904,
+    "depth": 2
+  },
+  {
     "id": 44884851,
     "by": "benrutter",
     "timeISO": "2025-08-13T05:17:35.000Z",
     "textPlain": "The Catima thread makes FDroid sound like a really difficult commmunity to work with. Although I'm basing this on one person's comment and other people agreeing, not on any knowledge or experience.> But this is like everything with F-Droid: everything always falls on a deaf man's ears. So I would rather not waste more time talking to a brick wall. If I had the feeling it was possible to improve F-Droid by raising issues and trying to discuss how to solve them I wouldn't have left the project out of frustration after years of putting so much time and energy into it.",
     "parent": 44884781,
+    "depth": 2
+  },
+  {
+    "id": 44885536,
+    "by": "adrian_b",
+    "timeISO": "2025-08-13T07:21:09.000Z",
+    "textPlain": "It has been introduced in Intel Penryn, in November 2007.However the AMD CPUs did not implement it until Bulldozer, in mid 2011.While they lacked the many additional instructions provided by Bulldozer, also including AVX and FMA, for many applications the older Opteron CPUs were significantly faster than the Bulldozer-based CPUs, so there were few incentives for upgrading them, before the launch of AMD Epyc in mid 2017.",
+    "parent": 44885181,
+    "depth": 2
+  },
+  {
+    "id": 44885380,
+    "by": "cjaackie",
+    "timeISO": "2025-08-13T06:57:15.000Z",
+    "textPlain": "I haven’t seen the real answer that I suspect here - the build servers are that one dual socket AMD board which runs open firmware and has no ME/PSP .",
+    "parent": 44885181,
+    "depth": 2
+  },
+  {
+    "id": 44885308,
+    "by": "LukeShu",
+    "timeISO": "2025-08-13T06:42:53.000Z",
+    "textPlain": "I was going to say that I assume that the reason for such old CPUs is the ability to use Canoeboot/GNU Boot.  But you absolutely can put an SSE4.2 CPU in a KGPE-D16 motherboard.  So IDK.",
+    "parent": 44885181,
+    "depth": 2
+  },
+  {
+    "id": 44885282,
+    "by": "heavyset_go",
+    "timeISO": "2025-08-13T06:38:26.000Z",
+    "textPlain": "Hardware after the first couple of generations of x86_64 muliticore processors are perfectly capable machines to use as servers, even for tasks you want to put off to a build farm.",
+    "parent": 44885181,
+    "depth": 2
+  },
+  {
+    "id": 44884996,
+    "by": "userbinator",
+    "timeISO": "2025-08-13T05:43:46.000Z",
+    "textPlain": "control the universeGuess what the company behind Android wants to do...",
+    "parent": 44884926,
     "depth": 2
   },
   {
@@ -208,11 +272,11 @@
     "depth": 2
   },
   {
-    "id": 44884996,
-    "by": "userbinator",
-    "timeISO": "2025-08-13T05:43:46.000Z",
-    "textPlain": "control the universeGuess what the company behind Android wants to do...",
-    "parent": 44884926,
+    "id": 44885304,
+    "by": "tonyhart7",
+    "timeISO": "2025-08-13T06:42:33.000Z",
+    "textPlain": "\"If I had the time, I'd try to compile a binary of it that will run on Win95 just to give my fuckings to the planned obsolescence crowd\"The idea that not supporting a 20+ year old system is \"planned obsolescence\" is a bit shallow",
+    "parent": 44885022,
     "depth": 2
   },
   {
@@ -245,6 +309,22 @@
     "timeISO": "2025-08-13T06:18:36.000Z",
     "textPlain": "I stood by Oracle, because in the long term as it has been proven, Android is Google's J++, and Kotlin became Google's C#.Hardly any different from what was in the genesis of .NET.Nowadays they support up to Java 17 LTS, a subset only as usual, mostly because Android was being left behind accessing the Java ecosystem on Maven central.And even though now ART is updatable via PlayStore, all the way down to Android 12, they see no need to move beyond Java 17 subset, until most likely they start again missing on key libraries that decided to adopt newer features.Also stuff like Panama, Loom, Vector, Valhala (if ever), don't count them ever being supported on ART.At least, they managed to push into mainstream the closest idea of OSes like Oberon, Inferno, Java OS and co, where regardless of what think about the superiotity of UNIX clones, here they have to contend themselves with a managed userspace, something that Microsoft failed at with Longhorn, Singularity and Midori due to their internal politics.",
     "parent": 44884925,
+    "depth": 2
+  },
+  {
+    "id": 44885273,
+    "by": "tonyhart7",
+    "timeISO": "2025-08-13T06:36:38.000Z",
+    "textPlain": "JVM??? hell no, native FTW",
+    "parent": 44884925,
+    "depth": 2
+  },
+  {
+    "id": 44885278,
+    "by": "rpcope1",
+    "timeISO": "2025-08-13T06:37:52.000Z",
+    "textPlain": "Yeah I was kind of shocked too. Core 2 could do both of those instruction sets. A used Dell Precision can be had for very little and probably would be grossly more efficient than whatever they're using.",
+    "parent": 44885070,
     "depth": 2
   },
   {
