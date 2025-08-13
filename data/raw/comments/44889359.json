@@ -1,5 +1,13 @@
 [
   {
+    "id": 44891207,
+    "by": "paddy_m",
+    "timeISO": "2025-08-13T17:23:05.000Z",
+    "textPlain": "I have heard multiple people claim that macros are incompatible with strong or static typing and I don't see why.If there were a lisp with optional static typing like typescript, it would seem to me to be completely possible to write macros that write types.  In many cases it woudl do away with the need for generic types (and allow multiple competing syntaxes for dynamic types).  Most interestingly it would allow you to write new generic forms instead of waiting for whatever the language designer gives you.  It would also allow you access to types at runtime (which the typescript language designers took away).Maybe people were telling me that lisp style macros were incompatible with hindley millner typing, but I still don't see how.  The macros would just emit a hindley milmner subset.What am I missing?",
+    "parent": 44889359,
+    "depth": 1
+  },
+  {
     "id": 44890850,
     "by": "anentropic",
     "timeISO": "2025-08-13T16:52:41.000Z",
@@ -14,6 +22,14 @@
     "textPlain": "Is Coalton not more about performance, removing the dynamicism - lisp (at least SBCL) is already type-safe. Or it behaves that way in my limited experience - e.g. i get feedback when i screw up.I'm completely clueless about Coalton, (and almost completely an idiot when it comes to CL more generally - been playing for a couple of years at this point but even so, every day is still a school day...)",
     "parent": 44889359,
     "depth": 1
+  },
+  {
+    "id": 44891510,
+    "by": "reikonomusha",
+    "timeISO": "2025-08-13T17:46:41.000Z",
+    "textPlain": "As far as your first question is concerned, macros in and of themselves are not incompatible with a typed language. Coalton uses Lisp macros, for example, and they work seamlessly and as expected.But a Coalton macro is typically written in Lisp, not Coalton. This isn't in and of itself a problem---it's very easy and straightforward thus to write Common Lisp-style macros in Coalton. The difficulties arise when the macro must itself be (1) written in a statically typed manner, which gets into having a complete typing on your metalanguage (or your AST), and (2) allowed to access the type environment of the surrounding context in which the expansion is happening. If (2) should be accomplished, then the type-checking machinery must collaborate with the macro-expansion machinery, and that in practice makes both tasks very difficult to specify semantics for and implement.The language Hackett [1] worked toward solving the problem of having true typed and type-aware macros (they call them \"type-aware\" and \"type-directed\" macros [2]). Development unfortunately ceased ~7 years ago.[1] https://github.com/lexi-lambda/hackett[2] I think this video has a good discussion of Lisp, macros, and static types, from the perspective of implementing a Haskell in Racket. https://www.youtube.com/watch?v=5QQdI3P7MdY",
+    "parent": 44891207,
+    "depth": 2
   },
   {
     "id": 44890914,
@@ -32,6 +48,22 @@
     "depth": 2
   },
   {
+    "id": 44891834,
+    "by": "reikonomusha",
+    "timeISO": "2025-08-13T18:10:37.000Z",
+    "textPlain": "I think it's three things:1. Bringing abstractions that are only possible with static types, like ad hoc polymorphism via type classes. For example, type classes allow polymorphism on the return type rather than the argument types. Something like    (declare stringify (Into :a String => :a -> :a -> String))\n    (define (stringify a b)\n      (str:concat (into a) (into b)))\n\n    ; COALTON-USER> (coalton (stringify 1 2))\n    ; \"12\"\n\nThe function `into` is not possible in a typical dynamically typed language, at least if we aim for the language to be efficient. It only takes one argument, but what it does depends on what it's expected to return. Here, it's expected to return a string, so it knows to convert the argument type to a string (should knowledge of how to do that be known by the compiler). Common Lisp's closest equivalents would be    (concatenate 'string (coerce a 'string) (coerce y 'string))\n\nwhich, incidentally, won't actually do what we want.2. Making high performance more accessible. It's possible to get very high performance out of Common Lisp, but it usually leads to creating difficult or inextensible abstractions. A lot of very high performance Common Lisp code ends up effectively looking like monomorphic imperative code; it's the most practical way to coax the compiler into producing efficient assembly.Coalton, though, has an optimizing compiler that does (some amount of) heuristic inlining, representation selection, stack allocation, constant folding, call-site optimization, code motion, etc. Common Lisp often can't do certain optimizations because the language must respect the standard, which allows things to be redefined at run-time, for example. Coalton's delineation of \"development\" and \"release\" modes gives the programmer the option to say \"I'm done!\" and let the compiler rip through the code and optimize it.3. Type safety, of course, in the spirit of ML/Haskell/etc.",
+    "parent": 44890701,
+    "depth": 2
+  },
+  {
+    "id": 44891774,
+    "by": "tgbugs",
+    "timeISO": "2025-08-13T18:06:27.000Z",
+    "textPlain": "I highly recommend watching [0] for an introduction to Coalton in the context of CL. Specifically it provides an excellent example of how the type system makes the language more expressive (by making it more composable) while also improving performance (e.g. because it can prove that certain optimizations are safe and thus can automatically generate the type annotations).0. https://www.youtube.com/watch?v=of92m4XNgrM",
+    "parent": 44890701,
+    "depth": 2
+  },
+  {
     "id": 44890841,
     "by": "tmtvl",
     "timeISO": "2025-08-13T16:52:20.000Z",
@@ -44,6 +76,14 @@
     "by": "wild_egg",
     "timeISO": "2025-08-13T16:52:09.000Z",
     "textPlain": "CL is strongly typed but not statically typed. The compiler generally doesn't complain ahead of time that your function is going to do math on a string because it was called incorrectly. Typically a runtime condition will be signalled when it hits that point and you can sort it out from there.Coalton moves that to the compilation step so you get an error back the instant you send the form to the REPL.",
+    "parent": 44890701,
+    "depth": 2
+  },
+  {
+    "id": 44892039,
+    "by": "bitwize",
+    "timeISO": "2025-08-13T18:27:18.000Z",
+    "textPlain": "Strong static typing is an absolute must for large scale software engineering. CL code can be made very performant without it, but there are enormous development speed and correctness gains to be had by type-checking programs before they are executed rather than at runtime.It's 2025, people. Dynamic languages for serious projects were a 90s fad, hopefully never to be repeated.",
     "parent": 44890701,
     "depth": 2
   },

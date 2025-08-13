@@ -8,10 +8,10 @@
     "depth": 1
   },
   {
-    "id": 44890932,
-    "by": "skyzouwdev",
-    "timeISO": "2025-08-13T16:58:59.000Z",
-    "textPlain": "That’s a tough one. It’s ironic that the very platform meant to keep apps open and accessible is now bottlenecked by outdated hardware.Upgrading the build farm CPUs seems like the obvious fix, but I’m guessing funding and coordination make it less straightforward. In the meantime, forcing devs to downgrade AGP or strip baseline profiles just to ship feels like a pretty big friction point.Long term, I wonder if F-Droid could offer an optional “modern build lane” with newer hardware, even if it means fewer guarantees of full reproducibility at first. That might at least keep apps from stalling out entirely.",
+    "id": 44884865,
+    "by": "benrutter",
+    "timeISO": "2025-08-13T05:19:23.000Z",
+    "textPlain": "This is pretty concerning, especially as FDroid is by far the largest non-google android store at the moment, something that I feel is really needed, regardless of your feelings about google.Does anyone know of plans to resolve this? Will FDroid update their servers? Are google looking into rolling back the requirement? (this last one sounds unlikely)",
     "parent": 44884709,
     "depth": 1
   },
@@ -20,14 +20,6 @@
     "by": "ivanjermakov",
     "timeISO": "2025-08-13T08:59:33.000Z",
     "textPlain": "Why not recompile aapt2 to correct target? It seems to be source available.https://android.googlesource.com/platform/frameworks/base/+/...",
-    "parent": 44884709,
-    "depth": 1
-  },
-  {
-    "id": 44884865,
-    "by": "benrutter",
-    "timeISO": "2025-08-13T05:19:23.000Z",
-    "textPlain": "This is pretty concerning, especially as FDroid is by far the largest non-google android store at the moment, something that I feel is really needed, regardless of your feelings about google.Does anyone know of plans to resolve this? Will FDroid update their servers? Are google looking into rolling back the requirement? (this last one sounds unlikely)",
     "parent": 44884709,
     "depth": 1
   },
@@ -72,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44886460,
-    "by": "yyyk",
-    "timeISO": "2025-08-13T09:49:27.000Z",
-    "textPlain": "Their servers are so old, even an entirely different architecture emulating x86_64 would still see a performance increase... So there's no OSS argument here - they could even buy a Talos, have no closed firmware, and still see a performance increase with emulation. If they don't care about the firmware, there are plenty of very cheap x86 options which are still more modern.",
+    "id": 44890932,
+    "by": "skyzouwdev",
+    "timeISO": "2025-08-13T16:58:59.000Z",
+    "textPlain": "That’s a tough one. It’s ironic that the very platform meant to keep apps open and accessible is now bottlenecked by outdated hardware.Upgrading the build farm CPUs seems like the obvious fix, but I’m guessing funding and coordination make it less straightforward. In the meantime, forcing devs to downgrade AGP or strip baseline profiles just to ship feels like a pretty big friction point.Long term, I wonder if F-Droid could offer an optional “modern build lane” with newer hardware, even if it means fewer guarantees of full reproducibility at first. That might at least keep apps from stalling out entirely.",
     "parent": 44884709,
     "depth": 1
   },
@@ -84,6 +76,14 @@
     "by": "nativeforks",
     "timeISO": "2025-08-13T05:01:18.000Z",
     "textPlain": "References:F-Droid admin issue: https://gitlab.com/fdroid/admin/-/issues/593Catima example: https://github.com/CatimaLoyalty/Android/issues/2608MBCompass case: https://github.com/CompassMB/MBCompass/issues/88",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44886460,
+    "by": "yyyk",
+    "timeISO": "2025-08-13T09:49:27.000Z",
+    "textPlain": "Their servers are so old, even an entirely different architecture emulating x86_64 would still see a performance increase... So there's no OSS argument here - they could even buy a Talos, have no closed firmware, and still see a performance increase with emulation. If they don't care about the firmware, there are plenty of very cheap x86 options which are still more modern.",
     "parent": 44884709,
     "depth": 1
   },
@@ -108,14 +108,6 @@
     "by": "tetris11",
     "timeISO": "2025-08-13T11:21:15.000Z",
     "textPlain": "I'm a bit lost in this thread, but I've written up what I know for other dummies like meAapt2 is an x86_64 standalone binary used to build android APKs for various CPU targetsPrevious versions of it used a simpler instruction set, but the new version requires an extra SIMD instruction SSE4. A lot of CPUs after 2008 support this, but not F-droid's current server farm?",
-    "parent": 44884709,
-    "depth": 1
-  },
-  {
-    "id": 44888033,
-    "by": "Sent1n3l",
-    "timeISO": "2025-08-13T13:14:15.000Z",
-    "textPlain": "Known for ages...another issue that's been spoken about but instead of resolving the F-Droid team decided to brush it under the rug and misdirect people instead of addressing it.\"Overall, this case study highlights how F-Droid’s inclusion policy ultimately harms end users by forcing app developers to adopt potentially decrepit development tools and build processes in service of its regnant FOSS ideology.\"Funny how this article is continually proved accurate and poignant:\nhttps://privsec.dev/posts/android/f-droid-security-issues/",
     "parent": 44884709,
     "depth": 1
   },
@@ -152,6 +144,14 @@
     "depth": 1
   },
   {
+    "id": 44884847,
+    "by": "trenchpilgrim",
+    "timeISO": "2025-08-13T05:17:05.000Z",
+    "textPlain": "I thought SSE 4.1 dates back to 2008 or so?",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
     "id": 44886468,
     "by": "Arech",
     "timeISO": "2025-08-13T09:50:35.000Z",
@@ -160,10 +160,10 @@
     "depth": 1
   },
   {
-    "id": 44884847,
-    "by": "trenchpilgrim",
-    "timeISO": "2025-08-13T05:17:05.000Z",
-    "textPlain": "I thought SSE 4.1 dates back to 2008 or so?",
+    "id": 44891851,
+    "by": "1970-01-01",
+    "timeISO": "2025-08-13T18:11:34.000Z",
+    "textPlain": "Put another way, Google is requiring you to have 65nm Intel chips. 2009-ish.",
     "parent": 44884709,
     "depth": 1
   },
@@ -192,14 +192,6 @@
     "depth": 1
   },
   {
-    "id": 44890318,
-    "by": "jdbdnxjdhe",
-    "timeISO": "2025-08-13T16:10:05.000Z",
-    "textPlain": "I don't get the issue, binary target is completely independent from host target on all but the most basic setups",
-    "parent": 44884709,
-    "depth": 1
-  },
-  {
     "id": 44887629,
     "by": "andix",
     "timeISO": "2025-08-13T12:28:48.000Z",
@@ -208,10 +200,10 @@
     "depth": 1
   },
   {
-    "id": 44888679,
-    "by": "mandown2308",
-    "timeISO": "2025-08-13T14:10:10.000Z",
-    "textPlain": "On the other hand, we have \"personal\" data centers for AI and mining farms for crypto.",
+    "id": 44888033,
+    "by": "Sent1n3l",
+    "timeISO": "2025-08-13T13:14:15.000Z",
+    "textPlain": "Known for ages...another issue that's been spoken about but instead of resolving the F-Droid team decided to brush it under the rug and misdirect people instead of addressing it.\"Overall, this case study highlights how F-Droid’s inclusion policy ultimately harms end users by forcing app developers to adopt potentially decrepit development tools and build processes in service of its regnant FOSS ideology.\"Funny how this article is continually proved accurate and poignant:\nhttps://privsec.dev/posts/android/f-droid-security-issues/",
     "parent": 44884709,
     "depth": 1
   },
@@ -224,10 +216,26 @@
     "depth": 1
   },
   {
+    "id": 44890318,
+    "by": "jdbdnxjdhe",
+    "timeISO": "2025-08-13T16:10:05.000Z",
+    "textPlain": "I don't get the issue, binary target is completely independent from host target on all but the most basic setups",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
     "id": 44886284,
     "by": "fancythat",
     "timeISO": "2025-08-13T09:22:22.000Z",
     "textPlain": "I don't know how much servers are they using or server specs besides ancient Opterons, but how is this even an issue in 2025?On Hetnzer (not affiliated), at this moment, i7-8700 (AVX2 supported) with 128 GB RAM, 2x1 TB SSD and 1 Gbit uplink costs 42.48 eur per month, VAT included, in their server auction section.What are we missing here, besides that build farm was left to decay?",
+    "parent": 44884709,
+    "depth": 1
+  },
+  {
+    "id": 44888679,
+    "by": "mandown2308",
+    "timeISO": "2025-08-13T14:10:10.000Z",
+    "textPlain": "On the other hand, we have \"personal\" data centers for AI and mining farms for crypto.",
     "parent": 44884709,
     "depth": 1
   },
@@ -352,22 +360,6 @@
     "depth": 2
   },
   {
-    "id": 44886875,
-    "by": "munchlax",
-    "timeISO": "2025-08-13T10:52:43.000Z",
-    "textPlain": "Have you tried building AOSP from available sources?Binaries everywhere. Tried to rebuild some of them with the available sources and noped the f out because that breaks the build so bad it's ridiculous.",
-    "parent": 44886143,
-    "depth": 2
-  },
-  {
-    "id": 44888483,
-    "by": "ethan_smith",
-    "timeISO": "2025-08-13T13:53:32.000Z",
-    "textPlain": "Using Docker with QEMU CPU emulation would be a more maintainable solution than recompiling aapt2, as it would handle future binary updates automatically without requiring custom patches for each release.",
-    "parent": 44886143,
-    "depth": 2
-  },
-  {
     "id": 44884902,
     "by": "dannyw",
     "timeISO": "2025-08-13T05:24:21.000Z",
@@ -384,19 +376,27 @@
     "depth": 2
   },
   {
-    "id": 44886061,
-    "by": "jraph",
-    "timeISO": "2025-08-13T08:46:34.000Z",
-    "textPlain": "Relatedly, we don't really have any up to date free software build of the Android SDK AFAIK. To build Android apps, we all rely on the Google binaries, which are non-free.https://forum.f-droid.org/t/call-for-help-making-free-softwa...",
-    "parent": 44885138,
+    "id": 44888788,
+    "by": "lucb1e",
+    "timeISO": "2025-08-13T14:19:07.000Z",
+    "textPlain": "> Are google looking into rolling back the requirement? (this last one sounds unlikely)That's apparently what they did last time. From the ticket:\"Back in 2021 developers complained that AAPT2 from Gradle Plugin 4.1.0 was throwing errors while the older 4.0.2 worked fine. \\n The issue was that 4.1.0 wanted a CPU which supports SSSE3 and on the older CPUs it would fail. \\n This was fixed for Gradle Plugin 4.2.0-rc01 / Gradle 7.0.0 alpha 9\"",
+    "parent": 44884865,
     "depth": 2
   },
   {
-    "id": 44886856,
-    "by": "DrewADesign",
-    "timeISO": "2025-08-13T10:51:16.000Z",
-    "textPlain": "> Their servers are so oldWhen I read this, pop culture has trained me to expect an insult, like: “Their servers are so old, they sat next to Ben Franklin in kindergarten.”",
-    "parent": 44886460,
+    "id": 44884943,
+    "by": "Jyaif",
+    "timeISO": "2025-08-13T05:33:23.000Z",
+    "textPlain": "> FDroid is by far the largest non-google android store at the momentNot even sure it's in the top 10",
+    "parent": 44884865,
+    "depth": 2
+  },
+  {
+    "id": 44890282,
+    "by": "1oooqooq",
+    "timeISO": "2025-08-13T16:07:12.000Z",
+    "textPlain": "why you read \"google build tools cannot be built from source and it was compiled with an optional optimizations as required\" and assume the right thing to do is to buy newer servers?",
+    "parent": 44884865,
     "depth": 2
   }
 ]

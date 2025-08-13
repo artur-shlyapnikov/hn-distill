@@ -1,13 +1,5 @@
 [
   {
-    "id": 44891105,
-    "by": "thaumaturgy",
-    "timeISO": "2025-08-13T17:13:18.000Z",
-    "textPlain": "Good to see this. For those that weren't aware, there's been a low-effort solution with https://github.com/dehydrated-io/dehydrated, combined with a pretty simple couple of lines in your vhost config:    location ^~ /.well-known/acme-challenge/ {\n        alias <path-to-your-acme-challenge-directory>;\n    }\n\nDehydrated has been around for a while and is a great low-overhead option for http-01 renewal automation.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44890666,
     "by": "Shank",
     "timeISO": "2025-08-13T16:37:35.000Z",
@@ -16,10 +8,26 @@
     "depth": 1
   },
   {
-    "id": 44891078,
-    "by": "stego-tech",
-    "timeISO": "2025-08-13T17:10:19.000Z",
-    "textPlain": "The IT Roller Coaster in two reactions:> Nginx Introduces Native Support for Acme ProtocolIT: “It’s about fucking time!”> The current preview implementation supports HTTP-01 challenges to verify the client’s domain ownership.IT: “FUCK. Alright, domain registrar, mint me a new wildcard please, one of the leading web infrastructure providers still can’t do a basic LE DNS-01 pull in 2025.”Seriously. PKI in IT is a PITA and I want someone to SOLVE IT without requiring AD CAs or Yet Another Hyperspecific Appliance (YAHA). If your load balancer, proxy server, web server, or router appliance can’t mint me a basic Acme certificate via DNS-01 challenges, then you officially suck and I will throw your product out for something like Caddy the first chance I get.While we’re at it, can we also allow DNS-01 certs to be issued for intermediate authorities, allowing internally-signed certificates to be valid via said Intermediary? That’d solve like, 99% of my PKI needs in any org, ever, forever.",
+    "id": 44892034,
+    "by": "smarx007",
+    "timeISO": "2025-08-13T18:27:01.000Z",
+    "textPlain": "When will this land in mainline distros (no PPAs etc)? Given that a new stable version of Debian was released very recently, I would imagine August 2027 for Debian and maybe April 2026 for Ubuntu?In this very thread some people complain that certbot uses snap for distribution. Imagine making a feature release and having to wait 1-2 years until your users will get it on a broad scale.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44892089,
+    "by": "thway15269037",
+    "timeISO": "2025-08-13T18:31:54.000Z",
+    "textPlain": "Does nginx still lock prometheus metrics and active probing behind $$$$$ (literal hundreds of thousands)? Forgot third most important thing. I think is was re-resolving upstreams.Anyway, good luck staying competitive lol. Almost everyone I knew either jumped to something more saner or in process of migrating away.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891105,
+    "by": "thaumaturgy",
+    "timeISO": "2025-08-13T17:13:18.000Z",
+    "textPlain": "Good to see this. For those that weren't aware, there's been a low-effort solution with https://github.com/dehydrated-io/dehydrated, combined with a pretty simple couple of lines in your vhost config:    location ^~ /.well-known/acme-challenge/ {\n        alias <path-to-your-acme-challenge-directory>;\n    }\n\nDehydrated has been around for a while and is a great low-overhead option for http-01 renewal automation.",
     "parent": 44889941,
     "depth": 1
   },
@@ -32,10 +40,34 @@
     "depth": 1
   },
   {
-    "id": 44891119,
-    "by": "samgranieri",
-    "timeISO": "2025-08-13T17:14:35.000Z",
-    "textPlain": "This is a good first start. One less moving part.\nThey should match caddy for feature parity on this, and also add dns01 challenges as well.I'm not using nginx these days because of this.",
+    "id": 44891745,
+    "by": "tialaramex",
+    "timeISO": "2025-08-13T18:03:57.000Z",
+    "textPlain": "It's good to see this, it surprised me that this didn't happen to basically everything, basically immediately.I figured either somehow Let's Encrypt doesn't work out, or, everybody bakes in ACME within 2-3 years. The idea that you can buy software in 2025 which has TLS encryption but expects you to go sort out the certificate. It's like if cars had to be refuelled periodically by taking them to a weird dedicated building which is not useful to anything else rather than just charging while you're asleep like a phone and... yeah you know what I get it now. You people are weird.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891078,
+    "by": "stego-tech",
+    "timeISO": "2025-08-13T17:10:19.000Z",
+    "textPlain": "The IT Roller Coaster in two reactions:> Nginx Introduces Native Support for Acme ProtocolIT: “It’s about fucking time!”> The current preview implementation supports HTTP-01 challenges to verify the client’s domain ownership.IT: “FUCK. Alright, domain registrar, mint me a new wildcard please, one of the leading web infrastructure providers still can’t do a basic LE DNS-01 pull in 2025.”Seriously. PKI in IT is a PITA and I want someone to SOLVE IT without requiring AD CAs or Yet Another Hyperspecific Appliance (YAHA). If your load balancer, proxy server, web server, or router appliance can’t mint me a basic Acme certificate via DNS-01 challenges, then you officially suck and I will throw your product out for something like Caddy the first chance I get.While we’re at it, can we also allow DNS-01 certs to be issued for intermediate authorities, allowing internally-signed certificates to be valid via said Intermediary? That’d solve like, 99% of my PKI needs in any org, ever, forever.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891203,
+    "by": "josegonzalez",
+    "timeISO": "2025-08-13T17:22:48.000Z",
+    "textPlain": "This is great. Dokku (of which I am the maintainer) has a hokey solution for this with our letsencrypt plugin, but thats caused a slew of random issues for users. Nginx sometimes gets \"stuck\" reloading and then can't find the endpoint for some reason. The fewer moving knobs, the better.That said, its going to take quite some time for this to land in stable repositories for Ubuntu and Debian, and it doesn't (yet?) have DNS challenge support - meaning no wildcards - so I don't think it'll be useful for Dokku in the short-term at least.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891278,
+    "by": "miggy",
+    "timeISO": "2025-08-13T17:28:35.000Z",
+    "textPlain": "It seems HAProxy also added ACME/DNS-01 challenge support in haproxy-3.3-dev6 very recently. https://www.mail-archive.com/haproxy@formilux.org/msg46035.h...",
     "parent": 44889941,
     "depth": 1
   },
@@ -48,10 +80,34 @@
     "depth": 1
   },
   {
+    "id": 44891796,
+    "by": "zaik",
+    "timeISO": "2025-08-13T18:08:06.000Z",
+    "textPlain": "Is there a way to notify other services, if renewal has succeed? My XMPP server also needs to use the certificate.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891335,
+    "by": "RagnarD",
+    "timeISO": "2025-08-13T17:34:06.000Z",
+    "textPlain": "After discovering Caddy, I don't use Nginx any longer. Just a much better development experience.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
     "id": 44890599,
     "by": "cobbzilla",
     "timeISO": "2025-08-13T16:31:04.000Z",
     "textPlain": "There’s a section on renewals but no description of how it works. Is there a background thread/process? Or is it request-driven? If request-driven, what about some hostname that’s (somehow) not seen traffic in >90 days?",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891119,
+    "by": "samgranieri",
+    "timeISO": "2025-08-13T17:14:35.000Z",
+    "textPlain": "This is a good first start. One less moving part.\nThey should match caddy for feature parity on this, and also add dns01 challenges as well.I'm not using nginx these days because of this.",
     "parent": 44889941,
     "depth": 1
   },
@@ -64,10 +120,10 @@
     "depth": 1
   },
   {
-    "id": 44891084,
-    "by": "andrewmcwatters",
-    "timeISO": "2025-08-13T17:10:34.000Z",
-    "textPlain": "It seems like if you commit your NGINX config with these updates, you can have one less process to your deployment if you're doing something like:    # https://certbot.eff.org/instructions?ws=other&os=ubuntufocal\n    sudo apt-get -y install certbot\n    # sudo certbot certonly --standalone\n    \n    ...\n    \n    # https://certbot.eff.org/docs/using.html#where-are-my-certificates\n    # sudo chmod -R 0755 /etc/letsencrypt/{live,archive}\n\nSo, unfortunately, this support still seems more involved than using certbot, but at least one less manual step is required.Example from https://github.com/andrewmcwattersandco/bootstrap-express",
+    "id": 44891550,
+    "by": "andrewstuart",
+    "timeISO": "2025-08-13T17:49:54.000Z",
+    "textPlain": "It was this that sent me from nginx to caddy.But I’m not going back. Nginx was a real pain to configure with so many puzzles and surprises and foot guns.",
     "parent": 44889941,
     "depth": 1
   },
@@ -80,12 +136,28 @@
     "depth": 1
   },
   {
+    "id": 44891084,
+    "by": "andrewmcwatters",
+    "timeISO": "2025-08-13T17:10:34.000Z",
+    "textPlain": "It seems like if you commit your NGINX config with these updates, you can have one less process to your deployment if you're doing something like:    # https://certbot.eff.org/instructions?ws=other&os=ubuntufocal\n    sudo apt-get -y install certbot\n    # sudo certbot certonly --standalone\n    \n    ...\n    \n    # https://certbot.eff.org/docs/using.html#where-are-my-certificates\n    # sudo chmod -R 0755 /etc/letsencrypt/{live,archive}\n\nSo, unfortunately, this support still seems more involved than using certbot, but at least one less manual step is required.Example from https://github.com/andrewmcwattersandco/bootstrap-express",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
     "id": 44890493,
     "by": "johnisgood",
     "timeISO": "2025-08-13T16:23:30.000Z",
-    "textPlain": "For now I will stick to what works, but I will give this a try. Anyone tried it?Caddy sounds interesting too, but I am afraid of switching because what I have works properly. :/",
+    "textPlain": "For now I will stick to what works (nginx + certbot), but I will give this a try. Anyone tried it?Caddy sounds interesting too, but I am afraid of switching because what I have works properly. :/",
     "parent": 44889941,
     "depth": 1
+  },
+  {
+    "id": 44890818,
+    "by": "clvx",
+    "timeISO": "2025-08-13T16:50:11.000Z",
+    "textPlain": "But you have to have your dns api key loaded and many dns providers don’t allow api keys per zone.\nI do like it but a compromise could be awful.",
+    "parent": 44890666,
+    "depth": 2
   },
   {
     "id": 44891135,
@@ -96,10 +168,26 @@
     "depth": 2
   },
   {
-    "id": 44890818,
-    "by": "clvx",
-    "timeISO": "2025-08-13T16:50:11.000Z",
-    "textPlain": "But you have to have your dns api key loaded and many dns providers don’t allow api keys per zone.\nI do like it but a compromise could be awful.",
+    "id": 44891511,
+    "by": "chaz6",
+    "timeISO": "2025-08-13T17:46:41.000Z",
+    "textPlain": "One of Traefik's shortcomings with ACME is that you can only use one api key per DNS provider. This is problematic if you want to restrict api keys to a domain, or use domains belonging to two different accounts. I hope Nginx will not have the same constraint.",
+    "parent": 44890666,
+    "depth": 2
+  },
+  {
+    "id": 44891761,
+    "by": "attentive",
+    "timeISO": "2025-08-13T18:05:16.000Z",
+    "textPlain": "Yes, ACME-DNS please - https://github.com/joohoi/acme-dnsLego supports it.",
+    "parent": 44890666,
+    "depth": 2
+  },
+  {
+    "id": 44891707,
+    "by": "kijin",
+    "timeISO": "2025-08-13T18:00:45.000Z",
+    "textPlain": "A practical problem with DNS-01 is that every DNS provider has a different API for creating the required TXT record. Certbot has more than a dozen plugins for different providers, and the list is growing. It shouldn't be nginx's job to keep track of all these third-party APIs.It would also be unreasonable to tell everyone to move their domains to a handful of giants like AWS and Cloudflare who already control so much of the internet, just so they could get certificates with DNS-01. I like my DNS a bit more decentralized than that.",
     "parent": 44890666,
     "depth": 2
   },
@@ -120,10 +208,42 @@
     "depth": 2
   },
   {
+    "id": 44892093,
+    "by": "giancarlostoro",
+    "timeISO": "2025-08-13T18:32:14.000Z",
+    "textPlain": "Nginx maintains their own repository from which you can install nginx on your Ubuntu / Debian systems.I looked at Arch and they're a version behind, which surprised me. Must not be a heavily maintained arch package.",
+    "parent": 44892034,
+    "depth": 2
+  },
+  {
+    "id": 44892063,
+    "by": "Saris",
+    "timeISO": "2025-08-13T18:29:39.000Z",
+    "textPlain": "I assume they're complaining that it's a snap vs flatpak, not so much vs the distro package repos.",
+    "parent": 44892034,
+    "depth": 2
+  },
+  {
+    "id": 44891175,
+    "by": "andrewmcwatters",
+    "timeISO": "2025-08-13T17:19:55.000Z",
+    "textPlain": "This is really cool, but I find projects that have thousands of people depending on it not cutting a stable release really distasteful.Edit: Downvote me all you want, that's reality folks, if you don't release v1.0.0, the interface you consume can change without you realizing it.Don't consume major version 0 software, it'll bite you one day. Convince your maintainers to release stable cuts if they've been sitting on major version 0 for years. It's just lazy and immature practice abusing semantic versioning. Maintainers can learn and grow. It's normal.Dehydrated has been major version 0 for 7 years, it's probably past due.See also React, LÖVE, and others that made 0.n.x jumps to n.x.x. (https://0ver.org)CalVer: \"If both you and someone you don't know use your project seriously, then use a serious version.\"SemVer: \"If your software is being used in production, it should probably already be 1.0.0.\"https://0ver.org/about.html",
+    "parent": 44891105,
+    "depth": 2
+  },
+  {
     "id": 44890654,
     "by": "elashri",
     "timeISO": "2025-08-13T16:36:52.000Z",
     "textPlain": "What I really like about Caddy is their better syntax. I actually use nginx (via nginx proxy manager) and Traefik but recently I did one project with Caddy and found it very nice. I might get the time to change my selfhosted setup to use Caddy in the future but probably will go with something like pangolin [1] because it provides alternative to cloudflare tunnels too.[1] https://github.com/fosrl/pangolin",
+    "parent": 44890497,
+    "depth": 2
+  },
+  {
+    "id": 44891303,
+    "by": "tgv",
+    "timeISO": "2025-08-13T17:31:09.000Z",
+    "textPlain": "I switched over to caddy recently. Nginx' non-information about the http 1 desync problem drove me over. I'm not going to wait for something stupid to happen or an auditor ask me questions nginx doesn't answer.Caddy is really easier than nginx. For starters, I now have templates that cover the main services and their test services, and the special service that runs for an education institution. Logging is better. Certificate handling is perfect (for my case, at least). And it has better metrics.Now I have to figure out plugins though, because caddy doesn't have rate limiting and some stupid bug in powerbi makes a single user hit certain images 300.000 times per day. That's a bit of a downside.",
     "parent": 44890497,
     "depth": 2
   },
@@ -136,10 +256,34 @@
     "depth": 2
   },
   {
-    "id": 44891085,
-    "by": "9dev",
-    "timeISO": "2025-08-13T17:10:50.000Z",
-    "textPlain": "Certbot is a utility that can only be installed via snap. That crap won’t make it to our servers, and many other people view it the same way I do.So this change is most welcome.",
+    "id": 44891258,
+    "by": "0xbadcafebee",
+    "timeISO": "2025-08-13T17:26:56.000Z",
+    "textPlain": "> allowing internally-signed certificates to be valid via said IntermediaryBy design, nothing is allowed to delegate signing authority, because it would become an immediate compromise of everything that got delegated when your delegated authority got compromised. Since only CAs can issue certs, and CAs have to pass at least some basic security scrutiny, clients have assurance that the thing giving it a cert got said cert from a trustworthy authority. If you want a non-trustworthy authority... go with a custom CA. It's intentionally difficult to do so.> If your load balancer, proxy server, web server, or router appliance can’t mint me a basic Acme certificate via DNS-01 challenges, then you officially suck and I will throw your product out for something like Caddy the first chance I get.I mean, that's a valid ask. It will become more commonplace once some popular corporate offering includes it, and then all the competitors will adopt it so they don't leave money on the table. To get the first one to adopt it, be a whale of a customer and yell loudly that you want it, then wait 18 months.",
+    "parent": 44891078,
+    "depth": 2
+  },
+  {
+    "id": 44891461,
+    "by": "ctxc",
+    "timeISO": "2025-08-13T17:43:13.000Z",
+    "textPlain": "Hey! Great to see you here.I tried dokku (and still am!) and it is so hard getting started.For reference,   \n- I've used Coolify successfully where it required me to create a Github app to deploy my apps on pushes to master  \n- I've written GH actions to build and deploy containers to big cloudThis page is what I get if I want to achieve the same, and it's completely a reference book approach - I feel like I'm reading an encyclopedia.   \nhttps://dokku.com/docs/deployment/methods/git/#initializing-...Contrast it with this, which is INSTANTLY useful and helps me deploy apps hot off the page:   \nhttps://coolify.io/docs/knowledge-base/git/github/integratio...What I would love to see for Dokku is tutorials for popular OSS apps and set-objective/get-it-done style getting started articles.  \nI'd LOVE an article that takes me from baremetal to a reverse proxy+a few popular apps. Because the value isn't in using Dokku, it's in using Dokku to get to that state.I'm trying to use dokku for my homeserver.Ideally I want a painless, quick way to go from \"hey here's a repo I like\" to \"deployed on my machine\" with Dokku. And then once that works, peek under the hood.",
+    "parent": 44891203,
+    "depth": 2
+  },
+  {
+    "id": 44891609,
+    "by": "ankit84",
+    "timeISO": "2025-08-13T17:54:04.000Z",
+    "textPlain": "We have been using Caddy for many years now. Picked just because it has automatic cert provisioning. Caddy is really an easier alternative, secure out of the box.",
+    "parent": 44891119,
+    "depth": 2
+  },
+  {
+    "id": 44891271,
+    "by": "bityard",
+    "timeISO": "2025-08-13T17:27:43.000Z",
+    "textPlain": "Maybe it's better these days, but even as an experienced systems administrator, I found certbot _incredibly_ annoying to use in practice. They tried to make it easy and general-purpose for beginners to web hosting, but they did it with a lot of magic that does Weird Stuff to your host and server configuration. It probably works great if you're in an environment where you just install things via tarball, edit your config files with Nano, and then rarely ever touch the whole setup again.But if you're someone who needs tight control over the host configuration (managed via Ansible, etc) because you need to comply with security standards, or have the whole setup reproducible for disaster recovery, etc, then solutions like acme.sh or LEGO are far smaller, just as easy to configure, and in general will not surprise you.",
     "parent": 44890604,
     "depth": 2
   },
@@ -156,6 +300,14 @@
     "by": "jddj",
     "timeISO": "2025-08-13T16:55:23.000Z",
     "textPlain": "From the seeming consensus I was dreading setting let's encrypt up on nginx, until I did it and it was and has been... Completely straightforward and painless.Maybe if you step off the happy path it gets hairy, but I found the default certbot flow to be easy.",
+    "parent": 44890604,
+    "depth": 2
+  },
+  {
+    "id": 44891085,
+    "by": "9dev",
+    "timeISO": "2025-08-13T17:10:50.000Z",
+    "textPlain": "Certbot is a utility that can only be installed via snap. That crap won’t make it to our servers, and many other people view it the same way I do.So this change is most welcome.",
     "parent": 44890604,
     "depth": 2
   },
@@ -181,6 +333,14 @@
     "timeISO": "2025-08-13T17:03:39.000Z",
     "textPlain": "Yes, that is correct.",
     "parent": 44890618,
+    "depth": 2
+  },
+  {
+    "id": 44891374,
+    "by": "bityard",
+    "timeISO": "2025-08-13T17:36:35.000Z",
+    "textPlain": "I grew up on Apache and eventually became a wizard with its configuration and myriad options and failures modes. Later on, I got semi-comfortable with nginx which was a little simpler because it did less than Apache but you could still get a fairly complex configuration going if you're running weird legacy PHP apps for example.When I tried using Caddy with something serious for the first time, I thought I was missing something. I thought, these docs must be incomplete, there has to be more to it, how does it know to do X based on Y, this is never going to work...But it DID work. There IS almost nothing to it. You set literally the bare minimum of configuration you could possibly need, and Caddy figures out the rest and uses sane defaults. The docs are VERY good, there is a nice community around it.If I had any complaint at all, it would be that the plugin system is slightly goofy.",
+    "parent": 44890493,
     "depth": 2
   },
   {
