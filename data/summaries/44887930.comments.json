@@ -1,11 +1,12 @@
 {
   "id": 44887930,
   "lang": "ru",
-  "summary": "- Чаще всего ошибки возникают из-за конфликта версий библиотеки и отсутствия правильной инициализации: вызов `Init.init()` должен происходить до любых операций.  \n- Проверьте, что в classpath только одна версия `xmlsec`, иначе `ClassCastException` и `NoSuchFieldError` неизбежны.  \n- При работе в OSGi или Spring-Boot добавьте `META-INF/services` в `Import-Package` или используйте `spring-boot-maven-plugin` с `<requiresUnpack>`.  \n- Если `XMLSignatureException: Cannot find SignatureElement`, убедитесь, что пространство имён `dsig` правильно зарегистрировано и документ не был случайно изменён.  \n- Для `InvalidKeyException` проверьте формат ключа (PKCS#8 для приватных, X.509 для публичных) и используйте провайдер BouncyCastle при необходимости.",
+  "summary": "- @_1tan отметил, что его команда работает над криптографическим модулем и сегодня решила ту же задачу, придя к похожему решению.  \n- @sushidev добавил, что можно запустить приложение через агента и выполнить нужные действия, чтобы автоматически сгенерировать reflection-json.",
   "sampleComments": [
-    44887931
+    44889320,
+    44889572
   ],
-  "inputHash": "1d8b1de34e2fc52814dfb65006bdfb2275a26342c355ae0e21dbb33e852bd3c5",
+  "inputHash": "07c51416a328df9a6a9db358f3e975f278777c9db8249e41eb72732863efc078",
   "model": "moonshotai/kimi-k2:free",
-  "createdISO": "2025-08-13T13:38:54.140Z"
+  "createdISO": "2025-08-13T15:24:02.463Z"
 }

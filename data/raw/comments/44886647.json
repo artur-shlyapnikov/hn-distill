@@ -40,18 +40,26 @@
     "depth": 1
   },
   {
-    "id": 44886951,
-    "by": "instagraham",
-    "timeISO": "2025-08-13T11:01:29.000Z",
-    "textPlain": "Does this mean that any software which uses ffmpeg can now add a transcription option? Audacity, Chrome, OBS etc",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
     "id": 44887159,
     "by": "donatj",
     "timeISO": "2025-08-13T11:31:36.000Z",
     "textPlain": "I know nothing about Whisper, is this usable for automated translation?I own a couple very old and as far as I'm aware never translated Japanese movies. I don't speak Japanese but I'd love to watch them.A couple years ago I had been negotiating with a guy on Fiver to translate them. At his usual rate-per-minute of footage it would have cost thousands of dollars but I'd negotiated him down to a couple hundred before he presumably got sick of me and ghosted me.",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44888471,
+    "by": "realxrobau",
+    "timeISO": "2025-08-13T13:52:23.000Z",
+    "textPlain": "Annoyingly, something is broken with their anti not stuff, as it keeps refusing to let me see the page.",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44886951,
+    "by": "instagraham",
+    "timeISO": "2025-08-13T11:01:29.000Z",
+    "textPlain": "Does this mean that any software which uses ffmpeg can now add a transcription option? Audacity, Chrome, OBS etc",
     "parent": 44886647,
     "depth": 1
   },
@@ -64,10 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44888471,
-    "by": "realxrobau",
-    "timeISO": "2025-08-13T13:52:23.000Z",
-    "textPlain": "Annoyingly, something is broken with their anti not stuff, as it keeps refusing to let me see the page.",
+    "id": 44887801,
+    "by": "webinar",
+    "timeISO": "2025-08-13T12:47:42.000Z",
+    "textPlain": "I've been using FFmpeg and Whisper to record and transcribe live police scanner audio for my city, and update it in real-time to a live website.  It works great, with the expected transcription errors and hallucinations.",
     "parent": 44886647,
     "depth": 1
   },
@@ -88,14 +96,6 @@
     "depth": 1
   },
   {
-    "id": 44887801,
-    "by": "webinar",
-    "timeISO": "2025-08-13T12:47:42.000Z",
-    "textPlain": "I've been using FFmpeg and Whisper to record and transcribe live police scanner audio for my city, and update it in real-time to a live website.  It works great, with the expected transcription errors and hallucinations.",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
     "id": 44886854,
     "by": "re",
     "timeISO": "2025-08-13T10:51:14.000Z",
@@ -112,10 +112,10 @@
     "depth": 1
   },
   {
-    "id": 44887932,
-    "by": "porridgeraisin",
-    "timeISO": "2025-08-13T13:03:11.000Z",
-    "textPlain": "I had a small bash pipeline for doing this until now.  ffmpeg -f pulse -i \"$(pactl get-default-source)\" -t 5 -f wav -ar 16000 -ac 1 -c:a pcm_s16le - \\\n  | ./main - \\\n  | head -2 \\\n  | tail -1 \\\n  | cut -d] -f2 \\\n  | awk '{$1=$1};1'\n\nThe reading from mic part (-f pulse, pactl...) is linux-specific rest of it should be cross platform. The `main` executable is the whisper.cpp executable (see whisper.cpp github readme, it's just the output of `make base.en` from that).Edit: -t 5 controls recording duration.Oh and add 2>/dev/null to silence the debug output. I copied this from a pipe that further sends it into an LLM that  then looks at the meaning and turns it into a variety of structured data (reminders, todo items, etc) which I then....",
+    "id": 44889071,
+    "by": "de6u99er",
+    "timeISO": "2025-08-13T14:40:11.000Z",
+    "textPlain": "That's great. How does Whisper compare to Google Gemini's transcription capabilities?",
     "parent": 44886647,
     "depth": 1
   },
@@ -128,18 +128,26 @@
     "depth": 1
   },
   {
-    "id": 44887203,
-    "by": "mockingloris",
-    "timeISO": "2025-08-13T11:36:10.000Z",
-    "textPlain": "How could one in theory, use this to train on a new language?\nSay for a hubby project; I have recordings of some old folks stories in my local dialect.│└── Dey well; Be well",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
     "id": 44886766,
     "by": "zzsshh",
     "timeISO": "2025-08-13T10:38:43.000Z",
     "textPlain": "Does this finally enable dynamically generating subtitles for movies with AI?",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44887932,
+    "by": "porridgeraisin",
+    "timeISO": "2025-08-13T13:03:11.000Z",
+    "textPlain": "I had a small bash pipeline for doing this until now.  ffmpeg -f pulse -i \"$(pactl get-default-source)\" -t 5 -f wav -ar 16000 -ac 1 -c:a pcm_s16le - \\\n  | ./main - \\\n  | head -2 \\\n  | tail -1 \\\n  | cut -d] -f2 \\\n  | awk '{$1=$1};1'\n\nThe reading from mic part (-f pulse, pactl...) is linux-specific rest of it should be cross platform. The `main` executable is the whisper.cpp executable (see whisper.cpp github readme, it's just the output of `make base.en` from that).Edit: -t 5 controls recording duration.Oh and add 2>/dev/null to silence the debug output. I copied this from a pipe that further sends it into an LLM that  then looks at the meaning and turns it into a variety of structured data (reminders, todo items, etc) which I then....",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44887203,
+    "by": "mockingloris",
+    "timeISO": "2025-08-13T11:36:10.000Z",
+    "textPlain": "How could one in theory, use this to train on a new language?\nSay for a hubby project; I have recordings of some old folks stories in my local dialect.│└── Dey well; Be well",
     "parent": 44886647,
     "depth": 1
   },
@@ -152,6 +160,14 @@
     "depth": 1
   },
   {
+    "id": 44889083,
+    "by": "mkbkn",
+    "timeISO": "2025-08-13T14:41:02.000Z",
+    "textPlain": "How can I run Whisper or this software in Linux or Android as a non-technical user?Basically a simple audio-to-text for personal use?",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
     "id": 44886891,
     "by": "yewenjie",
     "timeISO": "2025-08-13T10:54:17.000Z",
@@ -160,10 +176,26 @@
     "depth": 1
   },
   {
+    "id": 44888960,
+    "by": "shmerl",
+    "timeISO": "2025-08-13T14:31:17.000Z",
+    "textPlain": "Did ffmpeg move their bug tracker to Forgejo?https://code.ffmpeg.org/FFmpeg/FFmpeg/issuesI still see their old one too, but Forgejo one is nice.",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
     "id": 44887816,
     "by": "thedangler",
     "timeISO": "2025-08-13T12:50:10.000Z",
     "textPlain": "Does this whisper also do text-to-speech?",
+    "parent": 44886647,
+    "depth": 1
+  },
+  {
+    "id": 44886779,
+    "by": "kwar13",
+    "timeISO": "2025-08-13T10:40:21.000Z",
+    "textPlain": "Fantastic! I am working on a speech-to-text GNOME extension that would immensely benefit from this.https://github.com/kavehtehrani/gnome-speech2text",
     "parent": 44886647,
     "depth": 1
   },
@@ -180,14 +212,6 @@
     "by": "correa_brian",
     "timeISO": "2025-08-13T14:01:30.000Z",
     "textPlain": "hell yeah",
-    "parent": 44886647,
-    "depth": 1
-  },
-  {
-    "id": 44886779,
-    "by": "kwar13",
-    "timeISO": "2025-08-13T10:40:21.000Z",
-    "textPlain": "Fantastic! I am working on a speech-to-text GNOME extension that would immensely benefit from this.https://github.com/kavehtehrani/gnome-speech2text",
     "parent": 44886647,
     "depth": 1
   },
@@ -216,14 +240,6 @@
     "depth": 1
   },
   {
-    "id": 44888807,
-    "by": "taminka",
-    "timeISO": "2025-08-13T14:20:24.000Z",
-    "textPlain": "whisper is great, i wonder why youtube's auto generated subs are still so bad? even the smallest whisper is way better than google's solution? is it licensing issue? harder to deploy at scale?",
-    "parent": 44887584,
-    "depth": 2
-  },
-  {
     "id": 44888591,
     "by": "notatallshaw",
     "timeISO": "2025-08-13T14:02:58.000Z",
@@ -240,10 +256,34 @@
     "depth": 2
   },
   {
+    "id": 44889215,
+    "by": "throwoutway",
+    "timeISO": "2025-08-13T14:50:29.000Z",
+    "textPlain": "I found this online demo of it:  https://www.nikse.dk/subtitleedit/online",
+    "parent": 44887584,
+    "depth": 2
+  },
+  {
     "id": 44888298,
     "by": "pawelduda",
     "timeISO": "2025-08-13T13:38:54.000Z",
     "textPlain": "Can you give an example why it made your life that much better?",
+    "parent": 44887584,
+    "depth": 2
+  },
+  {
+    "id": 44888807,
+    "by": "taminka",
+    "timeISO": "2025-08-13T14:20:24.000Z",
+    "textPlain": "whisper is great, i wonder why youtube's auto generated subs are still so bad? even the smallest whisper is way better than google's solution? is it licensing issue? harder to deploy at scale?",
+    "parent": 44887584,
+    "depth": 2
+  },
+  {
+    "id": 44889068,
+    "by": "jokethrowaway",
+    "timeISO": "2025-08-13T14:39:49.000Z",
+    "textPlain": "whisper is definitely nice, but it's a bit too slow.\nHaving subtitles and transcription for everything is great - but Nemo Parakeet (pretty much whisper by nvidia) completely changed how I interact with the computer.It enables dictation that actually works and it's as fast as you can think.\nI also have a set of scripts which just wait for voice commands and do things. \nI can pipe the results to an LLM, run commands, synthesize a voice with F5-TTS back and it's like having a local Jarvis.The main limitation is being english only.",
     "parent": 44887584,
     "depth": 2
   },
@@ -320,6 +360,14 @@
     "depth": 2
   },
   {
+    "id": 44889096,
+    "by": "absoflutely",
+    "timeISO": "2025-08-13T14:42:19.000Z",
+    "textPlain": "I think this trend is partially driven by the silent auto play that happens on YouTube. Baked in subtitles help draw people into the video.",
+    "parent": 44886963,
+    "depth": 2
+  },
+  {
     "id": 44886980,
     "by": "HPsquared",
     "timeISO": "2025-08-13T11:05:41.000Z",
@@ -344,59 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44886805,
-    "by": "Maxious",
-    "timeISO": "2025-08-13T10:44:13.000Z",
-    "textPlain": "yep, there's a c++ implementation to run it https://github.com/ggml-org/whisper.cpp",
-    "parent": 44886785,
-    "depth": 2
-  },
-  {
-    "id": 44886802,
-    "by": "johnisgood",
-    "timeISO": "2025-08-13T10:43:51.000Z",
-    "textPlain": "Yes.From the documentation:> It runs automatic speech recognition using the OpenAI's Whisper model.",
-    "parent": 44886785,
-    "depth": 2
-  },
-  {
-    "id": 44886796,
-    "by": "acidburnNSA",
-    "timeISO": "2025-08-13T10:43:06.000Z",
-    "textPlain": "Yes, according to the comments in the patch, you are correct.",
-    "parent": 44886785,
-    "depth": 2
-  },
-  {
-    "id": 44886857,
-    "by": "cess11",
-    "timeISO": "2025-08-13T10:51:16.000Z",
-    "textPlain": "Kind of, it's a family of audio transcription models.https://huggingface.co/search/full-text?q=whisper",
-    "parent": 44886785,
-    "depth": 2
-  },
-  {
-    "id": 44886814,
-    "by": "AlienRobot",
-    "timeISO": "2025-08-13T10:45:32.000Z",
-    "textPlain": "I think so, if I remember correctly PotPlayer also supports it for automatic subtitling.",
-    "parent": 44886785,
-    "depth": 2
-  },
-  {
-    "id": 44886799,
-    "by": "kwar13",
-    "timeISO": "2025-08-13T10:43:26.000Z",
-    "textPlain": "yes.",
-    "parent": 44886785,
-    "depth": 2
-  },
-  {
-    "id": 44888072,
-    "by": "abdusco",
-    "timeISO": "2025-08-13T13:18:12.000Z",
-    "textPlain": "I solved it by generating English subtitles, then passing those to an LLM in chunks that are ~20 entries in size. Include preceding and following subtitles as context for better translation. Make sure to replace the timestamps with simple integer ids, because LLMs like to mangle those, no matter how hard you prompt.I could share a python script that is working pretty reliably for me.",
-    "parent": 44887984,
+    "id": 44888964,
+    "by": "NiekvdMaas",
+    "timeISO": "2025-08-13T14:31:33.000Z",
+    "textPlain": "Correct URL:\nhttps://medium.com/@vpalmisano/run-whisper-audio-transcripti...",
+    "parent": 44887793,
     "depth": 2
   }
 ]
