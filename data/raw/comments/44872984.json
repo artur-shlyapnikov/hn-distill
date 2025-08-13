@@ -14,5 +14,13 @@
     "textPlain": "A re-ranker takes a query and a chunk of text and assigns them a relevance score according to how well the text answers the query.  (Generally - in theory you could have some other metric of relevance.)They're called \"re\"rankers specifically because they're usually downstream of a faster but less accurate relevance algorithm (some kind of full text search and/or vector similarity) in a search pipeline.  Rerankers have to run from scratch on every query-document pair and are relatively computationally expensive, and so are practical to run only on a small number of documents.An \"instruction following\" reranker basically just has a third input which is intended to be used kind of like a system prompt for an LLM - to provide additional context to all comparisons.",
     "parent": 44893046,
     "depth": 2
+  },
+  {
+    "id": 44893688,
+    "by": "gnulinux",
+    "timeISO": "2025-08-13T20:52:00.000Z",
+    "textPlain": "Rerankers are used downstream from an embedding model. Embedding models are \"coarse\" so they give false positives for things that may not be as relevant as contender text. Re-ranker, ranks bunch of text based on a query in order to find the most relevant ones. You can then take them and feed them as context to some other query.",
+    "parent": 44893046,
+    "depth": 2
   }
 ]

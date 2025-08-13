@@ -1,0 +1,8 @@
+{
+  "id": 44865908,
+  "lang": "ru",
+  "summary": "**TL;DR**  \n[Готовый пример](https://chofter.com/examples/youtubePreview.html) лёгкого кликабельного превью YouTube.\n\n**Проблема**  \nКаждый встроенный ролик тянет ≈ 4 МБ до нажатия «Play».  \nХочется показывать только превью, а iframe подгружать по клику.\n\n**Почему не сработает `onerror`**  \nURL `…/maxresdefault.jpg` не всегда существует.  \nYouTube вместо 404 отдаёт 120×90 пикселей заглушку, вызывая `onload`, а не `onerror`.\n\n**Решение**  \n1. Вешаем `onload` на `<img>`.  \n2. Проверяем `naturalWidth`/`naturalHeight`.  \n3. Если 120×90, пробуем следующее по качеству превью (`sddefault`, `hqdefault`, …).  \n4. По клику заменяем картинку на `<iframe>`.\n\n**Код**  \nПростой пример без фреймворков — по ссылке выше. Легко перенести в React, Vue и др.\n\n**Альтернативы**  \n- [lite-youtube-embed](https://github.com/paulirish/lite-youtube-embed)  \n- AMP, lazyYT, lazyframe (ссылки в оригинале).",
+  "inputHash": "28504537d31569fb4c82e45c8ec67e895ef673a5eca75009c2315d38ceec4ab2",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-13T21:24:45.312Z"
+}

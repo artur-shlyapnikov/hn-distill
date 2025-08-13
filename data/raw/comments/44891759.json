@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44892977,
-    "by": "garbthetill",
-    "timeISO": "2025-08-13T19:49:43.000Z",
-    "textPlain": "What a brilliant article, it really puts to rest for me, the whole “why not use F#?” argument. In almost every OCaml thread, someone suggests F# as a way to sidestep OCaml’s tooling.I’ve always been curious about OCaml, especially since some people call it “Go with types” and I’m not a fan of writing Rust. But I’m still not sold on OCaml as a whole, its evangelists just don’t win me over the way the Erlang, Ruby, Rust, or Zig folks do. I just cant see the vision",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
     "id": 44892053,
     "by": "_mu",
     "timeISO": "2025-08-13T18:28:17.000Z",
@@ -24,10 +16,26 @@
     "depth": 1
   },
   {
-    "id": 44893365,
-    "by": "manoDev",
-    "timeISO": "2025-08-13T20:21:00.000Z",
-    "textPlain": "The syntax seems absolutely alien to me – although it's a functional language, most of it reads like imperative code with a bunch of semicolons (double semicolons even) and lack of scoping hints.",
+    "id": 44892977,
+    "by": "garbthetill",
+    "timeISO": "2025-08-13T19:49:43.000Z",
+    "textPlain": "What a brilliant article, it really puts to rest for me, the whole “why not use F#?” argument. In almost every OCaml thread, someone suggests F# as a way to sidestep OCaml’s tooling.I’ve always been curious about OCaml, especially since some people call it “Go with types” and I’m not a fan of writing Rust. But I’m still not sold on OCaml as a whole, its evangelists just don’t win me over the way the Erlang, Ruby, Rust, or Zig folks do. I just cant see the vision",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44893525,
+    "by": "jasperry",
+    "timeISO": "2025-08-13T20:34:36.000Z",
+    "textPlain": "Question about terminology: Is it common to call higher-order function types \"exponential types\" as the article does? I know what higher-order functions are, but am having trouble grasping why the types would be called \"exponential\".",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44893872,
+    "by": "zem",
+    "timeISO": "2025-08-13T21:09:28.000Z",
+    "textPlain": "ocaml is one of my favourite languages too, but I've found myself being drawn towards rust for my latest project due to its major superpower - you can write a rust library that looks like a c library from the outside, and can be called from other languages via their existing c ffi mechanisms. I feel like by writing the library in ocaml I would have a better experience developing it, but be giving up on that free interop.",
     "parent": 44891759,
     "depth": 1
   },
@@ -52,6 +60,14 @@
     "by": "raphinou",
     "timeISO": "2025-08-13T18:34:37.000Z",
     "textPlain": "Some years ago I also wanted to make ocaml my primary language, but rapidly encountered problems: difficulty to install (on Linux due to the requirement of a very unusual tool which name and function I forgot), no response from community regarding how to solve that problem, no solid postgresql driver, ....Wanting to use a functional language I pivoted to fsharp, which was not the expected choice for me as I use Linux exclusively. I have been happy with this choice, it has even become my preferred language. The biggest problem for me was the management of the fsharp community, the second class citizen position of fsharp in the DotNet ecosystem, and Microsoft's action screwing the goodwill of the dev community (eg hot reload episode). I feel this hampered the growth of the fsharp community.I'm now starting to use rust, and the contrast on these points couldn't be bigger.Edit: downvoters, caring to share why? I thought sharing my experience would have been appreciated. Would like to know why I was wrong.",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44893365,
+    "by": "manoDev",
+    "timeISO": "2025-08-13T20:21:00.000Z",
+    "textPlain": "I'm sure there's merit to the language, but the syntax seems absolutely alien to me. Some attempt to look like verbose imperative code, a bunch of semicolons, and for some strange reason, hate of parenthesis.Real life sample:    let print_expr exp =\n        (* Local function definitions *)\n        let open_paren prec op_prec =\n          if prec > op_prec then print_string \"(\" in\n        let close_paren prec op_prec =\n          if prec > op_prec then print_string \")\" in\n        let rec print prec exp =     (* prec is the current precedence *)\n          match exp with\n            Const c -> print_float c\n          | Var v -> print_string v\n          | Sum(f, g) ->\n              open_paren prec 0;\n              print 0 f; print_string \" + \"; print 0 g;\n              close_paren prec 0\n          | Diff(f, g) ->\n              open_paren prec 0;\n              print 0 f; print_string \" - \"; print 1 g;\n              close_paren prec 0\n          | Prod(f, g) ->\n              open_paren prec 2;\n              print 2 f; print_string \" * \"; print 2 g;\n              close_paren prec 2\n          | Quot(f, g) ->\n              open_paren prec 2;\n              print 2 f; print_string \" / \"; print 3 g;\n              close_paren prec 2\n        in print 0 exp;;\n\nA function is defined as:    let print_expr exp =\n\nThat seems pretty hard to read at a glance, and easy to mistype as a definition.Also, you need to end the declaration with `in`?Then, semicolons...    open_paren prec 0;\n    print 0 f; print_string \" + \"; print 0 g;\n\n... and even double semicolons ...    print 0 exp;;\n\nThat looks like a language you really want an IDE helping you with.",
     "parent": 44891759,
     "depth": 1
   },
@@ -104,6 +120,22 @@
     "depth": 2
   },
   {
+    "id": 44893725,
+    "by": "the__alchemist",
+    "timeISO": "2025-08-13T20:55:45.000Z",
+    "textPlain": "I'm with you. I think some of the nicest parts of rust have nothing to do with memory safety; they're ways to structure your program as you mention.",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
+    "id": 44893511,
+    "by": "troupo",
+    "timeISO": "2025-08-13T20:33:12.000Z",
+    "textPlain": "OCaml also needed the brief but bright ReasonML moment to add/fix/improve some of the syntax IIRC and work on user-friendly error messages. But this should've definitely happened much much earlier than it did.",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
     "id": 44892853,
     "by": "garbthetill",
     "timeISO": "2025-08-13T19:39:01.000Z",
@@ -115,16 +147,16 @@
     "id": 44892839,
     "by": "benreesman",
     "timeISO": "2025-08-13T19:37:52.000Z",
-    "textPlain": "Came here to see if the top comment on an OCaml thread had something about Rust changing the subject to Rust with an oblique tieback to TFA.Come on guys, this was old five years ago and its not organic, the strike force is quieter about brigading than it used to be, but you can still set your watch by it.",
+    "textPlain": "[flagged]",
     "parent": 44892713,
     "depth": 2
   },
   {
-    "id": 44893123,
-    "by": "debugnik",
-    "timeISO": "2025-08-13T20:01:57.000Z",
-    "textPlain": "Funny, I moved to OCaml to sidestep F# tooling. At least last time I used F#: Slow compiler, increasingly C#-only ecosystem, weak and undocumented MSBuild (writing custom tasks would otherwise be nice!), Ionide crashes, Fantomas is unsound...But OCaml sadly can't replace F# for all my use cases. F# does get access to many performance-oriented features that the CLR supports and OCaml simply can't, such as value-types. Maybe OxCaml can fix that long term, but I'm currently missing a performant ML-like with a simple toolchain.",
-    "parent": 44892977,
+    "id": 44894006,
+    "by": "dkarl",
+    "timeISO": "2025-08-13T21:21:14.000Z",
+    "textPlain": "In Scala, I've had excellent luck using LLMs to speed up development when I'm using cats-effect, an effects library.My experience in the past with something like cats-effect has been that there are straightforward things that aren't obvious, and if you haven't been using it recently, and maybe even if you've been using it but haven't solved a similar problem recently, you can get stuck trawling through the docs squinting at type signatures looking for what turns out to be, in hindsight, an elegant and simple solution. LLMs have vastly reduced this kind of friction. I just ask, \"In cats-effect, how do I...?\" and 80% of the time the answer gets me immediately unstuck. The other 20% of the time I provide clarifying context or ask a different LLM.I haven't done enough maintenance coding yet to know if this will radically shift my view of the cost/benefit of functional programming with effects, but I'm very excited. Writing cats-effect code has always been satisfying and frustrating in equal measure, and so far, I'm getting the confidence and correctness with a fraction of the frustration.I haven't unleashed Claude Code on any cats-effect code yet. I'm curious to see how well it will do.",
+    "parent": 44892053,
     "depth": 2
   },
   {
@@ -160,14 +192,6 @@
     "depth": 2
   },
   {
-    "id": 44892175,
-    "by": "d4mi3n",
-    "timeISO": "2025-08-13T18:39:14.000Z",
-    "textPlain": "I think this is putting the cart before the horse. Programs are generally harder to read than they are to write, so optimizing for concise output to benefit the tool at the potential expense of the human isn't a trade I'd personally make.Granted, this may just be an argument for being more comfortable reading/writing code in a particular style, but even without the advantages of LLMs adoption of functional paradigms and tools has been a struggle.",
-    "parent": 44892053,
-    "depth": 2
-  },
-  {
     "id": 44892134,
     "by": "nukifw",
     "timeISO": "2025-08-13T18:35:22.000Z",
@@ -176,10 +200,82 @@
     "depth": 2
   },
   {
+    "id": 44893514,
+    "by": "seprov",
+    "timeISO": "2025-08-13T20:33:40.000Z",
+    "textPlain": "Procedures can be much more concise in functional/ML syntax, but many things are not -- dependency injection in languages like C# for example are able to be much less verbose because of really excellent DI libraries and (arguably more sane) instance constructor syntax.",
+    "parent": 44892053,
+    "depth": 2
+  },
+  {
+    "id": 44892175,
+    "by": "d4mi3n",
+    "timeISO": "2025-08-13T18:39:14.000Z",
+    "textPlain": "I think this is putting the cart before the horse. Programs are generally harder to read than they are to write, so optimizing for concise output to benefit the tool at the potential expense of the human isn't a trade I'd personally make.Granted, this may just be an argument for being more comfortable reading/writing code in a particular style, but even without the advantages of LLMs adoption of functional paradigms and tools has been a struggle.",
+    "parent": 44892053,
+    "depth": 2
+  },
+  {
+    "id": 44893570,
+    "by": "joshmarlow",
+    "timeISO": "2025-08-13T20:40:21.000Z",
+    "textPlain": "It's been a few years since I've touched OCaml - the ecosystem just wasn't what I wanted - but the core language is still my favorite.And the best way I can describe why is that my code generally ends up with a few heavy functions that do too much; I can fix it once I notice it, but that's the direction my code tends to go in.In my OCaml code, I would look for the big function and... just not find it. No single workhorse that does a lot - for some reason it was just easier for me to write good code.Now I do Rust for side projects because I like the type system - but I would prefer OCaml.I keep meaning to checkout F# though for all of these reasons.",
+    "parent": 44892977,
+    "depth": 2
+  },
+  {
+    "id": 44893123,
+    "by": "debugnik",
+    "timeISO": "2025-08-13T20:01:57.000Z",
+    "textPlain": "Funny, I moved to OCaml to sidestep F# tooling. At least last time I used F#: Slow compiler, increasingly C#-only ecosystem, weak and undocumented MSBuild (writing custom tasks would otherwise be nice!), Ionide crashes, Fantomas is unsound...But OCaml sadly can't replace F# for all my use cases. F# does get access to many performance-oriented features that the CLR supports and OCaml simply can't, such as value-types. Maybe OxCaml can fix that long term, but I'm currently missing a performant ML-like with a simple toolchain.",
+    "parent": 44892977,
+    "depth": 2
+  },
+  {
+    "id": 44893857,
+    "by": "ackfoobar",
+    "timeISO": "2025-08-13T21:08:22.000Z",
+    "textPlain": "A first-order function type is already exponential.A sum type has as many possible values as the sum of its cases. E.g. `A of bool | B of bool` has 2+2=4 values. Similarly for product types and exponential types. E.g. the type bool -> bool has 2^2=4 values (id, not, const true, const false) if you don't think about side effects.",
+    "parent": 44893525,
+    "depth": 2
+  },
+  {
+    "id": 44893545,
+    "by": "nukifw",
+    "timeISO": "2025-08-13T20:36:59.000Z",
+    "textPlain": "Usually we speaking only about sum and product (because article usually refers to ADT, so Algebraic Data type). A function is not really Data, so it is not included. But you can use the same tricks (ie: a -> b has arity b^a) to compute the number of potential inhabitant",
+    "parent": 44893525,
+    "depth": 2
+  },
+  {
+    "id": 44893905,
+    "by": "globuous",
+    "timeISO": "2025-08-13T21:12:19.000Z",
+    "textPlain": "What I missed most were let bindings (https://ocaml.org/manual/5.3/bindingops.html)ReasonML has custom operators that allows for manipulating monads somewhat sanely (>>= operators and whatnot). rescript (reasonml’s “fork”) did not last time I checked. But it does have an async/await syntax which helps a lot with async code. reasonml did not last time I checked, so you had to use raw promises.I believe Melange (which the article briefly talks about) supports let bindings with the reason syntax.And this kinda changes everything if you React. Because you can now have sane JSX with let bindings. Which you could not until melange. Indeed, you can PPX your way out of it in ocaml syntax, but I’m not sure the syntax highlight works well in code editors. It did not on mine anyway last time I checked.So for frontend coding, Melange’s reason ml is great as you have both, and let bindings can approximate quite well async syntax on top of writing readable monadic code.For backend code, as a pythonista, I hate curlies. and I do like parenthesis-less function calls and definitions a lot. But I still have a lot of trouble, as a beginner ocamler, with non-variable function argument as I need to do “weird” parenthesis stuff.Hope this “helps”!",
+    "parent": 44892829,
+    "depth": 2
+  },
+  {
+    "id": 44893908,
+    "by": "nukifw",
+    "timeISO": "2025-08-13T21:12:42.000Z",
+    "textPlain": "Sorry, I never used ReasonML so I don't see any advantage of using ReasonML except it had the time to die twice in 4 years :)",
+    "parent": 44892829,
+    "depth": 2
+  },
+  {
     "id": 44893347,
     "by": "hardwaregeek",
     "timeISO": "2025-08-13T20:19:57.000Z",
     "textPlain": "I like Reason syntax and I wish it was more common, but I think if you want to engage in the OCaml community it’s probably better to just bite the bullet and use the standard syntax. It’s what almost everybody uses so you’ll need to understand it to read any code or documentation in the ecosystem",
+    "parent": 44892829,
+    "depth": 2
+  },
+  {
+    "id": 44893538,
+    "by": "myaccountonhn",
+    "timeISO": "2025-08-13T20:35:56.000Z",
+    "textPlain": "I don't have extensive experience but the little I did was issues with LSP not working as well.",
     "parent": 44892829,
     "depth": 2
   },
@@ -224,6 +320,46 @@
     "depth": 2
   },
   {
+    "id": 44893606,
+    "by": "myaccountonhn",
+    "timeISO": "2025-08-13T20:44:04.000Z",
+    "textPlain": "That code is probably some of the hardest you'll encounter in Ocaml, but for me its quite obvious what it does and easy to read because I've worked with GADTs before. If you haven't then its you'll need to study and understand them to understand the code.I actually really like the syntax of OCaml, its very easy to write and when you're used to it, easy to read (easier than reasonml IMO).Double semicolons are afaik only used in the repl.",
+    "parent": 44893365,
+    "depth": 2
+  },
+  {
+    "id": 44893953,
+    "by": "javcasas",
+    "timeISO": "2025-08-13T21:16:42.000Z",
+    "textPlain": "It also uses double semicolon because single semicolon is already used as statement separator kinda like C. So double semicolon is top-level statement terminator.",
+    "parent": 44893365,
+    "depth": 2
+  },
+  {
+    "id": 44893887,
+    "by": "javcasas",
+    "timeISO": "2025-08-13T21:10:53.000Z",
+    "textPlain": "`let` defines a value. Some values are \"plain old values\", some are functions.The syntax is `let <constantname> <parameters> = <value> in <expression>;;`\nwhere `expression` can also have `let` bindings.So you can have  let one = 1 in\n  let two = 2 in\n  let three = one + two in\n  print_endline (string_of_int three);;",
+    "parent": 44893365,
+    "depth": 2
+  },
+  {
+    "id": 44893760,
+    "by": "UncleOxidant",
+    "timeISO": "2025-08-13T20:58:34.000Z",
+    "textPlain": "I mean, I guess it depends on your background, but that code looks pretty nice compared to how it would look in a language without pattern matching and ADTs. This is why the MLs excel for things like parsers, interpreters, and compilers. Beauty is in the eye of the beholder, I guess. I suspect that if you gave it a bit of time it would start to really grow on you - that's how it was in my case. At first: \"WTF is this weird syntax?!\", a few weeks in \"oh, this makes a lot of sense, actually\", a few years \"Yeah, I'd much rather write this sort of thing in OCaml (or an ML in general)\"",
+    "parent": 44893365,
+    "depth": 2
+  },
+  {
+    "id": 44893670,
+    "by": "jasperry",
+    "timeISO": "2025-08-13T20:49:40.000Z",
+    "textPlain": "Your comment makes me think the kind of people who favor OCaml over Rust wouldn't necessarily value a huge ecosystem or the most advanced tooling. They're the kind who value the elegance aspect above almost all else, and prefer to build things from the ground up, using no more than a handful of libraries and a very basic build procedure.",
+    "parent": 44892513,
+    "depth": 2
+  },
+  {
     "id": 44892744,
     "by": "ackfoobar",
     "timeISO": "2025-08-13T19:30:32.000Z",
@@ -261,30 +397,6 @@
     "timeISO": "2025-08-13T19:38:19.000Z",
     "textPlain": "In short, OCaml modules are used for coarse-grained generics.Modules are like structurally-typed records that can contain both abstract types and values/functions dependent on those types; every implementation file is itself a module. When passed to functors (module-level functions), they allow you to parameterize large pieces of code, depending on multiple  types and functions, all at once quite cleanly. And simply including them or narrowing their signatures is how one exports library APIs.(The closest equivalent I can imagine to module signatures is Scala traits with abstract type members, but structurally-typed and every package is an instance.)However, they are a bit too verbose for finer-grained generics. For example, a map with string keys needs `module String_map = Map.Make(String)`. There is limited support for passing modules as first-class values with less ceremony, hopefully with more on the way.",
     "parent": 44892537,
-    "depth": 2
-  },
-  {
-    "id": 44892895,
-    "by": "akkad33",
-    "timeISO": "2025-08-13T19:42:54.000Z",
-    "textPlain": "I don't know OCAML well but I think this is referring to the fact that modules on OCAML can be generic. In f# there is no HKTs that is types that can be parameterised with type classes. So in F# you have to have List.map, option.map etc, whereas in a language like OCAML or Haskell they would have one parametrised module",
-    "parent": 44892537,
-    "depth": 2
-  },
-  {
-    "id": 44892040,
-    "by": "nukifw",
-    "timeISO": "2025-08-13T18:27:18.000Z",
-    "textPlain": "Hi! Thank you for your interest (and for potentially reading this).Yes, F# is a very nice language, however, it seems to me that I am making a somewhat forced comparison between OCaml and F# in the following section: https://xvw.lol/en/articles/why-ocaml.html#ocaml-and-f",
-    "parent": 44892011,
-    "depth": 2
-  },
-  {
-    "id": 44892704,
-    "by": "jimbob45",
-    "timeISO": "2025-08-13T19:26:29.000Z",
-    "textPlain": "It's always weird when Microsoft pulls an \"embrace, extend, extinguish\" but the \"extinguish\" part happens without their involvement or desire and then we're all stuck wondering how Microsoft got left holding the bag.",
-    "parent": 44892011,
     "depth": 2
   }
 ]

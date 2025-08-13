@@ -64,18 +64,18 @@
     "depth": 2
   },
   {
-    "id": 44891834,
-    "by": "reikonomusha",
-    "timeISO": "2025-08-13T18:10:37.000Z",
-    "textPlain": "I think it's three things:1. Bringing abstractions that are only possible with static types, like ad hoc polymorphism via type classes. For example, type classes allow polymorphism on the return type rather than the argument types. Something like    (declare stringify (Into :a String => :a -> :a -> String))\n    (define (stringify a b)\n      (str:concat (into a) (into b)))\n\n    ; COALTON-USER> (coalton (stringify 1 2))\n    ; \"12\"\n\nThe function `into` is not possible in a typical dynamically typed language, at least if we aim for the language to be efficient. It only takes one argument, but what it does depends on what it's expected to return. Here, it's expected to return a string, so it knows to convert the argument type to a string (should knowledge of how to do that be known by the compiler). Common Lisp's closest equivalents would be    (concatenate 'string (coerce a 'string) (coerce b 'string))\n\nwhich, incidentally, won't actually do what we want.2. Making high performance more accessible. It's possible to get very high performance out of Common Lisp, but it usually leads to creating difficult or inextensible abstractions. A lot of very high performance Common Lisp code ends up effectively looking like monomorphic imperative code; it's the most practical way to coax the compiler into producing efficient assembly.Coalton, though, has an optimizing compiler that does (some amount of) heuristic inlining, representation selection, stack allocation, constant folding, call-site optimization, code motion, etc. Common Lisp often can't do certain optimizations because the language must respect the standard, which allows things to be redefined at run-time, for example. Coalton's delineation of \"development\" and \"release\" modes gives the programmer the option to say \"I'm done!\" and let the compiler rip through the code and optimize it.3. Type safety, of course, in the spirit of ML/Haskell/etc.",
-    "parent": 44890701,
-    "depth": 2
-  },
-  {
     "id": 44890841,
     "by": "tmtvl",
     "timeISO": "2025-08-13T16:52:20.000Z",
     "textPlain": "In CL you can't declare, for example, a proper-list-of type, which is to say a type which accepts a second type and represents a proper list containing only members of that second type.  (deftype Proper-List-Of (subtype)\n    `(or Null\n         (Cons ,subtype\n               (Proper-List-Of ,subtype))))\n\nDoesn't work (for example). There kind of are ways to work around it to some extent with satisfies and ad-hoc predicate generation, but Coalton is a true value add in that aspect.",
+    "parent": 44890701,
+    "depth": 2
+  },
+  {
+    "id": 44891834,
+    "by": "reikonomusha",
+    "timeISO": "2025-08-13T18:10:37.000Z",
+    "textPlain": "I think it's three things:1. Bringing abstractions that are only possible with static types, like ad hoc polymorphism via type classes. For example, type classes allow polymorphism on the return type rather than the argument types. Something like    (declare stringify (Into :a String => :a -> :a -> String))\n    (define (stringify a b)\n      (str:concat (into a) (into b)))\n\n    ; COALTON-USER> (coalton (stringify 1 2))\n    ; \"12\"\n\nThe function `into` is not possible in a typical dynamically typed language, at least if we aim for the language to be efficient. It only takes one argument, but what it does depends on what it's expected to return. Here, it's expected to return a string, so it knows to convert the argument type to a string (should knowledge of how to do that be known by the compiler). Common Lisp's closest equivalents would be    (concatenate 'string (coerce a 'string) (coerce b 'string))\n\nwhich, incidentally, won't actually do what we want.2. Making high performance more accessible. It's possible to get very high performance out of Common Lisp, but it usually leads to creating difficult or inextensible abstractions. A lot of very high performance Common Lisp code ends up effectively looking like monomorphic imperative code; it's the most practical way to coax the compiler into producing efficient assembly.Coalton, though, has an optimizing compiler that does (some amount of) heuristic inlining, representation selection, stack allocation, constant folding, call-site optimization, code motion, etc. Common Lisp often can't do certain optimizations because the language must respect the standard, which allows things to be redefined at run-time, for example. Coalton's delineation of \"development\" and \"release\" modes gives the programmer the option to say \"I'm done!\" and let the compiler rip through the code and optimize it.3. Type safety, of course, in the spirit of ML/Haskell/etc.",
     "parent": 44890701,
     "depth": 2
   },
@@ -109,6 +109,14 @@
     "timeISO": "2025-08-13T18:27:18.000Z",
     "textPlain": "Strong static typing is an absolute must for large scale software engineering. CL code can be made very performant without it, but there are enormous development speed and correctness gains to be had by type-checking programs before they are executed rather than at runtime.It's 2025, people. Dynamic languages for serious projects were a 90s fad, hopefully never to be repeated.",
     "parent": 44890701,
+    "depth": 2
+  },
+  {
+    "id": 44893487,
+    "by": "agambrahma",
+    "timeISO": "2025-08-13T20:31:13.000Z",
+    "textPlain": "Thanks, I'll take a look and fix them soon",
+    "parent": 44892229,
     "depth": 2
   }
 ]

@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44893042,
-    "by": "idoubtit",
-    "timeISO": "2025-08-13T19:55:12.000Z",
-    "textPlain": "A little mistake with this release: they packaged the ngx_http_acme_module for many Linux distributions, but \"forgot\" Debian stable. Oldstable and oldoldstable are listed in https://nginx.org/en/linux_packages.html (packages built today) but Debian 13 Trixie (released 4 days ago) is not there.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44890497,
     "by": "dizhn",
     "timeISO": "2025-08-13T16:23:35.000Z",
     "textPlain": "This is pretty big. Caddy had this forever but not everybody wants to use caddy. It'll probably eat into the user share of software like Traefik.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44893042,
+    "by": "idoubtit",
+    "timeISO": "2025-08-13T19:55:12.000Z",
+    "textPlain": "A little mistake with this release: they packaged the ngx_http_acme_module for many Linux distributions, but \"forgot\" Debian stable. Oldstable and oldoldstable are listed in https://nginx.org/en/linux_packages.html (packages built today) but Debian 13 Trixie (released 4 days ago) is not there.",
     "parent": 44889941,
     "depth": 1
   },
@@ -40,18 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44891078,
-    "by": "stego-tech",
-    "timeISO": "2025-08-13T17:10:19.000Z",
-    "textPlain": "The IT Roller Coaster in two reactions:> Nginx Introduces Native Support for Acme ProtocolIT: “It’s about fucking time!”> The current preview implementation supports HTTP-01 challenges to verify the client’s domain ownership.IT: “FUCK. Alright, domain registrar, mint me a new wildcard please, one of the leading web infrastructure providers still can’t do a basic LE DNS-01 pull in 2025.”Seriously. PKI in IT is a PITA and I want someone to SOLVE IT without requiring AD CAs or Yet Another Hyperspecific Appliance (YAHA). If your load balancer, proxy server, web server, or router appliance can’t mint me a basic Acme certificate via DNS-01 challenges, then you officially suck and I will throw your product out for something like Caddy the first chance I get.While we’re at it, can we also allow DNS-01 certs to be issued for intermediate authorities, allowing internally-signed certificates to be valid via said Intermediary? That’d solve like, 99% of my PKI needs in any org, ever, forever.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44893231,
-    "by": "breadwinner",
-    "timeISO": "2025-08-13T20:09:46.000Z",
-    "textPlain": "But can it generate self-signed certificate for intranet use? Often on the intranet you want to encrypt traffic, to prevent casual snooping using Wireshark.",
+    "id": 44891335,
+    "by": "RagnarD",
+    "timeISO": "2025-08-13T17:34:06.000Z",
+    "textPlain": "After discovering Caddy, I don't use Nginx any longer. Just a much better development experience.",
     "parent": 44889941,
     "depth": 1
   },
@@ -64,22 +56,6 @@
     "depth": 1
   },
   {
-    "id": 44892711,
-    "by": "ugh123",
-    "timeISO": "2025-08-13T19:27:09.000Z",
-    "textPlain": "How does something like this work for a fleet of edge services, load balancing in distinct areas, but all share a certificate.  Does each nginx instance go through the same protocol/setup steps?",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44891335,
-    "by": "RagnarD",
-    "timeISO": "2025-08-13T17:34:06.000Z",
-    "textPlain": "After discovering Caddy, I don't use Nginx any longer. Just a much better development experience.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44892034,
     "by": "smarx007",
     "timeISO": "2025-08-13T18:27:01.000Z",
@@ -88,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44892873,
-    "by": "ExoticPearTree",
-    "timeISO": "2025-08-13T19:40:20.000Z",
-    "textPlain": "It is a start. Maybe this will serve as a proof of concept that it can be done and then other protocols could be implemented.Probably like many others here, I would very much like to see Cloudflare DNS support.",
+    "id": 44892711,
+    "by": "ugh123",
+    "timeISO": "2025-08-13T19:27:09.000Z",
+    "textPlain": "How does something like this work for a fleet of edge services, load balancing in distinct areas, but all share a certificate.  Does each nginx instance go through the same protocol/setup steps?",
     "parent": 44889941,
     "depth": 1
   },
@@ -104,10 +80,18 @@
     "depth": 1
   },
   {
-    "id": 44891745,
-    "by": "tialaramex",
-    "timeISO": "2025-08-13T18:03:57.000Z",
-    "textPlain": "It's good to see this, it surprised me that this didn't happen to basically everything, basically immediately.I figured either somehow Let's Encrypt doesn't work out, or, everybody bakes in ACME within 2-3 years. The idea that you can buy software in 2025 which has TLS encryption but expects you to go sort out the certificate. It's like if cars had to be refuelled periodically by taking them to a weird dedicated building which is not useful to anything else rather than just charging while you're asleep like a phone and... yeah you know what I get it now. You people are weird.",
+    "id": 44893231,
+    "by": "breadwinner",
+    "timeISO": "2025-08-13T20:09:46.000Z",
+    "textPlain": "But can it generate self-signed certificate for intranet use? Often on the intranet you want to encrypt traffic, to prevent casual snooping using Wireshark.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891078,
+    "by": "stego-tech",
+    "timeISO": "2025-08-13T17:10:19.000Z",
+    "textPlain": "The IT Roller Coaster in two reactions:> Nginx Introduces Native Support for Acme ProtocolIT: “It’s about fucking time!”> The current preview implementation supports HTTP-01 challenges to verify the client’s domain ownership.IT: “FUCK. Alright, domain registrar, mint me a new wildcard please, one of the leading web infrastructure providers still can’t do a basic LE DNS-01 pull in 2025.”Seriously. PKI in IT is a PITA and I want someone to SOLVE IT without requiring AD CAs or Yet Another Hyperspecific Appliance (YAHA). If your load balancer, proxy server, web server, or router appliance can’t mint me a basic Acme certificate via DNS-01 challenges, then you officially suck and I will throw your product out for something like Caddy the first chance I get.While we’re at it, can we also allow DNS-01 certs to be issued for intermediate authorities, allowing internally-signed certificates to be valid via said Intermediary? That’d solve like, 99% of my PKI needs in any org, ever, forever.",
     "parent": 44889941,
     "depth": 1
   },
@@ -116,6 +100,22 @@
     "by": "miggy",
     "timeISO": "2025-08-13T17:28:35.000Z",
     "textPlain": "It seems HAProxy also added ACME/DNS-01 challenge support in haproxy-3.3-dev6 very recently. https://www.mail-archive.com/haproxy@formilux.org/msg46035.h...",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891745,
+    "by": "tialaramex",
+    "timeISO": "2025-08-13T18:03:57.000Z",
+    "textPlain": "It's good to see this, it surprised me that this didn't happen to basically everything, basically immediately.I figured either somehow Let's Encrypt doesn't work out, or, everybody bakes in ACME within 2-3 years. The idea that you can buy software in 2025 which has TLS encryption but expects you to go sort out the certificate. It's like if cars had to be refuelled periodically by taking them to a weird dedicated building which is not useful to anything else rather than just charging while you're asleep like a phone and... yeah you know what I get it now. You people are weird.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44892873,
+    "by": "ExoticPearTree",
+    "timeISO": "2025-08-13T19:40:20.000Z",
+    "textPlain": "It is a start. Maybe this will serve as a proof of concept that it can be done and then other protocols could be implemented.Probably like many others here, I would very much like to see Cloudflare DNS support.",
     "parent": 44889941,
     "depth": 1
   },
@@ -144,14 +144,6 @@
     "depth": 1
   },
   {
-    "id": 44891796,
-    "by": "zaik",
-    "timeISO": "2025-08-13T18:08:06.000Z",
-    "textPlain": "Is there a way to notify other services, if renewal has succeed? My XMPP server also needs to use the certificate.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44891119,
     "by": "samgranieri",
     "timeISO": "2025-08-13T17:14:35.000Z",
@@ -160,18 +152,18 @@
     "depth": 1
   },
   {
-    "id": 44891550,
-    "by": "andrewstuart",
-    "timeISO": "2025-08-13T17:49:54.000Z",
-    "textPlain": "It was this that sent me from nginx to caddy.But I’m not going back. Nginx was a real pain to configure with so many puzzles and surprises and foot guns.",
+    "id": 44891796,
+    "by": "zaik",
+    "timeISO": "2025-08-13T18:08:06.000Z",
+    "textPlain": "Is there a way to notify other services, if renewal has succeed? My XMPP server also needs to use the certificate.",
     "parent": 44889941,
     "depth": 1
   },
   {
-    "id": 44892722,
-    "by": "burnt-resistor",
-    "timeISO": "2025-08-13T19:28:36.000Z",
-    "textPlain": "Yeah, I don't want my webserver to turn into systemd and changing certificates. This is excessive functionality for something that should be handled elsewhere and drive the coordination of rolling certs.",
+    "id": 44891550,
+    "by": "andrewstuart",
+    "timeISO": "2025-08-13T17:49:54.000Z",
+    "textPlain": "It was this that sent me from nginx to caddy.But I’m not going back. Nginx was a real pain to configure with so many puzzles and surprises and foot guns.",
     "parent": 44889941,
     "depth": 1
   },
@@ -188,6 +180,14 @@
     "by": "thway15269037",
     "timeISO": "2025-08-13T18:31:54.000Z",
     "textPlain": "Does nginx still lock prometheus metrics and active probing behind $$$$$ (literal hundreds of thousands)? Forgot third most important thing. I think is was re-resolving upstreams.Anyway, good luck staying competitive lol. Almost everyone I knew either jumped to something more saner or in process of migrating away.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44892722,
+    "by": "burnt-resistor",
+    "timeISO": "2025-08-13T19:28:36.000Z",
+    "textPlain": "Yeah, I don't want my webserver to turn into systemd and changing certificates. This is excessive functionality for something that should be handled elsewhere and drive the coordination of rolling certs.",
     "parent": 44889941,
     "depth": 1
   },
@@ -248,18 +248,18 @@
     "depth": 2
   },
   {
-    "id": 44892448,
-    "by": "aoe6721",
-    "timeISO": "2025-08-13T19:03:36.000Z",
-    "textPlain": "Switch to Angie then. It supports DNS-01 very well.",
-    "parent": 44890666,
-    "depth": 2
-  },
-  {
     "id": 44891707,
     "by": "kijin",
     "timeISO": "2025-08-13T18:00:45.000Z",
     "textPlain": "A practical problem with DNS-01 is that every DNS provider has a different API for creating the required TXT record. Certbot has more than a dozen plugins for different providers, and the list is growing. It shouldn't be nginx's job to keep track of all these third-party APIs.It would also be unreasonable to tell everyone to move their domains to a handful of giants like AWS and Cloudflare who already control so much of the internet, just so they could get certificates with DNS-01. I like my DNS a bit more decentralized than that.",
+    "parent": 44890666,
+    "depth": 2
+  },
+  {
+    "id": 44892448,
+    "by": "aoe6721",
+    "timeISO": "2025-08-13T19:03:36.000Z",
+    "textPlain": "Switch to Angie then. It supports DNS-01 very well.",
     "parent": 44890666,
     "depth": 2
   },
@@ -288,14 +288,6 @@
     "depth": 2
   },
   {
-    "id": 44893120,
-    "by": "triknomeister",
-    "timeISO": "2025-08-13T20:01:29.000Z",
-    "textPlain": "That's Debian's fault I guess",
-    "parent": 44893042,
-    "depth": 2
-  },
-  {
     "id": 44890654,
     "by": "elashri",
     "timeISO": "2025-08-13T16:36:52.000Z",
@@ -320,6 +312,22 @@
     "depth": 2
   },
   {
+    "id": 44893503,
+    "by": "thresh",
+    "timeISO": "2025-08-13T20:32:03.000Z",
+    "textPlain": "I'm currently working on getting the Trixie packages uploaded.  It'll be there this week.As you've said Debian 13 was released 4 days ago - it takes some time to spin up the infrastructure for a new OS (and we've been busy with other tasks, like getting nginx-acme and 1.29.1 out).(I work for F5)",
+    "parent": 44893042,
+    "depth": 2
+  },
+  {
+    "id": 44893120,
+    "by": "triknomeister",
+    "timeISO": "2025-08-13T20:01:29.000Z",
+    "textPlain": "That's Debian's fault I guess",
+    "parent": 44893042,
+    "depth": 2
+  },
+  {
     "id": 44891175,
     "by": "andrewmcwatters",
     "timeISO": "2025-08-13T17:19:55.000Z",
@@ -333,30 +341,6 @@
     "timeISO": "2025-08-13T17:43:13.000Z",
     "textPlain": "Hey! Great to see you here.I tried dokku (and still am!) and it is so hard getting started.For reference,   \n- I've used Coolify successfully where it required me to create a Github app to deploy my apps on pushes to master  \n- I've written GH actions to build and deploy containers to big cloudThis page is what I get if I want to achieve the same, and it's completely a reference book approach - I feel like I'm reading an encyclopedia.   \nhttps://dokku.com/docs/deployment/methods/git/#initializing-...Contrast it with this, which is INSTANTLY useful and helps me deploy apps hot off the page:   \nhttps://coolify.io/docs/knowledge-base/git/github/integratio...What I would love to see for Dokku is tutorials for popular OSS apps and set-objective/get-it-done style getting started articles.  \nI'd LOVE an article that takes me from baremetal to a reverse proxy+a few popular apps. Because the value isn't in using Dokku, it's in using Dokku to get to that state.I'm trying to use dokku for my homeserver.Ideally I want a painless, quick way to go from \"hey here's a repo I like\" to \"deployed on my machine\" with Dokku. And then once that works, peek under the hood.",
     "parent": 44891203,
-    "depth": 2
-  },
-  {
-    "id": 44891258,
-    "by": "0xbadcafebee",
-    "timeISO": "2025-08-13T17:26:56.000Z",
-    "textPlain": "> allowing internally-signed certificates to be valid via said IntermediaryBy design, nothing is allowed to delegate signing authority, because it would become an immediate compromise of everything that got delegated when your delegated authority got compromised. Since only CAs can issue certs, and CAs have to pass at least some basic security scrutiny, clients have assurance that the thing giving it a cert got said cert from a trustworthy authority. If you want a non-trustworthy authority... go with a custom CA. It's intentionally difficult to do so.> If your load balancer, proxy server, web server, or router appliance can’t mint me a basic Acme certificate via DNS-01 challenges, then you officially suck and I will throw your product out for something like Caddy the first chance I get.I mean, that's a valid ask. It will become more commonplace once some popular corporate offering includes it, and then all the competitors will adopt it so they don't leave money on the table. To get the first one to adopt it, be a whale of a customer and yell loudly that you want it, then wait 18 months.",
-    "parent": 44891078,
-    "depth": 2
-  },
-  {
-    "id": 44892750,
-    "by": "philsnow",
-    "timeISO": "2025-08-13T19:30:56.000Z",
-    "textPlain": "You'd get rate limited pretty hard by Let's Encrypt, but if you're rolling your own acme servers you could do it this way.If you wanted to use LE though, you could use a more \"traditional\" cert renewal process somewhere out-of-band, and then provision the resulting keys/certs through whatever coordination thing you contrive (and HUP the nginxs)",
-    "parent": 44892711,
-    "depth": 2
-  },
-  {
-    "id": 44892752,
-    "by": "placatedmayhem",
-    "timeISO": "2025-08-13T19:31:02.000Z",
-    "textPlain": "They don't need to share a single cert. Multiple certificates can be, and possibly should, issued for the same address (or set of addresses). This means that one front door server that gets popped doesn't expose all connections to the larger service.Downside is obviously certificate maintenance increases, but ACME automated the vast majority of that work away.",
-    "parent": 44892711,
     "depth": 2
   },
   {
@@ -376,6 +360,30 @@
     "depth": 2
   },
   {
+    "id": 44892750,
+    "by": "philsnow",
+    "timeISO": "2025-08-13T19:30:56.000Z",
+    "textPlain": "You'd get rate limited pretty hard by Let's Encrypt, but if you're rolling your own acme servers you could do it this way.If you wanted to use LE though, you could use a more \"traditional\" cert renewal process somewhere out-of-band, and then provision the resulting keys/certs through whatever coordination thing you contrive (and HUP the nginxs)",
+    "parent": 44892711,
+    "depth": 2
+  },
+  {
+    "id": 44892752,
+    "by": "placatedmayhem",
+    "timeISO": "2025-08-13T19:31:02.000Z",
+    "textPlain": "They don't need to share a single cert. Multiple certificates can be, and possibly should, issued for the same address (or set of addresses). This means that one front door server that gets popped doesn't expose all connections to the larger service.Downside is obviously certificate maintenance increases, but ACME automated the vast majority of that work away.",
+    "parent": 44892711,
+    "depth": 2
+  },
+  {
+    "id": 44891258,
+    "by": "0xbadcafebee",
+    "timeISO": "2025-08-13T17:26:56.000Z",
+    "textPlain": "> allowing internally-signed certificates to be valid via said IntermediaryBy design, nothing is allowed to delegate signing authority, because it would become an immediate compromise of everything that got delegated when your delegated authority got compromised. Since only CAs can issue certs, and CAs have to pass at least some basic security scrutiny, clients have assurance that the thing giving it a cert got said cert from a trustworthy authority. If you want a non-trustworthy authority... go with a custom CA. It's intentionally difficult to do so.> If your load balancer, proxy server, web server, or router appliance can’t mint me a basic Acme certificate via DNS-01 challenges, then you officially suck and I will throw your product out for something like Caddy the first chance I get.I mean, that's a valid ask. It will become more commonplace once some popular corporate offering includes it, and then all the competitors will adopt it so they don't leave money on the table. To get the first one to adopt it, be a whale of a customer and yell loudly that you want it, then wait 18 months.",
+    "parent": 44891078,
+    "depth": 2
+  },
+  {
     "id": 44891271,
     "by": "bityard",
     "timeISO": "2025-08-13T17:27:43.000Z",
@@ -388,14 +396,6 @@
     "by": "creshal",
     "timeISO": "2025-08-13T16:53:44.000Z",
     "textPlain": "Certbot is a giant swiss army chainsaw that can do everything middlingly well, if you don't mind vibecoding your encryption intrastructure. But a clean solution it usually isn't.(That said, I'm not too thrilled by this implementation. How are renewals and revocations handled, and how can the processes be debugged? I hope the docs get updated soon.)",
-    "parent": 44890604,
-    "depth": 2
-  },
-  {
-    "id": 44890886,
-    "by": "jddj",
-    "timeISO": "2025-08-13T16:55:23.000Z",
-    "textPlain": "From the seeming consensus I was dreading setting let's encrypt up on nginx, until I did it and it was and has been... Completely straightforward and painless.Maybe if you step off the happy path it gets hairy, but I found the default certbot flow to be easy.",
     "parent": 44890604,
     "depth": 2
   }
