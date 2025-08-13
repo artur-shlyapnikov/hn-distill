@@ -2,6 +2,8 @@ import { z } from "zod";
 
 const IsoString = z.string().regex(/^\d{4}-\d{2}-\d{2}T.*Z$/, "must be ISO string");
 
+const INVALID_URL_MESSAGE = "Invalid URL";
+
 export const HnItemRawSchema = z.object({
   id: z.number(),
   type: z.enum(["story", "comment"]),
@@ -21,14 +23,14 @@ export const NormalizedStorySchema = z.object({
   id: z.number(),
   title: z.string().max(500),
   url: z.union([
-    z.string().refine((val) => {
+    z.string().refine((value) => {
       try {
-        new URL(val);
+        new URL(value);
         return true;
       } catch {
         return false;
       }
-    }, "Invalid URL"),
+    }, INVALID_URL_MESSAGE),
     z.null(),
   ]),
   by: z.string().max(80),
@@ -77,14 +79,14 @@ export const AggregatedItemSchema = z.object({
   id: z.number(),
   title: z.string().max(500),
   url: z.union([
-    z.string().refine((val) => {
+    z.string().refine((value) => {
       try {
-        new URL(val);
+        new URL(value);
         return true;
       } catch {
         return false;
       }
-    }, "Invalid URL"),
+    }, INVALID_URL_MESSAGE),
     z.null(),
   ]),
   by: z.string().max(80),
@@ -95,9 +97,9 @@ export const AggregatedItemSchema = z.object({
   commentsCount: z.number().optional(),
   hnUrl: z
     .string()
-    .refine((val) => {
+    .refine((value) => {
       try {
-        new URL(val);
+        new URL(value);
         return true;
       } catch {
         return false;

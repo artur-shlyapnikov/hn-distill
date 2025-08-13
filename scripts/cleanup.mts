@@ -1,14 +1,10 @@
 #!/usr/bin/env bun
-import { PATHS, pathFor } from "@config/paths";
-import {
-  IndexSchema,
-  NormalizedStorySchema,
-  AggregatedFileSchema,
-  type AggregatedFile,
-} from "@config/schemas";
-import { readJsonSafeOr, writeJsonFile } from "@utils/json";
-import { exists, ensureDir } from "@utils/fs";
 import { rm } from "node:fs/promises";
+
+import { PATHS, pathFor } from "@config/paths";
+import { AggregatedFileSchema, IndexSchema, NormalizedStorySchema, type AggregatedFile } from "@config/schemas";
+import { ensureDir, exists } from "@utils/fs";
+import { readJsonSafeOr, writeJsonFile } from "@utils/json";
 import { log } from "@utils/log";
 
 const SCORE_MIN = 50;
@@ -30,12 +26,8 @@ async function main(): Promise<void> {
 
   const toDelete: number[] = [];
   for (const id of index.storyIds) {
-    const story = await readJsonSafeOr(
-      pathFor.rawItem(id),
-      NormalizedStorySchema.nullable(),
-      null
-    );
-    const score = typeof story?.score === "number" ? story.score! : 0;
+    const story = await readJsonSafeOr(pathFor.rawItem(id), NormalizedStorySchema.nullable());
+    const score = typeof story?.score === "number" ? story.score : 0;
     if (score < SCORE_MIN) {
       toDelete.push(id);
     }
@@ -55,18 +47,16 @@ async function main(): Promise<void> {
   }
 
   // Update aggregated.json to remove deleted ids if present
-  const aggregated = await readJsonSafeOr<AggregatedFile>(
-    PATHS.aggregated,
-    AggregatedFileSchema,
-    {
-      updatedISO: new Date(0).toISOString(),
-      items: [],
-    }
-  );
+  const aggregated = await readJsonSafeOr<AggregatedFile>(PATHS.aggregated, AggregatedFileSchema, {
+    updatedISO: new Date(0).toISOString(),
+    items: [],
+  });
 
   const before = aggregated.items.length;
   const afterItems = aggregated.items.filter((it) => !toDelete.includes(it.id));
-  if (afterItems.length !== before) {
+  if (afterItems.length === before) {
+    log.info("cleanup", "aggregated unchanged", { items: before });
+  } else {
     const next: AggregatedFile = {
       ...aggregated,
       items: afterItems,
@@ -76,14 +66,13 @@ async function main(): Promise<void> {
       removed: before - afterItems.length,
       left: afterItems.length,
     });
-  } else {
-    log.info("cleanup", "aggregated unchanged", { items: before });
   }
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch((e) => {
-    console.error(e);
+  main().catch((error) => {
+    // eslint-disable-next-line no-console
+    console.error(error);
     process.exit(1);
   });
 }

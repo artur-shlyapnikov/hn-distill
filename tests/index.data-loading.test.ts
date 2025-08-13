@@ -1,12 +1,14 @@
-import { describe, test, expect } from "bun:test";
-import { writeFileSync, mkdtempSync, rmSync } from "node:fs";
+import { loadAggregated } from "@utils/load-aggregated";
+import { describe, expect, test } from "bun:test";
+import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { loadAggregated } from "@utils/load-aggregated";
+
+const AGGREGATED_JSON = "aggregated.json";
 
 describe("index data loading resilience", () => {
   test("returns fallback when file missing", () => {
-    const missing = join(tmpdir(), "non-existent", "aggregated.json");
+    const missing = join(tmpdir(), "non-existent", AGGREGATED_JSON);
     const res = loadAggregated(missing);
     expect(res.items).toEqual([]);
     expect(res.updatedISO).toBe("—");
@@ -14,7 +16,7 @@ describe("index data loading resilience", () => {
 
   test("parses valid aggregated.json", () => {
     const dir = mkdtempSync(join(tmpdir(), "agg-valid-"));
-    const p = join(dir, "aggregated.json");
+    const p = join(dir, AGGREGATED_JSON);
     const valid = {
       updatedISO: "2024-01-02T03:04:05.000Z",
       items: [
@@ -43,7 +45,7 @@ describe("index data loading resilience", () => {
 
   test("falls back on malformed JSON", () => {
     const dir = mkdtempSync(join(tmpdir(), "agg-malformed-"));
-    const p = join(dir, "aggregated.json");
+    const p = join(dir, AGGREGATED_JSON);
     writeFileSync(p, "{ not valid json", "utf8");
     const res = loadAggregated(p);
     expect(res.items).toEqual([]);
@@ -53,8 +55,8 @@ describe("index data loading resilience", () => {
 
   test("coerces wrong field types to safe defaults", () => {
     const dir = mkdtempSync(join(tmpdir(), "agg-wrong-types-"));
-    const p = join(dir, "aggregated.json");
-    const wrong = { updatedISO: 123, items: "nope" } as any;
+    const p = join(dir, AGGREGATED_JSON);
+    const wrong: Record<string, unknown> = { updatedISO: 123, items: "nope" };
     writeFileSync(p, JSON.stringify(wrong), "utf8");
     const res = loadAggregated(p);
     expect(res.items).toEqual([]);
@@ -62,4 +64,3 @@ describe("index data loading resilience", () => {
     rmSync(dir, { recursive: true, force: true });
   });
 });
-

@@ -1,16 +1,9 @@
-import { describe, test, expect } from "bun:test";
-import { mdToHtml } from "../utils/mdToHtml.ts";
-import mdToHtmlDefault from "../utils/mdToHtml.ts";
+import { describe, expect, test } from "bun:test";
+import { mdToHtml } from "../utils/md-to-html.ts";
 
 describe("utils/mdToHtml", () => {
   test("renders basic markdown elements", () => {
-    const md = [
-      "# Title",
-      "Some **bold** and _italic_ and `code`.",
-      "",
-      "- One",
-      "- Two",
-    ].join("\n");
+    const md = ["# Title", "Some **bold** and _italic_ and `code`.", "", "- One", "- Two"].join("\n");
     const html = mdToHtml(md);
     expect(html).toContain("<h1>Title</h1>");
     expect(html).toContain("<strong>bold</strong>");
@@ -21,21 +14,15 @@ describe("utils/mdToHtml", () => {
   });
 
   test("renders fenced code block with language class", () => {
-    const md = [
-      "```js",
-      "console.log('hi')",
-      "```",
-    ].join("\n");
+    const md = ["```js", "console.log('hi')", "```"].join("\n");
     const html = mdToHtml(md);
     expect(html).toMatch(/<pre><code class=\"language-js\">[\s\S]*console\.log/);
   });
 
   test("sanitizes dangerous HTML and links", () => {
-    const md = [
-      "<script>alert('x')</script>",
-      "",
-      "[bad](javascript:alert('x')) and [ok](https://example.com)",
-    ].join("\n");
+    const md = ["<script>alert('x')</script>", "", "[bad](javascript:alert('x')) and [ok](https://example.com)"].join(
+      "\n"
+    );
     const html = mdToHtml(md);
     expect(html).not.toContain("<script>");
     // no dangerous href emitted; text may remain as-is
@@ -51,5 +38,4 @@ describe("utils/mdToHtml", () => {
     expect(html).toContain('<a href="https://example.com"');
     expect(html).toContain('target="_blank"');
   });
-
 });

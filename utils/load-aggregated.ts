@@ -1,5 +1,6 @@
-import type { AggregatedItem } from "@config/schemas";
 import { existsSync, readFileSync } from "node:fs";
+
+import type { AggregatedItem } from "@config/schemas";
 
 export type AggregatedData = {
   items: AggregatedItem[];
@@ -20,16 +21,26 @@ export function loadAggregated(pathname: string): AggregatedData {
     const raw = readFileSync(pathname, "utf8");
     const parsed: unknown = JSON.parse(raw);
     function getItems(u: unknown): AggregatedItem[] {
-      if (typeof u === "object" && u !== null) {
-        // narrow with runtime checks
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const maybeItems = (u as any).items;
-        if (Array.isArray(maybeItems)) return maybeItems as AggregatedItem[];
+      if (typeof u === "object" && u !== null && "items" in u) {
+        const object = u as Record<string, unknown>;
+        const maybeItems = object.items;
+        if (Array.isArray(maybeItems)) {
+          return maybeItems as AggregatedItem[];
+        }
       }
       return [];
     }
+
+    function getUpdatedISO(u: unknown): string {
+      if (typeof u === "object" && u !== null && "updatedISO" in u) {
+        const object = u as Record<string, unknown>;
+        return typeof object.updatedISO === "string" ? object.updatedISO : "—";
+      }
+      return "—";
+    }
+
     const items = getItems(parsed);
-    const updatedISO = typeof (parsed as any)?.updatedISO === "string" ? (parsed as any).updatedISO : "—";
+    const updatedISO = getUpdatedISO(parsed);
     return { items, updatedISO };
   } catch {
     return { items: [], updatedISO: "—" };

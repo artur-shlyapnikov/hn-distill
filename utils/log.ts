@@ -1,7 +1,7 @@
 import { env } from "@config/env";
 
-type Level = "error" | "warn" | "info" | "debug";
-type LevelCfg = "silent" | Level;
+type Level = "debug" | "error" | "info" | "warn";
+type LevelCfg = Level | "silent";
 
 const order: Record<LevelCfg, number> = {
   silent: 99,
@@ -11,7 +11,7 @@ const order: Record<LevelCfg, number> = {
   debug: 3,
 };
 
-const currentLevel: LevelCfg = env.LOG_LEVEL ?? "info";
+const currentLevel: LevelCfg = env.LOG_LEVEL;
 
 function shouldLog(level: Level): boolean {
   return order[level] <= order[currentLevel];
@@ -21,39 +21,60 @@ function ts(): string {
   return new Date().toISOString();
 }
 
-function emit(level: Level, scope: string, msg: string, meta?: unknown): void {
-  if (!shouldLog(level)) return;
-  const line = `[${ts()}] ${level.toUpperCase()} ${scope}: ${msg}`;
-  const fn =
-    level === "error"
-      ? console.error
-      : level === "warn"
-        ? console.warn
-        : level === "info"
-          ? console.info
-          : console.debug;
-  if (meta !== undefined) {
-    try {
-      fn(line, meta);
-    } catch {
-      fn(line);
+function emit(level: Level, scope: string, message: string, meta?: unknown): void {
+  if (!shouldLog(level)) {
+    return;
+  }
+  const line = `[${ts()}] ${level.toUpperCase()} ${scope}: ${message}`;
+  let function_: typeof console.log;
+  switch (level) {
+    case "error": {
+      // eslint-disable-next-line no-console
+      function_ = console.error;
+
+      break;
     }
+    case "warn": {
+      // eslint-disable-next-line no-console
+      function_ = console.warn;
+
+      break;
+    }
+    case "info": {
+      // eslint-disable-next-line no-console
+      function_ = console.info;
+
+      break;
+    }
+    case "debug": {
+      // eslint-disable-next-line no-console
+      function_ = console.debug;
+
+      break;
+    }
+  }
+  if (meta === undefined) {
+    function_(line);
   } else {
-    fn(line);
+    try {
+      function_(line, meta);
+    } catch {
+      function_(line);
+    }
   }
 }
 
 export const log = {
-  error(scope: string, msg: string, meta?: unknown) {
-    emit("error", scope, msg, meta);
+  error(scope: string, message: string, meta?: unknown): void {
+    emit("error", scope, message, meta);
   },
-  warn(scope: string, msg: string, meta?: unknown) {
-    emit("warn", scope, msg, meta);
+  warn(scope: string, message: string, meta?: unknown): void {
+    emit("warn", scope, message, meta);
   },
-  info(scope: string, msg: string, meta?: unknown) {
-    emit("info", scope, msg, meta);
+  info(scope: string, message: string, meta?: unknown): void {
+    emit("info", scope, message, meta);
   },
-  debug(scope: string, msg: string, meta?: unknown) {
-    emit("debug", scope, msg, meta);
+  debug(scope: string, message: string, meta?: unknown): void {
+    emit("debug", scope, message, meta);
   },
 };

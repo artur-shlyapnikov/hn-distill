@@ -1,6 +1,5 @@
 import { describe, test, expect } from "bun:test";
-import { htmlToMd } from "../utils/htmlToMd.ts";
-import htmlToMdDefault from "../utils/htmlToMd.ts";
+import htmlToMdDefault, { htmlToMd } from "../utils/html-to-md";
 
 describe("utils/htmlToMd", () => {
   test("converts basic HTML elements", () => {

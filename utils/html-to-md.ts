@@ -8,7 +8,7 @@ const turndown = new TurndownService({
 turndown.remove(["script", "style"]);
 
 export function htmlToMd(html: string): string {
-  if (!html) return '';
+  if (!html) {return '';}
   return turndown.turndown(html);
 }
 

@@ -1,5 +1,5 @@
-import { mkdir, stat, readFile, writeFile } from "fs/promises";
-import { dirname } from "path";
+import { mkdir, stat, readFile, writeFile } from "node:fs/promises";
+import { dirname } from "node:path";
 
 export async function ensureDir(p: string): Promise<void> {
   await mkdir(p, { recursive: true });
@@ -14,11 +14,11 @@ export async function exists(p: string): Promise<boolean> {
   }
 }
 
-export async function readTextSafe(path: string): Promise<string | null> {
+export async function readTextSafe(path: string): Promise<string | undefined> {
   try {
     return await readFile(path, "utf8");
   } catch {
-    return null;
+    return undefined;
   }
 }
 

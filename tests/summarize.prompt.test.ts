@@ -1,7 +1,7 @@
 import { describe, test, expect } from "bun:test";
 import { buildPostPrompt, buildCommentsPrompt } from "../scripts/summarize.mts";
 import type { NormalizedStory, NormalizedComment } from "../config/schemas.ts";
-import { env } from "../config/env.ts";
+import { env as environment } from "../config/env.ts";
 
 describe("scripts/summarize prompt builders", () => {
   test("buildPostPrompt returns only article content slice when present", async () => {
@@ -31,8 +31,8 @@ describe("scripts/summarize prompt builders", () => {
   test("buildCommentsPrompt respects budget and returns sampleIds", async () => {
     const comments: NormalizedComment[] = Array.from(
       { length: 20 },
-      (_, i) => ({
-        id: i + 1,
+      (_, index) => ({
+        id: index + 1,
         by: "u",
         timeISO: new Date().toISOString(),
         textPlain: "x".repeat(500),
@@ -81,7 +81,7 @@ describe("scripts/summarize prompt builders", () => {
     const { prompt, sampleIds } = await buildCommentsPrompt(comments);
     const lines = prompt.split("\n");
     // Header based on language
-    if (env.SUMMARY_LANG === "en") {
+    if (environment.SUMMARY_LANG === "en") {
       expect(lines[0]).toContain("Language: en");
     } else {
       expect(lines[0]).toContain("Language: ru");

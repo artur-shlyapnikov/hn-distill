@@ -1,29 +1,29 @@
-import { describe, test, expect } from "bun:test";
-import { normalizeStory } from "../scripts/fetch-hn.mts";
+import { describe, expect, test } from "bun:test";
 import type { HnItemRaw } from "../config/schemas.ts";
+import { normalizeStory } from "../scripts/fetch-hn.mts";
 
 describe("scripts/fetch-hn normalizeStory", () => {
   test("throws on non-story type", () => {
     const raw = {
       id: 1,
       type: "comment",
-      time: 1700000000,
+      time: 1_700_000_000,
     } as unknown as HnItemRaw;
     expect(() => normalizeStory(raw)).toThrow();
   });
 
   test("normalizes and clamps fields, converts time to ISO", () => {
-    const raw = {
+    const raw: HnItemRaw = {
       id: 2,
       type: "story",
       title: "Hi",
       url: "http://example.com",
       by: "alice",
-      time: 1700000000,
+      time: 1_700_000_000,
       kids: [3, 4],
       score: 10,
       descendants: 5,
-    } as HnItemRaw;
+    };
     const s = normalizeStory(raw);
     expect(s.id).toBe(2);
     expect(typeof s.timeISO).toBe("string");
@@ -38,7 +38,7 @@ describe("scripts/fetch-hn normalizeStory", () => {
     const raw = {
       id: 3,
       type: "story",
-      time: 1700000001,
+      time: 1_700_000_001,
     } as unknown as HnItemRaw;
     const s = normalizeStory(raw);
     expect(s.url).toBeNull();

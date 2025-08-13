@@ -1,6 +1,6 @@
 {
   "name": "hn-digest-astro",
-  "version": "1.0.0",
+  "version": "1.1.5",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,11 +14,14 @@
     "typecheck": "bunx tsc --noEmit",
     "test": "bun test",
     "test:watch": "bun test --watch",
-    "test:cov": "bun test --coverage"
+    "test:cov": "bun test --coverage",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:check": "eslint . --max-warnings 0"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
-    "astro": "^5.12.8",
+    "astro": "^5.12.9",
     "date-fns": "^4.1.0",
     "he": "^1.2.0",
     "jsdom": "^26.1.0",
@@ -26,17 +29,26 @@
     "p-limit": "^6.2.0",
     "sanitize-html": "^2.17.0",
     "turndown": "^7.2.0",
-    "zod": "^4.0.15"
+    "zod": "^4.0.17"
   },
   "optionalDependencies": {
-    "@rollup/rollup-linux-x64-gnu": "^4.21.0"
+    "@rollup/rollup-linux-x64-gnu": "^4.46.2"
   },
   "devDependencies": {
     "@types/markdown-it": "^14.1.2",
-    "@types/node": "^24.2.0",
-    "@types/sanitize-html": "^2.13.0",
+    "@types/node": "^24.2.1",
+    "@types/sanitize-html": "^2.16.0",
     "@types/turndown": "^5.0.5",
-    "tsx": "^4.20.3",
+    "@typescript-eslint/eslint-plugin": "^8.39.1",
+    "@typescript-eslint/parser": "^8.39.1",
+    "eslint": "^9.33.0",
+    "eslint-import-resolver-typescript": "^4.4.4",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-promise": "^7.2.1",
+    "eslint-plugin-security": "^3.0.1",
+    "eslint-plugin-sonarjs": "^3.0.4",
+    "eslint-plugin-unicorn": "^60.0.0",
+    "tsx": "^4.20.4",
     "typescript": "^5.9.2"
   }
 }

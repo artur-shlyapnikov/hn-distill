@@ -1,34 +1,40 @@
+import { dirname } from "node:path";
+
+import pLimit from "p-limit";
+import { z } from "zod";
+
 import { env, type Env } from "@config/env";
 import { PATHS, pathFor } from "@config/paths";
-import type { HnItemRaw, NormalizedComment, NormalizedStory } from "@config/schemas";
 import { HnItemRawSchema } from "@config/schemas";
 import { ensureDir } from "@utils/fs";
 import { HttpClient } from "@utils/http-client";
 import { readJsonSafeOr, writeJsonFile } from "@utils/json";
 import { clamp, htmlToPlain } from "@utils/text";
-import pLimit from "p-limit";
-import { dirname } from "path";
-import { z } from "zod";
+
 import { HN } from "../utils/hn.js";
+
+import type { HnItemRaw, NormalizedComment, NormalizedStory } from "@config/schemas";
 
 type Services = {
   http: HttpClient;
 };
 
-const SKIPPED_AUTHORS: string[] = [];
-
-function sleep(ms: number): Promise<void> {
-  return new Promise((r) => setTimeout(r, ms));
+async function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function normalizeUrl(url?: string): string | null {
-  if (!url) return null;
+function normalizeUrl(url?: string): string | undefined {
+  if (!url) {
+    return undefined;
+  }
   try {
     const u = new URL(url);
-    if (!u.protocol.startsWith("http")) return null;
+    if (!u.protocol.startsWith("http")) {
+      return undefined;
+    }
     return u.toString();
   } catch {
-    return null;
+    return undefined;
   }
 }
 
@@ -41,7 +47,7 @@ export function makeServices(e: Env): Services {
       retryOnStatuses: [408, 425, 429, 500, 502, 503, 504, 522],
     },
     {
-      ua: "hn-distill/1.0 (+https://github.com/hn-distill)",
+      ua: "hckr.top/1.0 (+https://hckr.top)",
       headers: {},
     }
   );
@@ -50,19 +56,23 @@ export function makeServices(e: Env): Services {
 
 export async function readTopIds(services: Services, limit: number): Promise<number[]> {
   const ids = await services.http.json<number[]>(`${HN.api}/topstories.json`).catch(() => []);
-  if (!Array.isArray(ids) || ids.length === 0) return [];
+  if (!Array.isArray(ids) || ids.length === 0) {
+    return [];
+  }
   return ids.slice(0, Math.max(0, limit));
 }
 
-export async function fetchItem(services: Services, id: number): Promise<HnItemRaw | null> {
+export async function fetchItem(services: Services, id: number): Promise<HnItemRaw | undefined> {
   const url = `${HN.api}/item/${id}.json`;
   try {
     const data = await services.http.json<unknown>(url);
     const parsed = HnItemRawSchema.safeParse(data);
-    if (!parsed.success) return null;
-    return parsed.data as HnItemRaw;
+    if (!parsed.success) {
+      return undefined;
+    }
+    return parsed.data;
   } catch {
-    return null;
+    return undefined;
   }
 }
 
@@ -72,16 +82,16 @@ export function normalizeStory(raw: HnItemRaw): NormalizedStory {
   }
   const title = clamp(raw.title ?? "(no title)", 500);
   const by = clamp(raw.by ?? "unknown", 80);
-  const timeMs = Number.isFinite(raw.time) ? (raw.time as number) * 1000 : Date.now();
+  const timeMs = Number.isFinite(raw.time) ? raw.time * 1000 : Date.now();
   return {
     id: raw.id,
     title,
     url: normalizeUrl(raw.url),
     by,
     timeISO: new Date(timeMs).toISOString(),
-    commentIds: (raw.kids ?? []) as number[],
-    score: raw.score ?? undefined,
-    descendants: raw.descendants ?? undefined,
+    commentIds: raw.kids ?? [],
+    score: raw.score,
+    descendants: raw.descendants,
   };
 }
 
@@ -96,12 +106,22 @@ type CacheShape = Record<
 
 async function migrateCache(raw: unknown): Promise<CacheShape> {
   const migrated: CacheShape = {};
-  if (typeof raw !== "object" || raw === null) return migrated;
+  if (typeof raw !== "object" || raw === null) {
+    return migrated;
+  }
   for (const key of Object.keys(raw as Record<string, unknown>)) {
     const storyId = Number(key);
-    if (isNaN(storyId)) continue;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    const entry: any = (raw as Record<string, unknown>)[key];
+    if (Number.isNaN(storyId)) {
+      continue;
+    }
+    const entry = (raw as Record<string, unknown>)[key] as
+      | {
+          seenTopLevel?: number[];
+          seenKids?: number[];
+          seenByDepth?: Record<string, number[]>;
+          updatedISO?: string;
+        }
+      | undefined;
     const seenTopLevel: number[] = entry?.seenTopLevel ?? entry?.seenKids ?? [];
     const seenByDepth: Record<string, number[]> = entry?.seenByDepth ?? {};
     const updatedISO: string = typeof entry?.updatedISO === "string" ? entry.updatedISO : new Date(0).toISOString();
@@ -111,21 +131,98 @@ async function migrateCache(raw: unknown): Promise<CacheShape> {
 }
 
 async function readCache(): Promise<CacheShape> {
-  const rawCache = await readJsonSafeOr<unknown>(PATHS.cache, z.any(), {});
+  const rawCache = await readJsonSafeOr<Record<string, unknown>>(PATHS.cache, z.record(z.unknown()), {});
   return migrateCache(rawCache);
+}
+
+type CommentFetchResult = {
+  normalized?: NormalizedComment;
+  kids: number[];
+  depthCurrent: number;
+  skip: boolean;
+};
+
+async function processCommentItem(
+  services: Services,
+  id: number,
+  depth: number,
+  visitedThisRun: Set<number>,
+  allSeenByDepth: Record<number, number[]>
+): Promise<CommentFetchResult | undefined> {
+  if (visitedThisRun.has(id)) {
+    return;
+  }
+  visitedThisRun.add(id);
+
+  allSeenByDepth[depth] ??= [];
+  allSeenByDepth[depth].push(id);
+
+  const item = await fetchItem(services, id).catch(() => {
+    // Ignore fetch errors and continue
+  });
+  if (!item || item.type !== "comment") {
+    return;
+  }
+
+  const kids = Array.isArray(item.kids) ? item.kids : [];
+
+  const textPlainRaw = htmlToPlain(item.text ?? "");
+  if (!textPlainRaw) {
+    return { normalized: undefined, kids, depthCurrent: depth, skip: true };
+  }
+  const textPlain = clamp(textPlainRaw, env.MAX_BODY_CHARS);
+  const normalized: NormalizedComment = {
+    id: item.id,
+    by: clamp(item.by ?? "unknown", 80),
+    timeISO: new Date((Number.isFinite(item.time) ? item.time : Date.now() / 1000) * 1000).toISOString(),
+    textPlain,
+    parent: item.parent ?? 0,
+    depth,
+  };
+  return { normalized, kids, depthCurrent: depth, skip: false };
+}
+
+function addKidsToQueue(
+  result: CommentFetchResult,
+  queue: Array<{ id: number; depth: number }>,
+  options: {
+    maxDepth: number;
+    maxCount: number;
+    seenByDepth: Record<string, number[]>;
+  },
+  visitedThisRun: Set<number>,
+  currentCount: number
+): void {
+  if (result.depthCurrent >= options.maxDepth) {
+    return;
+  }
+
+  const nextDepth = result.depthCurrent + 1;
+  const seenAtNextDepth = options.seenByDepth[String(nextDepth)] ?? [];
+  for (const kid of result.kids) {
+    if (currentCount + queue.length >= options.maxCount) {
+      break;
+    }
+    if (seenAtNextDepth.includes(kid)) {
+      continue;
+    }
+    if (!visitedThisRun.has(kid)) {
+      queue.push({ id: kid, depth: nextDepth });
+    }
+  }
 }
 
 export async function collectComments(
   services: Services,
   rootIds: number[],
-  opts: {
+  options: {
     maxDepth: number;
     maxCount: number;
     concurrency: number;
     seenByDepth: Record<string, number[]>;
   }
 ): Promise<{ comments: NormalizedComment[]; allSeenByDepth: Record<number, number[]> }> {
-  const limit = pLimit(opts.concurrency);
+  const limit = pLimit(options.concurrency);
   const queue: Array<{ id: number; depth: number }> = rootIds.map((id) => ({
     id,
     depth: 1,
@@ -134,67 +231,29 @@ export async function collectComments(
   const visitedThisRun = new Set<number>();
   const allSeenByDepth: Record<number, number[]> = {};
 
-  while (queue.length > 0 && out.length < opts.maxCount) {
-    const batchSize = Math.max(1, Math.min(queue.length, opts.concurrency));
+  while (queue.length > 0 && out.length < options.maxCount) {
+    const batchSize = Math.max(1, Math.min(queue.length, options.concurrency));
     const batch = queue.splice(0, batchSize);
     const results = await Promise.all(
-      batch.map(({ id, depth }) =>
-        limit(async () => {
-          if (visitedThisRun.has(id)) return null;
-          visitedThisRun.add(id);
-
-          if (!allSeenByDepth[depth]) allSeenByDepth[depth] = [];
-          allSeenByDepth[depth].push(id);
-
-          const item = await fetchItem(services, id).catch(() => null);
-          if (!item || item.type !== "comment") return null;
-
-          const kids = Array.isArray(item.kids) ? item.kids : [];
-
-          if (SKIPPED_AUTHORS.includes(item.by ?? "")) {
-            return { normalized: null, kids, depthCurrent: depth, skip: true };
-          }
-
-          const textPlainRaw = htmlToPlain(item.text ?? "");
-          if (!textPlainRaw) {
-            return { normalized: null, kids, depthCurrent: depth, skip: true };
-          }
-          const textPlain = clamp(textPlainRaw, env.MAX_BODY_CHARS);
-          const normalized: NormalizedComment = {
-            id: item.id,
-            by: clamp(item.by ?? "unknown", 80),
-            timeISO: new Date((Number.isFinite(item.time) ? item.time : Date.now() / 1000) * 1000).toISOString(),
-            textPlain,
-            parent: item.parent ?? 0,
-            depth,
-          };
-          return { normalized, kids, depthCurrent: depth, skip: false };
-        })
+      batch.map(async ({ id, depth }) =>
+        limit(async () => processCommentItem(services, id, depth, visitedThisRun, allSeenByDepth))
       )
     );
 
     for (const res of results) {
-      if (!res) continue;
-      if (!res.skip && res.normalized && out.length < opts.maxCount) {
+      if (!res) {
+        continue;
+      }
+      if (!res.skip && res.normalized && out.length < options.maxCount) {
         out.push(res.normalized);
       }
-      if (res.depthCurrent < opts.maxDepth) {
-        const nextDepth = res.depthCurrent + 1;
-        const seenAtNextDepth = opts.seenByDepth[String(nextDepth)] ?? [];
-        for (const kid of res.kids) {
-          if (out.length + queue.length >= opts.maxCount) break;
-          if (seenAtNextDepth.includes(kid)) continue;
-          if (!visitedThisRun.has(kid)) {
-            queue.push({ id: kid, depth: nextDepth });
-          }
-        }
-      }
+      addKidsToQueue(res, queue, options, visitedThisRun, out.length);
     }
 
     await sleep(5);
   }
 
-  return { comments: out.slice(0, opts.maxCount), allSeenByDepth };
+  return { comments: out.slice(0, options.maxCount), allSeenByDepth };
 }
 
 async function main(): Promise<void> {
@@ -217,11 +276,15 @@ async function main(): Promise<void> {
   const commentsByStory: Record<number, NormalizedComment[]> = {};
 
   await Promise.all(
-    topIds.map((id) =>
+    topIds.map(async (id) =>
       limit(async () => {
         const item = await fetchItem(services, id);
-        if (!item) return;
-        if (item.type !== "story") return;
+        if (!item) {
+          return;
+        }
+        if (item.type !== "story") {
+          return;
+        }
         const story = normalizeStory(item);
         stories.push(story);
 
@@ -239,11 +302,11 @@ async function main(): Promise<void> {
           commentsByStory[story.id] = comments;
 
           const c: Record<string, number[]> = {};
-          for (const [depth, arr] of Object.entries(allSeenByDepth)) {
-            c[String(depth)] = Array.from(new Set(arr));
+          for (const [depth, array] of Object.entries(allSeenByDepth)) {
+            c[String(depth)] = [...new Set(array)];
           }
           cache[story.id] = {
-            seenTopLevel: Array.from(new Set(rootIds)),
+            seenTopLevel: [...new Set(rootIds)],
             seenByDepth: c,
             updatedISO: new Date().toISOString(),
           };
@@ -260,7 +323,7 @@ async function main(): Promise<void> {
 
   const index = {
     updatedISO: new Date().toISOString(),
-    storyIds: Array.from(idsSet),
+    storyIds: [...idsSet],
   };
   await writeJsonFile(PATHS.index, index, { atomic: true, pretty: true });
 
@@ -268,8 +331,9 @@ async function main(): Promise<void> {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  main().catch((err) => {
-    console.error(err);
+  main().catch((error) => {
+    // eslint-disable-next-line no-console
+    console.error(error);
     process.exit(1);
   });
 }

@@ -1,14 +1,14 @@
-export interface RetryPolicy {
+export type RetryPolicy = {
   retries: number;
   baseBackoffMs: number;
   timeoutMs: number;
   retryOnStatuses: number[];
-}
+};
 
-export interface HttpClientOpts {
+export type HttpClientOpts = {
   headers: Record<string, string>;
   ua?: string;
-}
+};
 
 export class HttpError extends Error {
   constructor(public url: string, public status?: number, message?: string) {
@@ -17,8 +17,8 @@ export class HttpError extends Error {
   }
 }
 
-function sleep(ms: number): Promise<void> {
-  return new Promise((r) => setTimeout(r, ms));
+async function sleep(ms: number): Promise<void> {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function backoffMs(base: number, attempt: number): number {
@@ -40,124 +40,159 @@ type SafeRequestInit = Omit<RequestInit, "body" | "headers" | "signal"> & {
 
 async function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
   return new Promise<T>((resolve, reject) => {
-    const t = setTimeout(() => reject(new Error("TimeoutError")), ms);
-    promise.then(
-      (v) => {
-        clearTimeout(t);
-        resolve(v);
-      },
-      (e) => {
-        clearTimeout(t);
-        reject(e);
+    const t = setTimeout(() => {
+      reject(new Error("TimeoutError"));
+    }, ms);
+
+    const cleanup = (): void => {
+      clearTimeout(t);
+    };
+
+    void (async (): Promise<void> => {
+      try {
+        const result = await promise;
+        cleanup();
+        resolve(result);
+      } catch (error) {
+        cleanup();
+        reject(error);
       }
-    );
+    })();
   });
 }
 
 export class HttpClient {
-  private baseHeaders: Record<string, string>;
+  private readonly baseHeaders: Record<string, string>;
 
-  constructor(private defaults: RetryPolicy, opts?: HttpClientOpts) {
-    const ua = opts?.ua ?? "hn-distill/1.0 (+https://github.com/hn-distill)";
-    this.baseHeaders = { "user-agent": ua, ...(opts?.headers ?? {}) };
+  constructor(private readonly defaults: RetryPolicy, options?: HttpClientOpts) {
+    const ua =
+      options?.ua ??
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.7258.123 Safari/537.36";
+    this.baseHeaders = { "user-agent": ua, ...(options?.headers ?? {}) };
+  }
+
+  private shouldRetryError(error: Error): boolean {
+    return error.name === "AbortError" || error.name === "TypeError" || error.message === "TimeoutError";
+  }
+
+  private shouldRetryStatus(status: number, retryStatuses: Set<number>): boolean {
+    return isDefaultRetriableStatus(status) || retryStatuses.has(status);
+  }
+
+  private async handleResponseError(url: string, res: Response): Promise<void> {
+    const body = await res.text().catch(() => "");
+    throw new HttpError(url, res.status, `HTTP ${res.status} ${body.slice(0, 500)}`);
+  }
+
+  private async processAttempt<T>(
+    url: string,
+    init: SafeRequestInit | undefined,
+    processor: (res: Response) => Promise<T>,
+    retryStatuses: Set<number>,
+    attempt: number,
+    maxRetries: number,
+    timeoutMs: number,
+    baseBackoffMs: number
+  ): Promise<T | "retry"> {
+    try {
+      const res = await this.doFetch(url, init, timeoutMs);
+
+      if (!res.ok) {
+        const retriable = this.shouldRetryStatus(res.status, retryStatuses);
+        if (retriable && attempt < maxRetries) {
+          await sleep(backoffMs(baseBackoffMs, attempt));
+          return "retry";
+        }
+        await this.handleResponseError(url, res);
+      }
+      return await processor(res);
+    } catch (error) {
+      const error_ = error as Error;
+      if (attempt < maxRetries && this.shouldRetryError(error_)) {
+        await sleep(backoffMs(baseBackoffMs, attempt));
+        return "retry";
+      }
+      if (error_ instanceof HttpError) {
+        throw error_;
+      }
+      throw new HttpError(url, undefined, error_.message || "Request failed");
+    }
   }
 
   private async doFetch(url: string, init: SafeRequestInit | undefined, timeoutMs: number): Promise<Response> {
-    const req = fetch(url, {
+    const headers: HeadersInit = {
+      ...(init?.headers ?? {}),
+      ...this.baseHeaders,
+    };
+    const requestInit: RequestInit = {
       ...init,
-      headers: {
-        ...(init?.headers ?? {}),
-        ...this.baseHeaders,
-      } as HeadersInit,
-    } as RequestInit);
-    return await withTimeout(req, timeoutMs);
+      headers,
+    };
+    const request = fetch(url, requestInit);
+    return await withTimeout(request, timeoutMs);
   }
 
   async json<T>(url: string, init?: SafeRequestInit): Promise<T> {
     const retryStatuses = new Set([...(init?.retryOnStatuses ?? []), ...this.defaults.retryOnStatuses]);
-    const retries = this.defaults.retries;
-    const timeoutMs = this.defaults.timeoutMs;
-    const baseBackoff = this.defaults.baseBackoffMs;
+    const { retries, timeoutMs, baseBackoffMs } = this.defaults;
+
+    const requestInit = {
+      ...init,
+      headers: {
+        accept: "application/json",
+        ...this.baseHeaders,
+        ...(init?.headers ?? {}),
+      },
+    };
 
     for (let attempt = 0; attempt <= retries; attempt++) {
-      try {
-        const res = await this.doFetch(
-          url,
-          {
-            ...init,
-            headers: {
-              accept: "application/json",
-              ...this.baseHeaders,
-              ...(init?.headers ?? {}),
-            },
-          },
-          timeoutMs
-        );
+      const result = await this.processAttempt(
+        url,
+        requestInit,
+        async (res) => (await res.json()) as T,
+        retryStatuses,
+        attempt,
+        retries,
+        timeoutMs,
+        baseBackoffMs
+      );
 
-        if (!res.ok) {
-          const body = await res.text().catch(() => "");
-          const retriable = isDefaultRetriableStatus(res.status) || retryStatuses.has(res.status);
-          if (retriable && attempt < retries) {
-            await sleep(backoffMs(baseBackoff, attempt));
-            continue;
-          }
-          throw new HttpError(url, res.status, `HTTP ${res.status} ${body.slice(0, 500)}`);
-        }
-        return (await res.json()) as T;
-      } catch (e) {
-        const err = e as Error;
-        const retriable = err.name === "AbortError" || err.name === "TypeError" || err.message === "TimeoutError";
-        if (attempt < retries && retriable) {
-          await sleep(backoffMs(baseBackoff, attempt));
-          continue;
-        }
-        if (err instanceof HttpError) throw err;
-        throw new HttpError(url, undefined, err.message || "Request failed");
+      if (result === "retry") {
+        continue;
       }
+      return result;
     }
     throw new HttpError(url, undefined, "Exhausted retries");
   }
 
   async text(url: string, init?: SafeRequestInit): Promise<string> {
     const retryStatuses = new Set([...(init?.retryOnStatuses ?? []), ...this.defaults.retryOnStatuses]);
-    const retries = this.defaults.retries;
-    const timeoutMs = this.defaults.timeoutMs;
-    const baseBackoff = this.defaults.baseBackoffMs;
+    const { retries, timeoutMs, baseBackoffMs } = this.defaults;
+
+    const requestInit = {
+      ...init,
+      headers: {
+        ...this.baseHeaders,
+        ...(init?.headers ?? {}),
+      },
+    };
 
     for (let attempt = 0; attempt <= retries; attempt++) {
-      try {
-        const res = await this.doFetch(
-          url,
-          {
-            ...init,
-            headers: {
-              ...this.baseHeaders,
-              ...(init?.headers ?? {}),
-            },
-          },
-          timeoutMs
-        );
+      const result = await this.processAttempt(
+        url,
+        requestInit,
+        async (res) => await res.text(),
+        retryStatuses,
+        attempt,
+        retries,
+        timeoutMs,
+        baseBackoffMs
+      );
 
-        if (!res.ok) {
-          const body = await res.text().catch(() => "");
-          const retriable = isDefaultRetriableStatus(res.status) || retryStatuses.has(res.status);
-          if (retriable && attempt < retries) {
-            await sleep(backoffMs(baseBackoff, attempt));
-            continue;
-          }
-          throw new HttpError(url, res.status, `HTTP ${res.status} ${body.slice(0, 500)}`);
-        }
-        return await res.text();
-      } catch (e) {
-        const err = e as Error;
-        const retriable = err.name === "AbortError" || err.name === "TypeError" || err.message === "TimeoutError";
-        if (attempt < retries && retriable) {
-          await sleep(backoffMs(baseBackoff, attempt));
-          continue;
-        }
-        if (err instanceof HttpError) throw err;
-        throw new HttpError(url, undefined, err.message || "Request failed");
+      if (result === "retry") {
+        continue;
       }
+      return result;
     }
     throw new HttpError(url, undefined, "Exhausted retries");
   }

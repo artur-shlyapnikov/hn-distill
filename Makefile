@@ -41,6 +41,10 @@ typecheck:
 	bunx tsc --noEmit --skipLibCheck
 	bunx astro check
 
+.PHONY: lint
+lint:
+	bunx eslint .
+
 .PHONY: test
 test:
 	bun test

@@ -1,15 +1,16 @@
-import { HttpClient } from "./http-client.js";
 import { log } from "./log.js";
 
-export interface ChatMessage {
-  role: "system" | "user" | "assistant";
+import type { HttpClient } from "./http-client.js";
+
+export type ChatMessage = {
+  role: "assistant" | "system" | "user";
   content: string;
 }
 
 export class OpenRouter {
-  private http: HttpClient;
-  private apiKey: string;
-  private model: string;
+  private readonly http: HttpClient;
+  private readonly apiKey: string;
+  private readonly model: string;
 
   constructor(http: HttpClient, apiKey: string, model: string) {
     this.http = http;
@@ -19,12 +20,12 @@ export class OpenRouter {
 
   async chat(
     messages: ChatMessage[],
-    opts?: { temperature?: number; maxTokens?: number },
+    options?: { temperature?: number; maxTokens?: number },
   ): Promise<string> {
     const url = "https://openrouter.ai/api/v1/chat/completions";
     type ORResp = {
       choices?: Array<{ message?: { role: string; content?: string } }>;
-    };
+    }
     log.debug("openrouter", "chat request", {
       model: this.model,
       messages: messages.length,
@@ -41,12 +42,12 @@ export class OpenRouter {
       body: JSON.stringify({
         model: this.model,
         messages,
-        ...(opts?.temperature !== undefined
-          ? { temperature: opts.temperature }
-          : {}),
-        ...(opts?.maxTokens !== undefined
-          ? { max_tokens: opts.maxTokens }
-          : {}),
+        ...(options?.temperature === undefined
+          ? {}
+          : { temperature: options.temperature }),
+        ...(options?.maxTokens === undefined
+          ? {}
+          : { max_tokens: options.maxTokens }),
       }),
       retryOnStatuses: [429],
     });

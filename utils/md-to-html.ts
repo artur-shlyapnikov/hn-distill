@@ -1,7 +1,6 @@
 import MarkdownIt from "markdown-it";
 import sanitizeHtml, { type IOptions } from "sanitize-html";
 
-// Configure Markdown-It with sane defaults and linkify
 const md = new MarkdownIt({
   html: false,
   linkify: true,
@@ -9,7 +8,6 @@ const md = new MarkdownIt({
   typographer: false,
 });
 
-// Sanitize-HTML configuration: allow common formatting + tables/code
 const allowedTags = [
   "p",
   "br",
@@ -49,7 +47,7 @@ const transformTags = {
   // Enforce safe link attributes
   a: (tagName: string, attribs: Record<string, string>) => {
     void tagName; // mark parameter as used
-    const href = attribs["href"] || "";
+    const href = attribs["href"] ?? "";
     // Disallow dangerous protocols
     const safeHref = /^\s*javascript:/i.test(href) ? "" : href;
     return {
@@ -64,7 +62,9 @@ const transformTags = {
 } as const;
 
 export function mdToHtml(src: string): string {
-  if (!src) return "";
+  if (!src) {
+    return "";
+  }
   const rendered = md.render(src);
   const options: IOptions = {
     allowedTags: allowedTags as unknown as IOptions["allowedTags"],

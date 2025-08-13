@@ -6,7 +6,7 @@ export type TextLimits = {
   perTitle: number;
   perAuthor: number;
   perArticleSlice: number;
-};
+}
 
 export function htmlToPlain(input: string, options?: { paragraphBreak?: string }): string {
   if (!input) {

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const EnvSchema = z.object({
+const EnvironmentSchema = z.object({
   OPENROUTER_API_KEY: z.string().optional(),
   SUMMARY_LANG: z.enum(["ru", "en"]).default("ru"),
   TOP_N: z.coerce.number().int().min(1).max(500).default(40),
@@ -11,11 +11,11 @@ const EnvSchema = z.object({
     .number()
     .int()
     .min(1000)
-    .max(20000)
+    .max(20_000)
     .default(6000),
-  MAX_BODY_CHARS: z.coerce.number().int().min(1000).max(50000).default(2000),
+  MAX_BODY_CHARS: z.coerce.number().int().min(1000).max(50_000).default(2000),
 
-  HTTP_TIMEOUT_MS: z.coerce.number().int().min(1000).max(60000).default(15000),
+  HTTP_TIMEOUT_MS: z.coerce.number().int().min(1000).max(60_000).default(15_000),
   HTTP_RETRIES: z.coerce.number().int().min(0).max(5).default(3),
   HTTP_BACKOFF_MS: z.coerce.number().int().min(100).max(5000).default(600),
 
@@ -24,7 +24,7 @@ const EnvSchema = z.object({
     .number()
     .int()
     .min(128)
-    .max(32768)
+    .max(32_768)
     .default(8000),
 
   LOG_LEVEL: z
@@ -35,5 +35,5 @@ const EnvSchema = z.object({
   BASE: z.string().optional(),
 });
 
-export const env = EnvSchema.parse(process.env);
+export const env = EnvironmentSchema.parse(process.env);
 export type Env = typeof env;

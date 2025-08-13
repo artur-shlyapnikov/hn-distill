@@ -1,16 +1,16 @@
-import { describe, test, expect } from "bun:test";
-import { summarizeWorkflow, makeServices } from "../scripts/summarize.mts";
-import { env as realEnv } from "../config/env.ts";
+import { describe, expect, test } from "bun:test";
+import { env as realEnvironment } from "../config/env.ts";
+import { makeServices, summarizeWorkflow } from "../scripts/summarize.mts";
 
-function cloneEnv(over: Partial<typeof realEnv> = {}) {
-  return { ...realEnv, ...over };
+function cloneEnvironment(over: Partial<typeof realEnvironment> = {}): typeof realEnvironment {
+  return { ...realEnvironment, ...over };
 }
 
 describe("summarize.workflow", () => {
   test("skips without OPENROUTER_API_KEY", async () => {
-    const fakeEnv = cloneEnv({ OPENROUTER_API_KEY: undefined });
-    const services = makeServices(fakeEnv as any);
+    const fakeEnvironment = cloneEnvironment({ OPENROUTER_API_KEY: undefined });
+    const services = makeServices(fakeEnvironment);
     // Should return without throwing, regardless of filesystem state
-    await expect(summarizeWorkflow(services)).resolves.toBeUndefined();
+    expect(summarizeWorkflow(services)).resolves.toBeUndefined();
   });
 });
