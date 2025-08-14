@@ -1,17 +1,17 @@
 [
   {
-    "id": 44897658,
-    "by": "gardaani",
-    "timeISO": "2025-08-14T07:20:31.000Z",
-    "textPlain": "Debian Trixie drops 32-bit x86 support. Ubuntu dropped 32-bit support already earlier, which meant that lightweight Lubuntu and Xubuntu don't support it either. It's sad to see old hardware support getting dropped like that. They are still good machines as servers and desktop terminals.Are there any good Linux distros left with 32-bit x86 support? Do I have to switch to NetBSD?",
+    "id": 44898009,
+    "by": "klez",
+    "timeISO": "2025-08-14T08:12:40.000Z",
+    "textPlain": "One lesson I learned from this latest upgrade: DON'T SKIP READING THE DOCUMENTATION BEFORE UPGRADING.I rebooted after upgrade and found myself dropped in a console-only environment. Turns out the (proprietary) drivers for my video card are not supported anymore. Now I'm on nouveau and it sucks.My fault for having an Nvidia card, I guess, but an AMD equivalent is on its way.",
     "parent": 44869184,
     "depth": 1
   },
   {
-    "id": 44897612,
-    "by": "JimDabell",
-    "timeISO": "2025-08-14T07:13:34.000Z",
-    "textPlain": "Previously:Debian 13 “Trixie”, 412 comments:https://news.ycombinator.com/item?id=44848782",
+    "id": 44897658,
+    "by": "gardaani",
+    "timeISO": "2025-08-14T07:20:31.000Z",
+    "textPlain": "Debian Trixie drops 32-bit x86 support. Ubuntu dropped 32-bit support already earlier, which meant that lightweight Lubuntu and Xubuntu don't support it either. It's sad to see old hardware support getting dropped like that. They are still good machines as servers and desktop terminals.Are there any good Linux distros left with 32-bit x86 support? Do I have to switch to NetBSD?",
     "parent": 44869184,
     "depth": 1
   },
@@ -24,6 +24,22 @@
     "depth": 1
   },
   {
+    "id": 44897612,
+    "by": "JimDabell",
+    "timeISO": "2025-08-14T07:13:34.000Z",
+    "textPlain": "Previously:Debian 13 “Trixie”, 412 comments:https://news.ycombinator.com/item?id=44848782",
+    "parent": 44869184,
+    "depth": 1
+  },
+  {
+    "id": 44897865,
+    "by": "Unirely01",
+    "timeISO": "2025-08-14T07:51:45.000Z",
+    "textPlain": "[dead]",
+    "parent": 44869184,
+    "depth": 1
+  },
+  {
     "id": 44897558,
     "by": "IlikeKitties",
     "timeISO": "2025-08-14T07:06:07.000Z",
@@ -32,11 +48,139 @@
     "depth": 1
   },
   {
-    "id": 44897675,
-    "by": "juliangmp",
-    "timeISO": "2025-08-14T07:22:06.000Z",
-    "textPlain": "I installed it on my Dada laptop and for me its great since I can forget about it until the next major version releases.\nThe unattended updates also ensure he gets the latest security patches without me coming over and running apt every other week.",
-    "parent": 44897542,
+    "id": 44897876,
+    "by": "AdiAnanomious",
+    "timeISO": "2025-08-14T07:53:13.000Z",
+    "textPlain": "This was helpful",
+    "parent": 44869184,
+    "depth": 1
+  },
+  {
+    "id": 44898142,
+    "by": "jeroenhd",
+    "timeISO": "2025-08-14T08:31:31.000Z",
+    "textPlain": "For this exact reason I enable Timeshift on every computer I run. If an upgrade fails spectacularly like that, recovering and reverting to the old edition is as simple as picking a pre-upgrade snapshot from the boot menu.If you're not on btrfs, I'm sure there are similar tools for your favorite file system. For me, it's been a life saver.",
+    "parent": 44898009,
+    "depth": 2
+  },
+  {
+    "id": 44898128,
+    "by": "stavros",
+    "timeISO": "2025-08-14T08:29:09.000Z",
+    "textPlain": "Can't you install the drivers from nVidia directly?",
+    "parent": 44898009,
+    "depth": 2
+  },
+  {
+    "id": 44898111,
+    "by": "misterdata",
+    "timeISO": "2025-08-14T08:26:38.000Z",
+    "textPlain": "Similarly, Trixie contains an updated version of Dovecot that (even though the version number seems to indicate otherwise) has a new configuration format that is not backwards compatible. This is clearly stated in the release notes but may be surprising nevertheless.",
+    "parent": 44898009,
+    "depth": 2
+  },
+  {
+    "id": 44898030,
+    "by": "mikae1",
+    "timeISO": "2025-08-14T08:16:29.000Z",
+    "textPlain": "Reading this I feel blessed having found https://universal-blue.org",
+    "parent": 44898009,
+    "depth": 2
+  },
+  {
+    "id": 44897698,
+    "by": "pedrocr",
+    "timeISO": "2025-08-14T07:26:21.000Z",
+    "textPlain": "> They are perfectly good machines as servers and desktop terminals.On the power usage alone surely an upgrade to a still extremely old 64bit machine would be a significant upgrade. For a server that you run continuously a 20+ year old machine will consume quite a bit.",
+    "parent": 44897658,
+    "depth": 2
+  },
+  {
+    "id": 44897981,
+    "by": "eloisant",
+    "timeISO": "2025-08-14T08:09:01.000Z",
+    "textPlain": "OK, I have to precise it because this comment is not super clear...They're no longer providing 32-bit images. However if you have a 64-bit processor, and a 64-bit image, you can still run 32-bit binaries.",
+    "parent": 44897658,
+    "depth": 2
+  },
+  {
+    "id": 44898108,
+    "by": "flohofwoe",
+    "timeISO": "2025-08-14T08:26:17.000Z",
+    "textPlain": "Does dropping 32-bit support just mean that there are no supported x86-32 OS images, or that 32-bit applications are generally not supported?If it means that no 32-bit apps are supported, how does Steam handle this? Does it run 32-bit games in a VM? Is the Steam client itself a 64-bit application these days or still stuck on 32-bits?",
+    "parent": 44897658,
+    "depth": 2
+  },
+  {
+    "id": 44897743,
+    "by": "hnarn",
+    "timeISO": "2025-08-14T07:33:57.000Z",
+    "textPlain": "> Are there any good Linux distros left with 32-bit x86 support?I would rather be surprised if there isn't. I think antiX is one option,[1] PuppyLinux and probably Alpine Linux.[1]: https://www.antixforum.com/forums/topic/will-antix-24-suppor...",
+    "parent": 44897658,
+    "depth": 2
+  },
+  {
+    "id": 44897877,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-14T07:53:23.000Z",
+    "textPlain": "Void Linux, MX Linux, antiX, and Slackware still maintain 32-bit x86 support with active development.",
+    "parent": 44897658,
+    "depth": 2
+  },
+  {
+    "id": 44897734,
+    "by": "shellac",
+    "timeISO": "2025-08-14T07:32:26.000Z",
+    "textPlain": "> Are there any good Linux distros left with 32-bit x86 support?When your kernel stopped support over a decade ago (iirc) it does seem inevitable that distros will slowly evaporate.",
+    "parent": 44897658,
+    "depth": 2
+  },
+  {
+    "id": 44897869,
+    "by": "miohtama",
+    "timeISO": "2025-08-14T07:52:10.000Z",
+    "textPlain": "> It's sad to see old hardware support getting dropped like that.The problem is that someone needs to work to support different hardware architectures. More exotic hardware, more complicated and expensive the work becomes.People who run these 32-bit machines are unlikely to vouch in terms of work contributed or money contributed to get the people paid for this work, so it is better to drop the support and focus the same developer resources on areas which benefits larger user base.",
+    "parent": 44897658,
+    "depth": 2
+  },
+  {
+    "id": 44897854,
+    "by": "cjfd",
+    "timeISO": "2025-08-14T07:49:59.000Z",
+    "textPlain": "I kept my old 32-bit laptop alive for quite a bit using archlinux32 but in the end more and more software started breaking, so that is not really a route I can recommend anymore. I was using the laptop mainly if I was traveling or on holidays, so not so very often so it felt wasteful to to buy a new one. But this year the software breakages really started costing too much time, so I bought a new one. RIP old laptop (2007-2025).",
+    "parent": 44897658,
+    "depth": 2
+  },
+  {
+    "id": 44898048,
+    "by": "WhyNotHugo",
+    "timeISO": "2025-08-14T08:18:08.000Z",
+    "textPlain": "Alpine still supports x86 and other 32bit platforms. It’s also very lightweight, though I’d say it targets a very different userbase than Debian or Ubuntu — the default install is quite minimal and requires more setup.",
+    "parent": 44897658,
+    "depth": 2
+  },
+  {
+    "id": 44897881,
+    "by": "qwertox",
+    "timeISO": "2025-08-14T07:53:53.000Z",
+    "textPlain": "Just keep in mind that this does not apply to armhf, which is 32 bits and all old Raspberry Pi boards use.What's your use case for 32-bit x86 where you are still keeping Debian at its latest version? Alone for the power consumption you might be better off by switching to a newer low-spec machine.",
+    "parent": 44897658,
+    "depth": 2
+  },
+  {
+    "id": 44898063,
+    "by": "tmtvl",
+    "timeISO": "2025-08-14T08:19:59.000Z",
+    "textPlain": "Gentoo supports pretty much everything under the sun.",
+    "parent": 44897658,
+    "depth": 2
+  },
+  {
+    "id": 44897713,
+    "by": "FirmwareBurner",
+    "timeISO": "2025-08-14T07:29:29.000Z",
+    "textPlain": ">It's sad to see old hardware support getting dropped like that. They are still good machines as servers and desktop terminalsOnly for retro computing hobbyists maybe, not for people/businesses who actually need to do stuff, as newer (meaning 20 year old) hardware is more powerful than that and is available for free in dumpsters and overly abundant. How many PCs without 64 bit support is still actively in used at scale to make that argument?   Linux devs are now missing kernel regression bugs on 64bit Core 2 Duo hardware because not enough people are using them anymore to catch and report these bugs, and those systems are newer and way more capable for daily driving than 32 bit ones. So then if nobody uses Core 2 Duo machines anymore, how many people do you think are using 32bit Pentium 4/Athlon XP era machines?But let's pretend you're right, and assume there's hoards of Pentium 4 users out there refusing to upgrade for some bizarre reason, and are unhappy they can't run the latest Linux, then using a Pentium 4 with its 80W TDP as a terminal would be an insane waste of energy when that's less capable than some no-name Android table with a 5W ARM SoC which can even play 1080p Youtube while the Pentium 4 cannot even open a modern JS webpage. Even most of the developing world now has more capable mobile devices in their pockets and don't have use for the Pentium 4 machines that have long been landfilled.And legacy industrial systems still running Pentium 4 HW, are just happy to keep running the same Windows XP/Embedded they came from the factory since  those machines are airgapped and don't need to use latest Linux kernel for their purpose.This is literally complaining for the sake of complaining  about problems that almost nobody has since the HW you mention has long been landfilled.>Are there any good Linux distros left with 32-bit x86 support? Do I have to switch to NetBSD?Yes there are, tonnes: AntiX, Devuan, Damn Small Linux, Tiny Core Linux, etc",
+    "parent": 44897658,
     "depth": 2
   },
   {
@@ -48,10 +192,34 @@
     "depth": 2
   },
   {
+    "id": 44897742,
+    "by": "torium",
+    "timeISO": "2025-08-14T07:33:23.000Z",
+    "textPlain": "> Is there any reason to run Debian as a user, as opposed to a sysadmin? I love running Debian on my servers, it's boring and rock-solid.Boring and rock-solid is also how I like my desktop.",
+    "parent": 44897542,
+    "depth": 2
+  },
+  {
     "id": 44897583,
     "by": "lgeorget",
     "timeISO": "2025-08-14T07:09:38.000Z",
     "textPlain": "Well... it just works, so it's fine. I remember a time when I was a student where I would change distribution every six months: Fedora, Debian, Archlinux, Gentoo, FreeBSD, etc. but I finally landed on Debian and stayed there as I grew older.In the stable distribution, packages tend to be a little dated obviously, but at least it is _stable_. And you can go with the _testing_ distribution for more up-to-date packages.Also, as a sysadmin, I like having it on my computer to develop and test scripts without having to SSH in a dedicated environment (I still have to eventually but only for the final tests).",
+    "parent": 44897542,
+    "depth": 2
+  },
+  {
+    "id": 44898039,
+    "by": "jampekka",
+    "timeISO": "2025-08-14T08:17:21.000Z",
+    "textPlain": "Yes. I've been running Debian unstable as my desktop for almost two decades. Especially nowadays its usually less hassle, more stable and more up-to-date than the derivatives.",
+    "parent": 44897542,
+    "depth": 2
+  },
+  {
+    "id": 44898037,
+    "by": "StopDisinfo910",
+    "timeISO": "2025-08-14T08:17:18.000Z",
+    "textPlain": "I don't really see a difference between using Debian for workstations and servers.The only real reason to use Debian is that you think what Debian is trying to do is a good thing. They have a very clear definition of what they consider acceptable software engineering practices, how they think things shoud work, what's acceptable from free software and they do a lot of work to ensure what they ship fit that. They value portability to an extreme, have strong opinions about how linking should be done, separations of concern and what can be considered free software. It's an extremely political distribution with a lot of patching happening to try to shoe horn things into their vision.I personally think it's extremely misguided, breaks a lot of good sotfware, mostly unsafe, a significant drag on the people actually developping what they ship, and basically the embodyment of everything that is wrong with Linux distribution as a concept. Others will tell you they are fighting the good fight for their users freedom and the guardian of the kingdom.How you stand on this will determine if Debian - and its derivatives which bring its flaws with the Debian inheritance - makes sense for you.",
     "parent": 44897542,
     "depth": 2
   },
@@ -72,10 +240,10 @@
     "depth": 2
   },
   {
-    "id": 44897610,
-    "by": "kriops",
-    "timeISO": "2025-08-14T07:13:18.000Z",
-    "textPlain": "Same reason. Besides, you can get bleeding edge software through Homebrew.",
+    "id": 44897675,
+    "by": "juliangmp",
+    "timeISO": "2025-08-14T07:22:06.000Z",
+    "textPlain": "I installed it on my Dada laptop and for me its great since I can forget about it until the next major version releases.\nThe unattended updates also ensure he gets the latest security patches without me coming over and running apt every other week.",
     "parent": 44897542,
     "depth": 2
   },
@@ -88,6 +256,46 @@
     "depth": 2
   },
   {
+    "id": 44897831,
+    "by": "AlecSchueler",
+    "timeISO": "2025-08-14T07:47:04.000Z",
+    "textPlain": "Can you answer the question \"why should I run a derivative distro instead of just running Debian?\"",
+    "parent": 44897542,
+    "depth": 2
+  },
+  {
+    "id": 44898065,
+    "by": "attentive",
+    "timeISO": "2025-08-14T08:20:09.000Z",
+    "textPlain": "yes, same reasons as running ubuntu",
+    "parent": 44897542,
+    "depth": 2
+  },
+  {
+    "id": 44897787,
+    "by": "rendx",
+    "timeISO": "2025-08-14T07:40:25.000Z",
+    "textPlain": "I would think more than 90% of all computer users (be it in their personal life or profession) do not need the latest versions of anything, but would prefer a stable system with no sudden changes. It's also much less on a burden on those that manage the systems for them.",
+    "parent": 44897542,
+    "depth": 2
+  },
+  {
+    "id": 44897852,
+    "by": "mrheosuper",
+    "timeISO": "2025-08-14T07:49:36.000Z",
+    "textPlain": "it's boring, rock-solid, AND Light weight. I did not test the 13, but the 12 consumes less then 300MB of ram after fresh installing.",
+    "parent": 44897542,
+    "depth": 2
+  },
+  {
+    "id": 44897610,
+    "by": "kriops",
+    "timeISO": "2025-08-14T07:13:18.000Z",
+    "textPlain": "Same reason. Besides, you can get bleeding edge software through Homebrew.",
+    "parent": 44897542,
+    "depth": 2
+  },
+  {
     "id": 44897619,
     "by": "hnarn",
     "timeISO": "2025-08-14T07:14:28.000Z",
@@ -96,10 +304,34 @@
     "depth": 2
   },
   {
+    "id": 44898027,
+    "by": "themafia",
+    "timeISO": "2025-08-14T08:15:59.000Z",
+    "textPlain": "Yea gotta get rid of the 32bit x86 code that's been around forever.So we can add support for RISC-V which has a fraction of x86 installed base and still doesn't have an appreciable hardware standard that allows for broad compatibility between chips.Seems highly illogical to me.",
+    "parent": 44897558,
+    "depth": 2
+  },
+  {
+    "id": 44897980,
+    "by": "bayindirh",
+    "timeISO": "2025-08-14T08:08:55.000Z",
+    "textPlain": "> 32bit x86 droppedAs a bootable system only. This is an important distinction. It's still possible to install :i386 libraries and run multiarch.> As always debian is like fedora 3 years ago.Apples and oranges much?",
+    "parent": 44897558,
+    "depth": 2
+  },
+  {
     "id": 44897608,
     "by": "extraduder_ire",
     "timeISO": "2025-08-14T07:13:03.000Z",
     "textPlain": "Is firefox branded firefox new or did I miss it in a prior version?",
+    "parent": 44897558,
+    "depth": 2
+  },
+  {
+    "id": 44897866,
+    "by": "blackhaz",
+    "timeISO": "2025-08-14T07:51:50.000Z",
+    "textPlain": "Muchas gracias.",
     "parent": 44897558,
     "depth": 2
   },

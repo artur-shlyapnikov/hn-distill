@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "id": 44897760,
+    "by": "taherchhabra",
+    "timeISO": "2025-08-14T07:37:28.000Z",
+    "textPlain": "Just yesterday my son built a zombie shooter game in chatgpt, then shared the link with his friend, both were able to play individually, then my son asked can we play together and shoot each other. I was wondering is there something like localstorage but for network which chatgpt can easily use it. Can this work for my son's use case?",
+    "parent": 44889874,
+    "depth": 1
+  },
+  {
+    "id": 44898143,
+    "by": "adrai",
+    "timeISO": "2025-08-14T08:31:41.000Z",
+    "textPlain": "Yes — that’s exactly the kind of thing Vaultrice is designed for.Think of it like localStorage, but instead of being tied to one browser on one device, the data lives in a globally-available, real-time object. Any change one player makes (like moving their character or firing a shot) can be sent instantly to the other player’s browser — without having to set up your own server or WebSocket layer.For your son’s zombie shooter:\n • Each game session could be one Vaultrice “object” (with an id like game-123).\n • Each player writes their position, health, actions to that object.\n • The other player’s browser listens for changes and updates the game state instantly.\n • Presence tracking is built-in, so you can show “who’s in the game” without extra code.The nice part is that the SDK’s API feels familiar — setItem, getItem, and on() for events — so you can get a working multiplayer prototype with just a few lines. If you want even less boilerplate, the SyncObject API lets you just set properties on a shared object and Vaultrice syncs it behind the scenes.It won’t handle game physics for you, but it’s a fast, simple way to make a turn-based or moderately real-time multiplayer experience without hosting your own backend.",
+    "parent": 44897760,
+    "depth": 2
+  }
+]

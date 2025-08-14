@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44898067,
+    "by": "account42",
+    "timeISO": "2025-08-14T08:20:15.000Z",
+    "textPlain": "> Support for other challenges (TLS-ALPN, DNS -01) is planned in future.Looking forward to this. HTTP-01 already works well enough for me with certbot (which I need for other services anyway and gives me more control over having multiple domains in one cert) but for wildcard certs there are not as many good solutions.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
     "id": 44890497,
     "by": "dizhn",
     "timeISO": "2025-08-13T16:23:35.000Z",
@@ -40,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44896967,
-    "by": "Humphrey",
-    "timeISO": "2025-08-14T05:16:18.000Z",
-    "textPlain": "Anybody know how this would work for multiple nginx backends or failover machines - as I assume it's only possible to auto-fetch certificates for the live machine.  Is it expected that you would use scp or similar to copy certs from the live machine to the failover / new server?",
+    "id": 44896753,
+    "by": "makaking",
+    "timeISO": "2025-08-14T04:33:41.000Z",
+    "textPlain": "The fact that certificate management is still evolving makes me realize how young the web still is in the big scheme of things.",
     "parent": 44889941,
     "depth": 1
   },
@@ -56,18 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44896753,
-    "by": "makaking",
-    "timeISO": "2025-08-14T04:33:41.000Z",
-    "textPlain": "The fact that certificate management is still evolving makes me realize how young the web still is in the big scheme of things.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44893042,
     "by": "idoubtit",
     "timeISO": "2025-08-13T19:55:12.000Z",
     "textPlain": "A little mistake with this release: they packaged the ngx_http_acme_module for many Linux distributions, but \"forgot\" Debian stable. Oldstable and oldoldstable are listed in https://nginx.org/en/linux_packages.html (packages built today) but Debian 13 Trixie (released 4 days ago) is not there.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44896967,
+    "by": "Humphrey",
+    "timeISO": "2025-08-14T05:16:18.000Z",
+    "textPlain": "Anybody know how this would work for multiple nginx backends or failover machines - as I assume it's only possible to auto-fetch certificates for the live machine.  Is it expected that you would use scp or similar to copy certs from the live machine to the failover / new server?",
     "parent": 44889941,
     "depth": 1
   },
@@ -168,10 +176,10 @@
     "depth": 1
   },
   {
-    "id": 44894769,
-    "by": "arjie",
-    "timeISO": "2025-08-13T22:45:31.000Z",
-    "textPlain": "Neat, that'll be nice to have. Currently I just use certbot and it does a pretty damn good job. I just set the HTTP:80 configuration and certbot will migrate it to HTTPS:443 and take care of the certificates and so on. For the moment, I'll probably stick to that till this is mature.",
+    "id": 44890599,
+    "by": "cobbzilla",
+    "timeISO": "2025-08-13T16:31:04.000Z",
+    "textPlain": "There’s a section on renewals but no description of how it works. Is there a background thread/process? Or is it request-driven? If request-driven, what about some hostname that’s (somehow) not seen traffic in >90 days?",
     "parent": 44889941,
     "depth": 1
   },
@@ -184,18 +192,18 @@
     "depth": 1
   },
   {
-    "id": 44890599,
-    "by": "cobbzilla",
-    "timeISO": "2025-08-13T16:31:04.000Z",
-    "textPlain": "There’s a section on renewals but no description of how it works. Is there a background thread/process? Or is it request-driven? If request-driven, what about some hostname that’s (somehow) not seen traffic in >90 days?",
+    "id": 44894769,
+    "by": "arjie",
+    "timeISO": "2025-08-13T22:45:31.000Z",
+    "textPlain": "Neat, that'll be nice to have. Currently I just use certbot and it does a pretty damn good job. I just set the HTTP:80 configuration and certbot will migrate it to HTTPS:443 and take care of the certificates and so on. For the moment, I'll probably stick to that till this is mature.",
     "parent": 44889941,
     "depth": 1
   },
   {
-    "id": 44896660,
-    "by": "themafia",
-    "timeISO": "2025-08-14T04:09:59.000Z",
-    "textPlain": "We had about 100 domains or so that needed to be redirected to their new homes.  The previous person in my position set it all up using GoDaddy domains and redirects.  I was gobsmacked at how much effort it took,  and when browsers switched to HTTPS first,  how badly it broke the setup.That's when I found \"golang.org/x/crypto/acme/autocert\" and then I built a custom redirect server using it.  It implements TLS-ALPN-01 which works fantastically with Let's Encrypt.Now we can just add a domain to our web configuration,  setup it's target and redirect style,  and then push the configuration out the EC2 instance providing the public facing service.   As soon as the first client makes a request,  they're effectively put \"on hold,\"  while the server then arranges for the certificate in the background.  As soon as it's issued and installed on the server the server continues with the original client.It's an absolute breeze and it makes me utterly detest going backwards to DNS-01 or HTTP-01 challenges.",
+    "id": 44890604,
+    "by": "adontz",
+    "timeISO": "2025-08-13T16:31:21.000Z",
+    "textPlain": "certbot has an plugin for nginx, so I'm not sure why people think is was hard to use LetsEncrypt with nginx.",
     "parent": 44889941,
     "depth": 1
   },
@@ -208,10 +216,10 @@
     "depth": 1
   },
   {
-    "id": 44890604,
-    "by": "adontz",
-    "timeISO": "2025-08-13T16:31:21.000Z",
-    "textPlain": "certbot has an plugin for nginx, so I'm not sure why people think is was hard to use LetsEncrypt with nginx.",
+    "id": 44896660,
+    "by": "themafia",
+    "timeISO": "2025-08-14T04:09:59.000Z",
+    "textPlain": "We had about 100 domains or so that needed to be redirected to their new homes.  The previous person in my position set it all up using GoDaddy domains and redirects.  I was gobsmacked at how much effort it took,  and when browsers switched to HTTPS first,  how badly it broke the setup.That's when I found \"golang.org/x/crypto/acme/autocert\" and then I built a custom redirect server using it.  It implements TLS-ALPN-01 which works fantastically with Let's Encrypt.Now we can just add a domain to our web configuration,  setup it's target and redirect style,  and then push the configuration out the EC2 instance providing the public facing service.   As soon as the first client makes a request,  they're effectively put \"on hold,\"  while the server then arranges for the certificate in the background.  As soon as it's issued and installed on the server the server continues with the original client.It's an absolute breeze and it makes me utterly detest going backwards to DNS-01 or HTTP-01 challenges.",
     "parent": 44889941,
     "depth": 1
   },
@@ -280,18 +288,18 @@
     "depth": 1
   },
   {
-    "id": 44890818,
-    "by": "clvx",
-    "timeISO": "2025-08-13T16:50:11.000Z",
-    "textPlain": "But you have to have your dns api key loaded and many dns providers don’t allow api keys per zone.\nI do like it but a compromise could be awful.",
-    "parent": 44890666,
-    "depth": 2
-  },
-  {
     "id": 44892428,
     "by": "uncleJoe",
     "timeISO": "2025-08-13T19:02:02.000Z",
     "textPlain": "no need to wait: https://en.angie.software/angie/docs/configuration/modules/h...(angie is the nginx fork lead by original nginx developers that left f5)",
+    "parent": 44890666,
+    "depth": 2
+  },
+  {
+    "id": 44890818,
+    "by": "clvx",
+    "timeISO": "2025-08-13T16:50:11.000Z",
+    "textPlain": "But you have to have your dns api key loaded and many dns providers don’t allow api keys per zone.\nI do like it but a compromise could be awful.",
     "parent": 44890666,
     "depth": 2
   },
@@ -380,14 +388,6 @@
     "by": "tgv",
     "timeISO": "2025-08-13T17:31:09.000Z",
     "textPlain": "I switched over to caddy recently. Nginx' non-information about the http 1 desync problem drove me over. I'm not going to wait for something stupid to happen or an auditor ask me questions nginx doesn't answer.Caddy is really easier than nginx. For starters, I now have templates that cover the main services and their test services, and the special service that runs for an education institution. Logging is better. Certificate handling is perfect (for my case, at least). And it has better metrics.Now I have to figure out plugins though, because caddy doesn't have rate limiting and some stupid bug in powerbi makes a single user hit certain images 300.000 times per day. That's a bit of a downside.",
-    "parent": 44890497,
-    "depth": 2
-  },
-  {
-    "id": 44897229,
-    "by": "fastball",
-    "timeISO": "2025-08-14T06:09:20.000Z",
-    "textPlain": "I felt the same but switched to Caddy for my reverse proxy last year and have had a great experience.Admittedly this was on the back of trying to use nginx-unit, which was an overall bad experience, but ¯\\_(ツ)_/¯",
     "parent": 44890497,
     "depth": 2
   },

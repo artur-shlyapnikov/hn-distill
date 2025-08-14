@@ -1,9 +1,9 @@
 [
   {
-    "id": 44895972,
-    "by": "VivaTechnics",
-    "timeISO": "2025-08-14T01:58:34.000Z",
-    "textPlain": "Impressive! This approach can be applied to designing a NoSQL database. The flow could probably look something like this? Right?- The client queries for \"alice123\".\n- The Query Engine checks the FST Index for an exact or prefix match.\n- The FST Index returns a pointer to the location in Data Storage.\n- Data Storage retrieves and returns the full document to the Query Engine.",
+    "id": 44896104,
+    "by": "stuhood",
+    "timeISO": "2025-08-14T02:23:26.000Z",
+    "textPlain": "An interesting exercise would be to compare this with the (confusingly similarly named) `fsst` string compression strategy: https://github.com/cwida/fsst",
     "parent": 44854498,
     "depth": 1
   },
@@ -16,11 +16,27 @@
     "depth": 1
   },
   {
-    "id": 44896104,
-    "by": "stuhood",
-    "timeISO": "2025-08-14T02:23:26.000Z",
-    "textPlain": "An interesting exercise would be to compare this with the (confusingly similarly named) `fsst` string compression strategy: https://github.com/cwida/fsst",
+    "id": 44895972,
+    "by": "VivaTechnics",
+    "timeISO": "2025-08-14T01:58:34.000Z",
+    "textPlain": "Impressive! This approach can be applied to designing a NoSQL database. The flow could probably look something like this? Right?- The client queries for \"alice123\".\n- The Query Engine checks the FST Index for an exact or prefix match.\n- The FST Index returns a pointer to the location in Data Storage.\n- Data Storage retrieves and returns the full document to the Query Engine.",
     "parent": 44854498,
     "depth": 1
+  },
+  {
+    "id": 44898087,
+    "by": "yazaddaruvala",
+    "timeISO": "2025-08-14T08:22:53.000Z",
+    "textPlain": "What you’ve described is the foundation of Lucene and as such the foundation of Elastic Search.FSTs are “expensive” to re-optimize and so it’s typically done “without writes”. So the database would need some workaround for that low write throughput.To save you the time thinking about it: The only extra parts you’re missing are what Lucene calls segments and merge operations. Those decisions obviously have some tradeoffs (in Lucene’s case the tradeoff is CRUD).There are easily another 100 ways to be creative in these tradeoffs depending on your specific need. However, I wouldn’t be surprised if the super majority of databases’ indexing implementations are roughly similar.",
+    "parent": 44895972,
+    "depth": 2
+  },
+  {
+    "id": 44897729,
+    "by": "yorwba",
+    "timeISO": "2025-08-14T07:31:27.000Z",
+    "textPlain": "That wouldn't be a good idea in most cases due to reasons laid out in the \"Not a general-purpose data structure\" section. https://burntsushi.net/transducers/#not-a-general-purpose-da...",
+    "parent": 44895972,
+    "depth": 2
   }
 ]
