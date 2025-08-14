@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44895652,
+    "by": "birdfood",
+    "timeISO": "2025-08-14T00:58:59.000Z",
+    "textPlain": "OCaml is probably my favourite language.The most involved project I did with it was a CRUD app for organising Writer's Festivals.The app was 100% OCaml (ReasonML so I could get JSX) + Dream + HTMX + DataTables. I used modules to get reusable front end templates. I loved being able to make a change to one of my data models and have the compiler tell me almost instantly where the change broke the front end. The main value of the app was getting data out of excel into a structured database, but I was also able to provide templated and branded itineraries in .odt format, create in memory zipped downloads so that I didn't need to touch the server disk. I was really impressed by how much I could achieve with the ecosystem.But having to write all my database queries in strings and then marshal the data through types was tiring (and effectively not compile time type checked) and I had to roll my own auth. I often felt like I was having to work on things that were not core to the product I was trying to build.I've spent a few years bouncing around different languages and I think my take away is that there is no perfect language. They all suck in their own special way.Now I'm building an app just for me and I'm using Rails. Pretty much everything I've wanted to reach for has a good default answer. I really feel like I'm focused on what is relevant to the product I'm building and I'm thinking about things unrelated to language like design layout and actually shipping the thing.",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
     "id": 44892053,
     "by": "_mu",
     "timeISO": "2025-08-13T18:28:17.000Z",
@@ -28,14 +36,6 @@
     "by": "garbthetill",
     "timeISO": "2025-08-13T19:49:43.000Z",
     "textPlain": "What a brilliant article, it really puts to rest for me, the whole “why not use F#?” argument. In almost every OCaml thread, someone suggests F# as a way to sidestep OCaml’s tooling.I’ve always been curious about OCaml, especially since some people call it “Go with types” and I’m not a fan of writing Rust. But I’m still not sold on OCaml as a whole, its evangelists just don’t win me over the way the Erlang, Ruby, Rust, or Zig folks do. I just cant see the vision",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
-    "id": 44895652,
-    "by": "birdfood",
-    "timeISO": "2025-08-14T00:58:59.000Z",
-    "textPlain": "OCaml is probably my favourite language.The most involved project I did with it was a CRUD app for organising Writer's Festivals.The app was 100% OCaml (ReasonML so I could get JSX) + Dream + HTMX + DataTables. I used modules to get reusable front end templates. I loved being able to make a change to one of my data models and have the compiler tell me almost instantly where the change broke the front end. The main value of the app was getting data out of excel into a structured database, but I was also able to provide templated and branded itineraries in .odt format, create in memory zipped downloads so that I didn't need to touch the server disk. I was really impressed by how much I could achieve with the ecosystem.But having to write all my database queries in strings and then marshal the data through types was tiring (and effectively not compile time type checked) and I had to roll my own auth. I often felt like I was having to work on things that were not core to the product I was trying to build.I've spent a few years bouncing around different languages and I think my take away is that there is no perfect language. They all suck in their own special way.Now I'm building an app just for me and I'm using Rails. Pretty much everything I've wanted to reach for has a good default answer. I really feel like I'm focused on what is relevant to the product I'm building and I'm thinking about things unrelated to language like design layout and actually shipping the thing.",
     "parent": 44891759,
     "depth": 1
   },
@@ -64,18 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44896063,
-    "by": "rybosome",
-    "timeISO": "2025-08-14T02:15:31.000Z",
-    "textPlain": "I’d have liked to see the use of dependency injection via the effects system expanded upon. The idea that the example program could use pattern matching to bind to either test values or production ones is interesting, but I can’t conceptualize what that would look like with the verbal description alone.Also, I had no idea that the module system had its own type system, that’s wild.",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
     "id": 44895588,
     "by": "chris_armstrong",
     "timeISO": "2025-08-14T00:46:40.000Z",
     "textPlain": "As someone who uses OCaml for hobby projects, I appreciate how little the language gets in your way when you want to just “get shit done”, despite the language’s origins in academia and industrial uses.The type system usually means that I might take longer to get my code to compile, but that I won’t spend much (if any) time debugging it once I’m done.I’m in the middle of pulling together bits of a third party library and refactoring them over several days work, and I’m pretty confident that most of the issues I’ll face when done will be relatively obvious runtime ones.",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44896063,
+    "by": "rybosome",
+    "timeISO": "2025-08-14T02:15:31.000Z",
+    "textPlain": "I’d have liked to see the use of dependency injection via the effects system expanded upon. The idea that the example program could use pattern matching to bind to either test values or production ones is interesting, but I can’t conceptualize what that would look like with the verbal description alone.Also, I had no idea that the module system had its own type system, that’s wild.",
     "parent": 44891759,
     "depth": 1
   },
@@ -152,10 +152,34 @@
     "depth": 1
   },
   {
+    "id": 44897574,
+    "by": "pjmlp",
+    "timeISO": "2025-08-14T07:08:18.000Z",
+    "textPlain": "That is why if I feel like doing ML style programing I rather reach out for Kotlin, Scala or F# than Rust, and even then Java and C# have gotten enough inspiration that I can also feel at home while using them.I am no strage to ML type systems, my first one was Caml Light, OCaml was still known as Objective Caml, and Mirada was still something being discussed on programming language lectures on my university.From what I see, I also kind of find the same, too many people rush out for Rust thinking that ML type systems is something new introduced by Rust, without having the background where all comes from.",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
     "id": 44892960,
     "by": "nine_k",
     "timeISO": "2025-08-13T19:48:26.000Z",
     "textPlain": "I'd say that Google strives to have a reasonably short list of languages approved for production-touching code. Rust can replace / complement C++, while OCaml cannot (it could replace Go instead... fat chance!). So I suspect that the team picked Rust because it was the only blessed language with ADTs, not because they won't like something with faster compile times.No way OCaml could have stolen the Rust's thunder: we have a number of very decent and performant GC-based languages, from Go to Haskell; we only had one bare-metal-worthy expressive language in 2010, C++, and it was pretty terrible (still is, but before C++11 and C++17 it was even more terrible).",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
+    "id": 44897606,
+    "by": "fulafel",
+    "timeISO": "2025-08-14T07:12:50.000Z",
+    "textPlain": "Anyone have a link to the Android talk?\nI wonder if it was backend code or on-device code. On device you could probably justify the compromises of a no-GC language better.",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
+    "id": 44897444,
+    "by": "omcnoe",
+    "timeISO": "2025-08-14T06:47:33.000Z",
+    "textPlain": "The issue regarding academia is that functional programming is treated as an afterthought/sideshow that is mainly of interest for research. Almost no-one is teaching FP concepts to undergrads.",
     "parent": 44892713,
     "depth": 2
   },
@@ -184,18 +208,18 @@
     "depth": 2
   },
   {
-    "id": 44894357,
-    "by": "munificent",
-    "timeISO": "2025-08-13T21:58:33.000Z",
-    "textPlain": "> I feel if OCaml had got its act together around about 2010 with multicore and a few other annoyances[1] it could have been Rust. Arguably, that could have been Scala and for a while it seemed like it would be Scala but then it kind of just... didn't.I suspect some of that was that the programming style of some high profile Scala packages really alienated people by pushing the type system and operator overloading much farther than necessary.",
-    "parent": 44892713,
-    "depth": 2
-  },
-  {
     "id": 44894630,
     "by": "yodsanklai",
     "timeISO": "2025-08-13T22:28:47.000Z",
     "textPlain": "> aesthetically the double semicolons are an abomination and irk me far more.I think they have been optional for like 20 years, except in the top-level interactive environment to force execution.That being said, I still don't get why people are so much upset with the syntax. You'll integrate it after a week writing OCaml code.",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
+    "id": 44894357,
+    "by": "munificent",
+    "timeISO": "2025-08-13T21:58:33.000Z",
+    "textPlain": "> I feel if OCaml had got its act together around about 2010 with multicore and a few other annoyances[1] it could have been Rust. Arguably, that could have been Scala and for a while it seemed like it would be Scala but then it kind of just... didn't.I suspect some of that was that the programming style of some high profile Scala packages really alienated people by pushing the type system and operator overloading much farther than necessary.",
     "parent": 44892713,
     "depth": 2
   },
@@ -216,18 +240,18 @@
     "depth": 2
   },
   {
-    "id": 44896760,
-    "by": "sanderjd",
-    "timeISO": "2025-08-14T04:34:11.000Z",
-    "textPlain": "Yeah I was initially drawn to rust because I loved ocaml but wished it were more practical.",
-    "parent": 44892713,
-    "depth": 2
-  },
-  {
     "id": 44892853,
     "by": "garbthetill",
     "timeISO": "2025-08-13T19:39:01.000Z",
     "textPlain": "doesnt rust still have the advantage of having no gc? I dont like writing rust, but the selling point of being able to write performative code with memory safety guarantees has always stuck with me",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
+    "id": 44896760,
+    "by": "sanderjd",
+    "timeISO": "2025-08-14T04:34:11.000Z",
+    "textPlain": "Yeah I was initially drawn to rust because I loved ocaml but wished it were more practical.",
     "parent": 44892713,
     "depth": 2
   },
@@ -373,30 +397,6 @@
     "timeISO": "2025-08-14T01:12:11.000Z",
     "textPlain": "ackfoobar has already given a good reason why function types are called exponential, but there is an even deeper reason: function types interact algebraically the same way as exponents.The type A → (B → C) is isomorphic to (A × B) → C (via currying). This is analogous to the rule (cᵇ)ᵃ = cᵇ˙ᵃ.The type (A + B) → C is isomorphic to (A → C) × (B → C) (a function with a case expression can be replaced with a pair of functions). This is analogous to the rule cᵃ⁺ᵇ = cᵃ·cᵇ.",
     "parent": 44893525,
-    "depth": 2
-  },
-  {
-    "id": 44893857,
-    "by": "ackfoobar",
-    "timeISO": "2025-08-13T21:08:22.000Z",
-    "textPlain": "A first-order function type is already exponential.A sum type has as many possible values as the sum of its cases. E.g. `A of bool | B of bool` has 2+2=4 values. Similarly for product types and exponential types. E.g. the type bool -> bool has 2^2=4 values (id, not, const true, const false) if you don't think about side effects.",
-    "parent": 44893525,
-    "depth": 2
-  },
-  {
-    "id": 44894953,
-    "by": "vram22",
-    "timeISO": "2025-08-13T23:08:24.000Z",
-    "textPlain": "I had the same doubt.Here is my uneducated guess:In math, after sum and product, comes exponent :)So they may have used that third term in an analogous manner in the example.",
-    "parent": 44893525,
-    "depth": 2
-  },
-  {
-    "id": 44895600,
-    "by": "chris_armstrong",
-    "timeISO": "2025-08-14T00:49:50.000Z",
-    "textPlain": "I almost never find a use for GADTs or functors or carefully specifying module types, but when I need them, they help me get stuff done neatly.Even the object system which most OCaml developers avoid, is actually very useful for some specific modelling scenarios (usually hierarchies in GUIs or IaC) that comes with similar type system guarantees and minimal type annotations.",
-    "parent": 44895588,
     "depth": 2
   }
 ]

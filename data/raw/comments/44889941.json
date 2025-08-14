@@ -16,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44896967,
-    "by": "Humphrey",
-    "timeISO": "2025-08-14T05:16:18.000Z",
-    "textPlain": "Anybody know how this would work for multiple nginx backends or failover machines - as I assume it's only possible to auto-fetch certificates for the live machine.  Is it expected that you would use scp or similar to copy certs from the live machine to the failover / new server?",
+    "id": 44896550,
+    "by": "vivzkestrel",
+    "timeISO": "2025-08-14T03:47:28.000Z",
+    "textPlain": "Not gonna lie, setting up Nginx, Certbot inside docker is the biggest PITA ever. you need certificates to start the NGINX server but you need the NGINX server to issue certificates? see the problem? It is made infinitely worse by a tonne of online solutions and blog posts none of which I could ever get to work. I would really appreciate if someone has documented this extensively for docker compose. I dont want to use libraries like nginx-proxy as customizing that library is another nightmare alltogether",
     "parent": 44889941,
     "depth": 1
   },
@@ -40,18 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44896753,
-    "by": "makaking",
-    "timeISO": "2025-08-14T04:33:41.000Z",
-    "textPlain": "The fact that certificate management is still evolving makes me realize how young the web still is in the big scheme of things.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44896550,
-    "by": "vivzkestrel",
-    "timeISO": "2025-08-14T03:47:28.000Z",
-    "textPlain": "Not gonna lie, setting up Nginx, Certbot inside docker is the biggest PITA ever. you need certificates to start the NGINX server but you need the NGINX server to issue certificates? see the problem? It is made infinitely worse by a tonne of online solutions and blog posts none of which I could ever get to work. I would really appreciate if someone has documented this extensively for docker compose. I dont want to use libraries like nginx-proxy as customizing that library is another nightmare alltogether",
+    "id": 44896967,
+    "by": "Humphrey",
+    "timeISO": "2025-08-14T05:16:18.000Z",
+    "textPlain": "Anybody know how this would work for multiple nginx backends or failover machines - as I assume it's only possible to auto-fetch certificates for the live machine.  Is it expected that you would use scp or similar to copy certs from the live machine to the failover / new server?",
     "parent": 44889941,
     "depth": 1
   },
@@ -60,6 +52,14 @@
     "by": "thaumaturgy",
     "timeISO": "2025-08-13T17:13:18.000Z",
     "textPlain": "Good to see this. For those that weren't aware, there's been a low-effort solution with https://github.com/dehydrated-io/dehydrated, combined with a pretty simple couple of lines in your vhost config:    location ^~ /.well-known/acme-challenge/ {\n        alias <path-to-your-acme-challenge-directory>;\n    }\n\nDehydrated has been around for a while and is a great low-overhead option for http-01 renewal automation.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44896753,
+    "by": "makaking",
+    "timeISO": "2025-08-14T04:33:41.000Z",
+    "textPlain": "The fact that certificate management is still evolving makes me realize how young the web still is in the big scheme of things.",
     "parent": 44889941,
     "depth": 1
   },
@@ -112,18 +112,18 @@
     "depth": 1
   },
   {
-    "id": 44896024,
-    "by": "st3fan",
-    "timeISO": "2025-08-14T02:08:19.000Z",
-    "textPlain": "Basically the only reason I install Caddy instead of Nginx as a reverse proxy is the one-liner to get TLS & ACME going. Maybe this will change that? Not sure.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44892841,
     "by": "ilaksh",
     "timeISO": "2025-08-13T19:38:09.000Z",
     "textPlain": "Just to check, this means we can use some extra lines in the nginx configuration as an alternative to installing and running certbot, right?Also does it make it easier for there to be alternatives to Let's Encrypt?",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44896024,
+    "by": "st3fan",
+    "timeISO": "2025-08-14T02:08:19.000Z",
+    "textPlain": "Basically the only reason I install Caddy instead of Nginx as a reverse proxy is the one-liner to get TLS & ACME going. Maybe this will change that? Not sure.",
     "parent": 44889941,
     "depth": 1
   },
@@ -140,14 +140,6 @@
     "by": "smarx007",
     "timeISO": "2025-08-13T18:27:01.000Z",
     "textPlain": "When will this land in mainline distros (no PPAs etc)? Given that a new stable version of Debian was released very recently, I would imagine August 2027 for Debian and maybe April 2026 for Ubuntu?In this very thread some people complain that certbot uses snap for distribution. Imagine making a feature release and having to wait 1-2 years until your users will get it on a broad scale.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44896660,
-    "by": "themafia",
-    "timeISO": "2025-08-14T04:09:59.000Z",
-    "textPlain": "We had about 100 domains or so that needed to be redirected to their new homes.  The previous person in my position set it all up using GoDaddy domains and redirects.  I was gobsmacked at how much effort it took,  and when browsers switched to HTTPS first,  how badly it broke the setup.That's when I found \"golang.org/x/crypto/acme/autocert\" and then I built a custom redirect server using it.  It implements TLS-ALPN-01 which works fantastically with Let's Encrypt.Now we can just add a domain to our web configuration,  setup it's target and redirect style,  and then push the configuration out the EC2 instance providing the public facing service.   As soon as the first client makes a request,  they're effectively put \"on hold,\"  while the server then arranges for the certificate in the background.  As soon as it's issued and installed on the server the server continues with the original client.It's an absolute breeze and it makes me utterly detest going backwards to DNS-01 or HTTP-01 challenges.",
     "parent": 44889941,
     "depth": 1
   },
@@ -196,6 +188,14 @@
     "by": "cobbzilla",
     "timeISO": "2025-08-13T16:31:04.000Z",
     "textPlain": "There’s a section on renewals but no description of how it works. Is there a background thread/process? Or is it request-driven? If request-driven, what about some hostname that’s (somehow) not seen traffic in >90 days?",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44896660,
+    "by": "themafia",
+    "timeISO": "2025-08-14T04:09:59.000Z",
+    "textPlain": "We had about 100 domains or so that needed to be redirected to their new homes.  The previous person in my position set it all up using GoDaddy domains and redirects.  I was gobsmacked at how much effort it took,  and when browsers switched to HTTPS first,  how badly it broke the setup.That's when I found \"golang.org/x/crypto/acme/autocert\" and then I built a custom redirect server using it.  It implements TLS-ALPN-01 which works fantastically with Let's Encrypt.Now we can just add a domain to our web configuration,  setup it's target and redirect style,  and then push the configuration out the EC2 instance providing the public facing service.   As soon as the first client makes a request,  they're effectively put \"on hold,\"  while the server then arranges for the certificate in the background.  As soon as it's issued and installed on the server the server continues with the original client.It's an absolute breeze and it makes me utterly detest going backwards to DNS-01 or HTTP-01 challenges.",
     "parent": 44889941,
     "depth": 1
   },

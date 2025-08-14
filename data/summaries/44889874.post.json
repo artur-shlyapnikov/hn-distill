@@ -1,0 +1,8 @@
+{
+  "id": 44889874,
+  "lang": "ru",
+  "summary": "**Vaultrice** — глобальное key-value-хранилище для реального времени без серверной настройки. Один SDK заменяет базу данных и WebSocket-сервер.\n\n```javascript\nimport { NonLocalStorage } from '@vaultrice/sdk';\nconst nls = new NonLocalStorage(creds, 'id');\n\nawait nls.setItem('hello', 'world');\nnls.on('setItem', 'hello', ({ value }) => console.log(value));\n```\n\n### Как работает\n1. **Определи состояние** через `setItem()` как в `localStorage`.\n2. **Синхронизируй** изменения мгновенно по WebSocket.\n3. **Коллаборация** между вкладками, устройствами и доменами.\n\n### Встроено всё необходимое\n- API как у `localStorage`\n- Real-time и Presence API\n- TLS и опциональное E2E-шифрование\n\n### Примеры\n\n**Кросс-доменное состояние**\n```javascript\n// site-a.com\nawait prefs.setItem('theme', 'dark');\n// site-b.com\nprefs.on('setItem', 'theme', ({ value }) => useTheme(value));\n```\n\n**Кто онлайн**\n```javascript\nawait nls.join({ name: 'Alice' });\nnls.on('presence:join', ({ data }) => console.log(`${data.name} online`));\n```\n\n**Фича-флаги**\n```javascript\nawait flags.setItem('newUI', true);\nif (await flags.getItem('newUI')) showNewUI();\n```\n\n[Начать бесплатно](https://www.vaultrice.app/register)",
+  "inputHash": "d0ea351c4e2173607c07bb76db4a2870e20424e5e592f75b7d02c5e1a7403b82",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-14T07:25:26.962Z"
+}
