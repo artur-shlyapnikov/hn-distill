@@ -32,26 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44899525,
-    "by": "Arch-TK",
-    "timeISO": "2025-08-14T12:18:36.000Z",
-    "textPlain": "kind of feels unnecessary honestly...Automating webroot is trivial and I would rather use an external rust utility to handle it than a module for nginx. I guess if you _only_ need certs for your website then this helps but I have certs for a lot of other things too, so I need an external utility anyway.And no dns-01 support yet.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44894943,
     "by": "kocial",
     "timeISO": "2025-08-13T23:07:28.000Z",
     "textPlain": "The problem with the big open-source companies is that they are always very late to understand and implement the most basic innovations that come out.Caddy & Traefik did it long, long ago (half a decade ago), and after half a decade, we finally have ngxin supporting it too. Great move though, finally I won't have to manually run certbot :pray:",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44899327,
-    "by": "kelvinjps10",
-    "timeISO": "2025-08-14T11:54:42.000Z",
-    "textPlain": "Actually this was the reason I started using caddy, and easier config too!",
     "parent": 44889941,
     "depth": 1
   },
@@ -80,18 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44891078,
-    "by": "stego-tech",
-    "timeISO": "2025-08-13T17:10:19.000Z",
-    "textPlain": "The IT Roller Coaster in two reactions:> Nginx Introduces Native Support for Acme ProtocolIT: “It’s about fucking time!”> The current preview implementation supports HTTP-01 challenges to verify the client’s domain ownership.IT: “FUCK. Alright, domain registrar, mint me a new wildcard please, one of the leading web infrastructure providers still can’t do a basic LE DNS-01 pull in 2025.”Seriously. PKI in IT is a PITA and I want someone to SOLVE IT without requiring AD CAs or Yet Another Hyperspecific Appliance (YAHA). If your load balancer, proxy server, web server, or router appliance can’t mint me a basic Acme certificate via DNS-01 challenges, then you officially suck and I will throw your product out for something like Caddy the first chance I get.While we’re at it, can we also allow DNS-01 certs to be issued for intermediate authorities, allowing internally-signed certificates to be valid via said Intermediary? That’d solve like, 99% of my PKI needs in any org, ever, forever.",
+    "id": 44899327,
+    "by": "kelvinjps10",
+    "timeISO": "2025-08-14T11:54:42.000Z",
+    "textPlain": "Actually this was the reason I started using caddy, and easier config too!",
     "parent": 44889941,
     "depth": 1
   },
   {
-    "id": 44896753,
-    "by": "makaking",
-    "timeISO": "2025-08-14T04:33:41.000Z",
-    "textPlain": "The fact that certificate management is still evolving makes me realize how young the web still is in the big scheme of things.",
+    "id": 44891078,
+    "by": "stego-tech",
+    "timeISO": "2025-08-13T17:10:19.000Z",
+    "textPlain": "The IT Roller Coaster in two reactions:> Nginx Introduces Native Support for Acme ProtocolIT: “It’s about fucking time!”> The current preview implementation supports HTTP-01 challenges to verify the client’s domain ownership.IT: “FUCK. Alright, domain registrar, mint me a new wildcard please, one of the leading web infrastructure providers still can’t do a basic LE DNS-01 pull in 2025.”Seriously. PKI in IT is a PITA and I want someone to SOLVE IT without requiring AD CAs or Yet Another Hyperspecific Appliance (YAHA). If your load balancer, proxy server, web server, or router appliance can’t mint me a basic Acme certificate via DNS-01 challenges, then you officially suck and I will throw your product out for something like Caddy the first chance I get.While we’re at it, can we also allow DNS-01 certs to be issued for intermediate authorities, allowing internally-signed certificates to be valid via said Intermediary? That’d solve like, 99% of my PKI needs in any org, ever, forever.",
     "parent": 44889941,
     "depth": 1
   },
@@ -104,10 +88,18 @@
     "depth": 1
   },
   {
-    "id": 44899648,
-    "by": "crest",
-    "timeISO": "2025-08-14T12:34:40.000Z",
-    "textPlain": "FINALLY!!!",
+    "id": 44899525,
+    "by": "Arch-TK",
+    "timeISO": "2025-08-14T12:18:36.000Z",
+    "textPlain": "kind of feels unnecessary honestly...Automating webroot is trivial and I would rather use an external rust utility to handle it than a module for nginx. I guess if you _only_ need certs for your website then this helps but I have certs for a lot of other things too, so I need an external utility anyway.And no dns-01 support yet.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44896753,
+    "by": "makaking",
+    "timeISO": "2025-08-14T04:33:41.000Z",
+    "textPlain": "The fact that certificate management is still evolving makes me realize how young the web still is in the big scheme of things.",
     "parent": 44889941,
     "depth": 1
   },
@@ -128,18 +120,18 @@
     "depth": 1
   },
   {
-    "id": 44898067,
-    "by": "account42",
-    "timeISO": "2025-08-14T08:20:15.000Z",
-    "textPlain": "> Support for other challenges (TLS-ALPN, DNS -01) is planned in future.Looking forward to this. HTTP-01 already works well enough for me with certbot (which I need for other services anyway and gives me more control over having multiple domains in one cert) but for wildcard certs there are not as many good solutions.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44891278,
     "by": "miggy",
     "timeISO": "2025-08-13T17:28:35.000Z",
     "textPlain": "It seems HAProxy also added ACME/DNS-01 challenge support in haproxy-3.3-dev6 very recently. https://www.mail-archive.com/haproxy@formilux.org/msg46035.h...",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44898067,
+    "by": "account42",
+    "timeISO": "2025-08-14T08:20:15.000Z",
+    "textPlain": "> Support for other challenges (TLS-ALPN, DNS -01) is planned in future.Looking forward to this. HTTP-01 already works well enough for me with certbot (which I need for other services anyway and gives me more control over having multiple domains in one cert) but for wildcard certs there are not as many good solutions.",
     "parent": 44889941,
     "depth": 1
   },
@@ -172,6 +164,14 @@
     "by": "st3fan",
     "timeISO": "2025-08-14T02:08:19.000Z",
     "textPlain": "Basically the only reason I install Caddy instead of Nginx as a reverse proxy is the one-liner to get TLS & ACME going. Maybe this will change that? Not sure.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44899648,
+    "by": "crest",
+    "timeISO": "2025-08-14T12:34:40.000Z",
+    "textPlain": "FINALLY!!!",
     "parent": 44889941,
     "depth": 1
   },
@@ -312,6 +312,14 @@
     "depth": 1
   },
   {
+    "id": 44900192,
+    "by": "blessedcavapoo1",
+    "timeISO": "2025-08-14T13:33:00.000Z",
+    "textPlain": "[dead]",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
     "id": 44892428,
     "by": "uncleJoe",
     "timeISO": "2025-08-13T19:02:02.000Z",
@@ -388,14 +396,6 @@
     "by": "altairprime",
     "timeISO": "2025-08-13T18:46:28.000Z",
     "textPlain": "Does DNS-01 support DNS-over-HTTPS to the registered domain name servers? If so, then it should be extremely simple to extend nginx to support DNS claims; if not, perhaps DNS-01 needs improvements.",
-    "parent": 44890666,
-    "depth": 2
-  },
-  {
-    "id": 44890982,
-    "by": "creatonez",
-    "timeISO": "2025-08-13T17:02:26.000Z",
-    "textPlain": "Why would nginx ever need support for the DNS-01 challenge type? It always has access to `.well-known` because nginx is running an HTTP server for the entire lifecycle of the process, so you'd never need to use a lower level way of doing DV. And that seems to violate the principle of least privilege, since you now need a sensitive API token on the server.",
     "parent": 44890666,
     "depth": 2
   }

@@ -16,14 +16,6 @@
     "depth": 1
   },
   {
-    "id": 44892053,
-    "by": "_mu",
-    "timeISO": "2025-08-13T18:28:17.000Z",
-    "textPlain": "I haven't worked in OCaml but I have worked a bit in F# and found it to be a pleasant experience.One thing I am wondering about in the age of LLMs is if we should all take a harder look at functional languages again. My thought is that if FP languages like OCaml / Haskell / etc. let us compress a lot of information into a small amount of text, then that's better for the context window.Possibly we might be able to put much denser programs into the model and one-shot larger changes than is achievable in languages like Java / C# / Ruby / etc?",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
     "id": 44894751,
     "by": "pmahoney",
     "timeISO": "2025-08-13T22:43:19.000Z",
@@ -36,6 +28,14 @@
     "by": "JaggerJo",
     "timeISO": "2025-08-14T08:56:35.000Z",
     "textPlain": "DarkLang which was initially written in OCaml eventually switched to F#. From what I remember the main reasons were the library ecosystem and concurrency.I'm know .NET in and out, so I might be biased. Most of the boring parts have multiple good solutions that I can pick from. I don't have to spend time on things that are not essential to the problem I actually want to solve.I've used F# professionally for multiple years and maintain a quite popular UI library written in it. But even with .NET there still are gaps because of the smaller F# language ecosystem. Not everything \"just works\" between CLR languages - sometimes it's a bit more complicated.The main point I'm trying to make is that going off the beaten path (C#) for example also comes with a cost. That cost might or might not be offset by the more expressive language. It's important to know this so you are not surprised by it.With OCaml it's similar I'd say. You get a really powerful language, but you're off the beaten path. Sure, there are a few companies using it in production - but their use case might be different than yours. On Jane Streets Threads and Signals podcast they often talk about their really specific use cases.1: https://blog.darklang.com/new-backend-fsharp/",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44892053,
+    "by": "_mu",
+    "timeISO": "2025-08-13T18:28:17.000Z",
+    "textPlain": "I haven't worked in OCaml but I have worked a bit in F# and found it to be a pleasant experience.One thing I am wondering about in the age of LLMs is if we should all take a harder look at functional languages again. My thought is that if FP languages like OCaml / Haskell / etc. let us compress a lot of information into a small amount of text, then that's better for the context window.Possibly we might be able to put much denser programs into the model and one-shot larger changes than is achievable in languages like Java / C# / Ruby / etc?",
     "parent": 44891759,
     "depth": 1
   },
@@ -208,6 +208,14 @@
     "depth": 2
   },
   {
+    "id": 44899939,
+    "by": "le-mark",
+    "timeISO": "2025-08-14T13:08:57.000Z",
+    "textPlain": "The way ocaml mashes the object syntax into sml was always most annoying to me. It was also pretty weak on the systems programming side (threads, sockets, signals, fork) 20-30 years ago iirc. That’s probably changed by now. Multi core; not many runtimes handle this today so that’s not much of a hindrance IME.",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
     "id": 44895407,
     "by": "gerdesj",
     "timeISO": "2025-08-14T00:11:12.000Z",
@@ -344,6 +352,14 @@
     "depth": 2
   },
   {
+    "id": 44896751,
+    "by": "throwaway127482",
+    "timeISO": "2025-08-14T04:33:11.000Z",
+    "textPlain": "Go's %v leaves a lot to be desired, even when using %+#v to print even more info. I wish there was a format string to deeply traverse into pointers. Currently I have to import go-spew for that, which is a huge annoyance.Python does it best from what I've seen so far, with its __repr__ method.",
+    "parent": 44894751,
+    "depth": 2
+  },
+  {
     "id": 44892596,
     "by": "jappgar",
     "timeISO": "2025-08-13T19:15:39.000Z",
@@ -380,22 +396,6 @@
     "by": "omcnoe",
     "timeISO": "2025-08-14T07:40:46.000Z",
     "textPlain": "I think that functional languages do actually have some advantages when it comes to LLM's, but not due to terseness.Rather, immutability/purity is a huge advantage because it plays better with the small context window of LLM's. An LLM then doesn't have to worry about side effects or mutable references to data outside the scope currently being considered.",
-    "parent": 44892053,
-    "depth": 2
-  },
-  {
-    "id": 44894006,
-    "by": "dkarl",
-    "timeISO": "2025-08-13T21:21:14.000Z",
-    "textPlain": "In Scala, I've had excellent luck using LLMs to speed up development when I'm using cats-effect, an effects library.My experience in the past with something like cats-effect has been that there are straightforward things that aren't obvious, and if you haven't been using it recently, and maybe even if you've been using it but haven't solved a similar problem recently, you can get stuck trawling through the docs squinting at type signatures looking for what turns out to be, in hindsight, an elegant and simple solution. LLMs have vastly reduced this kind of friction. I just ask, \"In cats-effect, how do I...?\" and 80% of the time the answer gets me immediately unstuck. The other 20% of the time I provide clarifying context or ask a different LLM.I haven't done enough maintenance coding yet to know if this will radically shift my view of the cost/benefit of functional programming with effects, but I'm very excited. Writing cats-effect code has always been satisfying and frustrating in equal measure, and so far, I'm getting the confidence and correctness with a fraction of the frustration.I haven't unleashed Claude Code on any cats-effect code yet. I'm curious to see how well it will do.",
-    "parent": 44892053,
-    "depth": 2
-  },
-  {
-    "id": 44892773,
-    "by": "sshine",
-    "timeISO": "2025-08-13T19:32:31.000Z",
-    "textPlain": "> My thought is that if FP languages like OCaml / Haskell / etc. let us compress a lot of information into a small amount of text, then that's better for the context window.Claude Code’s Haskell style is very verbose; if-then-elsey, lots of nested case-ofs, do-blocks at multiple levels of intension, very little naming things at top-level.Given a sample of a simple API client, and a request to do the same but for another API, it did very well.I concluded that I just have more opinions about Haskell than Java or Rust. If it doesn’t look nice, why even bother with Haskell.I reckon that you could seed it with style examples that take up very little context space. Also, remind it to not enable language pragmas per file when they’re already in .cabal, and similar.",
     "parent": 44892053,
     "depth": 2
   }
