@@ -1,0 +1,8 @@
+{
+  "id": 44870664,
+  "lang": "ru",
+  "summary": "### Обзор: лямбды, вложенные функции и блоки в C\n\n**Базовый C**  \nПередача кода + данных через `void*` и структуру:\n\n```c\nint compute_with(int x, int (*f)(int, void*), void* d) {\n    return f((x+2)*3, d);\n}\nstruct vars { int x; };\nint f(int y, void* d){ return ((struct vars*)d)->x + y; }\n```\n\nДля асинхронных вызовов данные выделяются в куче.\n\n**GCC Nested Functions**  \nВложенные функции видят переменные внешнего контекста:\n\n```c\nint main(){\n    int x = 1;\n    int f(int y){ return x + y; }  // захват x\n    return compute_with(1, f);\n}\n```\n\nПлюсы: короткий синтаксис, не нужен `void*`.  \nМинусы: работает только в GCC, требует исполняемой памяти под trampoline, несовместимо с ISO C.\n\n**Clang Blocks**  \nРасширение Clang/Apple: `^`-литералы блоков с автоматическим захватом по значению (по умолчанию) или по ссылке (`__block`).\n\n```c\nint main(){\n    int x = 1;\n    int (^b)(int) = ^(int y){ return x + y; };\n    return compute_with(1, b);\n}\n```\n\nПлюсы: стандартизированы в Apple, работают с ARC, можно копировать в кучу (`Block_copy`).  \nМинусы: требуют runtime, не портятся за пределы Clang.\n\n**Statement Expressions**  \nGCC/Clang: `({ ... })` возвращает последнее выражение, но не решают проблему захвата.\n\n**C++ Lambdas**  \nВ C++11+ можно писать `[&x](int y){ return x + y; }`, но это уже не C.\n\n**Вывод**  \nНи одно расширение не является универсальным. Для максимальной переносимости остаётся классический подход «функция + `void*`».",
+  "inputHash": "53d383643c65434fd3345dc8f7ba436834fa3acf51bae1c8a7d1f929897cabf5",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-14T22:24:25.780Z"
+}

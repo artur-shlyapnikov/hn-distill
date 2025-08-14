@@ -1,0 +1,74 @@
+[
+  {
+    "id": 44906189,
+    "by": "crawshaw",
+    "timeISO": "2025-08-14T21:59:32.000Z",
+    "textPlain": "Nice example of how good programming is often about meeting systems where they are:  Whatever your feelings are about OOP and memory management, the reality is that if you choose GTK, you're forced into interfacing in some way with the GObject type system. You can't avoid it.\n\n  Well you can avoid it and we did avoid it. And it leads to a mess trying to tie the lifetimes of your non-reference-counted objects to the reference counted ones. There was an entire class of bug that kept popping up in the Ghostty GTK application that could basically be summed up as: the Zig memory or the GTK memory has been freed, but not both.",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44906288,
+    "by": "Lerc",
+    "timeISO": "2025-08-14T22:10:20.000Z",
+    "textPlain": ">Whatever your feelings are about OOP and memory management, the reality is that if you choose GTK, you're forced into interfacing in some way with the GObject type system. You can't avoid it.In the past this has also been my assessment of GTK.  It lead me to decide to take the other path,  to never directly use GTK.   I appreciate the value in having a unified user interface between applications, but I have always thought the features that GTK provides were not worth the penalties paid.  I have worked around the edges of GTK in open source apps that are GTK based. That lead me to think that GTK and the GObject system is opinionated in a way that are not terribly compatible with my own opinions.I don't hate that GTK exists, It is my choice not to use it and I am fine with that.  However I also have encountered people who seem to think it is not my choice not to use it.  There are a million and one other GUI toolkits out there, of which GTK is one of the most polished.  I can't shake the feeling that if GTK were less dominant, some of the resources that go to polishing GTK might have been spent polishing a different framework with a nicer underlying architecture.Of course what I consider nicer might not be what others consider nicer.   Of those who use GTK,  how many use it begrudgingly, and how many feel like it is the best tool for the job?",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44906349,
+    "by": "8f2ab37a-ed6c",
+    "timeISO": "2025-08-14T22:18:45.000Z",
+    "textPlain": "Been a happy Ghostty user for a couple of months, it's my daily driver now as far as macOS terminals go. Thanks for all the hard work Mitchell & team.",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44906138,
+    "by": "corsica",
+    "timeISO": "2025-08-14T21:53:16.000Z",
+    "textPlain": "I don't get the hype around this application. The only UI Ghostty has is tabs and the context menu, is it really worth the integration pain and now this rewrite?Maybe they're planning for more, like those GUI configuration dialogs that iterm2 has?Kitty uses OpenGL for everything and draws its own tabs, they're fully customizable and can be made to look however you want. By not wasting time on integrating with massive frameworks for drawing tabs, Kovid was able to quickly implement really useful things that Ghostty is sorely missing, like wrapping the output of the last command in a pager (run 'ps -auxf' and press Ctrl+Shift+G — this thing so useful it's hard to go without it now. It also works for remote shells across SSH sessions.)",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44906350,
+    "by": "mitchellh",
+    "timeISO": "2025-08-14T22:18:45.000Z",
+    "textPlain": "> That lead me to think that GTK and the GObject system is opinionated in a way that are not terribly compatible with my own opinions.This might be amusing for me to say but... I also feel this way. I disagree a lot with the Gnome ecosystem's point of view. Funny!Using GTK for Linux was a pragmatic choice. A goal of Ghostty is to be \"platform-native\" (defined here because there's no such thing on Linux: https://ghostty.org/docs/about#native). GTK is by various definitions the most popular, widespread GUI toolkit on Linux that makes your app fit into _most_ ecosystems. So, GTK it is.I hope `libghostty` will give rise to other apprts (maintained by 3rd parties, it's hard enough for me to maintain macOS and GTK) so that you aren't forced into it. See https://ghostty.org/docs/about#libghostty For example Wraith is a Wayland-native Ghostty frontend (no GTK): https://github.com/gabydd/wraith Awesome.",
+    "parent": 44906288,
+    "depth": 2
+  },
+  {
+    "id": 44906308,
+    "by": "mitchellh",
+    "timeISO": "2025-08-14T22:12:04.000Z",
+    "textPlain": "> The only UI Ghostty has is tabs and the context menu- Tabs- Splits- \"this process has exited\" banner- Close confirmation dialogs- Change title dialog- Unsafe paste detection dialogs- Context menus- Animated bells (opt in)- \"Quake-style\" dropdown terminals (cross platform but different mechanisms)- Progress bars (ConEmu OSC 9;4)- macOS: Apple Shortcuts Integration- macOS: Spotlight IntegrationProbably more I'm not thinking of. It's unfair to say it's just tabs. Could we have done this without a GUI toolkit? Of course! But the whole mission statement of this project was always to use platform-native (for various definitions) toolkits so that it _feels_ native.That's not for everyone, and that's the great thing about the wonderful vibrant terminal ecosystem we have.> is it really worth the integration pain and now this rewrite?There's definitely a lot more on the way.The first goal and primary focus of the project was to build a stable, feature rich (terminal sequences) terminal emulator. We're basically there. Next up, we're expanding GUI functionality significantly, including having more escape sequences result in more native GUI elements. But also traditional things like preferences GUIs, yes.We're also integrating a lot more deeply with native features provided by each platform (somewhat related to the GUI toolkit choice), such as automatic iCloud syncing of your configuration on macOS. Now that the terminal is stable, we can start to really lean in to application features.This isn't for everyone. Some people like Kitty's textual tabs. That's fine! It's a tradeoff. That's the beauty of choice. :) Kitty is a great terminal, if you prefer it, please use it. But it has completely different tradeoffs than Ghostty.",
+    "parent": 44906138,
+    "depth": 2
+  },
+  {
+    "id": 44906340,
+    "by": "Lerc",
+    "timeISO": "2025-08-14T22:17:37.000Z",
+    "textPlain": "I went on a big meandering hunt for a terminal application that did what I wanted.  I have tried many and while nothing perfectly met my needs, Ghostty is the one I am using now.That counts for something.Perhaps it is just it lacks an obvious reason to move away from it.   Usually, the thing that made me try another terminal was because of something I couldn't do.  It wasn't a matter of listing all the pros and cons and going with the best one.  It has just found a home with me because it hasn't outstayed its welcome.",
+    "parent": 44906138,
+    "depth": 2
+  },
+  {
+    "id": 44906190,
+    "by": "hyperbolablabla",
+    "timeISO": "2025-08-14T21:59:34.000Z",
+    "textPlain": "Agreed, seems like a lot of unnecessary girating just to implement something that would've been much simpler + cross-platform with a custom UI toolkit and something like opengl. Tabs are like UI 101",
+    "parent": 44906138,
+    "depth": 2
+  },
+  {
+    "id": 44906223,
+    "by": "do_not_redeem",
+    "timeISO": "2025-08-14T22:03:20.000Z",
+    "textPlain": "Well... a terminal is a GUI app, so they had to choose some GUI framework. On Linux GTK is as good a choice as any. (Yes I know you can skip the framework and talk to X11/Wayland directly, like xterm/foot do, but that's a pain all of its own.)",
+    "parent": 44906138,
+    "depth": 2
+  }
+]
