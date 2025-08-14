@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44895457,
+    "by": "xp84",
+    "timeISO": "2025-08-14T00:23:25.000Z",
+    "textPlain": "I seem to remember this stupid behavior with maxresdefault going back at least a decade.As though there is no way that it could default to the correct thumbnail for any video -- surely it would not just help random hackers like OP, but also be more efficient for internal teams at Google to be able to render a preview for a video knowing only its ID, instead of making an API call to get the correct thumbnail name.Great example of a 10-minute bug being prioritized at #837,434,212 and never resolved. I'd like to judge harshly, but let's be honest, most codebases older than a month have their share of these embarrassments.",
+    "parent": 44865908,
+    "depth": 1
+  },
+  {
     "id": 44894721,
     "by": "dylan604",
     "timeISO": "2025-08-13T22:38:47.000Z",
@@ -22,6 +30,38 @@
     "textPlain": "Author here, hi all. There are a number of ways to skin this cat. This is my preferred method. What's yours?",
     "parent": 44865908,
     "depth": 1
+  },
+  {
+    "id": 44895851,
+    "by": "onestay42",
+    "timeISO": "2025-08-14T01:33:18.000Z",
+    "textPlain": "Please, please close that parenthese. Please, I beg of you. I can do it for you if you'd like.) There. Sorry.",
+    "parent": 44894373,
+    "depth": 2
+  },
+  {
+    "id": 44895420,
+    "by": "mcphage",
+    "timeISO": "2025-08-14T00:14:05.000Z",
+    "textPlain": "You’d probably want it to match YouTube’s preview image, so if your reader sees the video on YouTube proper at a later date, they’ll recognize it.  I’m not sure of a good way to do that, since it’s not necessarily a screengrab from the middle of the video.",
+    "parent": 44894721,
+    "depth": 2
+  },
+  {
+    "id": 44895824,
+    "by": "schiffern",
+    "timeISO": "2025-08-14T01:29:37.000Z",
+    "textPlain": "Easiest solution is just to use the highest resolution thumbnail the official documentation says is supported on all videos (vs \"some\"), which is hqdefault.https://developers.google.com/youtube/v3/docs/thumbnailsMaxresdefault is overkill for this purpose IMO. Why waste the data? Incidentally this is why I run an add-on that redirects all youtube thumbnails to mqdefault, it saves me a nice chunk of bandwidth / memory / perf.",
+    "parent": 44865921,
+    "depth": 2
+  },
+  {
+    "id": 44895729,
+    "by": "degamad",
+    "timeISO": "2025-08-14T01:12:33.000Z",
+    "textPlain": "I just took a look at the code that's returned when you open https://www.youtube.com/embed/<videoid>?feature=oembed and noticed a couple of additional image file names you may want to check.        iurl: \"default.jpg\",\n        iurlmq: \"mqdefault.jpg\",\n        iurlhq: \"hqdefault.jpg\",\n        iurlsd: \"sddefault.jpg\",\n        iurlpop1: \"pop1.jpg\",\n        iurlpop2: \"pop2.jpg\",\n        iurlhq720: \"hq720.jpg\",\n        iurlmaxres: \"maxresdefault.jpg\"\n\n        120: \"default.jpg\",\n        320: \"mqdefault.jpg\",\n        480: \"hqdefault.jpg\",\n        560: \"pop1.jpg\",\n        640: \"sddefault.jpg\",\n        854: \"pop2.jpg\",\n        1280: \"hq720.jpg\"",
+    "parent": 44865921,
+    "depth": 2
   },
   {
     "id": 44894474,

@@ -1,5 +1,13 @@
 [
   {
+    "id": 44895950,
+    "by": "fiforpg",
+    "timeISO": "2025-08-14T01:54:27.000Z",
+    "textPlain": "In the context of double precision the article says> the largest integer value that can be represented exactly is 2^53— I am confused as to why it not 2^52, given that there are 52 bits of mantissa, so relative accuracy is 2^-52, which translates to absolute accuracy larger than 1 after 2^52. Compare this to the table there saying \"Next value after 1 = 1 + 2^-52\".",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
     "id": 44888561,
     "by": "exDM69",
     "timeISO": "2025-08-13T14:00:55.000Z",
@@ -12,6 +20,14 @@
     "by": "BlackFly",
     "timeISO": "2025-08-13T14:11:22.000Z",
     "textPlain": "You can exploit the exactness of (specific) floating point operations in test data by using sums of powers of 2. Polynomials with such coefficients produce exact results so long as the overall powers are within ~53 powers of 2 (don't quote me exactly on that, I generally don't push the range very high!). You can find exact polynomial solutions to linear PDEs with such powers using high enough order finite difference methods for example.However, the story about non-determinism is no myth. The intel processors have a separate math coprocessor that supports 80bit floats (https://en.wikipedia.org/wiki/Extended_precision#x86_extende...). Moving a float from a register in this coprocessor to memory truncates the float. Repeated math can be done inside this coprocessor to achieve higher precision so hot loops generally don't move floats outside of these registers. Non-determinism occurs in programs running on intel with floats when threads are interrupted and the math coprocessor flushed. The non-determinism isn't intrinsic to the floating point arithmetic but to the non-determinism of when this truncation may occur. This is more relevant for fields where chaotic dynamics occur. So the same program with the same inputs can produce different results.NaN is an error. If you take the square root of a negative number you get a NaN. This is just a type error, use complex numbers to overcome this one. But then you get 0. / 0. and that's a NaN or Inf - Inf and a whole slew of other things that produce out of bounds results. Whether it is expected or not is another story, but it does mean that you are unable to represent the value with a float and that is a type error.",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
+    "id": 44888522,
+    "by": "bee_rider",
+    "timeISO": "2025-08-13T13:57:47.000Z",
+    "textPlain": "I like these. They are push back against the sort of… first correction that people make when encountering floating point weirdness. That is, the first mistake we make is to treat floats as reals, and then we observe some odd rounding behavior. The second mistake we make is to treat the rounding events as random. A nice thing about IEEE floats is that the rounding behavior is well defined.Often it doesn't matter, like you ask for a gemm and you get whatever order of operations blas, AVX-whatever, and OpenMP conspire to give you, so it is more-or-less random.But if it does matter, the ability to define it is there.",
     "parent": 44849834,
     "depth": 1
   },
@@ -32,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44888522,
-    "by": "bee_rider",
-    "timeISO": "2025-08-13T13:57:47.000Z",
-    "textPlain": "I like these. They are push back against the sort of… first correction that people make when encountering floating point weirdness. That is, the first mistake we make is to treat floats as reals, and then we observe some odd rounding behavior. The second mistake we make is to treat the rounding events as random. A nice thing about IEEE floats is that the rounding behavior is well defined.Often it doesn't matter, like you ask for a gemm and you get whatever order of operations blas, AVX-whatever, and OpenMP conspire to give you, so it is more-or-less random.But if it does matter, the ability to define it is there.",
+    "id": 44888448,
+    "by": "BugsJustFindMe",
+    "timeISO": "2025-08-13T13:50:48.000Z",
+    "textPlain": "I've never heard anyone say any of these supposed myths, except for the first one, sort of, but nobody means what the first one pretends it means, so this whole post feels like a big strawman to me.",
     "parent": 44849834,
     "depth": 1
   },
@@ -48,26 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44888448,
-    "by": "BugsJustFindMe",
-    "timeISO": "2025-08-13T13:50:48.000Z",
-    "textPlain": "I've never heard anyone say any of these supposed myths, except for the first one, sort of, but nobody means what the first one pretends it means, so this whole post feels like a big strawman to me.",
-    "parent": 44849834,
-    "depth": 1
-  },
-  {
     "id": 44888459,
     "by": "rollcat",
     "timeISO": "2025-08-13T13:51:36.000Z",
     "textPlain": "Related: What Every Computer Scientist Should Know About Floating-Point Arithmetic <https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.h...>",
-    "parent": 44849834,
-    "depth": 1
-  },
-  {
-    "id": 44892720,
-    "by": "AndriyKunitsyn",
-    "timeISO": "2025-08-13T19:28:13.000Z",
-    "textPlain": "Here's one that's not a myth: IEEE-754 floats are the only \"primitive types\" that allow \"a == a\" to not be true.I.e., two floats that are _identical_ to each other (even when it's _the same_ variable, on the same memory address) can be not _equal_ to each other, specifically if it's NaN. This is dictated by IEEE-754, and this is true for all programming languages I know, and to this day, this makes zero sense to me, but apparently this is useful for some reason.",
     "parent": 44849834,
     "depth": 1
   },
@@ -88,20 +88,28 @@
     "depth": 1
   },
   {
+    "id": 44895070,
+    "by": "analog31",
+    "timeISO": "2025-08-13T23:24:31.000Z",
+    "textPlain": ">>> A beginner would use them, trusting they are infinitely capable and precise, which can lead to problems. An intermediate programmer knows that they have some limitations, and so by using some good practices the problems can be avoided.Amusingly, pocket calculators became affordable while I was in high school, and anybody who was interested in math learned the foibles of floating point almost instantly. Now it's an advanced topic. A difference may have been that our calculators had very few significant digits, so the errors introduced by successive calculations became noticeable more quickly. Also, you had to think about what you were doing because, even if you trusted the calculator, you didn't trust your fingers.",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
+    "id": 44892720,
+    "by": "AndriyKunitsyn",
+    "timeISO": "2025-08-13T19:28:13.000Z",
+    "textPlain": "Here's one that's not a myth: IEEE-754 floats are the only \"primitive types\" that allow \"a == a\" to not be true.I.e., two floats that are _identical_ to each other (even when it's _the same_ variable, on the same memory address) can be not _equal_ to each other, specifically if it's NaN. This is dictated by IEEE-754, and this is true for all programming languages I know, and to this day, this makes zero sense to me, but apparently this is useful for some reason.",
+    "parent": 44849834,
+    "depth": 1
+  },
+  {
     "id": 44891022,
     "by": "AtlasBarfed",
     "timeISO": "2025-08-13T17:05:12.000Z",
     "textPlain": "The core thing to know about floating point numbers in comp langs is they aren't floating point numbers.They are approximations of floating point numbers, and even if your current approximation of a floating point number to represent a value seems to be accurate as an integer vale...There is no guarantee if you take two of those floating point number approximations that appear completely accurate that the resulting operation between them will also be completely accurate.",
     "parent": 44849834,
     "depth": 1
-  },
-  {
-    "id": 44889330,
-    "by": "thwarted",
-    "timeISO": "2025-08-13T14:58:52.000Z",
-    "textPlain": "You still can't divide by zero, it just doesn't result in an error state that stops execution. The inf and NaN values are sentinel values that you still have to check for after the calculation to know if it went awry.",
-    "parent": 44888561,
-    "depth": 2
   },
   {
     "id": 44891172,
@@ -112,11 +120,11 @@
     "depth": 2
   },
   {
-    "id": 44888838,
-    "by": "AshamedCaptain",
-    "timeISO": "2025-08-13T14:22:59.000Z",
-    "textPlain": "> Non-determinism occurs in programs running on intel with floats when threads are interrupted and the math coprocessor flushedThat's ridiculous. No OS in his right mind would flush FPU regs to 64 bits only, because that would break many things, most obviously \"real\" 80 bit FP which is still a thing and the only reason x87 instructions still work. It would even break plain equality comparisons making all FP useless.For 64 bit FP most compilers prefer SSE rather than x87 instructions these days.",
-    "parent": 44888692,
+    "id": 44889330,
+    "by": "thwarted",
+    "timeISO": "2025-08-13T14:58:52.000Z",
+    "textPlain": "You still can't divide by zero, it just doesn't result in an error state that stops execution. The inf and NaN values are sentinel values that you still have to check for after the calculation to know if it went awry.",
+    "parent": 44888561,
     "depth": 2
   },
   {
@@ -124,6 +132,14 @@
     "by": "nyeah",
     "timeISO": "2025-08-13T16:56:22.000Z",
     "textPlain": "NaN is not necessarily an error. It might be fine. It depends on what you're doing with it.If NaN is invalid input for the next step, then sure why not treat it as an error? But that's a design decision not an imperative that everybody must follow. (I picture Mel Brooks' 15 commandments, #11-15, that fell and broke. This is not like that.)",
+    "parent": 44888692,
+    "depth": 2
+  },
+  {
+    "id": 44888838,
+    "by": "AshamedCaptain",
+    "timeISO": "2025-08-13T14:22:59.000Z",
+    "textPlain": "> Non-determinism occurs in programs running on intel with floats when threads are interrupted and the math coprocessor flushedThat's ridiculous. No OS in his right mind would flush FPU regs to 64 bits only, because that would break many things, most obviously \"real\" 80 bit FP which is still a thing and the only reason x87 instructions still work. It would even break plain equality comparisons making all FP useless.For 64 bit FP most compilers prefer SSE rather than x87 instructions these days.",
     "parent": 44888692,
     "depth": 2
   },
@@ -144,6 +160,22 @@
     "depth": 2
   },
   {
+    "id": 44895907,
+    "by": "zahlman",
+    "timeISO": "2025-08-14T01:46:14.000Z",
+    "textPlain": "On the other hand, it feels wrong to me to call these \"myths\" when they are really just simplifications.(And I have heard of the 80-bit internal register thing described in https://news.ycombinator.com/item?id=44888692 causing real problems for people before. And --ffast-math is basically spooky action at a distance considering how it bleeds into the entire program; see e.g. https://moyix.blogspot.com/2022/09/someones-been-messing-wit....)",
+    "parent": 44888522,
+    "depth": 2
+  },
+  {
+    "id": 44889509,
+    "by": "jandrese",
+    "timeISO": "2025-08-13T15:12:16.000Z",
+    "textPlain": "> A nice thing about IEEE floats is that the rounding behavior is well defined.Until it isn't.  I used to play the CodeWeavers port of Kohan and while the game would allow you to do crossplay between Windows and Linux, differences in how the two OSes rounded floats would cause the game to desynchronize after 15-20 minutes of play or so.  Some unit's pathfinding algorithm would zig on Windows and zag on Linux, causing the state to diverge and end up kicking off one of the players.",
+    "parent": 44888522,
+    "depth": 2
+  },
+  {
     "id": 44891188,
     "by": "kccqzy",
     "timeISO": "2025-08-13T17:21:34.000Z",
@@ -160,34 +192,10 @@
     "depth": 2
   },
   {
-    "id": 44889509,
-    "by": "jandrese",
-    "timeISO": "2025-08-13T15:12:16.000Z",
-    "textPlain": "> A nice thing about IEEE floats is that the rounding behavior is well defined.Until it isn't.  I used to play the CodeWeavers port of Kohan and while the game would allow you to do crossplay between Windows and Linux, differences in how the two OSes rounded floats would cause the game to desynchronize after 15-20 minutes of play or so.  Some unit's pathfinding algorithm would zig on Windows and zag on Linux, causing the state to diverge and end up kicking off one of the players.",
-    "parent": 44888522,
-    "depth": 2
-  },
-  {
-    "id": 44894833,
-    "by": "camgunz",
-    "timeISO": "2025-08-13T22:53:32.000Z",
-    "textPlain": "Definitely. People think they'll get out of knowing how rounding works by using arbitrary precision arithmetic, but arguably it's even more important there (you run out of precision/memory at some point; what do you think happens then?). You can use floats for money if you do the rounding right.",
-    "parent": 44890523,
-    "depth": 2
-  },
-  {
     "id": 44888587,
     "by": "Cieric",
     "timeISO": "2025-08-13T14:02:32.000Z",
     "textPlain": "Just to add some context Adam works at AMD as a dev tech, so he is constantly working with game studios developers directly. While I can't say I've heard the same things since I'm somewhere else, I have seen some of the assumptions made in some shader code and they do line up with the kind of things he's saying.",
-    "parent": 44888448,
-    "depth": 2
-  },
-  {
-    "id": 44894855,
-    "by": "janalsncm",
-    "timeISO": "2025-08-13T22:56:20.000Z",
-    "textPlain": "Same, but I still learned a fair amount anyways. I say no harm, no foul.",
     "parent": 44888448,
     "depth": 2
   },
@@ -208,6 +216,14 @@
     "depth": 2
   },
   {
+    "id": 44894855,
+    "by": "janalsncm",
+    "timeISO": "2025-08-13T22:56:20.000Z",
+    "textPlain": "Same, but I still learned a fair amount anyways. I say no harm, no foul.",
+    "parent": 44888448,
+    "depth": 2
+  },
+  {
     "id": 44888883,
     "by": "AshamedCaptain",
     "timeISO": "2025-08-13T14:26:16.000Z",
@@ -221,6 +237,14 @@
     "timeISO": "2025-08-13T15:08:28.000Z",
     "textPlain": "The first rule is true, but relying on it is dangerous unless you are well versed in what floats can and can not be represented exactly.  It's best to pretend it isn't true in most cases to avoid footguns.",
     "parent": 44888448,
+    "depth": 2
+  },
+  {
+    "id": 44894833,
+    "by": "camgunz",
+    "timeISO": "2025-08-13T22:53:32.000Z",
+    "textPlain": "Definitely. People think they'll get out of knowing how rounding works by using arbitrary precision arithmetic, but arguably it's even more important there (you run out of precision/memory at some point; what do you think happens then?). You can use floats for money if you do the rounding right.",
+    "parent": 44890523,
     "depth": 2
   },
   {
@@ -245,6 +269,22 @@
     "timeISO": "2025-08-13T18:08:08.000Z",
     "textPlain": "52 bits of payload, and at least one bit must be set.",
     "parent": 44891643,
+    "depth": 2
+  },
+  {
+    "id": 44895350,
+    "by": "pclmulqdq",
+    "timeISO": "2025-08-14T00:04:29.000Z",
+    "textPlain": "Modern pocket calculators now use some very fancy math that makes them have much less error than if they used floating point. Many of them will use arbitrary-precision arithmetic at minimum, and there are some fancier schemes.",
+    "parent": 44895070,
+    "depth": 2
+  },
+  {
+    "id": 44895937,
+    "by": "zahlman",
+    "timeISO": "2025-08-14T01:51:31.000Z",
+    "textPlain": ">but apparently this is useful for some reason.It lets you easily test whether a value is NaN without needing a library function call. (Even if the language wanted to provide a NaN literal, there's more than one NaN value, so that wouldn't actually work!)",
+    "parent": 44892720,
     "depth": 2
   },
   {

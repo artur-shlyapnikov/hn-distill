@@ -1,0 +1,8 @@
+{
+  "id": 44859849,
+  "lang": "ru",
+  "summary": "Вместо устаревающего `NIX_PATH` уголковые скобки можно переосмыслить.  \nНа DEFCON-33 подсветили идею: пусть `<foo.bar>` разворачивается в атрибут текущего flake.\n\nСейчас для доступа к `inputs`/`outputs` в модулях приходится прокидывать их через `extraSpecialArgs`:\n\n```nix\nextraSpecialArgs = { inherit inputs outputs; };\n```\n\nХотелось бы писать просто:\n\n```nix\nimports = [\n  <inputs.h.homeModules.default>\n];\n```\n\nРеализуется без патча CppNix.  \nNix при встрече `<name>` превращает выражение в `__findFile __nixPath \"name\"`.  \nПереопределив `__findFile`, можно вернуть любое значение.\n\nМинимальный flake:\n\n```nix\n{\n  outputs = { self, nixpkgslib }: {\n    __findFile = _n: path:\n      let lib = nixpkgslib.lib;\n      in lib.getAttrFromPath (lib.splitString \".\" path) self;\n\n    hello = \"Hello!\";\n    example = builtins.scopedImport self ./use.nix;\n  };\n}\n```\n\n`use.nix`:\n\n```nix\n<hello> + \" and welcome to Nix!\"\n```\n\nПроверка:\n\n```bash\nnix eval .#example --impure\n# → \"Hello! and welcome to Nix!\"\n```\n\nФлаг `--impure` нужен из-за `builtins.getFlake ./.`.  \nСовет от eljamm: использовать уже доступный `self`, тогда всё становится чистым:\n\n```nix\n__findFile = _: path:\n  lib.getAttrFromPath (lib.splitString \".\" path) self;\n```\n\nТак уголковые скобки превращаются в удобный способ обращения к текущему flake без лишних проводов.",
+  "inputHash": "345c19c5f9da084b8fb64a39c378758efc3101c458154f5c0df61a5f2c248c84",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-14T02:01:28.165Z"
+}

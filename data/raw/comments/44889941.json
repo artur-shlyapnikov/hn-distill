@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44894943,
-    "by": "kocial",
-    "timeISO": "2025-08-13T23:07:28.000Z",
-    "textPlain": "The problem with the big open-source companies is that they are always very late to understand and implement the most basic innovations that come out.Caddy & Traefik did it long, long ago (half a decade ago), and after half a decade, we finally have ngxin supporting it too. Great move though, finally I won't have to manually run certbot :pray:",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44890497,
     "by": "dizhn",
     "timeISO": "2025-08-13T16:23:35.000Z",
     "textPlain": "This is pretty big. Caddy had this forever but not everybody wants to use caddy. It'll probably eat into the user share of software like Traefik.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44894943,
+    "by": "kocial",
+    "timeISO": "2025-08-13T23:07:28.000Z",
+    "textPlain": "The problem with the big open-source companies is that they are always very late to understand and implement the most basic innovations that come out.Caddy & Traefik did it long, long ago (half a decade ago), and after half a decade, we finally have ngxin supporting it too. Great move though, finally I won't have to manually run certbot :pray:",
     "parent": 44889941,
     "depth": 1
   },
@@ -40,26 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44894769,
-    "by": "arjie",
-    "timeISO": "2025-08-13T22:45:31.000Z",
-    "textPlain": "Neat, that'll be nice to have. Currently I just use certbot and it does a pretty damn good job. I just set the HTTP:80 configuration and certbot will migrate it to HTTPS:443 and take care of the certificates and so on. For the moment, I'll probably stick to that till this is mature.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44893042,
     "by": "idoubtit",
     "timeISO": "2025-08-13T19:55:12.000Z",
     "textPlain": "A little mistake with this release: they packaged the ngx_http_acme_module for many Linux distributions, but \"forgot\" Debian stable. Oldstable and oldoldstable are listed in https://nginx.org/en/linux_packages.html (packages built today) but Debian 13 Trixie (released 4 days ago) is not there.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44894228,
-    "by": "metafunctor",
-    "timeISO": "2025-08-13T21:44:41.000Z",
-    "textPlain": "I never saw it as a problem for nginx to just serve web content and let certbot handle cert renewals. Whatever happened to doing one thing well and making it composable? Fat tools that try to do everything inevitably suck at some important part.",
     "parent": 44889941,
     "depth": 1
   },
@@ -72,26 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44892841,
-    "by": "ilaksh",
-    "timeISO": "2025-08-13T19:38:09.000Z",
-    "textPlain": "Just to check, this means we can use some extra lines in the nginx configuration as an alternative to installing and running certbot, right?Also does it make it easier for there to be alternatives to Let's Encrypt?",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44890726,
     "by": "aorth",
     "timeISO": "2025-08-13T16:42:20.000Z",
     "textPlain": "Oh this is exciting! Caddy's support is very convenient and it does a lot of other stuff right out of the box which is great.One thing keeping me from switching to Caddy in my places is nginx's rate limiting and geo module.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44894924,
-    "by": "drchaim",
-    "timeISO": "2025-08-13T23:04:35.000Z",
-    "textPlain": "I’ve already migrated to caddy ;)",
     "parent": 44889941,
     "depth": 1
   },
@@ -104,10 +72,34 @@
     "depth": 1
   },
   {
+    "id": 44892841,
+    "by": "ilaksh",
+    "timeISO": "2025-08-13T19:38:09.000Z",
+    "textPlain": "Just to check, this means we can use some extra lines in the nginx configuration as an alternative to installing and running certbot, right?Also does it make it easier for there to be alternatives to Let's Encrypt?",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44894228,
+    "by": "metafunctor",
+    "timeISO": "2025-08-13T21:44:41.000Z",
+    "textPlain": "I never saw it as a problem for nginx to just serve web content and let certbot handle cert renewals. Whatever happened to doing one thing well and making it composable? Fat tools that try to do everything inevitably suck at some important part.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
     "id": 44892034,
     "by": "smarx007",
     "timeISO": "2025-08-13T18:27:01.000Z",
     "textPlain": "When will this land in mainline distros (no PPAs etc)? Given that a new stable version of Debian was released very recently, I would imagine August 2027 for Debian and maybe April 2026 for Ubuntu?In this very thread some people complain that certbot uses snap for distribution. Imagine making a feature release and having to wait 1-2 years until your users will get it on a broad scale.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44894769,
+    "by": "arjie",
+    "timeISO": "2025-08-13T22:45:31.000Z",
+    "textPlain": "Neat, that'll be nice to have. Currently I just use certbot and it does a pretty damn good job. I just set the HTTP:80 configuration and certbot will migrate it to HTTPS:443 and take care of the certificates and so on. For the moment, I'll probably stick to that till this is mature.",
     "parent": 44889941,
     "depth": 1
   },
@@ -120,10 +112,10 @@
     "depth": 1
   },
   {
-    "id": 44893231,
-    "by": "breadwinner",
-    "timeISO": "2025-08-13T20:09:46.000Z",
-    "textPlain": "But can it generate self-signed certificate for intranet use? Often on the intranet you want to encrypt traffic, to prevent casual snooping using Wireshark.",
+    "id": 44891278,
+    "by": "miggy",
+    "timeISO": "2025-08-13T17:28:35.000Z",
+    "textPlain": "It seems HAProxy also added ACME/DNS-01 challenge support in haproxy-3.3-dev6 very recently. https://www.mail-archive.com/haproxy@formilux.org/msg46035.h...",
     "parent": 44889941,
     "depth": 1
   },
@@ -136,10 +128,10 @@
     "depth": 1
   },
   {
-    "id": 44891278,
-    "by": "miggy",
-    "timeISO": "2025-08-13T17:28:35.000Z",
-    "textPlain": "It seems HAProxy also added ACME/DNS-01 challenge support in haproxy-3.3-dev6 very recently. https://www.mail-archive.com/haproxy@formilux.org/msg46035.h...",
+    "id": 44893231,
+    "by": "breadwinner",
+    "timeISO": "2025-08-13T20:09:46.000Z",
+    "textPlain": "But can it generate self-signed certificate for intranet use? Often on the intranet you want to encrypt traffic, to prevent casual snooping using Wireshark.",
     "parent": 44889941,
     "depth": 1
   },
@@ -160,6 +152,14 @@
     "depth": 1
   },
   {
+    "id": 44890604,
+    "by": "adontz",
+    "timeISO": "2025-08-13T16:31:21.000Z",
+    "textPlain": "certbot has an plugin for nginx, so I'm not sure why people think is was hard to use LetsEncrypt with nginx.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
     "id": 44891119,
     "by": "samgranieri",
     "timeISO": "2025-08-13T17:14:35.000Z",
@@ -168,10 +168,10 @@
     "depth": 1
   },
   {
-    "id": 44890604,
-    "by": "adontz",
-    "timeISO": "2025-08-13T16:31:21.000Z",
-    "textPlain": "certbot has an plugin for nginx, so I'm not sure why people think is was hard to use LetsEncrypt with nginx.",
+    "id": 44894924,
+    "by": "drchaim",
+    "timeISO": "2025-08-13T23:04:35.000Z",
+    "textPlain": "I’ve already migrated to caddy ;)",
     "parent": 44889941,
     "depth": 1
   },
@@ -320,14 +320,6 @@
     "depth": 2
   },
   {
-    "id": 44894990,
-    "by": "winter_blue",
-    "timeISO": "2025-08-13T23:13:27.000Z",
-    "textPlain": "Caddy did it almost a decade ago. IIRC it had some form of automatic Let’s Encrypt HTTPS back in 2016.So Nginx is just about 9 to 10 years late. Lol",
-    "parent": 44894943,
-    "depth": 2
-  },
-  {
     "id": 44890654,
     "by": "elashri",
     "timeISO": "2025-08-13T16:36:52.000Z",
@@ -349,6 +341,14 @@
     "timeISO": "2025-08-13T16:48:41.000Z",
     "textPlain": "Definitely. I use traefik for some stuff at home and will likely swap it out now.",
     "parent": 44890497,
+    "depth": 2
+  },
+  {
+    "id": 44894990,
+    "by": "winter_blue",
+    "timeISO": "2025-08-13T23:13:27.000Z",
+    "textPlain": "Caddy did it almost a decade ago. IIRC it had some form of automatic Let’s Encrypt HTTPS back in 2016.So Nginx is just about 9 to 10 years late. Lol",
+    "parent": 44894943,
     "depth": 2
   },
   {
@@ -384,18 +384,18 @@
     "depth": 2
   },
   {
-    "id": 44895048,
-    "by": "SchemaLoad",
-    "timeISO": "2025-08-13T23:20:45.000Z",
-    "textPlain": "It's kind of annoying to set up. Last I remember certbot could try to automatically configure things for you but unless you had the most default setup it wouldn't work. Just having Nginx do everything for you seems like a better solution.",
-    "parent": 44894228,
-    "depth": 2
-  },
-  {
     "id": 44894825,
     "by": "cnst",
     "timeISO": "2025-08-13T22:52:38.000Z",
     "textPlain": "You could always switch to the Angie fork if you require the DNS challenge type with the wildcard domains:https://en.angie.software/angie/docs/configuration/modules/h...",
+    "parent": 44891078,
+    "depth": 2
+  },
+  {
+    "id": 44891258,
+    "by": "0xbadcafebee",
+    "timeISO": "2025-08-13T17:26:56.000Z",
+    "textPlain": "> allowing internally-signed certificates to be valid via said IntermediaryBy design, nothing is allowed to delegate signing authority, because it would become an immediate compromise of everything that got delegated when your delegated authority got compromised. Since only CAs can issue certs, and CAs have to pass at least some basic security scrutiny, clients have assurance that the thing giving it a cert got said cert from a trustworthy authority. If you want a non-trustworthy authority... go with a custom CA. It's intentionally difficult to do so.> If your load balancer, proxy server, web server, or router appliance can’t mint me a basic Acme certificate via DNS-01 challenges, then you officially suck and I will throw your product out for something like Caddy the first chance I get.I mean, that's a valid ask. It will become more commonplace once some popular corporate offering includes it, and then all the competitors will adopt it so they don't leave money on the table. To get the first one to adopt it, be a whale of a customer and yell loudly that you want it, then wait 18 months.",
     "parent": 44891078,
     "depth": 2
   }

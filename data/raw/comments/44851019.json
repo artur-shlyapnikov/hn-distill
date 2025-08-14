@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44893906,
+    "by": "robotnikman",
+    "timeISO": "2025-08-13T21:12:31.000Z",
+    "textPlain": "I know very little about electronics design, so I always find it amazing that they keep managing to double PCIe throughput over and over. Its also probably the longest lived expansion bus at the moment.",
+    "parent": 44851019,
+    "depth": 1
+  },
+  {
     "id": 44894293,
     "by": "pshirshov",
     "timeISO": "2025-08-13T21:52:55.000Z",
@@ -24,10 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44893906,
-    "by": "robotnikman",
-    "timeISO": "2025-08-13T21:12:31.000Z",
-    "textPlain": "I know very little about electronics design, so I always find it amazing that they keep managing to double PCIe throughput over and over. Its also probably the longest lived expansion bus at the moment.",
+    "id": 44895188,
+    "by": "_zoltan_",
+    "timeISO": "2025-08-13T23:40:11.000Z",
+    "textPlain": "what I don't get: why doesn't AMD just roll Gen6 out in their CPU, bifurcate it to Gen5, and boom, you have 48x2 Gen5s? same argument for gen5 bifurcated to gen4.this would solve the biggest issue with non-server motherboards: not enough PCIe lanes.",
+    "parent": 44851019,
+    "depth": 1
+  },
+  {
+    "id": 44895463,
+    "by": "Melatonic",
+    "timeISO": "2025-08-14T00:24:08.000Z",
+    "textPlain": "I feel like what we really need is a GPU \"socket\" like we have for CPU's. And then a set of RAM slots dedicated to that GPU socket (or unified RAM shared between CPU and GPU)",
     "parent": 44851019,
     "depth": 1
   },
@@ -72,6 +88,22 @@
     "depth": 1
   },
   {
+    "id": 44895952,
+    "by": "coherentpony",
+    "timeISO": "2025-08-14T01:54:52.000Z",
+    "textPlain": "The concept exists now.  You can \"reverse offload\" work to the CPU.",
+    "parent": 44851726,
+    "depth": 2
+  },
+  {
+    "id": 44895662,
+    "by": "0manrho",
+    "timeISO": "2025-08-14T01:00:02.000Z",
+    "textPlain": "We're already there. That's what a lot of people are using DPU's are for.An example, This is storage instead of GPU's, but as the SSD's were PCIe NVMe, it's pretty nearly the same concept: https://www.servethehome.com/zfs-without-a-server-using-the-...",
+    "parent": 44851726,
+    "depth": 2
+  },
+  {
     "id": 44893003,
     "by": "kvemkon",
     "timeISO": "2025-08-13T19:51:45.000Z",
@@ -88,18 +120,18 @@
     "depth": 2
   },
   {
-    "id": 44894351,
-    "by": "dylan604",
-    "timeISO": "2025-08-13T21:58:07.000Z",
-    "textPlain": "Wouldn't that mean an complete mobo replacement to upgrade the GPU? GPU upgrades seem much more rapid and substantial compared to CPU/RAM. Each upgrade would now mean taking out the CPU/RAM and other cards vs just replacing the GPU",
-    "parent": 44851726,
-    "depth": 2
-  },
-  {
     "id": 44852866,
     "by": "vincheezel",
     "timeISO": "2025-08-10T05:01:07.000Z",
     "textPlain": "Good to see I’m not the only person that’s been thinking about this. Wedging gargantuan GPUs onto boards and into cases, sometimes needing support struts even, and pumping hundreds of watts through a power cable makes little sense to me. The CPU, RAM, these should be modules or cards on the GPU. Imagine that! CPU cards might be back..",
+    "parent": 44851726,
+    "depth": 2
+  },
+  {
+    "id": 44894351,
+    "by": "dylan604",
+    "timeISO": "2025-08-13T21:58:07.000Z",
+    "textPlain": "Wouldn't that mean an complete mobo replacement to upgrade the GPU? GPU upgrades seem much more rapid and substantial compared to CPU/RAM. Each upgrade would now mean taking out the CPU/RAM and other cards vs just replacing the GPU",
     "parent": 44851726,
     "depth": 2
   },
@@ -200,14 +232,6 @@
     "depth": 2
   },
   {
-    "id": 44894328,
-    "by": "wmf",
-    "timeISO": "2025-08-13T21:55:38.000Z",
-    "textPlain": "I guess Venice, Diamond Rapids, and Vera will have 6.0.",
-    "parent": 44894293,
-    "depth": 2
-  },
-  {
     "id": 44894365,
     "by": "rbanffy",
     "timeISO": "2025-08-13T21:59:41.000Z",
@@ -221,6 +245,46 @@
     "timeISO": "2025-08-13T21:53:01.000Z",
     "textPlain": "It's less surprising if you realize that PCIe is behind Ethernet (per lane).",
     "parent": 44893906,
+    "depth": 2
+  },
+  {
+    "id": 44894328,
+    "by": "wmf",
+    "timeISO": "2025-08-13T21:55:38.000Z",
+    "textPlain": "I guess Venice, Diamond Rapids, and Vera will have 6.0.",
+    "parent": 44894293,
+    "depth": 2
+  },
+  {
+    "id": 44895448,
+    "by": "zamadatix",
+    "timeISO": "2025-08-14T00:22:01.000Z",
+    "textPlain": "Bifurcation can't create new lanes, only split the existing lane count up into separate logical slots.What you're saying is possible though, you just need something a little heavier like a PCIe switch do the lane count + mixed-speed conversion magic. That's exactly what the chipset is, but for various reasons it's still only PCIe 4.0, even on the latest generation chips. I wouldn't be surprised if that changed again next generation. The downsides of this approach are switches add cost, latency, and can consume a lot of power. When they first upped the chipset to be a PCIe 4.0 connection in the 500 era, most motherboards capable of using the bandwidth of the chipset actually had to add chipset cooling.Ideally they'd just add alternative options with more lanes directly from the CPU, but that'd add competition to the bottom of the Threadripper line.",
+    "parent": 44895188,
+    "depth": 2
+  },
+  {
+    "id": 44895513,
+    "by": "michaelt",
+    "timeISO": "2025-08-14T00:32:15.000Z",
+    "textPlain": "> this would solve the biggest issue with non-server motherboards: not enough PCIe lanes.Is that a problem?These days, you don't need slots for your sound card and network card, that stuff's all integrated on the motherboard.Plenty of enthusiast motherboards support 1 GPU, 3-4 nvme drives, 4 SATA drives, and have a PCIe 1x slot or two to spare.Is anyone struggling, except folks working with LLMs? Seems to me folks looking to put several $2400 RTX 4090s in one machine ain't exactly a big market. And they'll probably want a giant server board, so they have space for all their giant four-slot-wide cards.",
+    "parent": 44895188,
+    "depth": 2
+  },
+  {
+    "id": 44895717,
+    "by": "Lramseyer",
+    "timeISO": "2025-08-14T01:09:15.000Z",
+    "textPlain": "Unfortunately socketed processors only really work with DDRx type DRAM interfaces. GPUs use GDDR and HBM interfaces, which are not ideal for sockets. In the case of HBM, you have 1024 data traces per DRAM chip, which would make the socket have an insane number of pins. GDDR has fewer pins, but makes up for it with higher data rates (32 pins at 16Gb/s) and that is impractical to use in a socket due to the variance in contact area resulting in impedance matching issues.",
+    "parent": 44895463,
+    "depth": 2
+  },
+  {
+    "id": 44895703,
+    "by": "Sephr",
+    "timeISO": "2025-08-14T01:06:48.000Z",
+    "textPlain": "HBM would most likely have to be integrated directly on the GPU module given performance demands and signal constraints.",
+    "parent": 44895463,
     "depth": 2
   },
   {
