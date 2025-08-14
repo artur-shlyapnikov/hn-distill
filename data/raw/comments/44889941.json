@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44896550,
-    "by": "vivzkestrel",
-    "timeISO": "2025-08-14T03:47:28.000Z",
-    "textPlain": "Not gonna lie, setting up Nginx, Certbot inside docker is the biggest PITA ever. you need certificates to start the NGINX server but you need the NGINX server to issue certificates? see the problem? It is made infinitely worse by a tonne of online solutions and blog posts none of which I could ever get to work. I would really appreciate if someone has documented this extensively for docker compose. I dont want to use libraries like nginx-proxy as customizing that library is another nightmare alltogether",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44890497,
     "by": "dizhn",
     "timeISO": "2025-08-13T16:23:35.000Z",
     "textPlain": "This is pretty big. Caddy had this forever but not everybody wants to use caddy. It'll probably eat into the user share of software like Traefik.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44896550,
+    "by": "vivzkestrel",
+    "timeISO": "2025-08-14T03:47:28.000Z",
+    "textPlain": "Not gonna lie, setting up Nginx, Certbot inside docker is the biggest PITA ever. you need certificates to start the NGINX server but you need the NGINX server to issue certificates? see the problem? It is made infinitely worse by a tonne of online solutions and blog posts none of which I could ever get to work. I would really appreciate if someone has documented this extensively for docker compose. I dont want to use libraries like nginx-proxy as customizing that library is another nightmare alltogether",
     "parent": 44889941,
     "depth": 1
   },
@@ -56,18 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44896753,
-    "by": "makaking",
-    "timeISO": "2025-08-14T04:33:41.000Z",
-    "textPlain": "The fact that certificate management is still evolving makes me realize how young the web still is in the big scheme of things.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44894228,
     "by": "metafunctor",
     "timeISO": "2025-08-13T21:44:41.000Z",
     "textPlain": "I never saw it as a problem for nginx to just serve web content and let certbot handle cert renewals. Whatever happened to doing one thing well and making it composable? Fat tools that try to do everything inevitably suck at some important part.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44896753,
+    "by": "makaking",
+    "timeISO": "2025-08-14T04:33:41.000Z",
+    "textPlain": "The fact that certificate management is still evolving makes me realize how young the web still is in the big scheme of things.",
     "parent": 44889941,
     "depth": 1
   },
@@ -80,18 +80,18 @@
     "depth": 1
   },
   {
-    "id": 44898067,
-    "by": "account42",
-    "timeISO": "2025-08-14T08:20:15.000Z",
-    "textPlain": "> Support for other challenges (TLS-ALPN, DNS -01) is planned in future.Looking forward to this. HTTP-01 already works well enough for me with certbot (which I need for other services anyway and gives me more control over having multiple domains in one cert) but for wildcard certs there are not as many good solutions.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44891335,
     "by": "RagnarD",
     "timeISO": "2025-08-13T17:34:06.000Z",
     "textPlain": "After discovering Caddy, I don't use Nginx any longer. Just a much better development experience.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44898067,
+    "by": "account42",
+    "timeISO": "2025-08-14T08:20:15.000Z",
+    "textPlain": "> Support for other challenges (TLS-ALPN, DNS -01) is planned in future.Looking forward to this. HTTP-01 already works well enough for me with certbot (which I need for other services anyway and gives me more control over having multiple domains in one cert) but for wildcard certs there are not as many good solutions.",
     "parent": 44889941,
     "depth": 1
   },
@@ -376,27 +376,27 @@
     "depth": 2
   },
   {
-    "id": 44898455,
-    "by": "nojs",
-    "timeISO": "2025-08-14T09:25:05.000Z",
-    "textPlain": "> I would really appreciate if someone has documented this extensively for docker composeRun `certbot certonly` on the host once to get the initial certs, and choose the option to run a temporary server rather than using nginx. Then in `compose.yml` have a mapping from the host's certificates to the nginx container. That way, you don't have to touch your nginx config when setting up a new server.You can then use a certbot container to do the renewals.E.g.  nginx:\n    volumes:\n      - /etc/letsencrypt:/etc/letsencrypt\n\n  certbot:\n    volumes:\n      - /etc/letsencrypt:/etc/letsencrypt\n    entrypoint: \"/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'\"\n\nIn your nginx.conf you have    ssl_certificate /etc/letsencrypt/live/$DOMAIN/fullchain.pem;\n    ssl_certificate_key /etc/letsencrypt/live/$DOMAIN/privkey.pem;\n\nAnd also    location /.well-known/ {\n        alias /usr/share/nginx/html/.well-known/;\n    }\n\nFor the renewals.",
-    "parent": 44896550,
+    "id": 44890654,
+    "by": "elashri",
+    "timeISO": "2025-08-13T16:36:52.000Z",
+    "textPlain": "What I really like about Caddy is their better syntax. I actually use nginx (via nginx proxy manager) and Traefik but recently I did one project with Caddy and found it very nice. I might get the time to change my selfhosted setup to use Caddy in the future but probably will go with something like pangolin [1] because it provides alternative to cloudflare tunnels too.[1] https://github.com/fosrl/pangolin",
+    "parent": 44890497,
     "depth": 2
   },
   {
-    "id": 44898422,
-    "by": "bspammer",
-    "timeISO": "2025-08-14T09:19:39.000Z",
-    "textPlain": "I must say this is something that showcases NixOS very well.This is all it takes to start a nginx server. Add this block and everything starts up perfectly first time, using proper systemd sandboxing, with a certificate provisioned, and with a systemd timer for autorenewing the cert. Delete the block, and it's like the server never existed, all of that gets torn down cleanly.  services.nginx = {\n    enable = true;\n    virtualHosts = {\n      \"mydomain.com\" = {\n        enableACME = true;\n        locations.\"/\" = {\n          extraConfig = ''; # Config goes here\n        };\n      };\n    };\n  }\n\nI recently wanted to create a shortcut domain for our wedding website, redirecting to the SaaS wedding provider. The above made that a literal 1 minute job.",
-    "parent": 44896550,
+    "id": 44891303,
+    "by": "tgv",
+    "timeISO": "2025-08-13T17:31:09.000Z",
+    "textPlain": "I switched over to caddy recently. Nginx' non-information about the http 1 desync problem drove me over. I'm not going to wait for something stupid to happen or an auditor ask me questions nginx doesn't answer.Caddy is really easier than nginx. For starters, I now have templates that cover the main services and their test services, and the special service that runs for an education institution. Logging is better. Certificate handling is perfect (for my case, at least). And it has better metrics.Now I have to figure out plugins though, because caddy doesn't have rate limiting and some stupid bug in powerbi makes a single user hit certain images 300.000 times per day. That's a bit of a downside.",
+    "parent": 44890497,
     "depth": 2
   },
   {
-    "id": 44896672,
-    "by": "mythz",
-    "timeISO": "2025-08-14T04:12:58.000Z",
-    "textPlain": "What's the issue with nginx-proxy? We've used it for years to handle CI deploying multiple multiple Docker compose Apps to the same server [1] without issue, with a more detailed writeup at [2].This served us well for many years before migrating to use Kamal [3] for its improved remote management features.[1] https://docs.servicestack.net/ssh-docker-compose-deploment[2] https://servicestack.net/posts/kubernetes_not_required[3] https://docs.servicestack.net/kamal-deploy",
-    "parent": 44896550,
+    "id": 44898961,
+    "by": "dwedge",
+    "timeISO": "2025-08-14T10:56:28.000Z",
+    "textPlain": "It's also been in Apache since 2018",
+    "parent": 44890497,
     "depth": 2
   }
 ]

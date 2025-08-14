@@ -1,5 +1,21 @@
 [
   {
+    "id": 44898983,
+    "by": "santa_boy",
+    "timeISO": "2025-08-14T11:00:51.000Z",
+    "textPlain": "Yet to explore but just reading few snippets ... is this good for offline first apps?If not, any others you recommend for that use-case?If yet, is this ready enough for production use?",
+    "parent": 44889874,
+    "depth": 1
+  },
+  {
+    "id": 44898937,
+    "by": "RestartKernel",
+    "timeISO": "2025-08-14T10:53:00.000Z",
+    "textPlain": "I love the API, but it's a tough sell as a SaaS first — who knows if you'll still be around after I've built my infra around your SDK?",
+    "parent": 44889874,
+    "depth": 1
+  },
+  {
     "id": 44897760,
     "by": "taherchhabra",
     "timeISO": "2025-08-14T07:37:28.000Z",
@@ -14,6 +30,22 @@
     "textPlain": "[dead]",
     "parent": 44889874,
     "depth": 1
+  },
+  {
+    "id": 44899076,
+    "by": "adrai",
+    "timeISO": "2025-08-14T11:14:42.000Z",
+    "textPlain": "Hey, thanks for the great questions!Offline-first: That's a key distinction. The Vaultrice SDK is currently designed for \"online-first\" and \"offline-sometimes\" use cases. Its main strength is real-time, consistent synchronization that relies on an active connection.Proper offline-first support with automatic conflict resolution is on our roadmap, as we have a backlog item for it ;-) However, you can easily achieve a robust offline capability in your own code today by using localStorage as a fallback.Here’s a simple wrapper pattern (not tested, just for illustration) that reads from Vaultrice when online and falls back to a local cache when offline:import { NonLocalStorage } from '@vaultrice/sdk';// --- A simple offline-first wrapper ---\nfunction createOfflineStore(credentials, id) {\n  const vaultriceStore = new NonLocalStorage(credentials, id);\n  const localCacheKey = `vaultrice_cache_${id}`;  // Helper to get local data\n  const getLocal = () => JSON.parse(localStorage.getItem(localCacheKey) || '{}');\n\n  return {\n    // SET: Write to both Vaultrice (if online) and localStorage\n    async setItem(key, value) {\n      // Always update the local cache immediately\n      const localData = getLocal();\n      localData[key] = value;\n      localStorage.setItem(localCacheKey, JSON.stringify(localData));\n\n      try {\n        // Attempt to write to the cloud\n        await vaultriceStore.setItem(key, value);\n      } catch (error) {\n        console.warn('Offline: Data saved locally.', error.message);\n      }\n    },\n\n    // GET: Try Vaultrice first, fallback to localStorage\n    async getItem(key) {\n      try {\n        const item = await vaultriceStore.getItem(key);\n        if (item) {\n            // Optional: Update local cache with fresh data\n            const localData = getLocal();\n            localData[key] = item.value;\n            localStorage.setItem(localCacheKey, JSON.stringify(localData));\n            return item.value;\n        }\n      } catch (error) {\n        console.war",
+    "parent": 44898983,
+    "depth": 2
+  },
+  {
+    "id": 44898953,
+    "by": "adrai",
+    "timeISO": "2025-08-14T10:55:19.000Z",
+    "textPlain": "The team behind vaultrice.com is the same team behind locize.com and i18next.com...",
+    "parent": 44898937,
+    "depth": 2
   },
   {
     "id": 44898143,

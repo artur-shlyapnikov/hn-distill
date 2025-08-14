@@ -88,6 +88,14 @@
     "depth": 1
   },
   {
+    "id": 44893365,
+    "by": "manoDev",
+    "timeISO": "2025-08-13T20:21:00.000Z",
+    "textPlain": "I'm sure there's merit to the language, but the syntax seems absolutely alien to me. Some attempt to look like verbose imperative code, a bunch of semicolons, and for some strange reason, hate of parenthesis.Real life sample:    let print_expr exp =\n        (* Local function definitions *)\n        let open_paren prec op_prec =\n          if prec > op_prec then print_string \"(\" in\n        let close_paren prec op_prec =\n          if prec > op_prec then print_string \")\" in\n        let rec print prec exp =     (* prec is the current precedence *)\n          match exp with\n            Const c -> print_float c\n          | Var v -> print_string v\n          | Sum(f, g) ->\n              open_paren prec 0;\n              print 0 f; print_string \" + \"; print 0 g;\n              close_paren prec 0\n          | Diff(f, g) ->\n              open_paren prec 0;\n              print 0 f; print_string \" - \"; print 1 g;\n              close_paren prec 0\n          | Prod(f, g) ->\n              open_paren prec 2;\n              print 2 f; print_string \" * \"; print 2 g;\n              close_paren prec 2\n          | Quot(f, g) ->\n              open_paren prec 2;\n              print 2 f; print_string \" / \"; print 3 g;\n              close_paren prec 2\n        in print 0 exp;;\n\nA function is defined as:    let print_expr exp =\n\nThat seems pretty hard to read at a glance, and easy to mistype as a definition.Also, you need to end the declaration with `in`?Then, semicolons...    open_paren prec 0;\n    print 0 f; print_string \" + \"; print 0 g;\n\n... and even double semicolons ...    print 0 exp;;\n\nThat looks like a language you really want an IDE helping you with.",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
     "id": 44895588,
     "by": "chris_armstrong",
     "timeISO": "2025-08-14T00:46:40.000Z",
@@ -104,18 +112,26 @@
     "depth": 1
   },
   {
-    "id": 44893365,
-    "by": "manoDev",
-    "timeISO": "2025-08-13T20:21:00.000Z",
-    "textPlain": "I'm sure there's merit to the language, but the syntax seems absolutely alien to me. Some attempt to look like verbose imperative code, a bunch of semicolons, and for some strange reason, hate of parenthesis.Real life sample:    let print_expr exp =\n        (* Local function definitions *)\n        let open_paren prec op_prec =\n          if prec > op_prec then print_string \"(\" in\n        let close_paren prec op_prec =\n          if prec > op_prec then print_string \")\" in\n        let rec print prec exp =     (* prec is the current precedence *)\n          match exp with\n            Const c -> print_float c\n          | Var v -> print_string v\n          | Sum(f, g) ->\n              open_paren prec 0;\n              print 0 f; print_string \" + \"; print 0 g;\n              close_paren prec 0\n          | Diff(f, g) ->\n              open_paren prec 0;\n              print 0 f; print_string \" - \"; print 1 g;\n              close_paren prec 0\n          | Prod(f, g) ->\n              open_paren prec 2;\n              print 2 f; print_string \" * \"; print 2 g;\n              close_paren prec 2\n          | Quot(f, g) ->\n              open_paren prec 2;\n              print 2 f; print_string \" / \"; print 3 g;\n              close_paren prec 2\n        in print 0 exp;;\n\nA function is defined as:    let print_expr exp =\n\nThat seems pretty hard to read at a glance, and easy to mistype as a definition.Also, you need to end the declaration with `in`?Then, semicolons...    open_paren prec 0;\n    print 0 f; print_string \" + \"; print 0 g;\n\n... and even double semicolons ...    print 0 exp;;\n\nThat looks like a language you really want an IDE helping you with.",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
     "id": 44897950,
     "by": "amelius",
     "timeISO": "2025-08-14T08:05:48.000Z",
     "textPlain": "Do they have a decent GUI library / binding yet?",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44893872,
+    "by": "zem",
+    "timeISO": "2025-08-13T21:09:28.000Z",
+    "textPlain": "ocaml is one of my favourite languages too, but I've found myself being drawn towards rust for my latest project due to its major superpower - you can write a rust library that looks like a c library from the outside, and can be called from other languages via their existing c ffi mechanisms. I feel like by writing the library in ocaml I would have a better experience developing it, but be giving up on that free interop.",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44894915,
+    "by": "pshirshov",
+    "timeISO": "2025-08-13T23:03:55.000Z",
+    "textPlain": "Extremely dated. No HKTs, no typeclasses (modules are not a good substitute), no call-site expansion.",
     "parent": 44891759,
     "depth": 1
   },
@@ -128,10 +144,10 @@
     "depth": 1
   },
   {
-    "id": 44894915,
-    "by": "pshirshov",
-    "timeISO": "2025-08-13T23:03:55.000Z",
-    "textPlain": "Extremely dated. No HKTs, no typeclasses (modules are not a good substitute), no call-site expansion.",
+    "id": 44892046,
+    "by": "shortrounddev2",
+    "timeISO": "2025-08-13T18:27:50.000Z",
+    "textPlain": "OCaml is a great language without great tooling. Desperately needs a good LSP implementation to run breakpoints and other debugging tools on VSCode or other LSP-aware IDEs. I know there ARE tools available but there isn't great support for them and they don't work well",
     "parent": 44891759,
     "depth": 1
   },
@@ -148,22 +164,6 @@
     "by": "loxs",
     "timeISO": "2025-08-13T19:08:48.000Z",
     "textPlain": "I migrated from OCaml to Rust around 2020, haven't looked back. Although Rust is quite a lot less elegant and has some unpleasant deficiencies (lambdas, closures, currying)... and I end up having to close one one eye sometimes and clone some large data-structure to make my life easier... But regardless, its huge ecosystem and great tooling allows me to build things comparatively so easily, that OCaml has no chance. As a bonus, the end result is seriously faster - I know because I rewrote one of my projects and for some time I had feature parity between the OCaml and Rust versions.Nevertheless, I have fond memories of OCaml and a great amount of respect for the language design. Haven't checked on it since, probably should. I hope part of the problems have been solved.",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
-    "id": 44893872,
-    "by": "zem",
-    "timeISO": "2025-08-13T21:09:28.000Z",
-    "textPlain": "ocaml is one of my favourite languages too, but I've found myself being drawn towards rust for my latest project due to its major superpower - you can write a rust library that looks like a c library from the outside, and can be called from other languages via their existing c ffi mechanisms. I feel like by writing the library in ocaml I would have a better experience developing it, but be giving up on that free interop.",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
-    "id": 44892046,
-    "by": "shortrounddev2",
-    "timeISO": "2025-08-13T18:27:50.000Z",
-    "textPlain": "OCaml is a great language without great tooling. Desperately needs a good LSP implementation to run breakpoints and other debugging tools on VSCode or other LSP-aware IDEs. I know there ARE tools available but there isn't great support for them and they don't work well",
     "parent": 44891759,
     "depth": 1
   },
@@ -216,14 +216,6 @@
     "depth": 2
   },
   {
-    "id": 44897574,
-    "by": "pjmlp",
-    "timeISO": "2025-08-14T07:08:18.000Z",
-    "textPlain": "That is why if I feel like doing ML style programing I rather reach out for Kotlin, Scala or F# than Rust, and even then Java and C# have gotten enough inspiration that I can also feel at home while using them.I am no strage to ML type systems, my first one was Caml Light, OCaml was still known as Objective Caml, and Mirada was still something being discussed on programming language lectures on my university.From what I see, I also kind of find the same, too many people rush out for Rust thinking that ML type systems is something new introduced by Rust, without having the background where all comes from.",
-    "parent": 44892713,
-    "depth": 2
-  },
-  {
     "id": 44896362,
     "by": "shpongled",
     "timeISO": "2025-08-14T03:08:59.000Z",
@@ -232,10 +224,10 @@
     "depth": 2
   },
   {
-    "id": 44894630,
-    "by": "yodsanklai",
-    "timeISO": "2025-08-13T22:28:47.000Z",
-    "textPlain": "> aesthetically the double semicolons are an abomination and irk me far more.I think they have been optional for like 20 years, except in the top-level interactive environment to force execution.That being said, I still don't get why people are so much upset with the syntax. You'll integrate it after a week writing OCaml code.",
+    "id": 44897574,
+    "by": "pjmlp",
+    "timeISO": "2025-08-14T07:08:18.000Z",
+    "textPlain": "That is why if I feel like doing ML style programing I rather reach out for Kotlin, Scala or F# than Rust, and even then Java and C# have gotten enough inspiration that I can also feel at home while using them.I am no strage to ML type systems, my first one was Caml Light, OCaml was still known as Objective Caml, and Mirada was still something being discussed on programming language lectures on my university.From what I see, I also kind of find the same, too many people rush out for Rust thinking that ML type systems is something new introduced by Rust, without having the background where all comes from.",
     "parent": 44892713,
     "depth": 2
   },
@@ -248,10 +240,10 @@
     "depth": 2
   },
   {
-    "id": 44898212,
-    "by": "ubercore",
-    "timeISO": "2025-08-14T08:42:52.000Z",
-    "textPlain": "I've only forayed into rust a bit, but I agree. I would happily take a language like Rust that sacrifices some speed for simpler semantics around ownership/lifetimes.Just Arc, clone and panic your way to success! :)",
+    "id": 44894630,
+    "by": "yodsanklai",
+    "timeISO": "2025-08-13T22:28:47.000Z",
+    "textPlain": "> aesthetically the double semicolons are an abomination and irk me far more.I think they have been optional for like 20 years, except in the top-level interactive environment to force execution.That being said, I still don't get why people are so much upset with the syntax. You'll integrate it after a week writing OCaml code.",
     "parent": 44892713,
     "depth": 2
   },
@@ -272,10 +264,10 @@
     "depth": 2
   },
   {
-    "id": 44897606,
-    "by": "fulafel",
-    "timeISO": "2025-08-14T07:12:50.000Z",
-    "textPlain": "Anyone have a link to the Android talk?\nI wonder if it was backend code or on-device code. On device you could probably justify the compromises of a no-GC language better.",
+    "id": 44898212,
+    "by": "ubercore",
+    "timeISO": "2025-08-14T08:42:52.000Z",
+    "textPlain": "I've only forayed into rust a bit, but I agree. I would happily take a language like Rust that sacrifices some speed for simpler semantics around ownership/lifetimes.Just Arc, clone and panic your way to success! :)",
     "parent": 44892713,
     "depth": 2
   },
@@ -284,6 +276,14 @@
     "by": "the__alchemist",
     "timeISO": "2025-08-13T20:55:45.000Z",
     "textPlain": "I'm with you. I think some of the nicest parts of rust have nothing to do with memory safety; they're ways to structure your program as you mention.",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
+    "id": 44897606,
+    "by": "fulafel",
+    "timeISO": "2025-08-14T07:12:50.000Z",
+    "textPlain": "Anyone have a link to the Android talk?\nI wonder if it was backend code or on-device code. On device you could probably justify the compromises of a no-GC language better.",
     "parent": 44892713,
     "depth": 2
   },
@@ -360,14 +360,6 @@
     "depth": 2
   },
   {
-    "id": 44897793,
-    "by": "gylterud",
-    "timeISO": "2025-08-14T07:40:55.000Z",
-    "textPlain": "I have found that Haskell has two good things going for it when it comes to LLM code generation. Both have to do with correctness.The expressive type system catches a lot of mistakes, and the fact that they are compile errors which can be fed right into the LLM again means that incorrect code is caught early.The second is property based testing. With it I have had the LLM generate amazingly efficient, correct code, by iteratively making it more and more efficient – running quickcheck on each pass. The LLM is not super good at writing the tests, but if you add some yourself, you quickly root out any mistakes in the generated code.",
-    "parent": 44892053,
-    "depth": 2
-  },
-  {
     "id": 44892249,
     "by": "gf000",
     "timeISO": "2025-08-13T18:46:41.000Z",
@@ -376,10 +368,10 @@
     "depth": 2
   },
   {
-    "id": 44897792,
-    "by": "omcnoe",
-    "timeISO": "2025-08-14T07:40:46.000Z",
-    "textPlain": "I think that functional languages do actually have some advantages when it comes to LLM's, but not due to terseness.Rather, immutability/purity is a huge advantage because it plays better with the small context window of LLM's. An LLM then doesn't have to worry about side effects or mutable references to data outside the scope currently being considered.",
+    "id": 44897793,
+    "by": "gylterud",
+    "timeISO": "2025-08-14T07:40:55.000Z",
+    "textPlain": "I have found that Haskell has two good things going for it when it comes to LLM code generation. Both have to do with correctness.The expressive type system catches a lot of mistakes, and the fact that they are compile errors which can be fed right into the LLM again means that incorrect code is caught early.The second is property based testing. With it I have had the LLM generate amazingly efficient, correct code, by iteratively making it more and more efficient – running quickcheck on each pass. The LLM is not super good at writing the tests, but if you add some yourself, you quickly root out any mistakes in the generated code.",
     "parent": 44892053,
     "depth": 2
   },
@@ -388,6 +380,14 @@
     "by": "Buttons840",
     "timeISO": "2025-08-13T23:38:33.000Z",
     "textPlain": "If LLMs get a little better at writing code, we might want to use really powerful type systems and effect systems to limit what they can do and ensure it is correct.For instance, dependent types allow us to say something like \"this function will return  a sorted list\", or even \"this function will return a valid Sudoku solution\", and these things will be checked at compile time--again, at compile time.Combine this with an effect system and we can suddenly say things like \"this function will return a valid Sudoku solution, and it will not access the network or filesystem\", and then you let the LLM run wild. You don't even have to review the LLM output, if it produces code that compiles, you know it works, and you know it doesn't access the network or filesystem.Of course, if LLMs get a lot better, they can probably just do all this in Python just as well, but if they only get a little better, then we might want to build better deterministic systems around the unreliable LLMs to make them reliable.",
+    "parent": 44892053,
+    "depth": 2
+  },
+  {
+    "id": 44897792,
+    "by": "omcnoe",
+    "timeISO": "2025-08-14T07:40:46.000Z",
+    "textPlain": "I think that functional languages do actually have some advantages when it comes to LLM's, but not due to terseness.Rather, immutability/purity is a huge advantage because it plays better with the small context window of LLM's. An LLM then doesn't have to worry about side effects or mutable references to data outside the scope currently being considered.",
     "parent": 44892053,
     "depth": 2
   },
