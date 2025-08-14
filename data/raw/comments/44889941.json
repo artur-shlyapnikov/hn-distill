@@ -56,18 +56,10 @@
     "depth": 1
   },
   {
-    "id": 44894228,
-    "by": "metafunctor",
-    "timeISO": "2025-08-13T21:44:41.000Z",
-    "textPlain": "I never saw it as a problem for nginx to just serve web content and let certbot handle cert renewals. Whatever happened to doing one thing well and making it composable? Fat tools that try to do everything inevitably suck at some important part.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44899327,
-    "by": "kelvinjps10",
-    "timeISO": "2025-08-14T11:54:42.000Z",
-    "textPlain": "Actually this was the reason I started using caddy, and easier config too!",
+    "id": 44900509,
+    "by": "CannoloBlahnik",
+    "timeISO": "2025-08-14T14:03:31.000Z",
+    "textPlain": "Once Nginx gets support for DNS-01, does that mean we'll be able to use wildcards for SSL using Let's Encrypt?",
     "parent": 44889941,
     "depth": 1
   },
@@ -80,6 +72,14 @@
     "depth": 1
   },
   {
+    "id": 44894228,
+    "by": "metafunctor",
+    "timeISO": "2025-08-13T21:44:41.000Z",
+    "textPlain": "I never saw it as a problem for nginx to just serve web content and let certbot handle cert renewals. Whatever happened to doing one thing well and making it composable? Fat tools that try to do everything inevitably suck at some important part.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
     "id": 44891335,
     "by": "RagnarD",
     "timeISO": "2025-08-13T17:34:06.000Z",
@@ -88,26 +88,10 @@
     "depth": 1
   },
   {
-    "id": 44899525,
-    "by": "Arch-TK",
-    "timeISO": "2025-08-14T12:18:36.000Z",
-    "textPlain": "kind of feels unnecessary honestly...Automating webroot is trivial and I would rather use an external rust utility to handle it than a module for nginx. I guess if you _only_ need certs for your website then this helps but I have certs for a lot of other things too, so I need an external utility anyway.And no dns-01 support yet.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44896753,
     "by": "makaking",
     "timeISO": "2025-08-14T04:33:41.000Z",
     "textPlain": "The fact that certificate management is still evolving makes me realize how young the web still is in the big scheme of things.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44896967,
-    "by": "Humphrey",
-    "timeISO": "2025-08-14T05:16:18.000Z",
-    "textPlain": "Anybody know how this would work for multiple nginx backends or failover machines - as I assume it's only possible to auto-fetch certificates for the live machine.  Is it expected that you would use scp or similar to copy certs from the live machine to the failover / new server?",
     "parent": 44889941,
     "depth": 1
   },
@@ -128,10 +112,26 @@
     "depth": 1
   },
   {
-    "id": 44898067,
-    "by": "account42",
-    "timeISO": "2025-08-14T08:20:15.000Z",
-    "textPlain": "> Support for other challenges (TLS-ALPN, DNS -01) is planned in future.Looking forward to this. HTTP-01 already works well enough for me with certbot (which I need for other services anyway and gives me more control over having multiple domains in one cert) but for wildcard certs there are not as many good solutions.",
+    "id": 44896024,
+    "by": "st3fan",
+    "timeISO": "2025-08-14T02:08:19.000Z",
+    "textPlain": "Basically the only reason I install Caddy instead of Nginx as a reverse proxy is the one-liner to get TLS & ACME going. Maybe this will change that? Not sure.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44896967,
+    "by": "Humphrey",
+    "timeISO": "2025-08-14T05:16:18.000Z",
+    "textPlain": "Anybody know how this would work for multiple nginx backends or failover machines - as I assume it's only possible to auto-fetch certificates for the live machine.  Is it expected that you would use scp or similar to copy certs from the live machine to the failover / new server?",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44899327,
+    "by": "kelvinjps10",
+    "timeISO": "2025-08-14T11:54:42.000Z",
+    "textPlain": "Actually this was the reason I started using caddy, and easier config too!",
     "parent": 44889941,
     "depth": 1
   },
@@ -140,6 +140,22 @@
     "by": "ilaksh",
     "timeISO": "2025-08-13T19:38:09.000Z",
     "textPlain": "Just to check, this means we can use some extra lines in the nginx configuration as an alternative to installing and running certbot, right?Also does it make it easier for there to be alternatives to Let's Encrypt?",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44898067,
+    "by": "account42",
+    "timeISO": "2025-08-14T08:20:15.000Z",
+    "textPlain": "> Support for other challenges (TLS-ALPN, DNS -01) is planned in future.Looking forward to this. HTTP-01 already works well enough for me with certbot (which I need for other services anyway and gives me more control over having multiple domains in one cert) but for wildcard certs there are not as many good solutions.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44899525,
+    "by": "Arch-TK",
+    "timeISO": "2025-08-14T12:18:36.000Z",
+    "textPlain": "kind of feels unnecessary honestly...Automating webroot is trivial and I would rather use an external rust utility to handle it than a module for nginx. I guess if you _only_ need certs for your website then this helps but I have certs for a lot of other things too, so I need an external utility anyway.And no dns-01 support yet.",
     "parent": 44889941,
     "depth": 1
   },
@@ -156,22 +172,6 @@
     "by": "smarx007",
     "timeISO": "2025-08-13T18:27:01.000Z",
     "textPlain": "When will this land in mainline distros (no PPAs etc)? Given that a new stable version of Debian was released very recently, I would imagine August 2027 for Debian and maybe April 2026 for Ubuntu?In this very thread some people complain that certbot uses snap for distribution. Imagine making a feature release and having to wait 1-2 years until your users will get it on a broad scale.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44896024,
-    "by": "st3fan",
-    "timeISO": "2025-08-14T02:08:19.000Z",
-    "textPlain": "Basically the only reason I install Caddy instead of Nginx as a reverse proxy is the one-liner to get TLS & ACME going. Maybe this will change that? Not sure.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44899648,
-    "by": "crest",
-    "timeISO": "2025-08-14T12:34:40.000Z",
-    "textPlain": "FINALLY!!!",
     "parent": 44889941,
     "depth": 1
   },
@@ -208,18 +208,18 @@
     "depth": 1
   },
   {
-    "id": 44893231,
-    "by": "breadwinner",
-    "timeISO": "2025-08-13T20:09:46.000Z",
-    "textPlain": "But can it generate self-signed certificate for intranet use? Often on the intranet you want to encrypt traffic, to prevent casual snooping using Wireshark.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44890604,
     "by": "adontz",
     "timeISO": "2025-08-13T16:31:21.000Z",
     "textPlain": "certbot has an plugin for nginx, so I'm not sure why people think is was hard to use LetsEncrypt with nginx.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44893231,
+    "by": "breadwinner",
+    "timeISO": "2025-08-13T20:09:46.000Z",
+    "textPlain": "But can it generate self-signed certificate for intranet use? Often on the intranet you want to encrypt traffic, to prevent casual snooping using Wireshark.",
     "parent": 44889941,
     "depth": 1
   },
@@ -272,6 +272,14 @@
     "depth": 1
   },
   {
+    "id": 44899648,
+    "by": "crest",
+    "timeISO": "2025-08-14T12:34:40.000Z",
+    "textPlain": "FINALLY!!!",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
     "id": 44890618,
     "by": "do_not_redeem",
     "timeISO": "2025-08-13T16:32:39.000Z",
@@ -318,6 +326,14 @@
     "textPlain": "[dead]",
     "parent": 44889941,
     "depth": 1
+  },
+  {
+    "id": 44901366,
+    "by": "rfmoz",
+    "timeISO": "2025-08-14T15:13:15.000Z",
+    "textPlain": "The problem with DNS-01 is that you can only use one delegation a time. I mean, if you configure a wildcard cert with _acme-challenge.example.com in Google, you couldn't use it in Cloudflare, because it uses a single DNS authorization label (subdomain).The solution has been evolving along these years and currently the las IETF draft is https://datatracker.ietf.org/doc/draft-ietf-acme-dns-account...The new proposal brings the dns-account-01 challenge, incorporating the ACME account URL into the DNS validation record name.",
+    "parent": 44890666,
+    "depth": 2
   },
   {
     "id": 44892428,
@@ -380,22 +396,6 @@
     "by": "klysm",
     "timeISO": "2025-08-14T03:03:40.000Z",
     "textPlain": "How does NGINX fit into that though?",
-    "parent": 44890666,
-    "depth": 2
-  },
-  {
-    "id": 44890872,
-    "by": "Spivak",
-    "timeISO": "2025-08-13T16:54:24.000Z",
-    "textPlain": "I don't even know why anyone wouldn't use the DNS challenge unless they had no other option. I've found it to be annoying and brittle, maybe less so now with native web server support. And you can't get wildcards.",
-    "parent": 44890666,
-    "depth": 2
-  },
-  {
-    "id": 44892244,
-    "by": "altairprime",
-    "timeISO": "2025-08-13T18:46:28.000Z",
-    "textPlain": "Does DNS-01 support DNS-over-HTTPS to the registered domain name servers? If so, then it should be extremely simple to extend nginx to support DNS claims; if not, perhaps DNS-01 needs improvements.",
     "parent": 44890666,
     "depth": 2
   }

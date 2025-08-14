@@ -6,5 +6,21 @@
     "textPlain": "is_heap doesn't seem like a particularly useful operation though, generally a heap is intentionally constructed as such via push_heap/pop_heap",
     "parent": 44870905,
     "depth": 1
+  },
+  {
+    "id": 44901876,
+    "by": "mananaysiempre",
+    "timeISO": "2025-08-14T15:49:18.000Z",
+    "textPlain": "Indeed that part seems more like an artist’s study than an attempt at actual usefulness, but that’s okay when figuring out if anything at all in the neighbourhood of what you’re trying to do with SIMD is even possible. As far as constructing heaps, don’t forget about (linear-time) heapify, which can be significantly faster if you have a bunch of elements and want to construct a heap with all of them in it. (This doesn’t get you a linear-time heap sort because you’ll still pay the full linearithmic price for the subsequent pop_heaps.)",
+    "parent": 44900396,
+    "depth": 2
+  },
+  {
+    "id": 44901850,
+    "by": "simonask",
+    "timeISO": "2025-08-14T15:47:33.000Z",
+    "textPlain": "I think it's fairly useful. It means that you can convert a contiguous array to a heap with a fast O(n) read-only check instead of O(n log n) writes, so if you know that's the common case, you can detect it up front and only revert to normal binary heap insertion if it returns false.",
+    "parent": 44900396,
+    "depth": 2
   }
 ]
