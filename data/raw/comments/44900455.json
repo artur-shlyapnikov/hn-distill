@@ -24,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44901280,
-    "by": "vlovich123",
-    "timeISO": "2025-08-14T15:05:06.000Z",
-    "textPlain": "How are these patch sets reviewed? Is there some mechanism for integrating with review systems like GitHub?",
+    "id": 44902579,
+    "by": "roman_soldier",
+    "timeISO": "2025-08-14T16:40:56.000Z",
+    "textPlain": "I tried Jujutsu on a simple repo and it ended up a mess I couldn't fix. Never had that with git. Might be my lack of knowledge but it shouldn't allow this.",
     "parent": 44900455,
     "depth": 1
   },
@@ -36,6 +36,14 @@
     "by": "mac-monet",
     "timeISO": "2025-08-14T14:13:14.000Z",
     "textPlain": "Just waiting for Jujutsu to support submodules and I can replace git completely.",
+    "parent": 44900455,
+    "depth": 1
+  },
+  {
+    "id": 44901280,
+    "by": "vlovich123",
+    "timeISO": "2025-08-14T15:05:06.000Z",
+    "textPlain": "How are these patch sets reviewed? Is there some mechanism for integrating with review systems like GitHub?",
     "parent": 44900455,
     "depth": 1
   },
@@ -56,11 +64,11 @@
     "depth": 1
   },
   {
-    "id": 44901933,
-    "by": "watusername",
-    "timeISO": "2025-08-14T15:52:57.000Z",
-    "textPlain": "From git's perspective, jj bookmarks are just regular git branches, so you can just do `jj git push` and open a PR as usual.However, unlike git, jj bookmarks are pinned to change IDs instead of immutable commit SHA-1s. This means that stacked PRs just work: Change something in the pr-1 bookmark, and all dependent bookmarks (pr-2, pr-3, ...) are automatically updated. A `jj git push --tracked` later and everything is pushed.",
-    "parent": 44901280,
+    "id": 44902686,
+    "by": "Zambyte",
+    "timeISO": "2025-08-14T16:48:21.000Z",
+    "textPlain": "jj undo, and jj op log && jj op restore can get you out of any trouble.",
+    "parent": 44902579,
     "depth": 2
   },
   {
@@ -72,10 +80,26 @@
     "depth": 2
   },
   {
+    "id": 44901933,
+    "by": "watusername",
+    "timeISO": "2025-08-14T15:52:57.000Z",
+    "textPlain": "From git's perspective, jj bookmarks are just regular git branches, so you can just do `jj git push` and open a PR as usual.However, unlike git, jj bookmarks are pinned to change IDs instead of immutable commit SHA-1s. This means that stacked PRs just work: Change something in the pr-1 bookmark, and all dependent bookmarks (pr-2, pr-3, ...) are automatically updated. A `jj git push --tracked` later and everything is pushed.",
+    "parent": 44901280,
+    "depth": 2
+  },
+  {
     "id": 44902052,
     "by": "magnio",
     "timeISO": "2025-08-14T16:00:51.000Z",
     "textPlain": "Why say yup to disagree with the premise of the article?",
+    "parent": 44901912,
+    "depth": 2
+  },
+  {
+    "id": 44902890,
+    "by": "rootnod3",
+    "timeISO": "2025-08-14T17:04:20.000Z",
+    "textPlain": "I mean, undo alone is a killer JJ feature. Sure, you can always somehow undo any git operation if you dig deep enough, but the ease of use on the JJ side without question.",
     "parent": 44901912,
     "depth": 2
   }
