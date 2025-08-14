@@ -48,14 +48,6 @@
     "depth": 1
   },
   {
-    "id": 44896063,
-    "by": "rybosome",
-    "timeISO": "2025-08-14T02:15:31.000Z",
-    "textPlain": "I’d have liked to see the use of dependency injection via the effects system expanded upon. The idea that the example program could use pattern matching to bind to either test values or production ones is interesting, but I can’t conceptualize what that would look like with the verbal description alone.Also, I had no idea that the module system had its own type system, that’s wild.",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
     "id": 44892051,
     "by": "ackfoobar",
     "timeISO": "2025-08-13T18:28:14.000Z",
@@ -68,6 +60,14 @@
     "by": "nine_k",
     "timeISO": "2025-08-13T19:37:21.000Z",
     "textPlain": "I wish somebody with this amount of experience would compare the benefits / shortcomings of using the ReasonML syntax. (The article mentions it once, in passing.)",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44896063,
+    "by": "rybosome",
+    "timeISO": "2025-08-14T02:15:31.000Z",
+    "textPlain": "I’d have liked to see the use of dependency injection via the effects system expanded upon. The idea that the example program could use pattern matching to bind to either test values or production ones is interesting, but I can’t conceptualize what that would look like with the verbal description alone.Also, I had no idea that the module system had its own type system, that’s wild.",
     "parent": 44891759,
     "depth": 1
   },
@@ -160,6 +160,14 @@
     "depth": 2
   },
   {
+    "id": 44896729,
+    "by": "rtpg",
+    "timeISO": "2025-08-14T04:27:13.000Z",
+    "textPlain": "I think people like ADTs and pattern matching that Rust gives, but really the way that Rust becomes even more pleasant is that you have _so many_ trait methods on standard library objects that offer succinct answers to common patterns.Haskell of course has some of this, but immutability means that Haskell doesn't have to have answers for lots of things. And you want pattern matching as your basic building block, but at the end of the day most of your code won't have pattern matching and will instead rely on higher level patterns (that can build off of ADTs providing some degree of certainty on totality etc)",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
     "id": 44896362,
     "by": "shpongled",
     "timeISO": "2025-08-14T03:08:59.000Z",
@@ -192,18 +200,18 @@
     "depth": 2
   },
   {
-    "id": 44894630,
-    "by": "yodsanklai",
-    "timeISO": "2025-08-13T22:28:47.000Z",
-    "textPlain": "> aesthetically the double semicolons are an abomination and irk me far more.I think they have been optional for like 20 years, except in the top-level interactive environment to force execution.That being said, I still don't get why people are so much upset with the syntax. You'll integrate it after a week writing OCaml code.",
-    "parent": 44892713,
-    "depth": 2
-  },
-  {
     "id": 44893725,
     "by": "the__alchemist",
     "timeISO": "2025-08-13T20:55:45.000Z",
     "textPlain": "I'm with you. I think some of the nicest parts of rust have nothing to do with memory safety; they're ways to structure your program as you mention.",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
+    "id": 44894630,
+    "by": "yodsanklai",
+    "timeISO": "2025-08-13T22:28:47.000Z",
+    "textPlain": "> aesthetically the double semicolons are an abomination and irk me far more.I think they have been optional for like 20 years, except in the top-level interactive environment to force execution.That being said, I still don't get why people are so much upset with the syntax. You'll integrate it after a week writing OCaml code.",
     "parent": 44892713,
     "depth": 2
   },
@@ -245,6 +253,14 @@
     "timeISO": "2025-08-13T19:37:52.000Z",
     "textPlain": "[flagged]",
     "parent": 44892713,
+    "depth": 2
+  },
+  {
+    "id": 44896751,
+    "by": "throwaway127482",
+    "timeISO": "2025-08-14T04:33:11.000Z",
+    "textPlain": "Go's %v leaves a lot to be desired. I wish there was a format string to deeply traverse into pointers. Currently I have to import go-spew for that, which is a hassle.",
+    "parent": 44894751,
     "depth": 2
   },
   {
@@ -296,18 +312,18 @@
     "depth": 2
   },
   {
-    "id": 44892134,
-    "by": "nukifw",
-    "timeISO": "2025-08-13T18:35:22.000Z",
-    "textPlain": "To be completely honest, I currently only use LLMs to assist me in writing documentation (and translating articles), but I know that other people are looking into it: https://anil.recoil.org/wiki?t=%23projects",
-    "parent": 44892053,
-    "depth": 2
-  },
-  {
     "id": 44892175,
     "by": "d4mi3n",
     "timeISO": "2025-08-13T18:39:14.000Z",
     "textPlain": "I think this is putting the cart before the horse. Programs are generally harder to read than they are to write, so optimizing for concise output to benefit the tool at the potential expense of the human isn't a trade I'd personally make.Granted, this may just be an argument for being more comfortable reading/writing code in a particular style, but even without the advantages of LLMs adoption of functional paradigms and tools has been a struggle.",
+    "parent": 44892053,
+    "depth": 2
+  },
+  {
+    "id": 44892134,
+    "by": "nukifw",
+    "timeISO": "2025-08-13T18:35:22.000Z",
+    "textPlain": "To be completely honest, I currently only use LLMs to assist me in writing documentation (and translating articles), but I know that other people are looking into it: https://anil.recoil.org/wiki?t=%23projects",
     "parent": 44892053,
     "depth": 2
   },
@@ -344,18 +360,18 @@
     "depth": 2
   },
   {
-    "id": 44893857,
-    "by": "ackfoobar",
-    "timeISO": "2025-08-13T21:08:22.000Z",
-    "textPlain": "A first-order function type is already exponential.A sum type has as many possible values as the sum of its cases. E.g. `A of bool | B of bool` has 2+2=4 values. Similarly for product types and exponential types. E.g. the type bool -> bool has 2^2=4 values (id, not, const true, const false) if you don't think about side effects.",
-    "parent": 44893525,
-    "depth": 2
-  },
-  {
     "id": 44895725,
     "by": "xigoi",
     "timeISO": "2025-08-14T01:12:11.000Z",
     "textPlain": "ackfoobar has already given a good reason why function types are called exponential, but there is an even deeper reason: function types interact algebraically the same way as exponents.The type A → (B → C) is isomorphic to (A × B) → C (via currying). This is analogous to the rule (cᵇ)ᵃ = cᵇ˙ᵃ.The type (A + B) → C is isomorphic to (A → C) × (B → C) (a function with a case expression can be replaced with a pair of functions). This is analogous to the rule cᵃ⁺ᵇ = cᵃ·cᵇ.",
+    "parent": 44893525,
+    "depth": 2
+  },
+  {
+    "id": 44893857,
+    "by": "ackfoobar",
+    "timeISO": "2025-08-13T21:08:22.000Z",
+    "textPlain": "A first-order function type is already exponential.A sum type has as many possible values as the sum of its cases. E.g. `A of bool | B of bool` has 2+2=4 values. Similarly for product types and exponential types. E.g. the type bool -> bool has 2^2=4 values (id, not, const true, const false) if you don't think about side effects.",
     "parent": 44893525,
     "depth": 2
   },
@@ -376,27 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44893277,
-    "by": "sunnydiskincali",
-    "timeISO": "2025-08-13T20:13:52.000Z",
-    "textPlain": "> This has the benefit of giving you the ability to refer to a case as its own type.A case of a sum-type is an expression (of the variety so-called a type constructor), of course it has a type.  datatype shape =\n      Circle of real\n    | Rectangle of real * real\n    | Point\n\n   Circle : real -> shape\n   Rectangle : real * real -> shape\n   Point : () -> shape\n\nA case itself isn't a type, though it has a type. Thanks to pattern matching, you're already unwrapping the parameter to the type-constructor when handling the case of a sum-type. It's all about declaration locality. (real * real) doesn't depend on the existence of shape.The moment you start ripping cases as distinct types out of the sum-type, you create the ability to side-step exhaustiveness and sum-types become useless in making invalid program states unrepresentable. They're also no longer sum-types. If you have a sum-type of nominally distinct types, the sum-type is contingent on the existence of those types. In a class hierarchy, this relationship is bizarrely reversed and there are knock-on effects to that.> You declare the sum type once, and use it many times.And you typically write many sum-types. They're disposable. And more to the point, you also have to read the code you write. The cost of verbosity here is underestimated.> Slightly more verbose sum type declaration is worth it when it makes using the cases cleaner.C#/Java don't actually have sum-types. It's an incompatible formalism with their type systems.Anyways, let's look at these examples:C#:  public abstract record Shape;\n  public sealed record Circle(double Radius) : Shape;\n  public sealed record Rectangle(double Width, double Height) : Shape;\n  public sealed record Point() : Shape;\n  \n  double Area(Shape shape) => shape switch\n  {\n      Circle c => Math.PI * c.Radius * c.Radius,\n      Rectangle r => r.Width * r.Height,\n      Point => 0.0,\n      _ => throw new ArgumentException(\"Unknown shape\", nameof(shape))\n  };\n\nML:  datatype shape =\n   ",
-    "parent": 44892051,
-    "depth": 2
-  },
-  {
-    "id": 44893905,
-    "by": "globuous",
-    "timeISO": "2025-08-13T21:12:19.000Z",
-    "textPlain": "What I missed most were let bindings (https://ocaml.org/manual/5.3/bindingops.html)ReasonML has custom operators that allows for manipulating monads somewhat sanely (>>= operators and whatnot). rescript (reasonml’s “fork”) did not last time I checked. But it does have an async/await syntax which helps a lot with async code. reasonml did not last time I checked, so you had to use raw promises.I believe Melange (which the article briefly talks about) supports let bindings with the reason syntax.And this kinda changes everything if you React. Because you can now have sane JSX with let bindings. Which you could not until melange. Indeed, you can PPX your way out of it in ocaml syntax, but I’m not sure the syntax highlight works well in code editors. It did not on mine anyway last time I checked.So for frontend coding, Melange’s reason ml is great as you have both, and let bindings can approximate quite well async syntax on top of writing readable monadic code.For backend code, as a pythonista, I hate curlies. and I do like parenthesis-less function calls and definitions a lot. But I still have a lot of trouble, as a beginner ocamler, with non-variable function argument as I need to do “weird” parenthesis stuff.Hope this “helps”!",
-    "parent": 44892829,
-    "depth": 2
-  },
-  {
-    "id": 44893347,
-    "by": "hardwaregeek",
-    "timeISO": "2025-08-13T20:19:57.000Z",
-    "textPlain": "I like Reason syntax and I wish it was more common, but I think if you want to engage in the OCaml community it’s probably better to just bite the bullet and use the standard syntax. It’s what almost everybody uses so you’ll need to understand it to read any code or documentation in the ecosystem",
-    "parent": 44892829,
+    "id": 44895600,
+    "by": "chris_armstrong",
+    "timeISO": "2025-08-14T00:49:50.000Z",
+    "textPlain": "I almost never find a use for GADTs or functors or carefully specifying module types, but when I need them, they help me get stuff done neatly.Even the object system which most OCaml developers avoid, is actually very useful for some specific modelling scenarios (usually hierarchies in GUIs or IaC) that comes with similar type system guarantees and minimal type annotations.",
+    "parent": 44895588,
     "depth": 2
   }
 ]
