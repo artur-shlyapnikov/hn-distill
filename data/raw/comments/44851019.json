@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44896366,
+    "by": "bpbp-mango",
+    "timeISO": "2025-08-14T03:10:08.000Z",
+    "textPlain": "I wonder if this will help applications like VPP/DPDK. not sure if the CPU or the lanes are the bottleneck there.",
+    "parent": 44851019,
+    "depth": 1
+  },
+  {
     "id": 44893906,
     "by": "robotnikman",
     "timeISO": "2025-08-13T21:12:31.000Z",
@@ -32,6 +40,14 @@
     "depth": 1
   },
   {
+    "id": 44892563,
+    "by": "zkms",
+    "timeISO": "2025-08-13T19:13:29.000Z",
+    "textPlain": "My reaction to PCIe gen 8 is essentially \"Huh? No, retro data buses are like ISA, PCI, and AGP, right? PCIe Gen 3 and SATA are still pretty new...\".I wonder what modulation order / RF bandwidth they'll be using on the PHY for Gen8. I think Gen7 used 32GHz, which is ridiculously high.",
+    "parent": 44851019,
+    "depth": 1
+  },
+  {
     "id": 44895188,
     "by": "_zoltan_",
     "timeISO": "2025-08-13T23:40:11.000Z",
@@ -44,14 +60,6 @@
     "by": "Melatonic",
     "timeISO": "2025-08-14T00:24:08.000Z",
     "textPlain": "I feel like what we really need is a GPU \"socket\" like we have for CPU's. And then a set of RAM slots dedicated to that GPU socket (or unified RAM shared between CPU and GPU)",
-    "parent": 44851019,
-    "depth": 1
-  },
-  {
-    "id": 44892563,
-    "by": "zkms",
-    "timeISO": "2025-08-13T19:13:29.000Z",
-    "textPlain": "My reaction to PCIe gen 8 is essentially \"Huh? No, retro data buses are like ISA, PCI, and AGP, right? PCIe Gen 3 and SATA are still pretty new...\".I wonder what modulation order / RF bandwidth they'll be using on the PHY for Gen8. I think Gen7 used 32GHz, which is ridiculously high.",
     "parent": 44851019,
     "depth": 1
   },
@@ -88,22 +96,6 @@
     "depth": 1
   },
   {
-    "id": 44895952,
-    "by": "coherentpony",
-    "timeISO": "2025-08-14T01:54:52.000Z",
-    "textPlain": "The concept exists now.  You can \"reverse offload\" work to the CPU.",
-    "parent": 44851726,
-    "depth": 2
-  },
-  {
-    "id": 44895662,
-    "by": "0manrho",
-    "timeISO": "2025-08-14T01:00:02.000Z",
-    "textPlain": "We're already there. That's what a lot of people are using DPU's are for.An example, This is storage instead of GPU's, but as the SSD's were PCIe NVMe, it's pretty nearly the same concept: https://www.servethehome.com/zfs-without-a-server-using-the-...",
-    "parent": 44851726,
-    "depth": 2
-  },
-  {
     "id": 44893003,
     "by": "kvemkon",
     "timeISO": "2025-08-13T19:51:45.000Z",
@@ -116,6 +108,14 @@
     "by": "verall",
     "timeISO": "2025-08-13T18:48:03.000Z",
     "textPlain": "If you look at a any of the nvidia DGX boards it's already pretty close.PCIe is a standard/commodity so that multiple vendors can compete and customers can save money. But at 8.0 speeds I'm not sure how many vendors will really be supplying, there's already only a few doing serdes this fast...",
+    "parent": 44851726,
+    "depth": 2
+  },
+  {
+    "id": 44895662,
+    "by": "0manrho",
+    "timeISO": "2025-08-14T01:00:02.000Z",
+    "textPlain": "We're already there. That's what a lot of people are using DPU's are for.An example, This is storage instead of GPU's, but as the SSD's were PCIe NVMe, it's pretty nearly the same concept: https://www.servethehome.com/zfs-without-a-server-using-the-...",
     "parent": 44851726,
     "depth": 2
   },
@@ -140,6 +140,14 @@
     "by": "MurkyLabs",
     "timeISO": "2025-08-13T18:49:54.000Z",
     "textPlain": "Yes I agree, let's bring back the SECC style CPU's from the Pentium Era, I've still got my Pentium II (with MMX technology)",
+    "parent": 44851726,
+    "depth": 2
+  },
+  {
+    "id": 44895952,
+    "by": "coherentpony",
+    "timeISO": "2025-08-14T01:54:52.000Z",
+    "textPlain": "The concept exists now.  You can \"reverse offload\" work to the CPU.",
     "parent": 44851726,
     "depth": 2
   },
@@ -200,6 +208,14 @@
     "depth": 2
   },
   {
+    "id": 44896285,
+    "by": "jsolson",
+    "timeISO": "2025-08-14T02:52:23.000Z",
+    "textPlain": "This actually makes sense from a spec perspective if you want to give enough to allow hardware to catch up with the specs and to support true interop.Contrast this with the wild west that is \"Ethernet\" where it's extremely common for speeds to track well ahead of specs and where interop is, at best, \"exciting.\"",
+    "parent": 44892705,
+    "depth": 2
+  },
+  {
     "id": 44892764,
     "by": "tails4e",
     "timeISO": "2025-08-13T19:31:59.000Z",
@@ -256,6 +272,30 @@
     "depth": 2
   },
   {
+    "id": 44893055,
+    "by": "Dylan16807",
+    "timeISO": "2025-08-13T19:55:59.000Z",
+    "textPlain": "> PCIe Gen 3 and SATA are still pretty new...That's an interesting thought to look at.  PCIe 3 was a while ago, but SATA was nearly a decade before that.> I wonder what modulation order / RF bandwidth they'll be using on the PHY for Gen8. I think Gen7 used 32GHz, which is ridiculously high.Wikipedia says it's planned to be PAM4 just like 6 and 7.Gen 5 and 6 were 32 gigabaud.  If 8 is PAM4 it'll be 128 gigabaud...",
+    "parent": 44892563,
+    "depth": 2
+  },
+  {
+    "id": 44892826,
+    "by": "eqvinox",
+    "timeISO": "2025-08-13T19:36:55.000Z",
+    "textPlain": "I'd highly advise against using GHz here (without further context, at least), a 32Gbaud / 32Gsym/s NRZ signal toggling at full rate is only a 16GHz square wave.baud seems out of fashion, sym/s is pretty clear & unambiguous.(And if you're talking channel bandwidth, that needs clarification)",
+    "parent": 44892563,
+    "depth": 2
+  },
+  {
+    "id": 44894161,
+    "by": "weinzierl",
+    "timeISO": "2025-08-13T21:37:42.000Z",
+    "textPlain": "Don't forget VESA Local Bus.",
+    "parent": 44892563,
+    "depth": 2
+  },
+  {
     "id": 44895448,
     "by": "zamadatix",
     "timeISO": "2025-08-14T00:22:01.000Z",
@@ -285,30 +325,6 @@
     "timeISO": "2025-08-14T01:06:48.000Z",
     "textPlain": "HBM would most likely have to be integrated directly on the GPU module given performance demands and signal constraints.",
     "parent": 44895463,
-    "depth": 2
-  },
-  {
-    "id": 44893055,
-    "by": "Dylan16807",
-    "timeISO": "2025-08-13T19:55:59.000Z",
-    "textPlain": "> PCIe Gen 3 and SATA are still pretty new...That's an interesting thought to look at.  PCIe 3 was a while ago, but SATA was nearly a decade before that.> I wonder what modulation order / RF bandwidth they'll be using on the PHY for Gen8. I think Gen7 used 32GHz, which is ridiculously high.Wikipedia says it's planned to be PAM4 just like 6 and 7.Gen 5 and 6 were 32 gigabaud.  If 8 is PAM4 it'll be 128 gigabaud...",
-    "parent": 44892563,
-    "depth": 2
-  },
-  {
-    "id": 44892826,
-    "by": "eqvinox",
-    "timeISO": "2025-08-13T19:36:55.000Z",
-    "textPlain": "I'd highly advise against using GHz here (without further context, at least), a 32Gbaud / 32Gsym/s NRZ signal toggling at full rate is only a 16GHz square wave.baud seems out of fashion, sym/s is pretty clear & unambiguous.(And if you're talking channel bandwidth, that needs clarification)",
-    "parent": 44892563,
-    "depth": 2
-  },
-  {
-    "id": 44894161,
-    "by": "weinzierl",
-    "timeISO": "2025-08-13T21:37:42.000Z",
-    "textPlain": "Don't forget VESA Local Bus.",
-    "parent": 44892563,
     "depth": 2
   },
   {
