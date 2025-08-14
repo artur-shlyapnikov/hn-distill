@@ -1,10 +1,58 @@
 [
   {
+    "id": 44903437,
+    "by": "coffeeaddict1",
+    "timeISO": "2025-08-14T17:48:58.000Z",
+    "textPlain": "This is nice, but what I really would like is for someone to make the Zink + MoltenVK/KosmicKrisp combo so that we can have OpenGL 4.1+ support on macOS. It's somewhat disappointing that the only way to utilise the latest OpenGL on Macs is to use Asahi Linux.",
+    "parent": 44873103,
+    "depth": 1
+  },
+  {
+    "id": 44903239,
+    "by": "wmf",
+    "timeISO": "2025-08-14T17:31:05.000Z",
+    "textPlain": "The announcement is pretty confusing since Mesa is used on Linux but Metal only exists on macOS/iOS. I guess this is only for Linux VMs running on macOS such as the Android emulator. Maybe it could also be used to run desktop Linux in a VM.",
+    "parent": 44873103,
+    "depth": 1
+  },
+  {
+    "id": 44903613,
+    "by": "heyoleftycunts",
+    "timeISO": "2025-08-14T18:02:14.000Z",
+    "textPlain": "Nice product name, as always, tech fucks (like Tom and Dan)! Sounds like a 2020s crack update.",
+    "parent": 44873103,
+    "depth": 1
+  },
+  {
     "id": 44903037,
     "by": "lawlessone",
     "timeISO": "2025-08-14T17:14:50.000Z",
     "textPlain": "Are metal GPU's good?  I've admit for purely ideological reasons i've never really looked into how powerful they are",
     "parent": 44873103,
     "depth": 1
+  },
+  {
+    "id": 44903460,
+    "by": "jchw",
+    "timeISO": "2025-08-14T17:51:09.000Z",
+    "textPlain": "Mesa is also usable on other platforms, including Windows and macOS.It's even theoretically possible to use the Asahi Linux hardware Mesa drivers on macOS, though actually doing so would involve hacking around undocumented APIs. I actually thought this was demonstrated before (during early testing) but I can't find it.Someone else managed to get the RADV AMD driver working on Windows[1]. It is not fully merged upstream yet, but I think they would like to get it merged upstream eventually.Windows 10 on ARM (maybe Windows 11?) also use Mesa with Microsoft and Collabora's d3d12 backend to run OpenGL and OpenCL applications on top of d3d12, for hardware that does not have proper OpenGL and OpenCL drivers[2].And of course, it ought to be possible to use llvmpipe/lavapipe with off-screen rendering pretty much anywhere you can get Mesa to build, although in practice I believe SwiftShader usually nets you a lot better performance if it's applicable.So Mesa is actually not used only on Linux, it can be used pretty much anywhere, actually ships with Windows, and of course many other free software operating systems also ship Mesa.[1]: https://www.phoronix.com/news/RADV-Windows-XDC-2024[2]: https://devblogs.microsoft.com/directx/announcing-the-opencl...",
+    "parent": 44903239,
+    "depth": 2
+  },
+  {
+    "id": 44903288,
+    "by": "lights0123",
+    "timeISO": "2025-08-14T17:35:38.000Z",
+    "textPlain": "Mesa can be used on other operating systems. See https://www.phoronix.com/news/Zink-Windows-Kopper-Progress for an example of using its OpenGL-to-Vulkan translator on Windows.",
+    "parent": 44903239,
+    "depth": 2
+  },
+  {
+    "id": 44903925,
+    "by": "bigyabai",
+    "timeISO": "2025-08-14T18:30:35.000Z",
+    "textPlain": "For raster, they're pretty good and fabbed on dense nodes. For compute, nothing special.",
+    "parent": 44903037,
+    "depth": 2
   }
 ]

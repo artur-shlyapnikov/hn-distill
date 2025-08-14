@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44898706,
+    "by": "Paul_S",
+    "timeISO": "2025-08-14T10:09:01.000Z",
+    "textPlain": "Since the server is overloaded apparently and people can't see what this is without connecting:  Connection to clearsky.dev (155.133.22.147) 29438 port [tcp/*] succeeded!\n  AXR2KPxr2000.leo.spacenet:send a single 0 byte followed by 'XR2K' for documentation.\n\nwhich results in:  SPACE TERMINAL INTERFACE PROTOCOL\n  =================================\n  The XR-2000 space terminal is a communications satellite that is used to communicate with spacecraft.\n\n  This protocol allows a user to remotely use the XR-2000 space terminal to send messages to and receive messages from spcecraft using the global space communication network.\n\n  PACKET STRUCTURE\n  ----------------\n  Packets are sent over a TCP connection that is established by the client to the terminal on port 29438.\n\n  packet header: \n  * 2 bits length field length (LFL).\n    - 0: packet has no payload. \n    - 1: 1 byte length field\n    - 2: 2 byte length field\n    - 3: 4 byte length field\n  \\* 1 bit: request id field present\n  \\* 5 bits packet type.\n  \\* 1 byte request id (if present)\n  \\* 4 bytes magic\n  \\* 0, 1, 2 or 4 bytes payload length\n  \\* 0..n bytes payload\n\n  all integers are little endian and unsigned unless indicated otherwise.\n\n  The request id field can be used by the client to correlate requests with their responses. The value may be chosen by the client. If the field is present in a request packet, it will be copied into the response by the terminal.\n\n  The magic bytes contain the ascii text: XR2K\n\n  PACKET TYPES\n  ------------\n  The following packet types are defined:\n\n  \\* 0x00 help           client -> terminal\n  \\* 0x01 hello          terminal -> client\n  \\* 0x02 documentation  terminal -> client\n  \\* 0x03 register       client -> terminal\n  \\* 0x04 registered     terminal -> client\n  \\* 0x05 login          client -> terminal\n  \\* 0x07 getstatus      client -> terminal\n  \\* 0x08 status         terminal -> client\n  \\* 0x09 getmail        client -> terminal\n  \\* 0x0a mail           terminal -> client\n  ",
+    "parent": 44872948,
+    "depth": 1
+  },
+  {
     "id": 44902786,
     "by": "thatha7777",
     "timeISO": "2025-08-14T16:55:27.000Z",
@@ -20,14 +28,6 @@
     "by": "Tepix",
     "timeISO": "2025-08-14T14:30:59.000Z",
     "textPlain": "It's interesting how much this game changes when you use an llm to help you.",
-    "parent": 44872948,
-    "depth": 1
-  },
-  {
-    "id": 44898706,
-    "by": "Paul_S",
-    "timeISO": "2025-08-14T10:09:01.000Z",
-    "textPlain": "Since the server is overloaded apparently and people can't see what this is without connecting:  Connection to clearsky.dev (155.133.22.147) 29438 port [tcp/*] succeeded!\n  AXR2KPxr2000.leo.spacenet:send a single 0 byte followed by 'XR2K' for documentation.\n\nwhich results in:  SPACE TERMINAL INTERFACE PROTOCOL\n  =================================\n  The XR-2000 space terminal is a communications satellite that is used to communicate with spacecraft.\n\n  This protocol allows a user to remotely use the XR-2000 space terminal to send messages to and receive messages from spcecraft using the global space communication network.\n\n  PACKET STRUCTURE\n  ----------------\n  Packets are sent over a TCP connection that is established by the client to the terminal on port 29438.\n\n  packet header: \n  * 2 bits length field length (LFL).\n    - 0: packet has no payload. \n    - 1: 1 byte length field\n    - 2: 2 byte length field\n    - 3: 4 byte length field\n  \\* 1 bit: request id field present\n  \\* 5 bits packet type.\n  \\* 1 byte request id (if present)\n  \\* 4 bytes magic\n  \\* 0, 1, 2 or 4 bytes payload length\n  \\* 0..n bytes payload\n\n  all integers are little endian and unsigned unless indicated otherwise.\n\n  The request id field can be used by the client to correlate requests with their responses. The value may be chosen by the client. If the field is present in a request packet, it will be copied into the response by the terminal.\n\n  The magic bytes contain the ascii text: XR2K\n\n  PACKET TYPES\n  ------------\n  The following packet types are defined:\n\n  \\* 0x00 help           client -> terminal\n  \\* 0x01 hello          terminal -> client\n  \\* 0x02 documentation  terminal -> client\n  \\* 0x03 register       client -> terminal\n  \\* 0x04 registered     terminal -> client\n  \\* 0x05 login          client -> terminal\n  \\* 0x07 getstatus      client -> terminal\n  \\* 0x08 status         terminal -> client\n  \\* 0x09 getmail        client -> terminal\n  \\* 0x0a mail           terminal -> client\n  ",
     "parent": 44872948,
     "depth": 1
   },

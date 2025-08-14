@@ -1,5 +1,29 @@
 [
   {
+    "id": 44903555,
+    "by": "Sesse__",
+    "timeISO": "2025-08-14T17:57:46.000Z",
+    "textPlain": "The fastest way of doing a heap I've found is generally: Don't. For many of the relevant operations (graph search, merging streams, etc.), you can do just as well with a winner-tree; it can usually be updated branch-free with min/max operations, whereas with a heap you'll usually have completely unpredictable branches for every single operation.A winner-tree, or its counterpart the loser-tree (for min instead of max), is a very simple binary tree: Bottom layer is all your values (2^N of them). The layer above that is the highest of pairs of values. The layer above that is the highest of pairs of pairs. And so on, until you get to the top of the tree, which contains the largest value. Updating a value is trivial; you overwrite the relevant one at the bottom, and then run exactly log2(n) max operations upwards until the you hit the root. Inserting and deleting may, of course, be more complicated.",
+    "parent": 44870905,
+    "depth": 1
+  },
+  {
+    "id": 44903833,
+    "by": "_ache_",
+    "timeISO": "2025-08-14T18:22:33.000Z",
+    "textPlain": "Can't see the Website.I'm the only one with a HTTPS problem here? Bad domain, `art.mahajana.net` instead of 0x80.pl.",
+    "parent": 44870905,
+    "depth": 1
+  },
+  {
+    "id": 44903406,
+    "by": "CalChris",
+    "timeISO": "2025-08-14T17:45:55.000Z",
+    "textPlain": "It's 2025 and the simd operations in this aren't that obscure. So I wonder how close std::simd gets to the instrinsics' performance with clang and gcc.",
+    "parent": 44870905,
+    "depth": 1
+  },
+  {
     "id": 44900396,
     "by": "dooglius",
     "timeISO": "2025-08-14T13:53:56.000Z",
@@ -20,6 +44,14 @@
     "by": "simonask",
     "timeISO": "2025-08-14T15:47:33.000Z",
     "textPlain": "I think it's fairly useful. It means that you can convert a contiguous array to a heap with a fast O(n) read-only check instead of O(n log n) writes, so if you know that's the common case, you can detect it up front and only revert to normal binary heap insertion if it returns false.",
+    "parent": 44900396,
+    "depth": 2
+  },
+  {
+    "id": 44903150,
+    "by": "camel-cdr",
+    "timeISO": "2025-08-14T17:24:14.000Z",
+    "textPlain": "make_heap should be vectorizable, that would be more useful.\nI can also see a path to vectorize bulk insert, but that seems harder.",
     "parent": 44900396,
     "depth": 2
   }
