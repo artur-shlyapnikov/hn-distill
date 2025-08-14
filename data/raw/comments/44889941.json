@@ -32,10 +32,26 @@
     "depth": 1
   },
   {
+    "id": 44899525,
+    "by": "Arch-TK",
+    "timeISO": "2025-08-14T12:18:36.000Z",
+    "textPlain": "kind of feels unnecessary honestly...Automating webroot is trivial and I would rather use an external rust utility to handle it than a module for nginx. I guess if you _only_ need certs for your website then this helps but I have certs for a lot of other things too, so I need an external utility anyway.And no dns-01 support yet.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
     "id": 44894943,
     "by": "kocial",
     "timeISO": "2025-08-13T23:07:28.000Z",
     "textPlain": "The problem with the big open-source companies is that they are always very late to understand and implement the most basic innovations that come out.Caddy & Traefik did it long, long ago (half a decade ago), and after half a decade, we finally have ngxin supporting it too. Great move though, finally I won't have to manually run certbot :pray:",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44899327,
+    "by": "kelvinjps10",
+    "timeISO": "2025-08-14T11:54:42.000Z",
+    "textPlain": "Actually this was the reason I started using caddy, and easier config too!",
     "parent": 44889941,
     "depth": 1
   },
@@ -64,18 +80,18 @@
     "depth": 1
   },
   {
-    "id": 44896753,
-    "by": "makaking",
-    "timeISO": "2025-08-14T04:33:41.000Z",
-    "textPlain": "The fact that certificate management is still evolving makes me realize how young the web still is in the big scheme of things.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44891078,
     "by": "stego-tech",
     "timeISO": "2025-08-13T17:10:19.000Z",
     "textPlain": "The IT Roller Coaster in two reactions:> Nginx Introduces Native Support for Acme ProtocolIT: “It’s about fucking time!”> The current preview implementation supports HTTP-01 challenges to verify the client’s domain ownership.IT: “FUCK. Alright, domain registrar, mint me a new wildcard please, one of the leading web infrastructure providers still can’t do a basic LE DNS-01 pull in 2025.”Seriously. PKI in IT is a PITA and I want someone to SOLVE IT without requiring AD CAs or Yet Another Hyperspecific Appliance (YAHA). If your load balancer, proxy server, web server, or router appliance can’t mint me a basic Acme certificate via DNS-01 challenges, then you officially suck and I will throw your product out for something like Caddy the first chance I get.While we’re at it, can we also allow DNS-01 certs to be issued for intermediate authorities, allowing internally-signed certificates to be valid via said Intermediary? That’d solve like, 99% of my PKI needs in any org, ever, forever.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44896753,
+    "by": "makaking",
+    "timeISO": "2025-08-14T04:33:41.000Z",
+    "textPlain": "The fact that certificate management is still evolving makes me realize how young the web still is in the big scheme of things.",
     "parent": 44889941,
     "depth": 1
   },
@@ -88,10 +104,10 @@
     "depth": 1
   },
   {
-    "id": 44898067,
-    "by": "account42",
-    "timeISO": "2025-08-14T08:20:15.000Z",
-    "textPlain": "> Support for other challenges (TLS-ALPN, DNS -01) is planned in future.Looking forward to this. HTTP-01 already works well enough for me with certbot (which I need for other services anyway and gives me more control over having multiple domains in one cert) but for wildcard certs there are not as many good solutions.",
+    "id": 44899648,
+    "by": "crest",
+    "timeISO": "2025-08-14T12:34:40.000Z",
+    "textPlain": "FINALLY!!!",
     "parent": 44889941,
     "depth": 1
   },
@@ -108,6 +124,14 @@
     "by": "aorth",
     "timeISO": "2025-08-13T16:42:20.000Z",
     "textPlain": "Oh this is exciting! Caddy's support is very convenient and it does a lot of other stuff right out of the box which is great.One thing keeping me from switching to Caddy in my places is nginx's rate limiting and geo module.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44898067,
+    "by": "account42",
+    "timeISO": "2025-08-14T08:20:15.000Z",
+    "textPlain": "> Support for other challenges (TLS-ALPN, DNS -01) is planned in future.Looking forward to this. HTTP-01 already works well enough for me with certbot (which I need for other services anyway and gives me more control over having multiple domains in one cert) but for wildcard certs there are not as many good solutions.",
     "parent": 44889941,
     "depth": 1
   },
@@ -136,18 +160,18 @@
     "depth": 1
   },
   {
-    "id": 44896024,
-    "by": "st3fan",
-    "timeISO": "2025-08-14T02:08:19.000Z",
-    "textPlain": "Basically the only reason I install Caddy instead of Nginx as a reverse proxy is the one-liner to get TLS & ACME going. Maybe this will change that? Not sure.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44892034,
     "by": "smarx007",
     "timeISO": "2025-08-13T18:27:01.000Z",
     "textPlain": "When will this land in mainline distros (no PPAs etc)? Given that a new stable version of Debian was released very recently, I would imagine August 2027 for Debian and maybe April 2026 for Ubuntu?In this very thread some people complain that certbot uses snap for distribution. Imagine making a feature release and having to wait 1-2 years until your users will get it on a broad scale.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44896024,
+    "by": "st3fan",
+    "timeISO": "2025-08-14T02:08:19.000Z",
+    "textPlain": "Basically the only reason I install Caddy instead of Nginx as a reverse proxy is the one-liner to get TLS & ACME going. Maybe this will change that? Not sure.",
     "parent": 44889941,
     "depth": 1
   },
@@ -224,14 +248,6 @@
     "depth": 1
   },
   {
-    "id": 44896660,
-    "by": "themafia",
-    "timeISO": "2025-08-14T04:09:59.000Z",
-    "textPlain": "We had about 100 domains or so that needed to be redirected to their new homes.  The previous person in my position set it all up using GoDaddy domains and redirects.  I was gobsmacked at how much effort it took,  and when browsers switched to HTTPS first,  how badly it broke the setup.That's when I found \"golang.org/x/crypto/acme/autocert\" and then I built a custom redirect server using it.  It implements TLS-ALPN-01 which works fantastically with Let's Encrypt.Now we can just add a domain to our web configuration,  setup it's target and redirect style,  and then push the configuration out the EC2 instance providing the public facing service.   As soon as the first client makes a request,  they're effectively put \"on hold,\"  while the server then arranges for the certificate in the background.  As soon as it's issued and installed on the server the server continues with the original client.It's an absolute breeze and it makes me utterly detest going backwards to DNS-01 or HTTP-01 challenges.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44892439,
     "by": "aoe6721",
     "timeISO": "2025-08-13T19:02:57.000Z",
@@ -244,6 +260,14 @@
     "by": "andrewstuart",
     "timeISO": "2025-08-13T17:49:54.000Z",
     "textPlain": "It was this that sent me from nginx to caddy.But I’m not going back. Nginx was a real pain to configure with so many puzzles and surprises and foot guns.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44896660,
+    "by": "themafia",
+    "timeISO": "2025-08-14T04:09:59.000Z",
+    "textPlain": "We had about 100 domains or so that needed to be redirected to their new homes.  The previous person in my position set it all up using GoDaddy domains and redirects.  I was gobsmacked at how much effort it took,  and when browsers switched to HTTPS first,  how badly it broke the setup.That's when I found \"golang.org/x/crypto/acme/autocert\" and then I built a custom redirect server using it.  It implements TLS-ALPN-01 which works fantastically with Let's Encrypt.Now we can just add a domain to our web configuration,  setup it's target and redirect style,  and then push the configuration out the EC2 instance providing the public facing service.   As soon as the first client makes a request,  they're effectively put \"on hold,\"  while the server then arranges for the certificate in the background.  As soon as it's issued and installed on the server the server continues with the original client.It's an absolute breeze and it makes me utterly detest going backwards to DNS-01 or HTTP-01 challenges.",
     "parent": 44889941,
     "depth": 1
   },
@@ -373,30 +397,6 @@
     "timeISO": "2025-08-13T17:02:26.000Z",
     "textPlain": "Why would nginx ever need support for the DNS-01 challenge type? It always has access to `.well-known` because nginx is running an HTTP server for the entire lifecycle of the process, so you'd never need to use a lower level way of doing DV. And that seems to violate the principle of least privilege, since you now need a sensitive API token on the server.",
     "parent": 44890666,
-    "depth": 2
-  },
-  {
-    "id": 44890654,
-    "by": "elashri",
-    "timeISO": "2025-08-13T16:36:52.000Z",
-    "textPlain": "What I really like about Caddy is their better syntax. I actually use nginx (via nginx proxy manager) and Traefik but recently I did one project with Caddy and found it very nice. I might get the time to change my selfhosted setup to use Caddy in the future but probably will go with something like pangolin [1] because it provides alternative to cloudflare tunnels too.[1] https://github.com/fosrl/pangolin",
-    "parent": 44890497,
-    "depth": 2
-  },
-  {
-    "id": 44891303,
-    "by": "tgv",
-    "timeISO": "2025-08-13T17:31:09.000Z",
-    "textPlain": "I switched over to caddy recently. Nginx' non-information about the http 1 desync problem drove me over. I'm not going to wait for something stupid to happen or an auditor ask me questions nginx doesn't answer.Caddy is really easier than nginx. For starters, I now have templates that cover the main services and their test services, and the special service that runs for an education institution. Logging is better. Certificate handling is perfect (for my case, at least). And it has better metrics.Now I have to figure out plugins though, because caddy doesn't have rate limiting and some stupid bug in powerbi makes a single user hit certain images 300.000 times per day. That's a bit of a downside.",
-    "parent": 44890497,
-    "depth": 2
-  },
-  {
-    "id": 44898961,
-    "by": "dwedge",
-    "timeISO": "2025-08-14T10:56:28.000Z",
-    "textPlain": "It's also been in Apache since 2018",
-    "parent": 44890497,
     "depth": 2
   }
 ]

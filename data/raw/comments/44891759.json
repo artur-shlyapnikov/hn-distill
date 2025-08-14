@@ -16,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44894751,
-    "by": "pmahoney",
-    "timeISO": "2025-08-13T22:43:19.000Z",
-    "textPlain": "I tried to like OCaml for a few years. The things that hold me back the most are niggling things that are largely solved in more \"modern\" langs, the biggest being the inability to \"print\" arbitrary objects.There are ppx things that can automatically derive \"to string\" functions, but it's a bit of effort to set up, it's not as nice to use as what's available in Rust, and it can't handle things like Set and Map types without extra work, e.g. [1] (from 2021 so situation may have changed).Compare to golang, where you can just use \"%v\" and related format strings to print nearly anything with zero effort.[1] https://discuss.ocaml.org/t/ppx-deriving-implementation-for-...",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
     "id": 44892053,
     "by": "_mu",
     "timeISO": "2025-08-13T18:28:17.000Z",
     "textPlain": "I haven't worked in OCaml but I have worked a bit in F# and found it to be a pleasant experience.One thing I am wondering about in the age of LLMs is if we should all take a harder look at functional languages again. My thought is that if FP languages like OCaml / Haskell / etc. let us compress a lot of information into a small amount of text, then that's better for the context window.Possibly we might be able to put much denser programs into the model and one-shot larger changes than is achievable in languages like Java / C# / Ruby / etc?",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44894751,
+    "by": "pmahoney",
+    "timeISO": "2025-08-13T22:43:19.000Z",
+    "textPlain": "I tried to like OCaml for a few years. The things that hold me back the most are niggling things that are largely solved in more \"modern\" langs, the biggest being the inability to \"print\" arbitrary objects.There are ppx things that can automatically derive \"to string\" functions, but it's a bit of effort to set up, it's not as nice to use as what's available in Rust, and it can't handle things like Set and Map types without extra work, e.g. [1] (from 2021 so situation may have changed).Compare to golang, where you can just use \"%v\" and related format strings to print nearly anything with zero effort.[1] https://discuss.ocaml.org/t/ppx-deriving-implementation-for-...",
     "parent": 44891759,
     "depth": 1
   },
@@ -72,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44897845,
-    "by": "tempodox",
-    "timeISO": "2025-08-14T07:48:27.000Z",
-    "textPlain": "The best bird's eye overview of OCaml I've seen yet.  As a long-time OCaml user, I find it entirely fair.",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
     "id": 44892121,
     "by": "raphinou",
     "timeISO": "2025-08-13T18:34:37.000Z",
     "textPlain": "Some years ago I also wanted to make ocaml my primary language, but rapidly encountered problems: difficulty to install (on Linux due to the requirement of a very unusual tool which name and function I forgot), no response from community regarding how to solve that problem, no solid postgresql driver, ....Wanting to use a functional language I pivoted to fsharp, which was not the expected choice for me as I use Linux exclusively. I have been happy with this choice, it has even become my preferred language. The biggest problem for me was the management of the fsharp community, the second class citizen position of fsharp in the DotNet ecosystem, and Microsoft's action screwing the goodwill of the dev community (eg hot reload episode). I feel this hampered the growth of the fsharp community.I'm now starting to use rust, and the contrast on these points couldn't be bigger.Edit: downvoters, caring to share why? I thought sharing my experience would have been appreciated. Would like to know why I was wrong.",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44897845,
+    "by": "tempodox",
+    "timeISO": "2025-08-14T07:48:27.000Z",
+    "textPlain": "The best bird's eye overview of OCaml I've seen yet.  As a long-time OCaml user, I find it entirely fair.",
     "parent": 44891759,
     "depth": 1
   },
@@ -112,14 +112,6 @@
     "depth": 1
   },
   {
-    "id": 44897950,
-    "by": "amelius",
-    "timeISO": "2025-08-14T08:05:48.000Z",
-    "textPlain": "Do they have a decent GUI library / binding yet?",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
     "id": 44893872,
     "by": "zem",
     "timeISO": "2025-08-13T21:09:28.000Z",
@@ -128,18 +120,10 @@
     "depth": 1
   },
   {
-    "id": 44894915,
-    "by": "pshirshov",
-    "timeISO": "2025-08-13T23:03:55.000Z",
-    "textPlain": "Extremely dated. No HKTs, no typeclasses (modules are not a good substitute), no call-site expansion.",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
-    "id": 44898040,
-    "by": "sparkie",
-    "timeISO": "2025-08-14T08:17:26.000Z",
-    "textPlain": "> At present, I don’t know anyone who has seriously used languages like OCaml or Haskell and was happy to return to languages with less sophisticated type systems (though an interesting project can sometimes justify such a technological regression).Recovered typeaholic here. I still occasionally use OCaml and I primarily wrote F# and Haskell for years. I've been quite deep down the typing rabbit hole, and I used to scorn at dynamically typed languages.Now I love dynamic typing - but not the Python kind - I prefer the Scheme kind - latent typing. More specifically, the Kernel[1] kind, which is incredibly powerful.> I think the negative reputation of static type checking usually stems from a bad experience.I think this goes two ways. Most people's experience with dynamic typing is the Python kind, and not the Kernel kind.To be clear, I am not against static typing, and I love OCaml - but there are clear cases where static typing is the wrong tool - or rather, no static typing system is sufficient to express problems that are trivial to write correctly with the right dynamic types.Moreover, some problems are inherently dynamic. Take for example object-capabilities (aka, security done right). Capabilities can be revoked at any time. It makes no sense to try and encode capabilities into a static type system - but I had such silly thoughts when I was a typeaholic, and I regularly see people making the same mistake. Wouldn't it be better to have a type system which can express things which are dynamic by nature?And this is my issue with purely statically typed systems: They erase the types! I don't want to erase the types - I want the types to be available at runtime so that I can do things with them that I couldn't do at compile time - without me having to write a whole new interpreter.My preference is for Gradual Typing[2], which lets us use both worlds. Gradual typing is static typing with a `dynamic` type in the type system, and sensible rules for converting between dy",
+    "id": 44897950,
+    "by": "amelius",
+    "timeISO": "2025-08-14T08:05:48.000Z",
+    "textPlain": "Do they have a decent GUI library / binding yet?",
     "parent": 44891759,
     "depth": 1
   },
@@ -168,6 +152,22 @@
     "depth": 1
   },
   {
+    "id": 44898040,
+    "by": "sparkie",
+    "timeISO": "2025-08-14T08:17:26.000Z",
+    "textPlain": "> At present, I don’t know anyone who has seriously used languages like OCaml or Haskell and was happy to return to languages with less sophisticated type systems (though an interesting project can sometimes justify such a technological regression).Recovered typeaholic here. I still occasionally use OCaml and I primarily wrote F# and Haskell for years. I've been quite deep down the typing rabbit hole, and I used to scorn at dynamically typed languages.Now I love dynamic typing - but not the Python kind - I prefer the Scheme kind - latent typing. More specifically, the Kernel[1] kind, which is incredibly powerful.> I think the negative reputation of static type checking usually stems from a bad experience.I think this goes two ways. Most people's experience with dynamic typing is the Python kind, and not the Kernel kind.To be clear, I am not against static typing, and I love OCaml - but there are clear cases where static typing is the wrong tool - or rather, no static typing system is sufficient to express problems that are trivial to write correctly with the right dynamic types.Moreover, some problems are inherently dynamic. Take for example object-capabilities (aka, security done right). Capabilities can be revoked at any time. It makes no sense to try and encode capabilities into a static type system - but I had such silly thoughts when I was a typeaholic, and I regularly see people making the same mistake. Wouldn't it be better to have a type system which can express things which are dynamic by nature?And this is my issue with purely statically typed systems: They erase the types! I don't want to erase the types - I want the types to be available at runtime so that I can do things with them that I couldn't do at compile time - without me having to write a whole new interpreter.My preference is for Gradual Typing[2], which lets us use both worlds. Gradual typing is static typing with a `dynamic` type in the type system, and sensible rules for converting between dy",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44894915,
+    "by": "pshirshov",
+    "timeISO": "2025-08-13T23:03:55.000Z",
+    "textPlain": "Extremely dated. No HKTs, no typeclasses (modules are not a good substitute), no call-site expansion.",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
     "id": 44892537,
     "by": "FrustratedMonky",
     "timeISO": "2025-08-13T19:11:15.000Z",
@@ -184,10 +184,10 @@
     "depth": 1
   },
   {
-    "id": 44898293,
-    "by": "IshKebab",
-    "timeISO": "2025-08-14T08:58:09.000Z",
-    "textPlain": "I agree. If OCaml had solved some of its bigger paper cuts it could have been a real player. Compilation time is much better than Rust too:* OPAM is quite buggy and extremely confusing.* Windows support is very bad. If you ever tried to use Perl on Windows back in the day... it's worse than that.* Documentation is terse to the point of uselessness.* The syntax style is quite hard to mentally parse and also not very recoverable. If you miss some word or character the error can be \"the second half of the file has a syntax error\". Not very fun. Rust's more traditional syntax is much easier to deal with.Rust basically has none of those issues. Really the only advantage I can see with OCaml today is compile time, which is important, but it's definitely not important enough to make me want to use OCaml.",
+    "id": 44898511,
+    "by": "StopDisinfo910",
+    "timeISO": "2025-08-14T09:34:43.000Z",
+    "textPlain": "> I feel if OCaml had got its act together around about 2010 with multicore and a few other annoyances[1]OCaml had its act together. It was significantly nicer than Python when I used it professionally in 2010. Just look at what JaneStreet achieved with it.The main impediment to OCaml was always that it was not American nor mainly developed from the US.People like to believe there is some technical merit to language popularity but the reality it’s all fashion based. Rust is popular because they did a ton of outreach. They used to pay someone full time to mostly toot their horn.",
     "parent": 44892713,
     "depth": 2
   },
@@ -200,10 +200,10 @@
     "depth": 2
   },
   {
-    "id": 44898511,
-    "by": "StopDisinfo910",
-    "timeISO": "2025-08-14T09:34:43.000Z",
-    "textPlain": "> I feel if OCaml had got its act together around about 2010 with multicore and a few other annoyances[1]OCaml had its act together. It was significantly nicer than Python when I used it professionally in 2010. Just look at what JaneStreet achieved with it.The main impediment to OCaml was always that it was not American nor mainly developed from the US.People like to believe there is some technical merit to language popularity but the reality it’s all fashion based. Rust is popular because they did a ton of outreach. They used to pay someone full time to mostly toot their horn.",
+    "id": 44898293,
+    "by": "IshKebab",
+    "timeISO": "2025-08-14T08:58:09.000Z",
+    "textPlain": "I agree. If OCaml had solved some of its bigger paper cuts it could have been a real player. Compilation time is much better than Rust too:* OPAM is quite buggy and extremely confusing.* Windows support is very bad. If you ever tried to use Perl on Windows back in the day... it's worse than that.* Documentation is terse to the point of uselessness.* The syntax style is quite hard to mentally parse and also not very recoverable. If you miss some word or character the error can be \"the second half of the file has a syntax error\". Not very fun. Rust's more traditional syntax is much easier to deal with.Rust basically has none of those issues. Really the only advantage I can see with OCaml today is compile time, which is important, but it's definitely not important enough to make me want to use OCaml.",
     "parent": 44892713,
     "depth": 2
   },
@@ -216,18 +216,18 @@
     "depth": 2
   },
   {
-    "id": 44896362,
-    "by": "shpongled",
-    "timeISO": "2025-08-14T03:08:59.000Z",
-    "textPlain": "As someone who loves SML/OCaml and has written primarily Rust over the past ~10 years, I totally agree - I use it as a modern and ergonomic ML with best-in-class tooling, libraries, and performance. Lifetimes are cool, and I use them when needed, but they aren't the reason I use Rust at all. I would use Rust with a GC instead of lifetimes too.",
-    "parent": 44892713,
-    "depth": 2
-  },
-  {
     "id": 44897574,
     "by": "pjmlp",
     "timeISO": "2025-08-14T07:08:18.000Z",
     "textPlain": "That is why if I feel like doing ML style programing I rather reach out for Kotlin, Scala or F# than Rust, and even then Java and C# have gotten enough inspiration that I can also feel at home while using them.I am no strage to ML type systems, my first one was Caml Light, OCaml was still known as Objective Caml, and Mirada was still something being discussed on programming language lectures on my university.From what I see, I also kind of find the same, too many people rush out for Rust thinking that ML type systems is something new introduced by Rust, without having the background where all comes from.",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
+    "id": 44896362,
+    "by": "shpongled",
+    "timeISO": "2025-08-14T03:08:59.000Z",
+    "textPlain": "As someone who loves SML/OCaml and has written primarily Rust over the past ~10 years, I totally agree - I use it as a modern and ergonomic ML with best-in-class tooling, libraries, and performance. Lifetimes are cool, and I use them when needed, but they aren't the reason I use Rust at all. I would use Rust with a GC instead of lifetimes too.",
     "parent": 44892713,
     "depth": 2
   },
@@ -256,6 +256,14 @@
     "depth": 2
   },
   {
+    "id": 44898212,
+    "by": "ubercore",
+    "timeISO": "2025-08-14T08:42:52.000Z",
+    "textPlain": "I've only forayed into rust a bit, but I agree. I would happily take a language like Rust that sacrifices some speed for simpler semantics around ownership/lifetimes.Just Arc, clone and panic your way to success! :)",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
     "id": 44897444,
     "by": "omcnoe",
     "timeISO": "2025-08-14T06:47:33.000Z",
@@ -264,10 +272,10 @@
     "depth": 2
   },
   {
-    "id": 44898212,
-    "by": "ubercore",
-    "timeISO": "2025-08-14T08:42:52.000Z",
-    "textPlain": "I've only forayed into rust a bit, but I agree. I would happily take a language like Rust that sacrifices some speed for simpler semantics around ownership/lifetimes.Just Arc, clone and panic your way to success! :)",
+    "id": 44896729,
+    "by": "rtpg",
+    "timeISO": "2025-08-14T04:27:13.000Z",
+    "textPlain": "I think people like ADTs and pattern matching that Rust gives, but really the way that Rust becomes even more pleasant is that you have _so many_ trait methods on standard library objects that offer succinct answers to common patterns.Haskell of course has some of this, but immutability means that Haskell doesn't have to have answers for lots of things. And you want pattern matching as your basic building block, but at the end of the day most of your code won't have pattern matching and will instead rely on higher level patterns (that can build off of ADTs providing some degree of certainty on totality etc)",
     "parent": 44892713,
     "depth": 2
   },
@@ -280,14 +288,6 @@
     "depth": 2
   },
   {
-    "id": 44897606,
-    "by": "fulafel",
-    "timeISO": "2025-08-14T07:12:50.000Z",
-    "textPlain": "Anyone have a link to the Android talk?\nI wonder if it was backend code or on-device code. On device you could probably justify the compromises of a no-GC language better.",
-    "parent": 44892713,
-    "depth": 2
-  },
-  {
     "id": 44892853,
     "by": "garbthetill",
     "timeISO": "2025-08-13T19:39:01.000Z",
@@ -296,10 +296,10 @@
     "depth": 2
   },
   {
-    "id": 44896729,
-    "by": "rtpg",
-    "timeISO": "2025-08-14T04:27:13.000Z",
-    "textPlain": "I think people like ADTs and pattern matching that Rust gives, but really the way that Rust becomes even more pleasant is that you have _so many_ trait methods on standard library objects that offer succinct answers to common patterns.Haskell of course has some of this, but immutability means that Haskell doesn't have to have answers for lots of things. And you want pattern matching as your basic building block, but at the end of the day most of your code won't have pattern matching and will instead rely on higher level patterns (that can build off of ADTs providing some degree of certainty on totality etc)",
+    "id": 44897606,
+    "by": "fulafel",
+    "timeISO": "2025-08-14T07:12:50.000Z",
+    "textPlain": "Anyone have a link to the Android talk?\nI wonder if it was backend code or on-device code. On device you could probably justify the compromises of a no-GC language better.",
     "parent": 44892713,
     "depth": 2
   },
@@ -344,14 +344,6 @@
     "depth": 2
   },
   {
-    "id": 44896751,
-    "by": "throwaway127482",
-    "timeISO": "2025-08-14T04:33:11.000Z",
-    "textPlain": "Go's %v leaves a lot to be desired, even when using %+#v to print even more info. I wish there was a format string to deeply traverse into pointers. Currently I have to import go-spew for that, which is a huge annoyance.Python does it best from what I've seen so far, with its __repr__ method.",
-    "parent": 44894751,
-    "depth": 2
-  },
-  {
     "id": 44892596,
     "by": "jappgar",
     "timeISO": "2025-08-13T19:15:39.000Z",
@@ -360,18 +352,18 @@
     "depth": 2
   },
   {
-    "id": 44892249,
-    "by": "gf000",
-    "timeISO": "2025-08-13T18:46:41.000Z",
-    "textPlain": "My completely non-objective experiment of writing a simple CLI game in C++ and Haskell shows that the lines of code were indeed less in case of Haskell.. but the number of words were roughly the same, meaning the Haskell code just \"wider\" instead of \"higher\".And then I didn't even make this \"experiment\" with Java or another managed, more imperative language which could have shed some weight due to not caring about manual memory management.So not sure how much truth is in there - I think it differs based on the given program: some lend itself better for an imperative style, others prefer a more functional one.",
-    "parent": 44892053,
-    "depth": 2
-  },
-  {
     "id": 44897793,
     "by": "gylterud",
     "timeISO": "2025-08-14T07:40:55.000Z",
     "textPlain": "I have found that Haskell has two good things going for it when it comes to LLM code generation. Both have to do with correctness.The expressive type system catches a lot of mistakes, and the fact that they are compile errors which can be fed right into the LLM again means that incorrect code is caught early.The second is property based testing. With it I have had the LLM generate amazingly efficient, correct code, by iteratively making it more and more efficient – running quickcheck on each pass. The LLM is not super good at writing the tests, but if you add some yourself, you quickly root out any mistakes in the generated code.",
+    "parent": 44892053,
+    "depth": 2
+  },
+  {
+    "id": 44892249,
+    "by": "gf000",
+    "timeISO": "2025-08-13T18:46:41.000Z",
+    "textPlain": "My completely non-objective experiment of writing a simple CLI game in C++ and Haskell shows that the lines of code were indeed less in case of Haskell.. but the number of words were roughly the same, meaning the Haskell code just \"wider\" instead of \"higher\".And then I didn't even make this \"experiment\" with Java or another managed, more imperative language which could have shed some weight due to not caring about manual memory management.So not sure how much truth is in there - I think it differs based on the given program: some lend itself better for an imperative style, others prefer a more functional one.",
     "parent": 44892053,
     "depth": 2
   },
@@ -396,6 +388,14 @@
     "by": "dkarl",
     "timeISO": "2025-08-13T21:21:14.000Z",
     "textPlain": "In Scala, I've had excellent luck using LLMs to speed up development when I'm using cats-effect, an effects library.My experience in the past with something like cats-effect has been that there are straightforward things that aren't obvious, and if you haven't been using it recently, and maybe even if you've been using it but haven't solved a similar problem recently, you can get stuck trawling through the docs squinting at type signatures looking for what turns out to be, in hindsight, an elegant and simple solution. LLMs have vastly reduced this kind of friction. I just ask, \"In cats-effect, how do I...?\" and 80% of the time the answer gets me immediately unstuck. The other 20% of the time I provide clarifying context or ask a different LLM.I haven't done enough maintenance coding yet to know if this will radically shift my view of the cost/benefit of functional programming with effects, but I'm very excited. Writing cats-effect code has always been satisfying and frustrating in equal measure, and so far, I'm getting the confidence and correctness with a fraction of the frustration.I haven't unleashed Claude Code on any cats-effect code yet. I'm curious to see how well it will do.",
+    "parent": 44892053,
+    "depth": 2
+  },
+  {
+    "id": 44892773,
+    "by": "sshine",
+    "timeISO": "2025-08-13T19:32:31.000Z",
+    "textPlain": "> My thought is that if FP languages like OCaml / Haskell / etc. let us compress a lot of information into a small amount of text, then that's better for the context window.Claude Code’s Haskell style is very verbose; if-then-elsey, lots of nested case-ofs, do-blocks at multiple levels of intension, very little naming things at top-level.Given a sample of a simple API client, and a request to do the same but for another API, it did very well.I concluded that I just have more opinions about Haskell than Java or Rust. If it doesn’t look nice, why even bother with Haskell.I reckon that you could seed it with style examples that take up very little context space. Also, remind it to not enable language pragmas per file when they’re already in .cabal, and similar.",
     "parent": 44892053,
     "depth": 2
   }
