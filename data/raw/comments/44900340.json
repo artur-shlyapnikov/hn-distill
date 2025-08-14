@@ -1,13 +1,5 @@
 [
   {
-    "id": 44903971,
-    "by": "jrm4",
-    "timeISO": "2025-08-14T18:34:27.000Z",
-    "textPlain": "Current thought, for me there's a lot of hand-wringing about what is \"reasoning\" and what isn't.  But right now perhaps the question might be boiled down to -- \"is the bottleneck merely hard drive space/memory/computing speed?\"I kind of feel like we won't be able to even begin to test this until a few more \"Moore's law\" cycles.",
-    "parent": 44900340,
-    "depth": 1
-  },
-  {
     "id": 44903349,
     "by": "LudwigNagasena",
     "timeISO": "2025-08-14T17:40:30.000Z",
@@ -16,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44901981,
-    "by": "stonemetal12",
-    "timeISO": "2025-08-14T15:56:17.000Z",
-    "textPlain": "When Using AI they say \"Context is King\".  \"Reasoning\" models are using the AI to generate context.  They are not reasoning in the sense of logic, or philosophy. Mirage, whatever you want to call it, it is rather unlike what people mean when they use the term reasoning. Calling it reasoning is up there with calling generating out put people don't like hallucinations.",
-    "parent": 44900340,
-    "depth": 1
-  },
-  {
     "id": 44903117,
     "by": "brunokim",
     "timeISO": "2025-08-14T17:21:04.000Z",
     "textPlain": "I'm unconvinced by the article criticism's, given they also employ their feels and few citations.> I appreciate that research has to be done on small models, but we know that reasoning is an emergent capability! (...) Even if you grant that what they’re measuring is reasoning, I am profoundly unconvinced that their results will generalize to a 1B, 10B or 100B model.A fundamental part of applied research is simplifying a real-world phenomenon to better understand it. Dismissing that for this many parameters, for such a simple problem, the LLM can't perform out of distribution just because it's not big enough undermines the very value of independent research. Tomorrow another model with double the parameters may or may not show the same behavior, but that finding will be built on top of this one.Also, how do _you_ know that reasoning is emergent, and not rationalising on top of a compressed version of the web stored in 100B parameters?",
+    "parent": 44900340,
+    "depth": 1
+  },
+  {
+    "id": 44904107,
+    "by": "js8",
+    "timeISO": "2025-08-14T18:47:56.000Z",
+    "textPlain": "I think LLM's chain of thought is reasoning. When trained, LLM sees lot of examples like \"All men are mortal. Socrates is a man.\" followed by \"Therefore, Socrates is mortal.\". This causes the transformer to learn rule \"All A are B. C is A.\" is often followed by \"Therefore, C is B.\" And so it can apply this logical rule, predictively. (I have converted the example from latent space to human language for clarity.)Unfortunately, sometimes LLM also learns \"All A are C. All B are C.\" is followed by \"Therefore, A is B.\", due to bad example in the training data. (More insidiously, it might learn this rule only in a special case.)So it learns some logic rules but not consistently. This lack of consistency will cause it to fail on larger problems.I think NNs (transformers) could be great in heuristic suggesting which valid logical rules (could be even modal or fuzzy logic) to apply in order to solve a certain formalized problem, but not so great at coming up with the logic rules themselves. They could also be great at transforming the original problem/question from human language into some formal logic, that would then be resolved using heuristic search.",
     "parent": 44900340,
     "depth": 1
   },
@@ -56,6 +48,14 @@
     "depth": 1
   },
   {
+    "id": 44901981,
+    "by": "stonemetal12",
+    "timeISO": "2025-08-14T15:56:17.000Z",
+    "textPlain": "When Using AI they say \"Context is King\".  \"Reasoning\" models are using the AI to generate context.  They are not reasoning in the sense of logic, or philosophy. Mirage, whatever you want to call it, it is rather unlike what people mean when they use the term reasoning. Calling it reasoning is up there with calling generating out put people don't like hallucinations.",
+    "parent": 44900340,
+    "depth": 1
+  },
+  {
     "id": 44902182,
     "by": "skybrian",
     "timeISO": "2025-08-14T16:10:44.000Z",
@@ -64,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44902440,
-    "by": "sixdimensional",
-    "timeISO": "2025-08-14T16:29:48.000Z",
-    "textPlain": "I feel like the fundamental concept of symbolic logic[1] as a means of reasoning fits within the capabilities of LLMs.Whether it's a mirage or not, the ability to produce a symbolically logical result that has valuable meaning seems real enough to me.Especially since most meaning is assigned by humans onto the world... so too can we choose to assign meaning (or not) to the output of a chain of symbolic logic processing?Edit: maybe it is not so much that an LLM calculates/evaluates the result of symbolic logic as it is that it \"follows\" the pattern of logic encoded into the model.[1] https://en.wikipedia.org/wiki/Logic",
+    "id": 44902355,
+    "by": "slashdave",
+    "timeISO": "2025-08-14T16:23:11.000Z",
+    "textPlain": "> reasoning probably requires language useThe author has a curious idea of what \"reasoning\" entails.",
     "parent": 44900340,
     "depth": 1
   },
@@ -88,10 +88,10 @@
     "depth": 1
   },
   {
-    "id": 44902355,
-    "by": "slashdave",
-    "timeISO": "2025-08-14T16:23:11.000Z",
-    "textPlain": "> reasoning probably requires language useThe author has a curious idea of what \"reasoning\" entails.",
+    "id": 44902440,
+    "by": "sixdimensional",
+    "timeISO": "2025-08-14T16:29:48.000Z",
+    "textPlain": "I feel like the fundamental concept of symbolic logic[1] as a means of reasoning fits within the capabilities of LLMs.Whether it's a mirage or not, the ability to produce a symbolically logical result that has valuable meaning seems real enough to me.Especially since most meaning is assigned by humans onto the world... so too can we choose to assign meaning (or not) to the output of a chain of symbolic logic processing?Edit: maybe it is not so much that an LLM calculates/evaluates the result of symbolic logic as it is that it \"follows\" the pattern of logic encoded into the model.[1] https://en.wikipedia.org/wiki/Logic",
     "parent": 44900340,
     "depth": 1
   },
@@ -100,6 +100,14 @@
     "by": "mentalgear",
     "timeISO": "2025-08-14T15:19:19.000Z",
     "textPlain": "> Whether AI reasoning is “real” reasoning or just a mirage can be an interesting question, but it is primarily a philosophical question. It depends on having a clear definition of what “real” reasoning is, exactly.It's pretty easy: causal reasoning. Causal, not statistic correlation only as LLM do, with or without \"CoT\".",
+    "parent": 44900340,
+    "depth": 1
+  },
+  {
+    "id": 44903971,
+    "by": "jrm4",
+    "timeISO": "2025-08-14T18:34:27.000Z",
+    "textPlain": "Current thought, for me there's a lot of hand-wringing about what is \"reasoning\" and what isn't.  But right now perhaps the question might be boiled down to -- \"is the bottleneck merely hard drive space/memory/computing speed?\"I kind of feel like we won't be able to even begin to test this until a few more \"Moore's law\" cycles.",
     "parent": 44900340,
     "depth": 1
   },
@@ -120,18 +128,18 @@
     "depth": 1
   },
   {
-    "id": 44903578,
-    "by": "cess11",
-    "timeISO": "2025-08-14T17:59:04.000Z",
-    "textPlain": "Yes, it's a mirage, since this type of software is an opaque simulation, perhaps even a simulacra. It's reasoning in the same sense as there are terrorists in a game of Counter-Strike.",
+    "id": 44904030,
+    "by": "j45",
+    "timeISO": "2025-08-14T18:40:38.000Z",
+    "textPlain": "Currently it feels like it's more simulated chain-of-thought / reasoning, sometimes very consistent, but simulated, partially because it's statistically generated and non-deterministic (not the exact same path to the similar or same each response run).",
     "parent": 44900340,
     "depth": 1
   },
   {
-    "id": 44901478,
-    "by": "empath75",
-    "timeISO": "2025-08-14T15:21:07.000Z",
-    "textPlain": "One thing that LLMs have exposed is how much of a house of cards all of our definitions of \"human mind\"-adjacent concepts are.  We have a single example in all of reality of a being that thinks like we do, and so all of our definitions of thinking are inextricably tied with \"how humans think\", and now we have an entity that does things which seem to be very like how we think, but not _exactly like it_, and a lot of our definitions don't seem to work any more:Reasoning, thinking, knowing, feeling, understanding, etc.Or at the very least, our rubrics and heuristics for determining if someone (thing) thinks, feels, knows, etc, no longer work.  And in particular, people create tests for those things thinking that they understand what they are testing for, when _most human beings_ would also fail those tests.I think a _lot_ of really foundational work needs to be done on clearly defining a lot of these terms and putting them on a sounder basis before we can really move forward on saying whether machines can do those things.",
+    "id": 44903578,
+    "by": "cess11",
+    "timeISO": "2025-08-14T17:59:04.000Z",
+    "textPlain": "Yes, it's a mirage, since this type of software is an opaque simulation, perhaps even a simulacra. It's reasoning in the same sense as there are terrorists in a game of Counter-Strike.",
     "parent": 44900340,
     "depth": 1
   },
@@ -160,6 +168,14 @@
     "depth": 1
   },
   {
+    "id": 44901478,
+    "by": "empath75",
+    "timeISO": "2025-08-14T15:21:07.000Z",
+    "textPlain": "One thing that LLMs have exposed is how much of a house of cards all of our definitions of \"human mind\"-adjacent concepts are.  We have a single example in all of reality of a being that thinks like we do, and so all of our definitions of thinking are inextricably tied with \"how humans think\", and now we have an entity that does things which seem to be very like how we think, but not _exactly like it_, and a lot of our definitions don't seem to work any more:Reasoning, thinking, knowing, feeling, understanding, etc.Or at the very least, our rubrics and heuristics for determining if someone (thing) thinks, feels, knows, etc, no longer work.  And in particular, people create tests for those things thinking that they understand what they are testing for, when _most human beings_ would also fail those tests.I think a _lot_ of really foundational work needs to be done on clearly defining a lot of these terms and putting them on a sounder basis before we can really move forward on saying whether machines can do those things.",
+    "parent": 44900340,
+    "depth": 1
+  },
+  {
     "id": 44902217,
     "by": "pinoy420",
     "timeISO": "2025-08-14T16:12:42.000Z",
@@ -168,18 +184,18 @@
     "depth": 1
   },
   {
-    "id": 44903633,
-    "by": "safety1st",
-    "timeISO": "2025-08-14T18:03:41.000Z",
-    "textPlain": "I'm pretty much a layperson in this field, but I don't understand why we're trying to teach a stochastic text transformer to reason. Why would anyone expect that approach to work?I would have thought the more obvious approach would be to couple it to some kind of symbolic logic engine. It might transform plain language statements into fragments conforming to a syntax which that engine could then parse deterministically. This is the Platonic ideal of reasoning that the author of the post pooh-poohs, I guess, but it seems to me to be the whole point of reasoning; reasoning is the application of logic in evaluating a proposition. The LLM might be trained to generate elements of the proposition, but it's too random to apply logic.",
-    "parent": 44903349,
-    "depth": 2
-  },
-  {
     "id": 44903511,
     "by": "vmg12",
     "timeISO": "2025-08-14T17:55:01.000Z",
     "textPlain": "Solutions to some of the hardest problems I've had have only come after a night of sleep or when I'm out on a walk and I'm not even thinking about the problem. Maybe what my brain was doing was something different from reasoning?",
+    "parent": 44903349,
+    "depth": 2
+  },
+  {
+    "id": 44903633,
+    "by": "safety1st",
+    "timeISO": "2025-08-14T18:03:41.000Z",
+    "textPlain": "I'm pretty much a layperson in this field, but I don't understand why we're trying to teach a stochastic text transformer to reason. Why would anyone expect that approach to work?I would have thought the more obvious approach would be to couple it to some kind of symbolic logic engine. It might transform plain language statements into fragments conforming to a syntax which that engine could then parse deterministically. This is the Platonic ideal of reasoning that the author of the post pooh-poohs, I guess, but it seems to me to be the whole point of reasoning; reasoning is the application of logic in evaluating a proposition. The LLM might be trained to generate elements of the proposition, but it's too random to apply logic.",
     "parent": 44903349,
     "depth": 2
   },
@@ -197,46 +213,6 @@
     "timeISO": "2025-08-14T18:20:05.000Z",
     "textPlain": "[dead]",
     "parent": 44903349,
-    "depth": 2
-  },
-  {
-    "id": 44902013,
-    "by": "adastra22",
-    "timeISO": "2025-08-14T15:58:48.000Z",
-    "textPlain": "You are making the same mistake OP is calling out. As far as I can tell “generating context” is exactly what human reasoning is too. Consider the phrase “let’s reason this out” where you then explore all options in detail, before pronouncing your judgement. Feels exactly like what the AI reasoner is doing.",
-    "parent": 44901981,
-    "depth": 2
-  },
-  {
-    "id": 44903353,
-    "by": "benreesman",
-    "timeISO": "2025-08-14T17:40:57.000Z",
-    "textPlain": "People will go to extremely great lengths to debate the appropriate analogy for how these things work, which is fun I guess but in a \"get high with a buddy\" sense at least to my taste.Some of how they work is well understood (a lot now, actually), some of the outcomes are still surprising.But we debate both the well understood parts and the surprising parts both with the wrong terminology borrowed from pretty dubious corners of pop cognitive science, and not with terminology appropriate to the new and different thing! It's nothing like a brain, it's a new different thing. Does it think or reason? Who knows pass the blunt.They do X performance on Y task according to Z eval, that's how you discuss ML model capability if you're persuing understanding rather than fundraising or clicks.",
-    "parent": 44901981,
-    "depth": 2
-  },
-  {
-    "id": 44903028,
-    "by": "ofjcihen",
-    "timeISO": "2025-08-14T17:14:25.000Z",
-    "textPlain": "It’s incredible to me that so many seem to have fallen for “humans are just LLMs bruh” argument but I think I’m beginning to understand the root of the issue.People who only “deeply” study technology only have that frame of reference to view the world so they make the mistake of assuming everything must work that way, including humans.If they had a wider frame of reference that included, for example, Early Childhood Development, they might have enough knowledge to think outside of this box and know just how ridiculous that argument is.",
-    "parent": 44901981,
-    "depth": 2
-  },
-  {
-    "id": 44903285,
-    "by": "cyanydeez",
-    "timeISO": "2025-08-14T17:35:21.000Z",
-    "textPlain": "They should call them Fuzzing models. They're just running through varioous iterations of the context until they hit a token that trips them out.",
-    "parent": 44901981,
-    "depth": 2
-  },
-  {
-    "id": 44902180,
-    "by": "bongodongobob",
-    "timeISO": "2025-08-14T16:10:38.000Z",
-    "textPlain": "And yet it improves their problem solving ability.",
-    "parent": 44901981,
     "depth": 2
   },
   {
@@ -280,11 +256,43 @@
     "depth": 2
   },
   {
-    "id": 44902220,
-    "by": "CuriouslyC",
-    "timeISO": "2025-08-14T16:13:09.000Z",
-    "textPlain": "They're already implementing branching thought and taking the best one, eventually the entire response will be branched, with branches being spawned and culled by some metric over the lifetime of the completion. It's just not feasible now for performance reasons.",
-    "parent": 44901378,
+    "id": 44902013,
+    "by": "adastra22",
+    "timeISO": "2025-08-14T15:58:48.000Z",
+    "textPlain": "You are making the same mistake OP is calling out. As far as I can tell “generating context” is exactly what human reasoning is too. Consider the phrase “let’s reason this out” where you then explore all options in detail, before pronouncing your judgement. Feels exactly like what the AI reasoner is doing.",
+    "parent": 44901981,
+    "depth": 2
+  },
+  {
+    "id": 44903353,
+    "by": "benreesman",
+    "timeISO": "2025-08-14T17:40:57.000Z",
+    "textPlain": "People will go to extremely great lengths to debate the appropriate analogy for how these things work, which is fun I guess but in a \"get high with a buddy\" sense at least to my taste.Some of how they work is well understood (a lot now, actually), some of the outcomes are still surprising.But we debate both the well understood parts and the surprising parts both with the wrong terminology borrowed from pretty dubious corners of pop cognitive science, and not with terminology appropriate to the new and different thing! It's nothing like a brain, it's a new different thing. Does it think or reason? Who knows pass the blunt.They do X performance on Y task according to Z eval, that's how you discuss ML model capability if you're persuing understanding rather than fundraising or clicks.",
+    "parent": 44901981,
+    "depth": 2
+  },
+  {
+    "id": 44903028,
+    "by": "ofjcihen",
+    "timeISO": "2025-08-14T17:14:25.000Z",
+    "textPlain": "It’s incredible to me that so many seem to have fallen for “humans are just LLMs bruh” argument but I think I’m beginning to understand the root of the issue.People who only “deeply” study technology only have that frame of reference to view the world so they make the mistake of assuming everything must work that way, including humans.If they had a wider frame of reference that included, for example, Early Childhood Development, they might have enough knowledge to think outside of this box and know just how ridiculous that argument is.",
+    "parent": 44901981,
+    "depth": 2
+  },
+  {
+    "id": 44903285,
+    "by": "cyanydeez",
+    "timeISO": "2025-08-14T17:35:21.000Z",
+    "textPlain": "They should call them Fuzzing models. They're just running through varioous iterations of the context until they hit a token that trips them out.",
+    "parent": 44901981,
+    "depth": 2
+  },
+  {
+    "id": 44902180,
+    "by": "bongodongobob",
+    "timeISO": "2025-08-14T16:10:38.000Z",
+    "textPlain": "And yet it improves their problem solving ability.",
+    "parent": 44901981,
     "depth": 2
   },
   {
@@ -292,6 +300,14 @@
     "by": "dkersten",
     "timeISO": "2025-08-14T15:29:59.000Z",
     "textPlain": "Agree! I’m not an AI engineer or researcher, but it always struck me as odd that we would serialise the 100B or whatever parameters of latent space down to maximum 1M tokens and back for every step.",
+    "parent": 44901378,
+    "depth": 2
+  },
+  {
+    "id": 44902220,
+    "by": "CuriouslyC",
+    "timeISO": "2025-08-14T16:13:09.000Z",
+    "textPlain": "They're already implementing branching thought and taking the best one, eventually the entire response will be branched, with branches being spawned and culled by some metric over the lifetime of the completion. It's just not feasible now for performance reasons.",
     "parent": 44901378,
     "depth": 2
   },
@@ -336,10 +352,18 @@
     "depth": 2
   },
   {
-    "id": 44903520,
-    "by": "gilbetron",
-    "timeISO": "2025-08-14T17:55:30.000Z",
-    "textPlain": "I agree 100% with you. I'm most excited about LLMs because they seem to capture at least some aspect of intelligence, and that's amazing given how much long it took to get here. It's exciting that we don't just understand it.I see people say, \"LLMs aren't human intelligence\", but instead, I really feel that it shows that many people, and much of what we do, probably is like an LLM. Most people just hallucinate their way through a conversation, they certainly don't reason. Reasoning is incredibly rare.",
+    "id": 44901773,
+    "by": "mwkaufma",
+    "timeISO": "2025-08-14T15:41:36.000Z",
+    "textPlain": "Betteridge's law applies to editors adding question marks to cover-the-ass of articles with weak claims, not bloggers begging questions.",
+    "parent": 44901259,
+    "depth": 2
+  },
+  {
+    "id": 44902088,
+    "by": "mdp2021",
+    "timeISO": "2025-08-14T16:03:23.000Z",
+    "textPlain": "> which seem to be very like how we thinkI would like to reassure you that we - we here - see LLMs are very much unlike us.",
     "parent": 44901478,
     "depth": 2
   },
@@ -352,19 +376,11 @@
     "depth": 2
   },
   {
-    "id": 44902088,
-    "by": "mdp2021",
-    "timeISO": "2025-08-14T16:03:23.000Z",
-    "textPlain": "> which seem to be very like how we thinkI would like to reassure you that we - we here - see LLMs are very much unlike us.",
+    "id": 44903520,
+    "by": "gilbetron",
+    "timeISO": "2025-08-14T17:55:30.000Z",
+    "textPlain": "I agree 100% with you. I'm most excited about LLMs because they seem to capture at least some aspect of intelligence, and that's amazing given how much long it took to get here. It's exciting that we don't just understand it.I see people say, \"LLMs aren't human intelligence\", but instead, I really feel that it shows that many people, and much of what we do, probably is like an LLM. Most people just hallucinate their way through a conversation, they certainly don't reason. Reasoning is incredibly rare.",
     "parent": 44901478,
-    "depth": 2
-  },
-  {
-    "id": 44901773,
-    "by": "mwkaufma",
-    "timeISO": "2025-08-14T15:41:36.000Z",
-    "textPlain": "Betteridge's law applies to editors adding question marks to cover-the-ass of articles with weak claims, not bloggers begging questions.",
-    "parent": 44901259,
     "depth": 2
   }
 ]

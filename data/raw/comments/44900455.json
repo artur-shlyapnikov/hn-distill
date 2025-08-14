@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44901223,
-    "by": "wirybeige",
-    "timeISO": "2025-08-14T15:02:05.000Z",
-    "textPlain": "I think this is the first blog on JJ that has made me want to use it. The flow seems like it could be quite a bit better than git",
-    "parent": 44900455,
-    "depth": 1
-  },
-  {
     "id": 44901184,
     "by": "WolfeReader",
     "timeISO": "2025-08-14T14:58:16.000Z",
     "textPlain": "Jujutsu is so good. I'm using a megamerge workflow and absolutely loving it!",
+    "parent": 44900455,
+    "depth": 1
+  },
+  {
+    "id": 44901223,
+    "by": "wirybeige",
+    "timeISO": "2025-08-14T15:02:05.000Z",
+    "textPlain": "I think this is the first blog on JJ that has made me want to use it. The flow seems like it could be quite a bit better than git",
     "parent": 44900455,
     "depth": 1
   },
@@ -72,6 +72,30 @@
     "depth": 1
   },
   {
+    "id": 44904205,
+    "by": "sestep",
+    "timeISO": "2025-08-14T18:56:03.000Z",
+    "textPlain": "I really like all the concepts and have only heard good things, so I tried it but wasn't able to figure out how to use it as effectively as I can use Git. Specifically, I use VS Code and do a lot of stuff with the IDE's builtin support for selecting specific parts of files to stage, and I was hoping to be able to do something similar for jj split. I asked the Jujutsu Kaizen devs on Discord and they said that isn't currently implemented. They did also mention that VisualJJ might have more what I want, but I'm reluctant to switch to JJ only to have to rely on a closed-source tool.Are there others who've previously made heavy use of VS Code's builtin Git staging support and have successfully migrated to JJ? Anything I'm missing?",
+    "parent": 44901747,
+    "depth": 2
+  },
+  {
+    "id": 44904274,
+    "by": "diarrhea",
+    "timeISO": "2025-08-14T19:01:59.000Z",
+    "textPlain": "One of my favorite features of jj is file watching. Once set up, jj will snapshot the repo on every filesystem event. This means on every file save, you get a git commit! It provides arbitrarily fine-grained commit history, and works across all tools (not just your IDE). I set it up in the config and it has \"just worked\" ever since.The result is that `jj evolog -p` will show detailed history of your actions. But all but the most recent commit are hidden, so neatly tucked away behind the same change as usual.Another favorite is git no longer yelling at me and having meltdowns about switching branches - \"files would be overwritten, please stash\". This never happens in jj, by design. It's nicer than \"auto-stash\" options of recent git versions.",
+    "parent": 44901747,
+    "depth": 2
+  },
+  {
+    "id": 44904404,
+    "by": "prerok",
+    "timeISO": "2025-08-14T19:13:01.000Z",
+    "textPlain": "Ok, so I have to admit I started skimming soon, because after explanation of `jj new`, I thought this is just `git commit --allow-empty`. Oh, and you can specify the message! Add `-m` and you are done.Then it's a series of either git ammends or `git checkout -b` etc.Now, since there is so much high praise in this comment and sibling comments, what am I really missing? From the post it just seems like the person hates branches for an unspecified reason.Here's my workflow, of the past 15 years:- git checkout main\n- git pullDo some changes. Do some more changes. Now:- git checkout -b <feature-name>\n- git status\n- gvim into every file and then :Gvdiffsplit, select what I want to stage for each file\n- git push # open PR if I think it's readyFor the remaining changes not in the commit, I either create a separate commit, or discard.An honest question of curiosity, how does jj improve this workflow?",
+    "parent": 44901223,
+    "depth": 2
+  },
+  {
     "id": 44901933,
     "by": "watusername",
     "timeISO": "2025-08-14T15:52:57.000Z",
@@ -85,6 +109,14 @@
     "timeISO": "2025-08-14T16:13:22.000Z",
     "textPlain": "I really hope they don't add submodule support. There's an opportunity to do something that works properly!",
     "parent": 44900619,
+    "depth": 2
+  },
+  {
+    "id": 44904108,
+    "by": "landr0id",
+    "timeISO": "2025-08-14T18:47:59.000Z",
+    "textPlain": "Did you reach out to `git` commands to make changes to the repo? If you use jj in a colocated repo you should _only_ use jj to manage the repo to ensure it's kept in-sync with jj's data.If you messed up with jj commands, you can use the op log to fix https://jj-vcs.github.io/jj/latest/operation-log/",
+    "parent": 44902579,
     "depth": 2
   },
   {
