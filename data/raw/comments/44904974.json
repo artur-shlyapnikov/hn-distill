@@ -8,18 +8,26 @@
     "depth": 1
   },
   {
-    "id": 44905768,
-    "by": "ripley12",
-    "timeISO": "2025-08-14T21:14:56.000Z",
-    "textPlain": "I work in this space and I was not able to understand how this project works in a couple minutes. The README feels LLM-generated. I think you're supposed to point this at your MCP server's code and not the server itself, is that right?",
-    "parent": 44904974,
-    "depth": 1
-  },
-  {
     "id": 44905918,
     "by": "simonw",
     "timeISO": "2025-08-14T21:29:09.000Z",
     "textPlain": "> Would love feedback - what MCP security issues have you seen?For me the number one problem with MCP security is the lethal trifecta - the fact that it's so easy to combine MCPs from different vendors (or even from the same vectors) that provide exposure to potentially untrusted/malicious instructions in a way that can then trigger exfiltration of private data.https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/https://simonwillison.net/2025/Aug/9/bay-area-ai/I don't know how we can solve this with more technology - it seems to me to be baked into the very concept of how MCP works.",
+    "parent": 44904974,
+    "depth": 1
+  },
+  {
+    "id": 44906583,
+    "by": "sharathr",
+    "timeISO": "2025-08-14T22:43:52.000Z",
+    "textPlain": "Looks like Ramparts which solves these issues and is written in fast RUST instead of python. https://github.com/getjavelin/ramparts",
+    "parent": 44904974,
+    "depth": 1
+  },
+  {
+    "id": 44905768,
+    "by": "ripley12",
+    "timeISO": "2025-08-14T21:14:56.000Z",
+    "textPlain": "I work in this space and I was not able to understand how this project works in a couple minutes. The README feels LLM-generated. I think you're supposed to point this at your MCP server's code and not the server itself, is that right?",
     "parent": 44904974,
     "depth": 1
   },
@@ -46,6 +54,14 @@
     "textPlain": "This is definitely valuable. I started paying attention to MCP security vulnerabilities largely because of Defcon. I believe that they largely focused on Agentic Security as a theme this time around.It's a bit mind blowing how we've simply accepted non-technical people within orgs in particular executing code to \"automate their tasks\" without the same level of rigor that normal code reviews go through. Definitely think that this is a cultural issue that we must fix.And these MCP vulnerabilities in particular seem much scarier because almost all MCP tools require an insane amount of permissions.",
     "parent": 44904974,
     "depth": 1
+  },
+  {
+    "id": 44906435,
+    "by": "tptacek",
+    "timeISO": "2025-08-14T22:27:24.000Z",
+    "textPlain": "I'm going to pick a fight on this one; I think you know I'm a fan, so take this in the spirit I intend†.My contention is that \"lethal trifecta\" is the AI equivalent of self-XSS. It's not apparent yet, because all this stuff is just months old, but a year from now we'll be floored by the fact that people just aimed Cursor or Claude Code at a prod database.To my lights, the core security issue with tool/function calling in agents isn't MCP; it's context hygiene. Because people aren't writing their own agents, they're convinced that the single-visible-context-window idiom of tools like Cursor are just how these systems work. But a context is just a list of strings. You can have as any of them in an agent as you want.Once you've got untrusted data hitting one context window, and sensitive tool calls isolated in another context window, the problem of securing the system isn't much different than it is with a traditional web application; some deterministic code that a human reviewed and pentested mediates between those contexts, transforming untrusted inputs into trustable commands for the sensitive context.That's not a trivial task, but it's the same task as we do now when, for instance, we need to generate a PDF invoice in an invoicing application. Pentesters find vulnerabilities in those apps! But it's not a news story when it happens, so much.† More a note for other people who might thing I'm being irritable. :)",
+    "parent": 44905918,
+    "depth": 2
   },
   {
     "id": 44905197,

@@ -1,5 +1,13 @@
 [
   {
+    "id": 44906447,
+    "by": "rvrb",
+    "timeISO": "2025-08-14T22:28:38.000Z",
+    "textPlain": "I haven't worked with GTK, but what you are describing here sounds reminiscent of what we have been dealing with trying to build Godot bindings in Zig with a nice API. the project is in mid-flight, but Godot:  - has tons of OOP concepts: classes, virtual methods, properties, signals, etc\n  - a C API to work with all of those concepts, define your own objects, properties, and so on\n  - manages the lifetimes of any engine objects (you can attach userdata to any of them)\n  - a whole tree of reference counted objects\n\nit's a huge headache trying to figure out how to tie it into Zig idioms in a way that is an optimal API (specifically, dealing with lifetimes). we've come pretty far, but I am wondering if you have any additional insights or code snippets I should look at.working on this problem produced this library, which I am not proud of: https://github.com/gdzig/oopzhere's a snippet that kind of demonstrates the state of the API at the moment: https://github.com/gdzig/gdzig/blob/master/example/src/Signa...also.. now I want to attempt to write a Ghostty frontend as a Godot extension",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
     "id": 44906189,
     "by": "crawshaw",
     "timeISO": "2025-08-14T21:59:32.000Z",
@@ -16,10 +24,58 @@
     "depth": 1
   },
   {
+    "id": 44906609,
+    "by": "Footnote7341",
+    "timeISO": "2025-08-14T22:45:59.000Z",
+    "textPlain": "I managed to write a fairly large GTK application without the GTK type system encroaching on my code at all. It just meant hooking a bunch of lambdas in where they want you to be inheriting from and extending their own classes to allow all the parts to communicate together.In the end it wasn't that messy, but probably confusing for anyone used to writing dogmatic GTK applications.",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44906777,
+    "by": "ripley12",
+    "timeISO": "2025-08-14T23:06:15.000Z",
+    "textPlain": "> This has already led to more easily introducing GUI features like a new GTK titlebar tabs optionYes! This is huge, I previously gave up on Ghostty because the title bar wasted so much space on my laptop screen: https://bsky.app/profile/reillywood.bsky.social/post/3lebapf...I found the PR in case anyone else is curious what the new functionality looks like: https://github.com/ghostty-org/ghostty/pull/8166",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44906410,
+    "by": "schmichael",
+    "timeISO": "2025-08-14T22:24:18.000Z",
+    "textPlain": "I'm curious if Rust would have prevented the memory correctness errors assuming it replaced Zig in this scenario. It sounds like the vast majority were due to Zig/C interactions which makes me believe Rust would have had the same issues, but as a Go developer I am only guessing. I'm curious if there is a language that provides more tools to ensure correctness even when you're interacting with a huge amount of C.",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44906538,
+    "by": "jwar767",
+    "timeISO": "2025-08-14T22:38:33.000Z",
+    "textPlain": "We had a similar experience to this at work. We wrote a google cloud service that interfaced with firestore using F# and found it painful because the firestore library is meant to be used with C#. It worked decently well but it was hard to write idiomatic F# without having a bunch of wrapping functions.",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
     "id": 44906349,
     "by": "8f2ab37a-ed6c",
     "timeISO": "2025-08-14T22:18:45.000Z",
     "textPlain": "Been a happy Ghostty user for a couple of months, it's my daily driver now as far as macOS terminals go. Thanks for all the hard work Mitchell & team.",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44906776,
+    "by": "LeSaucy",
+    "timeISO": "2025-08-14T23:06:03.000Z",
+    "textPlain": "I'll take QObject over GObject any day of the week.",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44906421,
+    "by": "WD-42",
+    "timeISO": "2025-08-14T22:25:09.000Z",
+    "textPlain": "Very nice writeup! I was actually just wondering what was going on with Ghostty, I've been daily driving it since initial release but I haven't noticed any updates since then (not that anything is particularly lacking, it's a great terminal!)Good to hear the Mitchell and the team are still hacking away at it! Thanks for the great software!",
     "parent": 44905808,
     "depth": 1
   },
@@ -40,6 +96,38 @@
     "depth": 2
   },
   {
+    "id": 44906860,
+    "by": "cosmic_cheese",
+    "timeISO": "2025-08-14T23:17:23.000Z",
+    "textPlain": "In my view the primary reason for GTK’s prominence on Linux rides on one thing primarily: it’s got C bindings, and thus it has decent bindings for just about every other language under the sun too. If you’re not trying for anything fancy, these bindings can even be auto-generated.The runner up Qt is much more tightly tied to C++ and Python to its detriment. You really need to meet devs where they’re at instead of insisting that they adopt a particular language to use your UI toolkit.Aside from that, at the end of the day, if you’re building a full fat complex desktop app an old style imperative UI toolkit is probably one of the more practical choices you can make. They have an exhaustive set of battle tested, accessible widgets built in and their pitfalls are well known. Newer approaches expect you to write or import everything and start requiring increased contortions from the developer past a certain point of complexity.",
+    "parent": 44906288,
+    "depth": 2
+  },
+  {
+    "id": 44906453,
+    "by": "mitchellh",
+    "timeISO": "2025-08-14T22:28:55.000Z",
+    "textPlain": "Hi @schmichael ;) Rust would've prevented one. The rest Rust wouldn't have prevented since as you already noticed, it was in the boundary layer and semantics of a C API. It would've only been as safe as the Rust wrapper. One argument is that the richer, more proven ecosystem of wrapper libraries may have prevented it versus my DIY wrappers.The one Rust would've prevented was a simple undefined memory access: https://github.com/ghostty-org/ghostty/pull/7982 (At least, I'm pretty sure Rust would've caught this). In practice, it meant that we were copying garbage memory on the first rendered frame, but that memory wasn't used or sent anywhere so in practice it was mostly safe. Still, its not correct!",
+    "parent": 44906410,
+    "depth": 2
+  },
+  {
+    "id": 44906437,
+    "by": "WD-42",
+    "timeISO": "2025-08-14T22:27:29.000Z",
+    "textPlain": "I think one of the main points of the article was about how shockingly few memory issues they have encountered. He talks about how great of a fit zig + valgrind is.",
+    "parent": 44906410,
+    "depth": 2
+  },
+  {
+    "id": 44906594,
+    "by": "mitchellh",
+    "timeISO": "2025-08-14T22:44:28.000Z",
+    "textPlain": "Hold onto your butts cause 1.2 is weeks away and the release notes if printed would cause a [larger than we already have] deforestation problem.",
+    "parent": 44906421,
+    "depth": 2
+  },
+  {
     "id": 44906308,
     "by": "mitchellh",
     "timeISO": "2025-08-14T22:12:04.000Z",
@@ -52,6 +140,14 @@
     "by": "Lerc",
     "timeISO": "2025-08-14T22:17:37.000Z",
     "textPlain": "I went on a big meandering hunt for a terminal application that did what I wanted.  I have tried many and while nothing perfectly met my needs, Ghostty is the one I am using now.That counts for something.Perhaps it is just it lacks an obvious reason to move away from it.   Usually, the thing that made me try another terminal was because of something I couldn't do.  It wasn't a matter of listing all the pros and cons and going with the best one.  It has just found a home with me because it hasn't outstayed its welcome.",
+    "parent": 44906138,
+    "depth": 2
+  },
+  {
+    "id": 44906484,
+    "by": "alberth",
+    "timeISO": "2025-08-14T22:31:47.000Z",
+    "textPlain": "In addition to what others have said (positively), ‘libghostty’ is also a game changer.It’s like the “WebKit” for terminal, as I understand it.Anyone could drop-in libghostty, and immediately have a fully functional terminal.",
     "parent": 44906138,
     "depth": 2
   },

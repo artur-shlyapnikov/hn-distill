@@ -1,0 +1,8 @@
+{
+  "id": 44906305,
+  "lang": "ru",
+  "summary": "**Проблема**  \nНа ноутбуках Mac с «чёлкой» большинство игр по умолчанию выбирают разрешение всего экрана (включая область под чёлкой), хотя рисовать можно только ниже неё. Из-за этого картинка сжимается и размывается. API `CGDisplayCopyAllDisplayModes` выдаёт смешанный список: полные и фактически доступные 16:10-режимы, но без пометок. Разница в высоте всего 74 px, но её достаточно, чтобы всё выглядело мутно.\n\n**Решение**  \nИгрокам: в настройках графики выбирайте 16:10-разрешение.  \nРазработчикам: фильтруйте список режимов, оставляя только те, что помещаются в safe-area. Пример:\n\n```swift\nextension NSScreen {\n    func safeAreaResolutions() -> [CGDisplayMode] {\n        let w = frame.width - safeAreaInsets.left - safeAreaInsets.right\n        let h = frame.height - safeAreaInsets.top - safeAreaInsets.bottom\n        return CGDisplayCopyAllDisplayModes(...)?\n            .filter { $0.width <= w && $0.height <= h } ?? []\n    }\n}\n```\n\n**Какие игры страдают**  \nПрактически все, если не задан 16:10 вручную: Shadow of the Tomb Raider, Resident Evil, No Man’s Sky и др.\n\n**Что может сделать Apple**  \n- Разделить списки режимов или пометить их флагом.  \n- Добавить `CGDisplayModeGetUsableBounds`.  \n- Сделать 16:10-режим выбором по умолчанию для полноэкранных игр.",
+  "inputHash": "ce09b426651461e734bbe065f8d0edc26e879b4d7454ac1e7aadb88d369f114e",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-14T23:22:54.635Z"
+}
