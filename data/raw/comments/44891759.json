@@ -24,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44895652,
-    "by": "birdfood",
-    "timeISO": "2025-08-14T00:58:59.000Z",
-    "textPlain": "OCaml is probably my favourite language.The most involved project I did with it was a CRUD app for organising Writer's Festivals.The app was 100% OCaml (ReasonML so I could get JSX) + Dream + HTMX + DataTables. I used modules to get reusable front end templates. I loved being able to make a change to one of my data models and have the compiler tell me almost instantly where the change broke the front end. The main value of the app was getting data out of excel into a structured database, but I was also able to provide templated and branded itineraries in .odt format, create in memory zipped downloads so that I didn't need to touch the server disk. I was really impressed by how much I could achieve with the ecosystem.But having to write all my database queries in strings and then marshal the data through types was tiring (and effectively not compile time type checked) and I had to roll my own auth. I often felt like I was having to work on things that were not core to the product I was trying to build.I've spent a few years bouncing around different languages and I think my take away is that there is no perfect language. They all suck in their own special way.Now I'm building an app just for me and I'm using Rails. Pretty much everything I've wanted to reach for has a good default answer. I really feel like I'm focused on what is relevant to the product I'm building and I'm thinking about things unrelated to language like design layout and actually shipping the thing.",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
     "id": 44892977,
     "by": "garbthetill",
     "timeISO": "2025-08-13T19:49:43.000Z",
     "textPlain": "What a brilliant article, it really puts to rest for me, the whole “why not use F#?” argument. In almost every OCaml thread, someone suggests F# as a way to sidestep OCaml’s tooling.I’ve always been curious about OCaml, especially since some people call it “Go with types” and I’m not a fan of writing Rust. But I’m still not sold on OCaml as a whole, its evangelists just don’t win me over the way the Erlang, Ruby, Rust, or Zig folks do. I just cant see the vision",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44895652,
+    "by": "birdfood",
+    "timeISO": "2025-08-14T00:58:59.000Z",
+    "textPlain": "OCaml is probably my favourite language.The most involved project I did with it was a CRUD app for organising Writer's Festivals.The app was 100% OCaml (ReasonML so I could get JSX) + Dream + HTMX + DataTables. I used modules to get reusable front end templates. I loved being able to make a change to one of my data models and have the compiler tell me almost instantly where the change broke the front end. The main value of the app was getting data out of excel into a structured database, but I was also able to provide templated and branded itineraries in .odt format, create in memory zipped downloads so that I didn't need to touch the server disk. I was really impressed by how much I could achieve with the ecosystem.But having to write all my database queries in strings and then marshal the data through types was tiring (and effectively not compile time type checked) and I had to roll my own auth. I often felt like I was having to work on things that were not core to the product I was trying to build.I've spent a few years bouncing around different languages and I think my take away is that there is no perfect language. They all suck in their own special way.Now I'm building an app just for me and I'm using Rails. Pretty much everything I've wanted to reach for has a good default answer. I really feel like I'm focused on what is relevant to the product I'm building and I'm thinking about things unrelated to language like design layout and actually shipping the thing.",
     "parent": 44891759,
     "depth": 1
   },
@@ -160,14 +160,6 @@
     "depth": 2
   },
   {
-    "id": 44896729,
-    "by": "rtpg",
-    "timeISO": "2025-08-14T04:27:13.000Z",
-    "textPlain": "I think people like ADTs and pattern matching that Rust gives, but really the way that Rust becomes even more pleasant is that you have _so many_ trait methods on standard library objects that offer succinct answers to common patterns.Haskell of course has some of this, but immutability means that Haskell doesn't have to have answers for lots of things. And you want pattern matching as your basic building block, but at the end of the day most of your code won't have pattern matching and will instead rely on higher level patterns (that can build off of ADTs providing some degree of certainty on totality etc)",
-    "parent": 44892713,
-    "depth": 2
-  },
-  {
     "id": 44896362,
     "by": "shpongled",
     "timeISO": "2025-08-14T03:08:59.000Z",
@@ -192,10 +184,26 @@
     "depth": 2
   },
   {
+    "id": 44896760,
+    "by": "sanderjd",
+    "timeISO": "2025-08-14T04:34:11.000Z",
+    "textPlain": "Yeah I was initially drawn to rust because I loved ocaml but wished it were more practical.",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
     "id": 44895407,
     "by": "gerdesj",
     "timeISO": "2025-08-14T00:11:12.000Z",
     "textPlain": "\"I feel if OCaml had got its act together ...\"The great thing is we have choice.  We have a huge number of ways to express ideas and ... do them!I might draw a parallel with the number of spoken languages extent in the UK (only ~65M people).  You are probably familiar with English.  There are rather a lot more languages here.  Irish, Scottish, Welsh - these are the thriving Brythonic languages (and they probably have some sub-types).  Cornish formally died out in the sixties (the last two sisters that spoke it natively, passed away) but it has been revived by some locals and given that living people who could communicate with relos with first hand experience, I think we can count that a language that is largely saved.  Cumbric ... counting still used by shepherds - something like: yan, tan, tithera toe.I am looking at OCAML because I'm the next generation to worry about genealogy in my family and my uncle has picked Geneweb to store the data, taking over from TMG - a Windows app.  His database contains roughly 140,000 individuals.  Geneweb is programmed in OCAML.If you think that programming languages are complicated ... have a go at genealogy.  You will soon discover something called GEDCOM and then you will weep!",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
+    "id": 44896729,
+    "by": "rtpg",
+    "timeISO": "2025-08-14T04:27:13.000Z",
+    "textPlain": "I think people like ADTs and pattern matching that Rust gives, but really the way that Rust becomes even more pleasant is that you have _so many_ trait methods on standard library objects that offer succinct answers to common patterns.Haskell of course has some of this, but immutability means that Haskell doesn't have to have answers for lots of things. And you want pattern matching as your basic building block, but at the end of the day most of your code won't have pattern matching and will instead rely on higher level patterns (that can build off of ADTs providing some degree of certainty on totality etc)",
     "parent": 44892713,
     "depth": 2
   },
@@ -259,7 +267,7 @@
     "id": 44896751,
     "by": "throwaway127482",
     "timeISO": "2025-08-14T04:33:11.000Z",
-    "textPlain": "Go's %v leaves a lot to be desired. I wish there was a format string to deeply traverse into pointers. Currently I have to import go-spew for that, which is a hassle.",
+    "textPlain": "Go's %v leaves a lot to be desired, even when using %+#v to print even more info. I wish there was a format string to deeply traverse into pointers. Currently I have to import go-spew for that, which is a huge annoyance.Python does it best from what I've seen so far, with its __repr__ method.",
     "parent": 44894751,
     "depth": 2
   },
@@ -381,14 +389,6 @@
     "timeISO": "2025-08-13T23:08:24.000Z",
     "textPlain": "I had the same doubt.Here is my uneducated guess:In math, after sum and product, comes exponent :)So they may have used that third term in an analogous manner in the example.",
     "parent": 44893525,
-    "depth": 2
-  },
-  {
-    "id": 44892214,
-    "by": "nukifw",
-    "timeISO": "2025-08-13T18:43:59.000Z",
-    "textPlain": "In the specific case of OCaml, this is also possible using indexing and GADTs or polymorphic variants. But generally, referencing as its own type serves different purposes. From my point of view, distinguishing between sum branches often tends to result in code that is difficult to reason about and difficult to generalise due to concerns about variance and loss of type equality.",
-    "parent": 44892051,
     "depth": 2
   },
   {
