@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44896967,
-    "by": "Humphrey",
-    "timeISO": "2025-08-14T05:16:18.000Z",
-    "textPlain": "Anybody know how this would work for multiple nginx backends or failover machines - as I assume it's only possible to auto-fetch certificates for the live machine.  Is it expected that you would use scp or similar to copy certs from the live machine to the failover / new server?",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44890497,
     "by": "dizhn",
     "timeISO": "2025-08-13T16:23:35.000Z",
@@ -24,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44896550,
-    "by": "vivzkestrel",
-    "timeISO": "2025-08-14T03:47:28.000Z",
-    "textPlain": "Not gonna lie, setting up Nginx, Certbot inside docker is the biggest PITA ever. you need certificates to start the NGINX server but you need the NGINX server to issue certificates? see the problem? It is made infinitely worse by a tonne of online solutions and blog posts none of which I could ever get to work. I would really appreciate if someone has documented this extensively for docker compose. I dont want to use libraries like nginx-proxy as customizing that library is another nightmare alltogether",
+    "id": 44896967,
+    "by": "Humphrey",
+    "timeISO": "2025-08-14T05:16:18.000Z",
+    "textPlain": "Anybody know how this would work for multiple nginx backends or failover machines - as I assume it's only possible to auto-fetch certificates for the live machine.  Is it expected that you would use scp or similar to copy certs from the live machine to the failover / new server?",
     "parent": 44889941,
     "depth": 1
   },
@@ -40,26 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44891105,
-    "by": "thaumaturgy",
-    "timeISO": "2025-08-13T17:13:18.000Z",
-    "textPlain": "Good to see this. For those that weren't aware, there's been a low-effort solution with https://github.com/dehydrated-io/dehydrated, combined with a pretty simple couple of lines in your vhost config:    location ^~ /.well-known/acme-challenge/ {\n        alias <path-to-your-acme-challenge-directory>;\n    }\n\nDehydrated has been around for a while and is a great low-overhead option for http-01 renewal automation.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44891203,
     "by": "josegonzalez",
     "timeISO": "2025-08-13T17:22:48.000Z",
     "textPlain": "This is great. Dokku (of which I am the maintainer) has a hokey solution for this with our letsencrypt plugin, but thats caused a slew of random issues for users. Nginx sometimes gets \"stuck\" reloading and then can't find the endpoint for some reason. The fewer moving knobs, the better.That said, its going to take quite some time for this to land in stable repositories for Ubuntu and Debian, and it doesn't (yet?) have DNS challenge support - meaning no wildcards - so I don't think it'll be useful for Dokku in the short-term at least.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44893042,
-    "by": "idoubtit",
-    "timeISO": "2025-08-13T19:55:12.000Z",
-    "textPlain": "A little mistake with this release: they packaged the ngx_http_acme_module for many Linux distributions, but \"forgot\" Debian stable. Oldstable and oldoldstable are listed in https://nginx.org/en/linux_packages.html (packages built today) but Debian 13 Trixie (released 4 days ago) is not there.",
     "parent": 44889941,
     "depth": 1
   },
@@ -72,10 +48,42 @@
     "depth": 1
   },
   {
+    "id": 44896550,
+    "by": "vivzkestrel",
+    "timeISO": "2025-08-14T03:47:28.000Z",
+    "textPlain": "Not gonna lie, setting up Nginx, Certbot inside docker is the biggest PITA ever. you need certificates to start the NGINX server but you need the NGINX server to issue certificates? see the problem? It is made infinitely worse by a tonne of online solutions and blog posts none of which I could ever get to work. I would really appreciate if someone has documented this extensively for docker compose. I dont want to use libraries like nginx-proxy as customizing that library is another nightmare alltogether",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44891105,
+    "by": "thaumaturgy",
+    "timeISO": "2025-08-13T17:13:18.000Z",
+    "textPlain": "Good to see this. For those that weren't aware, there's been a low-effort solution with https://github.com/dehydrated-io/dehydrated, combined with a pretty simple couple of lines in your vhost config:    location ^~ /.well-known/acme-challenge/ {\n        alias <path-to-your-acme-challenge-directory>;\n    }\n\nDehydrated has been around for a while and is a great low-overhead option for http-01 renewal automation.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44893042,
+    "by": "idoubtit",
+    "timeISO": "2025-08-13T19:55:12.000Z",
+    "textPlain": "A little mistake with this release: they packaged the ngx_http_acme_module for many Linux distributions, but \"forgot\" Debian stable. Oldstable and oldoldstable are listed in https://nginx.org/en/linux_packages.html (packages built today) but Debian 13 Trixie (released 4 days ago) is not there.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
     "id": 44891335,
     "by": "RagnarD",
     "timeISO": "2025-08-13T17:34:06.000Z",
     "textPlain": "After discovering Caddy, I don't use Nginx any longer. Just a much better development experience.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44894228,
+    "by": "metafunctor",
+    "timeISO": "2025-08-13T21:44:41.000Z",
+    "textPlain": "I never saw it as a problem for nginx to just serve web content and let certbot handle cert renewals. Whatever happened to doing one thing well and making it composable? Fat tools that try to do everything inevitably suck at some important part.",
     "parent": 44889941,
     "depth": 1
   },
@@ -96,34 +104,10 @@
     "depth": 1
   },
   {
-    "id": 44892841,
-    "by": "ilaksh",
-    "timeISO": "2025-08-13T19:38:09.000Z",
-    "textPlain": "Just to check, this means we can use some extra lines in the nginx configuration as an alternative to installing and running certbot, right?Also does it make it easier for there to be alternatives to Let's Encrypt?",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44896660,
-    "by": "themafia",
-    "timeISO": "2025-08-14T04:09:59.000Z",
-    "textPlain": "We had about 100 domains or so that needed to be redirected to their new homes.  The previous person in my position set it all up using GoDaddy domains and redirects.  I was gobsmacked at how much effort it took,  and when browsers switched to HTTPS first,  how badly it broke the setup.That's when I found \"golang.org/x/crypto/acme/autocert\" and then I built a custom redirect server using it.  It implements TLS-ALPN-01 which works fantastically with Let's Encrypt.Now we can just add a domain to our web configuration,  setup it's target and redirect style,  and then push the configuration out the EC2 instance providing the public facing service.   As soon as the first client makes a request,  they're effectively put \"on hold,\"  while the server then arranges for the certificate in the background.  As soon as it's issued and installed on the server the server continues with the original client.It's an absolute breeze and it makes me utterly detest going backwards to DNS-01 or HTTP-01 challenges.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44894228,
-    "by": "metafunctor",
-    "timeISO": "2025-08-13T21:44:41.000Z",
-    "textPlain": "I never saw it as a problem for nginx to just serve web content and let certbot handle cert renewals. Whatever happened to doing one thing well and making it composable? Fat tools that try to do everything inevitably suck at some important part.",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
-    "id": 44892034,
-    "by": "smarx007",
-    "timeISO": "2025-08-13T18:27:01.000Z",
-    "textPlain": "When will this land in mainline distros (no PPAs etc)? Given that a new stable version of Debian was released very recently, I would imagine August 2027 for Debian and maybe April 2026 for Ubuntu?In this very thread some people complain that certbot uses snap for distribution. Imagine making a feature release and having to wait 1-2 years until your users will get it on a broad scale.",
+    "id": 44891278,
+    "by": "miggy",
+    "timeISO": "2025-08-13T17:28:35.000Z",
+    "textPlain": "It seems HAProxy also added ACME/DNS-01 challenge support in haproxy-3.3-dev6 very recently. https://www.mail-archive.com/haproxy@formilux.org/msg46035.h...",
     "parent": 44889941,
     "depth": 1
   },
@@ -136,18 +120,34 @@
     "depth": 1
   },
   {
-    "id": 44891278,
-    "by": "miggy",
-    "timeISO": "2025-08-13T17:28:35.000Z",
-    "textPlain": "It seems HAProxy also added ACME/DNS-01 challenge support in haproxy-3.3-dev6 very recently. https://www.mail-archive.com/haproxy@formilux.org/msg46035.h...",
+    "id": 44892841,
+    "by": "ilaksh",
+    "timeISO": "2025-08-13T19:38:09.000Z",
+    "textPlain": "Just to check, this means we can use some extra lines in the nginx configuration as an alternative to installing and running certbot, right?Also does it make it easier for there to be alternatives to Let's Encrypt?",
     "parent": 44889941,
     "depth": 1
   },
   {
-    "id": 44892873,
-    "by": "ExoticPearTree",
-    "timeISO": "2025-08-13T19:40:20.000Z",
-    "textPlain": "It is a start. Maybe this will serve as a proof of concept that it can be done and then other protocols could be implemented.Probably like many others here, I would very much like to see Cloudflare DNS support.",
+    "id": 44891119,
+    "by": "samgranieri",
+    "timeISO": "2025-08-13T17:14:35.000Z",
+    "textPlain": "This is a good first start. One less moving part.\nThey should match caddy for feature parity on this, and also add dns01 challenges as well.I'm not using nginx these days because of this.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44892034,
+    "by": "smarx007",
+    "timeISO": "2025-08-13T18:27:01.000Z",
+    "textPlain": "When will this land in mainline distros (no PPAs etc)? Given that a new stable version of Debian was released very recently, I would imagine August 2027 for Debian and maybe April 2026 for Ubuntu?In this very thread some people complain that certbot uses snap for distribution. Imagine making a feature release and having to wait 1-2 years until your users will get it on a broad scale.",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44896660,
+    "by": "themafia",
+    "timeISO": "2025-08-14T04:09:59.000Z",
+    "textPlain": "We had about 100 domains or so that needed to be redirected to their new homes.  The previous person in my position set it all up using GoDaddy domains and redirects.  I was gobsmacked at how much effort it took,  and when browsers switched to HTTPS first,  how badly it broke the setup.That's when I found \"golang.org/x/crypto/acme/autocert\" and then I built a custom redirect server using it.  It implements TLS-ALPN-01 which works fantastically with Let's Encrypt.Now we can just add a domain to our web configuration,  setup it's target and redirect style,  and then push the configuration out the EC2 instance providing the public facing service.   As soon as the first client makes a request,  they're effectively put \"on hold,\"  while the server then arranges for the certificate in the background.  As soon as it's issued and installed on the server the server continues with the original client.It's an absolute breeze and it makes me utterly detest going backwards to DNS-01 or HTTP-01 challenges.",
     "parent": 44889941,
     "depth": 1
   },
@@ -160,10 +160,10 @@
     "depth": 1
   },
   {
-    "id": 44894769,
-    "by": "arjie",
-    "timeISO": "2025-08-13T22:45:31.000Z",
-    "textPlain": "Neat, that'll be nice to have. Currently I just use certbot and it does a pretty damn good job. I just set the HTTP:80 configuration and certbot will migrate it to HTTPS:443 and take care of the certificates and so on. For the moment, I'll probably stick to that till this is mature.",
+    "id": 44892873,
+    "by": "ExoticPearTree",
+    "timeISO": "2025-08-13T19:40:20.000Z",
+    "textPlain": "It is a start. Maybe this will serve as a proof of concept that it can be done and then other protocols could be implemented.Probably like many others here, I would very much like to see Cloudflare DNS support.",
     "parent": 44889941,
     "depth": 1
   },
@@ -176,18 +176,18 @@
     "depth": 1
   },
   {
-    "id": 44893231,
-    "by": "breadwinner",
-    "timeISO": "2025-08-13T20:09:46.000Z",
-    "textPlain": "But can it generate self-signed certificate for intranet use? Often on the intranet you want to encrypt traffic, to prevent casual snooping using Wireshark.",
+    "id": 44894769,
+    "by": "arjie",
+    "timeISO": "2025-08-13T22:45:31.000Z",
+    "textPlain": "Neat, that'll be nice to have. Currently I just use certbot and it does a pretty damn good job. I just set the HTTP:80 configuration and certbot will migrate it to HTTPS:443 and take care of the certificates and so on. For the moment, I'll probably stick to that till this is mature.",
     "parent": 44889941,
     "depth": 1
   },
   {
-    "id": 44894924,
-    "by": "drchaim",
-    "timeISO": "2025-08-13T23:04:35.000Z",
-    "textPlain": "I’ve already migrated to caddy ;)",
+    "id": 44893231,
+    "by": "breadwinner",
+    "timeISO": "2025-08-13T20:09:46.000Z",
+    "textPlain": "But can it generate self-signed certificate for intranet use? Often on the intranet you want to encrypt traffic, to prevent casual snooping using Wireshark.",
     "parent": 44889941,
     "depth": 1
   },
@@ -200,18 +200,18 @@
     "depth": 1
   },
   {
-    "id": 44890604,
-    "by": "adontz",
-    "timeISO": "2025-08-13T16:31:21.000Z",
-    "textPlain": "certbot has an plugin for nginx, so I'm not sure why people think is was hard to use LetsEncrypt with nginx.",
+    "id": 44894924,
+    "by": "drchaim",
+    "timeISO": "2025-08-13T23:04:35.000Z",
+    "textPlain": "I’ve already migrated to caddy ;)",
     "parent": 44889941,
     "depth": 1
   },
   {
-    "id": 44891119,
-    "by": "samgranieri",
-    "timeISO": "2025-08-13T17:14:35.000Z",
-    "textPlain": "This is a good first start. One less moving part.\nThey should match caddy for feature parity on this, and also add dns01 challenges as well.I'm not using nginx these days because of this.",
+    "id": 44890604,
+    "by": "adontz",
+    "timeISO": "2025-08-13T16:31:21.000Z",
+    "textPlain": "certbot has an plugin for nginx, so I'm not sure why people think is was hard to use LetsEncrypt with nginx.",
     "parent": 44889941,
     "depth": 1
   },
@@ -240,18 +240,18 @@
     "depth": 1
   },
   {
-    "id": 44890618,
-    "by": "do_not_redeem",
-    "timeISO": "2025-08-13T16:32:39.000Z",
-    "textPlain": "It looks like this isn't included by default with the base nginx, but requires you to install it as a separate module. Or am I wrong?https://github.com/nginx/nginx-acme",
-    "parent": 44889941,
-    "depth": 1
-  },
-  {
     "id": 44890493,
     "by": "johnisgood",
     "timeISO": "2025-08-13T16:23:30.000Z",
     "textPlain": "For now I will stick to what works (nginx + certbot), but I will give this a try. Anyone tried it?Caddy sounds interesting too, but I am afraid of switching because what I have works properly. :/",
+    "parent": 44889941,
+    "depth": 1
+  },
+  {
+    "id": 44890618,
+    "by": "do_not_redeem",
+    "timeISO": "2025-08-13T16:32:39.000Z",
+    "textPlain": "It looks like this isn't included by default with the base nginx, but requires you to install it as a separate module. Or am I wrong?https://github.com/nginx/nginx-acme",
     "parent": 44889941,
     "depth": 1
   },
@@ -384,19 +384,19 @@
     "depth": 2
   },
   {
+    "id": 44897229,
+    "by": "fastball",
+    "timeISO": "2025-08-14T06:09:20.000Z",
+    "textPlain": "I felt the same but switched to Caddy for my reverse proxy last year and have had a great experience.Admittedly this was on the back of trying to use nginx-unit, which was an overall bad experience, but ¯\\_(ツ)_/¯",
+    "parent": 44890497,
+    "depth": 2
+  },
+  {
     "id": 44890795,
     "by": "thrown-0825",
     "timeISO": "2025-08-13T16:48:41.000Z",
     "textPlain": "Definitely. I use traefik for some stuff at home and will likely swap it out now.",
     "parent": 44890497,
-    "depth": 2
-  },
-  {
-    "id": 44896672,
-    "by": "mythz",
-    "timeISO": "2025-08-14T04:12:58.000Z",
-    "textPlain": "What's the issue with nginx-proxy? We've used it for years to handle CI deploying multiple multiple Docker compose Apps to the same server [1] without issue, with a more detailed writeup at [2].This served us well for many years before migrating to use Kamal [3] for its improved remote management features.[1] https://docs.servicestack.net/ssh-docker-compose-deploment[2] https://servicestack.net/posts/kubernetes_not_required[3] https://docs.servicestack.net/kamal-deploy",
-    "parent": 44896550,
     "depth": 2
   }
 ]
