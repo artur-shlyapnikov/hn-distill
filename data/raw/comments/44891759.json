@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44898287,
+    "by": "JaggerJo",
+    "timeISO": "2025-08-14T08:56:35.000Z",
+    "textPlain": "DarkLang which was initially written in OCaml eventually switched to F#. From what I remember the main reasons were the library ecosystem and concurrency.I'm know .NET in and out, so I might be biased. Most of the boring parts have multiple good solutions that I can pick from. I don't have to spend time on things that are not essential to the problem I actually want to solve.I've used F# professionally for multiple years and maintain a quite popular UI library written in it. But even with .NET there still are gaps because of the smaller F# language ecosystem. Not everything \"just works\" between CLR languages - sometimes it's a bit more complicated.The main point I'm trying to make is that going off the beaten path (C#) for example also comes with a cost. That cost might or might not be offset by the more expressive language. It's important to know this so you are not surprised by it.With OCaml it's similar I'd say. You get a really powerful language, but you're off the beaten path. Sure, there are a few companies using it in production - but their use case might be different than yours. On Jane Streets Threads and Signals podcast they often talk about their really specific use cases.1: https://blog.darklang.com/new-backend-fsharp/",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
     "id": 44895652,
     "by": "birdfood",
     "timeISO": "2025-08-14T00:58:59.000Z",
@@ -28,14 +36,6 @@
     "by": "_mu",
     "timeISO": "2025-08-13T18:28:17.000Z",
     "textPlain": "I haven't worked in OCaml but I have worked a bit in F# and found it to be a pleasant experience.One thing I am wondering about in the age of LLMs is if we should all take a harder look at functional languages again. My thought is that if FP languages like OCaml / Haskell / etc. let us compress a lot of information into a small amount of text, then that's better for the context window.Possibly we might be able to put much denser programs into the model and one-shot larger changes than is achievable in languages like Java / C# / Ruby / etc?",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
-    "id": 44898287,
-    "by": "JaggerJo",
-    "timeISO": "2025-08-14T08:56:35.000Z",
-    "textPlain": "DarkLang which was initially written in OCaml eventually switched to F#. From what I remember the main reasons were the library ecosystem and concurrency.I'm know .NET in and out, so I might be biased. Most of the boring parts have multiple good solutions that I can pick from. I don't have to spend time on things that are not essential to the problem I actually want to solve.I've used F# professionally for multiple years and maintain a quite popular UI library written in it. But even with .NET there still are gaps because of the smaller F# language ecosystem. Not everything \"just works\" between CLR languages - sometimes it's a bit more complicated.The main point I'm trying to make is that going off the beaten path (C#) for example also comes with a cost. That cost might or might not be offset by the more expressive language. It's important to know this so you are not surprised by it.With OCaml it's similar I'd say. You get a really powerful language, but you're off the beaten path. Sure, there are a few companies using it in production - but their use case might be different than yours. On Jane Streets Threads and Signals podcast they often talk about their really specific use cases.1: https://blog.darklang.com/new-backend-fsharp/",
     "parent": 44891759,
     "depth": 1
   },
@@ -72,14 +72,6 @@
     "depth": 1
   },
   {
-    "id": 44892121,
-    "by": "raphinou",
-    "timeISO": "2025-08-13T18:34:37.000Z",
-    "textPlain": "Some years ago I also wanted to make ocaml my primary language, but rapidly encountered problems: difficulty to install (on Linux due to the requirement of a very unusual tool which name and function I forgot), no response from community regarding how to solve that problem, no solid postgresql driver, ....Wanting to use a functional language I pivoted to fsharp, which was not the expected choice for me as I use Linux exclusively. I have been happy with this choice, it has even become my preferred language. The biggest problem for me was the management of the fsharp community, the second class citizen position of fsharp in the DotNet ecosystem, and Microsoft's action screwing the goodwill of the dev community (eg hot reload episode). I feel this hampered the growth of the fsharp community.I'm now starting to use rust, and the contrast on these points couldn't be bigger.Edit: downvoters, caring to share why? I thought sharing my experience would have been appreciated. Would like to know why I was wrong.",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
     "id": 44897845,
     "by": "tempodox",
     "timeISO": "2025-08-14T07:48:27.000Z",
@@ -88,18 +80,18 @@
     "depth": 1
   },
   {
-    "id": 44893365,
-    "by": "manoDev",
-    "timeISO": "2025-08-13T20:21:00.000Z",
-    "textPlain": "I'm sure there's merit to the language, but the syntax seems absolutely alien to me. Some attempt to look like verbose imperative code, a bunch of semicolons, and for some strange reason, hate of parenthesis.Real life sample:    let print_expr exp =\n        (* Local function definitions *)\n        let open_paren prec op_prec =\n          if prec > op_prec then print_string \"(\" in\n        let close_paren prec op_prec =\n          if prec > op_prec then print_string \")\" in\n        let rec print prec exp =     (* prec is the current precedence *)\n          match exp with\n            Const c -> print_float c\n          | Var v -> print_string v\n          | Sum(f, g) ->\n              open_paren prec 0;\n              print 0 f; print_string \" + \"; print 0 g;\n              close_paren prec 0\n          | Diff(f, g) ->\n              open_paren prec 0;\n              print 0 f; print_string \" - \"; print 1 g;\n              close_paren prec 0\n          | Prod(f, g) ->\n              open_paren prec 2;\n              print 2 f; print_string \" * \"; print 2 g;\n              close_paren prec 2\n          | Quot(f, g) ->\n              open_paren prec 2;\n              print 2 f; print_string \" / \"; print 3 g;\n              close_paren prec 2\n        in print 0 exp;;\n\nA function is defined as:    let print_expr exp =\n\nThat seems pretty hard to read at a glance, and easy to mistype as a definition.Also, you need to end the declaration with `in`?Then, semicolons...    open_paren prec 0;\n    print 0 f; print_string \" + \"; print 0 g;\n\n... and even double semicolons ...    print 0 exp;;\n\nThat looks like a language you really want an IDE helping you with.",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
     "id": 44895588,
     "by": "chris_armstrong",
     "timeISO": "2025-08-14T00:46:40.000Z",
     "textPlain": "As someone who uses OCaml for hobby projects, I appreciate how little the language gets in your way when you want to just “get shit done”, despite the language’s origins in academia and industrial uses.The type system usually means that I might take longer to get my code to compile, but that I won’t spend much (if any) time debugging it once I’m done.I’m in the middle of pulling together bits of a third party library and refactoring them over several days work, and I’m pretty confident that most of the issues I’ll face when done will be relatively obvious runtime ones.",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44892121,
+    "by": "raphinou",
+    "timeISO": "2025-08-13T18:34:37.000Z",
+    "textPlain": "Some years ago I also wanted to make ocaml my primary language, but rapidly encountered problems: difficulty to install (on Linux due to the requirement of a very unusual tool which name and function I forgot), no response from community regarding how to solve that problem, no solid postgresql driver, ....Wanting to use a functional language I pivoted to fsharp, which was not the expected choice for me as I use Linux exclusively. I have been happy with this choice, it has even become my preferred language. The biggest problem for me was the management of the fsharp community, the second class citizen position of fsharp in the DotNet ecosystem, and Microsoft's action screwing the goodwill of the dev community (eg hot reload episode). I feel this hampered the growth of the fsharp community.I'm now starting to use rust, and the contrast on these points couldn't be bigger.Edit: downvoters, caring to share why? I thought sharing my experience would have been appreciated. Would like to know why I was wrong.",
     "parent": 44891759,
     "depth": 1
   },
@@ -120,34 +112,18 @@
     "depth": 1
   },
   {
+    "id": 44893365,
+    "by": "manoDev",
+    "timeISO": "2025-08-13T20:21:00.000Z",
+    "textPlain": "I'm sure there's merit to the language, but the syntax seems absolutely alien to me. Some attempt to look like verbose imperative code, a bunch of semicolons, and for some strange reason, hate of parenthesis.Real life sample:    let print_expr exp =\n        (* Local function definitions *)\n        let open_paren prec op_prec =\n          if prec > op_prec then print_string \"(\" in\n        let close_paren prec op_prec =\n          if prec > op_prec then print_string \")\" in\n        let rec print prec exp =     (* prec is the current precedence *)\n          match exp with\n            Const c -> print_float c\n          | Var v -> print_string v\n          | Sum(f, g) ->\n              open_paren prec 0;\n              print 0 f; print_string \" + \"; print 0 g;\n              close_paren prec 0\n          | Diff(f, g) ->\n              open_paren prec 0;\n              print 0 f; print_string \" - \"; print 1 g;\n              close_paren prec 0\n          | Prod(f, g) ->\n              open_paren prec 2;\n              print 2 f; print_string \" * \"; print 2 g;\n              close_paren prec 2\n          | Quot(f, g) ->\n              open_paren prec 2;\n              print 2 f; print_string \" / \"; print 3 g;\n              close_paren prec 2\n        in print 0 exp;;\n\nA function is defined as:    let print_expr exp =\n\nThat seems pretty hard to read at a glance, and easy to mistype as a definition.Also, you need to end the declaration with `in`?Then, semicolons...    open_paren prec 0;\n    print 0 f; print_string \" + \"; print 0 g;\n\n... and even double semicolons ...    print 0 exp;;\n\nThat looks like a language you really want an IDE helping you with.",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
     "id": 44898040,
     "by": "sparkie",
     "timeISO": "2025-08-14T08:17:26.000Z",
     "textPlain": "> At present, I don’t know anyone who has seriously used languages like OCaml or Haskell and was happy to return to languages with less sophisticated type systems (though an interesting project can sometimes justify such a technological regression).Recovered typeaholic here. I still occasionally use OCaml and I primarily wrote F# and Haskell for years. I've been quite deep down the typing rabbit hole, and I used to scorn at dynamically typed languages.Now I love dynamic typing - but not the Python kind - I prefer the Scheme kind - latent typing. More specifically, the Kernel[1] kind, which is incredibly powerful.> I think the negative reputation of static type checking usually stems from a bad experience.I think this goes two ways. Most people's experience with dynamic typing is the Python kind, and not the Kernel kind.To be clear, I am not against static typing, and I love OCaml - but there are clear cases where static typing is the wrong tool - or rather, no static typing system is sufficient to express problems that are trivial to write correctly with the right dynamic types.Moreover, some problems are inherently dynamic. Take for example object-capabilities (aka, security done right). Capabilities can be revoked at any time. It makes no sense to try and encode capabilities into a static type system - but I had such silly thoughts when I was a typeaholic, and I regularly see people making the same mistake. Wouldn't it be better to have a type system which can express things which are dynamic by nature?And this is my issue with purely statically typed systems: They erase the types! I don't want to erase the types - I want the types to be available at runtime so that I can do things with them that I couldn't do at compile time - without me having to write a whole new interpreter.My preference is for Gradual Typing[2], which lets us use both worlds. Gradual typing is static typing with a `dynamic` type in the type system, and sensible rules for converting between dy",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
-    "id": 44897950,
-    "by": "amelius",
-    "timeISO": "2025-08-14T08:05:48.000Z",
-    "textPlain": "Do they have a decent GUI library / binding yet?",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
-    "id": 44892046,
-    "by": "shortrounddev2",
-    "timeISO": "2025-08-13T18:27:50.000Z",
-    "textPlain": "OCaml is a great language without great tooling. Desperately needs a good LSP implementation to run breakpoints and other debugging tools on VSCode or other LSP-aware IDEs. I know there ARE tools available but there isn't great support for them and they don't work well",
-    "parent": 44891759,
-    "depth": 1
-  },
-  {
-    "id": 44894835,
-    "by": "vram22",
-    "timeISO": "2025-08-13T22:53:38.000Z",
-    "textPlain": "Is OCaml somewhat suitable for desktop GUI app programming?I saw this in the OP:>For example, creating a binding with the Tk libraryand had also been thinking about this separately a few days ago, hence the question.",
     "parent": 44891759,
     "depth": 1
   },
@@ -160,10 +136,26 @@
     "depth": 1
   },
   {
-    "id": 44894915,
-    "by": "pshirshov",
-    "timeISO": "2025-08-13T23:03:55.000Z",
-    "textPlain": "Extremely dated. No HKTs, no typeclasses (modules are not a good substitute), no call-site expansion.",
+    "id": 44892046,
+    "by": "shortrounddev2",
+    "timeISO": "2025-08-13T18:27:50.000Z",
+    "textPlain": "OCaml is a great language without great tooling. Desperately needs a good LSP implementation to run breakpoints and other debugging tools on VSCode or other LSP-aware IDEs. I know there ARE tools available but there isn't great support for them and they don't work well",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44897950,
+    "by": "amelius",
+    "timeISO": "2025-08-14T08:05:48.000Z",
+    "textPlain": "Do they have a decent GUI library / binding yet?",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44894835,
+    "by": "vram22",
+    "timeISO": "2025-08-13T22:53:38.000Z",
+    "textPlain": "Is OCaml somewhat suitable for desktop GUI app programming?I saw this in the OP:>For example, creating a binding with the Tk libraryand had also been thinking about this separately a few days ago, hence the question.",
     "parent": 44891759,
     "depth": 1
   },
@@ -172,6 +164,14 @@
     "by": "FrustratedMonky",
     "timeISO": "2025-08-13T19:11:15.000Z",
     "textPlain": "In F# comparison.  Modules \"my opinion, strongly justify preferring one over the other\".Strong stance on Modules.  My ignorance, what do they do that provides that much benefit.  ??",
+    "parent": 44891759,
+    "depth": 1
+  },
+  {
+    "id": 44894915,
+    "by": "pshirshov",
+    "timeISO": "2025-08-13T23:03:55.000Z",
+    "textPlain": "Extremely dated. No HKTs, no typeclasses (modules are not a good substitute), no call-site expansion.",
     "parent": 44891759,
     "depth": 1
   },
@@ -192,14 +192,6 @@
     "depth": 2
   },
   {
-    "id": 44892960,
-    "by": "nine_k",
-    "timeISO": "2025-08-13T19:48:26.000Z",
-    "textPlain": "I'd say that Google strives to have a reasonably short list of languages approved for production-touching code. Rust can replace / complement C++, while OCaml cannot (it could replace Go instead... fat chance!). So I suspect that the team picked Rust because it was the only blessed language with ADTs, not because they won't like something with faster compile times.No way OCaml could have stolen the Rust's thunder: we have a number of very decent and performant GC-based languages, from Go to Haskell; we only had one bare-metal-worthy expressive language in 2010, C++, and it was pretty terrible (still is, but before C++11 and C++17 it was even more terrible).",
-    "parent": 44892713,
-    "depth": 2
-  },
-  {
     "id": 44898293,
     "by": "IshKebab",
     "timeISO": "2025-08-14T08:58:09.000Z",
@@ -208,18 +200,10 @@
     "depth": 2
   },
   {
-    "id": 44900381,
-    "by": "ezst",
-    "timeISO": "2025-08-14T13:52:50.000Z",
-    "textPlain": "I feel that whatever \"OCaml - the good parts\" might be, it lives through Scala today. It's syntactically familiar/pleasing, it deals equally well with your high throughput (JVM), low-footprint (scala-native), web (scala-js/scala-wasm), small script to large monolith needs equally well, and its tooling/community support is orders of magnitude better than the other functional-first \"popular\" languages (OCaml, Haskell, Clojure, …).",
-    "parent": 44892713,
-    "depth": 2
-  },
-  {
-    "id": 44895407,
-    "by": "gerdesj",
-    "timeISO": "2025-08-14T00:11:12.000Z",
-    "textPlain": "\"I feel if OCaml had got its act together ...\"The great thing is we have choice.  We have a huge number of ways to express ideas and ... do them!I might draw a parallel with the number of spoken languages extent in the UK (only ~65M people).  You are probably familiar with English.  There are rather a lot more languages here.  Irish, Scottish, Welsh - these are the thriving Brythonic languages (and they probably have some sub-types).  Cornish formally died out in the sixties (the last two sisters that spoke it natively, passed away) but it has been revived by some locals and given that living people who could communicate with relos with first hand experience, I think we can count that a language that is largely saved.  Cumbric ... counting still used by shepherds - something like: yan, tan, tithera toe.I am looking at OCAML because I'm the next generation to worry about genealogy in my family and my uncle has picked Geneweb to store the data, taking over from TMG - a Windows app.  His database contains roughly 140,000 individuals.  Geneweb is programmed in OCAML.If you think that programming languages are complicated ... have a go at genealogy.  You will soon discover something called GEDCOM and then you will weep!",
+    "id": 44892960,
+    "by": "nine_k",
+    "timeISO": "2025-08-13T19:48:26.000Z",
+    "textPlain": "I'd say that Google strives to have a reasonably short list of languages approved for production-touching code. Rust can replace / complement C++, while OCaml cannot (it could replace Go instead... fat chance!). So I suspect that the team picked Rust because it was the only blessed language with ADTs, not because they won't like something with faster compile times.No way OCaml could have stolen the Rust's thunder: we have a number of very decent and performant GC-based languages, from Go to Haskell; we only had one bare-metal-worthy expressive language in 2010, C++, and it was pretty terrible (still is, but before C++11 and C++17 it was even more terrible).",
     "parent": 44892713,
     "depth": 2
   },
@@ -232,10 +216,10 @@
     "depth": 2
   },
   {
-    "id": 44899939,
-    "by": "le-mark",
-    "timeISO": "2025-08-14T13:08:57.000Z",
-    "textPlain": "The way ocaml mashes the object syntax into sml was always most annoying to me. It was also pretty weak on the systems programming side (threads, sockets, signals, fork) 20-30 years ago iirc. That’s probably changed by now. Multi core; not many runtimes handle this today so that’s not much of a hindrance IME.",
+    "id": 44895407,
+    "by": "gerdesj",
+    "timeISO": "2025-08-14T00:11:12.000Z",
+    "textPlain": "\"I feel if OCaml had got its act together ...\"The great thing is we have choice.  We have a huge number of ways to express ideas and ... do them!I might draw a parallel with the number of spoken languages extent in the UK (only ~65M people).  You are probably familiar with English.  There are rather a lot more languages here.  Irish, Scottish, Welsh - these are the thriving Brythonic languages (and they probably have some sub-types).  Cornish formally died out in the sixties (the last two sisters that spoke it natively, passed away) but it has been revived by some locals and given that living people who could communicate with relos with first hand experience, I think we can count that a language that is largely saved.  Cumbric ... counting still used by shepherds - something like: yan, tan, tithera toe.I am looking at OCAML because I'm the next generation to worry about genealogy in my family and my uncle has picked Geneweb to store the data, taking over from TMG - a Windows app.  His database contains roughly 140,000 individuals.  Geneweb is programmed in OCAML.If you think that programming languages are complicated ... have a go at genealogy.  You will soon discover something called GEDCOM and then you will weep!",
     "parent": 44892713,
     "depth": 2
   },
@@ -268,6 +252,22 @@
     "by": "munificent",
     "timeISO": "2025-08-13T21:58:33.000Z",
     "textPlain": "> I feel if OCaml had got its act together around about 2010 with multicore and a few other annoyances[1] it could have been Rust. Arguably, that could have been Scala and for a while it seemed like it would be Scala but then it kind of just... didn't.I suspect some of that was that the programming style of some high profile Scala packages really alienated people by pushing the type system and operator overloading much farther than necessary.",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
+    "id": 44899939,
+    "by": "le-mark",
+    "timeISO": "2025-08-14T13:08:57.000Z",
+    "textPlain": "The way ocaml mashes the object syntax into sml was always most annoying to me. It was also pretty weak on the systems programming side (threads, sockets, signals, fork) 20-30 years ago iirc. That’s probably changed by now. Multi core; not many runtimes handle this today so that’s not much of a hindrance IME.",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
+    "id": 44900381,
+    "by": "ezst",
+    "timeISO": "2025-08-14T13:52:50.000Z",
+    "textPlain": "I feel that whatever \"OCaml - the good parts\" might be, it lives through Scala today. It's syntactically familiar/pleasing, it deals equally well with your high throughput (JVM), low-footprint (scala-native), web (scala-js/scala-wasm), small script to large monolith needs equally well, and its tooling/community support is orders of magnitude better than the other functional-first \"popular\" languages (OCaml, Haskell, Clojure, …).",
     "parent": 44892713,
     "depth": 2
   },
@@ -336,18 +336,18 @@
     "depth": 2
   },
   {
-    "id": 44893511,
-    "by": "troupo",
-    "timeISO": "2025-08-13T20:33:12.000Z",
-    "textPlain": "OCaml also needed the brief but bright ReasonML moment to add/fix/improve some of the syntax IIRC and work on user-friendly error messages. But this should've definitely happened much much earlier than it did.",
-    "parent": 44892713,
-    "depth": 2
-  },
-  {
     "id": 44895592,
     "by": "77pt77",
     "timeISO": "2025-08-14T00:47:46.000Z",
     "textPlain": "> I feel if OCaml had got its act together around about 2010 with multicore and a few other annoyances[1] it could have been RustThat's about the time-frame where I got into OCaml so I followed this up close.The biggest hindrance in my opinion is/was boxed types.Too much overhead for low level stuff, although there was a guy from oxbridge doing GL stuff with it.",
+    "parent": 44892713,
+    "depth": 2
+  },
+  {
+    "id": 44893511,
+    "by": "troupo",
+    "timeISO": "2025-08-13T20:33:12.000Z",
+    "textPlain": "OCaml also needed the brief but bright ReasonML moment to add/fix/improve some of the syntax IIRC and work on user-friendly error messages. But this should've definitely happened much much earlier than it did.",
     "parent": 44892713,
     "depth": 2
   },
@@ -384,18 +384,18 @@
     "depth": 2
   },
   {
-    "id": 44897793,
-    "by": "gylterud",
-    "timeISO": "2025-08-14T07:40:55.000Z",
-    "textPlain": "I have found that Haskell has two good things going for it when it comes to LLM code generation. Both have to do with correctness.The expressive type system catches a lot of mistakes, and the fact that they are compile errors which can be fed right into the LLM again means that incorrect code is caught early.The second is property based testing. With it I have had the LLM generate amazingly efficient, correct code, by iteratively making it more and more efficient – running quickcheck on each pass. The LLM is not super good at writing the tests, but if you add some yourself, you quickly root out any mistakes in the generated code.",
-    "parent": 44892053,
-    "depth": 2
-  },
-  {
     "id": 44895176,
     "by": "Buttons840",
     "timeISO": "2025-08-13T23:38:33.000Z",
     "textPlain": "If LLMs get a little better at writing code, we might want to use really powerful type systems and effect systems to limit what they can do and ensure it is correct.For instance, dependent types allow us to say something like \"this function will return  a sorted list\", or even \"this function will return a valid Sudoku solution\", and these things will be checked at compile time--again, at compile time.Combine this with an effect system and we can suddenly say things like \"this function will return a valid Sudoku solution, and it will not access the network or filesystem\", and then you let the LLM run wild. You don't even have to review the LLM output, if it produces code that compiles, you know it works, and you know it doesn't access the network or filesystem.Of course, if LLMs get a lot better, they can probably just do all this in Python just as well, but if they only get a little better, then we might want to build better deterministic systems around the unreliable LLMs to make them reliable.",
+    "parent": 44892053,
+    "depth": 2
+  },
+  {
+    "id": 44897793,
+    "by": "gylterud",
+    "timeISO": "2025-08-14T07:40:55.000Z",
+    "textPlain": "I have found that Haskell has two good things going for it when it comes to LLM code generation. Both have to do with correctness.The expressive type system catches a lot of mistakes, and the fact that they are compile errors which can be fed right into the LLM again means that incorrect code is caught early.The second is property based testing. With it I have had the LLM generate amazingly efficient, correct code, by iteratively making it more and more efficient – running quickcheck on each pass. The LLM is not super good at writing the tests, but if you add some yourself, you quickly root out any mistakes in the generated code.",
     "parent": 44892053,
     "depth": 2
   }

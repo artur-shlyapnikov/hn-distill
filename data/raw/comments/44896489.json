@@ -1,17 +1,17 @@
 [
   {
-    "id": 44899400,
-    "by": "elpocko",
-    "timeISO": "2025-08-14T12:03:09.000Z",
-    "textPlain": ">block-level deduplication (saves 30-40% on typical codebases)How is savings of 40% on a typical codebase possible with block-level deduplication? What kind of blocks are you talking about? Blocks as in the filesystem?",
-    "parent": 44896489,
-    "depth": 1
-  },
-  {
     "id": 44897346,
     "by": "retreatguru",
     "timeISO": "2025-08-14T06:31:14.000Z",
     "textPlain": "How do you use this in your workflow? Please give some examples because it’s not clear to me what this is for.",
+    "parent": 44896489,
+    "depth": 1
+  },
+  {
+    "id": 44899400,
+    "by": "elpocko",
+    "timeISO": "2025-08-14T12:03:09.000Z",
+    "textPlain": ">block-level deduplication (saves 30-40% on typical codebases)How is savings of 40% on a typical codebase possible with block-level deduplication? What kind of blocks are you talking about? Blocks as in the filesystem?",
     "parent": 44896489,
     "depth": 1
   },
@@ -48,14 +48,6 @@
     "depth": 1
   },
   {
-    "id": 44899966,
-    "by": "izabera",
-    "timeISO": "2025-08-14T13:11:15.000Z",
-    "textPlain": "not trying to be a hater but how is 100mb/s high performance in 2025?  that's as performant as a 20 years old hdd",
-    "parent": 44896489,
-    "depth": 1
-  },
-  {
     "id": 44898964,
     "by": "huqedato",
     "timeISO": "2025-08-14T10:57:06.000Z",
@@ -72,18 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44897455,
-    "by": "yard2010",
-    "timeISO": "2025-08-14T06:49:44.000Z",
-    "textPlain": "I'm puzzled - where are the header files?",
+    "id": 44899966,
+    "by": "izabera",
+    "timeISO": "2025-08-14T13:11:15.000Z",
+    "textPlain": "not trying to be a hater but how is 100mb/s high performance in 2025?  that's as performant as a 20 years old hdd",
     "parent": 44896489,
     "depth": 1
   },
   {
-    "id": 44897383,
-    "by": "ActorNightly",
-    "timeISO": "2025-08-14T06:37:23.000Z",
-    "textPlain": ">MCP server (requires Boost)I see stuff like this, and I really have to wonder if people just write software with bloat for the sake of using a particular library.",
+    "id": 44897455,
+    "by": "yard2010",
+    "timeISO": "2025-08-14T06:49:44.000Z",
+    "textPlain": "I'm puzzled - where are the header files?",
     "parent": 44896489,
     "depth": 1
   },
@@ -136,11 +128,43 @@
     "depth": 1
   },
   {
+    "id": 44897383,
+    "by": "ActorNightly",
+    "timeISO": "2025-08-14T06:37:23.000Z",
+    "textPlain": ">MCP server (requires Boost)I see stuff like this, and I really have to wonder if people just write software with bloat for the sake of using a particular library.",
+    "parent": 44896489,
+    "depth": 1
+  },
+  {
+    "id": 44900993,
+    "by": "blackmanta",
+    "timeISO": "2025-08-14T14:44:04.000Z",
+    "textPlain": "I am working to improve the CLI tools to make getting this information easier but I have stored the yam repo in yams with multiple snapshots and metadata tags and I am seeing about 32% storage savings.",
+    "parent": 44899400,
+    "depth": 2
+  },
+  {
+    "id": 44901053,
+    "by": "blackmanta",
+    "timeISO": "2025-08-14T14:48:28.000Z",
+    "textPlain": "I have not, but that is something I plan to do when I have time.",
+    "parent": 44899933,
+    "depth": 2
+  },
+  {
     "id": 44898795,
     "by": "sync",
     "timeISO": "2025-08-14T10:26:53.000Z",
     "textPlain": "It, uh... generates mock embeddings? https://github.com/trvon/yams/blob/c89798d6d2de89caacdbe50d2...(seems like there's some vague future plans for models like all-MiniLM-L6-v2, all-mpnet-base-v2)",
     "parent": 44898338,
+    "depth": 2
+  },
+  {
+    "id": 44900765,
+    "by": "blackmanta",
+    "timeISO": "2025-08-14T14:24:44.000Z",
+    "textPlain": "The graph functionality is exposed through the retrieval functionality. I may improve this later but the idea was to maximize getting the best results when looking for stored data.",
+    "parent": 44897335,
     "depth": 2
   },
   {
@@ -157,6 +181,22 @@
     "timeISO": "2025-08-14T09:33:21.000Z",
     "textPlain": "You mean these? https://github.com/trvon/yams/tree/main/include/yams",
     "parent": 44897455,
+    "depth": 2
+  },
+  {
+    "id": 44897012,
+    "by": "blackmanta",
+    "timeISO": "2025-08-14T05:25:56.000Z",
+    "textPlain": "The tool has built-in versioning. Each file gets a unique SHA-256 hash on storage (automatic versioning), you can update metadata to track version info, and use collections/snapshots to group versions together. I have been using the metadata to track progress and link code snippets.",
+    "parent": 44896969,
+    "depth": 2
+  },
+  {
+    "id": 44896802,
+    "by": "blackmanta",
+    "timeISO": "2025-08-14T04:43:23.000Z",
+    "textPlain": "That should be fixed now. It was a misconfiguration of CloudFlare SSL with GitHub Pages.",
+    "parent": 44896675,
     "depth": 2
   },
   {
@@ -197,22 +237,6 @@
     "timeISO": "2025-08-14T07:06:33.000Z",
     "textPlain": "Boost is a nearly 30 year old open source library that provides stuff for C++ that most standard libraries for other languages already have out of the box. You seem to think that it is hipster bullshit rather than almost a dinosaur itself.",
     "parent": 44897383,
-    "depth": 2
-  },
-  {
-    "id": 44897012,
-    "by": "blackmanta",
-    "timeISO": "2025-08-14T05:25:56.000Z",
-    "textPlain": "The tool has built-in versioning. Each file gets a unique SHA-256 hash on storage (automatic versioning), you can update metadata to track version info, and use collections/snapshots to group versions together. I have been using the metadata to track progress and link code snippets.",
-    "parent": 44896969,
-    "depth": 2
-  },
-  {
-    "id": 44896802,
-    "by": "blackmanta",
-    "timeISO": "2025-08-14T04:43:23.000Z",
-    "textPlain": "That should be fixed now. It was a misconfiguration of CloudFlare SSL with GitHub Pages.",
-    "parent": 44896675,
     "depth": 2
   }
 ]

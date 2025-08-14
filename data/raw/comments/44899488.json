@@ -1,5 +1,13 @@
 [
   {
+    "id": 44900755,
+    "by": "Eridrus",
+    "timeISO": "2025-08-14T14:23:42.000Z",
+    "textPlain": "My understanding was that many of the fixes for speculative execution issues themselves led to performance degradation, does anyone know the latest on that and how this compares?Are these performance hit numbers inclusive of turning off the other mitigations?",
+    "parent": 44899488,
+    "depth": 1
+  },
+  {
     "id": 44900099,
     "by": "kookamamie",
     "timeISO": "2025-08-14T13:23:55.000Z",
@@ -24,11 +32,11 @@
     "depth": 1
   },
   {
-    "id": 44900538,
-    "by": "transpute",
-    "timeISO": "2025-08-14T14:06:06.000Z",
-    "textPlain": "Hypervisor overhead should be low, https://www.howtogeek.com/does-windows-11-vbs-slow-pc-games/What kind of workloads have noticeably lower performance with VBS?",
-    "parent": 44900099,
+    "id": 44900963,
+    "by": "snvzz",
+    "timeISO": "2025-08-14T14:41:58.000Z",
+    "textPlain": "There's about one way[0] to fix timing side channels.The RISC-V ISA has an effort to standardize a timing fence[1][2], to take care of this once and for all.0. https://tomchothia.gitlab.io/Papers/EuroSys19.pdf1. https://lf-riscv.atlassian.net/wiki/spaces/TFXX/pages/538379...2. https://sel4.org/Summit/2024/slides/hardware-support.pdf",
+    "parent": 44900755,
     "depth": 2
   },
   {
@@ -40,18 +48,26 @@
     "depth": 2
   },
   {
-    "id": 44900528,
-    "by": "gpapilion",
-    "timeISO": "2025-08-14T14:05:17.000Z",
-    "textPlain": "It makes sense in any environment you have two workloads sharing compute from two parties, public clouds.The protection here is to ensure the vms are isolated. Without doing this there is the potential you can leak data via speculative execution across guests.",
+    "id": 44900538,
+    "by": "transpute",
+    "timeISO": "2025-08-14T14:06:06.000Z",
+    "textPlain": "Hypervisor overhead should be low, https://www.howtogeek.com/does-windows-11-vbs-slow-pc-games/What kind of workloads have noticeably lower performance with VBS?",
+    "parent": 44900099,
+    "depth": 2
+  },
+  {
+    "id": 44901532,
+    "by": "russdill",
+    "timeISO": "2025-08-14T15:25:05.000Z",
+    "textPlain": "Look at it this way, any time a new side channel attack comes out the situation changes. Having this as a mitigation that can be turned on is helpful",
     "parent": 44899878,
     "depth": 2
   },
   {
-    "id": 44900077,
-    "by": "eptcyka",
-    "timeISO": "2025-08-14T13:21:09.000Z",
-    "textPlain": "VMs suffer from memory use overhead. Would be cool if the guest kernel would cooperate with the host on that.",
+    "id": 44900528,
+    "by": "gpapilion",
+    "timeISO": "2025-08-14T14:05:17.000Z",
+    "textPlain": "It makes sense in any environment you have two workloads sharing compute from two parties, public clouds.The protection here is to ensure the vms are isolated. Without doing this there is the potential you can leak data via speculative execution across guests.",
     "parent": 44899878,
     "depth": 2
   },
@@ -64,6 +80,14 @@
     "depth": 2
   },
   {
+    "id": 44900077,
+    "by": "eptcyka",
+    "timeISO": "2025-08-14T13:21:09.000Z",
+    "textPlain": "VMs suffer from memory use overhead. Would be cool if the guest kernel would cooperate with the host on that.",
+    "parent": 44899878,
+    "depth": 2
+  },
+  {
     "id": 44900474,
     "by": "gpapilion",
     "timeISO": "2025-08-14T14:00:07.000Z",
@@ -72,18 +96,26 @@
     "depth": 2
   },
   {
-    "id": 44900258,
-    "by": "bzzzt",
-    "timeISO": "2025-08-14T13:40:23.000Z",
-    "textPlain": "Why would big tech do this when customers bring it upon themselves by building Javascript slop?",
-    "parent": 44900087,
-    "depth": 2
-  },
-  {
     "id": 44900384,
     "by": "Avamander",
     "timeISO": "2025-08-14T13:53:03.000Z",
     "textPlain": "These types of mitigations have the biggest benefit when resources are shared. Do you really think cloud vendors want to lose performance to CPU or other mitigations when they could literally sell those resources to customers instead?",
+    "parent": 44900087,
+    "depth": 2
+  },
+  {
+    "id": 44900808,
+    "by": "depingus",
+    "timeISO": "2025-08-14T14:28:45.000Z",
+    "textPlain": "Sometimes its fun to engage in a little conspiratorial thinking. My 2 cents... That TPM 2.0 requirement on Windows 11 is about to create a whole ton of e-waste in October (Windows 10 EOL).",
+    "parent": 44900087,
+    "depth": 2
+  },
+  {
+    "id": 44900258,
+    "by": "bzzzt",
+    "timeISO": "2025-08-14T13:40:23.000Z",
+    "textPlain": "Why would big tech do this when customers bring it upon themselves by building Javascript slop?",
     "parent": 44900087,
     "depth": 2
   }

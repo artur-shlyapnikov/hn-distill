@@ -1,0 +1,8 @@
+{
+  "id": 44900455,
+  "lang": "ru",
+  "summary": "- **Radicle** — Git-репозиторий с криптографическими ссылками и социальными артефактами.  \n- **Jujutsu** — VCS-поверх Git: изменение `jj` всегда ссылается на коммит, но сам коммит может меняться.  \n- **Git** — транспортный слой: `git fetch rad`, `git push rad`.\n\n### Git-конфиг\n```ini\n[remote \"rad\"]\n    url = rad://z371PVmDHdjJucejRoRYJcDEvD5pp\n    pushurl = rad://…/z6MkireRatUThvd3qzfKht1S44wpm4FEWSSa4PRMTSQZ3voM\n[alias]\n    patch = push rad HEAD:refs/patches\n```\n\n### Jujutsu-флоу\n- `jj new` — новое изменение  \n- `jj edit` — правка описания  \n- `jj squash` — объединить в один коммит  \n- `jj rebase` — перестроить историю  \n\n`.jj/config`  \n```toml\n[user]\n    name = \"fintohaps\"\n    email = \"…\"\n[git]\n    push = \"rad\"\n    fetch = \"rad\"\n```\n\n### Патчи в Radicle\n1. **Создать**: `git patch` → открывается редактор для описания.  \n2. **Обновить**: `jj rebase`, затем `git patch` повторно.  \n3. **Поддерживать**: `jj squash` для чистой истории, `jj rebase` для синхронизации с `rad/master`.\n\nИтого: Radicle + Jujutsu = Git без веток, но с криптографией и удобной работой с патчами.",
+  "inputHash": "0d69ee54560c3d781adbfb8688ab80b6a3c04d8ffeb2364f5feeb1e3416e9fc8",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-14T15:27:48.610Z"
+}
