@@ -16,10 +16,34 @@
     "depth": 1
   },
   {
+    "id": 44898298,
+    "by": "ahoka",
+    "timeISO": "2025-08-14T08:58:30.000Z",
+    "textPlain": "If these primitives are less resource intensive than what we use today with the same level of security, then why don't we just use these everywhere? If they are not as secure, then why would be use these anywhere?",
+    "parent": 44893600,
+    "depth": 1
+  },
+  {
+    "id": 44898216,
+    "by": "dazhbog",
+    "timeISO": "2025-08-14T08:43:10.000Z",
+    "textPlain": "Why not use chacha20 or xtea for embedded devices? They are lighter than AES..",
+    "parent": 44893600,
+    "depth": 1
+  },
+  {
     "id": 44893979,
     "by": "rocqua",
     "timeISO": "2025-08-13T21:18:30.000Z",
     "textPlain": "This is pretty cool. But IOT tends to fail hard on key agreement. And nothing here solves that. This seems to pretty much require a pre installed key, otherwise the overhead of securely installing a key would probably nullify the advantage of this encryption.",
+    "parent": 44893600,
+    "depth": 1
+  },
+  {
+    "id": 44895709,
+    "by": "le-mark",
+    "timeISO": "2025-08-14T01:07:43.000Z",
+    "textPlain": "Wikipedia says Ascon has 320 bits of state and uses 5 bit s-boxes. That’s tiny compared to sha-256 or Blake2. One would think a pre image attack would be much more tractable at that scale.https://en.m.wikipedia.org/wiki/Ascon_(cipher)",
     "parent": 44893600,
     "depth": 1
   },
@@ -40,14 +64,6 @@
     "depth": 1
   },
   {
-    "id": 44895709,
-    "by": "le-mark",
-    "timeISO": "2025-08-14T01:07:43.000Z",
-    "textPlain": "Wikipedia says Ascon has 320 bits of state and uses 5 bit s-boxes. That’s tiny compared to sha-256 or Blake2. One would think a pre image attack would be much more tractable at that scale.https://en.m.wikipedia.org/wiki/Ascon_(cipher)",
-    "parent": 44893600,
-    "depth": 1
-  },
-  {
     "id": 44896477,
     "by": "indolering",
     "timeISO": "2025-08-14T03:33:19.000Z",
@@ -56,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44897234,
-    "by": "gnubee",
-    "timeISO": "2025-08-14T06:10:38.000Z",
-    "textPlain": "A land shanty is just called a song. \nIt's protective cryptography or not. Binary.",
-    "parent": 44893600,
-    "depth": 1
-  },
-  {
     "id": 44894372,
     "by": "Onavo",
     "timeISO": "2025-08-13T22:00:46.000Z",
     "textPlain": "Are these for garage doors and doorbells? Those devices could definitely use more security (it's not hard to stuff a proper TLS stack in a microcontroller but manufacturers balk at even putting something as cheap as a ESP32 in their BOM).",
+    "parent": 44893600,
+    "depth": 1
+  },
+  {
+    "id": 44897234,
+    "by": "gnubee",
+    "timeISO": "2025-08-14T06:10:38.000Z",
+    "textPlain": "A land shanty is just called a song. \nIt's protective cryptography or not. Binary.",
     "parent": 44893600,
     "depth": 1
   },
@@ -96,14 +112,6 @@
     "depth": 2
   },
   {
-    "id": 44894033,
-    "by": "cvwright",
-    "timeISO": "2025-08-13T21:23:54.000Z",
-    "textPlain": "Good news.  We’ve waited so long that AES is pretty damn lightweight now too.",
-    "parent": 44893936,
-    "depth": 2
-  },
-  {
     "id": 44896792,
     "by": "corranh",
     "timeISO": "2025-08-14T04:41:53.000Z",
@@ -112,10 +120,10 @@
     "depth": 2
   },
   {
-    "id": 44896185,
-    "by": "throw0101c",
-    "timeISO": "2025-08-14T02:36:34.000Z",
-    "textPlain": "The IETF has published TLS cipher suites with zero cryptography, \"TLS 1.3 Authentication and Integrity-Only Cipher Suites\":* https://datatracker.ietf.org/doc/html/rfc9150Lightweight cryptography could be a step between the above zero and the 'heavyweight' ciphers like AES.",
+    "id": 44894033,
+    "by": "cvwright",
+    "timeISO": "2025-08-13T21:23:54.000Z",
+    "textPlain": "Good news.  We’ve waited so long that AES is pretty damn lightweight now too.",
     "parent": 44893936,
     "depth": 2
   },
@@ -124,6 +132,14 @@
     "by": "glitchc",
     "timeISO": "2025-08-14T01:55:14.000Z",
     "textPlain": "This is facetious. Some protection is better than no protection.If \"every little bit helps\" is true for the environment, it's also true for cryptography, and vice versa.",
+    "parent": 44893936,
+    "depth": 2
+  },
+  {
+    "id": 44896185,
+    "by": "throw0101c",
+    "timeISO": "2025-08-14T02:36:34.000Z",
+    "textPlain": "The IETF has published TLS cipher suites with zero cryptography, \"TLS 1.3 Authentication and Integrity-Only Cipher Suites\":* https://datatracker.ietf.org/doc/html/rfc9150Lightweight cryptography could be a step between the above zero and the 'heavyweight' ciphers like AES.",
     "parent": 44893936,
     "depth": 2
   },
@@ -160,6 +176,14 @@
     "depth": 2
   },
   {
+    "id": 44896235,
+    "by": "201984",
+    "timeISO": "2025-08-14T02:44:28.000Z",
+    "textPlain": "No? SHA-256 has only eight 32-bit words of state which is even less than Ascon. BLAKE2s looks the same.https://en.wikipedia.org/wiki/SHA-2https://datatracker.ietf.org/doc/html/rfc7693",
+    "parent": 44895709,
+    "depth": 2
+  },
+  {
     "id": 44898077,
     "by": "LeGrosDadai",
     "timeISO": "2025-08-14T08:21:15.000Z",
@@ -173,14 +197,6 @@
     "timeISO": "2025-08-14T04:54:22.000Z",
     "textPlain": "Yup, NIST has no business putting their names on anything cryptographic anymore.",
     "parent": 44896664,
-    "depth": 2
-  },
-  {
-    "id": 44896235,
-    "by": "201984",
-    "timeISO": "2025-08-14T02:44:28.000Z",
-    "textPlain": "No? SHA-256 has only eight 32-bit words of state which is even less than Ascon. BLAKE2s looks the same.https://en.wikipedia.org/wiki/SHA-2https://datatracker.ietf.org/doc/html/rfc7693",
-    "parent": 44895709,
     "depth": 2
   },
   {
