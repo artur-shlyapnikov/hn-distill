@@ -24,14 +24,6 @@
     "depth": 1
   },
   {
-    "id": 44905041,
-    "by": "nayuki",
-    "timeISO": "2025-08-14T20:06:43.000Z",
-    "textPlain": "I think this would be a perfect use-case for blind signatures. https://en.wikipedia.org/wiki/Blind_signatureLet's say every citizen has an account with their federal government, and the account can be accessed securely in some reasonable way (password, 2FA, hardware token, etc.).The government can have a public-private RSA key pair specifically for \"At least 18 years old\". Once the user is authenticated, he can generate a nonce and a blinding factor, multiply them together to get a blinded random number, and upload that to the government for signing. He takes the signature and unblinds it, then submits the original nonce and unblinded signature to the adult website. The website confirms that the nonce and signature is valid according to the government's public key.This system raises many questions. For example, preventing replay attacks, so the adult website will reject any nonce being reused, or mandating that a timestamp be a subcomponent of the nonce. There is the un-answerable question of how to handle the case where a legitimate adult offers valid signatures for someone else to use. There is also the question of, to what extent the adult website should be able to keep track of the underlying users (even in a hashed format) to monitor abuse, suspicious users who have too much activity, etc.",
-    "parent": 44903351,
-    "depth": 1
-  },
-  {
     "id": 44904350,
     "by": "Muromec",
     "timeISO": "2025-08-14T19:08:06.000Z",
@@ -40,26 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44904923,
-    "by": "skybrian",
-    "timeISO": "2025-08-14T19:57:27.000Z",
-    "textPlain": "You’re probably better off just reading the paper he links to:https://www.cs.columbia.edu/~smb/papers/age-verify.pdfI think it shows the difficulty of implementing it for everyone. But Apple and Google’s cell phone implementations would probably cover most people in some countries when finished, and then there will be a long tail of people who will need cheats and workarounds.You’d be screwed if you didn’t have any friends who could help you cheat.",
-    "parent": 44903351,
-    "depth": 1
-  },
-  {
-    "id": 44904709,
-    "by": "kazinator",
-    "timeISO": "2025-08-14T19:41:01.000Z",
-    "textPlain": "If you're a web person who understands SSL, privacy-preserving age verification can be explained by analogy.It's a system which requires a central agency, probably a government agency, analogous to a certificate authority.You are authenticated with that agency; it has personal info about you. But you are externally identified by some impersonal identifier, not your name.The agency issues you a certificate binding this identifier to an assertion like \"is over 18 years old\".When you interact with a site that wants to know whether you are over 18 years old, you present the certificate.  The site can see that it's signed by the authority and that it has the assertion that you are over 18.You can't just give that site someone else's certificate because it has to be the one tied to the abstract identity you are presenting (which contains no personal info; it's some kind of UUID or whatever). Plus the cert can be bound to a specific device and such.The cert has a private keys with which you can prove that you own that cert; or at least that you are the authenticated operator of a device to which that cert was issued.It's something like that. I may have some key details wrong. The main idea is that some brokerage that does have info about you can attest that you are over 18 without revealing any of the personal info via certificate-like objects.It sounds like, in theory, the system can achieve good privacy in age verification. But not perfect age verification; people will find ways around it.A grown up can certify themselves to be over 18 and then hand the device to a teenager; and such an operation can likely be scaled to some extent. And of course no cryptographic system can eliminate the possibility that minors are looking at the screen of a device operated by an adult, who may even step out of the way to let them operate it.",
-    "parent": 44903351,
-    "depth": 1
-  },
-  {
-    "id": 44904536,
-    "by": "torginus",
-    "timeISO": "2025-08-14T19:25:16.000Z",
-    "textPlain": "The problem is not only that it's impossible to make cryptography that's only secure when the good guys use it, it's that once cryptography is made insecure, it's insecure for everyone, forever.I'm not a privacy hardliner, and I think the socially acceptable tradeoff between privacy and security have been well established before the computer era - if the police has a well-enough established suspicion against you - they can get a warrant and search your home. That's due process.I would accept if there was a digital version of that which targeted not the encryption itself (which could be as strong as possible) - but the endpoints, like smartphones and computers.Let's say police had a device which they could plug into your phone, which would send a specially signed message  - a digital warrant, containing all the info a real warrant would - which be permanently be burned into the ROM of your phone, after which the phone would surrender its encryption keys, and the police could dump your unencrypted disk.The phone would be then presented as evidence at the trial, and not following due process would be a cause for mistrial, no matter what they find there.The general public would be safe in the knowledge that as long as the police isn't hauling them in, their secrets are safe, and the government would get the tools for what they claimed they wanted  - a way to catch bad guys with digital tools.",
+    "id": 44905041,
+    "by": "nayuki",
+    "timeISO": "2025-08-14T20:06:43.000Z",
+    "textPlain": "I think this would be a perfect use-case for blind signatures. https://en.wikipedia.org/wiki/Blind_signatureLet's say every citizen has an account with their federal government, and the account can be accessed securely in some reasonable way (password, 2FA, hardware token, etc.).The government can have a public-private RSA key pair specifically for \"At least 18 years old\". Once the user is authenticated, he can generate a nonce and a blinding factor, multiply them together to get a blinded random number, and upload that to the government for signing. He takes the signature and unblinds it, then submits the original nonce and unblinded signature to the adult website. The website confirms that the nonce and signature is valid according to the government's public key.This system raises many questions. For example, preventing replay attacks, so the adult website will reject any nonce being reused, or mandating that a timestamp be a subcomponent of the nonce. There is the un-answerable question of how to handle the case where a legitimate adult offers valid signatures for someone else to use. There is also the question of, to what extent the adult website should be able to keep track of the underlying users (even in a hashed format) to monitor abuse, suspicious users who have too much activity, etc.",
     "parent": 44903351,
     "depth": 1
   },
@@ -72,10 +48,34 @@
     "depth": 1
   },
   {
+    "id": 44904709,
+    "by": "kazinator",
+    "timeISO": "2025-08-14T19:41:01.000Z",
+    "textPlain": "If you're a web person who understands SSL, privacy-preserving age verification can be explained by analogy.It's a system which requires a central agency, probably a government agency, analogous to a certificate authority.You are authenticated with that agency; it has personal info about you. But you are externally identified by some impersonal identifier, not your name.The agency issues you a certificate binding this identifier to an assertion like \"is over 18 years old\".When you interact with a site that wants to know whether you are over 18 years old, you present the certificate.  The site can see that it's signed by the authority and that it has the assertion that you are over 18.You can't just give that site someone else's certificate because it has to be the one tied to the abstract identity you are presenting (which contains no personal info; it's some kind of UUID or whatever). Plus the cert can be bound to a specific device and such.The cert has a private keys with which you can prove that you own that cert; or at least that you are the authenticated operator of a device to which that cert was issued.It's something like that. I may have some key details wrong. The main idea is that some brokerage that does have info about you can attest that you are over 18 without revealing any of the personal info via certificate-like objects.It sounds like, in theory, the system can achieve good privacy in age verification. But not perfect age verification; people will find ways around it.A grown up can certify themselves to be over 18 and then hand the device to a teenager; and such an operation can likely be scaled to some extent. And of course no cryptographic system can eliminate the possibility that minors are looking at the screen of a device operated by an adult, who may even step out of the way to let them operate it.",
+    "parent": 44903351,
+    "depth": 1
+  },
+  {
+    "id": 44904923,
+    "by": "skybrian",
+    "timeISO": "2025-08-14T19:57:27.000Z",
+    "textPlain": "You’re probably better off just reading the paper he links to:https://www.cs.columbia.edu/~smb/papers/age-verify.pdfI think it shows the difficulty of implementing it for everyone. But Apple and Google’s cell phone implementations would probably cover most people in some countries when finished, and then there will be a long tail of people who will need cheats and workarounds.You’d be screwed if you didn’t have any friends who could help you cheat.",
+    "parent": 44903351,
+    "depth": 1
+  },
+  {
     "id": 44904719,
     "by": "irchans",
     "timeISO": "2025-08-14T19:41:44.000Z",
     "textPlain": "Even after reading the article, I think there are reasonable ways to set up a low cost system that uses zero-knowledge proofs to \"prove\" your age without disclosing your identity.  I do think that you will need trusted entities and the system will only stop most, maybe 80 or 90 percent of children under 18 from seeing porn.  But, if you do this, then maybe 99% of kids under the age of 14 will have a lot of difficulty viewing porn which is a good thing.  There may be valid a slippery slope argument for not setting up the age validation system even if everything I said above is true.",
+    "parent": 44903351,
+    "depth": 1
+  },
+  {
+    "id": 44904536,
+    "by": "torginus",
+    "timeISO": "2025-08-14T19:25:16.000Z",
+    "textPlain": "The problem is not only that it's impossible to make cryptography that's only secure when the good guys use it, it's that once cryptography is made insecure, it's insecure for everyone, forever.I'm not a privacy hardliner, and I think the socially acceptable tradeoff between privacy and security have been well established before the computer era - if the police has a well-enough established suspicion against you - they can get a warrant and search your home. That's due process.I would accept if there was a digital version of that which targeted not the encryption itself (which could be as strong as possible) - but the endpoints, like smartphones and computers.Let's say police had a device which they could plug into your phone, which would send a specially signed message  - a digital warrant, containing all the info a real warrant would - which be permanently be burned into the ROM of your phone, after which the phone would surrender its encryption keys, and the police could dump your unencrypted disk.The phone would be then presented as evidence at the trial, and not following due process would be a cause for mistrial, no matter what they find there.The general public would be safe in the knowledge that as long as the police isn't hauling them in, their secrets are safe, and the government would get the tools for what they claimed they wanted  - a way to catch bad guys with digital tools.",
     "parent": 44903351,
     "depth": 1
   },
@@ -112,6 +112,14 @@
     "depth": 1
   },
   {
+    "id": 44905786,
+    "by": "crote",
+    "timeISO": "2025-08-14T21:16:46.000Z",
+    "textPlain": "The problem with schemes like these is that it is reasonably easy to come up with something which is pretty close, yet still missing some crucial details.- You do not want the government to know which websites you visit. This rules out any kind of redirect / forwarding via a government website or app.- You do not want websites to correlate their requests, as that would allow for cross-website tracking. Request data from website A should be completely useless to website B. This rules out most regular certificate schemes.- You do not want a website to correlate multiple data requests, as that would allow websites to create some kind of supercookie. Requests should be completely independent, and two requests from the same user should be indistinguishable from requests from two different users.- You do not want to lose privacy when the government and the website work together. The request should still be anonymous when the two collaborate, or else there can be no reasonable assumption of privacy. This rules out most clever pass-a-one-time-code schemes.- You want the request to be unique and time-bound. It should not be possible to replay a response, either to the same website or a different one.- You do not want to send more data than strictly necessary. If a website needs to know if you are 18 or older, it should only receive a boolean flag.Getting some of those properties is easy. Getting all of them at the same time? Nearly impossible. And the worst part is that I almost certainly forgot a handful of requirements!",
+    "parent": 44904650,
+    "depth": 2
+  },
+  {
     "id": 44904936,
     "by": "fabian2k",
     "timeISO": "2025-08-14T19:58:24.000Z",
@@ -120,10 +128,26 @@
     "depth": 2
   },
   {
+    "id": 44905751,
+    "by": "michaelt",
+    "timeISO": "2025-08-14T21:13:05.000Z",
+    "textPlain": "Interesting. How does the revocation of lost/stolen cards interact with the anonymous design of the age attestation?If an enterprising 19-year-old sold their card and PIN to a 15-year-old and reported it lost to get a replacement, presumably there's some mechanism to stop the 'lost' card being used as proof of age?",
+    "parent": 44904650,
+    "depth": 2
+  },
+  {
     "id": 44905113,
     "by": "nottorp",
     "timeISO": "2025-08-14T20:13:34.000Z",
     "textPlain": "> This way the government does not know which sites you visitHmm. It's not clear from the description that it is so. The government knows which site sent the request and authenticates your card, which is tied to your identity, right?",
+    "parent": 44904650,
+    "depth": 2
+  },
+  {
+    "id": 44905483,
+    "by": "input_sh",
+    "timeISO": "2025-08-14T20:42:31.000Z",
+    "textPlain": "I completely agree it's technologically feasible in basically every continental European country (as we all have some form of biometric IDs), but do you want to have to do that every time you open a private tab to look at porn? Do you want to not be able to clear your browser cookies without going through that process all over again for basically every website? Do you want to extend 2FA into 3FA with your national ID acting as the third factor so you can view \"sensitive\" content?",
     "parent": 44904650,
     "depth": 2
   },
@@ -149,6 +173,22 @@
     "timeISO": "2025-08-14T20:22:27.000Z",
     "textPlain": "Even if you could do this in every single country (it would already be extremely hard to actually do this in the United States reliably, and I can only imagine it is basically a non-starter in a lot of developing countries) it does pose so, so, so many problems.- How can you ensure the system can't be abused if there's no identifying information passed? Don't get me wrong, this is also a problem with current systems, maybe even worse. But if it's privacy preserving, ... Almost all kids under 18 have parents or guardians. Almost all of those parents or guardians are 18 or older. So literally all you have to do to bypass age verification is steal their ID for a few minutes? There are also a myriad of solvable problems that aren't guaranteed to be solved without care, like ensuring that the same ID is not used 100,000 times.- This is a job that is best suited for the government to handle. The internet is global though, and there are a lot of governments. In the U.S., there is in fact not one federal ID, but instead we use state IDs. I assume that means you now need to handle around 50 different state IDs to be able to verify someone's identity, but it actually gets even worse than that, because some people will have IDs, and some will have drivers licenses, because oddly enough that's just how we structure IDs here. People without drivers licenses may have state IDs which are often intentionally visibly distinct to make sure they can't be mistaken for the other. In states I'm aware of, you'll never have both, the driver's license acts as a state ID if you have one. Now scale that to every country on Earth.- As insane as it may sound, there are plenty of people who don't have essentially any form of ID. You might think I'm over-estimating the numbers with \"plenty\", but even just in the United States, it's literally over 2.5 million, off the top of my head. (No idea what the best source is here.) The closest thing we have that every citizen is supposed to have is Social ",
     "parent": 44904650,
+    "depth": 2
+  },
+  {
+    "id": 44905765,
+    "by": "owisd",
+    "timeISO": "2025-08-14T21:14:42.000Z",
+    "textPlain": "Having a device in your pocket that you take everywhere with no stigma to being seen with it yet it has unlimited access to any genre of porn you can think of is hardly comparable to finding a 90s porn mag in a bush from time to time, so you can't really say this has been happening forever.",
+    "parent": 44905126,
+    "depth": 2
+  },
+  {
+    "id": 44905646,
+    "by": "thomassmith65",
+    "timeISO": "2025-08-14T21:00:59.000Z",
+    "textPlain": "Yeah, it seems like Doctorow presents arguments that a good IDP system is complicated, but begins and concludes by saying it's impossible.It kinda seems the internet has real, longstanding problems stemming from the inability to verify anything about anything online. For the most blatant example, a website admin can never permanently ban a troll or criminal (they just sign up under a new name).It makes one wonder how Doctorow reconciles the internet as it is with his stand against adopting some kind of IDP system.",
+    "parent": 44904429,
     "depth": 2
   },
   {
@@ -192,6 +232,38 @@
     "depth": 2
   },
   {
+    "id": 44904627,
+    "by": "nemomarx",
+    "timeISO": "2025-08-14T19:33:42.000Z",
+    "textPlain": "if you had to register to vote to use Reddit or whatever people would complain about that constantly. and voter id laws are in fact controversial yes.",
+    "parent": 44904385,
+    "depth": 2
+  },
+  {
+    "id": 44904449,
+    "by": "lmz",
+    "timeISO": "2025-08-14T19:16:45.000Z",
+    "textPlain": "The same people who argue this will also argue that voter ID rules are discriminatory.",
+    "parent": 44904385,
+    "depth": 2
+  },
+  {
+    "id": 44904461,
+    "by": "Seattle3503",
+    "timeISO": "2025-08-14T19:18:13.000Z",
+    "textPlain": "I agree \"ensuring everyone has ID\" is a separate problem that we should absolutely trying to tackle. We are already seeing people struggle with it absent any new ID schemes, eg in the case of trying to get access to banking. You can already get ID at a post office, maybe we should add other government facilities such as libraries.",
+    "parent": 44904385,
+    "depth": 2
+  },
+  {
+    "id": 44904754,
+    "by": "Seattle3503",
+    "timeISO": "2025-08-14T19:43:43.000Z",
+    "textPlain": "Yeah, I think even if we only manage to delay the \"age of first porn viewing\" to something like 14-15, thats probably a win.",
+    "parent": 44904719,
+    "depth": 2
+  },
+  {
     "id": 44904810,
     "by": "buzer",
     "timeISO": "2025-08-14T19:48:16.000Z",
@@ -205,38 +277,6 @@
     "timeISO": "2025-08-14T20:01:45.000Z",
     "textPlain": "> The problem is not only that it's impossible to make cryptography that's only secure when the good guys use it, it's that once cryptography is made insecure, it's insecure for everyone, forever.Correct.> Let's say police had a device which they could plug into your phone, which would send a specially signed message - a digital warrant, containing all the info a real warrant would - which be permanently be burned into the ROM of your phone, after which the phone would surrender its encryption keys, and the police could dump your unencrypted disk.You are now advocating for making phones insecure for everyone, forever. No.",
     "parent": 44904536,
-    "depth": 2
-  },
-  {
-    "id": 44904627,
-    "by": "nemomarx",
-    "timeISO": "2025-08-14T19:33:42.000Z",
-    "textPlain": "if you had to register to vote to use Reddit or whatever people would complain about that constantly. and voter id laws are in fact controversial yes.",
-    "parent": 44904385,
-    "depth": 2
-  },
-  {
-    "id": 44904461,
-    "by": "Seattle3503",
-    "timeISO": "2025-08-14T19:18:13.000Z",
-    "textPlain": "I agree \"ensuring everyone has ID\" is a separate problem that we should absolutely trying to tackle. We are already seeing people struggle with it absent any new ID schemes, eg in the case of trying to get access to banking. You can already get ID at a post office, maybe we should add other government facilities such as libraries.",
-    "parent": 44904385,
-    "depth": 2
-  },
-  {
-    "id": 44904449,
-    "by": "lmz",
-    "timeISO": "2025-08-14T19:16:45.000Z",
-    "textPlain": "The same people who argue this will also argue that voter ID rules are discriminatory.",
-    "parent": 44904385,
-    "depth": 2
-  },
-  {
-    "id": 44904754,
-    "by": "Seattle3503",
-    "timeISO": "2025-08-14T19:43:43.000Z",
-    "textPlain": "Yeah, I think even if we only manage to delay the \"age of first porn viewing\" to something like 14-15, thats probably a win.",
-    "parent": 44904719,
     "depth": 2
   },
   {

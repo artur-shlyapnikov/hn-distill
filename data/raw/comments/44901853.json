@@ -1,5 +1,13 @@
 [
   {
+    "id": 44905812,
+    "by": "DiabloD3",
+    "timeISO": "2025-08-14T21:19:25.000Z",
+    "textPlain": "I suggest you don't brand this \"Ollama for X\". They've become a commercial operation that is trying to FOSS-wash their actions through using llama.cpp's code and then throwing their users under the bus when they can't support them.I see that you are also using llama.cpp's code? That's cool, but make sure you become a member of that community, not an abuser.",
+    "parent": 44901853,
+    "depth": 1
+  },
+  {
     "id": 44905187,
     "by": "mijoharas",
     "timeISO": "2025-08-14T20:20:00.000Z",
@@ -8,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44904907,
-    "by": "solarkraft",
-    "timeISO": "2025-08-14T19:56:19.000Z",
-    "textPlain": "Wait, this is cool.I just spent last week researching the options (especially for my M1!) and was left wishing for a standard, full-service (live) transcription server for Whisper like OLlama has been for LLMs.I’m excited to try this out and see your API (there seems to be a standard vaccuum here due to openai not having a real time transcription service, which I find to be a bummer)!Edit: They seem to emulate the Deepgram API (https://developers.deepgram.com/reference/speech-to-text-api...), which seems like a solid choice. I’d definitely like to see a standard emerging here.",
-    "parent": 44901853,
-    "depth": 1
-  },
-  {
     "id": 44905003,
     "by": "clickety_clack",
     "timeISO": "2025-08-14T20:03:22.000Z",
     "textPlain": "Please find a way to add speaker diarization, with a way to remember the speakers. You can do it with pyannote, and get a vector embedding of each speaker that can be compared between audio samples, but that’s a year old now so I’m sure there’s better options now!",
+    "parent": 44901853,
+    "depth": 1
+  },
+  {
+    "id": 44904907,
+    "by": "solarkraft",
+    "timeISO": "2025-08-14T19:56:19.000Z",
+    "textPlain": "Wait, this is cool.I just spent last week researching the options (especially for my M1!) and was left wishing for a standard, full-service (live) transcription server for Whisper like OLlama has been for LLMs.I’m excited to try this out and see your API (there seems to be a standard vaccuum here due to openai not having a real time transcription service, which I find to be a bummer)!Edit: They seem to emulate the Deepgram API (https://developers.deepgram.com/reference/speech-to-text-api...), which seems like a solid choice. I’d definitely like to see a standard emerging here.",
     "parent": 44901853,
     "depth": 1
   },
@@ -40,11 +48,19 @@
     "depth": 1
   },
   {
-    "id": 44905067,
+    "id": 44905301,
     "by": "yujonglee",
-    "timeISO": "2025-08-14T20:09:06.000Z",
-    "textPlain": "Correct. About the deepgram-compatibility:\nhttps://docs.hyprnote.com/owhisper/deepgram-compatibilityLet me know how it goes!",
-    "parent": 44904907,
+    "timeISO": "2025-08-14T20:29:15.000Z",
+    "textPlain": "> I'm on linuxI didn't tested on Linux yet, but we have linux build:\nhttp://owhisper.hyprnote.com/download/latest/linux-x86_64> also, it looks like the `owhisper run` command gives it's output as a tui. Is there an option for a plain tex`owhisper run` is more like way to quickly trying it out. But I think piping is definitely something that should work.> Same question for streaming, is there a way to get a streaming text output from owhisper?You can use Deepgram client to talk to `owhisper serve`.\n(https://docs.hyprnote.com/owhisper/deepgram-compatibility)\nSo best resource might be Deepgram client SDK docs.> diarisationyeah on the roadmap",
+    "parent": 44905187,
+    "depth": 2
+  },
+  {
+    "id": 44905289,
+    "by": "mijoharas",
+    "timeISO": "2025-08-14T20:28:40.000Z",
+    "textPlain": "Oh wait, maybe you do support linux for owhisper:\nhttps://github.com/fastrepl/homebrew-hyprnote/blob/main/Form...Can you help me out to find where the code you've built is? I can see the folder in github[0], but I can't see the code for the cli for instance? unless I'm blind.[0] https://github.com/fastrepl/hyprnote/tree/main/owhisper",
+    "parent": 44905187,
     "depth": 2
   },
   {
@@ -56,11 +72,11 @@
     "depth": 2
   },
   {
-    "id": 44904797,
-    "by": "sxp",
-    "timeISO": "2025-08-14T19:47:28.000Z",
-    "textPlain": "If you want to transcribe meeting notes, whisper isn't the best tool because it doesn't separate the transcribe by speakers. There are some other tools that do that, but I'm not sure what the best local option is. I've used Google's cloud STT with the diarization option and manually renamed \"Speaker N\" after the fact.",
-    "parent": 44904267,
+    "id": 44905067,
+    "by": "yujonglee",
+    "timeISO": "2025-08-14T20:09:06.000Z",
+    "textPlain": "Correct. About the deepgram-compatibility:\nhttps://docs.hyprnote.com/owhisper/deepgram-compatibilityLet me know how it goes!",
+    "parent": 44904907,
     "depth": 2
   },
   {
@@ -69,6 +85,22 @@
     "timeISO": "2025-08-14T19:05:15.000Z",
     "textPlain": "If your use-case is meeting, https://github.com/fastrepl/hyprnote is for you.\nOWhisper is more like a headless version of it.",
     "parent": 44904267,
+    "depth": 2
+  },
+  {
+    "id": 44904797,
+    "by": "sxp",
+    "timeISO": "2025-08-14T19:47:28.000Z",
+    "textPlain": "If you want to transcribe meeting notes, whisper isn't the best tool because it doesn't separate the transcribe by speakers. There are some other tools that do that, but I'm not sure what the best local option is. I've used Google's cloud STT with the diarization option and manually renamed \"Speaker N\" after the fact.",
+    "parent": 44904267,
+    "depth": 2
+  },
+  {
+    "id": 44905795,
+    "by": "alkh",
+    "timeISO": "2025-08-14T21:17:35.000Z",
+    "textPlain": "Sorry, maybe I missed it but I didn't see this list on your website. I think it is a good idea to add this info there. Besides that, thank you for the effort and your work! I will definetely give it a try",
+    "parent": 44904204,
     "depth": 2
   },
   {

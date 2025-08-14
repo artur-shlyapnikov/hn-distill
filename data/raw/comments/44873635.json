@@ -3,7 +3,7 @@
     "id": 44904989,
     "by": "brettgriffin",
     "timeISO": "2025-08-14T20:02:37.000Z",
-    "textPlain": "I watched the first half hour of this earlier this week. I was surprised at just how differently two people can view the world. I'm not sure I would be as dogmatic as him, but just using the first few points, I think you can make strong cases against:1. Everything is exposed as an API with little no insight to inner workings (black box)\n2. Everything should be broken down into modules at a level where one person works on that module\n3. He shows a video of his video editor, saying it supports multiple inputs (like two keyboards or two mice), this says no platform supports it, but if they ever do, it will work\n4. Don't implement 'good enough apis'I hope that anybody who has ever worked on software understands that there are virtues to doing exactly the opposite of what is described in each of these points. Even if you can make an argument for any of these, you would have to qualify them with so many exceptions that you would effectively negate the entire argument.I spent a lot of evenings early in my career watching similar videos, hoping to find some magic bullet in how people better than do what I do. People make a living doing this on the conference circuit. Maybe it is a fools errand to try to distill something as complex and situationally dependent as software into a video, but I'm having a hard time finding any major insights in all of the videos I watched.",
+    "textPlain": "I watched the first half hour of this earlier this week. I was surprised at just how differently two people can view the world. I'm not sure I would be as dogmatic as him, but just using the first few points, I think you can make strong cases against:1. Everything is exposed as an API with little no insight to inner workings (black box)2. Everything should be broken down into modules at a level where one person works on that module3. He shows a video of his video editor, saying it supports multiple inputs (like two keyboards or two mice), then says no platform supports it, but if they ever do, it will work4. Don't implement 'good enough apis'I hope that anybody who has ever worked on software understands that there are virtues to doing exactly the opposite of what is described in each of these points. Even if you can make an argument for any of these, you would have to qualify them with so many exceptions that you would effectively negate the entire argument.I spent a lot of evenings early in my career watching similar videos, hoping to find some magic bullet in how people better than me do what I do. People make a living doing this on the conference circuit. Maybe it is a fools errand to try to distill something as complex and situationally dependent as software into a video, but I'm having a hard time finding any major insights in all of the videos I watched.",
     "parent": 44873635,
     "depth": 1
   },
@@ -32,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44905080,
-    "by": "gashmol",
-    "timeISO": "2025-08-14T20:10:20.000Z",
-    "textPlain": "Aside - Why do we need the word \"architecting\" anyway? Why not just use designing?",
-    "parent": 44873635,
-    "depth": 1
-  },
-  {
     "id": 44904202,
     "by": "kod",
     "timeISO": "2025-08-14T18:55:49.000Z",
     "textPlain": "The \"one module should be written by only one person\" dogma is kind of interesting.But I got to the \"my wrapper around SDL supports multiple simultaneous mouse inputs, even though no operating system does\" and noped out.  YAGNI, even in a large project",
+    "parent": 44873635,
+    "depth": 1
+  },
+  {
+    "id": 44905080,
+    "by": "gashmol",
+    "timeISO": "2025-08-14T20:10:20.000Z",
+    "textPlain": "Aside - Why do we need the word \"architecting\" anyway? Why not just use designing?",
     "parent": 44873635,
     "depth": 1
   },
@@ -72,14 +72,6 @@
     "depth": 1
   },
   {
-    "id": 44905242,
-    "by": "leecommamichael",
-    "timeISO": "2025-08-14T20:24:59.000Z",
-    "textPlain": "I think the mistake people make when trying to teach this stuff is in generalizing too much.His input layer is good because it helped him emulate local multiplayer with keyboard and mouse. It solved _his problem_.The graphics layer is good because it is so much easier to work with than OpenGL _for him_.The library wrappers are good for him because they solve _his desire_ to run portably while maintaining the smallest possible interface.This stuff matters to Eskil because he’s:\n- just one person\n- has deep expertise in what he’s wrapping (win32, OpenGL)\n- wants to make an impressive program soloI think his expertise, historical perspective, and culture make it feel as if this is the only way to do this very hard task, so he wants to share it. It helps him believe his way is right that many great, and reliable projects are done in C89.I think the truth at this point is that folks still using old versions of C have, on average, more experience than everyone else. It’s not just the language that’s making them strong, either. It’s having evolved with the platforms.Now the only question that leaves is whether it makes a huge difference to really stick with one language over the decades. I know we’ve all heard both sides of that quandary.",
-    "parent": 44904989,
-    "depth": 2
-  },
-  {
     "id": 44905200,
     "by": "ribelo",
     "timeISO": "2025-08-14T20:20:40.000Z",
@@ -88,10 +80,34 @@
     "depth": 2
   },
   {
+    "id": 44905242,
+    "by": "leecommamichael",
+    "timeISO": "2025-08-14T20:24:59.000Z",
+    "textPlain": "I think the mistake people make when trying to teach this stuff is in generalizing too much.His input layer is good because it helped him emulate local multiplayer with keyboard and mouse. It solved _his problem_.The graphics layer is good because it is so much easier to work with than OpenGL _for him_.The library wrappers are good for him because they solve _his desire_ to run portably while maintaining the smallest possible interface.This stuff matters to Eskil because he’s:\n- just one person\n- has deep expertise in what he’s wrapping (win32, OpenGL)\n- wants to make an impressive program soloI think his expertise, historical perspective, and culture make it feel as if this is the only way to do this very hard task, so he wants to share it. It helps him believe his way is right that many great, and reliable projects are done in C89.I think the truth at this point is that folks still using old versions of C have, on average, more experience than everyone else. It’s not just the language that’s making them strong, either. It’s having evolved with the platforms.Now the only question that leaves is whether it makes a huge difference to really stick with one language over the decades. I know we’ve all heard both sides of that quandary.",
+    "parent": 44904989,
+    "depth": 2
+  },
+  {
     "id": 44904943,
     "by": "imglorp",
     "timeISO": "2025-08-14T19:58:50.000Z",
     "textPlain": "Yes, and also don't try to anticipate everything by implementing features that won't be used soon, ie \"just in case\". If the soon turns to never, any unused feature is basically dead code and represents future costs and constraints to maintain or remove it.",
+    "parent": 44904706,
+    "depth": 2
+  },
+  {
+    "id": 44905409,
+    "by": "leecommamichael",
+    "timeISO": "2025-08-14T20:37:14.000Z",
+    "textPlain": "Yeah, it’s too hard of a rule. In reality interfaces have points of resistance; where they aren’t really helping you do what you’re wanting, and they have fitting-points where they do what you need done.I’d argue it’s your job to strike some kind of balance there. If you know you’re working with something stable, why settle for good-enough? Well, because the task of assessing what is stable requires years of mistakes, and good-enough varies drastically between languages. I think I see a point here for using primitive C; there’s hardly a type-system to waste time with, but you can cut yourself with macros. This is why I use Odin.",
+    "parent": 44904706,
+    "depth": 2
+  },
+  {
+    "id": 44905417,
+    "by": "hk1337",
+    "timeISO": "2025-08-14T20:38:03.000Z",
+    "textPlain": "I would add a caveat...Don't ever implement good-enough-for-now APIs without a plan to come back and fix it and a deadline to fix itMost of the time \"good-enough-for-now\" really is just \"good-enough-forever\".",
     "parent": 44904706,
     "depth": 2
   },
@@ -112,6 +128,14 @@
     "depth": 2
   },
   {
+    "id": 44905821,
+    "by": "tracker1",
+    "timeISO": "2025-08-14T21:20:03.000Z",
+    "textPlain": "I think the \"how easy will this be to replace\" question should be a guiding factor in terms of some architectural decisions.  Having modular code, and abstractions can add a lot of value, but if you do it in a way that locks you down and makes everything it touches a multiple in terms of complexity, is it really worth it.One thing I often do, in terms of modularizing, especially for re-share or external use is sit down and think about the ergonomics of what I'm creating and how I would like to be able to use/consume said module... often writing documentation before writing the code.",
+    "parent": 44904718,
+    "depth": 2
+  },
+  {
     "id": 44904728,
     "by": "leecommamichael",
     "timeISO": "2025-08-14T19:42:14.000Z",
@@ -125,6 +149,14 @@
     "timeISO": "2025-08-14T19:54:49.000Z",
     "textPlain": "> YAGNI“You Aren’t Gonna Need It”",
     "parent": 44904202,
+    "depth": 2
+  },
+  {
+    "id": 44905457,
+    "by": "leecommamichael",
+    "timeISO": "2025-08-14T20:41:04.000Z",
+    "textPlain": "Architecting at least somewhat harkens to engineering; where there are costs, limits, tolerances, and to some degree aesthetics.",
+    "parent": 44905080,
     "depth": 2
   }
 ]

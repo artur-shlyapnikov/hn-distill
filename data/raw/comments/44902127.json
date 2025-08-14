@@ -1,9 +1,9 @@
 [
   {
-    "id": 44905224,
-    "by": "entelechy",
-    "timeISO": "2025-08-14T20:22:40.000Z",
-    "textPlain": "Love it!\nWe did something similar using strace/dtruss back in 2018 with https://buildinfer.loopperfect.com/ and were generating graphs (using eg. graphviz and perfetto.dev) and BUCK files on the back of thatWhilst we regrettably never came around to package it as a propper product, we found it immensly valuable in our consulting work, to pinpoint issues and aid the conversion to BUCK/Bazel.\nWe used graphviz, https://perfetto.dev/ and couple other tools to visualise thingsRecently we cicled back to this too but with a broader usecase in mind.There are some inherent technical challanges with this approach & domain:\n- syscall logs can get huge - especially when saved to disk. Our strace logs would get over 100GB for some projects (llvm was around ~50GB)\n- some projects also use https and inter process communications and that needs ot be properly handled too. (We even had a customer that was retriving code from a firebird database via perl as part of the compilation step!)\n- It's runtime analysis - you might need to repeat the analysis for each configuration.",
+    "id": 44905818,
+    "by": "proctorg76",
+    "timeISO": "2025-08-14T21:19:53.000Z",
+    "textPlain": "the parallels between tech and manufacturing never cease to amaze, this looks so much like the machine monitoring / execution system we use in the car parts plant I want to ask if you've calculated the TEEP and OEE of your build farm",
     "parent": 44902127,
     "depth": 1
   },
@@ -12,6 +12,14 @@
     "by": "Night_Thastus",
     "timeISO": "2025-08-14T18:42:34.000Z",
     "textPlain": "I am extremely interested in this.I am stuck in an environment with CMake, GCC and Unix Make (no clang, no ninja) and getting detailed information about WHY the build is taking so long is nearly impossible.It's also a bit of a messy build with steps like copying a bunch of files from the source into the build folder. Multiple languages (C, C++, Fortran, Python), custom cmake steps, etc.If this tool can handle that kind of mess, I'll be very interested to see what I can learn.",
+    "parent": 44902127,
+    "depth": 1
+  },
+  {
+    "id": 44905224,
+    "by": "entelechy",
+    "timeISO": "2025-08-14T20:22:40.000Z",
+    "textPlain": "Love it!\nWe did something similar using strace/dtruss back in 2018 with https://buildinfer.loopperfect.com/ and were generating graphs (using eg. graphviz and perfetto.dev) and BUCK files on the back of thatWhilst we regrettably never came around to package it as a propper product, we found it immensly valuable in our consulting work, to pinpoint issues and aid the conversion to BUCK/Bazel.\nWe used graphviz, https://perfetto.dev/ and couple other tools to visualise thingsRecently we cicled back to this too but with a broader usecase in mind.There are some inherent technical challanges with this approach & domain:- syscall logs can get huge - especially when saved to disk. Our strace logs would get over 100GB for some projects (llvm was around ~50GB)- some projects also use https and inter process communications and that needs ot be properly handled too. (We even had a customer that was retriving code from a firebird database via perl as part of the compilation step!)- It's runtime analysis - you might need to repeat the analysis for each configuration.",
     "parent": 44902127,
     "depth": 1
   },
@@ -64,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44905111,
-    "by": "CyberDildonics",
-    "timeISO": "2025-08-14T20:13:17.000Z",
-    "textPlain": "I love the visualization, I think it's great information and will be very helpful to whoever uses it.I would think about a different name. Often names are either meant to be funny or just unique nonsense but something short and elegantly descriptive (like BuildViz etc.) can go a long way to making it seem more legitimate and being more widely used.",
-    "parent": 44902127,
-    "depth": 1
-  },
-  {
     "id": 44903970,
     "by": "corysama",
     "timeISO": "2025-08-14T18:34:24.000Z",
     "textPlain": "Looks like a general `fork()` visualizer to me. Which is great!",
+    "parent": 44902127,
+    "depth": 1
+  },
+  {
+    "id": 44904182,
+    "by": "mgaunard",
+    "timeISO": "2025-08-14T18:54:12.000Z",
+    "textPlain": "The real solution is to eliminate build systems where you have to define your own targets.Developers always get it wrong and do it badly.",
     "parent": 44902127,
     "depth": 1
   },
@@ -88,10 +96,10 @@
     "depth": 1
   },
   {
-    "id": 44904182,
-    "by": "mgaunard",
-    "timeISO": "2025-08-14T18:54:12.000Z",
-    "textPlain": "The real solution is to eliminate build systems where you have to define your own targets.Developers always get it wrong and do it badly.",
+    "id": 44905111,
+    "by": "CyberDildonics",
+    "timeISO": "2025-08-14T20:13:17.000Z",
+    "textPlain": "I love the visualization, I think it's great information and will be very helpful to whoever uses it.I would think about a different name. Often names are either meant to be funny or just unique nonsense but something short and elegantly descriptive (like BuildViz etc.) can go a long way to making it seem more legitimate and being more widely used.",
     "parent": 44902127,
     "depth": 1
   },
@@ -134,6 +142,22 @@
     "textPlain": "but why? I have to admit it's a fun project",
     "parent": 44902127,
     "depth": 1
+  },
+  {
+    "id": 44905637,
+    "by": "phaedrus",
+    "timeISO": "2025-08-14T21:00:20.000Z",
+    "textPlain": "When I was trying to improve compile time for my game engine, I ended up using compiled size as a proxy measure.  Although it is an imperfect correlation, the fact that compiled size is deterministic across build runs and even across builds on different machines makes it easier to work with than wall clock time.",
+    "parent": 44904058,
+    "depth": 2
+  },
+  {
+    "id": 44905796,
+    "by": "pklausler",
+    "timeISO": "2025-08-14T21:17:37.000Z",
+    "textPlain": "strace might help, if you have it.",
+    "parent": 44904058,
+    "depth": 2
   },
   {
     "id": 44905123,
@@ -197,6 +221,22 @@
     "timeISO": "2025-08-14T18:33:47.000Z",
     "textPlain": "OP Here. Thats an interesting idea. What The Fork knows all the commands run, and every path they read/write, so I should be able to make it estimate build time just by looking at what files were touched.",
     "parent": 44903835,
+    "depth": 2
+  },
+  {
+    "id": 44905318,
+    "by": "dhooper",
+    "timeISO": "2025-08-14T20:29:58.000Z",
+    "textPlain": "Thanks CyberDildoNics!",
+    "parent": 44905111,
+    "depth": 2
+  },
+  {
+    "id": 44905344,
+    "by": "hiccuphippo",
+    "timeISO": "2025-08-14T20:31:32.000Z",
+    "textPlain": "Name checks out.",
+    "parent": 44905111,
     "depth": 2
   },
   {
