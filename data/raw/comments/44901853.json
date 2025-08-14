@@ -1,5 +1,29 @@
 [
   {
+    "id": 44905187,
+    "by": "mijoharas",
+    "timeISO": "2025-08-14T20:20:00.000Z",
+    "textPlain": "Ok, cool! I was actually one of the people on the hyprnote HN thread asking for a headless mode!I was actually integrating some whisper tools yesterday. I was wondering if there was a way to get a streaming response, and was thinking it'd be nice if you can.I'm on linux, so don't think I can test out owhisper right now, but is that a thing that's possible?Also, it looks like the `owhisper run` command gives it's output as a tui. Is there an option for a plain text response so that we can just pipe it to other programs? (maybe just `kill`/`CTRL+C` to stop the recording and finalize the words).Same question for streaming, is there a way to get a streaming text output from owhisper? (it looks like you said you create a deepgram compatible api, I had a quick look at the api docs, but I don't know how easy it is to hook into it and get some nice streaming text while speaking).Oh yeah, and diarisation (available with a flag?) would be awesome, one of the things that's missing from most of the easiest to run things I can find.",
+    "parent": 44901853,
+    "depth": 1
+  },
+  {
+    "id": 44904907,
+    "by": "solarkraft",
+    "timeISO": "2025-08-14T19:56:19.000Z",
+    "textPlain": "Wait, this is cool.I just spent last week researching the options (especially for my M1!) and was left wishing for a standard, full-service (live) transcription server for Whisper like OLlama has been for LLMs.I’m excited to try this out and see your API (there seems to be a standard vaccuum here due to openai not having a real time transcription service, which I find to be a bummer)!Edit: They seem to emulate the Deepgram API (https://developers.deepgram.com/reference/speech-to-text-api...), which seems like a solid choice. I’d definitely like to see a standard emerging here.",
+    "parent": 44901853,
+    "depth": 1
+  },
+  {
+    "id": 44905003,
+    "by": "clickety_clack",
+    "timeISO": "2025-08-14T20:03:22.000Z",
+    "textPlain": "Please find a way to add speaker diarization, with a way to remember the speakers. You can do it with pyannote, and get a vector embedding of each speaker that can be compared between audio samples, but that’s a year old now so I’m sure there’s better options now!",
+    "parent": 44901853,
+    "depth": 1
+  },
+  {
     "id": 44904267,
     "by": "JP_Watts",
     "timeISO": "2025-08-14T19:01:50.000Z",
@@ -16,11 +40,43 @@
     "depth": 1
   },
   {
+    "id": 44905067,
+    "by": "yujonglee",
+    "timeISO": "2025-08-14T20:09:06.000Z",
+    "textPlain": "Correct. About the deepgram-compatibility:\nhttps://docs.hyprnote.com/owhisper/deepgram-compatibilityLet me know how it goes!",
+    "parent": 44904907,
+    "depth": 2
+  },
+  {
+    "id": 44905051,
+    "by": "yujonglee",
+    "timeISO": "2025-08-14T20:07:49.000Z",
+    "textPlain": "yeah that is on the roadmap!",
+    "parent": 44905003,
+    "depth": 2
+  },
+  {
+    "id": 44904797,
+    "by": "sxp",
+    "timeISO": "2025-08-14T19:47:28.000Z",
+    "textPlain": "If you want to transcribe meeting notes, whisper isn't the best tool because it doesn't separate the transcribe by speakers. There are some other tools that do that, but I'm not sure what the best local option is. I've used Google's cloud STT with the diarization option and manually renamed \"Speaker N\" after the fact.",
+    "parent": 44904267,
+    "depth": 2
+  },
+  {
     "id": 44904318,
     "by": "yujonglee",
     "timeISO": "2025-08-14T19:05:15.000Z",
     "textPlain": "If your use-case is meeting, https://github.com/fastrepl/hyprnote is for you.\nOWhisper is more like a headless version of it.",
     "parent": 44904267,
+    "depth": 2
+  },
+  {
+    "id": 44905054,
+    "by": "phkahler",
+    "timeISO": "2025-08-14T20:08:06.000Z",
+    "textPlain": "I thought whisper and others took large chunks (20-30 seconds) of speech, or a complete wave file as input. How do you get real-time transcription? What size chunks do you feed it?To me, STT should take a continuous audio stream and output a continuous text stream.",
+    "parent": 44904204,
     "depth": 2
   }
 ]

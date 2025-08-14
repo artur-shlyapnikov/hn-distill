@@ -1,9 +1,41 @@
 [
   {
+    "id": 44904989,
+    "by": "brettgriffin",
+    "timeISO": "2025-08-14T20:02:37.000Z",
+    "textPlain": "I watched the first half hour of this earlier this week. I was surprised at just how differently two people can view the world. I'm not sure I would be as dogmatic as him, but just using the first few points, I think you can make strong cases against:1. Everything is exposed as an API with little no insight to inner workings (black box)\n2. Everything should be broken down into modules at a level where one person works on that module\n3. He shows a video of his video editor, saying it supports multiple inputs (like two keyboards or two mice), this says no platform supports it, but if they ever do, it will work\n4. Don't implement 'good enough apis'I hope that anybody who has ever worked on software understands that there are virtues to doing exactly the opposite of what is described in each of these points. Even if you can make an argument for any of these, you would have to qualify them with so many exceptions that you would effectively negate the entire argument.I spent a lot of evenings early in my career watching similar videos, hoping to find some magic bullet in how people better than do what I do. People make a living doing this on the conference circuit. Maybe it is a fools errand to try to distill something as complex and situationally dependent as software into a video, but I'm having a hard time finding any major insights in all of the videos I watched.",
+    "parent": 44873635,
+    "depth": 1
+  },
+  {
+    "id": 44904706,
+    "by": "mjr00",
+    "timeISO": "2025-08-14T19:40:37.000Z",
+    "textPlain": "> Don't ever implement good-enough-for-now APIsAgree in theory, in practice this is impossible. Even if you're an absolute domain expert in whatever you're doing, software and requirements will evolve and you will end up needing to implement something for which your current API is not suitable. Just ask S3:ListObjectsV2 or golangs' `encoding/json/v2` etc.I push back hard on this one because a lot of developers will try to be \"clever\" and basically turn their api into    def my_api(parameters: dict[str, str]) -> dict[str, str]:\n\nor an equivalent, and now you have an API which theoretically can handle any requirement, but does so in a way that's extremely unfriendly and painful to use.It's better to accept that your API will change at some point and have a versioning and deprecation strategy in place. With well-architected software this usually isn't hard.",
+    "parent": 44873635,
+    "depth": 1
+  },
+  {
     "id": 44904144,
     "by": "habitue",
     "timeISO": "2025-08-14T18:50:37.000Z",
     "textPlain": "Started watching, but \"C89 is the safe option for long lived software\" kind of turned me off. There are plenty of safe long lived stable languages out there where you dont have to manually manipulate memory. At the very least, this guy should be advocating for Java.But even that's too far really. Like it or not, \"shiny fad\" languages like Python & Javascript have been around forever, support for them isn't going away, this should be a non-concern at the architectural level. (Bigger language concerns: is it performant enough for my expected use? Does it have strong types to help with correctness? Can I hire programmers who know it? etc)",
+    "parent": 44873635,
+    "depth": 1
+  },
+  {
+    "id": 44904718,
+    "by": "boricj",
+    "timeISO": "2025-08-14T19:41:41.000Z",
+    "textPlain": "I've seen relational database schemas degenerating into untyped free-for-all key-values because they weren't expressive enough. I've seen massive code duplication (and massive amounts of bugs) because no one invested into a quality core set of libraries to address basic use-cases of a given platform. I've seen systems crumbling under tech debt because of chronic prioritization of features over maintenance.I've worked on large software projects. The only ones I've met that weren't dreadful to work on had engineering and management working together with a shared, coherent vision.",
+    "parent": 44873635,
+    "depth": 1
+  },
+  {
+    "id": 44905080,
+    "by": "gashmol",
+    "timeISO": "2025-08-14T20:10:20.000Z",
+    "textPlain": "Aside - Why do we need the word \"architecting\" anyway? Why not just use designing?",
     "parent": 44873635,
     "depth": 1
   },
@@ -16,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44904346,
-    "by": "bestspharma",
-    "timeISO": "2025-08-14T19:07:36.000Z",
-    "textPlain": "[dead]",
+    "id": 44905075,
+    "by": "yuvadam",
+    "timeISO": "2025-08-14T20:09:39.000Z",
+    "textPlain": "Obligatory mention of A Philosophy of Software Design by John Ousterhout as the arguably the most important book every developer should read to understand proper modularization and complexity management.",
     "parent": 44873635,
     "depth": 1
   },
@@ -30,5 +62,69 @@
     "textPlain": "[dead]",
     "parent": 44873635,
     "depth": 1
+  },
+  {
+    "id": 44904346,
+    "by": "bestspharma",
+    "timeISO": "2025-08-14T19:07:36.000Z",
+    "textPlain": "[dead]",
+    "parent": 44873635,
+    "depth": 1
+  },
+  {
+    "id": 44905242,
+    "by": "leecommamichael",
+    "timeISO": "2025-08-14T20:24:59.000Z",
+    "textPlain": "I think the mistake people make when trying to teach this stuff is in generalizing too much.His input layer is good because it helped him emulate local multiplayer with keyboard and mouse. It solved _his problem_.The graphics layer is good because it is so much easier to work with than OpenGL _for him_.The library wrappers are good for him because they solve _his desire_ to run portably while maintaining the smallest possible interface.This stuff matters to Eskil because he’s:\n- just one person\n- has deep expertise in what he’s wrapping (win32, OpenGL)\n- wants to make an impressive program soloI think his expertise, historical perspective, and culture make it feel as if this is the only way to do this very hard task, so he wants to share it. It helps him believe his way is right that many great, and reliable projects are done in C89.I think the truth at this point is that folks still using old versions of C have, on average, more experience than everyone else. It’s not just the language that’s making them strong, either. It’s having evolved with the platforms.Now the only question that leaves is whether it makes a huge difference to really stick with one language over the decades. I know we’ve all heard both sides of that quandary.",
+    "parent": 44904989,
+    "depth": 2
+  },
+  {
+    "id": 44905200,
+    "by": "ribelo",
+    "timeISO": "2025-08-14T20:20:40.000Z",
+    "textPlain": "He basically just described the FCIS[0] architecture—the same one Gary Bernhart laid out thirteen years ago. We love reinventing the wheel. Chaplicki did it with ELM, Abramov with Redux, day8 did it with re-frame, and the beat goes on.I’m still amazed it isn’t obvious: every piece of software should be a black box with a pin-hole for input and an even tinier pin-hole for output. The best code I’ve ever touched worked exactly like that and maintaining it was a pleasure, everything else was garbage. I push this rule in every project I touch.[0] https://www.destroyallsoftware.com/screencasts/catalog/funct...",
+    "parent": 44904989,
+    "depth": 2
+  },
+  {
+    "id": 44904943,
+    "by": "imglorp",
+    "timeISO": "2025-08-14T19:58:50.000Z",
+    "textPlain": "Yes, and also don't try to anticipate everything by implementing features that won't be used soon, ie \"just in case\". If the soon turns to never, any unused feature is basically dead code and represents future costs and constraints to maintain or remove it.",
+    "parent": 44904706,
+    "depth": 2
+  },
+  {
+    "id": 44904573,
+    "by": "alexott",
+    "timeISO": "2025-08-14T19:28:55.000Z",
+    "textPlain": "It really depends. I was at talk of architect of car company when he was talking about need to develop and support a car software for 20-30 years - few years before release, 10-20 years of production, and the critical fixes after end of support. And it includes not only soft itself, but all compilers, etc.",
+    "parent": 44904144,
+    "depth": 2
+  },
+  {
+    "id": 44904559,
+    "by": "mahalex",
+    "timeISO": "2025-08-14T19:27:53.000Z",
+    "textPlain": "> languages like Python & Javascript have been around forever, support for them isn't going away???\nPython 2 went out of support five years ago.",
+    "parent": 44904144,
+    "depth": 2
+  },
+  {
+    "id": 44904728,
+    "by": "leecommamichael",
+    "timeISO": "2025-08-14T19:42:14.000Z",
+    "textPlain": "He’s sitting at a system that thousands of people built together simultaneously. We have gripes with our OSes but they’re all capable of nearly perfect uptime (depending on the hardware and workload.) So I am not convinced individuals need to own modules. I think it’s good for things to work that way, but not necessary.I didn’t find much fault at all with what he’s saying about SDL. It’s just an example of the “layered design” he’s advocating for. You may have drawn your conclusion a little early; he immediately follows up with his API for graphics, which is actually a very practical example. He’s really just saying people should consider writing their own APIs even if it’s implemented with a library, because you can select exactly how complex the API needs to be for your app’s requirements. This makes the task of replacing a dependency much simpler.He’s actually trying to prevent relying on things you don’t need. YAGNI.",
+    "parent": 44904202,
+    "depth": 2
+  },
+  {
+    "id": 44904888,
+    "by": "barbazoo",
+    "timeISO": "2025-08-14T19:54:49.000Z",
+    "textPlain": "> YAGNI“You Aren’t Gonna Need It”",
+    "parent": 44904202,
+    "depth": 2
   }
 ]

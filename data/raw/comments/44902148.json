@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44904459,
-    "by": "mrtimo",
-    "timeISO": "2025-08-14T19:18:03.000Z",
-    "textPlain": "I'm a business professor who teaches Python and more. I'd like to develop some simple projects to help my students fine tune this for a business purpose. If you have ideas (or datasets for fine tuning), let me know!",
-    "parent": 44902148,
-    "depth": 1
-  },
-  {
     "id": 44903731,
     "by": "jefb",
     "timeISO": "2025-08-14T18:12:32.000Z",
     "textPlain": "My lovely interaction with the 270M-F16 model:> what's second tallest mountain on earth?The second tallest mountain on Earth is Mount Everest.> what's the tallest mountain on earth?The tallest mountain on Earth is Mount Everest.> whats the second tallest mountain?The second tallest mountain in the world is Mount Everest.> whats the third tallest mountain?The third tallest mountain in the world is Mount Everest.> what's the forth tallest mountain?The forth tallest mountain is Mount Everest.> but you said the tallest was Everest alreadyYou are right! I'm glad to hear that.> so whats the second tallest?The second tallest is *Mount Everest*.> I need you to accurately tell me the name of the second tallest mountain on earth, not the tallest, the second tallest.The second tallest mountain on Earth is Mount Everest.> The tallest mountain on earth is mount everest. What is the second tallest mountain?The second tallest mountain on Earth is Mount Everest.> Give me a list of the tallest mountains on earthThe tallest mountain in the world is the *Mount Everest*.> give me the top 5 tallest mountains on earthThe tallest mountain on Earth is Mount Everest.> List in order the tallest mountains on earth from 1 to 51. Mount Everest\n2. Mount K2\n3. Mount Sahel\n4. Mount Fuji\n5. Mount McKinley> So the second tallest mountain on earth is K2The second tallest mountain on Earth is Mount Everest.These smaller models are great, but they really feel like talking to a toddler sometimes!",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44905188,
+    "by": "jcuenod",
+    "timeISO": "2025-08-14T20:20:02.000Z",
+    "textPlain": "I mentioned elsewhere the impact of prompting, which seems to make an outsized difference to this model's performance. I tried NER and POS tagging (with somewhat disappointing results).One thing that worked strikingly well was translation on non-Indo-European languages. Like I had success with Thai and Bahasa Indonesian -> English...",
     "parent": 44902148,
     "depth": 1
   },
@@ -40,14 +40,6 @@
     "depth": 1
   },
   {
-    "id": 44904066,
-    "by": "miohtama",
-    "timeISO": "2025-08-14T18:43:16.000Z",
-    "textPlain": "Out of curiosity: because there seems to be a race to optimise models for local inference, how much \"parameters one could save\" by dropping unneeded language and domain-specific information.Like, can you have a model that is English-only, but does more with the same amount of parameters if Chinese and European languages are dropped from the training?",
-    "parent": 44902148,
-    "depth": 1
-  },
-  {
     "id": 44904181,
     "by": "AJRF",
     "timeISO": "2025-08-14T18:54:11.000Z",
@@ -56,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44903748,
-    "by": "KTibow",
-    "timeISO": "2025-08-14T18:14:02.000Z",
-    "textPlain": "To add to the article: Gemma 3 270M's exact IFEval score is 51.2, and Qwen 3 would be at (0.6, 59.2) on the scatter plot.",
+    "id": 44904846,
+    "by": "reneberlin",
+    "timeISO": "2025-08-14T19:51:36.000Z",
+    "textPlain": "I am sure with finetuning this can be changed somehow:(base)   ~ ollama run hf.co/unsloth/gemma-3-270m-it-GGUF:F16\n>>>  create a sentiment analysis of the follwing: \"It's raining.\"\nThe sentiment of the provided text is *negative*.>>>  create a sentiment analysis of the follwing: \"It's raining money.\"\nThe sentiment of the provided text is *negative*.",
     "parent": 44902148,
     "depth": 1
   },
@@ -72,10 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44903817,
-    "by": "perching_aix",
-    "timeISO": "2025-08-14T18:21:11.000Z",
-    "textPlain": "Is it time for me to finally package a language model into my Lambda deployment zips and finally cut through the corporate red tape around AI use?Update #1:Tried it. Well, dreams dashed - would now fit space wise (<250 MB despite the name), but it sadly really doesn't seem to work for my specific prospective workload.I'd have wanted it to perform natural-language to command-invocation translation (or better, emit me some JSON), but it's super not willing to do that, not in the lame way I'm trying to make it do so at least (literally just prompting it to). Oh well.Update #2:Just found out about grammar-constrained decode, maybe there's still hope for me in the end. I don't think I can amend this comment today with any more updates, but will see.",
+    "id": 44903748,
+    "by": "KTibow",
+    "timeISO": "2025-08-14T18:14:02.000Z",
+    "textPlain": "To add to the article: Gemma 3 270M's exact IFEval score is 51.2, and Qwen 3 would be at (0.6, 59.2) on the scatter plot.",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44904066,
+    "by": "miohtama",
+    "timeISO": "2025-08-14T18:43:16.000Z",
+    "textPlain": "Out of curiosity: because there seems to be a race to optimise models for local inference, how much \"parameters one could save\" by dropping unneeded language and domain-specific information.Like, can you have a model that is English-only, but does more with the same amount of parameters if Chinese and European languages are dropped from the training?",
     "parent": 44902148,
     "depth": 1
   },
@@ -88,14 +88,6 @@
     "depth": 1
   },
   {
-    "id": 44903914,
-    "by": "nerdix",
-    "timeISO": "2025-08-14T18:30:11.000Z",
-    "textPlain": "Is it possible to finetune a model like this with local hardware? Every tutorial I've come across on finetuning a local LLM uses some cloud service like colab or runpod.",
-    "parent": 44902148,
-    "depth": 1
-  },
-  {
     "id": 44903149,
     "by": "jasonjmcghee",
     "timeISO": "2025-08-14T17:24:09.000Z",
@@ -104,10 +96,18 @@
     "depth": 1
   },
   {
-    "id": 44903188,
-    "by": "jtbayly",
-    "timeISO": "2025-08-14T17:27:03.000Z",
-    "textPlain": "Can somebody give me a link to a tutorial on how I would go about fine-tuning this?Also, what sorts of things might I consider fine-tuning it for?",
+    "id": 44904664,
+    "by": "amrrs",
+    "timeISO": "2025-08-14T19:36:51.000Z",
+    "textPlain": "Gemma 3 270M running on a midrange pixel device - https://x.com/1littlecoder/status/1956065040563331344",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44903817,
+    "by": "perching_aix",
+    "timeISO": "2025-08-14T18:21:11.000Z",
+    "textPlain": "Is it time for me to finally package a language model into my Lambda deployment zips and cut through the corporate red tape at my place around AI use?Update #1:Tried it. Well, dreams dashed - would now fit space wise (<250 MB despite the name), but it sadly really doesn't seem to work for my specific prospective workload.I'd have wanted it to perform natural-language to command-invocation translation (or better, emit me some JSON), but it's super not willing to do that, not in the lame way I'm trying to make it do so at least (literally just prompting it to). Oh well.Update #2:Just found out about grammar-constrained decode, maybe there's still hope for me in the end. I don't think I can amend this comment today with any more updates, but will see.",
     "parent": 44902148,
     "depth": 1
   },
@@ -120,18 +120,34 @@
     "depth": 1
   },
   {
-    "id": 44904444,
-    "by": "metalliqaz",
-    "timeISO": "2025-08-14T19:16:19.000Z",
-    "textPlain": "is there a good resource for getting started with downloading and running something like this for a demo?  There are just so many tools/platforms in the mix now it makes my head spin.",
+    "id": 44903188,
+    "by": "jtbayly",
+    "timeISO": "2025-08-14T17:27:03.000Z",
+    "textPlain": "Can somebody give me a link to a tutorial on how I would go about fine-tuning this?Also, what sorts of things might I consider fine-tuning it for?",
     "parent": 44902148,
     "depth": 1
   },
   {
-    "id": 44903840,
-    "by": "robbru",
-    "timeISO": "2025-08-14T18:23:12.000Z",
-    "textPlain": "Excited to try this out, thanks for sharing.",
+    "id": 44904459,
+    "by": "mrtimo",
+    "timeISO": "2025-08-14T19:18:03.000Z",
+    "textPlain": "I'm a business professor who teaches Python and more. I'd like to develop some simple projects to help my students fine tune this for a business purpose. If you have ideas (or datasets for fine tuning), let me know!",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44903914,
+    "by": "nerdix",
+    "timeISO": "2025-08-14T18:30:11.000Z",
+    "textPlain": "Is it possible to finetune a model like this with local hardware? Every tutorial I've come across on finetuning a local LLM uses some cloud service like colab or runpod.",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44904934,
+    "by": "mark_l_watson",
+    "timeISO": "2025-08-14T19:58:18.000Z",
+    "textPlain": "This is exciting. Small models can be very effective when used with sufficient context and not relying in vast real world knowledge. I worked at Google as a contractor and I am still a fanboy. Although I also use Chinese models, Google local models and Gemini 2.5 Pro are my main drivers.I am curious how computer science curriculum will change since using small embedded models should change software dev.",
     "parent": 44902148,
     "depth": 1
   },
@@ -144,10 +160,10 @@
     "depth": 1
   },
   {
-    "id": 44904065,
-    "by": "bbor",
-    "timeISO": "2025-08-14T18:43:10.000Z",
-    "textPlain": "Really impressive stuff, as always. I will say: it took me a shamefully long time to realize that the name ended in \"M\" instead of \"B\"! Perhaps they should consider renaming this to \"Gemma 3 .27B\"...",
+    "id": 44903840,
+    "by": "robbru",
+    "timeISO": "2025-08-14T18:23:12.000Z",
+    "textPlain": "Excited to try this out, thanks for sharing.",
     "parent": 44902148,
     "depth": 1
   },
@@ -156,6 +172,22 @@
     "by": "dcreater",
     "timeISO": "2025-08-14T17:15:19.000Z",
     "textPlain": "I've been saying he we need sub 1B models for the edge so thanks fot this.I am however disappointed that there is no examples, or benchmarks, provided to get a sense of performance. It's a given that benchmark values would be lower than gemma 3n, but having a sense of performance vs size curve and comparison to existing small models is needed",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44904065,
+    "by": "bbor",
+    "timeISO": "2025-08-14T18:43:10.000Z",
+    "textPlain": "Really impressive stuff, as always. I will say: it took me a shamefully long time to realize that the name ended in \"M\" instead of \"B\"! Perhaps they should consider renaming this to \"Gemma 3 .27B\"...",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44904444,
+    "by": "metalliqaz",
+    "timeISO": "2025-08-14T19:16:19.000Z",
+    "textPlain": "is there a good resource for getting started with downloading and running something like this for a demo?  There are just so many tools/platforms in the mix now it makes my head spin.",
     "parent": 44902148,
     "depth": 1
   },
@@ -176,10 +208,10 @@
     "depth": 2
   },
   {
-    "id": 44904457,
-    "by": "imasl42",
-    "timeISO": "2025-08-14T19:17:31.000Z",
-    "textPlain": "Awesome! I’m curious how is the team you built these models with? Is it great?",
+    "id": 44904996,
+    "by": "ankit219",
+    "timeISO": "2025-08-14T20:03:01.000Z",
+    "textPlain": "This is super cool. Usually you dont see effective models at 270M out in the wild. The architectural choices are new and interesting as well.Would it be okay for you to divulge some more training information here? With 170M embedding parameters, how do you ensure no embedding collapse and keeping the embedding matrix stable at training time?(i know i am asking too much, but just curious). There is a clear trade off for you with vocab / transformer layers. How did you arrive at the split of 170m/100m. Does this contribute to model's performance on task specific fine tuning? Any internal experiments you could share? or public info you could point us to? Anything would be amazing.PS: I am sorry if this is rude, but this has so many decisions i am curious about. Not intending to undermine anything, this is amazing work, and thank you for the whole Gemma series.",
     "parent": 44902240,
     "depth": 2
   },
@@ -192,14 +224,6 @@
     "depth": 2
   },
   {
-    "id": 44903942,
-    "by": "jmorgan",
-    "timeISO": "2025-08-14T18:32:09.000Z",
-    "textPlain": "Amazing work. This model feels really good at one-off tasks like summarization and autocomplete. I really love that you released a quantized aware training version on launch day as well, making it even smaller!",
-    "parent": 44902240,
-    "depth": 2
-  },
-  {
     "id": 44903226,
     "by": "simonw",
     "timeISO": "2025-08-14T17:30:09.000Z",
@@ -208,10 +232,10 @@
     "depth": 2
   },
   {
-    "id": 44904366,
-    "by": "patrickaljord",
-    "timeISO": "2025-08-14T19:09:34.000Z",
-    "textPlain": "Would it be possible to have a specialized rust only dev or Reactjs only dev while getting rid of all other languages to minimize size of model?",
+    "id": 44903942,
+    "by": "jmorgan",
+    "timeISO": "2025-08-14T18:32:09.000Z",
+    "textPlain": "Amazing work. This model feels really good at one-off tasks like summarization and autocomplete. I really love that you released a quantized aware training version on launch day as well, making it even smaller!",
     "parent": 44902240,
     "depth": 2
   },
@@ -224,10 +248,10 @@
     "depth": 2
   },
   {
-    "id": 44904296,
-    "by": "_1",
-    "timeISO": "2025-08-14T19:03:32.000Z",
-    "textPlain": "> and with the goal you'll all finetune it for your use case.What use-cases are a good fit for finetuning this model?  More specific instruction following, knowledge from proprietary data, response tone?",
+    "id": 44905140,
+    "by": "rossant",
+    "timeISO": "2025-08-14T20:15:32.000Z",
+    "textPlain": "Is it good for text translation and summarization?",
     "parent": 44902240,
     "depth": 2
   },
@@ -240,10 +264,10 @@
     "depth": 2
   },
   {
-    "id": 44903851,
-    "by": "nerdsniper",
-    "timeISO": "2025-08-14T18:25:39.000Z",
-    "textPlain": "What are some of the use cases that you think the 270M would be most appropriate for? What would you love to see people trying with it?",
+    "id": 44904296,
+    "by": "_1",
+    "timeISO": "2025-08-14T19:03:32.000Z",
+    "textPlain": "> and with the goal you'll all finetune it for your use case.What use-cases are a good fit for finetuning this model?  More specific instruction following, knowledge from proprietary data, response tone?",
     "parent": 44902240,
     "depth": 2
   },
@@ -256,18 +280,34 @@
     "depth": 2
   },
   {
-    "id": 44903087,
-    "by": "tmaly",
-    "timeISO": "2025-08-14T17:18:45.000Z",
-    "textPlain": "Are there any fine tuning in a box type options available in the cloud for this?  This is amazing work, thank you.",
+    "id": 44903851,
+    "by": "nerdsniper",
+    "timeISO": "2025-08-14T18:25:39.000Z",
+    "textPlain": "What are some of the use cases that you think the 270M would be most appropriate for? What would you love to see people trying with it?",
     "parent": 44902240,
     "depth": 2
   },
   {
-    "id": 44904147,
-    "by": "stefan_",
-    "timeISO": "2025-08-14T18:50:52.000Z",
-    "textPlain": "I suppose the odd repetition of \"I built these models with a great team\" is to warm us up to this model slipping into infinite gibberish repetition?",
+    "id": 44904366,
+    "by": "patrickaljord",
+    "timeISO": "2025-08-14T19:09:34.000Z",
+    "textPlain": "Would it be possible to have a specialized rust only dev or Reactjs only dev while getting rid of all other languages to minimize size of model?",
+    "parent": 44902240,
+    "depth": 2
+  },
+  {
+    "id": 44904457,
+    "by": "imasl42",
+    "timeISO": "2025-08-14T19:17:31.000Z",
+    "textPlain": "Awesome! I’m curious how is the team you built these models with? Is it great?",
+    "parent": 44902240,
+    "depth": 2
+  },
+  {
+    "id": 44903087,
+    "by": "tmaly",
+    "timeISO": "2025-08-14T17:18:45.000Z",
+    "textPlain": "Are there any fine tuning in a box type options available in the cloud for this?  This is amazing work, thank you.",
     "parent": 44902240,
     "depth": 2
   },
@@ -296,6 +336,14 @@
     "depth": 2
   },
   {
+    "id": 44904147,
+    "by": "stefan_",
+    "timeISO": "2025-08-14T18:50:52.000Z",
+    "textPlain": "I suppose the odd repetition of \"I built these models with a great team\" is to warm us up to this model slipping into infinite gibberish repetition?",
+    "parent": 44902240,
+    "depth": 2
+  },
+  {
     "id": 44903338,
     "by": "VirusNewbie",
     "timeISO": "2025-08-14T17:39:43.000Z",
@@ -316,6 +364,14 @@
     "by": "canyon289",
     "timeISO": "2025-08-14T18:53:18.000Z",
     "textPlain": "To add to the comments, we were not aiming for perfect factuality. Even ignoring the model size, these weights are frozen in time now.My suggestions here are to hook this model up to a RAG system, then you can rely on an external knowledge store. Or you can try finetuning this model with the facts that are important to you, if you do that it should pick up that new knowledge quite quickly.",
+    "parent": 44903731,
+    "depth": 2
+  },
+  {
+    "id": 44905159,
+    "by": "jcuenod",
+    "timeISO": "2025-08-14T20:17:15.000Z",
+    "textPlain": "So I had a similar experience with your prompt (on the f16 model). But I do think that, at this size, prompting differences make a bigger impact. I had this experience trying to get it to list entities. It kept trying to give me a bulleted list and I was trying to coerce it into some sort of structured output. When I finally just said \"give me a bulleted list and nothing else\" the success rate went from around 0-0.1 to 0.8+.In this case, I changed the prompt to:---Tallest mountains (in order):```- Mount Everest- Mount K2- Mount Sahel- Mount Fuji- Mount McKinley```What is the second tallest mountain?---Suddenly, it got the answer right 95+% of the time",
     "parent": 44903731,
     "depth": 2
   },
@@ -341,62 +397,6 @@
     "timeISO": "2025-08-14T18:29:34.000Z",
     "textPlain": "It's an instruction following model, not a micro-wikipedia. It's not meant to answer factual questions nor even be general purpose. It's meant to follow instructions and be easy to fine-tune for your own specific use case.",
     "parent": 44903731,
-    "depth": 2
-  },
-  {
-    "id": 44904018,
-    "by": "leopoldj",
-    "timeISO": "2025-08-14T18:39:38.000Z",
-    "textPlain": "You are testing this model for knowledge. That's not the primary use of a model like this. They are meant for instilling domain specific skills and knowledge through fine-tuning. The blog post goes into that a lot. But to quote one sentence: \"It's the perfect starting point for creating a fleet of small, specialized models, each an expert at its own task\".",
-    "parent": 44903731,
-    "depth": 2
-  },
-  {
-    "id": 44904165,
-    "by": "mvdtnz",
-    "timeISO": "2025-08-14T18:52:34.000Z",
-    "textPlain": "> These smaller models are greatAre they?",
-    "parent": 44903731,
-    "depth": 2
-  },
-  {
-    "id": 44903423,
-    "by": "roughly",
-    "timeISO": "2025-08-14T17:47:35.000Z",
-    "textPlain": "I audibly laughed at this one: https://gist.github.com/simonw/25e7b7afd6a63a2f15db48b3a51ec... where it generates a… poem? Song? And then proceeds to explain how each line contributes to the SVG, concluding with:> This SVG code provides a clear and visually appealing representation of a pelican riding a bicycle in a scenic landscape.",
-    "parent": 44902980,
-    "depth": 2
-  },
-  {
-    "id": 44903383,
-    "by": "0x00cl",
-    "timeISO": "2025-08-14T17:43:42.000Z",
-    "textPlain": "I see you are using ollamas ggufs. By default it will download Q4_0 quantization. Try `gemma3:270m-it-bf16` instead or you can also use unsloth ggufs `hf.co/unsloth/gemma-3-270m-it-GGUF:16`You'll get better results.",
-    "parent": 44902980,
-    "depth": 2
-  },
-  {
-    "id": 44903148,
-    "by": "ertgbnm",
-    "timeISO": "2025-08-14T17:24:02.000Z",
-    "textPlain": "He may generate useless tokens but boy can he generate ALOT of tokens.",
-    "parent": 44902980,
-    "depth": 2
-  },
-  {
-    "id": 44903261,
-    "by": "layer8",
-    "timeISO": "2025-08-14T17:33:35.000Z",
-    "textPlain": "> It's absolutely tiny - just a 241MB downloadThat still requires more than 170 floppy disks for installation.",
-    "parent": 44902980,
-    "depth": 2
-  },
-  {
-    "id": 44903072,
-    "by": "marinhero",
-    "timeISO": "2025-08-14T17:17:22.000Z",
-    "textPlain": "Serious question but if it hallucinates about almost everything, what's the use case for it?",
-    "parent": 44902980,
     "depth": 2
   }
 ]
