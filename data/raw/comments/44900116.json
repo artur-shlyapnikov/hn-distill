@@ -24,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44910353,
+    "by": "kleyd",
+    "timeISO": "2025-08-15T09:44:09.000Z",
+    "textPlain": "Current LLMs look a lot like a very advanced 'old brain' to me. While context engineering looks like optimizing the working memory.What's missing is a part with more plasticity that can work in parallel and bi-directionally interact with the current static models in real-time.This would mean individually trained models based on their experience so that knowledge is not translated to context, but to weight adjustments.",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
     "id": 44901548,
     "by": "JimDabell",
     "timeISO": "2025-08-14T15:25:56.000Z",
@@ -44,14 +52,6 @@
     "by": "9cb14c1ec0",
     "timeISO": "2025-08-14T15:05:51.000Z",
     "textPlain": "> what they cannot do is maintain clear mental modelsThe more I use claude code, the more frustrated I get with this aspect.  I'm not sure that a generic text-based LLM can properly solve this.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44909490,
-    "by": "kachapopopow",
-    "timeISO": "2025-08-15T07:15:33.000Z",
-    "textPlain": "I'm tired of people telling me that llms are bad at building software without trying to sit down, learn how to properly use claude code, when to use it and learn when you shouldn't use it.Cursor is a joke tho, windsurf is pretty okay.",
     "parent": 44900116,
     "depth": 1
   },
@@ -112,14 +112,6 @@
     "depth": 1
   },
   {
-    "id": 44905259,
-    "by": "mikewarot",
-    "timeISO": "2025-08-14T20:26:37.000Z",
-    "textPlain": "3 months ago, I would have agreed with much of this article, however...In the past week, I watched this video[1] from Welch Labs about how deep networks work, and it inspired an idea. I spent some time \"vibe coding\" with Visual Studio Code's ChatGPT5 preview and had it generate a python framework that can take an image, and teach a small network how to generate that one sample image.The network was simple... 2 inputs (x,y), 3 outputs (r,g,b), and a number of hidden layers with a specified number of nodes per layer.It's an agent, it writes code, tests it, fixes problems, and it pretty much just works. As I explored the space of image generation, I had it add options over time, and it all just worked. Unlike previous efforts, I didn't have to copy/paste error messages in and try to figure out how things broke. I was pleasantly surprised that the code just worked in a manner close to what I wanted.The only real problem I had was getting .venv working right, and that's more of an install issue rather then the LLMs fault.I've got to say, I'm quite impressed with Python's argparse library.It's amazing how much detail you can get out of a 4 hidden layers of 64 values, and 3 output channels (rgb), if you're willing to through a few days of CPU time at it.  My goal is to see just how small of a network I can make to generate my favorite photo.As it iterates through checkpoints, I have it output an image with the current values, to compare against the original, it's quite fascinating to watch as it folds the latent space to capture major features of the photo, then folds some more to catch smaller details, over and over, as the signal to noise ratio very slowly increases over the hours.As for ChatGPT5, maybe I just haven't run out of context window yet, but for now, it all just seems like magic.[1] https://www.youtube.com/watch?v=qx7hirqgfuU",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
     "id": 44901494,
     "by": "Transfinity",
     "timeISO": "2025-08-14T15:22:16.000Z",
@@ -128,18 +120,18 @@
     "depth": 1
   },
   {
-    "id": 44909622,
-    "by": "_pdp_",
-    "timeISO": "2025-08-15T07:41:44.000Z",
-    "textPlain": "LLMs cannot build software on their own yet. They are can sure build software with some help.",
+    "id": 44905259,
+    "by": "mikewarot",
+    "timeISO": "2025-08-14T20:26:37.000Z",
+    "textPlain": "3 months ago, I would have agreed with much of this article, however...In the past week, I watched this video[1] from Welch Labs about how deep networks work, and it inspired an idea. I spent some time \"vibe coding\" with Visual Studio Code's ChatGPT5 preview and had it generate a python framework that can take an image, and teach a small network how to generate that one sample image.The network was simple... 2 inputs (x,y), 3 outputs (r,g,b), and a number of hidden layers with a specified number of nodes per layer.It's an agent, it writes code, tests it, fixes problems, and it pretty much just works. As I explored the space of image generation, I had it add options over time, and it all just worked. Unlike previous efforts, I didn't have to copy/paste error messages in and try to figure out how things broke. I was pleasantly surprised that the code just worked in a manner close to what I wanted.The only real problem I had was getting .venv working right, and that's more of an install issue rather then the LLMs fault.I've got to say, I'm quite impressed with Python's argparse library.It's amazing how much detail you can get out of a 4 hidden layers of 64 values, and 3 output channels (rgb), if you're willing to through a few days of CPU time at it.  My goal is to see just how small of a network I can make to generate my favorite photo.As it iterates through checkpoints, I have it output an image with the current values, to compare against the original, it's quite fascinating to watch as it folds the latent space to capture major features of the photo, then folds some more to catch smaller details, over and over, as the signal to noise ratio very slowly increases over the hours.As for ChatGPT5, maybe I just haven't run out of context window yet, but for now, it all just seems like magic.[1] https://www.youtube.com/watch?v=qx7hirqgfuU",
     "parent": 44900116,
     "depth": 1
   },
   {
-    "id": 44910123,
-    "by": "kypro",
-    "timeISO": "2025-08-15T09:02:50.000Z",
-    "textPlain": "> LLMs get endlessly confused: they assume the code they wrote actually works; when test fail, they are left guessing as to whether to fix the code or the tests; and when it gets frustrating, they just delete the whole lot and start over.That's actually an interesting point, and something I've noticed a lot myself. I find LLMs are very good at hacking around test failures, but unless the test is failing for a trivial reason often it's pointing at some more fundamental issue with the underlying logic of the application which LLMs don't seem to be able to pick up on, likely because they don't have a comprehensive mental model of how the system should work.I don't want to point fingers, but I've been seeing this quite a bit in the code of colleagues who heavily use LLMs. On the surface the code looks fine, and they've produced tests which pass, but when you think about it for more than a minute you realise it doesn't really capture nuance of the requirements, and in a way a human who had a mental model of the how the system probably wouldn't have done...Sometimes humans miss things in the logic when they're writing code, but these look more like mistakes in a line rather than a fundamental failure to comprehend and model the problem. And I know this isn't the case, because when you talk to these developers they get the problem perfectly well.To know when the code needs fixing or a test you need a very clear idea of what should be happening and LLMs just don't. I don't know why that is. Maybe it's just they're missing context from the hours of reading tickets and technical discussions, or maybe it's their failure to ask questions when they're unsure of what should be happening. I don't know if this a fundamental limitation of LLMs (I'd suspect not personally), but this is a problem when using LLMs to code today and one that more compute alone probably can't fix.",
+    "id": 44909490,
+    "by": "kachapopopow",
+    "timeISO": "2025-08-15T07:15:33.000Z",
+    "textPlain": "I'm tired of people telling me that llms are bad at building software without trying to sit down, learn how to properly use claude code, when to use it and learn when you shouldn't use it.Cursor is a joke tho, windsurf is pretty okay.",
     "parent": 44900116,
     "depth": 1
   },
@@ -152,18 +144,18 @@
     "depth": 1
   },
   {
-    "id": 44902967,
-    "by": "lysecret",
-    "timeISO": "2025-08-14T17:09:35.000Z",
-    "textPlain": "Bit of a click baity title since thy can definitely help in building software.However, I agree with the main thesis (that they can’t do it on their own). Also related to this this whole idea of “we will easily fix memory next” will turn out to be the same as “we can fix vision in one summer” turned out it’s 30 years later, much improved but still not fixed. Memory is hard.",
+    "id": 44909622,
+    "by": "_pdp_",
+    "timeISO": "2025-08-15T07:41:44.000Z",
+    "textPlain": "LLMs cannot build software on their own yet. They are can sure build software with some help.",
     "parent": 44900116,
     "depth": 1
   },
   {
-    "id": 44908856,
-    "by": "madrasman",
-    "timeISO": "2025-08-15T05:19:02.000Z",
-    "textPlain": "The 2 iOS apps that I published (mid level complexity and work well) say otherwise. I was blown away by what cursor + o3 could do.",
+    "id": 44902967,
+    "by": "lysecret",
+    "timeISO": "2025-08-14T17:09:35.000Z",
+    "textPlain": "Bit of a click baity title since thy can definitely help in building software.However, I agree with the main thesis (that they can’t do it on their own). Also related to this this whole idea of “we will easily fix memory next” will turn out to be the same as “we can fix vision in one summer” turned out it’s 30 years later, much improved but still not fixed. Memory is hard.",
     "parent": 44900116,
     "depth": 1
   },
@@ -176,18 +168,10 @@
     "depth": 1
   },
   {
-    "id": 44909697,
-    "by": "siva7",
-    "timeISO": "2025-08-15T07:56:06.000Z",
-    "textPlain": "> But, we firmly believe that (at least for now) you are in the drivers seat, and the LLM is just another tool to reach for.So does Microsoft and Github. At least that's what they were telling us the whole time. Oh wait.. they changed their mind i think a week ago.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44909229,
-    "by": "bubblyworld",
-    "timeISO": "2025-08-15T06:31:37.000Z",
-    "textPlain": "I think the argument here is nonsense. LLMs clearly work differently to human cognition, so pointing out a difference between how LLMs and humans approach a problem and calling that the reason that they can't build software makes no sense. Plausibly there are many ways to build software that don't make sense to a human.That said, I agree with the conclusion. They do seem to be missing coherent models of what they work on - perhaps part of the reason they do so poorly on benchmarks like ARC, which are designed to elicit that kind of skill?",
+    "id": 44908856,
+    "by": "madrasman",
+    "timeISO": "2025-08-15T05:19:02.000Z",
+    "textPlain": "The 2 iOS apps that I published (mid level complexity and work well) say otherwise. I was blown away by what cursor + o3 could do.",
     "parent": 44900116,
     "depth": 1
   },
@@ -200,10 +184,34 @@
     "depth": 1
   },
   {
+    "id": 44910123,
+    "by": "kypro",
+    "timeISO": "2025-08-15T09:02:50.000Z",
+    "textPlain": "> LLMs get endlessly confused: they assume the code they wrote actually works; when test fail, they are left guessing as to whether to fix the code or the tests; and when it gets frustrating, they just delete the whole lot and start over.That's actually an interesting point, and something I've noticed a lot myself. I find LLMs are very good at hacking around test failures, but unless the test is failing for a trivial reason often it's pointing at some more fundamental issue with the underlying logic of the application which LLMs don't seem to be able to pick up on, likely because they don't have a comprehensive mental model of how the system should work.I don't want to point fingers, but I've been seeing this quite a bit in the code of colleagues who heavily use LLMs. On the surface the code looks fine, and they've produced tests which pass, but when you think about it for more than a minute you realise it doesn't really capture nuance of the requirements, and in a way a human who had a mental model of the how the system probably wouldn't have done...Sometimes humans miss things in the logic when they're writing code, but these look more like mistakes in a line rather than a fundamental failure to comprehend and model the problem. And I know this isn't the case, because when you talk to these developers they get the problem perfectly well.To know when the code needs fixing or a test you need a very clear idea of what should be happening and LLMs just don't. I don't know why that is. Maybe it's just they're missing context from the hours of reading tickets and technical discussions, or maybe it's their failure to ask questions when they're unsure of what should be happening. I don't know if this a fundamental limitation of LLMs (I'd suspect not personally), but this is a problem when using LLMs to code today and one that more compute alone probably can't fix.",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44909229,
+    "by": "bubblyworld",
+    "timeISO": "2025-08-15T06:31:37.000Z",
+    "textPlain": "I think the argument here is nonsense. LLMs clearly work differently to human cognition, so pointing out a difference between how LLMs and humans approach a problem and calling that the reason that they can't build software makes no sense. Plausibly there are many ways to build software that don't make sense to a human.That said, I agree with the conclusion. They do seem to be missing coherent models of what they work on - perhaps part of the reason they do so poorly on benchmarks like ARC, which are designed to elicit that kind of skill?",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
     "id": 44902556,
     "by": "nextworddev",
     "timeISO": "2025-08-14T16:39:24.000Z",
     "textPlain": "60% of the complaints in this post can be solved by providing better requirements and context upfront",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44909697,
+    "by": "siva7",
+    "timeISO": "2025-08-15T07:56:06.000Z",
+    "textPlain": "> But, we firmly believe that (at least for now) you are in the drivers seat, and the LLM is just another tool to reach for.So does Microsoft and Github. At least that's what they were telling us the whole time. Oh wait.. they changed their mind i think a week ago.",
     "parent": 44900116,
     "depth": 1
   },
@@ -388,14 +396,6 @@
     "by": "otterley",
     "timeISO": "2025-08-14T16:50:22.000Z",
     "textPlain": "On the contrary, Kiro (https://kiro.dev) is showing that it can be done by breaking down software engineering into multiple stages (requirements, design, and tasks) and then breaking the tasks down into discrete subtasks. Each of those can then be customized and refined as much as you like. It will even sketch out initial documents for all three.It’s still early days, but we are learning that as with software written exclusively by humans, the more specific the specifications are, the more likely the result will be as you intended.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44902078,
-    "by": "mccoyb",
-    "timeISO": "2025-08-14T16:02:21.000Z",
-    "textPlain": "This is a low information density blog post. I’ve really liked Zed’s blog posts in the past (especially about the editor internals!) so I hope this doesn’t come the wrong way, but this seems to be a loose restatement of what many people are empirically finding out by using LLM agents.Perhaps good for someone just getting their feet wet with these computational objects, but not resolving or explaining things in a clear way, or highlighting trends in research and engineering that might point towards ways forward.You also have a technical writing no no where you cite a rather precise and specific study with a paraphrase to support your claims … analogous to saying “Godel’s incompleteness theorem means _something something_ about the nature of consciousness”.A phrase like: “Unfortunately, for now, they cannot (beyond a certain complexity) actually understand what is going on” referencing a precise study … is ambiguous and shoddy technical writing — what exactly does the author mean here? It’s vague.I think it is even worse here because _the original study_ provides task-specific notions of complexity (a critique of the original study! Won’t different representations lead to different complexity scaling behavior? Of course! That’s what software engineering is all about: I need to think at different levels to control my exposure to complexity)",
     "parent": 44900116,
     "depth": 1
   }

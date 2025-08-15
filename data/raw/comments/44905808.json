@@ -40,6 +40,14 @@
     "depth": 1
   },
   {
+    "id": 44910461,
+    "by": "WhyNotHugo",
+    "timeISO": "2025-08-15T10:03:58.000Z",
+    "textPlain": "I wouldn’t call GTK the “native” framework on Linux/Wayland or Linux/X11.Native would be talking to the compositor directly.GTK provides a cross-platform layer of abstractions over the compositor. That’s the opposite of native.There’s countless bugs in the Linux port for applications (eg: Firefox) which can’t be fixed because of a he abstractions done by GTK.",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
     "id": 44906410,
     "by": "schmichael",
     "timeISO": "2025-08-14T22:24:18.000Z",
@@ -216,6 +224,14 @@
     "depth": 2
   },
   {
+    "id": 44910386,
+    "by": "Sammi",
+    "timeISO": "2025-08-15T09:47:55.000Z",
+    "textPlain": "I can't even open nano in ghostty when I've ssh'd to my ubuntu box:  $ nano\n  Error opening terminal: xterm-ghostty.\n\nWorks fine in macos terminal and built in vs code terminal.",
+    "parent": 44908846,
+    "depth": 2
+  },
+  {
     "id": 44909074,
     "by": "ha1zum",
     "timeISO": "2025-08-15T06:00:24.000Z",
@@ -232,18 +248,18 @@
     "depth": 2
   },
   {
-    "id": 44910198,
-    "by": "ozgrakkurt",
-    "timeISO": "2025-08-15T09:16:35.000Z",
-    "textPlain": "It is so much more difficult to write c bindings in rust.Maybe they wouldn’t even be able to write gtk bindings in rust",
-    "parent": 44906410,
-    "depth": 2
-  },
-  {
     "id": 44906453,
     "by": "mitchellh",
     "timeISO": "2025-08-14T22:28:55.000Z",
     "textPlain": "Hi @schmichael ;) Rust would've prevented one. The rest Rust wouldn't have prevented since as you already noticed, it was in the boundary layer and semantics of a C API. It would've only been as safe as the Rust wrapper. One argument is that the richer, more proven ecosystem of wrapper libraries may have prevented it versus my DIY wrappers.The one Rust would've prevented was a simple undefined memory access: https://github.com/ghostty-org/ghostty/pull/7982 (At least, I'm pretty sure Rust would've caught this). In practice, it meant that we were copying garbage memory on the first rendered frame, but that memory wasn't used or sent anywhere so in practice it was mostly safe. Still, its not correct!",
+    "parent": 44906410,
+    "depth": 2
+  },
+  {
+    "id": 44910198,
+    "by": "ozgrakkurt",
+    "timeISO": "2025-08-15T09:16:35.000Z",
+    "textPlain": "It is so much more difficult to write c bindings in rust.Maybe they wouldn’t even be able to write gtk bindings in rust",
     "parent": 44906410,
     "depth": 2
   },
@@ -260,6 +276,14 @@
     "by": "account42",
     "timeISO": "2025-08-15T09:11:04.000Z",
     "textPlain": "I've used Valgrind (mainly memcheck) as a proactive tool or at least as a tool to fish for easy to fix issues before spending too much time debugging specific reports. Main issue is the huge performance overhead that make interactive use under it less than fun - but IMO running your testsuite under it from time to time at least is a no brainer.",
+    "parent": 44908408,
+    "depth": 2
+  },
+  {
+    "id": 44910516,
+    "by": "ur-whale",
+    "timeISO": "2025-08-15T10:11:41.000Z",
+    "textPlain": "> Proactive use of the Valgrind suite (Memcheck and Helgrind at least) as part of the development processYeah, except that it's: slow and expensive and therefore can't be a part of the \"short cycle\" (edit code, compile, test, iterate) only the \"long cycle\" (nightly build, test suite). Also valgrind is not exactly designed to directly integrate in a test suite and that requires work.",
     "parent": 44908408,
     "depth": 2
   },

@@ -1,17 +1,17 @@
 [
   {
-    "id": 44905187,
-    "by": "mijoharas",
-    "timeISO": "2025-08-14T20:20:00.000Z",
-    "textPlain": "Ok, cool! I was actually one of the people on the hyprnote HN thread asking for a headless mode!I was actually integrating some whisper tools yesterday. I was wondering if there was a way to get a streaming response, and was thinking it'd be nice if you can.I'm on linux, so don't think I can test out owhisper right now, but is that a thing that's possible?Also, it looks like the `owhisper run` command gives it's output as a tui. Is there an option for a plain text response so that we can just pipe it to other programs? (maybe just `kill`/`CTRL+C` to stop the recording and finalize the words).Same question for streaming, is there a way to get a streaming text output from owhisper? (it looks like you said you create a deepgram compatible api, I had a quick look at the api docs, but I don't know how easy it is to hook into it and get some nice streaming text while speaking).Oh yeah, and diarisation (available with a flag?) would be awesome, one of the things that's missing from most of the easiest to run things I can find.",
+    "id": 44910601,
+    "by": "vinni2",
+    "timeISO": "2025-08-15T10:24:51.000Z",
+    "textPlain": "Very neat project! Congratulations to the founders. I was wondering why there is no one working on such a tool.But I was hoping couple of features would be supported:\n1. Multilingual support. It seems like even if I use a multilingual model like whisper-cpp-large-turbo-q8, the application seems to assume I am speaking English.\n2. Translate feature. Probably already supported but I didnt see the option.",
     "parent": 44901853,
     "depth": 1
   },
   {
-    "id": 44909249,
-    "by": "tempodox",
-    "timeISO": "2025-08-15T06:36:32.000Z",
-    "textPlain": "It seems to use https://api.deepgram.com (and other web endpoints) and apparently needs an API key, so it's not actually local.  Why is it being compared to ollama, which does run fully locally?",
+    "id": 44905187,
+    "by": "mijoharas",
+    "timeISO": "2025-08-14T20:20:00.000Z",
+    "textPlain": "Ok, cool! I was actually one of the people on the hyprnote HN thread asking for a headless mode!I was actually integrating some whisper tools yesterday. I was wondering if there was a way to get a streaming response, and was thinking it'd be nice if you can.I'm on linux, so don't think I can test out owhisper right now, but is that a thing that's possible?Also, it looks like the `owhisper run` command gives it's output as a tui. Is there an option for a plain text response so that we can just pipe it to other programs? (maybe just `kill`/`CTRL+C` to stop the recording and finalize the words).Same question for streaming, is there a way to get a streaming text output from owhisper? (it looks like you said you create a deepgram compatible api, I had a quick look at the api docs, but I don't know how easy it is to hook into it and get some nice streaming text while speaking).Oh yeah, and diarisation (available with a flag?) would be awesome, one of the things that's missing from most of the easiest to run things I can find.",
     "parent": 44901853,
     "depth": 1
   },
@@ -24,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44909985,
-    "by": "theanonymousone",
-    "timeISO": "2025-08-15T08:43:22.000Z",
-    "textPlain": "Given how sentiments towards ollama has become, I'm not sure this is a clever marketing line :D",
+    "id": 44909249,
+    "by": "tempodox",
+    "timeISO": "2025-08-15T06:36:32.000Z",
+    "textPlain": "It seems to use https://api.deepgram.com (and other web endpoints) and apparently needs an API key, so it's not actually local.  Why is it being compared to ollama, which does run fully locally?",
     "parent": 44901853,
     "depth": 1
   },
@@ -36,6 +36,14 @@
     "by": "wanderingmind",
     "timeISO": "2025-08-14T22:49:21.000Z",
     "textPlain": "Thank you for taking the time to build something and share it. However what is the advantage of using this over whisper.cpp stream that can also do real time conversion?https://github.com/ggml-org/whisper.cpp/tree/master/examples...",
+    "parent": 44901853,
+    "depth": 1
+  },
+  {
+    "id": 44909985,
+    "by": "theanonymousone",
+    "timeISO": "2025-08-15T08:43:22.000Z",
+    "textPlain": "Given how sentiments towards ollama has become, I'm not sure this is a clever marketing line :D",
     "parent": 44901853,
     "depth": 1
   },
@@ -152,14 +160,6 @@
     "depth": 2
   },
   {
-    "id": 44909370,
-    "by": "yujonglee",
-    "timeISO": "2025-08-15T06:59:23.000Z",
-    "textPlain": "It can run Whisper and Moonshine models locally, while also allowing the use of other API providers. Read the docs - or at least this post.",
-    "parent": 44909249,
-    "depth": 2
-  },
-  {
     "id": 44905051,
     "by": "yujonglee",
     "timeISO": "2025-08-14T20:07:49.000Z",
@@ -168,11 +168,11 @@
     "depth": 2
   },
   {
-    "id": 44910122,
-    "by": "jftuga",
-    "timeISO": "2025-08-15T09:02:48.000Z",
-    "textPlain": "I have not heard about this. Can you please provide more context?",
-    "parent": 44909985,
+    "id": 44909370,
+    "by": "yujonglee",
+    "timeISO": "2025-08-15T06:59:23.000Z",
+    "textPlain": "It can run Whisper and Moonshine models locally, while also allowing the use of other API providers. Read the docs - or at least this post.",
+    "parent": 44909249,
     "depth": 2
   },
   {
@@ -181,6 +181,14 @@
     "timeISO": "2025-08-14T23:53:48.000Z",
     "textPlain": "Its lot more than that.- It supports other models like moonshine.- It also works as proxy for cloud model providers.- It can expose local models as Deepgram compatible api server",
     "parent": 44906643,
+    "depth": 2
+  },
+  {
+    "id": 44910122,
+    "by": "jftuga",
+    "timeISO": "2025-08-15T09:02:48.000Z",
+    "textPlain": "I have not heard about this. Can you please provide more context?",
+    "parent": 44909985,
     "depth": 2
   },
   {
