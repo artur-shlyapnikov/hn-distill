@@ -1,6 +1,6 @@
-import { log } from "./log.js";
+import { log } from "@utils/log";
 
-import type { HttpClient } from "./http-client.js";
+import type { HttpClient } from "./http-client";
 import type { z } from "zod";
 
 export type ChatMessage = {
@@ -54,7 +54,7 @@ export class OpenRouter {
       messages: messages.length,
       hasKey: !!this.apiKey,
     });
-    const json = await this.http.json<ORResp>(url, {
+    const json: ORResp = await this.http.json<ORResp>(url, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${this.apiKey}`,
@@ -100,7 +100,7 @@ export class OpenRouter {
       choices?: Array<{ message?: { role: string; content?: string } }>;
     };
 
-    const json = await this.http.json<ORResp>(url, {
+    const json: ORResp = await this.http.json<ORResp>(url, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${this.apiKey}`,

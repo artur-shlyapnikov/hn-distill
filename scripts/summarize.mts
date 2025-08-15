@@ -1,7 +1,6 @@
 import { createHash } from "node:crypto";
 import { dirname } from "node:path";
 
-import { z } from "zod";
 
 import { env, type Env } from "@config/env";
 import { PATHS, pathFor } from "@config/paths";
@@ -12,16 +11,20 @@ import {
   NormalizedStorySchema,
   PostSummarySchema,
   TagsSummarySchema,
+  type CommentsSummary,
+  type NormalizedComment,
+  type NormalizedStory,
+  type PostSummary,
 } from "@config/schemas";
 import { ensureDir, readTextSafe, writeTextFile } from "@utils/fs";
-import htmlToMd from "@utils/html-to-md";
+import { htmlToMd } from "@utils/html-to-md";
 import { HttpClient } from "@utils/http-client";
 import { readJsonSafeOr, writeJsonFile } from "@utils/json";
 import { log } from "@utils/log";
-import { OpenRouter, type ChatMessage, type JsonSchema } from "@utils/openrouter";
-import { canonicalize, dedupeKeepOrder, heuristicTags } from "@utils/tags";
+import { OpenRouter, type ChatMessage } from "@utils/openrouter";
+import { buildTagsPrompt, combineAndCanon, summarizeTagsStructured } from "@utils/tags-extract";
 
-import type { CommentsSummary, NormalizedComment, NormalizedStory, PostSummary } from "@config/schemas";
+import type { z } from "zod";
 
 export type Services = {
   http: HttpClient;
@@ -314,187 +317,6 @@ async function processCommentsSummary(
   }
 }
 
-async function buildTagsPrompt(
-  story: NormalizedStory,
-  postSummary?: string,
-  commentsSummary?: string
-): Promise<string> {
-  const summary = (postSummary ?? "").slice(0, 800);
-  const comments = (commentsSummary ?? "").slice(0, 600);
-  const domain = story.url ? new URL(story.url).hostname.replace(/^www\./u, "") : "news.ycombinator.com";
-  return [
-    `title: ${story.title}`,
-    `domain: ${domain}`,
-    `signals:`,
-    summary ? `- summary: ${summary}` : undefined,
-    comments ? `- comments: ${comments}` : undefined,
-  ]
-    .filter(Boolean)
-    .join("\n");
-}
-
-// Zod schema for structured tags output
-const TagsResponseSchema = z.object({
-  tags: z
-    .array(
-      z.object({
-        name: z.string().min(1).max(40),
-        cat: z
-          .enum([
-            "topic",
-            "lang",
-            "lib",
-            "framework",
-            "company",
-            "org",
-            "product",
-            "standard",
-            "person",
-            "event",
-            "infra",
-            "other",
-          ])
-          .optional(),
-      })
-    )
-    .max(env.TAGS_MAX_PER_STORY),
-});
-
-type TagsResponse = z.infer<typeof TagsResponseSchema>;
-
-async function summarizeTagsStructured(
-  services: Services,
-  prompt: string
-): Promise<Array<{ name: string; cat?: string | undefined }>> {
-  log.debug(TAGS_DEBUG_MESSAGE, "structured request", { model: env.TAGS_MODEL, promptChars: prompt.length });
-
-  const schema: JsonSchema = {
-    type: "object",
-    properties: {
-      tags: {
-        type: "array",
-        items: {
-          type: "object",
-          properties: {
-            name: {
-              type: "string",
-              description: "Tag name, normalized and lowercase",
-            },
-            cat: {
-              type: "string",
-              enum: [
-                "topic",
-                "lang",
-                "lib",
-                "framework",
-                "company",
-                "org",
-                "product",
-                "standard",
-                "person",
-                "event",
-                "infra",
-                "other",
-              ],
-              description: "Optional category for the tag",
-            },
-          },
-          required: ["name"],
-          additionalProperties: false,
-        },
-      },
-    },
-    required: ["tags"],
-    additionalProperties: false,
-  };
-
-  // Try structured outputs first
-  try {
-    const result = await services.openrouter.chatStructured<TagsResponse>(
-      [
-        {
-          role: "system",
-          content: `Answer in JSON. You are a technical content categorization expert. Extract only the most relevant and certain tags from the given content.
-
-Rules:
-- Only include tags you are highly confident about based on explicit mentions or clear context
-- Focus on: programming languages, frameworks, databases, cloud platforms, companies, protocols, and core technical concepts
-- Use lowercase, normalized names (e.g., "javascript" not "JavaScript", "postgresql" not "PostgreSQL")
-- Avoid generic terms like "software", "technology", "development" unless they're the main focus
-- Prefer specific over general (e.g., "reactjs" over "frontend")
-- Return at most ${env.TAGS_MAX_PER_STORY} tags
-- Only return tags that add meaningful categorization value`,
-        },
-        { role: "user", content: prompt },
-      ],
-      {
-        temperature: 0.5,
-        maxTokens: env.TAGS_MAX_TOKENS,
-        model: env.TAGS_MODEL,
-        responseFormat: {
-          type: "json_schema",
-          json_schema: {
-            name: "tags_extraction",
-            strict: true,
-            schema,
-          },
-        },
-      },
-      TagsResponseSchema,
-      2 // reduced retries
-    );
-
-    return result.tags.map((tag) => ({
-      name: tag.name,
-      cat: tag.cat,
-    }));
-  } catch (error) {
-    log.warn(TAGS_DEBUG_MESSAGE, "structured outputs failed, falling back to regular JSON", {
-      model: env.TAGS_MODEL,
-      error: error instanceof Error ? error.message : String(error),
-    });
-
-    // Fallback to regular chat with JSON instructions
-    const jsonResponse = await services.openrouter.chat(
-      [
-        {
-          role: "system",
-          content: `You are a technical content categorization expert. Extract only the most relevant and certain tags from the given content.
-
-Return your response as valid JSON in this exact format:
-{"tags": [{"name": "tag1", "cat": "category"}, {"name": "tag2"}]}
-
-Rules:
-- Only include tags you are highly confident about based on explicit mentions or clear context
-- Focus on: programming languages, frameworks, databases, cloud platforms, companies, protocols, and core technical concepts
-- Use lowercase, normalized names (e.g., "javascript" not "JavaScript", "postgresql" not "PostgreSQL")
-- Avoid generic terms like "software", "technology", "development" unless they're the main focus
-- Prefer specific over general (e.g., "reactjs" over "frontend")
-- Return at most ${env.TAGS_MAX_PER_STORY} tags
-- Categories: topic, lang, lib, framework, company, org, product, standard, person, event, infra, other
-- Category is optional, only add if certain`,
-        },
-        { role: "user", content: prompt },
-      ],
-      {
-        temperature: 0.5,
-        maxTokens: env.TAGS_MAX_TOKENS,
-        model: env.TAGS_MODEL,
-      }
-    );
-
-    // Parse the JSON response manually
-    const trimmed = jsonResponse.trim();
-    const parsed = JSON.parse(trimmed) as unknown;
-    const validated = TagsResponseSchema.parse(parsed);
-
-    return validated.tags.map((tag) => ({
-      name: tag.name,
-      cat: tag.cat,
-    }));
-  }
-}
-
 async function processTags(
   services: Services,
   story: NormalizedStory,
@@ -502,7 +324,7 @@ async function processTags(
   commentsSummary?: string
 ): Promise<void> {
   const p = pathFor.tagsSummary(story.id);
-  const prompt = await buildTagsPrompt(story, postSummary, commentsSummary);
+  const prompt = buildTagsPrompt(story, postSummary, commentsSummary);
   const inputHash = hashString(`tags|${prompt}|${env.TAGS_MODEL}`);
   const existing = await readJsonSafeOr(p, TagsSummarySchema);
   if (existing?.inputHash === inputHash) {
@@ -511,12 +333,14 @@ async function processTags(
   }
 
   try {
-    const llm = await summarizeTagsStructured(services, prompt);
-    const heur = heuristicTags(story.title, story.url ? new URL(story.url).hostname : undefined);
-    const canonLlm = llm.map((tag) => canonicalize({ name: tag.name, cat: tag.cat }));
-    const canonHeur = heur.map((s) => ({ slug: s }));
-    const canon = [...canonLlm, ...canonHeur];
-    const tags = dedupeKeepOrder(canon).slice(0, env.TAGS_MAX_PER_STORY);
+    const llm = await summarizeTagsStructured(services.openrouter, prompt, env);
+    const domain = story.url ? new URL(story.url).hostname : undefined;
+    const tags = combineAndCanon({
+      llm,
+      title: story.title,
+      domain,
+      max: env.TAGS_MAX_PER_STORY,
+    });
 
     const payload = {
       id: story.id,
@@ -536,8 +360,13 @@ async function processTags(
     });
 
     // Fallback to just heuristic tags if structured output fails
-    const heur = heuristicTags(story.title, story.url ? new URL(story.url).hostname : undefined);
-    const tags = heur.slice(0, env.TAGS_MAX_PER_STORY);
+    const domain = story.url ? new URL(story.url).hostname : undefined;
+    const tags = combineAndCanon({
+      llm: [],
+      title: story.title,
+      domain,
+      max: env.TAGS_MAX_PER_STORY,
+    });
 
     const payload = {
       id: story.id,

@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { existsSync, rmSync } from "node:fs";
 import { pathFor } from "../config/paths.ts";
 import { getOrFetchArticleMarkdown } from "../scripts/summarize.mts";
-import htmlToMd from "../utils/html-to-md";
+import { htmlToMd } from "../utils/html-to-md";
 import type { HttpClient } from "../utils/http-client.ts";
 
 // eslint-disable-next-line no-secrets/no-secrets

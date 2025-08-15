@@ -1,6 +1,6 @@
 import { describe, test, expect } from "bun:test";
-import { fallbackFromRaw } from "../scripts/aggregate.mts";
-import type { NormalizedStory, NormalizedComment } from "../config/schemas.ts";
+import { fallbackFromRaw } from "@scripts/aggregate.mts";
+import type { NormalizedStory, NormalizedComment } from "@config/schemas";
 
 describe("scripts/aggregate fallbackFromRaw", () => {
   test("does not produce postSummary fallback; commentsSummary falls back to combined comment text", () => {

@@ -1,28 +1,25 @@
 ---
 // src/pages/item/[id].astro
-import { env } from "@config/env";
+import { LANG } from "@config/lang";
+import { PATHS } from "@config/paths";
 import type { AggregatedItem } from "@config/schemas";
 import { formatDateHuman } from "@utils/date";
+import { loadAggregated } from "@utils/load-aggregated";
 import { mdToHtml } from "@utils/md-to-html";
 import type { GetStaticPaths } from "astro";
 import { existsSync, readFileSync } from "node:fs";
 import "../../styles/global.css";
 
-// no-op
-
 export const getStaticPaths: GetStaticPaths = async () => {
-  const p = new URL("../../../data/aggregated.json", import.meta.url).pathname;
-  type AggJson = { items?: Array<{ id: number }> };
-  const content: AggJson = existsSync(p) ? JSON.parse(readFileSync(p, "utf8")) : { items: [] };
-  return (content.items ?? []).map((it) => ({ params: { id: String(it.id) } }));
+  const { items } = loadAggregated(PATHS.aggregated);
+  return (items ?? []).map((it) => ({ params: { id: String(it.id) } }));
 };
 
-const lang = env.SUMMARY_LANG;
+const lang = LANG;
 const { id: idParam } = Astro.params as { id: string };
 const id = Number(idParam);
-const dataPath = new URL("../../../data/aggregated.json", import.meta.url).pathname;
-const data = existsSync(dataPath) ? JSON.parse(readFileSync(dataPath, "utf8")) : { items: [] };
-const item = (data.items as AggregatedItem[]).find((x) => x.id === id);
+const { items } = loadAggregated(PATHS.aggregated);
+const item = (items as AggregatedItem[]).find((x) => x.id === id);
 
 if (!item) throw new Error("Missing item for id " + id);
 

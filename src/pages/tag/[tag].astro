@@ -1,17 +1,13 @@
 ---
 import StorySection from '../../components/StorySection.astro';
 import '../../styles/global.css';
-import { env } from '@config/env';
-import type { AggregatedItem, AggregatedFile } from '@config/schemas';
-import { readFileSync, existsSync } from 'node:fs';
+import { LANG } from '@config/lang';
+import { PATHS } from '@config/paths';
+import type { AggregatedItem } from '@config/schemas';
+import { loadAggregated } from '@utils/load-aggregated';
 
 export async function getStaticPaths() {
-  const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
-  const data: AggregatedFile = existsSync(dataPath)
-    ? JSON.parse(readFileSync(dataPath, 'utf8'))
-    : { items: [], updatedISO: '—' };
-
-  const allItems: AggregatedItem[] = Array.isArray((data as any).items) ? (data as any).items : [];
+  const { items: allItems } = loadAggregated(PATHS.aggregated);
   const allTags = new Set<string>();
   for (const item of allItems) {
     if (item.tags) {
@@ -26,15 +22,10 @@ export async function getStaticPaths() {
   }));
 }
 
-const lang = env.SUMMARY_LANG;
+const lang = LANG;
 const { tag } = Astro.params;
 
-const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
-const data: AggregatedFile = existsSync(dataPath)
-  ? JSON.parse(readFileSync(dataPath, 'utf8'))
-  : { items: [], updatedISO: '—' };
-const allItems: AggregatedItem[] = Array.isArray((data as any).items) ? (data as any).items : [];
-
+const { items: allItems } = loadAggregated(PATHS.aggregated);
 const filteredItems = allItems.filter(it => it.tags?.includes(tag!));
 
 const i18n = {

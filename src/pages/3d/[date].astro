@@ -1,61 +1,45 @@
 ---
 import StorySection from '../../components/StorySection.astro';
 import '../../styles/global.css';
-import { env } from '@config/env';
+import { LANG } from '@config/lang';
+import { PATHS } from '@config/paths';
+import { DailyGroupFileSchema, type AggregatedItem } from '@config/schemas';
+import { addDaysUTC } from '@utils/date-keys';
 import { formatDateHuman } from '@utils/date';
-import { readFileSync, existsSync } from 'node:fs';
-import type { AggregatedItem, AggregatedFile } from '@config/schemas';
-
-function toDateKeyUTC(iso: string): string {
-  return typeof iso === 'string' && iso.length >= 10 ? iso.slice(0, 10) : '0000-00-00';
-}
-
-function addDaysUTC(dateKey: string, days: number): string {
-  const parts = dateKey.split('-').map((n) => parseInt(n, 10));
-  if (parts.length !== 3) return dateKey;
-  const y = parts[0];
-  const m = parts[1];
-  const d = parts[2];
-  if (!Number.isFinite(y) || !Number.isFinite(m) || !Number.isFinite(d)) return dateKey;
-  const dt = new globalThis.Date(globalThis.Date.UTC(y!, m! - 1, d!));
-  dt.setUTCDate(dt.getUTCDate() + days);
-  const yy = dt.getUTCFullYear();
-  const mm = String(dt.getUTCMonth() + 1).padStart(2, '0');
-  const dd = String(dt.getUTCDate()).padStart(2, '0');
-  return `${yy}-${mm}-${dd}`;
-}
+import { indexById, loadAggregated, pickByIds } from '@utils/load-aggregated';
+import { readJsonSafeOr } from '@utils/json';
 
 export async function getStaticPaths() {
-  function toDateKeyUTC(iso: string): string {
-    return typeof iso === 'string' && iso.length >= 10 ? iso.slice(0, 10) : '0000-00-00';
-  }
-
-  const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
-  const data: AggregatedFile = existsSync(dataPath)
-    ? JSON.parse(readFileSync(dataPath, 'utf8'))
-    : { items: [], updatedISO: '—' };
-  const items = Array.isArray((data as any).items) ? (data as any).items as AggregatedItem[] : [];
-  const keys = Array.from(new Set(items.map((it) => toDateKeyUTC(it.timeISO))));
+  const dailyGroup = await readJsonSafeOr(PATHS.grouped.daily, DailyGroupFileSchema, {
+    updatedISO: '',
+    byDate: {},
+  });
+  const keys = Object.keys(dailyGroup.byDate);
   keys.sort((a, b) => (a < b ? 1 : a > b ? -1 : 0));
   return keys.map((key) => ({ params: { date: key } }));
 }
 
-const lang = env.SUMMARY_LANG;
+const lang = LANG;
 const dateParam = Astro.params.date ?? '';
 const dateKey = typeof dateParam === 'string' ? dateParam : '';
 
-const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
-const data: AggregatedFile = existsSync(dataPath)
-  ? JSON.parse(readFileSync(dataPath, 'utf8'))
-  : { items: [], updatedISO: '—' };
+const { items: allItems } = loadAggregated(PATHS.aggregated);
+const itemsById = indexById(allItems);
 
-const allItems: AggregatedItem[] = Array.isArray((data as any).items) ? (data as any).items as AggregatedItem[] : [];
+const dailyGroup = await readJsonSafeOr(PATHS.grouped.daily, DailyGroupFileSchema, {
+  updatedISO: '',
+  byDate: {},
+});
+
 const endExclusive = addDaysUTC(dateKey, 1);
 const startInclusive = addDaysUTC(dateKey, -2);
-const triItems = allItems.filter((it) => {
-  const key = toDateKeyUTC(it.timeISO);
-  return key >= startInclusive && key < endExclusive;
-});
+const allIds: number[] = [];
+for (const [key, ids] of Object.entries(dailyGroup.byDate)) {
+  if (key >= startInclusive && key < endExclusive) {
+    allIds.push(...ids);
+  }
+}
+const triItems = pickByIds(itemsById, [...new Set(allIds)]);
 
 // Format dates for display
 const displayStartDate = startInclusive ? formatDateHuman(`${startInclusive}T12:00:00Z`) : startInclusive;
@@ -103,5 +87,3 @@ const description = `Hacker News Digest for ${displayStartDate} — ${displayEnd
     </main>
   </body>
   </html>
-
-

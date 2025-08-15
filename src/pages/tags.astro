@@ -1,17 +1,12 @@
 ---
 import '../styles/global.css';
-import { env } from '@config/env';
-import type { AggregatedItem, AggregatedFile } from '@config/schemas';
-import { readFileSync, existsSync } from 'node:fs';
+import { LANG } from '@config/lang';
+import { PATHS } from '@config/paths';
+import { loadAggregated } from '@utils/load-aggregated';
 
-const lang = env.SUMMARY_LANG;
+const lang = LANG;
 
-const dataPath = new URL('../../data/aggregated.json', import.meta.url).pathname;
-const data: AggregatedFile = existsSync(dataPath)
-  ? JSON.parse(readFileSync(dataPath, 'utf8'))
-  : { items: [], updatedISO: '—' };
-
-const allItems: AggregatedItem[] = Array.isArray((data as any).items) ? (data as any).items : [];
+const { items: allItems } = loadAggregated(PATHS.aggregated);
 
 // Collect all tags with their counts
 const tagCounts = new Map<string, number>();

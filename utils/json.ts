@@ -2,7 +2,7 @@ import { existsSync } from "node:fs";
 import { readFile, rename, writeFile } from "node:fs/promises";
 import { dirname } from "node:path";
 
-import { ensureDir } from "./fs.js";
+import { ensureDir } from "@utils/fs";
 
 import type { z } from "zod";
 

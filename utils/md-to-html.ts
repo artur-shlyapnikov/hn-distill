@@ -74,5 +74,3 @@ export function mdToHtml(src: string): string {
   };
   return sanitizeHtml(rendered, options);
 }
-
-export default mdToHtml;

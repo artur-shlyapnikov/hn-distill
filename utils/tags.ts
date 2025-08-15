@@ -25,8 +25,8 @@ export function slugify(s: string): string {
     .toLowerCase()
     .replaceAll("'", "") // drop quotes
     .replaceAll(/[^\d#+\-.a-z]+/gu, "-") // keep techy symbols minimally
-    .replaceAll(/^-+$/gu, "")
-    .replaceAll(/-$/gu, "");
+    .replaceAll(/-+/gu, "-")
+    .replaceAll(/^-|-$/gu, "");
 }
 
 export function canonicalize(t: CanonTag): { slug: string; cat?: string | undefined } {
