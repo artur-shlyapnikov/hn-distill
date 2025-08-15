@@ -4,7 +4,6 @@ import { createHash } from "node:crypto";
 import { readdir } from "node:fs/promises";
 import { basename } from "node:path";
 
-import { z } from "zod";
 
 import { env, type Env } from "@config/env";
 import { TAGS_FALLBACK_MODELS } from "@config/openrouter";
@@ -21,6 +20,8 @@ import { log } from "@utils/log";
 import { buildTagsPrompt, combineAndCanon, summarizeTagsStructured } from "@utils/tags-extract";
 
 import { makeServices, type Services } from "./summarize.mts";
+
+import type { z } from "zod";
 
 const TAGS_DEBUG_MESSAGE = "tags-bulk";
 
@@ -146,7 +147,7 @@ function getNextModel(): string {
   currentModelIndex = (currentModelIndex + 1) % FALLBACK_MODELS.length;
   const model = FALLBACK_MODELS[currentModelIndex];
   if (!model) {
-    throw new Error("Invalid fallback model index");
+    throw new Error("Next fallback model is unavailable");
   }
   return model;
 }
@@ -157,7 +158,7 @@ function getCurrentModel(): string {
   }
   const model = FALLBACK_MODELS[currentModelIndex];
   if (!model) {
-    throw new Error("Invalid current model index");
+    throw new Error("Current fallback model is unavailable");
   }
   return model;
 }

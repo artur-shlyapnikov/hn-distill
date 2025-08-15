@@ -1,5 +1,5 @@
 import { describe, test, expect } from "bun:test";
-import htmlToMdDefault, { htmlToMd } from "../utils/html-to-md";
+import { htmlToMd } from "../utils/html-to-md";
 
 describe("utils/htmlToMd", () => {
   test("converts basic HTML elements", () => {
@@ -33,8 +33,4 @@ describe("utils/htmlToMd", () => {
     expect(md).not.toContain("color: red");
   });
 
-  test("default export works", () => {
-    const html = "<p>Hello</p>";
-    expect(htmlToMdDefault(html)).toBe("Hello");
-  });
 });

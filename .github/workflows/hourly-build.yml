@@ -19,13 +19,8 @@ jobs:
         with:
           persist-credentials: true
 
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: "1.2.19"
-
-      - name: Install
-        run: make install
+      - name: Setup Bun and Install Dependencies
+        uses: ./.github/actions/setup-bun
 
       - name: Generate data
         env:

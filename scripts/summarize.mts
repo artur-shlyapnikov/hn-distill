@@ -1,7 +1,6 @@
 import { createHash } from "node:crypto";
 import { dirname } from "node:path";
 
-import { z } from "zod";
 
 import { env, type Env } from "@config/env";
 import { PATHS, pathFor } from "@config/paths";
@@ -24,6 +23,8 @@ import { readJsonSafeOr, writeJsonFile } from "@utils/json";
 import { log } from "@utils/log";
 import { OpenRouter, type ChatMessage } from "@utils/openrouter";
 import { buildTagsPrompt, combineAndCanon, summarizeTagsStructured } from "@utils/tags-extract";
+
+import type { z } from "zod";
 
 export type Services = {
   http: HttpClient;
@@ -323,7 +324,7 @@ async function processTags(
   commentsSummary?: string
 ): Promise<void> {
   const p = pathFor.tagsSummary(story.id);
-  const prompt = await buildTagsPrompt(story, postSummary, commentsSummary);
+  const prompt = buildTagsPrompt(story, postSummary, commentsSummary);
   const inputHash = hashString(`tags|${prompt}|${env.TAGS_MODEL}`);
   const existing = await readJsonSafeOr(p, TagsSummarySchema);
   if (existing?.inputHash === inputHash) {

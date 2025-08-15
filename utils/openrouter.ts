@@ -54,7 +54,7 @@ export class OpenRouter {
       messages: messages.length,
       hasKey: !!this.apiKey,
     });
-    const json = await this.http.json<ORResp>(url, {
+    const json: ORResp = await this.http.json<ORResp>(url, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${this.apiKey}`,
@@ -100,7 +100,7 @@ export class OpenRouter {
       choices?: Array<{ message?: { role: string; content?: string } }>;
     };
 
-    const json = await this.http.json<ORResp>(url, {
+    const json: ORResp = await this.http.json<ORResp>(url, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${this.apiKey}`,

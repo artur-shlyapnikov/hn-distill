@@ -3,16 +3,10 @@ import StorySection from '../../components/StorySection.astro';
 import '../../styles/global.css';
 import { LANG } from '@config/lang';
 import { PATHS } from '@config/paths';
-import type { AggregatedItem } from '@config/schemas';
+import { DailyGroupFileSchema, type AggregatedItem } from '@config/schemas';
 import { formatDateHuman } from '@utils/date';
 import { indexById, loadAggregated, pickByIds } from '@utils/load-aggregated';
 import { readJsonSafeOr } from '@utils/json';
-import { z } from 'zod';
-
-const DailyGroupFileSchema = z.object({
-  updatedISO: z.string(),
-  byDate: z.record(z.array(z.number())),
-});
 
 export async function getStaticPaths() {
   const dailyGroup = await readJsonSafeOr(PATHS.grouped.daily, DailyGroupFileSchema, {

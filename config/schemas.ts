@@ -143,6 +143,16 @@ export const AggregatedFileSchema = z.object({
   items: z.array(AggregatedItemSchema),
 });
 
+export const DailyGroupFileSchema = z.object({
+  updatedISO: z.string(),
+  byDate: z.record(z.array(z.number())),
+});
+
+export const WeeklyGroupFileSchema = z.object({
+  updatedISO: z.string(),
+  byWeek: z.record(z.array(z.number())),
+});
+
 // Inferred types from schemas (single source of truth)
 export type HnItemRaw = z.infer<typeof HnItemRawSchema>;
 export type NormalizedStory = z.infer<typeof NormalizedStorySchema>;

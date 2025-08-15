@@ -3,11 +3,11 @@ export const toDateKeyUTC = (iso: string): string =>
   typeof iso === "string" && iso.length >= 10 ? iso.slice(0, 10) : "0000-00-00";
 
 export function addDaysUTC(dateKey: string, days: number): string {
-  const parts = dateKey.split("-").map((n) => parseInt(n, 10));
+  const parts = dateKey.split("-").map((n) => Number.parseInt(n, 10));
   if (parts.length !== 3) {
     return dateKey;
   }
-  const [y, m, d] = parts;
+  const [y, m, d] = parts as [number, number, number];
   if (!Number.isFinite(y) || !Number.isFinite(m) || !Number.isFinite(d)) {
     return dateKey;
   }

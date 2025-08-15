@@ -3,15 +3,9 @@ import StorySection from '../../components/StorySection.astro';
 import '../../styles/global.css';
 import { LANG } from '@config/lang';
 import { PATHS } from '@config/paths';
-import type { AggregatedItem } from '@config/schemas';
+import { WeeklyGroupFileSchema, type AggregatedItem } from '@config/schemas';
 import { indexById, loadAggregated, pickByIds } from '@utils/load-aggregated';
 import { readJsonSafeOr } from '@utils/json';
-import { z } from 'zod';
-
-const WeeklyGroupFileSchema = z.object({
-  updatedISO: z.string(),
-  byWeek: z.record(z.array(z.number())),
-});
 
 export async function getStaticPaths() {
   const weeklyGroup = await readJsonSafeOr(PATHS.grouped.weekly, WeeklyGroupFileSchema, {
