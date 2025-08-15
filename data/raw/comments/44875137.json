@@ -1,13 +1,5 @@
 [
   {
-    "id": 44909224,
-    "by": "weinzierl",
-    "timeISO": "2025-08-15T06:30:18.000Z",
-    "textPlain": "I think Apple did the right thing by keeping GUI shortcuts separate from terminal control codes.I never understood why the Linux GUI world ran blindly after Windows and emulated every pattern, good or bad. And yes, I know that Ctrl-C/Ctrl-P for Copy/Paste are much older and came out of IBM's CUA and SAA initiatives. What matters is that with the Mac we had a clear role model how to handle this aspect of GUI cleanly but me missed it.While we’re at it, I’m still on the lookout for IBM’s original SAA and CUA documentation. If anyone has these lying around, I’d be interested",
-    "parent": 44875137,
-    "depth": 1
-  },
-  {
     "id": 44908999,
     "by": "koiueo",
     "timeISO": "2025-08-15T05:45:08.000Z",
@@ -32,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44909224,
+    "by": "weinzierl",
+    "timeISO": "2025-08-15T06:30:18.000Z",
+    "textPlain": "I think Apple did the right thing by keeping GUI shortcuts separate from terminal control codes.I never understood why the Linux GUI world ran blindly after Windows and emulated every pattern, good or bad. And yes, I know that Ctrl-C/Ctrl-P for Copy/Paste are much older and came out of IBM's CUA and SAA initiatives. What matters is that with the Mac we had a clear role model how to handle this aspect of GUI cleanly but me missed it.While we’re at it, I’m still on the lookout for IBM’s original SAA and CUA documentation. If anyone has these lying around, I’d be interested",
+    "parent": 44875137,
+    "depth": 1
+  },
+  {
     "id": 44909213,
     "by": "dajtxx",
     "timeISO": "2025-08-15T06:27:32.000Z",
@@ -48,10 +48,26 @@
     "depth": 1
   },
   {
-    "id": 44909197,
-    "by": "eviks",
-    "timeISO": "2025-08-15T06:24:54.000Z",
-    "textPlain": "> To trigger the copy or paste keyboard actions, software has to bind these key codes to actions. Software toolkits or apps themselves are responsible for this.If only the universal subset of communication maintained by the OS were actual actions",
+    "id": 44909296,
+    "by": "v9v",
+    "timeISO": "2025-08-15T06:45:14.000Z",
+    "textPlain": "In Emacs if CUA mode is on, C-c behaves as copy if any text is selected (and if no other keys have been pressed within a short time). To send a C-c when text is selected you do a C-S-c instead. Similarly in Windows Terminal I remember C-c works as copy without any issue (it deselects the text with the first C-c IIRC, so if you do two C-c's with text selected you copy and then send an interrupt).Do any linux terminals implement anything like this? Why resort to adding new keys to keyboards?",
+    "parent": 44875137,
+    "depth": 1
+  },
+  {
+    "id": 44909379,
+    "by": "enricozb",
+    "timeISO": "2025-08-15T07:00:28.000Z",
+    "textPlain": "I just remap my terminal to have Ctrl-X to send SIGHUP, and Ctrl-C to copy. X looks more like a kill to me anyways.",
+    "parent": 44875137,
+    "depth": 1
+  },
+  {
+    "id": 44909407,
+    "by": "deknos",
+    "timeISO": "2025-08-15T07:04:54.000Z",
+    "textPlain": "instead of some universal shortcuts, i would prefer to have another meta key, that we finally can do another-meta+ctrl+alt+ascii for more combinations :Duniversal shortcuts are overrated and get in your way anyway :D",
     "parent": 44875137,
     "depth": 1
   },
@@ -64,6 +80,14 @@
     "depth": 1
   },
   {
+    "id": 44908972,
+    "by": "cncjchsue7",
+    "timeISO": "2025-08-15T05:40:50.000Z",
+    "textPlain": "We gonna get support for keys that don't exist on any modern keyboards, don't worry though you can remap them or bind them to change mplicated macro layers in your expensive mechanical keyboards.Do all that and you won't need those two lines of xinit.rc",
+    "parent": 44875137,
+    "depth": 1
+  },
+  {
     "id": 44909088,
     "by": "mockingloris",
     "timeISO": "2025-08-15T06:02:43.000Z",
@@ -72,10 +96,10 @@
     "depth": 1
   },
   {
-    "id": 44909193,
-    "by": "globular-toast",
-    "timeISO": "2025-08-15T06:24:34.000Z",
-    "textPlain": "Not enough people know that you can just select text then middle click somewhere to paste it. No keys required and yes it works with all terminal emulators I've tried. This has been default behaviour on Linux desktops for as long as I've used it (decades).",
+    "id": 44909197,
+    "by": "eviks",
+    "timeISO": "2025-08-15T06:24:54.000Z",
+    "textPlain": "> To trigger the copy or paste keyboard actions, software has to bind these key codes to actions. Software toolkits or apps themselves are responsible for this.If only the universal subset of communication maintained by the OS were actual actions",
     "parent": 44875137,
     "depth": 1
   },
@@ -88,10 +112,18 @@
     "depth": 1
   },
   {
-    "id": 44908972,
-    "by": "cncjchsue7",
-    "timeISO": "2025-08-15T05:40:50.000Z",
-    "textPlain": "We gonna get support for keys that don't exist on any modern keyboards, don't worry though you can remap them or bind them to change mplicated macro layers in your expensive mechanical keyboards.Do all that and you won't need those two lines of xinit.rc",
+    "id": 44909193,
+    "by": "globular-toast",
+    "timeISO": "2025-08-15T06:24:34.000Z",
+    "textPlain": "Not enough people know that you can just select text then middle click somewhere to paste it. No keys required and yes it works with all terminal emulators I've tried. This has been default behaviour on Linux desktops for as long as I've used it (decades).",
+    "parent": 44875137,
+    "depth": 1
+  },
+  {
+    "id": 44909272,
+    "by": "WesolyKubeczek",
+    "timeISO": "2025-08-15T06:41:39.000Z",
+    "textPlain": "Wouldn't it be darn nice, though, if there was a universal mechanism for apps to announce which shortcut they have available and a centralized way to configure them all?For example, I was able to assign copy/paste keys to the corresponding actions in the GTK keybindings, and it worked like charm, except in Chrome. That is, in Chrome, web content respected these keybindings, but the browser UI didn't. So I could use the keys on textareas and inputs all I wanted, but paste into the address bar? Nooooo, BECAUSE FUCKING CHROME HAS THEM HARDCODED per platform!(However, in Firefox it worked just fine across the whole UI.)",
     "parent": 44875137,
     "depth": 1
   },
@@ -104,11 +136,11 @@
     "depth": 1
   },
   {
-    "id": 44909239,
-    "by": "timuckun",
-    "timeISO": "2025-08-15T06:34:43.000Z",
-    "textPlain": "Probably because of Miguel and his fascination with windows.",
-    "parent": 44909224,
+    "id": 44909326,
+    "by": "Wilder7977",
+    "timeISO": "2025-08-15T06:49:29.000Z",
+    "textPlain": "> And btw while apple is often offered as some golden standard for key bindings, I think the situation there is much (MUCH) worse: apps often intercept and handle common combinations on their own, with unclear precedence, which leads to non-deterministic behavior and a complete mess if you want to override any standard combination.Thank you. That is absolutely the case. As someone who had to switch to Mac for work, I found the keybinding situation to be a complete mess. It's also incredibly hard to track down and change certain keybindings, many apps don't have any text configuration to easily modify and require you to go through their GUIs which require you to know what you are looking for (e.g., which app).",
+    "parent": 44908999,
     "depth": 2
   },
   {
@@ -116,14 +148,6 @@
     "by": "lucideer",
     "timeISO": "2025-08-15T06:07:58.000Z",
     "textPlain": "> The universality of copy/paste is overrated. It's literally just adding shift in terminal emulators, no biggie.I used to think this before I got a job in a Mac-only company. I've since installed Toshy on every Linux machine I own & the difference is night & day. Having to do something extra for terminals to achieve the thing that's so simple & natural (& frequent) in GUIs just feels like terminal emulators are being treated like second class citizens among the installed apps. Having the same shortcuts \"Just Work\" in exactly the same way through all apps isn't just more convenient, it feels like the OS is elevating terminals to an equal tier of integration.Which I would've really expected more Linux users would value more than they seem to.",
-    "parent": 44908999,
-    "depth": 2
-  },
-  {
-    "id": 44909215,
-    "by": "eviks",
-    "timeISO": "2025-08-15T06:27:51.000Z",
-    "textPlain": "> The universality of copy/paste is overrated. It's literally just adding shift in terminal emulators, no biggie.It's literraly breaking your muscle memory for one of the most commonly used shortcuts for no reason. It's a pretty big ergonomic blunder",
     "parent": 44908999,
     "depth": 2
   },
@@ -136,10 +160,18 @@
     "depth": 2
   },
   {
-    "id": 44909052,
-    "by": "yjftsjthsd-h",
-    "timeISO": "2025-08-15T05:57:10.000Z",
-    "textPlain": "> A bigger UX problem (on Linux) imo is the multitude of clipboards, we have x11, vim... Those can be synchronized or not, they manifest different behaviors...I would probably like vim's + register to always sync with the X/Wayland clipboard where possible², but it is perhaps worth pointing out that vim has (at least?¹) 28 \"clipboard\" slots (+, *, a-z) and this is a feature not a bug. Having accepted that, I would likewise point out that X having a clipboard and selection buffer is an intentional feature. I'd support universally supporting one single shared clipboard that everything uses properly by default, but I wouldn't want to limit the other options to do it.¹Edit: Nope, much more than that: https://learnvim.irian.to/basics/registers²Edit: Oh, yes, I do agree that I would be in favor of making that the default register as well so that ex. just `yy`/`p` used it.",
+    "id": 44909215,
+    "by": "eviks",
+    "timeISO": "2025-08-15T06:27:51.000Z",
+    "textPlain": "> The universality of copy/paste is overrated. It's literally just adding shift in terminal emulators, no biggie.It's literraly breaking your muscle memory for one of the most commonly used shortcuts for no reason. It's a pretty big ergonomic blunder",
+    "parent": 44908999,
+    "depth": 2
+  },
+  {
+    "id": 44909385,
+    "by": "kristopolous",
+    "timeISO": "2025-08-15T07:01:20.000Z",
+    "textPlain": "I have an interesting work around for that in my sidechat tool (https://github.com/day50-dev/sidechat/blob/main/sidechat/sid...)It's an inversion. Instead of the user selecting and then having to figure things out, they declare an \"intention to paste\" and then do the selection.In practical terms, they invoke the \"use clipboard\" feature then the code probes all the clipboards  (tmux/primary/emacs/nvim/clipboard/secondary) and the user selects their text. One (or more) changes. That's the clipboard it's going to use.",
     "parent": 44908999,
     "depth": 2
   },
@@ -152,18 +184,42 @@
     "depth": 2
   },
   {
-    "id": 44909069,
-    "by": "atoav",
-    "timeISO": "2025-08-15T05:58:52.000Z",
-    "textPlain": "> The universality of copy/paste is overrated. It's literally just adding shift in terminal emulators, no biggie.As an university level educator: This is repeatedly a major hurdle for beginners, that makes the terminal (just text) feel like a different thing than just text to them. This and the fact that you can't just select the commands you have written with the mouse or with shift arrow makes beginners go mad, seemingly for no reason. And I count myself in there, I struggled with this for more than a year. When do you paste how? When donyou copy how?The problem when you're learning this yourself is that you won't even have the correct vocabulary to describe what you want to know, it just feels like 99% of the world works and the 1% that doesn't is the terminal.I get that this is historical, but if we want people to understand computers betond the consumer level this is literally like Blender changing from righ-click-select to left-click-select. Back then all the pros said it is no biggie just like you, but it turns out it was a biggie, because since then popularity exploded.We terminal nerds lose nothing if more people understand terminals, quite the opposite.",
+    "id": 44909404,
+    "by": "cycomanic",
+    "timeISO": "2025-08-15T07:04:26.000Z",
+    "textPlain": "I almost exclusively use middle click paste when dealing with the terminal (and most other things as I find it much more convenient).That actually has become more annoying recently, because it seems to work very inconsistently in browsers now. Somehow some websites (e.g. The code blocks in webui, GitHub...) seem to not use the regular clipboard selection so pasting from that doesn't work (I hadnt had time to really investigate)",
     "parent": 44908999,
     "depth": 2
   },
   {
-    "id": 44909036,
-    "by": "echelon",
-    "timeISO": "2025-08-15T05:54:04.000Z",
-    "textPlain": "> The universality of copy/paste is overrated. It's literally just adding shift in terminal emulators, no biggie.I don't think anything has caused me more pain with computing than this.And I'm including dealing with Python dependencies.",
+    "id": 44909052,
+    "by": "yjftsjthsd-h",
+    "timeISO": "2025-08-15T05:57:10.000Z",
+    "textPlain": "> A bigger UX problem (on Linux) imo is the multitude of clipboards, we have x11, vim... Those can be synchronized or not, they manifest different behaviors...I would probably like vim's + register to always sync with the X/Wayland clipboard where possible², but it is perhaps worth pointing out that vim has (at least?¹) 28 \"clipboard\" slots (+, *, a-z) and this is a feature not a bug. Having accepted that, I would likewise point out that X having a clipboard and selection buffer is an intentional feature. I'd support universally supporting one single shared clipboard that everything uses properly by default, but I wouldn't want to limit the other options to do it.¹Edit: Nope, much more than that: https://learnvim.irian.to/basics/registers²Edit: Oh, yes, I do agree that I would be in favor of making that the default register as well so that ex. just `yy`/`p` used it.",
+    "parent": 44908999,
+    "depth": 2
+  },
+  {
+    "id": 44909335,
+    "by": "johnisgood",
+    "timeISO": "2025-08-15T06:51:38.000Z",
+    "textPlain": "I love the multitude of clipboards.I love the fact I can select from the terminal, or from the GUI, and I can use Shift + Insert or middle click.I love how I can have another clipboard using Ctrl-C / Ctrl-V.I use both on an everyday basis and has been for almost two decades.",
+    "parent": 44908999,
+    "depth": 2
+  },
+  {
+    "id": 44909266,
+    "by": "magic_hamster",
+    "timeISO": "2025-08-15T06:41:06.000Z",
+    "textPlain": "I'm not sure I've seen the sci-fi movie where Apple is heralded as the golden standard of key bindings, but having used Macs for a few years in real life, I can attest the key combinations are an absolute atrocity for the reasons you mentioned and then some.While I grew to accept some advantages of my Mac can't be easily replicated in other platforms, I think it is severely lacking in basic features, user experience and it's still occasionally infuriating even in 2025.I do have a very long list of Mac gripes, as is probably deductable from this comment.",
+    "parent": 44908999,
+    "depth": 2
+  },
+  {
+    "id": 44909069,
+    "by": "atoav",
+    "timeISO": "2025-08-15T05:58:52.000Z",
+    "textPlain": "> The universality of copy/paste is overrated. It's literally just adding shift in terminal emulators, no biggie.As an university level educator: This is repeatedly a major hurdle for beginners, that makes the terminal (just text) feel like a different thing than just text to them. This and the fact that you can't just select the commands you have written with the mouse or with shift arrow makes beginners go mad, seemingly for no reason. And I count myself in there, I struggled with this for more than a year. When do you paste how? When donyou copy how?The problem when you're learning this yourself is that you won't even have the correct vocabulary to describe what you want to know, it just feels like 99% of the world works and the 1% that doesn't is the terminal.I get that this is historical, but if we want people to understand computers betond the consumer level this is literally like Blender changing from righ-click-select to left-click-select. Back then all the pros said it is no biggie just like you, but it turns out it was a biggie, because since then popularity exploded.We terminal nerds lose nothing if more people understand terminals, quite the opposite.",
     "parent": 44908999,
     "depth": 2
   },
@@ -176,6 +232,30 @@
     "depth": 2
   },
   {
+    "id": 44909036,
+    "by": "echelon",
+    "timeISO": "2025-08-15T05:54:04.000Z",
+    "textPlain": "> The universality of copy/paste is overrated. It's literally just adding shift in terminal emulators, no biggie.I don't think anything has caused me more pain with computing than this.And I'm including dealing with Python dependencies.",
+    "parent": 44908999,
+    "depth": 2
+  },
+  {
+    "id": 44909406,
+    "by": "SkiFire13",
+    "timeISO": "2025-08-15T07:04:50.000Z",
+    "textPlain": "> I've occasionally gotten a dedicated OS emoji picker to show up on my Mac, but I don't know how.On mine it shows up when I accidentally press the Fn key, which is very inconveniently placed where every other keyboard places the Ctrl key...",
+    "parent": 44909216,
+    "depth": 2
+  },
+  {
+    "id": 44909256,
+    "by": "4lejandrito",
+    "timeISO": "2025-08-15T06:38:32.000Z",
+    "textPlain": "Control + Command + Space",
+    "parent": 44909216,
+    "depth": 2
+  },
+  {
     "id": 44909146,
     "by": "wongogue",
     "timeISO": "2025-08-15T06:14:44.000Z",
@@ -184,10 +264,26 @@
     "depth": 2
   },
   {
+    "id": 44909239,
+    "by": "timuckun",
+    "timeISO": "2025-08-15T06:34:43.000Z",
+    "textPlain": "Probably because of Miguel and his fascination with windows.",
+    "parent": 44909224,
+    "depth": 2
+  },
+  {
+    "id": 44909383,
+    "by": "biehl",
+    "timeISO": "2025-08-15T07:00:40.000Z",
+    "textPlain": "Lovely. Do you have some tips for that? Something you put in bashrc?",
+    "parent": 44909213,
+    "depth": 2
+  },
+  {
     "id": 44909001,
     "by": "AnonymousPlanet",
     "timeISO": "2025-08-15T05:45:16.000Z",
-    "textPlain": "That's an arrangement I also really appreciate. But the origins are different from what most might assume.Apple introduced copy and paste in 1983 using the command key. Microsoft later copied the idea using the control key because PCs lacked a command key [1].X had super, meta, hyper keys before the PC's stunted set of modifiers became a standard [2]. Microsoft and the PC are rarely the origins of things, mainly because CP/M, DOS and later Windows were poor, amateurish, and incomplete copies of other systems.[1] https://en.wikipedia.org/wiki/Cut,_copy,_and_paste[2] https://en.m.wikipedia.org/wiki/Super_key_(keyboard_button)",
+    "textPlain": "That's an arrangement I also really appreciate. But the origins are different from what most might assume.Apple introduced copy and paste in 1983 using the command key. Microsoft later copied the idea using the control key because PCs lacked a command key [1].X had super, meta, hyper keys before the PC's stunted set of modifiers became a standard [2]. Microsoft and the PC are rarely the origins of things, mainly because CP/M, DOS and later Windows were poor, amateurish, and incomplete copies of other systems.[1] https://en.wikipedia.org/wiki/Cut,_copy,_and_paste[2] https://en.wikipedia.org/wiki/Super_key_(keyboard_button)",
     "parent": 44908862,
     "depth": 2
   },
@@ -208,10 +304,26 @@
     "depth": 2
   },
   {
+    "id": 44909363,
+    "by": "camdroidw",
+    "timeISO": "2025-08-15T06:57:28.000Z",
+    "textPlain": "Hopefully not UI designer!",
+    "parent": 44909073,
+    "depth": 2
+  },
+  {
+    "id": 44909005,
+    "by": "cryptonector",
+    "timeISO": "2025-08-15T05:45:55.000Z",
+    "textPlain": "Has no one noticed that ctrl-Ins/shift-Ins are almost universal, and they work in Windows and on Linux?",
+    "parent": 44908972,
+    "depth": 2
+  },
+  {
     "id": 44909030,
     "by": "koiueo",
     "timeISO": "2025-08-15T05:52:10.000Z",
-    "textPlain": "With many laptop vendors placing the insert key in the least ergonomic location or on FN later, it's not really an option, unfortunately",
+    "textPlain": "With many laptop vendors placing the insert key in the least ergonomic location or on FN layer, it's not really an option, unfortunately",
     "parent": 44908989,
     "depth": 2
   },
@@ -224,11 +336,19 @@
     "depth": 2
   },
   {
-    "id": 44909005,
-    "by": "cryptonector",
-    "timeISO": "2025-08-15T05:45:55.000Z",
-    "textPlain": "Has no one noticed that ctrl-Ins/shift-Ins are almost universal, and they work in Windows and on Linux?",
-    "parent": 44908972,
+    "id": 44909460,
+    "by": "ragnarook",
+    "timeISO": "2025-08-15T07:11:25.000Z",
+    "textPlain": "[dead]",
+    "parent": 44908989,
+    "depth": 2
+  },
+  {
+    "id": 44909445,
+    "by": "SkiFire13",
+    "timeISO": "2025-08-15T07:09:03.000Z",
+    "textPlain": "The fact there is a totally different way to copy text in the terminal is the issue, it just breaks the common mental model. Even worse, this shortcut _requires using a mouse_, and not just for copying, also for selecting!",
+    "parent": 44909193,
     "depth": 2
   }
 ]

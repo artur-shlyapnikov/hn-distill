@@ -16,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44904181,
-    "by": "AJRF",
-    "timeISO": "2025-08-14T18:54:11.000Z",
-    "textPlain": "I've got a very real world use case I use DistilBERT for - learning how to label wordpress articles. It is one of those things where it's kind of valuable (tagging) but not enough to spend loads on compute for it.The great thing is I have enough data (100k+) to fine-tune and run a meaningful classification report over. The data is very diverse, and while the labels aren't totally evenly distributed, I can deal with the imbalance with a few tricks.Can't wait to swap it out for this and see the changes in the scores. Will report back",
-    "parent": 44902148,
-    "depth": 1
-  },
-  {
     "id": 44902980,
     "by": "simonw",
     "timeISO": "2025-08-14T17:10:43.000Z",
     "textPlain": "This model is a LOT of fun. It's absolutely tiny - just a 241MB download - and screamingly fast, and hallucinates wildly about almost everything.Here's one of dozens of results I got for \"Generate an SVG of a pelican riding a bicycle\". For this one it decided to write a poem:  +-----------------------+\n  |   Pelican Riding Bike |\n  +-----------------------+\n  |  This is the cat!  |\n  |  He's got big wings and a happy tail.  |\n  |  He loves to ride his bike!  |\n  +-----------------------+\n  |   Bike lights are shining bright.  |\n  |   He's got a shiny top, too!  |\n  |   He's ready for adventure!  |\n  +-----------------------+\n\nThere are a bunch more attempts in this Gist, some of which do at least include an SVG tag albeit one that doesn't render anything: https://gist.github.com/simonw/25e7b7afd6a63a2f15db48b3a51ec...I'm looking forward to seeing people fine-tune this in a way that produces useful output for selected tasks, which should absolutely be feasible.",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44904181,
+    "by": "AJRF",
+    "timeISO": "2025-08-14T18:54:11.000Z",
+    "textPlain": "I've got a very real world use case I use DistilBERT for - learning how to label wordpress articles. It is one of those things where it's kind of valuable (tagging) but not enough to spend loads on compute for it.The great thing is I have enough data (100k+) to fine-tune and run a meaningful classification report over. The data is very diverse, and while the labels aren't totally evenly distributed, I can deal with the imbalance with a few tricks.Can't wait to swap it out for this and see the changes in the scores. Will report back",
     "parent": 44902148,
     "depth": 1
   },
@@ -184,18 +184,18 @@
     "depth": 1
   },
   {
-    "id": 44906652,
-    "by": "ionwake",
-    "timeISO": "2025-08-14T22:50:03.000Z",
-    "textPlain": "This is first model I have downloaded on an M4 Air with ollama, that WORKS good enough to use. It is right now parsing all my notes correctly, fantastic work team. Brilliant.",
-    "parent": 44902148,
-    "depth": 1
-  },
-  {
     "id": 44905613,
     "by": "ai-christianson",
     "timeISO": "2025-08-14T20:58:05.000Z",
     "textPlain": "This was trained on 6T tokens. Neat to see so many tokens used for such a small model.",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44906652,
+    "by": "ionwake",
+    "timeISO": "2025-08-14T22:50:03.000Z",
+    "textPlain": "This is first model I have downloaded on an M4 Air with ollama, that WORKS good enough to use. It is right now parsing all my notes correctly, fantastic work team. Brilliant.",
     "parent": 44902148,
     "depth": 1
   },
@@ -320,18 +320,18 @@
     "depth": 2
   },
   {
-    "id": 44909018,
-    "by": "WithinReason",
-    "timeISO": "2025-08-15T05:49:23.000Z",
-    "textPlain": "Great work releasing such a small model! I would like to know your thoughts on using 2/3 of the model's size for embeddings. What would be different if you used a byte-level vocabulary and spent the parameter budget on transformer parameters instead?",
-    "parent": 44902240,
-    "depth": 2
-  },
-  {
     "id": 44903942,
     "by": "jmorgan",
     "timeISO": "2025-08-14T18:32:09.000Z",
     "textPlain": "Amazing work. This model feels really good at one-off tasks like summarization and autocomplete. I really love that you released a quantized aware training version on launch day as well, making it even smaller!",
+    "parent": 44902240,
+    "depth": 2
+  },
+  {
+    "id": 44909018,
+    "by": "WithinReason",
+    "timeISO": "2025-08-15T05:49:23.000Z",
+    "textPlain": "Great work releasing such a small model! I would like to know your thoughts on using 2/3 of the model's size for embeddings. What would be different if you used a byte-level vocabulary and spent the parameter budget on transformer parameters instead?",
     "parent": 44902240,
     "depth": 2
   },
@@ -384,18 +384,18 @@
     "depth": 2
   },
   {
-    "id": 44908345,
-    "by": "peter492927",
-    "timeISO": "2025-08-15T03:32:42.000Z",
-    "textPlain": "Thank you a lot for working on these models! If you think it would make sense, I think a bigger sized Gemma model would be really cool. Models in the 70B parameter range can be run at q4 on two 3090 or similar hardware and should offer considerable performance improvement over 27B. There’s also the DGX Spark as a possible target.",
-    "parent": 44902240,
-    "depth": 2
-  },
-  {
     "id": 44903234,
     "by": "cgdl",
     "timeISO": "2025-08-14T17:30:41.000Z",
     "textPlain": "Very cool. For the INT4 QAT model, what is the recommended precision for the activations and for the key and values stored in KV cache?",
+    "parent": 44902240,
+    "depth": 2
+  },
+  {
+    "id": 44907884,
+    "by": "rao-v",
+    "timeISO": "2025-08-15T02:11:10.000Z",
+    "textPlain": "Fabulous stuff!Oh my request … the vision head on the Gemma models is super slow on CPU inferencing (and via Vulcan), even via llama.cpp. Any chance your team can figure out a solve? Other ViTs don’t have the same problem.",
     "parent": 44902240,
     "depth": 2
   }
