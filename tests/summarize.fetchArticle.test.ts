@@ -3,8 +3,7 @@ import { existsSync, rmSync } from "node:fs";
 import { dirname } from "node:path";
 import { ensureDir, writeTextFile } from "../utils/fs.ts";
 import { htmlToMd } from "../utils/html-to-md";
-import type { HttpClient } from "../utils/http-client.ts";
-import { withTempDir, mockPaths, makeMockHttp, story as makeStory } from "./helpers";
+import { makeMockHttp, story as makeStory, mockPaths, withTempDir } from "./helpers";
 
 describe("summarize.getOrFetchArticleMarkdown", () => {
   test("fetches, converts, caches and avoids refetch", async () => {
