@@ -1,0 +1,83 @@
+---
+import StorySection from '../../components/StorySection.astro';
+import '../../styles/global.css';
+import { env } from '@config/env';
+import type { AggregatedItem, AggregatedFile } from '@config/schemas';
+import { readFileSync, existsSync } from 'node:fs';
+
+export async function getStaticPaths() {
+  const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
+  const data: AggregatedFile = existsSync(dataPath)
+    ? JSON.parse(readFileSync(dataPath, 'utf8'))
+    : { items: [], updatedISO: '—' };
+
+  const allItems: AggregatedItem[] = Array.isArray((data as any).items) ? (data as any).items : [];
+  const allTags = new Set<string>();
+  for (const item of allItems) {
+    if (item.tags) {
+      for (const tag of item.tags) {
+        allTags.add(tag);
+      }
+    }
+  }
+
+  return Array.from(allTags).map((tag) => ({
+    params: { tag },
+  }));
+}
+
+const lang = env.SUMMARY_LANG;
+const { tag } = Astro.params;
+
+const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
+const data: AggregatedFile = existsSync(dataPath)
+  ? JSON.parse(readFileSync(dataPath, 'utf8'))
+  : { items: [], updatedISO: '—' };
+const allItems: AggregatedItem[] = Array.isArray((data as any).items) ? (data as any).items : [];
+
+const filteredItems = allItems.filter(it => it.tags?.includes(tag!));
+
+const i18n = {
+  ru: {
+    title: 'Тег',
+    noData: 'Нет постов с этим тегом.',
+    posts: 'Постов',
+  },
+  en: {
+    title: 'Tag',
+    noData: 'No posts with this tag.',
+    posts: 'Posts',
+  },
+} as const;
+const t = i18n[lang as 'ru' | 'en'];
+const pageTitle = `${t.title}: #${tag} — Hacker News Digest`;
+const description = `Hacker News Digest for tag #${tag}. ${filteredItems.length} ${t.posts}.`;
+---
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:site_name" content="Hacker News Digest" />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Hacker News Digest</a></h1>
+      <p class="meta">{t.title}: #{tag}</p>
+      <p class="meta">{t.posts}: {filteredItems.length}</p>
+    </header>
+    <main>
+      {filteredItems.length === 0 ? (
+        <p class="meta">{t.noData}</p>
+      ) : (
+        filteredItems.map((it) => <StorySection item={it} />)
+      )}
+    </main>
+  </body>
+</html>

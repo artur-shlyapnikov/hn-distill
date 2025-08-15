@@ -26,6 +26,8 @@ const item = (data.items as AggregatedItem[]).find((x) => x.id === id);
 
 if (!item) throw new Error("Missing item for id " + id);
 
+const tags = Array.isArray(item.tags) ? item.tags : [];
+
 function loadSummary(kind: "post" | "comments"): string | undefined {
   const p = new URL(`../../../data/summaries/${id}.${kind}.json`, import.meta.url).pathname;
   if (!existsSync(p)) return undefined;
@@ -78,6 +80,11 @@ const commentsLabel = typeof item.commentsCount === "number" ? ` (${item.comment
         {datePretty} • {item.domain ?? "news.ycombinator.com"} • ⭐ {item.score ?? 0} • 💬 {item.commentsCount ?? 0}
       </p>
       <p class="meta"><a href={item.url ?? hnUrl} rel="noopener noreferrer">Original</a> • <a href={hnUrl}>HN</a></p>
+      {tags.length > 0 && (
+        <p class="meta tags">
+          {tags.map((tag) => <a href={`/tag/${tag}/`} class="tag">#{tag}</a>)}
+        </p>
+      )}
     </header>
     <main>
       <section class="grid2">

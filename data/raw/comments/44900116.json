@@ -8,22 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44912127,
-    "by": "germandiago",
-    "timeISO": "2025-08-15T13:24:01.000Z",
-    "textPlain": "This very afternoon I coded with ChatGPT what would have taken me maybe some more time. Maybe 30-50% more. True that it was more-or-less independent code.I think these tools are very effective at four things:1. initial scaffolding (and isolated scripts also)\n2. reviewing code and finding insights of where an error that we humans are very bad at spotting could be, given a description and an area of code.\n3. If you are not an expert in something (for me that is frontend) it helps. \n4. finding ideas on how to approach a problem through a conversationBut if you are well-versed, you still have more context and better decision making. They are ok-ish but not expert level.It also comes with downsides if you abuse them: you could end up not understanding your codebases well enough or adding bad quality code that seems to work.Also, if you initially think you can solve a problem with AI and it leads you the bad way, you end up wasting more time than what you save.All in all, I find them good at scaffolding, asking ideas or solutions and spotting potential bugs.As a whole they are accelerators but not replacements, IMHO.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44912105,
-    "by": "gwbas1c",
-    "timeISO": "2025-08-15T13:21:57.000Z",
-    "textPlain": "LLMs can't reason: They're a statistical model that can only copy.In many cases though, the copy that the LLM generates is either \"good enough\" or a great thing to start with.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
     "id": 44902590,
     "by": "andrewmutz",
     "timeISO": "2025-08-14T16:41:32.000Z",
@@ -48,14 +32,6 @@
     "depth": 1
   },
   {
-    "id": 44901287,
-    "by": "9cb14c1ec0",
-    "timeISO": "2025-08-14T15:05:51.000Z",
-    "textPlain": "> what they cannot do is maintain clear mental modelsThe more I use claude code, the more frustrated I get with this aspect.  I'm not sure that a generic text-based LLM can properly solve this.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
     "id": 44909433,
     "by": "nicbou",
     "timeISO": "2025-08-15T07:07:29.000Z",
@@ -64,42 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44911639,
-    "by": "anonu",
-    "timeISO": "2025-08-15T12:40:25.000Z",
-    "textPlain": "I think we just need better AI coding tools: the space is still a blue ocean for the ones that can figure it out.The article highlights the key problem with AI tools today - which is that there doesn't seem to be a high level planning step (aka a mental model) to start with. Every time you ask a new question, the LLM starts from scratch.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44910984,
-    "by": "arendtio",
-    "timeISO": "2025-08-15T11:24:46.000Z",
-    "textPlain": "This is the post that the people at Anthropic and Cursor should read.> But what they cannot do is maintain clear mental models.The emphasis should be on maintain. At some point, the AI tends to develop a mental model, but over time, it changes in unexpected ways or becomes absent altogether. In addition, the quality of the mental models is often not that good to begin with.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44911199,
-    "by": "myflash13",
-    "timeISO": "2025-08-15T11:49:30.000Z",
-    "textPlain": "This was Peter Naur’s observation in his 1985 paper Programming as Theory Building. One of the best papers I’ve ever read. Programming IS mostly building castles in the air of your head, not the code on the screen.If you do the thinking and let the LLM do the typing it works incredibly well. I can write code 10x faster with AI, but I’m maintaining the mental model in my head, the “theory” as Naur calls it. But if you try to outsource the theory to the LLM (build me an app that does X) you’re bound to fail in horrible ways. That’s why Claude Code is amazing but Replit can only do basic toy apps.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44911432,
-    "by": "tjtryon",
-    "timeISO": "2025-08-15T12:15:35.000Z",
-    "textPlain": "I find that if you are great at pseudocode, and great at defining a programs logic in the pseudocode, along with defining all cases possible, and trying to add user id10t error issue to the logic, you can get a pretty good framework of a program to start to work with. I also ask for comments for all logic, loops, if statements and functions that are instructional, yet easy enough that a 5th grader could understand. This framework usually comes as a version .8 for further development manually or even .9 beta test/debugging level. Occasionally, I've seen version 1.0 release candidate 1 level work, where I need to try to verify the functionality, AND try to find ways that users may try that will break functionality. Whichever version I end up with, it still involves manual coding, there is no escaping that. Using a LLM just saves (a lot) of time with the initial framework and program logic framework.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44901636,
-    "by": "lordnacho",
-    "timeISO": "2025-08-14T15:31:35.000Z",
-    "textPlain": "I think I agree with the idea that LLMs are good at the junior level stuff.What's happened for me recently is I've started to revisit the idea that typing speed doesn't matter.This is an age-old thing, most people don't think it really matters how fast you can type. I suppose the steelman is, most people think it doesn't really matters how fast you can get the edits to your code that you want. With modern tools, you're not typing out all the code anyway, and there's all sorts of non-AI ways to get your code looking the way you want. And that doesn't matter, the real work of the engineer is the architecture of how the whole program functions. Typing things faster doesn't make you get to the goal faster, since finding the overall design is the limiting thing.But I've been using Claude for a while now, and I'm starting to see the real benefit: you no longer need to concentrate to rework the code.It used to be burdensome to do certain things. For instance, I decided to add an enum value, and now I have to address all the places where it matches on that enum. This wasn't intellectually hard in the old world, you just got the compiler to tell you where the problems were, and you added a little section for your new value to do whatever it needed, in all the places it appeared.But you had to do this carefully, otherwise you would just cause more compile/error cycles. Little things like forgetting a semicolon will eat a cycle, and old tools would just tell you the error was there, not fix it for you.LLMs fix it for you. Now you can just tell Claude to change all the code in a loop until it compiles. You can have multiple agents working on your code, fixing little things in many places, while you sit on HN and muse about it. Or perhaps spend the time considering what direction the code needs to go.The big thing however is that when you're no longer held up by little compile errors, you can do more things. I had a whole laundry list of things I wanted to change about my codeba",
+    "id": 44901287,
+    "by": "9cb14c1ec0",
+    "timeISO": "2025-08-14T15:05:51.000Z",
+    "textPlain": "> what they cannot do is maintain clear mental modelsThe more I use claude code, the more frustrated I get with this aspect.  I'm not sure that a generic text-based LLM can properly solve this.",
     "parent": 44900116,
     "depth": 1
   },
@@ -108,6 +52,22 @@
     "by": "kleyd",
     "timeISO": "2025-08-15T09:44:09.000Z",
     "textPlain": "Current LLMs look a lot like a very advanced 'old brain' to me. While context engineering looks like optimizing the working memory.What's missing is a part with more plasticity that can work in parallel and bi-directionally interact with the current static models in real-time.This would mean individually trained models based on their experience so that knowledge is not translated to context, but to weight adjustments.",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44910802,
+    "by": "_joel",
+    "timeISO": "2025-08-15T10:55:37.000Z",
+    "textPlain": "Side comment, I love the typography of the site. Easy to read.",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44901636,
+    "by": "lordnacho",
+    "timeISO": "2025-08-14T15:31:35.000Z",
+    "textPlain": "I think I agree with the idea that LLMs are good at the junior level stuff.What's happened for me recently is I've started to revisit the idea that typing speed doesn't matter.This is an age-old thing, most people don't think it really matters how fast you can type. I suppose the steelman is, most people think it doesn't really matters how fast you can get the edits to your code that you want. With modern tools, you're not typing out all the code anyway, and there's all sorts of non-AI ways to get your code looking the way you want. And that doesn't matter, the real work of the engineer is the architecture of how the whole program functions. Typing things faster doesn't make you get to the goal faster, since finding the overall design is the limiting thing.But I've been using Claude for a while now, and I'm starting to see the real benefit: you no longer need to concentrate to rework the code.It used to be burdensome to do certain things. For instance, I decided to add an enum value, and now I have to address all the places where it matches on that enum. This wasn't intellectually hard in the old world, you just got the compiler to tell you where the problems were, and you added a little section for your new value to do whatever it needed, in all the places it appeared.But you had to do this carefully, otherwise you would just cause more compile/error cycles. Little things like forgetting a semicolon will eat a cycle, and old tools would just tell you the error was there, not fix it for you.LLMs fix it for you. Now you can just tell Claude to change all the code in a loop until it compiles. You can have multiple agents working on your code, fixing little things in many places, while you sit on HN and muse about it. Or perhaps spend the time considering what direction the code needs to go.The big thing however is that when you're no longer held up by little compile errors, you can do more things. I had a whole laundry list of things I wanted to change about my codeba",
     "parent": 44900116,
     "depth": 1
   },
@@ -144,18 +104,18 @@
     "depth": 1
   },
   {
-    "id": 44901488,
-    "by": "generalizations",
-    "timeISO": "2025-08-14T15:22:00.000Z",
-    "textPlain": "These LLM discussions really need everyone to mention what LLM they're actually using.> AI is awesome for coding! [Opus 4]> No AI sucks for coding and it messed everything up! [4o]Would really clear the air. People seem to be evaluating the dumbest models (apparently because they don't know any better?) and then deciding the whole AI thing just doesn't work.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
     "id": 44908874,
     "by": "lisbbb",
     "timeISO": "2025-08-15T05:22:44.000Z",
     "textPlain": "Back around, I don't even know, 2013?  A colleague and I were working on updating a system that scanned in letters with mail order forms.  The workers would lay the items from the envelopes in order on a conveyor type scanner.  They had to lay them down in order:  order form, payment check, envelope.  The system would scan each document and add two blank fake scanned pages after each envelope.  The company that set it up billed by scanned page.  We figured out that you didn't need the blank pages as a delimiter because the envelope could reliably serve as that.  By the way, the OCR was so bad that they never got the order forms to scan automatically, but people had to examine the order form as a pdf doc and key in everything instead.  By eliminating the fake, nonsensical blank scanned pages, we saved the company over $1M/year in costs.  We never got a single accolade or pat on the back or anything for that.  Can AI do that, though?",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44901488,
+    "by": "generalizations",
+    "timeISO": "2025-08-14T15:22:00.000Z",
+    "textPlain": "These LLM discussions really need everyone to mention what LLM they're actually using.> AI is awesome for coding! [Opus 4]> No AI sucks for coding and it messed everything up! [4o]Would really clear the air. People seem to be evaluating the dumbest models (apparently because they don't know any better?) and then deciding the whole AI thing just doesn't work.",
     "parent": 44900116,
     "depth": 1
   },
@@ -176,6 +136,14 @@
     "depth": 1
   },
   {
+    "id": 44902823,
+    "by": "guluarte",
+    "timeISO": "2025-08-14T16:58:37.000Z",
+    "textPlain": "Turns out, English is pretty bad for creating deterministic software. If you are vibe coding, you either are happy with the randomness generated by the LLMs or you enter a loop to try to generate a deterministic output, in which case using a programming language could have been easier.",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
     "id": 44909490,
     "by": "kachapopopow",
     "timeISO": "2025-08-15T07:15:33.000Z",
@@ -184,10 +152,10 @@
     "depth": 1
   },
   {
-    "id": 44910802,
-    "by": "_joel",
-    "timeISO": "2025-08-15T10:55:37.000Z",
-    "textPlain": "Side comment, I love the typography of the site. Easy to read.",
+    "id": 44910675,
+    "by": "thrance",
+    "timeISO": "2025-08-15T10:36:46.000Z",
+    "textPlain": "I had an awful, terrible experience with GPT5 a few days ago, that made me remember why I don't use LLMs, and renewed my promise to not use them for at least a year more.I am a relative newbie to GPU development, and was writing a simple 2D renderer with WebGPU and its rust implementation, wgpu. The goal is to draw a few textures to a buffer, and then draw that buffer to the screen with a CRT effect applied.I got 99% of the way there on my own, reading the guide, but then got stumped on a runtime error message. Something like \"Texture was destroyed while its semaphore wasn't released\". Looking around my code, I see no textures ever being released. I decide to give the LLM a go, and ask it to help me, and it very enthusiastically gives a few thing to try.I try them, nothing works. It corrects itself with more things to try, more modifications to my code. Each time giving a plausible explanation as to what went wrong. Each time extra confident that it got the issue pinned down this time. After maybe two very frustrating hours, I tell it to go fuck itself, close the tab and switch my brain on again.10 minutes later, I notice my buffer's format doesn't match the one used in the render pass that draws to it. Correct that, compile, and it works.I genuinely don't understand what those pro-LLM-coding are doing that they find AIs helpful. I can manage the easy parts of my job on my own, and it fails miserably for the hard parts. Are those people only writing boilerplate all day?",
     "parent": 44900116,
     "depth": 1
   },
@@ -200,18 +168,18 @@
     "depth": 1
   },
   {
-    "id": 44902166,
-    "by": "nowittyusername",
-    "timeISO": "2025-08-14T16:09:47.000Z",
-    "textPlain": "Saying LLMS are not good at x or y, is akin to saying a brain is useless without a body. Which is obvious.  The success of agentic coding solutions depends on not just the model but also the system that the developers built around the model. And the companies that will succeed in this area are going to be the companies that focus on building sophisticated and capable systems that utilize said models. We are still in very early days where most organizations are only coming to terms with this realization... Only a few of them fully utilize this concept to the fullest, Claude code being the best example. The Claude models are specifically trained for tool calling and other capabilities and the Claude code cli compliments and takes advantage of those capabilities to the fullest, things like context management among other capabilities are extremely important  ...",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
     "id": 44909622,
     "by": "_pdp_",
     "timeISO": "2025-08-15T07:41:44.000Z",
     "textPlain": "LLMs cannot build software on their own yet. They are can sure build software with some help.",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44902166,
+    "by": "nowittyusername",
+    "timeISO": "2025-08-14T16:09:47.000Z",
+    "textPlain": "Saying LLMS are not good at x or y, is akin to saying a brain is useless without a body. Which is obvious.  The success of agentic coding solutions depends on not just the model but also the system that the developers built around the model. And the companies that will succeed in this area are going to be the companies that focus on building sophisticated and capable systems that utilize said models. We are still in very early days where most organizations are only coming to terms with this realization... Only a few of them fully utilize this concept to the fullest, Claude code being the best example. The Claude models are specifically trained for tool calling and other capabilities and the Claude code cli compliments and takes advantage of those capabilities to the fullest, things like context management among other capabilities are extremely important  ...",
     "parent": 44900116,
     "depth": 1
   },
@@ -224,26 +192,10 @@
     "depth": 1
   },
   {
-    "id": 44910675,
-    "by": "thrance",
-    "timeISO": "2025-08-15T10:36:46.000Z",
-    "textPlain": "I had an awful, terrible experience with GPT5 a few days ago, that made me remember why I don't use LLMs, and renewed my promise to not use them for at least a year more.I am a relative newbie to GPU development, and was writing a simple 2D renderer with WebGPU and its rust implementation, wgpu. The goal is to draw a few textures to a buffer, and then draw that buffer to the screen with a CRT effect applied.I got 99% of the way there on my own, reading the guide, but then got stumped on a runtime error message. Something like \"Texture was destroyed while its semaphore wasn't released\". Looking around my code, I see no textures ever being released. I decide to give the LLM a go, and ask it to help me, and it very enthusiastically gives a few thing to try.I try them, nothing works. It corrects itself with more things to try, more modifications to my code. Each time giving a plausible explanation as to what went wrong. Each time extra confident that it got the issue pinned down this time. After maybe two very frustrating hours, I tell it to go fuck itself, close the tab and switch my brain on again.10 minutes later, I notice my buffer's format doesn't match the one used in the render pass that draws to it. Correct that, compile, and it works.I genuinely don't understand what those pro-LLM-coding guys are doing that they find AIs helpful. I can manage the easy parts of my job on my own, and it fails miserably on the hard parts. Are those people only writing boilerplate all day long?",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
     "id": 44902340,
     "by": "alliancedamages",
     "timeISO": "2025-08-14T16:21:45.000Z",
     "textPlain": "> ...but the distinguishing factor of effective engineers is their ability to build and maintain clear mental models.I wonder is this not just a proxy for intelligence?",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44902823,
-    "by": "guluarte",
-    "timeISO": "2025-08-14T16:58:37.000Z",
-    "textPlain": "Turns out, English is pretty bad for creating deterministic software. If you are vibe coding, you either are happy with the randomness generated by the LLMs or you enter a loop to try to generate a deterministic output, in which case using a programming language could have been easier.",
     "parent": 44900116,
     "depth": 1
   },
@@ -256,14 +208,6 @@
     "depth": 1
   },
   {
-    "id": 44902794,
-    "by": "anotheryou",
-    "timeISO": "2025-08-14T16:56:00.000Z",
-    "textPlain": "Maybe we should let it build a mental model in documentation markdown files?Vibing I often let it explain the implemented business logic (instead of reading the code directly) and judge that.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
     "id": 44909229,
     "by": "bubblyworld",
     "timeISO": "2025-08-15T06:31:37.000Z",
@@ -272,18 +216,10 @@
     "depth": 1
   },
   {
-    "id": 44901861,
-    "by": "Onewildgamer",
-    "timeISO": "2025-08-14T15:48:06.000Z",
-    "textPlain": "I wonder if some of this can be solved by removing some wrongly setup context in LLM. Or get a short summary, restructure it and againt feed to a fresh LLM context.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44911217,
-    "by": "tw1984",
-    "timeISO": "2025-08-15T11:51:30.000Z",
-    "textPlain": "the mentioned \"two similar mental models\" is an interesting of looking at the problem. if that is the actual case, seems to me that a much better model plus an smart enough agent should be able to largely solve the problem.interesting time, interesting issue.",
+    "id": 44910123,
+    "by": "kypro",
+    "timeISO": "2025-08-15T09:02:50.000Z",
+    "textPlain": "> LLMs get endlessly confused: they assume the code they wrote actually works; when test fail, they are left guessing as to whether to fix the code or the tests; and when it gets frustrating, they just delete the whole lot and start over.That's actually an interesting point, and something I've noticed a lot myself. I find LLMs are very good at hacking around test failures, but unless the test is failing for a trivial reason often it's pointing at some more fundamental issue with the underlying logic of the application which LLMs don't seem to be able to pick up on, likely because they don't have a comprehensive mental model of how the system should work.I don't want to point fingers, but I've been seeing this quite a bit in the code of colleagues who heavily use LLMs. On the surface the code looks fine, and they've produced tests which pass, but when you think about it for more than a minute you realise it doesn't really capture nuance of the requirements, and in a way a human who had a mental model of the how the system probably wouldn't have done...Sometimes humans miss things in the logic when they're writing code, but these look more like mistakes in a line rather than a fundamental failure to comprehend and model the problem. And I know this isn't the case, because when you talk to these developers they get the problem perfectly well.To know when the code needs fixing or a test you need a very clear idea of what should be happening and LLMs just don't. I don't know why that is. Maybe it's just they're missing context from the hours of reading tickets and technical discussions, or maybe it's their failure to ask questions when they're unsure of what should be happening. I don't know if this a fundamental limitation of LLMs (I'd suspect not personally), but this is a problem when using LLMs to code today and one that more compute alone probably can't fix.",
     "parent": 44900116,
     "depth": 1
   },
@@ -296,18 +232,26 @@
     "depth": 1
   },
   {
-    "id": 44901455,
-    "by": "saghm",
-    "timeISO": "2025-08-14T15:19:54.000Z",
-    "textPlain": ">   Context omission: Models are bad at finding omitted context.>   Recency bias: They suffer a strong recency bias in the context window.>   Hallucination: They commonly hallucinate details that should not be there.To be fair, those are all issues that most human engineers I've worked with (including myself!) have struggled with to various degrees, even if we don't refer to them the same way. I don't know about the rest of you, but I've certainly had times where I found out that an important nuance of a design was overlooked until well into the process of developing something, forgotten a crucial detail that I learned months ago that would have helped me debug something much faster than if I had remembered it from the start, or accidentally make an assumption about how something worked (or misremembered it) and ended up with buggy code as a result. I've mostly gotten pretty positive feedback about my work over the course of my career, so if I \"can't build software\", I have to worry about the companies that have been employing me and my coworkers who have praised my work output over the years. Then again, I think \"humans can't build software reliably\" is probably a mostly correct statement, so maybe the lesson here is that software is hard in general.",
+    "id": 44902794,
+    "by": "anotheryou",
+    "timeISO": "2025-08-14T16:56:00.000Z",
+    "textPlain": "Maybe we should let it build a mental model in documentation markdown files?Vibing I often let it explain the implemented business logic (instead of reading the code directly) and judge that.",
     "parent": 44900116,
     "depth": 1
   },
   {
-    "id": 44910123,
-    "by": "kypro",
-    "timeISO": "2025-08-15T09:02:50.000Z",
-    "textPlain": "> LLMs get endlessly confused: they assume the code they wrote actually works; when test fail, they are left guessing as to whether to fix the code or the tests; and when it gets frustrating, they just delete the whole lot and start over.That's actually an interesting point, and something I've noticed a lot myself. I find LLMs are very good at hacking around test failures, but unless the test is failing for a trivial reason often it's pointing at some more fundamental issue with the underlying logic of the application which LLMs don't seem to be able to pick up on, likely because they don't have a comprehensive mental model of how the system should work.I don't want to point fingers, but I've been seeing this quite a bit in the code of colleagues who heavily use LLMs. On the surface the code looks fine, and they've produced tests which pass, but when you think about it for more than a minute you realise it doesn't really capture nuance of the requirements, and in a way a human who had a mental model of the how the system probably wouldn't have done...Sometimes humans miss things in the logic when they're writing code, but these look more like mistakes in a line rather than a fundamental failure to comprehend and model the problem. And I know this isn't the case, because when you talk to these developers they get the problem perfectly well.To know when the code needs fixing or a test you need a very clear idea of what should be happening and LLMs just don't. I don't know why that is. Maybe it's just they're missing context from the hours of reading tickets and technical discussions, or maybe it's their failure to ask questions when they're unsure of what should be happening. I don't know if this a fundamental limitation of LLMs (I'd suspect not personally), but this is a problem when using LLMs to code today and one that more compute alone probably can't fix.",
+    "id": 44901861,
+    "by": "Onewildgamer",
+    "timeISO": "2025-08-14T15:48:06.000Z",
+    "textPlain": "I wonder if some of this can be solved by removing some wrongly setup context in LLM. Or get a short summary, restructure it and againt feed to a fresh LLM context.",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44901455,
+    "by": "saghm",
+    "timeISO": "2025-08-14T15:19:54.000Z",
+    "textPlain": ">   Context omission: Models are bad at finding omitted context.>   Recency bias: They suffer a strong recency bias in the context window.>   Hallucination: They commonly hallucinate details that should not be there.To be fair, those are all issues that most human engineers I've worked with (including myself!) have struggled with to various degrees, even if we don't refer to them the same way. I don't know about the rest of you, but I've certainly had times where I found out that an important nuance of a design was overlooked until well into the process of developing something, forgotten a crucial detail that I learned months ago that would have helped me debug something much faster than if I had remembered it from the start, or accidentally make an assumption about how something worked (or misremembered it) and ended up with buggy code as a result. I've mostly gotten pretty positive feedback about my work over the course of my career, so if I \"can't build software\", I have to worry about the companies that have been employing me and my coworkers who have praised my work output over the years. Then again, I think \"humans can't build software reliably\" is probably a mostly correct statement, so maybe the lesson here is that software is hard in general.",
     "parent": 44900116,
     "depth": 1
   },
@@ -396,6 +340,62 @@
     "by": "morteify",
     "timeISO": "2025-08-15T09:00:21.000Z",
     "textPlain": "[dead]",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44901910,
+    "by": "jeffWrld",
+    "timeISO": "2025-08-14T15:51:52.000Z",
+    "textPlain": "[dead]",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44902525,
+    "by": "cindyllm",
+    "timeISO": "2025-08-14T16:37:01.000Z",
+    "textPlain": "[dead]",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44901868,
+    "by": "Xplan",
+    "timeISO": "2025-08-14T15:48:39.000Z",
+    "textPlain": "[dead]",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44903728,
+    "by": "reramuyc",
+    "timeISO": "2025-08-14T18:12:15.000Z",
+    "textPlain": "[dead]",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44901477,
+    "by": "myfavoritedog",
+    "timeISO": "2025-08-14T15:21:03.000Z",
+    "textPlain": "[dead]",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44906685,
+    "by": "random2019",
+    "timeISO": "2025-08-14T22:54:55.000Z",
+    "textPlain": "[dead]",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44902093,
+    "by": "ontigola",
+    "timeISO": "2025-08-14T16:03:54.000Z",
+    "textPlain": "Great, concise article. Nothing important to add, except that AI snake-oil salesmen will continue spreading their exaggerations far and wide, at least we who are truly in this business agree on the facts.",
     "parent": 44900116,
     "depth": 1
   }

@@ -21,4 +21,5 @@ export const pathFor = {
   articleMd: (id: number) => `${PATHS.raw.articles}/${id}.md`,
   postSummary: (id: number) => `${PATHS.summaries}/${id}.post.json`,
   commentsSummary: (id: number) => `${PATHS.summaries}/${id}.comments.json`,
+  tagsSummary: (id: number) => `${PATHS.summaries}/${id}.tags.json`,
 } as const;

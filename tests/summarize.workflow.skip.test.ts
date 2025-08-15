@@ -11,6 +11,6 @@ describe("summarize.workflow", () => {
     const fakeEnvironment = cloneEnvironment({ OPENROUTER_API_KEY: undefined });
     const services = makeServices(fakeEnvironment);
     // Should return without throwing, regardless of filesystem state
-    expect(summarizeWorkflow(services)).resolves.toBeUndefined();
+    expect(summarizeWorkflow(services, fakeEnvironment)).resolves.toBeUndefined();
   });
 });
