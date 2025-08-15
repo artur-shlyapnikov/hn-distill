@@ -1,9 +1,25 @@
 [
   {
+    "id": 44913205,
+    "by": "ronnier",
+    "timeISO": "2025-08-15T14:54:24.000Z",
+    "textPlain": "I love this product have used it for a long time now but more recently started getting worried about security. I hope the maintainers are doing their due diligence around securing their docker hub account (many of us run VW in docker) and are careful about libraries the project depends on. Some questionable coding practices were made that I'm not sure I agree with (calling a 3rd party sites in some scenarios). As more of us switch to self hosting VW it will become a juicer target for bad actors. Really hoping we don't wake up one day to find out that our database was uploaded by a BA",
+    "parent": 44911560,
+    "depth": 1
+  },
+  {
     "id": 44912542,
     "by": "andix",
     "timeISO": "2025-08-15T14:01:05.000Z",
     "textPlain": "A password manager is the one thing I'm very skeptical to use SSO for.",
+    "parent": 44911560,
+    "depth": 1
+  },
+  {
+    "id": 44912939,
+    "by": "jedahan",
+    "timeISO": "2025-08-15T14:33:52.000Z",
+    "textPlain": "Been using this since it was merged. No issues so far, appreciate the work.",
     "parent": 44911560,
     "depth": 1
   },
@@ -32,6 +48,70 @@
     "depth": 1
   },
   {
+    "id": 44913414,
+    "by": "crimsonnoodle58",
+    "timeISO": "2025-08-15T15:11:46.000Z",
+    "textPlain": "If you're running on kubernetes, a simple network policy and blocking the container from using DNS will stop any compromised image from performing a data exfill.I do this for most containers.If the container must have web access in some form, setup a squid proxy and only whitelist safe and trusted domains that can't be exfilled to.",
+    "parent": 44913205,
+    "depth": 2
+  },
+  {
+    "id": 44913301,
+    "by": "surge",
+    "timeISO": "2025-08-15T15:01:51.000Z",
+    "textPlain": "I've threat modeled this myself, and as I understand it the Bitwarden client side decrypts/encrypts everything locally. So even if backend was entirely compromised, it's never getting anything without the master password, and that's never sent across by the client. Then again, there's also the web interface.",
+    "parent": 44913205,
+    "depth": 2
+  },
+  {
+    "id": 44912981,
+    "by": "lucasyvas",
+    "timeISO": "2025-08-15T14:36:24.000Z",
+    "textPlain": "Difference between work and personal. For personal, you’re right because there is nothing to bootstrap off of.But in corporate it’s provisioned to a user account that exists first.My personal bootstrap is two Yubikeys (for redundancy) that contains the password and 2FA for my Proton Pass. This plays the role of what IT would in a company with a user directory.",
+    "parent": 44912542,
+    "depth": 2
+  },
+  {
+    "id": 44913000,
+    "by": "jchw",
+    "timeISO": "2025-08-15T14:37:42.000Z",
+    "textPlain": "From this PR:> A master password is still required and not controlled by the SSOFrom the Bitwarden documentation[1]:> Locking your vault will maintain vault data on the device, so unlocking your vault can be done offline. You will be required to enter your master password or PIN, or use biometrics, but won't need to use any active two-step login methods.That really ought to quell the majority of the concerns IMO. Though for personal usage I use KeepassXC, because not having any remote authentication at all is even simpler than SSO.[1]: https://bitwarden.com/help/vault-timeout/#vault-timeout-acti...",
+    "parent": 44912542,
+    "depth": 2
+  },
+  {
+    "id": 44912964,
+    "by": "kriops",
+    "timeISO": "2025-08-15T14:35:17.000Z",
+    "textPlain": "Separate accounts for work and private. SSO for the work account is perfectly fine for me as a dev and a big advantage for the company. But yes, don't conflate the two use cases.",
+    "parent": 44912542,
+    "depth": 2
+  },
+  {
+    "id": 44912918,
+    "by": "vasco",
+    "timeISO": "2025-08-15T14:31:50.000Z",
+    "textPlain": "So you're going to play IT and duplicate all the groups and all the roles manually that already are maintained and automated for on/off-boarding? And not have them be auto-offboarded when they are let go? That introduces compliance risks and imo more problems than having SSO on your password manager. Yes, keep some master password for a rainy day if you have to, but otherwise, the more \"dangerous\" the thing the more it should be hooked up to SSO.",
+    "parent": 44912542,
+    "depth": 2
+  },
+  {
+    "id": 44912945,
+    "by": "wazzaps",
+    "timeISO": "2025-08-15T14:33:58.000Z",
+    "textPlain": "It's most useful for companies, where the goal is as much SSO as possible.",
+    "parent": 44912542,
+    "depth": 2
+  },
+  {
+    "id": 44913369,
+    "by": "input_sh",
+    "timeISO": "2025-08-15T15:07:48.000Z",
+    "textPlain": "I administer it at work and now I won't have to invite a user manually, wait for them to accept the invite link via email, manually approve their account, and then assign it to groups (collections).In other words one less thing to worry about during onboarding / offboarding.",
+    "parent": 44912284,
+    "depth": 2
+  },
+  {
     "id": 44912345,
     "by": "the_gastropod",
     "timeISO": "2025-08-15T13:45:02.000Z",
@@ -40,10 +120,26 @@
     "depth": 2
   },
   {
+    "id": 44912803,
+    "by": "cephi",
+    "timeISO": "2025-08-15T14:23:06.000Z",
+    "textPlain": "Access control -- can make it easy to add/sync users in Authentik using one username",
+    "parent": 44912600,
+    "depth": 2
+  },
+  {
     "id": 44912777,
     "by": "maxvisser",
     "timeISO": "2025-08-15T14:21:06.000Z",
     "textPlain": "Maybe if you deactiveer a users entra id that he cant access its vaultwarden vault anymore.",
+    "parent": 44912600,
+    "depth": 2
+  },
+  {
+    "id": 44912929,
+    "by": "esseph",
+    "timeISO": "2025-08-15T14:32:47.000Z",
+    "textPlain": "Can you expand the question a bit?",
     "parent": 44912600,
     "depth": 2
   }
