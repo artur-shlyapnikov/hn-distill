@@ -1,9 +1,9 @@
 [
   {
-    "id": 44916544,
-    "by": "yjftsjthsd-h",
-    "timeISO": "2025-08-15T19:35:18.000Z",
-    "textPlain": "Okay, but why  // SPDX-License-Identifier: UNLICENSED\n\non 6 lines of trivial example code? Of all the things to make proprietary...",
+    "id": 44917616,
+    "by": "metadat",
+    "timeISO": "2025-08-15T21:44:47.000Z",
+    "textPlain": "What is the appeal / high utility use-case for the spaceship \"<=>\" operator?  It seems quite intuitive to me.. too many doodads is a turn off, like a car with excessive modifications.   Does continually adding more then more more more eventually become a stressful nightmare of complexity?For a concrete example of what this looks like, check out the Homer Simpson -designed car.https://media.wired.com/photos/593252a1edfced5820d0fa07/mast...p.s. Fascinating bug!  One of the most interesting cases I've encountered.",
     "parent": 44872584,
     "depth": 1
   },
@@ -12,6 +12,22 @@
     "by": "vlovich123",
     "timeISO": "2025-08-15T16:44:46.000Z",
     "textPlain": "All I took away from this is how more and more complicated C++ as a language becomes to make the syntax slightly more convenient.",
+    "parent": 44872584,
+    "depth": 1
+  },
+  {
+    "id": 44917826,
+    "by": "nly",
+    "timeISO": "2025-08-15T22:09:45.000Z",
+    "textPlain": "Seems like the free comparison function in boost rational should have been constrained to non-rationalsi.e. !is_same_v<rational, U>",
+    "parent": 44872584,
+    "depth": 1
+  },
+  {
+    "id": 44916544,
+    "by": "yjftsjthsd-h",
+    "timeISO": "2025-08-15T19:35:18.000Z",
+    "textPlain": "Okay, but why  // SPDX-License-Identifier: UNLICENSED\n\non 6 lines of trivial example code? Of all the things to make proprietary...",
     "parent": 44872584,
     "depth": 1
   },
@@ -32,27 +48,11 @@
     "depth": 1
   },
   {
-    "id": 44916665,
-    "by": "layer8",
-    "timeISO": "2025-08-15T19:51:45.000Z",
-    "textPlain": "More importantly, it’s apparently non-conforming: https://opensource.stackexchange.com/a/12412Other than that, simply not specifying any license would be equivalent.",
-    "parent": 44916544,
-    "depth": 2
-  },
-  {
-    "id": 44916823,
-    "by": "dejj",
-    "timeISO": "2025-08-15T20:13:30.000Z",
-    "textPlain": "Would the license help to prevent an AI training on the example code?",
-    "parent": 44916544,
-    "depth": 2
-  },
-  {
-    "id": 44916557,
-    "by": "typpilol",
-    "timeISO": "2025-08-15T19:36:42.000Z",
-    "textPlain": "I saw that too and had to double take lol",
-    "parent": 44916544,
+    "id": 44917764,
+    "by": "tialaramex",
+    "timeISO": "2025-08-15T22:01:43.000Z",
+    "textPlain": "The spaceship operator is an attempt to achieve the same thing as Rust's PartialOrd -- to have a single authoritative place to explain the ordering of a type.Historically C++ only had these separate comparison operators, and operator overloading, and so if you want ordering you'd be expected to override all of the operators and do so in a consistent way. Turns out it's easy enough to get that wrong and if you do now your C++ program is often nonsense, it has no defined meaning whatsoever. For example if a < b && b < a then too bad now many built-in library functions might do absolutely anything in say C++ 17.With the spaceship operator you're still screwed if your type provides an incoherent ordering (unlike Rust where that just means the type is less useful) but it's much more likely you'll write something which actually works.",
+    "parent": 44917616,
     "depth": 2
   },
   {
@@ -85,6 +85,38 @@
     "timeISO": "2025-08-15T17:25:10.000Z",
     "textPlain": "It's not slightly, it's substantially more complicated to become substantially more convenient. The leap from C to C++ is similar to the leap from assembly code to C. As you add features, the language becomes more complex. That's just how it is.Most languages deal with this by limiting the features they have - but not C++! (or Scala, which is like Java's C++)",
     "parent": 44914579,
+    "depth": 2
+  },
+  {
+    "id": 44916665,
+    "by": "layer8",
+    "timeISO": "2025-08-15T19:51:45.000Z",
+    "textPlain": "More importantly, it’s apparently non-conforming: https://opensource.stackexchange.com/a/12412Other than that, simply not specifying any license would be equivalent.",
+    "parent": 44916544,
+    "depth": 2
+  },
+  {
+    "id": 44917442,
+    "by": "tczMUFlmoNk",
+    "timeISO": "2025-08-15T21:26:17.000Z",
+    "textPlain": "It seems that the Solidity compiler complains if you do not specify one:https://stackoverflow.com/questions/68332228/spdx-license-id...",
+    "parent": 44916544,
+    "depth": 2
+  },
+  {
+    "id": 44916823,
+    "by": "dejj",
+    "timeISO": "2025-08-15T20:13:30.000Z",
+    "textPlain": "Would the license help to prevent an AI training on the example code?",
+    "parent": 44916544,
+    "depth": 2
+  },
+  {
+    "id": 44916557,
+    "by": "typpilol",
+    "timeISO": "2025-08-15T19:36:42.000Z",
+    "textPlain": "I saw that too and had to double take lol",
+    "parent": 44916544,
     "depth": 2
   },
   {

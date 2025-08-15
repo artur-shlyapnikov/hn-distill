@@ -32,18 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44914489,
-    "by": "bcardarella",
-    "timeISO": "2025-08-15T16:37:44.000Z",
-    "textPlain": "I tried to do this a few weeks ago, I tried to build a NIF around an existing C lib. I was using Claude Opus and burned over $300 (I didn't have Pro) on tokens with no usable results.",
-    "parent": 44914040,
-    "depth": 1
-  },
-  {
-    "id": 44916826,
-    "by": "wordofx",
-    "timeISO": "2025-08-15T20:13:48.000Z",
-    "textPlain": "This was built copy pasting results from chats? Not using an ide or cli like Claude Code or Amp? Why such a manual process. This isn’t 2023…",
+    "id": 44917107,
+    "by": "SweetSoftPillow",
+    "timeISO": "2025-08-15T20:51:58.000Z",
+    "textPlain": "It's interesting why the author used weaker models (like Grok 3 when 4 is available, and Gemini 2.5 Flash when Pro is), since the difference in coding quality between these models is significant, and results could be much better.",
     "parent": 44914040,
     "depth": 1
   },
@@ -56,6 +48,14 @@
     "depth": 1
   },
   {
+    "id": 44914489,
+    "by": "bcardarella",
+    "timeISO": "2025-08-15T16:37:44.000Z",
+    "textPlain": "I tried to do this a few weeks ago, I tried to build a NIF around an existing C lib. I was using Claude Opus and burned over $300 (I didn't have Pro) on tokens with no usable results.",
+    "parent": 44914040,
+    "depth": 1
+  },
+  {
     "id": 44915030,
     "by": "weatherlight",
     "timeISO": "2025-08-15T17:21:20.000Z",
@@ -64,18 +64,26 @@
     "depth": 1
   },
   {
-    "id": 44916877,
-    "by": "simonw",
-    "timeISO": "2025-08-15T20:18:47.000Z",
-    "textPlain": "You can use something like Claude Code or Codex CLI and tell it to run valgrind as part of iterating on the code.",
-    "parent": 44915397,
-    "depth": 2
+    "id": 44916826,
+    "by": "wordofx",
+    "timeISO": "2025-08-15T20:13:48.000Z",
+    "textPlain": "This was built copy pasting results from chats? Not using an ide or cli like Claude Code or Amp? Why such a manual process. This isn’t 2023…",
+    "parent": 44914040,
+    "depth": 1
   },
   {
     "id": 44915728,
     "by": "true_religion",
     "timeISO": "2025-08-15T18:18:23.000Z",
     "textPlain": "Security is a spectrum. If you totally control the input going into a program, it can be safe even if you didn't test it for memory leaks. The only errors that occur will be truly erroneous, not malicious and for many solutions that's fine.At the very least, it's fine for personal projects which is something I'm getting into more and more: remembering that computers were meant to create convenience, so writing small programs to make life easier.",
+    "parent": 44915397,
+    "depth": 2
+  },
+  {
+    "id": 44916877,
+    "by": "simonw",
+    "timeISO": "2025-08-15T20:18:47.000Z",
+    "textPlain": "You can use something like Claude Code or Codex CLI and tell it to run valgrind as part of iterating on the code.",
     "parent": 44915397,
     "depth": 2
   },
@@ -112,11 +120,19 @@
     "depth": 2
   },
   {
-    "id": 44914560,
-    "by": "cpursley",
-    "timeISO": "2025-08-15T16:42:39.000Z",
-    "textPlain": "Get Pro, 4 is quite good at Elixir now but you have to stay on it. 3.5 was not, so I imagine next version of Claude will be able to handle the more esoteric things like NIFs, etc.",
-    "parent": 44914489,
+    "id": 44917235,
+    "by": "overbring_labs",
+    "timeISO": "2025-08-15T21:04:57.000Z",
+    "textPlain": "It's just that Grok 3 is faster than 4, so I've set it by default. But point taken, I'll try out the newer ones now that I'm converting it to Rust.",
+    "parent": 44917107,
+    "depth": 2
+  },
+  {
+    "id": 44917486,
+    "by": "overbring_labs",
+    "timeISO": "2025-08-15T21:30:18.000Z",
+    "textPlain": "Holy moly, you weren't kidding. Grok 4 is so much better. Thanks!",
+    "parent": 44917107,
     "depth": 2
   },
   {
@@ -128,10 +144,18 @@
     "depth": 2
   },
   {
-    "id": 44916511,
-    "by": "ch4s3",
-    "timeISO": "2025-08-15T19:31:10.000Z",
-    "textPlain": "The author was trying to learn about https://github.com/elixir-sqlite/exqlite which uses C.",
+    "id": 44914560,
+    "by": "cpursley",
+    "timeISO": "2025-08-15T16:42:39.000Z",
+    "textPlain": "Get Pro, 4 is quite good at Elixir now but you have to stay on it. 3.5 was not, so I imagine next version of Claude will be able to handle the more esoteric things like NIFs, etc.",
+    "parent": 44914489,
+    "depth": 2
+  },
+  {
+    "id": 44917310,
+    "by": "overbring_labs",
+    "timeISO": "2025-08-15T21:11:53.000Z",
+    "textPlain": "Given the amount of issues the code had when I ran splint on the C file, I agree. The question was for me whether I can get something working to get over the \"speed bump\" of lacking such a function for the API client I'm writing.I'm now re-vibe-coding it into Rust with the same process, but also using Grok 4 to get better results. It now builds and passes the tests on Elixir 1.14 to 1.18 on macOS and Ubuntu, but I'm still trying to get Grok 3 and 4 to fix the Windows-specific parts of the Rust code.",
     "parent": 44915030,
     "depth": 2
   },
@@ -144,11 +168,27 @@
     "depth": 2
   },
   {
+    "id": 44916511,
+    "by": "ch4s3",
+    "timeISO": "2025-08-15T19:31:10.000Z",
+    "textPlain": "The author was trying to learn about https://github.com/elixir-sqlite/exqlite which uses C.",
+    "parent": 44915030,
+    "depth": 2
+  },
+  {
     "id": 44916221,
     "by": "leansensei",
     "timeISO": "2025-08-15T19:00:31.000Z",
     "textPlain": "Why not C? It made no difference, we're talking about a few function calls.",
     "parent": 44915030,
+    "depth": 2
+  },
+  {
+    "id": 44917209,
+    "by": "overbring_labs",
+    "timeISO": "2025-08-15T21:02:06.000Z",
+    "textPlain": "Because what difference would it make, given the bad quality of code?Also, is Claude Code free to use?The manual process has the upside that you get to see how the sausage is (badly) made. Otherwise, just YOLO it and put your trust in GenAI completely.Furthermore, if there is the interim step of pushing to GitHub to trigger the build & test workflow and see if it works on something other than Linux, is the choice of Vibe-Coding IDE really the limiting factor in the entire process?",
+    "parent": 44916826,
     "depth": 2
   }
 ]

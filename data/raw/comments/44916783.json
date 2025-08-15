@@ -1,0 +1,50 @@
+[
+  {
+    "id": 44917935,
+    "by": "glitchc",
+    "timeISO": "2025-08-15T22:19:21.000Z",
+    "textPlain": "No. This is not a solution.While git LFS is just a kludge for now, writing a filter argument during the clone operation is not the long-term solution either.Git clone is the very first command most people will run when learning how to use git.  Emphasized for effect: the very first command.Will they remember to write the filter? Maybe, if the tutorial to the cool codebase they're trying to access mentions it. Maybe not. What happens if they don't? It may take a long time without any obvious indication. And if they do? The cloned repo might not be compilable/usable since the blobs are missing.Say they do get it right. Will they understand it? Most likely not. We are exposing the inner workings of git on the very first command they learn. What's a blob? Why do I need to filter on it? Where are blobs stored? It's classic abstraction leakage.This is a solved problem: Rsync does it. Just port the bloody implementation over. It does mean supporting alternative representations or moving away from blobs altogether, which git maintainers seem unwilling to do.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44917823,
+    "by": "tombert",
+    "timeISO": "2025-08-15T22:08:53.000Z",
+    "textPlain": "Is Git ever going to get proper support for binary files?I’ve never used it for anything serious but my understanding is that Mercurial handles binary files  better? Like it supports binary diffs if I understand correctly.Any reason Git couldn’t get that?",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44917895,
+    "by": "jauer",
+    "timeISO": "2025-08-15T22:15:27.000Z",
+    "textPlain": "TFA asserts that Git LFS is bad for several reasons including because proprietary with vendor lock-in which I don't think is fair to claim. GitHub provided an open client and server which negates that.LFS does break disconnected/offline/sneakernet operations which wasn't mentioned and is not awesome, but those are niche workflows. It sounds like that would also be broken with promisors.The `git partial clone` examples are cool!The description of Large Object Promisors makes it sound like they take the client-side complexity in LFS, move it server-side, and then increases the complexity? Instead of the client uploading to a git server and to a LFS server it uploads to a git server which in turn uploads to an object store, but the client will download directly from the object store? Obviously different tradeoffs there. I'm curious how often people will get bit by uploading to public git servers which upload to hidden promisor remotes.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44917806,
+    "by": "als0",
+    "timeISO": "2025-08-15T22:07:22.000Z",
+    "textPlain": "10 years late is better than never.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44917793,
+    "by": "matheusmoreira",
+    "timeISO": "2025-08-15T22:05:49.000Z",
+    "textPlain": "As it should be! If it's not native to git, it's not worth using. I'm glad these issues are finally being solved.These new features are pretty awesome too. Especially separate large object remotes. They will probably enable git to be used for even more things than it's already being used for. They will enable new ways to work with git.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44917801,
+    "by": "Affric",
+    "timeISO": "2025-08-15T22:07:07.000Z",
+    "textPlain": "Incredible.Nice to see some Microsoft and Google emails contributing.",
+    "parent": 44916783,
+    "depth": 1
+  }
+]

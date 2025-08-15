@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44917320,
-    "by": "GTP",
-    "timeISO": "2025-08-15T21:12:51.000Z",
-    "textPlain": "By leaving my finger on the screen, I accidentally triggered an easter egg of two \"cannons\" shooting squares. Did anyone else notice it?",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
     "id": 44916819,
     "by": "sweetjuly",
     "timeISO": "2025-08-15T20:12:56.000Z",
@@ -40,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44916798,
-    "by": "themafia",
-    "timeISO": "2025-08-15T20:10:05.000Z",
-    "textPlain": "Yea,  well,  I had to modify your website to make it readable.  Why do people do this?",
+    "id": 44917320,
+    "by": "GTP",
+    "timeISO": "2025-08-15T21:12:51.000Z",
+    "textPlain": "By leaving my finger on the screen, I accidentally triggered an easter egg of two \"cannons\" shooting squares. Did anyone else notice it?",
     "parent": 44915824,
     "depth": 1
   },
   {
-    "id": 44917334,
-    "by": "M_r_R_o_b_o_t_",
-    "timeISO": "2025-08-15T21:14:38.000Z",
-    "textPlain": "Ye",
+    "id": 44916798,
+    "by": "themafia",
+    "timeISO": "2025-08-15T20:10:05.000Z",
+    "textPlain": "Yea,  well,  I had to modify your website to make it readable.  Why do people do this?",
     "parent": 44915824,
     "depth": 1
   },
@@ -72,14 +64,6 @@
     "depth": 1
   },
   {
-    "id": 44916757,
-    "by": "asveikau",
-    "timeISO": "2025-08-15T20:03:39.000Z",
-    "textPlain": "My guess is it has something to do with the file descriptor table having a lot of empty entries (the dup2(0, 666) line.)Now time to read the actual linked discussion.",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
     "id": 44916685,
     "by": "dang",
     "timeISO": "2025-08-15T19:55:42.000Z",
@@ -96,10 +80,34 @@
     "depth": 1
   },
   {
+    "id": 44916757,
+    "by": "asveikau",
+    "timeISO": "2025-08-15T20:03:39.000Z",
+    "textPlain": "My guess is it has something to do with the file descriptor table having a lot of empty entries (the dup2(0, 666) line.)Now time to read the actual linked discussion.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44917703,
+    "by": "uwagar",
+    "timeISO": "2025-08-15T21:55:55.000Z",
+    "textPlain": "the bsd people seem to enjoy measuring and logging a lot.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
     "id": 44916562,
     "by": "jedberg",
     "timeISO": "2025-08-15T19:37:38.000Z",
     "textPlain": "\"It depends\"Faster is all relative.  What are you doing?  Is it networking?  Then BSD is probably faster than Linux.  Is it something Linux is optimized for?  Then probably Linux.A general benchmark?  Who knows, but does it really matter?At the end of the day, you should benchmark your own workload, but also it's important to realize that in this day and age, it's almost never the OS that is the bottleneck.  It's almost always a remote network call.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44917334,
+    "by": "M_r_R_o_b_o_t_",
+    "timeISO": "2025-08-15T21:14:38.000Z",
+    "textPlain": "Ye",
     "parent": 44915824,
     "depth": 1
   },
@@ -117,14 +125,6 @@
     "timeISO": "2025-08-15T20:42:16.000Z",
     "textPlain": "Isn't gettimeofday implemented with vDSO to avoid kernel context switching (and therefore, most of the overhead)?My understanding is that using tsc directly is tricky. The rate might not be constant, and the rate differs across cores. [1][1]: https://www.pingcap.com/blog/how-we-trace-a-kv-database-with...",
     "parent": 44916909,
-    "depth": 2
-  },
-  {
-    "id": 44917339,
-    "by": "evanjrowley",
-    "timeISO": "2025-08-15T21:14:54.000Z",
-    "textPlain": "I also saw it, and it happened on a non-touch computer screen.",
-    "parent": 44917320,
     "depth": 2
   },
   {
@@ -163,7 +163,7 @@
     "id": 44917222,
     "by": "bobby_big_balls",
     "timeISO": "2025-08-15T21:03:48.000Z",
-    "textPlain": "The file descriptor table (fdtable) starts with a minimum of 256 slots. Two threads creating 256 sockets each, which uses 512 fds, requires that the fdtable be expanded about halfway through. This is done by expand_fdtable() in the kernel. It contains the following code:        if (atomic_read(&files->count) > 1)\n          synchronize_rcu();\n\nThe field files->count is a reference counter. As there are two threads, which share a set of open files between them, the value of this is 2, meaning that synchronize_rcu() is called here during fdtable expansion. This waits until a full RCU grace period has elapsed, causing a delay in acquiring a new fd for the socket currently being created.If the fdtable is expanded prior to creating a new thread, as the test program optionally will do by calling dup(0, 666) if supplied a command line argument, this avoids the synchronize_rcu() call because at this point files->count == 1. Therefore, if this is done, there will be no delay later on when creating all the sockets as the fdtable will have sufficient capacity.",
+    "textPlain": "In Linux, the file descriptor table (fdtable) of a process starts with a minimum of 256 slots. Two threads creating 256 sockets each, which uses 512 fds, requires that the fdtable be expanded about halfway through. This is done by expand_fdtable() in the kernel. It contains the following code:        if (atomic_read(&files->count) > 1)\n          synchronize_rcu();\n\nThe field files->count is a reference counter. As there are two threads, which share a set of open files between them, the value of this is 2, meaning that synchronize_rcu() is called here during fdtable expansion. This waits until a full RCU grace period has elapsed, causing a delay in acquiring a new fd for the socket currently being created.If the fdtable is expanded prior to creating a new thread, as the test program optionally will do by calling dup(0, 666) if supplied a command line argument, this avoids the synchronize_rcu() call because at this point files->count == 1. Therefore, if this is done, there will be no delay later on when creating all the sockets as the fdtable will have sufficient capacity.By contrast, the OpenBSD kernel doesn't have anything like RCU and just uses a rwlock when the file descriptor table of the process is being modified, avoiding the long delay during expansion that may be observed in Linux.",
     "parent": 44916702,
     "depth": 2
   },
@@ -173,6 +173,38 @@
     "timeISO": "2025-08-15T20:40:52.000Z",
     "textPlain": "When 2 threads are allocating sockets sequentially, they fight for the locks. If you preallocate a bigger table by creating fd 666 first, the lock contention goes away.",
     "parent": 44916702,
+    "depth": 2
+  },
+  {
+    "id": 44917567,
+    "by": "pan69",
+    "timeISO": "2025-08-15T21:41:11.000Z",
+    "textPlain": "Happened for me on my normal desktop browser, cute but distracting. It also made my mouse cursor disappear. I had to move my mouse outside the browser window to make it visible again.",
+    "parent": 44917320,
+    "depth": 2
+  },
+  {
+    "id": 44917339,
+    "by": "evanjrowley",
+    "timeISO": "2025-08-15T21:14:54.000Z",
+    "textPlain": "I also saw it, and it happened on a non-touch computer screen.",
+    "parent": 44917320,
+    "depth": 2
+  },
+  {
+    "id": 44917423,
+    "by": "lilyball",
+    "timeISO": "2025-08-15T21:24:04.000Z",
+    "textPlain": "It's extremely distracting. I'm not normally one to have issues that require reduced motion, but the asteroids are almost distracting enough on their own, and the fact that it causes my cursor to vanish is a real accessibility issue. I didn't actually realize just how much I use my mouse cursor when reading stuff until now, partly as a fidget, partly as a controllable visual anchor as my eyes scan the page.",
+    "parent": 44916623,
+    "depth": 2
+  },
+  {
+    "id": 44917581,
+    "by": "tptacek",
+    "timeISO": "2025-08-15T21:42:19.000Z",
+    "textPlain": "Please don't complain about tangential annoyances—e.g. article or website formats, name collisions, or back-button breakage. They're too common to be interesting.https://news.ycombinator.com/newsguidelines.htmlBecause way more people have opinions about e.g. asteroid game scripts on web pages than have opinions on RCUs, these subthreads spread like kudzu.",
+    "parent": 44916623,
     "depth": 2
   },
   {
@@ -205,6 +237,22 @@
     "timeISO": "2025-08-15T20:04:51.000Z",
     "textPlain": "I was just about to point Ian Betteridge at the original title.  (-:",
     "parent": 44916685,
+    "depth": 2
+  },
+  {
+    "id": 44917768,
+    "by": "wahern",
+    "timeISO": "2025-08-15T22:02:12.000Z",
+    "textPlain": "I think dup2 is the hint, but in the example case the dup2 path isn't invoked--it's conditioned on passing an argument, but the test runs are just `./a.out`. IIUC, the issue is growing the file descriptor table. The dup2 is a workaround that preallocates a larger table (666 > 256 * 2)[1], to avoid the pathological case when a multi-threaded process grows the table. From the linked infosec.exchange discussion it seems the RCU-based approach Linux is using can result in some significant latency, resulting in much worse performance in simple cases like this compared to a simple mutex[2].[1] Off-by-one. To be more precise, the state established by the dup2 is (667 > 256 * 2), or rather (667 > 3 + 256 * 2).[2] Presumably what OpenBSD is using. I'd be surprised if they've already imported and adopted FreeBSD's approach mentioned in the linked discussion, notwithstanding that OpenBSD has been on an MP scalability tear the past few years.",
+    "parent": 44916757,
+    "depth": 2
+  },
+  {
+    "id": 44917734,
+    "by": "saagarjha",
+    "timeISO": "2025-08-15T21:58:53.000Z",
+    "textPlain": "You do understand that people who know how to benchmark things don’t actually need to conform to the rules of thumb that are given to non-experts so they don’t shoot themselves in the foot, right? Do you also write off rally drivers because they have their feet on both pedals?",
+    "parent": 44917047,
     "depth": 2
   }
 ]

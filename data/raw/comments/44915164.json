@@ -1,17 +1,9 @@
 [
   {
-    "id": 44917364,
-    "by": "physix",
-    "timeISO": "2025-08-15T21:17:34.000Z",
-    "textPlain": "This is a great idea. I really like it!We considered reaching out in May, but held back because we want to run on bare metal.Any chance to get this provisioned on bare metal at Hetzner?We have K8S running on bare metal there. It's a slog to get it all working, but for our use case, having a dedicated 10G LAN between nodes (and a bare metal Cassandra cluster in the same rack) makes a big difference in performance.Also, from a cost perspective. We run AX41-NVMe dedicated servers that cost us about EUR 64 per server with a 10G LAN, all in the same rack. Getting the same horsepower using Cloud instances I guess would be a CCX43, which costs almost double.",
-    "parent": 44915164,
-    "depth": 1
-  },
-  {
-    "id": 44917331,
-    "by": "marcosscriven",
-    "timeISO": "2025-08-15T21:14:24.000Z",
-    "textPlain": "What are the connectivity options between heztner dedicated servers? I see they allow you to pay to have in a single rack, with a dedicated switch. But does that introduce a risk of single point of failure in the rack power or switch?",
+    "id": 44917471,
+    "by": "adamcharnock",
+    "timeISO": "2025-08-15T21:28:55.000Z",
+    "textPlain": "This certainly looks like a pleasingly straight-forward way to spin up k8s.I do notice that this deploys onto their cloud offering, which we've (https://lithus.eu) found to be a little shaky in a few places. We deploy clients onto their bare metal line-up which we find to be pretty rock solid. The worst that typically happens is the scheduled restart of an upstream router, which we mitigate via multi-AZ deployments.That being said, there is a base cluster size under which a custom bare-metal deployment isn't really viable in terms of economics/effort. So I'll definitely keep an eye on this.",
     "parent": 44915164,
     "depth": 1
   },
@@ -24,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44915836,
+    "by": "andix",
+    "timeISO": "2025-08-15T18:26:17.000Z",
+    "textPlain": "There is this project to deploy k3s to Hetzner via Terraform: https://github.com/kube-hetzner/terraform-hcloud-kube-hetzne...It's not the smoothest thing I've ever used, but it's all self hosted and everything can be fixed with some Terraform or SSH.Great to see some managed Kubernetes on Hetzner!",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
     "id": 44917146,
     "by": "bflesch",
     "timeISO": "2025-08-15T20:55:05.000Z",
@@ -32,10 +32,26 @@
     "depth": 1
   },
   {
-    "id": 44915836,
-    "by": "andix",
-    "timeISO": "2025-08-15T18:26:17.000Z",
-    "textPlain": "There is this project to deploy k3s to Hetzner via Terraform: https://github.com/kube-hetzner/terraform-hcloud-kube-hetzne...It's not the smoothest thing I've ever used, but it's all self hosted and everything can be fixed with some Terraform or SSH.Great to see some managed Kubernetes on Hetzner!",
+    "id": 44917364,
+    "by": "physix",
+    "timeISO": "2025-08-15T21:17:34.000Z",
+    "textPlain": "This is a great idea. I really like it!We considered reaching out in May, but held back because we want to run on bare metal.Any chance to get this provisioned on bare metal at Hetzner?We have K8S running on bare metal there. It's a slog to get it all working, but for our use case, having a dedicated 10G LAN between nodes (and a bare metal Cassandra cluster in the same rack) makes a big difference in performance.Also, from a cost perspective. We run AX41-NVMe dedicated servers that cost us about EUR 64 per server with a 10G LAN, all in the same rack. Getting the same horsepower using Cloud instances I guess would be a CCX43, which costs almost double.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44917491,
+    "by": "JanMa",
+    "timeISO": "2025-08-15T21:31:03.000Z",
+    "textPlain": "A bit off topic, but you might want to rethink the name. It is very close to EDEKA, the largest German supermarket chain. They have a very large IT division (https://it.edeka) and judging from the name of your project I was expecting it to be one of their projects.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44917331,
+    "by": "marcosscriven",
+    "timeISO": "2025-08-15T21:14:24.000Z",
+    "textPlain": "What are the connectivity options between heztner dedicated servers? I see they allow you to pay to have in a single rack, with a dedicated switch. But does that introduce a risk of single point of failure in the rack power or switch?",
     "parent": 44915164,
     "depth": 1
   },
@@ -48,22 +64,6 @@
     "depth": 1
   },
   {
-    "id": 44917128,
-    "by": "marcosscriven",
-    "timeISO": "2025-08-15T20:53:41.000Z",
-    "textPlain": "When I was looking into this, I instead setup Proxmox on Hetzner (which you can do natively from ISO).From there it was much easier just using it for whatever I wanted, including K3S",
-    "parent": 44915164,
-    "depth": 1
-  },
-  {
-    "id": 44917067,
-    "by": "rumblefrog",
-    "timeISO": "2025-08-15T20:45:29.000Z",
-    "textPlain": "I wonder how long before Hetzner adds something like managed Kubernetes to their native product line. They already have S3 compatible object storages, load balancers and more.",
-    "parent": 44915164,
-    "depth": 1
-  },
-  {
     "id": 44916841,
     "by": "betaby",
     "timeISO": "2025-08-15T20:15:13.000Z",
@@ -72,10 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44917026,
-    "by": "rumblefrog",
-    "timeISO": "2025-08-15T20:40:42.000Z",
-    "textPlain": "This looks great! Haven't tried it yet, but should I presume this also does k8s and OS updates for me? Or how managed is it?",
+    "id": 44916985,
+    "by": "mfrye0",
+    "timeISO": "2025-08-15T20:35:59.000Z",
+    "textPlain": "This is incredibly timely. I've been an AWS customer for 10+ years and have been having a tough time with them lately. Looking at potentially moving off and considering options.My theory is that with terraform and a container based infra, that it should be pretty easier with Claude Code to migrate wherever.",
     "parent": 44915164,
     "depth": 1
   },
@@ -96,6 +96,22 @@
     "depth": 1
   },
   {
+    "id": 44917128,
+    "by": "marcosscriven",
+    "timeISO": "2025-08-15T20:53:41.000Z",
+    "textPlain": "When I was looking into this, I instead setup Proxmox on Hetzner (which you can do natively from ISO).From there it was much easier just using it for whatever I wanted, including K3S",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44917067,
+    "by": "rumblefrog",
+    "timeISO": "2025-08-15T20:45:29.000Z",
+    "textPlain": "I wonder how long before Hetzner adds something like managed Kubernetes to their native product line. They already have S3 compatible object storages, load balancers and more.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
     "id": 44916620,
     "by": "deknos",
     "timeISO": "2025-08-15T19:45:28.000Z",
@@ -104,10 +120,10 @@
     "depth": 1
   },
   {
-    "id": 44916985,
-    "by": "mfrye0",
-    "timeISO": "2025-08-15T20:35:59.000Z",
-    "textPlain": "This is incredibly timely. I've been an AWS customer for 10+ years and have been having a tough time with them lately. Looking at potentially moving off and considering options.My theory is that with terraform and a container based infra, that it should be pretty easier with Claude Code to migrate wherever.",
+    "id": 44917026,
+    "by": "rumblefrog",
+    "timeISO": "2025-08-15T20:40:42.000Z",
+    "textPlain": "This looks great! Haven't tried it yet, but should I presume this also does k8s and OS updates for me? Or how managed is it?",
     "parent": 44915164,
     "depth": 1
   },
@@ -120,18 +136,18 @@
     "depth": 1
   },
   {
-    "id": 44915660,
-    "by": "czhu12",
-    "timeISO": "2025-08-15T18:12:05.000Z",
-    "textPlain": "Is this deploying K3s or full kubernetes with a control vs worker plane on different instances?",
-    "parent": 44915164,
-    "depth": 1
-  },
-  {
     "id": 44915604,
     "by": "slig",
     "timeISO": "2025-08-15T18:06:46.000Z",
     "textPlain": "Congrats on shipping! I see that you have WordPress as a pro app. As someone who pays for WP hosting, what I'd like to see there is the ability to \"fork\" a WP instance, media, DB, everything, with a new hostname, that I can try things, updates, etc.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44915660,
+    "by": "czhu12",
+    "timeISO": "2025-08-15T18:12:05.000Z",
+    "textPlain": "Is this deploying K3s or full kubernetes with a control vs worker plane on different instances?",
     "parent": 44915164,
     "depth": 1
   },
@@ -144,34 +160,10 @@
     "depth": 1
   },
   {
-    "id": 44917187,
-    "by": "latchkey",
-    "timeISO": "2025-08-15T21:00:02.000Z",
-    "textPlain": "Great work. Just tried to email support@ and it bounced.",
-    "parent": 44915164,
-    "depth": 1
-  },
-  {
     "id": 44915588,
     "by": "zft",
     "timeISO": "2025-08-15T18:05:54.000Z",
     "textPlain": "Congratulations on the launch!Is there are plans to support Gitlab and gitlab registry (or any registry) ?",
-    "parent": 44915164,
-    "depth": 1
-  },
-  {
-    "id": 44917080,
-    "by": "sciencesama",
-    "timeISO": "2025-08-15T20:47:21.000Z",
-    "textPlain": "is there a selfhosted version of this ?",
-    "parent": 44915164,
-    "depth": 1
-  },
-  {
-    "id": 44916110,
-    "by": "CuriouslyC",
-    "timeISO": "2025-08-15T18:48:35.000Z",
-    "textPlain": "Why would I use Edka vs using Linode's free Kubernetes offering?",
     "parent": 44915164,
     "depth": 1
   },
@@ -184,6 +176,38 @@
     "depth": 1
   },
   {
+    "id": 44916110,
+    "by": "CuriouslyC",
+    "timeISO": "2025-08-15T18:48:35.000Z",
+    "textPlain": "Why would I use Edka vs using Linode's free Kubernetes offering?",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44917421,
+    "by": "throwmeaway222",
+    "timeISO": "2025-08-15T21:23:58.000Z",
+    "textPlain": "Great job!",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44917080,
+    "by": "sciencesama",
+    "timeISO": "2025-08-15T20:47:21.000Z",
+    "textPlain": "is there a selfhosted version of this ?",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44917187,
+    "by": "latchkey",
+    "timeISO": "2025-08-15T21:00:02.000Z",
+    "textPlain": "Great work. Just tried to email support@ and it bounced.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
     "id": 44916636,
     "by": "zgk7iqea",
     "timeISO": "2025-08-15T19:47:51.000Z",
@@ -192,18 +216,18 @@
     "depth": 1
   },
   {
-    "id": 44916126,
-    "by": "boredhacker3",
-    "timeISO": "2025-08-15T18:49:44.000Z",
-    "textPlain": "exactly what i was looking for. I will give it a shot !",
-    "parent": 44915164,
-    "depth": 1
-  },
-  {
     "id": 44915644,
     "by": "upa11",
     "timeISO": "2025-08-15T18:10:25.000Z",
     "textPlain": "Great job. Love the project",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44916126,
+    "by": "boredhacker3",
+    "timeISO": "2025-08-15T18:49:44.000Z",
+    "textPlain": "exactly what i was looking for. I will give it a shot !",
     "parent": 44915164,
     "depth": 1
   },
@@ -240,18 +264,18 @@
     "depth": 2
   },
   {
-    "id": 44917183,
-    "by": "worldsayshi",
-    "timeISO": "2025-08-15T20:59:40.000Z",
-    "textPlain": "Does anyone know how this compares to using https://github.com/vitobotta/hetzner-k3s ?",
-    "parent": 44915794,
-    "depth": 2
-  },
-  {
     "id": 44916022,
     "by": "abound",
     "timeISO": "2025-08-15T18:40:56.000Z",
     "textPlain": "There's also Talos, which also also supports Hetzner [1] and is similarly streamlined. Not quite the same idea but very similar.[1] https://www.talos.dev/v1.10/talos-guides/install/cloud-platf...",
+    "parent": 44915794,
+    "depth": 2
+  },
+  {
+    "id": 44917183,
+    "by": "worldsayshi",
+    "timeISO": "2025-08-15T20:59:40.000Z",
+    "textPlain": "Does anyone know how this compares to using https://github.com/vitobotta/hetzner-k3s ?",
     "parent": 44915794,
     "depth": 2
   },
@@ -264,14 +288,6 @@
     "depth": 2
   },
   {
-    "id": 44917239,
-    "by": "camil",
-    "timeISO": "2025-08-15T21:05:35.000Z",
-    "textPlain": "Hello there, as I mentioned in the post, I build this as a side project by my self and I'm running it as a freelancer registered in Spain, you can check my VAT number ESY1848661G. I was planning to collect some feedback and honestly didn't expect such interest in the project. I will make the necessary adjustments to the privacy policy and terms of service. When I started this, I had in mind to convert it into a company, but I'm still running it as a freelancer. Thanks for your feedback! I will correct my mistake.",
-    "parent": 44917146,
-    "depth": 2
-  },
-  {
     "id": 44915961,
     "by": "trolla",
     "timeISO": "2025-08-15T18:35:55.000Z",
@@ -280,19 +296,43 @@
     "depth": 2
   },
   {
+    "id": 44917239,
+    "by": "camil",
+    "timeISO": "2025-08-15T21:05:35.000Z",
+    "textPlain": "Hello there, as I mentioned in the post, I build this as a side project by my self and I'm running it as a freelancer registered in Spain, you can check my VAT number ESY1848661G. I was planning to collect some feedback and honestly didn't expect such interest in the project. I will make the necessary adjustments to the privacy policy and terms of service. When I started this, I had in mind to convert it into a company, but I'm still running it as a freelancer. Thanks for your feedback! I will correct my mistake.",
+    "parent": 44917146,
+    "depth": 2
+  },
+  {
+    "id": 44917529,
+    "by": "adamcharnock",
+    "timeISO": "2025-08-15T21:35:39.000Z",
+    "textPlain": "We're setting up a data-heavy client at the moment who has a similar need. We're working with Hetzner's custom solutions team to provision a multi-AZ setup, with 25G networking and 100G AZ interconnects. Link in bio if you want to chat, email is adam@...",
+    "parent": 44917364,
+    "depth": 2
+  },
+  {
+    "id": 44917542,
+    "by": "VoidWhisperer",
+    "timeISO": "2025-08-15T21:37:36.000Z",
+    "textPlain": "Are you asking if it can provision bare metal servers with hetzner in a similar way to what it is doing with cloud servers, or if it can manage clusters on your hetzner bare metal servers (in the case of the second, a tool like Rancher might be better)",
+    "parent": 44917364,
+    "depth": 2
+  },
+  {
+    "id": 44917543,
+    "by": "camil",
+    "timeISO": "2025-08-15T21:37:40.000Z",
+    "textPlain": "Well, I had this since 2011, and in 2018 a new disease was labeled EDKA ( that is the first result you get when you google for edka). I became aware about the german supermarket few years after also. I could consider it at some point, but is very hard to find something available these days...",
+    "parent": 44917491,
+    "depth": 2
+  },
+  {
     "id": 44917256,
     "by": "camil",
     "timeISO": "2025-08-15T21:06:47.000Z",
     "textPlain": "Hello there, sorry for that I will look into it right now.",
     "parent": 44917237,
-    "depth": 2
-  },
-  {
-    "id": 44917086,
-    "by": "Hamuko",
-    "timeISO": "2025-08-15T20:48:47.000Z",
-    "textPlain": "No idea about the timing but I imagine it's coming.Would make a lot of sense, especially if you can combine it with the hardware servers. You could get a lot of grunt in your cluster for a lot less than for example AWS.",
-    "parent": 44917067,
     "depth": 2
   },
   {
@@ -312,11 +352,11 @@
     "depth": 2
   },
   {
-    "id": 44917153,
-    "by": "camil",
-    "timeISO": "2025-08-15T20:55:29.000Z",
-    "textPlain": "Thanks for the feedback! The platform is mostly self service, but it is very easy to upgrade the Kubernetes version, just change the version in the cluster configuration. For OS updates, you can replace the nodes and it will automatically pick the latest OS image from Hetzner. I also run it isolated for some small companies, as a fully managed service, so that option is available as well.",
-    "parent": 44917026,
+    "id": 44917623,
+    "by": "adamcharnock",
+    "timeISO": "2025-08-15T21:45:32.000Z",
+    "textPlain": "This is exactly what we [1] do! We migrate clients out of AWS and into Hetzner bare-metal k8s clusters, and then we also become the client's DevOps team (typically for a lot less than Amazon charges)I will say that there is a fair bit of lifting required to spin up a k8s cluster on bare metal, particularly for things such as monitoring and distributed block storage (we use OpenEBS). I would ballpark it as a small number of months.It is likely easier on their cloud offering, but we've found that to be a little less reliable than we would hope.Happy to chat more: adam@...[1] https://lithus.eu",
+    "parent": 44916985,
     "depth": 2
   },
   {
@@ -331,8 +371,16 @@
     "id": 44917000,
     "by": "SOLAR_FIELDS",
     "timeISO": "2025-08-15T20:37:45.000Z",
-    "textPlain": "Would CAPH solve your issue? https://github.com/syself/cluster-api-provider-hetzner you would wire up cluster autoscaler to point to it using clusterapi https://github.com/kubernetes/autoscaler/blob/a9cb59fdd2dd88...",
+    "textPlain": "Would CAPH solve your issue? https://github.com/syself/cluster-api-provider-hetzner you would wire up cluster autoscaler to point to it using clusterapi https://github.com/kubernetes/autoscaler/tree/a9cb59fdd2dd88...",
     "parent": 44916083,
+    "depth": 2
+  },
+  {
+    "id": 44917086,
+    "by": "Hamuko",
+    "timeISO": "2025-08-15T20:48:47.000Z",
+    "textPlain": "No idea about the timing but I imagine it's coming.Would make a lot of sense, especially if you can combine it with the hardware servers. You could get a lot of grunt in your cluster for a lot less than for example AWS.",
+    "parent": 44917067,
     "depth": 2
   },
   {
@@ -344,59 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44917103,
-    "by": "ralala",
-    "timeISO": "2025-08-15T20:51:35.000Z",
-    "textPlain": "What is the threat model you want to mitigate using encryption at rest? Is it that a physical disk is not properly wiped after usage? Then you could just use luks and store the key anywhere else, e.g. another machine or an external volume…",
+    "id": 44917647,
+    "by": "adamcharnock",
+    "timeISO": "2025-08-15T21:48:33.000Z",
+    "textPlain": "To answer from a Kubernetes perspective: Both OpenEBS Mayastor and LocalZFS now support disk encryption.",
     "parent": 44916507,
-    "depth": 2
-  },
-  {
-    "id": 44917164,
-    "by": "bflesch",
-    "timeISO": "2025-08-15T20:56:53.000Z",
-    "textPlain": "Encrypted disks are easily setup with archlinux + LUKS + tinySSH, you can remote unlock via SSH.",
-    "parent": 44916507,
-    "depth": 2
-  },
-  {
-    "id": 44917052,
-    "by": "M4t7e",
-    "timeISO": "2025-08-15T20:43:15.000Z",
-    "textPlain": "If you need disk encryption on Hetzner, I built a Terraform module that sets up a Kubernetes cluster with encrypted disks enabled by default: https://github.com/hcloud-k8s/terraform-hcloud-kubernetes",
-    "parent": 44916507,
-    "depth": 2
-  },
-  {
-    "id": 44916583,
-    "by": "winrid",
-    "timeISO": "2025-08-15T19:40:55.000Z",
-    "textPlain": "Their installer script supports LUKS.Setup dropbear, and have another encrypted instance that runs a cron that runs a script every minute to check for the dropbear port on all instances and sshes in and passes the key to boot.This is what I do for fastcomments anyway for ovh and hetzner",
-    "parent": 44916507,
-    "depth": 2
-  },
-  {
-    "id": 44915717,
-    "by": "camil",
-    "timeISO": "2025-08-15T18:17:32.000Z",
-    "textPlain": "It is ready to use Kubernetes setup with separate control plane and node pools",
-    "parent": 44915660,
-    "depth": 2
-  },
-  {
-    "id": 44915700,
-    "by": "camil",
-    "timeISO": "2025-08-15T18:15:59.000Z",
-    "textPlain": "Thanks! Wordpress will be available for free, it is not currently finished. Probably next week will be ready.",
-    "parent": 44915604,
-    "depth": 2
-  },
-  {
-    "id": 44916036,
-    "by": "0x457",
-    "timeISO": "2025-08-15T18:42:27.000Z",
-    "textPlain": "> I would have never guessed that there's an overlap between the circle of people wanting to run a prod workload on a K8s cluster and folks that need a GUI to set up and manage a K8s cluster would be that big but looks like I might be wrong.Count how many GKE ad EKS users are out there?",
-    "parent": 44915572,
     "depth": 2
   }
 ]
