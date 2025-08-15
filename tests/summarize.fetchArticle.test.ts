@@ -1,128 +1,102 @@
 import { describe, expect, test } from "bun:test";
 import { existsSync, rmSync } from "node:fs";
 import { dirname } from "node:path";
-import { pathFor } from "../config/paths.ts";
-import { getOrFetchArticleMarkdown } from "../scripts/summarize.mts";
 import { ensureDir, writeTextFile } from "../utils/fs.ts";
 import { htmlToMd } from "../utils/html-to-md";
 import type { HttpClient } from "../utils/http-client.ts";
+import { withTempDir, mockPaths, makeMockHttp, story as makeStory } from "./helpers";
 
- 
 describe("summarize.getOrFetchArticleMarkdown", () => {
   test("fetches, converts, caches and avoids refetch", async () => {
-    const story = {
-      id: 99_999_901,
-      title: "t",
-      url: "https://example.com",
-      by: "u",
-      timeISO: new Date().toISOString(),
-      commentIds: [] as number[],
-    };
-    const path = pathFor.articleMd(story.id);
-    // ensure clean slate
-    rmSync(path, { force: true });
+    await withTempDir(async (base) => {
+      const { pathFor } = mockPaths(base);
+      const { getOrFetchArticleMarkdown } = await import("../scripts/summarize.mts");
 
-    const sampleHtml = "<h1>Hello</h1><p>World</p>";
-    const http: Pick<HttpClient, "text"> & { calls: number } = {
-      calls: 0,
-      text: async () => {
-        http.calls++;
-        return sampleHtml;
-      },
-    };
-     
-    const services = {
-       
-      http: {} as HttpClient,
-       
-      openrouter: {} as Parameters<typeof getOrFetchArticleMarkdown>[0]["openrouter"],
-      fetchArticleMarkdown: async (url: string): Promise<string> => {
-        const html = await http.text(url);
-        return htmlToMd(html);
-      },
-    } as Parameters<typeof getOrFetchArticleMarkdown>[0];
+      const s = makeStory({ id: 99_999_901, url: "https://example.com" });
+      const path = pathFor.articleMd(s.id);
+      // ensure clean slate
+      rmSync(path, { force: true });
 
-    const md1 = await getOrFetchArticleMarkdown(services, story as Parameters<typeof getOrFetchArticleMarkdown>[1]);
-    expect(md1).toContain("# Hello");
-    expect(http.calls).toBe(1);
-    expect(existsSync(path)).toBe(true);
+      const sampleHtml = "<h1>Hello</h1><p>World</p>";
+      const mockResult = makeMockHttp({ "/^https:\\/\\/example\\.com\\/?$/u": sampleHtml });
+      const { http } = mockResult;
+      const services = {
+        http,
+        openrouter: {} as Parameters<typeof getOrFetchArticleMarkdown>[0]["openrouter"],
+        fetchArticleMarkdown: async (url: string): Promise<string> => {
+          const html = await http.text(url);
+          return htmlToMd(html);
+        },
+      } as Parameters<typeof getOrFetchArticleMarkdown>[0];
 
-    const md2 = await getOrFetchArticleMarkdown(services, story as Parameters<typeof getOrFetchArticleMarkdown>[1]);
-    expect(md2).toBe(md1);
-    expect(http.calls).toBe(1); // no refetch
+      const md1 = await getOrFetchArticleMarkdown(services, s);
+      expect(md1).toContain("# Hello");
+      expect(mockResult.calls).toBe(1);
+      expect(existsSync(path)).toBe(true);
 
-    rmSync(path, { force: true });
+      const md2 = await getOrFetchArticleMarkdown(services, s);
+      expect(md2).toBe(md1);
+      expect(mockResult.calls).toBe(1); // no refetch
+
+      rmSync(path, { force: true });
+    });
   });
 
   test("returns cached content without HTTP hit if file exists", async () => {
-    const story = {
-      id: 99_999_902,
-      title: "t",
-      url: "https://example.com/cached",
-      by: "u",
-      timeISO: new Date().toISOString(),
-      commentIds: [] as number[],
-    };
-    const path = pathFor.articleMd(story.id);
-    await ensureDir(dirname(path));
-    await writeTextFile(path, "# Pre-cached");
+    await withTempDir(async (base) => {
+      const { pathFor } = mockPaths(base);
+      const { getOrFetchArticleMarkdown } = await import("../scripts/summarize.mts");
 
-    const http: Pick<HttpClient, "text"> & { calls: number } = {
-      calls: 0,
-      text: async () => {
-        http.calls++;
-        return "";
-      },
-    };
-    const services = {
-      http: {} as HttpClient,
-      openrouter: {} as Parameters<typeof getOrFetchArticleMarkdown>[0]["openrouter"],
-      fetchArticleMarkdown: async (url: string): Promise<string> => {
-        const html = await http.text(url);
-        return htmlToMd(html);
-      },
-    } as Parameters<typeof getOrFetchArticleMarkdown>[0];
+      const s = makeStory({ id: 99_999_902, url: "https://example.com/cached" });
+      const path = pathFor.articleMd(s.id);
+      await ensureDir(dirname(path));
+      await writeTextFile(path, "# Pre-cached");
 
-    const md = await getOrFetchArticleMarkdown(services, story as Parameters<typeof getOrFetchArticleMarkdown>[1]);
+      const mockResult = makeMockHttp({ "/^https:\\/\\/example\\.com\\/cached\\/?$/u": "" });
+      const { http } = mockResult;
+      const services = {
+        http,
+        openrouter: {} as Parameters<typeof getOrFetchArticleMarkdown>[0]["openrouter"],
+        fetchArticleMarkdown: async (url: string): Promise<string> => {
+          const html = await http.text(url);
+          return htmlToMd(html);
+        },
+      } as Parameters<typeof getOrFetchArticleMarkdown>[0];
 
-    expect(http.calls).toBe(0);
-    expect(md).toBe("# Pre-cached");
+      const md = await getOrFetchArticleMarkdown(services, s);
 
-    rmSync(path, { force: true });
+      expect(mockResult.calls).toBe(0);
+      expect(md).toBe("# Pre-cached");
+
+      rmSync(path, { force: true });
+    });
   });
 
   test("returns undefined and does not cache for empty fetch result", async () => {
-    const story = {
-      id: 99_999_903,
-      title: "t",
-      url: "https://example.com/empty",
-      by: "u",
-      timeISO: new Date().toISOString(),
-      commentIds: [] as number[],
-    };
-    const path = pathFor.articleMd(story.id);
-    rmSync(path, { force: true });
+    await withTempDir(async (base) => {
+      const { pathFor } = mockPaths(base);
+      const { getOrFetchArticleMarkdown } = await import("../scripts/summarize.mts");
 
-    const http: Pick<HttpClient, "text"> & { calls: number } = {
-      calls: 0,
-      text: async () => {
-        http.calls++;
-        return "   ";
-      }, // whitespace only
-    };
-    const services = {
-      http: {} as HttpClient,
-      openrouter: {} as Parameters<typeof getOrFetchArticleMarkdown>[0]["openrouter"],
-      fetchArticleMarkdown: async (url: string): Promise<string> => {
-        const html = await http.text(url);
-        return htmlToMd(html);
-      },
-    } as Parameters<typeof getOrFetchArticleMarkdown>[0];
+      const s = makeStory({ id: 99_999_903, url: "https://example.com/empty" });
+      const path = pathFor.articleMd(s.id);
+      rmSync(path, { force: true });
 
-    const md = await getOrFetchArticleMarkdown(services, story as Parameters<typeof getOrFetchArticleMarkdown>[1]);
+      const mockResult = makeMockHttp({ "/^https:\\/\\/example\\.com\\/empty\\/?$/u": "   " });
+      const { http } = mockResult;
+      const services = {
+        http,
+        openrouter: {} as Parameters<typeof getOrFetchArticleMarkdown>[0]["openrouter"],
+        fetchArticleMarkdown: async (url: string): Promise<string> => {
+          const html = await http.text(url);
+          return htmlToMd(html);
+        },
+      } as Parameters<typeof getOrFetchArticleMarkdown>[0];
 
-    expect(md).toBeUndefined();
-    expect(http.calls).toBe(1);
-    expect(existsSync(path)).toBe(false);
+      const md = await getOrFetchArticleMarkdown(services, s);
+
+      expect(md).toBeUndefined();
+      expect(mockResult.calls).toBe(1);
+      expect(existsSync(path)).toBe(false);
+    });
   });
 });

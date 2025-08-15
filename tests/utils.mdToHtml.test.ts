@@ -39,7 +39,7 @@ describe("utils/mdToHtml", () => {
     expect(html).toContain('target="_blank"');
   });
 
-  test("28. mdToHtml preserves table/align attrs and sanitizes others", () => {
+  test("mdToHtml preserves table/align attrs and sanitizes others", () => {
     const md = [
       "| Left | Right |",
       "|:---|---:|",

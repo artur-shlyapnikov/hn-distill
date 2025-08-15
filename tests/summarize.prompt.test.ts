@@ -1,23 +1,16 @@
 import { describe, expect, test } from "bun:test";
-import { env as environment } from "../config/env.ts";
 import type { NormalizedComment, NormalizedStory } from "../config/schemas.ts";
 import { buildCommentsPrompt, buildPostChatMessages, buildPostPrompt } from "../scripts/summarize.mts";
+import { withEnvPatch, comment as makeComment, story as makeStory, TEST_ISO } from "./helpers";
 
 describe("scripts/summarize prompt builders", () => {
   test("buildPostPrompt returns only article content slice when present", async () => {
-    const story: NormalizedStory = {
-      id: 1,
-      title: "T",
-      url: null,
-      by: "alice",
-      timeISO: new Date().toISOString(),
-      commentIds: [],
-    };
-    const promptEmpty = await buildPostPrompt(story);
+    const s: NormalizedStory = makeStory({ id: 1, url: null, by: "alice" });
+    const promptEmpty = await buildPostPrompt(s);
     expect(promptEmpty).toBe(""); // no article -> no prompt
 
     const md = "# Hello\nThis is article body.";
-    const prompt = await buildPostPrompt(story, md);
+    const prompt = await buildPostPrompt(s, md);
     // Should contain the markdown body, but no metadata or instruction header
     expect(prompt).toContain("Hello");
     expect(prompt).not.toMatch(/Make it two times shorter|Сделай текст в два раза короче/u);
@@ -25,14 +18,9 @@ describe("scripts/summarize prompt builders", () => {
   });
 
   test("buildCommentsPrompt respects budget and returns sampleIds", async () => {
-    const comments: NormalizedComment[] = Array.from({ length: 20 }, (_, index) => ({
-      id: index + 1,
-      by: "u",
-      timeISO: new Date().toISOString(),
-      textPlain: "x".repeat(500),
-      parent: 1,
-      depth: 1,
-    }));
+    const comments: NormalizedComment[] = Array.from({ length: 20 }, (_, index) =>
+      makeComment({ id: index + 1, textPlain: "x".repeat(500) })
+    );
     const { prompt, sampleIds } = await buildCommentsPrompt(comments);
     expect(sampleIds.length).toBe(5);
     expect(prompt.length).toBeGreaterThan(0);
@@ -43,102 +31,73 @@ describe("scripts/summarize prompt builders", () => {
     }
   });
 
-  test("header reflects env.SUMMARY_LANG and excludes empty comments", async () => {
-    const comments: NormalizedComment[] = [
-      {
-        id: 1,
-        by: "alice",
-        timeISO: new Date().toISOString(),
-        textPlain: " Hello   world ",
-        parent: 0,
-        depth: 1,
-      },
-      {
-        id: 2,
-        by: "bob",
-        timeISO: new Date().toISOString(),
-        textPlain: "   ",
-        parent: 0,
-        depth: 2,
-      }, // blank -> excluded
-      {
-        id: 3,
-        by: "carol",
-        timeISO: new Date().toISOString(),
-        textPlain: "x".repeat(1000),
-        parent: 0,
-        depth: 3,
-      },
-    ];
+  test("header reflects English and excludes empty comments", async () => {
+    await withEnvPatch({ SUMMARY_LANG: "en" }, async () => {
+      const comments: NormalizedComment[] = [
+        makeComment({ id: 1, by: "alice", textPlain: " Hello   world ", depth: 1 }),
+        makeComment({ id: 2, by: "bob", textPlain: "   ", depth: 2 }), // blank -> excluded
+        makeComment({ id: 3, by: "carol", textPlain: "x".repeat(1000), depth: 3 }),
+      ];
 
-    const { prompt, sampleIds } = await buildCommentsPrompt(comments);
-    const lines = prompt.split("\n");
-    // Header based on language
-    if (environment.SUMMARY_LANG === "en") {
+      const { prompt, sampleIds } = await buildCommentsPrompt(comments);
+      const lines = prompt.split("\n");
       expect(lines[0]).toContain("Language: en");
-    } else {
+      // Depth prefixes and usernames
+      expect(prompt).toContain("@alice [d1]");
+      expect(prompt).toContain("@carol [d3]");
+      expect(prompt).not.toContain("@bob"); // blank excluded
+
+      // Truncation per line (prefix + 400 char slice)
+      const contentLines = lines.slice(1);
+      for (const line of contentLines) {
+        expect(line.length).toBeLessThanOrEqual(430);
+      }
+
+      // sampleIds should exclude blank one and take first non-blank up to 5
+      expect(sampleIds).toEqual([1, 3]);
+    });
+  });
+
+  test("header reflects Russian", async () => {
+    await withEnvPatch({ SUMMARY_LANG: "ru" }, async () => {
+      const comments: NormalizedComment[] = [makeComment({ id: 1, by: "ivan", textPlain: "Привет", depth: 2 })];
+      const { prompt } = await buildCommentsPrompt(comments);
+      const lines = prompt.split("\n");
       expect(lines[0]).toContain("Language: ru");
-    }
-    // Depth prefixes and usernames
-    expect(prompt).toContain("@alice [d1]");
-    expect(prompt).toContain("@carol [d3]");
-    expect(prompt).not.toContain("@bob"); // blank excluded
-
-    // Truncation per line (prefix + 400 char slice)
-    const contentLines = lines.slice(1);
-    for (const line of contentLines) {
-      expect(line.length).toBeLessThanOrEqual(430);
-    }
-
-    // sampleIds should exclude blank one and take first non-blank up to 5
-    expect(sampleIds).toEqual([1, 3]);
+      expect(prompt).toContain("@ivan [d2]");
+    });
   });
 
   test("buildPostPrompt obeys ARTICLE_SLICE_CHARS", async () => {
-    const originalSliceChars = environment.ARTICLE_SLICE_CHARS;
-    environment.ARTICLE_SLICE_CHARS = 100;
-
-    const story: NormalizedStory = {
-      id: 1,
-      title: "T",
-      url: null,
-      by: "a",
-      timeISO: new Date().toISOString(),
-      commentIds: [],
-    };
-    const articleMd = "x".repeat(200);
-
-    const prompt = await buildPostPrompt(story, articleMd);
-
-    expect(prompt.length).toBe(100);
-    expect(prompt).toBe("x".repeat(100));
-
-    environment.ARTICLE_SLICE_CHARS = originalSliceChars;
+    await withEnvPatch({ ARTICLE_SLICE_CHARS: 100 }, async () => {
+      const s: NormalizedStory = makeStory({ id: 1, url: null, by: "a" });
+      const articleMd = "x".repeat(200);
+      const prompt = await buildPostPrompt(s, articleMd);
+      expect(prompt.length).toBe(100);
+      expect(prompt).toBe("x".repeat(100));
+    });
   });
 
   test("buildPostChatMessages includes correct system instruction per lang", async () => {
-    const originalLang = environment.SUMMARY_LANG;
+    await withEnvPatch({ SUMMARY_LANG: "en" }, async () => {
+      const messages = buildPostChatMessages("article");
+      expect(messages[0]?.role).toBe("system");
+      expect(messages[0]?.content).toBe(
+        "make the content two times shorter, don't mention the title, publication date and other metadata; format the output as markdown"
+      );
+    });
 
-    // English
-    environment.SUMMARY_LANG = "en";
-    let messages = buildPostChatMessages("article");
-    expect(messages[0]?.role).toBe("system");
-    expect(messages[0]?.content).toBe(
-      "make the content two times shorter, don't mention the title, publication date and other metadata; format the output as markdown"
-    );
-
-    // Russian
-    environment.SUMMARY_LANG = "ru";
-    messages = buildPostChatMessages("article");
-    expect(messages[0]?.role).toBe("system");
-    expect(messages[0]?.content).toBe(
-      "переведи на русский содержимое (не указывай заголовок, дату и другие метаданные), сократи в два раза; форматируй вывод как markdown"
-    );
-
-    environment.SUMMARY_LANG = originalLang;
+    await withEnvPatch({ SUMMARY_LANG: "ru" }, async () => {
+      const messages = buildPostChatMessages("article");
+      expect(messages[0]?.role).toBe("system");
+      expect(messages[0]?.content).toBe(
+        "переведи на русский содержимое (не указывай заголовок, дату и другие метаданные), сократи в два раза; форматируй вывод как markdown"
+      );
+    });
   });
 
   test("buildCommentsPrompt preserves sampleIds order and cap", async () => {
+    const base: Partial<NormalizedComment> = { by: "u", timeISO: TEST_ISO, parent: 0, depth: 1 };
     const comments: NormalizedComment[] = [
       { id: 1, textPlain: "one" },
       { id: 2, textPlain: "   " }, // blank
@@ -148,16 +107,7 @@ describe("scripts/summarize prompt builders", () => {
       { id: 6, textPlain: "six" },
       { id: 7, textPlain: "seven" },
       { id: 8, textPlain: "" }, // blank
-    ].map(
-      (c) =>
-        ({
-          by: "u",
-          timeISO: new Date().toISOString(),
-          parent: 0,
-          depth: 1,
-          ...c,
-        }) as NormalizedComment
-    );
+    ].map((c) => ({ ...base, ...c } as NormalizedComment));
 
     const { sampleIds } = await buildCommentsPrompt(comments);
 

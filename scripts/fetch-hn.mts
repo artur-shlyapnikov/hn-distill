@@ -5,12 +5,7 @@ import { z } from "zod";
 
 import { env, type Env } from "@config/env";
 import { PATHS, pathFor } from "@config/paths";
-import {
-  HnItemRawSchema,
-  type HnItemRaw,
-  type NormalizedComment,
-  type NormalizedStory,
-} from "@config/schemas";
+import { HnItemRawSchema, type HnItemRaw, type NormalizedComment, type NormalizedStory } from "@config/schemas";
 import { ensureDir } from "@utils/fs";
 import { HN } from "@utils/hn";
 import { HttpClient } from "@utils/http-client";
@@ -20,10 +15,6 @@ import { clamp, htmlToPlain } from "@utils/text";
 export type Services = {
   http: HttpClient;
 };
-
-async function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
 
 function normalizeUrl(url?: string): string | undefined {
   if (!url) {
@@ -251,8 +242,6 @@ export async function collectComments(
       }
       addKidsToQueue(res, queue, options, visitedThisRun, out.length);
     }
-
-    await sleep(5);
   }
 
   return { comments: out.slice(0, options.maxCount), allSeenByDepth };

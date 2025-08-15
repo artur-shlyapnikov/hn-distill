@@ -2,7 +2,7 @@ import { describe, expect, test } from "bun:test";
 import { isoWeekKey, toDateKeyUTC, addDaysUTC } from "@utils/date-keys";
 
 describe("utils/date-keys", () => {
-  test("26. isoWeekKey correctness on ISO week boundaries", () => {
+  test("isoWeekKey correctness on ISO week boundaries", () => {
     // Thursday Dec 31 2020 is in the last week of 2020 (w53)
     expect(isoWeekKey("2020-12-31T12:00:00Z")).toBe("2020-w53");
     // Friday Jan 1 2021 is also in that same week (w53 of 2020)
@@ -11,7 +11,7 @@ describe("utils/date-keys", () => {
     expect(isoWeekKey("2021-01-04T12:00:00Z")).toBe("2021-w01");
   });
 
-  test("27. toDateKeyUTC & addDaysUTC across DST/leap transitions", () => {
+  test("toDateKeyUTC & addDaysUTC across DST/leap transitions", () => {
     expect(toDateKeyUTC("2024-02-29T23:00:00Z")).toBe("2024-02-29");
     expect(addDaysUTC("2024-02-29", 1)).toBe("2024-03-01");
     // Test non-leap year

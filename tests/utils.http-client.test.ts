@@ -72,7 +72,7 @@ describe("utils/http-client", () => {
     }
   });
 
-  test("29. HttpClient.text retries/backoffs and merges headers", async () => {
+  test("HttpClient.text retries/backoffs and merges headers", async () => {
     let calls = 0;
     let seenHeaders: Headers | undefined;
     (globalThis as Record<string, unknown>)["fetch"] = async (_url: string, init?: RequestInit): Promise<Response> => {
