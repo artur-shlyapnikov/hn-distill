@@ -40,26 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44901793,
-    "by": "pjmlp",
-    "timeISO": "2025-08-14T15:42:40.000Z",
-    "textPlain": "Only because most AI startups are doing it wrong.I don't want a chat window.I want AI workflows as part of my IDE, like Visual Studio, InteliJ, Android Studio are finally going after.I want voice controlled actions on my native language.Knowledge across everything on the project for doing code refactorings, static analysis with AI feedback loop, generating UI based out of handwritten sketches, programming on the go using handwriting, source control commit messages out of code changes,...",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
     "id": 44901636,
     "by": "lordnacho",
     "timeISO": "2025-08-14T15:31:35.000Z",
     "textPlain": "I think I agree with the idea that LLMs are good at the junior level stuff.What's happened for me recently is I've started to revisit the idea that typing speed doesn't matter.This is an age-old thing, most people don't think it really matters how fast you can type. I suppose the steelman is, most people think it doesn't really matters how fast you can get the edits to your code that you want. With modern tools, you're not typing out all the code anyway, and there's all sorts of non-AI ways to get your code looking the way you want. And that doesn't matter, the real work of the engineer is the architecture of how the whole program functions. Typing things faster doesn't make you get to the goal faster, since finding the overall design is the limiting thing.But I've been using Claude for a while now, and I'm starting to see the real benefit: you no longer need to concentrate to rework the code.It used to be burdensome to do certain things. For instance, I decided to add an enum value, and now I have to address all the places where it matches on that enum. This wasn't intellectually hard in the old world, you just got the compiler to tell you where the problems were, and you added a little section for your new value to do whatever it needed, in all the places it appeared.But you had to do this carefully, otherwise you would just cause more compile/error cycles. Little things like forgetting a semicolon will eat a cycle, and old tools would just tell you the error was there, not fix it for you.LLMs fix it for you. Now you can just tell Claude to change all the code in a loop until it compiles. You can have multiple agents working on your code, fixing little things in many places, while you sit on HN and muse about it. Or perhaps spend the time considering what direction the code needs to go.The big thing however is that when you're no longer held up by little compile errors, you can do more things. I had a whole laundry list of things I wanted to change about my codeba",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44902015,
-    "by": "1zael",
-    "timeISO": "2025-08-14T15:59:02.000Z",
-    "textPlain": "> \"when test fail, they are left guessing as to whether to fix the code or the tests\"I've one thing that helps is using the \"Red-Green-Refactor\" language. We're in RED phase - test should fail. We're in GREEN phase - make this test pass with minimal code. We're in REFACTOR phase - improve the code without breaking tests.This helps the LLM understand the TDD mental model rather than just seeing \"broken code\" that needs fixing.",
     "parent": 44900116,
     "depth": 1
   },
@@ -72,14 +56,6 @@
     "depth": 1
   },
   {
-    "id": 44905259,
-    "by": "mikewarot",
-    "timeISO": "2025-08-14T20:26:37.000Z",
-    "textPlain": "3 months ago, I would have agreed with much of this article, however...In the past week, I watched this video[1] from Welch Labs about how deep networks work, and it inspired an idea. I spent some time \"vibe coding\" with Visual Studio Code's ChatGPT5 preview and had it generate a python framework that can take an image, and teach a small network how to generate that one sample image.The network was simple... 2 inputs (x,y), 3 outputs (r,g,b), and a number of hidden layers with a specified number of nodes per layer.It's an agent, it writes code, tests it, fixes problems, and it pretty much just works. As I explored the space of image generation, I had it add options over time, and it all just worked. Unlike previous efforts, I didn't have to copy/paste error messages in and try to figure out how things broke. I was pleasantly surprised that the code just worked in a manner close to what I wanted.The only real problem I had was getting .venv working right, and that's more of an install issue rather then the LLMs fault.I've got to say, I'm quite impressed with Python's argparse library.It's amazing how much detail you can get out of a 4 hidden layers of 64 values, and 3 output channels (rgb), if you're willing to through a few days of CPU time at it.  My goal is to see just how small of a network I can make to generate my favorite photo.As it iterates through checkpoints, I have it output an image with the current values, to compare against the original, it's quite fascinating to watch as it folds the latent space to capture major features of the photo, then folds some more to catch smaller details, over and over, as the signal to noise ratio very slowly increases over the hours.As for ChatGPT5, maybe I just haven't run out of context window yet, but for now, it all just seems like magic.[1] https://www.youtube.com/watch?v=qx7hirqgfuU",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
     "id": 44901488,
     "by": "generalizations",
     "timeISO": "2025-08-14T15:22:00.000Z",
@@ -88,10 +64,26 @@
     "depth": 1
   },
   {
-    "id": 44907101,
-    "by": "crabmusket",
-    "timeISO": "2025-08-14T23:53:41.000Z",
-    "textPlain": "The 4 step process outlined at the start of this article really reminds me of Deutsch's The Beginning of Infinity:> The real source of our theories is conjecture, and the real source of our knowledge is conjecture alternating with criticism.(This is rephrased Karl Popper, and Popper cites an intellectual lineage beginning somewhere around Parmenides.)I see writing tests as a criticism of the code you wrote, which itself was a conjecture. Both are attempting to approach an explanation in your mind, some platonic idea that you think you are putting on paper. The code is an attempt to do so, the test is criticism from a different direction that you have done so.",
+    "id": 44902015,
+    "by": "1zael",
+    "timeISO": "2025-08-14T15:59:02.000Z",
+    "textPlain": "> \"when test fail, they are left guessing as to whether to fix the code or the tests\"I've one thing that helps is using the \"Red-Green-Refactor\" language. We're in RED phase - test should fail. We're in GREEN phase - make this test pass with minimal code. We're in REFACTOR phase - improve the code without breaking tests.This helps the LLM understand the TDD mental model rather than just seeing \"broken code\" that needs fixing.",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44901793,
+    "by": "pjmlp",
+    "timeISO": "2025-08-14T15:42:40.000Z",
+    "textPlain": "Only because most AI startups are doing it wrong.I don't want a chat window.I want AI workflows as part of my IDE, like Visual Studio, InteliJ, Android Studio are finally going after.I want voice controlled actions on my native language.Knowledge across everything on the project for doing code refactorings, static analysis with AI feedback loop, generating UI based out of handwritten sketches, programming on the go using handwriting, source control commit messages out of code changes,...",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44905259,
+    "by": "mikewarot",
+    "timeISO": "2025-08-14T20:26:37.000Z",
+    "textPlain": "3 months ago, I would have agreed with much of this article, however...In the past week, I watched this video[1] from Welch Labs about how deep networks work, and it inspired an idea. I spent some time \"vibe coding\" with Visual Studio Code's ChatGPT5 preview and had it generate a python framework that can take an image, and teach a small network how to generate that one sample image.The network was simple... 2 inputs (x,y), 3 outputs (r,g,b), and a number of hidden layers with a specified number of nodes per layer.It's an agent, it writes code, tests it, fixes problems, and it pretty much just works. As I explored the space of image generation, I had it add options over time, and it all just worked. Unlike previous efforts, I didn't have to copy/paste error messages in and try to figure out how things broke. I was pleasantly surprised that the code just worked in a manner close to what I wanted.The only real problem I had was getting .venv working right, and that's more of an install issue rather then the LLMs fault.I've got to say, I'm quite impressed with Python's argparse library.It's amazing how much detail you can get out of a 4 hidden layers of 64 values, and 3 output channels (rgb), if you're willing to through a few days of CPU time at it.  My goal is to see just how small of a network I can make to generate my favorite photo.As it iterates through checkpoints, I have it output an image with the current values, to compare against the original, it's quite fascinating to watch as it folds the latent space to capture major features of the photo, then folds some more to catch smaller details, over and over, as the signal to noise ratio very slowly increases over the hours.As for ChatGPT5, maybe I just haven't run out of context window yet, but for now, it all just seems like magic.[1] https://www.youtube.com/watch?v=qx7hirqgfuU",
     "parent": 44900116,
     "depth": 1
   },
@@ -100,6 +92,14 @@
     "by": "Transfinity",
     "timeISO": "2025-08-14T15:22:16.000Z",
     "textPlain": "> LLMs get endlessly confused: they assume the code they wrote actually works; when test fail, they are left guessing as to whether to fix the code or the tests; and when it gets frustrating, they just delete the whole lot and start over.I feel personally described by this statement. At least on a bad day, or if I'm phoning it in. Not sure if that says anything about AI - maybe just that the whole \"mental models\" part is quite hard.",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44907101,
+    "by": "crabmusket",
+    "timeISO": "2025-08-14T23:53:41.000Z",
+    "textPlain": "The 4 step process outlined at the start of this article really reminds me of Deutsch's The Beginning of Infinity:> The real source of our theories is conjecture, and the real source of our knowledge is conjecture alternating with criticism.(This is rephrased Karl Popper, and Popper cites an intellectual lineage beginning somewhere around Parmenides.)I see writing tests as a criticism of the code you wrote, which itself was a conjecture. Both are attempting to approach an explanation in your mind, some platonic idea that you think you are putting on paper. The code is an attempt to do so, the test is criticism from a different direction that you have done so.",
     "parent": 44900116,
     "depth": 1
   },
@@ -384,18 +384,18 @@
     "depth": 2
   },
   {
-    "id": 44901530,
-    "by": "trod1234",
-    "timeISO": "2025-08-14T15:25:03.000Z",
-    "textPlain": "Isn't the 401 for LLMs the same single undecidable token? \nDoesn't this basically go to the undecidable nature of math in CS?Put another way, you have an excel roster corresponding to people with accounts where some need to have their account shutdown but you only have their first and last names as identifiers, and the pool is sufficiently large that there are more than one person per a given set of names.You can't shut down all accounts with a given name, and there is no unique identifier. How do you solve this?You have to ask and be given that unique identifier that differentiates between the undecidable. Without that, even the person can't do the task.The person can make guesses, but those guesses are just hallucinations with a significant n probability towards a bad repeat outcome.At a core level I don't think these type of issues are going to be solved. Quite a lot of people would be unable to solve this and struggle with this example (when not given the answer, or hinted at the solution in the framing of the task; ie when they just have a list of names and are told to do an impossible task).",
-    "parent": 44901335,
-    "depth": 2
-  },
-  {
     "id": 44903059,
     "by": "exe34",
     "timeISO": "2025-08-14T17:16:13.000Z",
     "textPlain": "to be fair, I've seen cursor step back and check higher level things. I was trying to set up a firecracker vm and it did everything for me, and when things didn't initially work, it started doing things like ls, tar -tvf, and then a bunch of checking networking stuff to make sure things were showing up in the right place.so current LLMs might not quite be human level, but I'd have to see a bigger model fail before I'd conclude that it can't do $X.",
+    "parent": 44901335,
+    "depth": 2
+  },
+  {
+    "id": 44901530,
+    "by": "trod1234",
+    "timeISO": "2025-08-14T15:25:03.000Z",
+    "textPlain": "Isn't the 401 for LLMs the same single undecidable token? \nDoesn't this basically go to the undecidable nature of math in CS?Put another way, you have an excel roster corresponding to people with accounts where some need to have their account shutdown but you only have their first and last names as identifiers, and the pool is sufficiently large that there are more than one person per a given set of names.You can't shut down all accounts with a given name, and there is no unique identifier. How do you solve this?You have to ask and be given that unique identifier that differentiates between the undecidable. Without that, even the person can't do the task.The person can make guesses, but those guesses are just hallucinations with a significant n probability towards a bad repeat outcome.At a core level I don't think these type of issues are going to be solved. Quite a lot of people would be unable to solve this and struggle with this example (when not given the answer, or hinted at the solution in the framing of the task; ie when they just have a list of names and are told to do an impossible task).",
     "parent": 44901335,
     "depth": 2
   }
