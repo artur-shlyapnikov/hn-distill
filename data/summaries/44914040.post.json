@@ -1,0 +1,8 @@
+{
+  "id": 44914040,
+  "lang": "ru",
+  "summary": "Я попросил LLM написать Elixir-NIF на C — почти получилось.  \nНужен был «спот-чек» свободного места без `:os_mon` и его 30-минутных интервалов.  \nGrok-3 сгенерировал черновик C и Makefile; дальше Gemini-2.5 Flash и GPT-5 доводили код до работы на Linux, macOS, Windows и BSD (кроме DragonFly).  \n\n**Что пошло не так**  \n- LLM забывали про `errno`, путались в типах `long`/`long long`, забывали `static inline`.  \n- На Windows предлагали `GetDiskFreeSpaceExA`, но не закрывали дескрипторы и не проверяли UNC.  \n- FreeBSD требовал `#include <sys/param.h>` перед `<sys/mount.h>` — модели не знали.  \n- OpenBSD не имеет `statvfs`, там `statfs`, и поля называются иначе.  \n- DragonFly вообще не поддерживает `statvfs64`.  \n\n**Как чинили**  \n- Добавил макросы `#ifdef __FreeBSD__`, `#ifdef _WIN32`, `#ifdef __OpenBSD__` и т.д.  \n- Вынес логику в `static inline` функции, чтобы не дублировать код.  \n- Добавил CI-матрицу на GitHub Actions: Ubuntu, macOS, Windows, FreeBSD, OpenBSD.  \n- Подключил `rustler_precompiled` для кросс-компиляции, но в итоге остался на чистом C.  \n\n**Результат**  \nПакет [disk_space](https://hex.pm/packages/disk_space) на Hex.pm:  \n```elixir\nDiskSpace.free(\"/\")      # {:ok, 123_456_789_012}\nDiskSpace.total(\"/\")     # {:ok, 1_000_000_000_000}\n```  \nNIF загружается за 1 мс, не тянет `:os_mon`, работает с UNC-путями на Windows.  \n\n**Вывод**  \nLLM — отличный генератор черновиков, но «production-ready» только после человеческого ревью и CI.",
+  "inputHash": "03f86c50bfeeab6cd8a3c8394a0e9df307ae66896ea18ac539e3cd75a1e636e1",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-15T16:32:02.051Z"
+}

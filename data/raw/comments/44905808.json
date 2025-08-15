@@ -40,18 +40,18 @@
     "depth": 1
   },
   {
-    "id": 44906410,
-    "by": "schmichael",
-    "timeISO": "2025-08-14T22:24:18.000Z",
-    "textPlain": "I'm curious if Rust would have prevented the memory correctness errors assuming it replaced Zig in this scenario. It sounds like the vast majority were due to Zig/C interactions which makes me believe Rust would have had the same issues, but as a Go developer I am only guessing. I'm curious if there is a language that provides more tools to ensure correctness even when you're interacting with a huge amount of C.",
-    "parent": 44905808,
-    "depth": 1
-  },
-  {
     "id": 44908408,
     "by": "throw10920",
     "timeISO": "2025-08-15T03:44:58.000Z",
     "textPlain": "> also verifying with Valgrind every step of the wayThis is...both extremely obvious, and also not something that I've ever done before, thought of doing, or seen anyone else do.Every single instance of Valgrind usage I've encountered or initiated has been triggered by a specific bug or performance regression.Proactive use of the Valgrind suite (Memcheck and Helgrind at least) as part of the development process would probably result in massively better stability of most tools - and would also make it far easier to find bugs (as you could find them when they were introduced rather than hundreds of commits later).",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44906410,
+    "by": "schmichael",
+    "timeISO": "2025-08-14T22:24:18.000Z",
+    "textPlain": "I'm curious if Rust would have prevented the memory correctness errors assuming it replaced Zig in this scenario. It sounds like the vast majority were due to Zig/C interactions which makes me believe Rust would have had the same issues, but as a Go developer I am only guessing. I'm curious if there is a language that provides more tools to ensure correctness even when you're interacting with a huge amount of C.",
     "parent": 44905808,
     "depth": 1
   },
@@ -64,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44906349,
-    "by": "8f2ab37a-ed6c",
-    "timeISO": "2025-08-14T22:18:45.000Z",
-    "textPlain": "Been a happy Ghostty user for a couple of months, it's my daily driver now as far as macOS terminals go. Thanks for all the hard work Mitchell & team.",
+    "id": 44907590,
+    "by": "stephen",
+    "timeISO": "2025-08-15T01:11:27.000Z",
+    "textPlain": "I've been using Ghostty, and other GPU-based apps like Alacritty / WezTerm / Zed, because they're ofc better/faster...Ironically they've all made my DX worse, by highlighting how terrible the nvidia drivers actually worked on both my old Regolith i3wm/compositor-less or new sway/wayland setup.Like it's ridiculously terrible.I've tried every magical env flag that Claude can think of, and 4 of the various 550/560/575/580 driver versions--they all suck at screensharing, or resume from sleep, or just out-right buginess/crashes/segfaults in the nvidia drivers.It must have always been this bad, but I just didn't notice, b/c I never actually used my GPU? lol",
     "parent": 44905808,
     "depth": 1
   },
@@ -80,10 +80,10 @@
     "depth": 1
   },
   {
-    "id": 44907590,
-    "by": "stephen",
-    "timeISO": "2025-08-15T01:11:27.000Z",
-    "textPlain": "I've been using Ghostty, and other GPU-based apps like Alacritty / WezTerm / Zed, because they're ofc better/faster...Ironically they've all made my DX worse, by highlighting how terrible the nvidia drivers actually worked on both my old Regolith i3wm/compositor-less or new sway/wayland setup.Like it's ridiculously terrible.I've tried every magical env flag that Claude can think of, and 4 of the various 550/560/575/580 driver versions--they all suck at screensharing, or resume from sleep, or just out-right buginess/crashes/segfaults in the nvidia drivers.It must have always been this bad, but I just didn't notice, b/c I never actually used my GPU? lol",
+    "id": 44906349,
+    "by": "8f2ab37a-ed6c",
+    "timeISO": "2025-08-14T22:18:45.000Z",
+    "textPlain": "Been a happy Ghostty user for a couple of months, it's my daily driver now as far as macOS terminals go. Thanks for all the hard work Mitchell & team.",
     "parent": 44905808,
     "depth": 1
   },
@@ -232,18 +232,18 @@
     "depth": 2
   },
   {
-    "id": 44909235,
-    "by": "dewey",
-    "timeISO": "2025-08-15T06:33:13.000Z",
-    "textPlain": "I've used Ghostty as my default terminal since I set up my new computer a couple of months ago. The only issue I have is the missing search which I often reach for to look through output that I didn't pipe anywhere.Bit it's also the most mentioned issue: https://github.com/ghostty-org/ghostty/issues/189",
-    "parent": 44908846,
-    "depth": 2
-  },
-  {
     "id": 44912924,
     "by": "don_searchcraft",
     "timeISO": "2025-08-15T14:32:32.000Z",
     "textPlain": "I love 99% of what Ghostty brings to the table as a terminal replacement but the copy / paste issues with it are incredibly frustrating and I run into them almost daily.",
+    "parent": 44908846,
+    "depth": 2
+  },
+  {
+    "id": 44909235,
+    "by": "dewey",
+    "timeISO": "2025-08-15T06:33:13.000Z",
+    "textPlain": "I've used Ghostty as my default terminal since I set up my new computer a couple of months ago. The only issue I have is the missing search which I often reach for to look through output that I didn't pipe anywhere.Bit it's also the most mentioned issue: https://github.com/ghostty-org/ghostty/issues/189",
     "parent": 44908846,
     "depth": 2
   },
@@ -269,6 +269,30 @@
     "timeISO": "2025-08-15T06:48:20.000Z",
     "textPlain": "No command f is the killer for me",
     "parent": 44908846,
+    "depth": 2
+  },
+  {
+    "id": 44911360,
+    "by": "any1",
+    "timeISO": "2025-08-15T12:08:10.000Z",
+    "textPlain": "I've used valgrind proactively as long as I've been programming in C and C++.The errors that are caught by valgrind (and asan) will very often not cause immediate crashes or any kind of obvious bugs. Instead, they cause intermittent bugs that are very hard to catch otherwise. They may even be security vulnerabilities.Another good reason for using it proactively is that small memory leaks tend to sneak in over time. They might not cause any issues and most of them aren't accumulative. However, having all those leaks in there makes it much more difficult to find big leaks when they happen because you have to sift through all the insignificant ones before you can fix the one that's causing problems.",
+    "parent": 44908408,
+    "depth": 2
+  },
+  {
+    "id": 44910163,
+    "by": "account42",
+    "timeISO": "2025-08-15T09:11:04.000Z",
+    "textPlain": "I've used Valgrind (mainly memcheck) as a proactive tool or at least as a tool to fish for easy to fix issues before spending too much time debugging specific reports. Main issue is the huge performance overhead that make interactive use under it less than fun - but IMO running your testsuite under it from time to time at least is a no brainer.",
+    "parent": 44908408,
+    "depth": 2
+  },
+  {
+    "id": 44910516,
+    "by": "ur-whale",
+    "timeISO": "2025-08-15T10:11:41.000Z",
+    "textPlain": "> Proactive use of the Valgrind suite (Memcheck and Helgrind at least) as part of the development processYeah, except that it's: slow and expensive and therefore can't be a part of the \"short cycle\" (edit code, compile, test, iterate) only the \"long cycle\" (nightly build, test suite). Also valgrind is not exactly designed to directly integrate in a test suite and that requires work.",
+    "parent": 44908408,
     "depth": 2
   },
   {
@@ -304,27 +328,11 @@
     "depth": 2
   },
   {
-    "id": 44911360,
-    "by": "any1",
-    "timeISO": "2025-08-15T12:08:10.000Z",
-    "textPlain": "I've used valgrind proactively as long as I've been programming in C and C++.The errors that are caught by valgrind (and asan) will very often not cause immediate crashes or any kind of obvious bugs. Instead, they cause intermittent bugs that are very hard to catch otherwise. They may even be security vulnerabilities.Another good reason for using it proactively is that small memory leaks tend to sneak in over time. They might not cause any issues and most of them aren't accumulative. However, having all those leaks in there makes it much more difficult to find big leaks when they happen because you have to sift through all the insignificant ones before you can fix the one that's causing problems.",
-    "parent": 44908408,
-    "depth": 2
-  },
-  {
-    "id": 44910163,
-    "by": "account42",
-    "timeISO": "2025-08-15T09:11:04.000Z",
-    "textPlain": "I've used Valgrind (mainly memcheck) as a proactive tool or at least as a tool to fish for easy to fix issues before spending too much time debugging specific reports. Main issue is the huge performance overhead that make interactive use under it less than fun - but IMO running your testsuite under it from time to time at least is a no brainer.",
-    "parent": 44908408,
-    "depth": 2
-  },
-  {
-    "id": 44910516,
-    "by": "ur-whale",
-    "timeISO": "2025-08-15T10:11:41.000Z",
-    "textPlain": "> Proactive use of the Valgrind suite (Memcheck and Helgrind at least) as part of the development processYeah, except that it's: slow and expensive and therefore can't be a part of the \"short cycle\" (edit code, compile, test, iterate) only the \"long cycle\" (nightly build, test suite). Also valgrind is not exactly designed to directly integrate in a test suite and that requires work.",
-    "parent": 44908408,
+    "id": 44908221,
+    "by": "aidenn0",
+    "timeISO": "2025-08-15T03:10:57.000Z",
+    "textPlain": "I had a similar experience with Wayland.  If I turned compositing effects of in X11, everything worked fine on my two machines (one with a 1050Ti, the other with an AMD card old enough to need the \"radeon\" driver).  Wayland would lag, or crash or just show garbled output.",
+    "parent": 44907590,
     "depth": 2
   },
   {
@@ -333,14 +341,6 @@
     "timeISO": "2025-08-14T23:45:34.000Z",
     "textPlain": "If it’s not maximized, the space isn’t wasted.  The title in the response image looks incredibly crowded.  May be ok if several buttons could be removed from the titlebar.",
     "parent": 44906777,
-    "depth": 2
-  },
-  {
-    "id": 44908221,
-    "by": "aidenn0",
-    "timeISO": "2025-08-15T03:10:57.000Z",
-    "textPlain": "I had a similar experience with Wayland.  If I turned compositing effects of in X11, everything worked fine on my two machines (one with a 1050Ti, the other with an AMD card old enough to need the \"radeon\" driver).  Wayland would lag, or crash or just show garbled output.",
-    "parent": 44907590,
     "depth": 2
   },
   {

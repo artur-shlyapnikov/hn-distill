@@ -1,5 +1,13 @@
 [
   {
+    "id": 44913597,
+    "by": "gus_massa",
+    "timeISO": "2025-08-15T15:29:07.000Z",
+    "textPlain": "> It’s very subjective, but I think the uniform stsrts looking reasonably good at a sample size of 8. The exponential however takes much longer to converge to a normal.That's a good observation. The main idea behind the Central Limit Theorem is to take the Fourier Transform, operate and then go back. After that, after normalization the result is that the new distribution for the sum of N variables is something like  Normal(X) + 1/N * \"Skewness\" * Something(X) + 1/N^2 * IDont * Remember(X) + ...\n\nWhere \"Skewness\" is a number defined in https://en.wikipedia.org/wiki/SkewnessThe uniform distribution is symmetric, so skewness=0 and the correction decrease like 1/N^2.The exponential distribution is very asymmetrical and and skewness!=0, so the main correction is like 1/N and takes longer to dissapear.",
+    "parent": 44909133,
+    "depth": 1
+  },
+  {
     "id": 44913071,
     "by": "ivan_ah",
     "timeISO": "2025-08-15T14:43:54.000Z",
@@ -12,6 +20,14 @@
     "by": "jethkl",
     "timeISO": "2025-08-15T11:56:56.000Z",
     "textPlain": "There is an analogue of the CLT for extreme values. The Fisher–Tippett–Gnedenko theorem is the extreme-values analogue of the CLT: if the properly normalized maximum of an i.i.d. sample converges, it must be Gumbel, Fréchet, or Weibull—unified as the Generalized Extreme Value distribution. Unlike the CLT, whose assumptions (in my experience) rarely hold in practice, this result is extremely general and underpins methods like wavelet thresholding and signal denoising—easy to demonstrate with a quick simulation.",
+    "parent": 44909133,
+    "depth": 1
+  },
+  {
+    "id": 44914151,
+    "by": "ngriffiths",
+    "timeISO": "2025-08-15T16:10:22.000Z",
+    "textPlain": "I was definitely expecting you'd need a higher sample size for the Q-Q plots to start looking good. All the points in other comments about drawbacks or poorly behaved distributions are well taken, and this is nothing new, but wow it really does work well.",
     "parent": 44909133,
     "depth": 1
   },
@@ -173,6 +189,14 @@
     "timeISO": "2025-08-15T11:19:26.000Z",
     "textPlain": "Yes indeed, if the sample size approached infinity (and not the number of samples), you would essentially just be calculating the mean of the original distribution.",
     "parent": 44910790,
+    "depth": 2
+  },
+  {
+    "id": 44914211,
+    "by": "ngriffiths",
+    "timeISO": "2025-08-15T16:16:41.000Z",
+    "textPlain": "For me the appeal is less that tidyverse is great and more that the R standard library is horrible. It's full of esoteric names, inconsistent use and order of parameters, unreasonable default behavior, behavior that surprises you coming from other programming experience. It's all in a couple massive packages instead of broken up into manageable pieces.Tidyverse is imperfect and it feels heavy-handed and awkward to replace all the major standard library functions, but Tidyverse stuff is way more ergonomic.",
+    "parent": 44909732,
     "depth": 2
   },
   {
