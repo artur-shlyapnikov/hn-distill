@@ -136,18 +136,14 @@ function getNextModel(): string {
   if (currentModelIndex === -1) {
     // First fallback
     currentModelIndex = 0;
-    const model = FALLBACK_MODELS[0];
-    if (!model) {
-      throw new Error("No fallback models available");
-    }
-    return model;
+    return FALLBACK_MODELS[0];
   }
 
   // Cycle through fallback models
   currentModelIndex = (currentModelIndex + 1) % FALLBACK_MODELS.length;
-  const model = FALLBACK_MODELS[currentModelIndex];
+  const model = FALLBACK_MODELS.at(currentModelIndex);
   if (!model) {
-    throw new Error("Next fallback model is unavailable");
+    throw new Error("Invalid fallback model index");
   }
   return model;
 }
@@ -156,9 +152,9 @@ function getCurrentModel(): string {
   if (currentModelIndex === -1) {
     return DEFAULT_MODEL;
   }
-  const model = FALLBACK_MODELS[currentModelIndex];
+  const model = FALLBACK_MODELS.at(currentModelIndex);
   if (!model) {
-    throw new Error("Current fallback model is unavailable");
+    throw new Error("Invalid fallback model index");
   }
   return model;
 }

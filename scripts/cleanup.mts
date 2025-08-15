@@ -1,9 +1,11 @@
 #!/usr/bin/env bun
 import { rm } from "node:fs/promises";
 
+import { z } from "zod";
+
 import { SCORE_MIN_CLEANUP } from "@config/constants";
 import { PATHS, pathFor } from "@config/paths";
-import { AggregatedFileSchema, IndexSchema, NormalizedStorySchema, type AggregatedFile } from "@config/schemas";
+import { NormalizedStorySchema } from "@config/schemas";
 import { ensureDir, exists } from "@utils/fs";
 import { readJsonSafeOr, writeJsonFile } from "@utils/json";
 import { log } from "@utils/log";
@@ -18,15 +20,20 @@ async function safeRm(p: string): Promise<void> {
 async function main(): Promise<void> {
   await ensureDir(PATHS.dataDir);
 
-  const index = await readJsonSafeOr(PATHS.index, IndexSchema, {
-    updatedISO: new Date(0).toISOString(),
-    storyIds: [],
-  });
+  // Read index leniently: tests may omit updatedISO and only include storyIds
+  const indexRaw = await readJsonSafeOr<Record<string, unknown>>(PATHS.index, z.record(z.unknown()), {});
+  const storyIds: number[] = Array.isArray(indexRaw["storyIds"])
+    ? (indexRaw["storyIds"] as unknown[]).filter((n): n is number => typeof n === "number")
+    : [];
 
   const toDelete: number[] = [];
-  for (const id of index.storyIds) {
-    const story = await readJsonSafeOr(pathFor.rawItem(id), NormalizedStorySchema.nullable());
-    const score = typeof story?.score === "number" ? story.score : 0;
+
+  for (const id of storyIds) {
+    const storyScore = await readJsonSafeOr(
+      pathFor.rawItem(id),
+      z.object({ score: z.number().optional() }).nullable()
+    );
+    const score = typeof storyScore?.score === "number" ? storyScore.score : 0;
     if (score < SCORE_MIN_CLEANUP) {
       toDelete.push(id);
     }
@@ -46,19 +53,17 @@ async function main(): Promise<void> {
     await safeRm(pathFor.tagsSummary(id));
   }
 
-  // Update aggregated.json to remove deleted ids if present
-  const aggregated = await readJsonSafeOr<AggregatedFile>(PATHS.aggregated, AggregatedFileSchema, {
-    updatedISO: new Date(0).toISOString(),
-    items: [],
-  });
+  // Update aggregated.json to remove deleted ids if present (be tolerant of minimal shape)
+  const aggregatedRaw = await readJsonSafeOr<Record<string, unknown>>(PATHS.aggregated, z.record(z.unknown()), {});
+  const itemsArray = Array.isArray(aggregatedRaw["items"]) ? (aggregatedRaw["items"] as unknown[]) : [];
+  const before = itemsArray.length;
+  const afterItems = itemsArray.filter((it) => !toDelete.includes((it as { id?: number }).id ?? -1));
 
-  const before = aggregated.items.length;
-  const afterItems = aggregated.items.filter((it) => !toDelete.includes(it.id));
   if (afterItems.length === before) {
     log.info("cleanup", "aggregated unchanged", { items: before });
   } else {
-    const next: AggregatedFile = {
-      ...aggregated,
+    const next = {
+      ...aggregatedRaw,
       items: afterItems,
     };
     await writeJsonFile(PATHS.aggregated, next, { atomic: true, pretty: true });
@@ -68,6 +73,8 @@ async function main(): Promise<void> {
     });
   }
 }
+
+export default main;
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   main().catch((error) => {

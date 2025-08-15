@@ -10,8 +10,20 @@ declare module "bun:test" {
   export function describe(name: string, fn: () => void): void;
   export function test(name: string, fn: () => void | Promise<void>, timeout?: number): void;
 
+  export type MockFunction<TArgs extends any[] = any[], TReturn = any> = ((...args: TArgs) => TReturn) & {
+    calls?: unknown[];
+  };
+
+  export interface Mock {
+    <T extends (...args: any[]) => any>(fn: T, implementation?: T): MockFunction<Parameters<T>, ReturnType<T>>;
+    module(modulePath: string, factory: () => unknown): void;
+  }
+
+  export const mock: Mock;
+
   interface ExpectMatchers<T = any> {
     toBe(expected: T): void;
+    toHaveBeenCalledTimes(count: number): void;
     toEqual(expected: T): void;
     toBeUndefined(): void;
     toBeNull(): void;

@@ -164,7 +164,9 @@ export class OpenRouter {
           );
         }
 
-        await new Promise((resolve) => setTimeout(resolve, 200 * attempt));
+        await new Promise<void>((resolve: (value: void | PromiseLike<void>) => void) =>
+          setTimeout(resolve, 200 * attempt)
+        );
       }
     }
 

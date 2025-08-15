@@ -23,7 +23,7 @@ export function slugify(s: string): string {
   return s
     .trim()
     .toLowerCase()
-    .replaceAll("'", "") // drop quotes
+    .replaceAll(/['’]/gu, "") // drop quotes
     .replaceAll(/[^\d#+\-.a-z]+/gu, "-") // keep techy symbols minimally
     .replaceAll(/-+/gu, "-")
     .replaceAll(/^-|-$/gu, "");

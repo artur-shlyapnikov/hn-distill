@@ -40,14 +40,23 @@ export function buildTagsPrompt(
   commentsSummary?: string
 ): string {
   const { title, url } = story;
-  const domain = url ? new URL(url).hostname : "";
-  const lines = [
+  const hasUrl = typeof url === "string" && url.length > 0;
+  const domain = hasUrl ? new URL(url).hostname : "";
+  const lines: string[] = [
     `Title: ${title}`,
-    `URL: ${url ?? "N/A"}`,
+    `URL: ${hasUrl ? url : "N/A"}`,
     `Domain: ${domain}`,
-    postSummary ? `\nArticle summary:\n${postSummary}` : "",
-    commentsSummary ? `\nComments summary:\n${commentsSummary}` : "",
-  ].filter(Boolean);
+  ];
+
+  const hasPost = typeof postSummary === "string" && postSummary.length > 0;
+  if (hasPost) {
+    lines.push(`\nArticle summary:\n${postSummary}`);
+  }
+
+  const hasComments = typeof commentsSummary === "string" && commentsSummary.length > 0;
+  if (hasComments) {
+    lines.push(`\nComments summary:\n${commentsSummary}`);
+  }
 
   return lines.join("\n");
 }

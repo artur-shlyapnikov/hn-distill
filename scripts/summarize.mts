@@ -60,10 +60,6 @@ export function makeServices(e: Env): Services {
   return { http, openrouter, fetchArticleMarkdown };
 }
 
-const { SUMMARY_LANG } = env;
-const { ARTICLE_SLICE_CHARS } = env;
-
-const LANG = SUMMARY_LANG;
 const TAGS_DEBUG_MESSAGE = "summarize/tags";
 
 // Log namespaces
@@ -77,13 +73,13 @@ function hashString(s: string): string {
 }
 
 function buildPostSystemInstruction(): string {
-  return LANG === "en"
+  return env.SUMMARY_LANG === "en"
     ? "make the content two times shorter, don't mention the title, publication date and other metadata; format the output as markdown"
     : "переведи на русский содержимое (не указывай заголовок, дату и другие метаданные), сократи в два раза; форматируй вывод как markdown";
 }
 
 function buildCommentsLanguageHeader(): string {
-  if (LANG === "en") {
+  if (env.SUMMARY_LANG === "en") {
     return "Language: en\nSummarize the discussion in 5-7 sentences or fewer. Use bullet points.";
   }
   return "Language: ru\nСделай саммари обсуждения в 5-7 предложениях или меньше. Твой ответ должен быть на русском языке. Используй bullet points.";
@@ -95,7 +91,7 @@ export async function buildPostPrompt(story: NormalizedStory, articleMd?: string
     log.warn(LOG_NAMESPACE_POST, "No article content – skipping post prompt", { id: story.id });
     return "";
   }
-  const articleSlice = content.slice(0, ARTICLE_SLICE_CHARS);
+  const articleSlice = content.slice(0, env.ARTICLE_SLICE_CHARS);
   log.debug(LOG_NAMESPACE_POST, "Built post prompt", { id: story.id, promptChars: articleSlice.length });
   return articleSlice;
 }
@@ -135,22 +131,31 @@ export async function buildCommentsPrompt(
 
 export function preserveMarkdownWhitespace(content: string): string {
   const normalized = content ? content.replaceAll(/\r\n?/gu, "\n") : "";
-  const lines = normalized.split("\n").map((line) => {
-    // Find trailing whitespace by looking from the end
-    let endIndex = line.length;
-    while (endIndex > 0 && line[endIndex - 1] && /\s/u.test(line.charAt(endIndex - 1))) {
-      endIndex--;
+  const lines = normalized.split("\n");
+  const outLines: string[] = [];
+  let inCodeBlock = false;
+
+  for (const line of lines) {
+    if (line.trim().startsWith("```")) {
+      inCodeBlock = !inCodeBlock;
+      outLines.push(line);
+      continue;
     }
 
-    const body = line.slice(0, endIndex);
-    const trailing = line.slice(endIndex);
+    if (inCodeBlock) {
+      outLines.push(line);
+    } else {
+      const body = line.trimEnd();
+      const trailing = line.slice(body.length);
 
-    if (trailing.length === 2) {
-      return `${body}  `;
+      if (trailing.length > 2) {
+        outLines.push(`${body}  `); // Trim to 2
+      } else {
+        outLines.push(line); // Keep as is if <= 2
+      }
     }
-    return body;
-  });
-  return lines.join("\n").trim();
+  }
+  return outLines.join("\n");
 }
 
 async function callLLM(services: Services, prompt: string): Promise<string> {
@@ -161,7 +166,7 @@ async function callLLM(services: Services, prompt: string): Promise<string> {
       temperature: 0.3,
       maxTokens: OPENROUTER_MAX_TOKENS,
     });
-    const cleaned = preserveMarkdownWhitespace(content);
+    const cleaned = preserveMarkdownWhitespace(content).trim();
     log.debug(LOG_NAMESPACE_LLM, "LLM response received", { summaryChars: cleaned.length });
     return cleaned;
   } catch (error) {
@@ -178,7 +183,7 @@ async function callLLMWithMessages(services: Services, messages: ChatMessage[]):
       temperature: 0.3,
       maxTokens: OPENROUTER_MAX_TOKENS,
     });
-    const cleaned = preserveMarkdownWhitespace(content);
+    const cleaned = preserveMarkdownWhitespace(content).trim();
     log.debug(LOG_NAMESPACE_LLM, "LLM response received", { summaryChars: cleaned.length });
     return cleaned;
   } catch (error) {
@@ -187,7 +192,7 @@ async function callLLMWithMessages(services: Services, messages: ChatMessage[]):
   }
 }
 
-function buildPostChatMessages(articleSlice: string): ChatMessage[] {
+export function buildPostChatMessages(articleSlice: string): ChatMessage[] {
   const system = buildPostSystemInstruction();
   return [
     { role: "system", content: system },
@@ -202,7 +207,7 @@ export async function summarizePost(
 ): Promise<Pick<PostSummary, "id" | "lang" | "summary">> {
   const messages = buildPostChatMessages(articleSlice);
   const summary = await callLLMWithMessages(services, messages);
-  return { id: story.id, lang: SUMMARY_LANG, summary };
+  return { id: story.id, lang: env.SUMMARY_LANG, summary };
 }
 
 export async function summarizeComments(
@@ -212,7 +217,7 @@ export async function summarizeComments(
   sampleIds: number[] = []
 ): Promise<Pick<CommentsSummary, "id" | "lang" | "sampleComments" | "summary">> {
   const summary = await callLLM(services, prompt);
-  return { id: storyId, lang: SUMMARY_LANG, summary, sampleComments: sampleIds };
+  return { id: storyId, lang: env.SUMMARY_LANG, summary, sampleComments: sampleIds };
 }
 
 export async function getOrFetchArticleMarkdown(
@@ -254,7 +259,7 @@ export async function getOrFetchArticleMarkdown(
 async function processPostSummary(services: Services, story: NormalizedStory, postPath: string): Promise<void> {
   const articleMd = await getOrFetchArticleMarkdown(services, story);
   const postArticleSlice = await buildPostPrompt(story, articleMd);
-  const postInputHash = hashString(`${LANG}|${postArticleSlice}`);
+  const postInputHash = hashString(`${env.SUMMARY_LANG}|${postArticleSlice}`);
   const existingPostSummary = await readJsonSafeOr(postPath, PostSummarySchema);
 
   if (existingPostSummary?.inputHash === postInputHash) {

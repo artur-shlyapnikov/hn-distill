@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import { env as environment } from "../config/env.ts";
 import type { NormalizedComment, NormalizedStory } from "../config/schemas.ts";
-import { buildCommentsPrompt, buildPostPrompt } from "../scripts/summarize.mts";
+import { buildCommentsPrompt, buildPostChatMessages, buildPostPrompt } from "../scripts/summarize.mts";
 
 describe("scripts/summarize prompt builders", () => {
   test("buildPostPrompt returns only article content slice when present", async () => {
@@ -92,5 +92,76 @@ describe("scripts/summarize prompt builders", () => {
 
     // sampleIds should exclude blank one and take first non-blank up to 5
     expect(sampleIds).toEqual([1, 3]);
+  });
+
+  test("buildPostPrompt obeys ARTICLE_SLICE_CHARS", async () => {
+    const originalSliceChars = environment.ARTICLE_SLICE_CHARS;
+    environment.ARTICLE_SLICE_CHARS = 100;
+
+    const story: NormalizedStory = {
+      id: 1,
+      title: "T",
+      url: null,
+      by: "a",
+      timeISO: new Date().toISOString(),
+      commentIds: [],
+    };
+    const articleMd = "x".repeat(200);
+
+    const prompt = await buildPostPrompt(story, articleMd);
+
+    expect(prompt.length).toBe(100);
+    expect(prompt).toBe("x".repeat(100));
+
+    environment.ARTICLE_SLICE_CHARS = originalSliceChars;
+  });
+
+  test("buildPostChatMessages includes correct system instruction per lang", async () => {
+    const originalLang = environment.SUMMARY_LANG;
+
+    // English
+    environment.SUMMARY_LANG = "en";
+    let messages = buildPostChatMessages("article");
+    expect(messages[0]?.role).toBe("system");
+    expect(messages[0]?.content).toBe(
+      "make the content two times shorter, don't mention the title, publication date and other metadata; format the output as markdown"
+    );
+
+    // Russian
+    environment.SUMMARY_LANG = "ru";
+    messages = buildPostChatMessages("article");
+    expect(messages[0]?.role).toBe("system");
+    expect(messages[0]?.content).toBe(
+      "переведи на русский содержимое (не указывай заголовок, дату и другие метаданные), сократи в два раза; форматируй вывод как markdown"
+    );
+
+    environment.SUMMARY_LANG = originalLang;
+  });
+
+  test("buildCommentsPrompt preserves sampleIds order and cap", async () => {
+    const comments: NormalizedComment[] = [
+      { id: 1, textPlain: "one" },
+      { id: 2, textPlain: "   " }, // blank
+      { id: 3, textPlain: "three" },
+      { id: 4, textPlain: "four" },
+      { id: 5, textPlain: "five" },
+      { id: 6, textPlain: "six" },
+      { id: 7, textPlain: "seven" },
+      { id: 8, textPlain: "" }, // blank
+    ].map(
+      (c) =>
+        ({
+          by: "u",
+          timeISO: new Date().toISOString(),
+          parent: 0,
+          depth: 1,
+          ...c,
+        }) as NormalizedComment
+    );
+
+    const { sampleIds } = await buildCommentsPrompt(comments);
+
+    expect(sampleIds.length).toBe(5);
+    expect(sampleIds).toEqual([1, 3, 4, 5, 6]); // first 5 non-blank, in order
   });
 });

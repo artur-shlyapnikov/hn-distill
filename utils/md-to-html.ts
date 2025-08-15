@@ -59,6 +59,60 @@ const transformTags = {
       },
     };
   },
+  th: (tagName: string, attribs: Record<string, string>) => {
+    const { style } = attribs;
+    switch (style) {
+      case "text-align:right": {
+        attribs["align"] = "right";
+        break;
+      }
+      case "text-align:center": {
+        attribs["align"] = "center";
+        break;
+      }
+      case "text-align:left": {
+        attribs["align"] = "left";
+        break;
+      }
+      case undefined: {
+        // no-op
+        break;
+      }
+      default: {
+        // leave as-is for other values
+        break;
+      }
+    }
+    delete attribs["style"];
+    return { tagName, attribs };
+  },
+  td: (tagName: string, attribs: Record<string, string>) => {
+    const { style } = attribs;
+    switch (style) {
+      case "text-align:right": {
+        attribs["align"] = "right";
+        break;
+      }
+      case "text-align:center": {
+        attribs["align"] = "center";
+        break;
+      }
+      case "text-align:left": {
+        attribs["align"] = "left";
+        break;
+      }
+      case undefined: {
+        // no-op
+        break;
+      }
+      default: {
+        // leave as-is for other values
+        break;
+      }
+    }
+    delete attribs["style"];
+    return { tagName, attribs };
+  },
 } as const;
 
 export function mdToHtml(src: string): string {

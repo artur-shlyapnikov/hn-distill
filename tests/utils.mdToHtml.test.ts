@@ -38,4 +38,22 @@ describe("utils/mdToHtml", () => {
     expect(html).toContain('<a href="https://example.com"');
     expect(html).toContain('target="_blank"');
   });
+
+  test("28. mdToHtml preserves table/align attrs and sanitizes others", () => {
+    const md = [
+      "| Left | Right |",
+      "|:---|---:|",
+      "| L | R |",
+      "",
+      "<script>alert('bad')</script> [link](https://example.com)",
+    ].join("\n");
+
+    const html = mdToHtml(md);
+
+    expect(html).toContain("<table>");
+    expect(html).toContain('<th align="right">Right</th>');
+    expect(html).toContain('<td align="right">R</td>');
+    expect(html).not.toContain("<script>");
+    expect(html).toContain('<a href="https://example.com" target="_blank" rel="noopener noreferrer nofollow">link</a>');
+  });
 });

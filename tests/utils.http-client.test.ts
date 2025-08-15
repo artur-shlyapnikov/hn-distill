@@ -71,4 +71,31 @@ describe("utils/http-client", () => {
       expect(error.status).toBe(400);
     }
   });
+
+  test("29. HttpClient.text retries/backoffs and merges headers", async () => {
+    let calls = 0;
+    let seenHeaders: Headers | undefined;
+    (globalThis as Record<string, unknown>)["fetch"] = async (_url: string, init?: RequestInit): Promise<Response> => {
+      calls++;
+      seenHeaders = new Headers(init?.headers);
+      if (calls < 2) {
+        return new Response("Service Unavailable", { status: 503 });
+      }
+      return new Response("OK", { status: 200 });
+    };
+
+    const client = new HttpClient(
+      { retries: 2, baseBackoffMs: 1, timeoutMs: 200, retryOnStatuses: [] },
+      { headers: {}, ua: "test-agent/1.0" }
+    );
+
+    const res = await client.text("http://retry-text.com", {
+      headers: { "x-custom-header": "custom-value" },
+    });
+
+    expect(calls).toBe(2);
+    expect(res).toBe("OK");
+    expect(seenHeaders?.get("user-agent")).toBe("test-agent/1.0");
+    expect(seenHeaders?.get("x-custom-header")).toBe("custom-value");
+  });
 });

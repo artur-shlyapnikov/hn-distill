@@ -17,7 +17,7 @@ import { HttpClient } from "@utils/http-client";
 import { readJsonSafeOr, writeJsonFile } from "@utils/json";
 import { clamp, htmlToPlain } from "@utils/text";
 
-type Services = {
+export type Services = {
   http: HttpClient;
 };
 
@@ -132,8 +132,8 @@ async function migrateCache(raw: unknown): Promise<SeenCacheShape> {
   return migrated;
 }
 
-async function readSeenCache(): Promise<SeenCacheShape> {
-  const rawCache = await readJsonSafeOr<Record<string, unknown>>(PATHS.seenCache, z.record(z.unknown()), {});
+export async function readSeenCache(p: string = PATHS.seenCache): Promise<SeenCacheShape> {
+  const rawCache = await readJsonSafeOr<Record<string, unknown>>(p, z.record(z.unknown()), {});
   return migrateCache(rawCache);
 }
 
