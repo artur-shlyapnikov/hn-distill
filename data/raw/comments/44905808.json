@@ -40,18 +40,18 @@
     "depth": 1
   },
   {
-    "id": 44906410,
-    "by": "schmichael",
-    "timeISO": "2025-08-14T22:24:18.000Z",
-    "textPlain": "I'm curious if Rust would have prevented the memory correctness errors assuming it replaced Zig in this scenario. It sounds like the vast majority were due to Zig/C interactions which makes me believe Rust would have had the same issues, but as a Go developer I am only guessing. I'm curious if there is a language that provides more tools to ensure correctness even when you're interacting with a huge amount of C.",
-    "parent": 44905808,
-    "depth": 1
-  },
-  {
     "id": 44908408,
     "by": "throw10920",
     "timeISO": "2025-08-15T03:44:58.000Z",
     "textPlain": "> also verifying with Valgrind every step of the wayThis is...both extremely obvious, and also not something that I've ever done before, thought of doing, or seen anyone else do.Every single instance of Valgrind usage I've encountered or initiated has been triggered by a specific bug or performance regression.Proactive use of the Valgrind suite (Memcheck and Helgrind at least) as part of the development process would probably result in massively better stability of most tools - and would also make it far easier to find bugs (as you could find them when they were introduced rather than hundreds of commits later).",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44906410,
+    "by": "schmichael",
+    "timeISO": "2025-08-14T22:24:18.000Z",
+    "textPlain": "I'm curious if Rust would have prevented the memory correctness errors assuming it replaced Zig in this scenario. It sounds like the vast majority were due to Zig/C interactions which makes me believe Rust would have had the same issues, but as a Go developer I am only guessing. I'm curious if there is a language that provides more tools to ensure correctness even when you're interacting with a huge amount of C.",
     "parent": 44905808,
     "depth": 1
   },
@@ -88,18 +88,18 @@
     "depth": 1
   },
   {
-    "id": 44910461,
-    "by": "WhyNotHugo",
-    "timeISO": "2025-08-15T10:03:58.000Z",
-    "textPlain": "I wouldn’t call GTK the “native” framework on Linux/Wayland or Linux/X11.Native would be talking to the compositor directly.GTK provides a cross-platform layer of abstractions over the compositor. That’s the opposite of native.There’s countless bugs in the Linux port for applications (eg: Firefox) which can’t be fixed because of a he abstractions done by GTK.",
-    "parent": 44905808,
-    "depth": 1
-  },
-  {
     "id": 44906538,
     "by": "jwar767",
     "timeISO": "2025-08-14T22:38:33.000Z",
     "textPlain": "We had a similar experience to this at work. We wrote a google cloud service that interfaced with firestore using F# and found it painful because the firestore library is meant to be used with C#. It worked decently well but it was hard to write idiomatic F# without having a bunch of wrapping functions.",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44910461,
+    "by": "WhyNotHugo",
+    "timeISO": "2025-08-15T10:03:58.000Z",
+    "textPlain": "I wouldn’t call GTK the “native” framework on Linux/Wayland or Linux/X11.Native would be talking to the compositor directly.GTK provides a cross-platform layer of abstractions over the compositor. That’s the opposite of native.There’s countless bugs in the Linux port for applications (eg: Firefox) which can’t be fixed because of a he abstractions done by GTK.",
     "parent": 44905808,
     "depth": 1
   },
@@ -173,6 +173,14 @@
     "timeISO": "2025-08-15T03:13:22.000Z",
     "textPlain": "I did not know this was a project that was in progress, and its quite exciting. I love Godot, and am quite fond a Zig as well. I'll be keeping my eye on this.",
     "parent": 44906447,
+    "depth": 2
+  },
+  {
+    "id": 44911030,
+    "by": "giancarlostoro",
+    "timeISO": "2025-08-15T11:29:16.000Z",
+    "textPlain": "GTK having this kind of scheme is why Vala was made and inspired by C# but uses GObject and all its joys, then transpiles your code to C.This is why a surprising number of GTK applications (more than I realized) are coded in Vala. I lowkey wish they had just adopted D instead of building up Vala. D is basically compiled C# to me in its own ways.",
+    "parent": 44906189,
     "depth": 2
   },
   {
@@ -256,10 +264,42 @@
     "depth": 2
   },
   {
+    "id": 44911360,
+    "by": "any1",
+    "timeISO": "2025-08-15T12:08:10.000Z",
+    "textPlain": "I've used valgrind proactively as long as I've been programming in C and C++.The errors that are caught by valgrind (and asan) will very often not cause immediate crashes or any kind of obvious bugs. Instead, they cause intermittent bugs that are very hard to catch otherwise. They may even be security vulnerabilities.Another good reason for using it proactively is that small memory leaks tend to sneak in over time. They might not cause any issues and most of them aren't accumulative. However, having all those leaks in there makes it much more difficult to find big leaks when they happen because you have to sift through all the insignificant ones before you can fix the one that's causing problems.",
+    "parent": 44908408,
+    "depth": 2
+  },
+  {
+    "id": 44910163,
+    "by": "account42",
+    "timeISO": "2025-08-15T09:11:04.000Z",
+    "textPlain": "I've used Valgrind (mainly memcheck) as a proactive tool or at least as a tool to fish for easy to fix issues before spending too much time debugging specific reports. Main issue is the huge performance overhead that make interactive use under it less than fun - but IMO running your testsuite under it from time to time at least is a no brainer.",
+    "parent": 44908408,
+    "depth": 2
+  },
+  {
+    "id": 44910516,
+    "by": "ur-whale",
+    "timeISO": "2025-08-15T10:11:41.000Z",
+    "textPlain": "> Proactive use of the Valgrind suite (Memcheck and Helgrind at least) as part of the development processYeah, except that it's: slow and expensive and therefore can't be a part of the \"short cycle\" (edit code, compile, test, iterate) only the \"long cycle\" (nightly build, test suite). Also valgrind is not exactly designed to directly integrate in a test suite and that requires work.",
+    "parent": 44908408,
+    "depth": 2
+  },
+  {
     "id": 44906453,
     "by": "mitchellh",
     "timeISO": "2025-08-14T22:28:55.000Z",
     "textPlain": "Hi @schmichael ;) Rust would've prevented one. The rest Rust wouldn't have prevented since as you already noticed, it was in the boundary layer and semantics of a C API. It would've only been as safe as the Rust wrapper. One argument is that the richer, more proven ecosystem of wrapper libraries may have prevented it versus my DIY wrappers.The one Rust would've prevented was a simple undefined memory access: https://github.com/ghostty-org/ghostty/pull/7982 (At least, I'm pretty sure Rust would've caught this). In practice, it meant that we were copying garbage memory on the first rendered frame, but that memory wasn't used or sent anywhere so in practice it was mostly safe. Still, its not correct!",
+    "parent": 44906410,
+    "depth": 2
+  },
+  {
+    "id": 44911444,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-15T12:17:14.000Z",
+    "textPlain": "Rust would face similar issues. Its safety guarantees only apply within Rust code; the FFI boundary with C/GObject is inherently unsafe and requires manual lifetime management. Rust's borrow checker can't verify external code's memory usage.",
     "parent": 44906410,
     "depth": 2
   },
@@ -280,22 +320,6 @@
     "depth": 2
   },
   {
-    "id": 44910163,
-    "by": "account42",
-    "timeISO": "2025-08-15T09:11:04.000Z",
-    "textPlain": "I've used Valgrind (mainly memcheck) as a proactive tool or at least as a tool to fish for easy to fix issues before spending too much time debugging specific reports. Main issue is the huge performance overhead that make interactive use under it less than fun - but IMO running your testsuite under it from time to time at least is a no brainer.",
-    "parent": 44908408,
-    "depth": 2
-  },
-  {
-    "id": 44910516,
-    "by": "ur-whale",
-    "timeISO": "2025-08-15T10:11:41.000Z",
-    "textPlain": "> Proactive use of the Valgrind suite (Memcheck and Helgrind at least) as part of the development processYeah, except that it's: slow and expensive and therefore can't be a part of the \"short cycle\" (edit code, compile, test, iterate) only the \"long cycle\" (nightly build, test suite). Also valgrind is not exactly designed to directly integrate in a test suite and that requires work.",
-    "parent": 44908408,
-    "depth": 2
-  },
-  {
     "id": 44907053,
     "by": "mixmastamyk",
     "timeISO": "2025-08-14T23:45:34.000Z",
@@ -309,6 +333,22 @@
     "timeISO": "2025-08-15T03:10:57.000Z",
     "textPlain": "I had a similar experience with Wayland.  If I turned compositing effects of in X11, everything worked fine on my two machines (one with a 1050Ti, the other with an AMD card old enough to need the \"radeon\" driver).  Wayland would lag, or crash or just show garbled output.",
     "parent": 44907590,
+    "depth": 2
+  },
+  {
+    "id": 44911039,
+    "by": "lumpa",
+    "timeISO": "2025-08-15T11:29:54.000Z",
+    "textPlain": "Linux people get really worked up when I say \"platform-native\". There is no such thing on Linux, but reasonable people agree that something like a GTK app (or Qt) feels \"native\" on *most desktops* over other applications.\n\nhttps://mitchellh.com/writing/ghostty-gtk-rewrite#user-conte...",
+    "parent": 44910461,
+    "depth": 2
+  },
+  {
+    "id": 44911214,
+    "by": "MadcapJake",
+    "timeISO": "2025-08-15T11:51:25.000Z",
+    "textPlain": "\"native\" here means using the same toolkit as the desktop environment.",
+    "parent": 44910461,
     "depth": 2
   },
   {
@@ -357,38 +397,6 @@
     "timeISO": "2025-08-14T21:59:34.000Z",
     "textPlain": "Agreed, seems like a lot of unnecessary girating just to implement something that would've been much simpler + cross-platform with a custom UI toolkit and something like opengl. Tabs are like UI 101",
     "parent": 44906138,
-    "depth": 2
-  },
-  {
-    "id": 44906594,
-    "by": "mitchellh",
-    "timeISO": "2025-08-14T22:44:28.000Z",
-    "textPlain": "Hold onto your butts cause 1.2 is weeks away and the release notes if printed would cause a [larger than we already have] deforestation problem.",
-    "parent": 44906421,
-    "depth": 2
-  },
-  {
-    "id": 44907364,
-    "by": "AndyKelley",
-    "timeISO": "2025-08-15T00:33:28.000Z",
-    "textPlain": "Windows is becoming less and less of a platform every year",
-    "parent": 44907032,
-    "depth": 2
-  },
-  {
-    "id": 44907447,
-    "by": "keithnz",
-    "timeISO": "2025-08-15T00:46:19.000Z",
-    "textPlain": "WezTerm is a great terminal that IS cross platform and works well on windows (and arguably better than ghostty)",
-    "parent": 44907032,
-    "depth": 2
-  },
-  {
-    "id": 44909043,
-    "by": "WhereIsTheTruth",
-    "timeISO": "2025-08-15T05:55:31.000Z",
-    "textPlain": "Windows is just a web browser, yes i'm serious",
-    "parent": 44907032,
     "depth": 2
   }
 ]

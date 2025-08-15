@@ -3,7 +3,15 @@
     "id": 44910863,
     "by": "jpcompartir",
     "timeISO": "2025-08-15T11:06:14.000Z",
-    "textPlain": "The code style - and in particular the *comments - indicate most of the code was written by AI. My apologies if you are not trying to hide this fact, but it seems like common decency to label that you're heavily using AI?*Comments like this: \"# Anonymous function\"",
+    "textPlain": "Edit: OP confirms there's no AI-generated code, so do ignore me.The code style - and in particular the *comments - indicate most of the code was written by AI. My apologies if you are not trying to hide this fact, but it seems like common decency to label that you're heavily using AI?*Comments like this: \"# Anonymous function\"",
+    "parent": 44909133,
+    "depth": 1
+  },
+  {
+    "id": 44911265,
+    "by": "jethkl",
+    "timeISO": "2025-08-15T11:56:56.000Z",
+    "textPlain": "There is an analogue of the CLT for extreme values. The Fisher–Tippett–Gnedenko theorem is the extreme-values analogue of the CLT: if the properly normalized maximum of an i.i.d. sample converges, it must be Gumbel, Fréchet, or Weibull—unified as the Generalized Extreme Value distribution. Unlike the CLT, whose assumptions (in my experience) rarely hold in practice, this result is extremely general and underpins methods like wavelet thresholding and signal denoising—easy to demonstrate with a quick simulation.",
     "parent": 44909133,
     "depth": 1
   },
@@ -12,6 +20,22 @@
     "by": "niemandhier",
     "timeISO": "2025-08-15T07:21:31.000Z",
     "textPlain": "Highly entertaining, here a little fun fact: there exist a generalisation of the central limit theorem for distributions without find out variance.For some reasons this is much less known, also the implications are vast. Via the detour of stable distributions and limiting distributions, this generalised central limit theorem plays an important role in the rise of power laws in physics.",
+    "parent": 44909133,
+    "depth": 1
+  },
+  {
+    "id": 44911441,
+    "by": "firesteelrain",
+    "timeISO": "2025-08-15T12:16:46.000Z",
+    "textPlain": "“ You’re also likely not going to have the resources to take twenty-thousand different samples.”There are methods to calculate how many estimated samples you need. It’s not in the 20k unless your population is extremely high",
+    "parent": 44909133,
+    "depth": 1
+  },
+  {
+    "id": 44911473,
+    "by": "ForceBru",
+    "timeISO": "2025-08-15T12:21:23.000Z",
+    "textPlain": "Speaking of CLTs, is there a good book or reference paper that discusses various CLTs (not just the basic IID one) in a somewhat introductory manner?",
     "parent": 44909133,
     "depth": 1
   },
@@ -48,10 +72,34 @@
     "depth": 1
   },
   {
+    "id": 44910963,
+    "by": "gtsnexp",
+    "timeISO": "2025-08-15T11:22:48.000Z",
+    "textPlain": "https://gptzero.me/\nSays that at large portions of it are 100% human",
+    "parent": 44910863,
+    "depth": 2
+  },
+  {
+    "id": 44910976,
+    "by": "robluxus",
+    "timeISO": "2025-08-15T11:24:20.000Z",
+    "textPlain": "Interesting comment. Why is it common decency to call out how much ai was used for generating an artifact?Is there a threshold?\nI assume spell checkers, linters and formatters are fair game. \nThe other extreme is full-on ai slop. \nWhere do we as a society should start to feel the need to police this (better)?",
+    "parent": 44910863,
+    "depth": 2
+  },
+  {
     "id": 44909729,
     "by": "Tachyooon",
     "timeISO": "2025-08-15T08:01:03.000Z",
     "textPlain": "3blue1brown has a great series of videos on the central limit theorem, and it makes me wish there were something similar covering the generalised form in a similar format. I have a textbook on my reading list that covers it, unfortunately I'm I can't seem to find it or the title right now. (edit: it's \"The Fundamentals of Heavy Tails\" by Nair, Wierman, and Zwart from 2022)Do you have any good sources for the physics angle?",
+    "parent": 44909520,
+    "depth": 2
+  },
+  {
+    "id": 44911398,
+    "by": "nextos",
+    "timeISO": "2025-08-15T12:11:59.000Z",
+    "textPlain": "Yes, came here to say the same thing. Not telling people that the CLT makes strong assumptions is important.Otherwise, they might end up underestimating rare events, with potentially catastrophic consequences. There are also CLTs for product and max operators, aside from the sum.The Fundamentals of Heavy Tails: Properties, Emergence, and Estimation discusses these topics in a rigorous way, but without excessive mathematics. See: https://adamwierman.com/book",
     "parent": 44909520,
     "depth": 2
   },
@@ -80,6 +128,30 @@
     "depth": 2
   },
   {
+    "id": 44911514,
+    "by": "vinnyorvinny",
+    "timeISO": "2025-08-15T12:26:48.000Z",
+    "textPlain": "For a very light discussion, Tao does a good job here: https://terrytao.wordpress.com/2015/11/19/275a-notes-5-varia...",
+    "parent": 44911473,
+    "depth": 2
+  },
+  {
+    "id": 44911365,
+    "by": "k2enemy",
+    "timeISO": "2025-08-15T12:08:39.000Z",
+    "textPlain": "It is correct in the article.  As the sample size approaches infinity, the distribution of the sample means approaches normal.https://en.wikipedia.org/wiki/Central_limit_theorem",
+    "parent": 44910790,
+    "depth": 2
+  },
+  {
+    "id": 44910937,
+    "by": "jaccola",
+    "timeISO": "2025-08-15T11:19:26.000Z",
+    "textPlain": "Yes indeed, if the sample size approached infinity (and not the number of samples), you would essentially just be calculating the mean of the original distribution.",
+    "parent": 44910790,
+    "depth": 2
+  },
+  {
     "id": 44910144,
     "by": "gjf",
     "timeISO": "2025-08-15T09:07:46.000Z",
@@ -104,18 +176,18 @@
     "depth": 2
   },
   {
-    "id": 44910157,
-    "by": "gjf",
-    "timeISO": "2025-08-15T09:10:23.000Z",
-    "textPlain": "Very much an inspiration and resource when composing the post.",
-    "parent": 44909806,
-    "depth": 2
-  },
-  {
     "id": 44909965,
     "by": "oriettaxx",
     "timeISO": "2025-08-15T08:41:18.000Z",
     "textPlain": "and the Galton Board \nhttps://en.m.wikipedia.org/wiki/Galton_board(yes, that Galton who invented eugenetics)",
+    "parent": 44909806,
+    "depth": 2
+  },
+  {
+    "id": 44910157,
+    "by": "gjf",
+    "timeISO": "2025-08-15T09:10:23.000Z",
+    "textPlain": "Very much an inspiration and resource when composing the post.",
     "parent": 44909806,
     "depth": 2
   }

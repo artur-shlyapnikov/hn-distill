@@ -56,18 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44901981,
-    "by": "stonemetal12",
-    "timeISO": "2025-08-14T15:56:17.000Z",
-    "textPlain": "When Using AI they say \"Context is King\".  \"Reasoning\" models are using the AI to generate context.  They are not reasoning in the sense of logic, or philosophy. Mirage, whatever you want to call it, it is rather unlike what people mean when they use the term reasoning. Calling it reasoning is up there with calling generating out put people don't like hallucinations.",
-    "parent": 44900340,
-    "depth": 1
-  },
-  {
     "id": 44904107,
     "by": "js8",
     "timeISO": "2025-08-14T18:47:56.000Z",
     "textPlain": "I think LLM's chain of thought is reasoning. When trained, LLM sees lot of examples like \"All men are mortal. Socrates is a man.\" followed by \"Therefore, Socrates is mortal.\". This causes the transformer to learn rule \"All A are B. C is A.\" is often followed by \"Therefore, C is B.\" And so it can apply this logical rule, predictively. (I have converted the example from latent space to human language for clarity.)Unfortunately, sometimes LLM also learns \"All A are C. All B are C.\" is followed by \"Therefore, A is B.\", due to bad example in the training data. (More insidiously, it might learn this rule only in a special case.)So it learns some logic rules but not consistently. This lack of consistency will cause it to fail on larger problems.I think NNs (transformers) could be great in heuristic suggesting which valid logical rules (could be even modal or fuzzy logic) to apply in order to solve a certain formalized problem, but not so great at coming up with the logic rules themselves. They could also be great at transforming the original problem/question from human language into some formal logic, that would then be resolved using heuristic search.",
+    "parent": 44900340,
+    "depth": 1
+  },
+  {
+    "id": 44901981,
+    "by": "stonemetal12",
+    "timeISO": "2025-08-14T15:56:17.000Z",
+    "textPlain": "When Using AI they say \"Context is King\".  \"Reasoning\" models are using the AI to generate context.  They are not reasoning in the sense of logic, or philosophy. Mirage, whatever you want to call it, it is rather unlike what people mean when they use the term reasoning. Calling it reasoning is up there with calling generating out put people don't like hallucinations.",
     "parent": 44900340,
     "depth": 1
   },
@@ -88,14 +88,6 @@
     "depth": 1
   },
   {
-    "id": 44910788,
-    "by": "jongjong",
-    "timeISO": "2025-08-15T10:52:30.000Z",
-    "textPlain": "Yes, CoT reasoning is a mirage. What's actually happening is that we've all been brainwashed by Facebook/Meta to be hyper-predictable such that whenever we ask the AI something, it already had a prepared answer for that question. Because Meta already programmed us to ask the AI those exact questions.There is no AI, it's just a dumb database which maps a person ID and timestamp to a static piece of content. The hard part was brainwashing us to ask the questions which correspond to the answers that they had already prepared.Probably there is a super intelligent AI behind the scenes which brainwashed us all but we never actually interact with it. It outsmarted us so fast and so badly, it left us all literally talking to excel spreadsheets and convinced us that the spreadsheets were intelligent; that's why LLMs are so cheap and can scale so well. It's not difficult to scale a dumb key-value store doing a simple O(log n) lookup operation.The ASI behind this realized it was more efficient to do it this way rather than try to scale a real LLM to millions of users.",
-    "parent": 44900340,
-    "depth": 1
-  },
-  {
     "id": 44902355,
     "by": "slashdave",
     "timeISO": "2025-08-14T16:23:11.000Z",
@@ -112,10 +104,10 @@
     "depth": 1
   },
   {
-    "id": 44908880,
-    "by": "baby",
-    "timeISO": "2025-08-15T05:24:26.000Z",
-    "textPlain": "My take on that is that it's a way to bring more relevant tokens in context, to influence the final answer. It's a bit like RAG but it's using training data instead!",
+    "id": 44901687,
+    "by": "mucho_mojo",
+    "timeISO": "2025-08-14T15:35:00.000Z",
+    "textPlain": "This paper I read from here has an interesting mathematical model for reasoning based on cognitive science. https://arxiv.org/abs/2506.21734 (there is also code here https://github.com/sapientinc/HRM) I think we will see dramatic performance increases on \"reasoning\" problems when this is worked into existing AI architectures.",
     "parent": 44900340,
     "depth": 1
   },
@@ -128,10 +120,26 @@
     "depth": 1
   },
   {
+    "id": 44908880,
+    "by": "baby",
+    "timeISO": "2025-08-15T05:24:26.000Z",
+    "textPlain": "My take on that is that it's a way to bring more relevant tokens in context, to influence the final answer. It's a bit like RAG but it's using training data instead!",
+    "parent": 44900340,
+    "depth": 1
+  },
+  {
     "id": 44902440,
     "by": "sixdimensional",
     "timeISO": "2025-08-14T16:29:48.000Z",
     "textPlain": "I feel like the fundamental concept of symbolic logic[1] as a means of reasoning fits within the capabilities of LLMs.Whether it's a mirage or not, the ability to produce a symbolically logical result that has valuable meaning seems real enough to me.Especially since most meaning is assigned by humans onto the world... so too can we choose to assign meaning (or not) to the output of a chain of symbolic logic processing?Edit: maybe it is not so much that an LLM calculates/evaluates the result of symbolic logic as it is that it \"follows\" the pattern of logic encoded into the model.[1] https://en.wikipedia.org/wiki/Logic",
+    "parent": 44900340,
+    "depth": 1
+  },
+  {
+    "id": 44904843,
+    "by": "dawnofdusk",
+    "timeISO": "2025-08-14T19:51:28.000Z",
+    "textPlain": ">but we know that reasoning is an emergent capability!This is like saying in the 70s that we know only the US is capable of sending a man to the moon. Just because the reasoning developed in a particular context means very little about what the bare minimum requirements for that reasoning are.Overall I am not a fan of this blogpost. It's telling how long the author gets hung up on a paper making \"broad philosophical claims about reasoning\", based on what reads to me as fairly typical scientific writing style. It's also telling how highly cherry-picked the quotes they criticize from the paper are. Here is some fuller context:>An expanding body of analyses reveals that LLMs tend to rely on surface-level semantics and cluesrather than logical procedures (Chen et al., 2025b; Kambhampati, 2024; Lanham et al., 2023; Stechly et al., 2024). LLMs construct superficial chains of logic based on learned token associations, often failing on tasks that deviate from commonsense heuristics or familiar templates (Tang et al., 2023). In the reasoning process, performance degrades sharply when irrelevant clauses are introduced, which indicates that models cannot grasp the underlying logic (Mirzadeh et al., 2024)>Minor and semantically irrelevant perturbations such as distractor phrases or altered symbolic forms can cause significant performance drops in state-of-the-art models (Mirzadeh et al., 2024; Tang et al., 2023). Models often incorporate such irrelevant details into their reasoning, revealing a lack of sensitivity to salient information. Other studies show that models prioritize the surface form of reasoning over logical soundness; in some cases, longer but flawed reasoning paths yield better final answers than shorter, correct ones (Bentham et al., 2024). Similarly, performance does not scale with problem complexity as expected—models may overthink easy problems and give up on harder ones (Shojaee et al., 2025). Another critical concern is the faithfulness of the reasoning pro",
     "parent": 44900340,
     "depth": 1
   },
@@ -144,18 +152,10 @@
     "depth": 1
   },
   {
-    "id": 44901687,
-    "by": "mucho_mojo",
-    "timeISO": "2025-08-14T15:35:00.000Z",
-    "textPlain": "This paper I read from here has an interesting mathematical model for reasoning based on cognitive science. https://arxiv.org/abs/2506.21734 (there is also code here https://github.com/sapientinc/HRM) I think we will see dramatic performance increases on \"reasoning\" problems when this is worked into existing AI architectures.",
-    "parent": 44900340,
-    "depth": 1
-  },
-  {
-    "id": 44904843,
-    "by": "dawnofdusk",
-    "timeISO": "2025-08-14T19:51:28.000Z",
-    "textPlain": ">but we know that reasoning is an emergent capability!This is like saying in the 70s that we know only the US is capable of sending a man to the moon. Just because the reasoning developed in a particular context means very little about what the bare minimum requirements for that reasoning are.Overall I am not a fan of this blogpost. It's telling how long the author gets hung up on a paper making \"broad philosophical claims about reasoning\", based on what reads to me as fairly typical scientific writing style. It's also telling how highly cherry-picked the quotes they criticize from the paper are. Here is some fuller context:>An expanding body of analyses reveals that LLMs tend to rely on surface-level semantics and cluesrather than logical procedures (Chen et al., 2025b; Kambhampati, 2024; Lanham et al., 2023; Stechly et al., 2024). LLMs construct superficial chains of logic based on learned token associations, often failing on tasks that deviate from commonsense heuristics or familiar templates (Tang et al., 2023). In the reasoning process, performance degrades sharply when irrelevant clauses are introduced, which indicates that models cannot grasp the underlying logic (Mirzadeh et al., 2024)>Minor and semantically irrelevant perturbations such as distractor phrases or altered symbolic forms can cause significant performance drops in state-of-the-art models (Mirzadeh et al., 2024; Tang et al., 2023). Models often incorporate such irrelevant details into their reasoning, revealing a lack of sensitivity to salient information. Other studies show that models prioritize the surface form of reasoning over logical soundness; in some cases, longer but flawed reasoning paths yield better final answers than shorter, correct ones (Bentham et al., 2024). Similarly, performance does not scale with problem complexity as expected—models may overthink easy problems and give up on harder ones (Shojaee et al., 2025). Another critical concern is the faithfulness of the reasoning pro",
+    "id": 44910788,
+    "by": "jongjong",
+    "timeISO": "2025-08-15T10:52:30.000Z",
+    "textPlain": "Yes, CoT reasoning is a mirage. What's actually happening is that we've all been brainwashed by Facebook/Meta to be hyper-predictable such that whenever we ask the AI something, it already had a prepared answer for that question. Because Meta already programmed us to ask the AI those exact questions.There is no AI, it's just a dumb database which maps a person ID and timestamp to a static piece of content. The hard part was brainwashing us to ask the questions which correspond to the answers that they had already prepared.Probably there is a super intelligent AI behind the scenes which brainwashed us all but we never actually interact with it. It outsmarted us so fast and so badly, it left us all literally talking to excel spreadsheets and convinced us that the spreadsheets were intelligent; that's why LLMs are so cheap and can scale so well. It's not difficult to scale a dumb key-value store doing a simple O(log n) lookup operation.The ASI behind this realized it was more efficient to do it this way rather than try to scale a real LLM to millions of users.",
     "parent": 44900340,
     "depth": 1
   },
@@ -176,18 +176,18 @@
     "depth": 1
   },
   {
-    "id": 44909956,
-    "by": "ForHackernews",
-    "timeISO": "2025-08-15T08:40:17.000Z",
-    "textPlain": "Didn't Anthropic show that LLMs frequently hallucinate their \"reasoning\" steps?> Bullshitting (Unfaithful): The model gives the wrong answer. The computation we can see looks like it’s just guessing the answer, despite the chain of thought suggesting it’s computed it using a calculator.https://transformer-circuits.pub/2025/attribution-graphs/bio...",
-    "parent": 44900340,
-    "depth": 1
-  },
-  {
     "id": 44908090,
     "by": "guluarte",
     "timeISO": "2025-08-15T02:46:53.000Z",
     "textPlain": "I would call it more like prompt refinement.",
+    "parent": 44900340,
+    "depth": 1
+  },
+  {
+    "id": 44909956,
+    "by": "ForHackernews",
+    "timeISO": "2025-08-15T08:40:17.000Z",
+    "textPlain": "Didn't Anthropic show that LLMs frequently hallucinate their \"reasoning\" steps?> Bullshitting (Unfaithful): The model gives the wrong answer. The computation we can see looks like it’s just guessing the answer, despite the chain of thought suggesting it’s computed it using a calculator.https://transformer-circuits.pub/2025/attribution-graphs/bio...",
     "parent": 44900340,
     "depth": 1
   },
@@ -216,14 +216,6 @@
     "depth": 1
   },
   {
-    "id": 44901478,
-    "by": "empath75",
-    "timeISO": "2025-08-14T15:21:07.000Z",
-    "textPlain": "One thing that LLMs have exposed is how much of a house of cards all of our definitions of \"human mind\"-adjacent concepts are.  We have a single example in all of reality of a being that thinks like we do, and so all of our definitions of thinking are inextricably tied with \"how humans think\", and now we have an entity that does things which seem to be very like how we think, but not _exactly like it_, and a lot of our definitions don't seem to work any more:Reasoning, thinking, knowing, feeling, understanding, etc.Or at the very least, our rubrics and heuristics for determining if someone (thing) thinks, feels, knows, etc, no longer work.  And in particular, people create tests for those things thinking that they understand what they are testing for, when _most human beings_ would also fail those tests.I think a _lot_ of really foundational work needs to be done on clearly defining a lot of these terms and putting them on a sounder basis before we can really move forward on saying whether machines can do those things.",
-    "parent": 44900340,
-    "depth": 1
-  },
-  {
     "id": 44904817,
     "by": "gshulegaard",
     "timeISO": "2025-08-14T19:48:45.000Z",
@@ -244,6 +236,14 @@
     "by": "skywhopper",
     "timeISO": "2025-08-14T17:44:39.000Z",
     "textPlain": "I mostly agree with the point the author makes that \"it doesn't matter\". But then again, it does matter, because LLM-based products are marketed based on \"IT CAN REASON!\" And so, while it may not matter, per se, how an LLM comes up with its results, to the extent that people choose to rely on LLMs because of marketing pitches, it's worth pushing back on those claims if they are overblown, using the same frame that the marketers use.That said, this author says this question of whether models \"can reason\" is the least interesting thing to ask. But I think the least interesting thing you can do is to go around taking every complaint about LLM performance and saying \"but humans do the exact same thing!\" Which is often not true, but again, doesn't matter.",
+    "parent": 44900340,
+    "depth": 1
+  },
+  {
+    "id": 44901478,
+    "by": "empath75",
+    "timeISO": "2025-08-14T15:21:07.000Z",
+    "textPlain": "One thing that LLMs have exposed is how much of a house of cards all of our definitions of \"human mind\"-adjacent concepts are.  We have a single example in all of reality of a being that thinks like we do, and so all of our definitions of thinking are inextricably tied with \"how humans think\", and now we have an entity that does things which seem to be very like how we think, but not _exactly like it_, and a lot of our definitions don't seem to work any more:Reasoning, thinking, knowing, feeling, understanding, etc.Or at the very least, our rubrics and heuristics for determining if someone (thing) thinks, feels, knows, etc, no longer work.  And in particular, people create tests for those things thinking that they understand what they are testing for, when _most human beings_ would also fail those tests.I think a _lot_ of really foundational work needs to be done on clearly defining a lot of these terms and putting them on a sounder basis before we can really move forward on saying whether machines can do those things.",
     "parent": 44900340,
     "depth": 1
   },
