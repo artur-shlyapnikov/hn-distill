@@ -5,15 +5,17 @@ import { z } from "zod";
 
 import { env, type Env } from "@config/env";
 import { PATHS, pathFor } from "@config/paths";
-import { HnItemRawSchema } from "@config/schemas";
+import {
+  HnItemRawSchema,
+  type HnItemRaw,
+  type NormalizedComment,
+  type NormalizedStory,
+} from "@config/schemas";
 import { ensureDir } from "@utils/fs";
+import { HN } from "@utils/hn";
 import { HttpClient } from "@utils/http-client";
 import { readJsonSafeOr, writeJsonFile } from "@utils/json";
 import { clamp, htmlToPlain } from "@utils/text";
-
-import { HN } from "../utils/hn.js";
-
-import type { HnItemRaw, NormalizedComment, NormalizedStory } from "@config/schemas";
 
 type Services = {
   http: HttpClient;
@@ -95,7 +97,7 @@ export function normalizeStory(raw: HnItemRaw): NormalizedStory {
   };
 }
 
-type CacheShape = Record<
+type SeenCacheShape = Record<
   number,
   {
     seenTopLevel: number[];
@@ -104,8 +106,8 @@ type CacheShape = Record<
   }
 >;
 
-async function migrateCache(raw: unknown): Promise<CacheShape> {
-  const migrated: CacheShape = {};
+async function migrateCache(raw: unknown): Promise<SeenCacheShape> {
+  const migrated: SeenCacheShape = {};
   if (typeof raw !== "object" || raw === null) {
     return migrated;
   }
@@ -130,8 +132,8 @@ async function migrateCache(raw: unknown): Promise<CacheShape> {
   return migrated;
 }
 
-async function readCache(): Promise<CacheShape> {
-  const rawCache = await readJsonSafeOr<Record<string, unknown>>(PATHS.cache, z.record(z.unknown()), {});
+async function readSeenCache(): Promise<SeenCacheShape> {
+  const rawCache = await readJsonSafeOr<Record<string, unknown>>(PATHS.seenCache, z.record(z.unknown()), {});
   return migrateCache(rawCache);
 }
 
@@ -262,9 +264,9 @@ async function main(): Promise<void> {
   await ensureDir(PATHS.raw.items);
   await ensureDir(PATHS.raw.comments);
   await ensureDir(dirname(PATHS.index));
-  await ensureDir(dirname(PATHS.cache));
+  await ensureDir(dirname(PATHS.seenCache));
 
-  const cache = await readCache();
+  const seenCache = await readSeenCache();
 
   const topIds = await readTopIds(services, env.TOP_N);
   const idsSet = new Set<number>(topIds);
@@ -288,7 +290,7 @@ async function main(): Promise<void> {
         const story = normalizeStory(item);
         stories.push(story);
 
-        const entry = cache[story.id];
+        const entry = seenCache[story.id];
         const seenByDepth = entry?.seenByDepth ?? {};
         const rootIds = Array.isArray(story.commentIds) ? story.commentIds : [];
 
@@ -305,7 +307,7 @@ async function main(): Promise<void> {
           for (const [depth, array] of Object.entries(allSeenByDepth)) {
             c[String(depth)] = [...new Set(array)];
           }
-          cache[story.id] = {
+          seenCache[story.id] = {
             seenTopLevel: [...new Set(rootIds)],
             seenByDepth: c,
             updatedISO: new Date().toISOString(),
@@ -327,7 +329,7 @@ async function main(): Promise<void> {
   };
   await writeJsonFile(PATHS.index, index, { atomic: true, pretty: true });
 
-  await writeJsonFile(PATHS.cache, cache, { atomic: true, pretty: true });
+  await writeJsonFile(PATHS.seenCache, seenCache, { atomic: true, pretty: true });
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

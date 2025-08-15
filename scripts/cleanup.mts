@@ -1,13 +1,12 @@
 #!/usr/bin/env bun
 import { rm } from "node:fs/promises";
 
+import { SCORE_MIN_CLEANUP } from "@config/constants";
 import { PATHS, pathFor } from "@config/paths";
 import { AggregatedFileSchema, IndexSchema, NormalizedStorySchema, type AggregatedFile } from "@config/schemas";
 import { ensureDir, exists } from "@utils/fs";
 import { readJsonSafeOr, writeJsonFile } from "@utils/json";
 import { log } from "@utils/log";
-
-const SCORE_MIN = 50;
 
 async function safeRm(p: string): Promise<void> {
   if (await exists(p)) {
@@ -28,14 +27,14 @@ async function main(): Promise<void> {
   for (const id of index.storyIds) {
     const story = await readJsonSafeOr(pathFor.rawItem(id), NormalizedStorySchema.nullable());
     const score = typeof story?.score === "number" ? story.score : 0;
-    if (score < SCORE_MIN) {
+    if (score < SCORE_MIN_CLEANUP) {
       toDelete.push(id);
     }
   }
 
   log.info("cleanup", "low-score stories to delete", {
     count: toDelete.length,
-    min: SCORE_MIN,
+    min: SCORE_MIN_CLEANUP,
   });
 
   for (const id of toDelete) {

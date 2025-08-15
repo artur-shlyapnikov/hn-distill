@@ -1,27 +1,22 @@
 ---
 import StorySection from '../../components/StorySection.astro';
 import '../../styles/global.css';
-import { env } from '@config/env';
+import { LANG } from '@config/lang';
+import { PATHS } from '@config/paths';
 import { formatDateHuman } from '@utils/date';
-import { readFileSync, existsSync } from 'node:fs';
 import type { AggregatedItem } from '@config/schemas';
+import { loadAggregated } from '@utils/load-aggregated';
 
 export const PAGE_SIZE = 10;
 
 export async function getStaticPaths() {
-  const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
-  const data = existsSync(dataPath) ? JSON.parse(readFileSync(dataPath, 'utf8')) : { items: [], updatedISO: '—' };
-  const items = Array.isArray((data as any).items) ? (data as any).items : [];
+  const { items } = loadAggregated(PATHS.aggregated);
   const totalPages = Math.max(1, Math.ceil(items.length / PAGE_SIZE));
   return Array.from({ length: totalPages }, (_, i) => ({ params: { page: String(i + 1) } }));
 }
 
-const lang = env.SUMMARY_LANG;
-const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
-const data = existsSync(dataPath) ? JSON.parse(readFileSync(dataPath, 'utf8')) : { items: [], updatedISO: '—' };
-
-const allItems = Array.isArray((data as any).items) ? (data as any).items : [];
-const updatedISO = typeof (data as any).updatedISO === 'string' ? (data as any).updatedISO : '—';
+const lang = LANG;
+const { items: allItems, updatedISO } = loadAggregated(PATHS.aggregated);
 const updatedPretty = formatDateHuman(updatedISO);
 
 const totalPages = Math.max(1, Math.ceil(allItems.length / PAGE_SIZE));

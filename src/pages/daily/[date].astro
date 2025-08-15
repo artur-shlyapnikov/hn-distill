@@ -1,60 +1,43 @@
 ---
 import StorySection from '../../components/StorySection.astro';
 import '../../styles/global.css';
-import { env } from '@config/env';
+import { LANG } from '@config/lang';
+import { PATHS } from '@config/paths';
+import type { AggregatedItem } from '@config/schemas';
 import { formatDateHuman } from '@utils/date';
-import { readFileSync, existsSync } from 'node:fs';
+import { indexById, loadAggregated, pickByIds } from '@utils/load-aggregated';
+import { readJsonSafeOr } from '@utils/json';
+import { z } from 'zod';
 
-type AggregatedItem = {
-  id: number;
-  title: string;
-  url: string | null;
-  by: string;
-  timeISO: string;
-  postSummary?: string;
-  commentsSummary?: string;
-  score?: number;
-  commentsCount?: number;
-  hnUrl?: string;
-  domain?: string;
-};
-
-type AggregatedFile = {
-  updatedISO: string;
-  items: AggregatedItem[];
-};
-
-function toDateKeyUTC(iso: string): string {
-  // Use UTC date key to avoid timezone ambiguity
-  return typeof iso === 'string' && iso.length >= 10 ? iso.slice(0, 10) : '0000-00-00';
-}
+const DailyGroupFileSchema = z.object({
+  updatedISO: z.string(),
+  byDate: z.record(z.array(z.number())),
+});
 
 export async function getStaticPaths() {
-  function toDateKeyUTC(iso: string): string {
-    return typeof iso === 'string' && iso.length >= 10 ? iso.slice(0, 10) : '0000-00-00';
-  }
-
-  const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
-  const data: AggregatedFile = existsSync(dataPath)
-    ? JSON.parse(readFileSync(dataPath, 'utf8'))
-    : { items: [], updatedISO: '—' };
-  const items = Array.isArray((data as any).items) ? (data as any).items as AggregatedItem[] : [];
-  const keys = Array.from(new Set(items.map((it) => toDateKeyUTC(it.timeISO))));
+  const dailyGroup = await readJsonSafeOr(PATHS.grouped.daily, DailyGroupFileSchema, {
+    updatedISO: '',
+    byDate: {},
+  });
+  const keys = Object.keys(dailyGroup.byDate);
   keys.sort((a, b) => (a < b ? 1 : a > b ? -1 : 0));
   return keys.map((key) => ({ params: { date: key } }));
 }
 
-const lang = env.SUMMARY_LANG;
+const lang = LANG;
 const dateParam = Astro.params.date ?? '';
 const dateKey = typeof dateParam === 'string' ? dateParam : '';
 
-const dataPath = new URL('../../../data/aggregated.json', import.meta.url).pathname;
-const data: AggregatedFile = existsSync(dataPath)
-  ? JSON.parse(readFileSync(dataPath, 'utf8'))
-  : { items: [], updatedISO: '—' };
+const { items: allItems } = loadAggregated(PATHS.aggregated);
+const itemsById = indexById(allItems);
 
-const allItems: AggregatedItem[] = Array.isArray((data as any).items) ? (data as any).items as AggregatedItem[] : [];
-const dayItems = allItems.filter((it) => toDateKeyUTC(it.timeISO) === dateKey);
+const dailyGroup = await readJsonSafeOr(PATHS.grouped.daily, DailyGroupFileSchema, {
+  updatedISO: '',
+  byDate: {},
+});
+
+const dayIds = dailyGroup.byDate[dateKey] ?? [];
+const dayItems = pickByIds(itemsById, dayIds);
 
 // Format date for display
 const displayDate = dateKey ? formatDateHuman(`${dateKey}T12:00:00Z`) : dateKey;
@@ -103,5 +86,3 @@ const description = `Hacker News Digest for ${displayDate}. ${dayItems.length} $
     </main>
   </body>
   </html>
-
-

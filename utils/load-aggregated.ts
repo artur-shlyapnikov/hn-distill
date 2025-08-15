@@ -46,3 +46,27 @@ export function loadAggregated(pathname: string): AggregatedData {
     return { items: [], updatedISO: "—" };
   }
 }
+
+export function indexById(items: AggregatedItem[]): Map<number, AggregatedItem> {
+  const map = new Map<number, AggregatedItem>();
+  for (const item of items) {
+    map.set(item.id, item);
+  }
+  return map;
+}
+
+export function pickByIds(map: Map<number, AggregatedItem>, ids: number[]): AggregatedItem[] {
+  const result: AggregatedItem[] = [];
+  const seen = new Set<number>();
+  for (const id of ids) {
+    if (seen.has(id)) {
+      continue;
+    }
+    const item = map.get(id);
+    if (item) {
+      result.push(item);
+      seen.add(id);
+    }
+  }
+  return result;
+}

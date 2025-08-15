@@ -1,14 +1,15 @@
 ---
 import StorySection from "../components/StorySection.astro";
 import "../styles/global.css";
-import { env } from "@config/env";
+import { LANG } from "@config/lang";
+import { isoWeekKey } from "@utils/date-keys";
 import { formatDateHuman } from "@utils/date";
 import type { AggregatedItem } from "@config/schemas";
 import { loadAggregated } from "@utils/load-aggregated";
 
 const PAGE_SIZE = 10;
 
-const lang = env.SUMMARY_LANG;
+const lang = LANG;
 const dataPath = new URL("../../data/aggregated.json", import.meta.url).pathname;
 const { items, updatedISO } = loadAggregated(dataPath);
 const updatedPretty = formatDateHuman(updatedISO);
@@ -28,12 +29,8 @@ const latestDate = firstItem?.timeISO
   ? new Date(firstItem.timeISO).toISOString().slice(0, 10)
   : new Date().toISOString().slice(0, 10);
 
-// Generate current week for weekly link (consistent with toWeekKeyUTC format)
-const now = new Date();
-const startOfYear = new Date(now.getFullYear(), 0, 1);
-const pastDaysOfYear = (now.getTime() - startOfYear.getTime()) / 86400000;
-const weekNumber = Math.ceil((pastDaysOfYear + startOfYear.getDay() + 1) / 7);
-const currentWeek = `${now.getFullYear()}-w${weekNumber.toString().padStart(2, "0")}`;
+// Generate current week for weekly link (consistent with isoWeekKey format)
+const currentWeek = isoWeekKey(new Date().toISOString());
 
 const i18n = {
   ru: {

@@ -2,6 +2,7 @@ import { dirname } from "node:path";
 
 import { formatISO } from "date-fns";
 
+import { SCORE_MIN_AGGREGATE } from "@config/constants";
 import { PATHS, pathFor } from "@config/paths";
 import {
   AggregatedFileSchema,
@@ -12,14 +13,16 @@ import {
   NormalizedStorySchema,
   PostSummarySchema,
   TagsSummarySchema,
+  type AggregatedFile,
+  type AggregatedItem,
+  type NormalizedComment,
+  type NormalizedStory,
 } from "@config/schemas";
+import { isoWeekKey, toDateKeyUTC } from "@utils/date-keys";
 import { ensureDir } from "@utils/fs";
+import { HN } from "@utils/hn";
 import { readJsonSafeOr, writeJsonFile } from "@utils/json";
 import { log } from "@utils/log";
-
-import { HN } from "../utils/hn.js";
-
-import type { AggregatedFile, AggregatedItem, NormalizedComment, NormalizedStory } from "@config/schemas";
 
 type Services = {
   noop?: true;
@@ -28,8 +31,6 @@ type Services = {
 export function makeServices(): Services {
   return {};
 }
-
-const SCORE_MIN = 75;
 
 async function loadStoryData(id: number): Promise<{
   story: NormalizedStory | undefined;
@@ -113,8 +114,8 @@ export async function readAggregates(storyIds: number[]): Promise<AggregatedItem
     }
 
     const score = typeof story.score === "number" ? story.score : 0;
-    if (score < SCORE_MIN) {
-      log.debug("aggregate", "Skipping story due to low score", { id, score, min: SCORE_MIN });
+    if (score < SCORE_MIN_AGGREGATE) {
+      log.debug("aggregate", "Skipping story due to low score", { id, score, min: SCORE_MIN_AGGREGATE });
       continue;
     }
 
@@ -193,7 +194,7 @@ async function main(): Promise<void> {
   // simplicity: keep also enforcing score >= SCORE_MIN on merged output
   const merged = [...byId.values()].filter((it) => {
     const s = typeof it.score === "number" ? it.score : 0;
-    return s >= SCORE_MIN;
+    return s >= SCORE_MIN_AGGREGATE;
   });
 
   const sorted = merged.sort(sortItemsDesc);
@@ -228,21 +229,9 @@ async function main(): Promise<void> {
     const { items, updatedISO } = payload;
     const byDay: Record<string, number[]> = {};
     const byWeek: Record<string, number[]> = {};
-    function dayKey(iso: string): string {
-      return iso.slice(0, 10);
-    }
-    function isoWeekKey(iso: string): string {
-      const d = new Date(iso);
-      const dt = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
-      const dayNumber = dt.getUTCDay() || 7;
-      dt.setUTCDate(dt.getUTCDate() + 4 - dayNumber);
-      const yearStart = new Date(Date.UTC(dt.getUTCFullYear(), 0, 1));
-      const weekNo = Math.ceil(((dt.getTime() - yearStart.getTime()) / 86_400_000 + 1) / 7);
-      const w = String(weekNo).padStart(2, "0");
-      return `${dt.getUTCFullYear()}-w${w}`;
-    }
+
     for (const it of items) {
-      const dkey = dayKey(it.timeISO);
+      const dkey = toDateKeyUTC(it.timeISO);
       const wkey = isoWeekKey(it.timeISO);
       (byDay[dkey] ??= []).push(it.id);
       (byWeek[wkey] ??= []).push(it.id);

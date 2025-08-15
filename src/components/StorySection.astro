@@ -1,11 +1,12 @@
 ---
-import { env } from "@config/env";
+import { HOT_SCORE_THRESHOLD, LONG_DISCUSSION_THRESHOLD } from "@config/constants";
+import { LANG } from "@config/lang";
 import type { AggregatedItem } from "@config/schemas";
 import { formatDateHuman } from "@utils/date";
-import mdToHtmlUtil from "@utils/md-to-html";
+import { mdToHtml } from "@utils/md-to-html";
 
 const { item } = Astro.props as { item: AggregatedItem };
-const lang = env.SUMMARY_LANG;
+const lang = LANG;
 const tags = Array.isArray(item.tags) ? item.tags : [];
 
 function storyHref(id: number): string {
@@ -19,10 +20,6 @@ const safeTime = item.timeISO ? formatDateHuman(item.timeISO) : "—";
 const pts = typeof item.score === "number" ? ` • ${item.score} points` : "";
 const commentsLabel = typeof item.commentsCount === "number" ? ` (${item.commentsCount})` : "";
 const hnUrl = item.hnUrl ?? `https://news.ycombinator.com/item?id=${item.id}`;
-
-// Thresholds for badges (tweak as needed)
-const LONG_DISCUSSION_THRESHOLD = 150; // comments
-const HOT_SCORE_THRESHOLD = 250; // points
 
 const commentsCount = typeof item.commentsCount === "number" ? item.commentsCount : 0;
 const score = typeof item.score === "number" ? item.score : 0;
@@ -45,8 +42,8 @@ const i18n = {
 };
 const t = i18n[lang];
 
-const postHtml = item.postSummary ? mdToHtmlUtil(item.postSummary) : "";
-const commentsHtml = item.commentsSummary ? mdToHtmlUtil(item.commentsSummary) : "";
+const postHtml = item.postSummary ? mdToHtml(item.postSummary) : "";
+const commentsHtml = item.commentsSummary ? mdToHtml(item.commentsSummary) : "";
 ---
 
 <section class="grid2" aria-labelledby={`t-${item.id}`}>
@@ -71,7 +68,7 @@ const commentsHtml = item.commentsSummary ? mdToHtmlUtil(item.commentsSummary) :
     </h2>
     {postHtml ? <div class="md" set:html={postHtml} /> : <p>—</p>}
     <p class="meta">by {safeBy} • {safeTime}{pts}</p>
-    <p class="meta"><a href={item.url ?? hnUrl} rel="noopener">{t.original}</a> • <a href={hnUrl}>HN</a></p>
+    <p class="meta"><a href={item.url ?? hnUrl} rel="noopener noreferrer">{t.original}</a> • <a href={hnUrl}>HN</a></p>
     {tags.length > 0 && (
       <p class="meta tags">
         {tags.map((tag) => <a href={`/tag/${tag}/`} class="tag">#{tag}</a>)}

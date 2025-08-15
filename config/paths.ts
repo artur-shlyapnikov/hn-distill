@@ -8,7 +8,7 @@ export const PATHS = {
   summaries: "data/summaries",
   index: "data/index.json",
   aggregated: "data/aggregated.json",
-  cache: "data/cache/etag.json",
+  seenCache: "data/cache/etag.json",
   grouped: {
     daily: "data/by-date/daily.json",
     weekly: "data/by-date/weekly.json",

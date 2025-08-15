@@ -1,6 +1,6 @@
-import { log } from "./log.js";
+import { log } from "@utils/log";
 
-import type { HttpClient } from "./http-client.js";
+import type { HttpClient } from "./http-client";
 import type { z } from "zod";
 
 export type ChatMessage = {
