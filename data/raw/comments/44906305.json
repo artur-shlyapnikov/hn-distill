@@ -48,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44908387,
-    "by": "eviks",
-    "timeISO": "2025-08-15T03:40:45.000Z",
-    "textPlain": "> through NSScreen’s safeAreaInsetsHow is vague \"safety\" is better than a simple descriptive rect_below_notch?",
+    "id": 44906887,
+    "by": "MBCook",
+    "timeISO": "2025-08-14T23:21:32.000Z",
+    "textPlain": "Interesting article, but I think the demonstration image isn’t doing its job. Neither side really looks good to me. They both look roughly the same.",
     "parent": 44906305,
     "depth": 1
   },
@@ -64,18 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44906887,
-    "by": "MBCook",
-    "timeISO": "2025-08-14T23:21:32.000Z",
-    "textPlain": "Interesting article, but I think the demonstration image isn’t doing its job. Neither side really looks good to me. They both look roughly the same.",
-    "parent": 44906305,
-    "depth": 1
-  },
-  {
     "id": 44907116,
     "by": "diebeforei485",
     "timeISO": "2025-08-14T23:55:15.000Z",
     "textPlain": "How can this be fixed without breaking existing software? Re-ordering the list?",
+    "parent": 44906305,
+    "depth": 1
+  },
+  {
+    "id": 44908387,
+    "by": "eviks",
+    "timeISO": "2025-08-15T03:40:45.000Z",
+    "textPlain": "> through NSScreen’s safeAreaInsetsHow is vague \"safety\" is better than a simple descriptive rect_below_notch?",
     "parent": 44906305,
     "depth": 1
   },
@@ -172,6 +172,14 @@
     "by": "makeitdouble",
     "timeISO": "2025-08-15T01:04:23.000Z",
     "textPlain": "They sure don't care about games on Mac, but I think this specific issue is more due to trying to do \"magic\" for better or worse.Introducing the notch creates this \"here but not really usable\" area that is specific to some displays, and Apple touts it as something that will just work thanks to their software layer.Yet every app has to deal with it one way or another and most apps that care about screen estate or resolution will need hacks.It will be the same for every feature that pushes the boundaries and offers an abstraction layer as an answer to how the issues will be solved.",
+    "parent": 44906736,
+    "depth": 2
+  },
+  {
+    "id": 44908710,
+    "by": "monkeyelite",
+    "timeISO": "2025-08-15T04:42:21.000Z",
+    "textPlain": "> \"everything is about money, especially the ones that appear to have non-monetary reasons.\"There are countless other incentives as tangible as money including meaning, status, security, fame, etc.If you spend time around people with money you will find they will happily trade it to achieve these.What this belief signals most strongly to me is your class.",
     "parent": 44906736,
     "depth": 2
   },
@@ -280,10 +288,10 @@
     "depth": 2
   },
   {
-    "id": 44908318,
-    "by": "userbinator",
-    "timeISO": "2025-08-15T03:27:33.000Z",
-    "textPlain": "I've always preferred the look of non-antialiased fonts on an LCD for this reason - you can finally actually see the sharp square corners of a pixel, yet somehow many like the blurry smoothness of antialiasing to make the screen more like a CRT.",
+    "id": 44908782,
+    "by": "AceJohnny2",
+    "timeISO": "2025-08-15T04:59:08.000Z",
+    "textPlain": "It goes deep.obligatory: https://www.folklore.org/Round_Rects_Are_Everywhere.html",
     "parent": 44907268,
     "depth": 2
   },
@@ -292,6 +300,14 @@
     "by": "bee_rider",
     "timeISO": "2025-08-15T00:53:23.000Z",
     "textPlain": "Are the screens OLED? The phones are...IMO the notch is pointless, but they need space for the front camera. With OLED they can just turn the pixels off when it suits the application and it becomes like a big bevel, which was the alternative anyway.",
+    "parent": 44907268,
+    "depth": 2
+  },
+  {
+    "id": 44908318,
+    "by": "userbinator",
+    "timeISO": "2025-08-15T03:27:33.000Z",
+    "textPlain": "I've always preferred the look of non-antialiased fonts on an LCD for this reason - you can finally actually see the sharp square corners of a pixel, yet somehow many like the blurry smoothness of antialiasing to make the screen more like a CRT.",
     "parent": 44907268,
     "depth": 2
   },
@@ -320,22 +336,6 @@
     "depth": 2
   },
   {
-    "id": 44908530,
-    "by": "zerocrates",
-    "timeISO": "2025-08-15T04:12:02.000Z",
-    "textPlain": "\"Safe area\" is terminology that has a history of being used with displays: defining the portion of a TV screen where viewers could be reliably expected to be able to see content and on-screen graphics without them getting clipped off by the overscan.I assume they also wanted to choose something that would still be named appropriately if they had other kinds of notches or things in the future (and that even now it already accounts for, say, the curved corners where things also can't display).",
-    "parent": 44908387,
-    "depth": 2
-  },
-  {
-    "id": 44908492,
-    "by": "interpol_p",
-    "timeISO": "2025-08-15T04:03:25.000Z",
-    "textPlain": "Safe area can account for things that are not just a notch. It's used across Apple platforms to indicate anything that might need to occupy a dedicated region on the screen: notch on iPhones, home indicator, iPadOS traffic light buttons, menu bar, curved edges of displays, and so onYour container views can extend the safe areas for their children as well. In our apps, which allow users to run their own custom projects, we increase the safe area for our UI so that users can avoid it in their own renderingSafe area is a fairly neat and functional API. The unfortunate thing is the older `CGDisplayCopyAllDisplayModes` API is just lumping all resolutions together",
-    "parent": 44908387,
-    "depth": 2
-  },
-  {
     "id": 44907543,
     "by": "bschwindHN",
     "timeISO": "2025-08-15T01:05:06.000Z",
@@ -360,6 +360,22 @@
     "depth": 2
   },
   {
+    "id": 44908530,
+    "by": "zerocrates",
+    "timeISO": "2025-08-15T04:12:02.000Z",
+    "textPlain": "\"Safe area\" is terminology that has a history of being used with displays: defining the portion of a TV screen where viewers could be reliably expected to be able to see content and on-screen graphics without them getting clipped off by the overscan.I assume they also wanted to choose something that would still be named appropriately if they had other kinds of notches or things in the future (and that even now it already accounts for, say, the curved corners where things also can't display).",
+    "parent": 44908387,
+    "depth": 2
+  },
+  {
+    "id": 44908492,
+    "by": "interpol_p",
+    "timeISO": "2025-08-15T04:03:25.000Z",
+    "textPlain": "Safe area can account for things that are not just a notch. It's used across Apple platforms to indicate anything that might need to occupy a dedicated region on the screen: notch on iPhones, home indicator, iPadOS traffic light buttons, menu bar, curved edges of displays, and so onYour container views can extend the safe areas for their children as well. In our apps, which allow users to run their own custom projects, we increase the safe area for our UI so that users can avoid it in their own renderingSafe area is a fairly neat and functional API. The unfortunate thing is the older `CGDisplayCopyAllDisplayModes` API is just lumping all resolutions together",
+    "parent": 44908387,
+    "depth": 2
+  },
+  {
     "id": 44907480,
     "by": "chainwax",
     "timeISO": "2025-08-15T00:52:19.000Z",
@@ -381,22 +397,6 @@
     "timeISO": "2025-08-15T00:57:30.000Z",
     "textPlain": "Baldur's gate 3 groups the resolutions by aspect ratio. I assume it probably queries the resolutions, computes the aspect ratios and then displays them grouped them by it. This results in some weirdness with some weird ratios with huge coprime numerators/denominators but, as long as the right resolution is detected somewhere, you only basically need to do is select the right aspect ration for your screen.",
     "parent": 44906630,
-    "depth": 2
-  },
-  {
-    "id": 44907486,
-    "by": "emmelaich",
-    "timeISO": "2025-08-15T00:53:35.000Z",
-    "textPlain": "What's the alternative?  A camera on top of the screen?  Fragile, unless you could fold it away.  Which would be another point of failure.",
-    "parent": 44907201,
-    "depth": 2
-  },
-  {
-    "id": 44907468,
-    "by": "frumplestlatz",
-    "timeISO": "2025-08-15T00:49:58.000Z",
-    "textPlain": "The notch grants more usable vertical physical pixels than you'd have otherwise, with the only \"downside\" being a small unusable area in the center where the camera/mic/other sensors are placed.I put \"downside\" in quotes because the alternative is just not having those vertical pixels at all, and having the screen end below the sensors.",
-    "parent": 44907201,
     "depth": 2
   }
 ]

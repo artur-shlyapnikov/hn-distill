@@ -16,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44902980,
-    "by": "simonw",
-    "timeISO": "2025-08-14T17:10:43.000Z",
-    "textPlain": "This model is a LOT of fun. It's absolutely tiny - just a 241MB download - and screamingly fast, and hallucinates wildly about almost everything.Here's one of dozens of results I got for \"Generate an SVG of a pelican riding a bicycle\". For this one it decided to write a poem:  +-----------------------+\n  |   Pelican Riding Bike |\n  +-----------------------+\n  |  This is the cat!  |\n  |  He's got big wings and a happy tail.  |\n  |  He loves to ride his bike!  |\n  +-----------------------+\n  |   Bike lights are shining bright.  |\n  |   He's got a shiny top, too!  |\n  |   He's ready for adventure!  |\n  +-----------------------+\n\nThere are a bunch more attempts in this Gist, some of which do at least include an SVG tag albeit one that doesn't render anything: https://gist.github.com/simonw/25e7b7afd6a63a2f15db48b3a51ec...I'm looking forward to seeing people fine-tune this in a way that produces useful output for selected tasks, which should absolutely be feasible.",
-    "parent": 44902148,
-    "depth": 1
-  },
-  {
     "id": 44904181,
     "by": "AJRF",
     "timeISO": "2025-08-14T18:54:11.000Z",
     "textPlain": "I've got a very real world use case I use DistilBERT for - learning how to label wordpress articles. It is one of those things where it's kind of valuable (tagging) but not enough to spend loads on compute for it.The great thing is I have enough data (100k+) to fine-tune and run a meaningful classification report over. The data is very diverse, and while the labels aren't totally evenly distributed, I can deal with the imbalance with a few tricks.Can't wait to swap it out for this and see the changes in the scores. Will report back",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44902980,
+    "by": "simonw",
+    "timeISO": "2025-08-14T17:10:43.000Z",
+    "textPlain": "This model is a LOT of fun. It's absolutely tiny - just a 241MB download - and screamingly fast, and hallucinates wildly about almost everything.Here's one of dozens of results I got for \"Generate an SVG of a pelican riding a bicycle\". For this one it decided to write a poem:  +-----------------------+\n  |   Pelican Riding Bike |\n  +-----------------------+\n  |  This is the cat!  |\n  |  He's got big wings and a happy tail.  |\n  |  He loves to ride his bike!  |\n  +-----------------------+\n  |   Bike lights are shining bright.  |\n  |   He's got a shiny top, too!  |\n  |   He's ready for adventure!  |\n  +-----------------------+\n\nThere are a bunch more attempts in this Gist, some of which do at least include an SVG tag albeit one that doesn't render anything: https://gist.github.com/simonw/25e7b7afd6a63a2f15db48b3a51ec...I'm looking forward to seeing people fine-tune this in a way that produces useful output for selected tasks, which should absolutely be feasible.",
     "parent": 44902148,
     "depth": 1
   },
@@ -88,18 +88,18 @@
     "depth": 1
   },
   {
-    "id": 44903817,
-    "by": "perching_aix",
-    "timeISO": "2025-08-14T18:21:11.000Z",
-    "textPlain": "Is it time for me to finally package a language model into my Lambda deployment zips and cut through the corporate red tape at my place around AI use?Update #1:Tried it. Well, dreams dashed - would now fit space wise (<250 MB despite the name), but it sadly really doesn't seem to work for my specific prospective workload.I'd have wanted it to perform natural-language to command-invocation translation (or better, emit me some JSON), but it's super not willing to do that, not in the lame way I'm trying to make it do so at least (literally just prompting it to). Oh well.Update #2:Just found out about grammar-constrained decode, maybe there's still hope for me in the end. I don't think I can amend this comment today with any more updates, but will see.",
-    "parent": 44902148,
-    "depth": 1
-  },
-  {
     "id": 44902895,
     "by": "lemonish97",
     "timeISO": "2025-08-14T17:04:47.000Z",
     "textPlain": "Never thought I'd run an LLM released in 2025, on my phone, in full BF16.\nWith ~80tps on an iPhone 16 pro btw.",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44903817,
+    "by": "perching_aix",
+    "timeISO": "2025-08-14T18:21:11.000Z",
+    "textPlain": "Is it time for me to finally package a language model into my Lambda deployment zips and cut through the corporate red tape at my place around AI use?Update #1:Tried it. Well, dreams dashed - would now fit space wise (<250 MB despite the name), but it sadly really doesn't seem to work for my specific prospective workload.I'd have wanted it to perform natural-language to command-invocation translation (or better, emit me some JSON), but it's super not willing to do that, not in the lame way I'm trying to make it do so at least (literally just prompting it to). Oh well.Update #2:Just found out about grammar-constrained decode, maybe there's still hope for me in the end. I don't think I can amend this comment today with any more updates, but will see.",
     "parent": 44902148,
     "depth": 1
   },
@@ -120,26 +120,10 @@
     "depth": 1
   },
   {
-    "id": 44908232,
-    "by": "MagicMoonlight",
-    "timeISO": "2025-08-15T03:12:45.000Z",
-    "textPlain": "I don’t see the point, tiny models always just hallucinate and have no real knowledge.",
-    "parent": 44902148,
-    "depth": 1
-  },
-  {
     "id": 44905303,
     "by": "highfrequency",
     "timeISO": "2025-08-14T20:29:16.000Z",
     "textPlain": "Interesting that for these small models, it is optimal for the embedding parameters to be a huge fraction of the total (170e6/250e6) = 68%!",
-    "parent": 44902148,
-    "depth": 1
-  },
-  {
-    "id": 44907423,
-    "by": "er69",
-    "timeISO": "2025-08-15T00:42:32.000Z",
-    "textPlain": "Looks very interesting ! I will evaluate this for one of our use cases for a data pipeline that handles around 50 million rows everyday . Mainly need it for segmenting user events. The low memory footprint is huge plus for cost at that scale . Need to spend this weekend on fine tuning, if this disappoints will try one of qwen model",
     "parent": 44902148,
     "depth": 1
   },
@@ -156,6 +140,22 @@
     "by": "reneberlin",
     "timeISO": "2025-08-14T19:51:36.000Z",
     "textPlain": "I am sure with finetuning this can be changed somehow:(base)   ~ ollama run hf.co/unsloth/gemma-3-270m-it-GGUF:F16\n>>>  create a sentiment analysis of the follwing: \"It's raining.\"\nThe sentiment of the provided text is *negative*.>>>  create a sentiment analysis of the follwing: \"It's raining money.\"\nThe sentiment of the provided text is *negative*.",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44907423,
+    "by": "er69",
+    "timeISO": "2025-08-15T00:42:32.000Z",
+    "textPlain": "Looks very interesting ! I will evaluate this for one of our use cases for a data pipeline that handles around 50 million rows everyday . Mainly need it for segmenting user events. The low memory footprint is huge plus for cost at that scale . Need to spend this weekend on fine tuning, if this disappoints will try one of qwen model",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44908232,
+    "by": "MagicMoonlight",
+    "timeISO": "2025-08-15T03:12:45.000Z",
+    "textPlain": "I don’t see the point, tiny models always just hallucinate and have no real knowledge.",
     "parent": 44902148,
     "depth": 1
   },
@@ -224,18 +224,18 @@
     "depth": 1
   },
   {
-    "id": 44905263,
-    "by": "fallinditch",
-    "timeISO": "2025-08-14T20:26:56.000Z",
-    "textPlain": "> this model is not designed for complex conversational use cases... but it's also the perfect choice for creative writing ...?Isn't this a contradiction?  How can a model be good at creative writing if it's no good at conversation?",
-    "parent": 44902148,
-    "depth": 1
-  },
-  {
     "id": 44903049,
     "by": "dcreater",
     "timeISO": "2025-08-14T17:15:19.000Z",
     "textPlain": "I've been saying he we need sub 1B models for the edge so thanks fot this.I am however disappointed that there is no examples, or benchmarks, provided to get a sense of performance. It's a given that benchmark values would be lower than gemma 3n, but having a sense of performance vs size curve and comparison to existing small models is needed",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44905263,
+    "by": "fallinditch",
+    "timeISO": "2025-08-14T20:26:56.000Z",
+    "textPlain": "> this model is not designed for complex conversational use cases... but it's also the perfect choice for creative writing ...?Isn't this a contradiction?  How can a model be good at creative writing if it's no good at conversation?",
     "parent": 44902148,
     "depth": 1
   },
@@ -288,6 +288,14 @@
     "depth": 2
   },
   {
+    "id": 44908834,
+    "by": "katzenversteher",
+    "timeISO": "2025-08-15T05:12:02.000Z",
+    "textPlain": "I was wondering the whole time why people in the comments are so hyped about this, then I finally noticed (after I stumbled upon a comment about running this on a mobile phone) that it's \"270M\" not \"270B\" model :)",
+    "parent": 44902240,
+    "depth": 2
+  },
+  {
     "id": 44903827,
     "by": "ceroxylon",
     "timeISO": "2025-08-14T18:21:59.000Z",
@@ -320,14 +328,6 @@
     "depth": 2
   },
   {
-    "id": 44908345,
-    "by": "peter492927",
-    "timeISO": "2025-08-15T03:32:42.000Z",
-    "textPlain": "Thank you a lot for working on these models! If you think it would make sense, I think a bigger sized Gemma model would be really cool. Models in the 70B parameter range can be run at q4 on two 3090 or similar hardware and should offer considerable performance improvement over 27B. There’s also the DGX Spark as a possible target.",
-    "parent": 44902240,
-    "depth": 2
-  },
-  {
     "id": 44902889,
     "by": "beoberha",
     "timeISO": "2025-08-14T17:04:18.000Z",
@@ -352,10 +352,10 @@
     "depth": 2
   },
   {
-    "id": 44907884,
-    "by": "rao-v",
-    "timeISO": "2025-08-15T02:11:10.000Z",
-    "textPlain": "Fabulous stuff!Oh my request … the vision head on the Gemma models is super slow on CPU inferencing (and via Vulcan), even via llama.cpp. Any chance your team can figure out a solve? Other ViTs don’t have the same problem.",
+    "id": 44908345,
+    "by": "peter492927",
+    "timeISO": "2025-08-15T03:32:42.000Z",
+    "textPlain": "Thank you a lot for working on these models! If you think it would make sense, I think a bigger sized Gemma model would be really cool. Models in the 70B parameter range can be run at q4 on two 3090 or similar hardware and should offer considerable performance improvement over 27B. There’s also the DGX Spark as a possible target.",
     "parent": 44902240,
     "depth": 2
   },
@@ -364,6 +364,14 @@
     "by": "blitzar",
     "timeISO": "2025-08-14T19:05:56.000Z",
     "textPlain": "> I built these models with a great team ... I built these models with a great teamIf Gemini is going to repeat something at least its that the team is great, and not a disgrace!",
+    "parent": 44902240,
+    "depth": 2
+  },
+  {
+    "id": 44907884,
+    "by": "rao-v",
+    "timeISO": "2025-08-15T02:11:10.000Z",
+    "textPlain": "Fabulous stuff!Oh my request … the vision head on the Gemma models is super slow on CPU inferencing (and via Vulcan), even via llama.cpp. Any chance your team can figure out a solve? Other ViTs don’t have the same problem.",
     "parent": 44902240,
     "depth": 2
   },
@@ -388,14 +396,6 @@
     "by": "cgdl",
     "timeISO": "2025-08-14T17:30:41.000Z",
     "textPlain": "Very cool. For the INT4 QAT model, what is the recommended precision for the activations and for the key and values stored in KV cache?",
-    "parent": 44902240,
-    "depth": 2
-  },
-  {
-    "id": 44905964,
-    "by": "schyzomaniac",
-    "timeISO": "2025-08-14T21:33:11.000Z",
-    "textPlain": "hi, congrats for the amazing work!i love the 27b model, and i use it basically daily. however when i tried to finetune it for a task in a low resource language, unfortunately i did not succeed: lora just did not picked up the gist of the task, full finetune lead to catastrophic forgetting.may i ask four your advice, or do you have any general tips how to do that properly?thanks in advance for your help :)",
     "parent": 44902240,
     "depth": 2
   }
