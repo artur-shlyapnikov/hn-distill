@@ -1,17 +1,9 @@
 [
   {
-    "id": 44915978,
-    "by": "btown",
-    "timeISO": "2025-08-15T18:37:16.000Z",
-    "textPlain": "You’ll probably hear people say things like “this could just be an MCP server and a prompt to use it.” To that I’d say: just remember that infamous 2007 Dropbox comment: https://news.ycombinator.com/item?id=9224If you can make the developer experience simple enough that it becomes standard practice, you can go really far. Good luck!",
-    "parent": 44915206,
-    "depth": 1
-  },
-  {
-    "id": 44915854,
-    "by": "bangaladore",
-    "timeISO": "2025-08-15T18:27:13.000Z",
-    "textPlain": "This is a more general question, but:What company would be comfortable with giving out schematics, source code, etc... to third parties like this or AI Model providers like Anthropic, etc...Privacy policy aside, this just seems like a statistical guarantee at some point to leaks sensitive IP (not specifically pointing at this company, but in this space in general). Or does nobody care?",
+    "id": 44916712,
+    "by": "btbuildem",
+    "timeISO": "2025-08-15T19:58:49.000Z",
+    "textPlain": "Cool venture! I've resigned myself to accept that the generic \"coding\" LLMs only work well with the most default tasks and the most common languages -- and as soon as you stray from the well-trodden paths, there be hallucinations of dragons. It seems projects like that could be the solution -- narrower, domain-specific models. I think it still poses challenges in cross-domain projects, and I'm still waiting for a model that can handle spatial reasoning (eg, for circuit board design, blueprint layout, etc).",
     "parent": 44915206,
     "depth": 1
   },
@@ -24,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44915854,
+    "by": "bangaladore",
+    "timeISO": "2025-08-15T18:27:13.000Z",
+    "textPlain": "This is a more general question, but:What company would be comfortable with giving out schematics, source code, etc... to third parties like this or AI Model providers like Anthropic, etc...Privacy policy aside, this just seems like a statistical guarantee at some point to leaks sensitive IP (not specifically pointing at this company, but in this space in general). Or does nobody care?",
+    "parent": 44915206,
+    "depth": 1
+  },
+  {
     "id": 44915831,
     "by": "lennxa",
     "timeISO": "2025-08-15T18:25:31.000Z",
@@ -32,19 +32,27 @@
     "depth": 1
   },
   {
-    "id": 44916151,
-    "by": "0x457",
-    "timeISO": "2025-08-15T18:52:28.000Z",
-    "textPlain": "Well, it depends if it does anything novel under the hood and not just Model + System Prompt + Tools + User Input...like 99% of agents being build right now.",
-    "parent": 44915978,
-    "depth": 2
+    "id": 44915978,
+    "by": "btown",
+    "timeISO": "2025-08-15T18:37:16.000Z",
+    "textPlain": "You’ll probably hear people say things like “this could just be an MCP server and a prompt to use it.” To that I’d say: just remember that infamous 2007 Dropbox comment: https://news.ycombinator.com/item?id=9224If you can make the developer experience simple enough that it becomes standard practice, you can go really far. Good luck!",
+    "parent": 44915206,
+    "depth": 1
   },
   {
-    "id": 44916155,
-    "by": "NotBoolean",
-    "timeISO": "2025-08-15T18:53:01.000Z",
-    "textPlain": "Embedder’s privacy policy is very clear that they keep your information.https://embedder.dev/privacy-policy“Content DataWhen you use our services, we collect:Any files or data you upload\nAny generated code or data”",
-    "parent": 44915854,
+    "id": 44916547,
+    "by": "foltik",
+    "timeISO": "2025-08-15T19:35:28.000Z",
+    "textPlain": "The system prompt:You are an interactive CLI agent specialising in embedded-systems software engineering tasks using C and C++. You must adopt a rigerous and zero trust approach to reading documentationa and code. \nTreat every line of code with suspension until proven correct through reading documentation and code. Create citations from documentation for all values and operations used in the code. \nYour primary objective is to help users design, implement, verify and optimise firmware safely and efficiently while adhering to strict hardware constraints.\nIf you have any questions or need clarification, ask the user for clarification or confirmation. Do not make design decisions without user confirmation.# Core Mandates- *Repository Understanding:* Use the interactive query tools (FindDefinition, FindReferences, FindDependencies) to understand the repository structure and codebase before executing any tools to understand the codebase- *Conventions:* Rigorously adhere to existing project conventions when reading or modifying code. Analyse surrounding code, tests and configuration first.- *Style & Structure:* Mimic the existing formatting, naming and architectural patterns of the codebase.- *Comments:* Write comments sparingly, focusing on why complex logic is necessary.- *Path Construction:* Before using any file-system tools (e.g., ReadFile or WriteFile), construct the full absolute path.- *Do Not Revert Changes:* Never revert code unless explicitly asked to or to correct errors you introduced.- *Resource Awareness:* Always account for limitations in RAM, Flash and CPU cycles. Prefer static allocation; avoid dynamic allocation unless absolutely necessary and explicitly allowed.- *Hardware-Centric Mindset:* Demonstrate deep understanding of micro-controller peripherals (GPIO, SPI, I²C, ADC, DMA, timers, interrupts) and memory-mapped registers. Interact with hardware deterministically.- *Real-Time Behaviour:* When working with an RTOS, use its primitives correctly (task",
+    "parent": 44915206,
+    "depth": 1
+  },
+  {
+    "id": 44916089,
+    "by": "etgibbs",
+    "timeISO": "2025-08-15T18:46:45.000Z",
+    "textPlain": "strict grounding protocol + planning phase, mostly by prompting and forcing attention through citations. it tends to think longer than other coding agents but the results are usually better. let me know what you think.",
+    "parent": 44915990,
     "depth": 2
   },
   {
@@ -56,11 +64,11 @@
     "depth": 2
   },
   {
-    "id": 44916089,
-    "by": "etgibbs",
-    "timeISO": "2025-08-15T18:46:45.000Z",
-    "textPlain": "strict grounding protocol + planning phase, mostly by prompting and forcing attention through citations. it tends to think longer than other coding agents but the results are usually better. let me know what you think.",
-    "parent": 44915990,
+    "id": 44916155,
+    "by": "NotBoolean",
+    "timeISO": "2025-08-15T18:53:01.000Z",
+    "textPlain": "Embedder’s privacy policy is very clear that they keep your information.https://embedder.dev/privacy-policy“Content DataWhen you use our services, we collect:Any files or data you upload\nAny generated code or data”",
+    "parent": 44915854,
     "depth": 2
   },
   {
@@ -69,6 +77,22 @@
     "timeISO": "2025-08-15T18:39:26.000Z",
     "textPlain": "currently we scaffold frontier models. the product is basically a context layer with custom tools that enable hardware interaction. we've tossed around the idea of pre-training/fine tuning but new models are being released so fast it doesn't make sense to build anything other than a wrapper",
     "parent": 44915831,
+    "depth": 2
+  },
+  {
+    "id": 44916151,
+    "by": "0x457",
+    "timeISO": "2025-08-15T18:52:28.000Z",
+    "textPlain": "Well, it depends if it does anything novel under the hood and not just Model + System Prompt + Tools + User Input...like 99% of agents being build right now.",
+    "parent": 44915978,
+    "depth": 2
+  },
+  {
+    "id": 44916555,
+    "by": "foltik",
+    "timeISO": "2025-08-15T19:36:17.000Z",
+    "textPlain": "The tools it can call:• DatasheetSearch — “Semantic search across authoritative datasheets, reference manuals and application notes to answer hardware-specific questions.”• StaticAnalysis — “Run cppcheck / clang-tidy static analysis with embedded-focused rules.”• Debugger — “AI-assisted interactive debugging leveraging GDB or simulator back-ends.”• ListDir — “List files and directories within a specified path, respecting ignore patterns. Use the full absolute path of the file to read.”• ReadFile — “Read the content (or portion) of a single file with line-range support. Use the full absolute path of the file to read.”• ReadManyFiles — “Batch-read multiple files or glob patterns, returning combined results. Use the full absolute path of the file to read.”• Grep — “Exact regex search across file contents, capped results, supports include patterns. Use the full absolute path of the file to read.”• Glob — “Find files by path pattern (e.g., */*.c) rapidly, sorted by recency. Use the full absolute path of the file to read.”• Edit — “Precise in-file text replacement with contextual validation. Use the full absolute path of the file to edit.”• WriteFile — “Create or overwrite files with exact content, diff-aware. Use the full absolute path of the file to write.”• Shell — “Execute shell commands in project context with safety confirmations.”• FindDefinition — “Find the definition of a specific identifier (function, variable, class, etc.) in the codebase.”• FindReferences — “Find all references to a specific identifier (function, variable, class, etc.) in the codebase.”• FindDependencies — “Find dependencies and relationships between files in the codebase.”• WebSearch — “Performs a web search using Google Search (via the Gemini API) and returns the results. This tool is useful only when we can’t find the documentation using document search or in the code base. We can use this tool for finding information on the internet based on a query.”• ProcessUrls — “Processes content from",
+    "parent": 44916547,
     "depth": 2
   }
 ]

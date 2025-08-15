@@ -1,17 +1,17 @@
 [
   {
-    "id": 44911265,
-    "by": "jethkl",
-    "timeISO": "2025-08-15T11:56:56.000Z",
-    "textPlain": "There is an analogue of the CLT for extreme values. The Fisher–Tippett–Gnedenko theorem is the extreme-values analogue of the CLT: if the properly normalized maximum of an i.i.d. sample converges, it must be Gumbel, Fréchet, or Weibull—unified as the Generalized Extreme Value distribution. Unlike the CLT, whose assumptions (in my experience) rarely hold in practice, this result is extremely general and underpins methods like wavelet thresholding and signal denoising—easy to demonstrate with a quick simulation.",
-    "parent": 44909133,
-    "depth": 1
-  },
-  {
     "id": 44913597,
     "by": "gus_massa",
     "timeISO": "2025-08-15T15:29:07.000Z",
     "textPlain": "> It’s very subjective, but I think the uniform stsrts looking reasonably good at a sample size of 8. The exponential however takes much longer to converge to a normal.That's a good observation. The main idea behind the Central Limit Theorem is to take the Fourier Transform, operate and then go back. After that, after normalization the result is that the new distribution for the sum of N variables is something like  Normal(X) + 1/N * \"Skewness\" * Something(X) + 1/N^2 * IDont * Remember(X) + ...\n\nWhere \"Skewness\" is a number defined in https://en.wikipedia.org/wiki/SkewnessThe uniform distribution is symmetric, so skewness=0 and the correction decrease like 1/N^2.The exponential distribution is very asymmetrical and and skewness!=0, so the main correction is like 1/N and takes longer to dissapear.",
+    "parent": 44909133,
+    "depth": 1
+  },
+  {
+    "id": 44911265,
+    "by": "jethkl",
+    "timeISO": "2025-08-15T11:56:56.000Z",
+    "textPlain": "There is an analogue of the CLT for extreme values. The Fisher–Tippett–Gnedenko theorem is the extreme-values analogue of the CLT: if the properly normalized maximum of an i.i.d. sample converges, it must be Gumbel, Fréchet, or Weibull—unified as the Generalized Extreme Value distribution. Unlike the CLT, whose assumptions (in my experience) rarely hold in practice, this result is extremely general and underpins methods like wavelet thresholding and signal denoising—easy to demonstrate with a quick simulation.",
     "parent": 44909133,
     "depth": 1
   },
@@ -64,14 +64,6 @@
     "depth": 1
   },
   {
-    "id": 44911441,
-    "by": "firesteelrain",
-    "timeISO": "2025-08-15T12:16:46.000Z",
-    "textPlain": "“ You’re also likely not going to have the resources to take twenty-thousand different samples.”There are methods to calculate how many estimated samples you need. It’s not in the 20k unless your population is extremely high",
-    "parent": 44909133,
-    "depth": 1
-  },
-  {
     "id": 44909732,
     "by": "lottin",
     "timeISO": "2025-08-15T08:01:23.000Z",
@@ -80,10 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44915389,
-    "by": "aaroninsf",
-    "timeISO": "2025-08-15T17:50:24.000Z",
-    "textPlain": "Bravo",
+    "id": 44911441,
+    "by": "firesteelrain",
+    "timeISO": "2025-08-15T12:16:46.000Z",
+    "textPlain": "“ You’re also likely not going to have the resources to take twenty-thousand different samples.”There are methods to calculate how many estimated samples you need. It’s not in the 20k unless your population is extremely high",
     "parent": 44909133,
     "depth": 1
   },
@@ -92,6 +84,14 @@
     "by": "globalnode",
     "timeISO": "2025-08-15T10:52:40.000Z",
     "textPlain": "The definition under \"A Brief Recap\" seems incorrect. The sample size doesn't approach infinity, the number of samples does. I'm in a similar situation to the author, I skipped stats, so I could be wrong. Overall great article though.",
+    "parent": 44909133,
+    "depth": 1
+  },
+  {
+    "id": 44915389,
+    "by": "aaroninsf",
+    "timeISO": "2025-08-15T17:50:24.000Z",
+    "textPlain": "Bravo",
     "parent": 44909133,
     "depth": 1
   },
@@ -184,22 +184,6 @@
     "depth": 2
   },
   {
-    "id": 44911875,
-    "by": "jdhwosnhw",
-    "timeISO": "2025-08-15T13:01:40.000Z",
-    "textPlain": "I’m not sure what you mean by “higher population” but fyi what determines the required number of samples is a function of the full shape of the underlying distribution. For instance the Berry Esseen inequality puts bounds on the convergence rate as a function of the first two central moments of the underlying distribution. But the point is that the convergence rate to Gaussian can be arbitrarily slow!https://en.m.wikipedia.org/wiki/Berry%E2%80%93Esseen_theorem",
-    "parent": 44911441,
-    "depth": 2
-  },
-  {
-    "id": 44912068,
-    "by": "kqr",
-    "timeISO": "2025-08-15T13:18:10.000Z",
-    "textPlain": "> It’s not in the 20k unless your population is extremely highCommon misconception. Population size has almost nothing to do with the necessary sample size. (It does enter into the finite population correction factor, but that's only really relevant if you have a small population, not a large one.)...actually, come to think of it, you meant to write \"unless your population variance is extremely high\", right?",
-    "parent": 44911441,
-    "depth": 2
-  },
-  {
     "id": 44914211,
     "by": "ngriffiths",
     "timeISO": "2025-08-15T16:16:41.000Z",
@@ -237,6 +221,22 @@
     "timeISO": "2025-08-15T08:16:54.000Z",
     "textPlain": "the equivalent in any other language would be an ugly, unreadable, inconsistent mess.",
     "parent": 44909732,
+    "depth": 2
+  },
+  {
+    "id": 44911875,
+    "by": "jdhwosnhw",
+    "timeISO": "2025-08-15T13:01:40.000Z",
+    "textPlain": "I’m not sure what you mean by “higher population” but fyi what determines the required number of samples is a function of the full shape of the underlying distribution. For instance the Berry Esseen inequality puts bounds on the convergence rate as a function of the first two central moments of the underlying distribution. But the point is that the convergence rate to Gaussian can be arbitrarily slow!https://en.m.wikipedia.org/wiki/Berry%E2%80%93Esseen_theorem",
+    "parent": 44911441,
+    "depth": 2
+  },
+  {
+    "id": 44912068,
+    "by": "kqr",
+    "timeISO": "2025-08-15T13:18:10.000Z",
+    "textPlain": "> It’s not in the 20k unless your population is extremely highCommon misconception. Population size has almost nothing to do with the necessary sample size. (It does enter into the finite population correction factor, but that's only really relevant if you have a small population, not a large one.)...actually, come to think of it, you meant to write \"unless your population variance is extremely high\", right?",
+    "parent": 44911441,
     "depth": 2
   },
   {
