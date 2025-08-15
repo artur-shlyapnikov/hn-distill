@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44910908,
+    "by": "jpc0",
+    "timeISO": "2025-08-15T11:14:05.000Z",
+    "textPlain": "I have found that when asked to output JSON for text extra to the model consistently outputs markdown code blocks with json.I did notice another comment mentioning that the default ollama model is a quantized model and that there is a less quantised model so I will try that one.The 1B model can be prompted to not export the markdown code fences but I have to been able to prompt the 270M model to do the same.",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
     "id": 44904181,
     "by": "AJRF",
     "timeISO": "2025-08-14T18:54:11.000Z",
@@ -120,18 +128,18 @@
     "depth": 1
   },
   {
-    "id": 44905303,
-    "by": "highfrequency",
-    "timeISO": "2025-08-14T20:29:16.000Z",
-    "textPlain": "Interesting that for these small models, it is optimal for the embedding parameters to be a huge fraction of the total (170e6/250e6) = 68%!",
-    "parent": 44902148,
-    "depth": 1
-  },
-  {
     "id": 44903914,
     "by": "nerdix",
     "timeISO": "2025-08-14T18:30:11.000Z",
     "textPlain": "Is it possible to finetune a model like this with local hardware? Every tutorial I've come across on finetuning a local LLM uses some cloud service like colab or runpod.",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44905303,
+    "by": "highfrequency",
+    "timeISO": "2025-08-14T20:29:16.000Z",
+    "textPlain": "Interesting that for these small models, it is optimal for the embedding parameters to be a huge fraction of the total (170e6/250e6) = 68%!",
     "parent": 44902148,
     "depth": 1
   },
@@ -144,18 +152,18 @@
     "depth": 1
   },
   {
-    "id": 44909792,
-    "by": "unleaded",
-    "timeISO": "2025-08-15T08:12:36.000Z",
-    "textPlain": "ITT nobody remembers gpt2 anymore and that makes me sad",
-    "parent": 44902148,
-    "depth": 1
-  },
-  {
     "id": 44903188,
     "by": "jtbayly",
     "timeISO": "2025-08-14T17:27:03.000Z",
     "textPlain": "Can somebody give me a link to a tutorial on how I would go about fine-tuning this?Also, what sorts of things might I consider fine-tuning it for?",
+    "parent": 44902148,
+    "depth": 1
+  },
+  {
+    "id": 44904459,
+    "by": "mrtimo",
+    "timeISO": "2025-08-14T19:18:03.000Z",
+    "textPlain": "I'm a business professor who teaches Python and more. I'd like to develop some simple projects to help my students fine tune this for a business purpose. If you have ideas (or datasets for fine tuning), let me know!",
     "parent": 44902148,
     "depth": 1
   },
@@ -168,10 +176,10 @@
     "depth": 1
   },
   {
-    "id": 44904459,
-    "by": "mrtimo",
-    "timeISO": "2025-08-14T19:18:03.000Z",
-    "textPlain": "I'm a business professor who teaches Python and more. I'd like to develop some simple projects to help my students fine tune this for a business purpose. If you have ideas (or datasets for fine tuning), let me know!",
+    "id": 44909792,
+    "by": "unleaded",
+    "timeISO": "2025-08-15T08:12:36.000Z",
+    "textPlain": "ITT nobody remembers gpt2 anymore and that makes me sad",
     "parent": 44902148,
     "depth": 1
   },
@@ -320,18 +328,18 @@
     "depth": 2
   },
   {
-    "id": 44904996,
-    "by": "ankit219",
-    "timeISO": "2025-08-14T20:03:01.000Z",
-    "textPlain": "This is super cool. Usually you dont see effective models at 270M out in the wild. The architectural choices are new and interesting as well.Would it be okay for you to divulge some more training information here? With 170M embedding parameters, how do you ensure no embedding collapse and keeping the embedding matrix stable at training time?(i know i am asking too much, but just curious). There is a clear trade off for you with vocab / transformer layers. How did you arrive at the split of 170m/100m. Does this contribute to model's performance on task specific fine tuning? Any internal experiments you could share? or public info you could point us to? Anything would be amazing.PS: I am sorry if this is rude, but this has so many decisions i am curious about. Not intending to undermine anything, this is amazing work, and thank you for the whole Gemma series.",
-    "parent": 44902240,
-    "depth": 2
-  },
-  {
     "id": 44908834,
     "by": "katzenversteher",
     "timeISO": "2025-08-15T05:12:02.000Z",
     "textPlain": "I was wondering the whole time why people in the comments are so hyped about this, then I finally noticed (after I stumbled upon a comment about running this on a mobile phone) that it's \"270M\" not \"270B\" model :)",
+    "parent": 44902240,
+    "depth": 2
+  },
+  {
+    "id": 44904996,
+    "by": "ankit219",
+    "timeISO": "2025-08-14T20:03:01.000Z",
+    "textPlain": "This is super cool. Usually you dont see effective models at 270M out in the wild. The architectural choices are new and interesting as well.Would it be okay for you to divulge some more training information here? With 170M embedding parameters, how do you ensure no embedding collapse and keeping the embedding matrix stable at training time?(i know i am asking too much, but just curious). There is a clear trade off for you with vocab / transformer layers. How did you arrive at the split of 170m/100m. Does this contribute to model's performance on task specific fine tuning? Any internal experiments you could share? or public info you could point us to? Anything would be amazing.PS: I am sorry if this is rude, but this has so many decisions i am curious about. Not intending to undermine anything, this is amazing work, and thank you for the whole Gemma series.",
     "parent": 44902240,
     "depth": 2
   },
@@ -388,14 +396,6 @@
     "by": "nerdsniper",
     "timeISO": "2025-08-14T18:25:39.000Z",
     "textPlain": "What are some of the use cases that you think the 270M would be most appropriate for? What would you love to see people trying with it?",
-    "parent": 44902240,
-    "depth": 2
-  },
-  {
-    "id": 44903234,
-    "by": "cgdl",
-    "timeISO": "2025-08-14T17:30:41.000Z",
-    "textPlain": "Very cool. For the INT4 QAT model, what is the recommended precision for the activations and for the key and values stored in KV cache?",
     "parent": 44902240,
     "depth": 2
   }
