@@ -1,5 +1,13 @@
 [
   {
+    "id": 44912146,
+    "by": "terabytest",
+    "timeISO": "2025-08-15T13:26:15.000Z",
+    "textPlain": "It looks really nice. I wonder if it’d be possible to break it down even further by somehow instrumenting the actual processes and including their execution flame graphs as part of the chart. That would expose a ton of extra information about the large gaps of “inactivity”.",
+    "parent": 44902127,
+    "depth": 1
+  },
+  {
     "id": 44904058,
     "by": "Night_Thastus",
     "timeISO": "2025-08-14T18:42:34.000Z",
@@ -88,14 +96,6 @@
     "depth": 1
   },
   {
-    "id": 44911022,
-    "by": "emigre",
-    "timeISO": "2025-08-15T11:28:25.000Z",
-    "textPlain": "Really nice and interesting! Thanks!",
-    "parent": 44902127,
-    "depth": 1
-  },
-  {
     "id": 44904365,
     "by": "boris",
     "timeISO": "2025-08-14T19:09:19.000Z",
@@ -108,6 +108,14 @@
     "by": "audiofish",
     "timeISO": "2025-08-14T22:10:51.000Z",
     "textPlain": "Really cool tool, but perhaps not for the original use-case. I often find myself trying to figure out what call tree a large Bash script creates, and this looks like it visualises it well.This would have been really useful 6 months ago, when I was trying to figure out what on earth some Jetson tools actually did to build and flash an OS image.",
+    "parent": 44902127,
+    "depth": 1
+  },
+  {
+    "id": 44911022,
+    "by": "emigre",
+    "timeISO": "2025-08-15T11:28:25.000Z",
+    "textPlain": "Really nice and interesting! Thanks!",
     "parent": 44902127,
     "depth": 1
   },
@@ -384,19 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44903960,
-    "by": "dhooper",
-    "timeISO": "2025-08-14T18:33:47.000Z",
-    "textPlain": "OP Here. Thats an interesting idea. What The Fork knows all the commands run, and every path they read/write, so I should be able to make it estimate build time just by looking at what files were touched.",
-    "parent": 44903835,
-    "depth": 2
-  },
-  {
-    "id": 44904023,
-    "by": "dhooper",
-    "timeISO": "2025-08-14T18:39:45.000Z",
-    "textPlain": "Thank you! Yeah it can be used for any type of program, but I haven't been able to think of anything besides compilation that creates enough processes to be interesting. I'm open to ideas!",
-    "parent": 44903974,
+    "id": 44904358,
+    "by": "lights0123",
+    "timeISO": "2025-08-14T19:08:33.000Z",
+    "textPlain": "My tips for speeding up builds (from making this same project but with ebpf):- switch to ninja to avoid that exact issue since CMake + Make spawns a subprocess for every directory (use the binary from PyPi for jobserver integration)- catkin as in ROS? rm /opt/ros/noetic/etc/catkin/profile.d/99.roslisp.sh to remove 2 python spawns per package",
+    "parent": 44904193,
     "depth": 2
   }
 ]

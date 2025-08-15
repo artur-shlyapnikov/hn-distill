@@ -1,17 +1,17 @@
 [
   {
-    "id": 44910863,
-    "by": "jpcompartir",
-    "timeISO": "2025-08-15T11:06:14.000Z",
-    "textPlain": "Edit: OP confirms there's no AI-generated code, so do ignore me.The code style - and in particular the *comments - indicate most of the code was written by AI. My apologies if you are not trying to hide this fact, but it seems like common decency to label that you're heavily using AI?*Comments like this: \"# Anonymous function\"",
-    "parent": 44909133,
-    "depth": 1
-  },
-  {
     "id": 44911265,
     "by": "jethkl",
     "timeISO": "2025-08-15T11:56:56.000Z",
     "textPlain": "There is an analogue of the CLT for extreme values. The Fisher–Tippett–Gnedenko theorem is the extreme-values analogue of the CLT: if the properly normalized maximum of an i.i.d. sample converges, it must be Gumbel, Fréchet, or Weibull—unified as the Generalized Extreme Value distribution. Unlike the CLT, whose assumptions (in my experience) rarely hold in practice, this result is extremely general and underpins methods like wavelet thresholding and signal denoising—easy to demonstrate with a quick simulation.",
+    "parent": 44909133,
+    "depth": 1
+  },
+  {
+    "id": 44912094,
+    "by": "kqr",
+    "timeISO": "2025-08-15T13:21:09.000Z",
+    "textPlain": "This is a very neat illustration, but I want to leave a reminder that when we cherry-pick well-behaved distributions for illustrating the CLT, people get unrealistic expectations of what it means: https://entropicthoughts.com/it-takes-long-to-become-gaussia...",
     "parent": 44909133,
     "depth": 1
   },
@@ -64,6 +64,14 @@
     "depth": 1
   },
   {
+    "id": 44910863,
+    "by": "jpcompartir",
+    "timeISO": "2025-08-15T11:06:14.000Z",
+    "textPlain": "Edit: OP confirms there's no AI-generated code, so do ignore me.The code style - and in particular the *comments - indicate most of the code was written by AI. My apologies if you are not trying to hide this fact, but it seems like common decency to label that you're heavily using AI?*Comments like this: \"# Anonymous function\"",
+    "parent": 44909133,
+    "depth": 1
+  },
+  {
     "id": 44910795,
     "by": "evrennetwork",
     "timeISO": "2025-08-15T10:54:35.000Z",
@@ -72,19 +80,11 @@
     "depth": 1
   },
   {
-    "id": 44910963,
-    "by": "gtsnexp",
-    "timeISO": "2025-08-15T11:22:48.000Z",
-    "textPlain": "https://gptzero.me/\nSays that at large portions of it are 100% human",
-    "parent": 44910863,
-    "depth": 2
-  },
-  {
-    "id": 44910976,
-    "by": "robluxus",
-    "timeISO": "2025-08-15T11:24:20.000Z",
-    "textPlain": "Interesting comment. Why is it common decency to call out how much ai was used for generating an artifact?Is there a threshold?\nI assume spell checkers, linters and formatters are fair game. \nThe other extreme is full-on ai slop. \nWhere do we as a society should start to feel the need to police this (better)?",
-    "parent": 44910863,
+    "id": 44912004,
+    "by": "kqr",
+    "timeISO": "2025-08-15T13:13:12.000Z",
+    "textPlain": "There's also a more conservative rule similar to the CLT that works off of the definition of variance, and thus rests on no assumptions other than the existence of variance. Chebyshev's inequality tells us that the probability that any sample is more than k standard deviations away is bounded by 1/k².In other words, it is possible (given sufficiently weird distributions) that not a single sample lands inside one standard deviation, but 75% of them must be inside two standard deviations, 88% inside three standard deviations, and so on.There's also a one-sided version of it (Cantelli's inequality) which bounds the probability of any sample by 1/(1+k)², meaning at least 75 % of samples must be less than one standard deviation, 88% less than two standard deviations, etc.Think of this during the next financial crisis when bank people no doubt will say they encountered \"six sigma daily movements which should happen only once every hundred million years!!\" or whatever. According to the CLT, sure, but for sufficiently odd distributions the Cantelli bound might be a more useful guide, and it says six sigma daily movements could happen as often as every fifty days.",
+    "parent": 44911265,
     "depth": 2
   },
   {
@@ -99,7 +99,7 @@
     "id": 44911398,
     "by": "nextos",
     "timeISO": "2025-08-15T12:11:59.000Z",
-    "textPlain": "Yes, came here to say the same thing. Not telling people that the CLT makes strong assumptions is important.Otherwise, they might end up underestimating rare events, with potentially catastrophic consequences. There are also CLTs for product and max operators, aside from the sum.The Fundamentals of Heavy Tails: Properties, Emergence, and Estimation discusses these topics in a rigorous way, but without excessive mathematics. See: https://adamwierman.com/book",
+    "textPlain": "Yes, came here to say the same thing. Telling people that the CLT makes strong assumptions is important.Otherwise, they might end up underestimating rare events, with potentially catastrophic consequences. There are also CLTs for product and max operators, aside from the sum.The Fundamentals of Heavy Tails: Properties, Emergence, and Estimation discusses these topics in a rigorous way, but without excessive mathematics. See: https://adamwierman.com/book",
     "parent": 44909520,
     "depth": 2
   },
@@ -125,6 +125,22 @@
     "timeISO": "2025-08-15T08:30:14.000Z",
     "textPlain": "> find outFinite?",
     "parent": 44909520,
+    "depth": 2
+  },
+  {
+    "id": 44911875,
+    "by": "jdhwosnhw",
+    "timeISO": "2025-08-15T13:01:40.000Z",
+    "textPlain": "I’m not sure what you mean by “higher population” but fyi what determines the required number of samples is a function of the full shape of the underlying distribution. For instance the Berry Esseen inequality puts bounds on the convergence rate as a function of the first two central moments of the underlying distribution. But the point is that the convergence rate to Gaussian can be arbitrarily slow!https://en.m.wikipedia.org/wiki/Berry%E2%80%93Esseen_theorem",
+    "parent": 44911441,
+    "depth": 2
+  },
+  {
+    "id": 44912068,
+    "by": "kqr",
+    "timeISO": "2025-08-15T13:18:10.000Z",
+    "textPlain": "> It’s not in the 20k unless your population is extremely highCommon misconception. Population size has almost nothing to do with the necessary sample size. (It does enter into the finite population correction factor, but that's only really relevant if you have a small population, not a large one.)...actually, come to think of it, you meant to write \"unless your population variance is extremely high\", right?",
+    "parent": 44911441,
     "depth": 2
   },
   {
@@ -189,6 +205,22 @@
     "timeISO": "2025-08-15T09:10:23.000Z",
     "textPlain": "Very much an inspiration and resource when composing the post.",
     "parent": 44909806,
+    "depth": 2
+  },
+  {
+    "id": 44910963,
+    "by": "gtsnexp",
+    "timeISO": "2025-08-15T11:22:48.000Z",
+    "textPlain": "https://gptzero.me/\nSays that at large portions of it are 100% human",
+    "parent": 44910863,
+    "depth": 2
+  },
+  {
+    "id": 44910976,
+    "by": "robluxus",
+    "timeISO": "2025-08-15T11:24:20.000Z",
+    "textPlain": "Interesting comment. Why is it common decency to call out how much ai was used for generating an artifact?Is there a threshold?\nI assume spell checkers, linters and formatters are fair game. \nThe other extreme is full-on ai slop. \nWhere do we as a society should start to feel the need to police this (better)?",
+    "parent": 44910863,
     "depth": 2
   }
 ]
