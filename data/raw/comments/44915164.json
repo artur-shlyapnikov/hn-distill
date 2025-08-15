@@ -40,6 +40,14 @@
     "depth": 1
   },
   {
+    "id": 44916083,
+    "by": "figassis",
+    "timeISO": "2025-08-15T18:46:09.000Z",
+    "textPlain": "I have yet to see a guide to automate k8s on Hetzner's beefy bare metal instances. True, you want cattle, but being able to include some bare metal instance with amazing CPUs and memory would be great, and I do just that. My clusters include both cloud and bare metal instances. In the past I had used Hetzner virtual switch to create a shared L2 network between cloud and bare metal nodes. Now I just use tailscale.But the TF and other tools are using the API to add and kill nodes, if you could pass a class of nodes to those tools that they know can't create but are able to wipe and rebuild, this would be ideal.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
     "id": 44917491,
     "by": "JanMa",
     "timeISO": "2025-08-15T21:31:03.000Z",
@@ -48,18 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44917331,
-    "by": "marcosscriven",
-    "timeISO": "2025-08-15T21:14:24.000Z",
-    "textPlain": "What are the connectivity options between heztner dedicated servers? I see they allow you to pay to have in a single rack, with a dedicated switch. But does that introduce a risk of single point of failure in the rack power or switch?",
+    "id": 44915534,
+    "by": "SCHiM",
+    "timeISO": "2025-08-15T18:01:47.000Z",
+    "textPlain": "Could you explain:1) What are the limitations of the scaling you do? Can I do this programmatically? I.e. send some requests to get additional pods of a specific type online?2) What have you done in terms of security hardening? you mention hardened pods/cluster, but specifically, did you do pentest? Just follow best practice? Periodic scans? Stress tests?",
     "parent": 44915164,
     "depth": 1
   },
   {
-    "id": 44917237,
-    "by": "rumblefrog",
-    "timeISO": "2025-08-15T21:05:03.000Z",
-    "textPlain": "I tried to deploy a small cluster in the US VA region, but the cluster status kept flipping between Failed and Creating with no clear way of troubleshooting it: 7ad975fb-3c8e-47a9-b03d-9e6bec81f0db",
+    "id": 44917331,
+    "by": "marcosscriven",
+    "timeISO": "2025-08-15T21:14:24.000Z",
+    "textPlain": "What are the connectivity options between heztner dedicated servers? I see they allow you to pay to have in a single rack, with a dedicated switch. But does that introduce a risk of single point of failure in the rack power or switch?",
     "parent": 44915164,
     "depth": 1
   },
@@ -80,18 +88,18 @@
     "depth": 1
   },
   {
-    "id": 44915534,
-    "by": "SCHiM",
-    "timeISO": "2025-08-15T18:01:47.000Z",
-    "textPlain": "Could you explain:1) What are the limitations of the scaling you do? Can I do this programmatically? I.e. send some requests to get additional pods of a specific type online?2) What have you done in terms of security hardening? you mention hardened pods/cluster, but specifically, did you do pentest? Just follow best practice? Periodic scans? Stress tests?",
+    "id": 44917237,
+    "by": "rumblefrog",
+    "timeISO": "2025-08-15T21:05:03.000Z",
+    "textPlain": "I tried to deploy a small cluster in the US VA region, but the cluster status kept flipping between Failed and Creating with no clear way of troubleshooting it: 7ad975fb-3c8e-47a9-b03d-9e6bec81f0db",
     "parent": 44915164,
     "depth": 1
   },
   {
-    "id": 44916083,
-    "by": "figassis",
-    "timeISO": "2025-08-15T18:46:09.000Z",
-    "textPlain": "I have yet to see a guide to automate k8s on Hetzner's beefy bare metal instances. True, you want cattle, but being able to include some bare metal instance with amazing CPUs and memory would be great, and I do just that. My clusters include both cloud and bare metal instances. In the past I had used Hetzner virtual switch to create a shared L2 network between cloud and bare metal nodes. Now I just use tailscale.But the TF and other tools are using the API to add and kill nodes, if you could pass a class of nodes to those tools that they know can't create but are able to wipe and rebuild, this would be ideal.",
+    "id": 44916620,
+    "by": "deknos",
+    "timeISO": "2025-08-15T19:45:28.000Z",
+    "textPlain": "Am i the only one who is confused about \"Hetzner\" in the title and \"AWS KMS\" in the body?",
     "parent": 44915164,
     "depth": 1
   },
@@ -108,14 +116,6 @@
     "by": "rumblefrog",
     "timeISO": "2025-08-15T20:45:29.000Z",
     "textPlain": "I wonder how long before Hetzner adds something like managed Kubernetes to their native product line. They already have S3 compatible object storages, load balancers and more.",
-    "parent": 44915164,
-    "depth": 1
-  },
-  {
-    "id": 44916620,
-    "by": "deknos",
-    "timeISO": "2025-08-15T19:45:28.000Z",
-    "textPlain": "Am i the only one who is confused about \"Hetzner\" in the title and \"AWS KMS\" in the body?",
     "parent": 44915164,
     "depth": 1
   },
@@ -251,7 +251,7 @@
     "id": 44916210,
     "by": "dorongrinstein",
     "timeISO": "2025-08-15T18:59:03.000Z",
-    "textPlain": "We (https://controlplane.com) have had full Hetzner support for over a year now. You can create a K8s cluster on Linode, Hetzner, AWS or other clouds and on-prem environments. We call it MK8s (Managed K8s Service). It is a CNCF certified hosted K8s service. You run the nodes in your own environment -- on Hetzner or anywhere else.If you email me- I will give you free credits (doron at controlplane.com)",
+    "textPlain": "[flagged]",
     "parent": 44915164,
     "depth": 1
   },
@@ -320,6 +320,14 @@
     "depth": 2
   },
   {
+    "id": 44917000,
+    "by": "SOLAR_FIELDS",
+    "timeISO": "2025-08-15T20:37:45.000Z",
+    "textPlain": "Would CAPH solve your issue? https://github.com/syself/cluster-api-provider-hetzner you would wire up cluster autoscaler to point to it using clusterapi https://github.com/kubernetes/autoscaler/tree/a9cb59fdd2dd88...",
+    "parent": 44916083,
+    "depth": 2
+  },
+  {
     "id": 44917543,
     "by": "camil",
     "timeISO": "2025-08-15T21:37:40.000Z",
@@ -328,11 +336,19 @@
     "depth": 2
   },
   {
-    "id": 44917256,
+    "id": 44918050,
+    "by": "physix",
+    "timeISO": "2025-08-15T22:32:22.000Z",
+    "textPlain": "me too",
+    "parent": 44917491,
+    "depth": 2
+  },
+  {
+    "id": 44916409,
     "by": "camil",
-    "timeISO": "2025-08-15T21:06:47.000Z",
-    "textPlain": "Hello there, sorry for that I will look into it right now.",
-    "parent": 44917237,
+    "timeISO": "2025-08-15T19:17:58.000Z",
+    "textPlain": "Thanks for your questions! \n1) The platform provides a control plane to help you deploy the cluster on your own Hetzner account, so you are in control of resources and pay direct usage costs to Hetzner.\n2) Because you have full access to kubernetes cluster and it runs on your own Hetzner account, the security of the cluster is a shared responsibility and you can fine tune the configuration according to your requirements. The platform security is totally our responsibility. We try to follow best practices and internal penetration tests were conducted, but we're still in beta and try to see if there's interest for such product before launching the stable version.",
+    "parent": 44915534,
     "depth": 2
   },
   {
@@ -360,27 +376,11 @@
     "depth": 2
   },
   {
-    "id": 44916409,
+    "id": 44917256,
     "by": "camil",
-    "timeISO": "2025-08-15T19:17:58.000Z",
-    "textPlain": "Thanks for your questions! \n1) The platform provides a control plane to help you deploy the cluster on your own Hetzner account, so you are in control of resources and pay direct usage costs to Hetzner.\n2) Because you have full access to kubernetes cluster and it runs on your own Hetzner account, the security of the cluster is a shared responsibility and you can fine tune the configuration according to your requirements. The platform security is totally our responsibility. We try to follow best practices and internal penetration tests were conducted, but we're still in beta and try to see if there's interest for such product before launching the stable version.",
-    "parent": 44915534,
-    "depth": 2
-  },
-  {
-    "id": 44917000,
-    "by": "SOLAR_FIELDS",
-    "timeISO": "2025-08-15T20:37:45.000Z",
-    "textPlain": "Would CAPH solve your issue? https://github.com/syself/cluster-api-provider-hetzner you would wire up cluster autoscaler to point to it using clusterapi https://github.com/kubernetes/autoscaler/tree/a9cb59fdd2dd88...",
-    "parent": 44916083,
-    "depth": 2
-  },
-  {
-    "id": 44917086,
-    "by": "Hamuko",
-    "timeISO": "2025-08-15T20:48:47.000Z",
-    "textPlain": "No idea about the timing but I imagine it's coming.Would make a lot of sense, especially if you can combine it with the hardware servers. You could get a lot of grunt in your cluster for a lot less than for example AWS.",
-    "parent": 44917067,
+    "timeISO": "2025-08-15T21:06:47.000Z",
+    "textPlain": "Hello there, sorry for that I will look into it right now.",
+    "parent": 44917237,
     "depth": 2
   },
   {
@@ -392,10 +392,10 @@
     "depth": 2
   },
   {
-    "id": 44917647,
-    "by": "adamcharnock",
-    "timeISO": "2025-08-15T21:48:33.000Z",
-    "textPlain": "To answer from a Kubernetes perspective: Both OpenEBS Mayastor and LocalZFS now support disk encryption.",
+    "id": 44917052,
+    "by": "M4t7e",
+    "timeISO": "2025-08-15T20:43:15.000Z",
+    "textPlain": "If you need disk encryption on Hetzner, I built a Terraform module that sets up a Kubernetes cluster with encrypted disks enabled by default: https://github.com/hcloud-k8s/terraform-hcloud-kubernetes",
     "parent": 44916507,
     "depth": 2
   }

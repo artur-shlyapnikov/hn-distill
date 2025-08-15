@@ -3,7 +3,7 @@
     "id": 44917616,
     "by": "metadat",
     "timeISO": "2025-08-15T21:44:47.000Z",
-    "textPlain": "What is the appeal / high utility use-case for the spaceship \"<=>\" operator?  It seems quite intuitive to me.. too many doodads is a turn off, like a car with excessive modifications.   Does continually adding more then more more more eventually become a stressful nightmare of complexity?For a concrete example of what this looks like, check out the Homer Simpson -designed car.https://media.wired.com/photos/593252a1edfced5820d0fa07/mast...p.s. Fascinating bug!  One of the most interesting cases I've encountered.",
+    "textPlain": "What is the appeal / high utility use-case for the spaceship \"<=>\" operator?  It seems quite unintuitive to me.. too many doodads is a turn off, like a car with excessive modifications.   Does continually adding more then more more more eventually become a stressful nightmare of complexity?For a concrete example of what this looks like, check out the Homer Simpson -designed \"everything\" car.https://media.wired.com/photos/593252a1edfced5820d0fa07/mast...p.s. Fascinating bug!  One of the most interesting cases I've encountered.",
     "parent": 44872584,
     "depth": 1
   },
@@ -16,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44917826,
-    "by": "nly",
-    "timeISO": "2025-08-15T22:09:45.000Z",
-    "textPlain": "Seems like the free comparison function in boost rational should have been constrained to non-rationalsi.e. !is_same_v<rational, U>",
-    "parent": 44872584,
-    "depth": 1
-  },
-  {
     "id": 44916544,
     "by": "yjftsjthsd-h",
     "timeISO": "2025-08-15T19:35:18.000Z",
     "textPlain": "Okay, but why  // SPDX-License-Identifier: UNLICENSED\n\non 6 lines of trivial example code? Of all the things to make proprietary...",
+    "parent": 44872584,
+    "depth": 1
+  },
+  {
+    "id": 44917826,
+    "by": "nly",
+    "timeISO": "2025-08-15T22:09:45.000Z",
+    "textPlain": "Seems like the free comparison function in boost rational should have been constrained to non-rationalsi.e. !is_same_v<rational, U>",
     "parent": 44872584,
     "depth": 1
   },
@@ -46,6 +46,14 @@
     "textPlain": "I brain-typo’d the title into a 12-year-old girl’s bug taking down Solidity and this, frankly, does not live up to that hype",
     "parent": 44872584,
     "depth": 1
+  },
+  {
+    "id": 44918233,
+    "by": "maxlybbert",
+    "timeISO": "2025-08-15T22:56:51.000Z",
+    "textPlain": "When the STL became part of the standard library ( http://www.stlport.org/resources/StepanovUSA.html  ), there was a question of how to handle algorithms that sort containers, or that perform a binary search, or in some other way, need to know whether “a” is less-than, equal-to, or greater-than “b”. The algorithms have to work on primitive types, and user defined types as efficiently as possible. They eventually decided to only require a function for “less-than.” And if “a < b” returns false, and “b < a” also returns false, then “a” and “b” are considered equal.There are times that doesn’t work, so documentation usually has a footnote that (1) certain algorithms require a partial ordering and not necessarily a total ordering, and (2) to use those algorithms, you must implement less-than, but any other comparison operator is ignored by the algorithm; instead, less-than is used to figure out greater-than and equal-to as needed. This was considered better than requiring programmers to implement a collection of comparison operators, and trusting those programmers to make those operators act consistently with each other (e.g., never say that “a” and “b” are both less-than and greater-than each other).The spaceship operator seems to address this specific case ( https://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0515r0... ). According to Herb Sutter (note that his name is on the proposal), “We added the C++20 spaceship operator to the language, but we also applied it throughout the C++ standard library and that made the library specification nearly 20 pages shorter — a net reduction” ( https://herbsutter.com/2020/12/ ).",
+    "parent": 44917616,
+    "depth": 2
   },
   {
     "id": 44917764,

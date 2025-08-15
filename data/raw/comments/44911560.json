@@ -32,14 +32,6 @@
     "depth": 1
   },
   {
-    "id": 44914308,
-    "by": "sandeepkd",
-    "timeISO": "2025-08-15T16:24:37.000Z",
-    "textPlain": "Interesting to see a PR being merged after good 2 years. Thought about the idea of reviewing the changes for self learning, however the number of files involved made me to give up on that idea soon enough. The number of comments (610) gave an impression that the PR must have been reviewed thoroughly, however a close look tells that the comments are mostly about the topic itself, not about the code changes. Unless the code review is managed internally, the PR gives an impression of mostly happy paths.",
-    "parent": 44911560,
-    "depth": 1
-  },
-  {
     "id": 44912939,
     "by": "jedahan",
     "timeISO": "2025-08-15T14:33:52.000Z",
@@ -56,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44917362,
-    "by": "xxmarkuski",
-    "timeISO": "2025-08-15T21:17:27.000Z",
-    "textPlain": "How secure is Vaultwarden?",
+    "id": 44912284,
+    "by": "cromka",
+    "timeISO": "2025-08-15T13:38:40.000Z",
+    "textPlain": "I selfhost vaultwarden for my use only. Can someone please explain it like I am 5 what's the use case of this new feature? Is it to log in to vaultwarden using an OpenID?",
     "parent": 44911560,
     "depth": 1
   },
@@ -72,18 +64,26 @@
     "depth": 1
   },
   {
-    "id": 44912284,
-    "by": "cromka",
-    "timeISO": "2025-08-15T13:38:40.000Z",
-    "textPlain": "I selfhost vaultwarden for my use only. Can someone please explain it like I am 5 what's the use case of this new feature? Is it to log in to vaultwarden using an OpenID?",
-    "parent": 44911560,
-    "depth": 1
-  },
-  {
     "id": 44912515,
     "by": "razighter777",
     "timeISO": "2025-08-15T13:59:01.000Z",
     "textPlain": "Fantastic! I really love vaultwarden and was looking forward to this. I have no reason to run SSO in my 3 user homelab but it makes me happygood work.",
+    "parent": 44911560,
+    "depth": 1
+  },
+  {
+    "id": 44917362,
+    "by": "xxmarkuski",
+    "timeISO": "2025-08-15T21:17:27.000Z",
+    "textPlain": "How secure is Vaultwarden?",
+    "parent": 44911560,
+    "depth": 1
+  },
+  {
+    "id": 44914308,
+    "by": "sandeepkd",
+    "timeISO": "2025-08-15T16:24:37.000Z",
+    "textPlain": "Interesting to see a PR being merged after good 2 years. Thought about the idea of reviewing the changes for self learning, however the number of files involved made me to give up on that idea soon enough. The number of comments (610) gave an impression that the PR must have been reviewed thoroughly, however a close look tells that the comments are mostly about the topic itself, not about the code changes. Unless the code review is managed internally, the PR gives an impression of mostly happy paths.",
     "parent": 44911560,
     "depth": 1
   },
@@ -192,18 +192,18 @@
     "depth": 2
   },
   {
-    "id": 44916984,
-    "by": "forty",
-    "timeISO": "2025-08-15T20:35:45.000Z",
-    "textPlain": "Well, without SSO, we (people making password managers for business) are in a weird position where we tell people \"you won't have to remember passwords\" then the first thing we do is to ask to remember a new password (the master password).SSO also has the benefit that admin can impersonate another account, which is generally a good thing in a corporate environment (think of employee turn over, bus factor, etc)",
-    "parent": 44912542,
-    "depth": 2
-  },
-  {
     "id": 44912918,
     "by": "vasco",
     "timeISO": "2025-08-15T14:31:50.000Z",
     "textPlain": "So you're going to play IT and duplicate all the groups and all the roles manually that already are maintained and automated for on/off-boarding? And not have them be auto-offboarded when they are let go? That introduces compliance risks and imo more problems than having SSO on your password manager. Yes, keep some master password for a rainy day if you have to, but otherwise, the more \"dangerous\" the thing the more it should be hooked up to SSO.",
+    "parent": 44912542,
+    "depth": 2
+  },
+  {
+    "id": 44916984,
+    "by": "forty",
+    "timeISO": "2025-08-15T20:35:45.000Z",
+    "textPlain": "Well, without SSO, we (people making password managers for business) are in a weird position where we tell people \"you won't have to remember passwords\" then the first thing we do is to ask to remember a new password (the master password).SSO also has the benefit that admin can impersonate another account, which is generally a good thing in a corporate environment (think of employee turn over, bus factor, etc)",
     "parent": 44912542,
     "depth": 2
   },
@@ -221,14 +221,6 @@
     "timeISO": "2025-08-15T14:33:58.000Z",
     "textPlain": "It's most useful for companies, where the goal is as much SSO as possible.",
     "parent": 44912542,
-    "depth": 2
-  },
-  {
-    "id": 44915384,
-    "by": "franga2000",
-    "timeISO": "2025-08-15T17:50:15.000Z",
-    "textPlain": "Depending on how many services you host, this is a huge deal for family and/or friends setups. I run around a dozen things that various family members and friends use, so being able to have one accout that they can log into anything with (including password change and reset) without me having to manually manage accounts makes the whole endeavour much more viable.",
-    "parent": 44913624,
     "depth": 2
   },
   {
@@ -261,6 +253,22 @@
     "timeISO": "2025-08-15T18:08:14.000Z",
     "textPlain": "My team self hosts multiple internal services, including vaultwarden.For most of these we use our standard corporate OIDC provider to provide autentication and accounting, either onto a proxy or direct on the service, that passes the user through, the hosted service is either fine (just logs the user in its local access logs for the accounting part) because it's allowed for all our corporate users, or the service uses its own authorisation logic to allow or reject the users.Some devices are just generic user/password on the device itself -- the authorisation there is that the group responsible for that device has to keep the credential secure. Any authenticated Corp user can access the login page, and that gets logged, but the authorisation is a simple user/password.If the credential isn't secure (because people are terrible with security) then at least the attacker is logged, and has had to authorise access.Some authentication is better. Our guacamole hosts for example are authenticated on proxy with OIDC, then passed through to the guacamole server which does its own authorisation based on its internal database (which itself is managed via a github approach - to add joe.bloggs@corp.com to the \"Washington Servers\" group you add his identity to the right part of the \"groups.conf\" file and when the PR is merged it applies across the estate within a minute or two). Then they can access all connections in \"Washington\", but \"davey.jones@corp.com\" isn't in that group, so can't.Likewise our IPAM will create a user in the \"readonly\" group automatically (our policy is ip records are available to everyone in the company), but they then need moving into an elevated rights using IPAM tooling to allocate IP addresses.Vaultwarden though we maintain separate user and password, we still have the OIDC front end, but it's completely ignored for another layer of authorisation. I'm about to go on leave so I won't be thinking too much about if this will help, but its good to have the o",
     "parent": 44912284,
+    "depth": 2
+  },
+  {
+    "id": 44915384,
+    "by": "franga2000",
+    "timeISO": "2025-08-15T17:50:15.000Z",
+    "textPlain": "Depending on how many services you host, this is a huge deal for family and/or friends setups. I run around a dozen things that various family members and friends use, so being able to have one accout that they can log into anything with (including password change and reset) without me having to manually manage accounts makes the whole endeavour much more viable.",
+    "parent": 44913624,
+    "depth": 2
+  },
+  {
+    "id": 44918340,
+    "by": "import",
+    "timeISO": "2025-08-15T23:12:00.000Z",
+    "textPlain": "You can read the code and see?",
+    "parent": 44917362,
     "depth": 2
   },
   {
