@@ -24,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44907590,
-    "by": "stephen",
-    "timeISO": "2025-08-15T01:11:27.000Z",
-    "textPlain": "I've been using Ghostty, and other GPU-based apps like Alacritty / WezTerm / Zed, because they're ofc better/faster...Ironically they've all made my DX worse, by highlighting how terrible the nvidia drivers actually worked on both my old Regolith i3wm/compositor-less or new sway/wayland setup.Like it's ridiculously terrible.I've tried every magical env flag that Claude can think of, and 4 of the various 550/560/575/580 driver versions--they all suck at screensharing, or resume from sleep, or just out-right buginess/crashes/segfaults in the nvidia drivers.It must have always been this bad, but I just didn't notice, b/c I never actually used my GPU? lol",
+    "id": 44906777,
+    "by": "ripley12",
+    "timeISO": "2025-08-14T23:06:15.000Z",
+    "textPlain": "> This has already led to more easily introducing GUI features like a new GTK titlebar tabs optionYes! This is huge, I previously gave up on Ghostty because the title bar wasted so much space on my laptop screen: https://bsky.app/profile/reillywood.bsky.social/post/3lebapf...I found the PR in case anyone else is curious what the new functionality looks like: https://github.com/ghostty-org/ghostty/pull/8166",
     "parent": 44905808,
     "depth": 1
   },
@@ -48,18 +48,18 @@
     "depth": 1
   },
   {
-    "id": 44906777,
-    "by": "ripley12",
-    "timeISO": "2025-08-14T23:06:15.000Z",
-    "textPlain": "> This has already led to more easily introducing GUI features like a new GTK titlebar tabs optionYes! This is huge, I previously gave up on Ghostty because the title bar wasted so much space on my laptop screen: https://bsky.app/profile/reillywood.bsky.social/post/3lebapf...I found the PR in case anyone else is curious what the new functionality looks like: https://github.com/ghostty-org/ghostty/pull/8166",
-    "parent": 44905808,
-    "depth": 1
-  },
-  {
     "id": 44906538,
     "by": "jwar767",
     "timeISO": "2025-08-14T22:38:33.000Z",
     "textPlain": "We had a similar experience to this at work. We wrote a google cloud service that interfaced with firestore using F# and found it painful because the firestore library is meant to be used with C#. It worked decently well but it was hard to write idiomatic F# without having a bunch of wrapping functions.",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44907590,
+    "by": "stephen",
+    "timeISO": "2025-08-15T01:11:27.000Z",
+    "textPlain": "I've been using Ghostty, and other GPU-based apps like Alacritty / WezTerm / Zed, because they're ofc better/faster...Ironically they've all made my DX worse, by highlighting how terrible the nvidia drivers actually worked on both my old Regolith i3wm/compositor-less or new sway/wayland setup.Like it's ridiculously terrible.I've tried every magical env flag that Claude can think of, and 4 of the various 550/560/575/580 driver versions--they all suck at screensharing, or resume from sleep, or just out-right buginess/crashes/segfaults in the nvidia drivers.It must have always been this bad, but I just didn't notice, b/c I never actually used my GPU? lol",
     "parent": 44905808,
     "depth": 1
   },
@@ -80,18 +80,18 @@
     "depth": 1
   },
   {
-    "id": 44906776,
-    "by": "LeSaucy",
-    "timeISO": "2025-08-14T23:06:03.000Z",
-    "textPlain": "I'll take QObject over GObject any day of the week.",
-    "parent": 44905808,
-    "depth": 1
-  },
-  {
     "id": 44906138,
     "by": "corsica",
     "timeISO": "2025-08-14T21:53:16.000Z",
     "textPlain": "I don't get the hype around this application. The only UI Ghostty has is tabs and the context menu, is it really worth the integration pain and now this rewrite?Maybe they're planning for more, like those GUI configuration dialogs that iterm2 has?Kitty uses OpenGL for everything and draws its own tabs, they're fully customizable and can be made to look however you want. By not wasting time on integrating with massive frameworks for drawing tabs, Kovid was able to quickly implement really useful things that Ghostty is sorely missing, like wrapping the output of the last command in a pager (run 'ps -auxf' and press Ctrl+Shift+G — this thing so useful it's hard to go without it now. It also works for remote shells across SSH sessions.)",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44906776,
+    "by": "LeSaucy",
+    "timeISO": "2025-08-14T23:06:03.000Z",
+    "textPlain": "I'll take QObject over GObject any day of the week.",
     "parent": 44905808,
     "depth": 1
   },
@@ -102,6 +102,22 @@
     "textPlain": "“Ghostty is cross platform…” but not on windows :D“App XYZ is mobile ready…” but not on Android.Same vibe",
     "parent": 44905808,
     "depth": 1
+  },
+  {
+    "id": 44908237,
+    "by": "poetril",
+    "timeISO": "2025-08-15T03:13:22.000Z",
+    "textPlain": "I did not know this was a project that was in progress, and its quite exciting. I love Godot, and am quite fond a Zig as well. I'll be keeping my eye on this.",
+    "parent": 44906447,
+    "depth": 2
+  },
+  {
+    "id": 44908188,
+    "by": "aidenn0",
+    "timeISO": "2025-08-15T03:04:36.000Z",
+    "textPlain": "Hopefully it's improved, but the last time I wrote a GTK binding for a language, it was miserable.  98% of it was sane, but the remaining 2% had things like \"whether or not this function takes a reference to this object depends on the other parameters passed\" which made liveness analysis \"interesting.\"",
+    "parent": 44906447,
+    "depth": 2
   },
   {
     "id": 44906350,
@@ -117,6 +133,14 @@
     "timeISO": "2025-08-14T23:17:23.000Z",
     "textPlain": "In my view the primary reason for GTK’s prominence on Linux rides on one thing primarily: it’s got C bindings, and thus it has decent bindings for just about every other language under the sun too. If you’re not trying for anything fancy, these bindings can even be auto-generated.The runner up Qt is much more tightly tied to C++ and Python to its detriment. You really need to meet devs where they’re at instead of insisting that they adopt a particular language to use your UI toolkit.Aside from that, at the end of the day, if you’re building a full fat complex desktop app an old style imperative UI toolkit is probably one of the more practical choices you can make. They have an exhaustive set of battle tested, accessible widgets built in and their pitfalls are well known. Newer approaches expect you to write or import everything and start requiring increased contortions from the developer past a certain point of complexity.",
     "parent": 44906288,
+    "depth": 2
+  },
+  {
+    "id": 44907053,
+    "by": "mixmastamyk",
+    "timeISO": "2025-08-14T23:45:34.000Z",
+    "textPlain": "If it’s not maximized, the space isn’t wasted.  The title in the response image looks incredibly crowded.  May be ok if several buttons could be removed from the titlebar.",
+    "parent": 44906777,
     "depth": 2
   },
   {
@@ -136,11 +160,11 @@
     "depth": 2
   },
   {
-    "id": 44907053,
-    "by": "mixmastamyk",
-    "timeISO": "2025-08-14T23:45:34.000Z",
-    "textPlain": "If it’s not maximized, the space isn’t wasted.  The title in the response image looks incredibly crowded.  May be ok if several buttons could be removed from the titlebar.",
-    "parent": 44906777,
+    "id": 44908221,
+    "by": "aidenn0",
+    "timeISO": "2025-08-15T03:10:57.000Z",
+    "textPlain": "I had a similar experience with Wayland.  If I turned compositing effects of in X11, everything worked fine on my two machines (one with a 1050Ti, the other with an AMD card old enough to need the \"radeon\" driver).  Wayland would lag, or crash or just show garbled output.",
+    "parent": 44907590,
     "depth": 2
   },
   {

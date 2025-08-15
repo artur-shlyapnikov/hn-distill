@@ -40,26 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44902015,
-    "by": "1zael",
-    "timeISO": "2025-08-14T15:59:02.000Z",
-    "textPlain": "> \"when test fail, they are left guessing as to whether to fix the code or the tests\"I've one thing that helps is using the \"Red-Green-Refactor\" language. We're in RED phase - test should fail. We're in GREEN phase - make this test pass with minimal code. We're in REFACTOR phase - improve the code without breaking tests.This helps the LLM understand the TDD mental model rather than just seeing \"broken code\" that needs fixing.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
     "id": 44901793,
     "by": "pjmlp",
     "timeISO": "2025-08-14T15:42:40.000Z",
     "textPlain": "Only because most AI startups are doing it wrong.I don't want a chat window.I want AI workflows as part of my IDE, like Visual Studio, InteliJ, Android Studio are finally going after.I want voice controlled actions on my native language.Knowledge across everything on the project for doing code refactorings, static analysis with AI feedback loop, generating UI based out of handwritten sketches, programming on the go using handwriting, source control commit messages out of code changes,...",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44901371,
-    "by": "emilecantin",
-    "timeISO": "2025-08-14T15:13:38.000Z",
-    "textPlain": "Yeah, I think it's pretty clear to a lot of people that LLMs aren't at the \"build me Facebook, but for dogs\" stage yet. I've had relatively good success with more targeted tasks, like \"Add a modal that does this, take this existing modal as an example for code style\". I also break my problem down into smaller chunks, and give them one by one to the LLM. It seems to work much better that way.",
     "parent": 44900116,
     "depth": 1
   },
@@ -72,10 +56,26 @@
     "depth": 1
   },
   {
-    "id": 44901494,
-    "by": "Transfinity",
-    "timeISO": "2025-08-14T15:22:16.000Z",
-    "textPlain": "> LLMs get endlessly confused: they assume the code they wrote actually works; when test fail, they are left guessing as to whether to fix the code or the tests; and when it gets frustrating, they just delete the whole lot and start over.I feel personally described by this statement. At least on a bad day, or if I'm phoning it in. Not sure if that says anything about AI - maybe just that the whole \"mental models\" part is quite hard.",
+    "id": 44902015,
+    "by": "1zael",
+    "timeISO": "2025-08-14T15:59:02.000Z",
+    "textPlain": "> \"when test fail, they are left guessing as to whether to fix the code or the tests\"I've one thing that helps is using the \"Red-Green-Refactor\" language. We're in RED phase - test should fail. We're in GREEN phase - make this test pass with minimal code. We're in REFACTOR phase - improve the code without breaking tests.This helps the LLM understand the TDD mental model rather than just seeing \"broken code\" that needs fixing.",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44901371,
+    "by": "emilecantin",
+    "timeISO": "2025-08-14T15:13:38.000Z",
+    "textPlain": "Yeah, I think it's pretty clear to a lot of people that LLMs aren't at the \"build me Facebook, but for dogs\" stage yet. I've had relatively good success with more targeted tasks, like \"Add a modal that does this, take this existing modal as an example for code style\". I also break my problem down into smaller chunks, and give them one by one to the LLM. It seems to work much better that way.",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44905259,
+    "by": "mikewarot",
+    "timeISO": "2025-08-14T20:26:37.000Z",
+    "textPlain": "3 months ago, I would have agreed with much of this article, however...In the past week, I watched this video[1] from Welch Labs about how deep networks work, and it inspired an idea. I spent some time \"vibe coding\" with Visual Studio Code's ChatGPT5 preview and had it generate a python framework that can take an image, and teach a small network how to generate that one sample image.The network was simple... 2 inputs (x,y), 3 outputs (r,g,b), and a number of hidden layers with a specified number of nodes per layer.It's an agent, it writes code, tests it, fixes problems, and it pretty much just works. As I explored the space of image generation, I had it add options over time, and it all just worked. Unlike previous efforts, I didn't have to copy/paste error messages in and try to figure out how things broke. I was pleasantly surprised that the code just worked in a manner close to what I wanted.The only real problem I had was getting .venv working right, and that's more of an install issue rather then the LLMs fault.I've got to say, I'm quite impressed with Python's argparse library.It's amazing how much detail you can get out of a 4 hidden layers of 64 values, and 3 output channels (rgb), if you're willing to through a few days of CPU time at it.  My goal is to see just how small of a network I can make to generate my favorite photo.As it iterates through checkpoints, I have it output an image with the current values, to compare against the original, it's quite fascinating to watch as it folds the latent space to capture major features of the photo, then folds some more to catch smaller details, over and over, as the signal to noise ratio very slowly increases over the hours.As for ChatGPT5, maybe I just haven't run out of context window yet, but for now, it all just seems like magic.[1] https://www.youtube.com/watch?v=qx7hirqgfuU",
     "parent": 44900116,
     "depth": 1
   },
@@ -88,26 +88,26 @@
     "depth": 1
   },
   {
+    "id": 44907101,
+    "by": "crabmusket",
+    "timeISO": "2025-08-14T23:53:41.000Z",
+    "textPlain": "The 4 step process outlined at the start of this article really reminds me of Deutsch's The Beginning of Infinity:> The real source of our theories is conjecture, and the real source of our knowledge is conjecture alternating with criticism.(This is rephrased Karl Popper, and Popper cites an intellectual lineage beginning somewhere around Parmenides.)I see writing tests as a criticism of the code you wrote, which itself was a conjecture. Both are attempting to approach an explanation in your mind, some platonic idea that you think you are putting on paper. The code is an attempt to do so, the test is criticism from a different direction that you have done so.",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44901494,
+    "by": "Transfinity",
+    "timeISO": "2025-08-14T15:22:16.000Z",
+    "textPlain": "> LLMs get endlessly confused: they assume the code they wrote actually works; when test fail, they are left guessing as to whether to fix the code or the tests; and when it gets frustrating, they just delete the whole lot and start over.I feel personally described by this statement. At least on a bad day, or if I'm phoning it in. Not sure if that says anything about AI - maybe just that the whole \"mental models\" part is quite hard.",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
     "id": 44902823,
     "by": "guluarte",
     "timeISO": "2025-08-14T16:58:37.000Z",
     "textPlain": "Turns out, English is pretty bad for creating deterministic software. If you are vibe coding, you either are happy with the randomness generated by the LLMs or you enter a loop to try to generate a deterministic output, in which case using a programming language could have been easier.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44902714,
-    "by": "otterley",
-    "timeISO": "2025-08-14T16:50:22.000Z",
-    "textPlain": "On the contrary, Kiro (https://kiro.dev) is showing that it can be done by breaking down software engineering into multiple stages (requirements, design, and tasks) and then breaking the tasks down into discrete subtasks. Each of those can then be customized and refined as much as you like. It will even sketch out initial documents for all three.It’s still early days, but we are learning that as with software written exclusively by humans, the more specific the specifications are, the more likely the result will be as you intended.",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44902166,
-    "by": "nowittyusername",
-    "timeISO": "2025-08-14T16:09:47.000Z",
-    "textPlain": "Saying LLMS are not good at x or y, is akin to saying a brain is useless without a body. Which is obvious.  The success of agentic coding solutions depends on not just the model but also the system that the developers built around the model. And the companies that will succeed in this area are going to be the companies that focus on building sophisticated and capable systems that utilize said models. We are still in very early days where most organizations are only coming to terms with this realization... Only a few of them fully utilize this concept to the fullest, Claude code being the best example. The Claude models are specifically trained for tool calling and other capabilities and the Claude code cli compliments and takes advantage of those capabilities to the fullest, things like context management among other capabilities are extremely important  ...",
     "parent": 44900116,
     "depth": 1
   },
@@ -120,18 +120,10 @@
     "depth": 1
   },
   {
-    "id": 44903682,
-    "by": "shad42",
-    "timeISO": "2025-08-14T18:08:11.000Z",
-    "textPlain": "LLMs are powerful assistants—as long as the user keeps a firm mental model of the problem. That’s why, for now, they complement software engineers rather than replace them (at least today).When you already know exactly what needs to be built and simply want to skip the drudgery of boilerplate or repetitive tasks, a coding CLI is great: it handles the grunt work so you can stay focused on the high-level design and decision-making that truly matter (and also more fun).",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
-    "id": 44903744,
-    "by": "VladTepes2025",
-    "timeISO": "2025-08-14T18:13:46.000Z",
-    "textPlain": "Have faith in AI, one day it will do what we hallucinate it can do!",
+    "id": 44902166,
+    "by": "nowittyusername",
+    "timeISO": "2025-08-14T16:09:47.000Z",
+    "textPlain": "Saying LLMS are not good at x or y, is akin to saying a brain is useless without a body. Which is obvious.  The success of agentic coding solutions depends on not just the model but also the system that the developers built around the model. And the companies that will succeed in this area are going to be the companies that focus on building sophisticated and capable systems that utilize said models. We are still in very early days where most organizations are only coming to terms with this realization... Only a few of them fully utilize this concept to the fullest, Claude code being the best example. The Claude models are specifically trained for tool calling and other capabilities and the Claude code cli compliments and takes advantage of those capabilities to the fullest, things like context management among other capabilities are extremely important  ...",
     "parent": 44900116,
     "depth": 1
   },
@@ -176,6 +168,14 @@
     "depth": 1
   },
   {
+    "id": 44903744,
+    "by": "VladTepes2025",
+    "timeISO": "2025-08-14T18:13:46.000Z",
+    "textPlain": "Have faith in AI, one day it will do what we hallucinate it can do!",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
     "id": 44901331,
     "by": "empath75",
     "timeISO": "2025-08-14T15:09:26.000Z",
@@ -184,10 +184,18 @@
     "depth": 1
   },
   {
-    "id": 44901780,
-    "by": "sneak",
-    "timeISO": "2025-08-14T15:42:23.000Z",
-    "textPlain": "Am I the only one continuously astounded at how well Opus 4 actually does build mental models when prompted correctly?I find Sonnet frequently loses the plot, but Opus can usually handle it (with sufficient clarity in prompting).",
+    "id": 44903682,
+    "by": "shad42",
+    "timeISO": "2025-08-14T18:08:11.000Z",
+    "textPlain": "LLMs are powerful assistants—as long as the user keeps a firm mental model of the problem. That’s why, for now, they complement software engineers rather than replace them (at least today).When you already know exactly what needs to be built and simply want to skip the drudgery of boilerplate or repetitive tasks, a coding CLI is great: it handles the grunt work so you can stay focused on the high-level design and decision-making that truly matter (and also more fun).",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44906685,
+    "by": "random2019",
+    "timeISO": "2025-08-14T22:54:55.000Z",
+    "textPlain": "Btw a lot of blogposts happened on https://uplift.bio/blog about an alternative AI cognitive architecture, but somehow nothing came out of that as a commerical service to the greater public and they kept it closed source, and the C# code remains undetermined to this day, even if they supposedly wrote over 1 million lines of C# for that weird blog, which sounds insane to me, for C# a terser language ...{{cite web\n | title       = The Actual Growth of Machine Intelligence - 2021 Q4 to Present - Buil…\n | url         = https://uplift.bio/blog/the-actual-growth-of-machine-intelli...\n | date        = 2022-12-15\n | archiveurl  = http://archive.today/uwOes\n | archivedate = 2022-12-15 }}I barely know basics about Linux, computers, and the tooling around programming languages.They managed to run a better chatbot than ChatGPT 5 on 128 GB of RAM, 2 Xeons and around 180 dollars per month on a cloud Azure VM. Almost nobody cares. It's interesting they only used CPUs not GPUs.They mentioned something like, deep learning isn't good enough for their approach? Although in passing they said uplift could use GPUs too.They said they quit because it wasn't imaginative enough, but they also censored it a lot.They started coding around 2012 (?) put the bot online around 2019, and shut down public use around 2022.The AI revolution already happened in an obscure corner of the internet, but because of greed or anxiety of the creators it never took off.Lets see what happens by 2030, but, I'm not hoping much.\"1 million LOC\" they hardcoded everything, maybe, idk.I'm not paid to post this, and I mostly have no idea, but lets see if anything interesting comes out of my comment.I've learned about AST - Attention Schema Theory, IIT - Integrated Information Theory and GWT - Global Workspace Theory but without the knowledge it's mostly buzzwords for me.",
     "parent": 44900116,
     "depth": 1
   },
@@ -216,18 +224,18 @@
     "depth": 1
   },
   {
-    "id": 44903116,
-    "by": "robomartin",
-    "timeISO": "2025-08-14T17:20:57.000Z",
-    "textPlain": "I decided to jump into the deep end of the pool and complete two projects using Cursor with it's default AI setup.The first project is a C++ embedded device.  The second is a sophisticated Django-based UI front end for a hardware device (so, python interacting with hardware and various JS libraries handling most of the front end).So far I am deeper into the Django project than the C++ embedded project.It's interesting.I had already hand-coded a conceptual version of the UI just to play with UI and interaction ideas.  I handed this to Cursor as well as a very detailed specification for the entire project, including directory structure, libraries, where to use what and why, etc.  In other words, exactly what I would provide a contractor or company if I were to outsource this project.  I also told it to take a first stab at the front end based on the hand-coded version I plopped into a temporary project directory.And then I channeled Jean-Luc Picard and said \"Engage!\".The first iteration took a few minutes.  It was surprisingly functional and complete.  Yet, of course, it had problems.  For example, it failed to separate various screens into separate independent Django apps.  It failed to separate the one big beautiful CSS and JS files into independent app-specific CSS and JS files.  In general, it ignored separation of concerns and just made it all work.  This is the kind of thing you might expect from a junior programmer/fresh grad.Achieving separation of concerns and other undesirable cross-pollination of code took some effort.  LLM's don't really understand.  They simulate understanding very well, but, at the end of the day, I don't think we are there.  They tend to get stuck and make dumb mistakes.The process to get to something that is now close to a release candidate entailed an interesting combination of manual editing and \"molding\" of the code base with short, precise and scope-limited instructions for Cursor.  For my workflow I am finding that limiting what I",
-    "parent": 44900116,
-    "depth": 1
-  },
-  {
     "id": 44901701,
     "by": "antihipocrat",
     "timeISO": "2025-08-14T15:35:43.000Z",
     "textPlain": "...\"(at least for now) you are in the drivers seat, and the LLM is just another tool to reach for.\"Improvements in model performance seem to be approaching the peak rather than demonstrating exponential gains. Is the quote above where we land in the end?",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44901780,
+    "by": "sneak",
+    "timeISO": "2025-08-14T15:42:23.000Z",
+    "textPlain": "Am I the only one continuously astounded at how well Opus 4 actually does build mental models when prompted correctly?I find Sonnet frequently loses the plot, but Opus can usually handle it (with sufficient clarity in prompting).",
     "parent": 44900116,
     "depth": 1
   },
@@ -240,17 +248,17 @@
     "depth": 1
   },
   {
-    "id": 44901910,
-    "by": "jeffWrld",
-    "timeISO": "2025-08-14T15:51:52.000Z",
-    "textPlain": "[dead]",
+    "id": 44903116,
+    "by": "robomartin",
+    "timeISO": "2025-08-14T17:20:57.000Z",
+    "textPlain": "I decided to jump into the deep end of the pool and complete two projects using Cursor with it's default AI setup.The first project is a C++ embedded device.  The second is a sophisticated Django-based UI front end for a hardware device (so, python interacting with hardware and various JS libraries handling most of the front end).So far I am deeper into the Django project than the C++ embedded project.It's interesting.I had already hand-coded a conceptual version of the UI just to play with UI and interaction ideas.  I handed this to Cursor as well as a very detailed specification for the entire project, including directory structure, libraries, where to use what and why, etc.  In other words, exactly what I would provide a contractor or company if I were to outsource this project.  I also told it to take a first stab at the front end based on the hand-coded version I plopped into a temporary project directory.And then I channeled Jean-Luc Picard and said \"Engage!\".The first iteration took a few minutes.  It was surprisingly functional and complete.  Yet, of course, it had problems.  For example, it failed to separate various screens into separate independent Django apps.  It failed to separate the one big beautiful CSS and JS files into independent app-specific CSS and JS files.  In general, it ignored separation of concerns and just made it all work.  This is the kind of thing you might expect from a junior programmer/fresh grad.Achieving separation of concerns and other undesirable cross-pollination of code took some effort.  LLM's don't really understand.  They simulate understanding very well, but, at the end of the day, I don't think we are there.  They tend to get stuck and make dumb mistakes.The process to get to something that is now close to a release candidate entailed an interesting combination of manual editing and \"molding\" of the code base with short, precise and scope-limited instructions for Cursor.  For my workflow I am finding that limiting what I",
     "parent": 44900116,
     "depth": 1
   },
   {
-    "id": 44903728,
-    "by": "reramuyc",
-    "timeISO": "2025-08-14T18:12:15.000Z",
+    "id": 44901910,
+    "by": "jeffWrld",
+    "timeISO": "2025-08-14T15:51:52.000Z",
     "textPlain": "[dead]",
     "parent": 44900116,
     "depth": 1
@@ -272,10 +280,26 @@
     "depth": 1
   },
   {
+    "id": 44903728,
+    "by": "reramuyc",
+    "timeISO": "2025-08-14T18:12:15.000Z",
+    "textPlain": "[dead]",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
     "id": 44901477,
     "by": "myfavoritedog",
     "timeISO": "2025-08-14T15:21:03.000Z",
     "textPlain": "[dead]",
+    "parent": 44900116,
+    "depth": 1
+  },
+  {
+    "id": 44902093,
+    "by": "ontigola",
+    "timeISO": "2025-08-14T16:03:54.000Z",
+    "textPlain": "Great, concise article. Nothing important to add, except that AI snake-oil salesmen will continue spreading their exaggerations far and wide, at least we who are truly in this business agree on the facts.",
     "parent": 44900116,
     "depth": 1
   },
@@ -288,10 +312,10 @@
     "depth": 1
   },
   {
-    "id": 44902093,
-    "by": "ontigola",
-    "timeISO": "2025-08-14T16:03:54.000Z",
-    "textPlain": "Great, concise article. Nothing important to add, except that AI snake-oil salesmen will continue spreading their exaggerations far and wide, at least we who are truly in this business agree on the facts.",
+    "id": 44902714,
+    "by": "otterley",
+    "timeISO": "2025-08-14T16:50:22.000Z",
+    "textPlain": "On the contrary, Kiro (https://kiro.dev) is showing that it can be done by breaking down software engineering into multiple stages (requirements, design, and tasks) and then breaking the tasks down into discrete subtasks. Each of those can then be customized and refined as much as you like. It will even sketch out initial documents for all three.It’s still early days, but we are learning that as with software written exclusively by humans, the more specific the specifications are, the more likely the result will be as you intended.",
     "parent": 44900116,
     "depth": 1
   },
@@ -320,14 +344,6 @@
     "depth": 2
   },
   {
-    "id": 44902776,
-    "by": "JackFr",
-    "timeISO": "2025-08-14T16:54:50.000Z",
-    "textPlain": "- When we have a report of a failing test before fixing it, identify the component under test. Think deeply about the component and describe its purpose, the control flows and state changes that occur within the component and assumptions the component makes about context.  Write that analysis in file called component-name-mental-model.md.- When ever you address a failing test, always bring your component mental model into the context.Paste that into your Claude prompt and see if you get better results.  You'll even be able to read and correct the LLM's mental model.",
-    "parent": 44901335,
-    "depth": 2
-  },
-  {
     "id": 44902313,
     "by": "appease7727",
     "timeISO": "2025-08-14T16:19:30.000Z",
@@ -336,10 +352,10 @@
     "depth": 2
   },
   {
-    "id": 44903791,
-    "by": "Natsu",
-    "timeISO": "2025-08-14T18:18:00.000Z",
-    "textPlain": ">  the response for that function should maybe differentiate between \"401 because you didn't authenticate\" and \"401 because your privileges are too low\".I'd tend to think it more proper if it were 401 you didn't authenticate and 403 you're forbidden from doing that with those user rights, but you have to be careful about exactly how detailed your messages are, lest they get tagged as a CWE-209 in your next security audit.",
+    "id": 44902776,
+    "by": "JackFr",
+    "timeISO": "2025-08-14T16:54:50.000Z",
+    "textPlain": "- When we have a report of a failing test before fixing it, identify the component under test. Think deeply about the component and describe its purpose, the control flows and state changes that occur within the component and assumptions the component makes about context.  Write that analysis in file called component-name-mental-model.md.- When ever you address a failing test, always bring your component mental model into the context.Paste that into your Claude prompt and see if you get better results.  You'll even be able to read and correct the LLM's mental model.",
     "parent": 44901335,
     "depth": 2
   },
@@ -352,10 +368,18 @@
     "depth": 2
   },
   {
-    "id": 44903059,
-    "by": "exe34",
-    "timeISO": "2025-08-14T17:16:13.000Z",
-    "textPlain": "to be fair, I've seen cursor step back and check higher level things. I was trying to set up a firecracker vm and it did everything for me, and when things didn't initially work, it started doing things like ls, tar -tvf, and then a bunch of checking networking stuff to make sure things were showing up in the right place.so current LLMs might not quite be human level, but I'd have to see a bigger model fail before I'd conclude that it can't do $X.",
+    "id": 44901533,
+    "by": "livid-neuro",
+    "timeISO": "2025-08-14T15:25:05.000Z",
+    "textPlain": "The first cars broke down all the time. They had a limited range. There wasn't a vast supply of parts for them. There wasn't a vast industry of experts who could work on them. There wasn't a vast network of fuel stations to provide energy for them. The horse was a proven method.What an LLM cannot do today is almost irrelevant in the tide of change upon the industry. The fact is, with improvements, it doesn't mean an LLM cannot do it tomorrow.",
+    "parent": 44901335,
+    "depth": 2
+  },
+  {
+    "id": 44903791,
+    "by": "Natsu",
+    "timeISO": "2025-08-14T18:18:00.000Z",
+    "textPlain": ">  the response for that function should maybe differentiate between \"401 because you didn't authenticate\" and \"401 because your privileges are too low\".I'd tend to think it more proper if it were 401 you didn't authenticate and 403 you're forbidden from doing that with those user rights, but you have to be careful about exactly how detailed your messages are, lest they get tagged as a CWE-209 in your next security audit.",
     "parent": 44901335,
     "depth": 2
   },
@@ -368,34 +392,10 @@
     "depth": 2
   },
   {
-    "id": 44902743,
-    "by": "fragmede",
-    "timeISO": "2025-08-14T16:52:45.000Z",
-    "textPlain": "If you can't get the LLM to generate code that handles an error code, that's on you. Yeah, sometimes it does dumb shit. Who cares? Just /undo and retry. Stop using Claude Code, which uses git like an intern. (Which is to say, it doesn't unless forced to.)",
-    "parent": 44901335,
-    "depth": 2
-  },
-  {
-    "id": 44901997,
-    "by": "reactordev",
-    "timeISO": "2025-08-14T15:57:38.000Z",
-    "textPlain": "While I agree with you - The whole grug brain thing is offensive. Because we have all been grug at some point.",
-    "parent": 44901335,
-    "depth": 2
-  },
-  {
-    "id": 44901533,
-    "by": "livid-neuro",
-    "timeISO": "2025-08-14T15:25:05.000Z",
-    "textPlain": "The first cars broke down all the time. They had a limited range. There wasn't a vast supply of parts for them. There wasn't a vast industry of experts who could work on them. There wasn't a vast network of fuel stations to provide energy for them. The horse was a proven method.What an LLM cannot do today is almost irrelevant in the tide of change upon the industry. The fact is, with improvements, it doesn't mean an LLM cannot do it tomorrow.",
-    "parent": 44901335,
-    "depth": 2
-  },
-  {
-    "id": 44901757,
-    "by": "throwaway1004",
-    "timeISO": "2025-08-14T15:39:58.000Z",
-    "textPlain": "That reference link is a wild ride of unqualified, cartoonish passive-aggression, the cute link to the author's \"swag\" is the icing on the cake.Concidentally, I encountered the author's work for the first time only a couple of days ago as a podcast guest, he vouches for the \"Dirty Code\" approach while straw-manning Uncle Bob's general principles of balancing terseness/efficiency with ergonomics and readability (in most, but not all, cases).I guess this stuff sells t-shirts and mugs /rant",
+    "id": 44903059,
+    "by": "exe34",
+    "timeISO": "2025-08-14T17:16:13.000Z",
+    "textPlain": "to be fair, I've seen cursor step back and check higher level things. I was trying to set up a firecracker vm and it did everything for me, and when things didn't initially work, it started doing things like ls, tar -tvf, and then a bunch of checking networking stuff to make sure things were showing up in the right place.so current LLMs might not quite be human level, but I'd have to see a bigger model fail before I'd conclude that it can't do $X.",
     "parent": 44901335,
     "depth": 2
   }

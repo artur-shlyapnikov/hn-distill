@@ -1,13 +1,5 @@
 [
   {
-    "id": 44907773,
-    "by": "JackYoustra",
-    "timeISO": "2025-08-15T01:49:40.000Z",
-    "textPlain": "For anyone using xcode: there's a builtin button to show a visualization for a build (not realtime afaik) for it too.",
-    "parent": 44902127,
-    "depth": 1
-  },
-  {
     "id": 44904058,
     "by": "Night_Thastus",
     "timeISO": "2025-08-14T18:42:34.000Z",
@@ -20,6 +12,14 @@
     "by": "Mawr",
     "timeISO": "2025-08-14T23:11:27.000Z",
     "textPlain": "Suggestion to the blog author - put:> Here it is recording the build of a macOS app:> <gif>At the top of the page, it should be right under the header.You made a thing, so show the thing. You can waffle on about  it later. Just show the thing.",
+    "parent": 44902127,
+    "depth": 1
+  },
+  {
+    "id": 44908042,
+    "by": "bdash",
+    "timeISO": "2025-08-15T02:38:22.000Z",
+    "textPlain": "I've had success using https://github.com/nico/ninjatracing along with Clang's `-ftime-trace` to visualize the build performance of a C++ project using CMake. https://github.com/aras-p/ClangBuildAnalyzer helps further break down what the compiler is spending its time on.",
     "parent": 44902127,
     "depth": 1
   },
@@ -40,6 +40,14 @@
     "depth": 1
   },
   {
+    "id": 44906295,
+    "by": "audiofish",
+    "timeISO": "2025-08-14T22:10:51.000Z",
+    "textPlain": "Really cool tool, but perhaps not for the original use-case. I often find myself trying to figure out what call tree a large Bash script creates, and this looks like it visualises it well.This would have been really useful 6 months ago, when I was trying to figure out what on earth some Jetson tools actually did to build and flash an OS image.",
+    "parent": 44902127,
+    "depth": 1
+  },
+  {
     "id": 44904124,
     "by": "aanet",
     "timeISO": "2025-08-14T18:48:54.000Z",
@@ -56,6 +64,14 @@
     "depth": 1
   },
   {
+    "id": 44907773,
+    "by": "JackYoustra",
+    "timeISO": "2025-08-15T01:49:40.000Z",
+    "textPlain": "For anyone using xcode: there's a builtin button to show a visualization for a build (not realtime afaik) for it too.",
+    "parent": 44902127,
+    "depth": 1
+  },
+  {
     "id": 44905883,
     "by": "tom_",
     "timeISO": "2025-08-14T21:25:53.000Z",
@@ -64,18 +80,10 @@
     "depth": 1
   },
   {
-    "id": 44907033,
-    "by": "epage",
-    "timeISO": "2025-08-14T23:42:30.000Z",
-    "textPlain": "How does this compare to `cargo check --timings`?It visualizes each crate's build, shows the dependencies between them, shows when the initial compilation is done that unblocks dependents, and soon will have link information.",
-    "parent": 44902127,
-    "depth": 1
-  },
-  {
-    "id": 44906295,
-    "by": "audiofish",
-    "timeISO": "2025-08-14T22:10:51.000Z",
-    "textPlain": "Really cool tool, but perhaps not for the original use-case. I often find myself trying to figure out what call tree a large Bash script creates, and this looks like it visualises it well.This would have been really useful 6 months ago, when I was trying to figure out what on earth some Jetson tools actually did to build and flash an OS image.",
+    "id": 44903835,
+    "by": "xuhu",
+    "timeISO": "2025-08-14T18:22:44.000Z",
+    "textPlain": "Is there a tool that records the timestamp of each executed command during a build, and when you rebuild, it tells you how much time is left instead of \"building obj 35 out of 1023\" ?Or (for cmake or ninja) use a CSV that says how long each object takes to build and use it to estimate how much is left ?",
     "parent": 44902127,
     "depth": 1
   },
@@ -84,6 +92,14 @@
     "by": "tiddles",
     "timeISO": "2025-08-14T18:54:55.000Z",
     "textPlain": "Nice, I’ve been looking for something like this for a while.I’ve noticed on my huge catkin cmake project that cmake is checking the existence of the same files hundreds of times too. Is there anything that can hook into fork() and provide a cached value after the first invocation?",
+    "parent": 44902127,
+    "depth": 1
+  },
+  {
+    "id": 44907033,
+    "by": "epage",
+    "timeISO": "2025-08-14T23:42:30.000Z",
+    "textPlain": "How does this compare to `cargo check --timings`?It visualizes each crate's build, shows the dependencies between them, shows when the initial compilation is done that unblocks dependents, and soon will have link information.",
     "parent": 44902127,
     "depth": 1
   },
@@ -112,10 +128,10 @@
     "depth": 1
   },
   {
-    "id": 44903835,
-    "by": "xuhu",
-    "timeISO": "2025-08-14T18:22:44.000Z",
-    "textPlain": "Is there a tool that records the timestamp of each executed command during a build, and when you rebuild, it tells you how much time is left instead of \"building obj 35 out of 1023\" ?Or (for cmake or ninja) use a CSV that says how long each object takes to build and use it to estimate how much is left ?",
+    "id": 44903970,
+    "by": "corysama",
+    "timeISO": "2025-08-14T18:34:24.000Z",
+    "textPlain": "Looks like a general `fork()` visualizer to me. Which is great!",
     "parent": 44902127,
     "depth": 1
   },
@@ -124,14 +140,6 @@
     "by": "proctorg76",
     "timeISO": "2025-08-14T21:19:53.000Z",
     "textPlain": "the parallels between tech and manufacturing never cease to amaze, this looks so much like the machine monitoring / execution system we use in the car parts plant I want to ask if you've calculated the TEEP and OEE of your build farm",
-    "parent": 44902127,
-    "depth": 1
-  },
-  {
-    "id": 44903970,
-    "by": "corysama",
-    "timeISO": "2025-08-14T18:34:24.000Z",
-    "textPlain": "Looks like a general `fork()` visualizer to me. Which is great!",
     "parent": 44902127,
     "depth": 1
   },
@@ -304,6 +312,14 @@
     "depth": 2
   },
   {
+    "id": 44903960,
+    "by": "dhooper",
+    "timeISO": "2025-08-14T18:33:47.000Z",
+    "textPlain": "OP Here. Thats an interesting idea. What The Fork knows all the commands run, and every path they read/write, so I should be able to make it estimate build time just by looking at what files were touched.",
+    "parent": 44903835,
+    "depth": 2
+  },
+  {
     "id": 44904358,
     "by": "lights0123",
     "timeISO": "2025-08-14T19:08:33.000Z",
@@ -320,11 +336,11 @@
     "depth": 2
   },
   {
-    "id": 44903960,
-    "by": "dhooper",
-    "timeISO": "2025-08-14T18:33:47.000Z",
-    "textPlain": "OP Here. Thats an interesting idea. What The Fork knows all the commands run, and every path they read/write, so I should be able to make it estimate build time just by looking at what files were touched.",
-    "parent": 44903835,
+    "id": 44908277,
+    "by": "MBCook",
+    "timeISO": "2025-08-15T03:19:32.000Z",
+    "textPlain": "There is an example cmake graph in the article.",
+    "parent": 44905844,
     "depth": 2
   },
   {
