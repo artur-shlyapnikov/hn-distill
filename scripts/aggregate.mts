@@ -11,6 +11,7 @@ import {
   NormalizedCommentSchema,
   NormalizedStorySchema,
   PostSummarySchema,
+  TagsSummarySchema,
 } from "@config/schemas";
 import { ensureDir } from "@utils/fs";
 import { readJsonSafeOr, writeJsonFile } from "@utils/json";
@@ -30,55 +31,94 @@ export function makeServices(): Services {
 
 const SCORE_MIN = 75;
 
+async function loadStoryData(id: number): Promise<{
+  story: NormalizedStory | undefined;
+  comments: NormalizedComment[];
+  postSummary: unknown;
+  commentsSummary: unknown;
+  tagsSummary: unknown;
+}> {
+  const story = await readJsonSafeOr(pathFor.rawItem(id), NormalizedStorySchema.nullable());
+  if (!story) {
+    return {
+      story: undefined,
+      comments: [],
+      postSummary: undefined,
+      commentsSummary: undefined,
+      tagsSummary: undefined,
+    };
+  }
+
+  const [comments, postSummary, commentsSummary, tagsSummary] = await Promise.all([
+    readJsonSafeOr<NormalizedComment[]>(pathFor.rawComments(id), NormalizedCommentSchema.array(), []),
+    readJsonSafeOr(pathFor.postSummary(id), PostSummarySchema.nullable()),
+    readJsonSafeOr(pathFor.commentsSummary(id), CommentsSummarySchema.nullable()),
+    readJsonSafeOr(pathFor.tagsSummary(id), TagsSummarySchema.nullable()),
+  ]);
+
+  return { story, comments, postSummary, commentsSummary, tagsSummary };
+}
+
+function extractDomain(url?: string): string | undefined {
+  if (!url) {
+    return undefined;
+  }
+  try {
+    return new URL(url).hostname.replace(/^www\./u, "");
+  } catch {
+    return undefined;
+  }
+}
+
+function buildAggregatedItem(
+  story: NormalizedStory,
+  comments: NormalizedComment[],
+  postSummary: unknown,
+  commentsSummary: unknown,
+  tagsSummary: unknown
+): AggregatedItem {
+  const fb = fallbackFromRaw(story, comments);
+  const domain = extractDomain(story.url ?? undefined);
+  const rawTags = ((tagsSummary as { tags?: Array<{ name: string }> } | undefined)?.tags ?? []).map(
+    (t: { name: string }) => t.name
+  );
+  const tags = [...new Set(rawTags)];
+
+  return {
+    id: story.id,
+    title: story.title,
+    url: story.url,
+    by: story.by,
+    timeISO: story.timeISO,
+    postSummary: (postSummary as { summary?: string } | undefined)?.summary,
+    commentsSummary: (commentsSummary as { summary?: string } | undefined)?.summary ?? fb.commentsSummary,
+    score: story.score,
+    commentsCount: story.descendants ?? comments.length,
+    hnUrl: HN.itemUrl(story.id),
+    domain,
+    ...(tags.length > 0 ? { tags } : {}),
+  };
+}
+
 export async function readAggregates(storyIds: number[]): Promise<AggregatedItem[]> {
   const items: AggregatedItem[] = [];
+
   for (const id of storyIds) {
     log.debug("aggregate", "Aggregating story", { id });
-    const story = await readJsonSafeOr(pathFor.rawItem(id), NormalizedStorySchema.nullable());
+
+    const { story, comments, postSummary, commentsSummary, tagsSummary } = await loadStoryData(id);
     if (!story) {
       log.warn("aggregate", "Missing story; skipping", { id });
       continue;
     }
 
-    // filter out low-score stories entirely
     const score = typeof story.score === "number" ? story.score : 0;
     if (score < SCORE_MIN) {
       log.debug("aggregate", "Skipping story due to low score", { id, score, min: SCORE_MIN });
       continue;
     }
 
-    const comments = await readJsonSafeOr<NormalizedComment[]>(
-      pathFor.rawComments(id),
-      NormalizedCommentSchema.array(),
-      []
-    );
-
-    const postSummary = await readJsonSafeOr(pathFor.postSummary(id), PostSummarySchema.nullable());
-    const commentsSummary = await readJsonSafeOr(pathFor.commentsSummary(id), CommentsSummarySchema.nullable());
-    const fb = fallbackFromRaw(story, comments);
-
-    let domain: string | undefined;
-    if (story.url) {
-      try {
-        domain = new URL(story.url).hostname.replace(/^www\./u, "");
-      } catch {
-        // ignore URL parse errors
-      }
-    }
-
-    const item: AggregatedItem = {
-      id: story.id,
-      title: story.title,
-      url: story.url,
-      by: story.by,
-      timeISO: story.timeISO,
-      postSummary: postSummary?.summary ?? undefined,
-      commentsSummary: commentsSummary?.summary ?? fb.commentsSummary,
-      score: story.score,
-      commentsCount: story.descendants ?? comments.length,
-      hnUrl: HN.itemUrl(story.id),
-      domain,
-    };
+    const item = buildAggregatedItem(story, comments, postSummary, commentsSummary, tagsSummary);
     if (!item.postSummary) {
       log.info("aggregate", "No postSummary for story (will render placeholder)", { id: story.id });
     }
@@ -86,6 +126,8 @@ export async function readAggregates(storyIds: number[]): Promise<AggregatedItem
   }
   return items;
 }
+
+const FALLBACK_SUMMARY_LENGTH = 280;
 
 export function fallbackFromRaw(
   _story: NormalizedStory,
@@ -96,7 +138,7 @@ export function fallbackFromRaw(
     .join(" ")
     .replaceAll(/\s+/gu, " ")
     .trim();
-  const commentsSummary: string | undefined = combined ? combined.slice(0, 280) : undefined;
+  const commentsSummary: string | undefined = combined ? combined.slice(0, FALLBACK_SUMMARY_LENGTH) : undefined;
   return { postSummary: undefined, commentsSummary };
 }
 

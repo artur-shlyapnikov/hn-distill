@@ -75,6 +75,34 @@ export const CommentsSummarySchema = z.object({
   createdISO: z.string().optional(),
 });
 
+export const TagSchema = z.object({
+  name: z.string().min(1).max(40),
+  cat: z
+    .enum([
+      "topic",
+      "lang",
+      "lib",
+      "framework",
+      "company",
+      "org",
+      "product",
+      "standard",
+      "person",
+      "event",
+      "infra",
+      "other",
+    ])
+    .optional(),
+});
+export const TagsSummarySchema = z.object({
+  id: z.number(),
+  lang: LangSchema, // keep 'en' regardless of SUMMARY_LANG for canonicalization; see env below
+  tags: z.array(TagSchema), // normalized, deduped, max ~12
+  inputHash: z.string().optional(),
+  model: z.string().optional(),
+  createdISO: z.string().optional(),
+});
+
 export const AggregatedItemSchema = z.object({
   id: z.number(),
   title: z.string().max(500),
@@ -107,6 +135,7 @@ export const AggregatedItemSchema = z.object({
     }, "Invalid URL")
     .optional(),
   domain: z.string().optional(),
+  tags: z.array(z.string()).optional(), // canonical slugs, e.g. ["llm","python","openai"]
 });
 
 export const AggregatedFileSchema = z.object({
@@ -120,5 +149,6 @@ export type NormalizedStory = z.infer<typeof NormalizedStorySchema>;
 export type NormalizedComment = z.infer<typeof NormalizedCommentSchema>;
 export type PostSummary = z.infer<typeof PostSummarySchema>;
 export type CommentsSummary = z.infer<typeof CommentsSummarySchema>;
+export type TagsSummary = z.infer<typeof TagsSummarySchema>;
 export type AggregatedItem = z.infer<typeof AggregatedItemSchema>;
 export type AggregatedFile = z.infer<typeof AggregatedFileSchema>;

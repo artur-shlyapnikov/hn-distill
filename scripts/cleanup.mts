@@ -44,6 +44,7 @@ async function main(): Promise<void> {
     await safeRm(pathFor.articleMd(id));
     await safeRm(pathFor.postSummary(id));
     await safeRm(pathFor.commentsSummary(id));
+    await safeRm(pathFor.tagsSummary(id));
   }
 
   // Update aggregated.json to remove deleted ids if present

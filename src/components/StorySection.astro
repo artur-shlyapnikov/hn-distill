@@ -6,6 +6,7 @@ import mdToHtmlUtil from "@utils/md-to-html";
 
 const { item } = Astro.props as { item: AggregatedItem };
 const lang = env.SUMMARY_LANG;
+const tags = Array.isArray(item.tags) ? item.tags : [];
 
 function storyHref(id: number): string {
   const u = new URL(`item/${id}/`, Astro.site ?? "http://localhost/");
@@ -71,6 +72,11 @@ const commentsHtml = item.commentsSummary ? mdToHtmlUtil(item.commentsSummary) :
     {postHtml ? <div class="md" set:html={postHtml} /> : <p>—</p>}
     <p class="meta">by {safeBy} • {safeTime}{pts}</p>
     <p class="meta"><a href={item.url ?? hnUrl} rel="noopener">{t.original}</a> • <a href={hnUrl}>HN</a></p>
+    {tags.length > 0 && (
+      <p class="meta tags">
+        {tags.map((tag) => <a href={`/tag/${tag}/`} class="tag">#{tag}</a>)}
+      </p>
+    )}
   </div>
   <div class="card">
     <h3 class="title">
