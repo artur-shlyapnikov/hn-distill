@@ -16,14 +16,6 @@
     "depth": 1
   },
   {
-    "id": 44905224,
-    "by": "entelechy",
-    "timeISO": "2025-08-14T20:22:40.000Z",
-    "textPlain": "Love it!\nWe did something similar using strace/dtruss back in 2018 with https://buildinfer.loopperfect.com/ and were generating graphs (using eg. graphviz and perfetto.dev) and BUCK files on the back of thatWhilst we regrettably never came around to package it as a propper product, we found it immensly valuable in our consulting work, to pinpoint issues and aid the conversion to BUCK/Bazel.\nWe used graphviz, https://perfetto.dev/ and couple other tools to visualise thingsRecently we cicled back to this too but with a broader usecase in mind.There are some inherent technical challanges with this approach & domain:- syscall logs can get huge - especially when saved to disk. Our strace logs would get over 100GB for some projects (llvm was around ~50GB)- some projects also use https and inter process communications and that needs ot be properly handled too. (We even had a customer that was retriving code from a firebird database via perl as part of the compilation step!)- It's runtime analysis - you might need to repeat the analysis for each configuration.",
-    "parent": 44902127,
-    "depth": 1
-  },
-  {
     "id": 44903723,
     "by": "bgirard",
     "timeISO": "2025-08-14T18:11:47.000Z",
@@ -32,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44914274,
-    "by": "lsuresh",
-    "timeISO": "2025-08-15T16:22:15.000Z",
-    "textPlain": "Would love to have our team try this out (we have some ridiculous rust builds).",
+    "id": 44905224,
+    "by": "entelechy",
+    "timeISO": "2025-08-14T20:22:40.000Z",
+    "textPlain": "Love it!\nWe did something similar using strace/dtruss back in 2018 with https://buildinfer.loopperfect.com/ and were generating graphs (using eg. graphviz and perfetto.dev) and BUCK files on the back of thatWhilst we regrettably never came around to package it as a propper product, we found it immensly valuable in our consulting work, to pinpoint issues and aid the conversion to BUCK/Bazel.\nWe used graphviz, https://perfetto.dev/ and couple other tools to visualise thingsRecently we cicled back to this too but with a broader usecase in mind.There are some inherent technical challanges with this approach & domain:- syscall logs can get huge - especially when saved to disk. Our strace logs would get over 100GB for some projects (llvm was around ~50GB)- some projects also use https and inter process communications and that needs ot be properly handled too. (We even had a customer that was retriving code from a firebird database via perl as part of the compilation step!)- It's runtime analysis - you might need to repeat the analysis for each configuration.",
     "parent": 44902127,
     "depth": 1
   },
@@ -56,6 +48,14 @@
     "depth": 1
   },
   {
+    "id": 44909854,
+    "by": "torarnv",
+    "timeISO": "2025-08-15T08:23:19.000Z",
+    "textPlain": "Awesome!! Are you planning to open source this? I’ve been working on something similar and would love to join forces!",
+    "parent": 44902127,
+    "depth": 1
+  },
+  {
     "id": 44908721,
     "by": "saagarjha",
     "timeISO": "2025-08-15T04:45:21.000Z",
@@ -72,10 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44909854,
-    "by": "torarnv",
-    "timeISO": "2025-08-15T08:23:19.000Z",
-    "textPlain": "Awesome!! Are you planning to open source this? I’ve been working on something similar and would love to join forces!",
+    "id": 44914274,
+    "by": "lsuresh",
+    "timeISO": "2025-08-15T16:22:15.000Z",
+    "textPlain": "Would love to have our team try this out (we have some ridiculous rust builds).",
     "parent": 44902127,
     "depth": 1
   },
@@ -176,14 +176,6 @@
     "depth": 1
   },
   {
-    "id": 44913177,
-    "by": "secondcoming",
-    "timeISO": "2025-08-15T14:52:41.000Z",
-    "textPlain": "This looks awesome.I've used clang's -ftime-trace option in the past and that's also really good.\nIt's a pity gcc has nothing similar.",
-    "parent": 44902127,
-    "depth": 1
-  },
-  {
     "id": 44908560,
     "by": "bitbasher",
     "timeISO": "2025-08-15T04:17:24.000Z",
@@ -192,10 +184,26 @@
     "depth": 1
   },
   {
+    "id": 44907360,
+    "by": "time4tea",
+    "timeISO": "2025-08-15T00:32:25.000Z",
+    "textPlain": "Then I hid it away.This is an ad not a helpful announcement.",
+    "parent": 44902127,
+    "depth": 1
+  },
+  {
     "id": 44903970,
     "by": "corysama",
     "timeISO": "2025-08-14T18:34:24.000Z",
     "textPlain": "Looks like a general `fork()` visualizer to me. Which is great!",
+    "parent": 44902127,
+    "depth": 1
+  },
+  {
+    "id": 44913177,
+    "by": "secondcoming",
+    "timeISO": "2025-08-15T14:52:41.000Z",
+    "textPlain": "This looks awesome.I've used clang's -ftime-trace option in the past and that's also really good.\nIt's a pity gcc has nothing similar.",
     "parent": 44902127,
     "depth": 1
   },
@@ -220,14 +228,6 @@
     "by": "forrestthewoods",
     "timeISO": "2025-08-14T19:47:09.000Z",
     "textPlain": "This is great. I was skeptical from the title but the implementation is very clever. This could be a super super useful tool for the industry.",
-    "parent": 44902127,
-    "depth": 1
-  },
-  {
-    "id": 44907360,
-    "by": "time4tea",
-    "timeISO": "2025-08-15T00:32:25.000Z",
-    "textPlain": "Then I hid it away.This is an ad not a helpful announcement.",
     "parent": 44902127,
     "depth": 1
   },
@@ -304,6 +304,14 @@
     "depth": 1
   },
   {
+    "id": 44909666,
+    "by": "hagendaasalpine",
+    "timeISO": "2025-08-15T07:50:46.000Z",
+    "textPlain": "Tsoding wrote https://github.com/tsoding/nob.h, single header C library for cross platform builds, only requirement is cc. GDB profiling tools can then be used to look at your build step. It's a neat idea. I suspect this is not an option but Nix is great build tool if you are dealing with multiple languages.",
+    "parent": 44904058,
+    "depth": 2
+  },
+  {
     "id": 44905123,
     "by": "unddoch",
     "timeISO": "2025-08-14T20:14:22.000Z",
@@ -316,14 +324,6 @@
     "by": "fransje26",
     "timeISO": "2025-08-15T11:15:43.000Z",
     "textPlain": "> I am stuck in an environment with CMake, GCC and Unix Make (no clang, no ninja) and getting detailed information about WHY the build is taking so long is nearly impossible.I have a similar problem, with a tangential question that I think about from time to time without really having the time to investigate it further, unfortunately.I notice sometimes that CMake recompiles files that shouldn't have been affected by the code changes made previously. Like recompiling some independent objects after only slight changes to a .cpp file without any interface changes.So I often wonder if CMake is not making some file more inter-dependent than what they are, leading to longer compilation times.",
-    "parent": 44904058,
-    "depth": 2
-  },
-  {
-    "id": 44909666,
-    "by": "hagendaasalpine",
-    "timeISO": "2025-08-15T07:50:46.000Z",
-    "textPlain": "Tsoding wrote https://github.com/tsoding/nob.h, single header C library for cross platform builds, only requirement is cc. GDB profiling tools can then be used to look at your build step. It's a neat idea. I suspect this is not an option but Nix is great build tool if you are dealing with multiple languages.",
     "parent": 44904058,
     "depth": 2
   },
@@ -368,19 +368,19 @@
     "depth": 2
   },
   {
-    "id": 44909390,
-    "by": "flakes",
-    "timeISO": "2025-08-15T07:01:45.000Z",
-    "textPlain": "Curious, what were you using for doing syscall logging? LD_PRELOAD tricks, or ebpf filtering?",
-    "parent": 44905224,
-    "depth": 2
-  },
-  {
     "id": 44903892,
     "by": "dhooper",
     "timeISO": "2025-08-14T18:28:19.000Z",
     "textPlain": "(OP here) Thanks!My call with the Mozilla engineer was cut short, so we didn't have time to go into detail about what he found, I want to look into it myself.",
     "parent": 44903723,
+    "depth": 2
+  },
+  {
+    "id": 44909390,
+    "by": "flakes",
+    "timeISO": "2025-08-15T07:01:45.000Z",
+    "textPlain": "Curious, what were you using for doing syscall logging? LD_PRELOAD tricks, or ebpf filtering?",
+    "parent": 44905224,
     "depth": 2
   },
   {

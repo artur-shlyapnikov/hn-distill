@@ -1,0 +1,34 @@
+[
+  {
+    "id": 44915680,
+    "by": "spenczar5",
+    "timeISO": "2025-08-15T18:14:28.000Z",
+    "textPlain": "I dont know, arguing that http/2 is safer overall is a... bold claim. It is sufficiently complex that there is no standard implementation in the Python standard library, and even third party library support is all over the place. requests doesn't support it; httpx has experimental, partial, pre-1.0 support. Python http/2 servers are virtually unavailable at all. And it's not just Python - I remember battling memory leaks, catastrophic deadlocks, and more in the grpc-go implementation of http/2, in its early days.HTTP 1.1 connection reuse is indeed more subtle than it first appears. But http/2 is so hard to get right.",
+    "parent": 44915090,
+    "depth": 1
+  },
+  {
+    "id": 44915632,
+    "by": "superkuh",
+    "timeISO": "2025-08-15T18:09:29.000Z",
+    "textPlain": "> If we want a secure web, HTTP/1.1 must die.Yes, the corporations and insitutions and their economic transactions must be the highest and only priority. I hear that a lot from commercial people with commercial blinders on.They simply cannot see beyond their context and realize the web, http/1.1 is used by human people that don't have the same use cases or incredibly stringent identity verification needs. Human use cases don't matter to them because they are not profitable.Also, this \"attack\" only works on commercial style complex CDN setups. It wouldn't effect human hosted webservers at all. So yeah, commercial companies, abandon HTTP, go to your HTTP/3 with all it's UDP only and CA TLS only and no self signing and no clear text. And leave the actual web on HTTP/1.1 HTTP+HTTPS alone.",
+    "parent": 44915090,
+    "depth": 1
+  },
+  {
+    "id": 44915845,
+    "by": "jcdentonn",
+    "timeISO": "2025-08-15T18:26:53.000Z",
+    "textPlain": "Not sure about servers, but we had http/2 clients in java for a very long time.",
+    "parent": 44915680,
+    "depth": 2
+  },
+  {
+    "id": 44915848,
+    "by": "cyberax",
+    "timeISO": "2025-08-15T18:26:59.000Z",
+    "textPlain": "> Also, this \"attack\" only works on commercial style complex CDN setups. It wouldn't effect human hosted webservers at all.All you need is a faulty caching proxy in front of your PHP server. Or maybe that nice anti-bot protection layer.It really, really is easy to get bitten by this.",
+    "parent": 44915632,
+    "depth": 2
+  }
+]

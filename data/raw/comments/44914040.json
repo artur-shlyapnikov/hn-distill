@@ -1,5 +1,37 @@
 [
   {
+    "id": 44915397,
+    "by": "drumnerd",
+    "timeISO": "2025-08-15T17:50:51.000Z",
+    "textPlain": "I would never ever let an LLM anywhere near C code. If you need help from LLM to write a NIF that performs basic C calls to the OS, you probably can’t check if it’s safe. I mean, it needs at least to pass valgrind.",
+    "parent": 44914040,
+    "depth": 1
+  },
+  {
+    "id": 44914430,
+    "by": "flax",
+    "timeISO": "2025-08-15T16:33:14.000Z",
+    "textPlain": "\"it mostly worked\" is just a more nuanced way of saying \"it didn't work\".\nApparently the author did eventually get something working, but it is false to say that the LLMs produced a working project.",
+    "parent": 44914040,
+    "depth": 1
+  },
+  {
+    "id": 44915563,
+    "by": "lawik",
+    "timeISO": "2025-08-15T18:04:20.000Z",
+    "textPlain": "I've done this. The NIF worked as in that it ran and was a correct enough NIF. It did not work in terms of solving what I needed it to do. Iteration was a bit painful because it was tangled with a nasty library that needed to be cross-compiled. So when I made a change it seg faulted and I bailed.I essentially ran out of patience and tried another approach. It involved an LLM running C code so I could check the library output compared to my implementation to make sure it was byte-for-byte.The C will never ship. I don't have practice writing C so I am very inefficient at it. I read it okay. LLMs are pretty decent help for this type of scrap code.",
+    "parent": 44914040,
+    "depth": 1
+  },
+  {
+    "id": 44915030,
+    "by": "weatherlight",
+    "timeISO": "2025-08-15T17:21:20.000Z",
+    "textPlain": "Why C instead of Rust or Zig? Rustler and Zigler exist.\nI feel like a Vibecoded NIF in C is the absolute last thing I would want to expose the BEAM to.",
+    "parent": 44914040,
+    "depth": 1
+  },
+  {
     "id": 44915024,
     "by": "cultofmetatron",
     "timeISO": "2025-08-15T17:20:35.000Z",
@@ -16,14 +48,6 @@
     "depth": 1
   },
   {
-    "id": 44914430,
-    "by": "flax",
-    "timeISO": "2025-08-15T16:33:14.000Z",
-    "textPlain": "\"it mostly worked\" is just a more nuanced way of saying \"it didn't work\".\nApparently the author did eventually get something working, but it is false to say that the LLMs produced a working project.",
-    "parent": 44914040,
-    "depth": 1
-  },
-  {
     "id": 44914489,
     "by": "bcardarella",
     "timeISO": "2025-08-15T16:37:44.000Z",
@@ -32,11 +56,27 @@
     "depth": 1
   },
   {
+    "id": 44915728,
+    "by": "true_religion",
+    "timeISO": "2025-08-15T18:18:23.000Z",
+    "textPlain": "Security is a spectrum. If you totally control the input going into a program, it can be safe even if you didn't test it for memory leaks. The only errors that occur will be truly erroneous, not malicious and for many solutions that's fine.At the very least, it's fine for personal projects which is something I'm getting into more and more: remembering that computers were meant to create convenience, so writing small programs to make life easier.",
+    "parent": 44915397,
+    "depth": 2
+  },
+  {
     "id": 44914874,
     "by": "jgalt212",
     "timeISO": "2025-08-15T17:08:28.000Z",
     "textPlain": "I dunno. Depending on the writer and their particularly axe to grind the definition can vary widely. I would like it to mean, \"any fixes I needed to make were minimal and not time intensive.\"",
     "parent": 44914430,
+    "depth": 2
+  },
+  {
+    "id": 44915035,
+    "by": "victorbjorklund",
+    "timeISO": "2025-08-15T17:21:42.000Z",
+    "textPlain": "Not only C. Can be done in any compiled language (C, Rust, Zig, etc). Not sure if can be done with GC language.",
+    "parent": 44914754,
     "depth": 2
   },
   {

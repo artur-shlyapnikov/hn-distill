@@ -1,9 +1,9 @@
 [
   {
-    "id": 44915001,
-    "by": "imbusy111",
-    "timeISO": "2025-08-15T17:18:45.000Z",
-    "textPlain": "I figured there is a need for generating a lot of samples and building a predictive model per game for best results. Documentation confirms:> Most of these corner cases can be resolved by providing the model with enough training data without increase the complexity and cost of the technique. This\nalso enables game developers to train the neural upscalers with their\ncontent, resulting in a completely customized solution fine-tuned for the\ngameplay, performance, or art direction needs of a particular title.Source: https://developer.arm.com/documentation/111019/latest/",
+    "id": 44913736,
+    "by": "armchairhacker",
+    "timeISO": "2025-08-15T15:40:08.000Z",
+    "textPlain": "I think ML has lots of potential in this area specifically.Imagine a game with bare-bones graphics and lighting, and a NN that converts it into something pretty. Indie developers can make AA-looking games and all game developers can devote more effort into design and logic. Artists will still be needed for art direction and possibly fine-tuning, although there will be less needed for each game (also less developers needed with AI agents and better tools).Related, ML also has potential for AI enemies (and allies). Lots of players still prefer multiplayer, in part because humans are more realistic enemies (but also because they want to beat real humans); but multiplayer games struggle because good netcode is nontrivial, servers are expensive, some players are obnoxious, and most games don’t have a consistent enough playerbase.",
     "parent": 44876346,
     "depth": 1
   },
@@ -16,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44913736,
-    "by": "armchairhacker",
-    "timeISO": "2025-08-15T15:40:08.000Z",
-    "textPlain": "I think ML has lots of potential in this area specifically.Imagine a game with bare-bones graphics and lighting, and a NN that converts it into something pretty. Indie developers can make AA-looking games and all game developers can devote more effort into design and logic. Artists will still be needed for art direction and possibly fine-tuning, although there will be less needed for each game (also less developers needed with AI agents and better tools).Related, ML also has potential for AI enemies (and allies). Lots of players still prefer multiplayer, in part because humans are more realistic enemies (but also because they want to beat real humans); but multiplayer games struggle because good netcode is nontrivial, servers are expensive, some players are obnoxious, and most games don’t have a consistent enough playerbase.",
+    "id": 44915001,
+    "by": "imbusy111",
+    "timeISO": "2025-08-15T17:18:45.000Z",
+    "textPlain": "I figured there is a need for generating a lot of samples and building a predictive model per game for best results. Documentation confirms:> Most of these corner cases can be resolved by providing the model with enough training data without increase the complexity and cost of the technique. This\nalso enables game developers to train the neural upscalers with their\ncontent, resulting in a completely customized solution fine-tuned for the\ngameplay, performance, or art direction needs of a particular title.Source: https://developer.arm.com/documentation/111019/latest/",
     "parent": 44876346,
     "depth": 1
   },
@@ -32,11 +32,51 @@
     "depth": 1
   },
   {
+    "id": 44915737,
+    "by": "cubefox",
+    "timeISO": "2025-08-15T18:18:59.000Z",
+    "textPlain": "There are now at least three ways to accelerate machine learning models on consumer hardware:  - GPU compute units (used for LLMs)\n  - GPU \"neural accelerators\"/\"tensor cores\" etc (used for video game anti-aliasing and increasing resolution or frame rate)\n  - NPUs (not sure what they are actually used for)\n\nAnd of course models can also be run, without acceleration, on the CPU.",
+    "parent": 44876346,
+    "depth": 1
+  },
+  {
+    "id": 44915138,
+    "by": "flakiness",
+    "timeISO": "2025-08-15T17:32:08.000Z",
+    "textPlain": "hardware-wise, this seems like a NVIDIA TensorCore?\nvia https://huggingface.co/Arm/neural-super-sampling/blob/main/2...- https://github.com/KhronosGroup/Vulkan-Docs/blob/5d386163f25...\nAdding tensor ops to the shader kernel vocaborary (SPIR-V). Promising.- https://github.com/KhronosGroup/Vulkan-Docs/blob/5d386163f25...\nAdding TenforFlow/NNAPI/-like graph API. Good luck.",
+    "parent": 44876346,
+    "depth": 1
+  },
+  {
+    "id": 44915281,
+    "by": "mdp2021",
+    "timeISO": "2025-08-15T17:42:50.000Z",
+    "textPlain": "> Imagine a game with bare-bones graphics and lightinghttps://eu-images.contentstack.com/v3/assets/blt740a130ae3c5...# The Art Of Braid: Creating A Visual Identity For An Unusual Gamehttps://www.gamedeveloper.com/design/the-art-of-braid-creati...",
+    "parent": 44913736,
+    "depth": 2
+  },
+  {
     "id": 44913943,
     "by": "wmf",
     "timeISO": "2025-08-15T15:55:11.000Z",
     "textPlain": "It's a copy of DLSS/FSR4 which are pretty well understood by now. As for the schedule, Arm always announces IP ahead of time.",
     "parent": 44913793,
+    "depth": 2
+  },
+  {
+    "id": 44915858,
+    "by": "colejohnson66",
+    "timeISO": "2025-08-15T18:27:26.000Z",
+    "textPlain": "An \"NPU\" is a matrix multiplier accelerator. It removes some general-purpose stuff that GPUs provide in favor of more \"AI\"-useful units, like support for values a byte or smaller  (i.e., FP4, INT4, etc.).",
+    "parent": 44915737,
+    "depth": 2
+  },
+  {
+    "id": 44915673,
+    "by": "cubefox",
+    "timeISO": "2025-08-15T18:13:44.000Z",
+    "textPlain": "Yes",
+    "parent": 44915138,
     "depth": 2
   }
 ]
