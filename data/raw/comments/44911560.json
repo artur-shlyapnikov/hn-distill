@@ -24,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44914961,
-    "by": "tracker1",
-    "timeISO": "2025-08-15T17:14:59.000Z",
-    "textPlain": "Definitely cool functionality to see.  I hope this doesn't pull too much from what might otherwise be Enterprise Bitwarden customers.  Definitely supportive of the upstream project, while Vaultwarden seems to take less server resources to run, and simpler from what I understand.Freeing up the SSO tax.",
-    "parent": 44911560,
-    "depth": 1
-  },
-  {
     "id": 44914308,
     "by": "sandeepkd",
     "timeISO": "2025-08-15T16:24:37.000Z",
     "textPlain": "Interesting to see a PR being merged after good 2 years. Thought about the idea of reviewing the changes for self learning, however the number of files involved made me to give up on that idea soon enough. The number of comments (610) gave an impression that the PR must have been reviewed thoroughly, however a close look tells that the comments are mostly about the topic itself, not about the code changes. Unless the code review is managed internally, the PR gives an impression of mostly happy paths.",
+    "parent": 44911560,
+    "depth": 1
+  },
+  {
+    "id": 44914961,
+    "by": "tracker1",
+    "timeISO": "2025-08-15T17:14:59.000Z",
+    "textPlain": "Definitely cool functionality to see.  I hope this doesn't pull too much from what might otherwise be Enterprise Bitwarden customers.  Definitely supportive of the upstream project, while Vaultwarden seems to take less server resources to run, and simpler from what I understand.Freeing up the SSO tax.",
     "parent": 44911560,
     "depth": 1
   },
@@ -96,10 +96,10 @@
     "depth": 2
   },
   {
-    "id": 44915573,
-    "by": "toomuchtodo",
-    "timeISO": "2025-08-15T18:05:02.000Z",
-    "textPlain": "SSO isn’t an enterprise feature, it is an access control and governance feature regardless of user population.",
+    "id": 44914103,
+    "by": "raybb",
+    "timeISO": "2025-08-15T16:06:31.000Z",
+    "textPlain": "As someone who manages the vault warden instance for a nonprofit with many volunteers but no fulltime employees I see this as a wonderful thing. Yes bitwarden has a nonprofit discount but no playing wack a mole with which of the 20+ volunteers are active at any moment to avoid getting a huge bill isn't worth it vs self hosting.",
     "parent": 44913632,
     "depth": 2
   },
@@ -112,10 +112,10 @@
     "depth": 2
   },
   {
-    "id": 44914103,
-    "by": "raybb",
-    "timeISO": "2025-08-15T16:06:31.000Z",
-    "textPlain": "As someone who manages the vault warden instance for a nonprofit with many volunteers but no fulltime employees I see this as a wonderful thing. Yes bitwarden has a nonprofit discount but no playing wack a mole with which of the 20+ volunteers are active at any moment to avoid getting a huge bill isn't worth it vs self hosting.",
+    "id": 44915573,
+    "by": "toomuchtodo",
+    "timeISO": "2025-08-15T18:05:02.000Z",
+    "textPlain": "SSO isn’t an enterprise feature, it is an access control and governance feature regardless of user population.",
     "parent": 44913632,
     "depth": 2
   },
@@ -224,18 +224,18 @@
     "depth": 2
   },
   {
-    "id": 44915620,
-    "by": "ta1243",
-    "timeISO": "2025-08-15T18:08:14.000Z",
-    "textPlain": "My team self hosts multiple internal services, including vaultwarden.For most of these we use our standard corporate OIDC provider to provide autentication and accounting, either onto a proxy or direct on the service, that passes the user through, the hosted service is either fine (just logs the user in its local access logs for the accounting part) because it's allowed for all our corporate users, or the service uses its own authorisation logic to allow or reject the users.Some devices are just generic user/password on the device itself -- the authorisation there is that the group responsible for that device has to keep the credential secure. Any authenticated Corp user can access the login page, and that gets logged, but the authorisation is a simple user/password.If the credential isn't secure (because people are terrible with security) then at least the attacker is logged, and has had to authorise access.Some authentication is better. Our guacamole hosts for example are authenticated on proxy with OIDC, then passed through to the guacamole server which does its own authorisation based on its internal database (which itself is managed via a github approach - to add joe.bloggs@corp.com to the \"Washington Servers\" group you add his identity to the right part of the \"groups.conf\" file and when the PR is merged it applies across the estate within a minute or two). Then they can access all connections in \"Washington\", but \"davey.jones@corp.com\" isn't in that group, so can't.Likewise our IPAM will create a user in the \"readonly\" group automatically (our policy is ip records are available to everyone in the company), but they then need moving into an elevated rights using IPAM tooling to allocate IP addresses.Vaultwarden though we maintain separate user and password, we still have the OIDC front end, but it's completely ignored for another layer of authorisation. I'm about to go on leave so I won't be thinking too much about if this will help, but its good to have the o",
-    "parent": 44912284,
-    "depth": 2
-  },
-  {
     "id": 44912345,
     "by": "the_gastropod",
     "timeISO": "2025-08-15T13:45:02.000Z",
     "textPlain": "Yep, exactly. I selfhost Vaultwarden and a bunch of other apps that my family also use. So I run Authentik, which lets them only have to worry about remembering one login, and they then have a little dashboard of all our apps, and can click to login to whatever they want. It's a pretty decent little system, and I'm happy I can now add Vaultwarden to it.The bigger your users x applications number, the bigger the benefit. It make user management easy (e.g., you only have to manage users in one place instead of N)",
+    "parent": 44912284,
+    "depth": 2
+  },
+  {
+    "id": 44915620,
+    "by": "ta1243",
+    "timeISO": "2025-08-15T18:08:14.000Z",
+    "textPlain": "My team self hosts multiple internal services, including vaultwarden.For most of these we use our standard corporate OIDC provider to provide autentication and accounting, either onto a proxy or direct on the service, that passes the user through, the hosted service is either fine (just logs the user in its local access logs for the accounting part) because it's allowed for all our corporate users, or the service uses its own authorisation logic to allow or reject the users.Some devices are just generic user/password on the device itself -- the authorisation there is that the group responsible for that device has to keep the credential secure. Any authenticated Corp user can access the login page, and that gets logged, but the authorisation is a simple user/password.If the credential isn't secure (because people are terrible with security) then at least the attacker is logged, and has had to authorise access.Some authentication is better. Our guacamole hosts for example are authenticated on proxy with OIDC, then passed through to the guacamole server which does its own authorisation based on its internal database (which itself is managed via a github approach - to add joe.bloggs@corp.com to the \"Washington Servers\" group you add his identity to the right part of the \"groups.conf\" file and when the PR is merged it applies across the estate within a minute or two). Then they can access all connections in \"Washington\", but \"davey.jones@corp.com\" isn't in that group, so can't.Likewise our IPAM will create a user in the \"readonly\" group automatically (our policy is ip records are available to everyone in the company), but they then need moving into an elevated rights using IPAM tooling to allocate IP addresses.Vaultwarden though we maintain separate user and password, we still have the OIDC front end, but it's completely ignored for another layer of authorisation. I'm about to go on leave so I won't be thinking too much about if this will help, but its good to have the o",
     "parent": 44912284,
     "depth": 2
   },

@@ -1,5 +1,13 @@
 [
   {
+    "id": 44916331,
+    "by": "npongratz",
+    "timeISO": "2025-08-15T19:10:39.000Z",
+    "textPlain": "Might be worth reminding ourselves of a couple things:1) Complexity is the enemy of security.This particular case was apparently deemed not a security vulnerability, but the cited \"fragility of modern build stacks\" implies exploding complexity leads to higher likelihood of vulnerabilities. I believe this is an obvious result, but it's worth considering whenever one adds complexity to a system.2) Ken Thompson's Reflections on Trusting Trust [0] is as relevant today as it was 40+ years ago.> The moral is obvious. You can't trust code that you did not totally create yourself. (Especially code from companies that employ people like me.)[0] https://dl.acm.org/doi/10.1145/358198.358210",
+    "parent": 44872584,
+    "depth": 1
+  },
+  {
     "id": 44914579,
     "by": "vlovich123",
     "timeISO": "2025-08-15T16:44:46.000Z",
@@ -8,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44915870,
-    "by": "mgaunard",
-    "timeISO": "2025-08-15T18:28:24.000Z",
-    "textPlain": "Every new version of C++ (and sometimes even new versions of C++ compilers) can break code in subtle ways.You should always do extensive testing before upgrading.",
+    "id": 44916162,
+    "by": "saghm",
+    "timeISO": "2025-08-15T18:53:58.000Z",
+    "textPlain": "I get as exasperated at C++ as anyone else, but IMO there's another takeaway here, which is that smart contracts are an absolutely terrible idea. Relying on code as the source of truth for a transaction just completely disregards the reality that code is always going to be buggy. For those who might not be aware, this is the same smart contract framework where someone accidentally killed $300 million of transactions because a function in a library for setting the wallet associated with a private key was defined as public instead of private: https://medium.com/cybermiles/i-accidentally-killed-it-and-e...Yes, you can fix issues like this with a \"hard fork\" if you have a large enough consensus, but at that point, does the system of having smart contracts actually improve anything over the one where the software is downstream rather than the source of truth, or are you just replacing one form of \"human intervention required\" with a different but worse one?",
     "parent": 44914579,
     "depth": 2
   },
@@ -20,6 +28,14 @@
     "by": "twoodfin",
     "timeISO": "2025-08-15T17:07:54.000Z",
     "textPlain": "It’s less about convenient syntax and more about simplifying the construction of abstractions.You could argue that the latter is the core drive to evolve the standard.",
+    "parent": 44914579,
+    "depth": 2
+  },
+  {
+    "id": 44915870,
+    "by": "mgaunard",
+    "timeISO": "2025-08-15T18:28:24.000Z",
+    "textPlain": "Every new version of C++ (and sometimes even new versions of C++ compilers) can break code in subtle ways.You should always do extensive testing before upgrading.",
     "parent": 44914579,
     "depth": 2
   },

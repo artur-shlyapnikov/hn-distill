@@ -1,9 +1,25 @@
 [
   {
+    "id": 44915978,
+    "by": "btown",
+    "timeISO": "2025-08-15T18:37:16.000Z",
+    "textPlain": "You’ll probably hear people say things like “this could just be an MCP server and a prompt to use it.” To that I’d say: just remember that infamous 2007 Dropbox comment: https://news.ycombinator.com/item?id=9224If you can make the developer experience simple enough that it becomes standard practice, you can go really far. Good luck!",
+    "parent": 44915206,
+    "depth": 1
+  },
+  {
     "id": 44915854,
     "by": "bangaladore",
     "timeISO": "2025-08-15T18:27:13.000Z",
     "textPlain": "This is a more general question, but:What company would be comfortable with giving out schematics, source code, etc... to third parties like this or AI Model providers like Anthropic, etc...Privacy policy aside, this just seems like a statistical guarantee at some point to leaks sensitive IP (not specifically pointing at this company, but in this space in general). Or does nobody care?",
+    "parent": 44915206,
+    "depth": 1
+  },
+  {
+    "id": 44915990,
+    "by": "NotBoolean",
+    "timeISO": "2025-08-15T18:38:13.000Z",
+    "textPlain": "I’ve found AI agents always a bit lacking in embedded but I’ll test this out.You said in your demo that by uploading the data sheet you completely remove hallucinations. How have you achieved this as I found AI’s still hallucinate even when given documentation.",
     "parent": 44915206,
     "depth": 1
   },
@@ -14,5 +30,45 @@
     "textPlain": "how are you going about this? do you intend to train/finetune your own models, or scaffold frontier models with prompts+tools?",
     "parent": 44915206,
     "depth": 1
+  },
+  {
+    "id": 44916151,
+    "by": "0x457",
+    "timeISO": "2025-08-15T18:52:28.000Z",
+    "textPlain": "Well, it depends if it does anything novel under the hood and not just Model + System Prompt + Tools + User Input...like 99% of agents being build right now.",
+    "parent": 44915978,
+    "depth": 2
+  },
+  {
+    "id": 44916155,
+    "by": "NotBoolean",
+    "timeISO": "2025-08-15T18:53:01.000Z",
+    "textPlain": "Embedder’s privacy policy is very clear that they keep your information.https://embedder.dev/privacy-policy“Content DataWhen you use our services, we collect:Any files or data you upload\nAny generated code or data”",
+    "parent": 44915854,
+    "depth": 2
+  },
+  {
+    "id": 44916064,
+    "by": "etgibbs",
+    "timeISO": "2025-08-15T18:44:47.000Z",
+    "textPlain": "great question. we've found most code/docs are offline in the embedded space (for good reason) so our approach going forward is going to be more FDE/on-prem for enterprise users. they asked for self-hosted, BYOK, local indexing, etc. and I think this is something that can differentiate usfor consumer users we have a zero-retention policy with the model providers, and we use repo mapper to index your code locally, but as you pointed out these APIs are a black box so no guarantees",
+    "parent": 44915854,
+    "depth": 2
+  },
+  {
+    "id": 44916089,
+    "by": "etgibbs",
+    "timeISO": "2025-08-15T18:46:45.000Z",
+    "textPlain": "strict grounding protocol + planning phase, mostly by prompting and forcing attention through citations. it tends to think longer than other coding agents but the results are usually better. let me know what you think.",
+    "parent": 44915990,
+    "depth": 2
+  },
+  {
+    "id": 44916008,
+    "by": "etgibbs",
+    "timeISO": "2025-08-15T18:39:26.000Z",
+    "textPlain": "currently we scaffold frontier models. the product is basically a context layer with custom tools that enable hardware interaction. we've tossed around the idea of pre-training/fine tuning but new models are being released so fast it doesn't make sense to build anything other than a wrapper",
+    "parent": 44915831,
+    "depth": 2
   }
 ]
