@@ -17,7 +17,7 @@ const EnvironmentSchema = z.object({
   OPENROUTER_MODEL: z.string().default("moonshotai/kimi-k2:free"),
   OPENROUTER_MAX_TOKENS: z.coerce.number().int().min(128).max(32_768).default(8000),
 
-  TAGS_MODEL: z.string().default("z-ai/glm-4.5-air:free"), // light & cheap
+  TAGS_MODEL: z.string().default("mistralai/mistral-small-3.2-24b-instruct:free"), // try structured outputs, fallback to JSON
   TAGS_MAX_TOKENS: z.coerce.number().int().min(128).max(2048).default(512),
   TAGS_LANG: z.enum(["en"]).default("en"), // canonical tag language
   TAGS_MAX_PER_STORY: z.coerce.number().int().min(3).max(20).default(10),
