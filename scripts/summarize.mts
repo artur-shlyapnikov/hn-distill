@@ -23,7 +23,7 @@ import { canonicalize, dedupeKeepOrder, heuristicTags } from "@utils/tags";
 
 import type { CommentsSummary, NormalizedComment, NormalizedStory, PostSummary } from "@config/schemas";
 
-type Services = {
+export type Services = {
   http: HttpClient;
   openrouter: OpenRouter;
   fetchArticleMarkdown: (url: string) => Promise<string>;

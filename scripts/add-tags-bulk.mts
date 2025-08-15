@@ -166,7 +166,7 @@ Rules:
       2 // reduced retries
     );
 
-    return result.tags.map((tag) => ({
+    return result.tags.map((tag: { name: string; cat?: string | undefined }) => ({
       name: tag.name,
       cat: tag.cat,
     }));

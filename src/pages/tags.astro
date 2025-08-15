@@ -1,0 +1,144 @@
+---
+import '../styles/global.css';
+import { env } from '@config/env';
+import type { AggregatedItem, AggregatedFile } from '@config/schemas';
+import { readFileSync, existsSync } from 'node:fs';
+
+const lang = env.SUMMARY_LANG;
+
+const dataPath = new URL('../../data/aggregated.json', import.meta.url).pathname;
+const data: AggregatedFile = existsSync(dataPath)
+  ? JSON.parse(readFileSync(dataPath, 'utf8'))
+  : { items: [], updatedISO: '—' };
+
+const allItems: AggregatedItem[] = Array.isArray((data as any).items) ? (data as any).items : [];
+
+// Collect all tags with their counts
+const tagCounts = new Map<string, number>();
+for (const item of allItems) {
+  if (item.tags) {
+    for (const tag of item.tags) {
+      tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+    }
+  }
+}
+
+// Sort tags by count (descending), then alphabetically
+const sortedTags = Array.from(tagCounts.entries())
+  .sort(([a, countA], [b, countB]) => {
+    if (countA !== countB) return countB - countA;
+    return a.localeCompare(b);
+  });
+
+const i18n = {
+  ru: {
+    title: 'Все теги',
+    description: 'Полный список тегов в Hacker News Digest',
+    totalTags: 'Всего тегов',
+    posts: 'постов',
+    post: 'пост',
+    posts2to4: 'поста',
+  },
+  en: {
+    title: 'All Tags',
+    description: 'Complete list of tags in Hacker News Digest',
+    totalTags: 'Total tags',
+    posts: 'posts',
+    post: 'post',
+    posts2to4: 'posts',
+  },
+} as const;
+
+const t = i18n[lang as 'ru' | 'en'];
+
+function getPostsLabel(count: number): string {
+  if (lang === 'ru') {
+    if (count === 1) return t.post;
+    if (count >= 2 && count <= 4) return t.posts2to4;
+    return t.posts;
+  }
+  return count === 1 ? t.post : t.posts;
+}
+
+const pageTitle = `${t.title} — Hacker News Digest`;
+const description = `${t.description}. ${t.totalTags}: ${sortedTags.length}`;
+---
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:site_name" content="Hacker News Digest" />
+    <meta property="og:type" content="website" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Hacker News Digest</a></h1>
+      <p class="meta">{t.title}</p>
+      <p class="meta">{t.totalTags}: {sortedTags.length}</p>
+    </header>
+    <main>
+      {sortedTags.length === 0 ? (
+        <p class="meta">Нет тегов для отображения.</p>
+      ) : (
+        <div class="tags-grid">
+          {sortedTags.map(([tag, count]) => (
+            <a href={`/tag/${tag}/`} class="tag-card">
+              <span class="tag-name">#{tag}</span>
+              <span class="tag-count">{count} {getPostsLabel(count)}</span>
+            </a>
+          ))}
+        </div>
+      )}
+    </main>
+    <style>
+      .tags-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: var(--space-sm);
+        margin-top: var(--space-md);
+      }
+      
+      .tag-card {
+        display: flex;
+        flex-direction: column;
+        padding: var(--space-sm);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        background: var(--color-bg);
+        text-decoration: none;
+        color: var(--color-text);
+        transition: all 0.2s ease;
+      }
+      
+      .tag-card:hover {
+        background: var(--color-border);
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+      
+      .tag-name {
+        font-weight: 600;
+        color: var(--color-accent);
+        margin-bottom: var(--space-xs);
+      }
+      
+      .tag-count {
+        font-size: var(--font-size-xs);
+        color: var(--color-text-muted);
+      }
+      
+      @media (max-width: 768px) {
+        .tags-grid {
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+          gap: var(--space-xs);
+        }
+      }
+    </style>
+  </body>
+</html>
