@@ -64,14 +64,6 @@
     "depth": 1
   },
   {
-    "id": 44906777,
-    "by": "ripley12",
-    "timeISO": "2025-08-14T23:06:15.000Z",
-    "textPlain": "> This has already led to more easily introducing GUI features like a new GTK titlebar tabs optionYes! This is huge, I previously gave up on Ghostty because the title bar wasted so much space on my laptop screen: https://bsky.app/profile/reillywood.bsky.social/post/3lebapf...I found the PR in case anyone else is curious what the new functionality looks like: https://github.com/ghostty-org/ghostty/pull/8166",
-    "parent": 44905808,
-    "depth": 1
-  },
-  {
     "id": 44906349,
     "by": "8f2ab37a-ed6c",
     "timeISO": "2025-08-14T22:18:45.000Z",
@@ -80,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44907590,
-    "by": "stephen",
-    "timeISO": "2025-08-15T01:11:27.000Z",
-    "textPlain": "I've been using Ghostty, and other GPU-based apps like Alacritty / WezTerm / Zed, because they're ofc better/faster...Ironically they've all made my DX worse, by highlighting how terrible the nvidia drivers actually worked on both my old Regolith i3wm/compositor-less or new sway/wayland setup.Like it's ridiculously terrible.I've tried every magical env flag that Claude can think of, and 4 of the various 550/560/575/580 driver versions--they all suck at screensharing, or resume from sleep, or just out-right buginess/crashes/segfaults in the nvidia drivers.It must have always been this bad, but I just didn't notice, b/c I never actually used my GPU? lol",
+    "id": 44906777,
+    "by": "ripley12",
+    "timeISO": "2025-08-14T23:06:15.000Z",
+    "textPlain": "> This has already led to more easily introducing GUI features like a new GTK titlebar tabs optionYes! This is huge, I previously gave up on Ghostty because the title bar wasted so much space on my laptop screen: https://bsky.app/profile/reillywood.bsky.social/post/3lebapf...I found the PR in case anyone else is curious what the new functionality looks like: https://github.com/ghostty-org/ghostty/pull/8166",
     "parent": 44905808,
     "depth": 1
   },
   {
-    "id": 44910461,
-    "by": "WhyNotHugo",
-    "timeISO": "2025-08-15T10:03:58.000Z",
-    "textPlain": "I wouldn’t call GTK the “native” framework on Linux/Wayland or Linux/X11.Native would be talking to the compositor directly.GTK provides a cross-platform layer of abstractions over the compositor. That’s the opposite of native.There’s countless bugs in the Linux port for applications (eg: Firefox) which can’t be fixed because of a he abstractions done by GTK.",
+    "id": 44907590,
+    "by": "stephen",
+    "timeISO": "2025-08-15T01:11:27.000Z",
+    "textPlain": "I've been using Ghostty, and other GPU-based apps like Alacritty / WezTerm / Zed, because they're ofc better/faster...Ironically they've all made my DX worse, by highlighting how terrible the nvidia drivers actually worked on both my old Regolith i3wm/compositor-less or new sway/wayland setup.Like it's ridiculously terrible.I've tried every magical env flag that Claude can think of, and 4 of the various 550/560/575/580 driver versions--they all suck at screensharing, or resume from sleep, or just out-right buginess/crashes/segfaults in the nvidia drivers.It must have always been this bad, but I just didn't notice, b/c I never actually used my GPU? lol",
     "parent": 44905808,
     "depth": 1
   },
@@ -108,6 +100,14 @@
     "by": "corsica",
     "timeISO": "2025-08-14T21:53:16.000Z",
     "textPlain": "I don't get the hype around this application. The only UI Ghostty has is tabs and the context menu, is it really worth the integration pain and now this rewrite?Maybe they're planning for more, like those GUI configuration dialogs that iterm2 has?Kitty uses OpenGL for everything and draws its own tabs, they're fully customizable and can be made to look however you want. By not wasting time on integrating with massive frameworks for drawing tabs, Kovid was able to quickly implement really useful things that Ghostty is sorely missing, like wrapping the output of the last command in a pager (run 'ps -auxf' and press Ctrl+Shift+G — this thing so useful it's hard to go without it now. It also works for remote shells across SSH sessions.)",
+    "parent": 44905808,
+    "depth": 1
+  },
+  {
+    "id": 44910461,
+    "by": "WhyNotHugo",
+    "timeISO": "2025-08-15T10:03:58.000Z",
+    "textPlain": "I wouldn’t call GTK the “native” framework on Linux/Wayland or Linux/X11.Native would be talking to the compositor directly.GTK provides a cross-platform layer of abstractions over the compositor. That’s the opposite of native.There’s countless bugs in the Linux port for applications (eg: Firefox) which can’t be fixed because of a he abstractions done by GTK.",
     "parent": 44905808,
     "depth": 1
   },
@@ -173,6 +173,14 @@
     "timeISO": "2025-08-15T03:13:22.000Z",
     "textPlain": "I did not know this was a project that was in progress, and its quite exciting. I love Godot, and am quite fond a Zig as well. I'll be keeping my eye on this.",
     "parent": 44906447,
+    "depth": 2
+  },
+  {
+    "id": 44911030,
+    "by": "giancarlostoro",
+    "timeISO": "2025-08-15T11:29:16.000Z",
+    "textPlain": "GTK having this kind of scheme is why Vala was made and inspired by C# but uses GObject and all its joys, then transpiles your code to C.This is why a surprising number of GTK applications (more than I realized) are coded in Vala. I lowkey wish they had just adopted D instead of building up Vala. D is basically compiled C# to me in its own ways.",
+    "parent": 44906189,
     "depth": 2
   },
   {
@@ -264,6 +272,14 @@
     "depth": 2
   },
   {
+    "id": 44911444,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-15T12:17:14.000Z",
+    "textPlain": "Rust would face similar issues. Its safety guarantees only apply within Rust code; the FFI boundary with C/GObject is inherently unsafe and requires manual lifetime management. Rust's borrow checker can't verify external code's memory usage.",
+    "parent": 44906410,
+    "depth": 2
+  },
+  {
     "id": 44910198,
     "by": "ozgrakkurt",
     "timeISO": "2025-08-15T09:16:35.000Z",
@@ -277,6 +293,14 @@
     "timeISO": "2025-08-14T22:27:29.000Z",
     "textPlain": "I think one of the main points of the article was about how shockingly few memory issues they have encountered. He talks about how great of a fit zig + valgrind is.",
     "parent": 44906410,
+    "depth": 2
+  },
+  {
+    "id": 44911360,
+    "by": "any1",
+    "timeISO": "2025-08-15T12:08:10.000Z",
+    "textPlain": "I've used valgrind proactively as long as I've been programming in C and C++.The errors that are caught by valgrind (and asan) will very often not cause immediate crashes or any kind of obvious bugs. Instead, they cause intermittent bugs that are very hard to catch otherwise. They may even be security vulnerabilities.Another good reason for using it proactively is that small memory leaks tend to sneak in over time. They might not cause any issues and most of them aren't accumulative. However, having all those leaks in there makes it much more difficult to find big leaks when they happen because you have to sift through all the insignificant ones before you can fix the one that's causing problems.",
+    "parent": 44908408,
     "depth": 2
   },
   {
@@ -320,6 +344,14 @@
     "depth": 2
   },
   {
+    "id": 44912433,
+    "by": "iammrpayments",
+    "timeISO": "2025-08-15T13:52:42.000Z",
+    "textPlain": "My font doesn’t look as nice on Kitty as it does on Ghostty. The only place that looks better than ghostty is neovide, but they don’t support tabs yet, and because it is more resource intensive, it drains the battery faster.",
+    "parent": 44906138,
+    "depth": 2
+  },
+  {
     "id": 44908843,
     "by": "sevg",
     "timeISO": "2025-08-15T05:15:39.000Z",
@@ -344,14 +376,6 @@
     "depth": 2
   },
   {
-    "id": 44906223,
-    "by": "do_not_redeem",
-    "timeISO": "2025-08-14T22:03:20.000Z",
-    "textPlain": "Well... a terminal is a GUI app, so they had to choose some GUI framework. On Linux GTK is as good a choice as any. (Yes I know you can skip the framework and talk to X11/Wayland directly, like xterm/foot do, but that's a pain all of its own.)",
-    "parent": 44906138,
-    "depth": 2
-  },
-  {
     "id": 44906190,
     "by": "hyperbolablabla",
     "timeISO": "2025-08-14T21:59:34.000Z",
@@ -360,35 +384,19 @@
     "depth": 2
   },
   {
-    "id": 44906594,
-    "by": "mitchellh",
-    "timeISO": "2025-08-14T22:44:28.000Z",
-    "textPlain": "Hold onto your butts cause 1.2 is weeks away and the release notes if printed would cause a [larger than we already have] deforestation problem.",
-    "parent": 44906421,
+    "id": 44906223,
+    "by": "do_not_redeem",
+    "timeISO": "2025-08-14T22:03:20.000Z",
+    "textPlain": "Well... a terminal is a GUI app, so they had to choose some GUI framework. On Linux GTK is as good a choice as any. (Yes I know you can skip the framework and talk to X11/Wayland directly, like xterm/foot do, but that's a pain all of its own.)",
+    "parent": 44906138,
     "depth": 2
   },
   {
-    "id": 44907364,
-    "by": "AndyKelley",
-    "timeISO": "2025-08-15T00:33:28.000Z",
-    "textPlain": "Windows is becoming less and less of a platform every year",
-    "parent": 44907032,
-    "depth": 2
-  },
-  {
-    "id": 44907447,
-    "by": "keithnz",
-    "timeISO": "2025-08-15T00:46:19.000Z",
-    "textPlain": "WezTerm is a great terminal that IS cross platform and works well on windows (and arguably better than ghostty)",
-    "parent": 44907032,
-    "depth": 2
-  },
-  {
-    "id": 44909043,
-    "by": "WhereIsTheTruth",
-    "timeISO": "2025-08-15T05:55:31.000Z",
-    "textPlain": "Windows is just a web browser, yes i'm serious",
-    "parent": 44907032,
+    "id": 44911039,
+    "by": "lumpa",
+    "timeISO": "2025-08-15T11:29:54.000Z",
+    "textPlain": "Linux people get really worked up when I say \"platform-native\". There is no such thing on Linux, but reasonable people agree that something like a GTK app (or Qt) feels \"native\" on *most desktops* over other applications.\n\nhttps://mitchellh.com/writing/ghostty-gtk-rewrite#user-conte...",
+    "parent": 44910461,
     "depth": 2
   }
 ]

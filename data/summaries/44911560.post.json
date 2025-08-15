@@ -1,0 +1,8 @@
+{
+  "id": 44911560,
+  "lang": "ru",
+  "summary": "**Кратко о PR #3899**  \nДобавлена поддержка SSO через **OpenID Connect** (OIDC) в Vaultwarden.  \n\n- **Что нового**  \n  - Авторизация через внешний OIDC-провайдер (Keycloak, Azure AD, Google и др.).  \n  - Автоматическое создание/обновление пользователей при первом входе.  \n  - Настройка через переменные окружения: `SSO_ENABLED`, `SSO_AUTHORITY`, `SSO_CLIENT_ID`, `SSO_CLIENT_SECRET`.  \n  - Поддержка PKCE и `offline_access` для refresh-токенов.  \n\n- **Как использовать**  \n  1. Указать параметры OIDC в `.env`.  \n  2. Включить SSO в админ-панели.  \n  3. Пользователи входят кнопкой «Login with SSO».  \n\n- **Ограничения**  \n  - Только веб-клиент; мобильные/CLI пока без SSO.  \n  - Не работает с двухфакторной аутентификацией Vaultwarden (используйте MFA у провайдера).  \n\n- **Проверено**  \n  - Keycloak, Auth0, Azure AD, Google Workspace.  \n\nPR готов к слиянию; дальнейшие улучшения (SAML, группы) в roadmap.",
+  "inputHash": "6587cb8265d047255c0d23abfa8885034f8f2db9cdd522a58e0f0fd3165ccb4d",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-15T14:24:03.072Z"
+}
