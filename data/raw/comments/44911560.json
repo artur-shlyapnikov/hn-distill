@@ -1,9 +1,9 @@
 [
   {
-    "id": 44914308,
-    "by": "sandeepkd",
-    "timeISO": "2025-08-15T16:24:37.000Z",
-    "textPlain": "Interesting to see a PR being merged after good 2 years. Thought about the idea of reviewing the changes for self learning, however the number of files involved made me to give up on that idea soon enough. The number of comments (610) gave an impression that the PR must have been reviewed thoroughly, however a close look tells that the comments are mostly about the topic itself, not about the code changes. Unless the code review is managed internally, the PR gives an impression of mostly happy paths.",
+    "id": 44914961,
+    "by": "tracker1",
+    "timeISO": "2025-08-15T17:14:59.000Z",
+    "textPlain": "Definitely cool functionality to see.  I hope this doesn't pull too much from what might otherwise be Enterprise Bitwarden customers.  Definitely supportive of the upstream project, while Vaultwarden seems to take less server resources to run, and simpler from what I understand.Freeing up the SSO tax.",
     "parent": 44911560,
     "depth": 1
   },
@@ -20,6 +20,14 @@
     "by": "ronnier",
     "timeISO": "2025-08-15T14:54:24.000Z",
     "textPlain": "I love this product have used it for a long time now but more recently started getting worried about security. I hope the maintainers are doing their due diligence around securing their docker hub account (many of us run VW in docker) and are careful about libraries the project depends on. Some questionable coding practices were made that I'm not sure I agree with (calling a 3rd party sites in some scenarios). As more of us switch to self hosting VW it will become a juicer target for bad actors. Really hoping we don't wake up one day to find out that our database was uploaded by a BA",
+    "parent": 44911560,
+    "depth": 1
+  },
+  {
+    "id": 44914308,
+    "by": "sandeepkd",
+    "timeISO": "2025-08-15T16:24:37.000Z",
+    "textPlain": "Interesting to see a PR being merged after good 2 years. Thought about the idea of reviewing the changes for self learning, however the number of files involved made me to give up on that idea soon enough. The number of comments (610) gave an impression that the PR must have been reviewed thoroughly, however a close look tells that the comments are mostly about the topic itself, not about the code changes. Unless the code review is managed internally, the PR gives an impression of mostly happy paths.",
     "parent": 44911560,
     "depth": 1
   },
@@ -56,14 +64,6 @@
     "depth": 1
   },
   {
-    "id": 44912600,
-    "by": "Valodim",
-    "timeISO": "2025-08-15T14:07:22.000Z",
-    "textPlain": "So what is the point of this, if the user still needs a master password?",
-    "parent": 44911560,
-    "depth": 1
-  },
-  {
     "id": 44912515,
     "by": "razighter777",
     "timeISO": "2025-08-15T13:59:01.000Z",
@@ -72,10 +72,50 @@
     "depth": 1
   },
   {
+    "id": 44912600,
+    "by": "Valodim",
+    "timeISO": "2025-08-15T14:07:22.000Z",
+    "textPlain": "So what is the point of this, if the user still needs a master password?",
+    "parent": 44911560,
+    "depth": 1
+  },
+  {
+    "id": 44914852,
+    "by": "kuschku",
+    "timeISO": "2025-08-15T17:06:49.000Z",
+    "textPlain": "SSO is really important in the \"few tools, many users\" case, but just as important in the \"many tools, few users\" case. I'm self hosting dozens of tools, and without SSO I'd have to set up username, password, TOTP and WebAuthn for each and every one of them, my 2FA app would be 90% my own services.With SSO though, it's much simpler. I can just run an OIDC server and log into all my self-hosted services once, and I can use all of them. Vaultwarden is an exception to the rule though, as you can't really bootstrap that in the individual case.Another use case I'm currently exploring is for sharing netflix/prime/disney+ passwords with roommates, partners and friends. They just sign in with their Google/Apple/whatever account and get access to the shared streaming provider passwords.",
+    "parent": 44913632,
+    "depth": 2
+  },
+  {
+    "id": 44914937,
+    "by": "Timshel",
+    "timeISO": "2025-08-15T17:13:22.000Z",
+    "textPlain": "Started working (based on previous work already done) then maintaining the PR for my personal self-hosted stack.Had then some fun adding roles/groups support (not yet merged).",
+    "parent": 44913632,
+    "depth": 2
+  },
+  {
+    "id": 44914599,
+    "by": "homebrewer",
+    "timeISO": "2025-08-15T16:46:13.000Z",
+    "textPlain": "I support an installation for a couple hundred users. It's been working fine for several years now, including browser plugins and mobile clients. If the project goes under, it's easy to export everything and import into the official Bitwarden.(Whose server I really don't enjoy, it's very enterprise-y and heavy on resources for no real reason I could find.)",
+    "parent": 44913632,
+    "depth": 2
+  },
+  {
     "id": 44914103,
     "by": "raybb",
     "timeISO": "2025-08-15T16:06:31.000Z",
     "textPlain": "As someone who manages the vault warden instance for a nonprofit with many volunteers but no fulltime employees I see this as a wonderful thing. Yes bitwarden has a nonprofit discount but no playing wack a mole with which of the 20+ volunteers are active at any moment to avoid getting a huge bill isn't worth it vs self hosting.",
+    "parent": 44913632,
+    "depth": 2
+  },
+  {
+    "id": 44914498,
+    "by": "c0balt",
+    "timeISO": "2025-08-15T16:38:26.000Z",
+    "textPlain": "I'm hosting it for our team at a public institute, we are strongly supportive of OSS and have interest in keeping our data on premise.Team of <10 though so hosting is trivial with NixOS. We also have almost no money available for purchasing software so official self-hosted bitwarden was not an option unfortunately (if we had money, that would've been the way to go).",
     "parent": 44913632,
     "depth": 2
   },
@@ -128,18 +168,18 @@
     "depth": 2
   },
   {
-    "id": 44912964,
-    "by": "kriops",
-    "timeISO": "2025-08-15T14:35:17.000Z",
-    "textPlain": "Separate accounts for work and private. SSO for the work account is perfectly fine for me as a dev and a big advantage for the company. But yes, don't conflate the two use cases.",
-    "parent": 44912542,
-    "depth": 2
-  },
-  {
     "id": 44912918,
     "by": "vasco",
     "timeISO": "2025-08-15T14:31:50.000Z",
     "textPlain": "So you're going to play IT and duplicate all the groups and all the roles manually that already are maintained and automated for on/off-boarding? And not have them be auto-offboarded when they are let go? That introduces compliance risks and imo more problems than having SSO on your password manager. Yes, keep some master password for a rainy day if you have to, but otherwise, the more \"dangerous\" the thing the more it should be hooked up to SSO.",
+    "parent": 44912542,
+    "depth": 2
+  },
+  {
+    "id": 44912964,
+    "by": "kriops",
+    "timeISO": "2025-08-15T14:35:17.000Z",
+    "textPlain": "Separate accounts for work and private. SSO for the work account is perfectly fine for me as a dev and a big advantage for the company. But yes, don't conflate the two use cases.",
     "parent": 44912542,
     "depth": 2
   },
@@ -152,18 +192,18 @@
     "depth": 2
   },
   {
-    "id": 44913904,
-    "by": "jedahan",
-    "timeISO": "2025-08-15T15:52:51.000Z",
-    "textPlain": "Run a community space that uses its own SSO, and needs to share passwords for socials and the like.",
-    "parent": 44912284,
-    "depth": 2
-  },
-  {
     "id": 44913369,
     "by": "input_sh",
     "timeISO": "2025-08-15T15:07:48.000Z",
     "textPlain": "I administer it at work and now I won't have to invite a user manually, wait for them to accept the invite link via email, manually approve their account, and then assign it to groups (collections).In other words one less thing to worry about during onboarding / offboarding.",
+    "parent": 44912284,
+    "depth": 2
+  },
+  {
+    "id": 44913904,
+    "by": "jedahan",
+    "timeISO": "2025-08-15T15:52:51.000Z",
+    "textPlain": "Run a community space that uses its own SSO, and needs to share passwords for socials and the like.",
     "parent": 44912284,
     "depth": 2
   },
