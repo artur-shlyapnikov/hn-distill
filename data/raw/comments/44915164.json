@@ -1,5 +1,21 @@
 [
   {
+    "id": 44917364,
+    "by": "physix",
+    "timeISO": "2025-08-15T21:17:34.000Z",
+    "textPlain": "This is a great idea. I really like it!We considered reaching out in May, but held back because we want to run on bare metal.Any chance to get this provisioned on bare metal at Hetzner?We have K8S running on bare metal there. It's a slog to get it all working, but for our use case, having a dedicated 10G LAN between nodes (and a bare metal Cassandra cluster in the same rack) makes a big difference in performance.Also, from a cost perspective. We run AX41-NVMe dedicated servers that cost us about EUR 64 per server with a 10G LAN, all in the same rack. Getting the same horsepower using Cloud instances I guess would be a CCX43, which costs almost double.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44917331,
+    "by": "marcosscriven",
+    "timeISO": "2025-08-15T21:14:24.000Z",
+    "textPlain": "What are the connectivity options between heztner dedicated servers? I see they allow you to pay to have in a single rack, with a dedicated switch. But does that introduce a risk of single point of failure in the rack power or switch?",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
     "id": 44915794,
     "by": "MaKey",
     "timeISO": "2025-08-15T18:22:55.000Z",
@@ -8,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44916841,
-    "by": "betaby",
-    "timeISO": "2025-08-15T20:15:13.000Z",
-    "textPlain": "Site doesn't answer how storage is 'solved'. Is this solution uses local folder provisioning when using PostgreSQL for example.",
+    "id": 44917146,
+    "by": "bflesch",
+    "timeISO": "2025-08-15T20:55:05.000Z",
+    "textPlain": "I cant seem to figure out where this company is located and if it is a scam or not. Website has no imprint, no contact address. There is one email address in the privacy statement but it is \"redacted by cloudflare\". Also in privacy statement it says \"Edka Digital S.L.\" but no idea which country it is registered it.For me it does not pass the smell test. No physical address, no idea who is running it, no idea if company is indeed registered or not. The pricing FAQ at least talks about VAT and I assume it is EU VAT but could be anything.",
     "parent": 44915164,
     "depth": 1
   },
@@ -24,18 +40,42 @@
     "depth": 1
   },
   {
-    "id": 44916620,
-    "by": "deknos",
-    "timeISO": "2025-08-15T19:45:28.000Z",
-    "textPlain": "Am i the only one who is confused about \"Hetzner\" in the title and \"AWS KMS\" in the body?",
+    "id": 44917237,
+    "by": "rumblefrog",
+    "timeISO": "2025-08-15T21:05:03.000Z",
+    "textPlain": "I tried to deploy a small cluster in the US VA region, but the cluster status kept flipping between Failed and Creating with no clear way of troubleshooting it: 7ad975fb-3c8e-47a9-b03d-9e6bec81f0db",
     "parent": 44915164,
     "depth": 1
   },
   {
-    "id": 44916083,
-    "by": "figassis",
-    "timeISO": "2025-08-15T18:46:09.000Z",
-    "textPlain": "I have yet to see a guide to automate k8s on Hetzner's beefy bare metal instances. True, you want cattle, but being able to include some bare metal instance with amazing CPUs and memory would be great, and I do just that. My clusters include both cloud and bare metal instances. In the past I had used Hetzner virtual switch to create a shared L2 network between cloud and bare metal nodes. Now I just use tailscale.But the TF and other tools are using the API to add and kill nodes, if you could pass a class of nodes to those tools that they know can't create but are able to wipe and rebuild, this would be ideal.",
+    "id": 44917128,
+    "by": "marcosscriven",
+    "timeISO": "2025-08-15T20:53:41.000Z",
+    "textPlain": "When I was looking into this, I instead setup Proxmox on Hetzner (which you can do natively from ISO).From there it was much easier just using it for whatever I wanted, including K3S",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44917067,
+    "by": "rumblefrog",
+    "timeISO": "2025-08-15T20:45:29.000Z",
+    "textPlain": "I wonder how long before Hetzner adds something like managed Kubernetes to their native product line. They already have S3 compatible object storages, load balancers and more.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44916841,
+    "by": "betaby",
+    "timeISO": "2025-08-15T20:15:13.000Z",
+    "textPlain": "Site doesn't answer how storage is 'solved'. Is this solution uses local folder provisioning when using PostgreSQL for example.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44917026,
+    "by": "rumblefrog",
+    "timeISO": "2025-08-15T20:40:42.000Z",
+    "textPlain": "This looks great! Haven't tried it yet, but should I presume this also does k8s and OS updates for me? Or how managed is it?",
     "parent": 44915164,
     "depth": 1
   },
@@ -48,18 +88,34 @@
     "depth": 1
   },
   {
-    "id": 44916507,
-    "by": "everfrustrated",
-    "timeISO": "2025-08-15T19:30:53.000Z",
-    "textPlain": "Has anybody found a good way to use encrypted disks with Hetzner yet?",
+    "id": 44916083,
+    "by": "figassis",
+    "timeISO": "2025-08-15T18:46:09.000Z",
+    "textPlain": "I have yet to see a guide to automate k8s on Hetzner's beefy bare metal instances. True, you want cattle, but being able to include some bare metal instance with amazing CPUs and memory would be great, and I do just that. My clusters include both cloud and bare metal instances. In the past I had used Hetzner virtual switch to create a shared L2 network between cloud and bare metal nodes. Now I just use tailscale.But the TF and other tools are using the API to add and kill nodes, if you could pass a class of nodes to those tools that they know can't create but are able to wipe and rebuild, this would be ideal.",
     "parent": 44915164,
     "depth": 1
   },
   {
-    "id": 44915572,
-    "by": "barbazoo",
-    "timeISO": "2025-08-15T18:05:01.000Z",
-    "textPlain": "Love how focussed this is.I would have never guessed that there's an overlap between the circle of people wanting to run a prod workload on a K8s cluster and folks that need a GUI to set up and manage a K8s cluster would be that big but looks like I might be wrong.",
+    "id": 44916620,
+    "by": "deknos",
+    "timeISO": "2025-08-15T19:45:28.000Z",
+    "textPlain": "Am i the only one who is confused about \"Hetzner\" in the title and \"AWS KMS\" in the body?",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44916985,
+    "by": "mfrye0",
+    "timeISO": "2025-08-15T20:35:59.000Z",
+    "textPlain": "This is incredibly timely. I've been an AWS customer for 10+ years and have been having a tough time with them lately. Looking at potentially moving off and considering options.My theory is that with terraform and a container based infra, that it should be pretty easier with Claude Code to migrate wherever.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44916507,
+    "by": "everfrustrated",
+    "timeISO": "2025-08-15T19:30:53.000Z",
+    "textPlain": "Has anybody found a good way to use encrypted disks with Hetzner yet?",
     "parent": 44915164,
     "depth": 1
   },
@@ -80,10 +136,34 @@
     "depth": 1
   },
   {
+    "id": 44915572,
+    "by": "barbazoo",
+    "timeISO": "2025-08-15T18:05:01.000Z",
+    "textPlain": "Love how focussed this is.I would have never guessed that there's an overlap between the circle of people wanting to run a prod workload on a K8s cluster and folks that need a GUI to set up and manage a K8s cluster would be that big but looks like I might be wrong.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44917187,
+    "by": "latchkey",
+    "timeISO": "2025-08-15T21:00:02.000Z",
+    "textPlain": "Great work. Just tried to email support@ and it bounced.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
     "id": 44915588,
     "by": "zft",
     "timeISO": "2025-08-15T18:05:54.000Z",
     "textPlain": "Congratulations on the launch!Is there are plans to support Gitlab and gitlab registry (or any registry) ?",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44917080,
+    "by": "sciencesama",
+    "timeISO": "2025-08-15T20:47:21.000Z",
+    "textPlain": "is there a selfhosted version of this ?",
     "parent": 44915164,
     "depth": 1
   },
@@ -96,18 +176,18 @@
     "depth": 1
   },
   {
-    "id": 44916636,
-    "by": "zgk7iqea",
-    "timeISO": "2025-08-15T19:47:51.000Z",
-    "textPlain": "typo on the website: one cluser always free",
-    "parent": 44915164,
-    "depth": 1
-  },
-  {
     "id": 44915929,
     "by": "kopadudl",
     "timeISO": "2025-08-15T18:33:31.000Z",
     "textPlain": "Typo: One Cluser always free",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44916636,
+    "by": "zgk7iqea",
+    "timeISO": "2025-08-15T19:47:51.000Z",
+    "textPlain": "typo on the website: one cluser always free",
     "parent": 44915164,
     "depth": 1
   },
@@ -160,6 +240,14 @@
     "depth": 2
   },
   {
+    "id": 44917183,
+    "by": "worldsayshi",
+    "timeISO": "2025-08-15T20:59:40.000Z",
+    "textPlain": "Does anyone know how this compares to using https://github.com/vitobotta/hetzner-k3s ?",
+    "parent": 44915794,
+    "depth": 2
+  },
+  {
     "id": 44916022,
     "by": "abound",
     "timeISO": "2025-08-15T18:40:56.000Z",
@@ -176,11 +264,11 @@
     "depth": 2
   },
   {
-    "id": 44916902,
+    "id": 44917239,
     "by": "camil",
-    "timeISO": "2025-08-15T20:22:02.000Z",
-    "textPlain": "Sorry for that, I wasn't expecting such interest. There are still undocumented parts, but happy to answer any question. It uses https://github.com/hetznercloud/csi-driver to attach persistent volumes to PostgreSQL pods.",
-    "parent": 44916841,
+    "timeISO": "2025-08-15T21:05:35.000Z",
+    "textPlain": "Hello there, as I mentioned in the post, I build this as a side project by my self and I'm running it as a freelancer registered in Spain, you can check my VAT number ESY1848661G. I was planning to collect some feedback and honestly didn't expect such interest in the project. I will make the necessary adjustments to the privacy policy and terms of service. When I started this, I had in mind to convert it into a company, but I'm still running it as a freelancer. Thanks for your feedback! I will correct my mistake.",
+    "parent": 44917146,
     "depth": 2
   },
   {
@@ -192,11 +280,43 @@
     "depth": 2
   },
   {
-    "id": 44916812,
+    "id": 44917256,
     "by": "camil",
-    "timeISO": "2025-08-15T20:12:12.000Z",
-    "textPlain": "Thanks for the feedback! Didn't plan to bring any confusion with that. The AWS KMS is used by the platform to encrypt/decrypt sensitive data before/after storing it in Vault and is part of the tech stack used to develop the platform.",
-    "parent": 44916620,
+    "timeISO": "2025-08-15T21:06:47.000Z",
+    "textPlain": "Hello there, sorry for that I will look into it right now.",
+    "parent": 44917237,
+    "depth": 2
+  },
+  {
+    "id": 44917086,
+    "by": "Hamuko",
+    "timeISO": "2025-08-15T20:48:47.000Z",
+    "textPlain": "No idea about the timing but I imagine it's coming.Would make a lot of sense, especially if you can combine it with the hardware servers. You could get a lot of grunt in your cluster for a lot less than for example AWS.",
+    "parent": 44917067,
+    "depth": 2
+  },
+  {
+    "id": 44916902,
+    "by": "camil",
+    "timeISO": "2025-08-15T20:22:02.000Z",
+    "textPlain": "Sorry for that, I wasn't expecting such interest. There are still undocumented parts, but happy to answer any question. It uses https://github.com/hetznercloud/csi-driver to attach persistent volumes to PostgreSQL pods.",
+    "parent": 44916841,
+    "depth": 2
+  },
+  {
+    "id": 44916942,
+    "by": "pwmtr",
+    "timeISO": "2025-08-15T20:28:30.000Z",
+    "textPlain": "If you are looking for Postgres on Hetzner, you may want to check out Ubicloud.We host in various bare metal providers, including Hetzner. (I am the lead engineer building Ubicloud PostgreSQL, so if you have questions I can answer them)",
+    "parent": 44916841,
+    "depth": 2
+  },
+  {
+    "id": 44917153,
+    "by": "camil",
+    "timeISO": "2025-08-15T20:55:29.000Z",
+    "textPlain": "Thanks for the feedback! The platform is mostly self service, but it is very easy to upgrade the Kubernetes version, just change the version in the cluster configuration. For OS updates, you can replace the nodes and it will automatically pick the latest OS image from Hetzner. I also run it isolated for some small companies, as a fully managed service, so that option is available as well.",
+    "parent": 44917026,
     "depth": 2
   },
   {
@@ -208,35 +328,51 @@
     "depth": 2
   },
   {
+    "id": 44917000,
+    "by": "SOLAR_FIELDS",
+    "timeISO": "2025-08-15T20:37:45.000Z",
+    "textPlain": "Would CAPH solve your issue? https://github.com/syself/cluster-api-provider-hetzner you would wire up cluster autoscaler to point to it using clusterapi https://github.com/kubernetes/autoscaler/blob/a9cb59fdd2dd88...",
+    "parent": 44916083,
+    "depth": 2
+  },
+  {
+    "id": 44916812,
+    "by": "camil",
+    "timeISO": "2025-08-15T20:12:12.000Z",
+    "textPlain": "Thanks for the feedback! Didn't plan to bring any confusion with that. The AWS KMS is used by the platform to encrypt/decrypt sensitive data before/after storing it in Vault and is part of the tech stack used to develop the platform.",
+    "parent": 44916620,
+    "depth": 2
+  },
+  {
+    "id": 44917103,
+    "by": "ralala",
+    "timeISO": "2025-08-15T20:51:35.000Z",
+    "textPlain": "What is the threat model you want to mitigate using encryption at rest? Is it that a physical disk is not properly wiped after usage? Then you could just use luks and store the key anywhere else, e.g. another machine or an external volume…",
+    "parent": 44916507,
+    "depth": 2
+  },
+  {
+    "id": 44917164,
+    "by": "bflesch",
+    "timeISO": "2025-08-15T20:56:53.000Z",
+    "textPlain": "Encrypted disks are easily setup with archlinux + LUKS + tinySSH, you can remote unlock via SSH.",
+    "parent": 44916507,
+    "depth": 2
+  },
+  {
+    "id": 44917052,
+    "by": "M4t7e",
+    "timeISO": "2025-08-15T20:43:15.000Z",
+    "textPlain": "If you need disk encryption on Hetzner, I built a Terraform module that sets up a Kubernetes cluster with encrypted disks enabled by default: https://github.com/hcloud-k8s/terraform-hcloud-kubernetes",
+    "parent": 44916507,
+    "depth": 2
+  },
+  {
     "id": 44916583,
     "by": "winrid",
     "timeISO": "2025-08-15T19:40:55.000Z",
     "textPlain": "Their installer script supports LUKS.Setup dropbear, and have another encrypted instance that runs a cron that runs a script every minute to check for the dropbear port on all instances and sshes in and passes the key to boot.This is what I do for fastcomments anyway for ovh and hetzner",
     "parent": 44916507,
-    "depth": 2
-  },
-  {
-    "id": 44916036,
-    "by": "0x457",
-    "timeISO": "2025-08-15T18:42:27.000Z",
-    "textPlain": "> I would have never guessed that there's an overlap between the circle of people wanting to run a prod workload on a K8s cluster and folks that need a GUI to set up and manage a K8s cluster would be that big but looks like I might be wrong.Count how many GKE ad EKS users are out there?",
-    "parent": 44915572,
-    "depth": 2
-  },
-  {
-    "id": 44916566,
-    "by": "tormeh",
-    "timeISO": "2025-08-15T19:38:17.000Z",
-    "textPlain": "Surely the appeal is more that someone will fix things if your k8s installation breaks?",
-    "parent": 44915572,
-    "depth": 2
-  },
-  {
-    "id": 44915946,
-    "by": "andix",
-    "timeISO": "2025-08-15T18:35:03.000Z",
-    "textPlain": "k3s does support running separate control plane and worker node pools. It's not just for toy-project clusters, or single node clusters. k3s can also power rather big clusters.",
-    "parent": 44915660,
     "depth": 2
   },
   {
@@ -256,91 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44915784,
-    "by": "camil",
-    "timeISO": "2025-08-15T18:22:18.000Z",
-    "textPlain": "Thank you! Yes, both are planned. The registry will be a very easy implementation.",
-    "parent": 44915588,
-    "depth": 2
-  },
-  {
-    "id": 44916574,
-    "by": "camil",
-    "timeISO": "2025-08-15T19:39:35.000Z",
-    "textPlain": "This was designed for Hetzner, which I still believe has the best offer on the market comparing price, performance and stability. On top of that, the platform offers some ready to deploy add-ons that simplify the configuration after the initial cluster provisioning.",
-    "parent": 44916110,
-    "depth": 2
-  },
-  {
-    "id": 44916271,
-    "by": "czhu12",
-    "timeISO": "2025-08-15T19:03:57.000Z",
-    "textPlain": "Linode pricing is probably 3-4x more expensive than Hetzner, who does not offer managed kubernetes.",
-    "parent": 44916110,
-    "depth": 2
-  },
-  {
-    "id": 44916922,
-    "by": "camil",
-    "timeISO": "2025-08-15T20:25:08.000Z",
-    "textPlain": "Fixed, thanks!",
-    "parent": 44915929,
-    "depth": 2
-  },
-  {
-    "id": 44916490,
-    "by": "camil",
-    "timeISO": "2025-08-15T19:27:56.000Z",
-    "textPlain": "Thank you! Please feel free to ask any questions.",
-    "parent": 44916126,
-    "depth": 2
-  },
-  {
-    "id": 44916491,
-    "by": "camil",
-    "timeISO": "2025-08-15T19:28:10.000Z",
-    "textPlain": "Thank you!",
-    "parent": 44915644,
-    "depth": 2
-  },
-  {
-    "id": 44916466,
-    "by": "camil",
-    "timeISO": "2025-08-15T19:24:58.000Z",
-    "textPlain": "Hello there! Fair enough. As I mentioned in the original post, I built this as a side project, by myself, and I run it as a freelancer registered in Spain. It is not hard to find my public profile. You can check my Spanish VAT number, ESY1848661G. This is still in beta and currently looking to collect feedback and see if there is any interest in the market, before scaling it to a company. Thank you!",
-    "parent": 44915908,
-    "depth": 2
-  },
-  {
-    "id": 44916017,
+    "id": 44916036,
     "by": "0x457",
-    "timeISO": "2025-08-15T18:40:40.000Z",
-    "textPlain": "> if you want high-availability - you need to double that.Triple. 1 and 2 nodes will give failure allowance of zero.",
-    "parent": 44915951,
-    "depth": 2
-  },
-  {
-    "id": 44915994,
-    "by": "parchley",
-    "timeISO": "2025-08-15T18:38:27.000Z",
-    "textPlain": "Actually you want 3 nodes for high availability, two will do you nothing good",
-    "parent": 44915951,
-    "depth": 2
-  },
-  {
-    "id": 44916309,
-    "by": "lagniappe",
-    "timeISO": "2025-08-15T19:08:07.000Z",
-    "textPlain": "Are you blowing out the birthday candles on someone else's cake?",
-    "parent": 44916210,
-    "depth": 2
-  },
-  {
-    "id": 44916480,
-    "by": "turtlebits",
-    "timeISO": "2025-08-15T19:26:54.000Z",
-    "textPlain": "$5/month per core for self hosted?  Thats way too expensive.",
-    "parent": 44916210,
+    "timeISO": "2025-08-15T18:42:27.000Z",
+    "textPlain": "> I would have never guessed that there's an overlap between the circle of people wanting to run a prod workload on a K8s cluster and folks that need a GUI to set up and manage a K8s cluster would be that big but looks like I might be wrong.Count how many GKE ad EKS users are out there?",
+    "parent": 44915572,
     "depth": 2
   }
 ]

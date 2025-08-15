@@ -16,26 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44915001,
-    "by": "imbusy111",
-    "timeISO": "2025-08-15T17:18:45.000Z",
-    "textPlain": "I figured there is a need for generating a lot of samples and building a predictive model per game for best results. Documentation confirms:> Most of these corner cases can be resolved by providing the model with enough training data without increase the complexity and cost of the technique. This\nalso enables game developers to train the neural upscalers with their\ncontent, resulting in a completely customized solution fine-tuned for the\ngameplay, performance, or art direction needs of a particular title.Source: https://developer.arm.com/documentation/111019/latest/",
-    "parent": 44876346,
-    "depth": 1
-  },
-  {
-    "id": 44916892,
-    "by": "ltbarcly3",
-    "timeISO": "2025-08-15T20:20:28.000Z",
-    "textPlain": "\"Arm neural technology is an industry first, adding dedicated neural accelerators to Arm GPUs\"HiSilicon Kirin 970 had an NPU in like 2017.  I think almost every performance-oriented Arm chip released in the last 5 years has had some kind of NPU on it.I suspect they are using Arm here to mean \"Arm-the-company-and-brand\" not \"Arm the architecture\", which is both misleading and makes the claim completely meaningless.",
-    "parent": 44876346,
-    "depth": 1
-  },
-  {
     "id": 44913793,
     "by": "N_Lens",
     "timeISO": "2025-08-15T15:44:18.000Z",
     "textPlain": "This article 2 links deep had better technical details -https://community.arm.com/arm-community-blogs/b/mobile-graph...Upscaling solution mainly targeted at mobile gaming, with an 'AI pipeline' for upscaling graphics (They claim 540p upscaled to 1080p at 4ms per frame). I'm a bit skeptical because this is a press release for chips that are in the works and claim to be releasing in DEC-26, and then on actual devices after that. So sounds more like a strategic/political move (Perhaps stock price related manoeuvring).Unreal Engine 5 plugin will allow previewing the upscaled effects using the though, which will be nice for game developers.",
+    "parent": 44876346,
+    "depth": 1
+  },
+  {
+    "id": 44915001,
+    "by": "imbusy111",
+    "timeISO": "2025-08-15T17:18:45.000Z",
+    "textPlain": "I figured there is a need for generating a lot of samples and building a predictive model per game for best results. Documentation confirms:> Most of these corner cases can be resolved by providing the model with enough training data without increase the complexity and cost of the technique. This\nalso enables game developers to train the neural upscalers with their\ncontent, resulting in a completely customized solution fine-tuned for the\ngameplay, performance, or art direction needs of a particular title.Source: https://developer.arm.com/documentation/111019/latest/",
     "parent": 44876346,
     "depth": 1
   },
@@ -52,6 +44,14 @@
     "by": "cubefox",
     "timeISO": "2025-08-15T18:18:59.000Z",
     "textPlain": "There are now at least three ways to accelerate machine learning models on consumer hardware:  - GPU compute units (used for LLMs)\n  - GPU \"neural accelerators\"/\"tensor cores\" etc (used for video game anti-aliasing and increasing resolution or frame rate)\n  - NPUs (not sure what they are actually used for)\n\nAnd of course models can also be run, without acceleration, on the CPU.",
+    "parent": 44876346,
+    "depth": 1
+  },
+  {
+    "id": 44916892,
+    "by": "ltbarcly3",
+    "timeISO": "2025-08-15T20:20:28.000Z",
+    "textPlain": "\"Arm neural technology is an industry first, adding dedicated neural accelerators to Arm GPUs\"HiSilicon Kirin 970 had an NPU in like 2017.  I think almost every performance-oriented Arm chip released in the last 5 years has had some kind of NPU on it.I suspect they are using Arm here to mean \"Arm-the-company-and-brand\" not \"Arm the architecture\", which is both misleading and makes the claim completely meaningless.",
     "parent": 44876346,
     "depth": 1
   },
@@ -88,11 +88,27 @@
     "depth": 2
   },
   {
+    "id": 44917006,
+    "by": "atq2119",
+    "timeISO": "2025-08-15T20:38:35.000Z",
+    "textPlain": "At least for desktop gaming, the tensor cores are in the GPU compute units (SM), same as for the big data center GPUs.It seems ARM believe it makes sense to go a different route for mobile gaming.",
+    "parent": 44915737,
+    "depth": 2
+  },
+  {
     "id": 44915858,
     "by": "colejohnson66",
     "timeISO": "2025-08-15T18:27:26.000Z",
     "textPlain": "An \"NPU\" is a matrix multiplier accelerator. It removes some general-purpose stuff that GPUs provide in favor of more \"AI\"-useful units, like support for values a byte or smaller  (i.e., FP4, INT4, etc.).",
     "parent": 44915737,
+    "depth": 2
+  },
+  {
+    "id": 44916960,
+    "by": "atq2119",
+    "timeISO": "2025-08-15T20:31:35.000Z",
+    "textPlain": "The marketing speak isn't exactly clear, but I believe the point is that this is like an NPU inside of the GPU instead of next to it as a separate device. That would indeed be new, and I can see how it'd be beneficial to integration with games.",
+    "parent": 44916892,
     "depth": 2
   }
 ]

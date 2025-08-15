@@ -1,9 +1,9 @@
 [
   {
-    "id": 44913597,
-    "by": "gus_massa",
-    "timeISO": "2025-08-15T15:29:07.000Z",
-    "textPlain": "> It’s very subjective, but I think the uniform stsrts looking reasonably good at a sample size of 8. The exponential however takes much longer to converge to a normal.That's a good observation. The main idea behind the Central Limit Theorem is to take the Fourier Transform, operate and then go back. After that, after normalization the result is that the new distribution for the sum of N variables is something like  Normal(X) + 1/N * \"Skewness\" * Something(X) + 1/N^2 * IDont * Remember(X) + ...\n\nWhere \"Skewness\" is a number defined in https://en.wikipedia.org/wiki/SkewnessThe uniform distribution is symmetric, so skewness=0 and the correction decrease like 1/N^2.The exponential distribution is very asymmetrical and and skewness!=0, so the main correction is like 1/N and takes longer to dissapear.",
+    "id": 44917059,
+    "by": "kazinator",
+    "timeISO": "2025-08-15T20:44:19.000Z",
+    "textPlain": "The intuition behind it is that when we take batches of samples from some arbitrarily shaped distribution, and we summarize the information by looking at the mean values of the batches of samples, we find that those mean values are moving away from the arbitrarily shaped distribution. The larger are the batches, the more those means approach a normal distribution.In other words, the means of large batches of samples from some funny shaped distribution themselves constitute a sequence of numbers, and that sequence follow a normal distribution. Or closer and closer to one the larger the batches are.This observation legitimizes our uses of statistical inference tools derived from the normal distribution, like confidence intervals, provided we are working with large enough batches of samples.",
     "parent": 44909133,
     "depth": 1
   },
@@ -12,6 +12,22 @@
     "by": "jethkl",
     "timeISO": "2025-08-15T11:56:56.000Z",
     "textPlain": "There is an analogue of the CLT for extreme values. The Fisher–Tippett–Gnedenko theorem is the extreme-values analogue of the CLT: if the properly normalized maximum of an i.i.d. sample converges, it must be Gumbel, Fréchet, or Weibull—unified as the Generalized Extreme Value distribution. Unlike the CLT, whose assumptions (in my experience) rarely hold in practice, this result is extremely general and underpins methods like wavelet thresholding and signal denoising—easy to demonstrate with a quick simulation.",
+    "parent": 44909133,
+    "depth": 1
+  },
+  {
+    "id": 44913597,
+    "by": "gus_massa",
+    "timeISO": "2025-08-15T15:29:07.000Z",
+    "textPlain": "> It’s very subjective, but I think the uniform stsrts looking reasonably good at a sample size of 8. The exponential however takes much longer to converge to a normal.That's a good observation. The main idea behind the Central Limit Theorem is to take the Fourier Transform, operate and then go back. After that, after normalization the result is that the new distribution for the sum of N variables is something like  Normal(X) + 1/N * \"Skewness\" * Something(X) + 1/N^2 * IDont * Remember(X) + ...\n\nWhere \"Skewness\" is a number defined in https://en.wikipedia.org/wiki/SkewnessThe uniform distribution is symmetric, so skewness=0 and the correction decrease like 1/N^2.The exponential distribution is very asymmetrical and and skewness!=0, so the main correction is like 1/N and takes longer to dissapear.",
+    "parent": 44909133,
+    "depth": 1
+  },
+  {
+    "id": 44916965,
+    "by": "kazinator",
+    "timeISO": "2025-08-15T20:32:49.000Z",
+    "textPlain": "> I always avoided statistics subjects.I don't believe you. Even if you had a good control group, the fact that one subject engaged in fewer statistics subjects than the control group doesn't lead to the conclusion that there is an avoidance mechanism (or any mechanism). You need a sample of something like 30 or 40 more of you to detect a statistically valid pattern of diminished engagement with statistics subjects that could then be hypothesized as being caused by avoidance.",
     "parent": 44909133,
     "depth": 1
   },
