@@ -1,25 +1,9 @@
 [
   {
-    "id": 44920740,
-    "by": "dsrtslnd23",
-    "timeISO": "2025-08-16T06:24:34.000Z",
-    "textPlain": "What do you guys use to actually implement this?\nI used AWS Lambda functions for what is called 'subagents' here and do the main orchestration via long running Step Functions. This is more structured but also allows me to use the common patterns in mentioned in the article (e.g. parallel vs serialized). I noticed however that it can get quite complex and am debating to just implement everything served as a single FastAPI app. I do want to keep it scalable though.",
-    "parent": 44919647,
-    "depth": 1
-  },
-  {
     "id": 44920267,
     "by": "imsh4yy",
     "timeISO": "2025-08-16T04:47:46.000Z",
     "textPlain": "Author of this post here.For context, I'm a solo developer building UserJot. I've been recently looking deeper into integrating AI into the product but I've been wanting to go a lot deeper than just wrapping a single API call and calling it a day.So this blog post is mostly my experience trying to reverse engineer other AI agents and experimenting with different approaches for a bit.Happy to answer any questions.",
-    "parent": 44919647,
-    "depth": 1
-  },
-  {
-    "id": 44920595,
-    "by": "adastra22",
-    "timeISO": "2025-08-16T05:55:36.000Z",
-    "textPlain": "I recently posted here how I’m seeing success with sub agent-based autonomous dev (not “vibe coding” as I actually review every line before I commit, but the same general idea). Different application, but I can confirm every one of the best practices described in this article, as I came to the same conclusions myself.https://news.ycombinator.com/item?id=44893025",
     "parent": 44919647,
     "depth": 1
   },
@@ -32,26 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44920598,
-    "by": "AndyNemmity",
-    "timeISO": "2025-08-16T05:56:10.000Z",
-    "textPlain": "I agreed with much of this, but I started looking into the enterprise ai systems that large companies are making, and they use agent control via software.So I tried it. It's much better.Software is just better at handling discrete tasks that you understand, like mapping agent pathing. There's no point giving that to an AI to do.The Cordinator \"Main Agent\" should just call the software to manage the agents.It works really well in comparison.You can have the software call claude code via command line, sending the prompt in. You have it create full detail logs of what it's doing, and done, and created.Maybe I'll change my mind, everything is moving so fast, and we're all in the dark searching around for ideas, but so far it's been working pretty well.You do lose in the middle visibility to stop it.I also have it evaluating the outputs to determine how well the agents followed their instructions. That seems key to understanding if more context adds value when comparing agents.",
+    "id": 44920949,
+    "by": "gregorriegler",
+    "timeISO": "2025-08-16T07:02:04.000Z",
+    "textPlain": "Love it.The recovery part was inspiring.I've written a similar thing - a Pattern Language sort of - and I call the primary Agent \"Orchestrator\".Actually, I might steal the Consensus and MapReduce patternshttps://gregorriegler.com/2025/07/12/augmented-coding-patter...",
     "parent": 44919647,
     "depth": 1
   },
   {
-    "id": 44920626,
-    "by": "canterburry",
-    "timeISO": "2025-08-16T06:03:46.000Z",
-    "textPlain": "\"The “Smart Agent” Trap: I tried making agents that could “figure out” what to do. They couldn’t. Be explicit.\"So what about this solution is actually agentic?Overall, it sounds like you sat down and did a proper business process analysis and automated it.Your subagents for sure have no autonomy and are just execution steps in a classic workflow except you happen to be calling an LLM.Does the orchestrating agent adapt the process between invocations depending on the data and does it do so in any way more complex than a simple if then branch?",
-    "parent": 44919647,
-    "depth": 1
-  },
-  {
-    "id": 44920521,
-    "by": "nojs",
-    "timeISO": "2025-08-16T05:42:12.000Z",
-    "textPlain": "\"Subagent orchestration\" is also a really quick win in Claude. You can just say \"spawn a subagent to do each task in X, give it Y context\".This lets you a) run things in parallel if you want, but also b) keep the main agent's context clean, and therefore run much larger, longer running tasks without the \"race against the context clock\" issue.",
+    "id": 44920595,
+    "by": "adastra22",
+    "timeISO": "2025-08-16T05:55:36.000Z",
+    "textPlain": "I recently posted here how I’m seeing success with sub agent-based autonomous dev (not “vibe coding” as I actually review every line before I commit, but the same general idea). Different application, but I can confirm every one of the best practices described in this article, as I came to the same conclusions myself.https://news.ycombinator.com/item?id=44893025",
     "parent": 44919647,
     "depth": 1
   },
@@ -64,10 +40,34 @@
     "depth": 1
   },
   {
-    "id": 44920140,
-    "by": "kami23",
-    "timeISO": "2025-08-16T04:20:57.000Z",
-    "textPlain": "These are the same categories of coordination I've been looking at all day, trying to find the sweet spot in how complex the orchestration can be. I tried to add some context where the agents got it into a cycle of editing the code that another was testing and stuff like that.I know my next step should be to give the agents a good git pattern but I'm having so much fun just finding the team organization that delivers better stuff. I have them consult with each other in tech choices and have picked what I would have pickedThe consensus protocol for choices is one I really liked, and that will maybe do more self correction.Ive been asking them to illustrate their flow of work and asking for decisions, I need to go back and see if that's the case. Probably would be made easier if I get my git experiment flow down.The future is tooling for these. If we can team up enough that we get consensus approaching something 'safe' the tools we can give them to run in dry/live mode and have a human validate the process for a time and then once you have enough feedback move into the next thing needing fixing.I have a lot of apps with cobra cli tooling that resides next to the server code. Being able to pump our docs into an mcp server for tool execution is giving me so many ideas.",
+    "id": 44920598,
+    "by": "AndyNemmity",
+    "timeISO": "2025-08-16T05:56:10.000Z",
+    "textPlain": "I agreed with much of this, but I started looking into the enterprise ai systems that large companies are making, and they use agent control via software.So I tried it. It's much better.Software is just better at handling discrete tasks that you understand, like mapping agent pathing. There's no point giving that to an AI to do.The Cordinator \"Main Agent\" should just call the software to manage the agents.It works really well in comparison.You can have the software call claude code via command line, sending the prompt in. You have it create full detail logs of what it's doing, and done, and created.Maybe I'll change my mind, everything is moving so fast, and we're all in the dark searching around for ideas, but so far it's been working pretty well.You do lose in the middle visibility to stop it.I also have it evaluating the outputs to determine how well the agents followed their instructions. That seems key to understanding if more context adds value when comparing agents.",
+    "parent": 44919647,
+    "depth": 1
+  },
+  {
+    "id": 44920740,
+    "by": "dsrtslnd23",
+    "timeISO": "2025-08-16T06:24:34.000Z",
+    "textPlain": "What do you guys use to actually implement this?\nI used AWS Lambda functions for what is called 'subagents' here and do the main orchestration via long running Step Functions. This is more structured but also allows me to use the common patterns in mentioned in the article (e.g. parallel vs serialized). I noticed however that it can get quite complex and am debating to just implement everything served as a single FastAPI app. I do want to keep it scalable though.",
+    "parent": 44919647,
+    "depth": 1
+  },
+  {
+    "id": 44920521,
+    "by": "nojs",
+    "timeISO": "2025-08-16T05:42:12.000Z",
+    "textPlain": "\"Subagent orchestration\" is also a really quick win in Claude. You can just say \"spawn a subagent to do each task in X, give it Y context\".This lets you a) run things in parallel if you want, but also b) keep the main agent's context clean, and therefore run much larger, longer running tasks without the \"race against the context clock\" issue.",
+    "parent": 44919647,
+    "depth": 1
+  },
+  {
+    "id": 44920626,
+    "by": "canterburry",
+    "timeISO": "2025-08-16T06:03:46.000Z",
+    "textPlain": "\"The “Smart Agent” Trap: I tried making agents that could “figure out” what to do. They couldn’t. Be explicit.\"So what about this solution is actually agentic?Overall, it sounds like you sat down and did a proper business process analysis and automated it.Your subagents for sure have no autonomy and are just execution steps in a classic workflow except you happen to be calling an LLM.Does the orchestrating agent adapt the process between invocations depending on the data and does it do so in any way more complex than a simple if then branch?",
     "parent": 44919647,
     "depth": 1
   },
@@ -80,6 +80,14 @@
     "depth": 1
   },
   {
+    "id": 44920140,
+    "by": "kami23",
+    "timeISO": "2025-08-16T04:20:57.000Z",
+    "textPlain": "These are the same categories of coordination I've been looking at all day, trying to find the sweet spot in how complex the orchestration can be. I tried to add some context where the agents got it into a cycle of editing the code that another was testing and stuff like that.I know my next step should be to give the agents a good git pattern but I'm having so much fun just finding the team organization that delivers better stuff. I have them consult with each other in tech choices and have picked what I would have pickedThe consensus protocol for choices is one I really liked, and that will maybe do more self correction.Ive been asking them to illustrate their flow of work and asking for decisions, I need to go back and see if that's the case. Probably would be made easier if I get my git experiment flow down.The future is tooling for these. If we can team up enough that we get consensus approaching something 'safe' the tools we can give them to run in dry/live mode and have a human validate the process for a time and then once you have enough feedback move into the next thing needing fixing.I have a lot of apps with cobra cli tooling that resides next to the server code. Being able to pump our docs into an mcp server for tool execution is giving me so many ideas.",
+    "parent": 44919647,
+    "depth": 1
+  },
+  {
     "id": 44920591,
     "by": "dlivingston",
     "timeISO": "2025-08-16T05:55:06.000Z",
@@ -88,18 +96,18 @@
     "depth": 1
   },
   {
-    "id": 44920588,
-    "by": "patrickhogan1",
-    "timeISO": "2025-08-16T05:54:49.000Z",
-    "textPlain": "Do you believe that creating sub agents is a violation of the bitter lesson or is simply a way to add more context?",
-    "parent": 44919647,
-    "depth": 1
-  },
-  {
     "id": 44920392,
     "by": "rkwz",
     "timeISO": "2025-08-16T05:15:32.000Z",
     "textPlain": "I found this post very helpful to getting started with agentic systems, what other posts do others recommend?",
+    "parent": 44919647,
+    "depth": 1
+  },
+  {
+    "id": 44920588,
+    "by": "patrickhogan1",
+    "timeISO": "2025-08-16T05:54:49.000Z",
+    "textPlain": "Do you believe that creating sub agents is a violation of the bitter lesson or is simply a way to add more context?",
     "parent": 44919647,
     "depth": 1
   },
@@ -136,18 +144,18 @@
     "depth": 2
   },
   {
-    "id": 44920495,
-    "by": "itsalotoffun",
-    "timeISO": "2025-08-16T05:38:11.000Z",
-    "textPlain": "Also, regarding your agents (primary and sub):- Did you build your own or are you farming out to say Opencode?\n- If you built your own, did you roll from scratch or use a framework? Any comments either way on this?\n- How \"agentic\" (or constrained as the case may be) are your agents in terms of the tools you've provided them?",
+    "id": 44920995,
+    "by": "sgt101",
+    "timeISO": "2025-08-16T07:12:42.000Z",
+    "textPlain": "Could you produce some evidence that what you are advising is actually useful?",
     "parent": 44920267,
     "depth": 2
   },
   {
-    "id": 44920581,
-    "by": "energy123",
-    "timeISO": "2025-08-16T05:54:17.000Z",
-    "textPlain": "How tightly scaffolded/harnessed/constrained is your primary agent for a given task? Are you telling it what reasoning strategy to use?",
+    "id": 44920495,
+    "by": "itsalotoffun",
+    "timeISO": "2025-08-16T05:38:11.000Z",
+    "textPlain": "Also, regarding your agents (primary and sub):- Did you build your own or are you farming out to say Opencode?\n- If you built your own, did you roll from scratch or use a framework? Any comments either way on this?\n- How \"agentic\" (or constrained as the case may be) are your agents in terms of the tools you've provided them?",
     "parent": 44920267,
     "depth": 2
   },
@@ -160,6 +168,14 @@
     "depth": 2
   },
   {
+    "id": 44920581,
+    "by": "energy123",
+    "timeISO": "2025-08-16T05:54:17.000Z",
+    "textPlain": "How tightly scaffolded/harnessed/constrained is your primary agent for a given task? Are you telling it what reasoning strategy to use?",
+    "parent": 44920267,
+    "depth": 2
+  },
+  {
     "id": 44920378,
     "by": "pamelafox",
     "timeISO": "2025-08-16T05:13:11.000Z",
@@ -168,11 +184,35 @@
     "depth": 2
   },
   {
+    "id": 44920990,
+    "by": "sgt101",
+    "timeISO": "2025-08-16T07:12:10.000Z",
+    "textPlain": "Like the OP article, no data, no evidence - random ideas presented as advice.I mean, could you even do some anec-data style before and after comparisons? Like, do 5 problems with no explicit request for tests and 5 without and show that you get 0 out of 5 for no test and 5 out of 5 for a test?People like me might carp on about how that's not good enough or something, but to be honest I would feel quite uneasy and unjustified complaining unless I had done similar work... without this sort of attempt to justify your thoughts though I feel like a school teacher intervening in a discussion where some kid is advocating the use of heroin to her peers on the basis that Aunt Agnes says it feels good.",
+    "parent": 44920949,
+    "depth": 2
+  },
+  {
+    "id": 44920851,
+    "by": "itsalotoffun",
+    "timeISO": "2025-08-16T06:45:51.000Z",
+    "textPlain": "I'm genuinely curious, is it: a) the writing style you can't stand, b) the fact that this piece tripped your \"this is written by AI\" and it's AI-written stuff you can't stand? And what the % split between the two is.(I find there's a growing push-back against being fed AI-anything, so when this is suspected it seems like it generates outsized reactions)",
+    "parent": 44920590,
+    "depth": 2
+  },
+  {
     "id": 44920684,
     "by": "imsh4yy",
     "timeISO": "2025-08-16T06:14:15.000Z",
     "textPlain": "Anyway I can learn more about this?",
     "parent": 44920598,
+    "depth": 2
+  },
+  {
+    "id": 44920568,
+    "by": "imsh4yy",
+    "timeISO": "2025-08-16T05:51:58.000Z",
+    "textPlain": "I assume you're talking about Claude Code, right? If so, I very much agree with this. A lot of this was actually inspired by how easy it was to do in Claude Code.I first experimented with allowing the main agent have a \"conversation\" with sub-agents. For example, I created a database of messages between the main agent and the sub-agents, and allowed both append to it. This kinda worked for a few messages but kept getting stuck on mid-tier models, such as GPT-5 mini.But from my understanding, their implementation is also similar to the stateless functions I described. (happy to be proven wrong). Sub agents don't communicate back much aside from the final result, and they don't have a conversation history.The live updates you see are mostly the application layer updating the UI which initially confused me.",
+    "parent": 44920521,
     "depth": 2
   },
   {
@@ -189,14 +229,6 @@
     "timeISO": "2025-08-16T06:11:36.000Z",
     "textPlain": "You're right that this isn't the \"autonomous agent\" fantasy that keeps getting hyped.The agentic part here is more modest but real. The primary agent does make runtime decisions about task decomposition based on the data and calls the subagents (tools) to do the actual work.So yeah, it's closer to \"intelligent workflow orchestration.\" That's probably a more honest description.",
     "parent": 44920626,
-    "depth": 2
-  },
-  {
-    "id": 44920568,
-    "by": "imsh4yy",
-    "timeISO": "2025-08-16T05:51:58.000Z",
-    "textPlain": "I assume you're talking about Claude Code, right? If so, I very much agree with this. A lot of this was actually inspired by how easy it was to do in Claude Code.I first experimented with allowing the main agent have a \"conversation\" with sub-agents. For example, I created a database of messages between the main agent and the sub-agents, and allowed both append to it. This kinda worked for a few messages but kept getting stuck on mid-tier models, such as GPT-5 mini.But from my understanding, their implementation is also similar to the stateless functions I described. (happy to be proven wrong). Sub agents don't communicate back much aside from the final result, and they don't have a conversation history.The live updates you see are mostly the application layer updating the UI which initially confused me.",
-    "parent": 44920521,
     "depth": 2
   },
   {
@@ -224,6 +256,14 @@
     "depth": 2
   },
   {
+    "id": 44920409,
+    "by": "manojlds",
+    "timeISO": "2025-08-16T05:17:56.000Z",
+    "textPlain": "OG post - https://www.anthropic.com/engineering/building-effective-age...",
+    "parent": 44920392,
+    "depth": 2
+  },
+  {
     "id": 44920610,
     "by": "AndyNemmity",
     "timeISO": "2025-08-16T05:59:10.000Z",
@@ -237,14 +277,6 @@
     "timeISO": "2025-08-16T05:57:10.000Z",
     "textPlain": "What bitter lesson?",
     "parent": 44920588,
-    "depth": 2
-  },
-  {
-    "id": 44920409,
-    "by": "manojlds",
-    "timeISO": "2025-08-16T05:17:56.000Z",
-    "textPlain": "OG post - https://www.anthropic.com/engineering/building-effective-age...",
-    "parent": 44920392,
     "depth": 2
   },
   {

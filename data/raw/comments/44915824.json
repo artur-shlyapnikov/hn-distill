@@ -48,6 +48,14 @@
     "depth": 1
   },
   {
+    "id": 44920833,
+    "by": "u64x086a",
+    "timeISO": "2025-08-16T06:43:25.000Z",
+    "textPlain": "What about this on FreeBSD? It's possible to reach the same results?",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
     "id": 44918133,
     "by": "sugarpimpdorsey",
     "timeISO": "2025-08-15T22:42:16.000Z",
@@ -60,6 +68,14 @@
     "by": "eyberg",
     "timeISO": "2025-08-16T00:50:52.000Z",
     "textPlain": "This is kind of a stupid \"benchmark\" but if we're going to walk down this road:linux: elapsed: 0.019895snanos (running on said linux): elapsed: 0.000886s",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44920829,
+    "by": "u64x086a",
+    "timeISO": "2025-08-16T06:43:01.000Z",
+    "textPlain": "What about the FreeBSD?",
     "parent": 44915824,
     "depth": 1
   },
@@ -160,6 +176,14 @@
     "depth": 1
   },
   {
+    "id": 44920803,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-16T06:38:50.000Z",
+    "textPlain": "While __rdtsc() is fast, be cautious with multi-core benchmarks as TSC synchronization between cores isn't guaranteed on all hardware, especially older systems. Modern Intel/AMD CPUs have \"invariant TSC\" which helps, but it's worth checking CPU flags first.",
+    "parent": 44916909,
+    "depth": 2
+  },
+  {
     "id": 44917042,
     "by": "sa46",
     "timeISO": "2025-08-15T20:42:16.000Z",
@@ -176,18 +200,18 @@
     "depth": 2
   },
   {
-    "id": 44919217,
-    "by": "mrlongroots",
-    "timeISO": "2025-08-16T01:27:18.000Z",
-    "textPlain": "They could've just used `clock_gettime(CLOCK_MONOTONIC)`",
-    "parent": 44916909,
-    "depth": 2
-  },
-  {
     "id": 44919129,
     "by": "junon",
     "timeISO": "2025-08-16T01:16:00.000Z",
     "textPlain": "rdtsc isn't available on all platforms, for what it's worth. It's often disabled as there's a CPU flag to allow its use in user space, and it's well know to not be so accurate.",
+    "parent": 44916909,
+    "depth": 2
+  },
+  {
+    "id": 44919217,
+    "by": "mrlongroots",
+    "timeISO": "2025-08-16T01:27:18.000Z",
+    "textPlain": "They could've just used `clock_gettime(CLOCK_MONOTONIC)`",
     "parent": 44916909,
     "depth": 2
   },
@@ -261,6 +285,14 @@
     "timeISO": "2025-08-15T23:50:49.000Z",
     "textPlain": "It looks good to me on mobile. High contrast, lines aren't too long. What issue did you have?",
     "parent": 44916798,
+    "depth": 2
+  },
+  {
+    "id": 44920836,
+    "by": "somat",
+    "timeISO": "2025-08-16T06:43:40.000Z",
+    "textPlain": "Gotta disagree with you on your minimalist verdict, out of the box openbsd tends to have everything and the kitchen sink, I am not complaining, it is good solid well written software. but I have never found a base linux distro that was as well stocked as a base openbsd install.    a c compiler\n    a web server\n    3 routing daemons(bgpd, ospfd, ripd)\n    a mail server(smtpd, spamd)\n    a sound server(sndiod)\n    a reverse proxy(relayd)\n    2 desktop environments(fvwm, cwm)\n    plus many many more\n\nOpenbsd is not some minimalist highly focused operating system, I mean what on earth is it actually for? based on the included features, A desktop development system that is also the router and office web and mail server?Personally I love it, after a fresh install I always feel like I could rebuild the internet from scratch using only what is found in front of me if I needed to.",
+    "parent": 44918133,
     "depth": 2
   },
   {
@@ -364,38 +396,6 @@
     "by": "binarycrusader",
     "timeISO": "2025-08-15T22:28:58.000Z",
     "textPlain": "I found it exceedingly difficult to read, so I ended up applying these ublock filter rules so I could read it:  flak.tedunangst.com##.bl.shooter\n  flak.tedunangst.com##.br.shooter\n  flak.tedunangst.com##div.bullet",
-    "parent": 44916623,
-    "depth": 2
-  },
-  {
-    "id": 44917581,
-    "by": "tptacek",
-    "timeISO": "2025-08-15T21:42:19.000Z",
-    "textPlain": "Please don't complain about tangential annoyances—e.g. article or website formats, name collisions, or back-button breakage. They're too common to be interesting.https://news.ycombinator.com/newsguidelines.htmlBecause way more people have opinions about e.g. asteroid game scripts on web pages than have opinions on RCUs, these subthreads spread like kudzu.",
-    "parent": 44916623,
-    "depth": 2
-  },
-  {
-    "id": 44916658,
-    "by": "nomel",
-    "timeISO": "2025-08-15T19:51:08.000Z",
-    "textPlain": "And, if it hits, your cursor disappears! I wish there was some explosion.",
-    "parent": 44916623,
-    "depth": 2
-  },
-  {
-    "id": 44918143,
-    "by": "Jtsummers",
-    "timeISO": "2025-08-15T22:43:54.000Z",
-    "textPlain": "He used to have a loading screen that did nothing if you have JS enabled in your browser, but no loading screen (which, again, did nothing) if you had JS disabled. I'm pretty sure it's meant to deliberately annoy, though this one is less annoying than the loading screen was.",
-    "parent": 44916623,
-    "depth": 2
-  },
-  {
-    "id": 44916916,
-    "by": "bigstrat2003",
-    "timeISO": "2025-08-15T20:24:05.000Z",
-    "textPlain": "No, it's the website's fault for doing stupid cutesy stuff that makes the page harder to read. Don't victim-blame yourself here.",
     "parent": 44916623,
     "depth": 2
   }

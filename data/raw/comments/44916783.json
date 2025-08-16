@@ -1,5 +1,13 @@
 [
   {
+    "id": 44921021,
+    "by": "flohofwoe",
+    "timeISO": "2025-08-16T07:17:30.000Z",
+    "textPlain": "Even SVN works much better out of the box for large binary files than git (e.g. a 150 GB working directory with many big Photoshop files and other binary assets is no problem in SVN).What does SVN do differently than git when it comes to binary files, and why can't git use the same approach?Another must-have for working with binary files IMHO is trivial locking (e.g. so that only one user at a time is allowed to work on a file to avoid messy merge problems).",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44918580,
     "by": "bob1029",
     "timeISO": "2025-08-15T23:49:48.000Z",
@@ -32,14 +40,6 @@
     "depth": 1
   },
   {
-    "id": 44918524,
-    "by": "technoweenie",
-    "timeISO": "2025-08-15T23:40:03.000Z",
-    "textPlain": "I'm really happy to see large file support in Git core. Any external solution would have similar opt-in procedures. I really wanted it to work seamlessly with as few extra commands as possible, so the API was constrained to the smudge and clean filters in the '.gitattributes' file.Though I did work hard to remove any vendor lock-in by working directly with Atlassian and Microsoft pretty early in the process. It was a great working relationship, with a lot of help from Atlassian in particular on the file locking API. LFS shipped open source with compatible support in 3 separate git hosts.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44917935,
     "by": "glitchc",
     "timeISO": "2025-08-15T22:19:21.000Z",
@@ -48,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44920190,
-    "by": "pabs3",
-    "timeISO": "2025-08-16T04:30:57.000Z",
-    "textPlain": "The git storage model also needs an overhaul to be more like modern backup tools such as restic/borg; it needs content-defined chunking of files and directories.",
+    "id": 44918524,
+    "by": "technoweenie",
+    "timeISO": "2025-08-15T23:40:03.000Z",
+    "textPlain": "I'm really happy to see large file support in Git core. Any external solution would have similar opt-in procedures. I really wanted it to work seamlessly with as few extra commands as possible, so the API was constrained to the smudge and clean filters in the '.gitattributes' file.Though I did work hard to remove any vendor lock-in by working directly with Atlassian and Microsoft pretty early in the process. It was a great working relationship, with a lot of help from Atlassian in particular on the file locking API. LFS shipped open source with compatible support in 3 separate git hosts.",
     "parent": 44916783,
     "depth": 1
   },
@@ -60,6 +60,14 @@
     "by": "gschoeni",
     "timeISO": "2025-08-16T01:29:53.000Z",
     "textPlain": "We're working on `oxen` to solve a lot of the problems we ran into with git or git-lfs.We have an open source CLI and server that mirrors git, but handles large files and mono repos with millions of files in a much more performant manner. Would love feedback if you want to check it out!https://github.com/Oxen-AI/Oxen",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44920190,
+    "by": "pabs3",
+    "timeISO": "2025-08-16T04:30:57.000Z",
+    "textPlain": "The git storage model also needs an overhaul to be more like modern backup tools such as restic/borg; it needs content-defined chunking of files and directories.",
     "parent": 44916783,
     "depth": 1
   },
@@ -152,18 +160,18 @@
     "depth": 1
   },
   {
-    "id": 44919684,
-    "by": "CSMastermind",
-    "timeISO": "2025-08-16T02:47:28.000Z",
-    "textPlain": "I could really use an alternative to Plastic SCM for 3D models.  S3 is fine but lacks the nicities.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918460,
     "by": "nixpulvis",
     "timeISO": "2025-08-15T23:29:50.000Z",
     "textPlain": "I was just using git LFS and was very concerned with how bad the help message was compared to the rest of git. I know it seems small, but it just never felt like a team player, and now I'm very happy to hear this.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919684,
+    "by": "CSMastermind",
+    "timeISO": "2025-08-16T02:47:28.000Z",
+    "textPlain": "I could really use an alternative to Plastic SCM for 3D models.  S3 is fine but lacks the nicities.",
     "parent": 44916783,
     "depth": 1
   },
@@ -200,6 +208,14 @@
     "depth": 1
   },
   {
+    "id": 44918277,
+    "by": "jiggawatts",
+    "timeISO": "2025-08-15T23:03:59.000Z",
+    "textPlain": "What I would love to see in an SCM that properly supports large binary blobs is storing the contents using Prolly trees instead of a simple SHA hash.Prolly trees are very similar to Merkle trees or the rsync algorithm, but they support mutation and version history retention with some nice properties. For example: you always obtain exactly the same tree (with the same root hash) irrespective of the order of incremental edit operations used to get to the same state.In other words, two users could edit a subset of a 1 TB file, both could merge their edits, and both will then agree on the root hash without having to re-hash or even download the entire file!Another major advantage on modern many-core CPUs is that Prolly trees can be constructed in parallel instead of having to be streamed sequentially on one thread.Then the really big brained move is to store the entire SCM repo as a single Prolly tree for efficient incremental downloads, merges, or whatever. I.e.: a repo fork could share storage with the original not just up to the point-in-time of the fork, but all future changes too.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44917793,
     "by": "matheusmoreira",
     "timeISO": "2025-08-15T22:05:49.000Z",
@@ -212,14 +228,6 @@
     "by": "ghhv",
     "timeISO": "2025-08-16T03:44:36.000Z",
     "textPlain": "YtmiA 2",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
-    "id": 44918277,
-    "by": "jiggawatts",
-    "timeISO": "2025-08-15T23:03:59.000Z",
-    "textPlain": "What I would love to see in an SCM that properly supports large binary blobs is storing the contents using Prolly trees instead of a simple SHA hash.Prolly trees are very similar to Merkle trees or the rsync algorithm, but they support mutation and version history retention with some nice properties. For example: you always obtain exactly the same tree (with the same root hash) irrespective of the order of incremental edit operations used to get to the same state.In other words, two users could edit a subset of a 1 TB file, both could merge their edits, and both will then agree on the root hash without having to re-hash or even download the entire file!Another major advantage on modern many-core CPUs is that Prolly trees can be constructed in parallel instead of having to be streamed sequentially on one thread.Then the really big brained move is to store the entire SCM repo as a single Prolly tree for efficient incremental downloads, merges, or whatever. I.e.: a repo fork could share storage with the original not just up to the point-in-time of the fork, but all future changes too.",
     "parent": 44916783,
     "depth": 1
   },
@@ -276,6 +284,14 @@
     "by": "nullwarp",
     "timeISO": "2025-08-16T01:11:52.000Z",
     "textPlain": "Same and never understood why it wasn't the default from the get go but maybe it wasn't so synonymous when it first came out.I run a small git LFS server because of this and will be happy to switch away the second I can get git to natively support S3.",
+    "parent": 44918580,
+    "depth": 2
+  },
+  {
+    "id": 44920933,
+    "by": "johnisgood",
+    "timeISO": "2025-08-16T07:00:34.000Z",
+    "textPlain": "Is S3 related to Amazon?",
     "parent": 44918580,
     "depth": 2
   },
@@ -376,27 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44920296,
-    "by": "TZubiri",
-    "timeISO": "2025-08-16T04:55:22.000Z",
-    "textPlain": "\"Will they remember to write the filter? Maybe, \"Nothing wrong with \"forgetting\" to write the filter, and then if it's taking more than 10 minutes, write the filter.",
-    "parent": 44917935,
-    "depth": 2
-  },
-  {
     "id": 44918533,
     "by": "williadc",
     "timeISO": "2025-08-15T23:42:20.000Z",
     "textPlain": "I believe that was the author's intent.",
     "parent": 44918246,
-    "depth": 2
-  },
-  {
-    "id": 44919124,
-    "by": "AceJohnny2",
-    "timeISO": "2025-08-16T01:15:34.000Z",
-    "textPlain": "git works just fine with large files. The problem is that when you clone a repo, or pull, by default it gets everything, including large files deep in the history that you probably don't care about anymore.That was actually an initial selling point of git: you have the full history locally. You can work from the plane/train/deserted island just fine.These large files will persist in the repo forever. So people look for options to segregate large files out so that they only get downloaded on demand (aka \"lazily\").All the existing options (submodules, LFS, partial clones) are different answers to \"how do we make certain files only download on demand\"",
-    "parent": 44919105,
     "depth": 2
   }
 ]

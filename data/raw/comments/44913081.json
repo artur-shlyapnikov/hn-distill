@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44920622,
-    "by": "ankit219",
-    "timeISO": "2025-08-16T06:01:43.000Z",
-    "textPlain": "The bottleneck for automation is verification. With human work, verification was fast(er) because you know where to look with certain assumptions that your upstream tasker would not have made trivial mistakes. For automation, AI needs to verify it's own work, review, and self correct to be able to automate any given work. Where this works, it will also change the abstraction layer compared to what it is today. The problem is same with every automation promise - it needs to work reliably at say 95% or 99% times and when it doesn't, there should be human contingency in terms of what to look for. Considering coding as the first example: it's already underway. AI generates the code, the test cases, and then verifies if the code works as intended. Code has a built in verification layer (both compiler and unit tests). High probablity the other domains move towards something similar too. I would also say the model needs to be intelligent to course correct when the output isn't validated[1].Verification solves the human in the loop dependency both for AI and human tasks. All the places where we could automate in the past, there were clearly quality checks which ensured the machinery were working as expected. Same thing will be replicated with AI too.Disclaimer: I have been working on building a universal verifier for AI tasks. The way it works is you give it a set of rules (policy) + AI output (could be human output too) and it outputs a scalar score + clause level citations. So I have been thinking about the problem space and might be over rating this. Would welcome contrarian ideas. (no, it's not llm as a judge)[1]: Some people may call it environment based learning, but in ML terms i feel it's different. That woudl be another example of sv startups using technical terms to market themselves when they dont do what they say.",
-    "parent": 44913081,
-    "depth": 1
-  },
-  {
     "id": 44918642,
     "by": "thorum",
     "timeISO": "2025-08-16T00:01:46.000Z",
     "textPlain": "This article is insightful, but I blinked when I saw the headline “Reducing the human bottleneck” used without any apparent irony.At some point we should probably take a step back and ask “Why do we want to solve this problem?” Is a world where AI systems are highly intelligent tools, but humans are needed to manage the high level complexity of the real world… supposed to be a disappointing outcome?",
+    "parent": 44913081,
+    "depth": 1
+  },
+  {
+    "id": 44920622,
+    "by": "ankit219",
+    "timeISO": "2025-08-16T06:01:43.000Z",
+    "textPlain": "The bottleneck for automation is verification. With human work, verification was fast(er) because you know where to look with certain assumptions that your upstream tasker would not have made trivial mistakes. For automation, AI needs to verify it's own work, review, and self correct to be able to automate any given work. Where this works, it will also change the abstraction layer compared to what it is today. The problem is same with every automation promise - it needs to work reliably at say 95% or 99% times and when it doesn't, there should be human contingency in terms of what to look for. Considering coding as the first example: it's already underway. AI generates the code, the test cases, and then verifies if the code works as intended. Code has a built in verification layer (both compiler and unit tests). High probablity the other domains move towards something similar too. I would also say the model needs to be intelligent to course correct when the output isn't validated[1].Verification solves the human in the loop dependency both for AI and human tasks. All the places where we could automate in the past, there were clearly quality checks which ensured the machinery were working as expected. Same thing will be replicated with AI too.Disclaimer: I have been working on building a universal verifier for AI tasks. The way it works is you give it a set of rules (policy) + AI output (could be human output too) and it outputs a scalar score + clause level citations. So I have been thinking about the problem space and might be over rating this. Would welcome contrarian ideas. (no, it's not llm as a judge)[1]: Some people may call it environment based learning, but in ML terms i feel it's different. That woudl be another example of sv startups using technical terms to market themselves when they dont do what they say.",
     "parent": 44913081,
     "depth": 1
   },
@@ -104,14 +104,6 @@
     "depth": 2
   },
   {
-    "id": 44920088,
-    "by": "themanmaran",
-    "timeISO": "2025-08-16T04:10:59.000Z",
-    "textPlain": "This depends on whether you mean LLMs in the sense of single shot, or LLMs + software built around it. I think a lot of people conflate the two.In our application e use a multi-step check_knowledge_base workflow before and after each LLM request. Pretty much, make a separate LLM request to check the query against the existing context to see if more info is needed, and a second check after generation to see if output text exceeded it's knowledge base.And the results are really good. Now coding agents in your example are definitely stepwise more complex, but the same guardrails can apply.",
-    "parent": 44919144,
-    "depth": 2
-  },
-  {
     "id": 44919722,
     "by": "beering",
     "timeISO": "2025-08-16T02:58:27.000Z",
@@ -120,11 +112,11 @@
     "depth": 2
   },
   {
-    "id": 44919538,
-    "by": "fnordpiglet",
-    "timeISO": "2025-08-16T02:15:15.000Z",
-    "textPlain": "Assuming you buy the idea of a post scarcity society and assuming we can separate our long ingrained notion that spending your existence in toil to survive is a moral imperative and not working is deserving of punishment if not death, I personally look forward to a time we can get off the hamster wheel. Most buttons that get pushed by people are buttons not worth spending your existence pushing. This includes an awful lot of “knowledge work,” which is often better paid but more insidious in that it requires not just your presence but capturing your entire attention and mind inside and outside work.  I would also be hopeful that fertility rates would decline and there would simply be far fewer humans.In Asimov’s robots stories the spacers are long lived and low population because robots do most everything. He presents this as a dead end, that stops us from conquering the galaxy. This to me sounds like a feature not a bug. I think human existence could be quite good with large scale automation, fewer people, and less suffering due to the necessity for everyone to be employed.Note I recognize you’re not saying exactly the same thing as I’m saying. I think humans will never cede full executive control by choice at some level. But I suspect, sadly, power will be confined to those few who do get to manage the high level complexity of the real world.",
-    "parent": 44918642,
+    "id": 44920088,
+    "by": "themanmaran",
+    "timeISO": "2025-08-16T04:10:59.000Z",
+    "textPlain": "This depends on whether you mean LLMs in the sense of single shot, or LLMs + software built around it. I think a lot of people conflate the two.In our application e use a multi-step check_knowledge_base workflow before and after each LLM request. Pretty much, make a separate LLM request to check the query against the existing context to see if more info is needed, and a second check after generation to see if output text exceeded it's knowledge base.And the results are really good. Now coding agents in your example are definitely stepwise more complex, but the same guardrails can apply.",
+    "parent": 44919144,
     "depth": 2
   },
   {
@@ -132,6 +124,14 @@
     "by": "Davidzheng",
     "timeISO": "2025-08-16T04:52:52.000Z",
     "textPlain": "it actually doesn't matter what we want. Because eliminating it will in long run increase yield, economic forces will automate humans away by capitalistic forces.",
+    "parent": 44918642,
+    "depth": 2
+  },
+  {
+    "id": 44919538,
+    "by": "fnordpiglet",
+    "timeISO": "2025-08-16T02:15:15.000Z",
+    "textPlain": "Assuming you buy the idea of a post scarcity society and assuming we can separate our long ingrained notion that spending your existence in toil to survive is a moral imperative and not working is deserving of punishment if not death, I personally look forward to a time we can get off the hamster wheel. Most buttons that get pushed by people are buttons not worth spending your existence pushing. This includes an awful lot of “knowledge work,” which is often better paid but more insidious in that it requires not just your presence but capturing your entire attention and mind inside and outside work.  I would also be hopeful that fertility rates would decline and there would simply be far fewer humans.In Asimov’s robots stories the spacers are long lived and low population because robots do most everything. He presents this as a dead end, that stops us from conquering the galaxy. This to me sounds like a feature not a bug. I think human existence could be quite good with large scale automation, fewer people, and less suffering due to the necessity for everyone to be employed.Note I recognize you’re not saying exactly the same thing as I’m saying. I think humans will never cede full executive control by choice at some level. But I suspect, sadly, power will be confined to those few who do get to manage the high level complexity of the real world.",
     "parent": 44918642,
     "depth": 2
   },

@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44920830,
+    "by": "flowerthoughts",
+    "timeISO": "2025-08-16T06:43:03.000Z",
+    "textPlain": "My biggest issue with k8s on Hetzner is that there is no way of going from tiny (1 machine) to medium (10-100 machines) purely on bare metal. I was able to get Gateway API to provide ingress nodes after a bit of Envoy tinkering, but storage is an issue. You can't run Ceph Rook on a single machine (too heavy,) and I couldn't find a think local volume wrapper that lets me easily migrate from local volume management to distributed.Feels like there should be a PV daemon that can do local, and transparent migrations and is lightweight enough to run on a single machine. Once my PV has been migrated to Ceph, the proxy could configure itself away from that job.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
     "id": 44915794,
     "by": "MaKey",
     "timeISO": "2025-08-15T18:22:55.000Z",
@@ -389,14 +397,6 @@
     "timeISO": "2025-08-15T19:17:58.000Z",
     "textPlain": "Thanks for your questions! \n1) The platform provides a control plane to help you deploy the cluster on your own Hetzner account, so you are in control of resources and pay direct usage costs to Hetzner.\n2) Because you have full access to kubernetes cluster and it runs on your own Hetzner account, the security of the cluster is a shared responsibility and you can fine tune the configuration according to your requirements. The platform security is totally our responsibility. We try to follow best practices and internal penetration tests were conducted, but we're still in beta and try to see if there's interest for such product before launching the stable version.",
     "parent": 44915534,
-    "depth": 2
-  },
-  {
-    "id": 44920301,
-    "by": "camil",
-    "timeISO": "2025-08-16T04:56:22.000Z",
-    "textPlain": "I didn't have the chance to test their platform yet, but I expect it to be a mature product. My intentions with this platform are to make it more accessible to developers and small companies that do not have Kubernetes knowledge yet or want to spin clusters fast for development, testing etc.",
-    "parent": 44919427,
     "depth": 2
   }
 ]

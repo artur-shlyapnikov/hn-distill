@@ -1,9 +1,49 @@
 [
   {
+    "id": 44920870,
+    "by": "can16358p",
+    "timeISO": "2025-08-16T06:50:13.000Z",
+    "textPlain": "Okay I don't have much information about this whole attestation flow and one question boggles my mind. If someone can explain this in simple terms, I'd be thankful:The post says build the repo and get the fingerprint, which is fine. Then it says compare it to the fingerprint that vp.net reports.My question is: how do I verify the server is reporting the fingerprint of the actual running code, and not just returning the (publicly available) fingerprint that we get result of building the code in the first place?",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44920879,
+    "by": "dguido",
+    "timeISO": "2025-08-16T06:51:37.000Z",
+    "textPlain": "This is cool, and I'm glad to see someone doing this, but I also feel obligated to mention that you can also just quickly deploy your own VPN server that only you have access to with AlgoVPN: https://github.com/trailofbits/algo",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
     "id": 44918989,
     "by": "jchw",
     "timeISO": "2025-08-16T00:56:56.000Z",
     "textPlain": "Intel SGX/remote attestation for verifying that servers are running the code they say they are running is very interesting, I believe Signal talked about doing something similar for contact discovery, but at a base level it requires a lot of trust. How do I verify that the attestation I receive back is the one of the machine I am contacting? Can I know for sure that this isn't a compromised SGX configuration, since the system has been broken in the past? Furthermore, can I really be sure that I can trust SGX attestations if I can't actually verify SGX itself? Even if the code running under SGX is verifiable, as an ordinary user it's basically impossible to tell if there are bugs that would make it possible to compromise.Personally I like the direction Mullvad went instead. I get that it means we really can't verify Mullvad's claims, but even in the event they're lying, at least we got some cool Coreboot ports out of it.If you're really paranoid, neither this service nor Mullvad offers that much assurance. I like the idea of verifiability, but I believe the type of people who want it are looking to satisfy deeper paranoia than can be answered with just trusting Intel... Still, more VPN options that try to take privacy claims seriously is nothing to complain about.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44920799,
+    "by": "mjg59",
+    "timeISO": "2025-08-16T06:38:19.000Z",
+    "textPlain": "I'm a huge fan of the technical basis for this. I want services to attest themselves to me so I can verify that they're running the source code I can inspect. And, well, the combination of founders here? Good fucking lord. I'm really fascinated to see whether we can generate enough trust in the code to be able to overcome the complete lack of trust that these people deserve. I can't imagine a better way to troll me on this point.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44920975,
+    "by": "eptcyka",
+    "timeISO": "2025-08-16T07:08:02.000Z",
+    "textPlain": "The chief privacy officer of the company is the moron that destroyed Freenode. Of course, Libera lives on, but it is a transition we could’ve done without.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44919525,
+    "by": "SamDc73",
+    "timeISO": "2025-08-16T02:12:28.000Z",
+    "textPlain": "One of the many reasons I love Mullvad (been using it for 4 years now) is their simple pricing—$5/month whether you subscribe monthly, yearly, or even 10 years out.I wanted to give your product a try, but the gap between the 1-month and 2-year plans is so big that a single month feels like a rip-off, while I’m not ready to commit to 2 years either.On payments: for a privacy-focused product, Monero isn’t just a luxury, it’s a must (at least for me). A VPN that doesn’t accept Monero forces users into surveillance finance, since card and bank payments are legally preserved forever by processors. That means even if the VPN “keeps no logs,” the payment trail still ties your real identity to the service.",
     "parent": 44918060,
     "depth": 1
   },
@@ -16,14 +56,6 @@
     "depth": 1
   },
   {
-    "id": 44919118,
-    "by": "exfil",
-    "timeISO": "2025-08-16T01:14:49.000Z",
-    "textPlain": "These VPN's for privacy are so bad. You give your credit card (verified identity), default gateway and payload to foreign soil and feel safe. On top of that your packets clear text metadata verifies you with cryptographic accuracy.In today's internet you just cannot have exit IP which is not tied either into your identity, payment information or physical location. And don't even mention TOR, pls.",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44920654,
     "by": "nneonneo",
     "timeISO": "2025-08-16T06:08:45.000Z",
@@ -32,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44919525,
-    "by": "SamDc73",
-    "timeISO": "2025-08-16T02:12:28.000Z",
-    "textPlain": "One of the many reasons I love Mullvad (been using it for 4 years now) is their simple pricing—$5/month whether you subscribe monthly, yearly, or even 10 years out.I wanted to give your product a try, but the gap between the 1-month and 2-year plans is so big that a single month feels like a rip-off, while I’m not ready to commit to 2 years either.On payments: for a privacy-focused product, Monero isn’t just a luxury, it’s a must (at least for me). A VPN that doesn’t accept Monero forces users into surveillance finance, since card and bank payments are legally preserved forever by processors. That means even if the VPN “keeps no logs,” the payment trail still ties your real identity to the service.",
+    "id": 44919118,
+    "by": "exfil",
+    "timeISO": "2025-08-16T01:14:49.000Z",
+    "textPlain": "These VPN's for privacy are so bad. You give your credit card (verified identity), default gateway and payload to foreign soil and feel safe. On top of that your packets clear text metadata verifies you with cryptographic accuracy.In today's internet you just cannot have exit IP which is not tied either into your identity, payment information or physical location. And don't even mention TOR, pls.",
     "parent": 44918060,
     "depth": 1
   },
@@ -56,6 +88,22 @@
     "depth": 1
   },
   {
+    "id": 44920985,
+    "by": "HelloUsername",
+    "timeISO": "2025-08-16T07:10:51.000Z",
+    "textPlain": "\"But you know the old Russian proverb. 'Trust, but verify.' And the Americans think Ronald Reagan thought that up. Can you imagine?\"",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44919044,
+    "by": "john01dav",
+    "timeISO": "2025-08-16T01:03:06.000Z",
+    "textPlain": "One of the main use cases of a VPN is against governments, but a government making Intel compromise SGX is plausible given what we know from Snowden.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
     "id": 44919292,
     "by": "stavros",
     "timeISO": "2025-08-16T01:40:42.000Z",
@@ -72,26 +120,10 @@
     "depth": 1
   },
   {
-    "id": 44919044,
-    "by": "john01dav",
-    "timeISO": "2025-08-16T01:03:06.000Z",
-    "textPlain": "One of the main use cases of a VPN is against governments, but a government making Intel compromise SGX is plausible given what we know from Snowden.",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44919510,
     "by": "gmlenovo22",
     "timeISO": "2025-08-16T02:10:41.000Z",
     "textPlain": "I don't buy this.They could run one secure enclave runningng the legit version of code and one insecure hardware running insecure software.Then they put a load balancer in front of both.When people ask for the attestation the LB sends traffic to the secure enclave, so you get the attestation back and all seems good.When people send vpn traffic the loadbalancer sends them to the insecure hardware with insecure software.So sgx proves nothing..",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
-    "id": 44920164,
-    "by": "kachapopopow",
-    "timeISO": "2025-08-16T04:24:53.000Z",
-    "textPlain": "This is honestly less trustworthy than nordvpn from my POV. The problem with confidential compute is that given enough technical expertise (ime exploits) all these systems are possible to compromise which is perfect for honeypots. Kinda sounds like one of those interpol plots with phones designed for criminals.I always found confidential compute to be only good to isolate the hosting company from risk - not the customer!",
     "parent": 44918060,
     "depth": 1
   },
@@ -136,6 +168,22 @@
     "depth": 1
   },
   {
+    "id": 44920164,
+    "by": "kachapopopow",
+    "timeISO": "2025-08-16T04:24:53.000Z",
+    "textPlain": "This is honestly less trustworthy than nordvpn from my POV. The problem with confidential compute is that given enough technical expertise (ime exploits) all these systems are possible to compromise which is perfect for honeypots. Kinda sounds like one of those interpol plots with phones designed for criminals.I always found confidential compute to be only good to isolate the hosting company from risk - not the customer!",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44921030,
+    "by": "nugzbunny",
+    "timeISO": "2025-08-16T07:18:26.000Z",
+    "textPlain": "I’ve recently become interested in hosting my own VPN, due to the amount of websites that require me to disable my VPN when visiting their site.I imagine those websites block IP ranges of popular VPN providers.Am I right in thinking that hosting my own VPN would resolve this issue?",
+    "parent": 44920879,
+    "depth": 2
+  },
+  {
     "id": 44919066,
     "by": "MagicalTux",
     "timeISO": "2025-08-16T01:07:12.000Z",
@@ -168,18 +216,18 @@
     "depth": 2
   },
   {
-    "id": 44919154,
-    "by": "MagicalTux",
-    "timeISO": "2025-08-16T01:19:02.000Z",
-    "textPlain": "You're welcome to use cryptocurrencies (we have a page for that), and our system only links your identity at connection time to ensure you have a valid subscription. Your traffic isn't tied to your identity, and you can look at the code to verify that.",
-    "parent": 44919118,
-    "depth": 2
-  },
-  {
     "id": 44920671,
     "by": "victorbjorklund",
     "timeISO": "2025-08-16T06:10:37.000Z",
     "textPlain": "Mullvad VPN allows you to pay with cash in an envelop with no name etc",
+    "parent": 44919118,
+    "depth": 2
+  },
+  {
+    "id": 44919154,
+    "by": "MagicalTux",
+    "timeISO": "2025-08-16T01:19:02.000Z",
+    "textPlain": "You're welcome to use cryptocurrencies (we have a page for that), and our system only links your identity at connection time to ensure you have a valid subscription. Your traffic isn't tied to your identity, and you can look at the code to verify that.",
     "parent": 44919118,
     "depth": 2
   },
@@ -200,6 +248,14 @@
     "depth": 2
   },
   {
+    "id": 44919117,
+    "by": "MagicalTux",
+    "timeISO": "2025-08-16T01:14:44.000Z",
+    "textPlain": "The US government might be able to pressure Intel into doing something with SGX, but there are way too many eyes on this for it to go unnoticed in my opinion, especially considering SGX has been around for so long and messed with by so many security researchers.The US government also likely learned a lesson from early attempts at backdoors (RSA, etc) that this kind of things do not stay hidden and do not reflect well.We've thought about this long and hard and planning to mitigate this as much as possible. Meanwhile we still offer something that is a huge step forward compared to what is standard in the industry.",
+    "parent": 44919044,
+    "depth": 2
+  },
+  {
     "id": 44919339,
     "by": "MagicalTux",
     "timeISO": "2025-08-16T01:46:43.000Z",
@@ -213,14 +269,6 @@
     "timeISO": "2025-08-16T01:33:20.000Z",
     "textPlain": "This is the server-side part of things. It receives encrypted traffic from your (and other customers) device, and routes it to the Internet.This guarantees that your traffic isn't being linked to you, and is mixed up with others in a way that makes it difficult for someone to attribute it to you, as long as you also protect yourself on the application side (clear cookies, no tracking browser extension, etc)",
     "parent": 44919000,
-    "depth": 2
-  },
-  {
-    "id": 44919117,
-    "by": "MagicalTux",
-    "timeISO": "2025-08-16T01:14:44.000Z",
-    "textPlain": "The US government might be able to pressure Intel into doing something with SGX, but there are way too many eyes on this for it to go unnoticed in my opinion, especially considering SGX has been around for so long and messed with by so many security researchers.The US government also likely learned a lesson from early attempts at backdoors (RSA, etc) that this kind of things do not stay hidden and do not reflect well.We've thought about this long and hard and planning to mitigate this as much as possible. Meanwhile we still offer something that is a huge step forward compared to what is standard in the industry.",
-    "parent": 44919044,
     "depth": 2
   },
   {
