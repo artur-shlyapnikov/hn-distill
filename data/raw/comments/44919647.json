@@ -16,26 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44921521,
-    "by": "tempusalaria",
-    "timeISO": "2025-08-16T08:51:33.000Z",
-    "textPlain": "I understand that calling it ‘agentic’ is nice for marketing, but most of what is described in this blog post is not related to agents. The design patterns you describe are explicitly non-agentic. Many of the use cases described are better handled by a single LLM call rather than an agent.Finally, saying that agents can have predictable behavior is wrong (except on simple tasks where you shouldn’t be using an agent anyway). Agents loop and compound their input, making them highly non-deterministic even for the same prompt.",
-    "parent": 44919647,
-    "depth": 1
-  },
-  {
-    "id": 44921535,
-    "by": "faangguyindia",
-    "timeISO": "2025-08-16T08:54:01.000Z",
-    "textPlain": "We do lots of fully automated code reviews on code of 5000+ companies in asia.Let's say my \"code reviewer\" is main agent, and we are just looking for stuff, i still use \"code reviewer\" to make \"rip grep\" queries across thousands of repositories, then i've \"rip grep\" or \"git\" as simple functions in the main agent.I doubt i'll benefit from making subagent for this.",
-    "parent": 44919647,
-    "depth": 1
-  },
-  {
-    "id": 44921504,
-    "by": "faangguyindia",
-    "timeISO": "2025-08-16T08:49:05.000Z",
-    "textPlain": ">The Context Explosion: Passing entire conversation history to every agent. Tokens aren’t free.I often debated if to run sub agents with \"little context\" then i realized i can just cache the big prompt that goes with main agents and i get no benefit from running subagents with reduced context.",
+    "id": 44920595,
+    "by": "adastra22",
+    "timeISO": "2025-08-16T05:55:36.000Z",
+    "textPlain": "I recently posted here how I’m seeing success with sub agent-based autonomous dev (not “vibe coding” as I actually review every line before I commit, but the same general idea). Different application, but I can confirm every one of the best practices described in this article, as I came to the same conclusions myself.https://news.ycombinator.com/item?id=44893025",
     "parent": 44919647,
     "depth": 1
   },
@@ -48,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44920595,
-    "by": "adastra22",
-    "timeISO": "2025-08-16T05:55:36.000Z",
-    "textPlain": "I recently posted here how I’m seeing success with sub agent-based autonomous dev (not “vibe coding” as I actually review every line before I commit, but the same general idea). Different application, but I can confirm every one of the best practices described in this article, as I came to the same conclusions myself.https://news.ycombinator.com/item?id=44893025",
-    "parent": 44919647,
-    "depth": 1
-  },
-  {
     "id": 44920521,
     "by": "nojs",
     "timeISO": "2025-08-16T05:42:12.000Z",
     "textPlain": "\"Subagent orchestration\" is also a really quick win in Claude. You can just say \"spawn a subagent to do each task in X, give it Y context\".This lets you a) run things in parallel if you want, but also b) keep the main agent's context clean, and therefore run much larger, longer running tasks without the \"race against the context clock\" issue.",
+    "parent": 44919647,
+    "depth": 1
+  },
+  {
+    "id": 44921521,
+    "by": "tempusalaria",
+    "timeISO": "2025-08-16T08:51:33.000Z",
+    "textPlain": "I understand that calling it ‘agentic’ is nice for marketing, but most of what is described in this blog post is not related to agents. The design patterns you describe are explicitly non-agentic. Many of the use cases described are better handled by a single LLM call rather than an agent.Finally, saying that agents can have predictable behavior is wrong (except on simple tasks where you shouldn’t be using an agent anyway). Agents loop and compound their input, making them highly non-deterministic even for the same prompt.",
     "parent": 44919647,
     "depth": 1
   },
@@ -72,6 +56,14 @@
     "depth": 1
   },
   {
+    "id": 44921535,
+    "by": "faangguyindia",
+    "timeISO": "2025-08-16T08:54:01.000Z",
+    "textPlain": "We do lots of fully automated code reviews on code of 5000+ companies in asia.Let's say my \"code reviewer\" is main agent, and we are just looking for stuff, i still use \"code reviewer\" to make \"rip grep\" queries across thousands of repositories, then i've \"rip grep\" or \"git\" as simple functions in the main agent.I doubt i'll benefit from making subagent for this.",
+    "parent": 44919647,
+    "depth": 1
+  },
+  {
     "id": 44920949,
     "by": "gregorriegler",
     "timeISO": "2025-08-16T07:02:04.000Z",
@@ -80,10 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44921327,
-    "by": "testycool",
-    "timeISO": "2025-08-16T08:16:25.000Z",
-    "textPlain": "Wow, this is exactly the type of write-up I needed today.I'm working on a project where I've found that a few orchestrated agents may be the way to go, but I've been having some hiccups which I intended to deal with. But this article covers many of my concerns at a high level.",
+    "id": 44921504,
+    "by": "faangguyindia",
+    "timeISO": "2025-08-16T08:49:05.000Z",
+    "textPlain": ">The Context Explosion: Passing entire conversation history to every agent. Tokens aren’t free.I often debated if to run sub agents with \"little context\" then i realized i can just cache the big prompt that goes with main agents and i get no benefit from running subagents with reduced context.",
     "parent": 44919647,
     "depth": 1
   },
@@ -100,6 +92,14 @@
     "by": "AndyNemmity",
     "timeISO": "2025-08-16T05:56:10.000Z",
     "textPlain": "I agreed with much of this, but I started looking into the enterprise ai systems that large companies are making, and they use agent control via software.So I tried it. It's much better.Software is just better at handling discrete tasks that you understand, like mapping agent pathing. There's no point giving that to an AI to do.The Cordinator \"Main Agent\" should just call the software to manage the agents.It works really well in comparison.You can have the software call claude code via command line, sending the prompt in. You have it create full detail logs of what it's doing, and done, and created.Maybe I'll change my mind, everything is moving so fast, and we're all in the dark searching around for ideas, but so far it's been working pretty well.You do lose in the middle visibility to stop it.I also have it evaluating the outputs to determine how well the agents followed their instructions. That seems key to understanding if more context adds value when comparing agents.",
+    "parent": 44919647,
+    "depth": 1
+  },
+  {
+    "id": 44921327,
+    "by": "testycool",
+    "timeISO": "2025-08-16T08:16:25.000Z",
+    "textPlain": "Wow, this is exactly the type of write-up I needed today.I'm working on a project where I've found that a few orchestrated agents may be the way to go, but I've been having some hiccups which I intended to deal with. But this article covers many of my concerns at a high level.",
     "parent": 44919647,
     "depth": 1
   },
@@ -216,14 +216,6 @@
     "depth": 2
   },
   {
-    "id": 44921647,
-    "by": "t0mas88",
-    "timeISO": "2025-08-16T09:16:17.000Z",
-    "textPlain": "Context engineering doesn't seem to be a \"more is better\" exercise, especially not with the more basic models. So it's not just about less tokens, the quality of the response also increases if you provide only the relevant context.",
-    "parent": 44921504,
-    "depth": 2
-  },
-  {
     "id": 44920851,
     "by": "itsalotoffun",
     "timeISO": "2025-08-16T06:45:51.000Z",
@@ -245,6 +237,14 @@
     "timeISO": "2025-08-16T07:12:10.000Z",
     "textPlain": "Like the OP article, no data, no evidence - random ideas presented as advice.I mean, could you even do some anec-data style before and after comparisons? Like, do 5 problems with no explicit request for tests and 5 without and show that you get 0 out of 5 for no test and 5 out of 5 for a test?People like me might carp on about how that's not good enough or something, but to be honest I would feel quite uneasy and unjustified complaining unless I had done similar work... without this sort of attempt to justify your thoughts though I feel like a school teacher intervening in a discussion where some kid is advocating the use of heroin to her peers on the basis that Aunt Agnes says it feels good.",
     "parent": 44920949,
+    "depth": 2
+  },
+  {
+    "id": 44921647,
+    "by": "t0mas88",
+    "timeISO": "2025-08-16T09:16:17.000Z",
+    "textPlain": "Context engineering doesn't seem to be a \"more is better\" exercise, especially not with the more basic models. So it's not just about less tokens, the quality of the response also increases if you provide only the relevant context.",
+    "parent": 44921504,
     "depth": 2
   },
   {
@@ -280,18 +280,18 @@
     "depth": 2
   },
   {
-    "id": 44921540,
-    "by": "tempusalaria",
-    "timeISO": "2025-08-16T08:54:56.000Z",
-    "textPlain": "Yes this write-up is not about agents.In fact it’s a great illustration of why the hype around agents is misplaced!",
-    "parent": 44920626,
-    "depth": 2
-  },
-  {
     "id": 44920674,
     "by": "jondwillis",
     "timeISO": "2025-08-16T06:11:26.000Z",
     "textPlain": "Provide a tool schema that requires deep analysis to fill out correctly. Citations and scores for everything. Examples of high quality citations. Tools that fail or produce low quality results should return instructions about how to recover or interpret the result.Have agents with different research tools try to corroborate and peer review output from competing agents. This is just one of many collaborative or competitive patterns you can model.Yeah, it can get quite a bit more dynamic than an if statement if you apply some creativity and clarity and conviction.",
+    "parent": 44920626,
+    "depth": 2
+  },
+  {
+    "id": 44921540,
+    "by": "tempusalaria",
+    "timeISO": "2025-08-16T08:54:56.000Z",
+    "textPlain": "Yes this write-up is not about agents.In fact it’s a great illustration of why the hype around agents is misplaced!",
     "parent": 44920626,
     "depth": 2
   },

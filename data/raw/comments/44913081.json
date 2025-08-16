@@ -1,5 +1,13 @@
 [
   {
+    "id": 44921856,
+    "by": "fmbb",
+    "timeISO": "2025-08-16T09:56:43.000Z",
+    "textPlain": "> It’s because the bottleneck isn’t in intelligence, but in human tasks: specifying intent and context engineering.So the bottleneck is intelligence.Junior engineers are intelligent enough to understand when they don't understand. They interrogate the intent and context of the tasks they are given. This is intelligence.Solving math questions is not intelligence, computers have been better than humans at that for like 100 years, as long as you first do the intelligent part as a human: specifying the task formally.Now we just have computer programs with another kind of input in natural language, and which require dozens of gigabytes of video ram and millions of cores to execute. And we still have to have humans to the intelligent part, figure out how to describe the problem so the dumb but very very fast machine can answer the question.",
+    "parent": 44913081,
+    "depth": 1
+  },
+  {
     "id": 44919144,
     "by": "mrlongroots",
     "timeISO": "2025-08-16T01:17:46.000Z",
@@ -32,18 +40,18 @@
     "depth": 1
   },
   {
-    "id": 44920622,
-    "by": "ankit219",
-    "timeISO": "2025-08-16T06:01:43.000Z",
-    "textPlain": "The bottleneck for automation is verification. With human work, verification was fast(er) because you know where to look with certain assumptions that your upstream tasker would not have made trivial mistakes. For automation, AI needs to verify it's own work, review, and self correct to be able to automate any given work. Where this works, it will also change the abstraction layer compared to what it is today. The problem is same with every automation promise - it needs to work reliably at say 95% or 99% times and when it doesn't, there should be human contingency in terms of what to look for. Considering coding as the first example: it's already underway. AI generates the code, the test cases, and then verifies if the code works as intended. Code has a built in verification layer (both compiler and unit tests). High probablity the other domains move towards something similar too. I would also say the model needs to be intelligent to course correct when the output isn't validated[1].Verification solves the human in the loop dependency both for AI and human tasks. All the places where we could automate in the past, there were clearly quality checks which ensured the machinery were working as expected. Same thing will be replicated with AI too.Disclaimer: I have been working on building a universal verifier for AI tasks. The way it works is you give it a set of rules (policy) + AI output (could be human output too) and it outputs a scalar score + clause level citations. So I have been thinking about the problem space and might be over rating this. Would welcome contrarian ideas. (no, it's not llm as a judge)[1]: Some people may call it environment based learning, but in ML terms i feel it's different. That woudl be another example of sv startups using technical terms to market themselves when they dont do what they say.",
-    "parent": 44913081,
-    "depth": 1
-  },
-  {
     "id": 44918607,
     "by": "Kuinox",
     "timeISO": "2025-08-15T23:54:42.000Z",
     "textPlain": "It's specific model that run for maths.  \nGPT-5 and Gemini 2.5 still cannot compute an arbitrary length sum of whole number without a calculator.  \nI have a proceduraly generated benchmark of basic operations, LLMs gets better at it with time, but they cant still solve basic maths or logic problems.BTW I'm open to selling it, my email is on my hn profile.",
+    "parent": 44913081,
+    "depth": 1
+  },
+  {
+    "id": 44920622,
+    "by": "ankit219",
+    "timeISO": "2025-08-16T06:01:43.000Z",
+    "textPlain": "The bottleneck for automation is verification. With human work, verification was fast(er) because you know where to look with certain assumptions that your upstream tasker would not have made trivial mistakes. For automation, AI needs to verify it's own work, review, and self correct to be able to automate any given work. Where this works, it will also change the abstraction layer compared to what it is today. The problem is same with every automation promise - it needs to work reliably at say 95% or 99% times and when it doesn't, there should be human contingency in terms of what to look for. Considering coding as the first example: it's already underway. AI generates the code, the test cases, and then verifies if the code works as intended. Code has a built in verification layer (both compiler and unit tests). High probablity the other domains move towards something similar too. I would also say the model needs to be intelligent to course correct when the output isn't validated[1].Verification solves the human in the loop dependency both for AI and human tasks. All the places where we could automate in the past, there were clearly quality checks which ensured the machinery were working as expected. Same thing will be replicated with AI too.Disclaimer: I have been working on building a universal verifier for AI tasks. The way it works is you give it a set of rules (policy) + AI output (could be human output too) and it outputs a scalar score + clause level citations. So I have been thinking about the problem space and might be over rating this. Would welcome contrarian ideas. (no, it's not llm as a judge)[1]: Some people may call it environment based learning, but in ML terms i feel it's different. That woudl be another example of sv startups using technical terms to market themselves when they dont do what they say.",
     "parent": 44913081,
     "depth": 1
   },
@@ -88,6 +96,14 @@
     "depth": 1
   },
   {
+    "id": 44921884,
+    "by": "pvtmert",
+    "timeISO": "2025-08-16T10:03:48.000Z",
+    "textPlain": "I truly love this comment, which essentially says: LLMs are glorified calculators, with ambiguous grammar. :)",
+    "parent": 44921856,
+    "depth": 2
+  },
+  {
     "id": 44920166,
     "by": "bubblyworld",
     "timeISO": "2025-08-16T04:25:26.000Z",
@@ -116,6 +132,14 @@
     "by": "themanmaran",
     "timeISO": "2025-08-16T04:10:59.000Z",
     "textPlain": "This depends on whether you mean LLMs in the sense of single shot, or LLMs + software built around it. I think a lot of people conflate the two.In our application e use a multi-step check_knowledge_base workflow before and after each LLM request. Pretty much, make a separate LLM request to check the query against the existing context to see if more info is needed, and a second check after generation to see if output text exceeded it's knowledge base.And the results are really good. Now coding agents in your example are definitely stepwise more complex, but the same guardrails can apply.",
+    "parent": 44919144,
+    "depth": 2
+  },
+  {
+    "id": 44921840,
+    "by": "TacticalCoder",
+    "timeISO": "2025-08-16T09:53:21.000Z",
+    "textPlain": "[dead]",
     "parent": 44919144,
     "depth": 2
   },
@@ -184,14 +208,6 @@
     "depth": 2
   },
   {
-    "id": 44921412,
-    "by": "saint_yossarian",
-    "timeISO": "2025-08-16T08:33:42.000Z",
-    "textPlain": "One thing that comes to mind: You still have to verify that the tests are exhaustive, and that the code isn't just gaming specific test scenarios.I guess fuzzing and property-based testing could mitigate this to some extent.",
-    "parent": 44920622,
-    "depth": 2
-  },
-  {
     "id": 44921516,
     "by": "KoolKat23",
     "timeISO": "2025-08-16T08:50:57.000Z",
@@ -221,6 +237,14 @@
     "timeISO": "2025-08-16T00:26:17.000Z",
     "textPlain": "> GPT-5 and Gemini 2.5 still cannot compute an arbitrary length sum of whole number without a calculator.Neither can many humans, including some very smart ones. Even those who can will usually choose to use a calculator (or spreadsheet or whatever) rather than doing the arithmetic themselves.",
     "parent": 44918607,
+    "depth": 2
+  },
+  {
+    "id": 44921412,
+    "by": "saint_yossarian",
+    "timeISO": "2025-08-16T08:33:42.000Z",
+    "textPlain": "One thing that comes to mind: You still have to verify that the tests are exhaustive, and that the code isn't just gaming specific test scenarios.I guess fuzzing and property-based testing could mitigate this to some extent.",
+    "parent": 44920622,
     "depth": 2
   },
   {

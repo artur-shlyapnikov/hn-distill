@@ -1,13 +1,5 @@
 [
   {
-    "id": 44920870,
-    "by": "can16358p",
-    "timeISO": "2025-08-16T06:50:13.000Z",
-    "textPlain": "Okay I don't have much information about this whole attestation flow and one question boggles my mind. If someone can explain this in simple terms, I'd be thankful:The post says build the repo and get the fingerprint, which is fine. Then it says compare it to the fingerprint that vp.net reports.My question is: how do I verify the server is reporting the fingerprint of the actual running code, and not just returning the (publicly available) fingerprint that we get result of building the code in the first place?",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44920799,
     "by": "mjg59",
     "timeISO": "2025-08-16T06:38:19.000Z",
@@ -16,10 +8,26 @@
     "depth": 1
   },
   {
+    "id": 44920870,
+    "by": "can16358p",
+    "timeISO": "2025-08-16T06:50:13.000Z",
+    "textPlain": "Okay I don't have much information about this whole attestation flow and one question boggles my mind. If someone can explain this in simple terms, I'd be thankful:The post says build the repo and get the fingerprint, which is fine. Then it says compare it to the fingerprint that vp.net reports.My question is: how do I verify the server is reporting the fingerprint of the actual running code, and not just returning the (publicly available) fingerprint that we get result of building the code in the first place?",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
     "id": 44918989,
     "by": "jchw",
     "timeISO": "2025-08-16T00:56:56.000Z",
     "textPlain": "Intel SGX/remote attestation for verifying that servers are running the code they say they are running is very interesting, I believe Signal talked about doing something similar for contact discovery, but at a base level it requires a lot of trust. How do I verify that the attestation I receive back is the one of the machine I am contacting? Can I know for sure that this isn't a compromised SGX configuration, since the system has been broken in the past? Furthermore, can I really be sure that I can trust SGX attestations if I can't actually verify SGX itself? Even if the code running under SGX is verifiable, as an ordinary user it's basically impossible to tell if there are bugs that would make it possible to compromise.Personally I like the direction Mullvad went instead. I get that it means we really can't verify Mullvad's claims, but even in the event they're lying, at least we got some cool Coreboot ports out of it.If you're really paranoid, neither this service nor Mullvad offers that much assurance. I like the idea of verifiability, but I believe the type of people who want it are looking to satisfy deeper paranoia than can be answered with just trusting Intel... Still, more VPN options that try to take privacy claims seriously is nothing to complain about.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44920975,
+    "by": "eptcyka",
+    "timeISO": "2025-08-16T07:08:02.000Z",
+    "textPlain": "The chief privacy officer of the company is the moron that destroyed Freenode. Of course, Libera lives on, but it is a transition we could’ve done without.",
     "parent": 44918060,
     "depth": 1
   },
@@ -40,26 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44920975,
-    "by": "eptcyka",
-    "timeISO": "2025-08-16T07:08:02.000Z",
-    "textPlain": "The chief privacy officer of the company is the moron that destroyed Freenode. Of course, Libera lives on, but it is a transition we could’ve done without.",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44920879,
     "by": "dguido",
     "timeISO": "2025-08-16T06:51:37.000Z",
     "textPlain": "This is cool, and I'm glad to see someone doing this, but I also feel obligated to mention that you can also just quickly deploy your own VPN server that only you have access to with AlgoVPN: https://github.com/trailofbits/algo",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
-    "id": 44919072,
-    "by": "b8",
-    "timeISO": "2025-08-16T01:07:53.000Z",
-    "textPlain": "They claim to allow anonymous sign up and payments, but requires an email,an account, zip code and name for Crypto payments, but fake info could be used I guess. I tried ordering via Crypto, but it constantly gives me this error: \"Unable to load order information. Try again\".Honestly, I feel more comfortable using Mullvad. This team has some folks with questionable backgrounds and I wouldn't trust Intel. Also VPN providers are usually in non-us countries due to things like the Lavabit, Yahoo incidents and the Snowden revelations.",
     "parent": 44918060,
     "depth": 1
   },
@@ -72,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44921269,
-    "by": "aysfrm11",
-    "timeISO": "2025-08-16T08:06:16.000Z",
-    "textPlain": "I have no relationship with OVPN but after watching their server deployment on YouTube I have to say I do like their approach to security / privacy.Servers that don't log and can't without hard drives, ports physically glued shut.https://www.ovpn.com/en/security",
+    "id": 44919072,
+    "by": "b8",
+    "timeISO": "2025-08-16T01:07:53.000Z",
+    "textPlain": "They claim to allow anonymous sign up and payments, but requires an email,an account, zip code and name for Crypto payments, but fake info could be used I guess. I tried ordering via Crypto, but it constantly gives me this error: \"Unable to load order information. Try again\".Honestly, I feel more comfortable using Mullvad. This team has some folks with questionable backgrounds and I wouldn't trust Intel. Also VPN providers are usually in non-us countries due to things like the Lavabit, Yahoo incidents and the Snowden revelations.",
     "parent": 44918060,
     "depth": 1
   },
@@ -96,18 +88,18 @@
     "depth": 1
   },
   {
-    "id": 44919044,
-    "by": "john01dav",
-    "timeISO": "2025-08-16T01:03:06.000Z",
-    "textPlain": "One of the main use cases of a VPN is against governments, but a government making Intel compromise SGX is plausible given what we know from Snowden.",
+    "id": 44921269,
+    "by": "aysfrm11",
+    "timeISO": "2025-08-16T08:06:16.000Z",
+    "textPlain": "I have no relationship with OVPN but after watching their server deployment on YouTube I have to say I do like their approach to security / privacy.Servers that don't log and can't without hard drives, ports physically glued shut.https://www.ovpn.com/en/security",
     "parent": 44918060,
     "depth": 1
   },
   {
-    "id": 44921119,
-    "by": "tamimio",
-    "timeISO": "2025-08-16T07:34:48.000Z",
-    "textPlain": "One year later: VP.NET SGX code collision attack using lultzmann xyz math theory that allows the attacker to run different code with same sgx verifier!In all seriousness, I don’t even trust intel to start with.",
+    "id": 44919044,
+    "by": "john01dav",
+    "timeISO": "2025-08-16T01:03:06.000Z",
+    "textPlain": "One of the main use cases of a VPN is against governments, but a government making Intel compromise SGX is plausible given what we know from Snowden.",
     "parent": 44918060,
     "depth": 1
   },
@@ -128,6 +120,14 @@
     "depth": 1
   },
   {
+    "id": 44921119,
+    "by": "tamimio",
+    "timeISO": "2025-08-16T07:34:48.000Z",
+    "textPlain": "One year later: VP.NET SGX code collision attack using lultzmann xyz math theory that allows the attacker to run different code with same sgx verifier!In all seriousness, I don’t even trust intel to start with.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
     "id": 44919510,
     "by": "gmlenovo22",
     "timeISO": "2025-08-16T02:10:41.000Z",
@@ -144,18 +144,18 @@
     "depth": 1
   },
   {
-    "id": 44920985,
-    "by": "HelloUsername",
-    "timeISO": "2025-08-16T07:10:51.000Z",
-    "textPlain": "\"But you know the old Russian proverb. 'Trust, but verify.' And the Americans think Ronald Reagan thought that up. Can you imagine?\"",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44918622,
     "by": "ranger_danger",
     "timeISO": "2025-08-15T23:58:42.000Z",
     "textPlain": "Hard disagree... not only is SGX deprecated and was also removed from recent processors due to security issues IIRC, it still can't prove that your requests are actually being served by the code they say they're running. The machine/keys you get back from their server could be from anywhere and might be completely unrelated.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44920985,
+    "by": "HelloUsername",
+    "timeISO": "2025-08-16T07:10:51.000Z",
+    "textPlain": "\"But you know the old Russian proverb. 'Trust, but verify.' And the Americans think Ronald Reagan thought that up. Can you imagine?\"",
     "parent": 44918060,
     "depth": 1
   },
@@ -192,6 +192,14 @@
     "depth": 1
   },
   {
+    "id": 44921216,
+    "by": "nneonneo",
+    "timeISO": "2025-08-16T07:54:14.000Z",
+    "textPlain": "The SGX TCB isn’t large enough to protect the really critical part of a private VPN: the source and destination of packets. Nothing stops them from sticking a user on their own enclave and monitoring all the traffic in-and-out.Also, the README is full of AI slop buzzwords, which isn’t confidence-inspiring.",
+    "parent": 44920799,
+    "depth": 2
+  },
+  {
     "id": 44921239,
     "by": "mjg59",
     "timeISO": "2025-08-16T07:59:15.000Z",
@@ -200,11 +208,11 @@
     "depth": 2
   },
   {
-    "id": 44921216,
-    "by": "nneonneo",
-    "timeISO": "2025-08-16T07:54:14.000Z",
-    "textPlain": "The SGX TCB isn’t large enough to protect the really critical part of a private VPN: the source and destination of packets. Nothing stops them from sticking a user on their own enclave and monitoring all the traffic in-and-out.Also, the README is full of AI slop buzzwords, which isn’t confidence-inspiring.",
-    "parent": 44920799,
+    "id": 44921706,
+    "by": "ranger_danger",
+    "timeISO": "2025-08-16T09:27:45.000Z",
+    "textPlain": "> how do I verify the server is reporting the fingerprint of the actual running codeSince this was answered already, I'll just say that I think the bigger problem is that we can't know if the machine that replied with the fingerprint from this code is even related to the one currently serving your requests.",
+    "parent": 44920870,
     "depth": 2
   },
   {
@@ -248,6 +256,30 @@
     "depth": 2
   },
   {
+    "id": 44919154,
+    "by": "MagicalTux",
+    "timeISO": "2025-08-16T01:19:02.000Z",
+    "textPlain": "You're welcome to use cryptocurrencies (we have a page for that), and our system only links your identity at connection time to ensure you have a valid subscription. Your traffic isn't tied to your identity, and you can look at the code to verify that.",
+    "parent": 44919118,
+    "depth": 2
+  },
+  {
+    "id": 44921087,
+    "by": "vaylian",
+    "timeISO": "2025-08-16T07:29:09.000Z",
+    "textPlain": "> And don't even mention TOR, pls.What's your issue with tor?",
+    "parent": 44919118,
+    "depth": 2
+  },
+  {
+    "id": 44920671,
+    "by": "victorbjorklund",
+    "timeISO": "2025-08-16T06:10:37.000Z",
+    "textPlain": "Mullvad VPN allows you to pay with cash in an envelop with no name etc",
+    "parent": 44919118,
+    "depth": 2
+  },
+  {
     "id": 44919320,
     "by": "selkin",
     "timeISO": "2025-08-16T01:44:45.000Z",
@@ -261,30 +293,6 @@
     "timeISO": "2025-08-16T01:29:42.000Z",
     "textPlain": "> Honestly, I feel more comfortable using Mullvad. This team has some folks with questionable backgrounds and I wouldn't trust Intel.Relying on \"trust\" in a security/privacy architecture isn't the right way to do things - which is what this solves.  It removes the need to trust in a person or person(s) in most VPN company cases since they have many employees, and moves it to trusting in code.> Also VPN providers are usually in non-us countries due to things like the Lavabit, Yahoo incidents and the Snowden revelations.The system is designed so that any change server side will be immediately noticed by clients/users. As a result, these issues are sufficiently mitigated, and instead, allows people to take advantage of strong consumer, and personal, protection laws in the US.",
     "parent": 44919072,
-    "depth": 2
-  },
-  {
-    "id": 44919154,
-    "by": "MagicalTux",
-    "timeISO": "2025-08-16T01:19:02.000Z",
-    "textPlain": "You're welcome to use cryptocurrencies (we have a page for that), and our system only links your identity at connection time to ensure you have a valid subscription. Your traffic isn't tied to your identity, and you can look at the code to verify that.",
-    "parent": 44919118,
-    "depth": 2
-  },
-  {
-    "id": 44920671,
-    "by": "victorbjorklund",
-    "timeISO": "2025-08-16T06:10:37.000Z",
-    "textPlain": "Mullvad VPN allows you to pay with cash in an envelop with no name etc",
-    "parent": 44919118,
-    "depth": 2
-  },
-  {
-    "id": 44921087,
-    "by": "vaylian",
-    "timeISO": "2025-08-16T07:29:09.000Z",
-    "textPlain": "> And don't even mention TOR, pls.What's your issue with tor?",
-    "parent": 44919118,
     "depth": 2
   },
   {

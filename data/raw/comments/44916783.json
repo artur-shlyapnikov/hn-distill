@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44921726,
+    "by": "KronisLV",
+    "timeISO": "2025-08-16T09:31:16.000Z",
+    "textPlain": "> And the problems are significant:> High vendor lock-in – When GitHub wrote Git LFS, the other large file systems—Git Fat, Git Annex, and Git Media—were agnostic about the server-side. But GitHub locked users to their proprietary server implementation and charged folks to use it.Is this a current issue?I used Git LFS with a GitLab instance this week, seemed to work fine.https://docs.gitlab.com/topics/git/lfs/I also used Git LFS with my Gitea instance a week before that, it was fine too.https://docs.gitea.com/administration/git-lfs-setupAt the same time it feels odd to hear mentions of LFS being deprecated in the future, while I’ve seldom seen anyone even use it - people just don’t seem to care and shove images and such into regular Git which puzzles me.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44919639,
     "by": "wbillingsley",
     "timeISO": "2025-08-16T02:37:18.000Z",
@@ -32,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44921021,
-    "by": "flohofwoe",
-    "timeISO": "2025-08-16T07:17:30.000Z",
-    "textPlain": "Even ancient svn works much better out of the box for large binary files than git (e.g. a 150 GB working directory with many big Photoshop files and other binary assets is no problem in SVN).What does SVN do differently than git when it comes to large binary files, and why can't git use the same approach?I also don't quite understand tbh how offloading large files to somewhere else would be fundamentally different than storing all files in one place except complicating everything? Storage is storage, how would a different storage location fix any of the current performance and robustness problems? Offloading just sounds like a solution for public git forges which don't want to deal with big files because it's too costly for them, but increased hosting cost is not the 'large binary file problem' of git.(edit: apparently git supports proper locking(?) so I removed that section - ps: nvm it looks like the file locking feature is only in git-lfs)",
+    "id": 44918524,
+    "by": "technoweenie",
+    "timeISO": "2025-08-15T23:40:03.000Z",
+    "textPlain": "I'm really happy to see large file support in Git core. Any external solution would have similar opt-in procedures. I really wanted it to work seamlessly with as few extra commands as possible, so the API was constrained to the smudge and clean filters in the '.gitattributes' file.Though I did work hard to remove any vendor lock-in by working directly with Atlassian and Microsoft pretty early in the process. It was a great working relationship, with a lot of help from Atlassian in particular on the file locking API. LFS shipped open source with compatible support in 3 separate git hosts.",
     "parent": 44916783,
     "depth": 1
   },
@@ -48,10 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44918524,
-    "by": "technoweenie",
-    "timeISO": "2025-08-15T23:40:03.000Z",
-    "textPlain": "I'm really happy to see large file support in Git core. Any external solution would have similar opt-in procedures. I really wanted it to work seamlessly with as few extra commands as possible, so the API was constrained to the smudge and clean filters in the '.gitattributes' file.Though I did work hard to remove any vendor lock-in by working directly with Atlassian and Microsoft pretty early in the process. It was a great working relationship, with a lot of help from Atlassian in particular on the file locking API. LFS shipped open source with compatible support in 3 separate git hosts.",
+    "id": 44921850,
+    "by": "rswail",
+    "timeISO": "2025-08-16T09:55:26.000Z",
+    "textPlain": "Is the problem that we don't have good \"diff\" equivalents for binaries that git could use to only store those diffs like the old RCS/CVS for large files?",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44921021,
+    "by": "flohofwoe",
+    "timeISO": "2025-08-16T07:17:30.000Z",
+    "textPlain": "Even ancient svn works much better out of the box for large binary files than git (e.g. a 150 GB working directory with many big Photoshop files and other binary assets is no problem in SVN).What does SVN do differently than git when it comes to large binary files, and why can't git use the same approach?I also don't quite understand tbh how offloading large files to somewhere else would be fundamentally different than storing all files in one place except complicating everything? Storage is storage, how would a different storage location fix any of the current performance and robustness problems? Offloading just sounds like a solution for public git forges which don't want to deal with big files because it's too costly for them, but increased hosting cost is not the 'large binary file problem' of git.(edit: apparently git supports proper locking(?) so I removed that section - ps: nvm it looks like the file locking feature is only in git-lfs)",
     "parent": 44916783,
     "depth": 1
   },
@@ -144,14 +160,6 @@
     "depth": 1
   },
   {
-    "id": 44919483,
-    "by": "captn3m0",
-    "timeISO": "2025-08-16T02:06:56.000Z",
-    "textPlain": "Partial clones are also dependent on the server side supporting this. GitHub is one of the very few that does. git.kernel.org for eg did not, last I checked.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44919197,
     "by": "mathi0750",
     "timeISO": "2025-08-16T01:24:03.000Z",
@@ -160,10 +168,10 @@
     "depth": 1
   },
   {
-    "id": 44919858,
-    "by": "moonlion_eth",
-    "timeISO": "2025-08-16T03:26:16.000Z",
-    "textPlain": "the future of git is jj",
+    "id": 44919483,
+    "by": "captn3m0",
+    "timeISO": "2025-08-16T02:06:56.000Z",
+    "textPlain": "Partial clones are also dependent on the server side supporting this. GitHub is one of the very few that does. git.kernel.org for eg did not, last I checked.",
     "parent": 44916783,
     "depth": 1
   },
@@ -172,6 +180,14 @@
     "by": "nixpulvis",
     "timeISO": "2025-08-15T23:29:50.000Z",
     "textPlain": "I was just using git LFS and was very concerned with how bad the help message was compared to the rest of git. I know it seems small, but it just never felt like a team player, and now I'm very happy to hear this.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919858,
+    "by": "moonlion_eth",
+    "timeISO": "2025-08-16T03:26:16.000Z",
+    "textPlain": "the future of git is jj",
     "parent": 44916783,
     "depth": 1
   },
@@ -280,6 +296,14 @@
     "depth": 1
   },
   {
+    "id": 44921725,
+    "by": "riedel",
+    "timeISO": "2025-08-16T09:31:13.000Z",
+    "textPlain": "The article mentions alternatives to git lfs like git annex that support S3 already (which IMHO is however still a bit of a pain in the ass on windows due to the symlink workflow). Also dvc plays nicely with git and S3. Gitlab btw also simply offloads git lfs to S3. All have their quirks. I typically opt for LFS as a no-brainer but use the others when it fits the workflow and the infrastructure requirements.Edit: Particularly the hash algorithm and the change detection (also when this happens) makes a difference if you have 2 GB files and not only the 25MB file from the OP",
+    "parent": 44918580,
+    "depth": 2
+  },
+  {
     "id": 44919099,
     "by": "nullwarp",
     "timeISO": "2025-08-16T01:11:52.000Z",
@@ -328,6 +352,14 @@
     "depth": 2
   },
   {
+    "id": 44921915,
+    "by": "StopDisinfo910",
+    "timeISO": "2025-08-16T10:11:22.000Z",
+    "textPlain": "People like storing everything in git because it significantly simplifies configuration management. A build can be cleanly linked to a git hash instead of being a hash and a bunch of artifacts version especially if you vendor your dependency in your source control and completely stop using an artifact repository.With a good build system using a shared cache, it makes for a very pleasant development environment.",
+    "parent": 44919639,
+    "depth": 2
+  },
+  {
     "id": 44920715,
     "by": "astrobe_",
     "timeISO": "2025-08-16T06:19:02.000Z",
@@ -365,38 +397,6 @@
     "timeISO": "2025-08-16T07:25:00.000Z",
     "textPlain": "Completely different design. Git is intended to be fully distributed, so (a) every repo is supposed to have the full history of every file, and (b) locking is meaningless.People should use the VCS that's appropriate for their project rather than insist on git everywhere.",
     "parent": 44921021,
-    "depth": 2
-  },
-  {
-    "id": 44917992,
-    "by": "IshKebab",
-    "timeISO": "2025-08-15T22:25:41.000Z",
-    "textPlain": "I totally agree. This follows a long tradition of Git \"fixing\" things by adding a flag that 99% of users won't ever discover. They never fix the defaults.And yes, you can fix defaults without breaking backwards compatibility.",
-    "parent": 44917935,
-    "depth": 2
-  },
-  {
-    "id": 44918194,
-    "by": "TGower",
-    "timeISO": "2025-08-15T22:52:13.000Z",
-    "textPlain": "> The cloned repo might not be compilable/usable since the blobs are missing.Only the histories of the blobs are filtered out.",
-    "parent": 44917935,
-    "depth": 2
-  },
-  {
-    "id": 44918146,
-    "by": "ks2048",
-    "timeISO": "2025-08-15T22:44:16.000Z",
-    "textPlain": "> This is a solved problem: Rsync does it.Can you explain what the solution is? I don't mean the details of the rsync algorithm, but rather what it would like like from the users' perspective. What files are on your local filesystem when you do a \"git clone\"?",
-    "parent": 44917935,
-    "depth": 2
-  },
-  {
-    "id": 44918533,
-    "by": "williadc",
-    "timeISO": "2025-08-15T23:42:20.000Z",
-    "textPlain": "I believe that was the author's intent.",
-    "parent": 44918246,
     "depth": 2
   }
 ]

@@ -24,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44918133,
+    "by": "sugarpimpdorsey",
+    "timeISO": "2025-08-15T22:42:16.000Z",
+    "textPlain": "OpenBSD is many things, but 'fast' is not a word that comes to mind.Lightweight? Yes.Minimalist? Definitely.Compact? Sure.But fast? No.Would I host a database or fileserver on OpenBSD? Hell no.Boot times seem to take as long as they did 20 years ago. They are also advocates for every schizo security mitigation they can dream up that sacrifices speed and that's ok too.But let's not pretend it's something it's not.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
     "id": 44915925,
     "by": "rurban",
     "timeISO": "2025-08-15T18:33:12.000Z",
@@ -36,14 +44,6 @@
     "by": "themafia",
     "timeISO": "2025-08-15T20:10:05.000Z",
     "textPlain": "Yea,  well,  I had to modify your website to make it readable.  Why do people do this?",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
-    "id": 44918133,
-    "by": "sugarpimpdorsey",
-    "timeISO": "2025-08-15T22:42:16.000Z",
-    "textPlain": "OpenBSD is many things, but 'fast' is not a word that comes to mind.Lightweight? Yes.Minimalist? Definitely.Compact? Sure.But fast? No.Would I host a database or fileserver on OpenBSD? Hell no.Boot times seem to take as long as they did 20 years ago. They are also advocates for every schizo security mitigation they can dream up that sacrifices speed and that's ok too.But let's not pretend it's something it's not.",
     "parent": 44915824,
     "depth": 1
   },
@@ -76,14 +76,6 @@
     "by": "GTP",
     "timeISO": "2025-08-15T21:12:51.000Z",
     "textPlain": "By leaving my finger on the screen, I accidentally triggered an easter egg of two \"cannons\" shooting squares. Did anyone else notice it?",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
-    "id": 44921566,
-    "by": "owl_vision",
-    "timeISO": "2025-08-16T08:59:58.000Z",
-    "textPlain": "What were the resource setups?  How do they compare to linux resource setups?Defaults in current are in etc.amd64/login.conf.  https://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/src/etc...(p.s.: the bubble are cool.  highly distracting to me, hence I could not read the article in full.)",
     "parent": 44915824,
     "depth": 1
   },
@@ -124,6 +116,14 @@
     "by": "asveikau",
     "timeISO": "2025-08-15T20:03:39.000Z",
     "textPlain": "My guess is it has something to do with the file descriptor table having a lot of empty entries (the dup2(0, 666) line.)Now time to read the actual linked discussion.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44921566,
+    "by": "owl_vision",
+    "timeISO": "2025-08-16T08:59:58.000Z",
+    "textPlain": "What were the resource setups?  How do they compare to linux resource setups?Defaults in current are in etc.amd64/login.conf.  https://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/src/etc...(p.s.: the bubble are cool.  highly distracting to me, hence I could not read the article in full.)",
     "parent": 44915824,
     "depth": 1
   },
@@ -192,18 +192,18 @@
     "depth": 2
   },
   {
-    "id": 44920803,
-    "by": "ethan_smith",
-    "timeISO": "2025-08-16T06:38:50.000Z",
-    "textPlain": "While __rdtsc() is fast, be cautious with multi-core benchmarks as TSC synchronization between cores isn't guaranteed on all hardware, especially older systems. Modern Intel/AMD CPUs have \"invariant TSC\" which helps, but it's worth checking CPU flags first.",
-    "parent": 44916909,
-    "depth": 2
-  },
-  {
     "id": 44918815,
     "by": "mananaysiempre",
     "timeISO": "2025-08-16T00:29:24.000Z",
     "textPlain": "This does not account for frequency scaling on laptops, context switches, core migrations, time spent in syscalls (if you don’t want to count it), etc. On Linux, you can get the kernel to expose the real (non-“reference”) cycle counter for you to access with __rdpmc() (no syscall needed) and put the corrective offset in an memory-mapped page. See the example code under cap_user_rdpmc on the manpage for perf_event_open() [1] and NOTE WELL the -1 in rdpmc(idx-1) there (I definitely did not waste an hour on that).If you want that on Windows, well, it’s possible, but you’re going to have to do it asynchronously from a different thread and also compute the offsets your own damn self[2].Alternatively, on AMD processors only, starting with Zen 2, you can get the real cycle count with __aperf() or __rdpru(__RDPRU_APERF) or manual inline assembly depending on your compiler. (The official AMD docs will admonish you not to assign meaning to anything but the fraction APERF / MPERF in one place, but the conjunction of what they tell you in other places implies that MPERF must be the reference cycle count and APERF must be the real cycle count.) This is definitely less of a hassle, but in my experience the cap_user_rdpmc method on Linux is much less noisy.[1] https://man7.org/linux/man-pages/man2/perf_event_open.2.html[2] https://www.computerenhance.com/p/halloween-spooktacular-day...",
+    "parent": 44916909,
+    "depth": 2
+  },
+  {
+    "id": 44920803,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-16T06:38:50.000Z",
+    "textPlain": "While __rdtsc() is fast, be cautious with multi-core benchmarks as TSC synchronization between cores isn't guaranteed on all hardware, especially older systems. Modern Intel/AMD CPUs have \"invariant TSC\" which helps, but it's worth checking CPU flags first.",
     "parent": 44916909,
     "depth": 2
   },
@@ -264,6 +264,22 @@
     "depth": 2
   },
   {
+    "id": 44920836,
+    "by": "somat",
+    "timeISO": "2025-08-16T06:43:40.000Z",
+    "textPlain": "Gotta disagree with you on your minimalist verdict, out of the box openbsd tends to have everything and the kitchen sink, I am not complaining, it is good solid well written software. but I have never found a base linux distro that was as well stocked as a base openbsd install.    a c compiler\n    a web server\n    3 routing daemons(bgpd, ospfd, ripd)\n    a mail server(smtpd, spamd)\n    a sound server(sndiod)\n    a reverse proxy(relayd)\n    2 desktop environments(fvwm, cwm)\n    plus many many more\n\nOpenbsd is not some minimalist highly focused operating system, I mean what on earth is it actually for? based on the included features, A desktop development system that is also the router and office web and mail server?Personally I love it, after a fresh install I always feel like I could rebuild the internet from scratch using only what is found in front of me if I needed to.",
+    "parent": 44918133,
+    "depth": 2
+  },
+  {
+    "id": 44918410,
+    "by": "ThinkBeat",
+    "timeISO": "2025-08-15T23:22:31.000Z",
+    "textPlain": "You must run a different branch of OpenBSD than I.",
+    "parent": 44918133,
+    "depth": 2
+  },
+  {
     "id": 44916830,
     "by": "farhaven",
     "timeISO": "2025-08-15T20:14:08.000Z",
@@ -301,22 +317,6 @@
     "timeISO": "2025-08-15T23:50:49.000Z",
     "textPlain": "It looks good to me on mobile. High contrast, lines aren't too long. What issue did you have?",
     "parent": 44916798,
-    "depth": 2
-  },
-  {
-    "id": 44920836,
-    "by": "somat",
-    "timeISO": "2025-08-16T06:43:40.000Z",
-    "textPlain": "Gotta disagree with you on your minimalist verdict, out of the box openbsd tends to have everything and the kitchen sink, I am not complaining, it is good solid well written software. but I have never found a base linux distro that was as well stocked as a base openbsd install.    a c compiler\n    a web server\n    3 routing daemons(bgpd, ospfd, ripd)\n    a mail server(smtpd, spamd)\n    a sound server(sndiod)\n    a reverse proxy(relayd)\n    2 desktop environments(fvwm, cwm)\n    plus many many more\n\nOpenbsd is not some minimalist highly focused operating system, I mean what on earth is it actually for? based on the included features, A desktop development system that is also the router and office web and mail server?Personally I love it, after a fresh install I always feel like I could rebuild the internet from scratch using only what is found in front of me if I needed to.",
-    "parent": 44918133,
-    "depth": 2
-  },
-  {
-    "id": 44918410,
-    "by": "ThinkBeat",
-    "timeISO": "2025-08-15T23:22:31.000Z",
-    "textPlain": "You must run a different branch of OpenBSD than I.",
-    "parent": 44918133,
     "depth": 2
   },
   {

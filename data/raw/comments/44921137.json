@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44921601,
-    "by": "KronisLV",
-    "timeISO": "2025-08-16T09:06:18.000Z",
-    "textPlain": "> Schema design should be flexible, because once you have thousands or millions of records, it can be an enormous pain to change the schema. However, if you make it too flexible (e.g. by sticking everything in a “value” JSON column, or using “keys” and “values” tables to track arbitrary data) you load a ton of complexity into the application code (and likely buy some very awkward performance constraints). Drawing the line here is a judgment call and depends on specifics, but in general I aim to have my tables be human-readable: you should be able to go through the database schema and get a rough idea of what the application is storing and why.I’m surprised that the drawbacks of EAV or just using JSON in your relational database don’t get called out more.I’d very much rather have like 20 tables with clear purpose than seeing that colleagues have once more created a “classifier” mechanism and are using polymorphic links (without actual foreign keys, columns like “section” and “entity_id”) and are treating it as a grab bag of stuff. One that you also need to read the application code a bunch to even hope to understand.Whenever I see that, I want to change careers. I get that EAV has its use cases, but in most other cases fuck EAV.It’s right up there with N+1 issues, complex dynamically generated SQL when views would suffice and also storing audit data in the same DB and it inevitably having functionality written against it, your audit data becoming a part of the business logic. Oh and also shared database instances and not having the ability to easily bootstrap your own, oh and also working with Oracle in general. And also putting things that’d be better off in the app inside of the DB and vice versa.There are so many ways to decrease your quality of life when it comes to storing and accessing data.",
+    "id": 44921354,
+    "by": "ZYbCRq22HbJ2y7",
+    "timeISO": "2025-08-16T08:21:50.000Z",
+    "textPlain": "> You’re supposed to store timestamps instead, and treat the presence of a timestamp as true. I do this sometimes but not always - in my view there’s some value in keeping a database schema immediately-readable.Seems overly negative of broad advice on a good pattern?    is_on => true\n    on_at => 1023030\n\nSure, that makes sense.     is_a_bear => true\n     a_bear_at => 12312231231\n\nNot so much, as most bears do not become bears at some point after not being a bear.",
     "parent": 44921137,
     "depth": 1
   },
   {
-    "id": 44921663,
-    "by": "dennisy",
-    "timeISO": "2025-08-16T09:19:10.000Z",
-    "textPlain": "This post has some good concepts, but I do not feel it helps you design good systems. It iterates options and primitives, but good design is when and how you apply them, which the post does not provide.",
+    "id": 44921601,
+    "by": "KronisLV",
+    "timeISO": "2025-08-16T09:06:18.000Z",
+    "textPlain": "> Schema design should be flexible, because once you have thousands or millions of records, it can be an enormous pain to change the schema. However, if you make it too flexible (e.g. by sticking everything in a “value” JSON column, or using “keys” and “values” tables to track arbitrary data) you load a ton of complexity into the application code (and likely buy some very awkward performance constraints). Drawing the line here is a judgment call and depends on specifics, but in general I aim to have my tables be human-readable: you should be able to go through the database schema and get a rough idea of what the application is storing and why.I’m surprised that the drawbacks of EAV or just using JSON in your relational database don’t get called out more.I’d very much rather have like 20 tables with clear purpose than seeing that colleagues have once more created a “classifier” mechanism and are using polymorphic links (without actual foreign keys, columns like “section” and “entity_id”) and are treating it as a grab bag of stuff. One that you also need to read the application code a bunch to even hope to understand.Whenever I see that, I want to change careers. I get that EAV has its use cases, but in most other cases fuck EAV.It’s right up there with N+1 issues, complex dynamically generated SQL when views would suffice and also storing audit data in the same DB and it inevitably having functionality written against it, your audit data becoming a part of the business logic. Oh and also shared database instances and not having the ability to easily bootstrap your own, oh and also working with Oracle in general. And also putting things that’d be better off in the app inside of the DB and vice versa.There are so many ways to decrease your quality of life when it comes to storing and accessing data.",
     "parent": 44921137,
     "depth": 1
   },
@@ -32,10 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44921354,
-    "by": "ZYbCRq22HbJ2y7",
-    "timeISO": "2025-08-16T08:21:50.000Z",
-    "textPlain": "> You’re supposed to store timestamps instead, and treat the presence of a timestamp as true. I do this sometimes but not always - in my view there’s some value in keeping a database schema immediately-readable.Seems overly negative of broad advice on a good pattern?    is_on => true\n    on_at => 1023030\n\nSure, that makes sense.     is_a_bear => true\n     a_bear_at => 12312231231\n\nNot so much, as most bears do not become bears at some point after not being a bear.",
+    "id": 44921824,
+    "by": "pelagicAustral",
+    "timeISO": "2025-08-16T09:50:11.000Z",
+    "textPlain": "I can definitely feel the \"underwhelming\" factor. I've been working for  +10 years on government software and I really know what an underwhelming codebase looks like, first off, it has my fucking name on it.",
     "parent": 44921137,
     "depth": 1
   },
@@ -48,14 +48,6 @@
     "depth": 1
   },
   {
-    "id": 44921325,
-    "by": "magnio",
-    "timeISO": "2025-08-16T08:16:01.000Z",
-    "textPlain": "I think it's a very good article. Even if you disagree with some of the individual points in it, the advice given are very concrete, pragmatic, and IMO tunable to the specifics of each project.On state, in my current project, it is not statefulness that causes trouble, but when you need to synchronize two stateful systems. Every time there's bidirectional information flow, it's gonna be a headache. The solution is of course to maintain a single source of truth, but with UI application this is sometimes quite tricky.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
     "id": 44921254,
     "by": "bravesoul2",
     "timeISO": "2025-08-16T08:02:36.000Z",
@@ -64,10 +56,34 @@
     "depth": 1
   },
   {
-    "id": 44921588,
-    "by": "quietbritishjim",
-    "timeISO": "2025-08-16T09:03:19.000Z",
-    "textPlain": "I think it's ok to have this rule as a first approximation, but like all design rules you should understand it well enough to know when to break it.I worked on an application which joined across lots of tables, which made a few dozen records balloon to many thousands of result rows, with huge redundancy in the results. Think of something like a single conceptual result having details A, B, C from one table, X, Y from another table, and 1, 2, 3 from another table. Instead of having 8 result rows (or 9 if you include the top level one from the main table) you have 18 (AX1, AX2, AX3, AY1, ...). It gets exponentially worse with more tables.We moved to separate queries for the different tables. Importantly, we were able to filter them all on the same condition, so we were not making multiple queries to child tables when there were lots of top-level results.The result was much faster because the extra network overhead was overshadowed by the saving in query processing and quantity of data returned. And the application code was actually simpler, because it was a pain to pick out unique child results from the big JOIN. It was literally a win in every respect with no downsides.(Later, we just stuffed all the data into a single JSONB in a single table, which was even better. But even that is an example of breaking the old normalisation rule.)",
+    "id": 44921663,
+    "by": "dennisy",
+    "timeISO": "2025-08-16T09:19:10.000Z",
+    "textPlain": "This post has some good concepts, but I do not feel it helps you design good systems. It iterates options and primitives, but good design is when and how you apply them, which the post does not provide.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44921325,
+    "by": "magnio",
+    "timeISO": "2025-08-16T08:16:01.000Z",
+    "textPlain": "I think it's a very good article. Even if you disagree with some of the individual points in it, the advice given are very concrete, pragmatic, and IMO tunable to the specifics of each project.On state, in my current project, it is not statefulness that causes trouble, but when you need to synchronize two stateful systems. Every time there's bidirectional information flow, it's gonna be a headache. The solution is of course to maintain a single source of truth, but with UI application this is sometimes quite tricky.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44921682,
+    "by": "usernamed7",
+    "timeISO": "2025-08-16T09:24:06.000Z",
+    "textPlain": "One thing i would add, is that a well designed system is often one that is optimized for change. It is rare that a service remains static and unchanging; browsers and libraries are regularly updated, after all. Thus if/when a developer takes on a feature ticket to add or change XYZ, it should be easy to reason about and have predictable side-effects of how that change will impact the system, and ideally be easy to change as well.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44921922,
+    "by": "hk1337",
+    "timeISO": "2025-08-16T10:13:28.000Z",
+    "textPlain": "You should be careful with how much you lean into “doing it in the database” as well with how you implement it. Lest, you get the situation where your application inserts as one value and it gets saved completely different.",
     "parent": 44921359,
     "depth": 2
   },
@@ -76,6 +92,14 @@
     "by": "bob1029",
     "timeISO": "2025-08-16T09:03:29.000Z",
     "textPlain": "This is a big part of what makes ORMs a problem.Writing raw SQL views/queries per MVC view in SSR arrangements is one of the most elegant and performant ways to build complex web products. Let the RDBMS do the heavy lifting with the data. There are optimizations in play you can't even recall (because there's so many) if you're using something old and enterprisey like MSSQL or Oracle. The web server should be able to directly interpolate sql result sets into corresponding <table>s, etc. without having to round trip for each row or perform additional in memory join operations.The typical ORM implementation is the exact opposite of this - one strict object model that must be used everywhere. It's about as inflexible as you can get.",
+    "parent": 44921359,
+    "depth": 2
+  },
+  {
+    "id": 44921588,
+    "by": "quietbritishjim",
+    "timeISO": "2025-08-16T09:03:19.000Z",
+    "textPlain": "I think it's ok to have this rule as a first approximation, but like all design rules you should understand it well enough to know when to break it.I worked on an application which joined across lots of tables, which made a few dozen records balloon to many thousands of result rows, with huge redundancy in the results. Think of something like a single conceptual result having details A, B, C from one table, X, Y from another table, and 1, 2, 3 from another table. Instead of having 8 result rows (or 9 if you include the top level one from the main table) you have 18 (AX1, AX2, AX3, AY1, ...). It gets exponentially worse with more tables.We moved to separate queries for the different tables. Importantly, we were able to filter them all on the same condition, so we were not making multiple queries to child tables when there were lots of top-level results.The result was much faster because the extra network overhead was overshadowed by the saving in query processing and quantity of data returned. And the application code was actually simpler, because it was a pain to pick out unique child results from the big JOIN. It was literally a win in every respect with no downsides.(Later, we just stuffed all the data into a single JSONB in a single table, which was even better. But even that is an example of breaking the old normalisation rule.)",
     "parent": 44921359,
     "depth": 2
   },
@@ -96,11 +120,11 @@
     "depth": 2
   },
   {
-    "id": 44921630,
-    "by": "dondraper36",
-    "timeISO": "2025-08-16T09:11:58.000Z",
-    "textPlain": "There's a great book SQL Antipatterns, by Bill Karwin where this specific antipattern is discussed and criticized.That said, sometimes when I realize there's no way for me to come up even with a rough schema (say, some settings object that is returned to the frontend), I use JSONB columns in Postgres. As a rule of thumb, however, if something can be normalized, it should be, since, after all, that's still a relational database despite all the JSON(B) conveniences and optimizations in Postgres.",
-    "parent": 44921601,
+    "id": 44921727,
+    "by": "nurettin",
+    "timeISO": "2025-08-16T09:31:17.000Z",
+    "textPlain": "for me, it is orm -> schema bound views -> views -> table functions -> stored procedure as a last resort (hopefully it doesn't come to that)",
+    "parent": 44921359,
     "depth": 2
   },
   {
@@ -144,6 +168,14 @@
     "depth": 2
   },
   {
+    "id": 44921630,
+    "by": "dondraper36",
+    "timeISO": "2025-08-16T09:11:58.000Z",
+    "textPlain": "There's a great book SQL Antipatterns, by Bill Karwin where this specific antipattern is discussed and criticized.That said, sometimes when I realize there's no way for me to come up even with a rough schema (say, some settings object that is returned to the frontend), I use JSONB columns in Postgres. As a rule of thumb, however, if something can be normalized, it should be, since, after all, that's still a relational database despite all the JSON(B) conveniences and optimizations in Postgres.",
+    "parent": 44921601,
+    "depth": 2
+  },
+  {
     "id": 44921263,
     "by": "dondraper36",
     "timeISO": "2025-08-16T08:04:26.000Z",
@@ -173,6 +205,22 @@
     "timeISO": "2025-08-16T08:53:42.000Z",
     "textPlain": "You should adapt your team to the architecture, not the other way around.My former Ph.D. supervisor who moonlights as a consultant on this topic uses a nice acronym to capture this: BAPO. Business, Architecture, Process, and Organization. The idea is to end up with optimal business, an optimal architecture & design for that business, the minimum of manual processes that are necessitated by that architecture, and an organization that is efficiently executing those processes. So, you should design and engineer in that order.Most companies do this in reverse and then end up limiting their business with an architecture that matches whatever processes that their org chart necessitated years ago in a way that doesn't makes any logical sense whatsoever except in the historical context of the org chart. If you come in as a consultant to fix such a situation, it helps understanding that whatever you are going to find is probably wrong because of this reason. I've been in the situation where I come in to fix a technical issue and immediately see that the only reason the problem exists is the org chart is bullshit. That can be a bit awkward but lucrative if you deal with it correctly. It helps asking the right questions before you get started.Turning that around means you start from the business end (where's the money coming from?, what value can we create?, etc.), finding a solution that delivers that and then figure out processes and organizational needs. Many companies start out fairly optimal and then stuff around them changes and they forget to adapt to that.Having micro services because you have a certain team structure is a classic mistake here. You just codified your organizational inefficiency. Before you even delivered any business value. And now your organizational latency has network latency to match that. Probably for no good reason other than that team A can't be trusted to work with team B. And even if it's optimal now, is it going to stay optimal?If you are goi",
     "parent": 44921254,
+    "depth": 2
+  },
+  {
+    "id": 44921790,
+    "by": "dondraper36",
+    "timeISO": "2025-08-16T09:43:30.000Z",
+    "textPlain": "But isn't that type of advice the best we can have? Having read Designing Data Intensive Applications (DDIA) and some system design interview-focused books (like those from Alex Xu), I have noticed two types of resources:* Fundamental books/courses on distributed systems that will help you understand the internals of most distributed systems and algorithms (DDIA is here, even though it's not even the most theoretical treatment)* Hand-wavy cookbooks that tend to oversimplify things, and (I am intentionally exaggerating here) teach to reason like \"I have assumed a billion users, let's use Cassandra\"I liked the article for its focus on real systems and the sensible rules of thumb instead of another reformulation of the gossip protocol that very few engineers will ever need to apply in practice themselves.",
+    "parent": 44921663,
+    "depth": 2
+  },
+  {
+    "id": 44921931,
+    "by": "paintistjksgf",
+    "timeISO": "2025-08-16T10:16:33.000Z",
+    "textPlain": "[dead]",
+    "parent": 44921682,
     "depth": 2
   }
 ]
