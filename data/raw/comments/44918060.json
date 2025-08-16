@@ -1,25 +1,17 @@
 [
   {
+    "id": 44920164,
+    "by": "kachapopopow",
+    "timeISO": "2025-08-16T04:24:53.000Z",
+    "textPlain": "This is honestly less trustworthy than nordvpn from my POV. The problem with confidential compute is that given enough technical expertise (ime exploits) all these systems are possible to compromise which is perfect for honeypots. Kinda sounds like one of those interpol plots with phones designed for criminals.I always found confidential compute to be only good to isolate the hosting company from risk - not the customer!",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
     "id": 44918989,
     "by": "jchw",
     "timeISO": "2025-08-16T00:56:56.000Z",
     "textPlain": "Intel SGX/remote attestation for verifying that servers are running the code they say they are running is very interesting, I believe Signal talked about doing something similar for contact discovery, but at a base level it requires a lot of trust. How do I verify that the attestation I receive back is the one of the machine I am contacting? Can I know for sure that this isn't a compromised SGX configuration, since the system has been broken in the past? Furthermore, can I really be sure that I can trust SGX attestations if I can't actually verify SGX itself? Even if the code running under SGX is verifiable, as an ordinary user it's basically impossible to tell if there are bugs that would make it possible to compromise.Personally I like the direction Mullvad went instead. I get that it means we really can't verify Mullvad's claims, but even in the event they're lying, at least we got some cool Coreboot ports out of it.If you're really paranoid, neither this service nor Mullvad offers that much assurance. I like the idea of verifiability, but I believe the type of people who want it are looking to satisfy deeper paranoia than can be answered with just trusting Intel... Still, more VPN options that try to take privacy claims seriously is nothing to complain about.",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
-    "id": 44919118,
-    "by": "exfil",
-    "timeISO": "2025-08-16T01:14:49.000Z",
-    "textPlain": "These VPN's for privacy are so bad. You give your credit card (verified identity), default gateway and payload to foreign soil and feel safe. On top of that your packets clear text metadata verifies you with cryptographic accuracy.In today's internet you just cannot have exit IP which is not tied either into your identity, payment information or physical location. And don't even mention TOR, pls.",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
-    "id": 44919292,
-    "by": "stavros",
-    "timeISO": "2025-08-16T01:40:42.000Z",
-    "textPlain": "How does this attestation work? How can I be sure that this isn't just returning the fingerprint I expect without actually running in an enclave at all? Does Intel sign those messages?",
     "parent": 44918060,
     "depth": 1
   },
@@ -32,10 +24,34 @@
     "depth": 1
   },
   {
+    "id": 44919118,
+    "by": "exfil",
+    "timeISO": "2025-08-16T01:14:49.000Z",
+    "textPlain": "These VPN's for privacy are so bad. You give your credit card (verified identity), default gateway and payload to foreign soil and feel safe. On top of that your packets clear text metadata verifies you with cryptographic accuracy.In today's internet you just cannot have exit IP which is not tied either into your identity, payment information or physical location. And don't even mention TOR, pls.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
     "id": 44919072,
     "by": "b8",
     "timeISO": "2025-08-16T01:07:53.000Z",
     "textPlain": "They claim to allow anonymous sign up and payments, but requires an email,an account, zip code and name for Crypto payments, but fake info could be used I guess. I tried ordering via Crypto, but it constantly gives me this error: \"Unable to load order information. Try again\".Honestly, I feel more comfortable using Mullvad. This team has some folks with questionable backgrounds and I wouldn't trust Intel. Also VPN providers are usually in non-us countries due to things like the Lavabit, Yahoo incidents and the Snowden revelations.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44919525,
+    "by": "SamDc73",
+    "timeISO": "2025-08-16T02:12:28.000Z",
+    "textPlain": "One of the many reasons I love Mullvad (been using it for 4 years now) is their simple pricing—$5/month whether you subscribe monthly, yearly, or even 10 years out.I wanted to give your product a try, but the gap between the 1-month and 2-year plans is so big that a single month feels like a rip-off, while I’m not ready to commit to 2 years either.On payments: for a privacy-focused product, Monero isn’t just a luxury, it’s a must (at least for me). A VPN that doesn’t accept Monero forces users into surveillance finance, since card and bank payments are legally preserved forever by processors. That means even if the VPN “keeps no logs,” the payment trail still ties your real identity to the service.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44919292,
+    "by": "stavros",
+    "timeISO": "2025-08-16T01:40:42.000Z",
+    "textPlain": "How does this attestation work? How can I be sure that this isn't just returning the fingerprint I expect without actually running in an enclave at all? Does Intel sign those messages?",
     "parent": 44918060,
     "depth": 1
   },
@@ -56,10 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44919000,
-    "by": "remram",
-    "timeISO": "2025-08-16T00:58:24.000Z",
-    "textPlain": "What does the verifiable program do though? With a VPN, what I'm concerned about is my traffic not being sniffed and analyzed. This code seem to have something to do with keys but it's not clear how that helps...?",
+    "id": 44919510,
+    "by": "gmlenovo22",
+    "timeISO": "2025-08-16T02:10:41.000Z",
+    "textPlain": "I don't buy this.They could run one secure enclave runningng the legit version of code and one insecure hardware running insecure software.Then they put a load balancer in front of both.When people ask for the attestation the LB sends traffic to the secure enclave, so you get the attestation back and all seems good.When people send vpn traffic the loadbalancer sends them to the insecure hardware with insecure software.So sgx proves nothing..",
     "parent": 44918060,
     "depth": 1
   },
@@ -72,10 +88,10 @@
     "depth": 1
   },
   {
-    "id": 44919027,
-    "by": "do_not_redeem",
-    "timeISO": "2025-08-16T01:01:27.000Z",
-    "textPlain": "> Build the code we published, get the fingerprint it produces, ask a VP.NET server for the fingerprint it reports, and compare the two. If they match, the server is running the exact code you inspected. No trust required.Okay, maybe I'm being thick, but... when I get a response from your server, how do I know it's actually running inside the enclave, and not an ordinary process sending a hardcoded expected fingerprint?",
+    "id": 44919000,
+    "by": "remram",
+    "timeISO": "2025-08-16T00:58:24.000Z",
+    "textPlain": "What does the verifiable program do though? With a VPN, what I'm concerned about is my traffic not being sniffed and analyzed. This code seem to have something to do with keys but it's not clear how that helps...?",
     "parent": 44918060,
     "depth": 1
   },
@@ -84,6 +100,22 @@
     "by": "ranger_danger",
     "timeISO": "2025-08-15T23:58:42.000Z",
     "textPlain": "Hard disagree... not only is SGX deprecated and was also removed from recent processors due to security issues IIRC, it still can't prove that your requests are actually being served by the code they say they're running. The machine/keys you get back from their server could be from anywhere and might be completely unrelated.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44919027,
+    "by": "do_not_redeem",
+    "timeISO": "2025-08-16T01:01:27.000Z",
+    "textPlain": "> Build the code we published, get the fingerprint it produces, ask a VP.NET server for the fingerprint it reports, and compare the two. If they match, the server is running the exact code you inspected. No trust required.Okay, maybe I'm being thick, but... when I get a response from your server, how do I know it's actually running inside the enclave, and not an ordinary process sending a hardcoded expected fingerprint?",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44919409,
+    "by": "zb3",
+    "timeISO": "2025-08-16T01:56:07.000Z",
+    "textPlain": "Even assuming SGX is to be trusted and somehow the government would not be able to peek inside (implausible), this \"tech\" will not solve legal problems... see \"tornado cash\" for an example. \"No logs\" is either impossible, illegal or a honeypot.",
     "parent": 44918060,
     "depth": 1
   },
@@ -112,19 +144,11 @@
     "depth": 2
   },
   {
-    "id": 44919154,
-    "by": "MagicalTux",
-    "timeISO": "2025-08-16T01:19:02.000Z",
-    "textPlain": "You're welcome to use cryptocurrencies (we have a page for that), and our system only links your identity at connection time to ensure you have a valid subscription. Your traffic isn't tied to your identity, and you can look at the code to verify that.",
-    "parent": 44919118,
-    "depth": 2
-  },
-  {
-    "id": 44919339,
-    "by": "MagicalTux",
-    "timeISO": "2025-08-16T01:46:43.000Z",
-    "textPlain": "Similar to TLS, the attestation includes a signature and a x509 certificate with a chain of trust to Intel's CA. The whole attestation is certified by Intel to be valid and details such as the enclave fingerprint (MRENCLAVE) are generated by the CPU to be part of the attestation.This whole process is already widely used in financial and automotive sectors to ensure servers are indeed running what they claim to be running, and well documented.",
-    "parent": 44919292,
+    "id": 44920143,
+    "by": "aidenn0",
+    "timeISO": "2025-08-16T04:21:19.000Z",
+    "textPlain": "And that's the PIA Andrew Lee, not the Firebase Andrew Lee.",
+    "parent": 44918951,
     "depth": 2
   },
   {
@@ -133,6 +157,14 @@
     "timeISO": "2025-08-16T00:59:11.000Z",
     "textPlain": "I'm assuming OP is Mark Karpeles, MagicalTux is a well-known username for him.",
     "parent": 44918951,
+    "depth": 2
+  },
+  {
+    "id": 44919154,
+    "by": "MagicalTux",
+    "timeISO": "2025-08-16T01:19:02.000Z",
+    "textPlain": "You're welcome to use cryptocurrencies (we have a page for that), and our system only links your identity at connection time to ensure you have a valid subscription. Your traffic isn't tied to your identity, and you can look at the code to verify that.",
+    "parent": 44919118,
     "depth": 2
   },
   {
@@ -152,11 +184,27 @@
     "depth": 2
   },
   {
+    "id": 44919339,
+    "by": "MagicalTux",
+    "timeISO": "2025-08-16T01:46:43.000Z",
+    "textPlain": "Similar to TLS, the attestation includes a signature and a x509 certificate with a chain of trust to Intel's CA. The whole attestation is certified by Intel to be valid and details such as the enclave fingerprint (MRENCLAVE) are generated by the CPU to be part of the attestation.This whole process is already widely used in financial and automotive sectors to ensure servers are indeed running what they claim to be running, and well documented.",
+    "parent": 44919292,
+    "depth": 2
+  },
+  {
     "id": 44919117,
     "by": "MagicalTux",
     "timeISO": "2025-08-16T01:14:44.000Z",
     "textPlain": "The US government might be able to pressure Intel into doing something with SGX, but there are way too many eyes on this for it to go unnoticed in my opinion, especially considering SGX has been around for so long and messed with by so many security researchers.The US government also likely learned a lesson from early attempts at backdoors (RSA, etc) that this kind of things do not stay hidden and do not reflect well.We've thought about this long and hard and planning to mitigate this as much as possible. Meanwhile we still offer something that is a huge step forward compared to what is standard in the industry.",
     "parent": 44919044,
+    "depth": 2
+  },
+  {
+    "id": 44918850,
+    "by": "MagicalTux",
+    "timeISO": "2025-08-16T00:33:45.000Z",
+    "textPlain": "Seems fairly similar, ARM's response to TEE basically. We started with SGX because it is battle tested and has a lot of people still trying to find issues, meaning any issue is likely solved quickly, however we are planning to also evaluate and support other solutions. Information is restricted and cannot leave the enclave unless the code running in there allows it to in both cases.",
+    "parent": 44918709,
     "depth": 2
   },
   {
@@ -168,11 +216,35 @@
     "depth": 2
   },
   {
-    "id": 44918850,
+    "id": 44919304,
+    "by": "e2le",
+    "timeISO": "2025-08-16T01:42:30.000Z",
+    "textPlain": "> A pivot by Intel in 2021 resulted in the deprecation of SGX from the 11th and 12th generation Intel Core processors, but development continues on Intel Xeon for cloud and enterprise use.https://en.wikipedia.org/wiki/Software_Guard_Extensions",
+    "parent": 44918622,
+    "depth": 2
+  },
+  {
+    "id": 44918754,
     "by": "MagicalTux",
-    "timeISO": "2025-08-16T00:33:45.000Z",
-    "textPlain": "Seems fairly similar, ARM's response to TEE basically. We started with SGX because it is battle tested and has a lot of people still trying to find issues, meaning any issue is likely solved quickly, however we are planning to also evaluate and support other solutions. Information is restricted and cannot leave the enclave unless the code running in there allows it to in both cases.",
-    "parent": 44918709,
+    "timeISO": "2025-08-16T00:20:53.000Z",
+    "textPlain": "SGX's original goal of being used for DVD DRMs has been deprecated because it turns out people don't keep their BIOS up to date and didn't all get Intel's latest CPUs, making the use of SGX as a client side feature not useful. Turns out it's a lot more useful server-side, and while it had its share of issues (see sgx.fail) Intel addressed these (also see sgx.fail). It can prove your requests are actually being served by the code due to the way the TLS attestation works.",
+    "parent": 44918622,
+    "depth": 2
+  },
+  {
+    "id": 44918983,
+    "by": "rkagerer",
+    "timeISO": "2025-08-16T00:55:48.000Z",
+    "textPlain": "Looks neat, but how can you tell the fingerprint the server returns was actually generated by the enclave server, and isn't just a hardcoded response to match the expected signature of the published code (or that you're not talking to compromised box that's simply proxying over a signature from a legit, uncompromised SGX container)?",
+    "parent": 44918622,
+    "depth": 2
+  },
+  {
+    "id": 44918695,
+    "by": "tripdout",
+    "timeISO": "2025-08-16T00:10:11.000Z",
+    "textPlain": "Wikipedia says it's still on Xeons, so not sure what that says. But I agree with the rest of your point, it seems like an oversight to me.",
+    "parent": 44918622,
     "depth": 2
   },
   {
@@ -189,38 +261,6 @@
     "timeISO": "2025-08-16T01:37:24.000Z",
     "textPlain": "> how do I know it's actually running inside the enclave, and not an ordinary process sending a hardcoded expected fingerprint?It's signed by Intel and thus, guaranteed to come from the enclave!",
     "parent": 44919027,
-    "depth": 2
-  },
-  {
-    "id": 44919304,
-    "by": "e2le",
-    "timeISO": "2025-08-16T01:42:30.000Z",
-    "textPlain": "> A pivot by Intel in 2021 resulted in the deprecation of SGX from the 11th and 12th generation Intel Core processors, but development continues on Intel Xeon for cloud and enterprise use.https://en.wikipedia.org/wiki/Software_Guard_Extensions",
-    "parent": 44918622,
-    "depth": 2
-  },
-  {
-    "id": 44918983,
-    "by": "rkagerer",
-    "timeISO": "2025-08-16T00:55:48.000Z",
-    "textPlain": "Looks neat, but how can you tell the fingerprint the server returns was actually generated by the enclave server, and isn't just a hardcoded response to match the expected signature of the published code (or that you're not talking to compromised box that's simply proxying over a signature from a legit, uncompromised SGX container)?",
-    "parent": 44918622,
-    "depth": 2
-  },
-  {
-    "id": 44918754,
-    "by": "MagicalTux",
-    "timeISO": "2025-08-16T00:20:53.000Z",
-    "textPlain": "SGX's original goal of being used for DVD DRMs has been deprecated because it turns out people don't keep their BIOS up to date and didn't all get Intel's latest CPUs, making the use of SGX as a client side feature not useful. Turns out it's a lot more useful server-side, and while it had its share of issues (see sgx.fail) Intel addressed these (also see sgx.fail). It can prove your requests are actually being served by the code due to the way the TLS attestation works.",
-    "parent": 44918622,
-    "depth": 2
-  },
-  {
-    "id": 44918695,
-    "by": "tripdout",
-    "timeISO": "2025-08-16T00:10:11.000Z",
-    "textPlain": "Wikipedia says it's still on Xeons, so not sure what that says. But I agree with the rest of your point, it seems like an oversight to me.",
-    "parent": 44918622,
     "depth": 2
   },
   {

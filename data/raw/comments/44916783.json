@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44919639,
-    "by": "wbillingsley",
-    "timeISO": "2025-08-16T02:37:18.000Z",
-    "textPlain": "What I used to recommend to my sofware engineering classes is that instead of putting large files (media etc) into Git, put them into the artifact repository (Artifactory or something like it). That lets you for instance publish it as a snapshot dependency that the build system will automatically fetch for you, but control how much history of it you keep and only require your colleagues to fetch the latest version. Even better, a simple clean of their build system cache will free up the space used by old versions on their machines.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44917895,
     "by": "jauer",
     "timeISO": "2025-08-15T22:15:27.000Z",
     "textPlain": "TFA asserts that Git LFS is bad for several reasons including because proprietary with vendor lock-in which I don't think is fair to claim. GitHub provided an open client and server which negates that.LFS does break disconnected/offline/sneakernet operations which wasn't mentioned and is not awesome, but those are niche workflows. It sounds like that would also be broken with promisors.The `git partial clone` examples are cool!The description of Large Object Promisors makes it sound like they take the client-side complexity in LFS, move it server-side, and then increases the complexity? Instead of the client uploading to a git server and to a LFS server it uploads to a git server which in turn uploads to an object store, but the client will download directly from the object store? Obviously different tradeoffs there. I'm curious how often people will get bit by uploading to public git servers which upload to hidden promisor remotes.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919639,
+    "by": "wbillingsley",
+    "timeISO": "2025-08-16T02:37:18.000Z",
+    "textPlain": "What I used to recommend to my sofware engineering classes is that instead of putting large files (media etc) into Git, put them into the artifact repository (Artifactory or something like it). That lets you for instance publish it as a snapshot dependency that the build system will automatically fetch for you, but control how much history of it you keep and only require your colleagues to fetch the latest version. Even better, a simple clean of their build system cache will free up the space used by old versions on their machines.",
     "parent": 44916783,
     "depth": 1
   },
@@ -32,6 +32,14 @@
     "depth": 1
   },
   {
+    "id": 44918524,
+    "by": "technoweenie",
+    "timeISO": "2025-08-15T23:40:03.000Z",
+    "textPlain": "I'm really happy to see large file support in Git core. Any external solution would have similar opt-in procedures. I really wanted it to work seamlessly with as few extra commands as possible, so the API was constrained to the smudge and clean filters in the '.gitattributes' file.Though I did work hard to remove any vendor lock-in by working directly with Atlassian and Microsoft pretty early in the process. It was a great working relationship, with a lot of help from Atlassian in particular on the file locking API. LFS shipped open source with compatible support in 3 separate git hosts.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44917935,
     "by": "glitchc",
     "timeISO": "2025-08-15T22:19:21.000Z",
@@ -40,10 +48,10 @@
     "depth": 1
   },
   {
-    "id": 44918524,
-    "by": "technoweenie",
-    "timeISO": "2025-08-15T23:40:03.000Z",
-    "textPlain": "I'm really happy to see large file support in Git core. Any external solution would have similar opt-in procedures. I really wanted it to work seamlessly with as few extra commands as possible, so the API was constrained to the smudge and clean filters in the '.gitattributes' file.Though I did work hard to remove any vendor lock-in by working directly with Atlassian and Microsoft pretty early in the process. It was a great working relationship, with a lot of help from Atlassian in particular on the file locking API. LFS shipped open source with compatible support in 3 separate git hosts.",
+    "id": 44919232,
+    "by": "gschoeni",
+    "timeISO": "2025-08-16T01:29:53.000Z",
+    "textPlain": "We're working on `oxen` to solve a lot of the problems we ran into with git or git-lfs.We have an open source CLI and server that mirrors git, but handles large files and mono repos with millions of files in a much more performant manner. Would love feedback if you want to check it out!https://github.com/Oxen-AI/Oxen",
     "parent": 44916783,
     "depth": 1
   },
@@ -56,10 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44919232,
-    "by": "gschoeni",
-    "timeISO": "2025-08-16T01:29:53.000Z",
-    "textPlain": "We're working on `oxen` to solve a lot of the problems we ran into with git or git-lfs.We have an open source CLI and server that mirrors git, but handles large files and mono repos with millions of files in a much more performant manner. Would love feedback if you want to check it out!https://github.com/Oxen-AI/Oxen",
+    "id": 44918010,
+    "by": "goneri",
+    "timeISO": "2025-08-15T22:27:52.000Z",
+    "textPlain": "git-annex is a good alternative to the solution of Githu, and it supports different storage backends. I'm actually surprised it's not more popular.",
     "parent": 44916783,
     "depth": 1
   },
@@ -80,22 +88,6 @@
     "depth": 1
   },
   {
-    "id": 44919684,
-    "by": "CSMastermind",
-    "timeISO": "2025-08-16T02:47:28.000Z",
-    "textPlain": "I could really use an alternative to Plastic SCM for 3D models.  S3 is fine but lacks the nicities.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
-    "id": 44918010,
-    "by": "goneri",
-    "timeISO": "2025-08-15T22:27:52.000Z",
-    "textPlain": "git-annex is a good alternative to the solution of Githu, and it supports different storage backends. I'm actually surprised it's not more popular.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918363,
     "by": "HexDecOctBin",
     "timeISO": "2025-08-15T23:16:02.000Z",
@@ -112,18 +104,18 @@
     "depth": 1
   },
   {
-    "id": 44919483,
-    "by": "captn3m0",
-    "timeISO": "2025-08-16T02:06:56.000Z",
-    "textPlain": "Partial clones are also dependent on the server side supporting this. GitHub is one of the very few that does. git.kernel.org for eg did not, last I checked.",
+    "id": 44919684,
+    "by": "CSMastermind",
+    "timeISO": "2025-08-16T02:47:28.000Z",
+    "textPlain": "I could really use an alternative to Plastic SCM for 3D models.  S3 is fine but lacks the nicities.",
     "parent": 44916783,
     "depth": 1
   },
   {
-    "id": 44919197,
-    "by": "mathi0750",
-    "timeISO": "2025-08-16T01:24:03.000Z",
-    "textPlain": "Have you tried Oxen.ai? they are doing more fine-tuning and inference now but they have an open-source data version control platform written in rust at the core of their product.",
+    "id": 44919483,
+    "by": "captn3m0",
+    "timeISO": "2025-08-16T02:06:56.000Z",
+    "textPlain": "Partial clones are also dependent on the server side supporting this. GitHub is one of the very few that does. git.kernel.org for eg did not, last I checked.",
     "parent": 44916783,
     "depth": 1
   },
@@ -136,10 +128,10 @@
     "depth": 1
   },
   {
-    "id": 44918852,
-    "by": "a_t48",
-    "timeISO": "2025-08-16T00:33:53.000Z",
-    "textPlain": "The real GH LFS cost is not the storage but the bandwidth on pulling objects down for every fresh clone. $$$$$. See my other comment. :)",
+    "id": 44919197,
+    "by": "mathi0750",
+    "timeISO": "2025-08-16T01:24:03.000Z",
+    "textPlain": "Have you tried Oxen.ai? they are doing more fine-tuning and inference now but they have an open-source data version control platform written in rust at the core of their product.",
     "parent": 44916783,
     "depth": 1
   },
@@ -148,6 +140,22 @@
     "by": "nixpulvis",
     "timeISO": "2025-08-15T23:29:50.000Z",
     "textPlain": "I was just using git LFS and was very concerned with how bad the help message was compared to the rest of git. I know it seems small, but it just never felt like a team player, and now I'm very happy to hear this.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919858,
+    "by": "moonlion_eth",
+    "timeISO": "2025-08-16T03:26:16.000Z",
+    "textPlain": "the future of git is jj",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44918852,
+    "by": "a_t48",
+    "timeISO": "2025-08-16T00:33:53.000Z",
+    "textPlain": "The real GH LFS cost is not the storage but the bandwidth on pulling objects down for every fresh clone. $$$$$. See my other comment. :)",
     "parent": 44916783,
     "depth": 1
   },
@@ -164,6 +172,14 @@
     "by": "anon-3988",
     "timeISO": "2025-08-16T01:12:40.000Z",
     "textPlain": "What prevents Git from simply working better with large files?",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919937,
+    "by": "ghhv",
+    "timeISO": "2025-08-16T03:44:36.000Z",
+    "textPlain": "YtmiA 2",
     "parent": 44916783,
     "depth": 1
   },
@@ -248,14 +264,6 @@
     "depth": 2
   },
   {
-    "id": 44919683,
-    "by": "firesteelrain",
-    "timeISO": "2025-08-16T02:47:22.000Z",
-    "textPlain": "Do you teach CI/CD systems architecture in your classes?  Because I am finding that is what the junior engineers that we have hired seem to be missing.Tying it all in with GitLab, Artifactory, CodeSonar, Anchore etc",
-    "parent": 44919639,
-    "depth": 2
-  },
-  {
     "id": 44917976,
     "by": "IshKebab",
     "timeISO": "2025-08-15T22:24:28.000Z",
@@ -277,6 +285,14 @@
     "timeISO": "2025-08-15T22:58:59.000Z",
     "textPlain": "Git LFS didn't work with SSH, you had to get an SSL cert which github knew was a barrier for people self hosting at home.  I think gitlab got it patched for SSH finally though.",
     "parent": 44917895,
+    "depth": 2
+  },
+  {
+    "id": 44919683,
+    "by": "firesteelrain",
+    "timeISO": "2025-08-16T02:47:22.000Z",
+    "textPlain": "Do you teach CI/CD systems architecture in your classes?  Because I am finding that is what the junior engineers that we have hired seem to be missing.Tying it all in with GitLab, Artifactory, CodeSonar, Anchore etc",
+    "parent": 44919639,
     "depth": 2
   },
   {
@@ -336,10 +352,10 @@
     "depth": 2
   },
   {
-    "id": 44919596,
-    "by": "fvncc",
-    "timeISO": "2025-08-16T02:27:49.000Z",
-    "textPlain": "When I tried DVC ~5 years ago it was very slow as it constantly hashed files for some reason.Switched to https://github.com/kevin-hanselman/dud and I have been happy since ..",
+    "id": 44919924,
+    "by": "gonzalohm",
+    "timeISO": "2025-08-16T03:41:15.000Z",
+    "textPlain": "My main complaint about DVC is that it's hard to manage the files and if you keep modifying a big file you are going to end up with all the revisions stored in S3 (or whichever storage you choose). This is by design but I wish it was easier to set up like \"store only the latest 3 revisions\"",
     "parent": 44918329,
     "depth": 2
   },
@@ -352,10 +368,10 @@
     "depth": 2
   },
   {
-    "id": 44919446,
-    "by": "memmel",
-    "timeISO": "2025-08-16T02:02:16.000Z",
-    "textPlain": "I'm in the same boat - I decided this week for DVC over LFS.For me, the deciding factor was that with LFS, if you want to delete objects from storage, you have to rewrite git history. At least, that's what both the Github and Gitlab docs specify.DVC adds a layer of indirection, so that its structure is not directly tied to git. If I change my mind and delete the objects from S3, dvc might stop working, but git will be fine.Some extra pluses about DVC: \n- It can point to versioned S3 objects that you might already have as part of existing data pipelines. \n- It integrates with the Python fsspec library to read the files on demand using paths like \"dvc://path/to/file.parquet\". This feels nicer than needing to download all the files up front.",
+    "id": 44919596,
+    "by": "fvncc",
+    "timeISO": "2025-08-16T02:27:49.000Z",
+    "textPlain": "When I tried DVC ~5 years ago it was very slow as it constantly hashed files for some reason.Switched to https://github.com/kevin-hanselman/dud and I have been happy since ..",
     "parent": 44918329,
     "depth": 2
   },
@@ -365,30 +381,6 @@
     "timeISO": "2025-08-15T23:39:50.000Z",
     "textPlain": "It sounds like git-annex might be a good option for you.  There is also https://www.datalad.org/ built on top of git-annex for large data management.",
     "parent": 44918329,
-    "depth": 2
-  },
-  {
-    "id": 44918584,
-    "by": "firesteelrain",
-    "timeISO": "2025-08-15T23:50:02.000Z",
-    "textPlain": "A lot of people use Perforce Helix and others use Plastic SCM. That’s been my experience for like large binary assets with git-like functionality",
-    "parent": 44917823,
-    "depth": 2
-  },
-  {
-    "id": 44918057,
-    "by": "ks2048",
-    "timeISO": "2025-08-15T22:33:57.000Z",
-    "textPlain": "I'm not sure binary diffs are the problem - e.g. for storing images or MP3s, binary diffs are usually worse than nothing.",
-    "parent": 44917823,
-    "depth": 2
-  },
-  {
-    "id": 44919465,
-    "by": "brucehoult",
-    "timeISO": "2025-08-16T02:04:42.000Z",
-    "textPlain": "All files in git are binary files.All deltas between versions are binary diffs.Git has always handled large (including large binary) files just fine.What it doesn't like is files where a conceptually minor change changes the entire file, for example compressed or encrypted files.The only somewhat valid complaint is that if someone once committed a large file and then it was later deleted (maybe minutes later, maybe years later) then it is in the repo and in everyone's checkouts forever. Which applies equally to small and to large files, but large ones have more impact.That's the whole point of a version control system. To preserve the history, allowing earlier versions to be recreated.The better solution would be to have better review of changes pushed to the master repo, including having unreviewed changes in separate, potentially sacrificial, repos until approved.",
-    "parent": 44917823,
     "depth": 2
   },
   {
