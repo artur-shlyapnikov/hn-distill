@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44919118,
-    "by": "exfil",
-    "timeISO": "2025-08-16T01:14:49.000Z",
-    "textPlain": "These VPN's for privacy are so bad. You give your credit card (verified identity), default gateway and payload to foreign soil and feel safe. On top of that your packets clear text metadata verifies you with cryptographic accuracy.In today's internet you just cannot have exit IP which is not tied either into your identity, payment information or physical location. And don't even mention TOR, pls.",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44918951,
     "by": "rkagerer",
     "timeISO": "2025-08-16T00:49:24.000Z",
@@ -24,10 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44919072,
-    "by": "b8",
-    "timeISO": "2025-08-16T01:07:53.000Z",
-    "textPlain": "They claim to allow anonymous sign up and payments, but requires an email,an account, zip code and name for Crypto payments, but fake info could be used I guess. I tried ordering via Crypto, but it constantly gives me this error: \"Unable to load order information. Try again\".Honestly, I feel more comfortable using Mullvad. This team has some folks with questionable backgrounds and I wouldn't trust Intel. Also VPN providers are usually in non-us countries due to things like the Lavabit, Yahoo incidents and the Snowden revelations.",
+    "id": 44919118,
+    "by": "exfil",
+    "timeISO": "2025-08-16T01:14:49.000Z",
+    "textPlain": "These VPN's for privacy are so bad. You give your credit card (verified identity), default gateway and payload to foreign soil and feel safe. On top of that your packets clear text metadata verifies you with cryptographic accuracy.In today's internet you just cannot have exit IP which is not tied either into your identity, payment information or physical location. And don't even mention TOR, pls.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44920654,
+    "by": "nneonneo",
+    "timeISO": "2025-08-16T06:08:45.000Z",
+    "textPlain": "Cute idea. Bit worried about the owners here; rasengan doesn't have a stellar reputation after what happened with Freenode.The idea itself is sound: if there are no SGX bypasses (hardware keys dumped, enclaves violated, CPU bugs exploited, etc.), and the SGX code is sound (doesn't leak the private keys by writing them to any non-confidential storage, isn't vulnerable to timing-based attacks, etc.), and you get a valid, up-to-date attestation containing the public key that you're encrypting your traffic with plus a hash of a trustworthy version of the SGX code, then you can trust that your traffic is indeed being decrypted inside an SGX enclave which has exclusive access to the private key.Obviously, that's a lot of conditions. Happily, you can largely verify those conditions given what's provided here; you can check that the attestation points to a CPU and configuration new enough to not have any (known) SGX breaks; you can check that the SGX code is sound and builds to the provided hash (exercise left to the reader); and you can check the attestation itself as it is signed with hardware keys that chain up to an Intel root-of-trust.However! An SGX enclave cannot interface with the system beyond simple shared memory input/output. In particular, an SGX enclave is not (and cannot be) responsible for socket communication; that must be handled by an OS that lies outside the SGX TCB (Trusted Computing Base). For typical SGX use-cases, this is OK; the data is what is secret, and the socket destinations are not.For a VPN, this is not true! The OS can happily log anything it wants! There's nothing stopping it from logging all the data going into and out of the SGX enclave and performing traffic correlation. Even with traffic mixing, there's nothing stopping the operators from sticking a single user onto their own, dedicated SGX enclave which is closely monitored; traffic mixing means nothing if its just a single user's traffic being mixed.So, while the use of SGX here is a n",
     "parent": 44918060,
     "depth": 1
   },
@@ -36,6 +36,14 @@
     "by": "SamDc73",
     "timeISO": "2025-08-16T02:12:28.000Z",
     "textPlain": "One of the many reasons I love Mullvad (been using it for 4 years now) is their simple pricing—$5/month whether you subscribe monthly, yearly, or even 10 years out.I wanted to give your product a try, but the gap between the 1-month and 2-year plans is so big that a single month feels like a rip-off, while I’m not ready to commit to 2 years either.On payments: for a privacy-focused product, Monero isn’t just a luxury, it’s a must (at least for me). A VPN that doesn’t accept Monero forces users into surveillance finance, since card and bank payments are legally preserved forever by processors. That means even if the VPN “keeps no logs,” the payment trail still ties your real identity to the service.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44919072,
+    "by": "b8",
+    "timeISO": "2025-08-16T01:07:53.000Z",
+    "textPlain": "They claim to allow anonymous sign up and payments, but requires an email,an account, zip code and name for Crypto payments, but fake info could be used I guess. I tried ordering via Crypto, but it constantly gives me this error: \"Unable to load order information. Try again\".Honestly, I feel more comfortable using Mullvad. This team has some folks with questionable backgrounds and I wouldn't trust Intel. Also VPN providers are usually in non-us countries due to things like the Lavabit, Yahoo incidents and the Snowden revelations.",
     "parent": 44918060,
     "depth": 1
   },
@@ -56,18 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44919044,
-    "by": "john01dav",
-    "timeISO": "2025-08-16T01:03:06.000Z",
-    "textPlain": "One of the main use cases of a VPN is against governments, but a government making Intel compromise SGX is plausible given what we know from Snowden.",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44919000,
     "by": "remram",
     "timeISO": "2025-08-16T00:58:24.000Z",
     "textPlain": "What does the verifiable program do though? With a VPN, what I'm concerned about is my traffic not being sniffed and analyzed. This code seem to have something to do with keys but it's not clear how that helps...?",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44919044,
+    "by": "john01dav",
+    "timeISO": "2025-08-16T01:03:06.000Z",
+    "textPlain": "One of the main use cases of a VPN is against governments, but a government making Intel compromise SGX is plausible given what we know from Snowden.",
     "parent": 44918060,
     "depth": 1
   },
@@ -144,14 +152,6 @@
     "depth": 2
   },
   {
-    "id": 44919154,
-    "by": "MagicalTux",
-    "timeISO": "2025-08-16T01:19:02.000Z",
-    "textPlain": "You're welcome to use cryptocurrencies (we have a page for that), and our system only links your identity at connection time to ensure you have a valid subscription. Your traffic isn't tied to your identity, and you can look at the code to verify that.",
-    "parent": 44919118,
-    "depth": 2
-  },
-  {
     "id": 44920143,
     "by": "aidenn0",
     "timeISO": "2025-08-16T04:21:19.000Z",
@@ -165,6 +165,22 @@
     "timeISO": "2025-08-16T00:59:11.000Z",
     "textPlain": "I'm assuming OP is Mark Karpeles, MagicalTux is a well-known username for him.",
     "parent": 44918951,
+    "depth": 2
+  },
+  {
+    "id": 44919154,
+    "by": "MagicalTux",
+    "timeISO": "2025-08-16T01:19:02.000Z",
+    "textPlain": "You're welcome to use cryptocurrencies (we have a page for that), and our system only links your identity at connection time to ensure you have a valid subscription. Your traffic isn't tied to your identity, and you can look at the code to verify that.",
+    "parent": 44919118,
+    "depth": 2
+  },
+  {
+    "id": 44920671,
+    "by": "victorbjorklund",
+    "timeISO": "2025-08-16T06:10:37.000Z",
+    "textPlain": "Mullvad VPN allows you to pay with cash in an envelop with no name etc",
+    "parent": 44919118,
     "depth": 2
   },
   {
@@ -192,19 +208,19 @@
     "depth": 2
   },
   {
-    "id": 44919117,
-    "by": "MagicalTux",
-    "timeISO": "2025-08-16T01:14:44.000Z",
-    "textPlain": "The US government might be able to pressure Intel into doing something with SGX, but there are way too many eyes on this for it to go unnoticed in my opinion, especially considering SGX has been around for so long and messed with by so many security researchers.The US government also likely learned a lesson from early attempts at backdoors (RSA, etc) that this kind of things do not stay hidden and do not reflect well.We've thought about this long and hard and planning to mitigate this as much as possible. Meanwhile we still offer something that is a huge step forward compared to what is standard in the industry.",
-    "parent": 44919044,
-    "depth": 2
-  },
-  {
     "id": 44919257,
     "by": "MagicalTux",
     "timeISO": "2025-08-16T01:33:20.000Z",
     "textPlain": "This is the server-side part of things. It receives encrypted traffic from your (and other customers) device, and routes it to the Internet.This guarantees that your traffic isn't being linked to you, and is mixed up with others in a way that makes it difficult for someone to attribute it to you, as long as you also protect yourself on the application side (clear cookies, no tracking browser extension, etc)",
     "parent": 44919000,
+    "depth": 2
+  },
+  {
+    "id": 44919117,
+    "by": "MagicalTux",
+    "timeISO": "2025-08-16T01:14:44.000Z",
+    "textPlain": "The US government might be able to pressure Intel into doing something with SGX, but there are way too many eyes on this for it to go unnoticed in my opinion, especially considering SGX has been around for so long and messed with by so many security researchers.The US government also likely learned a lesson from early attempts at backdoors (RSA, etc) that this kind of things do not stay hidden and do not reflect well.We've thought about this long and hard and planning to mitigate this as much as possible. Meanwhile we still offer something that is a huge step forward compared to what is standard in the industry.",
+    "parent": 44919044,
     "depth": 2
   },
   {

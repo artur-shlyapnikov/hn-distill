@@ -16,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44920078,
-    "by": "1vuio0pswjnm7",
-    "timeISO": "2025-08-16T04:10:03.000Z",
-    "textPlain": "\"Usually it's the weirdo benchmark that shows OpenBSD being 10x slower, so this one is definitely going in the collection.\"Could it behttps://web.archive.org/web/20031020054211if_/http://bulk.fe...or is there another one",
+    "id": 44916702,
+    "by": "cout",
+    "timeISO": "2025-08-15T19:57:32.000Z",
+    "textPlain": "Interesting. I tried to follow the discussion in the linked thread, and the only takeaway I got was \"something to do with RCU\". What id the simplified explanation?",
     "parent": 44915824,
     "depth": 1
   },
@@ -32,14 +32,6 @@
     "depth": 1
   },
   {
-    "id": 44916702,
-    "by": "cout",
-    "timeISO": "2025-08-15T19:57:32.000Z",
-    "textPlain": "Interesting. I tried to follow the discussion in the linked thread, and the only takeaway I got was \"something to do with RCU\". What id the simplified explanation?",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
     "id": 44916798,
     "by": "themafia",
     "timeISO": "2025-08-15T20:10:05.000Z",
@@ -48,10 +40,26 @@
     "depth": 1
   },
   {
+    "id": 44920078,
+    "by": "1vuio0pswjnm7",
+    "timeISO": "2025-08-16T04:10:03.000Z",
+    "textPlain": "\"Usually it's the weirdo benchmark that shows OpenBSD being 10x slower, so this one is definitely going in the collection.\"Could it behttps://web.archive.org/web/20031020054211if_/http://bulk.fe...or is there another one",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
     "id": 44918133,
     "by": "sugarpimpdorsey",
     "timeISO": "2025-08-15T22:42:16.000Z",
     "textPlain": "OpenBSD is many things, but 'fast' is not a word that comes to mind.Lightweight? Yes.Minimalist? Definitely.Compact? Sure.But fast? No.Would I host a database or fileserver on OpenBSD? Hell no.Boot times seem to take as long as they did 20 years ago. They are also advocates for every schizo security mitigation they can dream up that sacrifices speed and that's ok too.But let's not pretend it's something it's not.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44918960,
+    "by": "eyberg",
+    "timeISO": "2025-08-16T00:50:52.000Z",
+    "textPlain": "This is kind of a stupid \"benchmark\" but if we're going to walk down this road:linux: elapsed: 0.019895snanos (running on said linux): elapsed: 0.000886s",
     "parent": 44915824,
     "depth": 1
   },
@@ -68,14 +76,6 @@
     "by": "agambrahma",
     "timeISO": "2025-08-15T20:02:48.000Z",
     "textPlain": "So ... essentially testing file descriptor allocation overhead",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
-    "id": 44918960,
-    "by": "eyberg",
-    "timeISO": "2025-08-16T00:50:52.000Z",
-    "textPlain": "This is kind of a stupid \"benchmark\" but if we're going to walk down this road:linux: elapsed: 0.019895snanos (running on said linux): elapsed: 0.000886s",
     "parent": 44915824,
     "depth": 1
   },
@@ -128,10 +128,26 @@
     "depth": 1
   },
   {
+    "id": 44920580,
+    "by": "ychnlt",
+    "timeISO": "2025-08-16T05:54:13.000Z",
+    "textPlain": "[dead]",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
     "id": 44916623,
     "by": "the_plus_one",
     "timeISO": "2025-08-15T19:45:46.000Z",
     "textPlain": "Is it just me, or is there some kind of asteroid game shooting bullets at my cursor while I try to read this [1]? I hate to sound mean, but it's a bit distracting. I guess it's my fault for having JavaScript enabled.[1]: https://flak.tedunangst.com/script.js",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44919662,
+    "by": "kaskjdhaas",
+    "timeISO": "2025-08-16T02:44:05.000Z",
+    "textPlain": "[dead]",
     "parent": 44915824,
     "depth": 1
   },
@@ -192,6 +208,22 @@
     "depth": 2
   },
   {
+    "id": 44917222,
+    "by": "bobby_big_balls",
+    "timeISO": "2025-08-15T21:03:48.000Z",
+    "textPlain": "In Linux, the file descriptor table (fdtable) of a process starts with a minimum of 256 slots. Two threads creating 256 sockets each, which uses 512 fds on top of the three already present (for stdin, stdout and stderr), requires that the fdtable be expanded about halfway through when the capacity is doubled from 256 to 512, and again near the end when resizing from 512 to 1024.This is done by expand_fdtable() in the kernel. It contains the following code:        if (atomic_read(&files->count) > 1)\n          synchronize_rcu();\n\nThe field files->count is a reference counter. As there are two threads, which share a set of open files between them, the value of this is 2, meaning that synchronize_rcu() is called here during fdtable expansion. This waits until a full RCU grace period has elapsed, causing a delay in acquiring a new fd for the socket currently being created.If the fdtable is expanded prior to creating a new thread, as the test program optionally will do by calling dup(0, 666) if supplied a command line argument, this avoids the synchronize_rcu() call because at this point files->count == 1. Therefore, if this is done, there will be no delay later on when creating all the sockets as the fdtable will have sufficient capacity.By contrast, the OpenBSD kernel doesn't have anything like RCU and just uses a rwlock when the file descriptor table of the process is being modified, avoiding the long delay during expansion that may be observed in Linux.",
+    "parent": 44916702,
+    "depth": 2
+  },
+  {
+    "id": 44917030,
+    "by": "viraptor",
+    "timeISO": "2025-08-15T20:40:52.000Z",
+    "textPlain": "When 2 threads are allocating sockets sequentially, they fight for the locks. If you preallocate a bigger table by creating fd 666 first, the lock contention goes away.",
+    "parent": 44916702,
+    "depth": 2
+  },
+  {
     "id": 44916830,
     "by": "farhaven",
     "timeISO": "2025-08-15T20:14:08.000Z",
@@ -221,22 +253,6 @@
     "timeISO": "2025-08-15T23:23:22.000Z",
     "textPlain": "Rather they care about the security. The same mitigations in Linux would likely make it even slower.",
     "parent": 44915925,
-    "depth": 2
-  },
-  {
-    "id": 44917222,
-    "by": "bobby_big_balls",
-    "timeISO": "2025-08-15T21:03:48.000Z",
-    "textPlain": "In Linux, the file descriptor table (fdtable) of a process starts with a minimum of 256 slots. Two threads creating 256 sockets each, which uses 512 fds on top of the three already present (for stdin, stdout and stderr), requires that the fdtable be expanded about halfway through when the capacity is doubled from 256 to 512, and again near the end when resizing from 512 to 1024.This is done by expand_fdtable() in the kernel. It contains the following code:        if (atomic_read(&files->count) > 1)\n          synchronize_rcu();\n\nThe field files->count is a reference counter. As there are two threads, which share a set of open files between them, the value of this is 2, meaning that synchronize_rcu() is called here during fdtable expansion. This waits until a full RCU grace period has elapsed, causing a delay in acquiring a new fd for the socket currently being created.If the fdtable is expanded prior to creating a new thread, as the test program optionally will do by calling dup(0, 666) if supplied a command line argument, this avoids the synchronize_rcu() call because at this point files->count == 1. Therefore, if this is done, there will be no delay later on when creating all the sockets as the fdtable will have sufficient capacity.By contrast, the OpenBSD kernel doesn't have anything like RCU and just uses a rwlock when the file descriptor table of the process is being modified, avoiding the long delay during expansion that may be observed in Linux.",
-    "parent": 44916702,
-    "depth": 2
-  },
-  {
-    "id": 44917030,
-    "by": "viraptor",
-    "timeISO": "2025-08-15T20:40:52.000Z",
-    "textPlain": "When 2 threads are allocating sockets sequentially, they fight for the locks. If you preallocate a bigger table by creating fd 666 first, the lock contention goes away.",
-    "parent": 44916702,
     "depth": 2
   },
   {
@@ -328,18 +344,18 @@
     "depth": 2
   },
   {
-    "id": 44920366,
-    "by": "ccapitalK",
-    "timeISO": "2025-08-16T05:10:55.000Z",
-    "textPlain": "It's sites like this that make me extremely grateful for firefox's reader mode.",
-    "parent": 44916623,
-    "depth": 2
-  },
-  {
     "id": 44917423,
     "by": "lilyball",
     "timeISO": "2025-08-15T21:24:04.000Z",
     "textPlain": "It's extremely distracting. I'm not normally one to have issues that require reduced motion, but the asteroids are almost distracting enough on their own, and the fact that it causes my cursor to vanish is a real accessibility issue. I didn't actually realize just how much I use my mouse cursor when reading stuff until now, partly as a fidget, partly as a controllable visual anchor as my eyes scan the page.",
+    "parent": 44916623,
+    "depth": 2
+  },
+  {
+    "id": 44920366,
+    "by": "ccapitalK",
+    "timeISO": "2025-08-16T05:10:55.000Z",
+    "textPlain": "It's sites like this that make me extremely grateful for firefox's reader mode.",
     "parent": 44916623,
     "depth": 2
   },
@@ -380,14 +396,6 @@
     "by": "bigstrat2003",
     "timeISO": "2025-08-15T20:24:05.000Z",
     "textPlain": "No, it's the website's fault for doing stupid cutesy stuff that makes the page harder to read. Don't victim-blame yourself here.",
-    "parent": 44916623,
-    "depth": 2
-  },
-  {
-    "id": 44919662,
-    "by": "kaskjdhaas",
-    "timeISO": "2025-08-16T02:44:05.000Z",
-    "textPlain": "[dead]",
     "parent": 44916623,
     "depth": 2
   }

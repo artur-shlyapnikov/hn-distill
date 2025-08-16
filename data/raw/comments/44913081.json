@@ -8,10 +8,10 @@
     "depth": 1
   },
   {
-    "id": 44920305,
-    "by": "visarga",
-    "timeISO": "2025-08-16T04:57:18.000Z",
-    "textPlain": "Verification is the bottleneck, not ideation. LLMs can generate anything on tap, but solving any non-trivial problem requires iteration between thinking, doing and observing outcomes. The real world is too complex to be simulated by AI or humans. The scientific method works the same way, we are not exempt from having to validate our ideas. But as humans we have better feedback and access to context and we can assume risks on our own. AI has no skin and bears no responsibility.So the missing ingredient for AI is access to environment for feedback learning. It has little to do with AI architecture or datasets. I think a huge source of such data is our human-LLM chat logs. We act as LLM eyes, hands and feed on the ground. We carry the tacit knowledge and social context. OpenAI reports billions of tasks per day, probably trillions of tokens of interactive language combining human, AI and feedback from the environment. Maybe this is how AI can inch towards learning how to solve real world problems, it is part of the loop of problem solving, and benefits from having this data for training.",
+    "id": 44920622,
+    "by": "ankit219",
+    "timeISO": "2025-08-16T06:01:43.000Z",
+    "textPlain": "The bottleneck for automation is verification. With human work, verification was fast(er) because you know where to look with certain assumptions that your upstream tasker would not have made trivial mistakes. For automation, AI needs to verify it's own work, review, and self correct to be able to automate any given work. Where this works, it will also change the abstraction layer compared to what it is today. The problem is same with every automation promise - it needs to work reliably at say 95% or 99% times and when it doesn't, there should be human contingency in terms of what to look for. Considering coding as the first example: it's already underway. AI generates the code, the test cases, and then verifies if the code works as intended. Code has a built in verification layer (both compiler and unit tests). High probablity the other domains move towards something similar too. I would also say the model needs to be intelligent to course correct when the output isn't validated[1].Verification solves the human in the loop dependency both for AI and human tasks. All the places where we could automate in the past, there were clearly quality checks which ensured the machinery were working as expected. Same thing will be replicated with AI too.Disclaimer: I have been working on building a universal verifier for AI tasks. The way it works is you give it a set of rules (policy) + AI output (could be human output too) and it outputs a scalar score + clause level citations. So I have been thinking about the problem space and might be over rating this. Would welcome contrarian ideas. (no, it's not llm as a judge)[1]: Some people may call it environment based learning, but in ML terms i feel it's different. That woudl be another example of sv startups using technical terms to market themselves when they dont do what they say.",
     "parent": 44913081,
     "depth": 1
   },
@@ -24,10 +24,26 @@
     "depth": 1
   },
   {
+    "id": 44920305,
+    "by": "visarga",
+    "timeISO": "2025-08-16T04:57:18.000Z",
+    "textPlain": "Verification is the bottleneck, not ideation. LLMs can generate anything on tap, but solving any non-trivial problem requires iteration between thinking, doing and observing outcomes. The real world is too complex to be simulated by AI or humans. The scientific method works the same way, we are not exempt from having to validate our ideas. But as humans we have better feedback and access to context and we can assume risks on our own. AI has no skin and bears no responsibility.So the missing ingredient for AI is access to environment for feedback learning. It has little to do with AI architecture or datasets. I think a huge source of such data is our human-LLM chat logs. We act as LLM eyes, hands and feed on the ground. We carry the tacit knowledge and social context. OpenAI reports billions of tasks per day, probably trillions of tokens of interactive language combining human, AI and feedback from the environment. Maybe this is how AI can inch towards learning how to solve real world problems, it is part of the loop of problem solving, and benefits from having this data for training.",
+    "parent": 44913081,
+    "depth": 1
+  },
+  {
     "id": 44918288,
     "by": "threecheese",
     "timeISO": "2025-08-15T23:06:06.000Z",
     "textPlain": "Author IMO correctly recognizes that access to context needs to scale (“latent intent” which I love), but I’m not sure I’m convinced that current models will be effective even if given access to all priors needed for a complex task. The ability to discriminate valuable from extraneous context will need to scale with size of available context, it will be pulling needles from haystacks that aren’t straightforward similarity. I think we will need to steer these things.",
+    "parent": 44913081,
+    "depth": 1
+  },
+  {
+    "id": 44918229,
+    "by": "neom",
+    "timeISO": "2025-08-15T22:56:14.000Z",
+    "textPlain": "Same same human problems. Regardless of their inherent intelligence...humans perform well only when given decent context and clear specifications/data. If you place a brilliant executive into a scenario without meaningful context.... an unfamiliar board meeting where they have no idea of the company’s history, prior strategic discussions, current issues, personel dynamics...expectations..etc etc, they will struggle just as a model does surly. They may still manage something reasonably insightful, leveraging general priors, common sense, and inferential reasoning... their performance will never match their potential had they been fully informed of all context and clearly data/objectives. I think context is the primary primitive property of intelligent systems in general?",
     "parent": 44913081,
     "depth": 1
   },
@@ -44,14 +60,6 @@
     "by": "stephc_int13",
     "timeISO": "2025-08-16T03:47:29.000Z",
     "textPlain": "This is because we tend to use a human-centric reference to evaluate the difficulty of a task : playing chess at grand master level is a lot harder than folding laundry, except that it is the opposite, and this weird bias is well known as Moravec’s Paradox.Intelligence is the bottleneck, but not the kind of intelligence you need to solve puzzles.",
-    "parent": 44913081,
-    "depth": 1
-  },
-  {
-    "id": 44918229,
-    "by": "neom",
-    "timeISO": "2025-08-15T22:56:14.000Z",
-    "textPlain": "Same same human problems. Regardless of their inherent intelligence...humans perform well only when given decent context and clear specifications/data. If you place a brilliant executive into a scenario without meaningful context.... an unfamiliar board meeting where they have no idea of the company’s history, prior strategic discussions, current issues, personel dynamics...expectations..etc etc, they will struggle just as a model does surly. They may still manage something reasonably insightful, leveraging general priors, common sense, and inferential reasoning... their performance will never match their potential had they been fully informed of all context and clearly data/objectives. I think context is the primary primitive property of intelligent systems in general?",
     "parent": 44913081,
     "depth": 1
   },
@@ -112,18 +120,18 @@
     "depth": 2
   },
   {
-    "id": 44920283,
-    "by": "Davidzheng",
-    "timeISO": "2025-08-16T04:52:52.000Z",
-    "textPlain": "it actually doesn't matter what we want. Because eliminating it will in long run increase yield, economic forces will automate humans away by capitalistic forces.",
-    "parent": 44918642,
-    "depth": 2
-  },
-  {
     "id": 44919538,
     "by": "fnordpiglet",
     "timeISO": "2025-08-16T02:15:15.000Z",
     "textPlain": "Assuming you buy the idea of a post scarcity society and assuming we can separate our long ingrained notion that spending your existence in toil to survive is a moral imperative and not working is deserving of punishment if not death, I personally look forward to a time we can get off the hamster wheel. Most buttons that get pushed by people are buttons not worth spending your existence pushing. This includes an awful lot of “knowledge work,” which is often better paid but more insidious in that it requires not just your presence but capturing your entire attention and mind inside and outside work.  I would also be hopeful that fertility rates would decline and there would simply be far fewer humans.In Asimov’s robots stories the spacers are long lived and low population because robots do most everything. He presents this as a dead end, that stops us from conquering the galaxy. This to me sounds like a feature not a bug. I think human existence could be quite good with large scale automation, fewer people, and less suffering due to the necessity for everyone to be employed.Note I recognize you’re not saying exactly the same thing as I’m saying. I think humans will never cede full executive control by choice at some level. But I suspect, sadly, power will be confined to those few who do get to manage the high level complexity of the real world.",
+    "parent": 44918642,
+    "depth": 2
+  },
+  {
+    "id": 44920283,
+    "by": "Davidzheng",
+    "timeISO": "2025-08-16T04:52:52.000Z",
+    "textPlain": "it actually doesn't matter what we want. Because eliminating it will in long run increase yield, economic forces will automate humans away by capitalistic forces.",
     "parent": 44918642,
     "depth": 2
   },
@@ -133,6 +141,38 @@
     "timeISO": "2025-08-16T00:27:04.000Z",
     "textPlain": "We’re already steering, during pre-training (e.g. reasoning RLHF), as well as test-time (structured outputs, tool calls, agents…)",
     "parent": 44918288,
+    "depth": 2
+  },
+  {
+    "id": 44919185,
+    "by": "mrlongroots",
+    "timeISO": "2025-08-16T01:22:24.000Z",
+    "textPlain": "> they will struggle just as a model does surlyA human will struggle, but they will recognize the things they need to know, and seek out people who may have the relevant information. If asked \"how are things going\" they will reliably be able to say \"badly, I don't have anything I need\".",
+    "parent": 44918229,
+    "depth": 2
+  },
+  {
+    "id": 44920631,
+    "by": "whattheheckheck",
+    "timeISO": "2025-08-16T06:04:36.000Z",
+    "textPlain": "An intelligent system would know how to get that information without getting spoon fed it",
+    "parent": 44918229,
+    "depth": 2
+  },
+  {
+    "id": 44919199,
+    "by": "getnormality",
+    "timeISO": "2025-08-16T01:24:15.000Z",
+    "textPlain": "This comparison may make sense on short-horizon tasks for which there is no possibility of preparation. Given some weeks to prepare, a good human executive will get the context, while today's best AI systems will completely fail to do so.",
+    "parent": 44918229,
+    "depth": 2
+  },
+  {
+    "id": 44919936,
+    "by": "simoncion",
+    "timeISO": "2025-08-16T03:44:22.000Z",
+    "textPlain": "> I think context is the primary primitive property of intelligent systems in general?What do you mean by 'context' in this context? As written, I believe that I could knock down your claim by pointing out that there exist humans who would do catastrophically poorly at a task that other humans would excel at, even if both humans have been fully informed of all of the same context.",
+    "parent": 44918229,
     "depth": 2
   },
   {
@@ -165,30 +205,6 @@
     "timeISO": "2025-08-16T04:20:33.000Z",
     "textPlain": "For others who also hadn't heard of that: https://en.wikipedia.org/wiki/Moravec%27s_paradox",
     "parent": 44919959,
-    "depth": 2
-  },
-  {
-    "id": 44919185,
-    "by": "mrlongroots",
-    "timeISO": "2025-08-16T01:22:24.000Z",
-    "textPlain": "> they will struggle just as a model does surlyA human will struggle, but they will recognize the things they need to know, and seek out people who may have the relevant information. If asked \"how are things going\" they will reliably be able to say \"badly, I don't have anything I need\".",
-    "parent": 44918229,
-    "depth": 2
-  },
-  {
-    "id": 44919199,
-    "by": "getnormality",
-    "timeISO": "2025-08-16T01:24:15.000Z",
-    "textPlain": "This comparison may make sense on short-horizon tasks for which there is no possibility of preparation. Given some weeks to prepare, a good human executive will get the context, while today's best AI systems will completely fail to do so.",
-    "parent": 44918229,
-    "depth": 2
-  },
-  {
-    "id": 44919936,
-    "by": "simoncion",
-    "timeISO": "2025-08-16T03:44:22.000Z",
-    "textPlain": "> I think context is the primary primitive property of intelligent systems in general?What do you mean by 'context' in this context? As written, I believe that I could knock down your claim by pointing out that there exist humans who would do catastrophically poorly at a task that other humans would excel at, even if both humans have been fully informed of all of the same context.",
-    "parent": 44918229,
     "depth": 2
   },
   {
