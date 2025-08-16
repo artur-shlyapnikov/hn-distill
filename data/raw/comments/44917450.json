@@ -8,10 +8,10 @@
     "depth": 1
   },
   {
-    "id": 44917844,
-    "by": "arthurofbabylon",
-    "timeISO": "2025-08-15T22:11:10.000Z",
-    "textPlain": "> TextKit2 is implemented to be used by UITextViewThis is the key insight that makes TextKit2 workable. I personally would not attempt to build an alternative to UITextView on TextKit (1 or 2). Instead, TextKit2 is all about very sensible intervention points for customizing UITextView (eg, Markdown-style parsing, typography, interactions, layout).I recently rebuilt Minimal’s editor with TextKit2 (see minimal.app/#beta to experience it), and found Kryzanowskim’s deep dives very fruitful. He explores the edges of the API, so his writing helped me identify a nice bounds of safe-space to work in, and helped clarify what areas are too complex to safely build custom functionality within. (So thank you, author!)I would not dismiss TextKit2; it is an incredible improvement over TextKit1. It remains a complicated and challenging field.",
+    "id": 44923820,
+    "by": "Wowfunhappy",
+    "timeISO": "2025-08-16T14:36:05.000Z",
+    "textPlain": "> In a scrollview, such frequent and significant changes to the height result in \"juggery\" of the scroller position and sizeWhat on earth? How is that considered acceptable? And from Apple of all companies, the ones that put a speaker in the iPod just so it would improve the UX of scrolling.",
     "parent": 44917450,
     "depth": 1
   },
@@ -24,10 +24,26 @@
     "depth": 1
   },
   {
+    "id": 44917844,
+    "by": "arthurofbabylon",
+    "timeISO": "2025-08-15T22:11:10.000Z",
+    "textPlain": "> TextKit2 is implemented to be used by UITextViewThis is the key insight that makes TextKit2 workable. I personally would not attempt to build an alternative to UITextView on TextKit (1 or 2). Instead, TextKit2 is all about very sensible intervention points for customizing UITextView (eg, Markdown-style parsing, typography, interactions, layout).I recently rebuilt Minimal’s editor with TextKit2 (see minimal.app/#beta to experience it), and found Kryzanowskim’s deep dives very fruitful. He explores the edges of the API, so his writing helped me identify a nice bounds of safe-space to work in, and helped clarify what areas are too complex to safely build custom functionality within. (So thank you, author!)I would not dismiss TextKit2; it is an incredible improvement over TextKit1. It remains a complicated and challenging field.",
+    "parent": 44917450,
+    "depth": 1
+  },
+  {
     "id": 44919430,
     "by": "andrekandre",
     "timeISO": "2025-08-16T01:59:38.000Z",
     "textPlain": "> Today, I believe that's not me. The TextKit 2 API and its implementation are lacking and unexpectedly difficult to use correctly. While the design is solid, it proved challenging to apply in real-world applications.\n\nwhen making new apis its a good idea to have people try and use it like this to find and fix the rough edges and fix bugs... it definitely feels like apple didn't do that (at least enough) here...",
+    "parent": 44917450,
+    "depth": 1
+  },
+  {
+    "id": 44924073,
+    "by": "unconed",
+    "timeISO": "2025-08-16T15:03:17.000Z",
+    "textPlain": "It's bizarre that they prioritize parsimony over correctness. Laying out long documents can happen in the background, but shouldn't be deferred to when you actually scroll.",
     "parent": 44917450,
     "depth": 1
   },
@@ -56,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44917884,
-    "by": "refulgentis",
-    "timeISO": "2025-08-15T22:14:23.000Z",
-    "textPlain": "Interesting read.I have to wonder if the scrollbar problem is inescapable, given the shape of the problem.Flutter has dealt with similar issues, perhaps by virtue of more eyeballs / being slightly older, there are solutions. SuperSliverList in particular completely erased the jumpy-jank that happened when estimates changed to concrete values.",
-    "parent": 44917450,
-    "depth": 1
-  },
-  {
     "id": 44920130,
     "by": "keyle",
     "timeISO": "2025-08-16T04:18:18.000Z",
     "textPlain": "I tried to use it a year+ ago and that was a joke and a half. Half baked, buggy, and horribly documented.With Apple apis, it's attend WWDC or good luck.",
+    "parent": 44917450,
+    "depth": 1
+  },
+  {
+    "id": 44917884,
+    "by": "refulgentis",
+    "timeISO": "2025-08-15T22:14:23.000Z",
+    "textPlain": "Interesting read.I have to wonder if the scrollbar problem is inescapable, given the shape of the problem.Flutter has dealt with similar issues, perhaps by virtue of more eyeballs / being slightly older, there are solutions. SuperSliverList in particular completely erased the jumpy-jank that happened when estimates changed to concrete values.",
     "parent": 44917450,
     "depth": 1
   },
@@ -96,6 +112,14 @@
     "depth": 2
   },
   {
+    "id": 44918532,
+    "by": "colbyn",
+    "timeISO": "2025-08-15T23:41:59.000Z",
+    "textPlain": "Oh also I’d like to add to the above, the TextKit2 API is way more freeform than people think. You could probably implement your own web browser upon it with optimized line by line text rendering (which isn’t that bad). One thing I always wanted to experiment with is rendering markdown content with horizontally scrollable text fragments for table rows and certain fenced code blocks. Super cool and practical idea for native markdown text rendering. Moreover, in some ways it seems pretty easy to do in TextKit2 since you get very fine grained control over text layout fragment rendering.",
+    "parent": 44918411,
+    "depth": 2
+  },
+  {
     "id": 44917942,
     "by": "lapcat",
     "timeISO": "2025-08-15T22:19:57.000Z",
@@ -109,14 +133,6 @@
     "timeISO": "2025-08-15T22:25:15.000Z",
     "textPlain": "> I personally would not attempt to build an alternative to UITextView on TextKit (1 or 2)sure. If only UITextView/NSTextView did not have bugs impossible to workaround otherwise. TextKit 2 support in UITextView/NSTextView was really bad. improved over time. and still remain buggy. The UITextView focus limits the use of TextKit 2 architecture significantly.",
     "parent": 44917844,
-    "depth": 2
-  },
-  {
-    "id": 44918532,
-    "by": "colbyn",
-    "timeISO": "2025-08-15T23:41:59.000Z",
-    "textPlain": "Oh also I’d like to add to the above, the TextKit2 API is way more freeform than people think. You could probably implement your own web browser upon it with optimized line by line text rendering (which isn’t that bad). One thing I always wanted to experiment with is rendering markdown content with horizontally scrollable text fragments for table rows and certain fenced code blocks. Super cool and practical idea for native markdown text rendering. Moreover, in some ways it seems pretty easy to do in TextKit2 since you get very fine grained control over text layout fragment rendering.",
-    "parent": 44918411,
     "depth": 2
   },
   {

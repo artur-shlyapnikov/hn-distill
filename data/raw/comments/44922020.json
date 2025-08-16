@@ -1,17 +1,17 @@
 [
   {
-    "id": 44923495,
-    "by": "FFFXXX",
-    "timeISO": "2025-08-16T13:57:39.000Z",
-    "textPlain": "The part about C# volatile accesses using release-acquire ordering seems to be wrong if I read the C# docs correctly.\"There is no guarantee of a single total ordering of volatile writes as seen from all threads of execution\"https://learn.microsoft.com/en-us/dotnet/csharp/language-ref...",
-    "parent": 44922020,
-    "depth": 1
-  },
-  {
     "id": 44922938,
     "by": "skobes",
     "timeISO": "2025-08-16T12:52:35.000Z",
     "textPlain": "The first \"trap\" on the page says \"min-width: auto makes min width determined by content\", but this is false outside of flex/grid.From MDN: \"For block boxes, inline boxes, inline blocks, and all table layout boxes auto resolves to 0.\"https://developer.mozilla.org/en-US/docs/Web/CSS/min-width",
+    "parent": 44922020,
+    "depth": 1
+  },
+  {
+    "id": 44923495,
+    "by": "FFFXXX",
+    "timeISO": "2025-08-16T13:57:39.000Z",
+    "textPlain": "The part about C# volatile accesses using release-acquire ordering seems to be wrong if I read the C# docs correctly.\"There is no guarantee of a single total ordering of volatile writes as seen from all threads of execution\"https://learn.microsoft.com/en-us/dotnet/csharp/language-ref...",
     "parent": 44922020,
     "depth": 1
   },
@@ -40,11 +40,11 @@
     "depth": 1
   },
   {
-    "id": 44923584,
-    "by": "charleslmunger",
-    "timeISO": "2025-08-16T14:08:38.000Z",
-    "textPlain": ">A volatile write operation prevents earlier memory operations on the thread from being reordered to occur after the volatile write. A volatile read operation prevents later memory operations on the thread from being reordered to occur before the volatile readLooks like release/acquire to me? A total ordering would be sequential consistency.",
-    "parent": 44923495,
+    "id": 44923744,
+    "by": "jfengel",
+    "timeISO": "2025-08-16T14:27:58.000Z",
+    "textPlain": "CSS cascade for text properties more or less makes sense.I have been unable to comprehend CSS layout from any perspective: page designer, implementer, user, anything. It must have someone in mind but I have no idea who I that is.",
+    "parent": 44922938,
     "depth": 2
   },
   {
@@ -53,6 +53,22 @@
     "timeISO": "2025-08-16T13:04:22.000Z",
     "textPlain": "I guess the first trap should really be: \"You cannot read any CSS property in isolation, as just like what the name implies, defaults and what values end up doing cascades through all the rules your document ends up using\"",
     "parent": 44922938,
+    "depth": 2
+  },
+  {
+    "id": 44923584,
+    "by": "charleslmunger",
+    "timeISO": "2025-08-16T14:08:38.000Z",
+    "textPlain": ">A volatile write operation prevents earlier memory operations on the thread from being reordered to occur after the volatile write. A volatile read operation prevents later memory operations on the thread from being reordered to occur before the volatile readLooks like release/acquire to me? A total ordering would be sequential consistency.",
+    "parent": 44923495,
+    "depth": 2
+  },
+  {
+    "id": 44923895,
+    "by": "dataflow",
+    "timeISO": "2025-08-16T14:43:59.000Z",
+    "textPlain": "Somewhat off topic, but what is a realistic example of where you need atomics with sequential consistency? Like, what useful data structure or pattern requires it? I feel like I've seen every other ordering except that one (and consume) in real world code.",
+    "parent": 44923495,
     "depth": 2
   },
   {

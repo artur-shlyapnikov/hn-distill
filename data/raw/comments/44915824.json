@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44923966,
+    "by": "1970-01-01",
+    "timeISO": "2025-08-16T14:50:06.000Z",
+    "textPlain": "A better way to do that (sorry) is to increase the loading instead of modifying the test. I'm happy to hear reasons why their way could be a better benchmark.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
     "id": 44918133,
     "by": "sugarpimpdorsey",
     "timeISO": "2025-08-15T22:42:16.000Z",
@@ -200,18 +208,18 @@
     "depth": 2
   },
   {
-    "id": 44922860,
-    "by": "redleader55",
-    "timeISO": "2025-08-16T12:45:19.000Z",
-    "textPlain": "Succesive rdtsc calls, even on the same CPU, are not guaranteed to be executed in the expected order by the CPU - [1].1 - https://lore.kernel.org/all/da9e8bee-71c2-4a59-a865-3dd6c5c9...",
-    "parent": 44916909,
-    "depth": 2
-  },
-  {
     "id": 44920803,
     "by": "ethan_smith",
     "timeISO": "2025-08-16T06:38:50.000Z",
     "textPlain": "While __rdtsc() is fast, be cautious with multi-core benchmarks as TSC synchronization between cores isn't guaranteed on all hardware, especially older systems. Modern Intel/AMD CPUs have \"invariant TSC\" which helps, but it's worth checking CPU flags first.",
+    "parent": 44916909,
+    "depth": 2
+  },
+  {
+    "id": 44922860,
+    "by": "redleader55",
+    "timeISO": "2025-08-16T12:45:19.000Z",
+    "textPlain": "Succesive rdtsc calls, even on the same CPU, are not guaranteed to be executed in the expected order by the CPU - [1].1 - https://lore.kernel.org/all/da9e8bee-71c2-4a59-a865-3dd6c5c9...",
     "parent": 44916909,
     "depth": 2
   },
@@ -389,14 +397,6 @@
     "timeISO": "2025-08-15T20:04:51.000Z",
     "textPlain": "I was just about to point Ian Betteridge at the original title.  (-:",
     "parent": 44916685,
-    "depth": 2
-  },
-  {
-    "id": 44917768,
-    "by": "wahern",
-    "timeISO": "2025-08-15T22:02:12.000Z",
-    "textPlain": "I think dup2 is the hint, but in the example case the dup2 path isn't invoked--it's conditioned on passing an argument, but the test runs are just `./a.out`. IIUC, the issue is growing the file descriptor table. The dup2 is a workaround that preallocates a larger table (666 > 256 * 2)[1], to avoid the pathological case when a multi-threaded process grows the table. From the linked infosec.exchange discussion it seems the RCU-based approach Linux is using can result in some significant latency, resulting in much worse performance in simple cases like this compared to a simple mutex[2].[1] Off-by-one. To be more precise, the state established by the dup2 is (667 > 256 * 2), or rather (667 > 3 + 256 * 2).[2] Presumably what OpenBSD is using. I'd be surprised if they've already imported and adopted FreeBSD's approach mentioned in the linked discussion, notwithstanding that OpenBSD has been on an MP scalability tear the past few years.",
-    "parent": 44916757,
     "depth": 2
   }
 ]

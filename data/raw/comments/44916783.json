@@ -1,5 +1,13 @@
 [
   {
+    "id": 44924077,
+    "by": "theli0nheart",
+    "timeISO": "2025-08-16T15:03:27.000Z",
+    "textPlain": "I wrote git-bigstore [0] almost 10 (!) years ago to solve this problem—even before Git LFS—and as far as I know, bigstore still works perfectly.You specify the files you want to store in your storage backend via .gitattributes, and use two separate commands to sync files. I have not touched this code in years but the general implementation should still work.GitHub launched LFS not too long after I wrote this, so I kind of gave up on the idea thinking that no one would want to use it in lieu of GitHub's solution, but based on the comments I think there's a place for it.It needs some love but the idea is solid. I wrote a little description on the wiki about the low-level implementation if you want to check it out. [1]Also, all of the metadata is stored using git notes, so is completely portable and is frontend agnostic—doesn't lock you into anything (except, of course, the storage backend you use).[0]: https://github.com/lionheart/git-bigstore[1]: https://github.com/lionheart/git-bigstore/wiki",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44918580,
     "by": "bob1029",
     "timeISO": "2025-08-15T23:49:48.000Z",
@@ -24,6 +32,14 @@
     "depth": 1
   },
   {
+    "id": 44923908,
+    "by": "tionis",
+    "timeISO": "2025-08-16T14:45:24.000Z",
+    "textPlain": "I've been using git + git-lfs to manage, sync and backup all my files (including media files and more) and it's quite convenient, but native support for large files would be great. I'd for example really like to be able to push large objects directly from one device to the next.At the moment I'm using my own git server + git lfs deduplication using btrfs to efficiently handle the large files.If large objects are just embedded in various packfiles this approach would no longer work, so I hope that such a behaviour can be controlled.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44919065,
     "by": "Ferret7446",
     "timeISO": "2025-08-16T01:07:11.000Z",
@@ -40,18 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44918524,
-    "by": "technoweenie",
-    "timeISO": "2025-08-15T23:40:03.000Z",
-    "textPlain": "I'm really happy to see large file support in Git core. Any external solution would have similar opt-in procedures. I really wanted it to work seamlessly with as few extra commands as possible, so the API was constrained to the smudge and clean filters in the '.gitattributes' file.Though I did work hard to remove any vendor lock-in by working directly with Atlassian and Microsoft pretty early in the process. It was a great working relationship, with a lot of help from Atlassian in particular on the file locking API. LFS shipped open source with compatible support in 3 separate git hosts.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44921021,
     "by": "flohofwoe",
     "timeISO": "2025-08-16T07:17:30.000Z",
     "textPlain": "Even ancient svn works much better out of the box for large binary files than git (e.g. a 150 GB working directory with many big Photoshop files and other binary assets is no problem in SVN).What does SVN do differently than git when it comes to large binary files, and why can't git use the same approach?I also don't quite understand tbh how offloading large files to somewhere else would be fundamentally different than storing all files in one place except complicating everything? Storage is storage, how would a different storage location fix any of the current performance and robustness problems? Offloading just sounds like a solution for public git forges which don't want to deal with big files because it's too costly for them, but increased hosting cost is not the 'large binary file problem' of git.(edit: apparently git supports proper locking(?) so I removed that section - ps: nvm it looks like the file locking feature is only in git-lfs)",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44918524,
+    "by": "technoweenie",
+    "timeISO": "2025-08-15T23:40:03.000Z",
+    "textPlain": "I'm really happy to see large file support in Git core. Any external solution would have similar opt-in procedures. I really wanted it to work seamlessly with as few extra commands as possible, so the API was constrained to the smudge and clean filters in the '.gitattributes' file.Though I did work hard to remove any vendor lock-in by working directly with Atlassian and Microsoft pretty early in the process. It was a great working relationship, with a lot of help from Atlassian in particular on the file locking API. LFS shipped open source with compatible support in 3 separate git hosts.",
     "parent": 44916783,
     "depth": 1
   },
@@ -80,6 +96,14 @@
     "depth": 1
   },
   {
+    "id": 44918828,
+    "by": "jayd16",
+    "timeISO": "2025-08-16T00:31:24.000Z",
+    "textPlain": "How about git just fixes shallow clones and partial clones?  Then we don't need convoluted work arounds to cheat in large content after we fully clone a history of pointers or promises or whatever.  You should be able to set default clone depth by file type and size in the git attributes (or maybe a file that can also live above a repo like supporting attributes in .gitconfig locations?).Then the usual settings would be to shallow clone the latest content as well as fetch the full history and maybe the text file historical content.  Ideally you could prune to the clone depth settings as well.Why are we still talking about large file pointers?  If you fix shallow and partial clones, then any repo can be an efficient file mirror, right?",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44920276,
     "by": "ideasman42",
     "timeISO": "2025-08-16T04:50:25.000Z",
@@ -100,14 +124,6 @@
     "by": "pabs3",
     "timeISO": "2025-08-16T04:30:57.000Z",
     "textPlain": "The git storage model also needs an overhaul to be more like modern backup tools such as restic/borg; it needs content-defined chunking of files and directories.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
-    "id": 44918828,
-    "by": "jayd16",
-    "timeISO": "2025-08-16T00:31:24.000Z",
-    "textPlain": "How about git just fixes shallow clones and partial clones?  Then we don't need convoluted work arounds to cheat in large content after we fully clone a history of pointers or promises or whatever.  You should be able to set default clone depth by file type and size in the git attributes (or maybe a file that can also live above a repo like supporting attributes in .gitconfig locations?).Then the usual settings would be to shallow clone the latest content as well as fetch the full history and maybe the text file historical content.  Ideally you could prune to the clone depth settings as well.Why are we still talking about large file pointers?  If you fix shallow and partial clones, then any repo can be an efficient file mirror, right?",
     "parent": 44916783,
     "depth": 1
   },
@@ -144,6 +160,14 @@
     "depth": 1
   },
   {
+    "id": 44917806,
+    "by": "als0",
+    "timeISO": "2025-08-15T22:07:22.000Z",
+    "textPlain": "10 years late is better than never.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44918942,
     "by": "kerneltime",
     "timeISO": "2025-08-16T00:48:36.000Z",
@@ -156,14 +180,6 @@
     "by": "tombert",
     "timeISO": "2025-08-15T22:08:53.000Z",
     "textPlain": "Is Git ever going to get proper support for binary files?I’ve never used it for anything serious but my understanding is that Mercurial handles binary files  better? Like it supports binary diffs if I understand correctly.Any reason Git couldn’t get that?",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
-    "id": 44917806,
-    "by": "als0",
-    "timeISO": "2025-08-15T22:07:22.000Z",
-    "textPlain": "10 years late is better than never.",
     "parent": 44916783,
     "depth": 1
   },
@@ -376,27 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44921915,
-    "by": "StopDisinfo910",
-    "timeISO": "2025-08-16T10:11:22.000Z",
-    "textPlain": "People like storing everything in git because it significantly simplifies configuration management. A build can be cleanly linked to a git hash instead of being a hash and a bunch of artifacts versions especially if you vendor your dependencies in your source control and completely stop using an artifact repository.With a good build system using a shared cache, it makes for a very pleasant development environment.",
-    "parent": 44919639,
-    "depth": 2
-  },
-  {
-    "id": 44920715,
-    "by": "astrobe_",
-    "timeISO": "2025-08-16T06:19:02.000Z",
-    "textPlain": "It sounds like a submodule... But certainly if the problem could be solved with a submodule, people would have found out long ago. Git's submodules also support shallow-cloning already [1]. I can only guess what the issues are with large files since I didn't face it myself - I deal with pure source code most of the times. I'm interested to know why it would be a bad idea to do that, just in case. The caveats pointed out in the second SO answer don't seem to be a big deal.[1] https://stackoverflow.com/questions/2144406/how-to-make-shal...",
-    "parent": 44919639,
-    "depth": 2
-  },
-  {
-    "id": 44919683,
-    "by": "firesteelrain",
-    "timeISO": "2025-08-16T02:47:22.000Z",
-    "textPlain": "Do you teach CI/CD systems architecture in your classes?  Because I am finding that is what the junior engineers that we have hired seem to be missing.Tying it all in with GitLab, Artifactory, CodeSonar, Anchore etc",
-    "parent": 44919639,
+    "id": 44917992,
+    "by": "IshKebab",
+    "timeISO": "2025-08-15T22:25:41.000Z",
+    "textPlain": "I totally agree. This follows a long tradition of Git \"fixing\" things by adding a flag that 99% of users won't ever discover. They never fix the defaults.And yes, you can fix defaults without breaking backwards compatibility.",
+    "parent": 44917935,
     "depth": 2
   }
 ]

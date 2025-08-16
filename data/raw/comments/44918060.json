@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44918989,
-    "by": "jchw",
-    "timeISO": "2025-08-16T00:56:56.000Z",
-    "textPlain": "Intel SGX/remote attestation for verifying that servers are running the code they say they are running is very interesting, I believe Signal talked about doing something similar for contact discovery, but at a base level it requires a lot of trust. How do I verify that the attestation I receive back is the one of the machine I am contacting? Can I know for sure that this isn't a compromised SGX configuration, since the system has been broken in the past? Furthermore, can I really be sure that I can trust SGX attestations if I can't actually verify SGX itself? Even if the code running under SGX is verifiable, as an ordinary user it's basically impossible to tell if there are bugs that would make it possible to compromise.Personally I like the direction Mullvad went instead. I get that it means we really can't verify Mullvad's claims, but even in the event they're lying, at least we got some cool Coreboot ports out of it.If you're really paranoid, neither this service nor Mullvad offers that much assurance. I like the idea of verifiability, but I believe the type of people who want it are looking to satisfy deeper paranoia than can be answered with just trusting Intel... Still, more VPN options that try to take privacy claims seriously is nothing to complain about.",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44920799,
     "by": "mjg59",
     "timeISO": "2025-08-16T06:38:19.000Z",
     "textPlain": "I'm a huge fan of the technical basis for this. I want services to attest themselves to me so I can verify that they're running the source code I can inspect. And, well, the combination of founders here? Good fucking lord. I'm really fascinated to see whether we can generate enough trust in the code to be able to overcome the complete lack of trust that these people deserve. I can't imagine a better way to troll me on this point.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44918989,
+    "by": "jchw",
+    "timeISO": "2025-08-16T00:56:56.000Z",
+    "textPlain": "Intel SGX/remote attestation for verifying that servers are running the code they say they are running is very interesting, I believe Signal talked about doing something similar for contact discovery, but at a base level it requires a lot of trust. How do I verify that the attestation I receive back is the one of the machine I am contacting? Can I know for sure that this isn't a compromised SGX configuration, since the system has been broken in the past? Furthermore, can I really be sure that I can trust SGX attestations if I can't actually verify SGX itself? Even if the code running under SGX is verifiable, as an ordinary user it's basically impossible to tell if there are bugs that would make it possible to compromise.Personally I like the direction Mullvad went instead. I get that it means we really can't verify Mullvad's claims, but even in the event they're lying, at least we got some cool Coreboot ports out of it.If you're really paranoid, neither this service nor Mullvad offers that much assurance. I like the idea of verifiability, but I believe the type of people who want it are looking to satisfy deeper paranoia than can be answered with just trusting Intel... Still, more VPN options that try to take privacy claims seriously is nothing to complain about.",
     "parent": 44918060,
     "depth": 1
   },
@@ -128,14 +128,6 @@
     "depth": 1
   },
   {
-    "id": 44922098,
-    "by": "potato-peeler",
-    "timeISO": "2025-08-16T10:49:01.000Z",
-    "textPlain": "Slightly tangential question - what gui framework did you use to build the apps?",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44921119,
     "by": "tamimio",
     "timeISO": "2025-08-16T07:34:48.000Z",
@@ -148,6 +140,14 @@
     "by": "nneonneo",
     "timeISO": "2025-08-16T06:08:45.000Z",
     "textPlain": "Cute idea. Bit worried about the owners here; rasengan doesn't have a stellar reputation after what happened with Freenode.The idea itself is sound: if there are no SGX bypasses (hardware keys dumped, enclaves violated, CPU bugs exploited, etc.), and the SGX code is sound (doesn't leak the private keys by writing them to any non-confidential storage, isn't vulnerable to timing-based attacks, etc.), and you get a valid, up-to-date attestation containing the public key that you're encrypting your traffic with plus a hash of a trustworthy version of the SGX code, then you can trust that your traffic is indeed being decrypted inside an SGX enclave which has exclusive access to the private key.Obviously, that's a lot of conditions. Happily, you can largely verify those conditions given what's provided here; you can check that the attestation points to a CPU and configuration new enough to not have any (known) SGX breaks; you can check that the SGX code is sound and builds to the provided hash (exercise left to the reader); and you can check the attestation itself as it is signed with hardware keys that chain up to an Intel root-of-trust.However! An SGX enclave cannot interface with the system beyond simple shared memory input/output. In particular, an SGX enclave is not (and cannot be) responsible for socket communication; that must be handled by an OS that lies outside the SGX TCB (Trusted Computing Base). For typical SGX use-cases, this is OK; the data is what is secret, and the socket destinations are not.For a VPN, this is not true! The OS can happily log anything it wants! There's nothing stopping it from logging all the data going into and out of the SGX enclave and performing traffic correlation. Even with traffic mixing, there's nothing stopping the operators from sticking a single user onto their own, dedicated SGX enclave which is closely monitored; traffic mixing means nothing if its just a single user's traffic being mixed.So, while the use of SGX here is a n",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44922098,
+    "by": "potato-peeler",
+    "timeISO": "2025-08-16T10:49:01.000Z",
+    "textPlain": "Slightly tangential question - what gui framework did you use to build the apps?",
     "parent": 44918060,
     "depth": 1
   },
@@ -224,22 +224,6 @@
     "depth": 2
   },
   {
-    "id": 44919066,
-    "by": "MagicalTux",
-    "timeISO": "2025-08-16T01:07:12.000Z",
-    "textPlain": "Intel will not attest insecure configurations. Our client will automatically verify the attestation it receives to make sure the certificate isn't expired and has a proper signature under Intel's CA trust.A lot of people have been attempting to attack SGX, and while there have been some successful attacks these have been addressed by Intel and resolved. Intel will not attest any insecure configuration as do other TEE vendors (AMD SEV, ARM Trustzone, etc).",
-    "parent": 44918989,
-    "depth": 2
-  },
-  {
-    "id": 44919114,
-    "by": "junon",
-    "timeISO": "2025-08-16T01:14:21.000Z",
-    "textPlain": "> Can I know for sure that this isn't a compromised SGX configuration, since the system has been broken in the past?As far as I'm aware, no. Any network protocol can be spoofed, with varying degrees of difficulty.I would love to be wrong.",
-    "parent": 44918989,
-    "depth": 2
-  },
-  {
     "id": 44922208,
     "by": "pydry",
     "timeISO": "2025-08-16T11:09:39.000Z",
@@ -264,6 +248,22 @@
     "depth": 2
   },
   {
+    "id": 44919066,
+    "by": "MagicalTux",
+    "timeISO": "2025-08-16T01:07:12.000Z",
+    "textPlain": "Intel will not attest insecure configurations. Our client will automatically verify the attestation it receives to make sure the certificate isn't expired and has a proper signature under Intel's CA trust.A lot of people have been attempting to attack SGX, and while there have been some successful attacks these have been addressed by Intel and resolved. Intel will not attest any insecure configuration as do other TEE vendors (AMD SEV, ARM Trustzone, etc).",
+    "parent": 44918989,
+    "depth": 2
+  },
+  {
+    "id": 44919114,
+    "by": "junon",
+    "timeISO": "2025-08-16T01:14:21.000Z",
+    "textPlain": "> Can I know for sure that this isn't a compromised SGX configuration, since the system has been broken in the past?As far as I'm aware, no. Any network protocol can be spoofed, with varying degrees of difficulty.I would love to be wrong.",
+    "parent": 44918989,
+    "depth": 2
+  },
+  {
     "id": 44921239,
     "by": "mjg59",
     "timeISO": "2025-08-16T07:59:15.000Z",
@@ -277,6 +277,22 @@
     "timeISO": "2025-08-16T09:27:45.000Z",
     "textPlain": "> how do I verify the server is reporting the fingerprint of the actual running codeSince this was answered already, I'll just say that I think the bigger problem is that we can't know if the machine that replied with the fingerprint from this code is even related to the one currently serving your requests.",
     "parent": 44920870,
+    "depth": 2
+  },
+  {
+    "id": 44923914,
+    "by": "adikso",
+    "timeISO": "2025-08-16T14:45:50.000Z",
+    "textPlain": "I don't know what payment methods this VPN supports (it requires sign-in), but on Mullvad you also can send cash in an envelope.",
+    "parent": 44919525,
+    "depth": 2
+  },
+  {
+    "id": 44923936,
+    "by": "kqr",
+    "timeISO": "2025-08-16T14:47:40.000Z",
+    "textPlain": "Which are the other reasons, and which other providers have you evaluated? Asking because I might soon be in the market.",
+    "parent": 44919525,
     "depth": 2
   },
   {
@@ -376,27 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44921286,
-    "by": "nneonneo",
-    "timeISO": "2025-08-16T08:08:39.000Z",
-    "textPlain": "Ah, but how can you tell that you’re connecting to a server that was actually configured that way?Answer: no you can’t, you still have to trust them. At the end of the day, you always just have to trust the provider, somewhere.",
-    "parent": 44921269,
-    "depth": 2
-  },
-  {
     "id": 44923253,
     "by": "rasengan",
     "timeISO": "2025-08-16T13:31:53.000Z",
     "textPlain": "The whole point here is you don’t have to trust us - we don’t want you to. We want you to trust code, period.That said, the freenode issue was debunked and you can see receipts here: http://techrights.org/wp-content/uploads/2021/05/lee-side.pd...I funded freenode since 2011 so any narrative that makes it seem I just appeared out of nowhere is factually untrue. Also, I was handed it because Christel felt I was a good custodian thereof. Instead, former staff who I protected from allegations made by OldCoder for years, went on to form Libera, tried to steal the domain for a developers irc network when they themselves shockingly couldn’t even code a simple irc client, and then made up a false narrative.The state of open source generally isn’t what you think and you would do well for yourself to read Lunduke’s Journal among other things. The developers don’t actually run most of the projects these days. Look at Mozilla.",
     "parent": 44920654,
-    "depth": 2
-  },
-  {
-    "id": 44920192,
-    "by": "kachapopopow",
-    "timeISO": "2025-08-16T04:31:09.000Z",
-    "textPlain": "That's not what they;re trying to prove. Only one server is give the certificate to authenticate with you, you connect to that server, every message with that server is authenticated with that certificate.They are proving that they are the ones hosting the VPN server - not some server that stole their software and are running a honeypot and that the hosting company has not tampered with it.So in the end you still have to trust the company that they are not sharing the certificates with 3rd parties.",
-    "parent": 44919510,
     "depth": 2
   }
 ]

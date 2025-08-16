@@ -8,10 +8,10 @@
     "depth": 1
   },
   {
-    "id": 44922286,
-    "by": "sudopsuedo",
-    "timeISO": "2025-08-16T11:25:17.000Z",
-    "textPlain": "Is there a way to authenticate without a browser? (For when we're developing on a headless machine or a remote machine via vscode->ssh, and the callback to localhost can't fire from our client machine)I've tried launching via\n`NO_BROWSER=true embedder` but this doesn't seem to change the auth flow",
+    "id": 44915854,
+    "by": "bangaladore",
+    "timeISO": "2025-08-15T18:27:13.000Z",
+    "textPlain": "This is a more general question, but:What company would be comfortable with giving out schematics, source code, etc... to third parties like this or AI Model providers like Anthropic, etc...Privacy policy aside, this just seems like a statistical guarantee at some point to leaks sensitive IP (not specifically pointing at this company, but in this space in general). Or does nobody care?",
     "parent": 44915206,
     "depth": 1
   },
@@ -20,14 +20,6 @@
     "by": "pedalpete",
     "timeISO": "2025-08-16T01:54:57.000Z",
     "textPlain": "Earlier this week our team were talking about how AI coding tools for our services is great, but we didn't think it was great for firmware development.This may be just because there isn't as much embedded training data. I'm not sure if you have thoughts on that.I've passed it onto the team. Congrats on the launch. Clearly solving a great niche.",
-    "parent": 44915206,
-    "depth": 1
-  },
-  {
-    "id": 44915854,
-    "by": "bangaladore",
-    "timeISO": "2025-08-15T18:27:13.000Z",
-    "textPlain": "This is a more general question, but:What company would be comfortable with giving out schematics, source code, etc... to third parties like this or AI Model providers like Anthropic, etc...Privacy policy aside, this just seems like a statistical guarantee at some point to leaks sensitive IP (not specifically pointing at this company, but in this space in general). Or does nobody care?",
     "parent": 44915206,
     "depth": 1
   },
@@ -44,6 +36,14 @@
     "by": "general1726",
     "timeISO": "2025-08-15T20:52:54.000Z",
     "textPlain": "Honestly good luck with that. I have tried DeepSeek and Claude and random pulling of registers out of LLMs butt is a thing.What you will soon find out is that different companies are describing registers in radically different ways in their datasheets and I don't believe that LLM will be able to cope with it. If I can give you an advice, download Tasking compiler for a target processor and you will find SFD files which are essentially XML files describing registers and their bitfields. You can then add context on those SFD from the datasheet / reference manual and now you have 100% correct data with a register-first structure for LLM.Obviously it would be better to figure where those SFD files came out to avoid IP problems. I sincerely doubt that Tasking wrote it itself, it should come from IC manufacturers because this is just distilled VHDL.So getting these structured data instead of datasheets will more likely result in a valid answer.",
+    "parent": 44915206,
+    "depth": 1
+  },
+  {
+    "id": 44922286,
+    "by": "sudopsuedo",
+    "timeISO": "2025-08-16T11:25:17.000Z",
+    "textPlain": "Is there a way to authenticate without a browser? (For when we're developing on a headless machine or a remote machine via vscode->ssh, and the callback to localhost can't fire from our client machine)I've tried launching via\n`NO_BROWSER=true embedder` but this doesn't seem to change the auth flow",
     "parent": 44915206,
     "depth": 1
   },
@@ -72,14 +72,6 @@
     "depth": 1
   },
   {
-    "id": 44922745,
-    "by": "westurner",
-    "timeISO": "2025-08-16T12:33:46.000Z",
-    "textPlain": "One test case that I've used with LLMs that generate code: generate a stop light.In short,Generate a stoplight with unit tests.I have not yet found a model that produces sufficiently safe code. I haven't tested this in awhile; but I don't expect any current LLM to be sufficient at this task.Maybe an LLM could generate a safe stop light with formal methods as a primary meta procedure? From \nhttps://news.ycombinator.com/item?id=44889967 re: formal methods:> We should not expect an LLM trained solely on formally-verified code to produce formally-verified code. I don't think that also training on specs and hateful training material will fix that.",
-    "parent": 44915206,
-    "depth": 1
-  },
-  {
     "id": 44919800,
     "by": "rao-v",
     "timeISO": "2025-08-16T03:16:11.000Z",
@@ -92,6 +84,14 @@
     "by": "CheeseFromLidl",
     "timeISO": "2025-08-16T08:08:44.000Z",
     "textPlain": "Just yesterday I was both hindered and helped by Google in modifying a 32 bit bootloader to load and executes 64 bit code.- Google search was utterly useless, giving me no relevant results (which I found later by searching around github). It mainly returned results for a different archtecture, padded with results on a different topic.- Gemini only wanted to give workflow hints sparsely dotted with actual (correct) asm.- but then I found out that Gemini had a full grasp of the 6500 page datasheet and it happily reviewed my code, pulling out 2 errors and suggesting some optimisation.We’ve come to the point were google search is worse than github search. And I haven’t given up on Gemini yet.",
+    "parent": 44915206,
+    "depth": 1
+  },
+  {
+    "id": 44922745,
+    "by": "westurner",
+    "timeISO": "2025-08-16T12:33:46.000Z",
+    "textPlain": "One test case that I've used with LLMs that generate code: generate a stop light.In short,Generate a stoplight with unit tests.I have not yet found a model that produces sufficiently safe code. I haven't tested this in awhile; but I don't expect any current LLM to be sufficient at this task.Maybe an LLM could generate a safe stop light with formal methods as a primary meta procedure? From \nhttps://news.ycombinator.com/item?id=44889967 re: formal methods:> We should not expect an LLM trained solely on formally-verified code to produce formally-verified code. I don't think that also training on specs and hateful training material will fix that.",
     "parent": 44915206,
     "depth": 1
   },
