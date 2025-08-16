@@ -1,10 +1,82 @@
 [
   {
+    "id": 44926448,
+    "by": "ninkendo",
+    "timeISO": "2025-08-16T19:55:14.000Z",
+    "textPlain": "Talking about foundational software but no mention of the biggest missing part of rust IMO: an ABI.If you want to write an OS in rust and provide rich services for applications to use, you need to offer libraries they can call without needing to recompile when the OS is upgraded. Windows mostly does this with COM, Apple historically had ObjC’s dynamic dispatch (and now Swift’s ABI), Android does this with a JVM and bytecode… Rust can only really offer extern \"C\", and that really limits how useful dynamic libraries can be.Doing an ABI without a VM-like layer (JVM, .NET) is really difficult though, and requires you to commit to certain implementation details without ever changing them, so I can understand why it’s not a priority. To my knowledge the only success stories are Swift (which faced the problem head-on) and COM (which has a language-independent IDL and other pain points.) ObjC has such extreme late binding that it almost feels like cheating.If rust had a full-featured ABI it would be nearly the perfect language. (It would improve compile times as well, because we’d move to a world where dependencies could just be binaries, which would cut compile times massively.)",
+    "parent": 44925466,
+    "depth": 1
+  },
+  {
+    "id": 44926461,
+    "by": "troupo",
+    "timeISO": "2025-08-16T19:58:30.000Z",
+    "textPlain": "The currently flagged comment and the discussion below it actually do have a salient point.Comment: How about get an actual published language standard? How about get more implementations of it?In the discussion, @infogulch: If you are aiming to be the foundation of an entire industry it doesn't seem unreasonable to ask for some specifications. https://news.ycombinator.com/item?id=44926375I agree with @infogulch",
+    "parent": 44925466,
+    "depth": 1
+  },
+  {
     "id": 44926117,
     "by": "themafia",
     "timeISO": "2025-08-16T19:10:02.000Z",
-    "textPlain": "Rust in 2025:  Still putting the cart before the horse.How about get an actual published language standard?  How about get more implementations of it?  How about fix the utter mess that is cargo?Nope.\"Let's replace everything else.  Let's be 'foundational.'\"Rust is a language for people who want to be _seen as programmers_.  Not people who _actually love programming_.",
+    "textPlain": "[flagged]",
     "parent": 44925466,
     "depth": 1
+  },
+  {
+    "id": 44926580,
+    "by": "IshKebab",
+    "timeISO": "2025-08-16T20:17:11.000Z",
+    "textPlain": "I really like Rust but there are some quite frustrating core paper cuts that I wish would get more attention:1. Self-referencing structs. Especially where you want to have something like a source file and the parsed AST in the same struct. You can't easily do that at the moment. It would be nice if there was something like an offset reference that made it work. Or something else...2. The orphan rule. I get it, but it's still annoying. We can do better than newtype wrappers (which sometimes have to be nested 2 or 3 levels deep!).3. The fact that for reasonable compile time you need to split projects into lots of small crates. Again, I understand the reasons, but the result sucks and we can definitely do better. As I understand it this is because crates are compiled as one compilation unit, and they have to be because circular dependencies are allowed. While that is true, I expect most code doesn't actually have circular dependencies so why not make those opt-in? Or even automatically split items/files within a crate into separate compilation units based on the dependency graph?There's probably more; this is just what I can remember off the top of my head.Hopefully that's constructive criticism. Rust is still my favourite programming language by far.",
+    "parent": 44925466,
+    "depth": 1
+  },
+  {
+    "id": 44926534,
+    "by": "loglog",
+    "timeISO": "2025-08-16T20:11:14.000Z",
+    "textPlain": "Not your main point, but how would monomorphization of generics work with binary dependencies?",
+    "parent": 44926448,
+    "depth": 2
+  },
+  {
+    "id": 44926509,
+    "by": "dgfitz",
+    "timeISO": "2025-08-16T20:06:17.000Z",
+    "textPlain": "As do I.Because I’m a cynical person, I view LLMs like I’ve viewed rust for years: a neat tool that makes a small subset of people happy and a touch more productive.The evangelical defense of either topic is very off-putting, to say the least.@infogulch really nailed it with the comment about how the rust community wants influence/power, and ignores the responsibility that comes with said influence/power.",
+    "parent": 44926461,
+    "depth": 2
+  },
+  {
+    "id": 44926274,
+    "by": "camjw",
+    "timeISO": "2025-08-16T19:29:50.000Z",
+    "textPlain": "What are your specific gripes with cargo?",
+    "parent": 44926117,
+    "depth": 2
+  },
+  {
+    "id": 44926214,
+    "by": "vlovich123",
+    "timeISO": "2025-08-16T19:21:25.000Z",
+    "textPlain": "> Rust is a language for people who want to be _seen as programmers_. Not people who _actually love programming_.Nice gatekeeping. I happen to actually love programming and I pick up languages quickly. Rust has been a fresh breathe of air and I can’t ever see myself going back to the horror show that is the masochism of C++.> How about get an actual published language standard?https://rustfoundation.org/media/ferrous-systems-donates-fer...But also a language standard means fuck all to me. C and C++ keep generating them and the language doesn’t seem to be getting meaningfully better.> How about get more implementations of it?Why is this important? Python has one central implementation that everyone relies on. So does Java. C++ doesn’t and is plagued by every project either trying to support N platforms across M compilers or just pick clang everywhere (but still be stuck with having unnecessarily complicated platform specific code).> How about fix the utter mess that is cargo?What’s the utter mess? I’ve been using it for a while and haven’t observed anything obscenely problematic. Significantly easier than anything in C++ for sure (maybe Conan but I’ve not seen anyone actually using that in the wild)",
+    "parent": 44926117,
+    "depth": 2
+  },
+  {
+    "id": 44926272,
+    "by": "aw1621107",
+    "timeISO": "2025-08-16T19:29:36.000Z",
+    "textPlain": "> How about get an actual published language standard? How about get more implementations of it? How about fix the utter mess that is cargo?I think these arguably also warrant a \"is this putting the cart before the horse?\" analysis. I think the value of all of those are pretty debatable (especially in different fields), and I don't think it's at all obvious that Rust would have done any better had it devoted more energy to those earlier in its life.Also, I think that the article is technically compatible with working on those points anyways?> Let's replace everything else.I don't think that's what the article is trying to say? \"Targeting\" here seems to be more in the vein of \"usable for\", like \"target\" in \"this language targets this use case\".",
+    "parent": 44926117,
+    "depth": 2
+  },
+  {
+    "id": 44926316,
+    "by": "echelon",
+    "timeISO": "2025-08-16T19:36:21.000Z",
+    "textPlain": "> utter mess that is cargo?Cargo is currently the best first party language package manager on the planet. It learned from all of the other systems that came before it.Cargo could use a few improvements, like namespaces and hermetic, repeatable builds, but it's one of the nicest infrastructure pieces we have in any language.No other language in the top 20 has anything like Cargo. The language needs to be designed hand in hand with its package manager, so it'd be hard to bolt a Cargo onto other established languages.",
+    "parent": 44926117,
+    "depth": 2
   }
 ]

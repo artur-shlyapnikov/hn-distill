@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44926160,
-    "by": "UncleFullstack",
-    "timeISO": "2025-08-16T19:15:46.000Z",
-    "textPlain": "It can be kind of horrifying at times. A couple of years ago I was interviewing for work and ended up talking to a big liquor distributor - their challenge was dealing with a bunch of text files over FTP, and it was comically bad, they had a $300k annual spend on AWS, Kubernetes, the works. And they could have done the whole thing  on a single EC2 instance with a couple of shell scripts. Needless to say I was laughed out of the room.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
     "id": 44922384,
     "by": "motorest",
     "timeISO": "2025-08-16T11:44:52.000Z",
@@ -32,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44922903,
-    "by": "msiyer",
-    "timeISO": "2025-08-16T12:48:46.000Z",
-    "textPlain": "> Avoid having five different services all write to the same table. Instead, have four of them send API requests (or emit events) to the first service, and keep the writing logic in that one service.The ideal solution: Avoid having five different services all write to the same table.If five different services have to write to the same table, there is a major overlap of logic too. Are the five services really different or one would suffice?Taking practical realities into consideration, we can do what the author says. However, we risk implementing a lot of orchestration logic. We introduce a whole new layer of problems. Is that time not better spent refactoring the services: either give them their own DB tables or merge them into one servic?",
+    "id": 44926522,
+    "by": "rawgabbit",
+    "timeISO": "2025-08-16T20:08:24.000Z",
+    "textPlain": "I wonder why the author views CQRS negatively and then later gives this classic CQRS advice:      >What this means in practice is having one service that knows about the state - i.e. it talks to a database - and other services that do stateless things. Avoid having five different services all write to the same table. Instead, have four of them send API requests (or emit events) to the first service, and keep the writing logic in that one service.",
     "parent": 44921137,
     "depth": 1
   },
@@ -48,10 +40,42 @@
     "depth": 1
   },
   {
+    "id": 44922903,
+    "by": "msiyer",
+    "timeISO": "2025-08-16T12:48:46.000Z",
+    "textPlain": "> Avoid having five different services all write to the same table. Instead, have four of them send API requests (or emit events) to the first service, and keep the writing logic in that one service.The ideal solution: Avoid having five different services all write to the same table.If five different services have to write to the same table, there is a major overlap of logic too. Are the five services really different or one would suffice?Taking practical realities into consideration, we can do what the author says. However, we risk implementing a lot of orchestration logic. We introduce a whole new layer of problems. Is that time not better spent refactoring the services: either give them their own DB tables or merge them into one servic?",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
     "id": 44921601,
     "by": "KronisLV",
     "timeISO": "2025-08-16T09:06:18.000Z",
     "textPlain": "> Schema design should be flexible, because once you have thousands or millions of records, it can be an enormous pain to change the schema. However, if you make it too flexible (e.g. by sticking everything in a “value” JSON column, or using “keys” and “values” tables to track arbitrary data) you load a ton of complexity into the application code (and likely buy some very awkward performance constraints). Drawing the line here is a judgment call and depends on specifics, but in general I aim to have my tables be human-readable: you should be able to go through the database schema and get a rough idea of what the application is storing and why.I’m surprised that the drawbacks of EAV or just using JSON in your relational database don’t get called out more.I’d very much rather have like 20 tables with clear purpose than seeing that colleagues have once more created a “classifier” mechanism and are using polymorphic links (without actual foreign keys, columns like “section” and “entity_id”) and are treating it as a grab bag of stuff. One that you also need to read the application code a bunch to even hope to understand.Whenever I see that, I want to change careers. I get that EAV has its use cases, but in most other cases fuck EAV.It’s right up there with N+1 issues, complex dynamically generated SQL when views would suffice and also storing audit data in the same DB and it inevitably having functionality written against it, your audit data becoming a part of the business logic. Oh and also shared database instances and not having the ability to easily bootstrap your own, oh and also working with Oracle in general. And also putting things that’d be better off in the app inside of the DB and vice versa.There are so many ways to decrease your quality of life when it comes to storing and accessing data.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44926391,
+    "by": "axpy906",
+    "timeISO": "2025-08-16T19:46:31.000Z",
+    "textPlain": "It’s under appreciated how many of us fall for over engineering. I’ve been there. Just the other day I had coworker suggest that our startup not use cloud blob storage because it’s unreliable and we should build our own.Maybe it’s just harder to design with something simple that is possible to extend and build on. Maybe I am missing something. That said I agree with the author from my decade of experience.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44926160,
+    "by": "UncleFullstack",
+    "timeISO": "2025-08-16T19:15:46.000Z",
+    "textPlain": "It can be kind of horrifying at times. A couple of years ago I was interviewing for work and ended up talking to a big liquor distributor - their challenge was dealing with a bunch of text files over FTP, and it was comically bad, they had a $300k annual spend on AWS, Kubernetes, the works. And they could have done the whole thing  on a single EC2 instance with a couple of shell scripts. Needless to say I was laughed out of the room.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44926483,
+    "by": "YZF",
+    "timeISO": "2025-08-16T20:01:40.000Z",
+    "textPlain": "It seems that there is no appreciation of a good architecture/system design any more. Nobody cares.Leadership can't tell the difference. If anything the worse designs seem more impressive. Engineers often enjoy a bad design because it creates more work and job security. When there's a lot of work it seems like you're getting things done. Managers enjoy a bad design because it helps empire building, now that there is more work we need to hire more people and do more manager-y things. There are also a lot of inexperienced engineers in the work force who have never seen a well designed system.In an organization running these badly designed system it's a political suicide to argue the design is bad. If the business is successful even more so because everyone will assume that a successful business means well designed software. A successful business will directly reward a bad design.",
     "parent": 44921137,
     "depth": 1
   },
@@ -72,34 +96,10 @@
     "depth": 1
   },
   {
-    "id": 44925453,
-    "by": "maest",
-    "timeISO": "2025-08-16T17:43:38.000Z",
-    "textPlain": "> But in most cases replication lag can be worked around with simple tricks: for instance, when you update a record but need to use it right after, you can fill in the updated details in-memory instead of immediately re-reading after a write.I get it, but that sounds very finicky code to get right and a good source of hard-to-debug bugs.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
     "id": 44921252,
     "by": "com",
     "timeISO": "2025-08-16T08:01:37.000Z",
     "textPlain": "The advice about logging and metrics was good.I had been nodding away about state and push/pull, but this section grabbed my attention, since I’ve never seen it do clearly articulated before.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44925452,
-    "by": "hn8726",
-    "timeISO": "2025-08-16T17:43:32.000Z",
-    "textPlain": "What's the best resource to learn those things in practice? Other than _just trying_ yourself? I'm a senior dev in another area who wants to get into the backend development, but unsurprisingly has limited time to spend on learning a completely new thing,",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44924779,
-    "by": "gmm1990",
-    "timeISO": "2025-08-16T16:22:32.000Z",
-    "textPlain": "I seem to gravitate towards nosql type databases, defining tables in a ddl and then again in the code seems repetitive, and slows down changes. But the idea would be that the code is what defines the table. It'd be nice though to hear some of the drawbacks of this. Maybe for very relational things it makes sense to be able to write join queries so data is completely repeated, but my understanding would be that most data base engines would already compress that repeated info pretty well.",
     "parent": 44921137,
     "depth": 1
   },
@@ -120,6 +120,22 @@
     "depth": 1
   },
   {
+    "id": 44925453,
+    "by": "maest",
+    "timeISO": "2025-08-16T17:43:38.000Z",
+    "textPlain": "> But in most cases replication lag can be worked around with simple tricks: for instance, when you update a record but need to use it right after, you can fill in the updated details in-memory instead of immediately re-reading after a write.I get it, but that sounds very finicky code to get right and a good source of hard-to-debug bugs.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44922293,
+    "by": "thisbeensaid",
+    "timeISO": "2025-08-16T11:27:26.000Z",
+    "textPlain": "Since the author praises proper use of databases and talks about event bus, background jobs and caching, I highly recommend to check out https://dbos.dev if you have Python or TypeScript backends. DBOS nicely solves common challenges in simple and complex systems and can eliminate the need for running separate services such as Kafka, Redis or Celery. The best: DBOS can be used as a dependency and doesn't require deploying a separate service.Very recently discussed here a week ago: https://news.ycombinator.com/item?id=44840693",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
     "id": 44923059,
     "by": "hks0",
     "timeISO": "2025-08-16T13:06:59.000Z",
@@ -136,34 +152,26 @@
     "depth": 1
   },
   {
+    "id": 44924779,
+    "by": "gmm1990",
+    "timeISO": "2025-08-16T16:22:32.000Z",
+    "textPlain": "I seem to gravitate towards nosql type databases, defining tables in a ddl and then again in the code seems repetitive, and slows down changes. But the idea would be that the code is what defines the table. It'd be nice though to hear some of the drawbacks of this. Maybe for very relational things it makes sense to be able to write join queries so data is completely repeated, but my understanding would be that most data base engines would already compress that repeated info pretty well.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44925452,
+    "by": "hn8726",
+    "timeISO": "2025-08-16T17:43:32.000Z",
+    "textPlain": "What's the best resource to learn those things in practice? Other than _just trying_ yourself? I'm a senior dev in another area who wants to get into the backend development, but unsurprisingly has limited time to spend on learning a completely new thing,",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
     "id": 44921824,
     "by": "pelagicAustral",
     "timeISO": "2025-08-16T09:50:11.000Z",
     "textPlain": "I can definitely feel the \"underwhelming\" factor. I've been working for  +10 years on government software and I really know what an underwhelming codebase looks like, first off, it has my fucking name on it.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44924885,
-    "by": "0wis",
-    "timeISO": "2025-08-16T16:33:34.000Z",
-    "textPlain": "It is exactly what makes the difference between good and bad experience, both for users and engineers. A well designed system is both easy to use and to maintain or improve. It looks simple, but it is not. It’s both leadership and craftsmanship at its peak.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44925468,
-    "by": "tra3",
-    "timeISO": "2025-08-16T17:45:07.000Z",
-    "textPlain": "Lots of good advice that I could’ve used 20 years ago. And like all good advice I would’ve ignored it back then.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44923896,
-    "by": "agentultra",
-    "timeISO": "2025-08-16T14:44:01.000Z",
-    "textPlain": "Great article. A lot of very standard practices. Or at least… should be.One thing that I often add is the people interacting with the system. They’re a part of it too. Most people don’t operate in an atomically consistent world; a lot of business processes are eventually consistent. But you do need to know where you have to have atomic operations! It depends on where the user expects it.Systems thinking is very useful. From how your software is deployed to how the people using it in their work. Always be thinking about these things.",
     "parent": 44921137,
     "depth": 1
   },
@@ -176,18 +184,10 @@
     "depth": 1
   },
   {
-    "id": 44924467,
-    "by": "jagged-chisel",
-    "timeISO": "2025-08-16T15:47:31.000Z",
-    "textPlain": "Lots of comments here decrying unnecessary complexity and the depressing reality of job interviews around the subject.And I’m wondering why investors tolerate the expense: it’s surprising how much you can get done with simplicity and a small focused team.It must be something about perception when they’re ready to sell the company.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44924246,
-    "by": "ramon156",
-    "timeISO": "2025-08-16T15:23:53.000Z",
-    "textPlain": "> I’m often alone on this. Engineers look at complex systems with many interesting parts and think “wow, a lot of system design is happening here!”Whenever I read something like this I feel so confused. Who actually calls themselves an engineer when they have no idea what they're talking about.  Ignorant confidence is such a useless personality trait.",
+    "id": 44923896,
+    "by": "agentultra",
+    "timeISO": "2025-08-16T14:44:01.000Z",
+    "textPlain": "Great article. A lot of very standard practices. Or at least… should be.One thing that I often add is the people interacting with the system. They’re a part of it too. Most people don’t operate in an atomically consistent world; a lot of business processes are eventually consistent. But you do need to know where you have to have atomic operations! It depends on where the user expects it.Systems thinking is very useful. From how your software is deployed to how the people using it in their work. Always be thinking about these things.",
     "parent": 44921137,
     "depth": 1
   },
@@ -200,10 +200,26 @@
     "depth": 1
   },
   {
-    "id": 44924515,
-    "by": "firesteelrain",
-    "timeISO": "2025-08-16T15:53:20.000Z",
-    "textPlain": "As a system architect, software engineer and systems engineer, I see these posts and what is called system design seems to intermix systems design with software design (being that software described herein is a lower level component of the overall system)",
+    "id": 44924885,
+    "by": "0wis",
+    "timeISO": "2025-08-16T16:33:34.000Z",
+    "textPlain": "It is exactly what makes the difference between good and bad experience, both for users and engineers. A well designed system is both easy to use and to maintain or improve. It looks simple, but it is not. It’s both leadership and craftsmanship at its peak.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44924246,
+    "by": "ramon156",
+    "timeISO": "2025-08-16T15:23:53.000Z",
+    "textPlain": "> I’m often alone on this. Engineers look at complex systems with many interesting parts and think “wow, a lot of system design is happening here!”Whenever I read something like this I feel so confused. Who actually calls themselves an engineer when they have no idea what they're talking about.  Ignorant confidence is such a useless personality trait.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44924467,
+    "by": "jagged-chisel",
+    "timeISO": "2025-08-16T15:47:31.000Z",
+    "textPlain": "Lots of comments here decrying unnecessary complexity and the depressing reality of job interviews around the subject.And I’m wondering why investors tolerate the expense: it’s surprising how much you can get done with simplicity and a small focused team.It must be something about perception when they’re ready to sell the company.",
     "parent": 44921137,
     "depth": 1
   },
@@ -224,10 +240,18 @@
     "depth": 1
   },
   {
-    "id": 44922293,
-    "by": "thisbeensaid",
-    "timeISO": "2025-08-16T11:27:26.000Z",
-    "textPlain": "Since the author praises proper use of databases and talks about event bus, background jobs and caching, I highly recommend to check out https://dbos.dev if you have Python or TypeScript backends. DBOS nicely solves common challenges in simple and complex systems and can eliminate the need for running separate services such as Kafka, Redis or Celery. The best: DBOS can be used as a dependency and doesn't require deploying a separate service.Very recently discussed here a week ago: https://news.ycombinator.com/item?id=44840693",
+    "id": 44924515,
+    "by": "firesteelrain",
+    "timeISO": "2025-08-16T15:53:20.000Z",
+    "textPlain": "As a system architect, software engineer and systems engineer, I see these posts and what is called system design seems to intermix systems design with software design (being that software described herein is a lower level component of the overall system)",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44925468,
+    "by": "tra3",
+    "timeISO": "2025-08-16T17:45:07.000Z",
+    "textPlain": "Lots of good advice that I could’ve used 20 years ago. And like all good advice I would’ve ignored it back then.",
     "parent": 44921137,
     "depth": 1
   },
@@ -240,22 +264,6 @@
     "depth": 1
   },
   {
-    "id": 44925090,
-    "by": "jpitz",
-    "timeISO": "2025-08-16T16:55:06.000Z",
-    "textPlain": ">You have two options: fail open and let the request through, or fail closed and block the request with a 429.If the metaphor of a software circuit breaker is meant to emulate an electrical circuit breaker, then it seems to me that these two are inverted. Whenever a physical circuit breaker is open, it is not dangerous and not passing current.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44925872,
-    "by": "voidhorse",
-    "timeISO": "2025-08-16T18:39:43.000Z",
-    "textPlain": "Good system design is boring, obvious, and completely uninteresting. This is why a lot of flashy or trendy techniques end up leading to bad systems—they rope people in because of their cleverness or intellectual content, which often is interesting, but stuff that's new/intriguing/intellectually stimulating is often not what you want in a system.A good system needs to be as easy to understand and interpret as possible, A good system design is so mind-numbing my simple that a nincompoop can understand it. The only deviations from this policy should stem from other requirements like storage, performance, etc.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
     "id": 44922161,
     "by": "gethly",
     "timeISO": "2025-08-16T11:01:01.000Z",
@@ -264,18 +272,26 @@
     "depth": 1
   },
   {
-    "id": 44924168,
-    "by": "necessary",
-    "timeISO": "2025-08-16T15:14:11.000Z",
-    "textPlain": "Excellent article. In this vein, are there any books, articles, or other media that we can learn more of these sorts of principles from?",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
     "id": 44922310,
     "by": "bubblebeard",
     "timeISO": "2025-08-16T11:30:54.000Z",
     "textPlain": "Very good article, right on point!I do wonder about why the author left out testing, documentation and qa tool design though. To my mind, writing a proper phpcs or whatever to ensure everyone on the team writes code in a consistent way is crucial. Without documentation we end up forgetting why we did certain things. And without tests refactors are a nightmare.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44925090,
+    "by": "jpitz",
+    "timeISO": "2025-08-16T16:55:06.000Z",
+    "textPlain": ">You have two options: fail open and let the request through, or fail closed and block the request with a 429.If the metaphor of a software circuit breaker is meant to emulate an electrical circuit breaker, then it seems to me that these two are inverted. Whenever a physical circuit breaker is open, it is not dangerous and not passing current.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44924168,
+    "by": "necessary",
+    "timeISO": "2025-08-16T15:14:11.000Z",
+    "textPlain": "Excellent article. In this vein, are there any books, articles, or other media that we can learn more of these sorts of principles from?",
     "parent": 44921137,
     "depth": 1
   },
@@ -304,18 +320,10 @@
     "depth": 1
   },
   {
-    "id": 44925551,
-    "by": "rekabis",
-    "timeISO": "2025-08-16T17:56:04.000Z",
-    "textPlain": "> But in most cases replication lag can be worked around with simple tricks: for instance, when you update a record but need to use it right after, you can fill in the updated details in-memory instead of immediately re-reading after a write.I found myself truly confused by this one - does this actually need stating? Do people actually re-read immediately after a write? Provided you got confirmation that a write was successful and the data doesn’t have anything that an SQL trigger would change, what would be the point of an immediate read instead of just using the DB “successfully written” response as a go-ahead to just update the in-memory data?",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44925388,
-    "by": "rekabis",
-    "timeISO": "2025-08-16T17:34:26.000Z",
-    "textPlain": "> you’re a terrible engineer if you ever store booleans in a databaseAnything like this is trivially dismissible as absolute hogwash. It’s a shame that titles like this actually get the clicks needed to encourage more bullshite in the same vein.",
+    "id": 44925872,
+    "by": "voidhorse",
+    "timeISO": "2025-08-16T18:39:43.000Z",
+    "textPlain": "Good system design is boring, obvious, and completely uninteresting. This is why a lot of flashy or trendy techniques end up leading to bad systems—they rope people in because of their cleverness or intellectual content, which often is interesting, but stuff that's new/intriguing/intellectually stimulating is often not what you want in a system.A good system needs to be as easy to understand and interpret as possible, A good system design is so mind-numbing my simple that a nincompoop can understand it. The only deviations from this policy should stem from other requirements like storage, performance, etc.",
     "parent": 44921137,
     "depth": 1
   },
@@ -328,10 +336,26 @@
     "depth": 1
   },
   {
+    "id": 44925551,
+    "by": "rekabis",
+    "timeISO": "2025-08-16T17:56:04.000Z",
+    "textPlain": "> But in most cases replication lag can be worked around with simple tricks: for instance, when you update a record but need to use it right after, you can fill in the updated details in-memory instead of immediately re-reading after a write.I found myself truly confused by this one - does this actually need stating? Do people actually re-read immediately after a write? Provided you got confirmation that a write was successful and the data doesn’t have anything that an SQL trigger would change, what would be the point of an immediate read instead of just using the DB “successfully written” response as a go-ahead to just update the in-memory data?",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
     "id": 44922235,
     "by": "mattlondon",
     "timeISO": "2025-08-16T11:14:55.000Z",
     "textPlain": "There was an article here recently about how to write good design docs: the TL;DR for that was basically your design doc should make your design seem obvious. I think that is the same conclusion here - good design is simple, straightforward design with no real surprises.Wholly agree.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44925388,
+    "by": "rekabis",
+    "timeISO": "2025-08-16T17:34:26.000Z",
+    "textPlain": "> you’re a terrible engineer if you ever store booleans in a databaseAnything like this is trivially dismissible as absolute hogwash. It’s a shame that titles like this actually get the clicks needed to encourage more bullshite in the same vein.",
     "parent": 44921137,
     "depth": 1
   },
@@ -374,29 +398,5 @@
     "textPlain": "Never write an article about good system design.In all seriousness, this is an extraordinary subtle and complex area, and there are few rules.For example, \"if you need data from multiple tables, JOIN them instead of making separate queries and stitching them together in-memory\" may be useful in certain circumstances. For  highly scalable consumer systems, the rule of \"avoid joins as much as possible\" can work a lot better.There is also no mention of how important it is to understand the business - usage patterns, the customers, the data, the scale of data, the scale of usage, security, uptime and reliability requirements, reporting requirements, etc.",
     "parent": 44921137,
     "depth": 1
-  },
-  {
-    "id": 44925427,
-    "by": "mkozlows",
-    "timeISO": "2025-08-16T17:40:38.000Z",
-    "textPlain": "(For context, I've conducted hundreds of system design interviews and trained a dozen other people on how to do them at my company. Other interviewers may do things differently or care about other things, but I think what I'm saying here isn't too far off normal.)I think three things about what you're saying:1. The answers you're giving don't provide a lot of signal (the queue one being the exception). The question that's implicitly being asked is not just what you would choose, but why you would choose it. What factors would drive you to a particular decision? What are you thinking about when you provide an answer? You're not really verbalizing your considerations here.A good interviewer will pry at you to get the signal they need to make a decision. So if you say that back-pressure isn't worth worrying about here, they'll ask you when it would be, and what you'd do in that situation. But not all interviewers are good interviewers, and sometimes they'll just say \"I wasn't able to get much information out of the candidate\" and the absence of a yes is a no. As an interviewee, you want to make the interviewer's job easy, not hard.2. Even if the interviewer is good and does pry the information out of you, they're probably going to write down something like \"the candidate was able to explain sensibly why they'd choose a particular technology, but it took a lot of prodding and prying to get the information out of them -- communications are a negative.\" As an interviewee, you want to communicate all the information your interviewer is looking for proactively, not grudgingly and reluctantly. (This is also true when you're not interviewing.)3. I pretty much just disagree on that SQL/NoSQL answer. Team expertise is one factor, but those technologies have significant differences; depending on what you need to do, one of them might be way better than the other for a particular scenario. Your answer there is just going to get dinged for indicating that you don't have experience",
-    "parent": 44922958,
-    "depth": 2
-  },
-  {
-    "id": 44923934,
-    "by": "_fat_santa",
-    "timeISO": "2025-08-16T14:47:34.000Z",
-    "textPlain": "This goes back to \"interviews go both ways\". All those answers you gave are very reasonable and if I was your interviewer I'd pass you with flying colors. On the other hand if you're interviewing at a place that doesn't pass you with flying colors for those responses, that really says more about them than it does about you and may not be a great place to work.But to your point, many times one interviews for a job they don't really have the luxury of getting rejections and need to land somewhere fast so they can keep paying the mortgage. So while yes interviewing is a two way street, there's still quite a bit of calibration to make sure you land on the other person's side of the street so to speak.",
-    "parent": 44922958,
-    "depth": 2
-  },
-  {
-    "id": 44924402,
-    "by": "corytheboyd",
-    "timeISO": "2025-08-16T15:41:26.000Z",
-    "textPlain": "As well as the “two-way street” point made in a sibling comment, I feel like a good interviewer would say “this is great, I would keep it simple too, but I am testing your knowledge of $thing right now.” If the person won’t stop talking about the wrong thing, that’s a bad sign of course.",
-    "parent": 44922958,
-    "depth": 2
   }
 ]

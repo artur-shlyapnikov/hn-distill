@@ -16,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44925922,
-    "by": "nayuki",
-    "timeISO": "2025-08-16T18:45:05.000Z",
-    "textPlain": "Largely a good listicle. Some feedback:> Unicode unification. Different characters in different language use the same code point. Different languages' font variants render the same code point differently. 語This isn't a trap. The given example character means the same thing in Chinese and Japanese, and the Japanese version was imported from China. People from both languages recognize both font variants as the same conceptual character.The author is making it sound like the letter 'A' in English should have a different code point than an 'A' in French. Or that a lowercase 'a' with the top tail should be a different character than a lowercase 'a' without the top tail.Anyway, this is discussed at length in https://en.wikipedia.org/wiki/Han_unification> There is a negative zero -0.0 which is different to normal zero. The negative zero equals zero when using floating point comparision. Normal zero is treated as \"positive zero\".And there are two ways to distinguish negative zero from normal zero: By their integer bit patterns, or by the fact that 1.0/-0.0 == -Inf vs. 1.0/0.0 == +Inf.> It's recommended to configure the server's time zone as UTC.Big yes. I use UTC for servers, logs, photos, and anything that is worth archiving and timestamping properly. Local time is only for colloquial use.> For integer (low + high) / 2 may overflow. A safer way is low + (high - low) / 2Yes, but if low and high could be negative numbers, then you've just shifted the overflow to a different range. This matters for general binary search over an integer range, as opposed to unsigned binary search over an array.> C/C++I'm going to throw in one of my lists of pitfalls - just using integer types and arithmetic correctly in C/C++ is a massive developer trap. That's like the most basic thing in programming. https://www.nayuki.io/page/summary-of-c-cpp-integer-rules> Rebase can rewrite history\"Can\" is a weasel word; rebase does nothing but rewrite history.",
+    "id": 44925527,
+    "by": "OptionOfT",
+    "timeISO": "2025-08-16T17:53:05.000Z",
+    "textPlain": "> Some routers and firewall silently kill idle TCP connections without telling application. Some code (like HTTP client libraries, database clients) keep a pool of TCP connections for reuse, which can be silently invalidated. To solve it you can configure system TCP keepalive. For HTTP you can use Connection: keep-alive Keep-Alive: timeout=30, max=1000 header.Once a TCP connection has been established there is no state on routers in between the 2 ends of the connection. The issue here is firewalls / NAT entries timing out. And indeed, no RSTs are sent.We had the issue in K8s with the conntrack module set too low.Now, you can try to put in an HTTP Keep-Alive, but that will not help you. The HTTP Keep-Alive is merely for connection re-use at the HTTP level, i.e. it doesn't close the connection: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/...An HTTP Keep-Alive does not generate any packages, it merely postpones the close.A TCP Keep-Alive generates packages which resets the timers.",
     "parent": 44922020,
     "depth": 1
   },
@@ -32,14 +32,6 @@
     "depth": 1
   },
   {
-    "id": 44925527,
-    "by": "OptionOfT",
-    "timeISO": "2025-08-16T17:53:05.000Z",
-    "textPlain": "> Some routers and firewall silently kill idle TCP connections without telling application. Some code (like HTTP client libraries, database clients) keep a pool of TCP connections for reuse, which can be silently invalidated. To solve it you can configure system TCP keepalive. For HTTP you can use Connection: keep-alive Keep-Alive: timeout=30, max=1000 header.Once a TCP connection has been established there is no state on routers in between the 2 ends of the connection. The issue here is firewalls / NAT entries timing out. And indeed, no RSTs are sent.We had the issue in K8s with the conntrack module set too low.Now, you can try to put in an HTTP Keep-Alive, but that will not help you. The HTTP Keep-Alive is merely for connection re-use at the HTTP level, i.e. it doesn't close the connection: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/...An HTTP Keep-Alive does not generate any packages, it merely postpones the close.A TCP Keep-Alive generates packages which resets the timers.",
-    "parent": 44922020,
-    "depth": 1
-  },
-  {
     "id": 44922705,
     "by": "andunie",
     "timeISO": "2025-08-16T12:28:40.000Z",
@@ -48,18 +40,18 @@
     "depth": 1
   },
   {
-    "id": 44922938,
-    "by": "skobes",
-    "timeISO": "2025-08-16T12:52:35.000Z",
-    "textPlain": "The first \"trap\" on the page says \"min-width: auto makes min width determined by content\", but this is false outside of flex/grid.From MDN: \"For block boxes, inline boxes, inline blocks, and all table layout boxes auto resolves to 0.\"https://developer.mozilla.org/en-US/docs/Web/CSS/min-width",
+    "id": 44925922,
+    "by": "nayuki",
+    "timeISO": "2025-08-16T18:45:05.000Z",
+    "textPlain": "Largely a good listicle. Some feedback:> Unicode unification. Different characters in different language use the same code point. Different languages' font variants render the same code point differently. 語This isn't a trap. The given example character means the same thing in Chinese and Japanese, and the Japanese version was imported from China. People from both languages recognize both font variants as the same conceptual character.The author is making it sound like the letter 'A' in English should have a different code point than an 'A' in French. Or that a lowercase 'a' with the top tail should be a different character than a lowercase 'a' without the top tail.Anyway, this is discussed at length in https://en.wikipedia.org/wiki/Han_unification> There is a negative zero -0.0 which is different to normal zero. The negative zero equals zero when using floating point comparision. Normal zero is treated as \"positive zero\".And there are two ways to distinguish negative zero from normal zero: By their integer bit patterns, or by the fact that 1.0/-0.0 == -Inf vs. 1.0/0.0 == +Inf.> It's recommended to configure the server's time zone as UTC.Big yes. I use UTC for servers, logs, photos, and anything that is worth archiving and timestamping properly. Local time is only for colloquial use.> For integer (low + high) / 2 may overflow. A safer way is low + (high - low) / 2Yes, but if low and high could be negative numbers, then you've just shifted the overflow to a different range. This matters for general binary search over an integer range, as opposed to unsigned binary search over an array.> C/C++I'm going to throw in one of my lists of pitfalls - just using integer types and arithmetic correctly in C/C++ is a massive developer trap. That's like the most basic thing in programming. https://www.nayuki.io/page/summary-of-c-cpp-integer-rules> Rebase can rewrite history\"Can\" is a weasel word; rebase does nothing but rewrite history.",
     "parent": 44922020,
     "depth": 1
   },
   {
-    "id": 44925170,
-    "by": "koromak",
-    "timeISO": "2025-08-16T17:06:13.000Z",
-    "textPlain": "Does anyone truly understand all the little edge cases with CSS?I've write tons and tons of CSS, have done for a decade. I don't sit and think about the exact interactions, I just know a couple things that might work if I'm getting something unexpected.I don't really see it possible to commit that to memory, unless I literally start working on an interpreter myself.",
+    "id": 44922938,
+    "by": "skobes",
+    "timeISO": "2025-08-16T12:52:35.000Z",
+    "textPlain": "The first \"trap\" on the page says \"min-width: auto makes min width determined by content\", but this is false outside of flex/grid.From MDN: \"For block boxes, inline boxes, inline blocks, and all table layout boxes auto resolves to 0.\"https://developer.mozilla.org/en-US/docs/Web/CSS/min-width",
     "parent": 44922020,
     "depth": 1
   },
@@ -76,6 +68,14 @@
     "by": "ngruhn",
     "timeISO": "2025-08-16T12:33:10.000Z",
     "textPlain": "A recent trap for me:Regex semantics is subtly different across languages. E.g. a{,3} matches between 0 and 3 \"a\" characters in Python. In JavaScript it matches the literal string \"a{,3}\".",
+    "parent": 44922020,
+    "depth": 1
+  },
+  {
+    "id": 44925170,
+    "by": "koromak",
+    "timeISO": "2025-08-16T17:06:13.000Z",
+    "textPlain": "Does anyone truly understand all the little edge cases with CSS?I've write tons and tons of CSS, have done for a decade. I don't sit and think about the exact interactions, I just know a couple things that might work if I'm getting something unexpected.I don't really see it possible to commit that to memory, unless I literally start working on an interpreter myself.",
     "parent": 44922020,
     "depth": 1
   },
@@ -136,6 +136,14 @@
     "depth": 2
   },
   {
+    "id": 44926223,
+    "by": "mikojan",
+    "timeISO": "2025-08-16T19:22:24.000Z",
+    "textPlain": "> > Java, C# and JS use UTF-16-like encoding for in-memory string>> That’s incorrect for Java,Maybe so, technically, but if you Base64 encode a string in a language that uses UTF-8 (or another UTF-16 with another endian) and decode it in Java, Java's UTF-16 representation will be the problem you will be dealing with.",
+    "parent": 44924418,
+    "depth": 2
+  },
+  {
     "id": 44924891,
     "by": "scarface_74",
     "timeISO": "2025-08-16T16:34:08.000Z",
@@ -165,14 +173,6 @@
     "timeISO": "2025-08-16T13:04:22.000Z",
     "textPlain": "I guess the first trap should really be: \"You cannot read any CSS property in isolation, as just like what the name implies, defaults and what values end up doing cascades through all the rules your document ends up using\"",
     "parent": 44922938,
-    "depth": 2
-  },
-  {
-    "id": 44925363,
-    "by": "yurishimo",
-    "timeISO": "2025-08-16T17:29:32.000Z",
-    "textPlain": "I think there can be a different way to think about CSS that can help with that feeling of never understanding it all. Recently I’ve heard people influential in the CSS world describe it as a “suggestion” to the browser. The browser has its own styles, the user might have some custom stylesheet on top of the browser’s version, extensions, etc etc and at some point CSS is really more a long list of “suggestions” about how the site should look.If you embrace that idea to the fullest, you can create some interesting designs/patterns that can be more resilient. The “downside” is that this way of writing css will likely made the pixel perfect head of the marketing department hate you unless they also write code.I think it’s also okay to say that some ways of writing css just aren’t relevant anymore. A good parallel in mind is building construction and general carpentry. These days, a quick 2x4 stud wall or insulated concrete forms is fast, cheap, and standardized around the world. However, many craftspeople still exist that will create beautiful joinery for what is ultimately a simple thing, but we can appreciate that art standalone. With CSS, I don’t suspect we will ever need to go back to floats or crazy background images or whatever but it’s nice that those tools are still there for not only the sake of back compat, but also as a way to tinker and “craft” something bespoke for a special project or just because you like it. Education will eventually catch up and grid and flexbox will keep gaining popularity until we decide that it’s too complicated and come up with some new algorithm. That can all be true though and you can bring value as a developer without knowing every single aspect to the public API.",
-    "parent": 44925170,
     "depth": 2
   },
   {
@@ -213,6 +213,14 @@
     "timeISO": "2025-08-16T13:08:15.000Z",
     "textPlain": "Honorable mention to [a-z], gotta be my favorite trap",
     "parent": 44922737,
+    "depth": 2
+  },
+  {
+    "id": 44925363,
+    "by": "yurishimo",
+    "timeISO": "2025-08-16T17:29:32.000Z",
+    "textPlain": "I think there can be a different way to think about CSS that can help with that feeling of never understanding it all. Recently I’ve heard people influential in the CSS world describe it as a “suggestion” to the browser. The browser has its own styles, the user might have some custom stylesheet on top of the browser’s version, extensions, etc etc and at some point CSS is really more a long list of “suggestions” about how the site should look.If you embrace that idea to the fullest, you can create some interesting designs/patterns that can be more resilient. The “downside” is that this way of writing css will likely made the pixel perfect head of the marketing department hate you unless they also write code.I think it’s also okay to say that some ways of writing css just aren’t relevant anymore. A good parallel in mind is building construction and general carpentry. These days, a quick 2x4 stud wall or insulated concrete forms is fast, cheap, and standardized around the world. However, many craftspeople still exist that will create beautiful joinery for what is ultimately a simple thing, but we can appreciate that art standalone. With CSS, I don’t suspect we will ever need to go back to floats or crazy background images or whatever but it’s nice that those tools are still there for not only the sake of back compat, but also as a way to tinker and “craft” something bespoke for a special project or just because you like it. Education will eventually catch up and grid and flexbox will keep gaining popularity until we decide that it’s too complicated and come up with some new algorithm. That can all be true though and you can bring value as a developer without knowing every single aspect to the public API.",
+    "parent": 44925170,
     "depth": 2
   },
   {

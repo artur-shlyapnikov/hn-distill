@@ -1,1 +1,194 @@
-[]
+[
+  {
+    "id": 44926176,
+    "by": "ludwik",
+    "timeISO": "2025-08-16T19:17:42.000Z",
+    "textPlain": "Turns out what constitutes \"claiming\" an IP on the site is nothing like you’d expect. You don’t need to prove you control the IP. All it takes is embedding a transparent 1x1 tracking pixel on a website, and every IP that loads the page gets counted as “claimed” by you. In other words, it’s just a tally of visitors (or even ad impressions), not actual control of the IPs. So there’s really nothing meaningful here.",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926484,
+    "by": "jsnell",
+    "timeISO": "2025-08-16T20:01:53.000Z",
+    "textPlain": "The 9% number comes from dividing by the number of IPv4 hosts reported by Censys, who do a portscan of the entire IPv4 space.But obviously most clients will not have any ports open, and wouldn't be visible to the scan. It's not at all correct to treat that as the number of actively used IPv4 addresses.",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926604,
+    "by": "luckystarr",
+    "timeISO": "2025-08-16T20:21:35.000Z",
+    "textPlain": "My hunch: it's not a real captcha on their page femboy.cat, but actually a script which \"claims\" the address in the ipv4.games game. Nothing to see here, move along.",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926353,
+    "by": "mijoharas",
+    "timeISO": "2025-08-16T19:41:11.000Z",
+    "textPlain": "I'm trying to understand. If 9% is 20 million then the total is ~220 million. That doesn't seem right to me. So this isn't talking about the ipv4 address space is it? (Ignoring reserved blocks that's 4 billion). What exactly is it talking about?",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926372,
+    "by": "Aurornis",
+    "timeISO": "2025-08-16T19:44:10.000Z",
+    "textPlain": "So to “claim” an IP address you only need to send a GET request to the server with your tag as a param?What am I missing? It seems like sampling the headers for the incoming requests would reveal the answer quickly if it’s a 1x1 tracking pixel.There’s a good chance that they wouldn’t really like the answer: It could have been slipped into a WordPress plugin or added as a call from an npm package, generating millions of unintended requests from other people’s computers to win an internet game.",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926339,
+    "by": "miyuru",
+    "timeISO": "2025-08-16T19:39:24.000Z",
+    "textPlain": "Currently top player no 2 \"jackson\" uses JS to send a request from his websites and anyone who clones his code.https://github.com/search?q=https%3A%2F%2Fipv4.games%2Fclaim...NO 1 must be doing a similar thing.Other attempts: https://github.com/search?q=ipv4.games%2Fclaim&type=code",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926318,
+    "by": "flerchin",
+    "timeISO": "2025-08-16T19:36:22.000Z",
+    "textPlain": "How is 20M IPs 9% of all IPv4 hosts? That works out to something like 220M IPv4 hosts, when I'd naively think there should be more like 4B or so.",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926393,
+    "by": "nilsherzig",
+    "timeISO": "2025-08-16T19:46:52.000Z",
+    "textPlain": "Couple ideas (can’t test them now):They list guns.lol as one of their projects. Looks like a linktree type of personal website hosting service. Some traffic might come from that network of pages, but if that would be the case I would expect google to have indexed their claim links by now. Same thing goes for the captcha service they are running.They also have a cracked version of a Minecraft cheat client on GitHub. It’s very common to use residential proxies while cheating (or cracking Minecraft accounts), so that might be another option (obviously not for all of the IPs). Someone should scan the IPs claimed by them for common proxy ports.Might be a good idea to run their claims through a geoip db, even tho they are pretty spread out over different subnets, there still might be a correlation there (like mostly Spanish speaking countries or something like that).Looks like the gameserver provides some more insights at /statusz, notably there a basically no „image claims“. So it would have to be iframes or script src requests (?).Also at 9% of ipv4 we might have contributed, I will set a notification with my firewall and report back :).",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926502,
+    "by": "dilyevsky",
+    "timeISO": "2025-08-16T20:05:05.000Z",
+    "textPlain": "https://ipv4.games/user.html?name=femboy.cat - looking at claimed networks they go in order. Some kind of spoofing attack either on TCP layer (less likely) or maybe server is consuming X-Real-IP or X-Forwarded-For without verification",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926574,
+    "by": "zocco",
+    "timeISO": "2025-08-16T20:16:19.000Z",
+    "textPlain": "An analysis of the source IP address networks might reveal more about the technique he's using. For example if they are all from one cloud provider, he could be rapidly allocating and deallocating IPv4 addresses from their pool, to attach to a VM to make the requests.That said, perhaps it's multiple different techniques being used to make requests from such a huge number of different IP addresses. There's probably not one simple answer to this puzzle.",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926325,
+    "by": "mzajc",
+    "timeISO": "2025-08-16T19:37:30.000Z",
+    "textPlain": "> There are currently 13'797 Tor exit nodes <https://www.dan.me.uk/tornodes>As far as I'm aware, this is off by a magnitude, and I'm not sure where the number comes from because the linked website lists much fewer (but ratelimits to 1/30m for some reason?). The official list at https://check.torproject.org/torbulkexitlist lists just over 1k exits, so I really doubt these made much of a difference.",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926582,
+    "by": "thrance",
+    "timeISO": "2025-08-16T20:17:15.000Z",
+    "textPlain": "So, everyone just ignored that one guy that suggested simply... asking them by email?",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926197,
+    "by": "progbits",
+    "timeISO": "2025-08-16T19:20:08.000Z",
+    "textPlain": "Buying ads or embedding on some popular sites seems like best theory.@jart: You could log referer header maybe, or user agent?",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926488,
+    "by": "g-mork",
+    "timeISO": "2025-08-16T20:02:29.000Z",
+    "textPlain": "One person was able to claim 9% of all HN clickthroughs",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926474,
+    "by": "Thaxll",
+    "timeISO": "2025-08-16T20:00:39.000Z",
+    "textPlain": "Would be interesting to log the referer.",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926514,
+    "by": "TZubiri",
+    "timeISO": "2025-08-16T20:06:29.000Z",
+    "textPlain": "If the shared proxy addresses hypothesis is correct, this would single handedly make for a great ip blacklist",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926295,
+    "by": "autoexec",
+    "timeISO": "2025-08-16T19:32:57.000Z",
+    "textPlain": "Man, I really hate NANOG's new site.I've been using https://seclists.org/nanog/ since the switch and it's so much better.On the new site I see that the post has a link at the bottom which claims to take you to non-JS version of the site and that gave me hope, but following it and clicking on the \"list overview\" button takes you to a page that doesn't work without JS, and clicking on the \"all threads\" page just gives you links to posts that also need JS.",
+    "parent": 44925570,
+    "depth": 1
+  },
+  {
+    "id": 44926220,
+    "by": "treve",
+    "timeISO": "2025-08-16T19:22:03.000Z",
+    "textPlain": "It's still an interesting post, because if true I'd still be curious how you'd get 20 million people to load anything.But the title here is totally misleading because it sure sounds like someone took control of 9% of the ipv4 address space but the actual post starts with context.",
+    "parent": 44926176,
+    "depth": 2
+  },
+  {
+    "id": 44926567,
+    "by": "schmichael",
+    "timeISO": "2025-08-16T20:15:30.000Z",
+    "textPlain": "> So there’s really nothing meaningful here.If it’s not meaningful it should be trivial to beat right? ;)This seems like a super fun game to find the upper bound on IPv4 addresses someone can open a socket from!",
+    "parent": 44926176,
+    "depth": 2
+  },
+  {
+    "id": 44926588,
+    "by": "throwmeaway222",
+    "timeISO": "2025-08-16T20:18:12.000Z",
+    "textPlain": "Yeah that's what I suspect as well - any website where you can put HTML on the domain in some way - there have to be many software packages out there that have this problem.It could also be as simple as an ad network femboy works at.",
+    "parent": 44926372,
+    "depth": 2
+  },
+  {
+    "id": 44926383,
+    "by": "Hikikomori",
+    "timeISO": "2025-08-16T19:45:40.000Z",
+    "textPlain": "Many are reserved, not in use or even advertised.",
+    "parent": 44926318,
+    "depth": 2
+  },
+  {
+    "id": 44926536,
+    "by": "charcircuit",
+    "timeISO": "2025-08-16T20:11:18.000Z",
+    "textPlain": "The website sorts them.",
+    "parent": 44926502,
+    "depth": 2
+  },
+  {
+    "id": 44926367,
+    "by": "kortilla",
+    "timeISO": "2025-08-16T19:43:12.000Z",
+    "textPlain": "Public exit nodes are a subset of exit nodes",
+    "parent": 44926325,
+    "depth": 2
+  },
+  {
+    "id": 44926602,
+    "by": "nilsherzig",
+    "timeISO": "2025-08-16T20:21:24.000Z",
+    "textPlain": "Seeing everyone trying to come up with an idea and participating is way more fun",
+    "parent": 44926582,
+    "depth": 2
+  }
+]

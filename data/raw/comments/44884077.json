@@ -32,10 +32,26 @@
     "depth": 1
   },
   {
+    "id": 44926205,
+    "by": "lagrange77",
+    "timeISO": "2025-08-16T19:20:38.000Z",
+    "textPlain": "Does any of you use one of these (Dokploy, CapRover, Dokku, Coolify) like Netlify, as advertised by some?For me, the core feature of Netlify is building and deploying static websites quickly, with minimal configuration and triggered by git commits.Does any of these really resemble that experience (except for the CDN Netlify uses, of course)?",
+    "parent": 44884077,
+    "depth": 1
+  },
+  {
     "id": 44925293,
     "by": "password4321",
     "timeISO": "2025-08-16T17:21:34.000Z",
     "textPlain": "Last time Coolify came up (https://news.ycombinator.com/item?id=43555996 +183 comments) user crudbug linked a bunch of these:coolify, dokku, dockploy, swiftwave; and K8s-based: cozystack, kubero, pluralrelated: https://news.ycombinator.com/item?id=41358020 (+271 comments; 2024) Dokku: My favorite personal serverless platformI'm glad there's options but once I got one working I feel like I'd be stuck so feedback beforehand from those who've tried multiple is escpecially valuable, especially the monetization aspect for sustainability.",
+    "parent": 44884077,
+    "depth": 1
+  },
+  {
+    "id": 44922053,
+    "by": "lagrange77",
+    "timeISO": "2025-08-16T10:40:48.000Z",
+    "textPlain": "https://docs.dokploy.com/docs/core/comparisonDokploy vs. CapRover, Dokku, Coolify",
     "parent": 44884077,
     "depth": 1
   },
@@ -52,14 +68,6 @@
     "by": "fariszr",
     "timeISO": "2025-08-16T15:44:56.000Z",
     "textPlain": "The problem for me with dokploy is how do you manage in-config secrets for deployed apps.\nThere are many apps which have secrets in their configs that can't be imported from env variables.The only solution is to have these files locally on the server and then use an external bind mount.I solved this in my docker-compose-gitops-action by just inserting secrets before copying the files to the server.https://fariszr.com/docker-compose-gitops-github/you can't do that with dokploy even with this dokploy action so it's triggers a pull from the source repo only.Also the preview feature on dokploy is almost useless because there is no variable to get the preview URL dynamically.",
-    "parent": 44884077,
-    "depth": 1
-  },
-  {
-    "id": 44922053,
-    "by": "lagrange77",
-    "timeISO": "2025-08-16T10:40:48.000Z",
-    "textPlain": "https://docs.dokploy.com/docs/core/comparisonDokploy vs. CapRover, Dokku, Coolify",
     "parent": 44884077,
     "depth": 1
   },
@@ -181,6 +189,22 @@
     "timeISO": "2025-08-16T12:58:36.000Z",
     "textPlain": "I'm about to take a look.  My first thought would be can it also manage the proxy config (with Caddy being my ideal choice) ?",
     "parent": 44922947,
+    "depth": 2
+  },
+  {
+    "id": 44926407,
+    "by": "pachevjoseph",
+    "timeISO": "2025-08-16T19:49:10.000Z",
+    "textPlain": "I use Coolify for my own personal static site and it’s just like that. Git pushes redeploy my site and I get a discord notification once’s it’s done. The only manual thing I did was use a cloudlfare tunnel   So it’s available to the public, since I am using my homelab to host Coolify.I host maybe 8 different side projects on Coolify like this. Most don’t even have a Dockerfile in the repo. I use the standard nix packs option, and builds, rolling deployments etc are auto handled.",
+    "parent": 44926205,
+    "depth": 2
+  },
+  {
+    "id": 44926304,
+    "by": "networked",
+    "timeISO": "2025-08-16T19:35:07.000Z",
+    "textPlain": "My personal comparison table with 11 items: https://dbohdan.com/self-hosted-paas.\nNote: no K8s.",
+    "parent": 44925293,
     "depth": 2
   },
   {
