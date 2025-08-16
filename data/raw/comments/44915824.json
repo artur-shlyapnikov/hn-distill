@@ -120,18 +120,18 @@
     "depth": 1
   },
   {
-    "id": 44921566,
-    "by": "owl_vision",
-    "timeISO": "2025-08-16T08:59:58.000Z",
-    "textPlain": "What were the resource setups?  How do they compare to linux resource setups?Defaults in current are in etc.amd64/login.conf.  https://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/src/etc...(p.s.: the bubble are cool.  highly distracting to me, hence I could not read the article in full.)",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
     "id": 44916562,
     "by": "jedberg",
     "timeISO": "2025-08-15T19:37:38.000Z",
     "textPlain": "\"It depends\"Faster is all relative.  What are you doing?  Is it networking?  Then BSD is probably faster than Linux.  Is it something Linux is optimized for?  Then probably Linux.A general benchmark?  Who knows, but does it really matter?At the end of the day, you should benchmark your own workload, but also it's important to realize that in this day and age, it's almost never the OS that is the bottleneck.  It's almost always a remote network call.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44921566,
+    "by": "owl_vision",
+    "timeISO": "2025-08-16T08:59:58.000Z",
+    "textPlain": "What were the resource setups?  How do they compare to linux resource setups?Defaults in current are in etc.amd64/login.conf.  https://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/src/etc...(p.s.: the bubble are cool.  highly distracting to me, hence I could not read the article in full.)",
     "parent": 44915824,
     "depth": 1
   },
@@ -192,18 +192,18 @@
     "depth": 2
   },
   {
-    "id": 44922860,
-    "by": "redleader55",
-    "timeISO": "2025-08-16T12:45:19.000Z",
-    "textPlain": "Succesive rdtsc calls, even on the same CPU, are not guaranteed to be executed in the expected order by the CPU - [1].1 - https://lore.kernel.org/all/da9e8bee-71c2-4a59-a865-3dd6c5c9...",
-    "parent": 44916909,
-    "depth": 2
-  },
-  {
     "id": 44918815,
     "by": "mananaysiempre",
     "timeISO": "2025-08-16T00:29:24.000Z",
     "textPlain": "This does not account for frequency scaling on laptops, context switches, core migrations, time spent in syscalls (if you don’t want to count it), etc. On Linux, you can get the kernel to expose the real (non-“reference”) cycle counter for you to access with __rdpmc() (no syscall needed) and put the corrective offset in an memory-mapped page. See the example code under cap_user_rdpmc on the manpage for perf_event_open() [1] and NOTE WELL the -1 in rdpmc(idx-1) there (I definitely did not waste an hour on that).If you want that on Windows, well, it’s possible, but you’re going to have to do it asynchronously from a different thread and also compute the offsets your own damn self[2].Alternatively, on AMD processors only, starting with Zen 2, you can get the real cycle count with __aperf() or __rdpru(__RDPRU_APERF) or manual inline assembly depending on your compiler. (The official AMD docs will admonish you not to assign meaning to anything but the fraction APERF / MPERF in one place, but the conjunction of what they tell you in other places implies that MPERF must be the reference cycle count and APERF must be the real cycle count.) This is definitely less of a hassle, but in my experience the cap_user_rdpmc method on Linux is much less noisy.[1] https://man7.org/linux/man-pages/man2/perf_event_open.2.html[2] https://www.computerenhance.com/p/halloween-spooktacular-day...",
+    "parent": 44916909,
+    "depth": 2
+  },
+  {
+    "id": 44922860,
+    "by": "redleader55",
+    "timeISO": "2025-08-16T12:45:19.000Z",
+    "textPlain": "Succesive rdtsc calls, even on the same CPU, are not guaranteed to be executed in the expected order by the CPU - [1].1 - https://lore.kernel.org/all/da9e8bee-71c2-4a59-a865-3dd6c5c9...",
     "parent": 44916909,
     "depth": 2
   },
@@ -260,6 +260,14 @@
     "by": "somat",
     "timeISO": "2025-08-16T06:43:40.000Z",
     "textPlain": "Gotta disagree with you on your minimalist verdict, out of the box openbsd tends to have everything and the kitchen sink, I am not complaining, it is good solid well written software. but I have never found a base linux distro that was as well stocked as a base openbsd install.    a c compiler\n    a web server\n    3 routing daemons(bgpd, ospfd, ripd)\n    a mail server(smtpd, spamd)\n    a sound server(sndiod)\n    a reverse proxy(relayd)\n    2 desktop environments(fvwm, cwm)\n    plus many many more\n\nOpenbsd is not some minimalist highly focused operating system, I mean what on earth is it actually for? based on the included features, A desktop development system that is also the router and office web and mail server?Personally I love it, after a fresh install I always feel like I could rebuild the internet from scratch using only what is found in front of me if I needed to.",
+    "parent": 44918133,
+    "depth": 2
+  },
+  {
+    "id": 44923432,
+    "by": "ksec",
+    "timeISO": "2025-08-16T13:51:57.000Z",
+    "textPlain": "I think OpenBSD has gotten quite a bit faster in the last 4 - 5 releases. Unfortunately we will need to wait for another round of benchmarks by phoronix as it seems to have problems every time benchmarks are ran.Somewhere along the line may be it will become fast enough and certain applications may use it for different sets of reasons.",
     "parent": 44918133,
     "depth": 2
   },
@@ -389,14 +397,6 @@
     "timeISO": "2025-08-15T22:02:12.000Z",
     "textPlain": "I think dup2 is the hint, but in the example case the dup2 path isn't invoked--it's conditioned on passing an argument, but the test runs are just `./a.out`. IIUC, the issue is growing the file descriptor table. The dup2 is a workaround that preallocates a larger table (666 > 256 * 2)[1], to avoid the pathological case when a multi-threaded process grows the table. From the linked infosec.exchange discussion it seems the RCU-based approach Linux is using can result in some significant latency, resulting in much worse performance in simple cases like this compared to a simple mutex[2].[1] Off-by-one. To be more precise, the state established by the dup2 is (667 > 256 * 2), or rather (667 > 3 + 256 * 2).[2] Presumably what OpenBSD is using. I'd be surprised if they've already imported and adopted FreeBSD's approach mentioned in the linked discussion, notwithstanding that OpenBSD has been on an MP scalability tear the past few years.",
     "parent": 44916757,
-    "depth": 2
-  },
-  {
-    "id": 44919839,
-    "by": "loeg",
-    "timeISO": "2025-08-16T03:22:55.000Z",
-    "textPlain": "The article is marginally more interesting than the headline, and it's not very long.  Go ahead and read it.",
-    "parent": 44916562,
     "depth": 2
   }
 ]

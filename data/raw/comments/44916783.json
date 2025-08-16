@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44923128,
-    "by": "astrolx",
-    "timeISO": "2025-08-16T13:15:54.000Z",
-    "textPlain": "For what it's worth, I have a self hosted git forge where I upped the maximum filesize limit. I use git repositories for my science projects, they can each have hundreds of large files (> 25 Mb as described in the article).\nI don't use LFS, I don't encounter any issue.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44917895,
     "by": "jauer",
     "timeISO": "2025-08-15T22:15:27.000Z",
@@ -48,14 +40,6 @@
     "depth": 1
   },
   {
-    "id": 44921021,
-    "by": "flohofwoe",
-    "timeISO": "2025-08-16T07:17:30.000Z",
-    "textPlain": "Even ancient svn works much better out of the box for large binary files than git (e.g. a 150 GB working directory with many big Photoshop files and other binary assets is no problem in SVN).What does SVN do differently than git when it comes to large binary files, and why can't git use the same approach?I also don't quite understand tbh how offloading large files to somewhere else would be fundamentally different than storing all files in one place except complicating everything? Storage is storage, how would a different storage location fix any of the current performance and robustness problems? Offloading just sounds like a solution for public git forges which don't want to deal with big files because it's too costly for them, but increased hosting cost is not the 'large binary file problem' of git.(edit: apparently git supports proper locking(?) so I removed that section - ps: nvm it looks like the file locking feature is only in git-lfs)",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918524,
     "by": "technoweenie",
     "timeISO": "2025-08-15T23:40:03.000Z",
@@ -64,10 +48,26 @@
     "depth": 1
   },
   {
+    "id": 44921021,
+    "by": "flohofwoe",
+    "timeISO": "2025-08-16T07:17:30.000Z",
+    "textPlain": "Even ancient svn works much better out of the box for large binary files than git (e.g. a 150 GB working directory with many big Photoshop files and other binary assets is no problem in SVN).What does SVN do differently than git when it comes to large binary files, and why can't git use the same approach?I also don't quite understand tbh how offloading large files to somewhere else would be fundamentally different than storing all files in one place except complicating everything? Storage is storage, how would a different storage location fix any of the current performance and robustness problems? Offloading just sounds like a solution for public git forges which don't want to deal with big files because it's too costly for them, but increased hosting cost is not the 'large binary file problem' of git.(edit: apparently git supports proper locking(?) so I removed that section - ps: nvm it looks like the file locking feature is only in git-lfs)",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44917935,
     "by": "glitchc",
     "timeISO": "2025-08-15T22:19:21.000Z",
     "textPlain": "No. This is not a solution.While git LFS is just a kludge for now, writing a filter argument during the clone operation is not the long-term solution either.Git clone is the very first command most people will run when learning how to use git.  Emphasized for effect: the very first command.Will they remember to write the filter? Maybe, if the tutorial to the cool codebase they're trying to access mentions it. Maybe not. What happens if they don't? It may take a long time without any obvious indication. And if they do? The cloned repo might not be compilable/usable since the blobs are missing.Say they do get it right. Will they understand it? Most likely not. We are exposing the inner workings of git on the very first command they learn. What's a blob? Why do I need to filter on it? Where are blobs stored? It's classic abstraction leakage.This is a solved problem: Rsync does it. Just port the bloody implementation over. It does mean supporting alternative representations or moving away from blobs altogether, which git maintainers seem unwilling to do.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44923128,
+    "by": "astrolx",
+    "timeISO": "2025-08-16T13:15:54.000Z",
+    "textPlain": "For what it's worth, I have a self hosted git forge where I upped the maximum filesize limit. I use git repositories for my science projects, they can each have hundreds of large files (> 25 Mb as described in the article).\nI don't use LFS, I don't encounter any issue.",
     "parent": 44916783,
     "depth": 1
   },
@@ -168,18 +168,18 @@
     "depth": 1
   },
   {
-    "id": 44919197,
-    "by": "mathi0750",
-    "timeISO": "2025-08-16T01:24:03.000Z",
-    "textPlain": "Have you tried Oxen.ai? they are doing more fine-tuning and inference now but they have an open-source data version control platform written in rust at the core of their product.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918460,
     "by": "nixpulvis",
     "timeISO": "2025-08-15T23:29:50.000Z",
     "textPlain": "I was just using git LFS and was very concerned with how bad the help message was compared to the rest of git. I know it seems small, but it just never felt like a team player, and now I'm very happy to hear this.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919197,
+    "by": "mathi0750",
+    "timeISO": "2025-08-16T01:24:03.000Z",
+    "textPlain": "Have you tried Oxen.ai? they are doing more fine-tuning and inference now but they have an open-source data version control platform written in rust at the core of their product.",
     "parent": 44916783,
     "depth": 1
   },
@@ -392,11 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44917992,
-    "by": "IshKebab",
-    "timeISO": "2025-08-15T22:25:41.000Z",
-    "textPlain": "I totally agree. This follows a long tradition of Git \"fixing\" things by adding a flag that 99% of users won't ever discover. They never fix the defaults.And yes, you can fix defaults without breaking backwards compatibility.",
-    "parent": 44917935,
+    "id": 44919683,
+    "by": "firesteelrain",
+    "timeISO": "2025-08-16T02:47:22.000Z",
+    "textPlain": "Do you teach CI/CD systems architecture in your classes?  Because I am finding that is what the junior engineers that we have hired seem to be missing.Tying it all in with GitLab, Artifactory, CodeSonar, Anchore etc",
+    "parent": 44919639,
     "depth": 2
   }
 ]

@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44920799,
-    "by": "mjg59",
-    "timeISO": "2025-08-16T06:38:19.000Z",
-    "textPlain": "I'm a huge fan of the technical basis for this. I want services to attest themselves to me so I can verify that they're running the source code I can inspect. And, well, the combination of founders here? Good fucking lord. I'm really fascinated to see whether we can generate enough trust in the code to be able to overcome the complete lack of trust that these people deserve. I can't imagine a better way to troll me on this point.",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44918989,
     "by": "jchw",
     "timeISO": "2025-08-16T00:56:56.000Z",
     "textPlain": "Intel SGX/remote attestation for verifying that servers are running the code they say they are running is very interesting, I believe Signal talked about doing something similar for contact discovery, but at a base level it requires a lot of trust. How do I verify that the attestation I receive back is the one of the machine I am contacting? Can I know for sure that this isn't a compromised SGX configuration, since the system has been broken in the past? Furthermore, can I really be sure that I can trust SGX attestations if I can't actually verify SGX itself? Even if the code running under SGX is verifiable, as an ordinary user it's basically impossible to tell if there are bugs that would make it possible to compromise.Personally I like the direction Mullvad went instead. I get that it means we really can't verify Mullvad's claims, but even in the event they're lying, at least we got some cool Coreboot ports out of it.If you're really paranoid, neither this service nor Mullvad offers that much assurance. I like the idea of verifiability, but I believe the type of people who want it are looking to satisfy deeper paranoia than can be answered with just trusting Intel... Still, more VPN options that try to take privacy claims seriously is nothing to complain about.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44920799,
+    "by": "mjg59",
+    "timeISO": "2025-08-16T06:38:19.000Z",
+    "textPlain": "I'm a huge fan of the technical basis for this. I want services to attest themselves to me so I can verify that they're running the source code I can inspect. And, well, the combination of founders here? Good fucking lord. I'm really fascinated to see whether we can generate enough trust in the code to be able to overcome the complete lack of trust that these people deserve. I can't imagine a better way to troll me on this point.",
     "parent": 44918060,
     "depth": 1
   },
@@ -40,18 +40,18 @@
     "depth": 1
   },
   {
-    "id": 44920975,
-    "by": "eptcyka",
-    "timeISO": "2025-08-16T07:08:02.000Z",
-    "textPlain": "The chief privacy officer of the company is the moron that destroyed Freenode. Of course, Libera lives on, but it is a transition we could’ve done without.",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44918951,
     "by": "rkagerer",
     "timeISO": "2025-08-16T00:49:24.000Z",
     "textPlain": "Someone had a comment here that just disappeared, mentioning it's by Mark Karpelès (yes, the same guy from MtGox) and Andrew Lee.  Why did that remark get deleted?",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44920975,
+    "by": "eptcyka",
+    "timeISO": "2025-08-16T07:08:02.000Z",
+    "textPlain": "The chief privacy officer of the company is the moron that destroyed Freenode. Of course, Libera lives on, but it is a transition we could’ve done without.",
     "parent": 44918060,
     "depth": 1
   },
@@ -224,11 +224,19 @@
     "depth": 2
   },
   {
-    "id": 44923085,
-    "by": "rasengan",
-    "timeISO": "2025-08-16T13:10:07.000Z",
-    "textPlain": "> I'm a huge fan of the technical basis for thisTrusting random internet people is actually the biggest “troll” of the internet.Any VPN that asks you to trust their guarantees and not the guarantees of code is selling you snake oil and should not be trusted.Trust is not a feature in security. Thus, we removed and replaced it with code based guarantees.",
-    "parent": 44920799,
+    "id": 44919066,
+    "by": "MagicalTux",
+    "timeISO": "2025-08-16T01:07:12.000Z",
+    "textPlain": "Intel will not attest insecure configurations. Our client will automatically verify the attestation it receives to make sure the certificate isn't expired and has a proper signature under Intel's CA trust.A lot of people have been attempting to attack SGX, and while there have been some successful attacks these have been addressed by Intel and resolved. Intel will not attest any insecure configuration as do other TEE vendors (AMD SEV, ARM Trustzone, etc).",
+    "parent": 44918989,
+    "depth": 2
+  },
+  {
+    "id": 44919114,
+    "by": "junon",
+    "timeISO": "2025-08-16T01:14:21.000Z",
+    "textPlain": "> Can I know for sure that this isn't a compromised SGX configuration, since the system has been broken in the past?As far as I'm aware, no. Any network protocol can be spoofed, with varying degrees of difficulty.I would love to be wrong.",
+    "parent": 44918989,
     "depth": 2
   },
   {
@@ -248,19 +256,11 @@
     "depth": 2
   },
   {
-    "id": 44919066,
-    "by": "MagicalTux",
-    "timeISO": "2025-08-16T01:07:12.000Z",
-    "textPlain": "Intel will not attest insecure configurations. Our client will automatically verify the attestation it receives to make sure the certificate isn't expired and has a proper signature under Intel's CA trust.A lot of people have been attempting to attack SGX, and while there have been some successful attacks these have been addressed by Intel and resolved. Intel will not attest any insecure configuration as do other TEE vendors (AMD SEV, ARM Trustzone, etc).",
-    "parent": 44918989,
-    "depth": 2
-  },
-  {
-    "id": 44919114,
-    "by": "junon",
-    "timeISO": "2025-08-16T01:14:21.000Z",
-    "textPlain": "> Can I know for sure that this isn't a compromised SGX configuration, since the system has been broken in the past?As far as I'm aware, no. Any network protocol can be spoofed, with varying degrees of difficulty.I would love to be wrong.",
-    "parent": 44918989,
+    "id": 44923085,
+    "by": "rasengan",
+    "timeISO": "2025-08-16T13:10:07.000Z",
+    "textPlain": "> I'm a huge fan of the technical basis for thisTrusting random internet people is actually the biggest “troll” of the internet.Any VPN that asks you to trust their guarantees and not the guarantees of code is selling you snake oil and should not be trusted.Trust is not a feature in security. Thus, we removed and replaced it with code based guarantees.",
+    "parent": 44920799,
     "depth": 2
   },
   {
@@ -280,14 +280,6 @@
     "depth": 2
   },
   {
-    "id": 44922898,
-    "by": "rasengan",
-    "timeISO": "2025-08-16T12:48:19.000Z",
-    "textPlain": "This has been debunked.Freenode was sold to me by Christel, the previous owner.  I did not even offer to purchase it and simply assumed I was doing what I had been doing for a decade for freenode and many other FOSS projects - keeping them alive.  It was my funds that did so the whole time for freenode (and a number of other projects which I stopped funding thereafter given the death threats I was receiving which led to the end of many of them unfortunately).The Libera staff [1] attempted to steal the domain because they wanted control. None of the staff were developers at the time and complained they couldn’t even write their own irc client. Think of Mozilla. The people who run it aren’t the coders. Same thing.Here are the receipts for every statement I just made:http://techrights.org/wp-content/uploads/2021/05/lee-side.pd...PS: Freenode seems more active then Libera where everyone is just idle (bots?) but that is another point. See for yourself with the client I wrote: IRC.com.[1] By Libera staff I mean the former freenode staffers who left to form freenode. These are the same people I spent a lot of money helping to protect legally from the allegations made by “OldCoder”",
-    "parent": 44920975,
-    "depth": 2
-  },
-  {
     "id": 44920143,
     "by": "aidenn0",
     "timeISO": "2025-08-16T04:21:19.000Z",
@@ -301,6 +293,14 @@
     "timeISO": "2025-08-16T00:59:11.000Z",
     "textPlain": "I'm assuming OP is Mark Karpeles, MagicalTux is a well-known username for him.",
     "parent": 44918951,
+    "depth": 2
+  },
+  {
+    "id": 44922898,
+    "by": "rasengan",
+    "timeISO": "2025-08-16T12:48:19.000Z",
+    "textPlain": "This has been debunked.Freenode was sold to me by Christel, the previous owner.  I did not even offer to purchase it and simply assumed I was doing what I had been doing for a decade for freenode and many other FOSS projects - keeping them alive.  It was my funds that did so the whole time for freenode (and a number of other projects which I stopped funding thereafter given the death threats I was receiving which led to the end of many of them unfortunately).The Libera staff [1] attempted to steal the domain because they wanted control. None of the staff were developers at the time and complained they couldn’t even write their own irc client. Think of Mozilla. The people who run it aren’t the coders. Same thing.Here are the receipts for every statement I just made:http://techrights.org/wp-content/uploads/2021/05/lee-side.pd...PS: Freenode seems more active then Libera where everyone is just idle (bots?) but that is another point. See for yourself with the client I wrote: IRC.com.[1] By Libera staff I mean the former freenode staffers who left to form Libera. These are the same people I spent a lot of money helping to protect legally from the allegations made by “OldCoder”",
+    "parent": 44920975,
     "depth": 2
   },
   {
@@ -384,19 +384,19 @@
     "depth": 2
   },
   {
+    "id": 44923253,
+    "by": "rasengan",
+    "timeISO": "2025-08-16T13:31:53.000Z",
+    "textPlain": "The whole point here is you don’t have to trust us - we don’t want you to. We want you to trust code, period.That said, the freenode issue was debunked and you can see receipts here: http://techrights.org/wp-content/uploads/2021/05/lee-side.pd...I funded freenode since 2011 so any narrative that makes it seem I just appeared out of nowhere is factually untrue. Also, I was handed it because Christel felt I was a good custodian thereof. Instead, former staff who I protected from allegations made by OldCoder for years, went on to form Libera, tried to steal the domain for a developers irc network when they themselves shockingly couldn’t even code a simple irc client, and then made up a false narrative.The state of open source generally isn’t what you think and you would do well for yourself to read Lunduke’s Journal among other things. The developers don’t actually run most of the projects these days. Look at Mozilla.",
+    "parent": 44920654,
+    "depth": 2
+  },
+  {
     "id": 44920192,
     "by": "kachapopopow",
     "timeISO": "2025-08-16T04:31:09.000Z",
     "textPlain": "That's not what they;re trying to prove. Only one server is give the certificate to authenticate with you, you connect to that server, every message with that server is authenticated with that certificate.They are proving that they are the ones hosting the VPN server - not some server that stole their software and are running a honeypot and that the hosting company has not tampered with it.So in the end you still have to trust the company that they are not sharing the certificates with 3rd parties.",
     "parent": 44919510,
-    "depth": 2
-  },
-  {
-    "id": 44918850,
-    "by": "MagicalTux",
-    "timeISO": "2025-08-16T00:33:45.000Z",
-    "textPlain": "Seems fairly similar, ARM's response to TEE basically. We started with SGX because it is battle tested and has a lot of people still trying to find issues, meaning any issue is likely solved quickly, however we are planning to also evaluate and support other solutions. Information is restricted and cannot leave the enclave unless the code running in there allows it to in both cases.",
-    "parent": 44918709,
     "depth": 2
   }
 ]
