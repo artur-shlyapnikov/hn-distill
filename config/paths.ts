@@ -13,6 +13,7 @@ export const PATHS = {
     daily: "data/by-date/daily.json",
     weekly: "data/by-date/weekly.json",
   },
+  search: "data/search.json",
 } as const;
 
 export const pathFor = {

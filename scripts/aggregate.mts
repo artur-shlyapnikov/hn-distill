@@ -241,6 +241,33 @@ async function main(): Promise<void> {
     prev: previous.items.length,
   });
 
+  // Emit compact client-side search index (newest-first like aggregated.json)
+  try {
+    type SearchRow = {
+      id: number;
+      title: string;
+      tags: string[];
+      domain?: string;
+      timeISO: string;
+      score: number;
+    };
+
+    const searchRows: SearchRow[] = payload.items.map((it) => ({
+      id: it.id,
+      title: it.title,
+      tags: Array.isArray(it.tags) ? it.tags : [],
+      domain: it.domain,
+      timeISO: it.timeISO,
+      score: typeof it.score === "number" ? it.score : 0,
+    }));
+
+    await ensureDir(dirname(PATHS.search));
+    await writeJsonFile(PATHS.search, searchRows, { atomic: true, pretty: false });
+    log.info("aggregate", "Search index written", { path: PATHS.search, items: searchRows.length });
+  } catch (error) {
+    log.warn("aggregate", "Failed to write search index", { error: String(error) });
+  }
+
   // Additional grouped outputs for historical slices
   try {
     const { items, updatedISO } = payload;

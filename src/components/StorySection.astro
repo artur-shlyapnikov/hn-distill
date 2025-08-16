@@ -46,7 +46,12 @@ const postHtml = item.postSummary ? mdToHtml(item.postSummary) : "";
 const commentsHtml = item.commentsSummary ? mdToHtml(item.commentsSummary) : "";
 ---
 
-<section class="grid2" aria-labelledby={`t-${item.id}`}>
+<section
+  class="grid2 js-card"
+  aria-labelledby={`t-${item.id}`}
+  tabindex="-1"
+  data-original={item.url ?? hnUrl}
+>
   <div class="card">
     <h2 id={`t-${item.id}`} class="title">
       <a href={storyHref(item.id)}>{safeTitle}</a>

@@ -115,6 +115,7 @@ header h1 a:hover {
   margin: var(--space-xs) 0;
 }
 
+/* Make keyboard scroll positioning sane */
 .grid2 {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -125,6 +126,13 @@ header h1 a:hover {
   overflow: hidden;
   background: var(--color-bg);
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  scroll-margin-top: 20vh;
+}
+
+/* Keyboard selection state for cards */
+.grid2.selected {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
 .card {
