@@ -1,5 +1,13 @@
 [
   {
+    "id": 44918411,
+    "by": "colbyn",
+    "timeISO": "2025-08-15T23:23:01.000Z",
+    "textPlain": "Oh hey good to see some more literature on TextKit2. I remember diving into it when I wrote my proof of concept markdown renderer:https://github.com/SuperSwiftMarkup/SuperSwiftMarkdownProtot...It’s a good example of what else you can do with TextKit2, beyond plain text rendering. Here, I can draw text layout fragments in a core graphics context and use typographic information to also render markdown specific graphics in the background or foreground such as markdown tables. One day I’d love to experiment with a markdown centric spread sheet app.At the time there was so little online info that I had to figure out everything on my own (and no chatbots didn’t have a clue about TextKit2), but STTextView was a great reference. Overall his open source work was very much appreciated. (I should probably say as much in the read me.)That experiment was also a ton of work that ultimately didn’t go anywhere. Most people would rather just use a relatively subpar embedded browser (i.e. web view).",
+    "parent": 44917450,
+    "depth": 1
+  },
+  {
     "id": 44917844,
     "by": "arthurofbabylon",
     "timeISO": "2025-08-15T22:11:10.000Z",
@@ -32,11 +40,11 @@
     "depth": 1
   },
   {
-    "id": 44917987,
-    "by": "krzyzanowskim",
-    "timeISO": "2025-08-15T22:25:15.000Z",
-    "textPlain": "> I personally would not attempt to build an alternative to UITextView on TextKit (1 or 2)sure. If only UITextView/NSTextView did not have bugs impossible to workaround otherwise. TextKit 2 support in UITextView/NSTextView was really bad. improved over time. and still remain buggy. The UITextView focus limits the use of TextKit 2 architecture significantly.",
-    "parent": 44917844,
+    "id": 44918532,
+    "by": "colbyn",
+    "timeISO": "2025-08-15T23:41:59.000Z",
+    "textPlain": "Oh also I’d like to add to the above, the TextKit2 API is way more freeform than people think. You could probably implement your own web browser upon it with optimized line by line text rendering (which isn’t that bad). One thing I always wanted to experiment with is rendering markdown content with horizontally scrollable text fragments for table rows and certain fenced code blocks. Super cool and practical idea for native markdown text rendering. Moreover, in some ways it seems pretty easy to do in TextKit2 since you get very fine grained control over text layout fragment rendering.",
+    "parent": 44918411,
     "depth": 2
   },
   {
@@ -44,6 +52,14 @@
     "by": "lapcat",
     "timeISO": "2025-08-15T22:19:57.000Z",
     "textPlain": "> I would not dismiss TextKit2; it is an incredible improvement over TextKit1.It's an absolute disaster on macOS. Even TextEdit app is now buggy as hell.It's incredible how Apple broke plain text display on the Mac, which was a solved problem since forever.",
+    "parent": 44917844,
+    "depth": 2
+  },
+  {
+    "id": 44917987,
+    "by": "krzyzanowskim",
+    "timeISO": "2025-08-15T22:25:15.000Z",
+    "textPlain": "> I personally would not attempt to build an alternative to UITextView on TextKit (1 or 2)sure. If only UITextView/NSTextView did not have bugs impossible to workaround otherwise. TextKit 2 support in UITextView/NSTextView was really bad. improved over time. and still remain buggy. The UITextView focus limits the use of TextKit 2 architecture significantly.",
     "parent": 44917844,
     "depth": 2
   },

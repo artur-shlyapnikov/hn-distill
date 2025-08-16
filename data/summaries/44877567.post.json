@@ -1,0 +1,8 @@
+{
+  "id": 44877567,
+  "lang": "ru",
+  "summary": "**elucidating-featurenorm-ijepa** — репозиторий для обучения IJEPA-инкодеров без барьеров.  \n- **IJEPA** (Image Joint-Embedding Predictive Architecture) — самонадзор, где модель предсказывает представления скрытых патчей по контексту; не полагается на аугментации.  \n- **Цель проекта**: сделать обучение ViT-инкодеров доступным на одной GPU за часы, а не недели.  \n- **Что внутри**  \n  - `train.py` — запуск одной командой; поддержка DDP, fp16, gradient-accumulation.  \n  - `configs/` — yaml-файлы для ImageNet-1k/100, CIFAR, STL-10.  \n  - `models/` — реализация ViT-S/B/L с нормой признаков (feature-norm) для стабильности.  \n  - `data/` — быстрые загрузчики WebDataset, совместимые с S3.  \n  - `notebooks/` — визуализация эмбеддингов и линейный probing.  \n- **Фичи**  \n  - 8× меньше RAM благодаря streaming-загрузке.  \n  - Готовые скрипты под Slurm и torchrun.  \n  - Поддержка wandb + tensorboard.  \n- **Быстрый старт**  \n  ```bash\n  pip install -r requirements.txt\n  python train.py --config configs/vit_s_in1k.yaml\n  ```  \n- **Результаты**  \n  ViT-S за 100 эпох ImageNet-1k → 72 % linear-top-1 на RTX 4090 за 6 ч.",
+  "inputHash": "4f8739afe05520213df3f08b644ae50e05715673ea81a3d628a0d1128b82e3b2",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-16T01:58:18.596Z"
+}

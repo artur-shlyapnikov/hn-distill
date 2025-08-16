@@ -16,14 +16,6 @@
     "depth": 1
   },
   {
-    "id": 44915925,
-    "by": "rurban",
-    "timeISO": "2025-08-15T18:33:12.000Z",
-    "textPlain": "No, generally Linux is at least 3x faster than OpenBSD, because they don't care much for optimizations.",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
     "id": 44916702,
     "by": "cout",
     "timeISO": "2025-08-15T19:57:32.000Z",
@@ -32,10 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44918133,
-    "by": "sugarpimpdorsey",
-    "timeISO": "2025-08-15T22:42:16.000Z",
-    "textPlain": "OpenBSD is many things, but 'fast' is not a word that comes to mind.Lightweight? Yes.Minimalist? Definitely.Compact? Sure.But fast? No.Would I host a database or fileserver on OpenBSD? Hell no.Boot times seem to take as long as they did 20 years ago. They are also advocates for every schizo security mitigation they can dream up that sacrifices speed and that's ok too.But let's not pretend it's something it's not.",
+    "id": 44915925,
+    "by": "rurban",
+    "timeISO": "2025-08-15T18:33:12.000Z",
+    "textPlain": "No, generally Linux is at least 3x faster than OpenBSD, because they don't care much for optimizations.",
     "parent": 44915824,
     "depth": 1
   },
@@ -44,6 +36,14 @@
     "by": "themafia",
     "timeISO": "2025-08-15T20:10:05.000Z",
     "textPlain": "Yea,  well,  I had to modify your website to make it readable.  Why do people do this?",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44918960,
+    "by": "eyberg",
+    "timeISO": "2025-08-16T00:50:52.000Z",
+    "textPlain": "This is kind of a stupid \"benchmark\" but if we're going to walk down this road:linux: elapsed: 0.019895snanos (running on said linux): elapsed: 0.000886s",
     "parent": 44915824,
     "depth": 1
   },
@@ -72,6 +72,14 @@
     "depth": 1
   },
   {
+    "id": 44918133,
+    "by": "sugarpimpdorsey",
+    "timeISO": "2025-08-15T22:42:16.000Z",
+    "textPlain": "OpenBSD is many things, but 'fast' is not a word that comes to mind.Lightweight? Yes.Minimalist? Definitely.Compact? Sure.But fast? No.Would I host a database or fileserver on OpenBSD? Hell no.Boot times seem to take as long as they did 20 years ago. They are also advocates for every schizo security mitigation they can dream up that sacrifices speed and that's ok too.But let's not pretend it's something it's not.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
     "id": 44916757,
     "by": "asveikau",
     "timeISO": "2025-08-15T20:03:39.000Z",
@@ -92,14 +100,6 @@
     "by": "jedberg",
     "timeISO": "2025-08-15T19:37:38.000Z",
     "textPlain": "\"It depends\"Faster is all relative.  What are you doing?  Is it networking?  Then BSD is probably faster than Linux.  Is it something Linux is optimized for?  Then probably Linux.A general benchmark?  Who knows, but does it really matter?At the end of the day, you should benchmark your own workload, but also it's important to realize that in this day and age, it's almost never the OS that is the bottleneck.  It's almost always a remote network call.",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
-    "id": 44917703,
-    "by": "uwagar",
-    "timeISO": "2025-08-15T21:55:55.000Z",
-    "textPlain": "the bsd people seem to enjoy measuring and logging a lot.",
     "parent": 44915824,
     "depth": 1
   },
@@ -128,10 +128,42 @@
     "depth": 1
   },
   {
+    "id": 44917703,
+    "by": "uwagar",
+    "timeISO": "2025-08-15T21:55:55.000Z",
+    "textPlain": "the bsd people seem to enjoy measuring and logging a lot.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
     "id": 44917042,
     "by": "sa46",
     "timeISO": "2025-08-15T20:42:16.000Z",
     "textPlain": "Isn't gettimeofday implemented with vDSO to avoid kernel context switching (and therefore, most of the overhead)?My understanding is that using tsc directly is tricky. The rate might not be constant, and the rate differs across cores. [1][1]: https://www.pingcap.com/blog/how-we-trace-a-kv-database-with...",
+    "parent": 44916909,
+    "depth": 2
+  },
+  {
+    "id": 44918815,
+    "by": "mananaysiempre",
+    "timeISO": "2025-08-16T00:29:24.000Z",
+    "textPlain": "This does not account for frequency scaling on laptops, context switches, core migrations, time spent in syscalls (if you don’t want to count it), etc. On Linux, you can get the kernel to expose the real (non-“reference”) cycle counter for you to access with __rdpmc() (no syscall needed) and put the corrective offset in an memory-mapped page. See the example code under cap_user_rdpmc on the manpage for perf_event_open() [1] and NOTE WELL the -1 in rdpmc(idx-1) there (I definitely did not waste an hour on that).If you want that on Windows, well, it’s possible, but you’re going to have to do it asynchronously from a different thread and also compute the offsets your own damn self[2].Alternatively, on AMD processors only, starting with Zen 2, you can get the real cycle count with __aperf() or __rdpru(__RDPRU_APERF) or manual inline assembly depending on your compiler. (The official AMD docs will admonish you not to assign meaning to anything but the fraction APERF / MPERF in one place, but the conjunction of what they tell you in other places implies that MPERF must be the reference cycle count and APERF must be the real cycle count.) This is definitely less of a hassle, but in my experience the cap_user_rdpmc method on Linux is much less noisy.[1] https://man7.org/linux/man-pages/man2/perf_event_open.2.html[2] https://www.computerenhance.com/p/halloween-spooktacular-day...",
+    "parent": 44916909,
+    "depth": 2
+  },
+  {
+    "id": 44919217,
+    "by": "mrlongroots",
+    "timeISO": "2025-08-16T01:27:18.000Z",
+    "textPlain": "They could've just used `clock_gettime(CLOCK_MONOTONIC)`",
+    "parent": 44916909,
+    "depth": 2
+  },
+  {
+    "id": 44919129,
+    "by": "junon",
+    "timeISO": "2025-08-16T01:16:00.000Z",
+    "textPlain": "rdtsc isn't available on all platforms, for what it's worth. It's often disabled as there's a CPU flag to allow its use in user space, and it's well know to not be so accurate.",
     "parent": 44916909,
     "depth": 2
   },
@@ -144,10 +176,34 @@
     "depth": 2
   },
   {
+    "id": 44917222,
+    "by": "bobby_big_balls",
+    "timeISO": "2025-08-15T21:03:48.000Z",
+    "textPlain": "In Linux, the file descriptor table (fdtable) of a process starts with a minimum of 256 slots. Two threads creating 256 sockets each, which uses 512 fds on top of the three already present (for stdin, stdout and stderr), requires that the fdtable be expanded about halfway through when the capacity is doubled from 256 to 512, and again near the end when resizing from 512 to 1024.This is done by expand_fdtable() in the kernel. It contains the following code:        if (atomic_read(&files->count) > 1)\n          synchronize_rcu();\n\nThe field files->count is a reference counter. As there are two threads, which share a set of open files between them, the value of this is 2, meaning that synchronize_rcu() is called here during fdtable expansion. This waits until a full RCU grace period has elapsed, causing a delay in acquiring a new fd for the socket currently being created.If the fdtable is expanded prior to creating a new thread, as the test program optionally will do by calling dup(0, 666) if supplied a command line argument, this avoids the synchronize_rcu() call because at this point files->count == 1. Therefore, if this is done, there will be no delay later on when creating all the sockets as the fdtable will have sufficient capacity.By contrast, the OpenBSD kernel doesn't have anything like RCU and just uses a rwlock when the file descriptor table of the process is being modified, avoiding the long delay during expansion that may be observed in Linux.",
+    "parent": 44916702,
+    "depth": 2
+  },
+  {
+    "id": 44917030,
+    "by": "viraptor",
+    "timeISO": "2025-08-15T20:40:52.000Z",
+    "textPlain": "When 2 threads are allocating sockets sequentially, they fight for the locks. If you preallocate a bigger table by creating fd 666 first, the lock contention goes away.",
+    "parent": 44916702,
+    "depth": 2
+  },
+  {
     "id": 44916830,
     "by": "farhaven",
     "timeISO": "2025-08-15T20:14:08.000Z",
     "textPlain": "OpenBSD is a lot faster in some specialized areas though. Random number generation from `/dev/urandom`, for example. When I was at university (in 2010 or so), it was faster to read `/dev/urandom` on my OpenBSD laptop and pipe it over ethernet to a friend's Linux laptop than running `cat /dev/urandom > /dev/sda` directly on his.Not by just a bit, but it was a difference between 10MB/s and 100MB/s.",
+    "parent": 44915925,
+    "depth": 2
+  },
+  {
+    "id": 44918412,
+    "by": "nicce",
+    "timeISO": "2025-08-15T23:23:22.000Z",
+    "textPlain": "Rather they care about the security. The same mitigations in Linux would likely make it even slower.",
     "parent": 44915925,
     "depth": 2
   },
@@ -168,26 +224,18 @@
     "depth": 2
   },
   {
-    "id": 44917222,
-    "by": "bobby_big_balls",
-    "timeISO": "2025-08-15T21:03:48.000Z",
-    "textPlain": "In Linux, the file descriptor table (fdtable) of a process starts with a minimum of 256 slots. Two threads creating 256 sockets each, which uses 512 fds on top of the three already present (for stdin, stdout and stderr), requires that the fdtable be expanded about halfway through when the capacity is doubled from 256 to 512, and again near the end when resizing from 512 to 1024.This is done by expand_fdtable() in the kernel. It contains the following code:        if (atomic_read(&files->count) > 1)\n          synchronize_rcu();\n\nThe field files->count is a reference counter. As there are two threads, which share a set of open files between them, the value of this is 2, meaning that synchronize_rcu() is called here during fdtable expansion. This waits until a full RCU grace period has elapsed, causing a delay in acquiring a new fd for the socket currently being created.If the fdtable is expanded prior to creating a new thread, as the test program optionally will do by calling dup(0, 666) if supplied a command line argument, this avoids the synchronize_rcu() call because at this point files->count == 1. Therefore, if this is done, there will be no delay later on when creating all the sockets as the fdtable will have sufficient capacity.By contrast, the OpenBSD kernel doesn't have anything like RCU and just uses a rwlock when the file descriptor table of the process is being modified, avoiding the long delay during expansion that may be observed in Linux.",
-    "parent": 44916702,
+    "id": 44918587,
+    "by": "opan",
+    "timeISO": "2025-08-15T23:50:49.000Z",
+    "textPlain": "It looks good to me on mobile. High contrast, lines aren't too long. What issue did you have?",
+    "parent": 44916798,
     "depth": 2
   },
   {
-    "id": 44917030,
-    "by": "viraptor",
-    "timeISO": "2025-08-15T20:40:52.000Z",
-    "textPlain": "When 2 threads are allocating sockets sequentially, they fight for the locks. If you preallocate a bigger table by creating fd 666 first, the lock contention goes away.",
-    "parent": 44916702,
-    "depth": 2
-  },
-  {
-    "id": 44917567,
-    "by": "pan69",
-    "timeISO": "2025-08-15T21:41:11.000Z",
-    "textPlain": "Happened for me on my normal desktop browser, cute but distracting. It also made my mouse cursor disappear. I had to move my mouse outside the browser window to make it visible again.",
+    "id": 44918788,
+    "by": "IFC_LLC",
+    "timeISO": "2025-08-16T00:24:58.000Z",
+    "textPlain": "I'll be honest, this was the first time when I was unhappy with an easter egg and was unable to finish reading the article because of it.Triggered on a safari on mac.",
     "parent": 44917320,
     "depth": 2
   },
@@ -200,11 +248,27 @@
     "depth": 2
   },
   {
+    "id": 44917567,
+    "by": "pan69",
+    "timeISO": "2025-08-15T21:41:11.000Z",
+    "textPlain": "Happened for me on my normal desktop browser, cute but distracting. It also made my mouse cursor disappear. I had to move my mouse outside the browser window to make it visible again.",
+    "parent": 44917320,
+    "depth": 2
+  },
+  {
     "id": 44916654,
     "by": "nine_k",
     "timeISO": "2025-08-15T19:50:29.000Z",
     "textPlain": "Isn't it mostly limited by GPU hardware, and by binary blobs that are largely independent from the host platform?",
     "parent": 44916631,
+    "depth": 2
+  },
+  {
+    "id": 44918410,
+    "by": "ThinkBeat",
+    "timeISO": "2025-08-15T23:22:31.000Z",
+    "textPlain": "You must run a different branch of OpenBSD than I.",
+    "parent": 44918133,
     "depth": 2
   },
   {
