@@ -8,18 +8,34 @@
     "depth": 1
   },
   {
-    "id": 44921354,
-    "by": "ZYbCRq22HbJ2y7",
-    "timeISO": "2025-08-16T08:21:50.000Z",
-    "textPlain": "> You’re supposed to store timestamps instead, and treat the presence of a timestamp as true. I do this sometimes but not always - in my view there’s some value in keeping a database schema immediately-readable.Seems like overly negative of broad advice on a good pattern?   ```\n    is_on => true\n    on_at => 1023030\n   ```\n\nSure, that makes sense.    ```\n     is_a_bear => true\n     a_bear_at => 12312231231\n    ```\nNot so much.",
+    "id": 44921601,
+    "by": "KronisLV",
+    "timeISO": "2025-08-16T09:06:18.000Z",
+    "textPlain": "> Schema design should be flexible, because once you have thousands or millions of records, it can be an enormous pain to change the schema. However, if you make it too flexible (e.g. by sticking everything in a “value” JSON column, or using “keys” and “values” tables to track arbitrary data) you load a ton of complexity into the application code (and likely buy some very awkward performance constraints). Drawing the line here is a judgment call and depends on specifics, but in general I aim to have my tables be human-readable: you should be able to go through the database schema and get a rough idea of what the application is storing and why.I’m surprised that the drawbacks of EAV or just using JSON in your relational database don’t get called out more.I’d very much rather have like 20 tables with clear purpose than seeing that colleagues have once more created a “classifier” mechanism and are using polymorphic links (without actual foreign keys, columns like “section” and “entity_id”) and are treating it as a grab bag of stuff. One that you also need to read the application code a bunch to even hope to understand.Whenever I see that, I want to change careers. I get that EAV has its use cases, but in most other cases fuck EAV.It’s right up there with N+1 issues, complex dynamically generated SQL when views would suffice and also storing audit data in the same DB and it inevitably having functionality written against it, your audit data becoming a part of the business logic. Oh and also shared database instances and not having the ability to easily bootstrap your own, oh and also working with Oracle in general. And also putting things that’d be better off in the app inside of the DB and vice versa.There are so many ways to decrease your quality of life when it comes to storing and accessing data.",
     "parent": 44921137,
     "depth": 1
   },
   {
-    "id": 44921325,
-    "by": "magnio",
-    "timeISO": "2025-08-16T08:16:01.000Z",
-    "textPlain": "I think it's a very good article. Even if you disagree with some of the individual points in it, the advice given are very concrete, pragmatic, and IMO tunable to the specifics of each project.On state, in my current project, it is not statefulness that causes trouble, but when you need to synchronize two stateful systems. Every time there's bidirectional information flow, it's gonna be a headache. The solution is of course to maintain a single source of truth, but with UI application this is sometimes quite tricky.",
+    "id": 44921663,
+    "by": "dennisy",
+    "timeISO": "2025-08-16T09:19:10.000Z",
+    "textPlain": "This post has some good concepts, but I do not feel it helps you design good systems. It iterates options and primitives, but good design is when and how you apply them, which the post does not provide.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44921584,
+    "by": "tetha",
+    "timeISO": "2025-08-16T09:02:50.000Z",
+    "textPlain": "The distinction of stateful and stateless is one of the main criteria how we're dividing responsibilities between platform-infra and development.I know it's a bit untrue, but you can't do that many things wrong with a stateless application running in a container. And often the answer is \"kill it and deploy it again\". As long as you don't shred your dataset with a bad migration or some bad database code, most bad things at this level can be fixed in a few minutes with a few redeployments.I'm fine having a larger amount of people with a varying degree of experience, time for this, care and diligence working here.With a persistence like a database or a file store, you need some degree of experience of what you have to do around the system so it doesn't become a business risk. Put plainly, a database could be a massive business risk even if it is working perfectly... because no one set backups up.That's why our storages are run by dedicated people who have been doing this for years and years. A bad database loss easily sinks ships.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44921354,
+    "by": "ZYbCRq22HbJ2y7",
+    "timeISO": "2025-08-16T08:21:50.000Z",
+    "textPlain": "> You’re supposed to store timestamps instead, and treat the presence of a timestamp as true. I do this sometimes but not always - in my view there’s some value in keeping a database schema immediately-readable.Seems overly negative of broad advice on a good pattern?    is_on => true\n    on_at => 1023030\n\nSure, that makes sense.     is_a_bear => true\n     a_bear_at => 12312231231\n\nNot so much, as most bears do not become bears at some point after not being a bear.",
     "parent": 44921137,
     "depth": 1
   },
@@ -32,6 +48,14 @@
     "depth": 1
   },
   {
+    "id": 44921325,
+    "by": "magnio",
+    "timeISO": "2025-08-16T08:16:01.000Z",
+    "textPlain": "I think it's a very good article. Even if you disagree with some of the individual points in it, the advice given are very concrete, pragmatic, and IMO tunable to the specifics of each project.On state, in my current project, it is not statefulness that causes trouble, but when you need to synchronize two stateful systems. Every time there's bidirectional information flow, it's gonna be a headache. The solution is of course to maintain a single source of truth, but with UI application this is sometimes quite tricky.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
     "id": 44921254,
     "by": "bravesoul2",
     "timeISO": "2025-08-16T08:02:36.000Z",
@@ -40,11 +64,83 @@
     "depth": 1
   },
   {
-    "id": 44921264,
-    "by": "bravesoul2",
-    "timeISO": "2025-08-16T08:04:54.000Z",
-    "textPlain": "Yes. Everyone should spent the small amount of time getting some logging/metrics going. It's like tests, getting from 0-1 test is psychologically hard in a org but 1-1000 then becomes \"how did I live without this\". Grafana has a decent free tier or you can self host.",
-    "parent": 44921252,
+    "id": 44921588,
+    "by": "quietbritishjim",
+    "timeISO": "2025-08-16T09:03:19.000Z",
+    "textPlain": "I think it's ok to have this rule as a first approximation, but like all design rules you should understand it well enough to know when to break it.I worked on an application which joined across lots of tables, which made a few dozen records balloon to many thousands of result rows, with huge redundancy in the results. Think of something like a single conceptual result having details A, B, C from one table, X, Y from another table, and 1, 2, 3 from another table. Instead of having 8 result rows (or 9 if you include the top level one from the main table) you have 18 (AX1, AX2, AX3, AY1, ...). It gets exponentially worse with more tables.We moved to separate queries for the different tables. Importantly, we were able to filter them all on the same condition, so we were not making multiple queries to child tables when there were lots of top-level results.The result was much faster because the extra network overhead was overshadowed by the saving in query processing and quantity of data returned. And the application code was actually simpler, because it was a pain to pick out unique child results from the big JOIN. It was literally a win in every respect with no downsides.(Later, we just stuffed all the data into a single JSONB in a single table, which was even better. But even that is an example of breaking the old normalisation rule.)",
+    "parent": 44921359,
+    "depth": 2
+  },
+  {
+    "id": 44921590,
+    "by": "bob1029",
+    "timeISO": "2025-08-16T09:03:29.000Z",
+    "textPlain": "This is a big part of what makes ORMs a problem.Writing raw SQL views/queries per MVC view in SSR arrangements is one of the most elegant and performant ways to build complex web products. Let the RDBMS do the heavy lifting with the data. There are optimizations in play you can't even recall (because there's so many) if you're using something old and enterprisey like MSSQL or Oracle. The web server should be able to directly interpolate sql result sets into corresponding <table>s, etc. without having to round trip for each row or perform additional in memory join operations.The typical ORM implementation is the exact opposite of this - one strict object model that must be used everywhere. It's about as inflexible as you can get.",
+    "parent": 44921359,
+    "depth": 2
+  },
+  {
+    "id": 44921556,
+    "by": "tossandthrow",
+    "timeISO": "2025-08-16T08:57:18.000Z",
+    "textPlain": "Views make good sense when you can check them in - and DB migrations are a poor way of doing it due to their immutable nature.Depending on the ecosystem the code base adopts a good orm might be a better choice to do joins.",
+    "parent": 44921359,
+    "depth": 2
+  },
+  {
+    "id": 44921574,
+    "by": "CafeRacer",
+    "timeISO": "2025-08-16T09:00:52.000Z",
+    "textPlain": "I came here to say an exactly opposite things. There were a few instances where a relatively heavy join would not perform well, no matter what I tried. And it was faster to load/stitch data together with goroutines. So I just opted to doing it that way.Also SQL is easy, but figuring out what's up with indexes and planner is not.",
+    "parent": 44921359,
+    "depth": 2
+  },
+  {
+    "id": 44921630,
+    "by": "dondraper36",
+    "timeISO": "2025-08-16T09:11:58.000Z",
+    "textPlain": "There's a great book SQL Antipatterns, by Bill Karwin where this specific antipattern is discussed and criticized.That said, sometimes when I realize there's no way for me to come up even with a rough schema (say, some settings object that is returned to the frontend), I use JSONB columns in Postgres. As a rule of thumb, however, if something can be normalized, it should be, since, after all, that's still a relational database despite all the JSON(B) conveniences and optimizations in Postgres.",
+    "parent": 44921601,
+    "depth": 2
+  },
+  {
+    "id": 44921625,
+    "by": "grey-area",
+    "timeISO": "2025-08-16T09:11:02.000Z",
+    "textPlain": "I’d see the booleans as a bad thing in almost all cases, instead of a boolean you can have a timestamp or an integer field (which can expand later).In the is_a case almost always a type or kind is better as you’ll rarely just have bears even if you only start with bears, just as you rarely have just two states for a status field (say on or off), often these expand in use to include things like suspended, deleted and asleep.So generally I’d avoid booleans as they tend to multiply and increase complexity partially when they cover mutually exclusive states like live, deleted and suspended. I have seen is_visible, is_deleted and is_suspended all on the same table (without a status) and the resulting code and queries are not pretty.I’d use an integer rather than a timestamp to replace them though.",
+    "parent": 44921354,
+    "depth": 2
+  },
+  {
+    "id": 44921552,
+    "by": "setr",
+    "timeISO": "2025-08-16T08:56:55.000Z",
+    "textPlain": "If you take the statement at face value — essentially storing booleans in the db ever is a bad smell - then he’s correct.Although I’m not even sure it’s broadly a good principle, even in the on_at case; if you actually care about this kind of thing, you should be storing it properly in some kind of audit table. Switching bool to timestamp is more of a weird lazy hack that probably won’t be all that useful in practice because only a random subset of data is being tracked like that (Boolean data type definitely isn’t the deciding factor on whether it’s important enough to track update time on).The main reason it’s even suggested is probably just that it’s “free” — you can smuggle the timestamp into your bool without an extra column — and it probably saved some effort accidentally; but not because it’s a broadly complete solution to the set of problems it tries to solve forI’ve got the same suspicion with soft-deletes — I’m fairly positive it’s useless in practice, and is just a mentally lazy solution to avoid proper auditing. Like you definitely can’t just undelete it, and it doesn’t solve for update history, so all you’re really protecting against is accidental bulk delete caught immediately? Which is half the point of your backup",
+    "parent": 44921354,
+    "depth": 2
+  },
+  {
+    "id": 44921610,
+    "by": "spiddy",
+    "timeISO": "2025-08-16T09:07:54.000Z",
+    "textPlain": "though why treat booleans as special case and keep timestamps for them when you don’t for integers with this pattern:isDarkTheme: {timestamped}\npaginationItems: 50I can see when dark theme was activated but not when pagination was set to 50.also, i can’t see when dark theme is being deactivated either.seems like a poor-man changelog. there maybe use cases for it but i can’t think of anything tbh.",
+    "parent": 44921354,
+    "depth": 2
+  },
+  {
+    "id": 44921558,
+    "by": "seafoamteal",
+    "timeISO": "2025-08-16T08:57:37.000Z",
+    "textPlain": "I think in that situation, you could have an enum value that contains Bear and whatever other categories you are looking at.",
+    "parent": 44921354,
+    "depth": 2
+  },
+  {
+    "id": 44921624,
+    "by": "Lionga",
+    "timeISO": "2025-08-16T09:10:30.000Z",
+    "textPlain": "All this general advice is quite useless and needs millions of asterix.Good system design is designing a system that works best for the problem at hand.",
+    "parent": 44921354,
     "depth": 2
   },
   {
@@ -56,10 +152,26 @@
     "depth": 2
   },
   {
+    "id": 44921264,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-16T08:04:54.000Z",
+    "textPlain": "Yes. Everyone should spent the small amount of time getting some logging/metrics going. It's like tests, getting from 0-1 test is psychologically hard in a org but 1-1000 then becomes \"how did I live without this\". Grafana has a decent free tier or you can self host.",
+    "parent": 44921252,
+    "depth": 2
+  },
+  {
     "id": 44921274,
     "by": "dondraper36",
     "timeISO": "2025-08-16T08:06:50.000Z",
     "textPlain": "Well, as sad as it is, such advice is often applicable to new projects when you still have runway for your own decisions.For mostly political reasons, if you are onboarded to a team with a billion microservices and a lot of fanciness, it's unlikely that you will ever get approval or time to introduce simplicity. Or maybe I just got corrupted myself by the reality where I have to work now.",
+    "parent": 44921254,
+    "depth": 2
+  },
+  {
+    "id": 44921533,
+    "by": "jillesvangurp",
+    "timeISO": "2025-08-16T08:53:42.000Z",
+    "textPlain": "You should adapt your team to the architecture, not the other way around.My former Ph.D. supervisor who moonlights as a consultant on this topic uses a nice acronym to capture this: BAPO. Business, Architecture, Process, and Organization. The idea is to end up with optimal business, an optimal architecture & design for that business, the minimum of manual processes that are necessitated by that architecture, and an organization that is efficiently executing those processes. So, you should design and engineer in that order.Most companies do this in reverse and then end up limiting their business with an architecture that matches whatever processes that their org chart necessitated years ago in a way that doesn't makes any logical sense whatsoever except in the historical context of the org chart. If you come in as a consultant to fix such a situation, it helps understanding that whatever you are going to find is probably wrong because of this reason. I've been in the situation where I come in to fix a technical issue and immediately see that the only reason the problem exists is the org chart is bullshit. That can be a bit awkward but lucrative if you deal with it correctly. It helps asking the right questions before you get started.Turning that around means you start from the business end (where's the money coming from?, what value can we create?, etc.), finding a solution that delivers that and then figure out processes and organizational needs. Many companies start out fairly optimal and then stuff around them changes and they forget to adapt to that.Having micro services because you have a certain team structure is a classic mistake here. You just codified your organizational inefficiency. Before you even delivered any business value. And now your organizational latency has network latency to match that. Probably for no good reason other than that team A can't be trusted to work with team B. And even if it's optimal now, is it going to stay optimal?If you are goi",
     "parent": 44921254,
     "depth": 2
   }

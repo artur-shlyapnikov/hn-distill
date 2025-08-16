@@ -64,14 +64,6 @@
     "depth": 1
   },
   {
-    "id": 44917320,
-    "by": "GTP",
-    "timeISO": "2025-08-15T21:12:51.000Z",
-    "textPlain": "By leaving my finger on the screen, I accidentally triggered an easter egg of two \"cannons\" shooting squares. Did anyone else notice it?",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
     "id": 44916743,
     "by": "agambrahma",
     "timeISO": "2025-08-15T20:02:48.000Z",
@@ -80,10 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44920833,
-    "by": "u64x086a",
-    "timeISO": "2025-08-16T06:43:25.000Z",
-    "textPlain": "What about this on FreeBSD? It's possible to reach the same results?",
+    "id": 44917320,
+    "by": "GTP",
+    "timeISO": "2025-08-15T21:12:51.000Z",
+    "textPlain": "By leaving my finger on the screen, I accidentally triggered an easter egg of two \"cannons\" shooting squares. Did anyone else notice it?",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44921566,
+    "by": "owl_vision",
+    "timeISO": "2025-08-16T08:59:58.000Z",
+    "textPlain": "What were the resource setups?  How do they compare to linux resource setups?Defaults in current are in etc.amd64/login.conf.  https://cvsweb.openbsd.org/cgi-bin/cvsweb/~checkout~/src/etc...(p.s.: the bubble are cool.  highly distracting to me, hence I could not read the article in full.)",
     "parent": 44915824,
     "depth": 1
   },
@@ -104,10 +104,10 @@
     "depth": 1
   },
   {
-    "id": 44916757,
-    "by": "asveikau",
-    "timeISO": "2025-08-15T20:03:39.000Z",
-    "textPlain": "My guess is it has something to do with the file descriptor table having a lot of empty entries (the dup2(0, 666) line.)Now time to read the actual linked discussion.",
+    "id": 44920833,
+    "by": "u64x086a",
+    "timeISO": "2025-08-16T06:43:25.000Z",
+    "textPlain": "What about this on FreeBSD? It's possible to reach the same results?",
     "parent": 44915824,
     "depth": 1
   },
@@ -116,6 +116,14 @@
     "by": "u64x086a",
     "timeISO": "2025-08-16T06:43:01.000Z",
     "textPlain": "What about the FreeBSD?",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44916757,
+    "by": "asveikau",
+    "timeISO": "2025-08-15T20:03:39.000Z",
+    "textPlain": "My guess is it has something to do with the file descriptor table having a lot of empty entries (the dup2(0, 666) line.)Now time to read the actual linked discussion.",
     "parent": 44915824,
     "depth": 1
   },
@@ -184,14 +192,6 @@
     "depth": 2
   },
   {
-    "id": 44921125,
-    "by": "signa11",
-    "timeISO": "2025-08-16T07:35:56.000Z",
-    "textPlain": "I don't think it is (guaranteed to be) synchronized across cores. I might be wrong about that though.",
-    "parent": 44916909,
-    "depth": 2
-  },
-  {
     "id": 44920803,
     "by": "ethan_smith",
     "timeISO": "2025-08-16T06:38:50.000Z",
@@ -204,6 +204,14 @@
     "by": "mananaysiempre",
     "timeISO": "2025-08-16T00:29:24.000Z",
     "textPlain": "This does not account for frequency scaling on laptops, context switches, core migrations, time spent in syscalls (if you don’t want to count it), etc. On Linux, you can get the kernel to expose the real (non-“reference”) cycle counter for you to access with __rdpmc() (no syscall needed) and put the corrective offset in an memory-mapped page. See the example code under cap_user_rdpmc on the manpage for perf_event_open() [1] and NOTE WELL the -1 in rdpmc(idx-1) there (I definitely did not waste an hour on that).If you want that on Windows, well, it’s possible, but you’re going to have to do it asynchronously from a different thread and also compute the offsets your own damn self[2].Alternatively, on AMD processors only, starting with Zen 2, you can get the real cycle count with __aperf() or __rdpru(__RDPRU_APERF) or manual inline assembly depending on your compiler. (The official AMD docs will admonish you not to assign meaning to anything but the fraction APERF / MPERF in one place, but the conjunction of what they tell you in other places implies that MPERF must be the reference cycle count and APERF must be the real cycle count.) This is definitely less of a hassle, but in my experience the cap_user_rdpmc method on Linux is much less noisy.[1] https://man7.org/linux/man-pages/man2/perf_event_open.2.html[2] https://www.computerenhance.com/p/halloween-spooktacular-day...",
+    "parent": 44916909,
+    "depth": 2
+  },
+  {
+    "id": 44921125,
+    "by": "signa11",
+    "timeISO": "2025-08-16T07:35:56.000Z",
+    "textPlain": "I don't think it is (guaranteed to be) synchronized across cores. I might be wrong about that though.",
     "parent": 44916909,
     "depth": 2
   },
@@ -312,6 +320,14 @@
     "depth": 2
   },
   {
+    "id": 44919829,
+    "by": "loeg",
+    "timeISO": "2025-08-16T03:21:30.000Z",
+    "textPlain": "Sort of.  Fd table size, which is slightly different than fds (once you reach the ulimit, there's no need to resize it larger); and only in multithreaded programs.",
+    "parent": 44916743,
+    "depth": 2
+  },
+  {
     "id": 44918788,
     "by": "IFC_LLC",
     "timeISO": "2025-08-16T00:24:58.000Z",
@@ -333,14 +349,6 @@
     "timeISO": "2025-08-15T21:41:11.000Z",
     "textPlain": "Happened for me on my normal desktop browser, cute but distracting. It also made my mouse cursor disappear. I had to move my mouse outside the browser window to make it visible again.",
     "parent": 44917320,
-    "depth": 2
-  },
-  {
-    "id": 44919829,
-    "by": "loeg",
-    "timeISO": "2025-08-16T03:21:30.000Z",
-    "textPlain": "Sort of.  Fd table size, which is slightly different than fds (once you reach the ulimit, there's no need to resize it larger); and only in multithreaded programs.",
-    "parent": 44916743,
     "depth": 2
   },
   {
@@ -388,14 +396,6 @@
     "by": "lilyball",
     "timeISO": "2025-08-15T21:24:04.000Z",
     "textPlain": "It's extremely distracting. I'm not normally one to have issues that require reduced motion, but the asteroids are almost distracting enough on their own, and the fact that it causes my cursor to vanish is a real accessibility issue. I didn't actually realize just how much I use my mouse cursor when reading stuff until now, partly as a fidget, partly as a controllable visual anchor as my eyes scan the page.",
-    "parent": 44916623,
-    "depth": 2
-  },
-  {
-    "id": 44918017,
-    "by": "binarycrusader",
-    "timeISO": "2025-08-15T22:28:58.000Z",
-    "textPlain": "I found it exceedingly difficult to read, so I ended up applying these ublock filter rules so I could read it:  flak.tedunangst.com##.bl.shooter\n  flak.tedunangst.com##.br.shooter\n  flak.tedunangst.com##div.bullet",
     "parent": 44916623,
     "depth": 2
   }

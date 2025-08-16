@@ -24,26 +24,10 @@
     "depth": 1
   },
   {
-    "id": 44921269,
-    "by": "aysfrm11",
-    "timeISO": "2025-08-16T08:06:16.000Z",
-    "textPlain": "I have no relationship with OVPN but after watching their server deployment on YouTube I have to say I do like their approach to security / privacy.Servers that don't log and can't without hard drives, ports physically glued shut.https://www.ovpn.com/en/security",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44919525,
     "by": "SamDc73",
     "timeISO": "2025-08-16T02:12:28.000Z",
     "textPlain": "One of the many reasons I love Mullvad (been using it for 4 years now) is their simple pricing—$5/month whether you subscribe monthly, yearly, or even 10 years out.I wanted to give your product a try, but the gap between the 1-month and 2-year plans is so big that a single month feels like a rip-off, while I’m not ready to commit to 2 years either.On payments: for a privacy-focused product, Monero isn’t just a luxury, it’s a must (at least for me). A VPN that doesn’t accept Monero forces users into surveillance finance, since card and bank payments are legally preserved forever by processors. That means even if the VPN “keeps no logs,” the payment trail still ties your real identity to the service.",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
-    "id": 44920879,
-    "by": "dguido",
-    "timeISO": "2025-08-16T06:51:37.000Z",
-    "textPlain": "This is cool, and I'm glad to see someone doing this, but I also feel obligated to mention that you can also just quickly deploy your own VPN server that only you have access to with AlgoVPN: https://github.com/trailofbits/algo",
     "parent": 44918060,
     "depth": 1
   },
@@ -64,18 +48,18 @@
     "depth": 1
   },
   {
-    "id": 44919072,
-    "by": "b8",
-    "timeISO": "2025-08-16T01:07:53.000Z",
-    "textPlain": "They claim to allow anonymous sign up and payments, but requires an email,an account, zip code and name for Crypto payments, but fake info could be used I guess. I tried ordering via Crypto, but it constantly gives me this error: \"Unable to load order information. Try again\".Honestly, I feel more comfortable using Mullvad. This team has some folks with questionable backgrounds and I wouldn't trust Intel. Also VPN providers are usually in non-us countries due to things like the Lavabit, Yahoo incidents and the Snowden revelations.",
+    "id": 44920879,
+    "by": "dguido",
+    "timeISO": "2025-08-16T06:51:37.000Z",
+    "textPlain": "This is cool, and I'm glad to see someone doing this, but I also feel obligated to mention that you can also just quickly deploy your own VPN server that only you have access to with AlgoVPN: https://github.com/trailofbits/algo",
     "parent": 44918060,
     "depth": 1
   },
   {
-    "id": 44920654,
-    "by": "nneonneo",
-    "timeISO": "2025-08-16T06:08:45.000Z",
-    "textPlain": "Cute idea. Bit worried about the owners here; rasengan doesn't have a stellar reputation after what happened with Freenode.The idea itself is sound: if there are no SGX bypasses (hardware keys dumped, enclaves violated, CPU bugs exploited, etc.), and the SGX code is sound (doesn't leak the private keys by writing them to any non-confidential storage, isn't vulnerable to timing-based attacks, etc.), and you get a valid, up-to-date attestation containing the public key that you're encrypting your traffic with plus a hash of a trustworthy version of the SGX code, then you can trust that your traffic is indeed being decrypted inside an SGX enclave which has exclusive access to the private key.Obviously, that's a lot of conditions. Happily, you can largely verify those conditions given what's provided here; you can check that the attestation points to a CPU and configuration new enough to not have any (known) SGX breaks; you can check that the SGX code is sound and builds to the provided hash (exercise left to the reader); and you can check the attestation itself as it is signed with hardware keys that chain up to an Intel root-of-trust.However! An SGX enclave cannot interface with the system beyond simple shared memory input/output. In particular, an SGX enclave is not (and cannot be) responsible for socket communication; that must be handled by an OS that lies outside the SGX TCB (Trusted Computing Base). For typical SGX use-cases, this is OK; the data is what is secret, and the socket destinations are not.For a VPN, this is not true! The OS can happily log anything it wants! There's nothing stopping it from logging all the data going into and out of the SGX enclave and performing traffic correlation. Even with traffic mixing, there's nothing stopping the operators from sticking a single user onto their own, dedicated SGX enclave which is closely monitored; traffic mixing means nothing if its just a single user's traffic being mixed.So, while the use of SGX here is a n",
+    "id": 44919072,
+    "by": "b8",
+    "timeISO": "2025-08-16T01:07:53.000Z",
+    "textPlain": "They claim to allow anonymous sign up and payments, but requires an email,an account, zip code and name for Crypto payments, but fake info could be used I guess. I tried ordering via Crypto, but it constantly gives me this error: \"Unable to load order information. Try again\".Honestly, I feel more comfortable using Mullvad. This team has some folks with questionable backgrounds and I wouldn't trust Intel. Also VPN providers are usually in non-us countries due to things like the Lavabit, Yahoo incidents and the Snowden revelations.",
     "parent": 44918060,
     "depth": 1
   },
@@ -88,10 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44921119,
-    "by": "tamimio",
-    "timeISO": "2025-08-16T07:34:48.000Z",
-    "textPlain": "One year later: VP.NET SGX code collision attack using lultzmann xyz math theory that allows the attacker to run different code with same sgx verifier!In all seriousness, I don’t even trust intel to start with.",
+    "id": 44921269,
+    "by": "aysfrm11",
+    "timeISO": "2025-08-16T08:06:16.000Z",
+    "textPlain": "I have no relationship with OVPN but after watching their server deployment on YouTube I have to say I do like their approach to security / privacy.Servers that don't log and can't without hard drives, ports physically glued shut.https://www.ovpn.com/en/security",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44920654,
+    "by": "nneonneo",
+    "timeISO": "2025-08-16T06:08:45.000Z",
+    "textPlain": "Cute idea. Bit worried about the owners here; rasengan doesn't have a stellar reputation after what happened with Freenode.The idea itself is sound: if there are no SGX bypasses (hardware keys dumped, enclaves violated, CPU bugs exploited, etc.), and the SGX code is sound (doesn't leak the private keys by writing them to any non-confidential storage, isn't vulnerable to timing-based attacks, etc.), and you get a valid, up-to-date attestation containing the public key that you're encrypting your traffic with plus a hash of a trustworthy version of the SGX code, then you can trust that your traffic is indeed being decrypted inside an SGX enclave which has exclusive access to the private key.Obviously, that's a lot of conditions. Happily, you can largely verify those conditions given what's provided here; you can check that the attestation points to a CPU and configuration new enough to not have any (known) SGX breaks; you can check that the SGX code is sound and builds to the provided hash (exercise left to the reader); and you can check the attestation itself as it is signed with hardware keys that chain up to an Intel root-of-trust.However! An SGX enclave cannot interface with the system beyond simple shared memory input/output. In particular, an SGX enclave is not (and cannot be) responsible for socket communication; that must be handled by an OS that lies outside the SGX TCB (Trusted Computing Base). For typical SGX use-cases, this is OK; the data is what is secret, and the socket destinations are not.For a VPN, this is not true! The OS can happily log anything it wants! There's nothing stopping it from logging all the data going into and out of the SGX enclave and performing traffic correlation. Even with traffic mixing, there's nothing stopping the operators from sticking a single user onto their own, dedicated SGX enclave which is closely monitored; traffic mixing means nothing if its just a single user's traffic being mixed.So, while the use of SGX here is a n",
     "parent": 44918060,
     "depth": 1
   },
@@ -108,6 +100,14 @@
     "by": "john01dav",
     "timeISO": "2025-08-16T01:03:06.000Z",
     "textPlain": "One of the main use cases of a VPN is against governments, but a government making Intel compromise SGX is plausible given what we know from Snowden.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44921119,
+    "by": "tamimio",
+    "timeISO": "2025-08-16T07:34:48.000Z",
+    "textPlain": "One year later: VP.NET SGX code collision attack using lultzmann xyz math theory that allows the attacker to run different code with same sgx verifier!In all seriousness, I don’t even trust intel to start with.",
     "parent": 44918060,
     "depth": 1
   },
@@ -224,22 +224,6 @@
     "depth": 2
   },
   {
-    "id": 44921286,
-    "by": "nneonneo",
-    "timeISO": "2025-08-16T08:08:39.000Z",
-    "textPlain": "Ah, but how can you tell that you’re connecting to a server that was actually configured that way?Answer: no you can’t, you still have to trust them. At the end of the day, you always just have to trust the provider, somewhere.",
-    "parent": 44921269,
-    "depth": 2
-  },
-  {
-    "id": 44921030,
-    "by": "nugzbunny",
-    "timeISO": "2025-08-16T07:18:26.000Z",
-    "textPlain": "I’ve recently become interested in hosting my own VPN, due to the amount of websites that require me to disable my VPN when visiting their site.I imagine those websites block IP ranges of popular VPN providers.Am I right in thinking that hosting my own VPN would resolve this issue?",
-    "parent": 44920879,
-    "depth": 2
-  },
-  {
     "id": 44920143,
     "by": "aidenn0",
     "timeISO": "2025-08-16T04:21:19.000Z",
@@ -253,6 +237,14 @@
     "timeISO": "2025-08-16T00:59:11.000Z",
     "textPlain": "I'm assuming OP is Mark Karpeles, MagicalTux is a well-known username for him.",
     "parent": 44918951,
+    "depth": 2
+  },
+  {
+    "id": 44921030,
+    "by": "nugzbunny",
+    "timeISO": "2025-08-16T07:18:26.000Z",
+    "textPlain": "I’ve recently become interested in hosting my own VPN, due to the amount of websites that require me to disable my VPN when visiting their site.I imagine those websites block IP ranges of popular VPN providers.Am I right in thinking that hosting my own VPN would resolve this issue?",
+    "parent": 44920879,
     "depth": 2
   },
   {
@@ -280,6 +272,14 @@
     "depth": 2
   },
   {
+    "id": 44920671,
+    "by": "victorbjorklund",
+    "timeISO": "2025-08-16T06:10:37.000Z",
+    "textPlain": "Mullvad VPN allows you to pay with cash in an envelop with no name etc",
+    "parent": 44919118,
+    "depth": 2
+  },
+  {
     "id": 44921087,
     "by": "vaylian",
     "timeISO": "2025-08-16T07:29:09.000Z",
@@ -288,11 +288,11 @@
     "depth": 2
   },
   {
-    "id": 44920671,
-    "by": "victorbjorklund",
-    "timeISO": "2025-08-16T06:10:37.000Z",
-    "textPlain": "Mullvad VPN allows you to pay with cash in an envelop with no name etc",
-    "parent": 44919118,
+    "id": 44921286,
+    "by": "nneonneo",
+    "timeISO": "2025-08-16T08:08:39.000Z",
+    "textPlain": "Ah, but how can you tell that you’re connecting to a server that was actually configured that way?Answer: no you can’t, you still have to trust them. At the end of the day, you always just have to trust the provider, somewhere.",
+    "parent": 44921269,
     "depth": 2
   },
   {

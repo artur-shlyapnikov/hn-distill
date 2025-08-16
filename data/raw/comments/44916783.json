@@ -16,14 +16,6 @@
     "depth": 1
   },
   {
-    "id": 44921021,
-    "by": "flohofwoe",
-    "timeISO": "2025-08-16T07:17:30.000Z",
-    "textPlain": "Even ancient svn works much better out of the box for large binary files than git (e.g. a 150 GB working directory with many big Photoshop files and other binary assets is no problem in SVN).What does SVN do differently than git when it comes to large binary files, and why can't git use the same approach?I also don't quite understand tbh how offloading large files to somewhere else would be fundamentally different than storing all files in one place except complicating everything? Storage is storage, how would a different storage location fix any of the current performance and robustness problems? Offloading just sounds like a solution for public git forges which don't want to deal with big files because it's too costly for them, but increased cost is not the 'large binary file problem' of git.(edit: apparently git supports proper locking(?) so I removed that section - ps: nvm it looks like the file locking feature is only in git-lfs)",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44919639,
     "by": "wbillingsley",
     "timeISO": "2025-08-16T02:37:18.000Z",
@@ -36,6 +28,14 @@
     "by": "Ferret7446",
     "timeISO": "2025-08-16T01:07:11.000Z",
     "textPlain": "This article treats LFS unfairly.  It does not in any way lock you in to GitHub; the protocol is open.  The downsides of LFS are unavoidable as a Git extension.  Promisors are basically the same concept as LFS, except as it's built into Git it is able to provide a better UX than is possible as an extension.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44921021,
+    "by": "flohofwoe",
+    "timeISO": "2025-08-16T07:17:30.000Z",
+    "textPlain": "Even ancient svn works much better out of the box for large binary files than git (e.g. a 150 GB working directory with many big Photoshop files and other binary assets is no problem in SVN).What does SVN do differently than git when it comes to large binary files, and why can't git use the same approach?I also don't quite understand tbh how offloading large files to somewhere else would be fundamentally different than storing all files in one place except complicating everything? Storage is storage, how would a different storage location fix any of the current performance and robustness problems? Offloading just sounds like a solution for public git forges which don't want to deal with big files because it's too costly for them, but increased hosting cost is not the 'large binary file problem' of git.(edit: apparently git supports proper locking(?) so I removed that section - ps: nvm it looks like the file locking feature is only in git-lfs)",
     "parent": 44916783,
     "depth": 1
   },
@@ -64,18 +64,18 @@
     "depth": 1
   },
   {
-    "id": 44920190,
-    "by": "pabs3",
-    "timeISO": "2025-08-16T04:30:57.000Z",
-    "textPlain": "The git storage model also needs an overhaul to be more like modern backup tools such as restic/borg; it needs content-defined chunking of files and directories.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918246,
     "by": "jameshart",
     "timeISO": "2025-08-15T22:58:59.000Z",
     "textPlain": "Nit:> if I git clone a repo with many revisions of a noisome 25 MB PNG fileFYI ‘noisome’ is not a synonym for ‘noisy’ - it’s more of a synonym for ‘noxious’; it means something smells bad.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44920190,
+    "by": "pabs3",
+    "timeISO": "2025-08-16T04:30:57.000Z",
+    "textPlain": "The git storage model also needs an overhaul to be more like modern backup tools such as restic/borg; it needs content-defined chunking of files and directories.",
     "parent": 44916783,
     "depth": 1
   },
@@ -152,18 +152,18 @@
     "depth": 1
   },
   {
-    "id": 44919858,
-    "by": "moonlion_eth",
-    "timeISO": "2025-08-16T03:26:16.000Z",
-    "textPlain": "the future of git is jj",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44919197,
     "by": "mathi0750",
     "timeISO": "2025-08-16T01:24:03.000Z",
     "textPlain": "Have you tried Oxen.ai? they are doing more fine-tuning and inference now but they have an open-source data version control platform written in rust at the core of their product.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919858,
+    "by": "moonlion_eth",
+    "timeISO": "2025-08-16T03:26:16.000Z",
+    "textPlain": "the future of git is jj",
     "parent": 44916783,
     "depth": 1
   },
@@ -328,14 +328,6 @@
     "depth": 2
   },
   {
-    "id": 44921062,
-    "by": "pjc50",
-    "timeISO": "2025-08-16T07:25:00.000Z",
-    "textPlain": "Completely different design. Git is intended to be fully distributed, so (a) every repo is supposed to have the full history of every file, and (b) locking is meaningless.People should use the VCS that's appropriate for their project rather than insist on git everywhere.",
-    "parent": 44921021,
-    "depth": 2
-  },
-  {
     "id": 44920715,
     "by": "astrobe_",
     "timeISO": "2025-08-16T06:19:02.000Z",
@@ -365,6 +357,14 @@
     "timeISO": "2025-08-16T02:19:41.000Z",
     "textPlain": "Using LFS once in a repository locks you in permanently. You actually have to delete the repository from GitHub to remove the space consumed. It’s entirely a non-starter.Nowhere is this behavior explicitly stated.I used to use Git LFS on GitHub to do my company’s study on GitHub statistics because we stored large compressed databases on users and repositories.",
     "parent": 44919065,
+    "depth": 2
+  },
+  {
+    "id": 44921062,
+    "by": "pjc50",
+    "timeISO": "2025-08-16T07:25:00.000Z",
+    "textPlain": "Completely different design. Git is intended to be fully distributed, so (a) every repo is supposed to have the full history of every file, and (b) locking is meaningless.People should use the VCS that's appropriate for their project rather than insist on git everywhere.",
+    "parent": 44921021,
     "depth": 2
   },
   {
