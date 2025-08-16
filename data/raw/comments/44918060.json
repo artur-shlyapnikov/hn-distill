@@ -24,18 +24,18 @@
     "depth": 1
   },
   {
-    "id": 44920975,
-    "by": "eptcyka",
-    "timeISO": "2025-08-16T07:08:02.000Z",
-    "textPlain": "The chief privacy officer of the company is the moron that destroyed Freenode. Of course, Libera lives on, but it is a transition we could’ve done without.",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44919525,
     "by": "SamDc73",
     "timeISO": "2025-08-16T02:12:28.000Z",
     "textPlain": "One of the many reasons I love Mullvad (been using it for 4 years now) is their simple pricing—$5/month whether you subscribe monthly, yearly, or even 10 years out.I wanted to give your product a try, but the gap between the 1-month and 2-year plans is so big that a single month feels like a rip-off, while I’m not ready to commit to 2 years either.On payments: for a privacy-focused product, Monero isn’t just a luxury, it’s a must (at least for me). A VPN that doesn’t accept Monero forces users into surveillance finance, since card and bank payments are legally preserved forever by processors. That means even if the VPN “keeps no logs,” the payment trail still ties your real identity to the service.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44920975,
+    "by": "eptcyka",
+    "timeISO": "2025-08-16T07:08:02.000Z",
+    "textPlain": "The chief privacy officer of the company is the moron that destroyed Freenode. Of course, Libera lives on, but it is a transition we could’ve done without.",
     "parent": 44918060,
     "depth": 1
   },
@@ -72,10 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44920654,
-    "by": "nneonneo",
-    "timeISO": "2025-08-16T06:08:45.000Z",
-    "textPlain": "Cute idea. Bit worried about the owners here; rasengan doesn't have a stellar reputation after what happened with Freenode.The idea itself is sound: if there are no SGX bypasses (hardware keys dumped, enclaves violated, CPU bugs exploited, etc.), and the SGX code is sound (doesn't leak the private keys by writing them to any non-confidential storage, isn't vulnerable to timing-based attacks, etc.), and you get a valid, up-to-date attestation containing the public key that you're encrypting your traffic with plus a hash of a trustworthy version of the SGX code, then you can trust that your traffic is indeed being decrypted inside an SGX enclave which has exclusive access to the private key.Obviously, that's a lot of conditions. Happily, you can largely verify those conditions given what's provided here; you can check that the attestation points to a CPU and configuration new enough to not have any (known) SGX breaks; you can check that the SGX code is sound and builds to the provided hash (exercise left to the reader); and you can check the attestation itself as it is signed with hardware keys that chain up to an Intel root-of-trust.However! An SGX enclave cannot interface with the system beyond simple shared memory input/output. In particular, an SGX enclave is not (and cannot be) responsible for socket communication; that must be handled by an OS that lies outside the SGX TCB (Trusted Computing Base). For typical SGX use-cases, this is OK; the data is what is secret, and the socket destinations are not.For a VPN, this is not true! The OS can happily log anything it wants! There's nothing stopping it from logging all the data going into and out of the SGX enclave and performing traffic correlation. Even with traffic mixing, there's nothing stopping the operators from sticking a single user onto their own, dedicated SGX enclave which is closely monitored; traffic mixing means nothing if its just a single user's traffic being mixed.So, while the use of SGX here is a n",
+    "id": 44922098,
+    "by": "potato-peeler",
+    "timeISO": "2025-08-16T10:49:01.000Z",
+    "textPlain": "Slightly tangential question - what gui framework did you use to build the apps?",
     "parent": 44918060,
     "depth": 1
   },
@@ -88,10 +88,10 @@
     "depth": 1
   },
   {
-    "id": 44921269,
-    "by": "aysfrm11",
-    "timeISO": "2025-08-16T08:06:16.000Z",
-    "textPlain": "I have no relationship with OVPN but after watching their server deployment on YouTube I have to say I do like their approach to security / privacy.Servers that don't log and can't without hard drives, ports physically glued shut.https://www.ovpn.com/en/security",
+    "id": 44920654,
+    "by": "nneonneo",
+    "timeISO": "2025-08-16T06:08:45.000Z",
+    "textPlain": "Cute idea. Bit worried about the owners here; rasengan doesn't have a stellar reputation after what happened with Freenode.The idea itself is sound: if there are no SGX bypasses (hardware keys dumped, enclaves violated, CPU bugs exploited, etc.), and the SGX code is sound (doesn't leak the private keys by writing them to any non-confidential storage, isn't vulnerable to timing-based attacks, etc.), and you get a valid, up-to-date attestation containing the public key that you're encrypting your traffic with plus a hash of a trustworthy version of the SGX code, then you can trust that your traffic is indeed being decrypted inside an SGX enclave which has exclusive access to the private key.Obviously, that's a lot of conditions. Happily, you can largely verify those conditions given what's provided here; you can check that the attestation points to a CPU and configuration new enough to not have any (known) SGX breaks; you can check that the SGX code is sound and builds to the provided hash (exercise left to the reader); and you can check the attestation itself as it is signed with hardware keys that chain up to an Intel root-of-trust.However! An SGX enclave cannot interface with the system beyond simple shared memory input/output. In particular, an SGX enclave is not (and cannot be) responsible for socket communication; that must be handled by an OS that lies outside the SGX TCB (Trusted Computing Base). For typical SGX use-cases, this is OK; the data is what is secret, and the socket destinations are not.For a VPN, this is not true! The OS can happily log anything it wants! There's nothing stopping it from logging all the data going into and out of the SGX enclave and performing traffic correlation. Even with traffic mixing, there's nothing stopping the operators from sticking a single user onto their own, dedicated SGX enclave which is closely monitored; traffic mixing means nothing if its just a single user's traffic being mixed.So, while the use of SGX here is a n",
     "parent": 44918060,
     "depth": 1
   },
@@ -100,6 +100,14 @@
     "by": "john01dav",
     "timeISO": "2025-08-16T01:03:06.000Z",
     "textPlain": "One of the main use cases of a VPN is against governments, but a government making Intel compromise SGX is plausible given what we know from Snowden.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44921269,
+    "by": "aysfrm11",
+    "timeISO": "2025-08-16T08:06:16.000Z",
+    "textPlain": "I have no relationship with OVPN but after watching their server deployment on YouTube I have to say I do like their approach to security / privacy.Servers that don't log and can't without hard drives, ports physically glued shut.https://www.ovpn.com/en/security",
     "parent": 44918060,
     "depth": 1
   },
@@ -190,6 +198,14 @@
     "textPlain": "This is honestly less trustworthy than nordvpn from my POV. The problem with confidential compute is that given enough technical expertise (ime exploits) all these systems are possible to compromise which is perfect for honeypots. Kinda sounds like one of those interpol plots with phones designed for criminals.I always found confidential compute to be only good to isolate the hosting company from risk - not the customer!",
     "parent": 44918060,
     "depth": 1
+  },
+  {
+    "id": 44922208,
+    "by": "pydry",
+    "timeISO": "2025-08-16T11:09:39.000Z",
+    "textPlain": ">the complete lack of trust that these people deserveYeah, I took one look at that and laughed. CEO of mt gox teaming up with the guy who sold his last VPN to an Israeli spyware company sounds like the start of a joke.",
+    "parent": 44920799,
+    "depth": 2
   },
   {
     "id": 44921216,
@@ -296,19 +312,19 @@
     "depth": 2
   },
   {
-    "id": 44921286,
-    "by": "nneonneo",
-    "timeISO": "2025-08-16T08:08:39.000Z",
-    "textPlain": "Ah, but how can you tell that you’re connecting to a server that was actually configured that way?Answer: no you can’t, you still have to trust them. At the end of the day, you always just have to trust the provider, somewhere.",
-    "parent": 44921269,
-    "depth": 2
-  },
-  {
     "id": 44919117,
     "by": "MagicalTux",
     "timeISO": "2025-08-16T01:14:44.000Z",
     "textPlain": "The US government might be able to pressure Intel into doing something with SGX, but there are way too many eyes on this for it to go unnoticed in my opinion, especially considering SGX has been around for so long and messed with by so many security researchers.The US government also likely learned a lesson from early attempts at backdoors (RSA, etc) that this kind of things do not stay hidden and do not reflect well.We've thought about this long and hard and planning to mitigate this as much as possible. Meanwhile we still offer something that is a huge step forward compared to what is standard in the industry.",
     "parent": 44919044,
+    "depth": 2
+  },
+  {
+    "id": 44921286,
+    "by": "nneonneo",
+    "timeISO": "2025-08-16T08:08:39.000Z",
+    "textPlain": "Ah, but how can you tell that you’re connecting to a server that was actually configured that way?Answer: no you can’t, you still have to trust them. At the end of the day, you always just have to trust the provider, somewhere.",
+    "parent": 44921269,
     "depth": 2
   },
   {
@@ -373,22 +389,6 @@
     "timeISO": "2025-08-16T00:10:11.000Z",
     "textPlain": "Wikipedia says it's still on Xeons, so not sure what that says. But I agree with the rest of your point, it seems like an oversight to me.",
     "parent": 44918622,
-    "depth": 2
-  },
-  {
-    "id": 44919296,
-    "by": "MagicalTux",
-    "timeISO": "2025-08-16T01:41:00.000Z",
-    "textPlain": "Intel SGX comes with an attestation process aiming at exactly that. The attestation contains a number of details, such as the hardware configuration (cpu microcode version, BIOS, etc) and the hash of the enclave code. At system startup the CPU gets a certificate from Intel confirming the configuration is known safe, which is used by the CPU to in turn certify the enclave is indeed running code with a given fingerprint.When the connection is established we verify the whole certificate chain up to Intel, and we verify the TLS connection itself is part of the attestation (public key is attested).",
-    "parent": 44919027,
-    "depth": 2
-  },
-  {
-    "id": 44919282,
-    "by": "rasengan",
-    "timeISO": "2025-08-16T01:37:24.000Z",
-    "textPlain": "> how do I know it's actually running inside the enclave, and not an ordinary process sending a hardcoded expected fingerprint?It's signed by Intel and thus, guaranteed to come from the enclave!",
-    "parent": 44919027,
     "depth": 2
   },
   {

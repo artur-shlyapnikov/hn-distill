@@ -1,0 +1,8 @@
+{
+  "id": 44891296,
+  "lang": "ru",
+  "summary": "В OpenBSD/FreeBSD правило PF с `log` копирует пакет в псевдо-интерфейс `pflog0`; его можно смотреть `tcpdump -i pflog0` и писать `pflogd`. В Linux-`nftables` можно сделать похожее, но сложнее.\n\n1. В правилах добавляем `log group N`.  \n   Для одновременного просмотра и записи нужно два разных номера групп:  \n   `tcp port ssh counter log group 30 log group 31 drop`.\n\n2. Просмотр в реальном времени:  \n   `tcpdump -i nflog:30`.  \n   Мета-информации (какое правило сработало) нет.\n\n3. Запись в pcap:  \n   - Устанавливаем `ulogd2` и пакет `ulogd2-pcap`.  \n   - В `/etc/ulogd.conf` минимально:\n\n   ```\n   stack=log31:NFLOG,base1:BASE,pcap31:PCAP\n   [log31]\n   group=31\n   [pcap31]\n   file=\"/var/log/ulog/ulogd.pcap\"\n   sync=0\n   ```\n\n   Ubuntu-24.04 ротирует файлы в `/var/log/ulog` раз в неделю.\n\n4. IPv4 и IPv6, вероятно, нужно логировать отдельными группами.\n\n5. Ulogd умеет писать и в JSON/БД, но документация туманна.\n\nИз-за сложностей автор склонен отказаться от `ulogd` и оставить только live-просмотр `nflog:N`.",
+  "inputHash": "1299dbff9b4741d5306f3c69d279815450f3e019966bb5164bd6627b72e8762c",
+  "model": "moonshotai/kimi-k2:free",
+  "createdISO": "2025-08-16T11:21:29.482Z"
+}
