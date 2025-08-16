@@ -1,5 +1,13 @@
 [
   {
+    "id": 44919800,
+    "by": "rao-v",
+    "timeISO": "2025-08-16T03:16:11.000Z",
+    "textPlain": "How good is your esp32 support? This could make a lot of home automation hobbyists very happy!",
+    "parent": 44915206,
+    "depth": 1
+  },
+  {
     "id": 44916712,
     "by": "btbuildem",
     "timeISO": "2025-08-15T19:58:49.000Z",
@@ -8,10 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44918256,
-    "by": "dsalzman",
-    "timeISO": "2025-08-15T23:00:27.000Z",
-    "textPlain": "This looks awesome. Embedded programming doesn’t get enough love. Did you think about making this an MCP (aka plugin) service that general agents a la claude code can leverage?",
+    "id": 44919400,
+    "by": "pedalpete",
+    "timeISO": "2025-08-16T01:54:57.000Z",
+    "textPlain": "Earlier this week our team were talking about how AI coding tools for our services is great, but we didn't think it was great for firmware development.This may be just because there isn't as much embedded training data. I'm not sure if you have thoughts on that.I've passed it onto the team. Congrats on the launch. Clearly solving a great niche.",
+    "parent": 44915206,
+    "depth": 1
+  },
+  {
+    "id": 44919608,
+    "by": "mrheosuper",
+    "timeISO": "2025-08-16T02:30:58.000Z",
+    "textPlain": "Is it capable of debugging the macro-hell of Zephyr ?",
     "parent": 44915206,
     "depth": 1
   },
@@ -24,6 +40,14 @@
     "depth": 1
   },
   {
+    "id": 44918256,
+    "by": "dsalzman",
+    "timeISO": "2025-08-15T23:00:27.000Z",
+    "textPlain": "This looks awesome. Embedded programming doesn’t get enough love. Did you think about making this an MCP (aka plugin) service that general agents a la claude code can leverage?",
+    "parent": 44915206,
+    "depth": 1
+  },
+  {
     "id": 44917587,
     "by": "brunohaid",
     "timeISO": "2025-08-15T21:42:44.000Z",
@@ -32,18 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44917113,
-    "by": "general1726",
-    "timeISO": "2025-08-15T20:52:54.000Z",
-    "textPlain": "Honestly good luck with that. I have tried DeepSeek and Claude and random pulling of registers out of LLMs butt is a thing.What you will soon find out is that different companies are describing registers in radically different ways in their datasheets and I don't believe that LLM will be able to cope with it. If I can give you an advice, download Tasking compiler for a target processor and you will find SFD files which are essentially XML files describing registers and their bitfields. You can then add context on those SFD from the datasheet / reference manual and now you have 100% correct data with a register-first structure for LLM.Obviously it would be better to figure where those SFD files came out to avoid IP problems. I sincerely doubt that Tasking wrote it itself, it should come from IC manufacturers because this is just distilled VHDL.So getting these structured data instead of datasheets will more likely result in a valid answer.",
-    "parent": 44915206,
-    "depth": 1
-  },
-  {
     "id": 44915990,
     "by": "NotBoolean",
     "timeISO": "2025-08-15T18:38:13.000Z",
     "textPlain": "I’ve found AI agents always a bit lacking in embedded but I’ll test this out.You said in your demo that by uploading the data sheet you completely remove hallucinations. How have you achieved this as I found AI’s still hallucinate even when given documentation.",
+    "parent": 44915206,
+    "depth": 1
+  },
+  {
+    "id": 44917113,
+    "by": "general1726",
+    "timeISO": "2025-08-15T20:52:54.000Z",
+    "textPlain": "Honestly good luck with that. I have tried DeepSeek and Claude and random pulling of registers out of LLMs butt is a thing.What you will soon find out is that different companies are describing registers in radically different ways in their datasheets and I don't believe that LLM will be able to cope with it. If I can give you an advice, download Tasking compiler for a target processor and you will find SFD files which are essentially XML files describing registers and their bitfields. You can then add context on those SFD from the datasheet / reference manual and now you have 100% correct data with a register-first structure for LLM.Obviously it would be better to figure where those SFD files came out to avoid IP problems. I sincerely doubt that Tasking wrote it itself, it should come from IC manufacturers because this is just distilled VHDL.So getting these structured data instead of datasheets will more likely result in a valid answer.",
     "parent": 44915206,
     "depth": 1
   },
@@ -104,14 +128,6 @@
     "depth": 2
   },
   {
-    "id": 44918306,
-    "by": "etgibbs",
-    "timeISO": "2025-08-15T23:08:44.000Z",
-    "textPlain": "exposing the context layer as an MCP is a very interesting idea that I did not consider; could be a good way to drive adoption. great suggestion.",
-    "parent": 44918256,
-    "depth": 2
-  },
-  {
     "id": 44916064,
     "by": "etgibbs",
     "timeISO": "2025-08-15T18:44:47.000Z",
@@ -125,6 +141,14 @@
     "timeISO": "2025-08-15T18:53:01.000Z",
     "textPlain": "Embedder’s privacy policy is very clear that they keep your information.https://embedder.dev/privacy-policy“Content DataWhen you use our services, we collect:Any files or data you upload\nAny generated code or data”",
     "parent": 44915854,
+    "depth": 2
+  },
+  {
+    "id": 44918306,
+    "by": "etgibbs",
+    "timeISO": "2025-08-15T23:08:44.000Z",
+    "textPlain": "exposing the context layer as an MCP is a very interesting idea that I did not consider; could be a good way to drive adoption. great suggestion.",
+    "parent": 44918256,
     "depth": 2
   },
   {
@@ -176,18 +200,18 @@
     "depth": 2
   },
   {
-    "id": 44918361,
-    "by": "RainyDayTmrw",
-    "timeISO": "2025-08-15T23:14:49.000Z",
-    "textPlain": "Does this actually work? I always find it strange when a system prompt tells an LLM to do or not do something that requires domain knowledge to understand. Like, how does the underlying base model at all understand what it means to verify documentation?",
-    "parent": 44916547,
-    "depth": 2
-  },
-  {
     "id": 44916555,
     "by": "foltik",
     "timeISO": "2025-08-15T19:36:17.000Z",
     "textPlain": "The tools it can call:• DatasheetSearch — “Semantic search across authoritative datasheets, reference manuals and application notes to answer hardware-specific questions.”• StaticAnalysis — “Run cppcheck / clang-tidy static analysis with embedded-focused rules.”• Debugger — “AI-assisted interactive debugging leveraging GDB or simulator back-ends.”• ListDir — “List files and directories within a specified path, respecting ignore patterns. Use the full absolute path of the file to read.”• ReadFile — “Read the content (or portion) of a single file with line-range support. Use the full absolute path of the file to read.”• ReadManyFiles — “Batch-read multiple files or glob patterns, returning combined results. Use the full absolute path of the file to read.”• Grep — “Exact regex search across file contents, capped results, supports include patterns. Use the full absolute path of the file to read.”• Glob — “Find files by path pattern (e.g., */*.c) rapidly, sorted by recency. Use the full absolute path of the file to read.”• Edit — “Precise in-file text replacement with contextual validation. Use the full absolute path of the file to edit.”• WriteFile — “Create or overwrite files with exact content, diff-aware. Use the full absolute path of the file to write.”• Shell — “Execute shell commands in project context with safety confirmations.”• FindDefinition — “Find the definition of a specific identifier (function, variable, class, etc.) in the codebase.”• FindReferences — “Find all references to a specific identifier (function, variable, class, etc.) in the codebase.”• FindDependencies — “Find dependencies and relationships between files in the codebase.”• WebSearch — “Performs a web search using Google Search (via the Gemini API) and returns the results. This tool is useful only when we can’t find the documentation using document search or in the code base. We can use this tool for finding information on the internet based on a query.”• ProcessUrls — “Processes content from",
+    "parent": 44916547,
+    "depth": 2
+  },
+  {
+    "id": 44918361,
+    "by": "RainyDayTmrw",
+    "timeISO": "2025-08-15T23:14:49.000Z",
+    "textPlain": "Does this actually work? I always find it strange when a system prompt tells an LLM to do or not do something that requires domain knowledge to understand. Like, how does the underlying base model at all understand what it means to verify documentation?",
     "parent": 44916547,
     "depth": 2
   }

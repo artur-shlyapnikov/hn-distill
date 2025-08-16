@@ -88,14 +88,6 @@
     "depth": 2
   },
   {
-    "id": 44918461,
-    "by": "DokDidhuAd",
-    "timeISO": "2025-08-15T23:29:55.000Z",
-    "textPlain": "Yeah, C++ is just batshit insane.> In C++, when you write an expression like a == b, the compiler chooses among available operator== implementations by comparing their match quality. A member function like a.operator==(b) usually has higher priority than a non-member function like operator==(a, b) — unless the types differ too much or are ambiguous.This is the largest foot-bazooka ever. The point of operator overloading is that the operator in a given expression look natural, feel natural, and behave naturally (= function intuitively). If you have multiple possible operators that could apply, for the same syntax, then you're in a worse position than you originally were -- where an operator either did one particular thing, or didn't apply at all. What operator overloading does in practice is introduce ambiguity. Which is self-defeating. You are better off with C-style, named, non-overloaded functions.You will never find this crap in actual math. \"match quality\" my ass.",
-    "parent": 44914579,
-    "depth": 2
-  },
-  {
     "id": 44915067,
     "by": "immibis",
     "timeISO": "2025-08-15T17:25:10.000Z",
@@ -104,11 +96,11 @@
     "depth": 2
   },
   {
-    "id": 44918233,
-    "by": "maxlybbert",
-    "timeISO": "2025-08-15T22:56:51.000Z",
-    "textPlain": "When the STL became part of the standard library ( http://www.stlport.org/resources/StepanovUSA.html  ), there was a question of how to handle algorithms that sort containers, or that perform a binary search, or in some other way, need to know whether “a” is less-than, equal-to, or greater-than “b”. The algorithms have to work on primitive types, and user defined types as efficiently as possible. They eventually decided to only require a function for “less-than.” And if “a < b” returns false, and “b < a” also returns false, then “a” and “b” are considered equal.There are times that doesn’t work, so documentation usually has a footnote that (1) certain algorithms require a partial ordering and not necessarily a total ordering, and (2) to use those algorithms, you must implement less-than, but any other comparison operator is ignored by the algorithm; instead, less-than is used to figure out greater-than and equal-to as needed. This was considered better than requiring programmers to implement a collection of comparison operators, and trusting those programmers to make those operators act consistently with each other (e.g., never say that “a” and “b” are both less-than and greater-than each other).The spaceship operator seems to address this specific case ( https://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0515r0... ). According to Herb Sutter (note that his name is on the proposal), “We added the C++20 spaceship operator to the language, but we also applied it throughout the C++ standard library and that made the library specification nearly 20 pages shorter — a net reduction” ( https://herbsutter.com/2020/12/ ).",
-    "parent": 44917616,
+    "id": 44918461,
+    "by": "DokDidhuAd",
+    "timeISO": "2025-08-15T23:29:55.000Z",
+    "textPlain": "Yeah, C++ is just batshit insane.> In C++, when you write an expression like a == b, the compiler chooses among available operator== implementations by comparing their match quality. A member function like a.operator==(b) usually has higher priority than a non-member function like operator==(a, b) — unless the types differ too much or are ambiguous.This is the largest foot-bazooka ever. The point of operator overloading is that the operator in a given expression look natural, feel natural, and behave naturally (= function intuitively). If you have multiple possible operators that could apply, for the same syntax, then you're in a worse position than you originally were -- where an operator either did one particular thing, or didn't apply at all. What operator overloading does in practice is introduce ambiguity. Which is self-defeating. You are better off with C-style, named, non-overloaded functions.You will never find this crap in actual math. \"match quality\" my ass.",
+    "parent": 44914579,
     "depth": 2
   },
   {
@@ -116,6 +108,14 @@
     "by": "tialaramex",
     "timeISO": "2025-08-15T22:01:43.000Z",
     "textPlain": "The spaceship operator is an attempt to achieve the same thing as Rust's PartialOrd -- to have a single authoritative place to explain the ordering of a type.Historically C++ only had these separate comparison operators, and operator overloading, and so if you want ordering you'd be expected to override all of the operators and do so in a consistent way. Turns out it's easy enough to get that wrong and if you do now your C++ program is often nonsense, it has no defined meaning whatsoever. For example if a < b && b < a then too bad now many built-in library functions might do absolutely anything in say C++ 17.With the spaceship operator you're still screwed if your type provides an incoherent ordering (unlike Rust where that just means the type is less useful) but it's much more likely you'll write something which actually works.",
+    "parent": 44917616,
+    "depth": 2
+  },
+  {
+    "id": 44918233,
+    "by": "maxlybbert",
+    "timeISO": "2025-08-15T22:56:51.000Z",
+    "textPlain": "When the STL became part of the standard library ( http://www.stlport.org/resources/StepanovUSA.html  ), there was a question of how to handle algorithms that sort containers, or that perform a binary search, or in some other way, need to know whether “a” is less-than, equal-to, or greater-than “b”. The algorithms have to work on primitive types, and user defined types as efficiently as possible. They eventually decided to only require a function for “less-than.” And if “a < b” returns false, and “b < a” also returns false, then “a” and “b” are considered equal.There are times that doesn’t work, so documentation usually has a footnote that (1) certain algorithms require a partial ordering and not necessarily a total ordering, and (2) to use those algorithms, you must implement less-than, but any other comparison operator is ignored by the algorithm; instead, less-than is used to figure out greater-than and equal-to as needed. This was considered better than requiring programmers to implement a collection of comparison operators, and trusting those programmers to make those operators act consistently with each other (e.g., never say that “a” and “b” are both less-than and greater-than each other).The spaceship operator seems to address this specific case ( https://open-std.org/jtc1/sc22/wg21/docs/papers/2017/p0515r0... ). According to Herb Sutter (note that his name is on the proposal), “We added the C++20 spaceship operator to the language, but we also applied it throughout the C++ standard library and that made the library specification nearly 20 pages shorter — a net reduction” ( https://herbsutter.com/2020/12/ ).",
     "parent": 44917616,
     "depth": 2
   },

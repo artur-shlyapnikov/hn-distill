@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44919639,
+    "by": "wbillingsley",
+    "timeISO": "2025-08-16T02:37:18.000Z",
+    "textPlain": "What I used to recommend to my sofware engineering classes is that instead of putting large files (media etc) into Git, put them into the artifact repository (Artifactory or something like it). That lets you for instance publish it as a snapshot dependency that the build system will automatically fetch for you, but control how much history of it you keep and only require your colleagues to fetch the latest version. Even better, a simple clean of their build system cache will free up the space used by old versions on their machines.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44917895,
     "by": "jauer",
     "timeISO": "2025-08-15T22:15:27.000Z",
@@ -24,42 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44918828,
-    "by": "jayd16",
-    "timeISO": "2025-08-16T00:31:24.000Z",
-    "textPlain": "How about git just fixes shallow clones and partial clones?  Then we don't need convoluted work arounds to cheat in large content after we fully clone a history of pointers or promises or whatever.  You should be able to set default clone depth by file type and size in the git attributes (or maybe a file that can also live above a repo like supporting attributes in .gitconfig locations?).Then the usual settings would be to shallow clone the latest content as well as fetch the full history and maybe the text file historical content.  Ideally you could prune to the clone depth settings as well.Why are we still talking about large file pointers?  If you fix shallow and partial clones, then any repo can be an efficient file mirror, right?",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44917935,
     "by": "glitchc",
     "timeISO": "2025-08-15T22:19:21.000Z",
     "textPlain": "No. This is not a solution.While git LFS is just a kludge for now, writing a filter argument during the clone operation is not the long-term solution either.Git clone is the very first command most people will run when learning how to use git.  Emphasized for effect: the very first command.Will they remember to write the filter? Maybe, if the tutorial to the cool codebase they're trying to access mentions it. Maybe not. What happens if they don't? It may take a long time without any obvious indication. And if they do? The cloned repo might not be compilable/usable since the blobs are missing.Say they do get it right. Will they understand it? Most likely not. We are exposing the inner workings of git on the very first command they learn. What's a blob? Why do I need to filter on it? Where are blobs stored? It's classic abstraction leakage.This is a solved problem: Rsync does it. Just port the bloody implementation over. It does mean supporting alternative representations or moving away from blobs altogether, which git maintainers seem unwilling to do.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
-    "id": 44919232,
-    "by": "gschoeni",
-    "timeISO": "2025-08-16T01:29:53.000Z",
-    "textPlain": "We're working on `oxen` to solve a lot of the problems we ran into with git or git-lfs.We have an open source CLI and server that mirrors git, but handles large files and mono repos with millions of files in a much more performant manner. Would love feedback if you want to check it out!https://github.com/Oxen-AI/Oxen",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
-    "id": 44918246,
-    "by": "jameshart",
-    "timeISO": "2025-08-15T22:58:59.000Z",
-    "textPlain": "Nit:> if I git clone a repo with many revisions of a noisome 25 MB PNG fileFYI ‘noisome’ is not a synonym for ‘noisy’ - it’s more of a synonym for ‘noxious’; it means something smells bad.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
-    "id": 44919197,
-    "by": "mathi0750",
-    "timeISO": "2025-08-16T01:24:03.000Z",
-    "textPlain": "Have you tried Oxen.ai? they are doing more fine-tuning and inference now but they have an open-source data version control platform written in rust at the core of their product.",
     "parent": 44916783,
     "depth": 1
   },
@@ -72,26 +48,26 @@
     "depth": 1
   },
   {
-    "id": 44918010,
-    "by": "goneri",
-    "timeISO": "2025-08-15T22:27:52.000Z",
-    "textPlain": "git-annex is a good alternative to the solution of Githu, and it supports different storage backends. I'm actually surprised it's not more popular.",
+    "id": 44918246,
+    "by": "jameshart",
+    "timeISO": "2025-08-15T22:58:59.000Z",
+    "textPlain": "Nit:> if I git clone a repo with many revisions of a noisome 25 MB PNG fileFYI ‘noisome’ is not a synonym for ‘noisy’ - it’s more of a synonym for ‘noxious’; it means something smells bad.",
     "parent": 44916783,
     "depth": 1
   },
   {
-    "id": 44918942,
-    "by": "kerneltime",
-    "timeISO": "2025-08-16T00:48:36.000Z",
-    "textPlain": "https://github.com/oneconcern/datamon\nHad written this git for data tool few years back (works with GCS but can be made to work with S3)\n1. No server side\n2. Immutable data (via GCS policies)\n3. Ability to mount data sets as filesystems\n4. Integrated with k8s.\nIt was built to work for the needs of the startup funding it, but I would love it if it could be extended.",
+    "id": 44919232,
+    "by": "gschoeni",
+    "timeISO": "2025-08-16T01:29:53.000Z",
+    "textPlain": "We're working on `oxen` to solve a lot of the problems we ran into with git or git-lfs.We have an open source CLI and server that mirrors git, but handles large files and mono repos with millions of files in a much more performant manner. Would love feedback if you want to check it out!https://github.com/Oxen-AI/Oxen",
     "parent": 44916783,
     "depth": 1
   },
   {
-    "id": 44918363,
-    "by": "HexDecOctBin",
-    "timeISO": "2025-08-15T23:16:02.000Z",
-    "textPlain": "So this filter argument will reduce the repo size when cloning, but how will one reduce the repo size after a long stint of local commits of changing binary assets? Delete the repo and clone again?",
+    "id": 44918828,
+    "by": "jayd16",
+    "timeISO": "2025-08-16T00:31:24.000Z",
+    "textPlain": "How about git just fixes shallow clones and partial clones?  Then we don't need convoluted work arounds to cheat in large content after we fully clone a history of pointers or promises or whatever.  You should be able to set default clone depth by file type and size in the git attributes (or maybe a file that can also live above a repo like supporting attributes in .gitconfig locations?).Then the usual settings would be to shallow clone the latest content as well as fetch the full history and maybe the text file historical content.  Ideally you could prune to the clone depth settings as well.Why are we still talking about large file pointers?  If you fix shallow and partial clones, then any repo can be an efficient file mirror, right?",
     "parent": 44916783,
     "depth": 1
   },
@@ -104,26 +80,50 @@
     "depth": 1
   },
   {
-    "id": 44919105,
-    "by": "anon-3988",
-    "timeISO": "2025-08-16T01:12:40.000Z",
-    "textPlain": "What prevents Git from simply working better with large files?",
+    "id": 44919684,
+    "by": "CSMastermind",
+    "timeISO": "2025-08-16T02:47:28.000Z",
+    "textPlain": "I could really use an alternative to Plastic SCM for 3D models.  S3 is fine but lacks the nicities.",
     "parent": 44916783,
     "depth": 1
   },
   {
-    "id": 44919026,
-    "by": "whatever1",
-    "timeISO": "2025-08-16T01:01:18.000Z",
-    "textPlain": "It is insane that almost after a century of running computations with data on computers we still don't have a good version control system that maps a code version to its relevant data version.Still the approach is to put code and data in a folder and call it a day. Slap a \"_FINAL\" at the folder name and you are golden.",
+    "id": 44918010,
+    "by": "goneri",
+    "timeISO": "2025-08-15T22:27:52.000Z",
+    "textPlain": "git-annex is a good alternative to the solution of Githu, and it supports different storage backends. I'm actually surprised it's not more popular.",
     "parent": 44916783,
     "depth": 1
   },
   {
-    "id": 44918852,
-    "by": "a_t48",
-    "timeISO": "2025-08-16T00:33:53.000Z",
-    "textPlain": "The real GH LFS cost is not the storage but the bandwidth on pulling objects down for every fresh clone. $$$$$. See my other comment. :)",
+    "id": 44918363,
+    "by": "HexDecOctBin",
+    "timeISO": "2025-08-15T23:16:02.000Z",
+    "textPlain": "So this filter argument will reduce the repo size when cloning, but how will one reduce the repo size after a long stint of local commits of changing binary assets? Delete the repo and clone again?",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44918942,
+    "by": "kerneltime",
+    "timeISO": "2025-08-16T00:48:36.000Z",
+    "textPlain": "https://github.com/oneconcern/datamon\nHad written this git for data tool few years back (works with GCS but can be made to work with S3)\n1. No server side\n2. Immutable data (via GCS policies)\n3. Ability to mount data sets as filesystems\n4. Integrated with k8s.\nIt was built to work for the needs of the startup funding it, but I would love it if it could be extended.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919483,
+    "by": "captn3m0",
+    "timeISO": "2025-08-16T02:06:56.000Z",
+    "textPlain": "Partial clones are also dependent on the server side supporting this. GitHub is one of the very few that does. git.kernel.org for eg did not, last I checked.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919197,
+    "by": "mathi0750",
+    "timeISO": "2025-08-16T01:24:03.000Z",
+    "textPlain": "Have you tried Oxen.ai? they are doing more fine-tuning and inference now but they have an open-source data version control platform written in rust at the core of their product.",
     "parent": 44916783,
     "depth": 1
   },
@@ -132,6 +132,14 @@
     "by": "tombert",
     "timeISO": "2025-08-15T22:08:53.000Z",
     "textPlain": "Is Git ever going to get proper support for binary files?I’ve never used it for anything serious but my understanding is that Mercurial handles binary files  better? Like it supports binary diffs if I understand correctly.Any reason Git couldn’t get that?",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44918852,
+    "by": "a_t48",
+    "timeISO": "2025-08-16T00:33:53.000Z",
+    "textPlain": "The real GH LFS cost is not the storage but the bandwidth on pulling objects down for every fresh clone. $$$$$. See my other comment. :)",
     "parent": 44916783,
     "depth": 1
   },
@@ -148,6 +156,14 @@
     "by": "als0",
     "timeISO": "2025-08-15T22:07:22.000Z",
     "textPlain": "10 years late is better than never.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919105,
+    "by": "anon-3988",
+    "timeISO": "2025-08-16T01:12:40.000Z",
+    "textPlain": "What prevents Git from simply working better with large files?",
     "parent": 44916783,
     "depth": 1
   },
@@ -184,10 +200,26 @@
     "depth": 1
   },
   {
+    "id": 44919614,
+    "by": "jeffWrld",
+    "timeISO": "2025-08-16T02:31:48.000Z",
+    "textPlain": "[dead]",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44918094,
     "by": "forrestthewoods",
     "timeISO": "2025-08-15T22:37:49.000Z",
     "textPlain": "Git is fundamentally broken and bad. Almost all projects are defacto centralized. Your project is not Linux.A good version control system would support petabyte scale history and terabyte scale clones via sparse virtual filesystem.Git’s design is just bad for almost all projects that aren’t Linux.(I know this will get downvoted. But most modern programmers have never used anything but Git and so they don’t realize their tool is actually quite bad! It’s a shame.)",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919026,
+    "by": "whatever1",
+    "timeISO": "2025-08-16T01:01:18.000Z",
+    "textPlain": "It is insane that almost after a century of running computations with data on computers we still don't have a good version control system that maps a code version to its relevant data version.Still the approach is to put code and data in a folder and call it a day. Slap a \"_FINAL\" at the folder name and you are golden.",
     "parent": 44916783,
     "depth": 1
   },
@@ -216,6 +248,14 @@
     "depth": 2
   },
   {
+    "id": 44919683,
+    "by": "firesteelrain",
+    "timeISO": "2025-08-16T02:47:22.000Z",
+    "textPlain": "Do you teach CI/CD systems architecture in your classes?  Because I am finding that is what the junior engineers that we have hired seem to be missing.Tying it all in with GitLab, Artifactory, CodeSonar, Anchore etc",
+    "parent": 44919639,
+    "depth": 2
+  },
+  {
     "id": 44917976,
     "by": "IshKebab",
     "timeISO": "2025-08-15T22:24:28.000Z",
@@ -237,6 +277,14 @@
     "timeISO": "2025-08-15T22:58:59.000Z",
     "textPlain": "Git LFS didn't work with SSH, you had to get an SSL cert which github knew was a barrier for people self hosting at home.  I think gitlab got it patched for SSH finally though.",
     "parent": 44917895,
+    "depth": 2
+  },
+  {
+    "id": 44919557,
+    "by": "andrewmcwatters",
+    "timeISO": "2025-08-16T02:19:41.000Z",
+    "textPlain": "Using LFS once in a repository locks you in permanently. You actually have to delete the repository from GitHub to remove the space consumed. It’s entirely a non-starter.Nowhere is this behavior explicitly stated.I used to use Git LFS on GitHub to do my company’s study on GitHub statistics because we stored large compressed databases on users and repositories.",
+    "parent": 44919065,
     "depth": 2
   },
   {
@@ -288,35 +336,11 @@
     "depth": 2
   },
   {
-    "id": 44918467,
-    "by": "viraptor",
-    "timeISO": "2025-08-15T23:30:42.000Z",
-    "textPlain": "It's really not clear which behaviour you want though. For example when you do lots of bisects you probably want to keep everything downloaded locally. If you're just working on new things, you may want to prune the old blobs. This information only exists in your head though.",
-    "parent": 44918363,
-    "depth": 2
-  },
-  {
-    "id": 44918489,
-    "by": "actinium226",
-    "timeISO": "2025-08-15T23:32:59.000Z",
-    "textPlain": "For lots of local edits you can squash commits using the rebase command with the interactive flag.",
-    "parent": 44918363,
-    "depth": 2
-  },
-  {
-    "id": 44918571,
-    "by": "firesteelrain",
-    "timeISO": "2025-08-15T23:47:51.000Z",
-    "textPlain": "Yes once it gets bad enough your only option is to abandon and move the source code only. Your old repo has the history pre abandon.",
-    "parent": 44918363,
-    "depth": 2
-  },
-  {
-    "id": 44918386,
-    "by": "reactordev",
-    "timeISO": "2025-08-15T23:19:38.000Z",
-    "textPlain": "yeah, this isn't really solving the problem. It's just punting it. While I welcome a short-circuit filter, I see dragons ahead. Dependencies. Assets. Models... won't benefit at all as these repos need the large files - hence why there are large files.",
-    "parent": 44918363,
+    "id": 44919596,
+    "by": "fvncc",
+    "timeISO": "2025-08-16T02:27:49.000Z",
+    "textPlain": "When I tried DVC ~5 years ago it was very slow as it constantly hashed files for some reason.Switched to https://github.com/kevin-hanselman/dud and I have been happy since ..",
+    "parent": 44918329,
     "depth": 2
   },
   {
@@ -324,6 +348,14 @@
     "by": "Evidlo",
     "timeISO": "2025-08-16T00:35:01.000Z",
     "textPlain": "I did a simple test tracking a few hundred gigs of random /dev/urandom data.  LFS choked on upload speed while DVC worked fine.  My team is using DVC now",
+    "parent": 44918329,
+    "depth": 2
+  },
+  {
+    "id": 44919446,
+    "by": "memmel",
+    "timeISO": "2025-08-16T02:02:16.000Z",
+    "textPlain": "I'm in the same boat - I decided this week for DVC over LFS.For me, the deciding factor was that with LFS, if you want to delete objects from storage, you have to rewrite git history. At least, that's what both the Github and Gitlab docs specify.DVC adds a layer of indirection, so that its structure is not directly tied to git. If I change my mind and delete the objects from S3, dvc might stop working, but git will be fine.Some extra pluses about DVC: \n- It can point to versioned S3 objects that you might already have as part of existing data pipelines. \n- It integrates with the Python fsspec library to read the files on demand using paths like \"dvc://path/to/file.parquet\". This feels nicer than needing to download all the files up front.",
     "parent": 44918329,
     "depth": 2
   },
@@ -336,11 +368,11 @@
     "depth": 2
   },
   {
-    "id": 44919124,
-    "by": "AceJohnny2",
-    "timeISO": "2025-08-16T01:15:34.000Z",
-    "textPlain": "git works just fine with large files. The problem is that when you clone a repo, or pull, by default it gets everything, including large files deep in the history that you probably don't care about anymore.That was actually an initial selling point of git: you have the full history locally. You can work from the plane/train/deserted island just fine.These large files will persist in the repo forever. So people look for options to segregate large files out so that they only get downloaded on demand (aka \"lazily\").All the existing options (submodules, LFS, partial clones) are different answers to \"how do we make certain files only download on demand\"",
-    "parent": 44919105,
+    "id": 44918584,
+    "by": "firesteelrain",
+    "timeISO": "2025-08-15T23:50:02.000Z",
+    "textPlain": "A lot of people use Perforce Helix and others use Plastic SCM. That’s been my experience for like large binary assets with git-like functionality",
+    "parent": 44917823,
     "depth": 2
   },
   {
@@ -352,43 +384,19 @@
     "depth": 2
   },
   {
-    "id": 44918584,
-    "by": "firesteelrain",
-    "timeISO": "2025-08-15T23:50:02.000Z",
-    "textPlain": "A lot of people use Perforce Helix and others use Plastic SCM. That’s been my experience for like large binary assets with git-like functionality",
+    "id": 44919465,
+    "by": "brucehoult",
+    "timeISO": "2025-08-16T02:04:42.000Z",
+    "textPlain": "All files in git are binary files.All deltas between versions are binary diffs.Git has always handled large (including large binary) files just fine.What it doesn't like is files where a conceptually minor change changes the entire file, for example compressed or encrypted files.The only somewhat valid complaint is that if someone once committed a large file and then it was later deleted (maybe minutes later, maybe years later) then it is in the repo and in everyone's checkouts forever. Which applies equally to small and to large files, but large ones have more impact.That's the whole point of a version control system. To preserve the history, allowing earlier versions to be recreated.The better solution would be to have better review of changes pushed to the master repo, including having unreviewed changes in separate, potentially sacrificial, repos until approved.",
     "parent": 44917823,
     "depth": 2
   },
   {
-    "id": 44918296,
-    "by": "charcircuit",
-    "timeISO": "2025-08-15T23:07:21.000Z",
-    "textPlain": "The user shouldn't have to think about such a thing. Version control should handle everything automatically and not force the user into doing extra work to workaround issues.",
-    "parent": 44918221,
-    "depth": 2
-  },
-  {
-    "id": 44918207,
-    "by": "codethief",
-    "timeISO": "2025-08-15T22:53:58.000Z",
-    "textPlain": "> A good version control system would support petabyte scale history and terabyte scale clones via sparse virtual filesystem.I like this idea in principle but I always wonder what that would look in practice, outside a FAANG company: How do you ensure the virtual file system works equally well on all platforms, without root access, possibly even inside containers? How do you ensure it's fast? What do you do in case of network errors?",
-    "parent": 44918094,
-    "depth": 2
-  },
-  {
-    "id": 44918402,
-    "by": "ants_everywhere",
-    "timeISO": "2025-08-15T23:21:53.000Z",
-    "textPlain": "Yeah we're at the CVS stage where everyone uses it because everyone uses it.But most people don't need most of its features and many people need features it doesn't have.If you look up git worktrees, you'll find a lot of blog articles referring to worktrees as a \"secret weapon\" or similar. So git's secret weapon is a mode that lets you work around the ugliness of branches. This suggests that many people would be better suited by an SCM that isn't branch-based.It's nice having the full history offline. But the scaling problems force people to adopt a workflow where they have a large number of small git repos instead of keeping the history of related things together. I think there are better designs out there for the typical open source project.",
-    "parent": 44918094,
-    "depth": 2
-  },
-  {
-    "id": 44918206,
-    "by": "matheusmoreira",
-    "timeISO": "2025-08-15T22:53:53.000Z",
-    "textPlain": "Completely disagree. Git is fundamentally functional and good. All projects are local and decentralized, and any \"centralization\" is in fact just git hosting services, of which there are many options which are not even mutually exclusive.",
-    "parent": 44918094,
+    "id": 44918357,
+    "by": "hinkley",
+    "timeISO": "2025-08-15T23:13:57.000Z",
+    "textPlain": "Git has had a good run. Maybe it’s time for a new system built by someone who learned about DX early in their career, instead of via their own bug database.If there’s a new algorithm out there that warrants a look…",
+    "parent": 44918277,
     "depth": 2
   }
 ]
