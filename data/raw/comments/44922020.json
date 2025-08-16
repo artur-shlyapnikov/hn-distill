@@ -1,9 +1,9 @@
 [
   {
-    "id": 44925170,
-    "by": "koromak",
-    "timeISO": "2025-08-16T17:06:13.000Z",
-    "textPlain": "Does anyone truly understand all the little edge cases with CSS?I've write tons and tons of CSS, have done for a decade. I don't sit and think about the exact interactions, I just know a couple things that might work if I'm getting something unexpected.I don't really see it possible to commit that to memory, unless I literally start working on an interpreter myself.",
+    "id": 44925391,
+    "by": "mdaniel",
+    "timeISO": "2025-08-16T17:34:53.000Z",
+    "textPlain": "> A method that returns Optional<T> may return null.projects that do this drive me bananasIf I had the emotional energy, I'd open a JEP for a new @java.lang.NonNullReference and any type annotated with it would be a compiler error to assign null to it  public interface Alpha {}\n  @java.lang.NonNullReference\n  public interface Beta {}\n\n  Alpha a = null; // ok\n  Beta b = null; // compiler error\n\njavac will tolerate this  Beta b;\n  if (Random.randBoolean()) {\n    b = getBeta();\n  } else {\n    b = newBeta();\n  }\n\nbut I would need to squint at the language specification to see if dead code elimination is a nicety or a formality  Beta b;\n  if (true) {\n    b = getBeta();\n  } else {\n    b = null; // I believe this will be elided and thus technically legal\n  }",
     "parent": 44922020,
     "depth": 1
   },
@@ -16,10 +16,26 @@
     "depth": 1
   },
   {
+    "id": 44925527,
+    "by": "OptionOfT",
+    "timeISO": "2025-08-16T17:53:05.000Z",
+    "textPlain": "> Some routers and firewall silently kill idle TCP connections without telling application. Some code (like HTTP client libraries, database clients) keep a pool of TCP connections for reuse, which can be silently invalidated. To solve it you can configure system TCP keepalive. For HTTP you can use Connection: keep-alive Keep-Alive: timeout=30, max=1000 header.Once a TCP connection has been established there is no state on routers in between the 2 ends of the connection. The issue here is firewalls / NAT entries timing out. And indeed, no RSTs are sent.We had the issue in K8s with the conntrack module set too low.Now, you can try to put in an HTTP Keep-Alive, but that will not help you. The HTTP Keep-Alive is merely for connection re-use at the HTTP level, i.e. it doesn't close the connection: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/...An HTTP Keep-Alive does not generate any packages, it merely postpones the close.A TCP Keep-Alive generates packages which resets the timers.",
+    "parent": 44922020,
+    "depth": 1
+  },
+  {
     "id": 44924575,
     "by": "jmull",
     "timeISO": "2025-08-16T16:00:38.000Z",
     "textPlain": "This looks like not so much traps, but a list of things the author has learned.Much of it would only apply in certain relatively narrow contexts, but the contexts aren't necessarily mentioned.Some of it appears to be just wrong.I guess I'm saying: I would not take this literally, but as something almost like a stream-of-consciousness.",
+    "parent": 44922020,
+    "depth": 1
+  },
+  {
+    "id": 44922705,
+    "by": "andunie",
+    "timeISO": "2025-08-16T12:28:40.000Z",
+    "textPlain": "That's a nice compendium of tips and useful information.I wonder if anyone can learn from this. I feel like I only understood what I already knew, or at least was very close to knowing. That's the same thing that happens with teaching manuals about any topic: they're organized in a way that makes sense and it's easy for people who already know the topics, but often very bad at teaching the same topics to an audience that doesn't know anything.",
     "parent": 44922020,
     "depth": 1
   },
@@ -32,10 +48,18 @@
     "depth": 1
   },
   {
-    "id": 44922705,
-    "by": "andunie",
-    "timeISO": "2025-08-16T12:28:40.000Z",
-    "textPlain": "That's a nice compendium of tips and useful information.I wonder if anyone can learn from this. I feel like I only understood what I already knew, or at least was very close to knowing. That's the same thing that happens with teaching manuals about any topic: they're organized in a way that makes sense and it's easy for people who already know the topics, but often very bad at teaching the same topics to an audience that doesn't know anything.",
+    "id": 44925170,
+    "by": "koromak",
+    "timeISO": "2025-08-16T17:06:13.000Z",
+    "textPlain": "Does anyone truly understand all the little edge cases with CSS?I've write tons and tons of CSS, have done for a decade. I don't sit and think about the exact interactions, I just know a couple things that might work if I'm getting something unexpected.I don't really see it possible to commit that to memory, unless I literally start working on an interpreter myself.",
+    "parent": 44922020,
+    "depth": 1
+  },
+  {
+    "id": 44925424,
+    "by": "upghost",
+    "timeISO": "2025-08-16T17:40:22.000Z",
+    "textPlain": "> Unset variables. If DIR is unset, rm -rf $DIR/ becomes rm -rf /. Using set -u can make bash error when encountering unset variable.sweet mercy :OSomeone call the Inquisition",
     "parent": 44922020,
     "depth": 1
   },
@@ -80,6 +104,14 @@
     "depth": 1
   },
   {
+    "id": 44925625,
+    "by": "Spivak",
+    "timeISO": "2025-08-16T18:02:52.000Z",
+    "textPlain": "I question the wisdom of even having Optional<T> in a language with nulls. It would raise some eyebrows if a function in Python returned an Optional type object rather than T | None. You have to do a check either way unless you're doing some cute monad-y stuff.",
+    "parent": 44925391,
+    "depth": 2
+  },
+  {
     "id": 44924698,
     "by": "debugnik",
     "timeISO": "2025-08-16T16:13:31.000Z",
@@ -93,6 +125,14 @@
     "timeISO": "2025-08-16T16:34:08.000Z",
     "textPlain": "I started to say something about C# strings and then I remembered the clusterfuck when it came to Windows development and strings and  depending on which API you call, a string is represented by one of a dozen different ways.https://stackoverflow.com/questions/689211/interop-sending-s...",
     "parent": 44924418,
+    "depth": 2
+  },
+  {
+    "id": 44922777,
+    "by": "skydhash",
+    "timeISO": "2025-08-16T12:37:12.000Z",
+    "textPlain": "> with teaching manuals about any topic: they're organized in a way that makes sense and it's easy for people who already know the topicI think that the reason for a manual existence. To have a written record so we don't have to trust our memory. This is what most unix manuals are. You already know what the software can do, you just need to remember the specificity on how to get something done.> often very bad at teaching the same topics to an audience that doesn't know anything.What you need then is a tutorial (beginner seeking to learn) or a guide (beginner/intermediate seeking to do). Manuals in this case only serve to have better questions (Now you know what you don't know).",
+    "parent": 44922705,
     "depth": 2
   },
   {
@@ -112,11 +152,19 @@
     "depth": 2
   },
   {
-    "id": 44922777,
-    "by": "skydhash",
-    "timeISO": "2025-08-16T12:37:12.000Z",
-    "textPlain": "> with teaching manuals about any topic: they're organized in a way that makes sense and it's easy for people who already know the topicI think that the reason for a manual existence. To have a written record so we don't have to trust our memory. This is what most unix manuals are. You already know what the software can do, you just need to remember the specificity on how to get something done.> often very bad at teaching the same topics to an audience that doesn't know anything.What you need then is a tutorial (beginner seeking to learn) or a guide (beginner/intermediate seeking to do). Manuals in this case only serve to have better questions (Now you know what you don't know).",
-    "parent": 44922705,
+    "id": 44925363,
+    "by": "yurishimo",
+    "timeISO": "2025-08-16T17:29:32.000Z",
+    "textPlain": "I think there can be a different way to think about CSS that can help with that feeling of never understanding it all. Recently I’ve heard people influential in the CSS world describe it as a “suggestion” to the browser. The browser has its own styles, the user might have some custom stylesheet on top of the browser’s version, extensions, etc etc and at some point CSS is really more a long list of “suggestions” about how the site should look.If you embrace that idea to the fullest, you can create some interesting designs/patterns that can be more resilient. The “downside” is that this way of writing css will likely made the pixel perfect head of the marketing department hate you unless they also write code.I think it’s also okay to say that some ways of writing css just aren’t relevant anymore. A good parallel in mind is building construction and general carpentry. These days, a quick 2x4 stud wall or insulated concrete forms is fast, cheap, and standardized around the world. However, many craftspeople still exist that will create beautiful joinery for what is ultimately a simple thing, but we can appreciate that art standalone. With CSS, I don’t suspect we will ever need to go back to floats or crazy background images or whatever but it’s nice that those tools are still there for not only the sake of back compat, but also as a way to tinker and “craft” something bespoke for a special project or just because you like it. Education will eventually catch up and grid and flexbox will keep gaining popularity until we decide that it’s too complicated and come up with some new algorithm. That can all be true though and you can bring value as a developer without knowing every single aspect to the public API.",
+    "parent": 44925170,
+    "depth": 2
+  },
+  {
+    "id": 44925774,
+    "by": "AnimalMuppet",
+    "timeISO": "2025-08-16T18:26:13.000Z",
+    "textPlain": "Instead, say rm -rf $DIR\n\nThat is, skip the trailing slash.  Then if $DIR is not set, it becomes an invalid command, because no file names were supplied.",
+    "parent": 44925424,
     "depth": 2
   },
   {
@@ -157,6 +205,14 @@
     "timeISO": "2025-08-16T13:08:15.000Z",
     "textPlain": "Honorable mention to [a-z], gotta be my favorite trap",
     "parent": 44922737,
+    "depth": 2
+  },
+  {
+    "id": 44925455,
+    "by": "dschuessler",
+    "timeISO": "2025-08-16T17:43:41.000Z",
+    "textPlain": "I am unsure how this is supposed to work for CSS. To my knowledge, most CSS properties cannot be substituted for each other. If the subset to be enforced is \"CSS properties already present\", what is a developer supposed to do if their CSS property is not already present? Change the design?",
+    "parent": 44922803,
     "depth": 2
   },
   {

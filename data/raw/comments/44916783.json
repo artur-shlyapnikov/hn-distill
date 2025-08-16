@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44925600,
+    "by": "Sophira",
+    "timeISO": "2025-08-16T18:00:47.000Z",
+    "textPlain": "How does this upcoming feature deal with the potential problem of fake commit IDs?Commit IDs are based on a number of factors about the commit, including the actual contents and the commit ID of the parent commit. Any fully cloned git repository can theoretically be audited to make sure that all its commit IDs are correct. Nobody does this (although perhaps git does automatically?), but it's possible.But now, picture a git repository that has a one petabyte file in one of its early commits (and deleted again later). Pretty much nobody is going to have the space required to download this, so many people will not even bother to do so. As such, what's to stop the server from just claiming any commit ID it wanted for this particular commit? Who's going to check?(Bonus: For that matter, is the one petabyte file even real? Or just a faked size in the metadata?)To be clear, I assume people have already thought about these issues. I'm just curious what the answers are.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44917895,
     "by": "jauer",
     "timeISO": "2025-08-15T22:15:27.000Z",
@@ -88,14 +96,6 @@
     "depth": 1
   },
   {
-    "id": 44923908,
-    "by": "tionis",
-    "timeISO": "2025-08-16T14:45:24.000Z",
-    "textPlain": "I've been using git + git-lfs to manage, sync and backup all my files (including media files and more) and it's quite convenient, but native support for large files would be great. I'd for example really like to be able to push large objects directly from one device to the next.At the moment I'm using my own git server + git lfs deduplication using btrfs to efficiently handle the large files.If large objects are just embedded in various packfiles this approach would no longer work, so I hope that such a behaviour can be controlled.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918246,
     "by": "jameshart",
     "timeISO": "2025-08-15T22:58:59.000Z",
@@ -104,10 +104,10 @@
     "depth": 1
   },
   {
-    "id": 44923128,
-    "by": "astrolx",
-    "timeISO": "2025-08-16T13:15:54.000Z",
-    "textPlain": "For what it's worth, I have a self hosted git forge where I upped the maximum filesize limit. I use git repositories for my science projects, they can each have hundreds of large files (> 25 Mb as described in the article).\nI don't use LFS, I don't encounter any issue.",
+    "id": 44918329,
+    "by": "bahmboo",
+    "timeISO": "2025-08-15T23:11:10.000Z",
+    "textPlain": "I'm just dipping my toe into Data Version Control - DVC. It is aimed towards data science and large digital asset management using configurable storage sources under a git meta layer. The goal is separation of concerns: git is used for versioning and the storage layers are dumb storage.Does anyone have feedback about personally using DVC vs LFS?",
     "parent": 44916783,
     "depth": 1
   },
@@ -128,6 +128,14 @@
     "depth": 1
   },
   {
+    "id": 44923908,
+    "by": "tionis",
+    "timeISO": "2025-08-16T14:45:24.000Z",
+    "textPlain": "I've been using git + git-lfs to manage, sync and backup all my files (including media files and more) and it's quite convenient, but native support for large files would be great. I'd for example really like to be able to push large objects directly from one device to the next.At the moment I'm using my own git server + git lfs deduplication using btrfs to efficiently handle the large files.If large objects are just embedded in various packfiles this approach would no longer work, so I hope that such a behaviour can be controlled.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44920190,
     "by": "pabs3",
     "timeISO": "2025-08-16T04:30:57.000Z",
@@ -136,10 +144,10 @@
     "depth": 1
   },
   {
-    "id": 44918329,
-    "by": "bahmboo",
-    "timeISO": "2025-08-15T23:11:10.000Z",
-    "textPlain": "I'm just dipping my toe into Data Version Control - DVC. It is aimed towards data science and large digital asset management using configurable storage sources under a git meta layer. The goal is separation of concerns: git is used for versioning and the storage layers are dumb storage.Does anyone have feedback about personally using DVC vs LFS?",
+    "id": 44923128,
+    "by": "astrolx",
+    "timeISO": "2025-08-16T13:15:54.000Z",
+    "textPlain": "For what it's worth, I have a self hosted git forge where I upped the maximum filesize limit. I use git repositories for my science projects, they can each have hundreds of large files (> 25 Mb as described in the article).\nI don't use LFS, I don't encounter any issue.",
     "parent": 44916783,
     "depth": 1
   },
@@ -160,14 +168,6 @@
     "depth": 1
   },
   {
-    "id": 44921850,
-    "by": "rswail",
-    "timeISO": "2025-08-16T09:55:26.000Z",
-    "textPlain": "Is the problem that we don't have good \"diff\" equivalents for binaries that git could use to only store those diffs like the old RCS/CVS for large files?",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918460,
     "by": "nixpulvis",
     "timeISO": "2025-08-15T23:29:50.000Z",
@@ -180,6 +180,14 @@
     "by": "tombert",
     "timeISO": "2025-08-15T22:08:53.000Z",
     "textPlain": "Is Git ever going to get proper support for binary files?I’ve never used it for anything serious but my understanding is that Mercurial handles binary files  better? Like it supports binary diffs if I understand correctly.Any reason Git couldn’t get that?",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44921850,
+    "by": "rswail",
+    "timeISO": "2025-08-16T09:55:26.000Z",
+    "textPlain": "Is the problem that we don't have good \"diff\" equivalents for binaries that git could use to only store those diffs like the old RCS/CVS for large files?",
     "parent": 44916783,
     "depth": 1
   },
@@ -368,14 +376,6 @@
     "depth": 2
   },
   {
-    "id": 44925052,
-    "by": "gradientsrneat",
-    "timeISO": "2025-08-16T16:51:09.000Z",
-    "textPlain": "> LFS does break disconnected/offline/sneakernet operations which wasn't mentioned and is not awesomeYea, I had the same thought. And TBD on large object promisors.Git annex is somewhat more decentralized as it can track the presence of large files across different remotes. And it can pull large files from filesystem repos such as USB drives. The downside is that it's much more complicated and difficult to use. Some code forges used to support it, but support has since been dropped.",
-    "parent": 44917895,
-    "depth": 2
-  },
-  {
     "id": 44917976,
     "by": "IshKebab",
     "timeISO": "2025-08-15T22:24:28.000Z",
@@ -384,18 +384,18 @@
     "depth": 2
   },
   {
-    "id": 44919191,
-    "by": "AceJohnny2",
-    "timeISO": "2025-08-16T01:23:25.000Z",
-    "textPlain": "Another way that LFS is bad, as I recently discovered, is that the migration will pollute the `.gitattributes` of ancestor commits that do not contain the LFS objects.In other words, if you migrate a repo that has commits A->B->C, and C adds the large files, then commits A & B will gain a `.gitattributes` referring to the large files that do not exist in A & B.This is because the migration function will carry its ~gitattributes structure backwards as it walks the history, for caching purposes, and not cross-reference it against the current commit.",
+    "id": 44925052,
+    "by": "gradientsrneat",
+    "timeISO": "2025-08-16T16:51:09.000Z",
+    "textPlain": "> LFS does break disconnected/offline/sneakernet operations which wasn't mentioned and is not awesomeYea, I had the same thought. And TBD on large object promisors.Git annex is somewhat more decentralized as it can track the presence of large files across different remotes. And it can pull large files from filesystem repos such as USB drives. The downside is that it's much more complicated and difficult to use. Some code forges used to support it, but support has since been dropped.",
     "parent": 44917895,
     "depth": 2
   },
   {
-    "id": 44918247,
-    "by": "cma",
-    "timeISO": "2025-08-15T22:58:59.000Z",
-    "textPlain": "Git LFS didn't work with SSH, you had to get an SSL cert which github knew was a barrier for people self hosting at home.  I think gitlab got it patched for SSH finally though.",
+    "id": 44919191,
+    "by": "AceJohnny2",
+    "timeISO": "2025-08-16T01:23:25.000Z",
+    "textPlain": "Another way that LFS is bad, as I recently discovered, is that the migration will pollute the `.gitattributes` of ancestor commits that do not contain the LFS objects.In other words, if you migrate a repo that has commits A->B->C, and C adds the large files, then commits A & B will gain a `.gitattributes` referring to the large files that do not exist in A & B.This is because the migration function will carry its ~gitattributes structure backwards as it walks the history, for caching purposes, and not cross-reference it against the current commit.",
     "parent": 44917895,
     "depth": 2
   }

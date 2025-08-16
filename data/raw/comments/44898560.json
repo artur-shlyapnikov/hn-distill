@@ -8,10 +8,10 @@
     "depth": 1
   },
   {
-    "id": 44924895,
-    "by": "furyofantares",
-    "timeISO": "2025-08-16T16:34:49.000Z",
-    "textPlain": "I don't think 'random' is doing any of the work. These sound like they would work fine with a deterministic PRNG seeded at 0. They don't sound like they need to be looking at lava lamps or the like.It's that there's a population of values (integers for factoring, nodes-to-delete for the graph) where we know a way to get a lot of information cheaply from most values, but we don't know which values, so we sample them.Which isn't to say the PRNG isn't doing work - maybe it is, maybe any straightforward iteration through the sample space has problems, failure values being clumped together, or similar values providing overlapping information.If so that suggests to me that you can do better sampling than PRNG, although maybe the benefit is small. When the article talks about 'derandomizing' an algorithm, is it referring to removing the concept of sampling from this space entirely, or is it talking about doing a better job sampling than 'random'?",
+    "id": 44925389,
+    "by": "hinkley",
+    "timeISO": "2025-08-16T17:34:45.000Z",
+    "textPlain": "If you squint a bit, many of the optimizations for quicksort are essentially a very short Monte Carlo simulation.Randomness seems to help more with intentionally belligerent users than anything else. There is no worst pattern because the same question twice yields a different result. For internal use that can help a little with batch processing, because the last time I did that seriously I found a big problem with clustering of outlier workloads. One team of users had 8-10x the cost of any other team. But since this work involved populating several caches, I sorted by user instead of team and that sorted it. Also meant that one request for team A was more likely to arrive after another request had populated the team data in cache instead of two of them concurrently asking the same questions. So it not only smoothed out server load it also reduced the overall read intensity a bit. But shuffling the data worked almost as well and took,hours instead of days.",
     "parent": 44898560,
     "depth": 1
   },
@@ -24,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44924895,
+    "by": "furyofantares",
+    "timeISO": "2025-08-16T16:34:49.000Z",
+    "textPlain": "I don't think 'random' is doing any of the work. These sound like they would work fine with a deterministic PRNG seeded at 0. They don't sound like they need to be looking at lava lamps or the like.It's that there's a population of values (integers for factoring, nodes-to-delete for the graph) where we know a way to get a lot of information cheaply from most values, but we don't know which values, so we sample them.Which isn't to say the PRNG isn't doing work - maybe it is, maybe any straightforward iteration through the sample space has problems, failure values being clumped together, or similar values providing overlapping information.If so that suggests to me that you can do better sampling than PRNG, although maybe the benefit is small. When the article talks about 'derandomizing' an algorithm, is it referring to removing the concept of sampling from this space entirely, or is it talking about doing a better job sampling than 'random'?",
+    "parent": 44898560,
+    "depth": 1
+  },
+  {
     "id": 44922823,
     "by": "flerovium114",
     "timeISO": "2025-08-16T12:41:29.000Z",
@@ -32,11 +40,19 @@
     "depth": 1
   },
   {
-    "id": 44925068,
+    "id": 44925467,
+    "by": "hinkley",
+    "timeISO": "2025-08-16T17:45:06.000Z",
+    "textPlain": "All else being equal, I like to have either a prime number of servers or a prime number of inflight requests per server. I’m always slightly afraid someone is going to send a batch of requests or tune a benchmark to be run a number of time that divides exactly evenly into the system parallelism and we won’t be testing what we think we are testing due to accidental locality of reference that doesn’t show up in the general population. Not unlike how you get uneven gear wear if you mesh two gears that have a large common denominator of tooth count, like a ratio of 3:1 or 2:3, so the same teeth keep meeting all the time.But all else is seldom equal and Random 2 works as well or better.",
+    "parent": 44923008,
+    "depth": 2
+  },
+  {
+    "id": 44925429,
     "by": "jvanderbot",
-    "timeISO": "2025-08-16T16:53:04.000Z",
-    "textPlain": "I don't follow the question.A pseudo random sequence of choices is still sufficiently detached from the input. Random here means \"I'm making a decision in a way that is independent from the input sufficiently so that structuring the input adversarially won't cause worst case performance.\" Coupled with \"the cost of this algorithm is expressed assuming real random numbers\".That's the work Random is doing.INB4 worst case: you can do worst case analysis on randomized analysis but it's either worst case across any choice or worst case in expectation, not worst case given a poor implementation of RNG, effectively randomization sometimes serves to shake you out of an increasingly niche and unlikely series of bad decisions that is the crux of an adversarial input.To wit> In the rare cases where the algorithm makes an unlucky choice and gets bogged down at the last step, they could just stop and run it again.",
-    "parent": 44924895,
+    "timeISO": "2025-08-16T17:40:58.000Z",
+    "textPlain": "Adversary input is basically at the core of analysis of these types of algorithms, yes.Here's another crossover analogy. In games, for any deterministic strategy there are games where you can't play a deterministic (pure) strategy and hope to get the best outcome, you need randomized (mixed) ones. Otherwise the Adversary could have anticipated and generated a different pathological response.",
+    "parent": 44925389,
     "depth": 2
   },
   {
@@ -53,6 +69,14 @@
     "timeISO": "2025-08-16T13:34:12.000Z",
     "textPlain": "Written by a shiba inu",
     "parent": 44923217,
+    "depth": 2
+  },
+  {
+    "id": 44925068,
+    "by": "jvanderbot",
+    "timeISO": "2025-08-16T16:53:04.000Z",
+    "textPlain": "I don't follow the question.A pseudo random sequence of choices is still sufficiently detached from the input. Random here means \"I'm making a decision in a way that is independent from the input sufficiently so that structuring the input adversarially won't cause worst case performance.\" Coupled with \"the cost of this algorithm is expressed assuming real random numbers\".That's the work Random is doing.INB4 worst case: you can do worst case analysis on randomized analysis but it's either worst case across any choice or worst case in expectation, not worst case given a poor implementation of RNG, effectively randomization sometimes serves to shake you out of an increasingly niche and unlikely series of bad decisions that is the crux of an adversarial input.To wit> In the rare cases where the algorithm makes an unlucky choice and gets bogged down at the last step, they could just stop and run it again.",
+    "parent": 44924895,
     "depth": 2
   }
 ]
