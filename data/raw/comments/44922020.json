@@ -16,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44925527,
-    "by": "OptionOfT",
-    "timeISO": "2025-08-16T17:53:05.000Z",
-    "textPlain": "> Some routers and firewall silently kill idle TCP connections without telling application. Some code (like HTTP client libraries, database clients) keep a pool of TCP connections for reuse, which can be silently invalidated. To solve it you can configure system TCP keepalive. For HTTP you can use Connection: keep-alive Keep-Alive: timeout=30, max=1000 header.Once a TCP connection has been established there is no state on routers in between the 2 ends of the connection. The issue here is firewalls / NAT entries timing out. And indeed, no RSTs are sent.We had the issue in K8s with the conntrack module set too low.Now, you can try to put in an HTTP Keep-Alive, but that will not help you. The HTTP Keep-Alive is merely for connection re-use at the HTTP level, i.e. it doesn't close the connection: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/...An HTTP Keep-Alive does not generate any packages, it merely postpones the close.A TCP Keep-Alive generates packages which resets the timers.",
+    "id": 44925922,
+    "by": "nayuki",
+    "timeISO": "2025-08-16T18:45:05.000Z",
+    "textPlain": "Largely a good listicle. Some feedback:> Unicode unification. Different characters in different language use the same code point. Different languages' font variants render the same code point differently. 語This isn't a trap. The given example character means the same thing in Chinese and Japanese, and the Japanese version was imported from China. People from both languages recognize both font variants as the same conceptual character.The author is making it sound like the letter 'A' in English should have a different code point than an 'A' in French. Or that a lowercase 'a' with the top tail should be a different character than a lowercase 'a' without the top tail.Anyway, this is discussed at length in https://en.wikipedia.org/wiki/Han_unification> There is a negative zero -0.0 which is different to normal zero. The negative zero equals zero when using floating point comparision. Normal zero is treated as \"positive zero\".And there are two ways to distinguish negative zero from normal zero: By their integer bit patterns, or by the fact that 1.0/-0.0 == -Inf vs. 1.0/0.0 == +Inf.> It's recommended to configure the server's time zone as UTC.Big yes. I use UTC for servers, logs, photos, and anything that is worth archiving and timestamping properly. Local time is only for colloquial use.> For integer (low + high) / 2 may overflow. A safer way is low + (high - low) / 2Yes, but if low and high could be negative numbers, then you've just shifted the overflow to a different range. This matters for general binary search over an integer range, as opposed to unsigned binary search over an array.> C/C++I'm going to throw in one of my lists of pitfalls - just using integer types and arithmetic correctly in C/C++ is a massive developer trap. That's like the most basic thing in programming. https://www.nayuki.io/page/summary-of-c-cpp-integer-rules> Rebase can rewrite history\"Can\" is a weasel word; rebase does nothing but rewrite history.",
     "parent": 44922020,
     "depth": 1
   },
@@ -28,6 +28,14 @@
     "by": "jmull",
     "timeISO": "2025-08-16T16:00:38.000Z",
     "textPlain": "This looks like not so much traps, but a list of things the author has learned.Much of it would only apply in certain relatively narrow contexts, but the contexts aren't necessarily mentioned.Some of it appears to be just wrong.I guess I'm saying: I would not take this literally, but as something almost like a stream-of-consciousness.",
+    "parent": 44922020,
+    "depth": 1
+  },
+  {
+    "id": 44925527,
+    "by": "OptionOfT",
+    "timeISO": "2025-08-16T17:53:05.000Z",
+    "textPlain": "> Some routers and firewall silently kill idle TCP connections without telling application. Some code (like HTTP client libraries, database clients) keep a pool of TCP connections for reuse, which can be silently invalidated. To solve it you can configure system TCP keepalive. For HTTP you can use Connection: keep-alive Keep-Alive: timeout=30, max=1000 header.Once a TCP connection has been established there is no state on routers in between the 2 ends of the connection. The issue here is firewalls / NAT entries timing out. And indeed, no RSTs are sent.We had the issue in K8s with the conntrack module set too low.Now, you can try to put in an HTTP Keep-Alive, but that will not help you. The HTTP Keep-Alive is merely for connection re-use at the HTTP level, i.e. it doesn't close the connection: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/...An HTTP Keep-Alive does not generate any packages, it merely postpones the close.A TCP Keep-Alive generates packages which resets the timers.",
     "parent": 44922020,
     "depth": 1
   },
@@ -56,14 +64,6 @@
     "depth": 1
   },
   {
-    "id": 44925424,
-    "by": "upghost",
-    "timeISO": "2025-08-16T17:40:22.000Z",
-    "textPlain": "> Unset variables. If DIR is unset, rm -rf $DIR/ becomes rm -rf /. Using set -u can make bash error when encountering unset variable.sweet mercy :OSomeone call the Inquisition",
-    "parent": 44922020,
-    "depth": 1
-  },
-  {
     "id": 44923495,
     "by": "FFFXXX",
     "timeISO": "2025-08-16T13:57:39.000Z",
@@ -76,6 +76,14 @@
     "by": "ngruhn",
     "timeISO": "2025-08-16T12:33:10.000Z",
     "textPlain": "A recent trap for me:Regex semantics is subtly different across languages. E.g. a{,3} matches between 0 and 3 \"a\" characters in Python. In JavaScript it matches the literal string \"a{,3}\".",
+    "parent": 44922020,
+    "depth": 1
+  },
+  {
+    "id": 44925424,
+    "by": "upghost",
+    "timeISO": "2025-08-16T17:40:22.000Z",
+    "textPlain": "> Unset variables. If DIR is unset, rm -rf $DIR/ becomes rm -rf /. Using set -u can make bash error when encountering unset variable.sweet mercy :OSomeone call the Inquisition",
     "parent": 44922020,
     "depth": 1
   },
@@ -120,6 +128,14 @@
     "depth": 2
   },
   {
+    "id": 44925924,
+    "by": "seangrogg",
+    "timeISO": "2025-08-16T18:45:25.000Z",
+    "textPlain": "Yeah, I think they didn't mean max \"accurate\" integer and rather meant max \"safe\" integer.",
+    "parent": 44924418,
+    "depth": 2
+  },
+  {
     "id": 44924891,
     "by": "scarface_74",
     "timeISO": "2025-08-16T16:34:08.000Z",
@@ -160,14 +176,6 @@
     "depth": 2
   },
   {
-    "id": 44925774,
-    "by": "AnimalMuppet",
-    "timeISO": "2025-08-16T18:26:13.000Z",
-    "textPlain": "Instead, say rm -rf $DIR\n\nThat is, skip the trailing slash.  Then if $DIR is not set, it becomes an invalid command, because no file names were supplied.",
-    "parent": 44925424,
-    "depth": 2
-  },
-  {
     "id": 44923584,
     "by": "charleslmunger",
     "timeISO": "2025-08-16T14:08:38.000Z",
@@ -205,6 +213,14 @@
     "timeISO": "2025-08-16T13:08:15.000Z",
     "textPlain": "Honorable mention to [a-z], gotta be my favorite trap",
     "parent": 44922737,
+    "depth": 2
+  },
+  {
+    "id": 44925774,
+    "by": "AnimalMuppet",
+    "timeISO": "2025-08-16T18:26:13.000Z",
+    "textPlain": "Instead, say rm -rf $DIR\n\nThat is, skip the trailing slash.  Then if $DIR is not set, it becomes an invalid command, because no file names were supplied.",
+    "parent": 44925424,
     "depth": 2
   },
   {

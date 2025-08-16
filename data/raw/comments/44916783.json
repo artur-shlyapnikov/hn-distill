@@ -16,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44925600,
-    "by": "Sophira",
-    "timeISO": "2025-08-16T18:00:47.000Z",
-    "textPlain": "How does this upcoming feature deal with the potential problem of fake commit IDs?Commit IDs are based on a number of factors about the commit, including the actual contents and the commit ID of the parent commit. Any fully cloned git repository can theoretically be audited to make sure that all its commit IDs are correct. Nobody does this (although perhaps git does automatically?), but it's possible.But now, picture a git repository that has a one petabyte file in one of its early commits (and deleted again later). Pretty much nobody is going to have the space required to download this, so many people will not even bother to do so. As such, what's to stop the server from just claiming any commit ID it wanted for this particular commit? Who's going to check?(Bonus: For that matter, is the one petabyte file even real? Or just a faked size in the metadata?)To be clear, I assume people have already thought about these issues. I'm just curious what the answers are.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44917895,
     "by": "jauer",
     "timeISO": "2025-08-15T22:15:27.000Z",
     "textPlain": "TFA asserts that Git LFS is bad for several reasons including because proprietary with vendor lock-in which I don't think is fair to claim. GitHub provided an open client and server which negates that.LFS does break disconnected/offline/sneakernet operations which wasn't mentioned and is not awesome, but those are niche workflows. It sounds like that would also be broken with promisors.The `git partial clone` examples are cool!The description of Large Object Promisors makes it sound like they take the client-side complexity in LFS, move it server-side, and then increases the complexity? Instead of the client uploading to a git server and to a LFS server it uploads to a git server which in turn uploads to an object store, but the client will download directly from the object store? Obviously different tradeoffs there. I'm curious how often people will get bit by uploading to public git servers which upload to hidden promisor remotes.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44925600,
+    "by": "Sophira",
+    "timeISO": "2025-08-16T18:00:47.000Z",
+    "textPlain": "How does this upcoming feature deal with the potential problem of fake commit IDs?Commit IDs are based on a number of factors about the commit, including the actual contents and the commit ID of the parent commit. Any fully cloned git repository can theoretically be audited to make sure that all its commit IDs are correct. Nobody does this (although perhaps git does automatically?), but it's possible.But now, picture a git repository that has a one petabyte file in one of its early commits (and deleted again later). Pretty much nobody is going to have the space required to download this, so many people will not even bother to do so. As such, what's to stop the server from just claiming any commit ID it wanted for this particular commit? Who's going to check?(Bonus: For that matter, is the one petabyte file even real? Or just a faked size in the metadata?)To be clear, I assume people have already thought about these issues. I'm just curious what the answers are.",
     "parent": 44916783,
     "depth": 1
   },
@@ -96,6 +96,14 @@
     "depth": 1
   },
   {
+    "id": 44925965,
+    "by": "tpoacher",
+    "timeISO": "2025-08-16T18:49:56.000Z",
+    "textPlain": "That or rediscover the beauty of svn(only half-trolling)",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44918246,
     "by": "jameshart",
     "timeISO": "2025-08-15T22:58:59.000Z",
@@ -128,18 +136,18 @@
     "depth": 1
   },
   {
-    "id": 44923908,
-    "by": "tionis",
-    "timeISO": "2025-08-16T14:45:24.000Z",
-    "textPlain": "I've been using git + git-lfs to manage, sync and backup all my files (including media files and more) and it's quite convenient, but native support for large files would be great. I'd for example really like to be able to push large objects directly from one device to the next.At the moment I'm using my own git server + git lfs deduplication using btrfs to efficiently handle the large files.If large objects are just embedded in various packfiles this approach would no longer work, so I hope that such a behaviour can be controlled.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44920190,
     "by": "pabs3",
     "timeISO": "2025-08-16T04:30:57.000Z",
     "textPlain": "The git storage model also needs an overhaul to be more like modern backup tools such as restic/borg; it needs content-defined chunking of files and directories.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44923908,
+    "by": "tionis",
+    "timeISO": "2025-08-16T14:45:24.000Z",
+    "textPlain": "I've been using git + git-lfs to manage, sync and backup all my files (including media files and more) and it's quite convenient, but native support for large files would be great. I'd for example really like to be able to push large objects directly from one device to the next.At the moment I'm using my own git server + git lfs deduplication using btrfs to efficiently handle the large files.If large objects are just embedded in various packfiles this approach would no longer work, so I hope that such a behaviour can be controlled.",
     "parent": 44916783,
     "depth": 1
   },
@@ -184,18 +192,18 @@
     "depth": 1
   },
   {
-    "id": 44921850,
-    "by": "rswail",
-    "timeISO": "2025-08-16T09:55:26.000Z",
-    "textPlain": "Is the problem that we don't have good \"diff\" equivalents for binaries that git could use to only store those diffs like the old RCS/CVS for large files?",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918942,
     "by": "kerneltime",
     "timeISO": "2025-08-16T00:48:36.000Z",
     "textPlain": "https://github.com/oneconcern/datamon\nHad written this git for data tool few years back (works with GCS but can be made to work with S3)\n1. No server side\n2. Immutable data (via GCS policies)\n3. Ability to mount data sets as filesystems\n4. Integrated with k8s.\nIt was built to work for the needs of the startup funding it, but I would love it if it could be extended.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44921850,
+    "by": "rswail",
+    "timeISO": "2025-08-16T09:55:26.000Z",
+    "textPlain": "Is the problem that we don't have good \"diff\" equivalents for binaries that git could use to only store those diffs like the old RCS/CVS for large files?",
     "parent": 44916783,
     "depth": 1
   },
@@ -380,14 +388,6 @@
     "by": "IshKebab",
     "timeISO": "2025-08-15T22:24:28.000Z",
     "textPlain": "LFS is bad. The server implementations suck. It conflates object contents with the storage method. It's opt-in, in a terrible way - if you do the obvious thing you get tiny text files instead of the files you actually want.I dunno if their solution is any better but it's fairly unarguable that LFS is bad.",
-    "parent": 44917895,
-    "depth": 2
-  },
-  {
-    "id": 44925052,
-    "by": "gradientsrneat",
-    "timeISO": "2025-08-16T16:51:09.000Z",
-    "textPlain": "> LFS does break disconnected/offline/sneakernet operations which wasn't mentioned and is not awesomeYea, I had the same thought. And TBD on large object promisors.Git annex is somewhat more decentralized as it can track the presence of large files across different remotes. And it can pull large files from filesystem repos such as USB drives. The downside is that it's much more complicated and difficult to use. Some code forges used to support it, but support has since been dropped.",
     "parent": 44917895,
     "depth": 2
   },
