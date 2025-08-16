@@ -43,6 +43,7 @@ const i18n = {
     nav3d: "За три дня",
     navWeekly: "За неделю",
     navTags: "Теги",
+    navSearch: "Поиск",
   },
   en: {
     updated: "Updated",
@@ -54,6 +55,7 @@ const i18n = {
     nav3d: "3 days",
     navWeekly: "Weekly",
     navTags: "Tags",
+    navSearch: "Search",
   },
 };
 const t = i18n[lang];
@@ -85,7 +87,8 @@ const description = `${t.stories}: ${items.length}. ${t.updated}: ${updatedPrett
           <a href={`/daily/${latestDate}/`}>{t.navDaily}</a>
           <a href={`/3d/${latestDate}/`}>{t.nav3d}</a>
           <a href={`/weekly/${currentWeek}/`}>{t.navWeekly}</a>
-          <a href="/tags/" class="nav-link-muted">{t.navTags}</a>
+          <a href="/tags/">{t.navTags}</a>
+          <a href="/search/">{t.navSearch}</a>
         </nav>
         <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
       </div>
@@ -143,15 +146,16 @@ const description = `${t.stories}: ${items.length}. ${t.updated}: ${updatedPrett
           const el = cards[i];
           if (!el) return;
           el.classList.add("selected");
-          try { el.focus({ preventScroll: true }); } catch {}
+          try {
+            el.focus({ preventScroll: true });
+          } catch {}
           el.scrollIntoView({ block: "nearest" });
         };
 
         // Initialize on first card for predictability
         select(0);
 
-        const isTypingField = (t) =>
-          t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
+        const isTypingField = (t) => t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
 
         const openOriginal = () => {
           const el = cards[i];
@@ -166,38 +170,41 @@ const description = `${t.stories}: ${items.length}. ${t.updated}: ${updatedPrett
 
         const goNextPage = () => {
           const a =
-            document.querySelector('nav.pagination a[rel="next"]') ||
-            document.querySelector('nav.pagination a[href]');
+            document.querySelector('nav.pagination a[rel="next"]') || document.querySelector("nav.pagination a[href]");
           if (a) window.location.assign(a.getAttribute("href"));
         };
 
-        window.addEventListener("keydown", (e) => {
-          if (e.altKey || e.metaKey || e.ctrlKey) return;
-          if (isTypingField(e.target)) return;
+        window.addEventListener(
+          "keydown",
+          (e) => {
+            if (e.altKey || e.metaKey || e.ctrlKey) return;
+            if (isTypingField(e.target)) return;
 
-          switch (e.key) {
-            case "j":
-              e.preventDefault();
-              select(i + 1);
-              break;
-            case "k":
-              e.preventDefault();
-              select(i - 1);
-              break;
-            case "o":
-              e.preventDefault();
-              openOriginal();
-              break;
-            case "h":
-              e.preventDefault();
-              goPrevPage();
-              break;
-            case "l":
-              e.preventDefault();
-              goNextPage();
-              break;
-          }
-        }, { passive: false });
+            switch (e.key) {
+              case "j":
+                e.preventDefault();
+                select(i + 1);
+                break;
+              case "k":
+                e.preventDefault();
+                select(i - 1);
+                break;
+              case "o":
+                e.preventDefault();
+                openOriginal();
+                break;
+              case "h":
+                e.preventDefault();
+                goPrevPage();
+                break;
+              case "l":
+                e.preventDefault();
+                goNextPage();
+                break;
+            }
+          },
+          { passive: false }
+        );
       })();
     </script>
   </body>

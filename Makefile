@@ -26,6 +26,9 @@ run:
 
 .PHONY: build
 build:
+	# Copy search data to public directory for static serving
+	mkdir -p public/data
+	cp data/search.json public/data/search.json 2>/dev/null || true
 	bunx astro build
 
 .PHONY: dev
@@ -62,6 +65,9 @@ local-test:
 		bun run tsx scripts/summarize.mts
 	TOP_N=5 MAX_COMMENTS_PER_STORY=20 MAX_DEPTH=2 CONCURRENCY=6 \
 		bun run tsx scripts/aggregate.mts
+	# Copy search data to public directory for static serving
+	mkdir -p public/data
+	cp data/search.json public/data/search.json 2>/dev/null || true
 	# Build the site
 	bunx astro build
 

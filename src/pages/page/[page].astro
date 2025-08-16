@@ -1,11 +1,11 @@
 ---
-import StorySection from '../../components/StorySection.astro';
-import '../../styles/global.css';
-import { LANG } from '@config/lang';
-import { PATHS } from '@config/paths';
-import { formatDateHuman } from '@utils/date';
-import type { AggregatedItem } from '@config/schemas';
-import { loadAggregated } from '@utils/load-aggregated';
+import StorySection from "../../components/StorySection.astro";
+import "../../styles/global.css";
+import { LANG } from "@config/lang";
+import { PATHS } from "@config/paths";
+import { formatDateHuman } from "@utils/date";
+import type { AggregatedItem } from "@config/schemas";
+import { loadAggregated } from "@utils/load-aggregated";
 
 export const PAGE_SIZE = 10;
 
@@ -20,7 +20,7 @@ const { items: allItems, updatedISO } = loadAggregated(PATHS.aggregated);
 const updatedPretty = formatDateHuman(updatedISO);
 
 const totalPages = Math.max(1, Math.ceil(allItems.length / PAGE_SIZE));
-const pStr = Astro.params.page ?? '1';
+const pStr = Astro.params.page ?? "1";
 const pNum = Number.parseInt(pStr, 10);
 const currentPage = Number.isFinite(pNum) && pNum > 0 ? Math.min(pNum, totalPages) : 1;
 
@@ -28,33 +28,54 @@ const start = (currentPage - 1) * PAGE_SIZE;
 const pageItems = allItems.slice(start, start + PAGE_SIZE);
 
 function pageHref(n: number): string {
-  const u = new URL(`page/${n}/`, Astro.site ?? 'http://localhost/');
+  const u = new URL(`page/${n}/`, Astro.site ?? "http://localhost/");
   const path = u.pathname;
-  return path.endsWith('/') ? path : `${path}/`;
+  return path.endsWith("/") ? path : `${path}/`;
 }
+
+// Generate date for navigation links based on latest data
+const firstItem = allItems[0];
+const latestDate = firstItem?.timeISO
+  ? new Date(firstItem.timeISO).toISOString().slice(0, 10)
+  : new Date().toISOString().slice(0, 10);
+
+// Generate current week for weekly link (consistent with isoWeekKey format)
+import { isoWeekKey } from "@utils/date-keys";
+const currentWeek = isoWeekKey(new Date().toISOString());
 
 const i18n = {
   ru: {
-    updated: 'Обновлено',
-    stories: 'Постов',
-    noData: 'Нет данных для отображения. Попробуйте позже.',
-    page: 'Страница',
-    prev: '« Назад',
-    next: 'Вперёд »',
+    updated: "Обновлено",
+    stories: "Постов",
+    noData: "Нет данных для отображения. Попробуйте позже.",
+    page: "Страница",
+    prev: "« Назад",
+    next: "Вперёд »",
+    navDaily: "За день",
+    nav3d: "За три дня",
+    navWeekly: "За неделю",
+    navTags: "Теги",
+    navSearch: "Поиск",
   },
   en: {
-    updated: 'Updated',
-    stories: 'Stories',
-    noData: 'No data to display. Please try again later.',
-    page: 'Page',
-    prev: '« Prev',
-    next: 'Next »',
-  }
+    updated: "Updated",
+    stories: "Stories",
+    noData: "No data to display. Please try again later.",
+    page: "Page",
+    prev: "« Prev",
+    next: "Next »",
+    navDaily: "Daily",
+    nav3d: "3 days",
+    navWeekly: "Weekly",
+    navTags: "Tags",
+    navSearch: "Search",
+  },
 };
 const t = i18n[lang];
 const pageTitle = `Hacker News Digest — ${t.page} ${currentPage}/${totalPages}`;
 const description = `${t.page} ${currentPage}/${totalPages} of Hacker News Digest. ${t.updated}: ${updatedPretty}.`;
 ---
+
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
@@ -75,39 +96,64 @@ const description = `${t.page} ${currentPage}/${totalPages} of Hacker News Diges
     <header>
       <div class="header-top">
         <h1><a href="/">Hacker News Digest</a></h1>
+        <nav class="header-nav" aria-label="Site navigation">
+          <a href={`/daily/${latestDate}/`}>{t.navDaily}</a>
+          <a href={`/3d/${latestDate}/`}>{t.nav3d}</a>
+          <a href={`/weekly/${currentWeek}/`}>{t.navWeekly}</a>
+          <a href="/tags/">{t.navTags}</a>
+          <a href="/search/">{t.navSearch}</a>
+        </nav>
         <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
       </div>
       <p class="meta">{t.updated}: {updatedPretty}</p>
       <p class="meta">{t.stories}: {allItems.length} • {t.page} {currentPage}/{totalPages}</p>
     </header>
     <main>
-      {allItems.length === 0 ? (
-        <p class="meta">{t.noData}</p>
-      ) : (
-        pageItems.map((it: AggregatedItem) => <StorySection item={it} />)
-      )}
-      {allItems.length > 0 && (
-        <nav class="pagination" aria-label="Pagination">
-          {currentPage > 1 ? <a href={pageHref(currentPage - 1)} rel="prev">{t.prev}</a> : <span></span>}
-          <span>{t.page} {currentPage} / {totalPages}</span>
-          {currentPage < totalPages ? <a href={pageHref(currentPage + 1)} rel="next">{t.next}</a> : <span></span>}
-        </nav>
-      )}
+      {
+        allItems.length === 0 ? (
+          <p class="meta">{t.noData}</p>
+        ) : (
+          pageItems.map((it: AggregatedItem) => <StorySection item={it} />)
+        )
+      }
+      {
+        allItems.length > 0 && (
+          <nav class="pagination" aria-label="Pagination">
+            {currentPage > 1 ? (
+              <a href={pageHref(currentPage - 1)} rel="prev">
+                {t.prev}
+              </a>
+            ) : (
+              <span />
+            )}
+            <span>
+              {t.page} {currentPage} / {totalPages}
+            </span>
+            {currentPage < totalPages ? (
+              <a href={pageHref(currentPage + 1)} rel="next">
+                {t.next}
+              </a>
+            ) : (
+              <span />
+            )}
+          </nav>
+        )
+      }
     </main>
     <script>
       const root = document.documentElement;
-      const btn = document.getElementById('theme-toggle');
-      if (localStorage.getItem('theme') === 'dark') {
-        root.setAttribute('data-theme', 'dark');
+      const btn = document.getElementById("theme-toggle");
+      if (localStorage.getItem("theme") === "dark") {
+        root.setAttribute("data-theme", "dark");
       }
-      btn?.addEventListener('click', () => {
-        const isDark = root.getAttribute('data-theme') === 'dark';
+      btn?.addEventListener("click", () => {
+        const isDark = root.getAttribute("data-theme") === "dark";
         if (isDark) {
-          root.removeAttribute('data-theme');
-          localStorage.setItem('theme', 'light');
+          root.removeAttribute("data-theme");
+          localStorage.setItem("theme", "light");
         } else {
-          root.setAttribute('data-theme', 'dark');
-          localStorage.setItem('theme', 'dark');
+          root.setAttribute("data-theme", "dark");
+          localStorage.setItem("theme", "dark");
         }
       });
     </script>
@@ -124,15 +170,16 @@ const description = `${t.page} ${currentPage}/${totalPages} of Hacker News Diges
           const el = cards[i];
           if (!el) return;
           el.classList.add("selected");
-          try { el.focus({ preventScroll: true }); } catch {}
+          try {
+            el.focus({ preventScroll: true });
+          } catch {}
           el.scrollIntoView({ block: "nearest" });
         };
 
         // Initialize on first card for predictability
         select(0);
 
-        const isTypingField = (t) =>
-          t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
+        const isTypingField = (t) => t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable);
 
         const openOriginal = () => {
           const el = cards[i];
@@ -147,38 +194,41 @@ const description = `${t.page} ${currentPage}/${totalPages} of Hacker News Diges
 
         const goNextPage = () => {
           const a =
-            document.querySelector('nav.pagination a[rel="next"]') ||
-            document.querySelector('nav.pagination a[href]');
+            document.querySelector('nav.pagination a[rel="next"]') || document.querySelector("nav.pagination a[href]");
           if (a) window.location.assign(a.getAttribute("href"));
         };
 
-        window.addEventListener("keydown", (e) => {
-          if (e.altKey || e.metaKey || e.ctrlKey) return;
-          if (isTypingField(e.target)) return;
+        window.addEventListener(
+          "keydown",
+          (e) => {
+            if (e.altKey || e.metaKey || e.ctrlKey) return;
+            if (isTypingField(e.target)) return;
 
-          switch (e.key) {
-            case "j":
-              e.preventDefault();
-              select(i + 1);
-              break;
-            case "k":
-              e.preventDefault();
-              select(i - 1);
-              break;
-            case "o":
-              e.preventDefault();
-              openOriginal();
-              break;
-            case "h":
-              e.preventDefault();
-              goPrevPage();
-              break;
-            case "l":
-              e.preventDefault();
-              goNextPage();
-              break;
-          }
-        }, { passive: false });
+            switch (e.key) {
+              case "j":
+                e.preventDefault();
+                select(i + 1);
+                break;
+              case "k":
+                e.preventDefault();
+                select(i - 1);
+                break;
+              case "o":
+                e.preventDefault();
+                openOriginal();
+                break;
+              case "h":
+                e.preventDefault();
+                goPrevPage();
+                break;
+              case "l":
+                e.preventDefault();
+                goNextPage();
+                break;
+            }
+          },
+          { passive: false }
+        );
       })();
     </script>
   </body>

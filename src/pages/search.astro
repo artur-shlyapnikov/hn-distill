@@ -1,37 +1,38 @@
 ---
-import '../styles/global.css';
-import { LANG } from '@config/lang';
+import "../styles/global.css";
+import { LANG } from "@config/lang";
 
 const lang = LANG;
 const i18n = {
   ru: {
-    title: 'Поиск',
-    qTitle: 'Заголовок содержит…',
-    qDomain: 'Домен содержит…',
-    qTags: 'Теги (через запятую, И)',
-    from: 'С',
-    to: 'По',
-    clear: 'Сброс',
-    results: 'Результатов',
-    pageTitle: 'Поиск — Hacker News Digest',
-    pageDesc: 'Поиск по Hacker News Digest: фильтрация по заголовку, домену, тегам и дате.',
+    title: "Поиск",
+    qTitle: "Заголовок содержит…",
+    qDomain: "Домен содержит…",
+    qTags: "Теги (через запятую, И)",
+    from: "С",
+    to: "По",
+    clear: "Сброс",
+    results: "Результатов",
+    pageTitle: "Поиск — Hacker News Digest",
+    pageDesc: "Поиск по Hacker News Digest: фильтрация по заголовку, домену, тегам и дате.",
   },
   en: {
-    title: 'Search',
-    qTitle: 'Title contains…',
-    qDomain: 'Domain contains…',
-    qTags: 'Tags (comma separated, AND)',
-    from: 'From',
-    to: 'To',
-    clear: 'Clear',
-    results: 'Results',
-    pageTitle: 'Search — Hacker News Digest',
-    pageDesc: 'Search Hacker News Digest: filter by title, domain, tags, and date.',
-  }
+    title: "Search",
+    qTitle: "Title contains…",
+    qDomain: "Domain contains…",
+    qTags: "Tags (comma separated, AND)",
+    from: "From",
+    to: "To",
+    clear: "Clear",
+    results: "Results",
+    pageTitle: "Search — Hacker News Digest",
+    pageDesc: "Search Hacker News Digest: filter by title, domain, tags, and date.",
+  },
 } as const;
 
-const t = i18n[lang as 'ru' | 'en'];
+const t = i18n[lang as "ru" | "en"];
 ---
+
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
@@ -52,104 +53,121 @@ const t = i18n[lang as 'ru' | 'en'];
     </header>
     <main>
       <form id="filters" class="filters" autocomplete="off">
-        <input id="q-title"  placeholder={t.qTitle} />
+        <input id="q-title" placeholder={t.qTitle} />
         <input id="q-domain" placeholder={t.qDomain} />
-        <input id="q-tags"   placeholder={t.qTags} />
+        <input id="q-tags" placeholder={t.qTags} />
         <input id="q-from" type="date" aria-label={t.from} />
-        <input id="q-to"   type="date" aria-label={t.to} />
+        <input id="q-to" type="date" aria-label={t.to} />
         <button id="q-clear" type="button">{t.clear}</button>
         <span id="count" class="meta" aria-live="polite" style="justify-self: end;"></span>
       </form>
       <ul id="results" class="results"></ul>
     </main>
-    <script type="module">
+    <script type="module" define:vars={{ t }}>
+      // i18n data is now available as 't' variable
+
       const els = {
-        title:  document.getElementById('q-title'),
-        domain: document.getElementById('q-domain'),
-        tags:   document.getElementById('q-tags'),
-        from:   document.getElementById('q-from'),
-        to:     document.getElementById('q-to'),
-        clear:  document.getElementById('q-clear'),
-        results:document.getElementById('results'),
-        count:  document.getElementById('count'),
+        title: document.getElementById("q-title"),
+        domain: document.getElementById("q-domain"),
+        tags: document.getElementById("q-tags"),
+        from: document.getElementById("q-from"),
+        to: document.getElementById("q-to"),
+        clear: document.getElementById("q-clear"),
+        results: document.getElementById("results"),
+        count: document.getElementById("count"),
       };
 
       // Prefer absolute root path (site uses absolute links); swap to base-aware if needed later.
-      const data = await fetch('/data/search.json').then(r => r.ok ? r.json() : []);
+      const data = await fetch("/data/search.json").then((r) => (r.ok ? r.json() : []));
       const rows = Array.isArray(data) ? data : [];
 
       const onChange = (() => {
         let t;
-        return () => { clearTimeout(t); t = setTimeout(apply, 120); };
+        return () => {
+          clearTimeout(t);
+          t = setTimeout(apply, 120);
+        };
       })();
 
-      for (const k of ['title','domain','tags','from','to']) els[k].addEventListener('input', onChange);
-      els.clear.addEventListener('click', () => {
-        for (const k of ['title','domain','tags','from','to']) els[k].value = '';
+      for (const k of ["title", "domain", "tags", "from", "to"]) els[k].addEventListener("input", onChange);
+      els.clear.addEventListener("click", () => {
+        for (const k of ["title", "domain", "tags", "from", "to"]) els[k].value = "";
         apply();
       });
 
       function apply() {
-        const qTitle = (els.title.value || '').trim().toLowerCase();
-        const qDomain= (els.domain.value || '').trim().toLowerCase();
-        const qTags  = (els.tags.value || '').split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
-        const fromMs = els.from.value ? Date.parse(els.from.value+'T00:00:00Z') : -Infinity;
-        const toMs   = els.to.value   ? Date.parse(els.to.value  +'T23:59:59Z') :  Infinity;
+        const qTitle = (els.title.value || "").trim().toLowerCase();
+        const qDomain = (els.domain.value || "").trim().toLowerCase();
+        const qTags = (els.tags.value || "")
+          .split(",")
+          .map((s) => s.trim().toLowerCase())
+          .filter(Boolean);
+        const fromMs = els.from.value ? Date.parse(els.from.value + "T00:00:00Z") : -Infinity;
+        const toMs = els.to.value ? Date.parse(els.to.value + "T23:59:59Z") : Infinity;
 
-        let out = rows.filter(r => {
-          const title = String(r.title || '').toLowerCase();
+        let out = rows.filter((r) => {
+          const title = String(r.title || "").toLowerCase();
           if (qTitle && !title.includes(qTitle)) return false;
 
           if (qDomain) {
-            const d = String(r.domain || '').toLowerCase();
+            const d = String(r.domain || "").toLowerCase();
             if (!d.includes(qDomain)) return false;
           }
 
           if (qTags.length) {
             const tags = Array.isArray(r.tags) ? r.tags : [];
-            const set = new Set(tags.map(t => String(t).toLowerCase()));
+            const set = new Set(tags.map((t) => String(t).toLowerCase()));
             for (const t of qTags) if (!set.has(t)) return false;
           }
 
-          const t = Date.parse(String(r.timeISO || ''));
+          const t = Date.parse(String(r.timeISO || ""));
           const ts = Number.isFinite(t) ? t : 0;
           if (ts < fromMs || ts > toMs) return false;
 
           return true;
         });
 
-        out.sort((a,b) => {
-          const ta = Date.parse(String(a.timeISO || '')) || 0;
-          const tb = Date.parse(String(b.timeISO || '')) || 0;
-          return tb - ta || ((b.id|0) - (a.id|0));
+        out.sort((a, b) => {
+          const ta = Date.parse(String(a.timeISO || "")) || 0;
+          const tb = Date.parse(String(b.timeISO || "")) || 0;
+          return tb - ta || (b.id | 0) - (a.id | 0);
         });
 
-        els.count.textContent = `${out.length} ${out.length === 1 ? (t.results === 'Results' ? 'result' : 'результат') : t.results.toLowerCase()}`;
+        els.count.textContent = `${out.length} ${out.length === 1 ? (t.results === "Results" ? "result" : "результат") : t.results.toLowerCase()}`;
 
         // Render first 500 for perf
         const slice = out.slice(0, 500);
-        els.results.innerHTML = slice.map(r => {
-          const date = (String(r.timeISO || '')).slice(0,10);
-          const dom = r.domain ? ` • ${escapeHtml(String(r.domain))}` : '';
-          const score = Number.isFinite(r.score) ? ` • ⭐ ${r.score}` : '';
-          const tags = (Array.isArray(r.tags) ? r.tags : []).map(t => `<a href="/tag/${escapeAttr(String(t))}/" class="tag">#${escapeHtml(String(t))}</a>`).join(' ');
-          return `<li class="card">
-                    <h2 class="title"><a href="/item/${r.id}/">${escapeHtml(String(r.title || ''))}</a>${
-                      r.domain ? `<span class="meta" style="font-weight: normal; margin-left: .5rem;">(${escapeHtml(String(r.domain))})</span>` : ''
+        els.results.innerHTML = slice
+          .map((r) => {
+            const date = String(r.timeISO || "").slice(0, 10);
+            const dom = r.domain ? ` • ${escapeHtml(String(r.domain))}` : "";
+            const score = Number.isFinite(r.score) ? ` • ⭐ ${r.score}` : "";
+            const tags = (Array.isArray(r.tags) ? r.tags : [])
+              .map((t) => `<a href="/tag/${escapeAttr(String(t))}/" class="tag">#${escapeHtml(String(t))}</a>`)
+              .join(" ");
+            return `<li class="card">
+                    <h2 class="title"><a href="/item/${r.id}/">${escapeHtml(String(r.title || ""))}</a>${
+                      r.domain
+                        ? `<span class="meta" style="font-weight: normal; margin-left: .5rem;">(${escapeHtml(String(r.domain))})</span>`
+                        : ""
                     }</h2>
                     <p class="meta">${date}${dom}${score}</p>
-                    ${tags ? `<p class="meta tags">${tags}</p>` : ''}
+                    ${tags ? `<p class="meta tags">${tags}</p>` : ""}
                   </li>`;
-        }).join('');
+          })
+          .join("");
       }
 
       function escapeHtml(s) {
-        return s.replace(/[&<>"']/g, c => ({'&':'&','<':'<','>':'>','"':'"',"'":'''}[c]));
+        return s.replace(
+          /[&<>"']/g,
+          (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]
+        );
       }
       function escapeAttr(s) {
         return s.replace(/[^-_.~a-zA-Z0-9]/g, (c) => {
           const code = c.charCodeAt(0).toString(16).toUpperCase();
-          return `%${code.length === 1 ? '0'+code : code}`;
+          return `%${code.length === 1 ? "0" + code : code}`;
         });
       }
 
@@ -163,12 +181,12 @@ const t = i18n[lang as 'ru' | 'en'];
         align-items: center;
       }
       .filters input {
-        padding: .5rem;
+        padding: 0.5rem;
         border: 1px solid var(--color-border);
         border-radius: var(--radius);
       }
       #q-clear {
-        padding: .5rem .75rem;
+        padding: 0.5rem 0.75rem;
       }
       .results {
         list-style: none;
@@ -183,7 +201,9 @@ const t = i18n[lang as 'ru' | 'en'];
         padding: var(--space-md);
       }
       @media (max-width: 768px) {
-        .filters { grid-template-columns: 1fr 1fr; }
+        .filters {
+          grid-template-columns: 1fr 1fr;
+        }
       }
     </style>
   </body>
