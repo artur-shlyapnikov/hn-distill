@@ -8,14 +8,6 @@
     "depth": 1
   },
   {
-    "id": 44920078,
-    "by": "1vuio0pswjnm7",
-    "timeISO": "2025-08-16T04:10:03.000Z",
-    "textPlain": "\"Usually it's the weirdo benchmark that shows OpenBSD being 10x slower, so this one is definitely going in the collection.\"Could it behttps://web.archive.org/web/20031020054211if_/http://bulk.fe...or is there another one",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
     "id": 44916819,
     "by": "sweetjuly",
     "timeISO": "2025-08-15T20:12:56.000Z",
@@ -24,10 +16,10 @@
     "depth": 1
   },
   {
-    "id": 44916702,
-    "by": "cout",
-    "timeISO": "2025-08-15T19:57:32.000Z",
-    "textPlain": "Interesting. I tried to follow the discussion in the linked thread, and the only takeaway I got was \"something to do with RCU\". What id the simplified explanation?",
+    "id": 44920078,
+    "by": "1vuio0pswjnm7",
+    "timeISO": "2025-08-16T04:10:03.000Z",
+    "textPlain": "\"Usually it's the weirdo benchmark that shows OpenBSD being 10x slower, so this one is definitely going in the collection.\"Could it behttps://web.archive.org/web/20031020054211if_/http://bulk.fe...or is there another one",
     "parent": 44915824,
     "depth": 1
   },
@@ -36,6 +28,14 @@
     "by": "rurban",
     "timeISO": "2025-08-15T18:33:12.000Z",
     "textPlain": "No, generally Linux is at least 3x faster than OpenBSD, because they don't care much for optimizations.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44916702,
+    "by": "cout",
+    "timeISO": "2025-08-15T19:57:32.000Z",
+    "textPlain": "Interesting. I tried to follow the discussion in the linked thread, and the only takeaway I got was \"something to do with RCU\". What id the simplified explanation?",
     "parent": 44915824,
     "depth": 1
   },
@@ -192,22 +192,6 @@
     "depth": 2
   },
   {
-    "id": 44917222,
-    "by": "bobby_big_balls",
-    "timeISO": "2025-08-15T21:03:48.000Z",
-    "textPlain": "In Linux, the file descriptor table (fdtable) of a process starts with a minimum of 256 slots. Two threads creating 256 sockets each, which uses 512 fds on top of the three already present (for stdin, stdout and stderr), requires that the fdtable be expanded about halfway through when the capacity is doubled from 256 to 512, and again near the end when resizing from 512 to 1024.This is done by expand_fdtable() in the kernel. It contains the following code:        if (atomic_read(&files->count) > 1)\n          synchronize_rcu();\n\nThe field files->count is a reference counter. As there are two threads, which share a set of open files between them, the value of this is 2, meaning that synchronize_rcu() is called here during fdtable expansion. This waits until a full RCU grace period has elapsed, causing a delay in acquiring a new fd for the socket currently being created.If the fdtable is expanded prior to creating a new thread, as the test program optionally will do by calling dup(0, 666) if supplied a command line argument, this avoids the synchronize_rcu() call because at this point files->count == 1. Therefore, if this is done, there will be no delay later on when creating all the sockets as the fdtable will have sufficient capacity.By contrast, the OpenBSD kernel doesn't have anything like RCU and just uses a rwlock when the file descriptor table of the process is being modified, avoiding the long delay during expansion that may be observed in Linux.",
-    "parent": 44916702,
-    "depth": 2
-  },
-  {
-    "id": 44917030,
-    "by": "viraptor",
-    "timeISO": "2025-08-15T20:40:52.000Z",
-    "textPlain": "When 2 threads are allocating sockets sequentially, they fight for the locks. If you preallocate a bigger table by creating fd 666 first, the lock contention goes away.",
-    "parent": 44916702,
-    "depth": 2
-  },
-  {
     "id": 44916830,
     "by": "farhaven",
     "timeISO": "2025-08-15T20:14:08.000Z",
@@ -237,6 +221,22 @@
     "timeISO": "2025-08-15T23:23:22.000Z",
     "textPlain": "Rather they care about the security. The same mitigations in Linux would likely make it even slower.",
     "parent": 44915925,
+    "depth": 2
+  },
+  {
+    "id": 44917222,
+    "by": "bobby_big_balls",
+    "timeISO": "2025-08-15T21:03:48.000Z",
+    "textPlain": "In Linux, the file descriptor table (fdtable) of a process starts with a minimum of 256 slots. Two threads creating 256 sockets each, which uses 512 fds on top of the three already present (for stdin, stdout and stderr), requires that the fdtable be expanded about halfway through when the capacity is doubled from 256 to 512, and again near the end when resizing from 512 to 1024.This is done by expand_fdtable() in the kernel. It contains the following code:        if (atomic_read(&files->count) > 1)\n          synchronize_rcu();\n\nThe field files->count is a reference counter. As there are two threads, which share a set of open files between them, the value of this is 2, meaning that synchronize_rcu() is called here during fdtable expansion. This waits until a full RCU grace period has elapsed, causing a delay in acquiring a new fd for the socket currently being created.If the fdtable is expanded prior to creating a new thread, as the test program optionally will do by calling dup(0, 666) if supplied a command line argument, this avoids the synchronize_rcu() call because at this point files->count == 1. Therefore, if this is done, there will be no delay later on when creating all the sockets as the fdtable will have sufficient capacity.By contrast, the OpenBSD kernel doesn't have anything like RCU and just uses a rwlock when the file descriptor table of the process is being modified, avoiding the long delay during expansion that may be observed in Linux.",
+    "parent": 44916702,
+    "depth": 2
+  },
+  {
+    "id": 44917030,
+    "by": "viraptor",
+    "timeISO": "2025-08-15T20:40:52.000Z",
+    "textPlain": "When 2 threads are allocating sockets sequentially, they fight for the locks. If you preallocate a bigger table by creating fd 666 first, the lock contention goes away.",
+    "parent": 44916702,
     "depth": 2
   },
   {
@@ -325,6 +325,14 @@
     "timeISO": "2025-08-15T21:58:53.000Z",
     "textPlain": "You do understand that people who know how to benchmark things don’t actually need to conform to the rules of thumb that are given to non-experts so they don’t shoot themselves in the foot, right? Do you also write off rally drivers because they have their feet on both pedals?",
     "parent": 44917047,
+    "depth": 2
+  },
+  {
+    "id": 44920366,
+    "by": "ccapitalK",
+    "timeISO": "2025-08-16T05:10:55.000Z",
+    "textPlain": "It's sites like this that make me extremely grateful for firefox's reader mode.",
+    "parent": 44916623,
     "depth": 2
   },
   {

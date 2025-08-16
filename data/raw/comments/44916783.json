@@ -32,10 +32,26 @@
     "depth": 1
   },
   {
+    "id": 44920190,
+    "by": "pabs3",
+    "timeISO": "2025-08-16T04:30:57.000Z",
+    "textPlain": "The git storage model also needs an overhaul to be more like modern backup tools such as restic/borg; it needs content-defined chunking of files and directories.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44918524,
     "by": "technoweenie",
     "timeISO": "2025-08-15T23:40:03.000Z",
     "textPlain": "I'm really happy to see large file support in Git core. Any external solution would have similar opt-in procedures. I really wanted it to work seamlessly with as few extra commands as possible, so the API was constrained to the smudge and clean filters in the '.gitattributes' file.Though I did work hard to remove any vendor lock-in by working directly with Atlassian and Microsoft pretty early in the process. It was a great working relationship, with a lot of help from Atlassian in particular on the file locking API. LFS shipped open source with compatible support in 3 separate git hosts.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44920276,
+    "by": "ideasman42",
+    "timeISO": "2025-08-16T04:50:25.000Z",
+    "textPlain": "Something they missed out with the GitLFS cons is authentication, if you don't use SSH-agent, pushing involves authenticating multiple times, sometimes more than 2-3 times in my experience.",
     "parent": 44916783,
     "depth": 1
   },
@@ -104,10 +120,10 @@
     "depth": 1
   },
   {
-    "id": 44919684,
-    "by": "CSMastermind",
-    "timeISO": "2025-08-16T02:47:28.000Z",
-    "textPlain": "I could really use an alternative to Plastic SCM for 3D models.  S3 is fine but lacks the nicities.",
+    "id": 44917823,
+    "by": "tombert",
+    "timeISO": "2025-08-15T22:08:53.000Z",
+    "textPlain": "Is Git ever going to get proper support for binary files?I’ve never used it for anything serious but my understanding is that Mercurial handles binary files  better? Like it supports binary diffs if I understand correctly.Any reason Git couldn’t get that?",
     "parent": 44916783,
     "depth": 1
   },
@@ -120,10 +136,18 @@
     "depth": 1
   },
   {
-    "id": 44917823,
-    "by": "tombert",
-    "timeISO": "2025-08-15T22:08:53.000Z",
-    "textPlain": "Is Git ever going to get proper support for binary files?I’ve never used it for anything serious but my understanding is that Mercurial handles binary files  better? Like it supports binary diffs if I understand correctly.Any reason Git couldn’t get that?",
+    "id": 44917806,
+    "by": "als0",
+    "timeISO": "2025-08-15T22:07:22.000Z",
+    "textPlain": "10 years late is better than never.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919684,
+    "by": "CSMastermind",
+    "timeISO": "2025-08-16T02:47:28.000Z",
+    "textPlain": "I could really use an alternative to Plastic SCM for 3D models.  S3 is fine but lacks the nicities.",
     "parent": 44916783,
     "depth": 1
   },
@@ -144,14 +168,6 @@
     "depth": 1
   },
   {
-    "id": 44919858,
-    "by": "moonlion_eth",
-    "timeISO": "2025-08-16T03:26:16.000Z",
-    "textPlain": "the future of git is jj",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918852,
     "by": "a_t48",
     "timeISO": "2025-08-16T00:33:53.000Z",
@@ -160,10 +176,10 @@
     "depth": 1
   },
   {
-    "id": 44917806,
-    "by": "als0",
-    "timeISO": "2025-08-15T22:07:22.000Z",
-    "textPlain": "10 years late is better than never.",
+    "id": 44919858,
+    "by": "moonlion_eth",
+    "timeISO": "2025-08-16T03:26:16.000Z",
+    "textPlain": "the future of git is jj",
     "parent": 44916783,
     "depth": 1
   },
@@ -176,18 +192,18 @@
     "depth": 1
   },
   {
-    "id": 44919937,
-    "by": "ghhv",
-    "timeISO": "2025-08-16T03:44:36.000Z",
-    "textPlain": "YtmiA 2",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44917801,
     "by": "Affric",
     "timeISO": "2025-08-15T22:07:07.000Z",
     "textPlain": "Incredible.Nice to see some Microsoft and Google emails contributing.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919937,
+    "by": "ghhv",
+    "timeISO": "2025-08-16T03:44:36.000Z",
+    "textPlain": "YtmiA 2",
     "parent": 44916783,
     "depth": 1
   },
@@ -248,18 +264,18 @@
     "depth": 1
   },
   {
-    "id": 44918823,
-    "by": "a_t48",
-    "timeISO": "2025-08-16T00:30:31.000Z",
-    "textPlain": "At my current job I've started caching all of our LFS objects in a bucket, for cost reasons. Every time a PR is run, I get the list of objects via `git lfs ls-files`, sync them from gcp, run `git lfs checkout` to actually populate the repo from the object store, and then `git lfs pull` to pick up anything not cached. If there were uncached objects, I push them back up via `gcloud storage rsync`. Simple, doesn't require any configuration for developers (who only ever have to pull new objects), keeps the Github UI unconfused about the state of the repo.I'd initially at spinning up an LFS backends, but this solves the main pain point, for now. Github was charging us an arm and a leg for pulling LFS files for CI, because each checkout is fresh, the caching model is non-ideal (max 10GB cache, impossible to share between branches), so we end up pulling a bunch of data that is unfortunately in LFS, every commit, possibly multiple times. Because of this they happily charge us for all that bandwidth, because they don't provide tools to make it easy to reduce bandwidth (let me pay for more cache size, or warm workers with an entire cache disc, or better cache control, or...)....and if I want to enable this for developers it's relatively easy, just add a new git hook to do the same set of operations locally.",
-    "parent": 44918580,
-    "depth": 2
-  },
-  {
     "id": 44919099,
     "by": "nullwarp",
     "timeISO": "2025-08-16T01:11:52.000Z",
     "textPlain": "Same and never understood why it wasn't the default from the get go but maybe it wasn't so synonymous when it first came out.I run a small git LFS server because of this and will be happy to switch away the second I can get git to natively support S3.",
+    "parent": 44918580,
+    "depth": 2
+  },
+  {
+    "id": 44918823,
+    "by": "a_t48",
+    "timeISO": "2025-08-16T00:30:31.000Z",
+    "textPlain": "At my current job I've started caching all of our LFS objects in a bucket, for cost reasons. Every time a PR is run, I get the list of objects via `git lfs ls-files`, sync them from gcp, run `git lfs checkout` to actually populate the repo from the object store, and then `git lfs pull` to pick up anything not cached. If there were uncached objects, I push them back up via `gcloud storage rsync`. Simple, doesn't require any configuration for developers (who only ever have to pull new objects), keeps the Github UI unconfused about the state of the repo.I'd initially at spinning up an LFS backends, but this solves the main pain point, for now. Github was charging us an arm and a leg for pulling LFS files for CI, because each checkout is fresh, the caching model is non-ideal (max 10GB cache, impossible to share between branches), so we end up pulling a bunch of data that is unfortunately in LFS, every commit, possibly multiple times. Because of this they happily charge us for all that bandwidth, because they don't provide tools to make it easy to reduce bandwidth (let me pay for more cache size, or warm workers with an entire cache disc, or better cache control, or...)....and if I want to enable this for developers it's relatively easy, just add a new git hook to do the same set of operations locally.",
     "parent": 44918580,
     "depth": 2
   },
@@ -312,14 +328,6 @@
     "depth": 2
   },
   {
-    "id": 44918146,
-    "by": "ks2048",
-    "timeISO": "2025-08-15T22:44:16.000Z",
-    "textPlain": "> This is a solved problem: Rsync does it.Can you explain what the solution is? I don't mean the details of the rsync algorithm, but rather what it would like like from the users' perspective. What files are on your local filesystem when you do a \"git clone\"?",
-    "parent": 44917935,
-    "depth": 2
-  },
-  {
     "id": 44918194,
     "by": "TGower",
     "timeISO": "2025-08-15T22:52:13.000Z",
@@ -328,10 +336,26 @@
     "depth": 2
   },
   {
+    "id": 44918146,
+    "by": "ks2048",
+    "timeISO": "2025-08-15T22:44:16.000Z",
+    "textPlain": "> This is a solved problem: Rsync does it.Can you explain what the solution is? I don't mean the details of the rsync algorithm, but rather what it would like like from the users' perspective. What files are on your local filesystem when you do a \"git clone\"?",
+    "parent": 44917935,
+    "depth": 2
+  },
+  {
     "id": 44918333,
     "by": "spyrja",
     "timeISO": "2025-08-15T23:11:51.000Z",
     "textPlain": "Would it be incorrect to say that most of the bloat relates to historical revisions? If so, maybe an rsync-like behavior starting with the most current version of the files would be the best starting point. (Which is all most people will need anyhow.)",
+    "parent": 44917935,
+    "depth": 2
+  },
+  {
+    "id": 44920296,
+    "by": "TZubiri",
+    "timeISO": "2025-08-16T04:55:22.000Z",
+    "textPlain": "\"Will they remember to write the filter? Maybe, \"Nothing wrong with \"forgetting\" to write the filter, and then if it's taking more than 10 minutes, write the filter.",
     "parent": 44917935,
     "depth": 2
   },
@@ -352,43 +376,27 @@
     "depth": 2
   },
   {
-    "id": 44919924,
-    "by": "gonzalohm",
-    "timeISO": "2025-08-16T03:41:15.000Z",
-    "textPlain": "My main complaint about DVC is that it's hard to manage the files and if you keep modifying a big file you are going to end up with all the revisions stored in S3 (or whichever storage you choose). This is by design but I wish it was easier to set up like \"store only the latest 3 revisions\"",
-    "parent": 44918329,
+    "id": 44920400,
+    "by": "alchemist1e9",
+    "timeISO": "2025-08-16T05:16:33.000Z",
+    "textPlain": "Was looking for a mention of git-annex and I completely agree. I’ve used it extensively and have found it works really well.Any ideas why it isn’t more popular and more well known?",
+    "parent": 44918010,
     "depth": 2
   },
   {
-    "id": 44918859,
-    "by": "Evidlo",
-    "timeISO": "2025-08-16T00:35:01.000Z",
-    "textPlain": "I did a simple test tracking a few hundred gigs of random /dev/urandom data.  LFS choked on upload speed while DVC worked fine.  My team is using DVC now",
-    "parent": 44918329,
+    "id": 44919124,
+    "by": "AceJohnny2",
+    "timeISO": "2025-08-16T01:15:34.000Z",
+    "textPlain": "git works just fine with large files. The problem is that when you clone a repo, or pull, by default it gets everything, including large files deep in the history that you probably don't care about anymore.That was actually an initial selling point of git: you have the full history locally. You can work from the plane/train/deserted island just fine.These large files will persist in the repo forever. So people look for options to segregate large files out so that they only get downloaded on demand (aka \"lazily\").All the existing options (submodules, LFS, partial clones) are different answers to \"how do we make certain files only download on demand\"",
+    "parent": 44919105,
     "depth": 2
   },
   {
-    "id": 44919596,
-    "by": "fvncc",
-    "timeISO": "2025-08-16T02:27:49.000Z",
-    "textPlain": "When I tried DVC ~5 years ago it was very slow as it constantly hashed files for some reason.Switched to https://github.com/kevin-hanselman/dud and I have been happy since ..",
-    "parent": 44918329,
-    "depth": 2
-  },
-  {
-    "id": 44918523,
-    "by": "bokchoi",
-    "timeISO": "2025-08-15T23:39:50.000Z",
-    "textPlain": "It sounds like git-annex might be a good option for you.  There is also https://www.datalad.org/ built on top of git-annex for large data management.",
-    "parent": 44918329,
-    "depth": 2
-  },
-  {
-    "id": 44918357,
-    "by": "hinkley",
-    "timeISO": "2025-08-15T23:13:57.000Z",
-    "textPlain": "Git has had a good run. Maybe it’s time for a new system built by someone who learned about DX early in their career, instead of via their own bug database.If there’s a new algorithm out there that warrants a look…",
-    "parent": 44918277,
+    "id": 44918207,
+    "by": "codethief",
+    "timeISO": "2025-08-15T22:53:58.000Z",
+    "textPlain": "> A good version control system would support petabyte scale history and terabyte scale clones via sparse virtual filesystem.I like this idea in principle but I always wonder what that would look in practice, outside a FAANG company: How do you ensure the virtual file system works equally well on all platforms, without root access, possibly even inside containers? How do you ensure it's fast? What do you do in case of network errors?",
+    "parent": 44918094,
     "depth": 2
   }
 ]
