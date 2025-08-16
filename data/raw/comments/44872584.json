@@ -16,14 +16,6 @@
     "depth": 1
   },
   {
-    "id": 44920743,
-    "by": "jokoon",
-    "timeISO": "2025-08-16T06:25:19.000Z",
-    "textPlain": "I like c++, but it is so complex to compile that this situation was bound to happen.I wish new C++ standards would make old c++ not work: old code could still be compiled with old compilers, and it would encourage developers to fix their code or rewrite it.C++ needs it's python2to3 moment.Cpp2/cppfront feels a bit like that.I don't mean to say that c++11 to 20 are bad, but they are probably expensive and fastidious to implement.",
-    "parent": 44872584,
-    "depth": 1
-  },
-  {
     "id": 44917616,
     "by": "metadat",
     "timeISO": "2025-08-15T21:44:47.000Z",
@@ -36,6 +28,14 @@
     "by": "yjftsjthsd-h",
     "timeISO": "2025-08-15T19:35:18.000Z",
     "textPlain": "Okay, but why  // SPDX-License-Identifier: UNLICENSED\n\non 6 lines of trivial example code? Of all the things to make proprietary...",
+    "parent": 44872584,
+    "depth": 1
+  },
+  {
+    "id": 44920743,
+    "by": "jokoon",
+    "timeISO": "2025-08-16T06:25:19.000Z",
+    "textPlain": "I like c++, but it is so complex to compile that this situation was bound to happen.I wish new C++ standards would make old c++ not work: old code could still be compiled with old compilers, and it would encourage developers to fix their code or rewrite it.C++ needs it's python2to3 moment.Cpp2/cppfront feels a bit like that.I don't mean to say that c++11 to 20 are bad, but they are probably expensive and fastidious to implement.",
     "parent": 44872584,
     "depth": 1
   },
@@ -96,18 +96,18 @@
     "depth": 2
   },
   {
-    "id": 44918461,
-    "by": "DokDidhuAd",
-    "timeISO": "2025-08-15T23:29:55.000Z",
-    "textPlain": "Yeah, C++ is just batshit insane.> In C++, when you write an expression like a == b, the compiler chooses among available operator== implementations by comparing their match quality. A member function like a.operator==(b) usually has higher priority than a non-member function like operator==(a, b) — unless the types differ too much or are ambiguous.This is the largest foot-bazooka ever. The point of operator overloading is that the operator in a given expression look natural, feel natural, and behave naturally (= function intuitively). If you have multiple possible operators that could apply, for the same syntax, then you're in a worse position than you originally were -- where an operator either did one particular thing, or didn't apply at all. What operator overloading does in practice is introduce ambiguity. Which is self-defeating. You are better off with C-style, named, non-overloaded functions.You will never find this crap in actual math. \"match quality\" my ass.",
-    "parent": 44914579,
-    "depth": 2
-  },
-  {
     "id": 44915067,
     "by": "immibis",
     "timeISO": "2025-08-15T17:25:10.000Z",
     "textPlain": "It's not slightly, it's substantially more complicated to become substantially more convenient. The leap from C to C++ is similar to the leap from assembly code to C. As you add features, the language becomes more complex. That's just how it is.Most languages deal with this by limiting the features they have - but not C++! (or Scala, which is like Java's C++)",
+    "parent": 44914579,
+    "depth": 2
+  },
+  {
+    "id": 44918461,
+    "by": "DokDidhuAd",
+    "timeISO": "2025-08-15T23:29:55.000Z",
+    "textPlain": "Yeah, C++ is just batshit insane.> In C++, when you write an expression like a == b, the compiler chooses among available operator== implementations by comparing their match quality. A member function like a.operator==(b) usually has higher priority than a non-member function like operator==(a, b) — unless the types differ too much or are ambiguous.This is the largest foot-bazooka ever. The point of operator overloading is that the operator in a given expression look natural, feel natural, and behave naturally (= function intuitively). If you have multiple possible operators that could apply, for the same syntax, then you're in a worse position than you originally were -- where an operator either did one particular thing, or didn't apply at all. What operator overloading does in practice is introduce ambiguity. Which is self-defeating. You are better off with C-style, named, non-overloaded functions.You will never find this crap in actual math. \"match quality\" my ass.",
     "parent": 44914579,
     "depth": 2
   },
@@ -173,6 +173,14 @@
     "timeISO": "2025-08-15T20:16:49.000Z",
     "textPlain": "All test suites have coverage gaps. The fixing commit adds tests. https://gcc.gnu.org/cgit/gcc/commit/?id=c1e54c82a9e1855499ef...The better question, in my opinion, is how many other known defects are just sitting there in the GNU buganizer with good reports for more than a decade.",
     "parent": 44916751,
+    "depth": 2
+  },
+  {
+    "id": 44921364,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-16T08:24:18.000Z",
+    "textPlain": "The constraint should be `template <typename T> requires (!std::is_same_v<T, rational<>>)` since the spaceship operator's rewriting rules for mixed-type comparisons create the ambiguity that triggered the compiler bug.",
+    "parent": 44917826,
     "depth": 2
   }
 ]

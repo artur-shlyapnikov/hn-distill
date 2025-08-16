@@ -1,0 +1,66 @@
+[
+  {
+    "id": 44921359,
+    "by": "bambax",
+    "timeISO": "2025-08-16T08:22:33.000Z",
+    "textPlain": "> When querying the database, query the database. It’s almost always more efficient to get the database to do the work than to do it yourself. For instance, if you need data from multiple tables, JOIN them instead of making separate queries and stitching them together in-memory.Oh yes! Never do a join in the application code! But also: use views! (and stored procedures if you can). A view is an abstraction about the underlying data, it's functional by nature, unlikely to break for random reasons in the future, and if done well the underlying SQL code is surprisingly readable and easy to reason about.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44921354,
+    "by": "ZYbCRq22HbJ2y7",
+    "timeISO": "2025-08-16T08:21:50.000Z",
+    "textPlain": "> You’re supposed to store timestamps instead, and treat the presence of a timestamp as true. I do this sometimes but not always - in my view there’s some value in keeping a database schema immediately-readable.Seems like overly negative of broad advice on a good pattern?   ```\n    is_on => true\n    on_at => 1023030\n   ```\n\nSure, that makes sense.    ```\n     is_a_bear => true\n     a_bear_at => 12312231231\n    ```\nNot so much.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44921325,
+    "by": "magnio",
+    "timeISO": "2025-08-16T08:16:01.000Z",
+    "textPlain": "I think it's a very good article. Even if you disagree with some of the individual points in it, the advice given are very concrete, pragmatic, and IMO tunable to the specifics of each project.On state, in my current project, it is not statefulness that causes trouble, but when you need to synchronize two stateful systems. Every time there's bidirectional information flow, it's gonna be a headache. The solution is of course to maintain a single source of truth, but with UI application this is sometimes quite tricky.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44921252,
+    "by": "com",
+    "timeISO": "2025-08-16T08:01:37.000Z",
+    "textPlain": "The advice about logging and metrics was good.I had been nodding away about state and push/pull, but this section grabbed my attention, since I’ve never seen it do clearly articulated before.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44921254,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-16T08:02:36.000Z",
+    "textPlain": "He doesnt seem to mention Conway or team topology which is an important part of system design too.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44921264,
+    "by": "bravesoul2",
+    "timeISO": "2025-08-16T08:04:54.000Z",
+    "textPlain": "Yes. Everyone should spent the small amount of time getting some logging/metrics going. It's like tests, getting from 0-1 test is psychologically hard in a org but 1-1000 then becomes \"how did I live without this\". Grafana has a decent free tier or you can self host.",
+    "parent": 44921252,
+    "depth": 2
+  },
+  {
+    "id": 44921263,
+    "by": "dondraper36",
+    "timeISO": "2025-08-16T08:04:26.000Z",
+    "textPlain": "The logging part is spot on. It has happened so many times when I thought, \"Oh, I wish I had logged this.\", and then you face an issue or even an incident and introduce these logs anyways.",
+    "parent": 44921252,
+    "depth": 2
+  },
+  {
+    "id": 44921274,
+    "by": "dondraper36",
+    "timeISO": "2025-08-16T08:06:50.000Z",
+    "textPlain": "Well, as sad as it is, such advice is often applicable to new projects when you still have runway for your own decisions.For mostly political reasons, if you are onboarded to a team with a billion microservices and a lot of fanciness, it's unlikely that you will ever get approval or time to introduce simplicity. Or maybe I just got corrupted myself by the reality where I have to work now.",
+    "parent": 44921254,
+    "depth": 2
+  }
+]

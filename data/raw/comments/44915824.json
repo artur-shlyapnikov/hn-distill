@@ -40,22 +40,6 @@
     "depth": 1
   },
   {
-    "id": 44920078,
-    "by": "1vuio0pswjnm7",
-    "timeISO": "2025-08-16T04:10:03.000Z",
-    "textPlain": "\"Usually it's the weirdo benchmark that shows OpenBSD being 10x slower, so this one is definitely going in the collection.\"Could it behttps://web.archive.org/web/20031020054211if_/http://bulk.fe...or is there another one",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
-    "id": 44920833,
-    "by": "u64x086a",
-    "timeISO": "2025-08-16T06:43:25.000Z",
-    "textPlain": "What about this on FreeBSD? It's possible to reach the same results?",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
     "id": 44918133,
     "by": "sugarpimpdorsey",
     "timeISO": "2025-08-15T22:42:16.000Z",
@@ -64,18 +48,18 @@
     "depth": 1
   },
   {
-    "id": 44918960,
-    "by": "eyberg",
-    "timeISO": "2025-08-16T00:50:52.000Z",
-    "textPlain": "This is kind of a stupid \"benchmark\" but if we're going to walk down this road:linux: elapsed: 0.019895snanos (running on said linux): elapsed: 0.000886s",
+    "id": 44920078,
+    "by": "1vuio0pswjnm7",
+    "timeISO": "2025-08-16T04:10:03.000Z",
+    "textPlain": "\"Usually it's the weirdo benchmark that shows OpenBSD being 10x slower, so this one is definitely going in the collection.\"Could it behttps://web.archive.org/web/20031020054211if_/http://bulk.fe...or is there another one",
     "parent": 44915824,
     "depth": 1
   },
   {
-    "id": 44920829,
-    "by": "u64x086a",
-    "timeISO": "2025-08-16T06:43:01.000Z",
-    "textPlain": "What about the FreeBSD?",
+    "id": 44918960,
+    "by": "eyberg",
+    "timeISO": "2025-08-16T00:50:52.000Z",
+    "textPlain": "This is kind of a stupid \"benchmark\" but if we're going to walk down this road:linux: elapsed: 0.019895snanos (running on said linux): elapsed: 0.000886s",
     "parent": 44915824,
     "depth": 1
   },
@@ -92,6 +76,14 @@
     "by": "agambrahma",
     "timeISO": "2025-08-15T20:02:48.000Z",
     "textPlain": "So ... essentially testing file descriptor allocation overhead",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44920833,
+    "by": "u64x086a",
+    "timeISO": "2025-08-16T06:43:25.000Z",
+    "textPlain": "What about this on FreeBSD? It's possible to reach the same results?",
     "parent": 44915824,
     "depth": 1
   },
@@ -116,6 +108,14 @@
     "by": "asveikau",
     "timeISO": "2025-08-15T20:03:39.000Z",
     "textPlain": "My guess is it has something to do with the file descriptor table having a lot of empty entries (the dup2(0, 666) line.)Now time to read the actual linked discussion.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44920829,
+    "by": "u64x086a",
+    "timeISO": "2025-08-16T06:43:01.000Z",
+    "textPlain": "What about the FreeBSD?",
     "parent": 44915824,
     "depth": 1
   },
@@ -176,18 +176,26 @@
     "depth": 1
   },
   {
-    "id": 44920803,
-    "by": "ethan_smith",
-    "timeISO": "2025-08-16T06:38:50.000Z",
-    "textPlain": "While __rdtsc() is fast, be cautious with multi-core benchmarks as TSC synchronization between cores isn't guaranteed on all hardware, especially older systems. Modern Intel/AMD CPUs have \"invariant TSC\" which helps, but it's worth checking CPU flags first.",
-    "parent": 44916909,
-    "depth": 2
-  },
-  {
     "id": 44917042,
     "by": "sa46",
     "timeISO": "2025-08-15T20:42:16.000Z",
     "textPlain": "Isn't gettimeofday implemented with vDSO to avoid kernel context switching (and therefore, most of the overhead)?My understanding is that using tsc directly is tricky. The rate might not be constant, and the rate differs across cores. [1][1]: https://www.pingcap.com/blog/how-we-trace-a-kv-database-with...",
+    "parent": 44916909,
+    "depth": 2
+  },
+  {
+    "id": 44921125,
+    "by": "signa11",
+    "timeISO": "2025-08-16T07:35:56.000Z",
+    "textPlain": "I don't think it is (guaranteed to be) synchronized across cores. I might be wrong about that though.",
+    "parent": 44916909,
+    "depth": 2
+  },
+  {
+    "id": 44920803,
+    "by": "ethan_smith",
+    "timeISO": "2025-08-16T06:38:50.000Z",
+    "textPlain": "While __rdtsc() is fast, be cautious with multi-core benchmarks as TSC synchronization between cores isn't guaranteed on all hardware, especially older systems. Modern Intel/AMD CPUs have \"invariant TSC\" which helps, but it's worth checking CPU flags first.",
     "parent": 44916909,
     "depth": 2
   },
@@ -380,14 +388,6 @@
     "by": "lilyball",
     "timeISO": "2025-08-15T21:24:04.000Z",
     "textPlain": "It's extremely distracting. I'm not normally one to have issues that require reduced motion, but the asteroids are almost distracting enough on their own, and the fact that it causes my cursor to vanish is a real accessibility issue. I didn't actually realize just how much I use my mouse cursor when reading stuff until now, partly as a fidget, partly as a controllable visual anchor as my eyes scan the page.",
-    "parent": 44916623,
-    "depth": 2
-  },
-  {
-    "id": 44920366,
-    "by": "ccapitalK",
-    "timeISO": "2025-08-16T05:10:55.000Z",
-    "textPlain": "It's sites like this that make me extremely grateful for firefox's reader mode.",
     "parent": 44916623,
     "depth": 2
   },

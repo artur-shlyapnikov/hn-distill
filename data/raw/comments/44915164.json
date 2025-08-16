@@ -8,10 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44920830,
-    "by": "flowerthoughts",
-    "timeISO": "2025-08-16T06:43:03.000Z",
-    "textPlain": "My biggest issue with k8s on Hetzner is that there is no way of going from tiny (1 machine) to medium (10-100 machines) purely on bare metal. I was able to get Gateway API to provide ingress nodes after a bit of Envoy tinkering, but storage is an issue. You can't run Ceph Rook on a single machine (too heavy,) and I couldn't find a think local volume wrapper that lets me easily migrate from local volume management to distributed.Feels like there should be a PV daemon that can do local, and transparent migrations and is lightweight enough to run on a single machine. Once my PV has been migrated to Ceph, the proxy could configure itself away from that job.",
+    "id": 44921168,
+    "by": "librasteve",
+    "timeISO": "2025-08-16T07:44:19.000Z",
+    "textPlain": "It’s a little off topic, but to mention Raku now has support for the Hetzner API https://raku.land/zef:wayland/WWW::CloudHosting::HetznerThat way we can use Raku as a scripting language for deployment.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44921089,
+    "by": "tzahifadida",
+    "timeISO": "2025-08-16T07:29:24.000Z",
+    "textPlain": "For anyone interested I am in the last stages of building a course operating around Kube-Hetzner (https://github.com/kube-hetzner/terraform-hcloud-kube-hetzne... 3k github stars). Basically a lot of scripts that shows how this works and how to perform backups, restores etc... and a lot of exercises for common use cases and failure troubleshooting. Intentionally NOT abstracting away anything so you can see how this works. Without understanding you are going to get stuck.Join the waiting list here: https://shipacademy.dev",
     "parent": 44915164,
     "depth": 1
   },
@@ -40,10 +48,26 @@
     "depth": 1
   },
   {
+    "id": 44920830,
+    "by": "flowerthoughts",
+    "timeISO": "2025-08-16T06:43:03.000Z",
+    "textPlain": "My biggest issue with k8s on Hetzner is that there is no way of going from tiny (1 machine) to medium (10-100 machines) purely on bare metal. I was able to get Gateway API to provide ingress nodes after a bit of Envoy tinkering, but storage is an issue. You can't run Ceph Rook on a single machine (too heavy,) and I couldn't find a think local volume wrapper that lets me easily migrate from local volume management to distributed.Feels like there should be a PV daemon that can do local, and transparent migrations and is lightweight enough to run on a single machine. Once my PV has been migrated to Ceph, the proxy could configure itself away from that job.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
     "id": 44916083,
     "by": "figassis",
     "timeISO": "2025-08-15T18:46:09.000Z",
     "textPlain": "I have yet to see a guide to automate k8s on Hetzner's beefy bare metal instances. True, you want cattle, but being able to include some bare metal instance with amazing CPUs and memory would be great, and I do just that. My clusters include both cloud and bare metal instances. In the past I had used Hetzner virtual switch to create a shared L2 network between cloud and bare metal nodes. Now I just use tailscale.But the TF and other tools are using the API to add and kill nodes, if you could pass a class of nodes to those tools that they know can't create but are able to wipe and rebuild, this would be ideal.",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44921038,
+    "by": "Banou",
+    "timeISO": "2025-08-16T07:20:35.000Z",
+    "textPlain": "Any plans to expand further than Hetzner?\nThey're pretty restrictive on certain usages(e.g VPNs), I'd be really interested in support for Datapacket for example.",
     "parent": 44915164,
     "depth": 1
   },
@@ -72,18 +96,18 @@
     "depth": 1
   },
   {
-    "id": 44917364,
-    "by": "physix",
-    "timeISO": "2025-08-15T21:17:34.000Z",
-    "textPlain": "This is a great idea. I really like it!We considered reaching out in May, but held back because we want to run on bare metal.Any chance to get this provisioned on bare metal at Hetzner?We have K8S running on bare metal there. It's a slog to get it all working, but for our use case, having a dedicated 10G LAN between nodes (and a bare metal Cassandra cluster in the same rack) makes a big difference in performance.Also, from a cost perspective. We run AX41-NVMe dedicated servers that cost us about EUR 64 per server with a 10G LAN, all in the same rack. Getting the same horsepower using Cloud instances I guess would be a CCX43, which costs almost double.",
-    "parent": 44915164,
-    "depth": 1
-  },
-  {
     "id": 44915534,
     "by": "SCHiM",
     "timeISO": "2025-08-15T18:01:47.000Z",
     "textPlain": "Could you explain:1) What are the limitations of the scaling you do? Can I do this programmatically? I.e. send some requests to get additional pods of a specific type online?2) What have you done in terms of security hardening? you mention hardened pods/cluster, but specifically, did you do pentest? Just follow best practice? Periodic scans? Stress tests?",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44917364,
+    "by": "physix",
+    "timeISO": "2025-08-15T21:17:34.000Z",
+    "textPlain": "This is a great idea. I really like it!We considered reaching out in May, but held back because we want to run on bare metal.Any chance to get this provisioned on bare metal at Hetzner?We have K8S running on bare metal there. It's a slog to get it all working, but for our use case, having a dedicated 10G LAN between nodes (and a bare metal Cassandra cluster in the same rack) makes a big difference in performance.Also, from a cost perspective. We run AX41-NVMe dedicated servers that cost us about EUR 64 per server with a 10G LAN, all in the same rack. Getting the same horsepower using Cloud instances I guess would be a CCX43, which costs almost double.",
     "parent": 44915164,
     "depth": 1
   },
@@ -160,18 +184,18 @@
     "depth": 1
   },
   {
-    "id": 44917067,
-    "by": "rumblefrog",
-    "timeISO": "2025-08-15T20:45:29.000Z",
-    "textPlain": "I wonder how long before Hetzner adds something like managed Kubernetes to their native product line. They already have S3 compatible object storages, load balancers and more.",
-    "parent": 44915164,
-    "depth": 1
-  },
-  {
     "id": 44915588,
     "by": "zft",
     "timeISO": "2025-08-15T18:05:54.000Z",
     "textPlain": "Congratulations on the launch!Is there are plans to support Gitlab and gitlab registry (or any registry) ?",
+    "parent": 44915164,
+    "depth": 1
+  },
+  {
+    "id": 44917067,
+    "by": "rumblefrog",
+    "timeISO": "2025-08-15T20:45:29.000Z",
+    "textPlain": "I wonder how long before Hetzner adds something like managed Kubernetes to their native product line. They already have S3 compatible object storages, load balancers and more.",
     "parent": 44915164,
     "depth": 1
   },
@@ -373,30 +397,6 @@
     "timeISO": "2025-08-16T02:08:00.000Z",
     "textPlain": "Years?! what. the. actual. fuckWell, I guess from a platform that has no intrinsic IAM offering, I take that back, I guess keeping track of whose special console password is the current one is, in fact, hard work",
     "parent": 44919085,
-    "depth": 2
-  },
-  {
-    "id": 44917529,
-    "by": "adamcharnock",
-    "timeISO": "2025-08-15T21:35:39.000Z",
-    "textPlain": "We're setting up a data-heavy client at the moment who has a similar need. We're working with Hetzner's custom solutions team to provision a multi-AZ setup, with 25G networking and 100G AZ interconnects. Link in bio if you want to chat, email is adam@...",
-    "parent": 44917364,
-    "depth": 2
-  },
-  {
-    "id": 44917542,
-    "by": "VoidWhisperer",
-    "timeISO": "2025-08-15T21:37:36.000Z",
-    "textPlain": "Are you asking if it can provision bare metal servers with hetzner in a similar way to what it is doing with cloud servers, or if it can manage clusters on your hetzner bare metal servers (in the case of the second, a tool like Rancher might be better)",
-    "parent": 44917364,
-    "depth": 2
-  },
-  {
-    "id": 44916409,
-    "by": "camil",
-    "timeISO": "2025-08-15T19:17:58.000Z",
-    "textPlain": "Thanks for your questions! \n1) The platform provides a control plane to help you deploy the cluster on your own Hetzner account, so you are in control of resources and pay direct usage costs to Hetzner.\n2) Because you have full access to kubernetes cluster and it runs on your own Hetzner account, the security of the cluster is a shared responsibility and you can fine tune the configuration according to your requirements. The platform security is totally our responsibility. We try to follow best practices and internal penetration tests were conducted, but we're still in beta and try to see if there's interest for such product before launching the stable version.",
-    "parent": 44915534,
     "depth": 2
   }
 ]
