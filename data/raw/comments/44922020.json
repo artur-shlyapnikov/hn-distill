@@ -1,9 +1,33 @@
 [
   {
+    "id": 44924575,
+    "by": "jmull",
+    "timeISO": "2025-08-16T16:00:38.000Z",
+    "textPlain": "This looks like not so much traps, but a list of things the author has learned.Much of it would only apply in certain relatively narrow contexts, but the contexts aren't necessarily mentioned.Some of it appears to be just wrong.I guess I'm saying: I would not take this literally, but as something almost like a stream-of-consciousness.",
+    "parent": 44922020,
+    "depth": 1
+  },
+  {
+    "id": 44924418,
+    "by": "Someone",
+    "timeISO": "2025-08-16T15:43:16.000Z",
+    "textPlain": "> Java, C# and JS use UTF-16-like encoding for in-memory stringThat’s incorrect for Java, possibly also for C# and JS.In any language where strings are opaque enough types [1], the in-memory representation is an implementation detail. Java has been such a language since release 9 (https://openjdk.org/jeps/254)[1] The ‘enough’ is because some languages have fully opaque types, but specify efficiency of some operations and through it, effectively proscribe implementation details. Having a foreign function interface also often means implementation details cannot be changed because doing that would break backwards compatibility.> JS use floating point for all numbers. The max accurate integer is 2⁵³−1That is incorrect. Much larger integers can be represented exactly, for example 2¹⁰⁰.What is true is that 2⁵³−1 is the largest integer n such that n-1, n, and n+1 can be represented exactly in an IEEE double. That, in turn, means n == n-1 and n == n+1 both will evaluate to false, as expected in ‘normal’ arithmetic.",
+    "parent": 44922020,
+    "depth": 1
+  },
+  {
     "id": 44922938,
     "by": "skobes",
     "timeISO": "2025-08-16T12:52:35.000Z",
     "textPlain": "The first \"trap\" on the page says \"min-width: auto makes min width determined by content\", but this is false outside of flex/grid.From MDN: \"For block boxes, inline boxes, inline blocks, and all table layout boxes auto resolves to 0.\"https://developer.mozilla.org/en-US/docs/Web/CSS/min-width",
+    "parent": 44922020,
+    "depth": 1
+  },
+  {
+    "id": 44922705,
+    "by": "andunie",
+    "timeISO": "2025-08-16T12:28:40.000Z",
+    "textPlain": "That's a nice compendium of tips and useful information.I wonder if anyone can learn from this. I feel like I only understood what I already knew, or at least was very close to knowing. That's the same thing that happens with teaching manuals about any topic: they're organized in a way that makes sense and it's easy for people who already know the topics, but often very bad at teaching the same topics to an audience that doesn't know anything.",
     "parent": 44922020,
     "depth": 1
   },
@@ -24,20 +48,28 @@
     "depth": 1
   },
   {
-    "id": 44922705,
-    "by": "andunie",
-    "timeISO": "2025-08-16T12:28:40.000Z",
-    "textPlain": "That's a nice compendium of tips and useful information.I wonder if anyone can learn from this. I feel like I only understood what I already knew, or at least was very close to knowing. That's the same thing that happens with teaching manuals about any topic: they're organized in a way that makes sense and it's easy for people who already know the topics, but often very bad at teaching the same topics to an audience that doesn't know anything.",
-    "parent": 44922020,
-    "depth": 1
-  },
-  {
     "id": 44922803,
     "by": "QuadmasterXLII",
     "timeISO": "2025-08-16T12:39:53.000Z",
     "textPlain": "CSS and C++ both have the “pick a subset and enforce that, or suffer” nature. On my to-do list: make a github action that requires manual override to merge any pull request with a css attribute not already present",
     "parent": 44922020,
     "depth": 1
+  },
+  {
+    "id": 44924558,
+    "by": "bradfitz",
+    "timeISO": "2025-08-16T15:58:23.000Z",
+    "textPlain": "> Golang use UTF-8 for in-memory string.Nope. It’s just bytes with no encoding.https://go.dev/blog/strings",
+    "parent": 44922020,
+    "depth": 1
+  },
+  {
+    "id": 44924698,
+    "by": "debugnik",
+    "timeISO": "2025-08-16T16:13:31.000Z",
+    "textPlain": "> possibly also for C# and JSThe representation for C# is very much fixed, as it allows, and very commonly uses, direct access into the string buffer as a ReadOnlySpan<char> or a raw char pointer, where char is the type of UTF-16 codepoints.JS could maybe get away with it.",
+    "parent": 44924418,
+    "depth": 2
   },
   {
     "id": 44923744,
@@ -53,6 +85,14 @@
     "timeISO": "2025-08-16T13:04:22.000Z",
     "textPlain": "I guess the first trap should really be: \"You cannot read any CSS property in isolation, as just like what the name implies, defaults and what values end up doing cascades through all the rules your document ends up using\"",
     "parent": 44922938,
+    "depth": 2
+  },
+  {
+    "id": 44922777,
+    "by": "skydhash",
+    "timeISO": "2025-08-16T12:37:12.000Z",
+    "textPlain": "> with teaching manuals about any topic: they're organized in a way that makes sense and it's easy for people who already know the topicI think that the reason for a manual existence. To have a written record so we don't have to trust our memory. This is what most unix manuals are. You already know what the software can do, you just need to remember the specificity on how to get something done.> often very bad at teaching the same topics to an audience that doesn't know anything.What you need then is a tutorial (beginner seeking to learn) or a guide (beginner/intermediate seeking to do). Manuals in this case only serve to have better questions (Now you know what you don't know).",
+    "parent": 44922705,
     "depth": 2
   },
   {
@@ -93,14 +133,6 @@
     "timeISO": "2025-08-16T13:08:15.000Z",
     "textPlain": "Honorable mention to [a-z], gotta be my favorite trap",
     "parent": 44922737,
-    "depth": 2
-  },
-  {
-    "id": 44922777,
-    "by": "skydhash",
-    "timeISO": "2025-08-16T12:37:12.000Z",
-    "textPlain": "> with teaching manuals about any topic: they're organized in a way that makes sense and it's easy for people who already know the topicI think that the reason for a manual existence. To have a written record so we don't have to trust our memory. This is what most unix manuals are. You already know what the software can do, you just need to remember the specificity on how to get something done.> often very bad at teaching the same topics to an audience that doesn't know anything.What you need then is a tutorial (beginner seeking to learn) or a guide (beginner/intermediate seeking to do). Manuals in this case only serve to have better questions (Now you know what you don't know).",
-    "parent": 44922705,
     "depth": 2
   }
 ]

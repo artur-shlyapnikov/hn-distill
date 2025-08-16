@@ -16,6 +16,14 @@
     "depth": 1
   },
   {
+    "id": 44922603,
+    "by": "zenapollo",
+    "timeISO": "2025-08-16T12:17:31.000Z",
+    "textPlain": "Dokploy ergonomics I found just a bit lacking, and switched to Coolify instead. I daresay the feature that swayed me was force “pull latest images” button on coolify (convenient way to update any app), that was weirdly not available on Dokploy.What’s missing in both, and would liked to hear from hn, is docker-native backup solutions,  for backing up select docker volumes. Currently I’m using some tricks with duplicati, but I wonder if there’s anything better.Also this is the first I’ve heard of coreOS, the author says nothing about it, though it’s in the title. I wonder why someone choose it over Debian.",
+    "parent": 44884077,
+    "depth": 1
+  },
+  {
     "id": 44922947,
     "by": "stavros",
     "timeISO": "2025-08-16T12:53:50.000Z",
@@ -24,10 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44922603,
-    "by": "zenapollo",
-    "timeISO": "2025-08-16T12:17:31.000Z",
-    "textPlain": "Dokploy ergonomics I found just a bit lacking, and switched to Coolify instead. I daresay the feature that swayed me was force “pull latest images” button on coolify (convenient way to update any app), that was weirdly not available on Dokploy.What’s missing in both, and would liked to hear from hn, is docker-native backup solutions,  for backing up select docker volumes. Currently I’m using some tricks with duplicati, but I wonder if there’s anything better.Also this is the first I’ve heard of coreOS, the author says nothing about it, though it’s in the title. I wonder why someone choose it over Debian.",
+    "id": 44924434,
+    "by": "fariszr",
+    "timeISO": "2025-08-16T15:44:56.000Z",
+    "textPlain": "The problem for me with dokploy is how do you manage in-config secrets for deployed apps.\nThere are many apps which have secrets in their configs that can't be imported from env variables.The only solution is to have these files locally on the server and then use an external bind mount.I solved this in my docker-compose-gitops-action by just inserting secrets before copying the files to the server.https://fariszr.com/docker-compose-gitops-github/you can't do that with dokploy even with this dokploy action so it's triggers a pull from the source repo only.Also the preview feature on dokploy is almost useless because there is no variable to get the preview URL dynamically.",
     "parent": 44884077,
     "depth": 1
   },
@@ -64,18 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44923159,
-    "by": "donperignon",
-    "timeISO": "2025-08-16T13:19:58.000Z",
-    "textPlain": "I found just plain docker swarm better, or if you like gui’s then portainer is very good",
-    "parent": 44884077,
-    "depth": 1
-  },
-  {
     "id": 44921394,
     "by": "risico",
     "timeISO": "2025-08-16T08:30:15.000Z",
     "textPlain": "I've been using Dokploy and it is lovely. Solid and stable for the last 12 months running production apps. First time in ages I got the Heroku vibe again.",
+    "parent": 44884077,
+    "depth": 1
+  },
+  {
+    "id": 44923159,
+    "by": "donperignon",
+    "timeISO": "2025-08-16T13:19:58.000Z",
+    "textPlain": "I found just plain docker swarm better, or if you like gui’s then portainer is very good",
     "parent": 44884077,
     "depth": 1
   },
@@ -136,6 +144,14 @@
     "depth": 2
   },
   {
+    "id": 44923137,
+    "by": "niux",
+    "timeISO": "2025-08-16T13:17:12.000Z",
+    "textPlain": "I actually use Dokploy in production, you have to literally press just one button to redeploy using the latest version of your app, straight from the repo.",
+    "parent": 44922603,
+    "depth": 2
+  },
+  {
     "id": 44922970,
     "by": "rkomorn",
     "timeISO": "2025-08-16T12:57:04.000Z",
@@ -152,11 +168,11 @@
     "depth": 2
   },
   {
-    "id": 44923137,
-    "by": "niux",
-    "timeISO": "2025-08-16T13:17:12.000Z",
-    "textPlain": "I actually use Dokploy in production, you have to literally press just one button to redeploy using the latest version of your app, straight from the repo.",
-    "parent": 44922603,
+    "id": 44924771,
+    "by": "seth17",
+    "timeISO": "2025-08-16T16:22:06.000Z",
+    "textPlain": "This seems like an unfair comparison for Dokku. I haven’t used the rest, but I have used Dokploy and Dokku. Dokku has had every single feature I could want or need, even accounting for weird edge cases. It just doesn’t have a UI.With Dokploy, on the other hand, I found the UI difficult to navigate, which would be fine if the documentation was good but it was lacking.But for many of the features their comparison claims Dokku doesn’t have, it actually does: database support, scheduled jobs, docker compose support. It has some form of monitoring. Overall Dokku has been a pretty robust solution for me and anything it might be missing, like in monitoring for instance, I can just add at the system level.To be clear, I’m not anti-Dokploy and I think the more these tools improve the better. Just wanted to share my experience in defense of Dokku. Being able to spin up your apps on a cheap VPS is incredibly empowering over having to pay 10x more for managed services like Heroku or Render.",
+    "parent": 44922053,
     "depth": 2
   },
   {

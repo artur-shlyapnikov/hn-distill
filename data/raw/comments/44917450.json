@@ -8,18 +8,18 @@
     "depth": 1
   },
   {
-    "id": 44923820,
-    "by": "Wowfunhappy",
-    "timeISO": "2025-08-16T14:36:05.000Z",
-    "textPlain": "> In a scrollview, such frequent and significant changes to the height result in \"juggery\" of the scroller position and sizeWhat on earth? How is that considered acceptable? And from Apple of all companies, the ones that put a speaker in the iPod just so it would improve the UX of scrolling.",
-    "parent": 44917450,
-    "depth": 1
-  },
-  {
     "id": 44918411,
     "by": "colbyn",
     "timeISO": "2025-08-15T23:23:01.000Z",
     "textPlain": "Oh hey good to see some more literature on TextKit2. I remember diving into it when I wrote my proof of concept markdown renderer:https://github.com/SuperSwiftMarkup/SuperSwiftMarkdownProtot...It’s a good example of what else you can do with TextKit2, beyond plain text rendering. Here, I can draw text layout fragments in a core graphics context and use typographic information to also render markdown specific graphics in the background or foreground such as markdown tables. One day I’d love to experiment with a markdown centric spread sheet app.At the time there was so little online info that I had to figure out everything on my own (and no chatbots didn’t have a clue about TextKit2), but STTextView was a great reference. Overall his open source work was very much appreciated. (I should probably say as much in the read me.)That experiment was also a ton of work that ultimately didn’t go anywhere. Most people would rather just use a relatively subpar embedded browser (i.e. web view).",
+    "parent": 44917450,
+    "depth": 1
+  },
+  {
+    "id": 44923820,
+    "by": "Wowfunhappy",
+    "timeISO": "2025-08-16T14:36:05.000Z",
+    "textPlain": "> In a scrollview, such frequent and significant changes to the height result in \"juggery\" of the scroller position and sizeWhat on earth? How is that considered acceptable? And from Apple of all companies, the ones that put a speaker in the iPod just so it would improve the UX of scrolling.",
     "parent": 44917450,
     "depth": 1
   },
@@ -40,14 +40,6 @@
     "depth": 1
   },
   {
-    "id": 44924073,
-    "by": "unconed",
-    "timeISO": "2025-08-16T15:03:17.000Z",
-    "textPlain": "It's bizarre that they prioritize parsimony over correctness. Laying out long documents can happen in the background, but shouldn't be deferred to when you actually scroll.",
-    "parent": 44917450,
-    "depth": 1
-  },
-  {
     "id": 44919931,
     "by": "eviks",
     "timeISO": "2025-08-16T03:43:34.000Z",
@@ -60,6 +52,14 @@
     "by": "whoisthemachine",
     "timeISO": "2025-08-16T02:35:25.000Z",
     "textPlain": "This is an unavoidable result of lazy layouts. With the LazyList in Jetpack compose, it's comically difficult to produce a scrollbar, because the \"LazyList\" only ever lays out the visible items, so Compose can't really know (unless you actually already know) the full size of the list.I find the iron triangle of project management reins supreme in a lot of domains: quality is sacrificed in the name of performance.[0] https://en.wikipedia.org/wiki/Project_management_triangle",
+    "parent": 44917450,
+    "depth": 1
+  },
+  {
+    "id": 44924073,
+    "by": "unconed",
+    "timeISO": "2025-08-16T15:03:17.000Z",
+    "textPlain": "It's bizarre that they prioritize parsimony over correctness. Laying out long documents can happen in the background, but shouldn't be deferred to when you actually scroll.",
     "parent": 44917450,
     "depth": 1
   },
@@ -157,6 +157,14 @@
     "timeISO": "2025-08-16T05:19:14.000Z",
     "textPlain": "> \"Good, fast, cheap. Choose two.\"I think many software companies would happily choose good and fast if that were an option. In reality it rarely is (see: The Mythical Man Month).In fact a lot of companies don't end up achieving any one of the three.",
     "parent": 44919628,
+    "depth": 2
+  },
+  {
+    "id": 44924642,
+    "by": "krzyzanowskim",
+    "timeISO": "2025-08-16T16:08:04.000Z",
+    "textPlain": "annoyingly enough, the API has some sort of background layout support. I don't think it works well, though. I tried to use it, but it did not improve the \"main thread\" operations sigificantly to have an impact of fast scrolling scenario - I suspect it may not work actually",
+    "parent": 44924073,
     "depth": 2
   },
   {

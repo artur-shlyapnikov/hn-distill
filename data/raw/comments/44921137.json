@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44924779,
+    "by": "gmm1990",
+    "timeISO": "2025-08-16T16:22:32.000Z",
+    "textPlain": "I seem to gravitate towards nosql type databases, defining tables in a ddl and then again in the code seems repetitive, and slows down changes. But the idea would be that the code is what defines the table. It'd be nice though to hear some of the drawbacks of this. Maybe for very relational things it makes sense to be able to write join queries so data is completely repeated, but my understanding would be that most data base engines would already compress that repeated info pretty well.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
     "id": 44922384,
     "by": "motorest",
     "timeISO": "2025-08-16T11:44:52.000Z",
@@ -24,34 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44924166,
-    "by": "QuadrupleA",
-    "timeISO": "2025-08-16T15:14:09.000Z",
-    "textPlain": "Also be careful not to reach for system design when you only need software design: https://lukerissacher.com/blog/optimizing_your_web_app",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
     "id": 44922903,
     "by": "msiyer",
     "timeISO": "2025-08-16T12:48:46.000Z",
     "textPlain": "> Avoid having five different services all write to the same table. Instead, have four of them send API requests (or emit events) to the first service, and keep the writing logic in that one service.The ideal solution: Avoid having five different services all write to the same table.If five different services have to write to the same table, there is a major overlap of logic too. Are the five services really different or one would suffice?Taking practical realities into consideration, we can do what the author says. However, we risk implementing a lot of orchestration logic. We introduce a whole new layer of problems. Is that time not better spent refactoring the services: either give them their own DB tables or merge them into one servic?",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44924168,
-    "by": "necessary",
-    "timeISO": "2025-08-16T15:14:11.000Z",
-    "textPlain": "Excellent article. In this vein, are there any books, articles, or other media that we can learn more of these sorts of principles from?",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44921601,
-    "by": "KronisLV",
-    "timeISO": "2025-08-16T09:06:18.000Z",
-    "textPlain": "> Schema design should be flexible, because once you have thousands or millions of records, it can be an enormous pain to change the schema. However, if you make it too flexible (e.g. by sticking everything in a “value” JSON column, or using “keys” and “values” tables to track arbitrary data) you load a ton of complexity into the application code (and likely buy some very awkward performance constraints). Drawing the line here is a judgment call and depends on specifics, but in general I aim to have my tables be human-readable: you should be able to go through the database schema and get a rough idea of what the application is storing and why.I’m surprised that the drawbacks of EAV or just using JSON in your relational database don’t get called out more.I’d very much rather have like 20 tables with clear purpose than seeing that colleagues have once more created a “classifier” mechanism and are using polymorphic links (without actual foreign keys, columns like “section” and “entity_id”) and are treating it as a grab bag of stuff. One that you also need to read the application code a bunch to even hope to understand.Whenever I see that, I want to change careers. I get that EAV has its use cases, but in most other cases fuck EAV.It’s right up there with N+1 issues, complex dynamically generated SQL when views would suffice and also storing audit data in the same DB and it inevitably having functionality written against it, your audit data becoming a part of the business logic. Oh and also shared database instances and not having the ability to easily bootstrap your own, oh and also working with Oracle in general. And also putting things that’d be better off in the app inside of the DB and vice versa.There are so many ways to decrease your quality of life when it comes to storing and accessing data.",
     "parent": 44921137,
     "depth": 1
   },
@@ -64,26 +48,34 @@
     "depth": 1
   },
   {
-    "id": 44923896,
-    "by": "agentultra",
-    "timeISO": "2025-08-16T14:44:01.000Z",
-    "textPlain": "Great article. A lot of very standard practices. Or at least… should be.One thing that I often add is the people interacting with the system. They’re a part of it too. Most people don’t operate in an atomically consistent world; a lot of business processes are eventually consistent. But you do need to know where you have to have atomic operations! It depends on where the user expects it.Systems thinking is very useful. From how your software is deployed to how the people using it in their work. Always be thinking about these things.",
+    "id": 44921601,
+    "by": "KronisLV",
+    "timeISO": "2025-08-16T09:06:18.000Z",
+    "textPlain": "> Schema design should be flexible, because once you have thousands or millions of records, it can be an enormous pain to change the schema. However, if you make it too flexible (e.g. by sticking everything in a “value” JSON column, or using “keys” and “values” tables to track arbitrary data) you load a ton of complexity into the application code (and likely buy some very awkward performance constraints). Drawing the line here is a judgment call and depends on specifics, but in general I aim to have my tables be human-readable: you should be able to go through the database schema and get a rough idea of what the application is storing and why.I’m surprised that the drawbacks of EAV or just using JSON in your relational database don’t get called out more.I’d very much rather have like 20 tables with clear purpose than seeing that colleagues have once more created a “classifier” mechanism and are using polymorphic links (without actual foreign keys, columns like “section” and “entity_id”) and are treating it as a grab bag of stuff. One that you also need to read the application code a bunch to even hope to understand.Whenever I see that, I want to change careers. I get that EAV has its use cases, but in most other cases fuck EAV.It’s right up there with N+1 issues, complex dynamically generated SQL when views would suffice and also storing audit data in the same DB and it inevitably having functionality written against it, your audit data becoming a part of the business logic. Oh and also shared database instances and not having the ability to easily bootstrap your own, oh and also working with Oracle in general. And also putting things that’d be better off in the app inside of the DB and vice versa.There are so many ways to decrease your quality of life when it comes to storing and accessing data.",
     "parent": 44921137,
     "depth": 1
   },
   {
-    "id": 44923630,
-    "by": "feyman_r",
-    "timeISO": "2025-08-16T14:13:50.000Z",
-    "textPlain": "If you want to learn more about good system design at an abstract level (not just online), cannot recommend Systemantics[1] by John Gall enough. I wish all engineers get an opportunity to read it.[1] https://en.m.wikipedia.org/wiki/Systemantics",
+    "id": 44924515,
+    "by": "firesteelrain",
+    "timeISO": "2025-08-16T15:53:20.000Z",
+    "textPlain": "As a system architect, software engineer and systems engineer, I see these posts and what is called system design seems to intermix systems design with software design (being that software described herein is a lower level component of the overall system)",
     "parent": 44921137,
     "depth": 1
   },
   {
-    "id": 44923105,
-    "by": "lutzh",
-    "timeISO": "2025-08-16T13:12:25.000Z",
-    "textPlain": "The only thing I know about “good system design” is that it doesn’t exist in the abstract. Asking whether an architecture is good or bad is the wrong question. The real question is: Is it fit for purpose? Does it help you achieve what you actually need to achieve?I could nitpick individual points in the article, but that misses the bigger issue: the premise is off.Don’t chase generic advice about good or bad design. First understand your requirements, then design a system that meets them.",
+    "id": 44924467,
+    "by": "jagged-chisel",
+    "timeISO": "2025-08-16T15:47:31.000Z",
+    "textPlain": "Lots of comments here decrying unnecessary complexity and the depressing reality of job interviews around the subject.And I’m wondering why investors tolerate the expense: it’s surprising how much you can get done with simplicity and a small focused team.It must be something about perception when they’re ready to sell the company.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44924246,
+    "by": "ramon156",
+    "timeISO": "2025-08-16T15:23:53.000Z",
+    "textPlain": "> I’m often alone on this. Engineers look at complex systems with many interesting parts and think “wow, a lot of system design is happening here!”Whenever I read something like this I feel so confused. Who actually calls themselves an engineer when they have no idea what they're talking about.  Ignorant confidence is such a useless personality trait.",
     "parent": 44921137,
     "depth": 1
   },
@@ -96,10 +88,34 @@
     "depth": 1
   },
   {
-    "id": 44923893,
-    "by": "lysecret",
-    "timeISO": "2025-08-16T14:43:51.000Z",
-    "textPlain": "The designing data intensive Applications we actually needed (nothing against the original but this one is definitely more practical)",
+    "id": 44923630,
+    "by": "feyman_r",
+    "timeISO": "2025-08-16T14:13:50.000Z",
+    "textPlain": "If you want to learn more about good system design at an abstract level (not just online), cannot recommend Systemantics[1] by John Gall enough. I wish all engineers get an opportunity to read it.[1] https://en.m.wikipedia.org/wiki/Systemantics",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44923896,
+    "by": "agentultra",
+    "timeISO": "2025-08-16T14:44:01.000Z",
+    "textPlain": "Great article. A lot of very standard practices. Or at least… should be.One thing that I often add is the people interacting with the system. They’re a part of it too. Most people don’t operate in an atomically consistent world; a lot of business processes are eventually consistent. But you do need to know where you have to have atomic operations! It depends on where the user expects it.Systems thinking is very useful. From how your software is deployed to how the people using it in their work. Always be thinking about these things.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44923105,
+    "by": "lutzh",
+    "timeISO": "2025-08-16T13:12:25.000Z",
+    "textPlain": "The only thing I know about “good system design” is that it doesn’t exist in the abstract. Asking whether an architecture is good or bad is the wrong question. The real question is: Is it fit for purpose? Does it help you achieve what you actually need to achieve?I could nitpick individual points in the article, but that misses the bigger issue: the premise is off.Don’t chase generic advice about good or bad design. First understand your requirements, then design a system that meets them.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44924166,
+    "by": "QuadrupleA",
+    "timeISO": "2025-08-16T15:14:09.000Z",
+    "textPlain": "Also be careful not to reach for system design when you only need software design: https://lukerissacher.com/blog/optimizing_your_web_app",
     "parent": 44921137,
     "depth": 1
   },
@@ -108,14 +124,6 @@
     "by": "com",
     "timeISO": "2025-08-16T08:01:37.000Z",
     "textPlain": "The advice about logging and metrics was good.I had been nodding away about state and push/pull, but this section grabbed my attention, since I’ve never seen it do clearly articulated before.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44922886,
-    "by": "codr7",
-    "timeISO": "2025-08-16T12:46:59.000Z",
-    "textPlain": "Replacing booleans with timestamps might be a good idea sometimes, presenting it as The Solution isn't very constructive imo.Adding a separate table where the presence of a record means 'true' allows recording related state without complicating the main table.And sometimes a boolean is exactly what you want.",
     "parent": 44921137,
     "depth": 1
   },
@@ -136,10 +144,10 @@
     "depth": 1
   },
   {
-    "id": 44923140,
-    "by": "vishnugupta",
-    "timeISO": "2025-08-16T13:17:20.000Z",
-    "textPlain": "I highly recommend Boring Technology[1]. It is an enjoyable read and most of the advices are actionable.[1] https://boringtechnology.club",
+    "id": 44922886,
+    "by": "codr7",
+    "timeISO": "2025-08-16T12:46:59.000Z",
+    "textPlain": "Replacing booleans with timestamps might be a good idea sometimes, presenting it as The Solution isn't very constructive imo.Adding a separate table where the presence of a record means 'true' allows recording related state without complicating the main table.And sometimes a boolean is exactly what you want.",
     "parent": 44921137,
     "depth": 1
   },
@@ -152,6 +160,22 @@
     "depth": 1
   },
   {
+    "id": 44923140,
+    "by": "vishnugupta",
+    "timeISO": "2025-08-16T13:17:20.000Z",
+    "textPlain": "I highly recommend Boring Technology[1]. It is an enjoyable read and most of the advices are actionable.[1] https://boringtechnology.club",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44924168,
+    "by": "necessary",
+    "timeISO": "2025-08-16T15:14:11.000Z",
+    "textPlain": "Excellent article. In this vein, are there any books, articles, or other media that we can learn more of these sorts of principles from?",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
     "id": 44922515,
     "by": "nasretdinov",
     "timeISO": "2025-08-16T12:05:05.000Z",
@@ -160,18 +184,10 @@
     "depth": 1
   },
   {
-    "id": 44923059,
-    "by": "hks0",
-    "timeISO": "2025-08-16T13:06:59.000Z",
-    "textPlain": "The article starts by criticizing generic rules that come without any context:> Even good system design advice can be kind of bad. I love Designing Data-Intensive Applications, but I don’t think it’s particularly useful for most system design problems engineers will run into.But continues to do the same throughout the rest of its advices. It also says:> ... Drawing the line here is a judgment call and depends on specifics,And immediately mentions:> but in general I aim to have my tables be human-readable ...Which to me reads as \"I'm going to ignore the difference of the context everywhere and instead apply mine for everyone, and I'm going to assume most of the wolrd face the same problems as me\". It's even worse than the book being criticized in the beginning, as the book at least has \"Data-Intensive\" in its title.This is quiet easily fixable. The author can describe the typical scenario they are working with on a day-to-day basis. Do they work with 10 users a day? 100? 10,000,000? What is the traffic? How many engineers? What's the situation of the team/company; do FIXMEs turn into fixes or they become it's a feature? And so on.In the end, without setting a baseline, a lot of engineers will start pointing fingers at each other dismissing the opposite ideas because it doesn't fit their situation. The reasoning might be true, but before that, it is \"irrelevant\", hence any opposition to or defending of it.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44924085,
-    "by": "hungryhobbit",
-    "timeISO": "2025-08-16T15:03:59.000Z",
-    "textPlain": "This is nonsense masquerading as advice.  \"Add indexes ... but don't add too many\" is a perfect example.  It's 100% correct ... and also 100% something no one can actually change their actions based on ... which means it's also 100% worthless advice.",
+    "id": 44921325,
+    "by": "magnio",
+    "timeISO": "2025-08-16T08:16:01.000Z",
+    "textPlain": "I think it's a very good article. Even if you disagree with some of the individual points in it, the advice given are very concrete, pragmatic, and IMO tunable to the specifics of each project.On state, in my current project, it is not statefulness that causes trouble, but when you need to synchronize two stateful systems. Every time there's bidirectional information flow, it's gonna be a headache. The solution is of course to maintain a single source of truth, but with UI application this is sometimes quite tricky.",
     "parent": 44921137,
     "depth": 1
   },
@@ -184,10 +200,18 @@
     "depth": 1
   },
   {
-    "id": 44921325,
-    "by": "magnio",
-    "timeISO": "2025-08-16T08:16:01.000Z",
-    "textPlain": "I think it's a very good article. Even if you disagree with some of the individual points in it, the advice given are very concrete, pragmatic, and IMO tunable to the specifics of each project.On state, in my current project, it is not statefulness that causes trouble, but when you need to synchronize two stateful systems. Every time there's bidirectional information flow, it's gonna be a headache. The solution is of course to maintain a single source of truth, but with UI application this is sometimes quite tricky.",
+    "id": 44923059,
+    "by": "hks0",
+    "timeISO": "2025-08-16T13:06:59.000Z",
+    "textPlain": "The article starts by criticizing generic rules that come without any context:> Even good system design advice can be kind of bad. I love Designing Data-Intensive Applications, but I don’t think it’s particularly useful for most system design problems engineers will run into.But continues to do the same throughout the rest of its advices. It also says:> ... Drawing the line here is a judgment call and depends on specifics,And immediately mentions:> but in general I aim to have my tables be human-readable ...Which to me reads as \"I'm going to ignore the difference of the context everywhere and instead apply mine for everyone, and I'm going to assume most of the wolrd face the same problems as me\". It's even worse than the book being criticized in the beginning, as the book at least has \"Data-Intensive\" in its title.This is quiet easily fixable. The author can describe the typical scenario they are working with on a day-to-day basis. Do they work with 10 users a day? 100? 10,000,000? What is the traffic? How many engineers? What's the situation of the team/company; do FIXMEs turn into fixes or they become it's a feature? And so on.In the end, without setting a baseline, a lot of engineers will start pointing fingers at each other dismissing the opposite ideas because it doesn't fit their situation. The reasoning might be true, but before that, it is \"irrelevant\", hence any opposition to or defending of it.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44923893,
+    "by": "lysecret",
+    "timeISO": "2025-08-16T14:43:51.000Z",
+    "textPlain": "The designing data intensive Applications we actually needed (nothing against the original but this one is definitely more practical)",
     "parent": 44921137,
     "depth": 1
   },
@@ -208,10 +232,18 @@
     "depth": 1
   },
   {
-    "id": 44923926,
-    "by": "robsalasco",
-    "timeISO": "2025-08-16T14:46:50.000Z",
-    "textPlain": "anyone can recommend me a good book about systems design?",
+    "id": 44922110,
+    "by": "StevenWaterman",
+    "timeISO": "2025-08-16T10:51:04.000Z",
+    "textPlain": "What do you call system design, when it's referring to the design of systems in general, and not just computer services?As in:- writing a constitution- designing API for good DX- improving corporate cultureI intuitively want to call all of those system design, because they're all systems in the literal sense. But it seems like everyone else uses \"system design\" to mean distributed computer service design.Any ideas what word or phrase I could use to mean \"applying systems thinking to systems that include humans\"",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44924351,
+    "by": "ninetyninenine",
+    "timeISO": "2025-08-16T15:36:55.000Z",
+    "textPlain": "A lot of backend engineers are obsessed with infrastructure.I've seen engineers have servers spin up lambdas to do async jobs that are just database calls.So the server essentially waits for lambda which waits for a database. Why? Why can't you just have the server wait for the database?It's like I'm going to pay a person to wait in line for me while I wait for him. Why? You're waiting anyway!? And you just paid to involve an additional person to unnecessarily wait with you for what?When I told the engineer that you can just spin up a coroutine or like maybe you can allocate some cores before you spin up a new server... he looked at me like I was crazy. He said I was doing things so low level it was like assembly language programming. Going to low level and that lambdas were so cheap it was inconsequential.If you're reading this and you're thinking, wow that other engineer is right, well this quote from the article refers to you:\"I’m often alone on this. Engineers look at complex systems with many interesting parts and think “wow, a lot of system design is happening here!” In fact, a complex system usually reflects an absence of good design.\"",
     "parent": 44921137,
     "depth": 1
   },
@@ -224,18 +256,26 @@
     "depth": 1
   },
   {
-    "id": 44922507,
-    "by": "mgaunard",
-    "timeISO": "2025-08-16T12:04:03.000Z",
-    "textPlain": "Seems biased towards websites, which are mostly easy CRUD.",
+    "id": 44924085,
+    "by": "hungryhobbit",
+    "timeISO": "2025-08-16T15:03:59.000Z",
+    "textPlain": "This is nonsense masquerading as advice.  \"Add indexes ... but don't add too many\" is a perfect example.  It's 100% correct ... and also 100% something no one can actually change their actions based on ... which means it's also 100% worthless advice.",
     "parent": 44921137,
     "depth": 1
   },
   {
-    "id": 44922110,
-    "by": "StevenWaterman",
-    "timeISO": "2025-08-16T10:51:04.000Z",
-    "textPlain": "What do you call system design, when it's referring to the design of systems in general, and not just computer services?As in:- writing a constitution- designing API for good DX- improving corporate cultureI intuitively want to call all of those system design, because they're all systems in the literal sense. But it seems like everyone else uses \"system design\" to mean distributed computer service design.Any ideas what word or phrase I could use to mean \"applying systems thinking to systems that include humans\"",
+    "id": 44923926,
+    "by": "robsalasco",
+    "timeISO": "2025-08-16T14:46:50.000Z",
+    "textPlain": "anyone can recommend me a good book about systems design?",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44922507,
+    "by": "mgaunard",
+    "timeISO": "2025-08-16T12:04:03.000Z",
+    "textPlain": "Seems biased towards websites, which are mostly easy CRUD.",
     "parent": 44921137,
     "depth": 1
   },
@@ -272,26 +312,34 @@
     "depth": 2
   },
   {
+    "id": 44924805,
+    "by": "torginus",
+    "timeISO": "2025-08-16T16:25:23.000Z",
+    "textPlain": "Who does this? Why make something 10x as complicated as it needs to be, when you could just use the simple thing and get 10x as far? It's not like there's not enough work to do.",
+    "parent": 44922958,
+    "depth": 2
+  },
+  {
+    "id": 44924402,
+    "by": "corytheboyd",
+    "timeISO": "2025-08-16T15:41:26.000Z",
+    "textPlain": "As well as the “two-way street” point made in a sibling comment, I feel like a good interviewer would say “this is great, I would keep it simple too, but I am testing your knowledge of $thing right now.” If the person won’t stop talking about the wrong thing, that’s a bad sign of course.",
+    "parent": 44922958,
+    "depth": 2
+  },
+  {
+    "id": 44924669,
+    "by": "uberduper",
+    "timeISO": "2025-08-16T16:10:19.000Z",
+    "textPlain": "This is awful advice. Simple and elegant design does not start with dismissing potential problems.Those questions are all prompts to have a discussion in lieu of tech trivia hour. Those responses do not demonstrate wisdom, they reveal a lack of maturity. It's not the interviewers fault you refuse to be interviewed.",
+    "parent": 44922958,
+    "depth": 2
+  },
+  {
     "id": 44923560,
     "by": "ramraj07",
     "timeISO": "2025-08-16T14:05:40.000Z",
     "textPlain": "Do you _want_ to work in these places? In my experience, if they expect you to run kube using kube in the interview, thats exactly what they do in their ststems as well.",
-    "parent": 44922958,
-    "depth": 2
-  },
-  {
-    "id": 44923824,
-    "by": "Swizec",
-    "timeISO": "2025-08-16T14:36:15.000Z",
-    "textPlain": "> These are not the answers they're looking for.These ARE the answers we are looking for. As the system design interview (I’ve done hundreds) I want you to start with these answers then we can layer on complexity if you’ve solved the problem and there’s time left to go into navel gazing mode.Seeing the panic slowly build in mid-level engineers’ eyes as it dawns on them that not every problem can be solved by caching is pretty fun too. “Ok cool you’ve cached it there, now how do you fill the cache without running into the same performance issue?”",
-    "parent": 44922958,
-    "depth": 2
-  },
-  {
-    "id": 44923924,
-    "by": "abound",
-    "timeISO": "2025-08-16T14:46:31.000Z",
-    "textPlain": "You don't need to entirely forget this. I've made a habit of regularly seeking out job opportunities and interviewing even when I'm entirely happy with my job, which is to say I've done a ton of these kinds of interviews (on both sides of the table).Unless the initial question requirements are insane (build Twitter at Twitter scale), I start with the smallest, dumbest thing that will work. Usually that's a single machine/VM talking to a database (or even just SQLite!). Compute and storage are so fast these days that you could comfortably run your fledgling service on a Raspberry Pi, even serving three or four-digit QPS depending on the workload.Of course, you still have to \"play the game\" in the interview, so make sure to be clear about how you'd change this as requirements changed (higher QPS, more features, etc)",
     "parent": 44922958,
     "depth": 2
   },
@@ -304,10 +352,10 @@
     "depth": 2
   },
   {
-    "id": 44924065,
-    "by": "jstummbillig",
-    "timeISO": "2025-08-16T15:02:32.000Z",
-    "textPlain": "If you know that those are not the answers they are looking for, you can reasonably pass by modifying the answer only slightly, while still getting your point across.If you can't, you might be getting interviewed by people you do not what to work with and you should want to know that.",
+    "id": 44923824,
+    "by": "Swizec",
+    "timeISO": "2025-08-16T14:36:15.000Z",
+    "textPlain": "> These are not the answers they're looking for.These ARE the answers we are looking for. As the system design interview (I’ve done hundreds) I want you to start with these answers then we can layer on complexity if you’ve solved the problem and there’s time left to go into navel gazing mode.Seeing the panic slowly build in mid-level engineers’ eyes as it dawns on them that not every problem can be solved by caching is pretty fun too. “Ok cool you’ve cached it there, now how do you fill the cache without running into the same performance issue?”",
     "parent": 44922958,
     "depth": 2
   },
@@ -320,18 +368,18 @@
     "depth": 2
   },
   {
-    "id": 44924033,
-    "by": "ozgrakkurt",
-    "timeISO": "2025-08-16T14:58:00.000Z",
-    "textPlain": "You don’t want to work at a company like this anyway.",
+    "id": 44924315,
+    "by": "ajmurmann",
+    "timeISO": "2025-08-16T15:33:23.000Z",
+    "textPlain": "In some ways it's worse. There are also project review interviews. \"We had a Rails/Django/whatever monolith that was backed by Postgres and we didn't need a SPA\" makes for a less impressive session with many companies. This creates a lot of incentive to overcomplicate/\"future proof\" things for resume building.",
     "parent": 44922958,
     "depth": 2
   },
   {
-    "id": 44923802,
-    "by": "zellyn",
-    "timeISO": "2025-08-16T14:34:46.000Z",
-    "textPlain": "I recently had an interview like this. Felt like half the answers I gave were of the form, “You can do scaling/sharding/partitioning thing X here, but once again, for an internal app I’d try really hard to avoid doing any of that”. If you’re interviewing with capable, experienced developers, they’ll appreciate that answer (at least, I got the offer on this one!)",
+    "id": 44923924,
+    "by": "abound",
+    "timeISO": "2025-08-16T14:46:31.000Z",
+    "textPlain": "You don't need to entirely forget this. I've made a habit of regularly seeking out job opportunities and interviewing even when I'm entirely happy with my job, which is to say I've done a ton of these kinds of interviews (on both sides of the table).Unless the initial question requirements are insane (build Twitter at Twitter scale), I start with the smallest, dumbest thing that will work. Usually that's a single machine/VM talking to a database (or even just SQLite!). Compute and storage are so fast these days that you could comfortably run your fledgling service on a Raspberry Pi, even serving three or four-digit QPS depending on the workload.Of course, you still have to \"play the game\" in the interview, so make sure to be clear about how you'd change this as requirements changed (higher QPS, more features, etc)",
     "parent": 44922958,
     "depth": 2
   },
@@ -344,59 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44923999,
-    "by": "dkarl",
-    "timeISO": "2025-08-16T14:53:40.000Z",
-    "textPlain": "> And what exactly do you buy yourself?APIs can be evolved much more easily than shared database schemas. Having worked with many instances of each kind of system, I think this outweighs all of the other considerations, and I don't think I'll ever again design a system with multiple services accessing the same database schema.It was maybe a good idea if you were a small company in the early 2000s, when databases were well-understood and services weren't. After that era, I haven't seen a single example of a system where it wasn't a mistake for multiple services to access the same database schema (not counting systems where the read and write path were architecturally distinct components of the same service.)",
-    "parent": 44922384,
-    "depth": 2
-  },
-  {
-    "id": 44922486,
-    "by": "paffdragon",
-    "timeISO": "2025-08-16T12:01:15.000Z",
-    "textPlain": "> the interface being consumed is the database, which you do not need to design or implementYou absolutely should design and implement it, exactly because it is now your interface. In fact, it will add more constraints to your design, because now you have different consumers and potentially writers all competing for the same resource with potentially different access patterns. Plus the maintenance overhead that migrations of such shared tables come with. And eventually you might have data in this table that are only needed for some of the services, so you now need to implement views and access controls at the DB level.Ideally, if you have a chance to implement it, an API is cleaner and more flexible. The problem in most cases is simply business pushing for faster features which often leads to quick hacks including just giving direct access to some DB table from another service, because the alternative would take more time, and we don't have time, we want features, now.But I agree with your thoughts in the last paragraph. It happens very often that people don't want to undertake the effort of a whole new design or redesign to match the evolving requirements and just patch it by adding a new table to an existing DB, then another,...",
-    "parent": 44922384,
-    "depth": 2
-  },
-  {
-    "id": 44923757,
-    "by": "sgarland",
-    "timeISO": "2025-08-16T14:29:16.000Z",
-    "textPlain": "> Additionally, having five services accessing the same database is a code smell.Counterpoint (assuming by database you mean database cluster, not a schema): having a separate physical DB for each service means that for most places, your reliability has now gone from N to N^M.",
-    "parent": 44922384,
-    "depth": 2
-  },
-  {
-    "id": 44922950,
-    "by": "Muromec",
-    "timeISO": "2025-08-16T12:54:14.000Z",
-    "textPlain": ">And what exactly do you buy yourself? More failure modes and a higher micro services tax?Nice boxes in the architectural diagram. Each box is handed to a different team and then, when engineers from those teams don't talk to each other, the system doesn't suddenly fail in an unexpected way.",
-    "parent": 44922384,
-    "depth": 2
-  },
-  {
-    "id": 44922806,
-    "by": "sethammons",
-    "timeISO": "2025-08-16T12:40:08.000Z",
-    "textPlain": "The goal is to minimize what needs changing when things need changing.When you need to alter the datastore, usually for product or scalability, you have to orchestrate all access to that datastore.Ergo: one only one thing using the datastore means less orchestration.At work, we just updated a datastore. We had to move some tables to their own db. 3 years later, 40+ teams have updated their access. This was a product need. If this was a scale issue, the product would just have died sans some as of yet imagined solution.",
-    "parent": 44922384,
-    "depth": 2
-  },
-  {
-    "id": 44922460,
-    "by": "bubblebeard",
-    "timeISO": "2025-08-16T11:57:27.000Z",
-    "textPlain": "I think the author meant, in a general way, it’s better to avoid simultaneous writes from different services, because this is an easy way to introduce race conditions.",
-    "parent": 44922384,
-    "depth": 2
-  },
-  {
-    "id": 44921590,
-    "by": "bob1029",
-    "timeISO": "2025-08-16T09:03:29.000Z",
-    "textPlain": "This is a big part of what makes ORMs a problem.Writing raw SQL views/queries per MVC view in SSR arrangements is one of the most elegant and performant ways to build complex web products. Let the RDBMS do the heavy lifting with the data. There are optimizations in play you can't even recall (because there's so many) if you're using something old and enterprisey like MSSQL or Oracle. The web server should be able to directly interpolate sql result sets into corresponding <table>s, etc. without having to round trip for each row or perform additional in memory join operations.The typical ORM implementation is the exact opposite of this - one strict object model that must be used everywhere. It's about as inflexible as you can get.",
-    "parent": 44921359,
+    "id": 44924065,
+    "by": "jstummbillig",
+    "timeISO": "2025-08-16T15:02:32.000Z",
+    "textPlain": "If you know that those are not the answers they are looking for, you can reasonably pass by modifying the answer only slightly, while still getting your point across.If you can't, you might be getting interviewed by people you do not what to work with and you should want to know that.",
+    "parent": 44922958,
     "depth": 2
   }
 ]
