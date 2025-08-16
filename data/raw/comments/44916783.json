@@ -24,6 +24,14 @@
     "depth": 1
   },
   {
+    "id": 44919639,
+    "by": "wbillingsley",
+    "timeISO": "2025-08-16T02:37:18.000Z",
+    "textPlain": "What I used to recommend to my sofware engineering classes is that instead of putting large files (media etc) into Git, put them into the artifact repository (Artifactory or something like it). That lets you for instance publish it as a snapshot dependency that the build system will automatically fetch for you, but control how much history of it you keep and only require your colleagues to fetch the latest version. Even better, a simple clean of their build system cache will free up the space used by old versions on their machines.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44919065,
     "by": "Ferret7446",
     "timeISO": "2025-08-16T01:07:11.000Z",
@@ -32,10 +40,10 @@
     "depth": 1
   },
   {
-    "id": 44919639,
-    "by": "wbillingsley",
-    "timeISO": "2025-08-16T02:37:18.000Z",
-    "textPlain": "What I used to recommend to my sofware engineering classes is that instead of putting large files (media etc) into Git, put them into the artifact repository (Artifactory or something like it). That lets you for instance publish it as a snapshot dependency that the build system will automatically fetch for you, but control how much history of it you keep and only require your colleagues to fetch the latest version. Even better, a simple clean of their build system cache will free up the space used by old versions on their machines.",
+    "id": 44921021,
+    "by": "flohofwoe",
+    "timeISO": "2025-08-16T07:17:30.000Z",
+    "textPlain": "Even ancient svn works much better out of the box for large binary files than git (e.g. a 150 GB working directory with many big Photoshop files and other binary assets is no problem in SVN).What does SVN do differently than git when it comes to large binary files, and why can't git use the same approach?I also don't quite understand tbh how offloading large files to somewhere else would be fundamentally different than storing all files in one place except complicating everything? Storage is storage, how would a different storage location fix any of the current performance and robustness problems? Offloading just sounds like a solution for public git forges which don't want to deal with big files because it's too costly for them, but increased hosting cost is not the 'large binary file problem' of git.(edit: apparently git supports proper locking(?) so I removed that section - ps: nvm it looks like the file locking feature is only in git-lfs)",
     "parent": 44916783,
     "depth": 1
   },
@@ -56,26 +64,10 @@
     "depth": 1
   },
   {
-    "id": 44921021,
-    "by": "flohofwoe",
-    "timeISO": "2025-08-16T07:17:30.000Z",
-    "textPlain": "Even ancient svn works much better out of the box for large binary files than git (e.g. a 150 GB working directory with many big Photoshop files and other binary assets is no problem in SVN).What does SVN do differently than git when it comes to large binary files, and why can't git use the same approach?I also don't quite understand tbh how offloading large files to somewhere else would be fundamentally different than storing all files in one place except complicating everything? Storage is storage, how would a different storage location fix any of the current performance and robustness problems? Offloading just sounds like a solution for public git forges which don't want to deal with big files because it's too costly for them, but increased hosting cost is not the 'large binary file problem' of git.(edit: apparently git supports proper locking(?) so I removed that section - ps: nvm it looks like the file locking feature is only in git-lfs)",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44919232,
     "by": "gschoeni",
     "timeISO": "2025-08-16T01:29:53.000Z",
     "textPlain": "We're working on `oxen` to solve a lot of the problems we ran into with git or git-lfs.We have an open source CLI and server that mirrors git, but handles large files and mono repos with millions of files in a much more performant manner. Would love feedback if you want to check it out!https://github.com/Oxen-AI/Oxen",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
-    "id": 44920190,
-    "by": "pabs3",
-    "timeISO": "2025-08-16T04:30:57.000Z",
-    "textPlain": "The git storage model also needs an overhaul to be more like modern backup tools such as restic/borg; it needs content-defined chunking of files and directories.",
     "parent": 44916783,
     "depth": 1
   },
@@ -88,18 +80,26 @@
     "depth": 1
   },
   {
-    "id": 44920276,
-    "by": "ideasman42",
-    "timeISO": "2025-08-16T04:50:25.000Z",
-    "textPlain": "Something they missed out with the GitLFS cons is authentication, if you don't use SSH-agent, pushing involves authenticating multiple times, sometimes more than 2-3 times in my experience.",
+    "id": 44920190,
+    "by": "pabs3",
+    "timeISO": "2025-08-16T04:30:57.000Z",
+    "textPlain": "The git storage model also needs an overhaul to be more like modern backup tools such as restic/borg; it needs content-defined chunking of files and directories.",
     "parent": 44916783,
     "depth": 1
   },
   {
-    "id": 44921850,
-    "by": "rswail",
-    "timeISO": "2025-08-16T09:55:26.000Z",
-    "textPlain": "Is the problem that we don't have good \"diff\" equivalents for binaries that git could use to only store those diffs like the old RCS/CVS for large files?",
+    "id": 44918828,
+    "by": "jayd16",
+    "timeISO": "2025-08-16T00:31:24.000Z",
+    "textPlain": "How about git just fixes shallow clones and partial clones?  Then we don't need convoluted work arounds to cheat in large content after we fully clone a history of pointers or promises or whatever.  You should be able to set default clone depth by file type and size in the git attributes (or maybe a file that can also live above a repo like supporting attributes in .gitconfig locations?).Then the usual settings would be to shallow clone the latest content as well as fetch the full history and maybe the text file historical content.  Ideally you could prune to the clone depth settings as well.Why are we still talking about large file pointers?  If you fix shallow and partial clones, then any repo can be an efficient file mirror, right?",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44920276,
+    "by": "ideasman42",
+    "timeISO": "2025-08-16T04:50:25.000Z",
+    "textPlain": "Something they missed out with the GitLFS cons is authentication, if you don't use SSH-agent, pushing involves authenticating multiple times, sometimes more than 2-3 times in my experience.",
     "parent": 44916783,
     "depth": 1
   },
@@ -120,10 +120,10 @@
     "depth": 1
   },
   {
-    "id": 44918828,
-    "by": "jayd16",
-    "timeISO": "2025-08-16T00:31:24.000Z",
-    "textPlain": "How about git just fixes shallow clones and partial clones?  Then we don't need convoluted work arounds to cheat in large content after we fully clone a history of pointers or promises or whatever.  You should be able to set default clone depth by file type and size in the git attributes (or maybe a file that can also live above a repo like supporting attributes in .gitconfig locations?).Then the usual settings would be to shallow clone the latest content as well as fetch the full history and maybe the text file historical content.  Ideally you could prune to the clone depth settings as well.Why are we still talking about large file pointers?  If you fix shallow and partial clones, then any repo can be an efficient file mirror, right?",
+    "id": 44921850,
+    "by": "rswail",
+    "timeISO": "2025-08-16T09:55:26.000Z",
+    "textPlain": "Is the problem that we don't have good \"diff\" equivalents for binaries that git could use to only store those diffs like the old RCS/CVS for large files?",
     "parent": 44916783,
     "depth": 1
   },
@@ -168,18 +168,18 @@
     "depth": 1
   },
   {
-    "id": 44919483,
-    "by": "captn3m0",
-    "timeISO": "2025-08-16T02:06:56.000Z",
-    "textPlain": "Partial clones are also dependent on the server side supporting this. GitHub is one of the very few that does. git.kernel.org for eg did not, last I checked.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918460,
     "by": "nixpulvis",
     "timeISO": "2025-08-15T23:29:50.000Z",
     "textPlain": "I was just using git LFS and was very concerned with how bad the help message was compared to the rest of git. I know it seems small, but it just never felt like a team player, and now I'm very happy to hear this.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919483,
+    "by": "captn3m0",
+    "timeISO": "2025-08-16T02:06:56.000Z",
+    "textPlain": "Partial clones are also dependent on the server side supporting this. GitHub is one of the very few that does. git.kernel.org for eg did not, last I checked.",
     "parent": 44916783,
     "depth": 1
   },
@@ -192,18 +192,18 @@
     "depth": 1
   },
   {
-    "id": 44919684,
-    "by": "CSMastermind",
-    "timeISO": "2025-08-16T02:47:28.000Z",
-    "textPlain": "I could really use an alternative to Plastic SCM for 3D models.  S3 is fine but lacks the nicities.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918852,
     "by": "a_t48",
     "timeISO": "2025-08-16T00:33:53.000Z",
     "textPlain": "The real GH LFS cost is not the storage but the bandwidth on pulling objects down for every fresh clone. $$$$$. See my other comment. :)",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919684,
+    "by": "CSMastermind",
+    "timeISO": "2025-08-16T02:47:28.000Z",
+    "textPlain": "I could really use an alternative to Plastic SCM for 3D models.  S3 is fine but lacks the nicities.",
     "parent": 44916783,
     "depth": 1
   },
@@ -216,18 +216,18 @@
     "depth": 1
   },
   {
-    "id": 44917801,
-    "by": "Affric",
-    "timeISO": "2025-08-15T22:07:07.000Z",
-    "textPlain": "Incredible.Nice to see some Microsoft and Google emails contributing.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918277,
     "by": "jiggawatts",
     "timeISO": "2025-08-15T23:03:59.000Z",
     "textPlain": "What I would love to see in an SCM that properly supports large binary blobs is storing the contents using Prolly trees instead of a simple SHA hash.Prolly trees are very similar to Merkle trees or the rsync algorithm, but they support mutation and version history retention with some nice properties. For example: you always obtain exactly the same tree (with the same root hash) irrespective of the order of incremental edit operations used to get to the same state.In other words, two users could edit a subset of a 1 TB file, both could merge their edits, and both will then agree on the root hash without having to re-hash or even download the entire file!Another major advantage on modern many-core CPUs is that Prolly trees can be constructed in parallel instead of having to be streamed sequentially on one thread.Then the really big brained move is to store the entire SCM repo as a single Prolly tree for efficient incremental downloads, merges, or whatever. I.e.: a repo fork could share storage with the original not just up to the point-in-time of the fork, but all future changes too.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44917801,
+    "by": "Affric",
+    "timeISO": "2025-08-15T22:07:07.000Z",
+    "textPlain": "Incredible.Nice to see some Microsoft and Google emails contributing.",
     "parent": 44916783,
     "depth": 1
   },
@@ -352,14 +352,6 @@
     "depth": 2
   },
   {
-    "id": 44919557,
-    "by": "andrewmcwatters",
-    "timeISO": "2025-08-16T02:19:41.000Z",
-    "textPlain": "Using LFS once in a repository locks you in permanently. You actually have to delete the repository from GitHub to remove the space consumed. It’s entirely a non-starter.Nowhere is this behavior explicitly stated.I used to use Git LFS on GitHub to do my company’s study on GitHub statistics because we stored large compressed databases on users and repositories.",
-    "parent": 44919065,
-    "depth": 2
-  },
-  {
     "id": 44921915,
     "by": "StopDisinfo910",
     "timeISO": "2025-08-16T10:11:22.000Z",
@@ -389,6 +381,14 @@
     "timeISO": "2025-08-16T05:39:18.000Z",
     "textPlain": "This has its own issues. Now you need to provision additional credentials into your CI/CD and to your developers.Commits become multi-step, as you need to first commit the artifacts to get their artifact IDs to put in the repo. You can automate that via git hooks, but then you're back at where you started: git-lfs.",
     "parent": 44919639,
+    "depth": 2
+  },
+  {
+    "id": 44919557,
+    "by": "andrewmcwatters",
+    "timeISO": "2025-08-16T02:19:41.000Z",
+    "textPlain": "Using LFS once in a repository locks you in permanently. You actually have to delete the repository from GitHub to remove the space consumed. It’s entirely a non-starter.Nowhere is this behavior explicitly stated.I used to use Git LFS on GitHub to do my company’s study on GitHub statistics because we stored large compressed databases on users and repositories.",
+    "parent": 44919065,
     "depth": 2
   },
   {

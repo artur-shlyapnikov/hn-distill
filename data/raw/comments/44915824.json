@@ -16,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44916702,
-    "by": "cout",
-    "timeISO": "2025-08-15T19:57:32.000Z",
-    "textPlain": "Interesting. I tried to follow the discussion in the linked thread, and the only takeaway I got was \"something to do with RCU\". What id the simplified explanation?",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
     "id": 44918133,
     "by": "sugarpimpdorsey",
     "timeISO": "2025-08-15T22:42:16.000Z",
     "textPlain": "OpenBSD is many things, but 'fast' is not a word that comes to mind.Lightweight? Yes.Minimalist? Definitely.Compact? Sure.But fast? No.Would I host a database or fileserver on OpenBSD? Hell no.Boot times seem to take as long as they did 20 years ago. They are also advocates for every schizo security mitigation they can dream up that sacrifices speed and that's ok too.But let's not pretend it's something it's not.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44916702,
+    "by": "cout",
+    "timeISO": "2025-08-15T19:57:32.000Z",
+    "textPlain": "Interesting. I tried to follow the discussion in the linked thread, and the only takeaway I got was \"something to do with RCU\". What id the simplified explanation?",
     "parent": 44915824,
     "depth": 1
   },
@@ -96,18 +96,18 @@
     "depth": 1
   },
   {
-    "id": 44920833,
-    "by": "u64x086a",
-    "timeISO": "2025-08-16T06:43:25.000Z",
-    "textPlain": "What about this on FreeBSD? It's possible to reach the same results?",
-    "parent": 44915824,
-    "depth": 1
-  },
-  {
     "id": 44916757,
     "by": "asveikau",
     "timeISO": "2025-08-15T20:03:39.000Z",
     "textPlain": "My guess is it has something to do with the file descriptor table having a lot of empty entries (the dup2(0, 666) line.)Now time to read the actual linked discussion.",
+    "parent": 44915824,
+    "depth": 1
+  },
+  {
+    "id": 44920833,
+    "by": "u64x086a",
+    "timeISO": "2025-08-16T06:43:25.000Z",
+    "textPlain": "What about this on FreeBSD? It's possible to reach the same results?",
     "parent": 44915824,
     "depth": 1
   },
@@ -248,6 +248,30 @@
     "depth": 2
   },
   {
+    "id": 44920836,
+    "by": "somat",
+    "timeISO": "2025-08-16T06:43:40.000Z",
+    "textPlain": "Gotta disagree with you on your minimalist verdict, out of the box openbsd tends to have everything and the kitchen sink, I am not complaining, it is good solid well written software. but I have never found a base linux distro that was as well stocked as a base openbsd install.    a c compiler\n    a web server\n    3 routing daemons(bgpd, ospfd, ripd)\n    a mail server(smtpd, spamd)\n    a sound server(sndiod)\n    a reverse proxy(relayd)\n    2 desktop environments(fvwm, cwm)\n    plus many many more\n\nOpenbsd is not some minimalist highly focused operating system, I mean what on earth is it actually for? based on the included features, A desktop development system that is also the router and office web and mail server?Personally I love it, after a fresh install I always feel like I could rebuild the internet from scratch using only what is found in front of me if I needed to.",
+    "parent": 44918133,
+    "depth": 2
+  },
+  {
+    "id": 44922680,
+    "by": "anthk",
+    "timeISO": "2025-08-16T12:26:00.000Z",
+    "textPlain": "OpenBSD runs much faster than 20 years ago thanks to sending locks to /dev/null.",
+    "parent": 44918133,
+    "depth": 2
+  },
+  {
+    "id": 44918410,
+    "by": "ThinkBeat",
+    "timeISO": "2025-08-15T23:22:31.000Z",
+    "textPlain": "You must run a different branch of OpenBSD than I.",
+    "parent": 44918133,
+    "depth": 2
+  },
+  {
     "id": 44917222,
     "by": "bobby_big_balls",
     "timeISO": "2025-08-15T21:03:48.000Z",
@@ -261,22 +285,6 @@
     "timeISO": "2025-08-15T20:40:52.000Z",
     "textPlain": "When 2 threads are allocating sockets sequentially, they fight for the locks. If you preallocate a bigger table by creating fd 666 first, the lock contention goes away.",
     "parent": 44916702,
-    "depth": 2
-  },
-  {
-    "id": 44920836,
-    "by": "somat",
-    "timeISO": "2025-08-16T06:43:40.000Z",
-    "textPlain": "Gotta disagree with you on your minimalist verdict, out of the box openbsd tends to have everything and the kitchen sink, I am not complaining, it is good solid well written software. but I have never found a base linux distro that was as well stocked as a base openbsd install.    a c compiler\n    a web server\n    3 routing daemons(bgpd, ospfd, ripd)\n    a mail server(smtpd, spamd)\n    a sound server(sndiod)\n    a reverse proxy(relayd)\n    2 desktop environments(fvwm, cwm)\n    plus many many more\n\nOpenbsd is not some minimalist highly focused operating system, I mean what on earth is it actually for? based on the included features, A desktop development system that is also the router and office web and mail server?Personally I love it, after a fresh install I always feel like I could rebuild the internet from scratch using only what is found in front of me if I needed to.",
-    "parent": 44918133,
-    "depth": 2
-  },
-  {
-    "id": 44918410,
-    "by": "ThinkBeat",
-    "timeISO": "2025-08-15T23:22:31.000Z",
-    "textPlain": "You must run a different branch of OpenBSD than I.",
-    "parent": 44918133,
     "depth": 2
   },
   {
@@ -389,14 +397,6 @@
     "timeISO": "2025-08-15T21:58:53.000Z",
     "textPlain": "You do understand that people who know how to benchmark things don’t actually need to conform to the rules of thumb that are given to non-experts so they don’t shoot themselves in the foot, right? Do you also write off rally drivers because they have their feet on both pedals?",
     "parent": 44917047,
-    "depth": 2
-  },
-  {
-    "id": 44917423,
-    "by": "lilyball",
-    "timeISO": "2025-08-15T21:24:04.000Z",
-    "textPlain": "It's extremely distracting. I'm not normally one to have issues that require reduced motion, but the asteroids are almost distracting enough on their own, and the fact that it causes my cursor to vanish is a real accessibility issue. I didn't actually realize just how much I use my mouse cursor when reading stuff until now, partly as a fidget, partly as a controllable visual anchor as my eyes scan the page.",
-    "parent": 44916623,
     "depth": 2
   }
 ]

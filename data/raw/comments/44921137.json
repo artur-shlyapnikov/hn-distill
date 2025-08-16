@@ -1,9 +1,25 @@
 [
   {
+    "id": 44922384,
+    "by": "motorest",
+    "timeISO": "2025-08-16T11:44:52.000Z",
+    "textPlain": "What a great article. It's always a treat to read this sort of take.I have some remarks though. Taken from the article:> Avoid having five different services all write to the same table. Instead, have four of them send API requests (or emit events) to the first service, and keep the writing logic in that one service.This is not so cut-and-dry. The trade offs are far from obvious or acceptable.If the five services access the database then you are designing a distributed system where the interface being consumed is the database, which you do not need to design or implement, and already supports authorization and access controls out of the box, and you have out-of-the-box support for transactions and custom queries. On the other hand, if you design one service as a high-level interface over a database then you need to implement and manage your own custom interface with your own custom access controls and constrains, and you need to design and implement yourself how to handle transactions and compensation strategies.And what exactly do you buy yourself? More failure modes and a higher micro services tax?Additionally, having five services accessing the same database is a code smell. Odds are that database fused together two or three separate databases. This happens a lot, as most services grow by accretion and adding one more table to a database gets far less resistance than proposing creating an entire new persistence service. And is it possible that those five separate services are actually just one or two services?",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
     "id": 44921359,
     "by": "bambax",
     "timeISO": "2025-08-16T08:22:33.000Z",
     "textPlain": "> When querying the database, query the database. It’s almost always more efficient to get the database to do the work than to do it yourself. For instance, if you need data from multiple tables, JOIN them instead of making separate queries and stitching them together in-memory.Oh yes! Never do a join in the application code! But also: use views! (and stored procedures if you can). A view is an abstraction about the underlying data, it's functional by nature, unlikely to break for random reasons in the future, and if done well the underlying SQL code is surprisingly readable and easy to reason about.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44922259,
+    "by": "nvarsj",
+    "timeISO": "2025-08-16T11:20:26.000Z",
+    "textPlain": "> Paradoxically, good design is self-effacing: bad design is often more impressive than good.Rings very true. Engineers are rated based on the \"complexity\" of the work they do. This system seems to encourage over-engineered solutions to all problems.I don't think there is enough appreciation for KISS - which I first learned about as an undergrad 20 years ago.",
     "parent": 44921137,
     "depth": 1
   },
@@ -16,18 +32,10 @@
     "depth": 1
   },
   {
-    "id": 44922235,
-    "by": "mattlondon",
-    "timeISO": "2025-08-16T11:14:55.000Z",
-    "textPlain": "There was an article here recently about how to write good design docs: the TL;DR for that was basically your design doc should make your design seem obvious. I think that is the same conclusion here - good design is simple, straightforward design with no real surprises.Wholly agree.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44922161,
-    "by": "gethly",
-    "timeISO": "2025-08-16T11:01:01.000Z",
-    "textPlain": "Actually event-sourcing solves most of the pains - events, schema, push/pull, caching, distribution... whatever. The downside is that it is definitely not suitable for small projects and the overhead is substantial(especially during the development stage when you want to ship the product as soon as possible). On the other hand, once you get it going, it's an unstoppable beast.",
+    "id": 44922515,
+    "by": "nasretdinov",
+    "timeISO": "2025-08-16T12:05:05.000Z",
+    "textPlain": "I agree with most of the stuff written in the article (quite a rare thing I must admit :)). But one thing I'd say is a bit outdated: in general whether or not to read from replica is the same decision as whether or not to use caching: it's a (pretty significant) tradeoff. Previously you didn't have much of a choice due to hardware being quite limited. Now, however, you can have literally hundreds of CPU cores, so all those CPUs can very much be busy at work doing reads. Writes obviously do have an overhead, _but_ note that all writes are eventually serialised, _and_ replica needs to handle them as well anyway",
     "parent": 44921137,
     "depth": 1
   },
@@ -36,6 +44,14 @@
     "by": "ZYbCRq22HbJ2y7",
     "timeISO": "2025-08-16T08:21:50.000Z",
     "textPlain": "> You’re supposed to store timestamps instead, and treat the presence of a timestamp as true. I do this sometimes but not always - in my view there’s some value in keeping a database schema immediately-readable.Seems overly negative of broad advice on a good pattern?    is_on => true\n    on_at => 1023030\n\nSure, that makes sense.     is_a_bear => true\n     a_bear_at => 12312231231\n\nNot so much, as most bears do not become bears at some point after not being a bear.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44922293,
+    "by": "thisbeensaid",
+    "timeISO": "2025-08-16T11:27:26.000Z",
+    "textPlain": "Since the author praises proper use of databases and talks about event bus, background jobs and caching, I highly recommend to check out https://dbos.dev if you have Python or TypeScript backends. DBOS nicely solves common challenges in simple and complex systems and can eliminate the need for running separate services such as Kafka, Redis or Celery. The best: DBOS can be used as a dependency and doesn't require deploying a separate service.Very recently discussed here a week ago: https://news.ycombinator.com/item?id=44840693",
     "parent": 44921137,
     "depth": 1
   },
@@ -56,18 +72,10 @@
     "depth": 1
   },
   {
-    "id": 44921325,
-    "by": "magnio",
-    "timeISO": "2025-08-16T08:16:01.000Z",
-    "textPlain": "I think it's a very good article. Even if you disagree with some of the individual points in it, the advice given are very concrete, pragmatic, and IMO tunable to the specifics of each project.On state, in my current project, it is not statefulness that causes trouble, but when you need to synchronize two stateful systems. Every time there's bidirectional information flow, it's gonna be a headache. The solution is of course to maintain a single source of truth, but with UI application this is sometimes quite tricky.",
-    "parent": 44921137,
-    "depth": 1
-  },
-  {
-    "id": 44922110,
-    "by": "StevenWaterman",
-    "timeISO": "2025-08-16T10:51:04.000Z",
-    "textPlain": "What do you call system design, when it's referring to the design of systems in general, and not just computer services?As in:- writing a constitution- designing API for good DX- improving corporate cultureI intuitively want to call all of those system design, because they're all systems in the literal sense. But it seems like everyone else uses \"system design\" to mean distributed computer service design.Any ideas what word or phrase I could use to mean \"applying systems thinking to systems that include humans\"",
+    "id": 44922310,
+    "by": "bubblebeard",
+    "timeISO": "2025-08-16T11:30:54.000Z",
+    "textPlain": "Very good article, right on point!I do wonder about why the author left out testing, documentation and qa tool design though. To my mind, writing a proper phpcs or whatever to ensure everyone on the team writes code in a consistent way is crucial. Without documentation we end up forgetting why we did certain things. And without tests refactors are a nightmare.",
     "parent": 44921137,
     "depth": 1
   },
@@ -80,10 +88,34 @@
     "depth": 1
   },
   {
+    "id": 44922161,
+    "by": "gethly",
+    "timeISO": "2025-08-16T11:01:01.000Z",
+    "textPlain": "Actually event-sourcing solves most of the pains - events, schema, push/pull, caching, distribution... whatever. The downside is that it is definitely not suitable for small projects and the overhead is substantial(especially during the development stage when you want to ship the product as soon as possible). On the other hand, once you get it going, it's an unstoppable beast.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44921325,
+    "by": "magnio",
+    "timeISO": "2025-08-16T08:16:01.000Z",
+    "textPlain": "I think it's a very good article. Even if you disagree with some of the individual points in it, the advice given are very concrete, pragmatic, and IMO tunable to the specifics of each project.On state, in my current project, it is not statefulness that causes trouble, but when you need to synchronize two stateful systems. Every time there's bidirectional information flow, it's gonna be a headache. The solution is of course to maintain a single source of truth, but with UI application this is sometimes quite tricky.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
     "id": 44921824,
     "by": "pelagicAustral",
     "timeISO": "2025-08-16T09:50:11.000Z",
     "textPlain": "I can definitely feel the \"underwhelming\" factor. I've been working for  +10 years on government software and I really know what an underwhelming codebase looks like, first off, it has my fucking name on it.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44922507,
+    "by": "mgaunard",
+    "timeISO": "2025-08-16T12:04:03.000Z",
+    "textPlain": "Seems biased towards websites, which are mostly easy CRUD.",
     "parent": 44921137,
     "depth": 1
   },
@@ -96,6 +128,22 @@
     "depth": 1
   },
   {
+    "id": 44922235,
+    "by": "mattlondon",
+    "timeISO": "2025-08-16T11:14:55.000Z",
+    "textPlain": "There was an article here recently about how to write good design docs: the TL;DR for that was basically your design doc should make your design seem obvious. I think that is the same conclusion here - good design is simple, straightforward design with no real surprises.Wholly agree.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44922110,
+    "by": "StevenWaterman",
+    "timeISO": "2025-08-16T10:51:04.000Z",
+    "textPlain": "What do you call system design, when it's referring to the design of systems in general, and not just computer services?As in:- writing a constitution- designing API for good DX- improving corporate cultureI intuitively want to call all of those system design, because they're all systems in the literal sense. But it seems like everyone else uses \"system design\" to mean distributed computer service design.Any ideas what word or phrase I could use to mean \"applying systems thinking to systems that include humans\"",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
     "id": 44921682,
     "by": "usernamed7",
     "timeISO": "2025-08-16T09:24:06.000Z",
@@ -104,10 +152,42 @@
     "depth": 1
   },
   {
-    "id": 44921995,
-    "by": "mdavid626",
-    "timeISO": "2025-08-16T10:30:33.000Z",
-    "textPlain": "I disagree. In modern highly scalable architectures I’d prefer doing joins in the layer front of the database (backend).The “backend” scales much easier than the database. Loading data by simple indexes, eg. user_id, and joining it on the backend, keeps the db fast. Spinning up another backend instance is easy - unlike db instance.If you think, your joins must happen in db, because data too big to be loaded to memory on backend, restructure it, so it’s possible.Bonus points for moving joins to the frontend. This makes data highly cacheable - fast to load, as you need to load less data and frees up resources on server side.",
+    "id": 44922379,
+    "by": "whodidntante",
+    "timeISO": "2025-08-16T11:44:16.000Z",
+    "textPlain": "Never write an article about good system design.In all seriousness, this is an extraordinary subtle and complex area, and there are few rules.For example, \"if you need data from multiple tables, JOIN them instead of making separate queries and stitching them together in-memory\" may be useful in certain circumstances. For  highly scalable consumer systems, the rule of \"avoid joins as much as possible\" can work a lot better.There is also no mention of how important it is to understand the business - usage patterns, the customers, the data, the scale of data, the scale of usage, security, uptime and reliability requirements, reporting requirements, etc.",
+    "parent": 44921137,
+    "depth": 1
+  },
+  {
+    "id": 44922806,
+    "by": "sethammons",
+    "timeISO": "2025-08-16T12:40:08.000Z",
+    "textPlain": "The goal is to minimize what needs changing when things need changing.When you need to alter the datastore, usually for product or scalability, you have to orchestrate all access to that datastore.Ergo: one only one thing using the datastore means less orchestration.At work, we just updated a datastore. We had to move some tables to their own db. 3 years later, 40+ teams have updated their access. This was a product need. If this was a scale issue, the product would just have died sans some as of yet imagined solution.",
+    "parent": 44922384,
+    "depth": 2
+  },
+  {
+    "id": 44922486,
+    "by": "paffdragon",
+    "timeISO": "2025-08-16T12:01:15.000Z",
+    "textPlain": "> the interface being consumed is the database, which you do not need to design or implementYou absolutely should design and implement it, exactly because it is now your interface. In fact, it will add more constraints to your design, because now you have different consumers and potentially writers all competing for the same resource with potentially different access patterns. Plus the maintenance overhead that migrations of such shared tables come with. And eventually you might have data in this table that are only needed for some of the services, so you now need to implement views and access controls at the DB level.Ideally, if you have a chance to implement it, an API is cleaner and more flexible. The problem in most cases is simply business pushing for faster features which often leads to quick hacks including just giving direct access to some DB table from another service, because the alternative would take more time, and we don't have time, we want features, now.But I agree with your thoughts in the last paragraph. It happens very often that people don't want to undertake the effort of a whole new design or redesign to match the evolving requirements and just patch it by adding a new table to an existing DB, then another,...",
+    "parent": 44922384,
+    "depth": 2
+  },
+  {
+    "id": 44922460,
+    "by": "bubblebeard",
+    "timeISO": "2025-08-16T11:57:27.000Z",
+    "textPlain": "I think the author meant, in a general way, it’s better to avoid simultaneous writes from different services, because this is an easy way to introduce race conditions.",
+    "parent": 44922384,
+    "depth": 2
+  },
+  {
+    "id": 44922733,
+    "by": "victorbjorklund",
+    "timeISO": "2025-08-16T12:32:24.000Z",
+    "textPlain": "Not sure I agree. First of all it can be more performant. Say you fetch 1000 records. And we need to join on a table where these 1000 records just got 2 different foreign keys. Instead of joing in db and fetching a lot more data we can do two queries and join in app instead. Secondly, makes it easier to cache data. Lets say the thing we joing with almost never changes (like some country info) we can cache that and just join it with the data from the db.Not saying this should always be the case, but sometimes it is the right call.",
     "parent": 44921359,
     "depth": 2
   },
@@ -116,6 +196,22 @@
     "by": "bob1029",
     "timeISO": "2025-08-16T09:03:29.000Z",
     "textPlain": "This is a big part of what makes ORMs a problem.Writing raw SQL views/queries per MVC view in SSR arrangements is one of the most elegant and performant ways to build complex web products. Let the RDBMS do the heavy lifting with the data. There are optimizations in play you can't even recall (because there's so many) if you're using something old and enterprisey like MSSQL or Oracle. The web server should be able to directly interpolate sql result sets into corresponding <table>s, etc. without having to round trip for each row or perform additional in memory join operations.The typical ORM implementation is the exact opposite of this - one strict object model that must be used everywhere. It's about as inflexible as you can get.",
+    "parent": 44921359,
+    "depth": 2
+  },
+  {
+    "id": 44922417,
+    "by": "tialaramex",
+    "timeISO": "2025-08-16T11:51:57.000Z",
+    "textPlain": "Stored procedures seem like a win but the big problem is that while I could write the rest of the software in a very nice modern language like Rust, or more practically in C# since my team all know C# if I write a stored procedure it will be in Transact-SQL because that's the only choice.T-SQL was not a good programming language last century when it was vaguely current, and so no I do not want to write any significant amount of code in T-SQL. For my sins I maintain a piece of software with huge T-SQL procedures (multi-page elaborations by somebody who really, really like this stuff) and they're a nightmare. The tooling doesn't really believe in version control, the diagnostics when you make a mistake are either non-existent or C++ style useless spew.We hire a lot of very junior developers. People who still need to be told not to comment out code in release, that variable numbers are for humans to read not machines, that sort of thing. We're not quite hiring physicists to write software (I have done that at a startup) but it's close. However, none of the poor \"My first program\" code I see in a merge request by a new hire is anywhere close to as unreadable as the T-SQL we already own and maintain.",
+    "parent": 44921359,
+    "depth": 2
+  },
+  {
+    "id": 44921995,
+    "by": "mdavid626",
+    "timeISO": "2025-08-16T10:30:33.000Z",
+    "textPlain": "I disagree. In modern highly scalable architectures I’d prefer doing joins in the layer front of the database (backend).The “backend” scales much easier than the database. Loading data by simple indexes, eg. user_id, and joining it on the backend, keeps the db fast. Spinning up another backend instance is easy - unlike db instance.If you think, your joins must happen in db, because data too big to be loaded to memory on backend, restructure it, so it’s possible.Bonus points for moving joins to the frontend. This makes data highly cacheable - fast to load, as you need to load less data and frees up resources on server side.",
     "parent": 44921359,
     "depth": 2
   },
@@ -144,10 +240,26 @@
     "depth": 2
   },
   {
+    "id": 44922659,
+    "by": "scarface_74",
+    "timeISO": "2025-08-16T12:23:50.000Z",
+    "textPlain": "I have a very strict rule about any system I design or that I’m over against using stored procedures.When I use to interview to be a developer at a company, it was always an automatic no for me if a company kept business logic in stored procedures and had a separate team of “database developers”.As far as not doing joins in code, while I agree for the most part. GitHub itself has a rule against joining tables using sql that belong to different domains.https://github.blog/engineering/infrastructure/partitioning-...",
+    "parent": 44921359,
+    "depth": 2
+  },
+  {
     "id": 44921556,
     "by": "tossandthrow",
     "timeISO": "2025-08-16T08:57:18.000Z",
     "textPlain": "Views make good sense when you can check them in - and DB migrations are a poor way of doing it due to their immutable nature.Depending on the ecosystem the code base adopts a good orm might be a better choice to do joins.",
+    "parent": 44921359,
+    "depth": 2
+  },
+  {
+    "id": 44922488,
+    "by": "luckylion",
+    "timeISO": "2025-08-16T12:01:32.000Z",
+    "textPlain": "I feel like the biggest question to ask is: how expensive is it exactly, how often do you need to do it, and how important is the speed of it?If you have some complex queries on every page load with a huge number of users, put it in the DB as much as possible.If you need to iterate over a bunch of records and do something based on some combination of values, and it's for a weekly reporting thing, I'd much rather see 3 nested foreach loops with a lot of early exits to skip the things you don't care about than a multi-kb SQL-statement that took two days to develop and nobody every dares to touch again because it's hard to handle.",
     "parent": 44921359,
     "depth": 2
   },
@@ -165,6 +277,14 @@
     "timeISO": "2025-08-16T09:31:17.000Z",
     "textPlain": "for me, it is orm -> schema bound views -> views -> table functions -> stored procedure as a last resort (hopefully it doesn't come to that)",
     "parent": 44921359,
+    "depth": 2
+  },
+  {
+    "id": 44922591,
+    "by": "anal_reactor",
+    "timeISO": "2025-08-16T12:16:24.000Z",
+    "textPlain": "This is unfortunately true. People love complex solutions, and suggesting a simple one usually comes across as incompetent, while the reality is, simple solutions are easy to manage, which ensures the success of the project as a whole.Sure, there are problems that are inherently complex and require complex solutions. But most likely yours isn't one of them, most likely you have a basic web app.",
+    "parent": 44922259,
     "depth": 2
   },
   {
@@ -188,6 +308,14 @@
     "by": "grey-area",
     "timeISO": "2025-08-16T09:11:02.000Z",
     "textPlain": "I’d see the booleans as a bad thing in almost all cases, instead of a boolean you can have a timestamp or an integer field (which can expand later).In the is_a case almost always a type or kind is better as you’ll rarely just have bears even if you only start with bears, just as you rarely have just two states for a status field (say on or off), often these expand in use to include things like suspended, deleted and asleep.So generally I’d avoid booleans as they tend to multiply and increase complexity partially when they cover mutually exclusive states like live, deleted and suspended. I have seen is_visible, is_deleted and is_suspended all on the same table (without a status) and the resulting code and queries are not pretty.I’d use an integer rather than a timestamp to replace them though.",
+    "parent": 44921354,
+    "depth": 2
+  },
+  {
+    "id": 44922378,
+    "by": "oftenwrong",
+    "timeISO": "2025-08-16T11:44:07.000Z",
+    "textPlain": "A boolean is smaller, which is a relevant consideration for some workloads. For example, you may be pre-aggregating a large amount of data to serve a set of analytical queries which do not care about the associated timestamp. The smaller data type is more efficient both in storage and in query execution.Additionally, there are situations where it is logical to store a boolean. For example, if the boolean denotes an outcome:    process_executed_at timestamp not null\n    process_succeeded boolean not null",
     "parent": 44921354,
     "depth": 2
   },
@@ -248,11 +376,11 @@
     "depth": 2
   },
   {
-    "id": 44922209,
-    "by": "klabb3",
-    "timeISO": "2025-08-16T11:09:56.000Z",
-    "textPlain": "Yes it’s total madness to synchronize and replicate complex state that logically belongs together. This is why microservices are such hot garbage. Well, how people tend to use them anyway.Monotonic state is also better than mutable state. If you must distribute state, think ownership. Who owns it? Eg Theres nothing necessarily wrong with having state owned by eg a mobile client that can be adjusted by the user. Then you can sync it to the backend if you want, but they are only a reader/listener, and should never try to control it directly.",
-    "parent": 44921325,
+    "id": 44922330,
+    "by": "dondraper36",
+    "timeISO": "2025-08-16T11:34:53.000Z",
+    "textPlain": "Especially given that generating documentation and tests (of course, with manual revision) is so much faster with, say, Claude Code.",
+    "parent": 44922310,
     "depth": 2
   },
   {
@@ -269,30 +397,6 @@
     "timeISO": "2025-08-16T08:53:42.000Z",
     "textPlain": "You should adapt your team to the architecture, not the other way around.My former Ph.D. supervisor who moonlights as a consultant on this topic uses a nice acronym to capture this: BAPO. Business, Architecture, Process, and Organization. The idea is to end up with optimal business, an optimal architecture & design for that business, the minimum of manual processes that are necessitated by that architecture, and an organization that is efficiently executing those processes. So, you should design and engineer in that order.Most companies do this in reverse and then end up limiting their business with an architecture that matches whatever processes that their org chart necessitated years ago in a way that doesn't makes any logical sense whatsoever except in the historical context of the org chart. If you come in as a consultant to fix such a situation, it helps understanding that whatever you are going to find is probably wrong because of this reason. I've been in the situation where I come in to fix a technical issue and immediately see that the only reason the problem exists is the org chart is bullshit. That can be a bit awkward but lucrative if you deal with it correctly. It helps asking the right questions before you get started.Turning that around means you start from the business end (where's the money coming from?, what value can we create?, etc.), finding a solution that delivers that and then figure out processes and organizational needs. Many companies start out fairly optimal and then stuff around them changes and they forget to adapt to that.Having micro services because you have a certain team structure is a classic mistake here. You just codified your organizational inefficiency. Before you even delivered any business value. And now your organizational latency has network latency to match that. Probably for no good reason other than that team A can't be trusted to work with team B. And even if it's optimal now, is it going to stay optimal?If you are goi",
     "parent": 44921254,
-    "depth": 2
-  },
-  {
-    "id": 44921790,
-    "by": "dondraper36",
-    "timeISO": "2025-08-16T09:43:30.000Z",
-    "textPlain": "But isn't that type of advice the best we can have? Having read Designing Data Intensive Applications (DDIA) and some system design interview-focused books (like those from Alex Xu), I have noticed two types of resources:* Fundamental books/courses on distributed systems that will help you understand the internals of most distributed systems and algorithms (DDIA is here, even though it's not even the most theoretical treatment)* Hand-wavy cookbooks that tend to oversimplify things, and (I am intentionally exaggerating here) teach to reason like \"I have assumed a billion users, let's use Cassandra\"I liked the article for its focus on real systems and the sensible rules of thumb instead of another reformulation of the gossip protocol that very few engineers will ever need to apply in practice themselves.",
-    "parent": 44921663,
-    "depth": 2
-  },
-  {
-    "id": 44922159,
-    "by": "mrkeen",
-    "timeISO": "2025-08-16T11:00:29.000Z",
-    "textPlain": "And you get this part somewhat for free if you're actually testing as you're going.When my service wants to store and retrieve as part of its behaviour, of course I'm going to back it with a hashmap first.Once I know it fulfills its business logic I'll start fiddling with hard-to-change stuff like DB schemas and migrations.And having finished and tested the logic, I'll have a much better idea of the actual access patterns so I can design good tables & indexes.",
-    "parent": 44921682,
-    "depth": 2
-  },
-  {
-    "id": 44921931,
-    "by": "paintistjksgf",
-    "timeISO": "2025-08-16T10:16:33.000Z",
-    "textPlain": "[dead]",
-    "parent": 44921682,
     "depth": 2
   }
 ]
