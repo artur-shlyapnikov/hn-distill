@@ -6,9 +6,9 @@ const lang = LANG;
 const i18n = {
   ru: {
     title: "Поиск",
-    qTitle: "Заголовок содержит…",
-    qDomain: "Домен содержит…",
-    qTags: "Теги (через запятую, И)",
+    qTitle: "Заголовок…",
+    qDomain: "Домен…",
+    qTags: "Теги (через запятую)",
     from: "С",
     to: "По",
     clear: "Сброс",
@@ -18,9 +18,9 @@ const i18n = {
   },
   en: {
     title: "Search",
-    qTitle: "Title contains…",
-    qDomain: "Domain contains…",
-    qTags: "Tags (comma separated, AND)",
+    qTitle: "Title",
+    qDomain: "Domain",
+    qTags: "Tags (comma separated)",
     from: "From",
     to: "To",
     clear: "Clear",
@@ -83,9 +83,21 @@ const t = i18n[lang as "ru" | "en"];
 
       const onChange = (() => {
         let t;
-        return () => {
+        return (immediate = false) => {
           clearTimeout(t);
-          t = setTimeout(apply, 120);
+          if (immediate) {
+            apply();
+          } else {
+            // Adaptive debounce: faster for short queries, slower for complex ones
+            const delay = Math.min(
+              150,
+              Math.max(
+                50,
+                (els.title.value?.length || 0) + (els.domain.value?.length || 0) + (els.tags.value?.length || 0)
+              ) * 10
+            );
+            t = setTimeout(apply, delay);
+          }
         };
       })();
 
@@ -95,48 +107,280 @@ const t = i18n[lang as "ru" | "en"];
         apply();
       });
 
+      // Improved fuzzy search with stricter relevance
+      function fuzzyScore(text, query) {
+        if (!query) return { score: 1, matched: true };
+        if (!text) return { score: 0, matched: false };
+
+        text = text.toLowerCase();
+        query = query.toLowerCase();
+
+        // Exact match gets highest score
+        if (text.includes(query)) {
+          const exactPos = text.indexOf(query);
+          // Strong preference for matches at the beginning
+          const positionBonus = Math.max(0, 1 - (exactPos / text.length) * 0.5);
+          return { score: 0.95 + positionBonus * 0.05, matched: true };
+        }
+
+        // For short queries (1-2 chars), be very strict
+        if (query.length <= 2) {
+          return { score: 0, matched: false };
+        }
+
+        // Word boundary matching - higher priority
+        const words = text.split(/\s+/);
+        for (const word of words) {
+          if (word.startsWith(query) || word.includes(query)) {
+            const coverage = query.length / word.length;
+            return { score: 0.8 * coverage, matched: true };
+          }
+        }
+
+        // Fuzzy matching - stricter conditions
+        let textIdx = 0;
+        let queryIdx = 0;
+        let matches = 0;
+        let gaps = 0;
+        const queryChars = query.split("");
+
+        while (textIdx < text.length && queryIdx < queryChars.length) {
+          if (text[textIdx] === queryChars[queryIdx]) {
+            matches++;
+            queryIdx++;
+          } else if (queryIdx > 0) {
+            gaps++;
+          }
+          textIdx++;
+        }
+
+        if (matches === queryChars.length) {
+          const density = matches / text.length;
+          const gapPenalty = Math.max(0, 1 - (gaps / text.length) * 2);
+          const lengthRatio = query.length / text.length;
+
+          // Require higher density for shorter texts
+          const minDensity = text.length < 20 ? 0.15 : 0.08;
+
+          if (density >= minDensity && lengthRatio >= 0.1) {
+            const score = Math.min(0.7, density * 3 + lengthRatio * 0.5) * gapPenalty;
+            return { score: Math.max(0.3, score), matched: true };
+          }
+        }
+
+        return { score: 0, matched: false };
+      }
+
+      // Stricter tag matching
+      function matchTags(itemTags, queryTags) {
+        if (!queryTags.length) return { score: 1, matched: true };
+
+        const tags = Array.isArray(itemTags) ? itemTags.map((t) => String(t).toLowerCase()) : [];
+        let totalScore = 0;
+        let exactMatches = 0;
+        let fuzzyMatches = 0;
+
+        for (const qTag of queryTags) {
+          let bestTagScore = 0;
+          let isExact = false;
+
+          for (const tag of tags) {
+            // Exact match - highest priority
+            if (tag === qTag) {
+              bestTagScore = 1;
+              isExact = true;
+              break;
+            }
+            // Starts with or ends with query
+            else if (tag.startsWith(qTag) || tag.endsWith(qTag)) {
+              bestTagScore = Math.max(bestTagScore, 0.9);
+            }
+            // Contains query (but not fuzzy)
+            else if (tag.includes(qTag) && qTag.length >= 3) {
+              bestTagScore = Math.max(bestTagScore, 0.8);
+            }
+            // Query contains tag (for abbreviations)
+            else if (qTag.includes(tag) && tag.length >= 3) {
+              bestTagScore = Math.max(bestTagScore, 0.7);
+            }
+            // Fuzzy match only for longer strings
+            else if (qTag.length >= 4 && tag.length >= 4) {
+              const fuzzy = fuzzyScore(tag, qTag);
+              if (fuzzy.matched && fuzzy.score > 0.6) {
+                bestTagScore = Math.max(bestTagScore, fuzzy.score * 0.5);
+              }
+            }
+          }
+
+          if (bestTagScore > 0) {
+            if (isExact) exactMatches++;
+            else fuzzyMatches++;
+            totalScore += bestTagScore;
+          }
+        }
+
+        const totalMatches = exactMatches + fuzzyMatches;
+
+        // Stricter requirements: prefer exact matches
+        let matched = false;
+        if (queryTags.length === 1) {
+          matched = totalMatches > 0 && totalScore >= 0.7;
+        } else {
+          // For multiple tags, require at least 70% match rate with preference for exact
+          const matchRate = totalMatches / queryTags.length;
+          const exactRate = exactMatches / queryTags.length;
+          matched = matchRate >= 0.7 && (exactRate >= 0.3 || totalScore / queryTags.length >= 0.8);
+        }
+
+        const score = matched ? totalScore / queryTags.length : 0;
+        return { score, matched };
+      }
+
       function apply() {
-        const qTitle = (els.title.value || "").trim().toLowerCase();
-        const qDomain = (els.domain.value || "").trim().toLowerCase();
+        // Show loading state
+        els.count.textContent = "Поиск...";
+
+        const qTitle = (els.title.value || "").trim();
+        const qDomain = (els.domain.value || "").trim();
         const qTags = (els.tags.value || "")
           .split(",")
-          .map((s) => s.trim().toLowerCase())
+          .map((s) => s.trim())
           .filter(Boolean);
         const fromMs = els.from.value ? Date.parse(els.from.value + "T00:00:00Z") : -Infinity;
         const toMs = els.to.value ? Date.parse(els.to.value + "T23:59:59Z") : Infinity;
 
-        let out = rows.filter((r) => {
-          const title = String(r.title || "").toLowerCase();
-          if (qTitle && !title.includes(qTitle)) return false;
+        // Pre-filter by date first (most selective)
+        let candidates = rows;
+        if (els.from.value || els.to.value) {
+          candidates = rows.filter((r) => {
+            const t = Date.parse(String(r.timeISO || ""));
+            const ts = Number.isFinite(t) ? t : 0;
+            return ts >= fromMs && ts <= toMs;
+          });
+        }
 
-          if (qDomain) {
-            const d = String(r.domain || "").toLowerCase();
-            if (!d.includes(qDomain)) return false;
+        // Optimized fuzzy search with early filtering
+        let scoredResults = [];
+        const maxResults = 1500; // Reduced for better performance
+        const hasQuery = qTitle || qDomain || qTags.length > 0;
+
+        // If no search terms, return date-sorted results quickly
+        if (!hasQuery) {
+          scoredResults = candidates.slice(0, maxResults).map((item) => ({
+            item,
+            relevanceScore: 1,
+          }));
+        } else {
+          // Pre-filter candidates for exact matches first (faster)
+          let exactMatches = [];
+          let fuzzyMatches = [];
+
+          for (const r of candidates) {
+            if (exactMatches.length + fuzzyMatches.length >= maxResults) break;
+
+            let hasExactMatch = false;
+            let totalScore = 0;
+            let factors = 0;
+            let allMatched = true;
+
+            // Title matching
+            if (qTitle) {
+              const title = String(r.title || "").toLowerCase();
+              if (title.includes(qTitle.toLowerCase())) {
+                hasExactMatch = true;
+              }
+
+              const titleResult = fuzzyScore(String(r.title || ""), qTitle);
+              if (!titleResult.matched) {
+                allMatched = false;
+                continue;
+              }
+              totalScore += titleResult.score * 4; // Increased title weight
+              factors += 4;
+            }
+
+            // Domain matching
+            if (qDomain) {
+              const domain = String(r.domain || "").toLowerCase();
+              if (domain.includes(qDomain.toLowerCase())) {
+                hasExactMatch = true;
+              }
+
+              const domainResult = fuzzyScore(String(r.domain || ""), qDomain);
+              if (!domainResult.matched) {
+                allMatched = false;
+                continue;
+              }
+              totalScore += domainResult.score * 1;
+              factors += 1;
+            }
+
+            // Tag matching
+            if (qTags.length) {
+              const tagResult = matchTags(r.tags, qTags);
+              if (!tagResult.matched) {
+                allMatched = false;
+                continue;
+              }
+              totalScore += tagResult.score * 3; // Increased tag weight
+              factors += 3;
+            }
+
+            if (allMatched) {
+              const avgScore = factors > 0 ? totalScore / factors : 1;
+              // Stronger boost for popular items
+              const hnScoreBoost = Math.min(0.15, (r.score || 0) / 800);
+
+              const result = {
+                item: r,
+                relevanceScore: avgScore + hnScoreBoost,
+                hasExactMatch,
+              };
+
+              // Prioritize exact matches
+              if (hasExactMatch) {
+                exactMatches.push(result);
+              } else {
+                fuzzyMatches.push(result);
+              }
+            }
           }
 
-          if (qTags.length) {
-            const tags = Array.isArray(r.tags) ? r.tags : [];
-            const set = new Set(tags.map((t) => String(t).toLowerCase()));
-            for (const t of qTags) if (!set.has(t)) return false;
+          // Combine results: exact matches first, then fuzzy
+          scoredResults = [...exactMatches, ...fuzzyMatches];
+        }
+
+        // Improved sorting: exact matches first, then by relevance
+        scoredResults.sort((a, b) => {
+          // Primary: exact matches first
+          if (a.hasExactMatch !== b.hasExactMatch) {
+            return a.hasExactMatch ? -1 : 1;
           }
 
-          const t = Date.parse(String(r.timeISO || ""));
-          const ts = Number.isFinite(t) ? t : 0;
-          if (ts < fromMs || ts > toMs) return false;
+          // Secondary: relevance score with better threshold
+          const scoreDiff = b.relevanceScore - a.relevanceScore;
+          if (Math.abs(scoreDiff) > 0.02) {
+            return scoreDiff;
+          }
 
-          return true;
+          // Tertiary: HN score for similar relevance
+          const hnScoreDiff = (b.item.score || 0) - (a.item.score || 0);
+          if (Math.abs(hnScoreDiff) > 50) {
+            return hnScoreDiff;
+          }
+
+          // Final: date (newer first)
+          const ta = Date.parse(String(a.item.timeISO || "")) || 0;
+          const tb = Date.parse(String(b.item.timeISO || "")) || 0;
+          return tb - ta;
         });
 
-        out.sort((a, b) => {
-          const ta = Date.parse(String(a.timeISO || "")) || 0;
-          const tb = Date.parse(String(b.timeISO || "")) || 0;
-          return tb - ta || (b.id | 0) - (a.id | 0);
-        });
+        const out = scoredResults.map((sr) => sr.item);
 
         els.count.textContent = `${out.length} ${out.length === 1 ? (t.results === "Results" ? "result" : "результат") : t.results.toLowerCase()}`;
 
-        // Render first 500 for perf
-        const slice = out.slice(0, 500);
+        // Render first 1000 for better fuzzy search utility (fuzzy results are pre-sorted by relevance)
+        const slice = out.slice(0, 1000);
         els.results.innerHTML = slice
           .map((r) => {
             const date = String(r.timeISO || "").slice(0, 10);
