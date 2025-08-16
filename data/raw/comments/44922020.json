@@ -1,9 +1,9 @@
 [
   {
-    "id": 44924575,
-    "by": "jmull",
-    "timeISO": "2025-08-16T16:00:38.000Z",
-    "textPlain": "This looks like not so much traps, but a list of things the author has learned.Much of it would only apply in certain relatively narrow contexts, but the contexts aren't necessarily mentioned.Some of it appears to be just wrong.I guess I'm saying: I would not take this literally, but as something almost like a stream-of-consciousness.",
+    "id": 44925170,
+    "by": "koromak",
+    "timeISO": "2025-08-16T17:06:13.000Z",
+    "textPlain": "Does anyone truly understand all the little edge cases with CSS?I've write tons and tons of CSS, have done for a decade. I don't sit and think about the exact interactions, I just know a couple things that might work if I'm getting something unexpected.I don't really see it possible to commit that to memory, unless I literally start working on an interpreter myself.",
     "parent": 44922020,
     "depth": 1
   },
@@ -12,6 +12,14 @@
     "by": "Someone",
     "timeISO": "2025-08-16T15:43:16.000Z",
     "textPlain": "> Java, C# and JS use UTF-16-like encoding for in-memory stringThat’s incorrect for Java, possibly also for C# and JS.In any language where strings are opaque enough types [1], the in-memory representation is an implementation detail. Java has been such a language since release 9 (https://openjdk.org/jeps/254)[1] The ‘enough’ is because some languages have fully opaque types, but specify efficiency of some operations and through it, effectively proscribe implementation details. Having a foreign function interface also often means implementation details cannot be changed because doing that would break backwards compatibility.> JS use floating point for all numbers. The max accurate integer is 2⁵³−1That is incorrect. Much larger integers can be represented exactly, for example 2¹⁰⁰.What is true is that 2⁵³−1 is the largest integer n such that n-1, n, and n+1 can be represented exactly in an IEEE double. That, in turn, means n == n-1 and n == n+1 both will evaluate to false, as expected in ‘normal’ arithmetic.",
+    "parent": 44922020,
+    "depth": 1
+  },
+  {
+    "id": 44924575,
+    "by": "jmull",
+    "timeISO": "2025-08-16T16:00:38.000Z",
+    "textPlain": "This looks like not so much traps, but a list of things the author has learned.Much of it would only apply in certain relatively narrow contexts, but the contexts aren't necessarily mentioned.Some of it appears to be just wrong.I guess I'm saying: I would not take this literally, but as something almost like a stream-of-consciousness.",
     "parent": 44922020,
     "depth": 1
   },
@@ -64,10 +72,26 @@
     "depth": 1
   },
   {
+    "id": 44924997,
+    "by": "semperMade",
+    "timeISO": "2025-08-16T16:44:35.000Z",
+    "textPlain": "[dead]",
+    "parent": 44922020,
+    "depth": 1
+  },
+  {
     "id": 44924698,
     "by": "debugnik",
     "timeISO": "2025-08-16T16:13:31.000Z",
     "textPlain": "> possibly also for C# and JSThe representation for C# is very much fixed, as it allows, and very commonly uses, direct access into the string buffer as a ReadOnlySpan<char> or a raw char pointer, where char is the type of UTF-16 codepoints.JS could maybe get away with it.",
+    "parent": 44924418,
+    "depth": 2
+  },
+  {
+    "id": 44924891,
+    "by": "scarface_74",
+    "timeISO": "2025-08-16T16:34:08.000Z",
+    "textPlain": "I started to say something about C# strings and then I remembered the clusterfuck when it came to Windows development and strings and  depending on which API you call, a string is represented by one of a dozen different ways.https://stackoverflow.com/questions/689211/interop-sending-s...",
     "parent": 44924418,
     "depth": 2
   },
@@ -133,6 +157,14 @@
     "timeISO": "2025-08-16T13:08:15.000Z",
     "textPlain": "Honorable mention to [a-z], gotta be my favorite trap",
     "parent": 44922737,
+    "depth": 2
+  },
+  {
+    "id": 44925152,
+    "by": "ivanjermakov",
+    "timeISO": "2025-08-16T17:04:30.000Z",
+    "textPlain": "There is no such thing as \"just bytes\" when it comes to Unicode. UTF-8 is a way to represent Unicode codepoints in binary.But I agree that author's statement is wrong. Go stings are equivalent to byte slices.",
+    "parent": 44924558,
     "depth": 2
   }
 ]

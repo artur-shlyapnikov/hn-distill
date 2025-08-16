@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44924895,
+    "by": "furyofantares",
+    "timeISO": "2025-08-16T16:34:49.000Z",
+    "textPlain": "I don't think 'random' is doing any of the work. These sound like they would work fine with a deterministic PRNG seeded at 0. They don't sound like they need to be looking at lava lamps or the like.It's that there's a population of values (integers for factoring, nodes-to-delete for the graph) where we know a way to get a lot of information cheaply from most values, but we don't know which values, so we sample them.Which isn't to say the PRNG isn't doing work - maybe it is, maybe any straightforward iteration through the sample space has problems, failure values being clumped together, or similar values providing overlapping information.If so that suggests to me that you can do better sampling than PRNG, although maybe the benefit is small. When the article talks about 'derandomizing' an algorithm, is it referring to removing the concept of sampling from this space entirely, or is it talking about doing a better job sampling than 'random'?",
+    "parent": 44898560,
+    "depth": 1
+  },
+  {
     "id": 44923217,
     "by": "sestep",
     "timeISO": "2025-08-16T13:27:35.000Z",
@@ -22,6 +30,14 @@
     "textPlain": "[dead]",
     "parent": 44898560,
     "depth": 1
+  },
+  {
+    "id": 44925068,
+    "by": "jvanderbot",
+    "timeISO": "2025-08-16T16:53:04.000Z",
+    "textPlain": "I don't follow the question.A pseudo random sequence of choices is still sufficiently detached from the input. Random here means \"I'm making a decision in a way that is independent from the input sufficiently so that structuring the input adversarially won't cause worst case performance.\" Coupled with \"the cost of this algorithm is expressed assuming real random numbers\".That's the work Random is doing.INB4 worst case: you can do worst case analysis on randomized analysis but it's either worst case across any choice or worst case in expectation, not worst case given a poor implementation of RNG, effectively randomization sometimes serves to shake you out of an increasingly niche and unlikely series of bad decisions that is the crux of an adversarial input.To wit> In the rare cases where the algorithm makes an unlucky choice and gets bogged down at the last step, they could just stop and run it again.",
+    "parent": 44924895,
+    "depth": 2
   },
   {
     "id": 44923460,

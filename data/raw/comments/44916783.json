@@ -32,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44921021,
-    "by": "flohofwoe",
-    "timeISO": "2025-08-16T07:17:30.000Z",
-    "textPlain": "Even ancient svn works much better out of the box for large binary files than git (e.g. a 150 GB working directory with many big Photoshop files and other binary assets is no problem in SVN).What does SVN do differently than git when it comes to large binary files, and why can't git use the same approach?I also don't quite understand tbh how offloading large files to somewhere else would be fundamentally different than storing all files in one place except complicating everything? Storage is storage, how would a different storage location fix any of the current performance and robustness problems? Offloading just sounds like a solution for public git forges which don't want to deal with big files because it's too costly for them, but increased hosting cost is not the 'large binary file problem' of git.(edit: apparently git supports proper locking(?) so I removed that section - ps: nvm it looks like the file locking feature is only in git-lfs)",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44919065,
     "by": "Ferret7446",
     "timeISO": "2025-08-16T01:07:11.000Z",
     "textPlain": "This article treats LFS unfairly.  It does not in any way lock you in to GitHub; the protocol is open.  The downsides of LFS are unavoidable as a Git extension.  Promisors are basically the same concept as LFS, except as it's built into Git it is able to provide a better UX than is possible as an extension.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44921021,
+    "by": "flohofwoe",
+    "timeISO": "2025-08-16T07:17:30.000Z",
+    "textPlain": "Even ancient svn works much better out of the box for large binary files than git (e.g. a 150 GB working directory with many big Photoshop files and other binary assets is no problem in SVN).What does SVN do differently than git when it comes to large binary files, and why can't git use the same approach?I also don't quite understand tbh how offloading large files to somewhere else would be fundamentally different than storing all files in one place except complicating everything? Storage is storage, how would a different storage location fix any of the current performance and robustness problems? Offloading just sounds like a solution for public git forges which don't want to deal with big files because it's too costly for them, but increased hosting cost is not the 'large binary file problem' of git.(edit: apparently git supports proper locking(?) so I removed that section - ps: nvm it looks like the file locking feature is only in git-lfs)",
     "parent": 44916783,
     "depth": 1
   },
@@ -80,14 +80,6 @@
     "depth": 1
   },
   {
-    "id": 44923908,
-    "by": "tionis",
-    "timeISO": "2025-08-16T14:45:24.000Z",
-    "textPlain": "I've been using git + git-lfs to manage, sync and backup all my files (including media files and more) and it's quite convenient, but native support for large files would be great. I'd for example really like to be able to push large objects directly from one device to the next.At the moment I'm using my own git server + git lfs deduplication using btrfs to efficiently handle the large files.If large objects are just embedded in various packfiles this approach would no longer work, so I hope that such a behaviour can be controlled.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918828,
     "by": "jayd16",
     "timeISO": "2025-08-16T00:31:24.000Z",
@@ -96,10 +88,10 @@
     "depth": 1
   },
   {
-    "id": 44923128,
-    "by": "astrolx",
-    "timeISO": "2025-08-16T13:15:54.000Z",
-    "textPlain": "For what it's worth, I have a self hosted git forge where I upped the maximum filesize limit. I use git repositories for my science projects, they can each have hundreds of large files (> 25 Mb as described in the article).\nI don't use LFS, I don't encounter any issue.",
+    "id": 44923908,
+    "by": "tionis",
+    "timeISO": "2025-08-16T14:45:24.000Z",
+    "textPlain": "I've been using git + git-lfs to manage, sync and backup all my files (including media files and more) and it's quite convenient, but native support for large files would be great. I'd for example really like to be able to push large objects directly from one device to the next.At the moment I'm using my own git server + git lfs deduplication using btrfs to efficiently handle the large files.If large objects are just embedded in various packfiles this approach would no longer work, so I hope that such a behaviour can be controlled.",
     "parent": 44916783,
     "depth": 1
   },
@@ -112,6 +104,14 @@
     "depth": 1
   },
   {
+    "id": 44923128,
+    "by": "astrolx",
+    "timeISO": "2025-08-16T13:15:54.000Z",
+    "textPlain": "For what it's worth, I have a self hosted git forge where I upped the maximum filesize limit. I use git repositories for my science projects, they can each have hundreds of large files (> 25 Mb as described in the article).\nI don't use LFS, I don't encounter any issue.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44920276,
     "by": "ideasman42",
     "timeISO": "2025-08-16T04:50:25.000Z",
@@ -120,18 +120,18 @@
     "depth": 1
   },
   {
-    "id": 44920190,
-    "by": "pabs3",
-    "timeISO": "2025-08-16T04:30:57.000Z",
-    "textPlain": "The git storage model also needs an overhaul to be more like modern backup tools such as restic/borg; it needs content-defined chunking of files and directories.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918010,
     "by": "goneri",
     "timeISO": "2025-08-15T22:27:52.000Z",
     "textPlain": "git-annex is a good alternative to the solution of Githu, and it supports different storage backends. I'm actually surprised it's not more popular.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44920190,
+    "by": "pabs3",
+    "timeISO": "2025-08-16T04:30:57.000Z",
+    "textPlain": "The git storage model also needs an overhaul to be more like modern backup tools such as restic/borg; it needs content-defined chunking of files and directories.",
     "parent": 44916783,
     "depth": 1
   },
@@ -168,6 +168,14 @@
     "depth": 1
   },
   {
+    "id": 44918460,
+    "by": "nixpulvis",
+    "timeISO": "2025-08-15T23:29:50.000Z",
+    "textPlain": "I was just using git LFS and was very concerned with how bad the help message was compared to the rest of git. I know it seems small, but it just never felt like a team player, and now I'm very happy to hear this.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44917823,
     "by": "tombert",
     "timeISO": "2025-08-15T22:08:53.000Z",
@@ -180,14 +188,6 @@
     "by": "kerneltime",
     "timeISO": "2025-08-16T00:48:36.000Z",
     "textPlain": "https://github.com/oneconcern/datamon\nHad written this git for data tool few years back (works with GCS but can be made to work with S3)\n1. No server side\n2. Immutable data (via GCS policies)\n3. Ability to mount data sets as filesystems\n4. Integrated with k8s.\nIt was built to work for the needs of the startup funding it, but I would love it if it could be extended.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
-    "id": 44918460,
-    "by": "nixpulvis",
-    "timeISO": "2025-08-15T23:29:50.000Z",
-    "textPlain": "I was just using git LFS and was very concerned with how bad the help message was compared to the rest of git. I know it seems small, but it just never felt like a team player, and now I'm very happy to hear this.",
     "parent": 44916783,
     "depth": 1
   },
@@ -232,18 +232,18 @@
     "depth": 1
   },
   {
-    "id": 44919105,
-    "by": "anon-3988",
-    "timeISO": "2025-08-16T01:12:40.000Z",
-    "textPlain": "What prevents Git from simply working better with large files?",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918277,
     "by": "jiggawatts",
     "timeISO": "2025-08-15T23:03:59.000Z",
     "textPlain": "What I would love to see in an SCM that properly supports large binary blobs is storing the contents using Prolly trees instead of a simple SHA hash.Prolly trees are very similar to Merkle trees or the rsync algorithm, but they support mutation and version history retention with some nice properties. For example: you always obtain exactly the same tree (with the same root hash) irrespective of the order of incremental edit operations used to get to the same state.In other words, two users could edit a subset of a 1 TB file, both could merge their edits, and both will then agree on the root hash without having to re-hash or even download the entire file!Another major advantage on modern many-core CPUs is that Prolly trees can be constructed in parallel instead of having to be streamed sequentially on one thread.Then the really big brained move is to store the entire SCM repo as a single Prolly tree for efficient incremental downloads, merges, or whatever. I.e.: a repo fork could share storage with the original not just up to the point-in-time of the fork, but all future changes too.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919105,
+    "by": "anon-3988",
+    "timeISO": "2025-08-16T01:12:40.000Z",
+    "textPlain": "What prevents Git from simply working better with large files?",
     "parent": 44916783,
     "depth": 1
   },
@@ -264,6 +264,14 @@
     "depth": 1
   },
   {
+    "id": 44918221,
+    "by": "sublinear",
+    "timeISO": "2025-08-15T22:55:12.000Z",
+    "textPlain": "May I humbly suggest that those files probably belong in an LFS submodule called \"assets\" or \"vendor\"?Then you can clone without checking out all the unnecessary large files to get a working build, This also helps on the legal side to correctly license your repos.I'm struggling to see how this is a problem with git and not just antipatterns that arise from badly organized projects.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44919937,
     "by": "ghhv",
     "timeISO": "2025-08-16T03:44:36.000Z",
@@ -272,10 +280,10 @@
     "depth": 1
   },
   {
-    "id": 44918221,
-    "by": "sublinear",
-    "timeISO": "2025-08-15T22:55:12.000Z",
-    "textPlain": "May I humbly suggest that those files probably belong in an LFS submodule called \"assets\" or \"vendor\"?Then you can clone without checking out all the unnecessary large files to get a working build, This also helps on the legal side to correctly license your repos.I'm struggling to see how this is a problem with git and not just antipatterns that arise from badly organized projects.",
+    "id": 44924969,
+    "by": "semperMade",
+    "timeISO": "2025-08-16T16:42:40.000Z",
+    "textPlain": "[dead]",
     "parent": 44916783,
     "depth": 1
   },
@@ -360,6 +368,14 @@
     "depth": 2
   },
   {
+    "id": 44925052,
+    "by": "gradientsrneat",
+    "timeISO": "2025-08-16T16:51:09.000Z",
+    "textPlain": "> LFS does break disconnected/offline/sneakernet operations which wasn't mentioned and is not awesomeYea, I had the same thought. And TBD on large object promisors.Git annex is somewhat more decentralized as it can track the presence of large files across different remotes. And it can pull large files from filesystem repos such as USB drives. The downside is that it's much more complicated and difficult to use. Some code forges used to support it, but support has since been dropped.",
+    "parent": 44917895,
+    "depth": 2
+  },
+  {
     "id": 44917976,
     "by": "IshKebab",
     "timeISO": "2025-08-15T22:24:28.000Z",
@@ -381,22 +397,6 @@
     "timeISO": "2025-08-15T22:58:59.000Z",
     "textPlain": "Git LFS didn't work with SSH, you had to get an SSL cert which github knew was a barrier for people self hosting at home.  I think gitlab got it patched for SSH finally though.",
     "parent": 44917895,
-    "depth": 2
-  },
-  {
-    "id": 44921062,
-    "by": "pjc50",
-    "timeISO": "2025-08-16T07:25:00.000Z",
-    "textPlain": "Completely different design. Git is intended to be fully distributed, so (a) every repo is supposed to have the full history of every file, and (b) locking is meaningless.People should use the VCS that's appropriate for their project rather than insist on git everywhere.",
-    "parent": 44921021,
-    "depth": 2
-  },
-  {
-    "id": 44917992,
-    "by": "IshKebab",
-    "timeISO": "2025-08-15T22:25:41.000Z",
-    "textPlain": "I totally agree. This follows a long tradition of Git \"fixing\" things by adding a flag that 99% of users won't ever discover. They never fix the defaults.And yes, you can fix defaults without breaking backwards compatibility.",
-    "parent": 44917935,
     "depth": 2
   }
 ]

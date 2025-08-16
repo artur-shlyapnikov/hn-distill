@@ -1,5 +1,13 @@
 [
   {
+    "id": 44925172,
+    "by": "dash2",
+    "timeISO": "2025-08-16T17:06:46.000Z",
+    "textPlain": "I'm not sure about the assumption that science is context-free. Maths maybe, but a lot of practical science has tons of unformalized contextual knowledge that is \"handed down\" by practitioners. It's one reason why replication can be so hard.OTOH, I also think a lot of science is like 1% inspiration, 99% very mundane tasks like data cleaning. So no reason the AI can't help with that. And scientists write terrible code, so the bar is low :-)",
+    "parent": 44913081,
+    "depth": 1
+  },
+  {
     "id": 44919144,
     "by": "mrlongroots",
     "timeISO": "2025-08-16T01:17:46.000Z",
@@ -40,6 +48,14 @@
     "depth": 1
   },
   {
+    "id": 44919107,
+    "by": "etler",
+    "timeISO": "2025-08-16T01:12:50.000Z",
+    "textPlain": "I think the framing of these models are being \"intelligent\" is not the right way to go. They've gotten better at recall and association.They can recall prior reasoning from text they are trained on which allows them to handle complex tasks that have been solved before, but when working on complex, novel, or nuanced tasks there is no high quality relevant training data to recall.Intelligence has always been a fraught word to define and I don't think what LLMs do is the right attribute for defining it.I agree with a good deal of the article but because it keeps using loaded works like \"intelligent\" and \"smarter\", it has a hard time explaining what's missing.",
+    "parent": 44913081,
+    "depth": 1
+  },
+  {
     "id": 44918607,
     "by": "Kuinox",
     "timeISO": "2025-08-15T23:54:42.000Z",
@@ -56,10 +72,18 @@
     "depth": 1
   },
   {
-    "id": 44919107,
-    "by": "etler",
-    "timeISO": "2025-08-16T01:12:50.000Z",
-    "textPlain": "I think the framing of these models are being \"intelligent\" is not the right way to go. They've gotten better at recall and association.They can recall prior reasoning from text they are trained on which allows them to handle complex tasks that have been solved before, but when working on complex, novel, or nuanced tasks there is no high quality relevant training data to recall.Intelligence has always been a fraught word to define and I don't think what LLMs do is the right attribute for defining it.I agree with a good deal of the article but because it keeps using loaded works like \"intelligent\" and \"smarter\", it has a hard time explaining what's missing.",
+    "id": 44920305,
+    "by": "visarga",
+    "timeISO": "2025-08-16T04:57:18.000Z",
+    "textPlain": "Verification is the bottleneck, not ideation. LLMs can generate anything on tap, but solving any non-trivial problem requires iteration between thinking, doing and observing outcomes. The real world is too complex to be simulated by AI or humans. The scientific method works the same way, we are not exempt from having to validate our ideas. But as humans we have better feedback and access to context and we can assume risks on our own. AI has no skin and bears no responsibility.So the missing ingredient for AI is access to environment for feedback learning. It has little to do with AI architecture or datasets. I think a huge source of such data is our human-LLM chat logs. We act as LLM eyes, hands and feed on the ground. We carry the tacit knowledge and social context. OpenAI reports billions of tasks per day, probably trillions of tokens of interactive language combining human, AI and feedback from the environment. Maybe this is how AI can inch towards learning how to solve real world problems, it is part of the loop of problem solving, and benefits from having this data for training.",
+    "parent": 44913081,
+    "depth": 1
+  },
+  {
+    "id": 44919959,
+    "by": "stephc_int13",
+    "timeISO": "2025-08-16T03:47:29.000Z",
+    "textPlain": "This is because we tend to use a human-centric reference to evaluate the difficulty of a task : playing chess at grand master level is a lot harder than folding laundry, except that it is the opposite, and this weird bias is well known as Moravec’s Paradox.Intelligence is the bottleneck, but not the kind of intelligence you need to solve puzzles.",
     "parent": 44913081,
     "depth": 1
   },
@@ -72,26 +96,10 @@
     "depth": 1
   },
   {
-    "id": 44920305,
-    "by": "visarga",
-    "timeISO": "2025-08-16T04:57:18.000Z",
-    "textPlain": "Verification is the bottleneck, not ideation. LLMs can generate anything on tap, but solving any non-trivial problem requires iteration between thinking, doing and observing outcomes. The real world is too complex to be simulated by AI or humans. The scientific method works the same way, we are not exempt from having to validate our ideas. But as humans we have better feedback and access to context and we can assume risks on our own. AI has no skin and bears no responsibility.So the missing ingredient for AI is access to environment for feedback learning. It has little to do with AI architecture or datasets. I think a huge source of such data is our human-LLM chat logs. We act as LLM eyes, hands and feed on the ground. We carry the tacit knowledge and social context. OpenAI reports billions of tasks per day, probably trillions of tokens of interactive language combining human, AI and feedback from the environment. Maybe this is how AI can inch towards learning how to solve real world problems, it is part of the loop of problem solving, and benefits from having this data for training.",
-    "parent": 44913081,
-    "depth": 1
-  },
-  {
     "id": 44923949,
     "by": "darepublic",
     "timeISO": "2025-08-16T14:48:59.000Z",
     "textPlain": "Model capability is absolutely the main constraint.",
-    "parent": 44913081,
-    "depth": 1
-  },
-  {
-    "id": 44919959,
-    "by": "stephc_int13",
-    "timeISO": "2025-08-16T03:47:29.000Z",
-    "textPlain": "This is because we tend to use a human-centric reference to evaluate the difficulty of a task : playing chess at grand master level is a lot harder than folding laundry, except that it is the opposite, and this weird bias is well known as Moravec’s Paradox.Intelligence is the bottleneck, but not the kind of intelligence you need to solve puzzles.",
     "parent": 44913081,
     "depth": 1
   },
@@ -156,6 +164,14 @@
     "by": "themanmaran",
     "timeISO": "2025-08-16T04:10:59.000Z",
     "textPlain": "This depends on whether you mean LLMs in the sense of single shot, or LLMs + software built around it. I think a lot of people conflate the two.In our application e use a multi-step check_knowledge_base workflow before and after each LLM request. Pretty much, make a separate LLM request to check the query against the existing context to see if more info is needed, and a second check after generation to see if output text exceeded it's knowledge base.And the results are really good. Now coding agents in your example are definitely stepwise more complex, but the same guardrails can apply.",
+    "parent": 44919144,
+    "depth": 2
+  },
+  {
+    "id": 44924983,
+    "by": "antithesizer",
+    "timeISO": "2025-08-16T16:43:25.000Z",
+    "textPlain": "The word you're looking for is \"rebuttal\" since this is neither proof nor refutation of anything, but merely an argument against the thesis.",
     "parent": 44919144,
     "depth": 2
   },
@@ -288,11 +304,11 @@
     "depth": 2
   },
   {
-    "id": 44921412,
-    "by": "saint_yossarian",
-    "timeISO": "2025-08-16T08:33:42.000Z",
-    "textPlain": "One thing that comes to mind: You still have to verify that the tests are exhaustive, and that the code isn't just gaming specific test scenarios.I guess fuzzing and property-based testing could mitigate this to some extent.",
-    "parent": 44920622,
+    "id": 44925059,
+    "by": "bwfan123",
+    "timeISO": "2025-08-16T16:51:55.000Z",
+    "textPlain": "> Verification is the bottleneckIn my use of cursor as a coding assistant, this is the primary problem. The code is 90% on the mark, but still buggy, and needs verification, and the feedback it gets from me is not with full fidelity as something is lost in translation.But, a bigger issue is that AI has only some solution templates for problems that it is trained on, and being able to generate new templates is beyond its capability as that requires training on datasets of higher levels of abstration.",
+    "parent": 44920305,
     "depth": 2
   },
   {
@@ -301,6 +317,14 @@
     "timeISO": "2025-08-16T04:20:33.000Z",
     "textPlain": "For others who also hadn't heard of that: https://en.wikipedia.org/wiki/Moravec%27s_paradox",
     "parent": 44919959,
+    "depth": 2
+  },
+  {
+    "id": 44921412,
+    "by": "saint_yossarian",
+    "timeISO": "2025-08-16T08:33:42.000Z",
+    "textPlain": "One thing that comes to mind: You still have to verify that the tests are exhaustive, and that the code isn't just gaming specific test scenarios.I guess fuzzing and property-based testing could mitigate this to some extent.",
+    "parent": 44920622,
     "depth": 2
   },
   {
