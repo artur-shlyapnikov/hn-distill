@@ -8,6 +8,14 @@
     "depth": 1
   },
   {
+    "id": 44923128,
+    "by": "astrolx",
+    "timeISO": "2025-08-16T13:15:54.000Z",
+    "textPlain": "For what it's worth, I have a self hosted git forge where I upped the maximum filesize limit. I use git repositories for my science projects, they can each have hundreds of large files (> 25 Mb as described in the article).\nI don't use LFS, I don't encounter any issue.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44917895,
     "by": "jauer",
     "timeISO": "2025-08-15T22:15:27.000Z",
@@ -24,18 +32,18 @@
     "depth": 1
   },
   {
-    "id": 44919639,
-    "by": "wbillingsley",
-    "timeISO": "2025-08-16T02:37:18.000Z",
-    "textPlain": "What I used to recommend to my sofware engineering classes is that instead of putting large files (media etc) into Git, put them into the artifact repository (Artifactory or something like it). That lets you for instance publish it as a snapshot dependency that the build system will automatically fetch for you, but control how much history of it you keep and only require your colleagues to fetch the latest version. Even better, a simple clean of their build system cache will free up the space used by old versions on their machines.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44919065,
     "by": "Ferret7446",
     "timeISO": "2025-08-16T01:07:11.000Z",
     "textPlain": "This article treats LFS unfairly.  It does not in any way lock you in to GitHub; the protocol is open.  The downsides of LFS are unavoidable as a Git extension.  Promisors are basically the same concept as LFS, except as it's built into Git it is able to provide a better UX than is possible as an extension.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44919639,
+    "by": "wbillingsley",
+    "timeISO": "2025-08-16T02:37:18.000Z",
+    "textPlain": "What I used to recommend to my sofware engineering classes is that instead of putting large files (media etc) into Git, put them into the artifact repository (Artifactory or something like it). That lets you for instance publish it as a snapshot dependency that the build system will automatically fetch for you, but control how much history of it you keep and only require your colleagues to fetch the latest version. Even better, a simple clean of their build system cache will free up the space used by old versions on their machines.",
     "parent": 44916783,
     "depth": 1
   },
@@ -72,6 +80,14 @@
     "depth": 1
   },
   {
+    "id": 44920276,
+    "by": "ideasman42",
+    "timeISO": "2025-08-16T04:50:25.000Z",
+    "textPlain": "Something they missed out with the GitLFS cons is authentication, if you don't use SSH-agent, pushing involves authenticating multiple times, sometimes more than 2-3 times in my experience.",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
     "id": 44918246,
     "by": "jameshart",
     "timeISO": "2025-08-15T22:58:59.000Z",
@@ -96,14 +112,6 @@
     "depth": 1
   },
   {
-    "id": 44920276,
-    "by": "ideasman42",
-    "timeISO": "2025-08-16T04:50:25.000Z",
-    "textPlain": "Something they missed out with the GitLFS cons is authentication, if you don't use SSH-agent, pushing involves authenticating multiple times, sometimes more than 2-3 times in my experience.",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918010,
     "by": "goneri",
     "timeISO": "2025-08-15T22:27:52.000Z",
@@ -120,18 +128,18 @@
     "depth": 1
   },
   {
-    "id": 44921850,
-    "by": "rswail",
-    "timeISO": "2025-08-16T09:55:26.000Z",
-    "textPlain": "Is the problem that we don't have good \"diff\" equivalents for binaries that git could use to only store those diffs like the old RCS/CVS for large files?",
-    "parent": 44916783,
-    "depth": 1
-  },
-  {
     "id": 44918363,
     "by": "HexDecOctBin",
     "timeISO": "2025-08-15T23:16:02.000Z",
     "textPlain": "So this filter argument will reduce the repo size when cloning, but how will one reduce the repo size after a long stint of local commits of changing binary assets? Delete the repo and clone again?",
+    "parent": 44916783,
+    "depth": 1
+  },
+  {
+    "id": 44921850,
+    "by": "rswail",
+    "timeISO": "2025-08-16T09:55:26.000Z",
+    "textPlain": "Is the problem that we don't have good \"diff\" equivalents for binaries that git could use to only store those diffs like the old RCS/CVS for large files?",
     "parent": 44916783,
     "depth": 1
   },
@@ -304,6 +312,14 @@
     "depth": 2
   },
   {
+    "id": 44922960,
+    "by": "_bent",
+    "timeISO": "2025-08-16T12:55:52.000Z",
+    "textPlain": "I'm currently running https://github.com/datopian/giftless to store the LFS files belonging to repos I have on GitHub on my homelab miniio instance.There are a couple other projects that bridge S3 and LFS, though I had the most success with this setup.",
+    "parent": 44918580,
+    "depth": 2
+  },
+  {
     "id": 44918823,
     "by": "a_t48",
     "timeISO": "2025-08-16T00:30:31.000Z",
@@ -352,6 +368,14 @@
     "depth": 2
   },
   {
+    "id": 44919557,
+    "by": "andrewmcwatters",
+    "timeISO": "2025-08-16T02:19:41.000Z",
+    "textPlain": "Using LFS once in a repository locks you in permanently. You actually have to delete the repository from GitHub to remove the space consumed. It’s entirely a non-starter.Nowhere is this behavior explicitly stated.I used to use Git LFS on GitHub to do my company’s study on GitHub statistics because we stored large compressed databases on users and repositories.",
+    "parent": 44919065,
+    "depth": 2
+  },
+  {
     "id": 44921915,
     "by": "StopDisinfo910",
     "timeISO": "2025-08-16T10:11:22.000Z",
@@ -368,35 +392,11 @@
     "depth": 2
   },
   {
-    "id": 44919683,
-    "by": "firesteelrain",
-    "timeISO": "2025-08-16T02:47:22.000Z",
-    "textPlain": "Do you teach CI/CD systems architecture in your classes?  Because I am finding that is what the junior engineers that we have hired seem to be missing.Tying it all in with GitLab, Artifactory, CodeSonar, Anchore etc",
-    "parent": 44919639,
-    "depth": 2
-  },
-  {
-    "id": 44920502,
-    "by": "cyberax",
-    "timeISO": "2025-08-16T05:39:18.000Z",
-    "textPlain": "This has its own issues. Now you need to provision additional credentials into your CI/CD and to your developers.Commits become multi-step, as you need to first commit the artifacts to get their artifact IDs to put in the repo. You can automate that via git hooks, but then you're back at where you started: git-lfs.",
-    "parent": 44919639,
-    "depth": 2
-  },
-  {
-    "id": 44919557,
-    "by": "andrewmcwatters",
-    "timeISO": "2025-08-16T02:19:41.000Z",
-    "textPlain": "Using LFS once in a repository locks you in permanently. You actually have to delete the repository from GitHub to remove the space consumed. It’s entirely a non-starter.Nowhere is this behavior explicitly stated.I used to use Git LFS on GitHub to do my company’s study on GitHub statistics because we stored large compressed databases on users and repositories.",
-    "parent": 44919065,
-    "depth": 2
-  },
-  {
-    "id": 44918533,
-    "by": "williadc",
-    "timeISO": "2025-08-15T23:42:20.000Z",
-    "textPlain": "I believe that was the author's intent.",
-    "parent": 44918246,
+    "id": 44917992,
+    "by": "IshKebab",
+    "timeISO": "2025-08-15T22:25:41.000Z",
+    "textPlain": "I totally agree. This follows a long tradition of Git \"fixing\" things by adding a flag that 99% of users won't ever discover. They never fix the defaults.And yes, you can fix defaults without breaking backwards compatibility.",
+    "parent": 44917935,
     "depth": 2
   }
 ]

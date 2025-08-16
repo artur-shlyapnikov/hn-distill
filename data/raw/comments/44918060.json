@@ -16,18 +16,18 @@
     "depth": 1
   },
   {
-    "id": 44920870,
-    "by": "can16358p",
-    "timeISO": "2025-08-16T06:50:13.000Z",
-    "textPlain": "Okay I don't have much information about this whole attestation flow and one question boggles my mind. If someone can explain this in simple terms, I'd be thankful:The post says build the repo and get the fingerprint, which is fine. Then it says compare it to the fingerprint that vp.net reports.My question is: how do I verify the server is reporting the fingerprint of the actual running code, and not just returning the (publicly available) fingerprint that we get result of building the code in the first place?",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44918989,
     "by": "jchw",
     "timeISO": "2025-08-16T00:56:56.000Z",
     "textPlain": "Intel SGX/remote attestation for verifying that servers are running the code they say they are running is very interesting, I believe Signal talked about doing something similar for contact discovery, but at a base level it requires a lot of trust. How do I verify that the attestation I receive back is the one of the machine I am contacting? Can I know for sure that this isn't a compromised SGX configuration, since the system has been broken in the past? Furthermore, can I really be sure that I can trust SGX attestations if I can't actually verify SGX itself? Even if the code running under SGX is verifiable, as an ordinary user it's basically impossible to tell if there are bugs that would make it possible to compromise.Personally I like the direction Mullvad went instead. I get that it means we really can't verify Mullvad's claims, but even in the event they're lying, at least we got some cool Coreboot ports out of it.If you're really paranoid, neither this service nor Mullvad offers that much assurance. I like the idea of verifiability, but I believe the type of people who want it are looking to satisfy deeper paranoia than can be answered with just trusting Intel... Still, more VPN options that try to take privacy claims seriously is nothing to complain about.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44920870,
+    "by": "can16358p",
+    "timeISO": "2025-08-16T06:50:13.000Z",
+    "textPlain": "Okay I don't have much information about this whole attestation flow and one question boggles my mind. If someone can explain this in simple terms, I'd be thankful:The post says build the repo and get the fingerprint, which is fine. Then it says compare it to the fingerprint that vp.net reports.My question is: how do I verify the server is reporting the fingerprint of the actual running code, and not just returning the (publicly available) fingerprint that we get result of building the code in the first place?",
     "parent": 44918060,
     "depth": 1
   },
@@ -56,18 +56,18 @@
     "depth": 1
   },
   {
-    "id": 44919118,
-    "by": "exfil",
-    "timeISO": "2025-08-16T01:14:49.000Z",
-    "textPlain": "These VPN's for privacy are so bad. You give your credit card (verified identity), default gateway and payload to foreign soil and feel safe. On top of that your packets clear text metadata verifies you with cryptographic accuracy.In today's internet you just cannot have exit IP which is not tied either into your identity, payment information or physical location. And don't even mention TOR, pls.",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44919072,
     "by": "b8",
     "timeISO": "2025-08-16T01:07:53.000Z",
     "textPlain": "They claim to allow anonymous sign up and payments, but requires an email,an account, zip code and name for Crypto payments, but fake info could be used I guess. I tried ordering via Crypto, but it constantly gives me this error: \"Unable to load order information. Try again\".Honestly, I feel more comfortable using Mullvad. This team has some folks with questionable backgrounds and I wouldn't trust Intel. Also VPN providers are usually in non-us countries due to things like the Lavabit, Yahoo incidents and the Snowden revelations.",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44919118,
+    "by": "exfil",
+    "timeISO": "2025-08-16T01:14:49.000Z",
+    "textPlain": "These VPN's for privacy are so bad. You give your credit card (verified identity), default gateway and payload to foreign soil and feel safe. On top of that your packets clear text metadata verifies you with cryptographic accuracy.In today's internet you just cannot have exit IP which is not tied either into your identity, payment information or physical location. And don't even mention TOR, pls.",
     "parent": 44918060,
     "depth": 1
   },
@@ -96,14 +96,6 @@
     "depth": 1
   },
   {
-    "id": 44922278,
-    "by": "vivzkestrel",
-    "timeISO": "2025-08-16T11:23:53.000Z",
-    "textPlain": "the only next level VPN is the one where it shows each line of code being executed from its github repo while you connect to the server. There aren't many ways you can beat that level of verification",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44919000,
     "by": "remram",
     "timeISO": "2025-08-16T00:58:24.000Z",
@@ -124,6 +116,14 @@
     "by": "aysfrm11",
     "timeISO": "2025-08-16T08:06:16.000Z",
     "textPlain": "I have no relationship with OVPN but after watching their server deployment on YouTube I have to say I do like their approach to security / privacy.Servers that don't log and can't without hard drives, ports physically glued shut.https://www.ovpn.com/en/security",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44922278,
+    "by": "vivzkestrel",
+    "timeISO": "2025-08-16T11:23:53.000Z",
+    "textPlain": "the only next level VPN is the one where it shows each line of code being executed from its github repo while you connect to the server. There aren't many ways you can beat that level of verification",
     "parent": 44918060,
     "depth": 1
   },
@@ -168,18 +168,18 @@
     "depth": 1
   },
   {
-    "id": 44920985,
-    "by": "HelloUsername",
-    "timeISO": "2025-08-16T07:10:51.000Z",
-    "textPlain": "\"But you know the old Russian proverb. 'Trust, but verify.' And the Americans think Ronald Reagan thought that up. Can you imagine?\"",
-    "parent": 44918060,
-    "depth": 1
-  },
-  {
     "id": 44919027,
     "by": "do_not_redeem",
     "timeISO": "2025-08-16T01:01:27.000Z",
     "textPlain": "> Build the code we published, get the fingerprint it produces, ask a VP.NET server for the fingerprint it reports, and compare the two. If they match, the server is running the exact code you inspected. No trust required.Okay, maybe I'm being thick, but... when I get a response from your server, how do I know it's actually running inside the enclave, and not an ordinary process sending a hardcoded expected fingerprint?",
+    "parent": 44918060,
+    "depth": 1
+  },
+  {
+    "id": 44920985,
+    "by": "HelloUsername",
+    "timeISO": "2025-08-16T07:10:51.000Z",
+    "textPlain": "\"But you know the old Russian proverb. 'Trust, but verify.' And the Americans think Ronald Reagan thought that up. Can you imagine?\"",
     "parent": 44918060,
     "depth": 1
   },
@@ -224,6 +224,14 @@
     "depth": 2
   },
   {
+    "id": 44923085,
+    "by": "rasengan",
+    "timeISO": "2025-08-16T13:10:07.000Z",
+    "textPlain": "> I'm a huge fan of the technical basis for thisTrusting random internet people is actually the biggest “troll” of the internet.Any VPN that asks you to trust their guarantees and not the guarantees of code is selling you snake oil and should not be trusted.Trust is not a feature in security. Thus, we removed and replaced it with code based guarantees.",
+    "parent": 44920799,
+    "depth": 2
+  },
+  {
     "id": 44922208,
     "by": "pydry",
     "timeISO": "2025-08-16T11:09:39.000Z",
@@ -237,22 +245,6 @@
     "timeISO": "2025-08-16T07:54:14.000Z",
     "textPlain": "The SGX TCB isn’t large enough to protect the really critical part of a private VPN: the source and destination of packets. Nothing stops them from sticking a user on their own enclave and monitoring all the traffic in-and-out.Also, the README is full of AI slop buzzwords, which isn’t confidence-inspiring.",
     "parent": 44920799,
-    "depth": 2
-  },
-  {
-    "id": 44921239,
-    "by": "mjg59",
-    "timeISO": "2025-08-16T07:59:15.000Z",
-    "textPlain": "\"Ask a VP.NET server for the fingerprint it reports\" is a little bit simplistic. The process for actually doing this involves you handing the server a random number, and it sending you back a signed statement including both the fingerprint and the random number you gave it. This prevents it simply reporting a fixed fingerprint statement every time someone asks. The second aspect of this is that the key used to sign the statement has a certificate chain that ties back to Intel, and which can be proven to be associated with an SGX enclave. Assuming you trust Intel, the only way for something to use this key to sign such a statement is for it to be a true representation of what that CPU is running inside SGX at the time.",
-    "parent": 44920870,
-    "depth": 2
-  },
-  {
-    "id": 44921706,
-    "by": "ranger_danger",
-    "timeISO": "2025-08-16T09:27:45.000Z",
-    "textPlain": "> how do I verify the server is reporting the fingerprint of the actual running codeSince this was answered already, I'll just say that I think the bigger problem is that we can't know if the machine that replied with the fingerprint from this code is even related to the one currently serving your requests.",
-    "parent": 44920870,
     "depth": 2
   },
   {
@@ -272,6 +264,30 @@
     "depth": 2
   },
   {
+    "id": 44921239,
+    "by": "mjg59",
+    "timeISO": "2025-08-16T07:59:15.000Z",
+    "textPlain": "\"Ask a VP.NET server for the fingerprint it reports\" is a little bit simplistic. The process for actually doing this involves you handing the server a random number, and it sending you back a signed statement including both the fingerprint and the random number you gave it. This prevents it simply reporting a fixed fingerprint statement every time someone asks. The second aspect of this is that the key used to sign the statement has a certificate chain that ties back to Intel, and which can be proven to be associated with an SGX enclave. Assuming you trust Intel, the only way for something to use this key to sign such a statement is for it to be a true representation of what that CPU is running inside SGX at the time.",
+    "parent": 44920870,
+    "depth": 2
+  },
+  {
+    "id": 44921706,
+    "by": "ranger_danger",
+    "timeISO": "2025-08-16T09:27:45.000Z",
+    "textPlain": "> how do I verify the server is reporting the fingerprint of the actual running codeSince this was answered already, I'll just say that I think the bigger problem is that we can't know if the machine that replied with the fingerprint from this code is even related to the one currently serving your requests.",
+    "parent": 44920870,
+    "depth": 2
+  },
+  {
+    "id": 44922898,
+    "by": "rasengan",
+    "timeISO": "2025-08-16T12:48:19.000Z",
+    "textPlain": "This has been debunked.Freenode was sold to me by Christel, the previous owner.  I did not even offer to purchase it and simply assumed I was doing what I had been doing for a decade for freenode and many other FOSS projects - keeping them alive.  It was my funds that did so the whole time for freenode (and a number of other projects which I stopped funding thereafter given the death threats I was receiving which led to the end of many of them unfortunately).The Libera staff [1] attempted to steal the domain because they wanted control. None of the staff were developers at the time and complained they couldn’t even write their own irc client. Think of Mozilla. The people who run it aren’t the coders. Same thing.Here are the receipts for every statement I just made:http://techrights.org/wp-content/uploads/2021/05/lee-side.pd...PS: Freenode seems more active then Libera where everyone is just idle (bots?) but that is another point. See for yourself with the client I wrote: IRC.com.[1] By Libera staff I mean the former freenode staffers who left to form freenode. These are the same people I spent a lot of money helping to protect legally from the allegations made by “OldCoder”",
+    "parent": 44920975,
+    "depth": 2
+  },
+  {
     "id": 44920143,
     "by": "aidenn0",
     "timeISO": "2025-08-16T04:21:19.000Z",
@@ -285,6 +301,22 @@
     "timeISO": "2025-08-16T00:59:11.000Z",
     "textPlain": "I'm assuming OP is Mark Karpeles, MagicalTux is a well-known username for him.",
     "parent": 44918951,
+    "depth": 2
+  },
+  {
+    "id": 44919229,
+    "by": "rasengan",
+    "timeISO": "2025-08-16T01:29:42.000Z",
+    "textPlain": "> Honestly, I feel more comfortable using Mullvad. This team has some folks with questionable backgrounds and I wouldn't trust Intel.Relying on \"trust\" in a security/privacy architecture isn't the right way to do things - which is what this solves.  It removes the need to trust in a person or person(s) in most VPN company cases since they have many employees, and moves it to trusting in code.> Also VPN providers are usually in non-us countries due to things like the Lavabit, Yahoo incidents and the Snowden revelations.The system is designed so that any change server side will be immediately noticed by clients/users. As a result, these issues are sufficiently mitigated, and instead, allows people to take advantage of strong consumer, and personal, protection laws in the US.",
+    "parent": 44919072,
+    "depth": 2
+  },
+  {
+    "id": 44919320,
+    "by": "selkin",
+    "timeISO": "2025-08-16T01:44:45.000Z",
+    "textPlain": "Being outside the US doesn’t shield you from it.And worse, it is harder for the American government to eavesdrop on US soil than it is outside America.Of course, if a national spying apparatus is after you, regardless of the nation, pretty good chance jurisdiction doesn’t matter.",
+    "parent": 44919072,
     "depth": 2
   },
   {
@@ -309,22 +341,6 @@
     "timeISO": "2025-08-16T06:10:37.000Z",
     "textPlain": "Mullvad VPN allows you to pay with cash in an envelop with no name etc",
     "parent": 44919118,
-    "depth": 2
-  },
-  {
-    "id": 44919229,
-    "by": "rasengan",
-    "timeISO": "2025-08-16T01:29:42.000Z",
-    "textPlain": "> Honestly, I feel more comfortable using Mullvad. This team has some folks with questionable backgrounds and I wouldn't trust Intel.Relying on \"trust\" in a security/privacy architecture isn't the right way to do things - which is what this solves.  It removes the need to trust in a person or person(s) in most VPN company cases since they have many employees, and moves it to trusting in code.> Also VPN providers are usually in non-us countries due to things like the Lavabit, Yahoo incidents and the Snowden revelations.The system is designed so that any change server side will be immediately noticed by clients/users. As a result, these issues are sufficiently mitigated, and instead, allows people to take advantage of strong consumer, and personal, protection laws in the US.",
-    "parent": 44919072,
-    "depth": 2
-  },
-  {
-    "id": 44919320,
-    "by": "selkin",
-    "timeISO": "2025-08-16T01:44:45.000Z",
-    "textPlain": "Being outside the US doesn’t shield you from it.And worse, it is harder for the American government to eavesdrop on US soil than it is outside America.Of course, if a national spying apparatus is after you, regardless of the nation, pretty good chance jurisdiction doesn’t matter.",
-    "parent": 44919072,
     "depth": 2
   },
   {
@@ -381,22 +397,6 @@
     "timeISO": "2025-08-16T00:33:45.000Z",
     "textPlain": "Seems fairly similar, ARM's response to TEE basically. We started with SGX because it is battle tested and has a lot of people still trying to find issues, meaning any issue is likely solved quickly, however we are planning to also evaluate and support other solutions. Information is restricted and cannot leave the enclave unless the code running in there allows it to in both cases.",
     "parent": 44918709,
-    "depth": 2
-  },
-  {
-    "id": 44919296,
-    "by": "MagicalTux",
-    "timeISO": "2025-08-16T01:41:00.000Z",
-    "textPlain": "Intel SGX comes with an attestation process aiming at exactly that. The attestation contains a number of details, such as the hardware configuration (cpu microcode version, BIOS, etc) and the hash of the enclave code. At system startup the CPU gets a certificate from Intel confirming the configuration is known safe, which is used by the CPU to in turn certify the enclave is indeed running code with a given fingerprint.When the connection is established we verify the whole certificate chain up to Intel, and we verify the TLS connection itself is part of the attestation (public key is attested).",
-    "parent": 44919027,
-    "depth": 2
-  },
-  {
-    "id": 44919282,
-    "by": "rasengan",
-    "timeISO": "2025-08-16T01:37:24.000Z",
-    "textPlain": "> how do I know it's actually running inside the enclave, and not an ordinary process sending a hardcoded expected fingerprint?It's signed by Intel and thus, guaranteed to come from the enclave!",
-    "parent": 44919027,
     "depth": 2
   }
 ]

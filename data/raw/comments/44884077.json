@@ -8,10 +8,10 @@
     "depth": 1
   },
   {
-    "id": 44922603,
-    "by": "zenapollo",
-    "timeISO": "2025-08-16T12:17:31.000Z",
-    "textPlain": "Dokploy ergonomics I found just a bit lacking, and switched to Coolify instead. I daresay the feature that swayed me was force “pull latest images” button on coolify (convenient way to update any app), that was weirdly not available on Dokploy.What’s missing in both, and would liked to hear from hn, is docker-native backup solutions,  for backing up select docker volumes. Currently I’m using some tricks with duplicati, but I wonder if there’s anything better.Also this is the first I’ve heard of coreOS, the author says nothing about it, though it’s in the title. I wonder why someone choose it over Debian.",
+    "id": 44922947,
+    "by": "stavros",
+    "timeISO": "2025-08-16T12:53:50.000Z",
+    "textPlain": "I really love a workflow where the host OS is as stock as possible (I just run Debian) and everything else runs in Docker.A while ago I created Harbormaster[1] a very simple and opinionated single-host container Orchestrator, and run everything on there. It just needs a Compose file, and that's it. Harbormaster takes care of the pulling from git repos/updating, restarting containers, etc, as well as provides a centralised config file for what's running on a machine. It's ideal for me.[1] https://harbormaster.readthedocs.io/en/latest/",
     "parent": 44884077,
     "depth": 1
   },
@@ -24,10 +24,34 @@
     "depth": 1
   },
   {
-    "id": 44921796,
-    "by": "maelito",
-    "timeISO": "2025-08-16T09:44:23.000Z",
-    "textPlain": "The Web services of https://cartes.app run on Dokploy.Nextjs website deployed here to avoid crazy Vercel and netlify pricing. Uptime kuma and Umami deployed in 2 minutes.Be sure to check disk space. Activate the Docker auto-clean option.",
+    "id": 44923118,
+    "by": "indigodaddy",
+    "timeISO": "2025-08-16T13:13:55.000Z",
+    "textPlain": "If KASM workspaces docker image will work in Dokploy, then I'm down. (It kind of does it's own docker in docker thing, so it's not just another simple docker image)https://hub.docker.com/r/linuxserver/kasm",
+    "parent": 44884077,
+    "depth": 1
+  },
+  {
+    "id": 44922603,
+    "by": "zenapollo",
+    "timeISO": "2025-08-16T12:17:31.000Z",
+    "textPlain": "Dokploy ergonomics I found just a bit lacking, and switched to Coolify instead. I daresay the feature that swayed me was force “pull latest images” button on coolify (convenient way to update any app), that was weirdly not available on Dokploy.What’s missing in both, and would liked to hear from hn, is docker-native backup solutions,  for backing up select docker volumes. Currently I’m using some tricks with duplicati, but I wonder if there’s anything better.Also this is the first I’ve heard of coreOS, the author says nothing about it, though it’s in the title. I wonder why someone choose it over Debian.",
+    "parent": 44884077,
+    "depth": 1
+  },
+  {
+    "id": 44923143,
+    "by": "indigodaddy",
+    "timeISO": "2025-08-16T13:17:37.000Z",
+    "textPlain": "Does dokploy support arm64?  It wasn't entirely clear last time I looked (didn't really mention arch'es)",
+    "parent": 44884077,
+    "depth": 1
+  },
+  {
+    "id": 44923159,
+    "by": "donperignon",
+    "timeISO": "2025-08-16T13:19:58.000Z",
+    "textPlain": "I found just plain docker swarm better, or if you like gui’s then portainer is very good",
     "parent": 44884077,
     "depth": 1
   },
@@ -36,6 +60,14 @@
     "by": "lagrange77",
     "timeISO": "2025-08-16T10:40:48.000Z",
     "textPlain": "https://docs.dokploy.com/docs/core/comparisonDokploy vs. CapRover, Dokku, Coolify",
+    "parent": 44884077,
+    "depth": 1
+  },
+  {
+    "id": 44921796,
+    "by": "maelito",
+    "timeISO": "2025-08-16T09:44:23.000Z",
+    "textPlain": "The Web services of https://cartes.app run on Dokploy.Nextjs website deployed here to avoid crazy Vercel and netlify pricing. Uptime kuma and Umami deployed in 2 minutes.Be sure to check disk space. Activate the Docker auto-clean option.",
     "parent": 44884077,
     "depth": 1
   },
@@ -72,11 +104,35 @@
     "depth": 1
   },
   {
+    "id": 44922970,
+    "by": "rkomorn",
+    "timeISO": "2025-08-16T12:57:04.000Z",
+    "textPlain": "Edit: I just realized I was totally thinking about this in the desktop/laptop context and not at all that of TFA.I feel like you should love something like https://projectbluefin.io/ then?I tried it a few months ago. It had some rough edges that made me move away (to Debian and then most recently NixOS), but I might swing back the way of Bluefin at some point.",
+    "parent": 44922947,
+    "depth": 2
+  },
+  {
+    "id": 44922982,
+    "by": "indigodaddy",
+    "timeISO": "2025-08-16T12:58:36.000Z",
+    "textPlain": "I'm about to take a look.  My first thought would be can it also manage the proxy config (with Caddy being my ideal choice) ?",
+    "parent": 44922947,
+    "depth": 2
+  },
+  {
     "id": 44922448,
     "by": "anal_reactor",
     "timeISO": "2025-08-16T11:56:28.000Z",
     "textPlain": "Not to mention situations where I specifically don't want security. Like:> your password must be at least 20 characters long, contain mixed-case letters, digits, five kanji, and at least one byte that isn't a valid UTF-8 codepoint> but I'm setting up a small VM on my private PC to run a script that scrapes porn> DID I FUCKING STUTTER> ok ok I'm sorry calm down",
     "parent": 44922151,
+    "depth": 2
+  },
+  {
+    "id": 44923137,
+    "by": "niux",
+    "timeISO": "2025-08-16T13:17:12.000Z",
+    "textPlain": "I actually use Dokploy in production, you have to literally press just one button to redeploy using the latest version of your app, straight from the repo.",
+    "parent": 44922603,
     "depth": 2
   },
   {
