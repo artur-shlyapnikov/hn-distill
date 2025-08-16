@@ -8,7 +8,7 @@
     "data:summarize": "bun run tsx scripts/summarize.mts",
     "data:aggregate": "bun run tsx scripts/aggregate.mts",
     "data:all": "bun run tsx scripts/fetch-hn.mts && bun run tsx scripts/summarize.mts && bun run tsx scripts/aggregate.mts",
-    "build": "astro build",
+    "build": "mkdir -p public/data && cp data/search.json public/data/search.json 2>/dev/null || true && astro build",
     "dev": "bunx astro dev",
     "preview": "bunx astro preview",
     "typecheck": "bunx tsc --noEmit",
