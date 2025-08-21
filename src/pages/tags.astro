@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import Layout from "../components/Layout.astro";
 import { LANG } from '@config/lang';
 import { PATHS } from '@config/paths';
 import { loadAggregated } from '@utils/load-aggregated';
@@ -62,47 +62,29 @@ const hrefFor = (tag: string, count: number) =>
 const pageTitle = `${t.title} — Hacker News Digest`;
 const description = `${t.description}. ${t.totalTags}: ${sortedTags.length}`;
 ---
-<html lang={lang}>
-  <head>
-    <meta charset="utf-8" />
-    <title>{pageTitle}</title>
-    <meta name="description" content={description} />
-    <meta name="robots" content="index,follow" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:site_name" content="Hacker News Digest" />
-    <meta property="og:type" content="website" />
-  </head>
-  <body>
-    <header>
-      <h1><a href="/">Hacker News Digest</a></h1>
-      <p class="meta">{t.title}</p>
-      <p class="meta">{t.totalTags}: {sortedTags.length}</p>
-    </header>
-    <main>
-      {sortedTags.length === 0 ? (
-        <p class="meta">Нет тегов для отображения.</p>
-      ) : (
-        <div class="tags-grid">
-          {sortedTags.map(([tag, count]) => (
-            <a href={hrefFor(tag, count)} class="tag-card" data-count={count}>
-              <span class="tag-name">#{tag}</span>
-              <span class="tag-count">{count} {getPostsLabel(count)}</span>
-            </a>
-          ))}
-        </div>
-      )}
-    </main>
-    <style>
+<Layout lang={lang} title={pageTitle} description={description}>
+  <p class="meta">{t.title}</p>
+  <p class="meta">{t.totalTags}: {sortedTags.length}</p>
+  {sortedTags.length === 0 ? (
+    <p class="meta">Нет тегов для отображения.</p>
+  ) : (
+    <div class="tags-grid">
+      {sortedTags.map(([tag, count]) => (
+        <a href={hrefFor(tag, count)} class="tag-card" data-count={count}>
+          <span class="tag-name">#{tag}</span>
+          <span class="tag-count">{count} {getPostsLabel(count)}</span>
+        </a>
+      ))}
+    </div>
+  )}
+  <style>
       .tags-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
         gap: var(--space-sm);
         margin-top: var(--space-md);
       }
-      
+
       .tag-card {
         display: flex;
         flex-direction: column;
@@ -114,24 +96,24 @@ const description = `${t.description}. ${t.totalTags}: ${sortedTags.length}`;
         color: var(--color-text);
         transition: all 0.2s ease;
       }
-      
+
       .tag-card:hover {
         background: var(--color-border);
         transform: translateY(-1px);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
-      
+
       .tag-name {
         font-weight: 600;
         color: var(--color-accent);
         margin-bottom: var(--space-xs);
       }
-      
+
       .tag-count {
         font-size: var(--font-size-xs);
         color: var(--color-text-muted);
       }
-      
+
       @media (max-width: 768px) {
         .tags-grid {
           grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
@@ -139,5 +121,4 @@ const description = `${t.description}. ${t.totalTags}: ${sortedTags.length}`;
         }
       }
     </style>
-  </body>
-</html>
+</Layout>

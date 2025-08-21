@@ -1,5 +1,5 @@
 ---
-// src/pages/item/[id].astro
+import Layout from "../../components/Layout.astro";
 import { LANG } from "@config/lang";
 import { PATHS } from "@config/paths";
 import type { AggregatedItem } from "@config/schemas";
@@ -8,7 +8,6 @@ import { loadAggregated } from "@utils/load-aggregated";
 import { mdToHtml } from "@utils/md-to-html";
 import type { GetStaticPaths } from "astro";
 import { existsSync, readFileSync } from "node:fs";
-import "../../styles/global.css";
 import { TAG_MIN_COUNT } from "@config/constants";
 import { countTags } from "@utils/tag-counts";
 
@@ -63,47 +62,29 @@ const i18n = {
 const t = i18n[lang];
 const commentsLabel = typeof item.commentsCount === "number" ? ` (${item.commentsCount})` : "";
 ---
-
-<html lang={lang}>
-  <head>
-    <meta charset="utf-8" />
-    <title>{item.title}</title>
-    <meta name="description" content={description} />
-    <meta name="robots" content="index,follow" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:title" content={item.title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:site_name" content="Hacker News Digest" />
-    <meta property="og:type" content="article" />
+<Layout lang={lang} title={item.title} description={description} ogType="article">
+  <Fragment slot="head">
     <link rel="canonical" href={hnUrl} />
-  </head>
-  <body>
-    <header>
-      <h1><a href="/">Hacker News Digest</a></h1>
-      <p class="meta">
-        {datePretty} • {item.domain ?? "news.ycombinator.com"} • ⭐ {item.score ?? 0} • 💬 {item.commentsCount ?? 0}
-      </p>
-      <p class="meta"><a href={item.url ?? hnUrl} rel="noopener noreferrer">Original</a> • <a href={hnUrl}>HN</a></p>
-      {tags.length > 0 && (
-        <p class="meta tags">
-          {tags.map((tag) => <a href={tagHref(tag)} class="tag">#{tag}</a>)}
-        </p>
-      )}
-    </header>
-    <main>
-      <section class="grid2">
-        <div class="card">
-          <h2 class="title">{item.title}</h2>
-          {postHtml ? <div class="md" set:html={postHtml} /> : <p class="meta">No post summary.</p>}
-        </div>
-        <aside class="card">
-          <h3 class="title">
-            <a href={hnUrl} target="_blank" rel="noopener noreferrer nofollow">{t.comments}{commentsLabel}</a>
-          </h3>
-          {commentsHtml ? <div class="md" set:html={commentsHtml} /> : <p class="meta">No comments summary.</p>}
-        </aside>
-      </section>
-    </main>
-  </body>
-</html>
+  </Fragment>
+  <p class="meta">
+    {datePretty} • {item.domain ?? "news.ycombinator.com"} • ⭐ {item.score ?? 0} • 💬 {item.commentsCount ?? 0}
+  </p>
+  <p class="meta"><a href={item.url ?? hnUrl} rel="noopener noreferrer">Original</a> • <a href={hnUrl}>HN</a></p>
+  {tags.length > 0 && (
+    <p class="meta tags">
+      {tags.map((tag) => <a href={tagHref(tag)} class="tag">#{tag}</a>)}
+    </p>
+  )}
+  <section class="grid2">
+    <div class="card">
+      <h2 class="title">{item.title}</h2>
+      {postHtml ? <div class="md" set:html={postHtml} /> : <p class="meta">No post summary.</p>}
+    </div>
+    <aside class="card">
+      <h3 class="title">
+        <a href={hnUrl} target="_blank" rel="noopener noreferrer nofollow">{t.comments}{commentsLabel}</a>
+      </h3>
+      {commentsHtml ? <div class="md" set:html={commentsHtml} /> : <p class="meta">No comments summary.</p>}
+    </aside>
+  </section>
+</Layout>

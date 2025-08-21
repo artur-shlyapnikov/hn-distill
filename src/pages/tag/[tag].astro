@@ -1,6 +1,6 @@
 ---
 import StorySection from '../../components/StorySection.astro';
-import '../../styles/global.css';
+import Layout from '../../components/Layout.astro';
 import { LANG } from '@config/lang';
 import { PATHS } from '@config/paths';
 import type { AggregatedItem } from '@config/schemas';
@@ -41,32 +41,12 @@ const t = i18n[lang as 'ru' | 'en'];
 const pageTitle = `${t.title}: #${tag} — Hacker News Digest`;
 const description = `Hacker News Digest for tag #${tag}. ${filteredItems.length} ${t.posts}.`;
 ---
-<html lang={lang}>
-  <head>
-    <meta charset="utf-8" />
-    <title>{pageTitle}</title>
-    <meta name="description" content={description} />
-    <meta name="robots" content="index,follow" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:site_name" content="Hacker News Digest" />
-    <meta property="og:type" content="website" />
-  </head>
-  <body>
-    <header>
-      <h1><a href="/">Hacker News Digest</a></h1>
-      <p class="meta">{t.title}: #{tag}</p>
-      <p class="meta">{t.posts}: {filteredItems.length}</p>
-    </header>
-    <main>
-      {filteredItems.length === 0 ? (
-        <p class="meta">{t.noData}</p>
-      ) : (
-        filteredItems.map((it) => <StorySection item={it} />)
-      )}
-    </main>
-    <script is:inline src="/js/keyboard-nav.js"></script>
-  </body>
-</html>
+<Layout lang={lang} title={pageTitle} description={description}>
+  <p class="meta">{t.title}: #{tag}</p>
+  <p class="meta">{t.posts}: {filteredItems.length}</p>
+  {filteredItems.length === 0 ? (
+    <p class="meta">{t.noData}</p>
+  ) : (
+    filteredItems.map((it) => <StorySection item={it} />)
+  )}
+</Layout>
