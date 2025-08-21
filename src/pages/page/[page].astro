@@ -1,6 +1,6 @@
 ---
 import StorySection from "../../components/StorySection.astro";
-import "../../styles/global.css";
+import Layout from "../../components/Layout.astro";
 import { LANG } from "@config/lang";
 import { PATHS } from "@config/paths";
 import { formatDateHuman } from "@utils/date";
@@ -37,16 +37,6 @@ function pageHref(n: number): string {
   return path.endsWith("/") ? path : `${path}/`;
 }
 
-// Generate date for navigation links based on latest data
-const firstItem = allItems[0];
-const latestDate = firstItem?.timeISO
-  ? new Date(firstItem.timeISO).toISOString().slice(0, 10)
-  : new Date().toISOString().slice(0, 10);
-
-// Generate current week for weekly link (consistent with isoWeekKey format)
-import { isoWeekKey } from "@utils/date-keys";
-const currentWeek = isoWeekKey(new Date().toISOString());
-
 const i18n = {
   ru: {
     updated: "Обновлено",
@@ -55,11 +45,6 @@ const i18n = {
     page: "Страница",
     prev: "« Назад",
     next: "Вперёд »",
-    navDaily: "За день",
-    nav3d: "За три дня",
-    navWeekly: "За неделю",
-    navTags: "Теги",
-    navSearch: "Поиск",
   },
   en: {
     updated: "Updated",
@@ -68,100 +53,43 @@ const i18n = {
     page: "Page",
     prev: "« Prev",
     next: "Next »",
-    navDaily: "Daily",
-    nav3d: "3 days",
-    navWeekly: "Weekly",
-    navTags: "Tags",
-    navSearch: "Search",
   },
 };
 const t = i18n[lang];
 const pageTitle = `Hacker News Digest — ${t.page} ${currentPage}/${totalPages}`;
 const description = `${t.page} ${currentPage}/${totalPages} of Hacker News Digest. ${t.updated}: ${updatedPretty}.`;
 ---
-
-<html lang={lang}>
-  <head>
-    <meta charset="utf-8" />
-    <title>{pageTitle}</title>
-    <meta name="description" content={description} />
-    <meta name="robots" content="index,follow" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:site_name" content="Hacker News Digest" />
-    <meta property="og:type" content="website" />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1220" />
-  </head>
-  <body>
-    <header>
-      <div class="header-top">
-        <h1><a href="/">Hacker News Digest</a></h1>
-        <nav class="header-nav" aria-label="Site navigation">
-          <a href={`/daily/${latestDate}/`}>{t.navDaily}</a>
-          <a href={`/3d/${latestDate}/`}>{t.nav3d}</a>
-          <a href={`/weekly/${currentWeek}/`}>{t.navWeekly}</a>
-          <a href="/tags/">{t.navTags}</a>
-          <a href="/search/">{t.navSearch}</a>
-        </nav>
-        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
-      </div>
-      <p class="meta">{t.updated}: {updatedPretty}</p>
-      <p class="meta">{t.stories}: {allItems.length} • {t.page} {currentPage}/{totalPages}</p>
-    </header>
-    <main>
-      {
-        allItems.length === 0 ? (
-          <p class="meta">{t.noData}</p>
+<Layout lang={lang} title={pageTitle} description={description}>
+  <p class="meta">{t.updated}: {updatedPretty}</p>
+  <p class="meta">{t.stories}: {allItems.length} • {t.page} {currentPage}/{totalPages}</p>
+  {
+    allItems.length === 0 ? (
+      <p class="meta">{t.noData}</p>
+    ) : (
+      pageItems.map((it: AggregatedItem) => <StorySection item={it} tagCounts={tagCountsObj} />)
+    )
+  }
+  {
+    allItems.length > 0 && (
+      <nav class="pagination" aria-label="Pagination">
+        {currentPage > 1 ? (
+          <a href={pageHref(currentPage - 1)} rel="prev">
+            {t.prev}
+          </a>
         ) : (
-          pageItems.map((it: AggregatedItem) => <StorySection item={it} tagCounts={tagCountsObj} />)
-        )
-      }
-      {
-        allItems.length > 0 && (
-          <nav class="pagination" aria-label="Pagination">
-            {currentPage > 1 ? (
-              <a href={pageHref(currentPage - 1)} rel="prev">
-                {t.prev}
-              </a>
-            ) : (
-              <span />
-            )}
-            <span>
-              {t.page} {currentPage} / {totalPages}
-            </span>
-            {currentPage < totalPages ? (
-              <a href={pageHref(currentPage + 1)} rel="next">
-                {t.next}
-              </a>
-            ) : (
-              <span />
-            )}
-          </nav>
-        )
-      }
-    </main>
-    <script>
-      const root = document.documentElement;
-      const btn = document.getElementById("theme-toggle");
-      if (localStorage.getItem("theme") === "dark") {
-        root.setAttribute("data-theme", "dark");
-      }
-      btn?.addEventListener("click", () => {
-        const isDark = root.getAttribute("data-theme") === "dark";
-        if (isDark) {
-          root.removeAttribute("data-theme");
-          localStorage.setItem("theme", "light");
-        } else {
-          root.setAttribute("data-theme", "dark");
-          localStorage.setItem("theme", "dark");
-        }
-      });
-    </script>
-
-    <script is:inline src="/js/keyboard-nav.js"></script>
-  </body>
-</html>
+          <span />
+        )}
+        <span>
+          {t.page} {currentPage} / {totalPages}
+        </span>
+        {currentPage < totalPages ? (
+          <a href={pageHref(currentPage + 1)} rel="next">
+            {t.next}
+          </a>
+        ) : (
+          <span />
+        )}
+      </nav>
+    )
+  }
+</Layout>

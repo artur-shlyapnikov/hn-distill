@@ -1,0 +1,24 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  ogType?: 'website' | 'article';
+}
+
+const { title, description, ogType = 'website' } = Astro.props;
+---
+<head>
+  <meta charset="utf-8" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={Astro.url.href} />
+  <meta property="og:site_name" content="Hacker News Digest" />
+  <meta property="og:type" content={ogType} />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0b1220" />
+</head>
