@@ -1,6 +1,6 @@
 ---
 import StorySection from '../../components/StorySection.astro';
-import '../../styles/global.css';
+import Layout from '../../components/Layout.astro';
 import { LANG } from '@config/lang';
 import { PATHS } from '@config/paths';
 import { DailyGroupFileSchema, type AggregatedItem } from '@config/schemas';
@@ -52,42 +52,24 @@ const i18n = {
   ru: {
     title: 'За три дня',
     noData: 'Нет данных для выбранного периода.',
+    posts: 'Постов',
   },
   en: {
     title: 'Last 3 days',
     noData: 'No data for the selected period.',
+    posts: 'Posts',
   },
 } as const;
 const t = i18n[lang as 'ru' | 'en'];
 const pageTitle = `${t.title}: ${displayStartDate} — ${displayEndDate} — Hacker News Digest`;
 const description = `Hacker News Digest for ${displayStartDate} — ${displayEndDate}. ${triItems.length} posts.`;
 ---
-<html lang={lang}>
-  <head>
-    <meta charset="utf-8" />
-    <title>{pageTitle}</title>
-    <meta name="description" content={description} />
-    <meta name="robots" content="index,follow" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
-    <meta property="og:url" content={Astro.url.href} />
-    <meta property="og:site_name" content="Hacker News Digest" />
-    <meta property="og:type" content="website" />
-  </head>
-  <body>
-    <header>
-      <h1><a href="/">Hacker News Digest</a></h1>
-      <p class="meta">{t.title}: {displayStartDate} — {displayEndDate}</p>
-      <p class="meta">Постов: {triItems.length}</p>
-    </header>
-    <main>
-      {triItems.length === 0 ? (
-        <p class="meta">{t.noData}</p>
-      ) : (
-        triItems.map((it: AggregatedItem) => <StorySection item={it} tagCounts={tagCountsObj} />)
-      )}
-    </main>
-    <script is:inline src="/js/keyboard-nav.js"></script>
-  </body>
-  </html>
+<Layout lang={lang} title={pageTitle} description={description}>
+  <p class="meta">{t.title}: {displayStartDate} — {displayEndDate}</p>
+  <p class="meta">{t.posts}: {triItems.length}</p>
+  {triItems.length === 0 ? (
+    <p class="meta">{t.noData}</p>
+  ) : (
+    triItems.map((it: AggregatedItem) => <StorySection item={it} tagCounts={tagCountsObj} />)
+  )}
+</Layout>
