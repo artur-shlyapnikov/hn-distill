@@ -1,0 +1,93 @@
+---
+import HeadMeta from './HeadMeta.astro';
+import '../styles/global.css';
+import { isoWeekKey } from '@utils/date-keys';
+import { loadAggregated } from '@utils/load-aggregated';
+
+export interface Props {
+  lang: 'en' | 'ru';
+  title: string;
+  description: string;
+  ogType?: 'website' | 'article';
+  breadcrumbs?: { label: string; href: string }[];
+}
+
+const { lang, title, description, ogType = 'website', breadcrumbs } = Astro.props as Props;
+
+// Load aggregated data to generate navigation links
+const dataPath = new URL('../../data/aggregated.json', import.meta.url).pathname;
+const { items: allItems } = loadAggregated(dataPath);
+
+const firstItem = allItems[0];
+const latestDate = firstItem?.timeISO
+  ? new Date(firstItem.timeISO).toISOString().slice(0, 10)
+  : new Date().toISOString().slice(0, 10);
+const currentWeek = isoWeekKey(new Date().toISOString());
+
+const i18n = {
+  ru: {
+    navDaily: 'За день',
+    nav3d: 'За три дня',
+    navWeekly: 'За неделю',
+    navTags: 'Теги',
+    navSearch: 'Поиск',
+  },
+  en: {
+    navDaily: 'Daily',
+    nav3d: '3 days',
+    navWeekly: 'Weekly',
+    navTags: 'Tags',
+    navSearch: 'Search',
+  },
+} as const;
+const t = i18n[lang];
+---
+<html lang={lang}>
+  <HeadMeta title={title} description={description} ogType={ogType} />
+  <body>
+    <header>
+      <div class="header-top">
+        <h1><a href="/">Hacker News Digest</a></h1>
+        <nav class="header-nav" aria-label="Site navigation">
+          <a href={`/daily/${latestDate}/`}>{t.navDaily}</a>
+          <a href={`/3d/${latestDate}/`}>{t.nav3d}</a>
+          <a href={`/weekly/${currentWeek}/`}>{t.navWeekly}</a>
+          <a href="/tags/">{t.navTags}</a>
+          <a href="/search/">{t.navSearch}</a>
+        </nav>
+        <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
+      </div>
+      {breadcrumbs && breadcrumbs.length > 0 && (
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          {breadcrumbs.map((b, i) => (
+            <span>
+              {i > 0 && ' / '}
+              <a href={b.href}>{b.label}</a>
+            </span>
+          ))}
+        </nav>
+      )}
+    </header>
+    <main>
+      <slot />
+    </main>
+    <script>
+      const root = document.documentElement;
+      const btn = document.getElementById('theme-toggle');
+      if (localStorage.getItem('theme') === 'dark') {
+        root.setAttribute('data-theme', 'dark');
+      }
+      btn?.addEventListener('click', () => {
+        const isDark = root.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+          root.removeAttribute('data-theme');
+          localStorage.setItem('theme', 'light');
+        } else {
+          root.setAttribute('data-theme', 'dark');
+          localStorage.setItem('theme', 'dark');
+        }
+      });
+    </script>
+    <script is:inline src="/js/keyboard-nav.js"></script>
+  </body>
+</html>
