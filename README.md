@@ -1,6 +1,6 @@
 # hn-distill
 
-`hn-distill` is an Astro static site and a Bun/TypeScript data pipeline. The pipeline reads the Hacker News top stories feed, stores normalized stories and comments, optionally fetches linked article content, and uses OpenRouter to generate post summaries, discussion summaries, and tags. Astro reads the generated files and writes a static site.
+`hn-distill` is an Astro static site and a Bun/TypeScript data pipeline. The pipeline reads the Hacker News top stories feed. It stores normalized stories and comments. It optionally fetches linked article content. It uses OpenRouter to generate post summaries, discussion summaries, and tags. Astro reads the generated files and writes a static site.
 
 The repository includes generated data under `data/`. A build does not fetch new data or call OpenRouter.
 
@@ -20,7 +20,7 @@ make install
 cp .env.example .env
 ```
 
-The `.env` file is optional for building the data already in the repository. Edit it before running the pipeline or a publisher.
+The `.env` file is optional for building the data already in the repository. Edit it before running the pipeline or publishing.
 
 ## Minimal run
 
@@ -115,7 +115,7 @@ Telegram publication requires `TELEGRAM_ENABLE=true`, `TELEGRAM_BOT_TOKEN`, and 
 - `TELEGRAM_MAX_RATE_LIMIT_RETRIES` defaults to `5`.
 - `TELEGRAM_STREAM` defaults to `false`. When enabled, `processSingleStory` tries to send a story after its post summary is written.
 
-`make publish-telegram` reads `data/aggregated.json`, sorts by story time, keeps items with a post summary, and skips IDs recorded in `data/telegram-sent.json`. It sends one message per selected story and records progress in `data/cache/`. The local hourly job skips this publisher in R2 mode because the Worker path handles Telegram tasks.
+`make publish-telegram` reads `data/aggregated.json`. It sorts by story time. It keeps items with a post summary. It skips IDs recorded in `data/telegram-sent.json`. It sends one message per selected story and records progress in `data/cache/`. The local hourly job skips this publisher in R2 mode because the Worker path handles Telegram tasks.
 
 ### Worker and Pages scheduling
 
@@ -153,11 +153,11 @@ The static site has `/`, `/page/{n}/`, `/item/{id}/`, `/search/`, `/tags/`, and 
 
 ## Deployment
 
-The Astro configuration uses static output. Deploy the contents of `dist/` with the host of your choice after `make build`.
+The Astro configuration uses static output. Deploy `dist/` to any static host after `make build`.
 
 `vercel.json` sets the Vercel install command to `bun install`, the build command to `bun run build`, and the framework to Astro.
 
-`wrangler.toml` describes a separate Cloudflare Worker named `hn-distill-pipeline`. It declares an hourly cron at minute `0`, an R2 binding named `DATA_BUCKET`, and a D1 binding named `DB`. The Worker exposes `/health` and runs the fetch, processing, aggregation, Telegram, and optional Pages hook steps from its scheduled handler. The checked-in Wrangler file does not declare a `TASKS` queue binding, so the Worker source uses inline processing when that binding is absent.
+`wrangler.toml` describes a separate Cloudflare Worker named `hn-distill-pipeline`. It declares an hourly cron at minute `0`, an R2 binding named `DATA_BUCKET`, and a D1 binding named `DB`. The Worker exposes `/health` and runs the fetch, processing, aggregation, Telegram, and optional Pages hook steps from its scheduled handler. The checked-in Wrangler file does not declare a `TASKS` queue binding. The Worker source uses inline processing when that binding is absent.
 
 The repository does not define a Wrangler deploy script. The Cloudflare resources and Worker deployment need to be provisioned with the operator's Cloudflare tooling.
 
